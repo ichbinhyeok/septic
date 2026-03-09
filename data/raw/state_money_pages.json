@@ -913,6 +913,192 @@
       ],
       "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"],
       "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "WA",
+      "title": "Washington Septic Permit Process",
+      "metaDescription": "Washington septic permit steps for homeowners, with local health jurisdiction review, system-type duties, and records checks explained.",
+      "introCopy": "Washington's permit path is local-health-jurisdiction first. Homeowners need the county-level authority before they trust a quote, and they also need to know whether the system type brings more inspection and maintenance obligations than a simple gravity assumption.",
+      "uniqueAngle": "Washington's permit page is unusually useful because the state openly explains local health jurisdiction control, system-type differences, and recurring owner duties in a way national septic pages usually do not.",
+      "driverBullets": [
+        "The local health jurisdiction is the first real permit authority for location, design, installation, and repairs.",
+        "Advanced or proprietary systems can carry a more complex approval and maintenance path than gravity systems.",
+        "As-built drawings and O&M logs can matter early because they shape what the local authority sees as the current system baseline."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who handles septic permits in Washington?",
+          "answer": "The local health jurisdiction is the practical first stop because county-level LHJs issue permits and inspect work."
+        },
+        {
+          "question": "Why does system type matter so early in Washington?",
+          "answer": "Because Washington openly ties inspection and maintenance duties to system type, so the permit conversation is not just about the tank."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=new_install",
+        "/septic-records-checklist/washington/",
+        "/septic-pumping-cost/washington/"
+      ],
+      "officialSourceIds": ["wa_01", "wa_02", "wa_04", "wa_05"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NC",
+      "title": "North Carolina Septic Permit Process",
+      "metaDescription": "North Carolina septic permit steps for homeowners, from improvement permit to construction authorization and operation permit.",
+      "introCopy": "North Carolina is one of the clearest permit-ladder states in this project. The homeowner path runs through the county health department and splits into improvement permit, construction authorization, and operation permit or certificate of completion. This page makes that ladder readable.",
+      "uniqueAngle": "North Carolina's permit page is stronger than generic septic content because the official branch resources openly show the permit ladder and where local health departments control the next step.",
+      "driverBullets": [
+        "County health departments run the practical homeowner path, not a single statewide office.",
+        "Improvement permit, construction authorization, and operation permit are separate gates that can delay certainty.",
+        "If the project crosses simpler residential limits, state review and professional design can become part of the path."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic permit step in North Carolina?",
+          "answer": "Start with the local health department and the improvement permit because that step determines whether the site is approved in the first place."
+        },
+        {
+          "question": "Why does North Carolina permit timing surprise homeowners?",
+          "answer": "Because construction authorization and operation approval are separate from the first site-approval step, so certainty can come later than expected."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": ["nc_01", "nc_02", "nc_03", "nc_04"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NJ",
+      "title": "New Jersey Septic Permit Process",
+      "metaDescription": "New Jersey septic permit steps for homeowners, with local board of health oversight, management-program context, and Pinelands wrinkles explained.",
+      "introCopy": "New Jersey homeowners often think septic permitting is a one-time install question, but official materials make the management and local board of health layer much more visible. This page frames the permit path around that local oversight instead of pretending the whole state works one way.",
+      "uniqueAngle": "New Jersey's permit page becomes unique when it explains local board of health oversight, wastewater-management programs, and Pinelands obligations together.",
+      "driverBullets": [
+        "Local board of health or local acting authority is usually the first practical checkpoint.",
+        "In the Pinelands or with advanced pretreatment devices, ongoing management duties affect the real homeowner path.",
+        "Inspection and maintenance obligations belong in the permit conversation because they shape long-run ownership cost."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is New Jersey's septic permit page about local management too?",
+          "answer": "Because NJDEP and Pinelands materials make clear that local oversight and management obligations are part of the real homeowner path."
+        },
+        {
+          "question": "What should a New Jersey homeowner verify first?",
+          "answer": "Verify the local board of health or local acting authority, then ask whether the property falls under a management program or Pinelands-specific requirements."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=new_install",
+        "/septic-records-checklist/new-jersey/",
+        "/buying-a-house-with-a-septic-system/new-jersey/"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04", "nj_05"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "CT",
+      "title": "Connecticut Septic Records Checklist",
+      "metaDescription": "Connecticut septic records to request before trusting a quote, including site investigation, approval-to-construct, and permit-to-discharge history.",
+      "introCopy": "Connecticut records research is stronger than a generic permit-file request because additions, potential bedrooms, and local health review can all matter. This page tells homeowners which documents reduce uncertainty fastest.",
+      "uniqueAngle": "Connecticut's records page is unique because site investigation, approval-to-construct, permit-to-discharge, and change-in-use history all shape the practical risk.",
+      "driverBullets": [
+        "Ask for the site investigation and soil-testing records first if they already exist.",
+        "Request any approval-to-construct, as-built, or permit-to-discharge record for the current system.",
+        "Pull history of additions, extra bedrooms, or use changes because Connecticut's public logic is bedroom-based."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the most important septic record in Connecticut?",
+          "answer": "The site investigation and approval records matter most because they explain how the local authority viewed the system and the lot."
+        },
+        {
+          "question": "Why do additions matter in a Connecticut records checklist?",
+          "answer": "Because potential bedrooms and change in use can change how the local authority evaluates the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-permit-process/connecticut/",
+        "/buying-a-house-with-a-septic-system/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "OR",
+      "title": "Oregon Septic Records Checklist",
+      "metaDescription": "Oregon septic records to request before trusting a quote, including site evaluation, online records, and authorization notices.",
+      "introCopy": "Oregon records are unusually valuable because the site evaluation and replacement-area logic can change the project before a permit is even close to approved. This page keeps the records checklist focused on what actually changes the outcome.",
+      "uniqueAngle": "Oregon's records page is strongest when it starts with site evaluation and the online septic-record lookup, not generic seller paperwork.",
+      "driverBullets": [
+        "Pull the latest site evaluation because it explains both the initial and replacement absorption areas.",
+        "Use Oregon's online septic-record lookup before assuming the existing system file is easy to find.",
+        "Ask for any authorization notice tied to an ADU, use change, or increased sewage flow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to request in Oregon?",
+          "answer": "Start with the most recent site evaluation because it shapes both the likely system type and the permit path."
+        },
+        {
+          "question": "Why is the Oregon online records lookup so important?",
+          "answer": "Because it can save time and reveal whether the property already has site, permit, or authorization history that changes the estimate."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-permit-process/oregon/",
+        "/drain-field-replacement-cost/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
+      ],
+      "officialSourceIds": ["or_01", "or_03", "or_04", "or_05"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "CT",
+      "title": "Buying a House With a Septic System in Connecticut",
+      "metaDescription": "Connecticut homebuyer septic checklist with potential-bedroom risk, local health review, and permit record questions.",
+      "introCopy": "A Connecticut septic home purchase can look fine on occupancy alone and still carry risk because the state treats bedrooms, potential bedrooms, and additions differently than many buyers expect. This page helps the buyer ask the right questions before closing.",
+      "uniqueAngle": "Connecticut's buyer page is uniquely strong because the state uses bedroom-based design flow and potential-bedroom logic rather than the current headcount in the home.",
+      "driverBullets": [
+        "A low-occupancy household does not erase design-flow risk because Connecticut is bedroom-based.",
+        "Site investigation, approval-to-construct, and permit-to-discharge history matter before the buyer trusts the system story.",
+        "Additions or change in use can trigger more local review than the listing suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is a Connecticut septic home purchase different?",
+          "answer": "Because potential bedrooms, additions, and local health review can matter more than the current number of people living there."
+        },
+        {
+          "question": "What should a Connecticut buyer ask for first?",
+          "answer": "Ask for site investigation records, approval and discharge paperwork, and any history of additions or use changes."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-records-checklist/connecticut/",
+        "/septic-permit-process/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
+      "calculatorProjectType": "buying_home"
     }
   ]
 }
