@@ -98,23 +98,80 @@ public class SeoService {
 
     public PageMeta stateGuide(StateProfile state) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
+        List<FaqBlock> faqBlocks = stateGuideFaqs(state);
+        List<String> jsonLdBlocks = new ArrayList<>();
+        jsonLdBlocks.add(toJson(webPage(canonicalUrl,
+                state.stateName() + " Septic Cost & Size Guide",
+                "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
+                "WebPage")));
+        jsonLdBlocks.add(toJson(breadcrumb(List.of(
+                crumb("Home", absoluteUrl("/")),
+                crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
+                crumb(state.stateName() + " Guide", canonicalUrl)
+        ))));
+        if (!faqBlocks.isEmpty()) {
+            jsonLdBlocks.add(toJson(faqPage(
+                    canonicalUrl,
+                    state.stateName() + " Septic Cost & Size Guide",
+                    "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
+                    faqBlocks
+            )));
+        }
         return new PageMeta(
                 state.stateName() + " Septic Cost & Size Guide",
                 "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
                 canonicalUrl,
                 "index,follow",
-                List.of(
-                        toJson(webPage(canonicalUrl,
-                                state.stateName() + " Septic Cost & Size Guide",
-                                "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
-                                "WebPage")),
-                        toJson(breadcrumb(List.of(
-                                crumb("Home", absoluteUrl("/")),
-                                crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
-                                crumb(state.stateName() + " Guide", canonicalUrl)
-                        )))
-                )
+                jsonLdBlocks
         );
+    }
+
+    public List<FaqBlock> stateGuideFaqs(StateProfile state) {
+        List<FaqBlock> faqBlocks = new ArrayList<>();
+
+        if (hasText(state.whoToCallFirst())) {
+            faqBlocks.add(new FaqBlock(
+                    "Who should a homeowner call first about septic work in " + state.stateName() + "?",
+                    state.whoToCallFirst() + " Use that first call to confirm the local process before you rely on a national rule of thumb."
+            ));
+        }
+
+        if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()) {
+            faqBlocks.add(new FaqBlock(
+                    "What septic records should you request first in " + state.stateName() + "?",
+                    String.join(" ", state.recordsToRequest()) + " Those records help confirm whether the low end of a quote is still realistic."
+            ));
+        }
+
+        if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()) {
+            faqBlocks.add(new FaqBlock(
+                    "What usually pushes a " + state.stateName() + " septic quote above the low end?",
+                    String.join(" ", state.lowEndRiskChecks()) + " " + state.localOverrideNote()
+            ));
+        }
+
+        String specialContext = firstNonBlank(
+                state.specialAreaNote(),
+                state.pageAngle(),
+                state.permitTimelineNote(),
+                state.siteEvalSummary()
+        );
+        if (specialContext != null) {
+            faqBlocks.add(new FaqBlock(
+                    "What makes " + state.stateName() + " different from a generic septic cost estimate?",
+                    specialContext + " Final design, permit timing, and approval still need local verification."
+            ));
+        }
+
+        if (faqBlocks.size() < 4) {
+            faqBlocks.add(new FaqBlock(
+                    "How much should you trust an online septic estimate in " + state.stateName() + "?",
+                    "Treat it as a planning range only. " + state.localOverrideNote()
+                            + " Final design, permit path, and approval still depend on local review."
+            ));
+        }
+
+        return faqBlocks;
     }
 
     public PageMeta contentPage(ContentPage contentPage) {
@@ -263,6 +320,19 @@ public class SeoService {
         crumb.put("name", name);
         crumb.put("item", url);
         return crumb;
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.isBlank();
+    }
+
+    private String firstNonBlank(String... values) {
+        for (String value : values) {
+            if (hasText(value)) {
+                return value;
+            }
+        }
+        return null;
     }
 
     private String toJson(Map<String, Object> payload) {

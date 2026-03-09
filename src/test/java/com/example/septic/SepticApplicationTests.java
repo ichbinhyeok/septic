@@ -186,6 +186,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Quick facts")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local action checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQ")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQPage")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
@@ -197,6 +200,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/massachusetts/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Title 5")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with Title 5 timing in mind")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying or Selling Property with a Septic System")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who to call first")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records to request first")));
@@ -225,6 +229,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=replacement")));
 	}

@@ -8,6 +8,8 @@
 @param java.util.List<SourceRecord> sources
 @param java.util.List<SourceRecord> localAuthoritySources = java.util.List.of()
 @param java.util.List<SourceRecord> recordsLookupSources = java.util.List.of()
+@param String calculatorCtaLabel = "Open the main calculator"
+@param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -17,9 +19,10 @@
                 <h1>${stateMoneyPage.title()}</h1>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Open the main calculator</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/">Open the ${state.stateName()} guide</a>
                 </div>
+                <p>${calculatorCtaNote}</p>
             </div>
 
             <article class="hero-sidecard">
@@ -234,8 +237,8 @@
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
-                <h2>Run the calculator with your state and project assumptions, then move into the quote form.</h2>
-                <p>The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.</p>
+                <h2>${calculatorCtaLabel}</h2>
+                <p>${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.</p>
                 <a href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Run the estimate</a>
             </article>
 

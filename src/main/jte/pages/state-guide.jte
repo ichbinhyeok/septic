@@ -7,6 +7,9 @@
 @param java.util.List<SourceRecord> localAuthoritySources = java.util.List.of()
 @param java.util.List<SourceRecord> recordsLookupSources = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
+@param String calculatorCtaLabel = "Open the main calculator"
+@param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -21,7 +24,8 @@
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
                 <p>Confidence: ${state.confidenceScore()} | Last verified: ${state.lastVerifiedAt()}</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">Use the main calculator</a>
+                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+                <p>${calculatorCtaNote}</p>
             </div>
         </div>
     </section>
@@ -226,6 +230,26 @@
                         </ul>
                     </article>
                 @endif
+            </div>
+        </section>
+    @endif
+
+    @if (guideFaqs != null && !guideFaqs.isEmpty())
+        <section class="section section--muted" id="faq">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">FAQ</span>
+                    <h2>${state.stateName()} homeowner questions worth clearing up before you request quotes.</h2>
+                </div>
+
+                <div class="detail-grid">
+                    @for (var faq : guideFaqs)
+                        <article class="detail-card">
+                            <h3>${faq.question()}</h3>
+                            <p>${faq.answer()}</p>
+                        </article>
+                    @endfor
+                </div>
             </div>
         </section>
     @endif

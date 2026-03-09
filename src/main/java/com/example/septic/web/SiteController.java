@@ -335,6 +335,7 @@ public class SiteController {
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
+        StateActionCopy stateActionCopy = stateActionCopy(state);
 
         model.addAttribute("page", seoService.stateGuide(state));
         model.addAttribute("state", state);
@@ -342,6 +343,9 @@ public class SiteController {
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
+        model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
+        model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
+        model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         return "pages/state-guide";
     }
 
@@ -394,6 +398,7 @@ public class SiteController {
         List<SourceRecord> sources = researchDataService.getSources(stateMoneyPage.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
+        StateActionCopy stateActionCopy = stateActionCopy(state);
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
@@ -401,6 +406,8 @@ public class SiteController {
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
+        model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
+        model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         return "pages/state-money-page";
     }
 
@@ -492,6 +499,55 @@ public class SiteController {
             case "tank_size_estimator" -> "/septic-tank-size-estimator/";
             case "pump_schedule_estimator" -> "/septic-pump-schedule-estimator/";
             default -> "/septic-system-cost-calculator/";
+        };
+    }
+
+    private StateActionCopy stateActionCopy(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "GA" -> new StateActionCopy(
+                    "Estimate with the disposal rule in mind",
+                    "Georgia homeowners often need to check whether a garbage disposal changes the likely tank band before they call the county office."
+            );
+            case "PA" -> new StateActionCopy(
+                    "Estimate before calling the SEO",
+                    "Pennsylvania often turns into a records and local SEO workflow fast, so it helps to walk in with a realistic planning range first."
+            );
+            case "CT" -> new StateActionCopy(
+                    "Estimate with design flow context",
+                    "Connecticut questions often turn on bedroom count and potential-bedroom logic, not just what fixtures you see today."
+            );
+            case "OR" -> new StateActionCopy(
+                    "Estimate before site evaluation",
+                    "Oregon homeowners usually need a planning range before the site evaluation and permit path narrow the real system options."
+            );
+            case "MA" -> new StateActionCopy(
+                    "Estimate with Title 5 timing in mind",
+                    "Massachusetts buyers and sellers usually need to line up the estimate with Title 5 timing, records, and inspection results."
+            );
+            case "FL" -> new StateActionCopy(
+                    "Estimate after the county path check",
+                    "Florida homeowners should confirm whether the local path runs through a county health department or a DEP-managed county before comparing quotes."
+            );
+            case "WA" -> new StateActionCopy(
+                    "Estimate before calling the LHJ",
+                    "Washington workflows usually move faster when you know whether the local health jurisdiction will ask for records, O&M history, or advanced-system context."
+            );
+            case "NJ" -> new StateActionCopy(
+                    "Estimate with management rules in mind",
+                    "New Jersey costs can shift once management-area rules, local health review, or Pinelands context enter the conversation."
+            );
+            case "NC" -> new StateActionCopy(
+                    "Estimate before the permit ladder",
+                    "North Carolina homeowners usually get better quote conversations when they understand the improvement-permit sequence before pricing systems."
+            );
+            case "MO" -> new StateActionCopy(
+                    "Estimate after confirming local authority",
+                    "Missouri can route homeowners through different county or local authorities, so the planning estimate is strongest after that first local check."
+            );
+            default -> new StateActionCopy(
+                    "Open the main calculator",
+                    "Use your state and project assumptions first, then verify the actual permit path locally."
+            );
         };
     }
 }
