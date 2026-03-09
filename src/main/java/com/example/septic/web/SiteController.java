@@ -5,12 +5,15 @@ import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
+import com.example.septic.service.LeadStorageService;
 import com.example.septic.service.ProjectType;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SoilPercStatus;
 import com.example.septic.service.TimelinePreference;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,10 +24,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SiteController {
     private final ResearchDataService researchDataService;
     private final EstimatorService estimatorService;
+    private final LeadStorageService leadStorageService;
 
-    public SiteController(ResearchDataService researchDataService, EstimatorService estimatorService) {
+    public SiteController(
+            ResearchDataService researchDataService,
+            EstimatorService estimatorService,
+            LeadStorageService leadStorageService
+    ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
+        this.leadStorageService = leadStorageService;
     }
 
     @GetMapping("/")
@@ -39,13 +48,32 @@ public class SiteController {
 
     @GetMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
     public String calculator(Model model) {
-        return renderCalculator(model, new EstimateForm(), null);
+        return renderCalculator(model, new EstimateForm(), null, QuoteLeadForm.fromEstimateForm(new EstimateForm()), null, false);
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
     public String calculate(@ModelAttribute EstimateForm estimateForm, Model model) {
         EstimatorResult result = estimatorService.estimate(estimateForm);
-        return renderCalculator(model, estimateForm, result);
+        return renderCalculator(model, estimateForm, result, QuoteLeadForm.fromEstimateForm(estimateForm), null, false);
+    }
+
+    @PostMapping({"/quote-request", "/quote-request/"})
+    public String submitQuote(@Valid @ModelAttribute QuoteLeadForm quoteLeadForm, BindingResult bindingResult, Model model) {
+        EstimateForm estimateForm = quoteLeadForm.toEstimateForm();
+        EstimatorResult result = estimatorService.estimate(estimateForm);
+
+        if (bindingResult.hasErrors()) {
+            return renderCalculator(model, estimateForm, result, quoteLeadForm, null, true);
+        }
+
+        String leadId = leadStorageService.saveQuoteLead(
+                quoteLeadForm,
+                estimateForm,
+                result,
+                "/septic-system-cost-calculator/"
+        );
+        QuoteLeadForm clearedQuoteForm = QuoteLeadForm.fromEstimateForm(estimateForm);
+        return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false);
     }
 
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
@@ -83,7 +111,14 @@ public class SiteController {
         return TimelinePreference.values();
     }
 
-    private String renderCalculator(Model model, EstimateForm estimateForm, EstimatorResult result) {
+    private String renderCalculator(
+            Model model,
+            EstimateForm estimateForm,
+            EstimatorResult result,
+            QuoteLeadForm quoteLeadForm,
+            String leadId,
+            boolean quoteHasErrors
+    ) {
         model.addAttribute("page", new PageMeta(
                 "Septic System Cost Calculator",
                 "Estimate likely tank size, system class, and septic project cost range by state."
@@ -91,6 +126,9 @@ public class SiteController {
         model.addAttribute("states", researchDataService.getStateProfiles());
         model.addAttribute("estimateForm", estimateForm);
         model.addAttribute("result", result);
+        model.addAttribute("quoteLeadForm", quoteLeadForm);
+        model.addAttribute("leadId", leadId);
+        model.addAttribute("quoteHasErrors", quoteHasErrors);
         return "pages/calculator";
     }
 }

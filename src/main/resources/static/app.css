@@ -157,6 +157,7 @@ h3,
 .calculator-form,
 .placeholder-panel,
 .result-panel,
+.quote-panel,
 .feature-card,
 .state-card,
 .trust-box,
@@ -378,9 +379,30 @@ li,
 
 .calculator-form,
 .result-panel,
-.placeholder-panel {
+.placeholder-panel,
+.quote-panel {
     border-radius: var(--radius-xl);
     padding: 28px;
+}
+
+.quote-panel {
+    margin-top: 24px;
+    background: rgba(255, 253, 248, 0.9);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+}
+
+.quote-panel__header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.quote-form {
+    display: grid;
+    gap: 16px;
 }
 
 .field-grid {
@@ -404,6 +426,10 @@ li,
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(20, 34, 32, 0.08);
+}
+
+.checkbox--wide {
+    width: 100%;
 }
 
 input,
@@ -480,6 +506,27 @@ input[type="checkbox"] {
     padding: 30px;
 }
 
+.status-box {
+    margin-bottom: 16px;
+    border-radius: 20px;
+    padding: 16px 18px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+}
+
+.status-box strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: "Manrope", sans-serif;
+}
+
+.status-box--success {
+    background: rgba(225, 240, 234, 0.9);
+}
+
+.status-box--error {
+    background: rgba(255, 236, 229, 0.9);
+}
+
 .source-list li {
     display: flex;
     flex-direction: column;
@@ -546,6 +593,7 @@ input[type="checkbox"] {
     .calculator-form,
     .result-panel,
     .placeholder-panel,
+    .quote-panel,
     .feature-card,
     .state-card,
     .detail-card,

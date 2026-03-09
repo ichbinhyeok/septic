@@ -6,10 +6,14 @@
 @import com.example.septic.service.TimelinePreference
 @import com.example.septic.web.EstimateForm
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.QuoteLeadForm
 @param PageMeta page
 @param java.util.List<StateProfile> states
 @param EstimateForm estimateForm
 @param EstimatorResult result = null
+@param QuoteLeadForm quoteLeadForm
+@param String leadId = null
+@param boolean quoteHasErrors = false
 @param ProjectType[] projectTypes
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
@@ -108,6 +112,75 @@
             <div class="calculator-output">
                 @if (result != null)
                     @template.tags.estimateResult(result = result)
+
+                    <section class="quote-panel">
+                        <div class="quote-panel__header">
+                            <div>
+                                <span class="eyebrow">Primary CTA</span>
+                                <h2>Get matched with local septic pros</h2>
+                            </div>
+                            <span class="pill">Short form</span>
+                        </div>
+
+                        @if (leadId != null)
+                            <article class="status-box status-box--success">
+                                <strong>Request received</strong>
+                                <p>Your quote request was saved with lead ID ${leadId}. This project now has a file-based lead record and event entry.</p>
+                            </article>
+                        @endif
+
+                        @if (quoteHasErrors)
+                            <article class="status-box status-box--error">
+                                <strong>Finish the required fields</strong>
+                                <p>Name, email, phone, ZIP, and consent are required before this lead can be stored.</p>
+                            </article>
+                        @endif
+
+                        <form class="quote-form" method="post" action="/quote-request/">
+                            <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
+                            <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
+                            <input type="hidden" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
+                            <input type="hidden" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
+                            <input type="hidden" name="soilPercStatus" value="${quoteLeadForm.getSoilPercStatus()}">
+                            <input type="hidden" name="accessDifficulty" value="${quoteLeadForm.getAccessDifficulty()}">
+                            <input type="hidden" name="timeline" value="${quoteLeadForm.getTimeline()}">
+                            <input type="hidden" name="garbageDisposal" value="${quoteLeadForm.isGarbageDisposal()}">
+                            <input type="hidden" name="additionalKitchen" value="${quoteLeadForm.isAdditionalKitchen()}">
+                            <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock()}">
+
+                            <div class="field-grid">
+                                <label class="field">
+                                    <span>Full name</span>
+                                    <input type="text" name="fullName" value="${quoteLeadForm.getFullNameValue()}">
+                                </label>
+
+                                <label class="field">
+                                    <span>Email</span>
+                                    <input type="email" name="email" value="${quoteLeadForm.getEmailValue()}">
+                                </label>
+
+                                <label class="field">
+                                    <span>Phone</span>
+                                    <input type="tel" name="phone" value="${quoteLeadForm.getPhoneValue()}">
+                                </label>
+
+                                <label class="field">
+                                    <span>ZIP code</span>
+                                    <input type="text" inputmode="numeric" name="zipCode" value="${quoteLeadForm.getZipCodeValue()}">
+                                </label>
+                            </div>
+
+                            <label class="checkbox checkbox--wide">
+                                <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}">
+                                <span>I agree to be contacted about my septic project estimate and matching options.</span>
+                            </label>
+
+                            <div class="form-actions">
+                                <button class="button button--primary" type="submit">Request local quotes</button>
+                                <p>The app stores one JSON lead file and one NDJSON event entry on submit.</p>
+                            </div>
+                        </form>
+                    </section>
                 @else
                     <article class="placeholder-panel">
                         <span class="eyebrow">Result preview</span>
