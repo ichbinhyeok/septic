@@ -10,6 +10,8 @@ import com.example.septic.service.EstimatorService;
 import com.example.septic.service.LeadStorageService;
 import com.example.septic.service.ProjectType;
 import com.example.septic.service.ResearchDataService;
+import com.example.septic.service.SeoService;
+import com.example.septic.service.SitemapService;
 import com.example.septic.service.SoilPercStatus;
 import com.example.septic.service.TimelinePreference;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
@@ -25,31 +28,47 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SiteController {
     private final ResearchDataService researchDataService;
     private final EstimatorService estimatorService;
     private final LeadStorageService leadStorageService;
+    private final SeoService seoService;
+    private final SitemapService sitemapService;
 
     public SiteController(
             ResearchDataService researchDataService,
             EstimatorService estimatorService,
-            LeadStorageService leadStorageService
+            LeadStorageService leadStorageService,
+            SeoService seoService,
+            SitemapService sitemapService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
         this.leadStorageService = leadStorageService;
+        this.seoService = seoService;
+        this.sitemapService = sitemapService;
     }
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("page", new PageMeta(
-                "Septic System Cost & Size Estimator",
-                "State-aware septic planning estimates for tank size, system type, and rough cost."
-        ));
+        model.addAttribute("page", seoService.homePage());
         model.addAttribute("states", researchDataService.getStateProfiles());
         return "pages/home";
+    }
+
+    @GetMapping(value = {"/robots.txt"}, produces = MediaType.TEXT_PLAIN_VALUE)
+    @ResponseBody
+    public String robotsTxt() {
+        return sitemapService.robotsTxt();
+    }
+
+    @GetMapping(value = {"/sitemap.xml"}, produces = MediaType.APPLICATION_XML_VALUE)
+    @ResponseBody
+    public String sitemapXml() {
+        return sitemapService.sitemapXml();
     }
 
     @GetMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
@@ -99,10 +118,7 @@ public class SiteController {
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
 
-        model.addAttribute("page", new PageMeta(
-                state.stateName() + " Septic Cost & Size Guide",
-                "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners."
-        ));
+        model.addAttribute("page", seoService.stateGuide(state));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
@@ -128,7 +144,7 @@ public class SiteController {
                 .flatMap(Optional::stream)
                 .toList();
 
-        model.addAttribute("page", new PageMeta(contentPage.title(), contentPage.metaDescription()));
+        model.addAttribute("page", seoService.contentPage(contentPage));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
@@ -152,7 +168,7 @@ public class SiteController {
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
         List<SourceRecord> sources = researchDataService.getSources(stateMoneyPage.officialSourceIds());
 
-        model.addAttribute("page", new PageMeta(stateMoneyPage.title(), stateMoneyPage.metaDescription()));
+        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -187,10 +203,7 @@ public class SiteController {
             String leadId,
             boolean quoteHasErrors
     ) {
-        model.addAttribute("page", new PageMeta(
-                "Septic System Cost Calculator",
-                "Estimate likely tank size, system class, and septic project cost range by state."
-        ));
+        model.addAttribute("page", seoService.calculatorPage());
         model.addAttribute("states", researchDataService.getStateProfiles());
         model.addAttribute("estimateForm", estimateForm);
         model.addAttribute("result", result);

@@ -1,17 +1,24 @@
 package com.example.septic.web;
 
+import com.example.septic.service.SeoService;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@Controller
+@ControllerAdvice
 public class SiteExceptionHandler {
+    private final SeoService seoService;
+
+    public SiteExceptionHandler(SeoService seoService) {
+        this.seoService = seoService;
+    }
+
     @ExceptionHandler(StateNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleStateNotFound(StateNotFoundException exception, Model model) {
-        model.addAttribute("page", new PageMeta("State Not Found", exception.getMessage()));
+        model.addAttribute("page", seoService.notFound(exception.getMessage()));
         model.addAttribute("message", exception.getMessage());
         return "pages/not-found";
     }

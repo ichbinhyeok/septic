@@ -16,7 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(properties = {
-		"app.storage.root=./build/test-storage"
+		"app.storage.root=./build/test-storage",
+		"app.site.base-url=https://example.test"
 })
 @AutoConfigureMockMvc
 class SepticApplicationTests {
@@ -32,7 +33,26 @@ class SepticApplicationTests {
 	void homePageRenders() throws Exception {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost & Size Estimator")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost & Size Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")));
+	}
+
+	@Test
+	void robotsTxtExposesSitemap() throws Exception {
+		mockMvc.perform(get("/robots.txt"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("User-agent: *")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sitemap: https://example.test/sitemap.xml")));
+	}
+
+	@Test
+	void sitemapXmlIncludesCoreUrls() throws Exception {
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/georgia/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")));
 	}
 
 	@Test
@@ -89,7 +109,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")));
 	}
 
 	@Test
@@ -205,6 +226,13 @@ class SepticApplicationTests {
 					"Expected at least one stored event file"
 			);
 		}
+	}
+
+	@Test
+	void notFoundPageIsNoindex() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/not-a-real-state/"))
+				.andExpect(status().isNotFound())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")));
 	}
 
 }

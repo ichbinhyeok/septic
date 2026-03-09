@@ -102,6 +102,18 @@ public class ResearchDataService {
         return stateProfiles;
     }
 
+    public List<ContentPage> getContentPages() {
+        return contentPagesBySlug.values().stream()
+                .sorted(Comparator.comparing(ContentPage::title))
+                .toList();
+    }
+
+    public List<StateMoneyPage> getStateMoneyPages() {
+        return stateMoneyPagesByKey.values().stream()
+                .sorted(Comparator.comparing(StateMoneyPage::title))
+                .toList();
+    }
+
     public Optional<StateProfile> findStateByCode(String stateCode) {
         return Optional.ofNullable(statesByCode.get(stateCode.toUpperCase(Locale.US)));
     }
