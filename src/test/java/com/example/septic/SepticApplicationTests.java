@@ -117,6 +117,24 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void stateReplacementMoneyPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/georgia/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")));
+	}
+
+	@Test
+	void statePercMoneyPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/oregon/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to verify before trusting the low end")));
+	}
+
+	@Test
 	void moneyPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-replacement-cost/"))
 				.andExpect(status().isOk())

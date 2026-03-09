@@ -2,6 +2,7 @@ package com.example.septic.web;
 
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.SourceRecord;
+import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.EstimatorResult;
@@ -11,6 +12,7 @@ import com.example.septic.service.ProjectType;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SoilPercStatus;
 import com.example.septic.service.TimelinePreference;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -89,6 +91,8 @@ public class SiteController {
         ));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
+        model.addAttribute("hasReplacementMoneyPage", researchDataService.hasStateMoneyPage("septic-replacement-cost", state.stateCode()));
+        model.addAttribute("hasPercMoneyPage", researchDataService.hasStateMoneyPage("perc-test-cost", state.stateCode()));
         return "pages/state-guide";
     }
 
@@ -110,6 +114,27 @@ public class SiteController {
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
         return "pages/content-page";
+    }
+
+    @GetMapping({
+            "/septic-replacement-cost/{stateSlug}", "/septic-replacement-cost/{stateSlug}/",
+            "/perc-test-cost/{stateSlug}", "/perc-test-cost/{stateSlug}/"
+    })
+    public String stateMoneyPage(@PathVariable String stateSlug, HttpServletRequest request, Model model) {
+        String path = request.getRequestURI().replaceFirst("^/", "").replaceFirst("/$", "");
+        String contentSlug = path.substring(0, path.lastIndexOf('/'));
+
+        StateMoneyPage stateMoneyPage = researchDataService.findStateMoneyPage(contentSlug, stateSlug)
+                .orElseThrow(() -> new StateNotFoundException(path));
+        StateProfile state = researchDataService.findStateByCode(stateMoneyPage.stateCode())
+                .orElseThrow(() -> new StateNotFoundException(stateSlug));
+        List<SourceRecord> sources = researchDataService.getSources(stateMoneyPage.officialSourceIds());
+
+        model.addAttribute("page", new PageMeta(stateMoneyPage.title(), stateMoneyPage.metaDescription()));
+        model.addAttribute("stateMoneyPage", stateMoneyPage);
+        model.addAttribute("state", state);
+        model.addAttribute("sources", sources);
+        return "pages/state-money-page";
     }
 
     @ModelAttribute("projectTypes")

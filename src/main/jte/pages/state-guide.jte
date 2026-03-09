@@ -4,6 +4,8 @@
 @param PageMeta page
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
+@param boolean hasReplacementMoneyPage = false
+@param boolean hasPercMoneyPage = false
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -85,6 +87,21 @@
                     @endfor
                 </ul>
             </article>
+
+            @if (hasReplacementMoneyPage || hasPercMoneyPage)
+                <article class="detail-card">
+                    <h2>Next money pages</h2>
+                    <ul class="detail-list">
+                        @if (hasReplacementMoneyPage)
+                            <li><a href="/septic-replacement-cost/${state.slug()}/">${state.stateName()} septic replacement cost</a></li>
+                        @endif
+                        @if (hasPercMoneyPage)
+                            <li><a href="/perc-test-cost/${state.slug()}/">${state.stateName()} perc test cost</a></li>
+                        @endif
+                        <li><a href="/septic-system-cost-calculator/">Main septic cost calculator</a></li>
+                    </ul>
+                </article>
+            @endif
 
             <article class="detail-card">
                 <h2>Still under review</h2>

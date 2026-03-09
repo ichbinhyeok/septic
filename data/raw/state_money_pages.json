@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-03-09",
+  "pages": [
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "GA",
+      "title": "Georgia Septic Replacement Cost",
+      "metaDescription": "Estimate Georgia septic replacement cost with county permitting, soil analysis, disposal sizing, and site risk in mind.",
+      "introCopy": "Georgia replacement projects look simple on paper until county review, soil analysis, and disposal-driven upsizing change the band. This page keeps the estimate tied to Georgia's public homeowner guidance instead of pretending the state is one flat price.",
+      "uniqueAngle": "Georgia is one of the few launch states where homeowner-facing guidance clearly ties tank sizing to bedrooms and explicitly says garbage disposals require a septic tank that is 50 percent larger.",
+      "driverBullets": [
+        "County environmental health process and soil analysis can move a Georgia replacement out of the simple low end fast.",
+        "If the home has a garbage disposal, Georgia's homeowner guide pushes the likely tank band up materially.",
+        "Replacement work can expose field, excavation, and restoration cost that the basic tank number misses."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can a Georgia replacement quote jump even if the old tank size seems known?",
+          "answer": "Because Georgia's practical path still runs through county environmental health review, soil analysis, and site limits that may not match the old system."
+        },
+        {
+          "question": "Does a garbage disposal really matter in Georgia?",
+          "answer": "Yes. Georgia's homeowner guide says a house with a garbage disposal needs a septic tank that is 50 percent larger than the same house without one."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/georgia/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "GA",
+      "title": "Georgia Perc Test Cost",
+      "metaDescription": "Estimate Georgia perc and soil-analysis cost, and understand why county review affects septic pricing before install or replacement.",
+      "introCopy": "In Georgia, the perc or soil-analysis step matters because the county health process and the usable drainfield area depend on what the site can actually support. The test cost is usually not the main bill, but it can change the whole project.",
+      "uniqueAngle": "Georgia's public homeowner materials make soil analysis and drainfield suitability very visible, so the perc page can explain more than just a small testing fee.",
+      "driverBullets": [
+        "County scheduling and soil-analysis requirements can delay a low-cost, fast perc expectation.",
+        "A weak or failed result affects the likely system class more than the tank alone.",
+        "Water table depth and limiting layers can change how much drainfield area is usable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is a Georgia perc or soil test page worth its own content?",
+          "answer": "Because the test itself may be relatively small, but it directly affects drainfield viability, county approval, and the final replacement or install path."
+        },
+        {
+          "question": "Can I trust the low end if my Georgia soil status is still unknown?",
+          "answer": "No. The range should stay wide until the county process and site findings are clearer."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/georgia/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "PA",
+      "title": "Pennsylvania Septic Replacement Cost",
+      "metaDescription": "Estimate Pennsylvania septic replacement cost with local municipality, SEO review, and site-condition risk in mind.",
+      "introCopy": "Pennsylvania replacement pricing is not just a statewide average. DEP's homeowner guidance is useful, but the practical path runs through the municipality or local agency and the Sewage Enforcement Officer, which means local process risk belongs in the estimate.",
+      "uniqueAngle": "Pennsylvania is a strong replacement state because DEP gives homeowner-facing sizing context while still making the municipality and Sewage Enforcement Officer central to the real permit path.",
+      "driverBullets": [
+        "Municipal process and Sewage Enforcement Officer review can affect timing and the real next step.",
+        "Field failure and poor drainage can push the project out of a conventional replacement band.",
+        "Replacement cost often includes excavation and restoration that the public 900-gallon example does not capture."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is the Pennsylvania replacement page so focused on local agencies?",
+          "answer": "Because DEP points homeowners to the municipality or local agency and Sewage Enforcement Officer for actual permitting and enforcement."
+        },
+        {
+          "question": "Does Pennsylvania publish a full statewide replacement price?",
+          "answer": "No. Homeowners still need a range because site conditions and local administration can change the practical cost band."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/pennsylvania/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["pa_01", "pa_02"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "PA",
+      "title": "Pennsylvania Perc Test Cost",
+      "metaDescription": "Estimate Pennsylvania perc and site-evaluation cost, and understand why soil suitability drives septic pricing.",
+      "introCopy": "Pennsylvania's perc or site-evaluation step matters because DEP directly says septic systems only work on sites with suitable soil conditions. The test fee may be smaller than install cost, but the result can reshape the whole budget.",
+      "uniqueAngle": "This page is less about a national percolation price and more about how Pennsylvania soil suitability and local SEO review change the project path.",
+      "driverBullets": [
+        "A failed or uncertain Pennsylvania site can force a more expensive replacement path.",
+        "Local agency or SEO scheduling can create timing friction even when the test itself is not expensive.",
+        "Poor site conditions change both quote confidence and likely system class."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is a perc result so important in Pennsylvania?",
+          "answer": "Because DEP says septic systems only work if the site has suitable soil conditions, so the perc result changes the whole project more than the testing bill itself."
+        },
+        {
+          "question": "Who should I call first in Pennsylvania?",
+          "answer": "The municipality or local agency and the Sewage Enforcement Officer are the safest first step."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/pennsylvania/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["pa_01", "pa_02"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "CT",
+      "title": "Connecticut Septic Replacement Cost",
+      "metaDescription": "Estimate Connecticut septic replacement cost with bedroom-based design flow, local health review, and code-complying area risk in mind.",
+      "introCopy": "Connecticut replacement projects are unusual because public guidance is built around design sewage flow and potential bedrooms, not just the people living in the house today. That makes additions, reserve area, and local health review part of the replacement story.",
+      "uniqueAngle": "Connecticut is one of the strongest states for a unique replacement page because DPH uses 150 gallons per bedroom and ties changes in use and additions to code-complying area and soil-testing risk.",
+      "driverBullets": [
+        "Connecticut's bedroom-based design flow can keep the planning range high even when current occupancy is lower.",
+        "Additions or change-in-use history can affect whether the property still has workable code-complying area.",
+        "Local director of health or approved agent review controls the practical replacement path."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does Connecticut replacement cost care about bedrooms more than people?",
+          "answer": "Because Connecticut's public residential design-flow logic is based on bedrooms and potential bedrooms rather than actual occupancy."
+        },
+        {
+          "question": "Can an addition change the replacement picture in Connecticut?",
+          "answer": "Yes. Additions and changes in use can trigger more review of reserve area and soil conditions."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/connecticut/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "CT",
+      "title": "Connecticut Perc Test Cost",
+      "metaDescription": "Estimate Connecticut perc and site-testing cost, and understand how soil testing and local health review affect septic planning.",
+      "introCopy": "In Connecticut, site investigation and soil testing matter because the local health authority needs them before approval to construct. The cost is not just the test itself. It is the gate between a rough homeowner estimate and a real permit path.",
+      "uniqueAngle": "Connecticut's perc page should explain site investigation and local health review, not just a generic test fee, because the state openly ties soil testing to the approval process.",
+      "driverBullets": [
+        "Site investigation and soil testing are part of the practical path to construction approval.",
+        "If reserve area or code-complying area is weak, the low end of the estimate gets much less reliable.",
+        "Design-flow and bedroom logic still shape the likely system conversation after the test."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Connecticut perc content tied to permits so closely?",
+          "answer": "Because the local director of health or approved agent uses the site investigation and soil work before granting approval to construct."
+        },
+        {
+          "question": "Does a low-occupancy home get a simpler Connecticut result?",
+          "answer": "Not automatically. Connecticut's public logic is still bedroom-based, so the site and reserve area matter more than a short-term occupancy dip."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/connecticut/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "OR",
+      "title": "Oregon Septic Replacement Cost",
+      "metaDescription": "Estimate Oregon septic replacement cost with site evaluation, permit sequencing, and authorization notice risk in mind.",
+      "introCopy": "Oregon replacement cost should never be framed as a flat statewide number. DEQ makes the sequencing clear: site evaluation comes first, and that evaluation does not guarantee approval of any specific system type. That alone is enough to keep replacement ranges wide.",
+      "uniqueAngle": "Oregon's replacement page is strongest when it explains permit sequencing and uncertainty honestly instead of pretending the tank number settles the quote.",
+      "driverBullets": [
+        "Site evaluation comes before permit certainty, which keeps the replacement range intentionally wide.",
+        "If the project changes use, increases sewage flow, or touches an ADU, an authorization notice may be part of the path.",
+        "Replacement quotes can move sharply when the site no longer supports the same system type."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is the Oregon replacement range wider than some other states?",
+          "answer": "Because Oregon DEQ says the site evaluation does not guarantee approval of a specific system type, so early estimates need more uncertainty."
+        },
+        {
+          "question": "What is the first real next step in Oregon?",
+          "answer": "Start with site evaluation and local permitting authority context before trusting the low end."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/oregon/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["or_01", "or_02", "or_03"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "OR",
+      "title": "Oregon Perc Test Cost",
+      "metaDescription": "Estimate Oregon perc and site-evaluation cost, and understand why DEQ puts site evaluation before septic permitting.",
+      "introCopy": "Oregon's perc-intent page is really a site-evaluation page. DEQ says the evaluation reviews both the proposed initial and replacement soil absorption areas, and it still does not guarantee a specific system approval. That makes the testing stage strategically important.",
+      "uniqueAngle": "This Oregon page is unique because it treats perc intent as site-evaluation and permit-sequencing intent, which is closer to how the state actually talks about the homeowner path.",
+      "driverBullets": [
+        "The site evaluation can reshape the likely system class before a permit is even possible.",
+        "Testing both initial and replacement absorption areas raises the planning stakes beyond a simple perc fee.",
+        "If the property has change-in-use or ADU issues, the evaluation can spill into additional authorization steps."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Oregon really a normal perc-test state?",
+          "answer": "Not exactly. The safer homeowner framing is site evaluation first, because that is how DEQ sequences the process."
+        },
+        {
+          "question": "Can I trust the low end after the first Oregon site visit?",
+          "answer": "Not fully. DEQ still says the site evaluation does not guarantee approval of a specific system type."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/oregon/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["or_01", "or_02", "or_03"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "MA",
+      "title": "Massachusetts Septic Replacement Cost",
+      "metaDescription": "Estimate Massachusetts septic replacement cost with Title 5 inspection timing, Board of Health review, and property-transfer risk in mind.",
+      "introCopy": "Massachusetts replacement cost is shaped by Title 5 more than most national pages admit. Inspection timing, property transfer, and local Board of Health workflow can affect how urgent and expensive the job feels to a homeowner.",
+      "uniqueAngle": "Massachusetts gets a real replacement angle from Title 5 because inspection and sale timing can influence when owners discover a failing system and how quickly they need quotes.",
+      "driverBullets": [
+        "Title 5 inspection timing can compress the replacement timeline during a sale or refinance-like decision point.",
+        "Local Board of Health workflow matters because inspection reports and many practical next steps are local.",
+        "Bedroom additions or changes in use can turn a simple replacement conversation into a bigger compliance risk review."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Massachusetts replacement content so focused on Title 5?",
+          "answer": "Because Title 5 shapes inspection timing, property transfer risk, and local review in ways that directly affect when homeowners need replacement quotes."
+        },
+        {
+          "question": "Can annual pumping change anything in Massachusetts?",
+          "answer": "Yes. In the specific cases described by the state, annual pumping after inspection can extend the inspection validity window."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/massachusetts/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MA",
+      "title": "Massachusetts Perc Test Cost",
+      "metaDescription": "Estimate Massachusetts perc and site-testing cost, and understand how Title 5 and local Board of Health review affect the next step.",
+      "introCopy": "Massachusetts perc-intent traffic usually overlaps with Title 5, local Board of Health review, and upgrade questions. The testing bill matters, but homeowners usually care more about what the result means for replacement timing or a pending sale.",
+      "uniqueAngle": "This page works because Massachusetts homeowners often need soil-testing and Title 5 context together, not as separate generic articles.",
+      "driverBullets": [
+        "Local Board of Health process affects how quickly a test result turns into a real project requirement.",
+        "If the property is being sold or changed, perc-style site information may matter more because Title 5 timing is already in play.",
+        "Testing cost may be modest compared with the upgrade or replacement consequences it uncovers."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Massachusetts perc content tied to Title 5?",
+          "answer": "Because homeowners usually encounter site-testing questions alongside inspection, property-transfer, or upgrade concerns under Title 5."
+        },
+        {
+          "question": "Should I think about perc cost separately from replacement cost in Massachusetts?",
+          "answer": "Yes, but only as an early-stage step. The result often matters more than the testing invoice itself."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/massachusetts/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "FL",
+      "title": "Florida Septic Replacement Cost",
+      "metaDescription": "Estimate Florida septic replacement cost with DEP-managed counties, county health department routing, and operating-permit risk in mind.",
+      "introCopy": "Florida replacement pricing is now harder to flatten into one state average because jurisdiction matters first. Since January 2, 2025, DEP manages septic permitting in 16 counties, while other counties still route through local county health departments.",
+      "uniqueAngle": "Florida's replacement page is strongest when it explains the permit-authority split first, because that determines who the homeowner actually works with before any final quote is trusted.",
+      "driverBullets": [
+        "The first cost driver in Florida can be jurisdiction: DEP-managed county or county health department path.",
+        "Replacement projects may also pick up inspection or operating-permit obligations depending on the system and county program.",
+        "Water table and drainfield constraints still matter, but the process split is the first homeowner friction point."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Florida replacement content talking about counties so much?",
+          "answer": "Because Florida now splits septic permitting between DEP-managed counties and county health departments, so homeowners need the right authority before they trust any quote."
+        },
+        {
+          "question": "Do Florida replacement projects always involve the same permit path?",
+          "answer": "No. The path depends on the county, the project type, and sometimes the system type or operating-permit status."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/",
+        "/perc-test-cost/florida/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "FL",
+      "title": "Florida Perc Test Cost",
+      "metaDescription": "Estimate Florida perc and site-evaluation cost, and understand how DEP and county health routing affect septic planning.",
+      "introCopy": "Florida perc-intent traffic usually needs more than a small testing range. Homeowners first need to know whether the property is in a DEP-managed county or still handled by the county health department, because that changes who controls the next step.",
+      "uniqueAngle": "Florida makes perc-intent pages stronger when they explain jurisdiction, inspection sequence, and operating-permit context instead of pretending the issue is only a soil-test invoice.",
+      "driverBullets": [
+        "County routing affects scheduling and the practical next step before a test becomes useful.",
+        "The testing result can have bigger cost consequences in high-risk site conditions than the test invoice itself.",
+        "For some Florida systems, inspection and operating-permit context should be part of the early estimate conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is the Florida perc page mostly about the testing price?",
+          "answer": "No. The bigger homeowner question is which authority controls the path and what the result means for the full septic project."
+        },
+        {
+          "question": "What should I verify before trusting the low end in Florida?",
+          "answer": "Verify whether the property is in a DEP-managed county or a county health department path, then confirm the site and inspection sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/",
+        "/septic-replacement-cost/florida/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+    }
+  ]
+}
