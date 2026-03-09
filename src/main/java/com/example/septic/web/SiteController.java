@@ -15,6 +15,7 @@ import com.example.septic.service.TimelinePreference;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Locale;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SiteController {
@@ -50,8 +52,19 @@ public class SiteController {
     }
 
     @GetMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
-    public String calculator(Model model) {
-        return renderCalculator(model, new EstimateForm(), null, QuoteLeadForm.fromEstimateForm(new EstimateForm()), null, false);
+    public String calculator(
+            @RequestParam(name = "state", required = false) String stateCode,
+            @RequestParam(name = "projectType", required = false) String projectType,
+            Model model
+    ) {
+        EstimateForm estimateForm = new EstimateForm();
+        if (stateCode != null && researchDataService.findStateByCode(stateCode).isPresent()) {
+            estimateForm.setStateCode(stateCode.toUpperCase(Locale.US));
+        }
+        if (projectType != null) {
+            estimateForm.setProjectType(ProjectType.fromValue(projectType).value());
+        }
+        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false);
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})

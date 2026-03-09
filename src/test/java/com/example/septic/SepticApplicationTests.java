@@ -122,7 +122,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=replacement")));
 	}
 
 	@Test
@@ -131,7 +132,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to verify before trusting the low end")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to verify before trusting the low end")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OR&projectType=perc_test")));
 	}
 
 	@Test

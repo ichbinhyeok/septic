@@ -20,7 +20,7 @@
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
                 <p>Confidence: ${state.confidenceScore()} | Last verified: ${state.lastVerifiedAt()}</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/">Use the main calculator</a>
+                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">Use the main calculator</a>
             </div>
         </div>
     </section>
@@ -98,7 +98,7 @@
                         @if (hasPercMoneyPage)
                             <li><a href="/perc-test-cost/${state.slug()}/">${state.stateName()} perc test cost</a></li>
                         @endif
-                        <li><a href="/septic-system-cost-calculator/">Main septic cost calculator</a></li>
+                        <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}">Main septic cost calculator</a></li>
                     </ul>
                 </article>
             @endif
