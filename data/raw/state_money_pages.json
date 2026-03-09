@@ -361,6 +361,186 @@
         "/perc-test-cost/"
       ],
       "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MA",
+      "title": "Buying a House With a Septic System in Massachusetts",
+      "metaDescription": "Massachusetts homebuyer septic checklist with Title 5 inspection timing, Board of Health workflow, and pre-closing risk.",
+      "introCopy": "In Massachusetts, septic buyer risk is tightly tied to Title 5. The inspection window, local Board of Health workflow, and any weather-delay timing can matter as much as the physical system itself before closing.",
+      "uniqueAngle": "Massachusetts buyer pages are unusually strong because Title 5 inspection timing is explicitly tied to sales, weather delays, and local Board of Health filings.",
+      "driverBullets": [
+        "Title 5 inspection timing can directly affect closing risk and post-closing negotiation leverage.",
+        "A system pumped annually after inspection may have a longer valid inspection window, which changes how stale the report is.",
+        "Bedroom additions or change in use can matter because they can trigger more review under Title 5."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document to ask for in Massachusetts?",
+          "answer": "Ask for the most recent Title 5 inspection report and confirm when it was done relative to the sale timeline."
+        },
+        {
+          "question": "Can a Massachusetts buyer rely on an older inspection report?",
+          "answer": "Only within the timing rules the state describes. The report age and whether the system was pumped annually matter."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=buying_home",
+        "/septic-replacement-cost/massachusetts/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NJ",
+      "title": "Buying a House With a Septic System in New Jersey",
+      "metaDescription": "New Jersey homebuyer septic checklist with board of health oversight, management-program risk, and Pinelands maintenance obligations.",
+      "introCopy": "A New Jersey septic home purchase can carry more long-tail risk than the inspection itself suggests. Local board of health practice, management-program expectations, and Pinelands-specific maintenance obligations can all matter after closing.",
+      "uniqueAngle": "New Jersey buyer intent is strongest when the page explains local board of health oversight and the possibility of ongoing management obligations for advanced systems.",
+      "driverBullets": [
+        "A standard home inspection does not replace checking local septic management and board of health expectations.",
+        "In Pinelands settings or advanced-system cases, the buyer may inherit inspection and maintenance contract obligations.",
+        "Pump-out and inspection cadence are part of ownership cost, not just pre-closing paperwork."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What makes a New Jersey septic home purchase different?",
+          "answer": "Local management obligations and board of health reporting can matter long after the sale, especially in more sensitive areas."
+        },
+        {
+          "question": "Why should a buyer care about Pinelands rules?",
+          "answer": "Because some Pinelands properties and advanced systems carry recurring inspection, certification, or maintenance-contract expectations."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-pumping-cost/washington/"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "FL",
+      "title": "Buying a House With a Septic System in Florida",
+      "metaDescription": "Florida homebuyer septic checklist with DEP county split, county health routing, and official homebuyer guidance.",
+      "introCopy": "Florida buyers need more than a generic septic inspection reminder. The first question is which authority controls the system path in that county, and the second is what the official homebuyer guidance says about records, inspections, and pending repair risk.",
+      "uniqueAngle": "Florida has an unusually strong buyer page because the official Homebuyer's Guide and the DEP-versus-county split create a real jurisdiction and inspection story.",
+      "driverBullets": [
+        "The county's permitting authority matters because Florida now splits septic oversight between DEP-managed counties and county health departments.",
+        "A buyer should verify records, prior repairs, and any operating-permit or inspection obligations before closing.",
+        "Drainfield and water-table problems may not be obvious from a simple visual walkthrough."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What should a Florida buyer verify first?",
+          "answer": "Verify whether the property is in a DEP-managed county or a county health department path, then request septic records and inspection details."
+        },
+        {
+          "question": "Why is the official homebuyer guide important in Florida?",
+          "answer": "Because it gives buyer-facing inspection and risk context that generic national septic pages usually miss."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=buying_home",
+        "/septic-replacement-cost/florida/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "OR",
+      "title": "Oregon Drain Field Replacement Cost",
+      "metaDescription": "Estimate Oregon drain field replacement cost with site evaluation, replacement absorption area review, and permit sequencing in mind.",
+      "introCopy": "In Oregon, drain field replacement cost depends heavily on what the site evaluation says about both the initial and replacement soil absorption areas. That means field replacement can be a much bigger uncertainty event than a generic national page suggests.",
+      "uniqueAngle": "Oregon's drain field page is strongest when it explains that DEQ evaluates both the initial and replacement areas and still does not guarantee approval of a specific system type.",
+      "driverBullets": [
+        "Replacement absorption area review can materially change whether a conventional field is still viable.",
+        "A site evaluation does not guarantee a specific system approval, so Oregon field ranges need more uncertainty.",
+        "If the project changes use or flow, the path may also involve an authorization notice before full permit confidence."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is an Oregon drain field replacement range so wide?",
+          "answer": "Because the site evaluation has to support both the replacement area and the likely system type, and DEQ still does not promise a specific approval outcome."
+        },
+        {
+          "question": "Can an old Oregon field just be swapped for a new one in the same style?",
+          "answer": "Not safely as a planning assumption. The replacement area and current permit path can change that answer."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=drainfield_replacement",
+        "/septic-replacement-cost/oregon/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": ["or_01", "or_02", "or_03"]
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "GA",
+      "title": "Georgia Drain Field Replacement Cost",
+      "metaDescription": "Estimate Georgia drain field replacement cost with county soil analysis, usable absorption area, and replacement complexity in mind.",
+      "introCopy": "A Georgia drain field replacement is not just a trenching job. The county health process and soil-analysis findings still matter because water table depth, limiting layers, and usable field area can all change the quote.",
+      "uniqueAngle": "Georgia supports a stronger drain field page because the homeowner guidance openly ties soil analysis and site limits to how much drainfield area is usable.",
+      "driverBullets": [
+        "County soil-analysis findings can change the amount of usable drainfield area on the lot.",
+        "Water table depth and limiting layers can push a field replacement out of the simple low-end band.",
+        "Restoration and access work often matter more on field replacement than the tank number itself."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Georgia drain field replacement closely tied to soil analysis?",
+          "answer": "Because the homeowner guidance says site conditions like water table and limiting layers affect the usable drainfield area."
+        },
+        {
+          "question": "Can I assume an old Georgia field footprint will still work?",
+          "answer": "No. The county process and current soil findings can change the practical replacement plan."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=drainfield_replacement",
+        "/septic-replacement-cost/georgia/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"]
+    },
+    {
+      "contentSlug": "septic-pumping-cost",
+      "stateCode": "WA",
+      "title": "Washington Septic Pumping Cost",
+      "metaDescription": "Estimate Washington septic pumping cost with system-type inspection cadence and local health obligations in mind.",
+      "introCopy": "Washington is unusually good for a pumping-intent page because the state clearly tells homeowners that gravity systems and all other systems follow different inspection schedules. That makes pumping and inspection cadence easier to explain without guesswork.",
+      "uniqueAngle": "Washington's pumping page is stronger than a generic maintenance article because the state openly publishes different inspection cadence for gravity versus other systems and keeps local health jurisdictions in the loop.",
+      "driverBullets": [
+        "Gravity systems are inspected at least once every three years, while all other systems are inspected at least once every year.",
+        "Advanced or proprietary systems can carry more maintenance cost than a simple gravity homeowner expects.",
+        "Local health jurisdiction oversight means maintenance records and follow-up can matter beyond the pumping invoice."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Washington pumping content tied to inspection cadence?",
+          "answer": "Because the state explicitly tells homeowners different system types have different required inspection intervals, which directly affects maintenance planning."
+        },
+        {
+          "question": "Does a Washington gravity system usually need the same maintenance as an advanced one?",
+          "answer": "No. The state separates them clearly, and advanced systems usually bring more frequent inspection and upkeep."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=pumping",
+        "/septic-pumping-cost/",
+        "/septic-system-cost-calculator/"
+      ],
+      "officialSourceIds": ["wa_02", "wa_03", "wa_04"]
     }
   ]
 }

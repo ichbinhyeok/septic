@@ -104,8 +104,7 @@ public class SiteController {
         ));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
-        model.addAttribute("hasReplacementMoneyPage", researchDataService.hasStateMoneyPage("septic-replacement-cost", state.stateCode()));
-        model.addAttribute("hasPercMoneyPage", researchDataService.hasStateMoneyPage("perc-test-cost", state.stateCode()));
+        model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
         return "pages/state-guide";
     }
 
@@ -131,7 +130,10 @@ public class SiteController {
 
     @GetMapping({
             "/septic-replacement-cost/{stateSlug}", "/septic-replacement-cost/{stateSlug}/",
-            "/perc-test-cost/{stateSlug}", "/perc-test-cost/{stateSlug}/"
+            "/perc-test-cost/{stateSlug}", "/perc-test-cost/{stateSlug}/",
+            "/buying-a-house-with-a-septic-system/{stateSlug}", "/buying-a-house-with-a-septic-system/{stateSlug}/",
+            "/drain-field-replacement-cost/{stateSlug}", "/drain-field-replacement-cost/{stateSlug}/",
+            "/septic-pumping-cost/{stateSlug}", "/septic-pumping-cost/{stateSlug}/"
     })
     public String stateMoneyPage(@PathVariable String stateSlug, HttpServletRequest request, Model model) {
         String path = request.getRequestURI().replaceFirst("^/", "").replaceFirst("/$", "");

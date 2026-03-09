@@ -137,6 +137,33 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void stateBuyerMoneyPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/massachusetts/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Massachusetts")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Title 5")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MA&projectType=buying_home")));
+	}
+
+	@Test
+	void stateDrainFieldMoneyPageRenders() throws Exception {
+		mockMvc.perform(get("/drain-field-replacement-cost/georgia/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Drain Field Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("usable drainfield area")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=drainfield_replacement")));
+	}
+
+	@Test
+	void statePumpingMoneyPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-pumping-cost/washington/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Pumping Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("once every three years")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=pumping")));
+	}
+
+	@Test
 	void moneyPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-replacement-cost/"))
 				.andExpect(status().isOk())

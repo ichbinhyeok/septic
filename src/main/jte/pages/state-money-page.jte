@@ -15,7 +15,7 @@
                 <h1>${stateMoneyPage.title()}</h1>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${"septic-replacement-cost".equals(stateMoneyPage.contentSlug()) ? "replacement" : "perc_test"}">Open the main calculator</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Open the main calculator</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/">Open the ${state.stateName()} guide</a>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 <span class="trust-box__label">Next best action</span>
                 <h2>Run the calculator with your state and project assumptions, then move into the quote form.</h2>
                 <p>The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.</p>
-                <a href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${"septic-replacement-cost".equals(stateMoneyPage.contentSlug()) ? "replacement" : "perc_test"}">Run the estimate</a>
+                <a href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Run the estimate</a>
             </article>
 
             <article class="detail-card">

@@ -56,3 +56,23 @@ Next candidates after the first 12 pages:
 - Washington `septic-pumping-cost`
 - New Jersey `buying-a-house-with-a-septic-system`
 - Florida `drain-field-replacement-cost`
+
+## Second Wave Added
+
+Additional state money pages now live:
+
+- Massachusetts `buying-a-house-with-a-septic-system`
+- New Jersey `buying-a-house-with-a-septic-system`
+- Florida `buying-a-house-with-a-septic-system`
+- Oregon `drain-field-replacement-cost`
+- Georgia `drain-field-replacement-cost`
+- Washington `septic-pumping-cost`
+
+These pages were chosen because the official-source angle is unusually clear:
+
+- Massachusetts: Title 5 inspection timing and transfer risk
+- New Jersey: board of health management and Pinelands obligations
+- Florida: homebuyer guide plus DEP-versus-county split
+- Oregon: replacement absorption area and site-evaluation-first path
+- Georgia: soil analysis and usable drainfield area
+- Washington: system-type-specific inspection cadence

@@ -4,8 +4,7 @@
 @param PageMeta page
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
-@param boolean hasReplacementMoneyPage = false
-@param boolean hasPercMoneyPage = false
+@param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -88,16 +87,13 @@
                 </ul>
             </article>
 
-            @if (hasReplacementMoneyPage || hasPercMoneyPage)
+            @if (!stateMoneyPages.isEmpty())
                 <article class="detail-card">
                     <h2>Next money pages</h2>
                     <ul class="detail-list">
-                        @if (hasReplacementMoneyPage)
-                            <li><a href="/septic-replacement-cost/${state.slug()}/">${state.stateName()} septic replacement cost</a></li>
-                        @endif
-                        @if (hasPercMoneyPage)
-                            <li><a href="/perc-test-cost/${state.slug()}/">${state.stateName()} perc test cost</a></li>
-                        @endif
+                        @for (var stateMoneyPage : stateMoneyPages)
+                            <li><a href="${stateMoneyPage.path(state.slug())}">${stateMoneyPage.title()}</a></li>
+                        @endfor
                         <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}">Main septic cost calculator</a></li>
                     </ul>
                 </article>

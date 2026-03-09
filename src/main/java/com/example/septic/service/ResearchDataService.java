@@ -136,4 +136,11 @@ public class ResearchDataService {
     public boolean hasStateMoneyPage(String contentSlug, String stateCode) {
         return stateMoneyPagesByKey.containsKey(contentSlug + "::" + stateCode);
     }
+
+    public List<StateMoneyPage> listStateMoneyPages(String stateCode) {
+        return stateMoneyPagesByKey.values().stream()
+                .filter(page -> page.stateCode().equalsIgnoreCase(stateCode))
+                .sorted(Comparator.comparing(StateMoneyPage::title))
+                .toList();
+    }
 }
