@@ -145,9 +145,9 @@
                             <input type="hidden" name="soilPercStatus" value="${quoteLeadForm.getSoilPercStatus()}">
                             <input type="hidden" name="accessDifficulty" value="${quoteLeadForm.getAccessDifficulty()}">
                             <input type="hidden" name="timeline" value="${quoteLeadForm.getTimeline()}">
-                            <input type="hidden" name="garbageDisposal" value="${quoteLeadForm.isGarbageDisposal()}">
-                            <input type="hidden" name="additionalKitchen" value="${quoteLeadForm.isAdditionalKitchen()}">
-                            <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock()}">
+                            <input type="hidden" name="garbageDisposal" value="${quoteLeadForm.isGarbageDisposal() ? "true" : "false"}">
+                            <input type="hidden" name="additionalKitchen" value="${quoteLeadForm.isAdditionalKitchen() ? "true" : "false"}">
+                            <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock() ? "true" : "false"}">
 
                             <div class="field-grid">
                                 <label class="field">
