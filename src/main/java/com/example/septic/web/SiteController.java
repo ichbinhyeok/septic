@@ -94,7 +94,12 @@ public class SiteController {
     }
 
     @PostMapping({"/quote-request", "/quote-request/"})
-    public String submitQuote(@Valid @ModelAttribute QuoteLeadForm quoteLeadForm, BindingResult bindingResult, Model model) {
+    public String submitQuote(
+            @Valid @ModelAttribute QuoteLeadForm quoteLeadForm,
+            BindingResult bindingResult,
+            HttpServletRequest request,
+            Model model
+    ) {
         EstimateForm estimateForm = quoteLeadForm.toEstimateForm();
         EstimatorResult result = estimatorService.estimate(estimateForm);
 
@@ -106,7 +111,8 @@ public class SiteController {
                 quoteLeadForm,
                 estimateForm,
                 result,
-                "/septic-system-cost-calculator/"
+                "/septic-system-cost-calculator/",
+                request
         );
         QuoteLeadForm clearedQuoteForm = QuoteLeadForm.fromEstimateForm(estimateForm);
         return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false);

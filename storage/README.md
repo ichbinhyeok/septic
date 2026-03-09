@@ -34,6 +34,24 @@ Suggested event types:
 - `quote_form_started`
 - `quote_form_submitted`
 
+## Buyer export queue
+
+- `storage/exports/pending/YYYY/MM/DD/<timestamp>-<uuid>.json`
+- `storage/exports/daily/YYYY/MM/DD.csv`
+
+The pending JSON file is the normalized handoff payload for future platform buyers.
+
+The daily CSV file is the lightweight routing queue for manual review or batch upload.
+
+The export payload should include:
+
+- lead ID and submission timestamp
+- consumer contact fields
+- project inputs and estimate snapshot
+- consent text, accepted timestamp, and consent version
+- provenance fields such as source page, request path, user agent, referrer, and remote address
+- routing hints such as project type, state, ZIP code, urgency, and likely system class
+
 ## File-write rules
 
 - create parent directories on demand

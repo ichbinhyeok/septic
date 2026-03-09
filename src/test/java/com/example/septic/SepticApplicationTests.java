@@ -209,7 +209,9 @@ class SepticApplicationTests {
 						.param("email", "taylor@example.com")
 						.param("phone", "5551234567")
 						.param("zipCode", "30301")
-						.param("consentAccepted", "true"))
+						.param("consentAccepted", "true")
+						.header("User-Agent", "MockBrowser/1.0")
+						.header("Referer", "https://example.test/septic-replacement-cost/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request received")));
 
@@ -226,6 +228,29 @@ class SepticApplicationTests {
 					"Expected at least one stored event file"
 			);
 		}
+
+		Path exportJson;
+		try (Stream<Path> exportFiles = Files.walk(Path.of("build/test-storage/exports/pending"))) {
+			exportJson = exportFiles
+					.filter(path -> path.toString().endsWith(".json"))
+					.findFirst()
+					.orElseThrow(() -> new AssertionError("Expected at least one export JSON file"));
+		}
+		String exportContent = Files.readString(exportJson);
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"exportStatus\" : \"pending_routing\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"2026-03-09-v1\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"userAgent\" : \"MockBrowser/1.0\""));
+
+		Path exportCsv;
+		try (Stream<Path> exportCsvFiles = Files.walk(Path.of("build/test-storage/exports/daily"))) {
+			exportCsv = exportCsvFiles
+					.filter(path -> path.toString().endsWith(".csv"))
+					.findFirst()
+					.orElseThrow(() -> new AssertionError("Expected at least one export CSV file"));
+		}
+		String exportCsvContent = Files.readString(exportCsv);
+		org.junit.jupiter.api.Assertions.assertTrue(exportCsvContent.contains("lead_id,submitted_at,state_code"));
+		org.junit.jupiter.api.Assertions.assertTrue(exportCsvContent.contains("\"GA\""));
 	}
 
 	@Test
