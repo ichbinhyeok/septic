@@ -6,10 +6,13 @@
 @param java.util.List<SourceRecord> sources
 @param java.util.List<SourceRecord> localAuthoritySources = java.util.List.of()
 @param java.util.List<SourceRecord> recordsLookupSources = java.util.List.of()
+@param SourceRecord primaryLocalAuthoritySource = null
+@param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
+@param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -29,6 +32,55 @@
             </div>
         </div>
     </section>
+
+    @if (planningSnapshot != null || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                @if (planningSnapshot != null)
+                    <article class="detail-card detail-card--full">
+                        <h2>Planning cost snapshot</h2>
+                        <div class="result-grid">
+                            <article class="metric-card">
+                                <span class="metric-card__label">Install midpoint</span>
+                                <strong>${planningSnapshot.installMidpoint()}</strong>
+                            </article>
+                            <article class="metric-card">
+                                <span class="metric-card__label">Replacement midpoint</span>
+                                <strong>${planningSnapshot.replacementMidpoint()}</strong>
+                            </article>
+                            <article class="metric-card">
+                                <span class="metric-card__label">Perc planning range</span>
+                                <strong>${planningSnapshot.percRange()}</strong>
+                            </article>
+                            <article class="metric-card">
+                                <span class="metric-card__label">Pumping planning range</span>
+                                <strong>${planningSnapshot.pumpingRange()}</strong>
+                            </article>
+                        </div>
+                        <p>${planningSnapshot.comparisonNote()} These figures are still planning-only ranges, not an official fee schedule.</p>
+                    </article>
+                @endif
+
+                @if (primaryLocalAuthoritySource != null)
+                    <article class="detail-card">
+                        <h2>Find the local permitting authority</h2>
+                        <p>${state.stateName()} usually becomes more concrete once you confirm the actual local office handling septic permitting and review.</p>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority directory</a>
+                        <p>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
+                    </article>
+                @endif
+
+                @if (primaryRecordsLookupSource != null)
+                    <article class="detail-card">
+                        <h2>Look up septic records first</h2>
+                        <p>Before trusting the low end, pull the existing permit, as-built, inspection, or management records tied to the property.</p>
+                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
+                        <p>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
+                    </article>
+                @endif
+            </div>
+        </section>
+    @endif
 
     <section class="section section--tight">
         <div class="container detail-grid">

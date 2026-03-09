@@ -1,7 +1,9 @@
 package com.example.septic.web;
 
 import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
+import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.AccessDifficulty;
@@ -336,16 +338,20 @@ public class SiteController {
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
+        StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
 
         model.addAttribute("page", seoService.stateGuide(state));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
+        model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
+        model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
+        model.addAttribute("planningSnapshot", planningSnapshot);
         return "pages/state-guide";
     }
 
@@ -399,6 +405,7 @@ public class SiteController {
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
+        StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
@@ -406,8 +413,11 @@ public class SiteController {
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
+        model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
+        model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
+        model.addAttribute("planningSnapshot", planningSnapshot);
         return "pages/state-money-page";
     }
 
@@ -549,5 +559,56 @@ public class SiteController {
                     "Use your state and project assumptions first, then verify the actual permit path locally."
             );
         };
+    }
+
+    private StatePlanningSnapshot statePlanningSnapshot(String stateCode) {
+        StateCostProfile costProfile = researchDataService.findStateCostProfile(stateCode).orElse(null);
+        if (costProfile == null) {
+            return null;
+        }
+
+        ProjectCostAnchor nationalReplacement = researchDataService.findNationalAnchor("replacement").orElse(null);
+        int nationalReplacementMid = nationalReplacement != null ? nationalReplacement.mid() : 0;
+        String comparisonNote = nationalReplacementMid > 0
+                ? replacementComparison(costProfile.replacementMid(), nationalReplacementMid)
+                : "Planning-only snapshot built from public cost anchors and broad state price-level adjustments.";
+
+        return new StatePlanningSnapshot(
+                money(costProfile.installMid()),
+                money(costProfile.replacementMid()),
+                range(costProfile.percLow(), costProfile.percHigh()),
+                range(costProfile.pumpingLow(), costProfile.pumpingHigh()),
+                comparisonNote
+        );
+    }
+
+    private String replacementComparison(Integer replacementMid, int nationalReplacementMid) {
+        if (replacementMid == null) {
+            return "Replacement planning midpoint is still under review for this state.";
+        }
+
+        int delta = replacementMid - nationalReplacementMid;
+        int percent = (int) Math.round(Math.abs(delta) * 100.0 / nationalReplacementMid);
+        if (Math.abs(delta) < 250) {
+            return "Replacement planning midpoint runs close to the current national planning midpoint.";
+        }
+        if (delta > 0) {
+            return "Replacement planning midpoint runs about " + percent + "% above the current national planning midpoint.";
+        }
+        return "Replacement planning midpoint runs about " + percent + "% below the current national planning midpoint.";
+    }
+
+    private String money(Integer amount) {
+        if (amount == null) {
+            return "Under review";
+        }
+        return String.format(Locale.US, "$%,d", amount);
+    }
+
+    private String range(Integer low, Integer high) {
+        if (low == null || high == null) {
+            return "Under review";
+        }
+        return money(low) + " to " + money(high);
     }
 }
