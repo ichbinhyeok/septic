@@ -333,10 +333,14 @@ public class SiteController {
         StateProfile state = researchDataService.findStateBySlug(stateSlug)
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
+        List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
+        List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
 
         model.addAttribute("page", seoService.stateGuide(state));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
+        model.addAttribute("localAuthoritySources", localAuthoritySources);
+        model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
         return "pages/state-guide";
     }
@@ -388,11 +392,15 @@ public class SiteController {
         StateProfile state = researchDataService.findStateByCode(stateMoneyPage.stateCode())
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
         List<SourceRecord> sources = researchDataService.getSources(stateMoneyPage.officialSourceIds());
+        List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
+        List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
+        model.addAttribute("localAuthoritySources", localAuthoritySources);
+        model.addAttribute("recordsLookupSources", recordsLookupSources);
         return "pages/state-money-page";
     }
 

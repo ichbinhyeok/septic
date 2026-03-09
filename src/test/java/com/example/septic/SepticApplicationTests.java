@@ -185,6 +185,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")));
 	}
@@ -296,6 +297,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("DEP-managed county")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Health Department Locations")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=FL&projectType=new_install")));
 	}
 
@@ -305,6 +307,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("as-built drawing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local Health Jurisdictions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=buying_home")));
 	}
 

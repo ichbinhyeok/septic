@@ -23,6 +23,8 @@ public record StateProfile(
         String countyOverrideRisk,
         String lastVerifiedAt,
         List<String> officialSourceIds,
+        List<String> localAuthoritySourceIds,
+        List<String> recordsLookupSourceIds,
         String whoToCallFirst,
         List<String> recordsToRequest,
         List<String> lowEndRiskChecks,

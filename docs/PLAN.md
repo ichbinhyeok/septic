@@ -152,5 +152,6 @@ Use files for three different jobs:
 - Source registry exists with official anchors for all 10 launch states plus cost-anchor provenance.
 - State profiles include homeowner workflow modules, not just rule summaries.
 - Workflow pages exist for permit-process and records-checklist intent where the state angle is genuinely unique.
+- Strong state guides expose official local-verification and records-lookup links where the source set supports it.
 - Storage convention exists for leads, events, and buyer-ready exports.
 - Legal and trust pages exist in the footer before public launch.

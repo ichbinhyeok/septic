@@ -6,6 +6,8 @@
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
+@param java.util.List<SourceRecord> localAuthoritySources = java.util.List.of()
+@param java.util.List<SourceRecord> recordsLookupSources = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -110,6 +112,34 @@
                 <article class="detail-card detail-card--full">
                     <h2>Special state wrinkle</h2>
                     <p>${state.specialAreaNote()}</p>
+                </article>
+            @endif
+
+            @if (!localAuthoritySources.isEmpty())
+                <article class="detail-card">
+                    <h2>Verify locally</h2>
+                    <ul class="source-list source-list--compact">
+                        @for (var source : localAuthoritySources)
+                            <li>
+                                <strong>${source.agencyName()}</strong>
+                                <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                            </li>
+                        @endfor
+                    </ul>
+                </article>
+            @endif
+
+            @if (!recordsLookupSources.isEmpty())
+                <article class="detail-card">
+                    <h2>Records and lookup links</h2>
+                    <ul class="source-list source-list--compact">
+                        @for (var source : recordsLookupSources)
+                            <li>
+                                <strong>${source.agencyName()}</strong>
+                                <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                            </li>
+                        @endfor
+                    </ul>
                 </article>
             @endif
 
