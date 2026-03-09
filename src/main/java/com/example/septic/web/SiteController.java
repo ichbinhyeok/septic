@@ -361,6 +361,7 @@ public class SiteController {
             "/perc-test-cost", "/perc-test-cost/",
             "/drain-field-replacement-cost", "/drain-field-replacement-cost/",
             "/septic-pumping-cost", "/septic-pumping-cost/",
+            "/septic-inspection-cost", "/septic-inspection-cost/",
             "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",
             "/septic-permit-process", "/septic-permit-process/",
             "/septic-records-checklist", "/septic-records-checklist/"
@@ -390,6 +391,7 @@ public class SiteController {
             "/buying-a-house-with-a-septic-system/{stateSlug}", "/buying-a-house-with-a-septic-system/{stateSlug}/",
             "/drain-field-replacement-cost/{stateSlug}", "/drain-field-replacement-cost/{stateSlug}/",
             "/septic-pumping-cost/{stateSlug}", "/septic-pumping-cost/{stateSlug}/",
+            "/septic-inspection-cost/{stateSlug}", "/septic-inspection-cost/{stateSlug}/",
             "/septic-permit-process/{stateSlug}", "/septic-permit-process/{stateSlug}/",
             "/septic-records-checklist/{stateSlug}", "/septic-records-checklist/{stateSlug}/"
     })

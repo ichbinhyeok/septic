@@ -388,6 +388,7 @@
         "/septic-system-cost-calculator/massachusetts/",
         "/septic-system-cost-calculator/?state=MA&projectType=buying_home",
         "/septic-replacement-cost/massachusetts/",
+        "/septic-inspection-cost/massachusetts/",
         "/buying-a-house-with-a-septic-system/"
       ],
       "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
@@ -417,6 +418,7 @@
       "internalLinkTargets": [
         "/septic-system-cost-calculator/new-jersey/",
         "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
+        "/septic-inspection-cost/new-jersey/",
         "/buying-a-house-with-a-septic-system/",
         "/septic-pumping-cost/washington/"
       ],
@@ -448,6 +450,7 @@
         "/septic-system-cost-calculator/florida/",
         "/septic-system-cost-calculator/?state=FL&projectType=buying_home",
         "/septic-replacement-cost/florida/",
+        "/septic-inspection-cost/florida/",
         "/buying-a-house-with-a-septic-system/"
       ],
       "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
@@ -815,6 +818,7 @@
       "internalLinkTargets": [
         "/septic-system-cost-calculator/washington/",
         "/septic-pumping-cost/washington/",
+        "/septic-inspection-cost/washington/",
         "/septic-system-cost-calculator/?state=WA&projectType=buying_home",
         "/septic-records-checklist/"
       ],
@@ -1094,11 +1098,198 @@
       "internalLinkTargets": [
         "/septic-system-cost-calculator/connecticut/",
         "/septic-records-checklist/connecticut/",
+        "/septic-inspection-cost/connecticut/",
         "/septic-permit-process/connecticut/",
         "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
       ],
       "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
       "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "MA",
+      "title": "Massachusetts Septic Inspection Cost",
+      "metaDescription": "Massachusetts septic inspection cost with Title 5 timing, local Board of Health workflow, and buyer-side document risk in mind.",
+      "introCopy": "In Massachusetts, inspection cost is not just a service line item. Title 5 inspection timing can change a sale, a repair conversation, or whether the buyer should trust the seller's timeline at all. This page keeps the estimate tied to that reality.",
+      "uniqueAngle": "Massachusetts is one of the best inspection states because Title 5 inspection timing, pumping receipts, and local Board of Health filings are unusually visible in public guidance.",
+      "driverBullets": [
+        "A missing or failed Title 5 inspection can turn a low-cost buyer check into an upgrade or replacement conversation quickly.",
+        "Pumping receipts and inspection validity windows matter because they affect whether the current paperwork still helps the buyer.",
+        "Local Board of Health filing and timing can matter more than the inspection sticker price."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Massachusetts septic inspection cost more about timing than the fee alone?",
+          "answer": "Because Title 5 inspection timing can affect a property transfer, the buyer's leverage, and whether the current report is still usable."
+        },
+        {
+          "question": "What should a Massachusetts buyer request with the inspection?",
+          "answer": "Ask for the latest Title 5 inspection report, any pumping receipts tied to the validity window, and the local Board of Health paperwork connected to the system."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/buying-a-house-with-a-septic-system/massachusetts/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?state=MA&projectType=inspection"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_05"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "FL",
+      "title": "Florida Septic Inspection Cost",
+      "metaDescription": "Florida septic inspection cost with DEP-versus-county jurisdiction, homebuyer records, and operating-permit risk in mind.",
+      "introCopy": "Florida inspection intent is only partly about the inspection fee. Homeowners and buyers first need to confirm whether the county path runs through DEP or the county health department and whether the current system carries operating-permit or private-provider paperwork risk.",
+      "uniqueAngle": "Florida inspection content is strongest when it leads with the jurisdiction split and document trail, not a generic national inspection price.",
+      "driverBullets": [
+        "If the property sits in a DEP-managed county, the practical inspection path can differ from a county health department path.",
+        "A buyer should ask for permit, inspection, and private-provider paperwork before trusting the low end.",
+        "Operating-permit obligations can make the real inspection conversation larger than a simple visual check."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first inspection question in Florida?",
+          "answer": "Verify whether the property is in a DEP-managed county or still handled by the county health department, because that changes the real process quickly."
+        },
+        {
+          "question": "Why can a Florida septic inspection reveal more risk than expected?",
+          "answer": "Because missing permit history, jurisdiction confusion, or operating-permit obligations can turn a simple buyer inspection into a larger repair conversation."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/buying-a-house-with-a-septic-system/florida/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?state=FL&projectType=inspection"
+      ],
+      "officialSourceIds": ["fl_01", "fl_03", "fl_04", "fl_05"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "WA",
+      "title": "Washington Septic Inspection Cost",
+      "metaDescription": "Washington septic inspection cost with local health jurisdiction review, gravity versus advanced-system cadence, and O&M logs in mind.",
+      "introCopy": "Washington is a strong inspection-intent state because official guidance makes recurring inspection duties unusually clear. That means a homeowner or buyer should price inspection as part of system type, local health jurisdiction, and O&M record quality rather than as one flat statewide fee.",
+      "uniqueAngle": "Washington inspection pages can say something national pages usually miss: gravity and advanced systems do not carry the same cadence or documentation burden.",
+      "driverBullets": [
+        "Gravity systems and advanced systems do not carry the same ongoing inspection cadence in Washington.",
+        "Local health jurisdictions can ask for records and apply more protective local requirements than the statewide baseline.",
+        "Missing O&M logs can make a buyer or homeowner trust the low end much less."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does system type change Washington septic inspection cost so much?",
+          "answer": "Because Washington says gravity systems are inspected at least every three years while other systems are inspected at least yearly, which changes the real maintenance and records burden."
+        },
+        {
+          "question": "What should a Washington buyer request with the inspection?",
+          "answer": "Ask for the as-built drawing, O&M logs, and proof that the current owner followed the required inspection cadence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-pumping-cost/washington/",
+        "/septic-records-checklist/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=inspection"
+      ],
+      "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_05"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NJ",
+      "title": "New Jersey Septic Inspection Cost",
+      "metaDescription": "New Jersey septic inspection cost with board of health oversight, Pinelands certification, and management-program risk in mind.",
+      "introCopy": "New Jersey inspection cost is not just about checking whether a tank exists. In some places the real issue is whether local board of health oversight, Pinelands certification, or advanced-system management obligations change the ownership burden after the inspection.",
+      "uniqueAngle": "New Jersey inspection content is unusually good when it explains local management and certification obligations instead of stopping at a generic inspection fee.",
+      "driverBullets": [
+        "Pinelands inspection and certification timing can matter more than a generic inspection quote.",
+        "Advanced-system maintenance contracts and local management programs can outlast the inspection itself.",
+        "Board of health reporting can shape the practical next step after the inspection."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can New Jersey septic inspection cost feel more complex than other states?",
+          "answer": "Because the real homeowner issue can include board of health reporting, management programs, and special-area obligations like the Pinelands, not just the inspection visit."
+        },
+        {
+          "question": "What paperwork matters most with a New Jersey inspection?",
+          "answer": "Ask for recent inspection certification, pumping records, and any maintenance-contract or management-program paperwork tied to the system."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/buying-a-house-with-a-septic-system/new-jersey/",
+        "/septic-records-checklist/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=inspection"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_05"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "PA",
+      "title": "Pennsylvania Septic Inspection Cost",
+      "metaDescription": "Pennsylvania septic inspection cost with local SEO review, permit records, and field-risk context in mind.",
+      "introCopy": "Pennsylvania inspection cost should be read with the local municipal and Sewage Enforcement Officer path in mind. The inspection fee is one thing, but the real value is finding out whether the field condition, records, and local process still support a simple range.",
+      "uniqueAngle": "Pennsylvania inspection intent is strongest when it connects inspection cost to local Sewage Enforcement Officer workflow and missing records risk.",
+      "driverBullets": [
+        "The municipality or Sewage Enforcement Officer often shapes what the inspection needs to verify next.",
+        "Weak field condition or missing records can quickly move the project beyond a low-risk inspection story.",
+        "Inspection is most useful when paired with existing permit, as-built, and maintenance history."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who should Pennsylvania homeowners think about first when they hear septic inspection cost?",
+          "answer": "Think about the municipality and the Sewage Enforcement Officer first, because that local path often decides what matters after the inspection."
+        },
+        {
+          "question": "What should a Pennsylvania inspection uncover before a buyer trusts the low end?",
+          "answer": "It should surface field condition concerns, missing permit history, and whether local records still support a straightforward system story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-system-cost-calculator/?state=PA&projectType=inspection"
+      ],
+      "officialSourceIds": ["pa_01", "pa_02", "pa_03"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "CT",
+      "title": "Connecticut Septic Inspection Cost",
+      "metaDescription": "Connecticut septic inspection cost with local health review, potential-bedroom risk, and discharge-permit history in mind.",
+      "introCopy": "Connecticut inspection intent is stronger than a generic inspection-fee page because local health review, permit-to-discharge history, and potential-bedroom logic can all affect what the inspection really needs to settle for the homeowner or buyer.",
+      "uniqueAngle": "Connecticut inspection content stands out when it connects the inspection to local health records, additions, and potential-bedroom risk instead of a flat nationwide checklist.",
+      "driverBullets": [
+        "A Connecticut inspection is more useful when it is paired with the site investigation, approval, and discharge record trail.",
+        "Potential-bedroom and addition history can matter more than the current occupancy level.",
+        "Local health review still controls the practical next step after the inspection."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does Connecticut septic inspection cost depend on more than the visit fee?",
+          "answer": "Because additions, potential bedrooms, and local approval history can change what the inspection actually needs to verify for the buyer or homeowner."
+        },
+        {
+          "question": "What records should come with a Connecticut inspection?",
+          "answer": "Ask for the site investigation, approval-to-construct, permit-to-discharge, and any addition or change-in-use history tied to the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-records-checklist/connecticut/",
+        "/buying-a-house-with-a-septic-system/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=inspection"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
+      "calculatorProjectType": "inspection"
     }
   ]
 }

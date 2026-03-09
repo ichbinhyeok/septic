@@ -28,6 +28,7 @@ public record StateMoneyPage(
             case "perc-test-cost" -> "perc_test";
             case "drain-field-replacement-cost" -> "drainfield_replacement";
             case "septic-pumping-cost" -> "pumping";
+            case "septic-inspection-cost" -> "inspection";
             case "buying-a-house-with-a-septic-system" -> "buying_home";
             case "septic-records-checklist" -> "buying_home";
             case "septic-permit-process" -> "new_install";

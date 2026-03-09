@@ -77,6 +77,12 @@
                 </article>
 
                 <article class="feature-card">
+                    <h3>Inspection and buyer-risk pages</h3>
+                    <p>High-intent content for septic inspection cost, transfer timing, and the records gaps that can blow up a home purchase.</p>
+                    <a href="/septic-inspection-cost/">Open inspection cost page</a>
+                </article>
+
+                <article class="feature-card">
                     <h3>File-based data model</h3>
                     <p>No database in V1. Research data stays versioned in JSON and CSV so provenance remains visible.</p>
                     <a href="#sources">See source policy</a>

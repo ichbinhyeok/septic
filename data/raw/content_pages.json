@@ -26,7 +26,7 @@
           "answer": "Final pricing depends on system type, site evaluation, access, permitting, and local installation conditions."
         }
       ],
-      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-tank-size/", "/perc-test-cost/"]
+      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-tank-size/", "/perc-test-cost/", "/septic-inspection-cost/"]
     },
     {
       "slug": "septic-replacement-cost",
@@ -159,6 +159,32 @@
       "internalLinkTargets": ["/septic-tank-size/", "/septic-system-cost-calculator/", "/buying-a-house-with-a-septic-system/"]
     },
     {
+      "slug": "septic-inspection-cost",
+      "intentType": "money_page",
+      "primaryKeyword": "septic inspection cost",
+      "secondaryKeywords": ["home septic inspection cost", "septic inspection before buying", "septic system inspection price"],
+      "title": "Septic Inspection Cost",
+      "metaDescription": "Estimate septic inspection cost, understand what the inspection should verify, and know when missing records or advanced systems raise the real risk.",
+      "introCopy": "Inspection intent is one of the highest-value septic queries because it sits close to a home purchase, a repair decision, or a quote request. This page frames inspection cost as more than a line item: it is the fastest way to find out whether the low end is still believable.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "A basic inspection cost can stay modest while missing records or weak findings push the total project risk much higher.",
+        "Advanced systems, O&M logs, and management-program paperwork can make the real inspection scope larger than a simple tank-and-field check.",
+        "Buyer timing, transfer rules, and local inspection cadence often matter more than the sticker price alone."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does septic inspection cost deserve its own page?",
+          "answer": "Because the inspection cost itself is usually not the expensive part. The inspection tells the homeowner whether a buyer, seller, or replacement project is still anywhere near the low end."
+        },
+        {
+          "question": "Can a septic inspection replace a full quote?",
+          "answer": "No. It helps narrow risk and records gaps first, then the calculator and local quote process become more useful."
+        }
+      ],
+      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-records-checklist/", "/septic-system-cost-calculator/"]
+    },
+    {
       "slug": "buying-a-house-with-a-septic-system",
       "intentType": "buyer_page",
       "primaryKeyword": "buying a house with a septic system",
@@ -182,7 +208,7 @@
           "answer": "Yes, especially if the system age, pumping history, or field condition are not well documented."
         }
       ],
-      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-system-cost-calculator/", "/septic-pumping-cost/"]
+      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-system-cost-calculator/", "/septic-pumping-cost/", "/septic-inspection-cost/"]
     },
     {
       "slug": "septic-permit-process",
@@ -234,7 +260,7 @@
           "answer": "Because they make the site, system type, and maintenance history less certain, which usually means a wider cost range and more pre-quote verification."
         }
       ],
-      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-system-cost-calculator/", "/septic-permit-process/"]
+      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-system-cost-calculator/", "/septic-permit-process/", "/septic-inspection-cost/"]
     }
   ]
 }
