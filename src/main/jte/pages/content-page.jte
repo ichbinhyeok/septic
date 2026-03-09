@@ -4,6 +4,7 @@
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
+@param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -58,6 +59,21 @@
             </article>
         </div>
     </section>
+
+    @if (!stateMoneyPageLinks.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <article class="detail-card detail-card--full">
+                    <h2>State-specific pages already live</h2>
+                    <ul class="detail-list">
+                        @for (var stateMoneyPageLink : stateMoneyPageLinks)
+                            <li><a href="${stateMoneyPageLink.path()}">${stateMoneyPageLink.title()}</a></li>
+                        @endfor
+                    </ul>
+                </article>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--muted" id="faq">
         <div class="container">

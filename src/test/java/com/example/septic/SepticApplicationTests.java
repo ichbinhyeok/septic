@@ -168,7 +168,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-replacement-cost/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Replacement Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")));
 	}
 
 	@Test

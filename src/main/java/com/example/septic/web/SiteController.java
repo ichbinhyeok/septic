@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
@@ -121,10 +122,16 @@ public class SiteController {
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
+        List<StateMoneyPageLink> stateMoneyPageLinks = researchDataService.listStateMoneyPagesForContent(slug).stream()
+                .map(page -> researchDataService.findStateByCode(page.stateCode())
+                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug()))))
+                .flatMap(Optional::stream)
+                .toList();
 
         model.addAttribute("page", new PageMeta(contentPage.title(), contentPage.metaDescription()));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
+        model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
         return "pages/content-page";
     }
 

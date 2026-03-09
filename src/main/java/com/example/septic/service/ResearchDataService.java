@@ -143,4 +143,11 @@ public class ResearchDataService {
                 .sorted(Comparator.comparing(StateMoneyPage::title))
                 .toList();
     }
+
+    public List<StateMoneyPage> listStateMoneyPagesForContent(String contentSlug) {
+        return stateMoneyPagesByKey.values().stream()
+                .filter(page -> page.contentSlug().equals(contentSlug))
+                .sorted(Comparator.comparing(StateMoneyPage::title))
+                .toList();
+    }
 }
