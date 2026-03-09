@@ -639,7 +639,8 @@ li,
 }
 
 input,
-select {
+select,
+textarea {
     width: 100%;
     min-height: 50px;
     border-radius: 16px;
@@ -650,9 +651,19 @@ select {
     font: inherit;
 }
 
+textarea {
+    min-height: 170px;
+    padding: 14px;
+    resize: vertical;
+}
+
 input[type="checkbox"] {
     width: 18px;
     min-height: 18px;
+}
+
+.field--full {
+    grid-column: 1 / -1;
 }
 
 .result-panel__header {
@@ -871,6 +882,32 @@ input[type="checkbox"] {
 }
 
 .comparison-card__list dd {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.review-meta {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.review-meta div {
+    display: grid;
+    gap: 4px;
+}
+
+.review-meta dt {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.review-meta dd {
     margin: 0;
     color: var(--muted);
     line-height: 1.55;

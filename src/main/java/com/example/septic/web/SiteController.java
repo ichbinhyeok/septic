@@ -30,6 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.ui.Model;
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -44,6 +46,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class SiteController {
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
+    private static final String EDITORIAL_PREPARED_BY = "Septic System Cost & Size Estimator editorial workflow";
+    private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
+    private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
 
     private final ResearchDataService researchDataService;
     private final EstimatorService estimatorService;
@@ -224,39 +229,22 @@ public class SiteController {
 
     @GetMapping({"/contact", "/contact/"})
     public String contact(Model model) {
-        return renderSitePage(
-                model,
-                seoService.basicPage(
-                        "Contact",
-                        "How to contact the project and what channel to use for septic quote requests.",
-                        "/contact/"
-                ),
-                "Contact",
-                "Use the quote form for project-specific help.",
-                "Project-specific quote requests should start on the calculator result page so the lead is saved with the estimate context. This contact page exists for general project and policy questions.",
-                Arrays.asList(
-                        new SitePageSection(
-                                "Best path for homeowner projects",
-                                "If you want septic pricing help, use the estimate flow first so the request includes the state, project type, and site assumptions that make the lead useful.",
-                                List.of(
-                                        "Open the main estimator and complete the project inputs.",
-                                        "Review the planning result and state-specific context.",
-                                        "Submit the short quote request form after you have seen value."
-                                )
-                        ),
-                        new SitePageSection(
-                                "General questions",
-                                "Business contact details should be published here before public launch. Until then, operational questions should be handled through the project owner workflow outside the public site.",
-                                List.of(
-                                        "Use this page as the placeholder for a public support email or business address.",
-                                        "Review privacy and terms pages before enabling broader lead routing.",
-                                        "Keep the public contact point aligned with the actual business entity and domain owner."
-                                )
-                        )
-                ),
-                "Publish real business contact details before launch",
-                "This page is intentionally honest: replace placeholder operational copy with the real support contact before you drive paid or organic traffic here."
-        );
+        return renderContactPage(model, new ContactRequestForm(), false, null);
+    }
+
+    @PostMapping({"/contact", "/contact/"})
+    public String submitContactRequest(
+            @Valid @ModelAttribute ContactRequestForm contactRequestForm,
+            BindingResult bindingResult,
+            HttpServletRequest request,
+            Model model
+    ) {
+        if (bindingResult.hasErrors()) {
+            return renderContactPage(model, contactRequestForm, true, null);
+        }
+
+        String requestId = leadStorageService.saveContactRequest(contactRequestForm, "/contact/", request);
+        return renderContactPage(model, new ContactRequestForm(), false, requestId);
     }
 
     @GetMapping(value = {"/robots.txt"}, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -348,6 +336,28 @@ public class SiteController {
         return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false, true);
     }
 
+    @PostMapping(value = {"/events/nav-click", "/events/nav-click/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Void> recordNavigationClick(
+            @RequestBody NavigationClickForm navigationClickForm,
+            HttpServletRequest request
+    ) {
+        if (!isTrackableInternalPath(navigationClickForm.sourcePage())
+                || !isTrackableInternalPath(navigationClickForm.targetPath())) {
+            return ResponseEntity.noContent().build();
+        }
+
+        leadStorageService.saveNavigationClick(
+                navigationClickForm.sourcePage(),
+                navigationClickForm.sourceContext(),
+                navigationClickForm.targetPath(),
+                navigationClickForm.targetType(),
+                navigationClickForm.targetLabel(),
+                request
+        );
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
     public String stateGuide(@PathVariable String stateSlug, Model model) {
         StateProfile state = researchDataService.findPublicStateBySlug(stateSlug)
@@ -358,8 +368,9 @@ public class SiteController {
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
+        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
-        model.addAttribute("page", seoService.stateGuide(state));
+        model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
@@ -373,6 +384,10 @@ public class SiteController {
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
+        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources listed below.");
+        model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
+        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
         return "pages/state-guide";
     }
 
@@ -397,13 +412,22 @@ public class SiteController {
                         .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug()))))
                 .flatMap(Optional::stream)
                 .toList();
+        String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
-        model.addAttribute("page", seoService.contentPage(contentPage));
+        model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
         model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets()));
-        model.addAttribute("calculatorPath", calculatorPathForModule(contentPage.calculatorModule()));
+        model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
+        model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
+        model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
+        model.addAttribute("calculatorCtaNote", contentActionNote(contentPage));
+        model.addAttribute("calculatorCtaTargetType", contentActionTargetType(contentPage));
+        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("editorialReviewedAgainst", "Reviewed against the linked state-specific pages and source policy.");
+        model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
+        model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
         return "pages/content-page";
     }
 
@@ -430,8 +454,9 @@ public class SiteController {
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
+        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
-        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state));
+        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -443,6 +468,10 @@ public class SiteController {
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("internalLinks", pageLinks(stateMoneyPage.internalLinkTargets()));
+        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
+        model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
+        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
         return "pages/state-money-page";
     }
 
@@ -485,6 +514,8 @@ public class SiteController {
             boolean quoteHasErrors,
             boolean showQuotePanel
     ) {
+        ContentPage calculatorLanding = researchDataService.findPublicContentPage("septic-system-cost-calculator")
+                .orElse(null);
         model.addAttribute("page", seoService.calculatorPage());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("estimateForm", estimateForm);
@@ -493,10 +524,21 @@ public class SiteController {
         model.addAttribute("leadId", leadId);
         model.addAttribute("quoteHasErrors", quoteHasErrors);
         model.addAttribute("showQuotePanel", showQuotePanel || result != null || leadId != null || quoteHasErrors);
+        model.addAttribute("calculatorLanding", calculatorLanding);
+        model.addAttribute("calculatorLandingLinks", calculatorLanding == null
+                ? List.of()
+                : pageLinks(calculatorLanding.internalLinkTargets()));
         model.addAttribute("costEvidence", result == null
                 ? List.of()
                 : costEvidenceViews(result.stateCode(), estimateForm.getProjectType()));
         return "pages/calculator";
+    }
+
+    private boolean isTrackableInternalPath(String path) {
+        if (path == null || path.isBlank()) {
+            return false;
+        }
+        return path.startsWith("/") && !path.startsWith("//") && !path.startsWith("/events/");
     }
 
     private String renderTankSizeEstimator(Model model, TankSizeForm tankSizeForm, TankSizeEstimatorResult result) {
@@ -541,12 +583,102 @@ public class SiteController {
         return "pages/site-page";
     }
 
+    private String renderContactPage(
+            Model model,
+            ContactRequestForm contactRequestForm,
+            boolean contactHasErrors,
+            String contactRequestId
+    ) {
+        model.addAttribute("page", seoService.basicPage(
+                "Contact",
+                "Contact the project for general questions, source corrections, privacy requests, and partnership inquiries.",
+                "/contact/"
+        ));
+        model.addAttribute("contactRequestForm", contactRequestForm);
+        model.addAttribute("contactHasErrors", contactHasErrors);
+        model.addAttribute("contactRequestId", contactRequestId);
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        return "pages/contact-page";
+    }
+
     private String calculatorPathForModule(String calculatorModule) {
         return switch (calculatorModule) {
             case "tank_size_estimator" -> "/septic-tank-size-estimator/";
             case "pump_schedule_estimator" -> "/septic-pump-schedule-estimator/";
             default -> "/septic-system-cost-calculator/";
         };
+    }
+
+    private String calculatorPathForContentPage(ContentPage contentPage) {
+        String modulePath = calculatorPathForModule(contentPage.calculatorModule());
+        if (!"/septic-system-cost-calculator/".equals(modulePath)) {
+            return modulePath;
+        }
+        if (contentPage.calculatorProjectType() == null || contentPage.calculatorProjectType().isBlank()) {
+            return modulePath;
+        }
+        return "/septic-system-cost-calculator/?projectType=" + contentPage.calculatorProjectType();
+    }
+
+    private String contentActionHeading(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case "septic-replacement-cost" -> "Use the replacement estimate before you compare contractor quotes.";
+            case "perc-test-cost" -> "Use the site-risk estimate before you trust the low end.";
+            case "drain-field-replacement-cost" -> "Use the drain field estimate before you assume the old layout still works.";
+            case "septic-inspection-cost" -> "Use the inspection-risk estimate before you schedule the next call.";
+            case "buying-a-house-with-a-septic-system" -> "Use the buyer-risk estimate before you rely on the seller story.";
+            case "septic-permit-process" -> "Use the permit-path estimate before you call the next office.";
+            case "septic-records-checklist" -> "Use the records-aware estimate before you trust the file.";
+            case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
+            case "septic-pumping-cost" -> "Open the pump schedule estimator before you assume a maintenance cadence.";
+            default -> "Use the main estimator before you ask for quotes.";
+        };
+    }
+
+    private String contentActionLabel(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case "septic-replacement-cost" -> "Run a replacement planning estimate";
+            case "perc-test-cost" -> "Run a site-risk estimate";
+            case "drain-field-replacement-cost" -> "Run a drain field estimate";
+            case "septic-inspection-cost" -> "Run an inspection-risk estimate";
+            case "buying-a-house-with-a-septic-system" -> "Run a buyer-risk estimate";
+            case "septic-permit-process" -> "Run a permit-path estimate";
+            case "septic-records-checklist" -> "Run a records-aware estimate";
+            case "septic-tank-size" -> "Open the tank size estimator";
+            case "septic-pumping-cost" -> "Open the pump schedule estimator";
+            default -> "Open the main estimator";
+        };
+    }
+
+    private String contentActionNote(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case "septic-replacement-cost" -> "Prefill the replacement lane first so field condition, restoration, and system-class risk show up before you talk price.";
+            case "perc-test-cost" -> "Use the estimate with site uncertainty in view. If perc status is still unknown, the range should stay wide on purpose.";
+            case "drain-field-replacement-cost" -> "Use the drain field lane when the tank is not the main issue and the field may be driving the cost swing.";
+            case "septic-inspection-cost" -> "This estimate is most useful when inspection timing, records gaps, or advanced-system scope are still unclear.";
+            case "buying-a-house-with-a-septic-system" -> "Treat the estimate as a due-diligence tool first, then compare it against the inspection and records story tied to the property.";
+            case "septic-permit-process" -> "Start with the install lane to frame cost and system type, then verify the real local path before you anchor on the low end.";
+            case "septic-records-checklist" -> "Use the buyer lane as a planning shortcut when the file is still thin and you need to understand downside risk before asking for quotes.";
+            case "septic-tank-size" -> "Use the dedicated estimator when bedroom count, occupancy profile, or disposal load matter more than a full project quote.";
+            case "septic-pumping-cost" -> "Use the dedicated estimator when cadence, use profile, and tank size matter more than a one-time pumping invoice.";
+            default -> "Use your state and project assumptions first, then verify locally.";
+        };
+    }
+
+    private String contentActionTargetType(ContentPage contentPage) {
+        return switch (contentPage.calculatorModule()) {
+            case "tank_size_estimator" -> "tank_size_estimator";
+            case "pump_schedule_estimator" -> "pump_schedule_estimator";
+            default -> "calculator";
+        };
+    }
+
+    private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {
+        return sources.stream()
+                .map(SourceRecord::lastVerifiedAt)
+                .filter(value -> value != null && !value.isBlank())
+                .max(String::compareTo)
+                .orElse(fallback == null ? "" : fallback);
     }
 
     private StateActionCopy stateActionCopy(StateProfile state) {

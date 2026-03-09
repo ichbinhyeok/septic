@@ -15,6 +15,10 @@
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
+@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param String editorialReviewedAgainst = ""
+@param String editorialLastReviewedAt = ""
+@param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -24,16 +28,30 @@
                 <h1>${guideHeading}</h1>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Start short quote form</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
                 </div>
             </div>
             <div class="hero-sidecard">
                 <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
-                <p>Updated ${state.lastVerifiedAt()} with official-source context and conservative estimate framing.</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
+                <dl class="review-meta">
+                    <div>
+                        <dt>Prepared by</dt>
+                        <dd>${editorialPreparedBy}</dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed against</dt>
+                        <dd>${editorialReviewedAgainst}</dd>
+                    </div>
+                    <div>
+                        <dt>Last reviewed</dt>
+                        <dd>${editorialLastReviewedAt}</dd>
+                    </div>
+                </dl>
+                <p>${editorialNote}</p>
+                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_side_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                 <p>${calculatorCtaNote}</p>
             </div>
         </div>
@@ -321,7 +339,7 @@
                                         <td data-label="Call first">${row.firstCall()}</td>
                                         <td data-label="Pull first">${row.firstRecord()}</td>
                                         <td data-label="Low-end killer">${row.lowEndTrigger()}</td>
-                                        <td data-label="Best next page"><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
+                                        <td data-label="Best next page"><a href="${row.nextPagePath()}" data-track-click="nav" data-track-source-context="state_guide_core_comparison_next" data-track-target-type="next_page">${row.nextPageTitle()}</a></td>
                                     </tr>
                                 @endfor
                                 </tbody>
@@ -351,7 +369,7 @@
                                         </div>
                                         <div>
                                             <dt>Best next page</dt>
-                                            <dd><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></dd>
+                                            <dd><a href="${row.nextPagePath()}" data-track-click="nav" data-track-source-context="state_guide_core_comparison_next" data-track-target-type="next_page">${row.nextPageTitle()}</a></dd>
                                         </div>
                                     </dl>
                                 </article>
@@ -388,8 +406,8 @@
                 <h2>Use the estimate first, or skip straight to the short quote form.</h2>
                 <p>${calculatorCtaNote} If you already know the state and job type, you can move straight into the short quote request flow.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_ready_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_ready_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                 </div>
             </article>
         </div>
@@ -415,9 +433,9 @@
                     <summary>Next high-intent pages in ${state.stateName()}</summary>
                     <ul class="detail-list disclosure-card__body">
                         @for (var stateMoneyPage : stateMoneyPages)
-                            <li><a href="${stateMoneyPage.path(state.slug())}">${stateMoneyPage.title()}</a></li>
+                            <li><a href="${stateMoneyPage.path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent" data-track-target-type="state_money_page">${stateMoneyPage.title()}</a></li>
                         @endfor
-                        <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}">Main septic cost calculator</a></li>
+                        <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Main septic cost calculator</a></li>
                     </ul>
                 </details>
             @endif
@@ -428,8 +446,8 @@
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
     <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Short quote form</a>
+            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_sticky_quote" data-track-target-type="quote_form">Short quote form</a>
         </div>
     </section>
 `)

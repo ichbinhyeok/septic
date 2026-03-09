@@ -4,14 +4,18 @@
 @import com.example.septic.service.ProjectType
 @import com.example.septic.service.SoilPercStatus
 @import com.example.septic.service.TimelinePreference
+@import com.example.septic.data.model.ContentPage
 @import com.example.septic.web.EstimateForm
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.PageLink
 @import com.example.septic.web.QuoteLeadForm
 @param PageMeta page
 @param java.util.List<StateProfile> states
 @param EstimateForm estimateForm
 @param EstimatorResult result = null
 @param java.util.List<com.example.septic.web.CostEvidenceView> costEvidence = java.util.List.of()
+@param ContentPage calculatorLanding = null
+@param java.util.List<PageLink> calculatorLandingLinks = java.util.List.of()
 @param QuoteLeadForm quoteLeadForm
 @param String leadId = null
 @param boolean quoteHasErrors = false
@@ -244,4 +248,75 @@
             </div>
         </div>
     </section>
+
+    @if (calculatorLanding != null)
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card">
+                    <h2>Who should use this calculator first</h2>
+                    <p>${calculatorLanding.targetReader()}</p>
+                    <ul class="detail-list">
+                        @for (var bullet : calculatorLanding.fitBullets())
+                            <li>${bullet}</li>
+                        @endfor
+                    </ul>
+                </article>
+
+                <article class="detail-card">
+                    <h2>How to use the estimate before you ask for quotes</h2>
+                    <ol class="detail-list">
+                        @for (var step : calculatorLanding.decisionSteps())
+                            <li>${step}</li>
+                        @endfor
+                    </ol>
+                </article>
+            </div>
+        </section>
+
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card">
+                    <h2>What usually widens the range fastest</h2>
+                    <ul class="detail-list">
+                        @for (var risk : calculatorLanding.lowEndBreakers())
+                            <li>${risk}</li>
+                        @endfor
+                    </ul>
+                </article>
+
+                <article class="detail-card">
+                    <h2>Bring this into the estimate before you trust the result</h2>
+                    <ul class="detail-list">
+                        @for (var item : calculatorLanding.quotePrepChecklist())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container content-grid">
+                <article class="trust-box trust-box--large">
+                    <span class="trust-box__label">High-intent next paths</span>
+                    <h2>Use the estimate, then move into the page that matches the real bottleneck.</h2>
+                    <p>The calculator is strongest when it narrows the lane first and the next page answers the more specific replacement, inspection, or perc question behind the estimate.</p>
+                    <ul class="detail-list">
+                        @for (var link : calculatorLandingLinks)
+                            <li><a href="${link.path()}">${link.title()}</a></li>
+                        @endfor
+                    </ul>
+                </article>
+
+                <article class="detail-card">
+                    <h2>Main estimate drivers</h2>
+                    <ul class="detail-list">
+                        @for (var driver : calculatorLanding.driverBullets())
+                            <li>${driver}</li>
+                        @endfor
+                    </ul>
+                </article>
+            </div>
+        </section>
+    @endif
 `)

@@ -7,6 +7,14 @@
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
+@param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
+@param String calculatorCtaLabel = "Open the estimator"
+@param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
+@param String calculatorCtaTargetType = "calculator"
+@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param String editorialReviewedAgainst = ""
+@param String editorialLastReviewedAt = ""
+@param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -24,7 +32,7 @@
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="${calculatorPath}">Open the estimator</a>
+                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                     <a class="button button--secondary" href="#faq">Jump to FAQs</a>
                 </div>
             </div>
@@ -40,7 +48,21 @@
                     @endif
                 </span>
                 <strong>${contentPage.primaryKeyword()}</strong>
-                <p>Use this page to understand the main cost or workflow drivers first, then move into the estimator with a better starting point.</p>
+                <dl class="review-meta">
+                    <div>
+                        <dt>Prepared by</dt>
+                        <dd>${editorialPreparedBy}</dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed against</dt>
+                        <dd>${editorialReviewedAgainst}</dd>
+                    </div>
+                    <div>
+                        <dt>Last reviewed</dt>
+                        <dd>${editorialLastReviewedAt}</dd>
+                    </div>
+                </dl>
+                <p>${editorialNote}</p>
             </article>
         </div>
     </section>
@@ -58,20 +80,65 @@
         </div>
     </section>
 
+    <section class="section section--tight">
+        <div class="container detail-grid">
+            <article class="detail-card">
+                <h2>Who this page is for</h2>
+                <p>${contentPage.targetReader()}</p>
+                <ul class="detail-list">
+                    @for (var bullet : contentPage.fitBullets())
+                        <li>${bullet}</li>
+                    @endfor
+                </ul>
+            </article>
+
+            <article class="detail-card">
+                <h2>How to use this page before you ask for quotes</h2>
+                <ol class="detail-list">
+                    @for (var step : contentPage.decisionSteps())
+                        <li>${step}</li>
+                    @endfor
+                </ol>
+            </article>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container detail-grid">
+            <article class="detail-card">
+                <h2>What usually kills the low end</h2>
+                <ul class="detail-list">
+                    @for (var risk : contentPage.lowEndBreakers())
+                        <li>${risk}</li>
+                    @endfor
+                </ul>
+            </article>
+
+            <article class="detail-card">
+                <h2>Bring this into the next estimate or quote</h2>
+                <ul class="detail-list">
+                    @for (var item : contentPage.quotePrepChecklist())
+                        <li>${item}</li>
+                    @endfor
+                </ul>
+            </article>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
-                <h2>Use the calculator with your state, bedroom count, and site assumptions before you ask for quotes.</h2>
-                <p>The result page explains what pushed the estimate and what could still move it. That tends to create better conversations with local pros.</p>
-                <a href="${calculatorPath}">Run the estimate</a>
+                <h2>${calculatorCtaHeading}</h2>
+                <p>${calculatorCtaNote} The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.</p>
+                <a href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
             </article>
 
             <article class="detail-card">
                 <h2>State guides</h2>
                 <ul class="detail-list">
                     @for (var state : states)
-                        <li><a href="/septic-system-cost-calculator/${state.slug()}/">${state.stateName()} septic guide</a></li>
+                        <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
                     @endfor
                 </ul>
             </article>
@@ -85,7 +152,7 @@
                     <h2>State-specific pages</h2>
                     <ul class="detail-list">
                         @for (var stateMoneyPageLink : stateMoneyPageLinks)
-                            <li><a href="${stateMoneyPageLink.path()}">${stateMoneyPageLink.title()}</a></li>
+                            <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
                         @endfor
                     </ul>
                 </article>
@@ -117,7 +184,7 @@
                 <span class="trust-box__label">Related pages</span>
                 <ul class="detail-list">
                     @for (var link : internalLinks)
-                        <li><a href="${link.path()}">${link.title()}</a></li>
+                        <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a></li>
                     @endfor
                 </ul>
             </article>

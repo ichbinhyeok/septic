@@ -2,6 +2,7 @@ package com.example.septic.service;
 
 import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EstimateForm;
+import com.example.septic.web.ContactRequestForm;
 import com.example.septic.web.QuoteLeadForm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -42,6 +43,7 @@ public class LeadStorageService {
     void initializeDirectories() {
         try {
             Files.createDirectories(root().resolve("leads"));
+            Files.createDirectories(root().resolve("contact-requests"));
             Files.createDirectories(root().resolve("events"));
             Files.createDirectories(root().resolve("exports").resolve("pending"));
             Files.createDirectories(root().resolve("exports").resolve("daily"));
@@ -128,6 +130,75 @@ public class LeadStorageService {
             return leadId;
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist quote lead", exception);
+        }
+    }
+
+    public void saveNavigationClick(
+            String sourcePage,
+            String sourceContext,
+            String targetPath,
+            String targetType,
+            String targetLabel,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        try {
+            appendEvent(orderedMap(
+                    "eventType", "internal_navigation_click",
+                    "occurredAt", now.toString(),
+                    "sourcePage", safeValue(sourcePage, 240),
+                    "sourceContext", safeValue(sourceContext, 120),
+                    "targetPath", safeValue(targetPath, 240),
+                    "targetType", safeValue(targetType, 80),
+                    "targetLabel", safeValue(targetLabel, 160),
+                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+            ), now);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist navigation click event", exception);
+        }
+    }
+
+    public String saveContactRequest(
+            ContactRequestForm contactRequestForm,
+            String sourcePage,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        String requestId = UUID.randomUUID().toString();
+        Map<String, Object> acknowledgement = orderedMap(
+                "accepted", contactRequestForm.isAcknowledgementAccepted(),
+                "acceptedAt", now.toString(),
+                "acknowledgementText", contactRequestForm.getAcknowledgementTextSnapshot(),
+                "languageVersion", "2026-03-10-v1"
+        );
+
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("requestId", requestId);
+        payload.put("submittedAt", now.toString());
+        payload.put("sourcePage", sourcePage);
+        payload.put("topic", safeValue(contactRequestForm.getTopic(), 80));
+        payload.put("stateCode", safeValue(contactRequestForm.getStateCode(), 2));
+        payload.put("contact", orderedMap(
+                "fullName", safeValue(contactRequestForm.getFullName(), 120),
+                "email", safeValue(contactRequestForm.getEmail(), 160)
+        ));
+        payload.put("message", safeValue(contactRequestForm.getMessage(), 2000));
+        payload.put("acknowledgement", acknowledgement);
+        payload.put("provenance", buildProvenance(request, now, sourcePage));
+
+        try {
+            writeContactRequestFile(payload, requestId, now);
+            appendEvent(orderedMap(
+                    "eventType", "contact_request_submitted",
+                    "occurredAt", now.toString(),
+                    "requestId", requestId,
+                    "sourcePage", sourcePage,
+                    "topic", safeValue(contactRequestForm.getTopic(), 80),
+                    "stateCode", safeValue(contactRequestForm.getStateCode(), 2)
+            ), now);
+            return requestId;
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist contact request", exception);
         }
     }
 
@@ -235,6 +306,22 @@ public class LeadStorageService {
         Files.createDirectories(directory);
 
         String baseFileName = TIMESTAMP.format(now) + "-" + leadId;
+        Path tempFile = directory.resolve(baseFileName + ".tmp");
+        Path finalFile = directory.resolve(baseFileName + ".json");
+
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), payload);
+        moveAtomically(tempFile, finalFile);
+    }
+
+    private void writeContactRequestFile(Map<String, Object> payload, String requestId, Instant now) throws IOException {
+        Path directory = root()
+                .resolve("contact-requests")
+                .resolve(YEAR.format(now))
+                .resolve(MONTH.format(now))
+                .resolve(DAY.format(now));
+        Files.createDirectories(directory);
+
+        String baseFileName = TIMESTAMP.format(now) + "-" + requestId;
         Path tempFile = directory.resolve(baseFileName + ".tmp");
         Path finalFile = directory.resolve(baseFileName + ".json");
 
@@ -357,5 +444,16 @@ public class LeadStorageService {
             }
         }
         return list;
+    }
+
+    private String safeValue(String value, int maxLength) {
+        if (value == null) {
+            return "";
+        }
+        String trimmed = value.trim();
+        if (trimmed.length() <= maxLength) {
+            return trimmed;
+        }
+        return trimmed.substring(0, maxLength);
     }
 }

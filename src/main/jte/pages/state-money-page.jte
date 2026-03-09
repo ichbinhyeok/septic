@@ -14,6 +14,10 @@
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
+@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param String editorialReviewedAgainst = ""
+@param String editorialLastReviewedAt = ""
+@param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -23,9 +27,9 @@
                 <h1>${stateMoneyPage.title()}</h1>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/">Open the ${state.stateName()} guide</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
                 <p>${calculatorCtaNote}</p>
             </div>
@@ -34,7 +38,21 @@
                 <span class="pill">State-specific guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
-                <p>Last verified: ${state.lastVerifiedAt()}</p>
+                <dl class="review-meta">
+                    <div>
+                        <dt>Prepared by</dt>
+                        <dd>${editorialPreparedBy}</dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed against</dt>
+                        <dd>${editorialReviewedAgainst}</dd>
+                    </div>
+                    <div>
+                        <dt>Last reviewed</dt>
+                        <dd>${editorialLastReviewedAt}</dd>
+                    </div>
+                </dl>
+                <p>${editorialNote}</p>
                 <p>${stateMoneyPage.uniqueAngle()}</p>
             </article>
         </div>
@@ -144,6 +162,23 @@
                 </article>
             @endif
 
+            @if ((stateMoneyPage.targetReader() != null && !stateMoneyPage.targetReader().isBlank())
+                    || (stateMoneyPage.fitBullets() != null && !stateMoneyPage.fitBullets().isEmpty()))
+                <article class="detail-card">
+                    <h2>Who this page is for</h2>
+                    @if (stateMoneyPage.targetReader() != null && !stateMoneyPage.targetReader().isBlank())
+                        <p>${stateMoneyPage.targetReader()}</p>
+                    @endif
+                    @if (stateMoneyPage.fitBullets() != null && !stateMoneyPage.fitBullets().isEmpty())
+                        <ul class="detail-list">
+                            @for (var fitBullet : stateMoneyPage.fitBullets())
+                                <li>${fitBullet}</li>
+                            @endfor
+                        </ul>
+                    @endif
+                </article>
+            @endif
+
             <article class="detail-card">
                 <h2>What changes this page in ${state.stateName()}</h2>
                 <p>${stateMoneyPage.uniqueAngle()}</p>
@@ -162,6 +197,17 @@
                     @endfor
                 </ul>
             </article>
+
+            @if (stateMoneyPage.decisionSteps() != null && !stateMoneyPage.decisionSteps().isEmpty())
+                <article class="detail-card detail-card--full">
+                    <h2>How this workflow usually unfolds in ${state.stateName()}</h2>
+                    <ol class="detail-list detail-list--numbered">
+                        @for (var step : stateMoneyPage.decisionSteps())
+                            <li>${step}</li>
+                        @endfor
+                    </ol>
+                </article>
+            @endif
         </div>
     </section>
 
@@ -197,6 +243,17 @@
                 </article>
             @endif
 
+            @if (stateMoneyPage.lowEndBreakers() != null && !stateMoneyPage.lowEndBreakers().isEmpty())
+                <article class="detail-card detail-card--full">
+                    <h2>What breaks the low end on this page</h2>
+                    <ul class="detail-list">
+                        @for (var lowEndBreaker : stateMoneyPage.lowEndBreakers())
+                            <li>${lowEndBreaker}</li>
+                        @endfor
+                    </ul>
+                </article>
+            @endif
+
             @if (state.permitTimelineNote() != null)
                 <article class="detail-card">
                     <h2>Permit timeline watch</h2>
@@ -222,6 +279,17 @@
                 <article class="detail-card detail-card--full">
                     <h2>Special state wrinkle</h2>
                     <p>${state.specialAreaNote()}</p>
+                </article>
+            @endif
+
+            @if (stateMoneyPage.quotePrepChecklist() != null && !stateMoneyPage.quotePrepChecklist().isEmpty())
+                <article class="detail-card">
+                    <h2>Bring this into the next quote call</h2>
+                    <ul class="detail-list">
+                        @for (var checklistItem : stateMoneyPage.quotePrepChecklist())
+                            <li>${checklistItem}</li>
+                        @endfor
+                    </ul>
                 </article>
             @endif
 
@@ -294,8 +362,8 @@
                 <h2>${calculatorCtaLabel}</h2>
                 <p>${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context. If you already know the project type, you can also skip straight to the short quote form.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Run the estimate</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                 </div>
             </article>
 
@@ -303,7 +371,7 @@
                 <h2>Related links</h2>
                 <ul class="detail-list">
                     @for (var link : internalLinks)
-                        <li><a href="${link.path()}">${link.title()}</a></li>
+                        <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_related_link" data-track-target-type="related_internal">${link.title()}</a></li>
                     @endfor
                 </ul>
             </article>
@@ -313,8 +381,8 @@
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
     <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Short quote form</a>
+            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_sticky_quote" data-track-target-type="quote_form">Short quote form</a>
         </div>
     </section>
 `)

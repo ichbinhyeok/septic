@@ -11,6 +11,30 @@
       "metaDescription": "Estimate likely septic cost range, tank size, and system class before you call local pros.",
       "introCopy": "Use the main calculator to turn rough household and site inputs into a planning range. The output is designed to be useful before you have perfect site data.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "",
+      "targetReader": "Best for homeowners, buyers, and agents who need one planning range first but still do not know whether replacement risk, inspection timing, permit steps, or site uncertainty is the real problem.",
+      "fitBullets": [
+        "You need a conservative first range before you call local installers or county offices.",
+        "The project type is roughly clear, but the site, records, or permit path are still incomplete.",
+        "You want one estimate that makes the next inspection, records request, or quote conversation more specific."
+      ],
+      "decisionSteps": [
+        "Start with the closest project type and state you can identify instead of waiting for perfect site data.",
+        "Use the result to see which driver is doing the most work: system type, perc uncertainty, access, or replacement risk.",
+        "Carry the estimate into the state guide or high-intent page that matches the actual bottleneck behind the project.",
+        "Then compare local quotes only after the estimate and the next page together make the range feel directionally honest."
+      ],
+      "lowEndBreakers": [
+        "Unknown soil, perc, or water-table conditions can widen the estimate faster than tank size alone.",
+        "Replacement, field failure, or limited access can make a neat statewide average useless.",
+        "Missing records or an unclear permit path can keep the low end from being trustworthy even when the form looks simple."
+      ],
+      "quotePrepChecklist": [
+        "The state and the closest project type, even if some site details are still unknown.",
+        "Bedroom count, occupant estimate, and any garbage-disposal or ADU signal.",
+        "Any records, inspection findings, or seller notes already tied to the property.",
+        "The main uncertainty you still need the next page or local pro to settle."
+      ],
       "driverBullets": [
         "System type can move the quote more than the tank alone.",
         "Perc results, drainage, and water table risk widen the estimate fast.",
@@ -37,6 +61,30 @@
       "metaDescription": "What drives septic replacement cost, what can widen the range, and how to estimate it before getting quotes.",
       "introCopy": "Replacement projects can be materially more expensive than routine maintenance because they often involve hidden field damage, access constraints, and restoration work. This page explains the main drivers before you open the calculator.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "replacement",
+      "targetReader": "Best for homeowners, buyers, and agents who already suspect replacement is likely but still need to know whether the field, records, and site story support anything close to the low end.",
+      "fitBullets": [
+        "The system is failing or aging, but no one has confirmed whether replacement still looks conventional.",
+        "The visible problem may be bigger than the tank because field damage, access, or restoration risk is already in the background.",
+        "You need a planning range that treats replacement as more than a simple install with a new tank."
+      ],
+      "decisionSteps": [
+        "Start by deciding whether the project is routine maintenance, repair, or true replacement, because the range changes quickly once the field is involved.",
+        "Check whether records, inspections, or visible field problems already point to a wider system-class or restoration issue.",
+        "Run the replacement lane before talking price so the estimate starts with the right excavation, removal, and site-risk assumptions.",
+        "Then move into the state-specific replacement or inspection page if local process or records are still the main blocker."
+      ],
+      "lowEndBreakers": [
+        "Field failure, poor perc results, or water-table risk can push replacement out of a conventional low-end band quickly.",
+        "Old-system removal, restoration, and access can dominate the total quote even when the tank price looks manageable.",
+        "Weak records and emergency timing usually make the lowest visible replacement number less trustworthy."
+      ],
+      "quotePrepChecklist": [
+        "Any recent inspection report, failure note, or contractor summary tied to the system.",
+        "Permit, as-built, pumping, or repair records already on hand.",
+        "A short note on field condition, wet areas, access limits, and whether the current system type is known.",
+        "The reason replacement is being discussed now: sale, failure, inspection follow-up, or planned upgrade."
+      ],
       "driverBullets": [
         "Field failure or failed perc results can push a replacement toward alternative systems.",
         "Old system removal, excavation, and restoration can materially change the total quote.",
@@ -63,6 +111,30 @@
       "metaDescription": "Understand what usually sets septic tank size, when the range widens, and when to use the dedicated tank size estimator.",
       "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This guide explains the main sizing drivers first, then points into the dedicated estimator when you want a state-aware planning range.",
       "calculatorModule": "tank_size_estimator",
+      "calculatorProjectType": "",
+      "targetReader": "Best for homeowners and buyers who need a realistic minimum and conservative tank band before they call installers, not a fake promise that one gallon number settles the whole design.",
+      "fitBullets": [
+        "You know the bedroom count but still are not sure how occupancy, disposals, or state rule style move the recommendation.",
+        "The quote conversation is starting with tank size, even though local review and system class still matter.",
+        "You want the dedicated sizing tool before you widen the conversation into full project cost."
+      ],
+      "decisionSteps": [
+        "Start with bedroom count and occupancy profile because those are the clearest homeowner-facing size signals.",
+        "Add disposal and extra-kitchen context before you assume the lowest table number is enough.",
+        "Use the tank size estimator to get a likely minimum and conservative range rather than anchoring to one old receipt or listing note.",
+        "Then move into the full cost estimator only after the tank band is clear enough to frame the wider project."
+      ],
+      "lowEndBreakers": [
+        "Disposal use, extra kitchens, and heavy occupancy can move the safe homeowner-facing tank recommendation upward.",
+        "State rules vary between direct bedroom tables and design-flow logic, so a generic gallon guess is often too neat.",
+        "A strong tank-size answer still does not settle system class, site fit, or permit review."
+      ],
+      "quotePrepChecklist": [
+        "Bedroom count and an honest occupancy profile for the property.",
+        "Whether a garbage disposal, extra kitchen, or ADU is part of the load story.",
+        "Any old tank receipt, permit, or listing note that already mentions size.",
+        "The state where the system will be reviewed so the tool can bridge into the right rule style."
+      ],
       "driverBullets": [
         "Bedroom count is the most common public input, but occupancy still matters.",
         "Garbage disposal and additional kitchens can increase the planning range.",
@@ -89,6 +161,30 @@
       "metaDescription": "What a perc test can cost, why it matters so much to septic pricing, and what can delay the result.",
       "introCopy": "Perc and site evaluation costs are usually much smaller than install or replacement costs, but they can change the whole project. This page explains why they deserve their own estimate path.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "perc_test",
+      "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but actually need to know whether the result could push the entire project into a different cost lane.",
+      "fitBullets": [
+        "The testing invoice looks small, but the real concern is what the result will do to the system choice.",
+        "You need to price site uncertainty before you call installers as if the lot is already straightforward.",
+        "The project is early enough that one weak perc result could change everything behind the estimate."
+      ],
+      "decisionSteps": [
+        "Start by treating perc and site evaluation as a system-risk question, not just a small line-item fee.",
+        "Ask whether the property already has records, prior testing, or local notes that make the result more predictable.",
+        "Run the perc-test lane first so the estimate stays honest about soil uncertainty and possible system-class change.",
+        "Then move into the replacement or permit page if the real next question becomes field viability or local review."
+      ],
+      "lowEndBreakers": [
+        "Unknown or weak perc status can widen the entire project far more than the testing invoice itself.",
+        "Retesting, local timing, and site-specific constraints can erase the cheapest visible testing story fast.",
+        "If the result points away from a conventional field, the low-end install or replacement range is no longer the right anchor."
+      ],
+      "quotePrepChecklist": [
+        "Any prior perc, soil, or site-evaluation record tied to the property.",
+        "The project type behind the testing question: new build, replacement, buyer diligence, or addition.",
+        "A note on visible site constraints such as wet ground, limited field area, or shallow bedrock.",
+        "The state and local authority path that will interpret the result."
+      ],
       "driverBullets": [
         "A failed or weak perc result can change the likely system class completely.",
         "Retesting, local requirements, and scheduling delays can add friction.",
@@ -115,6 +211,30 @@
       "metaDescription": "Estimate drain field replacement cost, understand what raises the quote, and know when the system may no longer stay conventional.",
       "introCopy": "Drain field replacement is one of the biggest homeowner cost shocks in septic ownership. The field is where site conditions, soil limits, and access problems show up quickly.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "drainfield_replacement",
+      "targetReader": "Best for homeowners and buyers who already know the field is the likely issue but still need to know whether the site can support another conventional layout.",
+      "fitBullets": [
+        "The tank is not the main cost concern and the field may be driving the quote swing.",
+        "You need to know whether access, restoration, or site limits make the field story much larger than trench work alone.",
+        "The old field footprint may not be a safe planning assumption anymore."
+      ],
+      "decisionSteps": [
+        "Start with the field as the real project, not just an accessory to the tank, because site and soil limits dominate here.",
+        "Check whether records, perc history, or visible drainage issues already suggest the same layout may not be viable.",
+        "Run the drain-field replacement lane so excavation, restoration, and system-class uncertainty show up early.",
+        "Then move into the replacement or perc page if the field issue starts looking like a broader redesign."
+      ],
+      "lowEndBreakers": [
+        "Field failure often signals deeper drainage or site constraints that the cheapest quote does not capture.",
+        "Access, excavation, and restoration can outweigh the visible field hardware fast.",
+        "If the site no longer supports a conventional field, the low-end replacement story breaks immediately."
+      ],
+      "quotePrepChecklist": [
+        "Any inspection note or contractor comment focused on the field rather than the tank.",
+        "Perc, soil, or site-evaluation records already tied to the property.",
+        "A note on access, wet areas, slope, landscaping, and restoration concerns near the field.",
+        "Whether the system is a buyer issue, a failure event, or a planned upgrade."
+      ],
       "driverBullets": [
         "Field failure often points to deeper site or drainage constraints.",
         "Access, excavation, and restoration can dominate the price band.",
@@ -141,6 +261,30 @@
       "metaDescription": "Estimate septic pumping cost and understand how occupancy, tank size, and use patterns change the maintenance cadence.",
       "introCopy": "Pumping is the lower-cost recurring side of septic ownership, but it is one of the most useful hooks for maintenance content and later local service routing.",
       "calculatorModule": "pump_schedule_estimator",
+      "calculatorProjectType": "",
+      "targetReader": "Best for homeowners and buyers who want a realistic pumping cadence and maintenance cost story, not just the cheapest one-time service price.",
+      "fitBullets": [
+        "You need to know whether occupancy, tank size, or disposal use shorten the pumping interval.",
+        "The visible pumping invoice is small, but the long-run maintenance schedule is still unclear.",
+        "You want the dedicated cadence tool before you treat pumping like a flat service fee."
+      ],
+      "decisionSteps": [
+        "Start with tank size, occupancy, and usage profile rather than asking only for the cheapest pump-out price.",
+        "Check whether disposal use or seasonal occupancy changes the cadence enough to affect maintenance planning.",
+        "Use the dedicated pump schedule estimator to frame timing before you compare local service pricing.",
+        "Then move into inspection or full cost planning if pumping starts uncovering a bigger system story."
+      ],
+      "lowEndBreakers": [
+        "Higher occupancy and disposal use can shorten the interval enough that a low annualized cost guess becomes unrealistic.",
+        "Seasonal use can soften cadence a bit, but it does not replace inspection discipline or good records.",
+        "If the owner does not know tank size or service history, the cheapest pumping assumption is too thin."
+      ],
+      "quotePrepChecklist": [
+        "Known or estimated tank size for the property.",
+        "Occupant count, usage profile, and whether a disposal is installed.",
+        "Any recent pumping or inspection record already on file.",
+        "Whether you are planning routine maintenance or following up after a problem."
+      ],
       "driverBullets": [
         "Tank size and occupant load are the biggest cadence inputs.",
         "Garbage disposal use can shorten the pumping interval.",
@@ -167,6 +311,30 @@
       "metaDescription": "Estimate septic inspection cost, understand what the inspection should verify, and know when missing records or advanced systems raise the real risk.",
       "introCopy": "Inspection intent is one of the highest-value septic queries because it sits close to a home purchase, a repair decision, or a quote request. This page frames inspection cost as more than a line item: it is the fastest way to find out whether the low end is still believable.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "inspection",
+      "targetReader": "Best for buyers and owners who can schedule an inspection but still need to know whether the real risk is missing records, advanced-system scope, or a bigger replacement conversation hiding behind the visit.",
+      "fitBullets": [
+        "The inspection price is easy to get, but the property file and maintenance history are still thin.",
+        "You need to know whether the inspection is routine diligence or the fastest way to test whether the low end is fake.",
+        "Advanced systems, buyer timing, or transfer rules may matter more than the sticker price."
+      ],
+      "decisionSteps": [
+        "Start by deciding why the inspection matters now: buyer diligence, routine check, suspected failure, or quote follow-up.",
+        "Check what records, O&M logs, and prior inspections already exist so the next inspection is read against the real file.",
+        "Run the inspection lane first when the property story is thin and you need the estimate to reflect that uncertainty.",
+        "Then move into buyer, records, or replacement content once the inspection reveals which risk is actually driving the decision."
+      ],
+      "lowEndBreakers": [
+        "Missing records can make a modest inspection fee much less useful by itself.",
+        "Advanced-system scope, management paperwork, and transfer timing can widen the real inspection problem fast.",
+        "If the inspection is likely to surface field failure, the cheapest inspection story is no longer the right anchor."
+      ],
+      "quotePrepChecklist": [
+        "Any prior inspection, pumping, or O&M record already tied to the system.",
+        "The reason for the inspection and whether a sale or repair timeline is involved.",
+        "A note on system type, especially if anything beyond a basic tank-and-field setup is suspected.",
+        "Any visible field, drainage, or records gap already making the owner nervous."
+      ],
       "driverBullets": [
         "A basic inspection cost can stay modest while missing records or weak findings push the total project risk much higher.",
         "Advanced systems, O&M logs, and management-program paperwork can make the real inspection scope larger than a simple tank-and-field check.",
@@ -193,6 +361,30 @@
       "metaDescription": "What to inspect, what can become expensive after closing, and when to get a septic quote before buying.",
       "introCopy": "Buyer intent is high value because inspection timing and hidden failure risk matter. This page helps people ask better questions before they inherit a major septic problem.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, sellers, and agents who need a due-diligence checklist before a septic question turns into leverage, surprise repair cost, or post-closing regret.",
+      "fitBullets": [
+        "The deal is moving and the septic story still depends on inspection timing, records quality, and worst-case replacement exposure.",
+        "You need to know whether the risk is a manageable paperwork issue or a likely expensive post-closing problem.",
+        "The seller story feels thin enough that you want a buyer-risk estimate before relying on it."
+      ],
+      "decisionSteps": [
+        "Start with the inspection and records story before you debate a repair credit or replacement number.",
+        "Check whether pumping history, bedroom count, and file quality support the seller's version of the system.",
+        "Run the buyer lane so the estimate reflects both routine maintenance exposure and worst-case replacement downside.",
+        "Then move into inspection, records, or state-specific buyer pages once you know which risk is actually controlling the deal."
+      ],
+      "lowEndBreakers": [
+        "Weak records and unknown field condition can turn a manageable purchase into a large post-closing cost fast.",
+        "Inspection timing and transfer rules can make the buyer's practical risk much larger than the sticker fee alone.",
+        "If the bedroom count or current use story is unclear, the lowest comfortable estimate is usually too optimistic."
+      ],
+      "quotePrepChecklist": [
+        "The septic inspection report or the plan for getting one before closing.",
+        "Any permit, as-built, pumping, or repair record already available.",
+        "The legal bedroom count and any visible use-change issue tied to the home.",
+        "The target closing date and the buyer's biggest septic concern right now."
+      ],
       "driverBullets": [
         "Inspection findings can quickly turn into replacement planning.",
         "Old records, unknown pumping history, and unclear bedroom counts raise risk.",
@@ -219,6 +411,30 @@
       "metaDescription": "Understand the usual septic permit steps, what to verify before applying, and why state and local process can change the timeline.",
       "introCopy": "The permit process is one of the highest-value septic questions because it controls whether a homeowner estimate stays simple or turns into a longer site-review project. This page frames the permit path in homeowner language without pretending every county works the same way.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "new_install",
+      "targetReader": "Best for homeowners, buyers, and builders who know a septic decision is coming but still need to know whether site review, local authority, or project type is the first real permit gate.",
+      "fitBullets": [
+        "A contractor conversation has started, but no one has clarified which permit step is actually blocking progress.",
+        "The project could be a new install, replacement, repair, or use change, and you need to know which lane is closest.",
+        "You want a planning estimate that respects permit timing instead of pretending cost comes first."
+      ],
+      "decisionSteps": [
+        "Start by asking which local office or local program actually controls the next step for this property.",
+        "Check whether the project is really new install, replacement, repair, or change in use because permit logic changes with that answer.",
+        "Run the install lane first to frame system type and budget while keeping the permit path in view.",
+        "Then move into the state-specific permit page once you know whether site evaluation, records, or authority routing is the real bottleneck."
+      ],
+      "lowEndBreakers": [
+        "A clean-looking estimate can become unreliable if the permit path is longer or more local than expected.",
+        "Site evaluation, soil review, or change-in-use triggers can widen both timeline and cost quickly.",
+        "If the project type is misread at the start, the cheapest visible estimate often anchors the wrong lane."
+      ],
+      "quotePrepChecklist": [
+        "The property address and the office or authority likely handling the permit.",
+        "Any current permit, site, or design paperwork already tied to the project.",
+        "A note on whether the work is new install, replacement, repair, or change in use.",
+        "The main uncertainty still blocking the next call: site fit, records, timing, or local authority."
+      ],
       "driverBullets": [
         "Site evaluation or soil review usually comes before quote confidence, not after.",
         "Local authority often matters more than the state summary once the homeowner moves past rough planning.",
@@ -245,6 +461,30 @@
       "metaDescription": "What septic records to request before trusting a quote, closing on a home, or assuming the current system is still straightforward.",
       "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on what paperwork matters first, why missing records widen the estimate, and how the answer changes by state.",
       "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which missing records make the estimate or sale much riskier.",
+      "fitBullets": [
+        "The seller or owner has partial paperwork, but no one has confirmed whether the important permit and inspection records are actually there.",
+        "You need a records-first way to judge whether the low end is believable before you request quotes.",
+        "The next decision depends on whether the paperwork supports a routine inspection story or a much wider replacement risk."
+      ],
+      "decisionSteps": [
+        "Start with the newest permit, as-built, inspection, or site-review record tied to the system.",
+        "Check whether the file includes maintenance logs, pumping receipts, and anything that confirms the current system story is real.",
+        "Run the buyer-risk lane when the records are still thin so the estimate reflects documentation risk instead of pretending the file is complete.",
+        "Then move into inspection, buyer, or state-specific records pages once you know what the missing paperwork is likely to change."
+      ],
+      "lowEndBreakers": [
+        "Missing permit and as-built records can make even a modest project feel much wider once the real file is requested.",
+        "Thin maintenance and pumping history weaken confidence in both condition and low-end estimate assumptions.",
+        "If the paperwork does not match the current use or system story, the cheapest visible range becomes much harder to trust."
+      ],
+      "quotePrepChecklist": [
+        "The newest permit, as-built, inspection, or site-review record already on hand.",
+        "Any pumping receipts, O&M logs, or maintenance contracts tied to the system.",
+        "A note on what records are missing and why they matter to the current decision.",
+        "Whether the next step is buyer diligence, inspection planning, repair, or replacement budgeting."
+      ],
       "driverBullets": [
         "Permit, as-built, and inspection records often matter more than the seller's memory.",
         "Maintenance logs and pumping receipts help validate whether the system condition is really low risk.",

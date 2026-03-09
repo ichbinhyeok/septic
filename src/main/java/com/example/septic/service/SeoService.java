@@ -34,6 +34,7 @@ public class SeoService {
                 canonicalUrl,
                 "index,follow",
                 List.of(
+                        toJson(editorialOrganization()),
                         toJson(webSite(canonicalUrl, "Septic System Cost & Size Estimator",
                                 "State-aware septic planning estimates for tank size, system type, and rough cost.")),
                         toJson(webPage(canonicalUrl, "Septic System Cost & Size Estimator",
@@ -124,16 +125,16 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateGuide(StateProfile state) {
+    public PageMeta stateGuide(StateProfile state, String lastReviewedAt) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
         String title = stateGuideTitle(state);
         String description = stateGuideDescription(state);
         List<FaqBlock> faqBlocks = stateGuideFaqs(state);
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(webPage(canonicalUrl,
+        jsonLdBlocks.add(toJson(withEditorialMeta(webPage(canonicalUrl,
                 title,
                 description,
-                "Article")));
+                "Article"), lastReviewedAt)));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
@@ -220,10 +221,13 @@ public class SeoService {
         return faqBlocks;
     }
 
-    public PageMeta contentPage(ContentPage contentPage) {
+    public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "CollectionPage")));
+        jsonLdBlocks.add(toJson(withEditorialMeta(
+                webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "CollectionPage"),
+                lastReviewedAt
+        )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb(contentPage.title(), canonicalUrl)
@@ -240,10 +244,13 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state) {
+    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "Article")));
+        jsonLdBlocks.add(toJson(withEditorialMeta(
+                webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "Article"),
+                lastReviewedAt
+        )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb(stateMoneyPage.title(), canonicalUrl)
@@ -337,7 +344,34 @@ public class SeoService {
         payload.put("name", name);
         payload.put("url", url);
         payload.put("description", description);
+        payload.put("inLanguage", "en-US");
         payload.put("isPartOf", Map.of("@type", "WebSite", "url", absoluteUrl("/")));
+        return payload;
+    }
+
+    private Map<String, Object> withEditorialMeta(Map<String, Object> payload, String lastReviewedAt) {
+        payload.put("author", editorialOrganizationReference());
+        payload.put("publisher", editorialOrganizationReference());
+        if (lastReviewedAt != null && !lastReviewedAt.isBlank()) {
+            payload.put("dateModified", lastReviewedAt);
+        }
+        return payload;
+    }
+
+    private Map<String, Object> editorialOrganization() {
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("@context", "https://schema.org");
+        payload.put("@type", "Organization");
+        payload.put("name", "Septic System Cost & Size Estimator");
+        payload.put("url", absoluteUrl("/"));
+        return payload;
+    }
+
+    private Map<String, Object> editorialOrganizationReference() {
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("@type", "Organization");
+        payload.put("name", "Septic System Cost & Size Estimator");
+        payload.put("url", absoluteUrl("/"));
         return payload;
     }
 
