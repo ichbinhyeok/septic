@@ -129,11 +129,14 @@
 
                             <article class="detail-card">
                                 <h3>Official-source context</h3>
-                                <ul class="detail-list">
-                                    @for (var source : result.estimate().sourceLabels())
-                                        <li>${source}</li>
-                                    @endfor
-                                </ul>
+                                <details class="disclosure-card">
+                                    <summary>View source set</summary>
+                                    <ul class="detail-list disclosure-card__body">
+                                        @for (var source : result.estimate().sourceLabels())
+                                            <li>${source}</li>
+                                        @endfor
+                                    </ul>
+                                </details>
                             </article>
                         </div>
 
@@ -204,9 +207,9 @@
                 </article>
 
                 @if (!stateRuleFacts.isEmpty())
-                    <article class="detail-card detail-card--full">
-                        <h2>Source-backed sizing facts for ${selectedState.stateName()}</h2>
-                        <div class="detail-grid">
+                    <details class="detail-card detail-card--full disclosure-card">
+                        <summary>Source-backed sizing facts for ${selectedState.stateName()}</summary>
+                        <div class="detail-grid disclosure-card__body">
                             @for (var fact : stateRuleFacts)
                                 <article class="detail-card">
                                     <h3>${fact.label()}</h3>
@@ -224,7 +227,7 @@
                                 </article>
                             @endfor
                         </div>
-                    </article>
+                    </details>
                 @endif
 
                 <article class="trust-box trust-box--large">
@@ -270,74 +273,72 @@
 
     <section class="section section--tight">
         <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">State examples</span>
-                <h2>Open a tank size estimate with the state already selected.</h2>
-                <p class="lede">These state links are useful when you want a quick starting point before opening the full cost estimator or the state guide.</p>
-            </div>
-
-            <div class="state-grid">
-                @for (var state : states)
-                    <article class="state-card">
-                        <div class="state-card__header">
-                            <span class="pill">Tank size</span>
-                            <strong>${state.stateName()}</strong>
-                        </div>
-                        <p>${state.pageAngle()}</p>
-                        <ul class="state-card__meta">
-                            <li>${state.ruleType()}</li>
-                            <li>
-                                @if (state.minTankSizeGallons() != null)
-                                    ${state.minTankSizeGallons()} gal minimum anchor
-                                @elseif (state.designFlowPerBedroomGpd() != null)
-                                    ${state.designFlowPerBedroomGpd()} GPD per bedroom
-                                @else
-                                    Conservative fallback range
-                                @endif
-                            </li>
-                            <li>Updated ${state.lastVerifiedAt()}</li>
-                        </ul>
-                        <div class="state-card__links">
-                            <a href="/septic-tank-size-estimator/?state=${state.stateCode()}">Open estimator</a>
-                            <a href="/septic-system-cost-calculator/${state.slug()}/">State guide</a>
-                        </div>
-                    </article>
-                @endfor
-            </div>
+            <details class="detail-card detail-card--full disclosure-card">
+                <summary>Open a tank size estimate with the state already selected</summary>
+                <div class="disclosure-card__body">
+                    <p class="lede">These state links are useful when you want a quick starting point before opening the full cost estimator or the state guide.</p>
+                    <div class="state-grid">
+                        @for (var state : states)
+                            <article class="state-card">
+                                <div class="state-card__header">
+                                    <span class="pill">Tank size</span>
+                                    <strong>${state.stateName()}</strong>
+                                </div>
+                                <p>${state.pageAngle()}</p>
+                                <ul class="state-card__meta">
+                                    <li>${state.ruleType()}</li>
+                                    <li>
+                                        @if (state.minTankSizeGallons() != null)
+                                            ${state.minTankSizeGallons()} gal minimum anchor
+                                        @elseif (state.designFlowPerBedroomGpd() != null)
+                                            ${state.designFlowPerBedroomGpd()} GPD per bedroom
+                                        @else
+                                            Conservative fallback range
+                                        @endif
+                                    </li>
+                                    <li>Updated ${state.lastVerifiedAt()}</li>
+                                </ul>
+                                <div class="state-card__links">
+                                    <a href="/septic-tank-size-estimator/?state=${state.stateCode()}">Open estimator</a>
+                                    <a href="/septic-system-cost-calculator/${state.slug()}/">State guide</a>
+                                </div>
+                            </article>
+                        @endfor
+                    </div>
+                </div>
+            </details>
         </div>
     </section>
 
     @if (!tankSizeFaqs.isEmpty())
         <section class="section" id="faq">
             <div class="container">
-                <div class="section-heading">
-                    <span class="eyebrow">FAQ</span>
-                    <h2>Questions this tank size page should answer before the user asks for quotes.</h2>
-                </div>
-
-                <div class="detail-grid">
-                    @for (var faq : tankSizeFaqs)
-                        <article class="detail-card">
-                            <h3>${faq.question()}</h3>
-                            <p>${faq.answer()}</p>
-                        </article>
-                    @endfor
-                </div>
+                <details class="detail-card detail-card--full disclosure-card">
+                    <summary>Questions this tank size page should answer before the user asks for quotes</summary>
+                    <div class="detail-grid disclosure-card__body">
+                        @for (var faq : tankSizeFaqs)
+                            <article class="detail-card">
+                                <h3>${faq.question()}</h3>
+                                <p>${faq.answer()}</p>
+                            </article>
+                        @endfor
+                    </div>
+                </details>
             </div>
         </section>
     @endif
 
     <section class="section">
         <div class="container content-grid">
-            <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Related high-intent pages</span>
-                <ul class="detail-list">
+            <details class="trust-box trust-box--large disclosure-card">
+                <summary>Related high-intent pages</summary>
+                <ul class="detail-list disclosure-card__body">
                     <li><a href="/septic-system-cost-calculator/">Main septic cost calculator</a></li>
                     <li><a href="/septic-pumping-cost/">Septic pumping cost</a></li>
                     <li><a href="/septic-replacement-cost/">Septic replacement cost</a></li>
                     <li><a href="/perc-test-cost/">Perc test cost</a></li>
                 </ul>
-            </article>
+            </details>
 
             <article class="detail-card">
                 <h2>When this page is enough</h2>

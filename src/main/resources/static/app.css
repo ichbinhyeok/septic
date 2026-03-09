@@ -926,7 +926,7 @@ input[type="checkbox"] {
 }
 
 .disclosure-card[open] > summary::after {
-    content: "−";
+    content: '-';
 }
 
 .disclosure-card__body {
@@ -1153,3 +1153,4 @@ input[type="checkbox"] {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
