@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-03-09",
+  "pages": [
+    {
+      "slug": "septic-system-cost-calculator",
+      "intentType": "calculator_hub",
+      "primaryKeyword": "septic system cost calculator",
+      "secondaryKeywords": ["septic cost estimator", "septic install cost", "septic replacement estimate"],
+      "title": "Septic System Cost Calculator",
+      "metaDescription": "Estimate likely septic cost range, tank size, and system class before you call local pros.",
+      "introCopy": "Use the main calculator to turn rough household and site inputs into a planning range. The output is designed to be useful before you have perfect site data.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "System type can move the quote more than the tank alone.",
+        "Perc results, drainage, and water table risk widen the estimate fast.",
+        "Replacement work usually carries more excavation and restoration uncertainty."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is this a permit-ready septic quote?",
+          "answer": "No. It is a homeowner planning estimate meant to narrow the likely range before local review."
+        },
+        {
+          "question": "Why is the result a range instead of one number?",
+          "answer": "Final pricing depends on system type, site evaluation, access, permitting, and local installation conditions."
+        }
+      ],
+      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-tank-size/", "/perc-test-cost/"]
+    },
+    {
+      "slug": "septic-replacement-cost",
+      "intentType": "money_page",
+      "primaryKeyword": "septic replacement cost",
+      "secondaryKeywords": ["replace septic system", "new septic replacement cost", "failed septic system cost"],
+      "title": "Septic Replacement Cost",
+      "metaDescription": "What drives septic replacement cost, what can widen the range, and how to estimate it before getting quotes.",
+      "introCopy": "Replacement projects can be materially more expensive than routine maintenance because they often involve hidden field damage, access constraints, and restoration work. This page explains the main drivers before you open the calculator.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "Field failure or failed perc results can push a replacement toward alternative systems.",
+        "Old system removal, excavation, and restoration can materially change the total quote.",
+        "Emergency timing often reduces price flexibility."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can replacement cost more than a simple install estimate?",
+          "answer": "Replacement work often includes demolition, field issues, limited access, and urgent scheduling that new installs do not always carry."
+        },
+        {
+          "question": "Can I trust the low end of the range?",
+          "answer": "Only if the field condition, permitting path, and site constraints are already clear."
+        }
+      ],
+      "internalLinkTargets": ["/septic-system-cost-calculator/", "/drain-field-replacement-cost/", "/buying-a-house-with-a-septic-system/"]
+    },
+    {
+      "slug": "septic-tank-size",
+      "intentType": "money_page",
+      "primaryKeyword": "septic tank size",
+      "secondaryKeywords": ["what size septic tank do i need", "bedroom septic tank size", "minimum septic tank size"],
+      "title": "Septic Tank Size Estimator",
+      "metaDescription": "Estimate likely minimum septic tank size and a conservative planning range by bedroom count and usage profile.",
+      "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This page keeps the answer conservative and explains why the recommendation may widen.",
+      "calculatorModule": "tank_size_estimator",
+      "driverBullets": [
+        "Bedroom count is the most common public input, but occupancy still matters.",
+        "Garbage disposal and additional kitchens can increase the planning range.",
+        "State rules vary between bedroom tables, design flow, and hybrid approaches."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Do I need the exact gallon size before I talk to installers?",
+          "answer": "Not usually. A likely minimum and a conservative range are enough to start better quote conversations."
+        },
+        {
+          "question": "Can lower seasonal use justify a much smaller tank?",
+          "answer": "It can affect pumping cadence more than it should shrink a homeowner-facing size recommendation."
+        }
+      ],
+      "internalLinkTargets": ["/septic-system-cost-calculator/", "/septic-pumping-cost/", "/septic-replacement-cost/"]
+    },
+    {
+      "slug": "perc-test-cost",
+      "intentType": "money_page",
+      "primaryKeyword": "perc test cost",
+      "secondaryKeywords": ["percolation test cost", "soil test for septic", "perc test for septic system"],
+      "title": "Perc Test Cost",
+      "metaDescription": "What a perc test can cost, why it matters so much to septic pricing, and what can delay the result.",
+      "introCopy": "Perc and site evaluation costs are usually much smaller than install or replacement costs, but they can change the whole project. This page explains why they deserve their own estimate path.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "A failed or weak perc result can change the likely system class completely.",
+        "Retesting, local requirements, and scheduling delays can add friction.",
+        "The test itself may be cheap relative to the design consequences."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does a perc result matter so much to the total quote?",
+          "answer": "It helps determine whether a conventional field is plausible or whether a more expensive alternative system may be required."
+        },
+        {
+          "question": "If my perc status is unknown, should I trust the calculator?",
+          "answer": "You can use it for planning, but the estimate should stay wide until the site is better defined."
+        }
+      ],
+      "internalLinkTargets": ["/septic-system-cost-calculator/", "/drain-field-replacement-cost/", "/septic-replacement-cost/"]
+    },
+    {
+      "slug": "drain-field-replacement-cost",
+      "intentType": "money_page",
+      "primaryKeyword": "drain field replacement cost",
+      "secondaryKeywords": ["leach field replacement cost", "drain field repair cost", "septic field replacement"],
+      "title": "Drain Field Replacement Cost",
+      "metaDescription": "Estimate drain field replacement cost, understand what raises the quote, and know when the system may no longer stay conventional.",
+      "introCopy": "Drain field replacement is one of the biggest homeowner cost shocks in septic ownership. The field is where site conditions, soil limits, and access problems show up quickly.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "Field failure often points to deeper site or drainage constraints.",
+        "Access, excavation, and restoration can dominate the price band.",
+        "A replacement field does not always mean the same system type is still viable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Can a drain field replacement stay conventional?",
+          "answer": "Sometimes yes, but only if the site and regulatory path still support it."
+        },
+        {
+          "question": "Why is the range often so wide?",
+          "answer": "Because the cost depends on the field layout, the site, the likely system class, and whether additional work is uncovered."
+        }
+      ],
+      "internalLinkTargets": ["/septic-replacement-cost/", "/perc-test-cost/", "/septic-system-cost-calculator/"]
+    },
+    {
+      "slug": "septic-pumping-cost",
+      "intentType": "money_page",
+      "primaryKeyword": "septic pumping cost",
+      "secondaryKeywords": ["septic tank pumping cost", "pump septic tank price", "septic cleaning cost"],
+      "title": "Septic Pumping Cost",
+      "metaDescription": "Estimate septic pumping cost and understand how occupancy, tank size, and use patterns change the maintenance cadence.",
+      "introCopy": "Pumping is the lower-cost recurring side of septic ownership, but it is one of the most useful hooks for maintenance content and later local service routing.",
+      "calculatorModule": "pump_schedule_estimator",
+      "driverBullets": [
+        "Tank size and occupant load are the biggest cadence inputs.",
+        "Garbage disposal use can shorten the pumping interval.",
+        "Seasonal homes may pump less often but still need inspection discipline."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is pumping expensive compared with replacement?",
+          "answer": "No. Routine pumping is usually small compared with install or replacement, which is why it is a strong maintenance-intent page."
+        },
+        {
+          "question": "Can I delay pumping if the home is only seasonal?",
+          "answer": "Possibly, but a lower-use profile should affect cadence carefully rather than replace inspection guidance."
+        }
+      ],
+      "internalLinkTargets": ["/septic-tank-size/", "/septic-system-cost-calculator/", "/buying-a-house-with-a-septic-system/"]
+    },
+    {
+      "slug": "buying-a-house-with-a-septic-system",
+      "intentType": "buyer_page",
+      "primaryKeyword": "buying a house with a septic system",
+      "secondaryKeywords": ["home septic inspection", "buy house septic checklist", "septic inspection before buying"],
+      "title": "Buying a House With a Septic System",
+      "metaDescription": "What to inspect, what can become expensive after closing, and when to get a septic quote before buying.",
+      "introCopy": "Buyer intent is high value because inspection timing and hidden failure risk matter. This page helps people ask better questions before they inherit a major septic problem.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "Inspection findings can quickly turn into replacement planning.",
+        "Old records, unknown pumping history, and unclear bedroom counts raise risk.",
+        "A buyer should understand both routine maintenance and worst-case replacement exposure."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the biggest septic risk when buying a home?",
+          "answer": "Unknown field condition and weak documentation are the two most common ways a manageable purchase turns into a large post-closing cost."
+        },
+        {
+          "question": "Should I get a septic-specific inspection?",
+          "answer": "Yes, especially if the system age, pumping history, or field condition are not well documented."
+        }
+      ],
+      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-system-cost-calculator/", "/septic-pumping-cost/"]
+    }
+  ]
+}

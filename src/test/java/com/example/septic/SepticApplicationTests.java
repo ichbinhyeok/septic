@@ -61,6 +61,14 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void moneyPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")));
+	}
+
+	@Test
 	void quoteSubmissionCreatesLeadArtifacts() throws Exception {
 		mockMvc.perform(post("/quote-request/")
 						.param("stateCode", "GA")

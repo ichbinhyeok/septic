@@ -1,6 +1,8 @@
 package com.example.septic.service;
 
 import com.example.septic.config.AppDataProperties;
+import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.ContentPagesDocument;
 import com.example.septic.data.model.CostProfilesDocument;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
@@ -36,6 +38,7 @@ public class ResearchDataService {
     private Map<String, StateProfile> statesBySlug = Map.of();
     private Map<String, SourceRecord> sourcesById = Map.of();
     private Map<String, ProjectCostAnchor> anchorsByProjectType = Map.of();
+    private Map<String, ContentPage> contentPagesBySlug = Map.of();
 
     public ResearchDataService(AppDataProperties dataProperties) {
         this.dataProperties = dataProperties;
@@ -54,6 +57,10 @@ public class ResearchDataService {
             CostProfilesDocument costDocument = objectMapper.readValue(
                     root.resolve("cost_profiles.json").toFile(),
                     CostProfilesDocument.class
+            );
+            ContentPagesDocument contentPagesDocument = objectMapper.readValue(
+                    root.resolve("content_pages.json").toFile(),
+                    ContentPagesDocument.class
             );
 
             CsvSchema schema = CsvSchema.emptySchema().withHeader();
@@ -75,6 +82,8 @@ public class ResearchDataService {
                     .collect(Collectors.toMap(StateProfile::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.anchorsByProjectType = costDocument.nationalAnchors().stream()
                     .collect(Collectors.toMap(ProjectCostAnchor::projectType, Function.identity(), (left, right) -> left, LinkedHashMap::new));
+            this.contentPagesBySlug = contentPagesDocument.pages().stream()
+                    .collect(Collectors.toMap(ContentPage::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load research data from " + root, exception);
         }
@@ -101,5 +110,9 @@ public class ResearchDataService {
 
     public Optional<ProjectCostAnchor> findNationalAnchor(String projectType) {
         return Optional.ofNullable(anchorsByProjectType.get(projectType));
+    }
+
+    public Optional<ContentPage> findContentPage(String slug) {
+        return Optional.ofNullable(contentPagesBySlug.get(slug));
     }
 }

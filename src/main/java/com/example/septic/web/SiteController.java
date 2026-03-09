@@ -1,5 +1,6 @@
 package com.example.septic.web;
 
+import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.AccessDifficulty;
@@ -89,6 +90,26 @@ public class SiteController {
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         return "pages/state-guide";
+    }
+
+    @GetMapping({
+            "/septic-replacement-cost", "/septic-replacement-cost/",
+            "/septic-tank-size", "/septic-tank-size/",
+            "/perc-test-cost", "/perc-test-cost/",
+            "/drain-field-replacement-cost", "/drain-field-replacement-cost/",
+            "/septic-pumping-cost", "/septic-pumping-cost/",
+            "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/"
+    })
+    public String contentPage(org.springframework.web.context.request.WebRequest request, Model model) {
+        String path = request.getDescription(false).replace("uri=", "");
+        String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
+        ContentPage contentPage = researchDataService.findContentPage(slug)
+                .orElseThrow(() -> new StateNotFoundException(slug));
+
+        model.addAttribute("page", new PageMeta(contentPage.title(), contentPage.metaDescription()));
+        model.addAttribute("contentPage", contentPage);
+        model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
+        return "pages/content-page";
     }
 
     @ModelAttribute("projectTypes")
