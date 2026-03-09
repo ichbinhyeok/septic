@@ -78,23 +78,53 @@
             <div class="section-heading">
                 <span class="eyebrow">Launch states</span>
                 <h2>Ten state wedges with different rule styles and permit flows.</h2>
+                <p class="lede">Anchor states carry the strongest early rule extraction. Supporting states are live with official-source context and intentionally conservative framing while the sizing logic gets deeper.</p>
             </div>
 
-            <div class="state-grid">
-                @for (var state : states)
-                    <article class="state-card">
-                        <div class="state-card__header">
-                            <span class="pill">${state.launchTier()}</span>
-                            <strong>${state.stateName()}</strong>
-                        </div>
-                        <p>${state.ruleSummaryPlainEnglish()}</p>
-                        <ul class="state-card__meta">
-                            <li>${state.ruleType()}</li>
-                            <li>${state.confidenceScore()}</li>
-                        </ul>
-                        <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                    </article>
-                @endfor
+            <div class="state-group">
+                <h3 class="state-group__heading">Anchor states</h3>
+                <div class="state-grid">
+                    @for (var state : states)
+                        @if ("anchor".equals(state.launchTier()))
+                            <article class="state-card">
+                                <div class="state-card__header">
+                                    <span class="pill">${state.launchTier()}</span>
+                                    <strong>${state.stateName()}</strong>
+                                </div>
+                                <p>${state.pageAngle()}</p>
+                                <ul class="state-card__meta">
+                                    <li>${state.ruleType()}</li>
+                                    <li>${state.agencyName()}</li>
+                                    <li>Last verified ${state.lastVerifiedAt()}</li>
+                                </ul>
+                                <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
+                            </article>
+                        @endif
+                    @endfor
+                </div>
+            </div>
+
+            <div class="state-group">
+                <h3 class="state-group__heading">Supporting states</h3>
+                <div class="state-grid">
+                    @for (var state : states)
+                        @if (!"anchor".equals(state.launchTier()))
+                            <article class="state-card">
+                                <div class="state-card__header">
+                                    <span class="pill">${state.launchTier()}</span>
+                                    <strong>${state.stateName()}</strong>
+                                </div>
+                                <p>${state.pageAngle()}</p>
+                                <ul class="state-card__meta">
+                                    <li>${state.ruleType()}</li>
+                                    <li>${state.officialSourceIds().size()} official sources</li>
+                                    <li>Override risk ${state.countyOverrideRisk()}</li>
+                                </ul>
+                                <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
+                            </article>
+                        @endif
+                    @endfor
+                </div>
             </div>
         </div>
     </section>
