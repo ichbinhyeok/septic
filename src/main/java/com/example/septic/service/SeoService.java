@@ -98,11 +98,13 @@ public class SeoService {
 
     public PageMeta stateGuide(StateProfile state) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
+        String title = stateGuideTitle(state);
+        String description = stateGuideDescription(state);
         List<FaqBlock> faqBlocks = stateGuideFaqs(state);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(webPage(canonicalUrl,
-                state.stateName() + " Septic Cost & Size Guide",
-                "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
+                title,
+                description,
                 "WebPage")));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
@@ -112,18 +114,34 @@ public class SeoService {
         if (!faqBlocks.isEmpty()) {
             jsonLdBlocks.add(toJson(faqPage(
                     canonicalUrl,
-                    state.stateName() + " Septic Cost & Size Guide",
-                    "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
+                    title,
+                    description,
                     faqBlocks
             )));
         }
         return new PageMeta(
-                state.stateName() + " Septic Cost & Size Guide",
-                "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.",
+                title,
+                description,
                 canonicalUrl,
                 "index,follow",
                 jsonLdBlocks
         );
+    }
+
+    public String stateGuideHeading(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "GA" -> "Georgia septic cost guide and tank size estimate";
+            case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
+            case "CT" -> "Connecticut septic cost guide and design flow rules";
+            case "OR" -> "Oregon septic cost guide and site evaluation path";
+            case "MA" -> "Massachusetts septic cost guide and Title 5 overview";
+            case "FL" -> "Florida septic cost guide and DEP vs county path";
+            case "WA" -> "Washington septic cost guide and inspection rules";
+            case "NJ" -> "New Jersey septic cost guide and management rules";
+            case "NC" -> "North Carolina septic cost guide and permit steps";
+            case "MO" -> "Missouri septic cost guide and local permit path";
+            default -> state.stateName() + " septic cost guide";
+        };
     }
 
     public List<FaqBlock> stateGuideFaqs(StateProfile state) {
@@ -324,6 +342,38 @@ public class SeoService {
 
     private boolean hasText(String value) {
         return value != null && !value.isBlank();
+    }
+
+    private String stateGuideTitle(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "GA" -> "Georgia Septic Cost Guide, Tank Size, and Permit Notes";
+            case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
+            case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
+            case "OR" -> "Oregon Septic Cost Guide and Site Evaluation Path";
+            case "MA" -> "Massachusetts Septic Cost Guide and Title 5 Rules";
+            case "FL" -> "Florida Septic Cost Guide, DEP Counties, and Permit Path";
+            case "WA" -> "Washington Septic Cost Guide and Inspection Rules";
+            case "NJ" -> "New Jersey Septic Cost Guide and Management Rules";
+            case "NC" -> "North Carolina Septic Cost Guide and Permit Steps";
+            case "MO" -> "Missouri Septic Cost Guide and Local Permit Path";
+            default -> state.stateName() + " Septic Cost Guide";
+        };
+    }
+
+    private String stateGuideDescription(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "GA" -> "Georgia septic planning estimates with bedroom sizing, disposal upsizing, county permit context, and official-source links.";
+            case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
+            case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";
+            case "OR" -> "Oregon septic planning estimates with site evaluation, permit sequencing, and official-source links.";
+            case "MA" -> "Massachusetts septic planning estimates with Title 5 timing, buyer risk, and local Board of Health context.";
+            case "FL" -> "Florida septic planning estimates with DEP-versus-county routing, inspection context, and official-source links.";
+            case "WA" -> "Washington septic planning estimates with local health jurisdiction rules, inspection cadence, and official-source links.";
+            case "NJ" -> "New Jersey septic planning estimates with management-program risk, Pinelands context, and official-source links.";
+            case "NC" -> "North Carolina septic planning estimates with permit-ladder context, county health workflow, and official-source links.";
+            case "MO" -> "Missouri septic planning estimates with local authority routing, permit path, and official-source links.";
+            default -> "Planning estimates, permit context, and official sources for " + state.stateName() + " homeowners.";
+        };
     }
 
     private String firstNonBlank(String... values) {

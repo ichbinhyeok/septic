@@ -41,6 +41,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SiteController {
+    private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
+
     private final ResearchDataService researchDataService;
     private final EstimatorService estimatorService;
     private final LeadStorageService leadStorageService;
@@ -339,6 +341,7 @@ public class SiteController {
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
+        List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
 
         model.addAttribute("page", seoService.stateGuide(state));
         model.addAttribute("state", state);
@@ -349,9 +352,11 @@ public class SiteController {
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
+        model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
+        model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         return "pages/state-guide";
     }
 
@@ -612,5 +617,63 @@ public class SiteController {
             return "Under review";
         }
         return money(low) + " to " + money(high);
+    }
+
+    private List<CoreStateComparisonRow> coreStateComparisonRows(StateProfile currentState) {
+        if (!CORE_STATE_CODES.contains(currentState.stateCode())) {
+            return List.of();
+        }
+
+        return CORE_STATE_CODES.stream()
+                .map(researchDataService::findStateByCode)
+                .flatMap(Optional::stream)
+                .map(state -> new CoreStateComparisonRow(
+                        state.stateName(),
+                        state.slug(),
+                        state.whoToCallFirst(),
+                        firstListItem(state.recordsToRequest(), "Local septic permit and inspection records."),
+                        firstListItem(state.lowEndRiskChecks(), "Local review and site constraints can erase the low end quickly."),
+                        nextBestIntentTitle(state),
+                        nextBestIntentPath(state),
+                        state.stateCode().equals(currentState.stateCode())
+                ))
+                .toList();
+    }
+
+    private String nextBestIntentTitle(StateProfile state) {
+        return findPriorityStateMoneyPage(state)
+                .map(StateMoneyPage::title)
+                .orElse("Open the main cost calculator");
+    }
+
+    private String nextBestIntentPath(StateProfile state) {
+        return findPriorityStateMoneyPage(state)
+                .map(page -> page.path(state.slug()))
+                .orElse("/septic-system-cost-calculator/?state=" + state.stateCode());
+    }
+
+    private Optional<StateMoneyPage> findPriorityStateMoneyPage(StateProfile state) {
+        List<String> prioritySlugs = List.of(
+                "septic-inspection-cost",
+                "buying-a-house-with-a-septic-system",
+                "septic-records-checklist",
+                "septic-permit-process",
+                "septic-replacement-cost"
+        );
+
+        for (String contentSlug : prioritySlugs) {
+            Optional<StateMoneyPage> page = researchDataService.findStateMoneyPage(contentSlug, state.slug());
+            if (page.isPresent()) {
+                return page;
+            }
+        }
+        return Optional.empty();
+    }
+
+    private String firstListItem(List<String> items, String fallback) {
+        if (items == null || items.isEmpty()) {
+            return fallback;
+        }
+        return items.get(0);
     }
 }

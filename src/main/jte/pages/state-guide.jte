@@ -10,6 +10,8 @@
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
+@param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
+@param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
@@ -19,7 +21,7 @@
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${state.stateCode()} state guide</span>
-                <h1>${state.stateName()} septic planning guide</h1>
+                <h1>${guideHeading}</h1>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
             </div>
             <div class="hero-sidecard">
@@ -282,6 +284,45 @@
                         </ul>
                     </article>
                 @endif
+            </div>
+        </section>
+    @endif
+
+    @if (coreStateComparisonRows != null && !coreStateComparisonRows.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <article class="detail-card detail-card--full">
+                    <h2>How the core six launch states differ</h2>
+                    <div class="facts-table-wrap">
+                        <table class="facts-table comparison-table">
+                            <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Call first</th>
+                                <th>Pull first</th>
+                                <th>Low-end killer</th>
+                                <th>Best next page</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @for (var row : coreStateComparisonRows)
+                                <tr class="${row.active() ? "comparison-table__row--active" : ""}">
+                                    <td>
+                                        <strong>${row.stateName()}</strong>
+                                        @if (row.active())
+                                            <div class="comparison-table__badge">You are here</div>
+                                        @endif
+                                    </td>
+                                    <td>${row.firstCall()}</td>
+                                    <td>${row.firstRecord()}</td>
+                                    <td>${row.lowEndTrigger()}</td>
+                                    <td><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
+                                </tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
             </div>
         </section>
     @endif

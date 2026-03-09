@@ -1290,6 +1290,130 @@
       ],
       "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
       "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "GA",
+      "title": "Georgia Septic Inspection Cost",
+      "metaDescription": "Georgia septic inspection cost with county environmental health review, disposal sizing context, and permit-record checks in mind.",
+      "introCopy": "Georgia inspection intent is stronger than a simple national inspection page because county environmental health workflow, existing soil-analysis records, and garbage-disposal sizing context can all change what the inspection really means for the homeowner.",
+      "uniqueAngle": "Georgia inspection content stands out when it connects the inspection to county process, disposal-driven sizing risk, and the record trail behind the current system.",
+      "driverBullets": [
+        "County environmental health review can change what matters after the inspection far more than the inspection fee itself.",
+        "If the home has a garbage disposal, the likely tank band may already be higher than the homeowner expects.",
+        "Weak soil-analysis or permit records can turn a simple inspection story into a larger replacement conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why should a Georgia homeowner think beyond the inspection fee?",
+          "answer": "Because the real value is finding out whether county records, soil history, and disposal-related sizing risk still support a straightforward project."
+        },
+        {
+          "question": "What should come with a Georgia septic inspection?",
+          "answer": "Ask for soil-analysis history, any county permit or repair record, and confirmation of bedroom count plus garbage-disposal use."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-replacement-cost/georgia/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?state=GA&projectType=inspection"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "OR",
+      "title": "Oregon Septic Inspection Cost",
+      "metaDescription": "Oregon septic inspection cost with site evaluation history, local permitting authority, and records lookup context in mind.",
+      "introCopy": "Oregon inspection intent is less about one flat fee and more about whether the record trail still supports the current system story. Site evaluation history, local authority workflow, and old authorization notices can all change what the inspection reveals.",
+      "uniqueAngle": "Oregon inspection content is strongest when it starts with site evaluation, online septic records, and the possibility that the current system type is less certain than the owner assumes.",
+      "driverBullets": [
+        "A site evaluation does not guarantee a specific system type, which keeps Oregon inspection findings strategically important.",
+        "Local county or onsite authority context matters before the homeowner trusts the next quote step.",
+        "Older authorization notices, use changes, or ADU connections can expand the inspection conversation fast."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can Oregon septic inspection cost feel secondary to the records?",
+          "answer": "Because site evaluation history and existing permit or authorization records often explain the real project risk before the inspection alone does."
+        },
+        {
+          "question": "What should an Oregon inspection be paired with?",
+          "answer": "Pair it with the latest site evaluation, online septic-record lookup, and any authorization notice tied to a use change or ADU."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-records-checklist/oregon/",
+        "/septic-permit-process/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=inspection"
+      ],
+      "officialSourceIds": ["or_01", "or_04", "or_05"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NC",
+      "title": "North Carolina Septic Inspection Cost",
+      "metaDescription": "North Carolina septic inspection cost with county health workflow, permit-ladder context, and existing authorization records in mind.",
+      "introCopy": "North Carolina inspection intent is useful because the inspection only becomes meaningful once the homeowner understands the county health department path and the permit ladder behind the current system. That makes records and local authority context part of the inspection value.",
+      "uniqueAngle": "North Carolina inspection pages can explain something generic national pages miss: the improvement-permit and construction-authorization ladder shapes what the inspection really needs to settle.",
+      "driverBullets": [
+        "County health departments control the practical homeowner path, so the inspection is only part of the story.",
+        "Weak permit history or missing authorization records can make a seemingly simple inspection much less useful.",
+        "Projects that fall outside simpler residential assumptions can quickly require more design and review than the buyer expects."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why should a North Carolina homeowner tie the inspection to permit history?",
+          "answer": "Because the improvement permit, construction authorization, and operation record trail helps explain whether the current system story is still credible."
+        },
+        {
+          "question": "Who should a North Carolina buyer think about first?",
+          "answer": "Think about the county health department first, because that office controls the practical next step after the inspection."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-permit-process/north-carolina/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?state=NC&projectType=inspection"
+      ],
+      "officialSourceIds": ["nc_01", "nc_02", "nc_04"],
+      "calculatorProjectType": "inspection"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "MO",
+      "title": "Missouri Septic Inspection Cost",
+      "metaDescription": "Missouri septic inspection cost with local permitting authority, county jurisdiction, and existing permit-file risk in mind.",
+      "introCopy": "Missouri inspection intent gets more useful once the homeowner confirms who actually controls the local path. County jurisdiction, local public health authority, and the existing permit-file trail can change whether the inspection is a simple check or a sign of a larger replacement problem.",
+      "uniqueAngle": "Missouri inspection content is strongest when it explains local authority routing and county jurisdiction instead of pretending the whole state works under one office.",
+      "driverBullets": [
+        "Local authority routing can change what the inspection should verify next.",
+        "A weak county permit-file trail makes the low end of the estimate much less reliable.",
+        "If field or drainage problems surface, the inspection can turn into a larger replacement discussion quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Missouri septic inspection cost tied to local authority so closely?",
+          "answer": "Because the real homeowner path can run through different county or local authorities, and that affects what the inspection means after the visit."
+        },
+        {
+          "question": "What should come with a Missouri septic inspection?",
+          "answer": "Ask for permit, repair, and local jurisdiction records first so the inspection can be read against the actual county path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-system-cost-calculator/?state=MO&projectType=inspection",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": ["mo_01", "mo_02", "mo_04", "mo_05"],
+      "calculatorProjectType": "inspection"
     }
   ]
 }

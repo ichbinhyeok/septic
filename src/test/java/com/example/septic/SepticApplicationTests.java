@@ -186,11 +186,14 @@ class SepticApplicationTests {
 	void stateGuideRenders() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic cost guide and tank size estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Cost Guide, Tank Size, and Permit Notes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Quick facts")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Planning cost snapshot")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How the core six launch states differ")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("You are here")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local action checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQ")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQPage")))
@@ -216,6 +219,7 @@ class SepticApplicationTests {
 	void floridaStateGuideShowsJurisdictionSplit() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/florida/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida septic cost guide and DEP vs county path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("16 counties")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health department")));
 	}
@@ -348,6 +352,42 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("every three years")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=inspection")));
+	}
+
+	@Test
+	void georgiaInspectionPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/georgia/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("garbage disposal")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=inspection")));
+	}
+
+	@Test
+	void oregonInspectionPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/oregon/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OR&projectType=inspection")));
+	}
+
+	@Test
+	void northCarolinaInspectionPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/north-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NC&projectType=inspection")));
+	}
+
+	@Test
+	void missouriInspectionPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/missouri/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Missouri Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local authority")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MO&projectType=inspection")));
 	}
 
 	@Test

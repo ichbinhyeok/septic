@@ -614,6 +614,25 @@ input[type="checkbox"] {
     border-bottom: 0;
 }
 
+.comparison-table thead th {
+    background: rgba(35, 108, 95, 0.08);
+}
+
+.comparison-table__row--active td {
+    background: rgba(225, 240, 234, 0.72);
+}
+
+.comparison-table__badge {
+    display: inline-flex;
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(19, 77, 68, 0.11);
+    color: var(--accent-strong);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
 .trust-box--large {
     border-radius: var(--radius-xl);
     padding: 30px;
