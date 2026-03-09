@@ -184,6 +184,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Quick facts")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local action checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
@@ -296,6 +298,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-permit-process/florida/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Quick facts")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("DEP-managed county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Health Department Locations")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=FL&projectType=new_install")));

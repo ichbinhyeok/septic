@@ -28,6 +28,59 @@
 
     <section class="section section--tight">
         <div class="container detail-grid">
+            <article class="detail-card detail-card--full">
+                <h2>Quick facts</h2>
+                <div class="facts-table-wrap">
+                    <table class="facts-table">
+                        <tbody>
+                        <tr>
+                            <th>Rule style</th>
+                            <td>${state.ruleType()}</td>
+                            <th>Override risk</th>
+                            <td>${state.countyOverrideRisk()}</td>
+                        </tr>
+                        <tr>
+                            <th>Last verified</th>
+                            <td>${state.lastVerifiedAt()}</td>
+                            <th>Official sources</th>
+                            <td>${state.officialSourceIds().size()}</td>
+                        </tr>
+                        <tr>
+                            <th>Local verification links</th>
+                            <td>${localAuthoritySources.size()}</td>
+                            <th>Records links</th>
+                            <td>${recordsLookupSources.size()}</td>
+                        </tr>
+                        <tr>
+                            <th>Public sizing signal</th>
+                            <td>
+                                @if (state.minTankSizeGallons() != null)
+                                    ${state.minTankSizeGallons()} gallon minimum anchor
+                                @elseif (state.designFlowPerBedroomGpd() != null)
+                                    ${state.designFlowPerBedroomGpd()} gallons per bedroom
+                                @else
+                                    Conservative fallback range
+                                @endif
+                            </td>
+                            <th>Primary first call</th>
+                            <td>${state.whoToCallFirst()}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            @if (state.localActionSteps() != null && !state.localActionSteps().isEmpty())
+                <article class="detail-card">
+                    <h2>Local action checklist</h2>
+                    <ol class="detail-list detail-list--numbered">
+                        @for (var step : state.localActionSteps())
+                            <li>${step}</li>
+                        @endfor
+                    </ol>
+                </article>
+            @endif
+
             <article class="detail-card">
                 <h2>Why this state is unique</h2>
                 <p>${state.pageAngle()}</p>

@@ -43,6 +43,11 @@
       "officialSourceIds": ["ga_01", "ga_02"],
       "localAuthoritySourceIds": ["ga_02"],
       "recordsLookupSourceIds": ["ga_02"],
+      "localActionSteps": [
+        "Open the county environmental health resource first and confirm the correct county office.",
+        "Ask whether the lot already has a soil analysis, permit file, or repair history on record.",
+        "If the home has a garbage disposal, mention it before trusting the first tank-size quote."
+      ],
       "whoToCallFirst": "Start with the county environmental health office that handles onsite sewage permits and soil review for the property.",
       "recordsToRequest": [
         "The most recent soil analysis or site review tied to the lot.",
@@ -105,6 +110,11 @@
       "officialSourceIds": ["pa_01", "pa_02", "pa_03"],
       "localAuthoritySourceIds": ["pa_02", "pa_03"],
       "recordsLookupSourceIds": ["pa_03", "pa_02"],
+      "localActionSteps": [
+        "Identify the municipality or local agency before assuming the state page tells you the whole permit path.",
+        "Use the Active SEO directory to find the Sewage Enforcement Officer for the county.",
+        "Request permit, as-built, and maintenance records before you trust the low end."
+      ],
       "whoToCallFirst": "Start with the municipality or local agency that administers on-lot sewage rules and ask for the Sewage Enforcement Officer handling the property.",
       "recordsToRequest": [
         "Any existing permit or as-built drawing tied to the system.",
@@ -158,6 +168,11 @@
       "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
       "localAuthoritySourceIds": ["ct_04"],
       "recordsLookupSourceIds": ["ct_03", "ct_04"],
+      "localActionSteps": [
+        "Use the local health department lookup before assuming a simple statewide Connecticut process.",
+        "Ask whether there is an existing site investigation, approval-to-construct, or permit-to-discharge on file.",
+        "If the home had additions or possible extra bedrooms, surface that before trusting the estimate."
+      ],
       "whoToCallFirst": "Start with the local director of health or approved agent because that office controls most residential site review, construction approval, and final discharge permitting.",
       "recordsToRequest": [
         "Site investigation and soil-testing records, if they already exist.",
@@ -211,6 +226,11 @@
       "officialSourceIds": ["or_01", "or_02", "or_03", "or_04", "or_05"],
       "localAuthoritySourceIds": ["or_04"],
       "recordsLookupSourceIds": ["or_05", "or_04"],
+      "localActionSteps": [
+        "Find the local county or onsite contact before you trust any Oregon permit timing.",
+        "Look up existing septic records online and pull the latest site evaluation first.",
+        "If the property has an ADU or use change, verify whether an authorization notice already exists."
+      ],
       "whoToCallFirst": "Start with the local onsite septic permitting authority or county program before trusting any install or replacement number.",
       "recordsToRequest": [
         "The most recent site evaluation showing both proposed initial and replacement absorption areas.",
@@ -264,6 +284,11 @@
       "officialSourceIds": ["mo_01", "mo_02", "mo_03", "mo_04", "mo_05"],
       "localAuthoritySourceIds": ["mo_05", "mo_04"],
       "recordsLookupSourceIds": ["mo_05", "mo_02"],
+      "localActionSteps": [
+        "Use the county permitting-jurisdiction map before calling a contractor or assuming DHSS is the direct authority.",
+        "Confirm whether the property is under a local health department, another local authority, or DHSS.",
+        "Pull any existing permit or repair record before treating the project as a simple replacement."
+      ],
       "whoToCallFirst": "Start with the local permitting authority because Missouri can route onsite work through the county health department, another local authority, or DHSS depending on location.",
       "recordsToRequest": [
         "Existing permit or repair history for the property.",
@@ -317,6 +342,11 @@
       "officialSourceIds": ["nc_01", "nc_02", "nc_03", "nc_04"],
       "localAuthoritySourceIds": ["nc_04", "nc_01"],
       "recordsLookupSourceIds": ["nc_02", "nc_03"],
+      "localActionSteps": [
+        "Use the county health department directory before assuming a generic North Carolina permit path.",
+        "Ask whether an improvement permit, construction authorization, and operation permit already exist for the site.",
+        "If the property changed use or grew in size, confirm whether the old permit assumptions still hold."
+      ],
       "whoToCallFirst": "Start with the county health department because North Carolina's improvement-permit, construction-authorization, and operation-permit ladder is locally administered.",
       "recordsToRequest": [
         "Any prior improvement permit, construction authorization, or operation permit for the site.",
@@ -370,6 +400,11 @@
       "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04", "nj_05"],
       "localAuthoritySourceIds": ["nj_05", "nj_03"],
       "recordsLookupSourceIds": ["nj_02", "nj_05"],
+      "localActionSteps": [
+        "Pull the local health department directory before assuming a statewide New Jersey office handles the next step.",
+        "If the property is in the Pinelands or has an advanced device, ask for management and maintenance paperwork immediately.",
+        "Request recent pump-out, inspection, and contract records before pricing the low end."
+      ],
       "whoToCallFirst": "Start with the local board of health or local acting authority, especially if the property is in the Pinelands or uses an advanced pretreatment device.",
       "recordsToRequest": [
         "Recent pumping and inspection history for the current system.",
@@ -423,6 +458,11 @@
       "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_04", "wa_05"],
       "localAuthoritySourceIds": ["wa_05", "wa_01"],
       "recordsLookupSourceIds": ["wa_01", "wa_05"],
+      "localActionSteps": [
+        "Use the local health jurisdiction directory before trusting Washington permit timing or repair scope.",
+        "Ask for the as-built drawing and any O&M logs before treating the system as low risk.",
+        "If the system is not gravity, confirm the current inspection cadence and maintenance duties first."
+      ],
       "whoToCallFirst": "Start with the local health jurisdiction because county-level LHJs issue permits, inspect work, and may apply rules that are more protective than statewide code.",
       "recordsToRequest": [
         "The as-built permit record and any design approval tied to the current system.",
@@ -476,6 +516,11 @@
       "officialSourceIds": ["ma_01", "ma_02", "ma_03", "ma_04", "ma_05"],
       "localAuthoritySourceIds": ["ma_04", "ma_02"],
       "recordsLookupSourceIds": ["ma_05", "ma_02"],
+      "localActionSteps": [
+        "Start with the local Board of Health or the Title 5 paperwork already tied to the property.",
+        "Ask for the latest Title 5 inspection report and any pumping receipts that support a longer validity window.",
+        "If a sale or bedroom addition is involved, verify the timing trigger before trusting the quote window."
+      ],
       "whoToCallFirst": "Start with the local Board of Health and, if a sale is involved, the Title 5 inspector or inspection paperwork already tied to the property.",
       "recordsToRequest": [
         "The most recent Title 5 inspection report.",
@@ -529,6 +574,11 @@
       "officialSourceIds": ["fl_01", "fl_02", "fl_03", "fl_04", "fl_05"],
       "localAuthoritySourceIds": ["fl_04", "fl_01"],
       "recordsLookupSourceIds": ["fl_03", "fl_05"],
+      "localActionSteps": [
+        "Confirm whether the property is in a DEP-managed county or a county health department path first.",
+        "Request permit, inspection, and any private-provider paperwork before trusting the low end.",
+        "If the system type could require an operating permit, verify that obligation before pricing the project."
+      ],
       "whoToCallFirst": "Start by confirming whether the property is in one of the Florida counties now managed by DEP or still handled by the county health department.",
       "recordsToRequest": [
         "The existing permit and inspection history for the system.",

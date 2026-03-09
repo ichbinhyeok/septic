@@ -561,10 +561,57 @@ input[type="checkbox"] {
     border-bottom: 1px solid rgba(20, 34, 32, 0.08);
 }
 
+.detail-list--numbered {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.detail-list--numbered li {
+    padding-left: 4px;
+}
+
 .detail-list li:last-child,
 .source-list li:last-child {
     border-bottom: 0;
     padding-bottom: 0;
+}
+
+.facts-table-wrap {
+    margin-top: 16px;
+    overflow-x: auto;
+    border-radius: 20px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 680px;
+}
+
+.facts-table th,
+.facts-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.08);
+    vertical-align: top;
+}
+
+.facts-table th {
+    width: 18%;
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.92rem;
+}
+
+.facts-table td {
+    color: var(--muted);
+}
+
+.facts-table tr:last-child th,
+.facts-table tr:last-child td {
+    border-bottom: 0;
 }
 
 .trust-box--large {

@@ -25,6 +25,7 @@ public record StateProfile(
         List<String> officialSourceIds,
         List<String> localAuthoritySourceIds,
         List<String> recordsLookupSourceIds,
+        List<String> localActionSteps,
         String whoToCallFirst,
         List<String> recordsToRequest,
         List<String> lowEndRiskChecks,
