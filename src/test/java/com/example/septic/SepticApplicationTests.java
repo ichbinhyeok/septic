@@ -247,6 +247,24 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void washingtonReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/washington/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local health jurisdiction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=replacement")));
+	}
+
+	@Test
+	void missouriReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/missouri/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Missouri Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county authority")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MO&projectType=replacement")));
+	}
+
+	@Test
 	void statePercMoneyPageRenders() throws Exception {
 		mockMvc.perform(get("/perc-test-cost/oregon/"))
 				.andExpect(status().isOk())
@@ -254,6 +272,24 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What can kill the low end")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OR&projectType=perc_test")));
+	}
+
+	@Test
+	void washingtonPercPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/washington/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local health jurisdiction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=perc_test")));
+	}
+
+	@Test
+	void newJerseyPercPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/new-jersey/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Jersey Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Pinelands")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NJ&projectType=perc_test")));
 	}
 
 	@Test
@@ -399,6 +435,33 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-inspection-cost/washington/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local Health Jurisdictions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=buying_home")));
+	}
+
+	@Test
+	void missouriPermitProcessPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/missouri/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Missouri Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-by-county")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MO&projectType=new_install")));
+	}
+
+	@Test
+	void missouriRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/missouri/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Missouri Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county jurisdiction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MO&projectType=buying_home")));
+	}
+
+	@Test
+	void northCarolinaRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NC&projectType=buying_home")));
 	}
 
 	@Test

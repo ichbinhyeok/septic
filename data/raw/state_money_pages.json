@@ -363,6 +363,246 @@
       "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
     },
     {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "MO",
+      "title": "Missouri Septic Replacement Cost",
+      "metaDescription": "Estimate Missouri septic replacement cost with county jurisdiction, local authority routing, and field-condition risk in mind.",
+      "introCopy": "Missouri replacement pricing is not one flat statewide number because the practical homeowner path can change by county authority. The real range depends on local permitting jurisdiction, field condition, and whether the current records still support a straightforward replacement story.",
+      "uniqueAngle": "Missouri replacement content is strongest when it explains local authority routing and county-by-county permitting jurisdiction instead of pretending the whole state runs through one office.",
+      "driverBullets": [
+        "County or local authority routing can change the practical replacement path before the homeowner trusts the quote.",
+        "Weak field condition or poor drainage can push the project beyond a simple conventional replacement.",
+        "Excavation, restoration, and missing permit history can erase the apparent low end quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Missouri septic replacement cost so tied to county authority?",
+          "answer": "Because Missouri's practical path can run through different local authorities, and that jurisdiction affects permitting, records, and the real next step."
+        },
+        {
+          "question": "What should a Missouri homeowner verify before trusting the low end?",
+          "answer": "Verify the local permitting authority, pull existing permit or repair records, and confirm whether the field condition still supports a conventional path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-permit-process/missouri/",
+        "/perc-test-cost/missouri/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["mo_01", "mo_02", "mo_05"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MO",
+      "title": "Missouri Perc Test Cost",
+      "metaDescription": "Estimate Missouri perc and site-evaluation cost, and understand how local authority and site limits shape septic pricing.",
+      "introCopy": "Missouri perc-intent traffic is usually really about site confidence. The test or soil-evaluation bill may be modest, but the local authority path and the site result can change the whole replacement or install conversation quickly.",
+      "uniqueAngle": "Missouri perc content works best when it connects site-testing risk to local jurisdiction instead of treating the test as a stand-alone fee.",
+      "driverBullets": [
+        "Local authority routing can affect scheduling and what site work matters next.",
+        "A weak or failed site can push the homeowner beyond a simple low-cost replacement story.",
+        "Testing cost is usually small compared with the design and field consequences it can uncover."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Missouri perc content about more than the test fee?",
+          "answer": "Because the bigger homeowner question is whether the site and local jurisdiction still support a straightforward system path."
+        },
+        {
+          "question": "What should a Missouri owner do before trusting the perc low end?",
+          "answer": "Confirm the local permitting authority and pull any existing site, permit, or repair records tied to the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-replacement-cost/missouri/",
+        "/septic-permit-process/missouri/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["mo_01", "mo_02", "mo_03"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "NC",
+      "title": "North Carolina Septic Replacement Cost",
+      "metaDescription": "Estimate North Carolina septic replacement cost with county health workflow, permit-ladder context, and site-condition risk in mind.",
+      "introCopy": "North Carolina replacement cost is easier to misunderstand than it looks because the county health department and permit ladder matter before the homeowner can trust a simple range. Replacement pricing often depends on whether the current site and records still support a straightforward authorization path.",
+      "uniqueAngle": "North Carolina replacement pages stand out when they explain the county health department path and improvement-permit context instead of stopping at a generic cost band.",
+      "driverBullets": [
+        "County health department review can change the replacement timeline before the homeowner trusts the quote.",
+        "If the old records are weak, the permit ladder becomes part of the replacement risk story.",
+        "Field, drainage, and restoration issues can move the project beyond a simple low-end replacement."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can North Carolina replacement cost feel higher than expected?",
+          "answer": "Because county workflow, permit sequencing, and site condition can all add friction before the replacement path becomes clear."
+        },
+        {
+          "question": "What should a North Carolina homeowner verify before trusting the low end?",
+          "answer": "Confirm the county health department path, review permit and authorization history, and surface any field-condition problems early."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-permit-process/north-carolina/",
+        "/perc-test-cost/north-carolina/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["nc_01", "nc_02", "nc_03"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "NC",
+      "title": "North Carolina Perc Test Cost",
+      "metaDescription": "Estimate North Carolina perc and site-evaluation cost, and understand how county health review shapes septic planning.",
+      "introCopy": "North Carolina perc-intent traffic usually needs more than a test-price answer. The result only becomes useful when the homeowner understands the county health department path and whether the site still supports the expected permit ladder.",
+      "uniqueAngle": "North Carolina perc pages can explain the site-test to permit-ladder connection better than generic national septic pages.",
+      "driverBullets": [
+        "County health departments shape what site findings matter next.",
+        "A weak result can force a more expensive path than the homeowner expected from the test fee alone.",
+        "Permit and authorization history help explain whether the site is truly low risk."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is a North Carolina perc result so important?",
+          "answer": "Because the result influences whether the county health department path still supports a straightforward improvement-permit and construction-authorization story."
+        },
+        {
+          "question": "What should I verify with a North Carolina perc page?",
+          "answer": "Verify the county path, the likely permit ladder, and whether old site or authorization records already point to higher risk."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-replacement-cost/north-carolina/",
+        "/septic-permit-process/north-carolina/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["nc_01", "nc_02", "nc_03"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "NJ",
+      "title": "New Jersey Septic Replacement Cost",
+      "metaDescription": "Estimate New Jersey septic replacement cost with board of health oversight, management-program risk, and Pinelands context in mind.",
+      "introCopy": "New Jersey replacement cost is often larger than a generic national page suggests because the real homeowner path can include board of health oversight, management obligations, and special-area rules like the Pinelands. That makes the quote more than just a tank-and-field number.",
+      "uniqueAngle": "New Jersey replacement pages are strongest when they explain local management risk and Pinelands context rather than pretending replacement is just a one-time construction bill.",
+      "driverBullets": [
+        "Local board of health or acting authority can materially change the practical replacement path.",
+        "Pinelands or advanced-system management obligations can add recurring ownership cost beyond the initial quote.",
+        "Weak records and uncertain field condition can quickly erase the apparent low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can New Jersey replacement cost feel more complicated than other states?",
+          "answer": "Because management programs, board of health oversight, and special-area obligations can all change the homeowner path beyond a simple replacement quote."
+        },
+        {
+          "question": "What should a New Jersey owner verify before trusting the low end?",
+          "answer": "Verify the local board of health path, pull management and maintenance records, and check whether the property sits in a Pinelands-like special context."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-permit-process/new-jersey/",
+        "/perc-test-cost/new-jersey/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "NJ",
+      "title": "New Jersey Perc Test Cost",
+      "metaDescription": "Estimate New Jersey perc and site-evaluation cost, and understand how local board of health and special-area rules shape septic pricing.",
+      "introCopy": "New Jersey perc-intent traffic matters because the test result can interact with local board of health review, management programs, and special-area systems in ways national pages rarely explain. The perc bill may be small, but the consequence can be much larger.",
+      "uniqueAngle": "New Jersey perc pages are useful when they connect test results to local oversight and special-area system risk instead of only quoting a national fee.",
+      "driverBullets": [
+        "Local board of health context changes how quickly the result turns into a real system decision.",
+        "Pinelands or advanced-system context can make the outcome more expensive than a generic test page suggests.",
+        "The site result can change both the system path and the homeowner's long-run maintenance burden."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is New Jersey perc intent about more than the test fee?",
+          "answer": "Because the result can drive local review, special-area system obligations, and a much larger replacement or management conversation."
+        },
+        {
+          "question": "What should I verify in New Jersey before trusting a perc low end?",
+          "answer": "Verify the local board of health path and whether the property carries Pinelands or advanced-system context that could change the final range."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-replacement-cost/new-jersey/",
+        "/septic-permit-process/new-jersey/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "WA",
+      "title": "Washington Septic Replacement Cost",
+      "metaDescription": "Estimate Washington septic replacement cost with local health jurisdiction review, system-type risk, and O&M record context in mind.",
+      "introCopy": "Washington replacement cost is easier to misread than it looks because the local health jurisdiction controls the practical path and system type can change both approval complexity and long-run ownership cost. That keeps replacement ranges wider than a basic national page implies.",
+      "uniqueAngle": "Washington replacement content is strongest when it connects local health jurisdiction control to system-type differences and records quality.",
+      "driverBullets": [
+        "Local health jurisdictions can apply more protective local requirements than the statewide baseline.",
+        "Advanced systems can bring more inspection and maintenance obligations than gravity systems.",
+        "Weak as-built and O&M records make the true replacement condition less certain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does Washington replacement cost depend so much on system type?",
+          "answer": "Because gravity and advanced systems carry different inspection and maintenance expectations, and that changes how the replacement path feels to the homeowner."
+        },
+        {
+          "question": "What should a Washington owner verify before trusting the low end?",
+          "answer": "Verify the local health jurisdiction path, system type, and the quality of the as-built and O&M records before treating the replacement as straightforward."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-inspection-cost/washington/",
+        "/perc-test-cost/washington/",
+        "/septic-replacement-cost/"
+      ],
+      "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_05"]
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "WA",
+      "title": "Washington Perc Test Cost",
+      "metaDescription": "Estimate Washington perc and site-evaluation cost, and understand how local health jurisdiction review affects septic pricing.",
+      "introCopy": "Washington perc-intent traffic sits closer to local health jurisdiction review and system-type risk than many national pages suggest. The testing bill can be relatively small, but the result affects whether the project stays simple and whether the low end can be trusted.",
+      "uniqueAngle": "Washington perc pages are strongest when they connect local health jurisdiction review to the likely system-type conversation instead of treating the test as a stand-alone expense.",
+      "driverBullets": [
+        "The local health jurisdiction controls what site findings matter in practice.",
+        "The result can push the homeowner toward a more complex system path than a gravity assumption suggests.",
+        "Site findings plus weak records can reduce confidence in the low end of the range quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Washington perc intent about more than the test invoice?",
+          "answer": "Because the bigger homeowner question is whether the site and local review still support a simpler system path."
+        },
+        {
+          "question": "What should I verify before trusting a Washington perc low end?",
+          "answer": "Verify the local health jurisdiction path, the likely system type, and whether as-built or O&M records already point to higher risk."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-replacement-cost/washington/",
+        "/septic-inspection-cost/washington/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": ["wa_01", "wa_02", "wa_04", "wa_05"]
+    },
+    {
       "contentSlug": "buying-a-house-with-a-septic-system",
       "stateCode": "MA",
       "title": "Buying a House With a Septic System in Massachusetts",
@@ -1012,6 +1252,37 @@
       "calculatorProjectType": "new_install"
     },
     {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "MO",
+      "title": "Missouri Septic Permit Process",
+      "metaDescription": "Missouri septic permit steps for homeowners, with county jurisdiction, local authority routing, and construction-permit context explained.",
+      "introCopy": "Missouri's permit path is strongest when it is explained around local authority first. Homeowners need to know whether the county or another local authority controls the next step before a generic septic estimate becomes operationally useful.",
+      "uniqueAngle": "Missouri permit content is most useful when it connects county-by-county jurisdiction to the actual homeowner permit path instead of pretending the state runs through one central office.",
+      "driverBullets": [
+        "Local permitting jurisdiction is the first real homeowner question in Missouri.",
+        "Construction-permit expectations and local authority routing can delay certainty even when the project sounds simple.",
+        "Permit-file and repair history can shape whether the current system path is still straightforward."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What should a Missouri homeowner verify first in the permit process?",
+          "answer": "Verify which local or county authority controls onsite sewage permitting for the property before you trust any generic process summary."
+        },
+        {
+          "question": "Why is Missouri's septic permit page about jurisdiction so much?",
+          "answer": "Because county-by-county authority routing changes who the homeowner actually works with and what the next permit step looks like."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-system-cost-calculator/?state=MO&projectType=new_install",
+        "/septic-records-checklist/missouri/",
+        "/septic-replacement-cost/missouri/"
+      ],
+      "officialSourceIds": ["mo_01", "mo_02", "mo_03", "mo_05"],
+      "calculatorProjectType": "new_install"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "CT",
       "title": "Connecticut Septic Records Checklist",
@@ -1071,6 +1342,68 @@
         "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
       ],
       "officialSourceIds": ["or_01", "or_03", "or_04", "or_05"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "MO",
+      "title": "Missouri Septic Records Checklist",
+      "metaDescription": "Missouri septic records to request before trusting a quote, including county jurisdiction, permit files, and repair history.",
+      "introCopy": "Missouri records research starts with jurisdiction. Before the homeowner trusts the old septic file, they need to know which local authority controlled permitting and whether that office still holds the records that matter now.",
+      "uniqueAngle": "Missouri's records page is strongest when it starts with county jurisdiction and local permit files instead of generic seller paperwork.",
+      "driverBullets": [
+        "Verify county or local permitting jurisdiction before you assume the records trail is complete.",
+        "Request any permit, repair, or construction file tied to the existing system.",
+        "Use the records to confirm whether the current field and site story still supports the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to request in Missouri?",
+          "answer": "Start with the local permitting authority and the permit or repair file it holds, because the jurisdiction itself tells you where the real records are."
+        },
+        {
+          "question": "Why does county authority matter so much in a Missouri records checklist?",
+          "answer": "Because the practical homeowner path can change by county or local authority, and the record trail often follows that routing."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-permit-process/missouri/",
+        "/septic-inspection-cost/missouri/",
+        "/septic-system-cost-calculator/?state=MO&projectType=buying_home"
+      ],
+      "officialSourceIds": ["mo_01", "mo_02", "mo_04", "mo_05"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NC",
+      "title": "North Carolina Septic Records Checklist",
+      "metaDescription": "North Carolina septic records to request before trusting a quote, including county health files, permits, and authorization history.",
+      "introCopy": "North Carolina records research is stronger when it starts with the county health department path. The most useful documents are the ones that explain whether the old site and permit history still support a simple homeowner estimate today.",
+      "uniqueAngle": "North Carolina's records page is useful because it connects county health files to the permit ladder and explains why that record trail matters before the homeowner trusts the quote.",
+      "driverBullets": [
+        "Start with the county health department file for the current site and system.",
+        "Request any improvement permit, construction authorization, or operation record tied to the property.",
+        "Use the records to find out whether site history already points to a more complex replacement or permit path."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to request in North Carolina?",
+          "answer": "Start with the county health department file and the permit ladder documents tied to the current system."
+        },
+        {
+          "question": "Why do permit-ladder records matter so much in North Carolina?",
+          "answer": "Because they show whether the site and system still fit the expected county path or whether the homeowner should expect more friction."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-permit-process/north-carolina/",
+        "/septic-inspection-cost/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
+      ],
+      "officialSourceIds": ["nc_01", "nc_02", "nc_03", "nc_04"],
       "calculatorProjectType": "buying_home"
     },
     {
