@@ -35,16 +35,29 @@ public class EstimatorService {
         List<String> checklist = new ArrayList<>();
 
         if (form.isGarbageDisposal()) {
-            loadPadding += 150;
-            drivers.add("Garbage disposal use can increase the effective wastewater load.");
+            if ("GA".equals(state.stateCode())) {
+                loadPadding += Math.max(250, likelyMinimum / 2);
+                drivers.add("Georgia's homeowner guide says a garbage disposal requires a septic tank that is 50 percent larger.");
+            } else if ("PA".equals(state.stateCode())) {
+                loadPadding += 100;
+                drivers.add("Pennsylvania DEP says garbage disposal use should be sparse because it places a greater burden on the system.");
+            } else {
+                loadPadding += 150;
+                drivers.add("Garbage disposal use can increase the effective wastewater load.");
+            }
         }
         if (form.isAdditionalKitchen()) {
             loadPadding += 250;
             drivers.add("An additional kitchen or ADU can push the recommended tank range upward.");
         }
         if (form.getOccupants() != null && form.getOccupants() > bedrooms * 2) {
-            loadPadding += 150;
-            drivers.add("Higher occupancy than the bedroom count suggests can increase the planning range.");
+            if ("CT".equals(state.stateCode())) {
+                loadPadding += 100;
+                drivers.add("Connecticut's official design-flow method is bedroom-based, so unusually high occupancy mainly widens the planning range rather than rewriting the base rule.");
+            } else {
+                loadPadding += 150;
+                drivers.add("Higher occupancy than the bedroom count suggests can increase the planning range.");
+            }
         }
 
         SoilPercStatus soilStatus = SoilPercStatus.fromValue(form.getSoilPercStatus());
@@ -91,6 +104,28 @@ public class EstimatorService {
             drivers.add("Replacement work can uncover field, excavation, or restoration complexity.");
         }
 
+        if ("OR".equals(state.stateCode())) {
+            rangePadding += 250;
+            drivers.add("Oregon puts site evaluation before permit certainty, and DEQ says the site evaluation does not guarantee approval of a specific system type.");
+        }
+
+        if ("CT".equals(state.stateCode()) && state.designFlowPerBedroomGpd() != null) {
+            drivers.add("Connecticut's official residential design flow uses " + state.designFlowPerBedroomGpd() + " gallons per bedroom.");
+        }
+
+        if ("PA".equals(state.stateCode())) {
+            checklist.add("Identify the municipality or local agency and Sewage Enforcement Officer before trusting the next-step permit path.");
+        }
+        if ("OR".equals(state.stateCode())) {
+            checklist.add("Confirm whether Oregon site evaluation or an authorization notice applies before trusting the low end of the range.");
+        }
+        if ("CT".equals(state.stateCode())) {
+            checklist.add("Confirm the local director of health or approved agent path before assuming a simple replacement or addition stays compliant.");
+        }
+        if ("GA".equals(state.stateCode())) {
+            checklist.add("Check the county health department process and whether the disposal rule changes the likely tank band for your project.");
+        }
+
         int recommendedLow = roundUpTo250(likelyMinimum + Math.min(loadPadding, 250));
         int recommendedHigh = roundUpTo250(Math.max(recommendedLow + 250, likelyMinimum + loadPadding + rangePadding));
 
@@ -135,12 +170,10 @@ public class EstimatorService {
             checklist.add("Schedule a perc or site evaluation before trusting the lower end of the range.");
         }
 
-        String officialMinimumNote = state.minTankSizeGallons() == null
-                ? "This state profile is still using a conservative planning range because the publishable minimum has not been fully verified."
-                : "Official state-facing guidance suggests a minimum around " + formatGallons(state.minTankSizeGallons()) + " gallons before site-specific adjustments.";
+        String officialMinimumNote = officialMinimumNote(state);
 
         String confidenceLabel = confidenceLabel(state, soilStatus);
-        String rangeReason = "This is a planning range, not an engineered design. Site evaluation, local permitting, and system type can move the final quote.";
+        String rangeReason = rangeReason(state);
         List<String> sourceLabels = researchDataService.getSources(state.officialSourceIds()).stream()
                 .map(this::formatSourceLabel)
                 .toList();
@@ -148,6 +181,7 @@ public class EstimatorService {
         return new EstimatorResult(
                 state.stateCode(),
                 state.stateName(),
+                state.agencyName(),
                 projectType.label(),
                 likelyMinimum,
                 recommendedLow,
@@ -159,18 +193,33 @@ public class EstimatorService {
                 confidenceLabel,
                 rangeReason,
                 officialMinimumNote,
+                state.localOverrideNote(),
+                state.lastVerifiedAt(),
                 drivers.stream().distinct().limit(4).toList(),
                 checklist.stream().distinct().limit(4).toList(),
+                state.ruleHighlights().stream().limit(4).toList(),
+                state.permitPathSteps().stream().limit(4).toList(),
                 sourceLabels
         );
     }
 
     private int resolveLikelyMinimumTank(StateProfile state, int bedrooms) {
-        return state.bedroomTable().stream()
+        int fromTable = state.bedroomTable().stream()
                 .filter(band -> band.matches(bedrooms))
                 .max(Comparator.comparing(BedroomBand::minTankGallons))
                 .map(BedroomBand::minTankGallons)
-                .orElseGet(() -> fallbackMinimumTank(bedrooms, state.minTankSizeGallons()));
+                .orElse(0);
+
+        if (fromTable > 0) {
+            return Math.max(fromTable, fallbackMinimumTank(bedrooms, state.minTankSizeGallons()));
+        }
+
+        if (state.designFlowPerBedroomGpd() != null) {
+            int estimatedDailyFlow = bedrooms * state.designFlowPerBedroomGpd();
+            return flowToTankHeuristic(estimatedDailyFlow, state.minTankSizeGallons());
+        }
+
+        return fallbackMinimumTank(bedrooms, state.minTankSizeGallons());
     }
 
     private int fallbackMinimumTank(int bedrooms, Integer stateMinimum) {
@@ -234,6 +283,9 @@ public class EstimatorService {
         if (soilStatus == SoilPercStatus.UNKNOWN) {
             score -= 0.1;
         }
+        if ("OR".equals(state.stateCode())) {
+            score -= 0.05;
+        }
         if (score >= 0.7) {
             return "Medium-high";
         }
@@ -253,6 +305,48 @@ public class EstimatorService {
 
     private String formatSourceLabel(SourceRecord sourceRecord) {
         return sourceRecord.agencyName() + " - " + sourceRecord.title();
+    }
+
+    private int flowToTankHeuristic(int estimatedDailyFlow, Integer stateMinimum) {
+        int heuristic;
+        if (estimatedDailyFlow <= 600) {
+            heuristic = 1000;
+        } else if (estimatedDailyFlow <= 750) {
+            heuristic = 1250;
+        } else if (estimatedDailyFlow <= 900) {
+            heuristic = 1500;
+        } else {
+            heuristic = 1750;
+        }
+
+        if (stateMinimum == null) {
+            return heuristic;
+        }
+        return Math.max(heuristic, stateMinimum);
+    }
+
+    private String officialMinimumNote(StateProfile state) {
+        if ("CT".equals(state.stateCode()) && state.designFlowPerBedroomGpd() != null) {
+            return "Connecticut's official residential design flow uses " + state.designFlowPerBedroomGpd()
+                    + " gallons per bedroom. The gallon-size recommendation shown here is a product planning bridge, not an official tank table.";
+        }
+        if ("OR".equals(state.stateCode())) {
+            return "Oregon's official value is the site-evaluation-first permit path, not a simple statewide homeowner tank table. This result stays intentionally conservative for that reason.";
+        }
+        if (state.minTankSizeGallons() == null) {
+            return "This state profile is still using a conservative planning range because the publishable minimum has not been fully verified.";
+        }
+        return "Official state-facing guidance suggests a minimum around " + formatGallons(state.minTankSizeGallons()) + " gallons before site-specific adjustments.";
+    }
+
+    private String rangeReason(StateProfile state) {
+        if ("OR".equals(state.stateCode())) {
+            return "This Oregon range is intentionally wide because DEQ says site evaluation does not guarantee approval of any specific system type.";
+        }
+        if ("CT".equals(state.stateCode())) {
+            return "This Connecticut range bridges official bedroom-based design flow into a homeowner planning estimate. Final tank and system decisions still need local review.";
+        }
+        return "This is a planning range, not an engineered design. Site evaluation, local permitting, and system type can move the final quote.";
     }
 
     private int roundUpTo250(int value) {

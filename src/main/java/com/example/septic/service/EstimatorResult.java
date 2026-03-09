@@ -7,6 +7,7 @@ import java.util.Locale;
 public record EstimatorResult(
         String stateCode,
         String stateName,
+        String agencyName,
         String projectTypeLabel,
         int likelyMinimumTankGallons,
         int recommendedTankLowGallons,
@@ -18,8 +19,12 @@ public record EstimatorResult(
         String confidenceLabel,
         String rangeReason,
         String officialMinimumNote,
+        String localOverrideNote,
+        String lastVerifiedAt,
         List<String> costDrivers,
         List<String> checklist,
+        List<String> ruleHighlights,
+        List<String> permitPathSteps,
         List<String> sourceLabels
 ) {
     public String formattedLikelyMinimumTank() {

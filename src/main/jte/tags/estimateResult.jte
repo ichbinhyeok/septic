@@ -54,10 +54,30 @@
                 @endfor
             </ul>
         </article>
+
+        <article class="detail-card">
+            <h3>State rule context</h3>
+            <ul class="detail-list">
+                @for (var item : result.ruleHighlights())
+                    <li>${item}</li>
+                @endfor
+            </ul>
+        </article>
+
+        <article class="detail-card detail-card--full">
+            <h3>Likely permit path</h3>
+            <ul class="detail-list">
+                @for (var item : result.permitPathSteps())
+                    <li>${item}</li>
+                @endfor
+            </ul>
+        </article>
     </div>
 
     <article class="trust-box">
         <span class="trust-box__label">Official-source context</span>
+        <p><strong>${result.agencyName()}</strong> guidance informs this state profile. Last verified: ${result.lastVerifiedAt()}.</p>
+        <p>${result.localOverrideNote()}</p>
         <p>The estimate engine is using the state profile and public cost anchors below. Final design and permit outcomes still need local verification.</p>
         <ul class="source-list source-list--compact">
             @for (var source : result.sourceLabels())

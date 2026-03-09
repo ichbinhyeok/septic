@@ -49,7 +49,39 @@ class SepticApplicationTests {
 						.param("highWaterTableOrShallowBedrock", "true"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Likely total cost range")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last verified")));
+	}
+
+	@Test
+	void connecticutCalculatorShowsDesignFlowContext() throws Exception {
+		mockMvc.perform(post("/septic-system-cost-calculator/")
+						.param("stateCode", "CT")
+						.param("projectType", "new_install")
+						.param("bedrooms", "4")
+						.param("occupants", "7")
+						.param("soilPercStatus", "unknown")
+						.param("accessDifficulty", "medium")
+						.param("timeline", "researching"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("150 gallons per bedroom")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("product planning bridge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("State rule context")));
+	}
+
+	@Test
+	void oregonCalculatorShowsWideRangeReason() throws Exception {
+		mockMvc.perform(post("/septic-system-cost-calculator/")
+						.param("stateCode", "OR")
+						.param("projectType", "replacement")
+						.param("bedrooms", "3")
+						.param("soilPercStatus", "unknown")
+						.param("accessDifficulty", "easy")
+						.param("timeline", "researching"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation does not guarantee approval of any specific system type")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Likely permit path")));
 	}
 
 	@Test
