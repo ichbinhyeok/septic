@@ -17,7 +17,7 @@
                 <span class="pill">${state.launchTier()}</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
-                <p>Confidence: ${state.confidenceScore()} · Last verified: ${state.lastVerifiedAt()}</p>
+                <p>Confidence: ${state.confidenceScore()} | Last verified: ${state.lastVerifiedAt()}</p>
                 <a class="button button--secondary" href="/septic-system-cost-calculator/">Use the main calculator</a>
             </div>
         </div>

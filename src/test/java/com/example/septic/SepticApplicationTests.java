@@ -93,6 +93,30 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void massachusettsStateGuideShowsTitle5Context() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/massachusetts/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Title 5")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying or Selling Property with a Septic System")));
+	}
+
+	@Test
+	void floridaStateGuideShowsJurisdictionSplit() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/florida/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("16 counties")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health department")));
+	}
+
+	@Test
+	void newJerseyStateGuideShowsManagementAngle() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/new-jersey/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Pinelands")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("maintenance contract")));
+	}
+
+	@Test
 	void moneyPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-replacement-cost/"))
 				.andExpect(status().isOk())

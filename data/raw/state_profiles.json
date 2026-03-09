@@ -170,25 +170,34 @@
       "agencyName": "Missouri Department of Health and Senior Services",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "Missouri is mainly a support state until the residential sizing logic is pulled from higher-detail official material.",
-      "ruleType": "design_flow",
-      "ruleSummaryPlainEnglish": "Missouri has a statewide onsite wastewater program, but the homeowner-safe sizing logic still needs deeper extraction from official materials.",
+      "pageAngle": "Missouri is stronger than a generic cost page because DHSS explicitly separates state minimum standards, local authority control, and permit triggers in homeowner-facing materials.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "Missouri DHSS says OWTS standards cover new systems and major changes to existing systems, and that local authority can be more restrictive than the statewide minimum. The homeowner value here is understanding permit authority, site-and-soil limits, and whether a project counts as a major change.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "Local authority context is important and should be surfaced on the state page.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "System type and approval path depend on local review and site conditions.",
-      "ruleHighlights": [],
-      "localOverrideNote": "Local authorities may control parts of the review and permitting process.",
+      "permitSummary": "In most counties, the local health department issues OWTS construction permits, but some counties and cities use another local authority or DHSS directly. Missouri also separates smaller domestic systems from larger or industrial systems that move to DNR oversight.",
+      "permitPathSteps": [
+        "Check the local permitting authority first because Missouri uses DHSS, local authority by contract, and local authority by ordinance.",
+        "Expect a construction permit before installing or repairing most residential OWTS work.",
+        "If the project is in an incorporated area, subdivision, or larger-flow setting, confirm whether another authority or DNR is involved before trusting the estimate."
+      ],
+      "siteEvalSummary": "Missouri's own resources say state standards establish minimum size and type requirements based on evaluation of site and soil conditions, so site review is a real driver of both system class and cost.",
+      "ruleHighlights": [
+        "DHSS says site and soil conditions affect proper system function and system type.",
+        "Missouri's minimum construction standards apply to new systems and major changes such as replacing a sewage tank or replacing or expanding an absorption field.",
+        "A construction permit is required to install or repair an onsite system on residential property under three acres unless an exemption applies.",
+        "Local ordinance can be more restrictive than the state minimum, and the permit authority can be the local health department or another agency."
+      ],
+      "localOverrideNote": "Missouri homeowners still need the local authority because the same state can route the next step through DHSS, a county health department, or a more restrictive local ordinance.",
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["mo_01"],
-      "confidenceScore": 0.45,
+      "officialSourceIds": ["mo_01", "mo_02", "mo_03"],
+      "confidenceScore": 0.58,
       "itemsNeedingVerification": [
-        "Extract residential sizing logic from a higher-detail official source.",
-        "Document local authority structure in plain English."
+        "Pull homeowner-safe tank capacity examples from official Missouri material if available.",
+        "Decide how to present acreage-based permit exceptions without oversimplifying local exemptions."
       ]
     },
     {
@@ -197,25 +206,34 @@
       "agencyName": "North Carolina Department of Health and Human Services",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "North Carolina is still in support mode until the state and county role split is extracted more cleanly.",
-      "ruleType": "design_flow",
-      "ruleSummaryPlainEnglish": "North Carolina has a dedicated onsite wastewater branch, but public-facing homeowner sizing logic still needs deeper extraction.",
+      "pageAngle": "North Carolina becomes much more useful when framed around its permit ladder rather than fake statewide size precision.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "North Carolina's homeowner path runs through the local health department permit ladder: improvement permit, construction authorization, and then operation permit or certificate of completion after inspection. The state also publishes branch-level resources that show these forms and procedures explicitly.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "Permitting and site review are handled within the onsite wastewater program framework.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "Site conditions remain a major driver of system class and cost.",
-      "ruleHighlights": [],
-      "localOverrideNote": "County implementation details may change the practical permit path.",
+      "permitSummary": "Local health departments are central in North Carolina. The branch's resources and laws point to improvement permits, construction authorizations, and operation permits or certificates of completion after inspection.",
+      "permitPathSteps": [
+        "Start with the local health department for an improvement permit before assuming the site is buildable.",
+        "After the site is approved, move into the construction authorization step before installation.",
+        "Do not treat the system as complete until inspection leads to an operation permit or certificate of completion, depending on the system."
+      ],
+      "siteEvalSummary": "North Carolina's public materials emphasize local department review and show separate paths for more advanced permit options and for larger systems over 3,000 gallons per day.",
+      "ruleHighlights": [
+        "North Carolina's onsite branch publishes templates for Improvement Permit, Construction Authorization, and Operation Permit.",
+        "State law says the local health department inspects the system before it is covered or placed into use.",
+        "After acceptable installation, the local health department issues an operation permit, or a certificate of completion for certain simpler systems.",
+        "Systems over 3,000 gallons per day require state review and professional design."
+      ],
+      "localOverrideNote": "North Carolina remains locally executed in practice because the county health department controls the permit ladder and site-based approval.",
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["nc_01"],
-      "confidenceScore": 0.4,
+      "officialSourceIds": ["nc_01", "nc_02", "nc_03"],
+      "confidenceScore": 0.56,
       "itemsNeedingVerification": [
-        "Pull out publishable residential sizing examples from official materials.",
-        "Map the county and state role split."
+        "Extract a homeowner-safe residential daily flow bridge from 18E materials.",
+        "Decide when to surface AOWE or engineer permit options in public copy without overcomplicating the page."
       ]
     },
     {
@@ -224,25 +242,34 @@
       "agencyName": "New Jersey Department of Environmental Protection",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "New Jersey is a good later state, but the official homeowner-safe rule summary still needs deeper extraction.",
+      "pageAngle": "New Jersey gets much stronger when framed around maintenance programs, local board of health oversight, and Pinelands-specific system management instead of fake statewide size precision.",
       "ruleType": "hybrid",
-      "ruleSummaryPlainEnglish": "New Jersey provides public-facing septic guidance, but the homeowner-safe rule summary still needs deeper rule extraction.",
+      "ruleSummaryPlainEnglish": "New Jersey's homeowner-safe guidance is more about management and local oversight than a simple statewide sizing table. State and Pinelands materials emphasize periodic inspections, local board of health involvement, and perpetual maintenance contracts for some advanced pretreatment systems.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "State and local review structure still needs clearer documentation before publication.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "Site constraints may materially affect the likely system class.",
-      "ruleHighlights": [],
-      "localOverrideNote": "Local and special-area rules may materially change the final path.",
+      "permitSummary": "New Jersey uses local boards of health and local wastewater planning structures in practice. Pinelands materials and NJDEP model ordinance language make ongoing maintenance and local oversight unusually important.",
+      "permitPathSteps": [
+        "Identify the local board of health or local acting authority before trusting a generic permit path.",
+        "If the property is in the Pinelands or uses an advanced pretreatment device, confirm whether a maintenance contract or additional management requirements apply.",
+        "Treat inspection, pump-out, and local management program requirements as part of the cost conversation, not just the install quote."
+      ],
+      "siteEvalSummary": "New Jersey's homeowner risk is not only site suitability; in some areas the real cost driver is the long-term management obligation attached to advanced or sensitive-area systems.",
+      "ruleHighlights": [
+        "New Jersey's model ordinance says regular pump-outs are a key means to maintain an individual subsurface sewage disposal system and extend its life.",
+        "Pinelands materials say conventional systems are inspected, cleaned, and certified as functional to the local board of health once every three years.",
+        "Owners of certain advanced pretreatment devices must maintain a service contract for the life of the system and provide proof to the board of health.",
+        "Wastewater management planning materials make septic management programs a local implementation issue, not just a one-time install question."
+      ],
+      "localOverrideNote": "New Jersey needs a strong local disclaimer because board of health practice, wastewater management plans, and special-area programs like the Pinelands can materially change the homeowner path.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["nj_01"],
-      "confidenceScore": 0.35,
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"],
+      "confidenceScore": 0.57,
       "itemsNeedingVerification": [
-        "Document residential sizing logic from official materials.",
-        "Identify any special-area rule sets that need a visible caveat."
+        "Extract a cleaner statewide homeowner sizing bridge from official NJDEP material.",
+        "Decide how prominently to separate Pinelands-specific rules from statewide guidance on the public page."
       ]
     },
     {
@@ -251,25 +278,34 @@
       "agencyName": "Washington State Department of Health",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "Washington remains a support state until the local health jurisdiction execution path is documented more concretely.",
+      "pageAngle": "Washington is a strong trust state because local health jurisdictions issue permits, can be more protective than state code, and the homeowner inspection duties are unusually visible.",
       "ruleType": "hybrid",
-      "ruleSummaryPlainEnglish": "Washington provides statewide onsite sewage guidance, but local health jurisdictions still play a major role.",
+      "ruleSummaryPlainEnglish": "Washington's homeowner story is local-health-jurisdiction driven. LHJs issue permits for location, design, installation, and repairs, can adopt rules that are more protective than the statewide code, and homeowners have recurring inspection duties based on system type.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "Local health jurisdictions are central to practical permitting and review.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "Site-specific review affects the likely system and final quote range.",
-      "ruleHighlights": [],
-      "localOverrideNote": "Local health jurisdiction requirements may override or refine statewide guidance.",
+      "permitSummary": "Local health jurisdictions permit and manage onsite sewage systems in their counties. They review, approve, and inspect designs, installations, and repairs, while the state reviews local codes and proprietary products.",
+      "permitPathSteps": [
+        "Identify the local health jurisdiction first because that county-level authority issues permits for location, design, installation, and repairs.",
+        "Expect the local jurisdiction to review the design, issue the permit, and inspect the work before treating the project as complete.",
+        "If the system is advanced or proprietary, confirm the maintenance and inspection obligations before trusting the low end of the estimate."
+      ],
+      "siteEvalSummary": "Washington's likely system type is tightly linked to site and soil limits, and the state openly describes multiple system types, from gravity to mound and aerobic treatment.",
+      "ruleHighlights": [
+        "Local health jurisdictions can administer local codes that meet or are more protective than Chapter 246-272A WAC.",
+        "Homeowners must have gravity systems inspected at least once every three years and all other systems at least once every year.",
+        "Washington publicly explains multiple septic system types, including gravity, mound, and aerobic treatment units.",
+        "Recent state rule updates include stronger transfer and management focus for on-site sewage systems."
+      ],
+      "localOverrideNote": "Washington is heavily local in practice because the county-level LHJ controls permitting and may apply more protective local requirements.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["wa_01"],
-      "confidenceScore": 0.4,
+      "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_04"],
+      "confidenceScore": 0.64,
       "itemsNeedingVerification": [
-        "Extract homeowner-safe residential sizing language.",
-        "Document local health jurisdiction involvement clearly."
+        "Track the staged effective dates for Washington's recent rule revision and decide how much transfer language belongs on the public state page.",
+        "Bridge Washington's public system-type guides into safer calculator risk-score copy."
       ]
     },
     {
@@ -278,25 +314,34 @@
       "agencyName": "Mass.gov / MassDEP",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "Massachusetts has a strong Title 5 angle, but the homeowner-safe design-flow summary still needs extraction before it becomes an anchor state.",
-      "ruleType": "design_flow",
-      "ruleSummaryPlainEnglish": "Massachusetts Title 5 is a strong homeowner-facing angle, but the publishable design-flow summary still needs deeper extraction.",
+      "pageAngle": "Massachusetts is a strong organic state because Title 5 creates real inspection, property-transfer, and addition triggers that national cost pages rarely explain well.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "Massachusetts Title 5 makes septic planning unusually tied to inspections, property transfers, additions, and local Board of Health review. The homeowner value is less about fake gallon precision and more about whether inspection or upgrade timing changes the project.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "Title 5 creates a distinct homeowner and home-sale context that should shape content and CTA placement.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "Inspection and property-transfer context are especially important in Massachusetts.",
-      "ruleHighlights": [],
-      "localOverrideNote": "Local boards and property-specific conditions can affect the final path under Title 5.",
+      "permitSummary": "Local Boards of Health are the practical authority for most residential Title 5 steps. Inspection reports usually go to the local Board of Health, while MassDEP stays central for the statewide rule and some special approvals.",
+      "permitPathSteps": [
+        "Start with the local Board of Health before assuming a simple install or replacement quote is enough.",
+        "If the property is being sold, check whether a Title 5 inspection is required within two years before transfer or within six months after transfer when weather delays it.",
+        "If you are adding a bedroom, changing use, or changing the building footprint, confirm whether that triggers a Title 5 inspection or additional review."
+      ],
+      "siteEvalSummary": "In Massachusetts, inspection and transfer timing can be as important as the physical system because Title 5 ties compliance to sales, additions, and local Board of Health filings.",
+      "ruleHighlights": [
+        "Title 5 inspections are generally required within two years before a sale, or within six months after transfer when weather prevents inspection at closing.",
+        "If the system is pumped annually after inspection, the inspection can stay valid for three years.",
+        "Adding a bedroom or other change in use can trigger inspection when a building or occupancy permit is required.",
+        "Inspection reports are generally submitted to the local Board of Health, and the buyer must receive a copy."
+      ],
+      "localOverrideNote": "Massachusetts homeowners still need the local Board of Health because Title 5 administration, timing questions, and some local conditions are handled locally.",
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["ma_01"],
-      "confidenceScore": 0.45,
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
+      "confidenceScore": 0.68,
       "itemsNeedingVerification": [
-        "Extract homeowner-safe residential flow logic from official Title 5 materials.",
-        "Document home-sale and inspection hooks for the state page."
+        "Extract a homeowner-safe residential flow bridge from official Title 5 materials without making the page sound permit-ready.",
+        "Document when local upgrade triggers are common enough to show in a public estimate checklist."
       ]
     },
     {
@@ -305,25 +350,34 @@
       "agencyName": "Florida Department of Health",
       "launchTier": "supporting",
       "publishStatus": "draft",
-      "pageAngle": "Florida is commercially attractive, but the public rule logic still needs deeper extraction before the page should get aggressive with precision.",
+      "pageAngle": "Florida is commercially attractive because the real homeowner friction is now the permit-authority split between DEP-managed counties and county health departments.",
       "ruleType": "hybrid",
-      "ruleSummaryPlainEnglish": "Florida has a statewide OSTDS program and strong homeowner relevance, but detailed sizing and site-condition logic still need extraction.",
+      "ruleSummaryPlainEnglish": "Florida's current homeowner path is defined less by a simple statewide tank table and more by who controls permitting. Since January 2, 2025, DEP manages septic permitting in 16 counties, while county health departments still handle permitting and inspections in the others.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "State program guidance exists, but local and site-specific process details still need clearer mapping.",
-      "permitPathSteps": [],
-      "siteEvalSummary": "Water table and site conditions are likely to be major cost drivers in Florida content.",
-      "ruleHighlights": [],
-      "localOverrideNote": "County and site-specific conditions may materially change the final system recommendation.",
+      "permitSummary": "Florida's onsite sewage program is now split between DEP-managed counties and county health departments outside those counties. The program is built around permitting and inspection, and some owners or contractors can use private providers for inspections.",
+      "permitPathSteps": [
+        "First determine whether the property sits in one of the 16 counties now managed directly by DEP.",
+        "If not in a DEP-managed county, contact the local county health department for septic permitting and inspection steps.",
+        "For construction, repair, modification, or abandonment work, expect a permit and an inspection before the system is treated as approved."
+      ],
+      "siteEvalSummary": "Florida's water-table and drainfield conditions matter, but the public-facing homeowner friction often starts with jurisdiction, permit status, and inspection sequencing.",
+      "ruleHighlights": [
+        "Since January 2, 2025, DEP manages septic permitting in 16 Florida counties.",
+        "Outside those 16 counties, local county health departments still handle septic permitting and inspections.",
+        "Owners or contractors with owner authorization can use private providers for inspections.",
+        "Operating permits apply in counties that use them and are required for ATUs, PBTS, commercial systems, and industrial or manufacturing-zoned systems."
+      ],
+      "localOverrideNote": "Florida homeowners must verify the county-level authority first because the same state can route the next step to DEP or to the county health department depending on location.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["fl_01"],
-      "confidenceScore": 0.4,
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
+      "confidenceScore": 0.62,
       "itemsNeedingVerification": [
-        "Extract homeowner-safe sizing logic from official OSTDS materials.",
-        "Document site-condition drivers in plain English."
+        "Extract a homeowner-safe sizing bridge from current DEP and DOH materials.",
+        "Decide whether to surface the 16-county DEP list inline or keep it in a collapsible detail block."
       ]
     }
   ]
