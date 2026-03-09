@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-03-09",
+  "states": [
+    {
+      "stateCode": "GA",
+      "stateName": "Georgia",
+      "launchTier": "anchor",
+      "publishStatus": "draft",
+      "ruleType": "bedroom_table",
+      "ruleSummaryPlainEnglish": "Georgia publishes bedroom-based residential tank sizing examples and notes additional load when a garbage disposal is installed. Final published values still need rule-text verification.",
+      "minTankSizeGallons": 1000,
+      "bedroomTable": [
+        {
+          "label": "1-3 bedrooms",
+          "minBedrooms": 1,
+          "maxBedrooms": 3,
+          "minTankGallons": 1000,
+          "sourceIds": ["ga_01"],
+          "verificationStatus": "draft"
+        },
+        {
+          "label": "4 bedrooms",
+          "minBedrooms": 4,
+          "maxBedrooms": 4,
+          "minTankGallons": 1250,
+          "sourceIds": ["ga_01"],
+          "verificationStatus": "draft"
+        },
+        {
+          "label": "5 bedrooms",
+          "minBedrooms": 5,
+          "maxBedrooms": 5,
+          "minTankGallons": 1500,
+          "sourceIds": ["ga_01"],
+          "verificationStatus": "draft"
+        }
+      ],
+      "garbageDisposalPolicy": "State homeowner guidance indicates higher effective load when a garbage disposal is used; exact production rules should remain conservative until deeper review is complete.",
+      "permitSummary": "Local county environmental health offices are involved in septic permitting and review.",
+      "siteEvalSummary": "Site conditions and local review can change the final system recommendation.",
+      "localOverrideNote": "County and local requirements may override state-level homeowner guidance.",
+      "officialSourceIds": ["ga_01"],
+      "confidenceScore": 0.7,
+      "itemsNeedingVerification": [
+        "Confirm the current rule text backing the homeowner guide examples.",
+        "Confirm whether a disposal modifier should affect public calculator output or only explanation copy."
+      ]
+    },
+    {
+      "stateCode": "PA",
+      "stateName": "Pennsylvania",
+      "launchTier": "anchor",
+      "publishStatus": "draft",
+      "ruleType": "bedroom_table",
+      "ruleSummaryPlainEnglish": "Pennsylvania publicly describes minimum liquid capacities with 900 gallons for three bedrooms or less and an increase for additional bedrooms.",
+      "minTankSizeGallons": 900,
+      "bedroomTable": [
+        {
+          "label": "up to 3 bedrooms",
+          "minBedrooms": 1,
+          "maxBedrooms": 3,
+          "minTankGallons": 900,
+          "sourceIds": ["pa_01"],
+          "verificationStatus": "draft"
+        }
+      ],
+      "garbageDisposalPolicy": "No public-facing disposal adjustment has been verified yet.",
+      "permitSummary": "Local sewage enforcement officers and permitting processes remain important.",
+      "siteEvalSummary": "Replacement and new-system recommendations depend on site and soil conditions.",
+      "localOverrideNote": "Municipal and local permitting processes can change the practical path to approval.",
+      "officialSourceIds": ["pa_01"],
+      "confidenceScore": 0.7,
+      "itemsNeedingVerification": [
+        "Add the per-bedroom increment as a structured rule after deeper source review.",
+        "Identify the cleanest official source for local permitting flow."
+      ]
+    },
+    {
+      "stateCode": "CT",
+      "stateName": "Connecticut",
+      "launchTier": "anchor",
+      "publishStatus": "draft",
+      "ruleType": "design_flow",
+      "ruleSummaryPlainEnglish": "Connecticut uses design sewage flow concepts and bedroom-based residential assumptions, including potential bedroom treatment in some cases.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No public-facing disposal adjustment has been verified yet.",
+      "permitSummary": "Local health and permitting context matters even when state design-flow logic is clear.",
+      "siteEvalSummary": "Site and room-count interpretation can affect the final design basis.",
+      "localOverrideNote": "Local officials may interpret room counts and site constraints differently.",
+      "officialSourceIds": ["ct_01"],
+      "confidenceScore": 0.6,
+      "itemsNeedingVerification": [
+        "Extract publishable residential design-flow examples.",
+        "Confirm how potential bedrooms should be described to homeowners."
+      ]
+    },
+    {
+      "stateCode": "OR",
+      "stateName": "Oregon",
+      "launchTier": "anchor",
+      "publishStatus": "draft",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "Oregon emphasizes site evaluation before permitting and uses site-specific review heavily in residential septic decisions.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No public-facing disposal adjustment has been verified yet.",
+      "permitSummary": "Site evaluation is an early gate before permit approval.",
+      "siteEvalSummary": "Site evaluation results can materially change the system type and final cost.",
+      "localOverrideNote": "County and local implementation can affect permit path and final requirements.",
+      "officialSourceIds": ["or_01"],
+      "confidenceScore": 0.65,
+      "itemsNeedingVerification": [
+        "Identify homeowner-safe sizing language that does not overstate permit certainty.",
+        "Extract the clearest official explanation of site evaluation and permit sequencing."
+      ]
+    },
+    {
+      "stateCode": "MO",
+      "stateName": "Missouri",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "design_flow",
+      "ruleSummaryPlainEnglish": "Missouri has a state onsite wastewater program, but local authorities and detailed system design still require more review before publishing precise homeowner logic.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "Local authority context is important and should be surfaced on the state page.",
+      "siteEvalSummary": "System type and approval path depend on local review and site conditions.",
+      "localOverrideNote": "Local authorities may control parts of the review and permitting process.",
+      "officialSourceIds": ["mo_01"],
+      "confidenceScore": 0.45,
+      "itemsNeedingVerification": [
+        "Extract residential sizing logic from a higher-detail official source.",
+        "Document local authority structure in plain English."
+      ]
+    },
+    {
+      "stateCode": "NC",
+      "stateName": "North Carolina",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "design_flow",
+      "ruleSummaryPlainEnglish": "North Carolina has a dedicated onsite wastewater branch, but public-facing homeowner sizing logic still needs deeper extraction.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "Permitting and site review are handled within the onsite wastewater program framework.",
+      "siteEvalSummary": "Site conditions remain a major driver of system class and cost.",
+      "localOverrideNote": "County implementation details may change the practical permit path.",
+      "officialSourceIds": ["nc_01"],
+      "confidenceScore": 0.4,
+      "itemsNeedingVerification": [
+        "Pull out publishable residential sizing examples from official materials.",
+        "Map the county and state role split."
+      ]
+    },
+    {
+      "stateCode": "NJ",
+      "stateName": "New Jersey",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "New Jersey provides public-facing septic guidance, but the homeowner-safe rule summary still needs deeper rule extraction.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "State and local review structure still needs clearer documentation before publication.",
+      "siteEvalSummary": "Site constraints may materially affect the likely system class.",
+      "localOverrideNote": "Local and special-area rules may materially change the final path.",
+      "officialSourceIds": ["nj_01"],
+      "confidenceScore": 0.35,
+      "itemsNeedingVerification": [
+        "Document residential sizing logic from official materials.",
+        "Identify any special-area rule sets that need a visible caveat."
+      ]
+    },
+    {
+      "stateCode": "WA",
+      "stateName": "Washington",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "Washington provides statewide onsite sewage guidance, but local health jurisdictions still play a major role.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "Local health jurisdictions are central to practical permitting and review.",
+      "siteEvalSummary": "Site-specific review affects the likely system and final quote range.",
+      "localOverrideNote": "Local health jurisdiction requirements may override or refine statewide guidance.",
+      "officialSourceIds": ["wa_01"],
+      "confidenceScore": 0.4,
+      "itemsNeedingVerification": [
+        "Extract homeowner-safe residential sizing language.",
+        "Document local health jurisdiction involvement clearly."
+      ]
+    },
+    {
+      "stateCode": "MA",
+      "stateName": "Massachusetts",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "design_flow",
+      "ruleSummaryPlainEnglish": "Massachusetts Title 5 is a strong homeowner-facing angle, but the publishable design-flow summary still needs deeper extraction.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "Title 5 creates a distinct homeowner and home-sale context that should shape content and CTA placement.",
+      "siteEvalSummary": "Inspection and property-transfer context are especially important in Massachusetts.",
+      "localOverrideNote": "Local boards and property-specific conditions can affect the final path under Title 5.",
+      "officialSourceIds": ["ma_01"],
+      "confidenceScore": 0.45,
+      "itemsNeedingVerification": [
+        "Extract homeowner-safe residential flow logic from official Title 5 materials.",
+        "Document home-sale and inspection hooks for the state page."
+      ]
+    },
+    {
+      "stateCode": "FL",
+      "stateName": "Florida",
+      "launchTier": "supporting",
+      "publishStatus": "draft",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "Florida has a statewide OSTDS program and strong homeowner relevance, but detailed sizing and site-condition logic still need extraction.",
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": null,
+      "permitSummary": "State program guidance exists, but local and site-specific process details still need clearer mapping.",
+      "siteEvalSummary": "Water table and site conditions are likely to be major cost drivers in Florida content.",
+      "localOverrideNote": "County and site-specific conditions may materially change the final system recommendation.",
+      "officialSourceIds": ["fl_01"],
+      "confidenceScore": 0.4,
+      "itemsNeedingVerification": [
+        "Extract homeowner-safe sizing logic from official OSTDS materials.",
+        "Document site-condition drivers in plain English."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+entity_type,entity_id,review_reason,urgency,assigned_to,due_date,review_status
+state_profile,GA,Confirm current rule text backing bedroom table and disposal guidance,high,unassigned,2026-03-16,open
+state_profile,PA,Add structured per-bedroom increment and cleaner permit-flow source,high,unassigned,2026-03-16,open
+state_profile,CT,Extract publishable residential design-flow examples,high,unassigned,2026-03-16,open
+state_profile,OR,Extract homeowner-safe site-evaluation and permit sequence,high,unassigned,2026-03-16,open
+state_profile,MO,Research residential sizing logic from higher-detail official source,medium,unassigned,2026-03-20,open
+state_profile,NC,Research residential sizing logic and county/state role split,medium,unassigned,2026-03-20,open
+state_profile,NJ,Document official residential sizing and special-area caveats,medium,unassigned,2026-03-20,open
+state_profile,WA,Document local health jurisdiction involvement and sizing language,medium,unassigned,2026-03-20,open
+state_profile,MA,Extract Title 5 homeowner-safe design flow and home-sale hooks,medium,unassigned,2026-03-20,open
+state_profile,FL,Extract OSTDS sizing logic and site-condition cost drivers,medium,unassigned,2026-03-20,open
+cost_profile,US,Collect public cost anchors for install replacement inspection and perc testing,high,unassigned,2026-03-18,open
