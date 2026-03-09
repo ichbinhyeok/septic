@@ -11,7 +11,6 @@
     <title>${page.title()}</title>
     <meta name="description" content="${page.description()}">
     <meta name="robots" content="${page.robots()}">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
     <link rel="canonical" href="${page.canonicalUrl()}">
     <meta property="og:title" content="${page.title()}">
