@@ -13,8 +13,9 @@
                 <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/">Start quote-ready estimate</a>
-                    <a class="button button--secondary" href="#states">Browse state guides</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/">Get matched with local septic pros</a>
                 </div>
+                <a class="hero__subaction" href="#states">Browse state guides first</a>
                 <div class="hero__notes">
                     <span>Short match form unlocked after the estimate</span>
                     <span>Official-source module on each state page</span>

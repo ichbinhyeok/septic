@@ -361,6 +361,13 @@ h4 {
     margin-top: 28px;
 }
 
+.hero__subaction {
+    display: inline-flex;
+    margin-top: 14px;
+    color: var(--accent-strong);
+    font-weight: 700;
+}
+
 .hero__notes {
     display: flex;
     flex-wrap: wrap;
@@ -881,6 +888,51 @@ input[type="checkbox"] {
     border: 1px solid rgba(20, 34, 32, 0.08);
 }
 
+.disclosure-card {
+    display: grid;
+    gap: 0;
+}
+
+.disclosure-card > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.12rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.disclosure-card > summary::-webkit-details-marker {
+    display: none;
+}
+
+.disclosure-card > summary::after {
+    content: "+";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.1);
+    color: var(--accent-strong);
+    font-size: 1.2rem;
+    font-weight: 800;
+    flex: 0 0 auto;
+}
+
+.disclosure-card[open] > summary::after {
+    content: "−";
+}
+
+.disclosure-card__body {
+    margin-top: 18px;
+}
+
 .status-box strong {
     display: block;
     margin-bottom: 6px;
@@ -1030,6 +1082,10 @@ input[type="checkbox"] {
     .form-actions .button,
     .result-cta-band__actions .button {
         width: 100%;
+    }
+
+    .hero__subaction {
+        margin-top: 12px;
     }
 
     .result-cta-band {

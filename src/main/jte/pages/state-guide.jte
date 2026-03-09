@@ -291,68 +291,70 @@
     @if (coreStateComparisonRows != null && !coreStateComparisonRows.isEmpty())
         <section class="section section--tight">
             <div class="container">
-                <article class="detail-card detail-card--full">
-                    <h2>How the core six launch states differ</h2>
-                    <div class="facts-table-wrap">
-                        <table class="facts-table comparison-table">
-                            <thead>
-                            <tr>
-                                <th>State</th>
-                                <th>Call first</th>
-                                <th>Pull first</th>
-                                <th>Low-end killer</th>
-                                <th>Best next page</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                <details class="detail-card detail-card--full disclosure-card">
+                    <summary>How the core six launch states differ</summary>
+                    <div class="disclosure-card__body">
+                        <div class="facts-table-wrap">
+                            <table class="facts-table comparison-table">
+                                <thead>
+                                <tr>
+                                    <th>State</th>
+                                    <th>Call first</th>
+                                    <th>Pull first</th>
+                                    <th>Low-end killer</th>
+                                    <th>Best next page</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @for (var row : coreStateComparisonRows)
+                                    <tr class="${row.active() ? "comparison-table__row--active" : ""}">
+                                        <td>
+                                            <strong>${row.stateName()}</strong>
+                                            @if (row.active())
+                                                <div class="comparison-table__badge">You are here</div>
+                                            @endif
+                                        </td>
+                                        <td data-label="Call first">${row.firstCall()}</td>
+                                        <td data-label="Pull first">${row.firstRecord()}</td>
+                                        <td data-label="Low-end killer">${row.lowEndTrigger()}</td>
+                                        <td data-label="Best next page"><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
+                                    </tr>
+                                @endfor
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="comparison-cards">
                             @for (var row : coreStateComparisonRows)
-                                <tr class="${row.active() ? "comparison-table__row--active" : ""}">
-                                    <td>
+                                <article class="comparison-card ${row.active() ? "comparison-card--active" : ""}">
+                                    <div class="comparison-card__header">
                                         <strong>${row.stateName()}</strong>
                                         @if (row.active())
-                                            <div class="comparison-table__badge">You are here</div>
+                                            <span class="comparison-table__badge">You are here</span>
                                         @endif
-                                    </td>
-                                    <td data-label="Call first">${row.firstCall()}</td>
-                                    <td data-label="Pull first">${row.firstRecord()}</td>
-                                    <td data-label="Low-end killer">${row.lowEndTrigger()}</td>
-                                    <td data-label="Best next page"><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
-                                </tr>
+                                    </div>
+                                    <dl class="comparison-card__list">
+                                        <div>
+                                            <dt>Call first</dt>
+                                            <dd>${row.firstCall()}</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Pull first</dt>
+                                            <dd>${row.firstRecord()}</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Low-end killer</dt>
+                                            <dd>${row.lowEndTrigger()}</dd>
+                                        </div>
+                                        <div>
+                                            <dt>Best next page</dt>
+                                            <dd><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></dd>
+                                        </div>
+                                    </dl>
+                                </article>
                             @endfor
-                            </tbody>
-                        </table>
+                        </div>
                     </div>
-                    <div class="comparison-cards">
-                        @for (var row : coreStateComparisonRows)
-                            <article class="comparison-card ${row.active() ? "comparison-card--active" : ""}">
-                                <div class="comparison-card__header">
-                                    <strong>${row.stateName()}</strong>
-                                    @if (row.active())
-                                        <span class="comparison-table__badge">You are here</span>
-                                    @endif
-                                </div>
-                                <dl class="comparison-card__list">
-                                    <div>
-                                        <dt>Call first</dt>
-                                        <dd>${row.firstCall()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Pull first</dt>
-                                        <dd>${row.firstRecord()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Low-end killer</dt>
-                                        <dd>${row.lowEndTrigger()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Best next page</dt>
-                                        <dd><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></dd>
-                                    </div>
-                                </dl>
-                            </article>
-                        @endfor
-                    </div>
-                </article>
+                </details>
             </div>
         </section>
     @endif
@@ -360,28 +362,26 @@
     @if (guideFaqs != null && !guideFaqs.isEmpty())
         <section class="section section--muted" id="faq">
             <div class="container">
-                <div class="section-heading">
-                    <span class="eyebrow">FAQ</span>
-                    <h2>${state.stateName()} homeowner questions worth clearing up before you request quotes.</h2>
-                </div>
-
-                <div class="detail-grid">
-                    @for (var faq : guideFaqs)
-                        <article class="detail-card">
-                            <h3>${faq.question()}</h3>
-                            <p>${faq.answer()}</p>
-                        </article>
-                    @endfor
-                </div>
+                <details class="detail-card detail-card--full disclosure-card">
+                    <summary>${state.stateName()} homeowner questions worth clearing up before you request quotes</summary>
+                    <div class="detail-grid disclosure-card__body">
+                        @for (var faq : guideFaqs)
+                            <article class="detail-card">
+                                <h3>${faq.question()}</h3>
+                                <p>${faq.answer()}</p>
+                            </article>
+                        @endfor
+                    </div>
+                </details>
             </div>
         </section>
     @endif
 
-    <section class="section">
+    <section class="section" id="sources">
         <div class="container content-grid">
-            <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Official sources</span>
-                <ul class="source-list">
+            <details class="trust-box trust-box--large disclosure-card">
+                <summary>Official sources for ${state.stateName()}</summary>
+                <ul class="source-list disclosure-card__body">
                     @for (var source : sources)
                         <li>
                             <strong>${source.agencyName()}</strong>
@@ -390,18 +390,18 @@
                         </li>
                     @endfor
                 </ul>
-            </article>
+            </details>
 
             @if (!stateMoneyPages.isEmpty())
-                <article class="detail-card">
-                    <h2>Next high-intent pages</h2>
-                    <ul class="detail-list">
+                <details class="detail-card disclosure-card">
+                    <summary>Next high-intent pages in ${state.stateName()}</summary>
+                    <ul class="detail-list disclosure-card__body">
                         @for (var stateMoneyPage : stateMoneyPages)
                             <li><a href="${stateMoneyPage.path(state.slug())}">${stateMoneyPage.title()}</a></li>
                         @endfor
                         <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}">Main septic cost calculator</a></li>
                     </ul>
-                </article>
+                </details>
             @endif
 
         </div>

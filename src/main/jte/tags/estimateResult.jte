@@ -96,17 +96,20 @@
         <p><strong>${result.agencyName()}</strong> guidance informs this state profile. Last verified: ${result.lastVerifiedAt()}.</p>
         <p>${result.localOverrideNote()}</p>
         <p>${result.costAnchorNote()}</p>
-        <ul class="source-list source-list--compact">
-            @for (var source : result.sourceLabels())
-                <li>${source}</li>
-            @endfor
-        </ul>
+        <details class="disclosure-card">
+            <summary>View source set</summary>
+            <ul class="source-list source-list--compact">
+                @for (var source : result.sourceLabels())
+                    <li>${source}</li>
+                @endfor
+            </ul>
+        </details>
     </article>
 
     @if (!costEvidence.isEmpty())
-        <article class="detail-card detail-card--full">
-            <h3>Cost evidence behind this planning range</h3>
-            <div class="detail-grid">
+        <details class="detail-card detail-card--full disclosure-card">
+            <summary>Cost evidence behind this planning range</summary>
+            <div class="detail-grid disclosure-card__body">
                 @for (var evidence : costEvidence)
                     <article class="detail-card">
                         <h4>${evidence.title()}</h4>
@@ -116,6 +119,6 @@
                     </article>
                 @endfor
             </div>
-        </article>
+        </details>
     @endif
 </section>
