@@ -24,6 +24,7 @@
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/">Open the ${state.stateName()} guide</a>
                 </div>
                 <p>${calculatorCtaNote}</p>
@@ -291,8 +292,11 @@
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
                 <h2>${calculatorCtaLabel}</h2>
-                <p>${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.</p>
-                <a href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Run the estimate</a>
+                <p>${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context. If you already know the project type, you can also skip straight to the short quote form.</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">Run the estimate</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
+                </div>
             </article>
 
             <article class="detail-card">
@@ -307,9 +311,10 @@
     </section>
 
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
-    <section class="sticky-mobile-cta" aria-label="Run estimate">
+    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
+            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}">${calculatorCtaLabel}</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request">Short quote form</a>
         </div>
     </section>
 `)

@@ -275,6 +275,7 @@ public class SiteController {
     public String calculator(
             @RequestParam(name = "state", required = false) String stateCode,
             @RequestParam(name = "projectType", required = false) String projectType,
+            @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
     ) {
         EstimateForm estimateForm = new EstimateForm();
@@ -284,7 +285,7 @@ public class SiteController {
         if (projectType != null) {
             estimateForm.setProjectType(ProjectType.fromValue(projectType).value());
         }
-        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false);
+        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, quoteMode);
     }
 
     @GetMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
@@ -319,7 +320,7 @@ public class SiteController {
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
     public String calculate(@ModelAttribute EstimateForm estimateForm, Model model) {
         EstimatorResult result = estimatorService.estimate(estimateForm);
-        return renderCalculator(model, estimateForm, result, QuoteLeadForm.fromEstimateForm(estimateForm), null, false);
+        return renderCalculator(model, estimateForm, result, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, true);
     }
 
     @PostMapping({"/quote-request", "/quote-request/"})
@@ -333,7 +334,7 @@ public class SiteController {
         EstimatorResult result = estimatorService.estimate(estimateForm);
 
         if (bindingResult.hasErrors()) {
-            return renderCalculator(model, estimateForm, result, quoteLeadForm, null, true);
+            return renderCalculator(model, estimateForm, result, quoteLeadForm, null, true, true);
         }
 
         String leadId = leadStorageService.saveQuoteLead(
@@ -344,7 +345,7 @@ public class SiteController {
                 request
         );
         QuoteLeadForm clearedQuoteForm = QuoteLeadForm.fromEstimateForm(estimateForm);
-        return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false);
+        return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false, true);
     }
 
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
@@ -481,7 +482,8 @@ public class SiteController {
             EstimatorResult result,
             QuoteLeadForm quoteLeadForm,
             String leadId,
-            boolean quoteHasErrors
+            boolean quoteHasErrors,
+            boolean showQuotePanel
     ) {
         model.addAttribute("page", seoService.calculatorPage());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
@@ -490,6 +492,7 @@ public class SiteController {
         model.addAttribute("quoteLeadForm", quoteLeadForm);
         model.addAttribute("leadId", leadId);
         model.addAttribute("quoteHasErrors", quoteHasErrors);
+        model.addAttribute("showQuotePanel", showQuotePanel || result != null || leadId != null || quoteHasErrors);
         model.addAttribute("costEvidence", result == null
                 ? List.of()
                 : costEvidenceViews(result.stateCode(), estimateForm.getProjectType()));

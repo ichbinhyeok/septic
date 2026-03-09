@@ -15,6 +15,7 @@
 @param QuoteLeadForm quoteLeadForm
 @param String leadId = null
 @param boolean quoteHasErrors = false
+@param boolean showQuotePanel = false
 @param ProjectType[] projectTypes
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
@@ -113,7 +114,15 @@
             <div class="calculator-output">
                 @if (result != null)
                     @template.tags.estimateResult(result = result, costEvidence = costEvidence)
+                @else
+                    <article class="placeholder-panel">
+                        <span class="eyebrow">Result preview</span>
+                        <h2>Fill the form to generate a planning range.</h2>
+                        <p>You will get a conservative tank range, likely system class, cost range, and a short checklist for the next step.</p>
+                    </article>
+                @endif
 
+                @if (showQuotePanel)
                     <section class="quote-panel" id="quote-request">
                         <div class="quote-panel__header">
                             <div>
@@ -122,6 +131,13 @@
                             </div>
                             <span class="pill">Short form</span>
                         </div>
+
+                        @if (result == null)
+                            <article class="status-box">
+                                <strong>Skip the estimate if you already know the job type</strong>
+                                <p>You can request local quotes now. If you want a tighter range first, run the calculator above and come back to this short form.</p>
+                            </article>
+                        @endif
 
                         @if (leadId != null)
                             <article class="status-box status-box--success">
@@ -138,10 +154,12 @@
                         @endif
 
                         <form class="quote-form" method="post" action="/quote-request/">
-                            <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
-                            <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
-                            <input type="hidden" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
-                            <input type="hidden" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
+                            @if (result != null)
+                                <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
+                                <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
+                                <input type="hidden" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
+                                <input type="hidden" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
+                            @endif
                             <input type="hidden" name="soilPercStatus" value="${quoteLeadForm.getSoilPercStatus()}">
                             <input type="hidden" name="accessDifficulty" value="${quoteLeadForm.getAccessDifficulty()}">
                             <input type="hidden" name="timeline" value="${quoteLeadForm.getTimeline()}">
@@ -150,6 +168,36 @@
                             <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock() ? "true" : "false"}">
 
                             <div class="field-grid">
+                                @if (result == null)
+                                    <label class="field">
+                                        <span>State</span>
+                                        <select name="stateCode">
+                                            @for (var state : states)
+                                                <option value="${state.stateCode()}" selected="${state.stateCode().equals(quoteLeadForm.getStateCode())}">${state.stateName()}</option>
+                                            @endfor
+                                        </select>
+                                    </label>
+
+                                    <label class="field">
+                                        <span>Project type</span>
+                                        <select name="projectType">
+                                            @for (var projectType : projectTypes)
+                                                <option value="${projectType.value()}" selected="${projectType.value().equals(quoteLeadForm.getProjectType())}">${projectType.label()}</option>
+                                            @endfor
+                                        </select>
+                                    </label>
+
+                                    <label class="field">
+                                        <span>Bedrooms</span>
+                                        <input type="number" min="1" max="10" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
+                                    </label>
+
+                                    <label class="field">
+                                        <span>Occupants (optional)</span>
+                                        <input type="number" min="1" max="20" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
+                                    </label>
+                                @endif
+
                                 <label class="field">
                                     <span>Full name</span>
                                     <input type="text" name="fullName" value="${quoteLeadForm.getFullNameValue()}">
@@ -182,7 +230,9 @@
                             </div>
                         </form>
                     </section>
+                @endif
 
+                @if (result != null)
                     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
                     <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Quick mobile actions">
                         <div class="sticky-mobile-cta__inner">
@@ -190,12 +240,6 @@
                             <a class="button button--primary" href="#quote-request">Jump to quote form</a>
                         </div>
                     </section>
-                @else
-                    <article class="placeholder-panel">
-                        <span class="eyebrow">Result preview</span>
-                        <h2>Fill the form to generate a planning range.</h2>
-                        <p>You will get a conservative tank range, likely system class, cost range, and a short checklist for the next step.</p>
-                    </article>
                 @endif
             </div>
         </div>

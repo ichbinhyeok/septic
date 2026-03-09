@@ -118,6 +118,19 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void calculatorSupportsDirectQuoteMode() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/")
+						.param("state", "GA")
+						.param("projectType", "replacement")
+						.param("quoteMode", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Skip the estimate if you already know the job type")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Full name")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Project type")));
+	}
+
+	@Test
 	void tankSizeEstimatorPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-tank-size-estimator/"))
 				.andExpect(status().isOk())
@@ -225,6 +238,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQ")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQPage")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("quoteMode=true#quote-request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
@@ -271,6 +286,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Replacement midpoint")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("quote-request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=replacement")));
 	}
@@ -527,6 +544,7 @@ class SepticApplicationTests {
 	void tankSizeContentPagePointsToDedicatedEstimator() throws Exception {
 		mockMvc.perform(get("/septic-tank-size/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Tank Size Guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-tank-size-estimator/")));
 	}
 

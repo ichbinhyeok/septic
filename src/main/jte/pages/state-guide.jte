@@ -23,13 +23,17 @@
                 <span class="eyebrow">${state.stateCode()} state guide</span>
                 <h1>${guideHeading}</h1>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Start short quote form</a>
+                </div>
             </div>
             <div class="hero-sidecard">
                 <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
                 <p>Updated ${state.lastVerifiedAt()} with official-source context and conservative estimate framing.</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
                 <p>${calculatorCtaNote}</p>
             </div>
         </div>
@@ -377,6 +381,20 @@
         </section>
     @endif
 
+    <section class="section section--tight">
+        <div class="container">
+            <article class="trust-box trust-box--large">
+                <span class="trust-box__label">Ready for real quotes?</span>
+                <h2>Use the estimate first, or skip straight to the short quote form.</h2>
+                <p>${calculatorCtaNote} If you already know the state and job type, you can move straight into the short quote request flow.</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Get matched with local septic pros</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <section class="section" id="sources">
         <div class="container content-grid">
             <details class="trust-box trust-box--large disclosure-card">
@@ -408,9 +426,10 @@
     </section>
 
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
-    <section class="sticky-mobile-cta" aria-label="Run estimate">
+    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request">Short quote form</a>
         </div>
     </section>
 `)

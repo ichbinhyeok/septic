@@ -59,9 +59,9 @@
       "intentType": "money_page",
       "primaryKeyword": "septic tank size",
       "secondaryKeywords": ["what size septic tank do i need", "bedroom septic tank size", "minimum septic tank size"],
-      "title": "Septic Tank Size Estimator",
-      "metaDescription": "Estimate likely minimum septic tank size and a conservative planning range by bedroom count and usage profile.",
-      "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This page keeps the answer conservative and explains why the recommendation may widen.",
+      "title": "Septic Tank Size Guide",
+      "metaDescription": "Understand what usually sets septic tank size, when the range widens, and when to use the dedicated tank size estimator.",
+      "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This guide explains the main sizing drivers first, then points into the dedicated estimator when you want a state-aware planning range.",
       "calculatorModule": "tank_size_estimator",
       "driverBullets": [
         "Bedroom count is the most common public input, but occupancy still matters.",
