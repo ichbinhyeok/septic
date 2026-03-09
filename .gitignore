@@ -38,5 +38,6 @@ out/
 jte-classes/
 storage/leads/**
 storage/events/**/*.ndjson
+storage/exports/**
 !storage/leads/README.md
 !storage/events/README.md

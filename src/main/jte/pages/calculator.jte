@@ -113,7 +113,7 @@
                 @if (result != null)
                     @template.tags.estimateResult(result = result)
 
-                    <section class="quote-panel">
+                    <section class="quote-panel" id="quote-request">
                         <div class="quote-panel__header">
                             <div>
                                 <span class="eyebrow">Primary CTA</span>
@@ -125,7 +125,7 @@
                         @if (leadId != null)
                             <article class="status-box status-box--success">
                                 <strong>Request received</strong>
-                                <p>Your quote request was saved with lead ID ${leadId}. This project now has a file-based lead record and event entry.</p>
+                                <p>Your project details are in. Use lead ID ${leadId} if you need to reference this request while you compare local septic quotes.</p>
                             </article>
                         @endif
 
@@ -177,9 +177,17 @@
 
                             <div class="form-actions">
                                 <button class="button button--primary" type="submit">Request local quotes</button>
-                                <p>The app stores one JSON lead file and one NDJSON event entry on submit.</p>
+                                <p>Short form only. The estimate stays visible above while you request local pricing.</p>
                             </div>
                         </form>
+                    </section>
+
+                    <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
+                    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Quick mobile actions">
+                        <div class="sticky-mobile-cta__inner">
+                            <a class="button button--secondary" href="#result-top">Back to result</a>
+                            <a class="button button--primary" href="#quote-request">Jump to quote form</a>
+                        </div>
                     </section>
                 @else
                     <article class="placeholder-panel">

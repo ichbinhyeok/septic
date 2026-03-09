@@ -1,7 +1,7 @@
 @import com.example.septic.service.EstimatorResult
 @param EstimatorResult result
 
-<section class="result-panel">
+<section class="result-panel" id="result-top">
     <div class="result-panel__header">
         <div>
             <span class="eyebrow">Planning estimate</span>
@@ -35,6 +35,22 @@
             <p>System type becomes less certain when site conditions are unknown.</p>
         </article>
     </div>
+
+    <article class="result-cta-band">
+        <div class="result-cta-band__copy">
+            <span class="eyebrow">Next step</span>
+            <h3>Ready to compare local quotes?</h3>
+            <p>Use this planning range as your talking point, then jump straight to the short quote form.</p>
+        </div>
+        <div class="result-cta-band__actions">
+            <a class="button button--primary" href="#quote-request">Jump to quote form</a>
+            <div class="result-cta-band__meta">
+                <span>Short form</span>
+                <span>State context stays visible</span>
+                <span>Estimate-first, not permit-ready</span>
+            </div>
+        </div>
+    </article>
 
     <div class="detail-grid">
         <article class="detail-card">

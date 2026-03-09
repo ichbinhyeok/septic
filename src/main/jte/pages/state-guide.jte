@@ -313,14 +313,44 @@
                                             <div class="comparison-table__badge">You are here</div>
                                         @endif
                                     </td>
-                                    <td>${row.firstCall()}</td>
-                                    <td>${row.firstRecord()}</td>
-                                    <td>${row.lowEndTrigger()}</td>
-                                    <td><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
+                                    <td data-label="Call first">${row.firstCall()}</td>
+                                    <td data-label="Pull first">${row.firstRecord()}</td>
+                                    <td data-label="Low-end killer">${row.lowEndTrigger()}</td>
+                                    <td data-label="Best next page"><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></td>
                                 </tr>
                             @endfor
                             </tbody>
                         </table>
+                    </div>
+                    <div class="comparison-cards">
+                        @for (var row : coreStateComparisonRows)
+                            <article class="comparison-card ${row.active() ? "comparison-card--active" : ""}">
+                                <div class="comparison-card__header">
+                                    <strong>${row.stateName()}</strong>
+                                    @if (row.active())
+                                        <span class="comparison-table__badge">You are here</span>
+                                    @endif
+                                </div>
+                                <dl class="comparison-card__list">
+                                    <div>
+                                        <dt>Call first</dt>
+                                        <dd>${row.firstCall()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Pull first</dt>
+                                        <dd>${row.firstRecord()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Low-end killer</dt>
+                                        <dd>${row.lowEndTrigger()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Best next page</dt>
+                                        <dd><a href="${row.nextPagePath()}">${row.nextPageTitle()}</a></dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        @endfor
                     </div>
                 </article>
             </div>
@@ -382,6 +412,13 @@
                     @endfor
                 </ul>
             </article>
+        </div>
+    </section>
+
+    <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
+    <section class="sticky-mobile-cta" aria-label="Run estimate">
+        <div class="sticky-mobile-cta__inner">
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
         </div>
     </section>
 `)

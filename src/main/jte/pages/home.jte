@@ -11,11 +11,11 @@
                 <h1>Rough septic cost, likely tank size, and what to verify next.</h1>
                 <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/">Open the estimator</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/">Start quote-ready estimate</a>
                     <a class="button button--secondary" href="#states">Browse launch states</a>
                 </div>
                 <div class="hero__notes">
-                    <span>Estimate only</span>
+                    <span>Short match form unlocked after the estimate</span>
                     <span>Official-source module on each state page</span>
                     <span>10 launch states</span>
                 </div>
