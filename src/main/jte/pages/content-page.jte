@@ -23,7 +23,7 @@
             <article class="hero-sidecard">
                 <span class="pill">${contentPage.calculatorModule()}</span>
                 <strong>${contentPage.primaryKeyword()}</strong>
-                <p>This page exists to support cost-first search intent, then move visitors into the calculator and quote flow.</p>
+                <p>This page exists to support high-intent search, then move visitors into the calculator and quote flow.</p>
             </article>
         </div>
     </section>

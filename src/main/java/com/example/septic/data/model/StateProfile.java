@@ -26,6 +26,10 @@ public record StateProfile(
         String whoToCallFirst,
         List<String> recordsToRequest,
         List<String> lowEndRiskChecks,
+        String permitTimelineNote,
+        String buyerInspectionTrigger,
+        String maintenanceInspectionNote,
+        String specialAreaNote,
         Double confidenceScore,
         List<String> itemsNeedingVerification
 ) {

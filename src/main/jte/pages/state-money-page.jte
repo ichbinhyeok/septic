@@ -85,6 +85,34 @@
                 </article>
             @endif
 
+            @if (state.permitTimelineNote() != null)
+                <article class="detail-card">
+                    <h2>Permit timeline watch</h2>
+                    <p>${state.permitTimelineNote()}</p>
+                </article>
+            @endif
+
+            @if (state.buyerInspectionTrigger() != null)
+                <article class="detail-card">
+                    <h2>Buyer trigger</h2>
+                    <p>${state.buyerInspectionTrigger()}</p>
+                </article>
+            @endif
+
+            @if (state.maintenanceInspectionNote() != null)
+                <article class="detail-card">
+                    <h2>Maintenance / inspection note</h2>
+                    <p>${state.maintenanceInspectionNote()}</p>
+                </article>
+            @endif
+
+            @if (state.specialAreaNote() != null)
+                <article class="detail-card detail-card--full">
+                    <h2>Special state wrinkle</h2>
+                    <p>${state.specialAreaNote()}</p>
+                </article>
+            @endif
+
             <article class="trust-box">
                 <span class="trust-box__label">Official-source context</span>
                 <p><strong>${state.agencyName()}</strong> and related official materials support this page. Final design, permit path, and approval still need local verification.</p>

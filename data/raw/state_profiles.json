@@ -52,6 +52,10 @@
         "Water table depth, limiting layers, and usable drainfield area can erase a simple low-end replacement assumption.",
         "County process, excavation, and restoration scope often matter more than the tank number alone."
       ],
+      "permitTimelineNote": "County environmental health review and soil analysis come before trusting the quote, so local scheduling often drives the real Georgia timeline.",
+      "buyerInspectionTrigger": "Georgia's public homeowner guidance is stronger on records and soil analysis than on a statewide transfer-inspection trigger, so buyers should ask for permit and repair records early.",
+      "maintenanceInspectionNote": "No single statewide recurring homeowner inspection cadence has been verified from the current Georgia source set, so local contractor or county practice should still be confirmed.",
+      "specialAreaNote": "Garbage disposal is the clearest public statewide wrinkle because Georgia's homeowner guide says it requires a septic tank that is 50 percent larger.",
       "confidenceScore": 0.82,
       "itemsNeedingVerification": [
         "Pull the current rule-text citation behind the homeowner guide's disposal upsizing language.",
@@ -108,6 +112,10 @@
         "Poor soil or field constraints can push the project beyond a straightforward conventional replacement.",
         "Excavation and restoration can dominate the replacement number even when DEP's public tank example looks simple."
       ],
+      "permitTimelineNote": "Municipality and Sewage Enforcement Officer availability often drives timing more than a single statewide Pennsylvania calendar.",
+      "buyerInspectionTrigger": "A buyer should identify the local Sewage Enforcement Officer and pull permit or repair records early because the municipality controls the practical next step.",
+      "maintenanceInspectionNote": "DEP's homeowner guidance says larger households may need pumping more often than the typical three- to five-year interval.",
+      "specialAreaNote": "Pennsylvania's real wrinkle is local administration: the same state estimate can move materially once the municipality or SEO path becomes clear.",
       "confidenceScore": 0.78,
       "itemsNeedingVerification": [
         "Find an additional official source that publishes a fuller bedroom-to-capacity table instead of only the three-bedroom example.",
@@ -155,6 +163,10 @@
         "Weak code-complying area or reserve area can change the practical replacement path fast.",
         "Addition history or change in use can trigger more local review than a buyer expects."
       ],
+      "permitTimelineNote": "Connecticut's residential path usually runs through site investigation, approval to construct, inspection, and then permit to discharge as separate checkpoints.",
+      "buyerInspectionTrigger": "Any addition, change in use, or potential-bedroom issue can matter more than current occupancy for a Connecticut buyer.",
+      "maintenanceInspectionNote": "The current Connecticut source set is strongest on local permitting and site review, not on one simple statewide homeowner inspection cadence.",
+      "specialAreaNote": "Potential bedrooms and code-complying area make additions unusually important in Connecticut compared with national septic pages.",
       "confidenceScore": 0.84,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe tank sizing bridge from design flow to public gallon recommendations.",
@@ -202,6 +214,10 @@
         "ADU connections, use changes, or increased flow can trigger additional authorization or redesign work.",
         "Replacement-area constraints can move the project beyond a simple like-for-like replacement."
       ],
+      "permitTimelineNote": "Oregon puts site evaluation before permit certainty, and the septic permit itself is valid for one year once issued.",
+      "buyerInspectionTrigger": "Buyers should ask for the most recent site evaluation and any authorization notice tied to an ADU, change in use, or increased sewage flow.",
+      "maintenanceInspectionNote": "The current Oregon source set is strongest on site evaluation and permit sequencing rather than a single statewide homeowner pumping cadence.",
+      "specialAreaNote": "ADUs, change in use, and replacement-area constraints are unusually visible in Oregon's official process and can reshape the quote early.",
       "confidenceScore": 0.8,
       "itemsNeedingVerification": [
         "Find a homeowner-safe way to map Oregon's site-evaluation-first process into calculator confidence bands.",
@@ -249,6 +265,10 @@
         "Major changes such as replacing the tank or absorption field can pull the project into a fuller permit path.",
         "Local ordinances can be more restrictive than the state minimum."
       ],
+      "permitTimelineNote": "Missouri timing depends on whether DHSS, a contracted local authority, or another local ordinance controls the actual permit path.",
+      "buyerInspectionTrigger": "Buyers should confirm the actual permitting authority and whether any acreage-based exception or special local rule affected the existing system.",
+      "maintenanceInspectionNote": "Missouri's current official source set is much stronger on permit triggers and authority maps than on one statewide recurring homeowner inspection cadence.",
+      "specialAreaNote": "Residential property under three acres is the clearest homeowner-facing trigger in Missouri's public DHSS materials.",
       "confidenceScore": 0.58,
       "itemsNeedingVerification": [
         "Pull homeowner-safe tank capacity examples from official Missouri material if available.",
@@ -296,6 +316,10 @@
         "Systems over the simpler residential thresholds can move into more complex state review and professional design.",
         "Construction and operation approval are separate steps, so timing risk can stay hidden until late."
       ],
+      "permitTimelineNote": "North Carolina's improvement permit, construction authorization, and operation permit are separate gates, so timing can slip later than homeowners expect.",
+      "buyerInspectionTrigger": "Buyers should ask for the improvement permit, construction authorization, and operation permit because missing one often means the approval history is incomplete.",
+      "maintenanceInspectionNote": "The current North Carolina source set is strongest on permit staging rather than a simple statewide homeowner pumping cadence.",
+      "specialAreaNote": "Systems over 3,000 gallons per day move into state review and professional design, which is a meaningful line for the public estimator.",
       "confidenceScore": 0.56,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe residential daily flow bridge from 18E materials.",
@@ -343,6 +367,10 @@
         "Ongoing maintenance contract requirements can erase the apparent low end.",
         "Local board of health oversight can materially change the practical project path."
       ],
+      "permitTimelineNote": "New Jersey timing is often shaped by local board of health management obligations rather than by a simple one-time permit clock.",
+      "buyerInspectionTrigger": "Buyers should request inspection, pump-out, and maintenance-contract records early, especially in the Pinelands or with advanced pretreatment devices.",
+      "maintenanceInspectionNote": "Pinelands guidance says conventional systems are inspected and certified once every three years, while some advanced devices must carry perpetual service contracts.",
+      "specialAreaNote": "Pinelands and alternate design systems create a special-area layer that many national septic pages do not explain.",
       "confidenceScore": 0.57,
       "itemsNeedingVerification": [
         "Extract a cleaner statewide homeowner sizing bridge from official NJDEP material.",
@@ -390,6 +418,10 @@
         "County-level LHJs can be more protective than statewide code, which can move the estimate up.",
         "Missing O&M records can signal that the real system condition is less certain than the seller implies."
       ],
+      "permitTimelineNote": "Washington timelines start with the local health jurisdiction because county permitting and inspection schedules control the next step.",
+      "buyerInspectionTrigger": "As-built drawings and O&M logs are unusually important in Washington because owner inspection duties are visible in state guidance.",
+      "maintenanceInspectionNote": "Washington says gravity systems must be inspected at least every three years and all other systems at least every year.",
+      "specialAreaNote": "Washington's recent rule revisions add stronger transfer and management focus, so ownership-change content is worth tracking closely as the staged effective dates get nearer.",
       "confidenceScore": 0.64,
       "itemsNeedingVerification": [
         "Track the staged effective dates for Washington's recent rule revision and decide how much transfer language belongs on the public state page.",
@@ -437,6 +469,10 @@
         "Bedroom additions or other changes in use can trigger Title 5 review that was not obvious from the listing.",
         "Local Board of Health timing and filing requirements can move both closing risk and replacement cost."
       ],
+      "permitTimelineNote": "Massachusetts Title 5 uses a two-year pre-transfer inspection window or six months after transfer when weather blocks the inspection at closing.",
+      "buyerInspectionTrigger": "Property transfer, bedroom additions, and changes in use are the clearest Massachusetts triggers that push septic issues to the front.",
+      "maintenanceInspectionNote": "If the system is pumped annually after inspection, Massachusetts says the Title 5 inspection can stay valid for three years.",
+      "specialAreaNote": "Title 5 makes buyer timing and Board of Health filings more important than generic tank-size talk in Massachusetts.",
       "confidenceScore": 0.68,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe residential flow bridge from official Title 5 materials without making the page sound permit-ready.",
@@ -484,6 +520,10 @@
         "High water, drainfield limits, and repair-versus-modification scope can move a Florida project out of the simple low end.",
         "Abandonment, repair, and modification work still require permit and inspection sequencing before the project is truly complete."
       ],
+      "permitTimelineNote": "In Florida, the first timing question is jurisdiction: DEP-managed county or county health department.",
+      "buyerInspectionTrigger": "Florida buyers should confirm jurisdiction, permit history, and whether operating-permit or inspection obligations apply to the system before closing.",
+      "maintenanceInspectionNote": "Operating permits are required in counties that use them and for ATUs, PBTS, commercial systems, and industrial or manufacturing-zoned systems.",
+      "specialAreaNote": "The 16-county DEP management split is the most important statewide wrinkle to surface before a Florida homeowner trusts the quote path.",
       "confidenceScore": 0.62,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe sizing bridge from current DEP and DOH materials.",

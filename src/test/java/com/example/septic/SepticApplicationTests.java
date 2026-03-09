@@ -40,6 +40,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost & Size Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")));
@@ -61,8 +62,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-pump-schedule-estimator/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/georgia/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/florida/")));
 	}
 
 	@Test
@@ -98,7 +102,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Likely total cost range")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("state-level planning cost anchor")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("derived state planning cost anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last verified")));
 	}
 
@@ -180,6 +184,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic planning guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")));
 	}
@@ -207,7 +212,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/new-jersey/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Pinelands")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("maintenance contract")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("maintenance contract")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Special state wrinkle")));
 	}
 
 	@Test
@@ -264,6 +270,42 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")));
+	}
+
+	@Test
+	void permitProcessContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida Septic Permit Process")));
+	}
+
+	@Test
+	void recordsChecklistContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Massachusetts Septic Records Checklist")));
+	}
+
+	@Test
+	void floridaPermitProcessPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/florida/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("DEP-managed county")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=FL&projectType=new_install")));
+	}
+
+	@Test
+	void washingtonRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/washington/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("as-built drawing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=buying_home")));
 	}
 
 	@Test
@@ -380,8 +422,8 @@ class SepticApplicationTests {
 				"Expected Massachusetts midpoint to exceed Georgia midpoint after state multiplier is applied"
 		);
 		org.junit.jupiter.api.Assertions.assertTrue(
-				massachusettsResult.costDrivers().stream().anyMatch(driver -> driver.contains("above the national price level")),
-				"Expected Massachusetts result to explain the regional price-level adjustment"
+				massachusettsResult.costAnchorNote().contains("derived planning anchor"),
+				"Expected Massachusetts result to explain the derived state planning anchor"
 		);
 	}
 

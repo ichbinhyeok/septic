@@ -541,6 +541,378 @@
         "/septic-system-cost-calculator/"
       ],
       "officialSourceIds": ["wa_02", "wa_03", "wa_04"]
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "GA",
+      "title": "Georgia Septic Permit Process",
+      "metaDescription": "Georgia septic permit steps for homeowners, including county environmental health, soil analysis, and what can slow the approval path.",
+      "introCopy": "Georgia's permit path is easier to explain than many states, but homeowners still get tripped up when they skip county environmental health or assume a rough tank estimate is enough. This page turns Georgia's official public guidance into a homeowner permit checklist.",
+      "uniqueAngle": "Georgia is a strong permit-process state because the public homeowner guidance is clear about county health, soil analysis, bedroom-based sizing, and the garbage-disposal modifier.",
+      "driverBullets": [
+        "County environmental health is the first real step, not the installer quote alone.",
+        "Georgia's soil-analysis requirement means the permit path can move before the final tank band is settled.",
+        "Garbage disposal and drainfield usability can still reshape the approval conversation after the first estimate."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who should a Georgia homeowner call first for septic permits?",
+          "answer": "Start with the county environmental health office because that is the practical gateway for onsite sewage review and permitting."
+        },
+        {
+          "question": "Why can Georgia permit timing feel slower than the quote suggests?",
+          "answer": "Because county review and soil analysis come before real permit confidence, and those steps can expose site limits the first quote did not price."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=new_install",
+        "/septic-records-checklist/georgia/",
+        "/septic-replacement-cost/georgia/"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "PA",
+      "title": "Pennsylvania Septic Permit Process",
+      "metaDescription": "Pennsylvania septic permit steps for homeowners, with municipality and Sewage Enforcement Officer workflow explained in plain English.",
+      "introCopy": "Pennsylvania homeowners often search for a single state permit process, but DEP's own guidance points them back to the municipality or local agency and the Sewage Enforcement Officer. This page explains that local-first reality before the homeowner over-trusts a generic state estimate.",
+      "uniqueAngle": "Pennsylvania's permit page is valuable because DEP's public guidance and the local SEO path can both be surfaced without pretending the state has one flat homeowner workflow.",
+      "driverBullets": [
+        "Municipality and Sewage Enforcement Officer involvement is the first operational fact to confirm.",
+        "Soil suitability still determines whether the practical permit path stays simple.",
+        "Timing risk usually comes from the local process, not from the state explainer page."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Pennsylvania's septic permit process so local?",
+          "answer": "Because DEP points homeowners to the municipality or local agency and the Sewage Enforcement Officer for actual on-lot sewage permitting and enforcement."
+        },
+        {
+          "question": "What should I verify before trusting a Pennsylvania permit timeline?",
+          "answer": "Verify who the local agency is, whether the SEO is already involved, and whether the site has any known soil or field constraints."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=new_install",
+        "/septic-records-checklist/pennsylvania/",
+        "/perc-test-cost/pennsylvania/"
+      ],
+      "officialSourceIds": ["pa_01", "pa_02"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "CT",
+      "title": "Connecticut Septic Permit Process",
+      "metaDescription": "Connecticut septic permit steps, from site investigation and construction approval to permit to discharge.",
+      "introCopy": "Connecticut's permit path is one of the best states to explain because the public health workflow is explicit: site investigation, approval to construct, inspection, then permit to discharge. This page turns that code-heavy process into homeowner language.",
+      "uniqueAngle": "Connecticut's permit page is stronger than generic septic content because the state openly ties approval to design flow, potential bedrooms, and code-complying area review.",
+      "driverBullets": [
+        "Local director of health or approved agent review controls the practical permit path.",
+        "Site investigation and soil testing come before construction approval.",
+        "Potential bedrooms, additions, and reserve area can keep the path from staying simple."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What makes the Connecticut permit process different?",
+          "answer": "Connecticut is explicit about site investigation, approval to construct, inspection, and permit to discharge as separate steps."
+        },
+        {
+          "question": "Why do additions matter in Connecticut permits?",
+          "answer": "Because potential bedrooms, code-complying area, and change in use can trigger more local review than a homeowner expects."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=new_install",
+        "/perc-test-cost/connecticut/",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "OR",
+      "title": "Oregon Septic Permit Process",
+      "metaDescription": "Oregon septic permit steps for homeowners, with site evaluation, authorization notice, and county permitting context explained.",
+      "introCopy": "Oregon's official process is unusually honest about uncertainty: site evaluation comes first, and it still does not guarantee approval of a specific system type. That makes Oregon's permit path far more important than a generic install article.",
+      "uniqueAngle": "Oregon is one of the strongest permit-process states because the real homeowner story is site evaluation first, not fake tank certainty.",
+      "driverBullets": [
+        "Site evaluation is the first major gate because DEQ says it does not guarantee a specific system approval.",
+        "Change in use, increased sewage flow, and ADU connections can trigger an authorization notice before the permit step.",
+        "Local permitting authority still matters because most Oregon counties run the practical program."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic permit step in Oregon?",
+          "answer": "Start with site evaluation and the local onsite program before trusting a generic install path."
+        },
+        {
+          "question": "Why is Oregon's permit process so important to the quote?",
+          "answer": "Because the site evaluation can change the likely system class before a permit is even close to approved."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=new_install",
+        "/perc-test-cost/oregon/",
+        "/drain-field-replacement-cost/oregon/"
+      ],
+      "officialSourceIds": ["or_01", "or_02", "or_03"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "MA",
+      "title": "Massachusetts Septic Permit Process",
+      "metaDescription": "Massachusetts Title 5 permit and review path for homeowners, including Board of Health workflow and sale timing triggers.",
+      "introCopy": "Massachusetts homeowners rarely mean only a permit when they search this topic. Under Title 5, Board of Health workflow, sale timing, and change-in-use triggers all matter to the real path. This page keeps the permit story grounded in those triggers.",
+      "uniqueAngle": "Massachusetts is stronger than a generic permit page because Title 5 blends inspection timing, property transfer, and local Board of Health workflow into one homeowner problem.",
+      "driverBullets": [
+        "The local Board of Health is the practical authority for many residential Title 5 steps.",
+        "Property transfer and weather-delay timing can change when inspection and upgrade decisions hit the owner.",
+        "Bedroom additions and changes in use can trigger extra review even before a final quote is ready."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is the Massachusetts permit page so tied to Title 5?",
+          "answer": "Because Title 5 shapes the timing and local review questions that determine when a homeowner actually needs to move."
+        },
+        {
+          "question": "Should I call the Board of Health before trusting a Massachusetts quote?",
+          "answer": "Yes. The Board of Health is the safest practical first stop for timing, filing, and many local implementation details."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=new_install",
+        "/buying-a-house-with-a-septic-system/massachusetts/",
+        "/septic-records-checklist/massachusetts/"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "FL",
+      "title": "Florida Septic Permit Process",
+      "metaDescription": "Florida septic permit steps for homeowners, with DEP-managed counties, county health routing, and inspection sequencing explained.",
+      "introCopy": "Florida's permit path starts with one question many national pages miss: is the property in a DEP-managed county or a county health department path? This page makes that split the starting point so the homeowner does not waste time calling the wrong office.",
+      "uniqueAngle": "Florida's permit page is unusually strong because the official statewide homeowner friction is jurisdiction, not just tank size or install price.",
+      "driverBullets": [
+        "Jurisdiction is step one because DEP now manages permitting in 16 counties while county health departments still manage the others.",
+        "Repair, modification, abandonment, and new installation all still bring permit and inspection sequencing.",
+        "Operating-permit context can matter before the final quote if the system type or county program triggers it."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first thing to verify in a Florida septic permit path?",
+          "answer": "Verify whether the property is in one of the DEP-managed counties or still handled by the county health department."
+        },
+        {
+          "question": "Why can a Florida septic permit path feel confusing?",
+          "answer": "Because the state now splits oversight between DEP and county health departments, and some systems also carry operating-permit obligations."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=new_install",
+        "/buying-a-house-with-a-septic-system/florida/",
+        "/septic-records-checklist/florida/"
+      ],
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
+      "calculatorProjectType": "new_install"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "GA",
+      "title": "Georgia Septic Records Checklist",
+      "metaDescription": "Georgia septic records to request before trusting a quote, including soil analysis, permits, and county repair history.",
+      "introCopy": "In Georgia, records matter because county environmental health and soil analysis still shape whether the simple homeowner estimate holds. This checklist keeps the records request focused on what actually changes the quote.",
+      "uniqueAngle": "Georgia's records page is strongest when it starts with county environmental health records and the disposal-driven size modifier instead of generic seller paperwork.",
+      "driverBullets": [
+        "Ask for the most recent soil analysis or site review tied to the lot.",
+        "Request any septic permit, as-built sketch, or county repair record for the current system.",
+        "Confirm the recorded bedroom count and whether a garbage disposal is installed because Georgia's public guidance treats that as a real sizing driver."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Georgia?",
+          "answer": "Start with the soil analysis or county site review because it affects both drainfield viability and the likely system path."
+        },
+        {
+          "question": "Why does the garbage disposal question belong in a records checklist?",
+          "answer": "Because Georgia's public homeowner guide says it requires a 50 percent larger septic tank."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-permit-process/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=buying_home"
+      ],
+      "officialSourceIds": ["ga_01", "ga_02"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "PA",
+      "title": "Pennsylvania Septic Records Checklist",
+      "metaDescription": "Pennsylvania septic records to request before trusting a quote or buying a home, including permit history and SEO context.",
+      "introCopy": "Pennsylvania records questions are really municipality and SEO questions in disguise. This page tells homeowners what to request first before they assume the old system paperwork proves the site is still low risk.",
+      "uniqueAngle": "Pennsylvania's records page is most useful when it tells the reader to identify the municipality and Sewage Enforcement Officer before reading the rest of the file cabinet.",
+      "driverBullets": [
+        "Request any existing permit or as-built drawing tied to the system.",
+        "Pull pumping, maintenance, or inspection history if the property already uses onsite sewage.",
+        "Ask for local agency or SEO notes showing whether the site already has known field or soil constraints."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is the Sewage Enforcement Officer so important in Pennsylvania records research?",
+          "answer": "Because the SEO and local agency often hold the most practical permit and enforcement context for the property."
+        },
+        {
+          "question": "Can old Pennsylvania records guarantee the same low-cost replacement path today?",
+          "answer": "No. Old records help, but the local SEO path and current site condition still control the real next step."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-permit-process/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=buying_home"
+      ],
+      "officialSourceIds": ["pa_01", "pa_02"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "WA",
+      "title": "Washington Septic Records Checklist",
+      "metaDescription": "Washington septic records to request before trusting a quote, including as-built drawings and operation-and-maintenance logs.",
+      "introCopy": "Washington is one of the strongest records-checklist states because owner inspection duties are visible in official guidance. If the as-built and O&M records are weak, the homeowner should trust the low end of the range less.",
+      "uniqueAngle": "Washington's records page is uniquely strong because the as-built drawing and O&M log can matter as much as the quote itself.",
+      "driverBullets": [
+        "Request the as-built permit record and any design approval for the current system.",
+        "Ask for O&M logs, especially for advanced or proprietary systems.",
+        "Review pumping and repair history to see whether the owner actually followed the required inspection cadence."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the most important Washington septic record?",
+          "answer": "The as-built drawing is one of the most important records because it shows what was actually approved and installed."
+        },
+        {
+          "question": "Why do O&M records matter so much in Washington?",
+          "answer": "Because Washington openly separates maintenance expectations by system type, so weak logs can signal higher real risk than the listing implies."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-pumping-cost/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=buying_home",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": ["wa_02", "wa_03", "wa_04"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "MA",
+      "title": "Massachusetts Septic Records Checklist",
+      "metaDescription": "Massachusetts septic records to request before a sale or quote, including Title 5 inspection reports and Board of Health filings.",
+      "introCopy": "Massachusetts buyers and owners usually need more than a generic permit record. Title 5 inspection timing, Board of Health filings, and annual pumping receipts can all change how current or stale the system paperwork really is.",
+      "uniqueAngle": "Massachusetts is a strong records state because Title 5 turns inspection paperwork into a timing problem, not just a filing problem.",
+      "driverBullets": [
+        "Request the most recent Title 5 inspection report first.",
+        "If the seller claims a three-year validity window, ask for annual pumping receipts that support it.",
+        "Pull any Board of Health filings tied to upgrades, additions, or use changes."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Massachusetts?",
+          "answer": "Start with the most recent Title 5 inspection report because it tells you both the status and the timing context."
+        },
+        {
+          "question": "Why do pumping receipts matter in Massachusetts?",
+          "answer": "Because annual pumping after inspection can extend the inspection validity window to three years in the cases the state describes."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/buying-a-house-with-a-septic-system/massachusetts/",
+        "/septic-permit-process/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=buying_home"
+      ],
+      "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "FL",
+      "title": "Florida Septic Records Checklist",
+      "metaDescription": "Florida septic records to request before closing or trusting a quote, including jurisdiction, permit history, and inspection paperwork.",
+      "introCopy": "Florida records research starts with jurisdiction. Before the homeowner reads the old permit file, they need to know whether DEP or the county health department actually controls the path. This page puts that question first and then narrows the records request.",
+      "uniqueAngle": "Florida's records page is different because the first document to verify is often the authority itself: DEP-managed county or county health department.",
+      "driverBullets": [
+        "Confirm whether the property sits in a DEP-managed county or a county health department path.",
+        "Request existing permit and inspection history for the system.",
+        "Ask for any private-provider inspection paperwork if the owner or contractor used that route."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is jurisdiction part of a Florida records checklist?",
+          "answer": "Because starting with the wrong authority can waste time and hide the records that actually control the next step."
+        },
+        {
+          "question": "What else should a Florida buyer request besides the permit file?",
+          "answer": "Ask for inspection history, repair documentation, and any operating-permit paperwork tied to the system."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/buying-a-house-with-a-septic-system/florida/",
+        "/septic-permit-process/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=buying_home"
+      ],
+      "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
+      "calculatorProjectType": "buying_home"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NJ",
+      "title": "New Jersey Septic Records Checklist",
+      "metaDescription": "New Jersey septic records to request before a quote or home purchase, including board of health paperwork and maintenance contracts.",
+      "introCopy": "New Jersey records are not just a permit-history problem. In Pinelands or advanced-system cases, the real risk lives in inspection certification, board of health reporting, and ongoing maintenance contracts. This page surfaces those documents first.",
+      "uniqueAngle": "New Jersey's records page is uniquely useful because it captures the long-tail ownership paperwork that generic permit articles ignore.",
+      "driverBullets": [
+        "Request recent pumping and inspection history for the current system.",
+        "Ask for any maintenance contract or service paperwork tied to an advanced or special-area system.",
+        "Pull local approvals or notices showing whether the system is under a management program."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the biggest record risk in New Jersey?",
+          "answer": "Missing maintenance-contract or management-program paperwork can hide ongoing costs the buyer did not price in."
+        },
+        {
+          "question": "Why should a New Jersey buyer care about board of health paperwork?",
+          "answer": "Because local oversight and management obligations can matter long after the sale, especially in the Pinelands or with advanced systems."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/buying-a-house-with-a-septic-system/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"],
+      "calculatorProjectType": "buying_home"
     }
   ]
 }

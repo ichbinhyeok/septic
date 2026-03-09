@@ -107,6 +107,40 @@
         </section>
     @endif
 
+    @if (state.permitTimelineNote() != null || state.buyerInspectionTrigger() != null || state.maintenanceInspectionNote() != null || state.specialAreaNote() != null)
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                @if (state.permitTimelineNote() != null)
+                    <article class="detail-card">
+                        <h2>Permit timeline watch</h2>
+                        <p>${state.permitTimelineNote()}</p>
+                    </article>
+                @endif
+
+                @if (state.buyerInspectionTrigger() != null)
+                    <article class="detail-card">
+                        <h2>Buyer trigger</h2>
+                        <p>${state.buyerInspectionTrigger()}</p>
+                    </article>
+                @endif
+
+                @if (state.maintenanceInspectionNote() != null)
+                    <article class="detail-card">
+                        <h2>Maintenance / inspection note</h2>
+                        <p>${state.maintenanceInspectionNote()}</p>
+                    </article>
+                @endif
+
+                @if (state.specialAreaNote() != null)
+                    <article class="detail-card">
+                        <h2>Special state wrinkle</h2>
+                        <p>${state.specialAreaNote()}</p>
+                    </article>
+                @endif
+            </div>
+        </section>
+    @endif
+
     <section class="section">
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
@@ -124,7 +158,7 @@
 
             @if (!stateMoneyPages.isEmpty())
                 <article class="detail-card">
-                    <h2>Next money pages</h2>
+                    <h2>Next high-intent pages</h2>
                     <ul class="detail-list">
                         @for (var stateMoneyPage : stateMoneyPages)
                             <li><a href="${stateMoneyPage.path(state.slug())}">${stateMoneyPage.title()}</a></li>

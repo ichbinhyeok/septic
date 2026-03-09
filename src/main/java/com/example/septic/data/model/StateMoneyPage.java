@@ -12,19 +12,25 @@ public record StateMoneyPage(
         List<String> driverBullets,
         List<FaqBlock> faqBlocks,
         List<String> internalLinkTargets,
-        List<String> officialSourceIds
+        List<String> officialSourceIds,
+        String calculatorProjectType
 ) {
     public String key() {
         return contentSlug + "::" + stateCode;
     }
 
     public String calculatorProjectType() {
+        if (calculatorProjectType != null && !calculatorProjectType.isBlank()) {
+            return calculatorProjectType;
+        }
         return switch (contentSlug) {
             case "septic-replacement-cost" -> "replacement";
             case "perc-test-cost" -> "perc_test";
             case "drain-field-replacement-cost" -> "drainfield_replacement";
             case "septic-pumping-cost" -> "pumping";
             case "buying-a-house-with-a-septic-system" -> "buying_home";
+            case "septic-records-checklist" -> "buying_home";
+            case "septic-permit-process" -> "new_install";
             default -> "new_install";
         };
     }

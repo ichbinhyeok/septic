@@ -159,6 +159,7 @@ public class EstimatorService {
             multiplier += 0.12;
         }
         boolean usingStateSpecificAnchor = costAnchor != null;
+        String costAnchorStatus = stateCostProfile == null ? null : stateCostProfile.status();
         double stateRegionalMultiplier = usingStateSpecificAnchor
                 ? 1.0
                 : stateCostProfile != null && stateCostProfile.regionalMultiplier() != null
@@ -168,6 +169,8 @@ public class EstimatorService {
             drivers.add(state.stateName() + " runs above the national price level, which can lift a homeowner planning estimate before site-specific adjustments.");
         } else if (!usingStateSpecificAnchor && stateRegionalMultiplier <= 0.95) {
             drivers.add(state.stateName() + " runs below the national price level on a broad regional basis, but site and system complexity can erase that advantage quickly.");
+        } else if (usingStateSpecificAnchor && costAnchorStatus != null && costAnchorStatus.startsWith("derived_state_planning_anchor")) {
+            drivers.add(0, state.stateName() + " has a derived state planning cost anchor in this estimator, built from national public septic ranges and BEA regional price levels.");
         } else if (usingStateSpecificAnchor) {
             drivers.add(0, state.stateName() + " has a state-level planning cost anchor in this estimator, so the base range is not relying on the national public anchor alone.");
         }
@@ -192,6 +195,7 @@ public class EstimatorService {
 
         String confidenceLabel = confidenceLabel(state, soilStatus);
         String rangeReason = rangeReason(state);
+        String costAnchorNote = costAnchorNote(state, baseAnchor, stateCostProfile);
         List<String> sourceLabels = Stream.concat(
                         researchDataService.getSources(state.officialSourceIds()).stream(),
                         researchDataService.getSources(baseAnchor.sourceIds()).stream()
@@ -217,6 +221,7 @@ public class EstimatorService {
                 officialMinimumNote,
                 state.localOverrideNote(),
                 state.lastVerifiedAt(),
+                costAnchorNote,
                 drivers.stream().distinct().limit(4).toList(),
                 checklist.stream().distinct().limit(4).toList(),
                 state.ruleHighlights().stream().limit(4).toList(),
@@ -327,6 +332,20 @@ public class EstimatorService {
 
     private String formatSourceLabel(SourceRecord sourceRecord) {
         return sourceRecord.agencyName() + " - " + sourceRecord.title();
+    }
+
+    private String costAnchorNote(StateProfile state, ProjectCostAnchor baseAnchor, StateCostProfile stateCostProfile) {
+        if (stateCostProfile == null || baseAnchor == null) {
+            return "This cost band is using national public cost anchors with site-specific multipliers layered on top.";
+        }
+        String status = stateCostProfile.status();
+        if (status != null && status.startsWith("derived_state_planning_anchor")) {
+            return state.stateName() + " is using a derived planning anchor built from national public septic cost ranges and BEA regional price levels. It is state-aware, but it is not an official state fee schedule or contractor quote feed.";
+        }
+        if (status != null && status.startsWith("regional_multiplier_from_bea_rpp")) {
+            return state.stateName() + " is using national public septic cost anchors with a broad BEA regional price-level adjustment. Treat it as a state-aware planning range, not a local market quote.";
+        }
+        return state.stateName() + " is using a state-level planning anchor in this estimator. Final pricing still depends on the site, the permit path, and the system type.";
     }
 
     private int flowToTankHeuristic(int estimatedDailyFlow, Integer stateMinimum) {

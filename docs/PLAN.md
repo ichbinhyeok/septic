@@ -20,7 +20,7 @@ later implementation work should follow.
 - Dedicated septic tank size estimator
 - Dedicated pump schedule and maintenance estimator
 - Quote form
-- National money pages
+- National money and workflow pages
 - Ten state guides
 
 ## Rollout decision
@@ -35,8 +35,8 @@ What goes live now:
 - 1 dedicated tank size estimator
 - 1 dedicated pump schedule estimator
 - 1 quote form integrated into calculator results
-- 7 national money pages
-- 18 state-specific money pages
+- 9 national money and workflow pages
+- 30 state-specific money and workflow pages
 - 1 quote form
 
 What waits until traffic proves itself:
@@ -142,7 +142,7 @@ Use files for three different jobs:
 
 1. Keep the current layout foundation aligned with trust and conversion.
 2. Deepen state data with homeowner workflow modules and cost multipliers where source quality supports it.
-3. Expand only the strongest state x intent combinations first.
+3. Expand only the strongest state x intent combinations first, especially permit-process and records-checklist wedges in the strongest states.
 4. Refine the dedicated tank size and pump estimator routes after the main calculator and quote funnel stabilize.
 5. Refine cost profiles from public sources without inventing false state precision.
 
@@ -151,5 +151,6 @@ Use files for three different jobs:
 - Planning docs match the actual shipped surface.
 - Source registry exists with official anchors for all 10 launch states plus cost-anchor provenance.
 - State profiles include homeowner workflow modules, not just rule summaries.
+- Workflow pages exist for permit-process and records-checklist intent where the state angle is genuinely unique.
 - Storage convention exists for leads, events, and buyer-ready exports.
 - Legal and trust pages exist in the footer before public launch.

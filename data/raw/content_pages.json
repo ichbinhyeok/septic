@@ -183,6 +183,58 @@
         }
       ],
       "internalLinkTargets": ["/septic-replacement-cost/", "/septic-system-cost-calculator/", "/septic-pumping-cost/"]
+    },
+    {
+      "slug": "septic-permit-process",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic permit process",
+      "secondaryKeywords": ["septic permit checklist", "septic permit steps", "what permit do i need for septic"],
+      "title": "Septic Permit Process",
+      "metaDescription": "Understand the usual septic permit steps, what to verify before applying, and why state and local process can change the timeline.",
+      "introCopy": "The permit process is one of the highest-value septic questions because it controls whether a homeowner estimate stays simple or turns into a longer site-review project. This page frames the permit path in homeowner language without pretending every county works the same way.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "Site evaluation or soil review usually comes before quote confidence, not after.",
+        "Local authority often matters more than the state summary once the homeowner moves past rough planning.",
+        "Replacement, repair, and change-in-use projects can trigger a different permit path than a simple new install assumption."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does the septic permit process deserve its own page?",
+          "answer": "Because the permit path changes project timing, system certainty, and what questions a homeowner should ask before trusting the low end of the estimate."
+        },
+        {
+          "question": "Can a calculator replace the permit process?",
+          "answer": "No. The calculator helps frame likely size, system type, and cost range, but permit approval and local review still happen outside the estimator."
+        }
+      ],
+      "internalLinkTargets": ["/septic-system-cost-calculator/", "/septic-records-checklist/", "/septic-replacement-cost/"]
+    },
+    {
+      "slug": "septic-records-checklist",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic records checklist",
+      "secondaryKeywords": ["septic records to request", "septic permit records", "buying house septic records"],
+      "title": "Septic Records Checklist",
+      "metaDescription": "What septic records to request before trusting a quote, closing on a home, or assuming the current system is still straightforward.",
+      "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on what paperwork matters first, why missing records widen the estimate, and how the answer changes by state.",
+      "calculatorModule": "main_cost_estimator",
+      "driverBullets": [
+        "Permit, as-built, and inspection records often matter more than the seller's memory.",
+        "Maintenance logs and pumping receipts help validate whether the system condition is really low risk.",
+        "If the paperwork is missing, a buyer or homeowner should trust the lower end of the range less."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document to ask for?",
+          "answer": "Start with the most recent permit, as-built, inspection, or site-review record tied to the system because that tells you what was actually approved."
+        },
+        {
+          "question": "Why do missing septic records matter so much?",
+          "answer": "Because they make the site, system type, and maintenance history less certain, which usually means a wider cost range and more pre-quote verification."
+        }
+      ],
+      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-system-cost-calculator/", "/septic-permit-process/"]
     }
   ]
 }

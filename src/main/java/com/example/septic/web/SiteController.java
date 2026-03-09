@@ -347,7 +347,9 @@ public class SiteController {
             "/perc-test-cost", "/perc-test-cost/",
             "/drain-field-replacement-cost", "/drain-field-replacement-cost/",
             "/septic-pumping-cost", "/septic-pumping-cost/",
-            "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/"
+            "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",
+            "/septic-permit-process", "/septic-permit-process/",
+            "/septic-records-checklist", "/septic-records-checklist/"
     })
     public String contentPage(org.springframework.web.context.request.WebRequest request, Model model) {
         String path = request.getDescription(false).replace("uri=", "");
@@ -373,7 +375,9 @@ public class SiteController {
             "/perc-test-cost/{stateSlug}", "/perc-test-cost/{stateSlug}/",
             "/buying-a-house-with-a-septic-system/{stateSlug}", "/buying-a-house-with-a-septic-system/{stateSlug}/",
             "/drain-field-replacement-cost/{stateSlug}", "/drain-field-replacement-cost/{stateSlug}/",
-            "/septic-pumping-cost/{stateSlug}", "/septic-pumping-cost/{stateSlug}/"
+            "/septic-pumping-cost/{stateSlug}", "/septic-pumping-cost/{stateSlug}/",
+            "/septic-permit-process/{stateSlug}", "/septic-permit-process/{stateSlug}/",
+            "/septic-records-checklist/{stateSlug}", "/septic-records-checklist/{stateSlug}/"
     })
     public String stateMoneyPage(@PathVariable String stateSlug, HttpServletRequest request, Model model) {
         String path = request.getRequestURI().replaceFirst("^/", "").replaceFirst("/$", "");

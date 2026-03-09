@@ -21,6 +21,7 @@ public record EstimatorResult(
         String officialMinimumNote,
         String localOverrideNote,
         String lastVerifiedAt,
+        String costAnchorNote,
         List<String> costDrivers,
         List<String> checklist,
         List<String> ruleHighlights,

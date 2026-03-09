@@ -71,6 +71,12 @@
                 </article>
 
                 <article class="feature-card">
+                    <h3>Permit and records workflows</h3>
+                    <p>State-specific pages for septic permit process, records to request, and buyer-side verification steps.</p>
+                    <a href="/septic-permit-process/">Browse workflow pages</a>
+                </article>
+
+                <article class="feature-card">
                     <h3>File-based data model</h3>
                     <p>No database in V1. Research data stays versioned in JSON and CSV so provenance remains visible.</p>
                     <a href="#sources">See source policy</a>

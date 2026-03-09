@@ -72,6 +72,8 @@
                         <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
                         <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
                         <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
+                        <li><a href="/septic-permit-process/">Permit process</a></li>
+                        <li><a href="/septic-records-checklist/">Records checklist</a></li>
                         <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                     </ul>
                 </nav>
