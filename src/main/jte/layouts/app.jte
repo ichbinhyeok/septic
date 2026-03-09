@@ -17,9 +17,16 @@
     <meta property="og:description" content="${page.description()}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${page.canonicalUrl()}">
+    @if (page.socialImageUrl() != null && !page.socialImageUrl().isBlank())
+        <meta property="og:image" content="${page.socialImageUrl()}">
+        <meta property="og:image:alt" content="${page.title()}">
+    @endif
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${page.title()}">
     <meta name="twitter:description" content="${page.description()}">
+    @if (page.socialImageUrl() != null && !page.socialImageUrl().isBlank())
+        <meta name="twitter:image" content="${page.socialImageUrl()}">
+    @endif
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +52,7 @@
                 <nav class="site-nav">
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
                     <a href="/septic-tank-size-estimator/">Tank size</a>
-                    <a href="/#states">Launch states</a>
+                    <a href="/#states">State guides</a>
                     <a href="/#sources">Source policy</a>
                 </nav>
             </div>

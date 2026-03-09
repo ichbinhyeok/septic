@@ -320,7 +320,8 @@ h3,
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     margin: 0;
     line-height: 1.02;
     letter-spacing: -0.03em;
@@ -337,6 +338,10 @@ h2 {
 
 h3 {
     font-size: 1.22rem;
+}
+
+h4 {
+    font-size: 1.04rem;
 }
 
 .lede {
@@ -498,6 +503,23 @@ li,
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.state-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.state-card__links a {
+    margin-top: 0;
+}
+
+.detail-card__source {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.92rem;
 }
 
 .pill {

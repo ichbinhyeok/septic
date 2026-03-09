@@ -27,6 +27,7 @@ import jakarta.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class SiteController {
@@ -72,7 +74,13 @@ public class SiteController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("page", seoService.homePage());
-        model.addAttribute("states", researchDataService.getStateProfiles());
+        List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
+        model.addAttribute("featuredStates", publicStates.stream()
+                .filter(state -> "anchor".equalsIgnoreCase(state.launchTier()))
+                .toList());
+        model.addAttribute("additionalStates", publicStates.stream()
+                .filter(state -> !"anchor".equalsIgnoreCase(state.launchTier()))
+                .toList());
         return "pages/home";
     }
 
@@ -280,8 +288,15 @@ public class SiteController {
     }
 
     @GetMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
-    public String tankSizeEstimator(Model model) {
-        return renderTankSizeEstimator(model, new TankSizeForm(), null);
+    public String tankSizeEstimator(
+            @RequestParam(name = "state", required = false) String stateCode,
+            Model model
+    ) {
+        TankSizeForm tankSizeForm = new TankSizeForm();
+        if (stateCode != null && researchDataService.findStateByCode(stateCode).filter(StateProfile::isPublished).isPresent()) {
+            tankSizeForm.setStateCode(stateCode.toUpperCase(Locale.US));
+        }
+        return renderTankSizeEstimator(model, tankSizeForm, null);
     }
 
     @PostMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
@@ -334,7 +349,7 @@ public class SiteController {
 
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
     public String stateGuide(@PathVariable String stateSlug, Model model) {
-        StateProfile state = researchDataService.findStateBySlug(stateSlug)
+        StateProfile state = researchDataService.findPublicStateBySlug(stateSlug)
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
@@ -350,7 +365,7 @@ public class SiteController {
         model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
-        model.addAttribute("stateMoneyPages", researchDataService.listStateMoneyPages(state.stateCode()));
+        model.addAttribute("stateMoneyPages", researchDataService.listPublicStateMoneyPages(state.stateCode()));
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
@@ -374,9 +389,9 @@ public class SiteController {
     public String contentPage(org.springframework.web.context.request.WebRequest request, Model model) {
         String path = request.getDescription(false).replace("uri=", "");
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
-        ContentPage contentPage = researchDataService.findContentPage(slug)
+        ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
-        List<StateMoneyPageLink> stateMoneyPageLinks = researchDataService.listStateMoneyPagesForContent(slug).stream()
+        List<StateMoneyPageLink> stateMoneyPageLinks = researchDataService.listPublicStateMoneyPagesForContent(slug).stream()
                 .map(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug()))))
                 .flatMap(Optional::stream)
@@ -384,8 +399,9 @@ public class SiteController {
 
         model.addAttribute("page", seoService.contentPage(contentPage));
         model.addAttribute("contentPage", contentPage);
-        model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
+        model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets()));
         model.addAttribute("calculatorPath", calculatorPathForModule(contentPage.calculatorModule()));
         return "pages/content-page";
     }
@@ -404,7 +420,7 @@ public class SiteController {
         String path = request.getRequestURI().replaceFirst("^/", "").replaceFirst("/$", "");
         String contentSlug = path.substring(0, path.lastIndexOf('/'));
 
-        StateMoneyPage stateMoneyPage = researchDataService.findStateMoneyPage(contentSlug, stateSlug)
+        StateMoneyPage stateMoneyPage = researchDataService.findPublicStateMoneyPage(contentSlug, stateSlug)
                 .orElseThrow(() -> new StateNotFoundException(path));
         StateProfile state = researchDataService.findStateByCode(stateMoneyPage.stateCode())
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
@@ -425,6 +441,7 @@ public class SiteController {
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
+        model.addAttribute("internalLinks", pageLinks(stateMoneyPage.internalLinkTargets()));
         return "pages/state-money-page";
     }
 
@@ -467,20 +484,30 @@ public class SiteController {
             boolean quoteHasErrors
     ) {
         model.addAttribute("page", seoService.calculatorPage());
-        model.addAttribute("states", researchDataService.getStateProfiles());
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("estimateForm", estimateForm);
         model.addAttribute("result", result);
         model.addAttribute("quoteLeadForm", quoteLeadForm);
         model.addAttribute("leadId", leadId);
         model.addAttribute("quoteHasErrors", quoteHasErrors);
+        model.addAttribute("costEvidence", result == null
+                ? List.of()
+                : costEvidenceViews(result.stateCode(), estimateForm.getProjectType()));
         return "pages/calculator";
     }
 
     private String renderTankSizeEstimator(Model model, TankSizeForm tankSizeForm, TankSizeEstimatorResult result) {
         model.addAttribute("page", seoService.tankSizeEstimatorPage());
-        model.addAttribute("states", researchDataService.getStateProfiles());
+        List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
+        StateProfile selectedState = researchDataService.findStateByCode(tankSizeForm.getStateCode())
+                .filter(StateProfile::isPublished)
+                .orElse(publicStates.isEmpty() ? null : publicStates.get(0));
+        model.addAttribute("states", publicStates);
         model.addAttribute("tankSizeForm", tankSizeForm);
         model.addAttribute("result", result);
+        model.addAttribute("selectedState", selectedState);
+        model.addAttribute("tankSizeFaqs", seoService.tankSizeEstimatorFaqs());
+        model.addAttribute("stateRuleFacts", selectedState == null ? List.of() : stateRuleFactViews(selectedState.stateCode()));
         return "pages/tank-size-estimator";
     }
 
@@ -662,12 +689,171 @@ public class SiteController {
         );
 
         for (String contentSlug : prioritySlugs) {
-            Optional<StateMoneyPage> page = researchDataService.findStateMoneyPage(contentSlug, state.slug());
+            Optional<StateMoneyPage> page = researchDataService.findPublicStateMoneyPage(contentSlug, state.slug());
             if (page.isPresent()) {
                 return page;
             }
         }
         return Optional.empty();
+    }
+
+    private List<PageLink> pageLinks(List<String> paths) {
+        if (paths == null || paths.isEmpty()) {
+            return List.of();
+        }
+        return paths.stream()
+                .map(this::pageLink)
+                .toList();
+    }
+
+    private PageLink pageLink(String path) {
+        String title = calculatorLinkTitle(path)
+                .or(() -> stateGuideLinkTitle(path))
+                .or(() -> stateMoneyPageLinkTitle(path))
+                .or(() -> contentPageLinkTitle(path))
+                .orElseGet(() -> prettifyPath(path));
+        return new PageLink(title, path);
+    }
+
+    private Optional<String> calculatorLinkTitle(String path) {
+        var uri = UriComponentsBuilder.fromUriString(path).build();
+        String normalizedPath = uri.getPath();
+        if ("/septic-system-cost-calculator/".equals(normalizedPath) || "/septic-system-cost-calculator".equals(normalizedPath)) {
+            Map<String, List<String>> queryParams = uri.getQueryParams();
+            String stateCode = queryParams.getOrDefault("state", List.of()).stream().findFirst().orElse(null);
+            String projectType = queryParams.getOrDefault("projectType", List.of()).stream().findFirst().orElse(null);
+            Optional<StateProfile> state = researchDataService.findStateByCode(stateCode);
+            if (state.isPresent() && projectType != null) {
+                return Optional.of(state.get().stateName() + " " + projectTypeLabel(projectType) + " estimate");
+            }
+            if (state.isPresent()) {
+                return Optional.of(state.get().stateName() + " septic cost estimate");
+            }
+            return Optional.of("Main septic cost calculator");
+        }
+        if ("/septic-tank-size-estimator/".equals(normalizedPath) || "/septic-tank-size-estimator".equals(normalizedPath)) {
+            return Optional.of("Septic tank size estimator");
+        }
+        if ("/septic-pump-schedule-estimator/".equals(normalizedPath) || "/septic-pump-schedule-estimator".equals(normalizedPath)) {
+            return Optional.of("Septic pump schedule estimator");
+        }
+        return Optional.empty();
+    }
+
+    private Optional<String> stateGuideLinkTitle(String path) {
+        String normalizedPath = normalizePath(path);
+        String prefix = "/septic-system-cost-calculator/";
+        if (normalizedPath != null && normalizedPath.startsWith(prefix)) {
+            String stateSlug = normalizedPath.substring(prefix.length()).replaceFirst("/$", "");
+            if (!stateSlug.isBlank() && !stateSlug.contains("/")) {
+                return researchDataService.findStateBySlug(stateSlug)
+                        .map(state -> state.stateName() + " septic guide");
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<String> stateMoneyPageLinkTitle(String path) {
+        String normalizedPath = normalizePath(path);
+        if (normalizedPath == null) {
+            return Optional.empty();
+        }
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        if (parts.length == 2) {
+            return researchDataService.findStateMoneyPage(parts[0], parts[1])
+                    .map(StateMoneyPage::title);
+        }
+        return Optional.empty();
+    }
+
+    private Optional<String> contentPageLinkTitle(String path) {
+        String normalizedPath = normalizePath(path);
+        if (normalizedPath == null) {
+            return Optional.empty();
+        }
+        String slug = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "");
+        if (slug.isBlank()) {
+            return Optional.empty();
+        }
+        return researchDataService.findContentPage(slug)
+                .map(ContentPage::title);
+    }
+
+    private String normalizePath(String path) {
+        return UriComponentsBuilder.fromUriString(path).build().getPath();
+    }
+
+    private String projectTypeLabel(String projectType) {
+        return switch (projectType) {
+            case "replacement" -> "replacement";
+            case "perc_test" -> "perc test";
+            case "drainfield_replacement" -> "drain field";
+            case "pumping" -> "pumping";
+            case "inspection" -> "inspection";
+            case "buying_home" -> "buyer";
+            default -> "project";
+        };
+    }
+
+    private String prettifyPath(String path) {
+        String normalizedPath = normalizePath(path);
+        if (normalizedPath == null || normalizedPath.isBlank() || "/".equals(normalizedPath)) {
+            return "Home";
+        }
+        String lastSegment = normalizedPath.replaceFirst("/$", "");
+        lastSegment = lastSegment.substring(lastSegment.lastIndexOf('/') + 1);
+        return Arrays.stream(lastSegment.split("-"))
+                .filter(part -> !part.isBlank())
+                .map(part -> Character.toUpperCase(part.charAt(0)) + part.substring(1))
+                .reduce((left, right) -> left + " " + right)
+                .orElse("Related page");
+    }
+
+    private List<StateRuleFactView> stateRuleFactViews(String stateCode) {
+        return researchDataService.listPublicStateRuleFacts(stateCode).stream()
+                .map(fact -> {
+                    SourceRecord source = researchDataService.findSource(fact.sourceId()).orElse(null);
+                    return new StateRuleFactView(
+                            fact.label(),
+                            fact.renderedValue(),
+                            fact.note(),
+                            source != null ? source.agencyName() : "",
+                            source != null ? source.title() : "",
+                            source != null ? source.url() : "",
+                            fact.sourceSection()
+                    );
+                })
+                .toList();
+    }
+
+    private List<CostEvidenceView> costEvidenceViews(String stateCode, String projectType) {
+        return researchDataService.listCostEvidence(stateCode, projectType).stream()
+                .map(evidence -> new CostEvidenceView(
+                        evidence.title(),
+                        costEvidenceValueSummary(evidence),
+                        evidence.note(),
+                        evidence.sourceIds().stream()
+                                .map(researchDataService::findSource)
+                                .flatMap(Optional::stream)
+                                .map(source -> source.agencyName() + ": " + source.title())
+                                .reduce((left, right) -> left + " | " + right)
+                                .orElse("Source under review")
+                ))
+                .toList();
+    }
+
+    private String costEvidenceValueSummary(com.example.septic.data.model.CostEvidence evidence) {
+        if (evidence.multiplier() != null) {
+            return "Multiplier " + String.format(Locale.US, "%.3f", evidence.multiplier());
+        }
+        if (evidence.low() != null && evidence.high() != null) {
+            String range = money(evidence.low()) + " to " + money(evidence.high());
+            if (evidence.mid() != null) {
+                return range + " | midpoint about " + money(evidence.mid());
+            }
+            return range;
+        }
+        return "Planning evidence";
     }
 
     private String firstListItem(List<String> items, String fallback) {

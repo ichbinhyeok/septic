@@ -28,7 +28,7 @@ public class SeoService {
 
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
-        return new PageMeta(
+        return pageMeta(
                 "Septic System Cost & Size Estimator",
                 "State-aware septic planning estimates for tank size, system type, and rough cost.",
                 canonicalUrl,
@@ -44,7 +44,7 @@ public class SeoService {
 
     public PageMeta calculatorPage() {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/");
-        return new PageMeta(
+        return pageMeta(
                 "Septic System Cost Calculator",
                 "Estimate likely tank size, system class, and septic project cost range by state.",
                 canonicalUrl,
@@ -62,25 +62,53 @@ public class SeoService {
 
     public PageMeta tankSizeEstimatorPage() {
         String canonicalUrl = absoluteUrl("/septic-tank-size-estimator/");
-        return new PageMeta(
+        List<FaqBlock> faqBlocks = tankSizeEstimatorFaqs();
+        List<String> jsonLdBlocks = new ArrayList<>();
+        jsonLdBlocks.add(toJson(webPage(canonicalUrl, "Septic Tank Size Estimator",
+                "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.", "WebPage")));
+        jsonLdBlocks.add(toJson(breadcrumb(List.of(
+                crumb("Home", absoluteUrl("/")),
+                crumb("Septic Tank Size Estimator", canonicalUrl)
+        ))));
+        jsonLdBlocks.add(toJson(faqPage(
+                canonicalUrl,
+                "Septic Tank Size Estimator",
+                "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.",
+                faqBlocks
+        )));
+        return pageMeta(
                 "Septic Tank Size Estimator",
                 "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.",
                 canonicalUrl,
                 "index,follow",
-                List.of(
-                        toJson(webPage(canonicalUrl, "Septic Tank Size Estimator",
-                                "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.", "WebPage")),
-                        toJson(breadcrumb(List.of(
-                                crumb("Home", absoluteUrl("/")),
-                                crumb("Septic Tank Size Estimator", canonicalUrl)
-                        )))
+                jsonLdBlocks
+        );
+    }
+
+    public List<FaqBlock> tankSizeEstimatorFaqs() {
+        return List.of(
+                new FaqBlock(
+                        "How should a homeowner use this septic tank size estimator?",
+                        "Use it as a planning tool to estimate a likely minimum tank size and a conservative range before you collect quotes or rely on old paperwork."
+                ),
+                new FaqBlock(
+                        "Do bedrooms matter more than current occupancy for septic tank size?",
+                        "In many states, bedrooms or design flow are the main public sizing signal. Occupancy still helps widen the planning range when usage is clearly higher than the bedroom count suggests."
+                ),
+                new FaqBlock(
+                        "Does a garbage disposal change the likely tank size?",
+                        "Sometimes yes. Some states call this out directly, and even where the rule is less explicit, disposal use is a reasonable homeowner-facing signal that the conservative range may need to move up."
+                ),
+                new FaqBlock(
+                        "Can seasonal use justify a much smaller septic tank?",
+                        "Usually not. Seasonal use may soften the pumping cadence estimate, but it should not aggressively shrink a homeowner-facing size recommendation."
                 )
         );
     }
 
     public PageMeta pumpScheduleEstimatorPage() {
         String canonicalUrl = absoluteUrl("/septic-pump-schedule-estimator/");
-        return new PageMeta(
+        return pageMeta(
                 "Septic Pump Schedule Estimator",
                 "Estimate a rough pumping cadence, inspection cadence, and maintenance reminder from tank size and use.",
                 canonicalUrl,
@@ -105,7 +133,7 @@ public class SeoService {
         jsonLdBlocks.add(toJson(webPage(canonicalUrl,
                 title,
                 description,
-                "WebPage")));
+                "Article")));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
@@ -119,7 +147,7 @@ public class SeoService {
                     faqBlocks
             )));
         }
-        return new PageMeta(
+        return pageMeta(
                 title,
                 description,
                 canonicalUrl,
@@ -195,7 +223,7 @@ public class SeoService {
     public PageMeta contentPage(ContentPage contentPage) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "WebPage")));
+        jsonLdBlocks.add(toJson(webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "CollectionPage")));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb(contentPage.title(), canonicalUrl)
@@ -203,7 +231,7 @@ public class SeoService {
         if (contentPage.faqBlocks() != null && !contentPage.faqBlocks().isEmpty()) {
             jsonLdBlocks.add(toJson(faqPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), contentPage.faqBlocks())));
         }
-        return new PageMeta(
+        return pageMeta(
                 contentPage.title(),
                 contentPage.metaDescription(),
                 canonicalUrl,
@@ -215,7 +243,7 @@ public class SeoService {
     public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "WebPage")));
+        jsonLdBlocks.add(toJson(webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "Article")));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb(stateMoneyPage.title(), canonicalUrl)
@@ -223,7 +251,7 @@ public class SeoService {
         if (stateMoneyPage.faqBlocks() != null && !stateMoneyPage.faqBlocks().isEmpty()) {
             jsonLdBlocks.add(toJson(faqPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), stateMoneyPage.faqBlocks())));
         }
-        return new PageMeta(
+        return pageMeta(
                 stateMoneyPage.title(),
                 stateMoneyPage.metaDescription(),
                 canonicalUrl,
@@ -234,7 +262,7 @@ public class SeoService {
 
     public PageMeta basicPage(String title, String description, String path) {
         String canonicalUrl = absoluteUrl(path);
-        return new PageMeta(
+        return pageMeta(
                 title,
                 description,
                 canonicalUrl,
@@ -259,7 +287,7 @@ public class SeoService {
     }
 
     public PageMeta notFound(String message) {
-        return new PageMeta(
+        return pageMeta(
                 "State Not Found",
                 message,
                 absoluteUrl("/404"),
@@ -278,6 +306,17 @@ public class SeoService {
             return baseUrl + "/";
         }
         return baseUrl + normalizedPath;
+    }
+
+    private PageMeta pageMeta(String title, String description, String canonicalUrl, String robots, List<String> jsonLdBlocks) {
+        return new PageMeta(
+                title,
+                description,
+                canonicalUrl,
+                robots,
+                absoluteUrl("/social-card.svg"),
+                jsonLdBlocks
+        );
     }
 
     private Map<String, Object> webSite(String url, String name, String description) {

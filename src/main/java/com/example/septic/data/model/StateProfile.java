@@ -39,4 +39,8 @@ public record StateProfile(
     public String slug() {
         return stateName.toLowerCase().replace(" ", "-");
     }
+
+    public boolean isPublished() {
+        return "published".equalsIgnoreCase(publishStatus);
+    }
 }

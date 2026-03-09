@@ -1,5 +1,6 @@
 @import com.example.septic.service.EstimatorResult
 @param EstimatorResult result
+@param java.util.List<com.example.septic.web.CostEvidenceView> costEvidence = java.util.List.of()
 
 <section class="result-panel" id="result-top">
     <div class="result-panel__header">
@@ -101,4 +102,20 @@
             @endfor
         </ul>
     </article>
+
+    @if (!costEvidence.isEmpty())
+        <article class="detail-card detail-card--full">
+            <h3>Cost evidence behind this planning range</h3>
+            <div class="detail-grid">
+                @for (var evidence : costEvidence)
+                    <article class="detail-card">
+                        <h4>${evidence.title()}</h4>
+                        <p><strong>${evidence.valueSummary()}</strong></p>
+                        <p>${evidence.note()}</p>
+                        <p class="detail-card__source">${evidence.sourceSummary()}</p>
+                    </article>
+                @endfor
+            </div>
+        </article>
+    @endif
 </section>

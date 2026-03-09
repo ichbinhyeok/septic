@@ -25,10 +25,10 @@
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
             </div>
             <div class="hero-sidecard">
-                <span class="pill">${state.launchTier()}</span>
+                <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
-                <p>Confidence: ${state.confidenceScore()} | Last verified: ${state.lastVerifiedAt()}</p>
+                <p>Updated ${state.lastVerifiedAt()} with official-source context and conservative estimate framing.</p>
                 <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}">${calculatorCtaLabel}</a>
                 <p>${calculatorCtaNote}</p>
             </div>
@@ -404,14 +404,6 @@
                 </article>
             @endif
 
-            <article class="detail-card">
-                <h2>Still under review</h2>
-                <ul class="detail-list">
-                    @for (var item : state.itemsNeedingVerification())
-                        <li>${item}</li>
-                    @endfor
-                </ul>
-            </article>
         </div>
     </section>
 

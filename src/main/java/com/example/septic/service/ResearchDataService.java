@@ -3,10 +3,14 @@ package com.example.septic.service;
 import com.example.septic.config.AppDataProperties;
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.ContentPagesDocument;
+import com.example.septic.data.model.CostEvidence;
+import com.example.septic.data.model.CostEvidenceDocument;
 import com.example.septic.data.model.CostProfilesDocument;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
+import com.example.septic.data.model.StateRuleFact;
+import com.example.septic.data.model.StateRuleFactsDocument;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateMoneyPagesDocument;
 import com.example.septic.data.model.StateProfile;
@@ -44,6 +48,13 @@ public class ResearchDataService {
     private Map<String, StateCostProfile> costProfilesByStateCode = Map.of();
     private Map<String, ContentPage> contentPagesBySlug = Map.of();
     private Map<String, StateMoneyPage> stateMoneyPagesByKey = Map.of();
+    private Map<String, List<StateRuleFact>> stateRuleFactsByStateCode = Map.of();
+    private List<CostEvidence> costEvidence = List.of();
+    private String stateProfilesGeneratedAt = "";
+    private String contentPagesGeneratedAt = "";
+    private String stateMoneyPagesGeneratedAt = "";
+    private String stateRuleFactsGeneratedAt = "";
+    private String costEvidenceGeneratedAt = "";
 
     public ResearchDataService(AppDataProperties dataProperties) {
         this.dataProperties = dataProperties;
@@ -67,9 +78,17 @@ public class ResearchDataService {
                     root.resolve("content_pages.json").toFile(),
                     ContentPagesDocument.class
             );
+            CostEvidenceDocument costEvidenceDocument = objectMapper.readValue(
+                    root.resolve("cost_evidence.json").toFile(),
+                    CostEvidenceDocument.class
+            );
             StateMoneyPagesDocument stateMoneyPagesDocument = objectMapper.readValue(
                     root.resolve("state_money_pages.json").toFile(),
                     StateMoneyPagesDocument.class
+            );
+            StateRuleFactsDocument stateRuleFactsDocument = objectMapper.readValue(
+                    root.resolve("state_rule_facts.json").toFile(),
+                    StateRuleFactsDocument.class
             );
 
             CsvSchema schema = CsvSchema.emptySchema().withHeader();
@@ -85,6 +104,11 @@ public class ResearchDataService {
             this.stateProfiles = stateDocument.states().stream()
                     .sorted(Comparator.comparing(StateProfile::stateName))
                     .toList();
+            this.stateProfilesGeneratedAt = stateDocument.generatedAt();
+            this.contentPagesGeneratedAt = contentPagesDocument.generatedAt();
+            this.stateMoneyPagesGeneratedAt = stateMoneyPagesDocument.generatedAt();
+            this.stateRuleFactsGeneratedAt = stateRuleFactsDocument.generatedAt();
+            this.costEvidenceGeneratedAt = costEvidenceDocument.generatedAt();
             this.statesByCode = this.stateProfiles.stream()
                     .collect(Collectors.toMap(StateProfile::stateCode, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.statesBySlug = this.stateProfiles.stream()
@@ -97,6 +121,15 @@ public class ResearchDataService {
                     .collect(Collectors.toMap(ContentPage::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.stateMoneyPagesByKey = stateMoneyPagesDocument.pages().stream()
                     .collect(Collectors.toMap(StateMoneyPage::key, Function.identity(), (left, right) -> left, LinkedHashMap::new));
+            this.costEvidence = costEvidenceDocument.evidence().stream()
+                    .filter(CostEvidence::isPublished)
+                    .toList();
+            this.stateRuleFactsByStateCode = stateRuleFactsDocument.facts().stream()
+                    .collect(Collectors.groupingBy(
+                            fact -> fact.stateCode().toUpperCase(Locale.US),
+                            LinkedHashMap::new,
+                            Collectors.toList()
+                    ));
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load research data from " + root, exception);
         }
@@ -106,15 +139,34 @@ public class ResearchDataService {
         return stateProfiles;
     }
 
+    public List<StateProfile> getPublicStateProfiles() {
+        return stateProfiles.stream()
+                .filter(StateProfile::isPublished)
+                .toList();
+    }
+
     public List<ContentPage> getContentPages() {
         return contentPagesBySlug.values().stream()
                 .sorted(Comparator.comparing(ContentPage::title))
                 .toList();
     }
 
+    public List<ContentPage> getPublicContentPages() {
+        return getContentPages().stream()
+                .filter(ContentPage::isPublished)
+                .toList();
+    }
+
     public List<StateMoneyPage> getStateMoneyPages() {
         return stateMoneyPagesByKey.values().stream()
                 .sorted(Comparator.comparing(StateMoneyPage::title))
+                .toList();
+    }
+
+    public List<StateMoneyPage> getPublicStateMoneyPages() {
+        return getStateMoneyPages().stream()
+                .filter(StateMoneyPage::isPublished)
+                .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false))
                 .toList();
     }
 
@@ -130,6 +182,10 @@ public class ResearchDataService {
             return Optional.empty();
         }
         return Optional.ofNullable(statesBySlug.get(stateSlug.toLowerCase(Locale.US)));
+    }
+
+    public Optional<StateProfile> findPublicStateBySlug(String stateSlug) {
+        return findStateBySlug(stateSlug).filter(StateProfile::isPublished);
     }
 
     public List<SourceRecord> getSources(List<String> sourceIds) {
@@ -154,12 +210,25 @@ public class ResearchDataService {
         return Optional.ofNullable(contentPagesBySlug.get(slug));
     }
 
+    public Optional<ContentPage> findPublicContentPage(String slug) {
+        return findContentPage(slug).filter(ContentPage::isPublished);
+    }
+
     public Optional<StateMoneyPage> findStateMoneyPage(String contentSlug, String stateSlug) {
         Optional<StateProfile> state = findStateBySlug(stateSlug);
         if (state.isEmpty()) {
             return Optional.empty();
         }
         return Optional.ofNullable(stateMoneyPagesByKey.get(contentSlug + "::" + state.get().stateCode()));
+    }
+
+    public Optional<StateMoneyPage> findPublicStateMoneyPage(String contentSlug, String stateSlug) {
+        Optional<StateProfile> state = findPublicStateBySlug(stateSlug);
+        if (state.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(stateMoneyPagesByKey.get(contentSlug + "::" + state.get().stateCode()))
+                .filter(StateMoneyPage::isPublished);
     }
 
     public boolean hasStateMoneyPage(String contentSlug, String stateCode) {
@@ -173,10 +242,78 @@ public class ResearchDataService {
                 .toList();
     }
 
+    public List<StateMoneyPage> listPublicStateMoneyPages(String stateCode) {
+        return listStateMoneyPages(stateCode).stream()
+                .filter(StateMoneyPage::isPublished)
+                .toList();
+    }
+
     public List<StateMoneyPage> listStateMoneyPagesForContent(String contentSlug) {
         return stateMoneyPagesByKey.values().stream()
                 .filter(page -> page.contentSlug().equals(contentSlug))
                 .sorted(Comparator.comparing(StateMoneyPage::title))
                 .toList();
+    }
+
+    public List<StateMoneyPage> listPublicStateMoneyPagesForContent(String contentSlug) {
+        return listStateMoneyPagesForContent(contentSlug).stream()
+                .filter(StateMoneyPage::isPublished)
+                .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false))
+                .toList();
+    }
+
+    public java.util.Optional<SourceRecord> findSource(String sourceId) {
+        if (sourceId == null || sourceId.isBlank()) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.ofNullable(sourcesById.get(sourceId));
+    }
+
+    public List<StateRuleFact> listStateRuleFacts(String stateCode) {
+        if (stateCode == null || stateCode.isBlank()) {
+            return List.of();
+        }
+        return stateRuleFactsByStateCode.getOrDefault(stateCode.toUpperCase(Locale.US), List.of());
+    }
+
+    public List<StateRuleFact> listPublicStateRuleFacts(String stateCode) {
+        return findStateByCode(stateCode)
+                .filter(StateProfile::isPublished)
+                .map(state -> listStateRuleFacts(state.stateCode()))
+                .orElse(List.of());
+    }
+
+    public List<CostEvidence> listCostEvidence(String stateCode, String projectType) {
+        return costEvidence.stream()
+                .filter(item -> {
+                    if ("US".equalsIgnoreCase(item.stateCode())) {
+                        return projectType != null && projectType.equalsIgnoreCase(item.projectType());
+                    }
+                    return stateCode != null
+                            && stateCode.equalsIgnoreCase(item.stateCode())
+                            && ("state_price_level".equalsIgnoreCase(item.evidenceType())
+                            || projectType != null && projectType.equalsIgnoreCase(item.projectType()));
+                })
+                .toList();
+    }
+
+    public String stateProfilesGeneratedAt() {
+        return stateProfilesGeneratedAt;
+    }
+
+    public String contentPagesGeneratedAt() {
+        return contentPagesGeneratedAt;
+    }
+
+    public String stateMoneyPagesGeneratedAt() {
+        return stateMoneyPagesGeneratedAt;
+    }
+
+    public String stateRuleFactsGeneratedAt() {
+        return stateRuleFactsGeneratedAt;
+    }
+
+    public String costEvidenceGeneratedAt() {
+        return costEvidenceGeneratedAt;
     }
 }

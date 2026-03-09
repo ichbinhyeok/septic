@@ -1,7 +1,8 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @param PageMeta page
-@param java.util.List<StateProfile> states
+@param java.util.List<StateProfile> featuredStates
+@param java.util.List<StateProfile> additionalStates
 
 @template.layouts.app(page = page, content = @`
     <section class="hero">
@@ -12,12 +13,12 @@
                 <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/">Start quote-ready estimate</a>
-                    <a class="button button--secondary" href="#states">Browse launch states</a>
+                    <a class="button button--secondary" href="#states">Browse state guides</a>
                 </div>
                 <div class="hero__notes">
                     <span>Short match form unlocked after the estimate</span>
                     <span>Official-source module on each state page</span>
-                    <span>10 launch states</span>
+                    <span>10 state guides</span>
                 </div>
             </div>
 
@@ -47,8 +48,8 @@
     <section class="section">
         <div class="container">
             <div class="section-heading">
-                <span class="eyebrow">V1 scope</span>
-                <h2>Built to win cost-first intent before broad education content.</h2>
+                <span class="eyebrow">What you can use here</span>
+                <h2>Built around homeowner cost, permit, records, and buyer-risk questions.</h2>
             </div>
 
             <div class="card-grid">
@@ -67,7 +68,7 @@
                 <article class="feature-card">
                     <h3>State guide pages</h3>
                     <p>Plain-English rule summary, permit path, local override note, and official links.</p>
-                    <a href="#states">See launch states</a>
+                    <a href="#states">See state guides</a>
                 </article>
 
                 <article class="feature-card">
@@ -83,8 +84,8 @@
                 </article>
 
                 <article class="feature-card">
-                    <h3>File-based data model</h3>
-                    <p>No database in V1. Research data stays versioned in JSON and CSV so provenance remains visible.</p>
+                    <h3>Source transparency</h3>
+                    <p>Each state page is built around official sources, visible agency attribution, and a clear local-override warning.</p>
                     <a href="#sources">See source policy</a>
                 </article>
             </div>
@@ -94,53 +95,49 @@
     <section class="section section--muted" id="states">
         <div class="container">
             <div class="section-heading">
-                <span class="eyebrow">Launch states</span>
-                <h2>Ten state wedges with different rule styles and permit flows.</h2>
-                <p class="lede">Anchor states carry the strongest early rule extraction. Supporting states are live with official-source context and intentionally conservative framing while the sizing logic gets deeper.</p>
+                <span class="eyebrow">State guides</span>
+                <h2>Ten state guides with different rule styles and permit paths.</h2>
+                <p class="lede">Each guide explains the likely sizing logic, permit path, local verification steps, and the main reasons your final quote can move away from the low end.</p>
             </div>
 
             <div class="state-group">
-                <h3 class="state-group__heading">Anchor states</h3>
+                <h3 class="state-group__heading">Featured guides</h3>
                 <div class="state-grid">
-                    @for (var state : states)
-                        @if ("anchor".equals(state.launchTier()))
-                            <article class="state-card">
-                                <div class="state-card__header">
-                                    <span class="pill">${state.launchTier()}</span>
-                                    <strong>${state.stateName()}</strong>
-                                </div>
-                                <p>${state.pageAngle()}</p>
-                                <ul class="state-card__meta">
-                                    <li>${state.ruleType()}</li>
-                                    <li>${state.agencyName()}</li>
-                                    <li>Last verified ${state.lastVerifiedAt()}</li>
-                                </ul>
-                                <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                            </article>
-                        @endif
+                    @for (var state : featuredStates)
+                        <article class="state-card">
+                            <div class="state-card__header">
+                                <span class="pill">Featured</span>
+                                <strong>${state.stateName()}</strong>
+                            </div>
+                            <p>${state.pageAngle()}</p>
+                            <ul class="state-card__meta">
+                                <li>${state.ruleType()}</li>
+                                <li>${state.agencyName()}</li>
+                                <li>Updated ${state.lastVerifiedAt()}</li>
+                            </ul>
+                            <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
+                        </article>
                     @endfor
                 </div>
             </div>
 
             <div class="state-group">
-                <h3 class="state-group__heading">Supporting states</h3>
+                <h3 class="state-group__heading">More state guides</h3>
                 <div class="state-grid">
-                    @for (var state : states)
-                        @if (!"anchor".equals(state.launchTier()))
-                            <article class="state-card">
-                                <div class="state-card__header">
-                                    <span class="pill">${state.launchTier()}</span>
-                                    <strong>${state.stateName()}</strong>
-                                </div>
-                                <p>${state.pageAngle()}</p>
-                                <ul class="state-card__meta">
-                                    <li>${state.ruleType()}</li>
-                                    <li>${state.officialSourceIds().size()} official sources</li>
-                                    <li>Override risk ${state.countyOverrideRisk()}</li>
-                                </ul>
-                                <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                            </article>
-                        @endif
+                    @for (var state : additionalStates)
+                        <article class="state-card">
+                            <div class="state-card__header">
+                                <span class="pill">State guide</span>
+                                <strong>${state.stateName()}</strong>
+                            </div>
+                            <p>${state.pageAngle()}</p>
+                            <ul class="state-card__meta">
+                                <li>${state.ruleType()}</li>
+                                <li>${state.officialSourceIds().size()} official sources</li>
+                                <li>Updated ${state.lastVerifiedAt()}</li>
+                            </ul>
+                            <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
+                        </article>
                     @endfor
                 </div>
             </div>

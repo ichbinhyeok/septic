@@ -13,6 +13,10 @@ public record ContentPage(
         String calculatorModule,
         List<String> driverBullets,
         List<FaqBlock> faqBlocks,
-        List<String> internalLinkTargets
+        List<String> internalLinkTargets,
+        String publishStatus
 ) {
+    public boolean isPublished() {
+        return publishStatus == null || publishStatus.isBlank() || "published".equalsIgnoreCase(publishStatus);
+    }
 }

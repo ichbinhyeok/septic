@@ -13,12 +13,13 @@
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
+@param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${state.stateCode()} money page</span>
+                <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
@@ -29,7 +30,7 @@
             </div>
 
             <article class="hero-sidecard">
-                <span class="pill">${stateMoneyPage.contentSlug()}</span>
+                <span class="pill">State-specific guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleType()}</strong>
                 <p>Last verified: ${state.lastVerifiedAt()}</p>
@@ -297,8 +298,8 @@
             <article class="detail-card">
                 <h2>Related links</h2>
                 <ul class="detail-list">
-                    @for (var target : stateMoneyPage.internalLinkTargets())
-                        <li><a href="${target}">${target}</a></li>
+                    @for (var link : internalLinks)
+                        <li><a href="${link.path()}">${link.title()}</a></li>
                     @endfor
                 </ul>
             </article>

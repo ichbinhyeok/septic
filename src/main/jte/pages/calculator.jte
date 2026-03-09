@@ -11,6 +11,7 @@
 @param java.util.List<StateProfile> states
 @param EstimateForm estimateForm
 @param EstimatorResult result = null
+@param java.util.List<com.example.septic.web.CostEvidenceView> costEvidence = java.util.List.of()
 @param QuoteLeadForm quoteLeadForm
 @param String leadId = null
 @param boolean quoteHasErrors = false
@@ -111,7 +112,7 @@
 
             <div class="calculator-output">
                 @if (result != null)
-                    @template.tags.estimateResult(result = result)
+                    @template.tags.estimateResult(result = result, costEvidence = costEvidence)
 
                     <section class="quote-panel" id="quote-request">
                         <div class="quote-panel__header">

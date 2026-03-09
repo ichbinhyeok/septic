@@ -44,7 +44,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-inspection-cost/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guides")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/social-card.svg")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Anchor states"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Supporting states"))));
 	}
 
 	@Test
@@ -59,6 +63,7 @@ class SepticApplicationTests {
 	void sitemapXmlIncludesCoreUrls() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-03-09</lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
@@ -106,7 +111,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("derived state planning cost anchor")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last verified")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last verified")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Cost evidence behind this planning range")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("National replacement planning anchor")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia regional price-level adjustment")));
 	}
 
 	@Test
@@ -114,7 +122,24 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-tank-size-estimator/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Tank Size Estimator")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Occupancy profile")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Occupancy profile")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia sizing rule snapshot")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Source-backed sizing facts for Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Minimum approved tank size")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Garbage disposal rule")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How should a homeowner use this septic tank size estimator?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQPage")));
+	}
+
+	@Test
+	void tankSizeEstimatorSupportsStatePrefill() throws Exception {
+		mockMvc.perform(get("/septic-tank-size-estimator/").param("state", "CT"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Connecticut sizing rule snapshot")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Source-backed sizing facts for Connecticut")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Residential design flow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Connecticut guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-tank-size-estimator/?state=CT")));
 	}
 
 	@Test
@@ -128,7 +153,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia tank size planning range")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("High occupancy")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the full cost estimator")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the full cost estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open pump schedule estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Georgia guide")));
 	}
 
 	@Test
@@ -201,7 +228,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Still under review"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Confidence:"))));
 	}
 
 	@Test
@@ -326,7 +355,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Drain Field Replacement Cost<")));
 	}
 
 	@Test
@@ -336,7 +366,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Massachusetts Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Inspection Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Buying a House With a Septic System<")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("This page exists to support high-intent search"))));
 	}
 
 	@Test

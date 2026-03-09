@@ -13,10 +13,15 @@ public record StateMoneyPage(
         List<FaqBlock> faqBlocks,
         List<String> internalLinkTargets,
         List<String> officialSourceIds,
-        String calculatorProjectType
+        String calculatorProjectType,
+        String publishStatus
 ) {
     public String key() {
         return contentSlug + "::" + stateCode;
+    }
+
+    public boolean isPublished() {
+        return publishStatus == null || publishStatus.isBlank() || "published".equalsIgnoreCase(publishStatus);
     }
 
     public String calculatorProjectType() {

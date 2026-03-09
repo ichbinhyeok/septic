@@ -5,13 +5,22 @@
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${contentPage.intentType()}</span>
+                <span class="eyebrow">
+                    @if ("buyer_page".equals(contentPage.intentType()))
+                        Homebuyer guide
+                    @elseif ("workflow_page".equals(contentPage.intentType()))
+                        Permit and records guide
+                    @else
+                        Septic planning guide
+                    @endif
+                </span>
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
                 <div class="hero__actions">
@@ -21,9 +30,17 @@
             </div>
 
             <article class="hero-sidecard">
-                <span class="pill">${contentPage.calculatorModule()}</span>
+                <span class="pill">
+                    @if ("tank_size_estimator".equals(contentPage.calculatorModule()))
+                        Tank size tool
+                    @elseif ("pump_schedule_estimator".equals(contentPage.calculatorModule()))
+                        Pump schedule tool
+                    @else
+                        Cost estimator
+                    @endif
+                </span>
                 <strong>${contentPage.primaryKeyword()}</strong>
-                <p>This page exists to support high-intent search, then move visitors into the calculator and quote flow.</p>
+                <p>Use this page to understand the main cost or workflow drivers first, then move into the estimator with a better starting point.</p>
             </article>
         </div>
     </section>
@@ -51,7 +68,7 @@
             </article>
 
             <article class="detail-card">
-                <h2>Launch states</h2>
+                <h2>State guides</h2>
                 <ul class="detail-list">
                     @for (var state : states)
                         <li><a href="/septic-system-cost-calculator/${state.slug()}/">${state.stateName()} septic guide</a></li>
@@ -65,7 +82,7 @@
         <section class="section section--tight">
             <div class="container">
                 <article class="detail-card detail-card--full">
-                    <h2>State-specific pages already live</h2>
+                    <h2>State-specific pages</h2>
                     <ul class="detail-list">
                         @for (var stateMoneyPageLink : stateMoneyPageLinks)
                             <li><a href="${stateMoneyPageLink.path()}">${stateMoneyPageLink.title()}</a></li>
@@ -97,10 +114,10 @@
     <section class="section">
         <div class="container">
             <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Internal links</span>
+                <span class="trust-box__label">Related pages</span>
                 <ul class="detail-list">
-                    @for (var target : contentPage.internalLinkTargets())
-                        <li><a href="${target}">${target}</a></li>
+                    @for (var link : internalLinks)
+                        <li><a href="${link.path()}">${link.title()}</a></li>
                     @endfor
                 </ul>
             </article>
