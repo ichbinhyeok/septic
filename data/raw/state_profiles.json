@@ -41,6 +41,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["ga_01", "ga_02"],
+      "whoToCallFirst": "Start with the county environmental health office that handles onsite sewage permits and soil review for the property.",
+      "recordsToRequest": [
+        "The most recent soil analysis or site review tied to the lot.",
+        "Any existing septic permit, as-built sketch, or county repair record if the project is a replacement.",
+        "Confirmation of current bedroom count and whether a garbage disposal is installed."
+      ],
+      "lowEndRiskChecks": [
+        "A garbage disposal can push Georgia's likely tank band materially higher because the homeowner guide calls for a 50 percent larger tank.",
+        "Water table depth, limiting layers, and usable drainfield area can erase a simple low-end replacement assumption.",
+        "County process, excavation, and restoration scope often matter more than the tank number alone."
+      ],
       "confidenceScore": 0.82,
       "itemsNeedingVerification": [
         "Pull the current rule-text citation behind the homeowner guide's disposal upsizing language.",
@@ -86,6 +97,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["pa_01", "pa_02"],
+      "whoToCallFirst": "Start with the municipality or local agency that administers on-lot sewage rules and ask for the Sewage Enforcement Officer handling the property.",
+      "recordsToRequest": [
+        "Any existing permit or as-built drawing tied to the system.",
+        "Recent pumping, maintenance, or inspection history if the property already has a septic system.",
+        "Local agency or SEO notes that show whether the site already has known field or soil constraints."
+      ],
+      "lowEndRiskChecks": [
+        "If the municipality or SEO path is still unclear, the low end is not trustworthy yet.",
+        "Poor soil or field constraints can push the project beyond a straightforward conventional replacement.",
+        "Excavation and restoration can dominate the replacement number even when DEP's public tank example looks simple."
+      ],
       "confidenceScore": 0.78,
       "itemsNeedingVerification": [
         "Find an additional official source that publishes a fuller bedroom-to-capacity table instead of only the three-bedroom example.",
@@ -122,6 +144,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
+      "whoToCallFirst": "Start with the local director of health or approved agent because that office controls most residential site review, construction approval, and final discharge permitting.",
+      "recordsToRequest": [
+        "Site investigation and soil-testing records, if they already exist.",
+        "Any approval-to-construct, as-built, or permit-to-discharge record for the current system.",
+        "Property history showing added bedrooms, additions, or change-in-use that could affect potential-bedroom assumptions."
+      ],
+      "lowEndRiskChecks": [
+        "Connecticut uses bedroom and potential-bedroom logic, so a low-occupancy household does not automatically justify the low end.",
+        "Weak code-complying area or reserve area can change the practical replacement path fast.",
+        "Addition history or change in use can trigger more local review than a buyer expects."
+      ],
       "confidenceScore": 0.84,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe tank sizing bridge from design flow to public gallon recommendations.",
@@ -158,6 +191,17 @@
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["or_01", "or_02", "or_03"],
+      "whoToCallFirst": "Start with the local onsite septic permitting authority or county program before trusting any install or replacement number.",
+      "recordsToRequest": [
+        "The most recent site evaluation showing both proposed initial and replacement absorption areas.",
+        "Any authorization notice or prior permit tied to an ADU, use change, or increased sewage flow.",
+        "Existing permit and repair history if the property already has a septic system."
+      ],
+      "lowEndRiskChecks": [
+        "Oregon DEQ says site evaluation does not guarantee approval of any specific system type, so low-end certainty is limited until that step is complete.",
+        "ADU connections, use changes, or increased flow can trigger additional authorization or redesign work.",
+        "Replacement-area constraints can move the project beyond a simple like-for-like replacement."
+      ],
       "confidenceScore": 0.8,
       "itemsNeedingVerification": [
         "Find a homeowner-safe way to map Oregon's site-evaluation-first process into calculator confidence bands.",
@@ -194,6 +238,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["mo_01", "mo_02", "mo_03"],
+      "whoToCallFirst": "Start with the local permitting authority because Missouri can route onsite work through the county health department, another local authority, or DHSS depending on location.",
+      "recordsToRequest": [
+        "Existing permit or repair history for the property.",
+        "Any local authority guidance showing whether a residential exemption or special acreage rule applies.",
+        "Site or soil review documents that show the conditions behind the current system."
+      ],
+      "lowEndRiskChecks": [
+        "Do not trust the low end until the actual permitting authority is identified.",
+        "Major changes such as replacing the tank or absorption field can pull the project into a fuller permit path.",
+        "Local ordinances can be more restrictive than the state minimum."
+      ],
       "confidenceScore": 0.58,
       "itemsNeedingVerification": [
         "Pull homeowner-safe tank capacity examples from official Missouri material if available.",
@@ -230,6 +285,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["nc_01", "nc_02", "nc_03"],
+      "whoToCallFirst": "Start with the county health department because North Carolina's improvement-permit, construction-authorization, and operation-permit ladder is locally administered.",
+      "recordsToRequest": [
+        "Any prior improvement permit, construction authorization, or operation permit for the site.",
+        "Existing soil or site review records that explain how the current system was approved.",
+        "Documents showing bedroom count, additions, or use changes that may affect permit assumptions."
+      ],
+      "lowEndRiskChecks": [
+        "If the site has not cleared the improvement-permit step, the low end is still speculative.",
+        "Systems over the simpler residential thresholds can move into more complex state review and professional design.",
+        "Construction and operation approval are separate steps, so timing risk can stay hidden until late."
+      ],
       "confidenceScore": 0.56,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe residential daily flow bridge from 18E materials.",
@@ -266,6 +332,17 @@
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"],
+      "whoToCallFirst": "Start with the local board of health or local acting authority, especially if the property is in the Pinelands or uses an advanced pretreatment device.",
+      "recordsToRequest": [
+        "Recent pumping and inspection history for the current system.",
+        "Any maintenance contract or management paperwork tied to an advanced or special-area system.",
+        "Local approvals or notices that show whether the system falls under a management program."
+      ],
+      "lowEndRiskChecks": [
+        "Pinelands and advanced-system management obligations can make the true cost more than a one-time install or replacement bill.",
+        "Ongoing maintenance contract requirements can erase the apparent low end.",
+        "Local board of health oversight can materially change the practical project path."
+      ],
       "confidenceScore": 0.57,
       "itemsNeedingVerification": [
         "Extract a cleaner statewide homeowner sizing bridge from official NJDEP material.",
@@ -302,6 +379,17 @@
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_04"],
+      "whoToCallFirst": "Start with the local health jurisdiction because county-level LHJs issue permits, inspect work, and may apply rules that are more protective than statewide code.",
+      "recordsToRequest": [
+        "The as-built permit record and any design approval tied to the current system.",
+        "Inspection and operation-and-maintenance logs, especially for advanced or proprietary systems.",
+        "Pump and repair history that shows whether the current owner followed the required inspection cadence."
+      ],
+      "lowEndRiskChecks": [
+        "Advanced systems may carry yearly inspection and maintenance obligations that outlast the initial quote.",
+        "County-level LHJs can be more protective than statewide code, which can move the estimate up.",
+        "Missing O&M records can signal that the real system condition is less certain than the seller implies."
+      ],
       "confidenceScore": 0.64,
       "itemsNeedingVerification": [
         "Track the staged effective dates for Washington's recent rule revision and decide how much transfer language belongs on the public state page.",
@@ -338,6 +426,17 @@
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
+      "whoToCallFirst": "Start with the local Board of Health and, if a sale is involved, the Title 5 inspector or inspection paperwork already tied to the property.",
+      "recordsToRequest": [
+        "The most recent Title 5 inspection report.",
+        "Pumping receipts if the seller claims the inspection window extends to three years because of annual pumping.",
+        "Any Board of Health filings tied to upgrades, additions, or use changes."
+      ],
+      "lowEndRiskChecks": [
+        "A missing or failed Title 5 inspection can turn a buyer-intent page into an upgrade conversation immediately.",
+        "Bedroom additions or other changes in use can trigger Title 5 review that was not obvious from the listing.",
+        "Local Board of Health timing and filing requirements can move both closing risk and replacement cost."
+      ],
       "confidenceScore": 0.68,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe residential flow bridge from official Title 5 materials without making the page sound permit-ready.",
@@ -374,6 +473,17 @@
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
+      "whoToCallFirst": "Start by confirming whether the property is in one of the Florida counties now managed by DEP or still handled by the county health department.",
+      "recordsToRequest": [
+        "The existing permit and inspection history for the system.",
+        "Jurisdiction confirmation showing whether DEP or the county health department controls the next step.",
+        "Any private-provider inspection paperwork if the owner or contractor used that route."
+      ],
+      "lowEndRiskChecks": [
+        "If you start with the wrong permitting authority, timeline and quote assumptions can break immediately.",
+        "High water, drainfield limits, and repair-versus-modification scope can move a Florida project out of the simple low end.",
+        "Abandonment, repair, and modification work still require permit and inspection sequencing before the project is truly complete."
+      ],
       "confidenceScore": 0.62,
       "itemsNeedingVerification": [
         "Extract a homeowner-safe sizing bridge from current DEP and DOH materials.",

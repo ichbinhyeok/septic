@@ -17,8 +17,8 @@ later implementation work should follow.
 
 - Homepage
 - Main septic cost estimator
-- Septic tank size estimator
-- Pump schedule and maintenance estimator
+- Dedicated septic tank size estimator
+- Dedicated pump schedule and maintenance estimator
 - Quote form
 - National money pages
 - Ten state guides
@@ -32,15 +32,16 @@ What goes live now:
 
 - 10 state guides
 - 1 national cost calculator
-- 1 national tank size estimator
-- 1 national pump schedule estimator
-- 4 to 6 national money pages
+- 1 dedicated tank size estimator
+- 1 dedicated pump schedule estimator
+- 1 quote form integrated into calculator results
+- 7 national money pages
+- 18 state-specific money pages
 - 1 quote form
 
 What waits until traffic proves itself:
 
-- State-specific replacement pages for all 10 states
-- State-specific perc/drainfield/pumping pages for all 10 states
+- Full state x money-page matrix for all 10 states
 - Contractor landing pages
 - County-level expansion
 
@@ -131,25 +132,24 @@ Use files for three different jobs:
 
 - Spring Boot
 - JTE templates
-- Tailwind CSS
-- htmx for partial page updates
-- Alpine.js only for small interaction gaps
+- Token-based vanilla CSS in V1
+- htmx is deferred until partial-page interaction becomes worth the added surface area
+- Alpine.js is deferred until small interaction gaps actually appear
 - JSON and CSV files as the system of record
+- File-backed runtime storage for leads, events, and buyer-ready exports
 
 ## Implementation order
 
-1. Add front-end stack and layout foundation.
-2. Load file-based source and state data into typed Java models.
-3. Build homepage and calculator shell.
-4. Build state page template with trust box and source module.
-5. Build lead form and file-based submission storage.
-6. Add event tracking and result-page explanation modules.
-7. Expand state coverage and refine cost profiles.
+1. Keep the current layout foundation aligned with trust and conversion.
+2. Deepen state data with homeowner workflow modules and cost multipliers where source quality supports it.
+3. Expand only the strongest state x intent combinations first.
+4. Refine the dedicated tank size and pump estimator routes after the main calculator and quote funnel stabilize.
+5. Refine cost profiles from public sources without inventing false state precision.
 
 ## Definition of done for the next working phase
 
-- Planning docs exist and are stable.
-- Source registry exists with official anchors for the launch states.
-- Initial state profile JSON exists for the launch states.
-- Review queue exists for fields that still need verification.
-- Storage convention exists for leads and events.
+- Planning docs match the actual shipped surface.
+- Source registry exists with official anchors for all 10 launch states plus cost-anchor provenance.
+- State profiles include homeowner workflow modules, not just rule summaries.
+- Storage convention exists for leads, events, and buyer-ready exports.
+- Legal and trust pages exist in the footer before public launch.

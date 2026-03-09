@@ -38,6 +38,14 @@ a {
     text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(35, 108, 95, 0.28);
+    outline-offset: 2px;
+}
+
 img {
     max-width: 100%;
 }
@@ -123,6 +131,55 @@ h3,
     color: var(--text);
 }
 
+.site-footer {
+    margin-top: 32px;
+    padding: 28px 0 42px;
+    border-top: 1px solid rgba(20, 34, 32, 0.08);
+    background: rgba(255, 255, 255, 0.36);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(220px, 0.7fr));
+    gap: 24px;
+}
+
+.footer-block {
+    display: grid;
+    gap: 14px;
+}
+
+.footer-block--brand {
+    align-content: start;
+}
+
+.brand--footer {
+    align-items: start;
+}
+
+.footer-heading {
+    font-size: 1rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+    color: var(--muted);
+}
+
+.footer-list a:hover {
+    color: var(--text);
+}
+
+.footer-copy {
+    max-width: 56ch;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
 .hero,
 .section {
     padding: 42px 0 72px;
@@ -144,7 +201,8 @@ h3,
 }
 
 .hero__grid,
-.state-hero {
+.state-hero,
+.page-hero {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr);
     gap: 28px;
@@ -569,13 +627,15 @@ input[type="checkbox"] {
 @media (max-width: 1024px) {
     .hero__grid,
     .state-hero,
+    .page-hero,
     .calculator-layout,
     .content-grid,
     .card-grid,
     .state-grid,
     .detail-grid,
     .result-grid,
-    .field-grid {
+    .field-grid,
+    .footer-grid {
         grid-template-columns: 1fr;
     }
 

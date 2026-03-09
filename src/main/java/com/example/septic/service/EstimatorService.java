@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.data.model.BedroomBand;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
+import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.ProjectType;
 import com.example.septic.service.SoilPercStatus;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -130,8 +132,10 @@ public class EstimatorService {
         int recommendedHigh = roundUpTo250(Math.max(recommendedLow + 250, likelyMinimum + loadPadding + rangePadding));
 
         String likelySystemClass = inferSystemClass(riskScore);
-        ProjectCostAnchor anchor = researchDataService.findNationalAnchor(projectType.value())
+        ProjectCostAnchor nationalAnchor = researchDataService.findNationalAnchor(projectType.value())
                 .orElseThrow(() -> new IllegalStateException("Missing national cost anchor for " + projectType.value()));
+        StateCostProfile stateCostProfile = researchDataService.findStateCostProfile(state.stateCode()).orElse(null);
+        ProjectCostAnchor costAnchor = stateCostProfile == null ? null : stateCostProfile.anchorForProjectType(projectType.value());
 
         double multiplier = 1.0;
         multiplier += systemClassMultiplier(likelySystemClass);
@@ -154,10 +158,24 @@ public class EstimatorService {
         if (projectType == ProjectType.REPLACEMENT) {
             multiplier += 0.12;
         }
+        boolean usingStateSpecificAnchor = costAnchor != null;
+        double stateRegionalMultiplier = usingStateSpecificAnchor
+                ? 1.0
+                : stateCostProfile != null && stateCostProfile.regionalMultiplier() != null
+                        ? stateCostProfile.regionalMultiplier()
+                        : 1.0;
+        if (!usingStateSpecificAnchor && stateRegionalMultiplier >= 1.05) {
+            drivers.add(state.stateName() + " runs above the national price level, which can lift a homeowner planning estimate before site-specific adjustments.");
+        } else if (!usingStateSpecificAnchor && stateRegionalMultiplier <= 0.95) {
+            drivers.add(state.stateName() + " runs below the national price level on a broad regional basis, but site and system complexity can erase that advantage quickly.");
+        } else if (usingStateSpecificAnchor) {
+            drivers.add(0, state.stateName() + " has a state-level planning cost anchor in this estimator, so the base range is not relying on the national public anchor alone.");
+        }
 
-        int totalCostLow = roundTo100(anchor.low() * multiplier);
-        int totalCostMid = roundTo100(anchor.mid() * multiplier);
-        int totalCostHigh = roundTo100(anchor.high() * (multiplier + 0.08));
+        ProjectCostAnchor baseAnchor = usingStateSpecificAnchor ? costAnchor : nationalAnchor;
+        int totalCostLow = roundTo100(baseAnchor.low() * multiplier * stateRegionalMultiplier);
+        int totalCostMid = roundTo100(baseAnchor.mid() * multiplier * stateRegionalMultiplier);
+        int totalCostHigh = roundTo100(baseAnchor.high() * (multiplier + 0.08) * stateRegionalMultiplier);
 
         while (drivers.size() < 3) {
             drivers.add(defaultDriverFor(drivers.size()));
@@ -174,7 +192,11 @@ public class EstimatorService {
 
         String confidenceLabel = confidenceLabel(state, soilStatus);
         String rangeReason = rangeReason(state);
-        List<String> sourceLabels = researchDataService.getSources(state.officialSourceIds()).stream()
+        List<String> sourceLabels = Stream.concat(
+                        researchDataService.getSources(state.officialSourceIds()).stream(),
+                        researchDataService.getSources(baseAnchor.sourceIds()).stream()
+                )
+                .distinct()
                 .map(this::formatSourceLabel)
                 .toList();
 

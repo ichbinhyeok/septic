@@ -31,6 +31,11 @@ public class SitemapService {
         List<String> urls = new ArrayList<>();
         urls.add(seoService.absoluteUrl("/"));
         urls.add(seoService.absoluteUrl("/septic-system-cost-calculator/"));
+        urls.add(seoService.absoluteUrl("/septic-tank-size-estimator/"));
+        urls.add(seoService.absoluteUrl("/septic-pump-schedule-estimator/"));
+        seoService.staticPagePaths().stream()
+                .map(seoService::absoluteUrl)
+                .forEach(urls::add);
 
         for (ContentPage contentPage : researchDataService.getContentPages()) {
             if (!"septic-system-cost-calculator".equals(contentPage.slug())) {

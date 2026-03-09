@@ -41,6 +41,7 @@
 
                 <nav class="site-nav">
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
+                    <a href="/septic-tank-size-estimator/">Tank size</a>
                     <a href="/#states">Launch states</a>
                     <a href="/#sources">Source policy</a>
                 </nav>
@@ -50,6 +51,42 @@
         <main>
             ${content}
         </main>
+
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <section class="footer-block footer-block--brand">
+                    <a class="brand brand--footer" href="/">
+                        <span class="brand__mark">SS</span>
+                        <span class="brand__text">
+                            <strong>Septic System Cost & Size Estimator</strong>
+                            <span>Estimate-first guidance with official-source context.</span>
+                        </span>
+                    </a>
+                    <p class="footer-copy">This site is a homeowner planning tool. It does not provide engineering design, permit approval, or legal compliance certification.</p>
+                </section>
+
+                <nav class="footer-block" aria-label="Core pages">
+                    <h2 class="footer-heading">Core pages</h2>
+                    <ul class="footer-list">
+                        <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
+                        <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
+                        <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
+                        <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
+                        <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
+                    </ul>
+                </nav>
+
+                <nav class="footer-block" aria-label="Trust pages">
+                    <h2 class="footer-heading">Trust</h2>
+                    <ul class="footer-list">
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-of-use/">Terms of Use</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

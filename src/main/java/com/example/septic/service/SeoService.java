@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,42 @@ public class SeoService {
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
                                 crumb("Septic System Cost Calculator", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
+    public PageMeta tankSizeEstimatorPage() {
+        String canonicalUrl = absoluteUrl("/septic-tank-size-estimator/");
+        return new PageMeta(
+                "Septic Tank Size Estimator",
+                "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.",
+                canonicalUrl,
+                "index,follow",
+                List.of(
+                        toJson(webPage(canonicalUrl, "Septic Tank Size Estimator",
+                                "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.", "WebPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Septic Tank Size Estimator", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
+    public PageMeta pumpScheduleEstimatorPage() {
+        String canonicalUrl = absoluteUrl("/septic-pump-schedule-estimator/");
+        return new PageMeta(
+                "Septic Pump Schedule Estimator",
+                "Estimate a rough pumping cadence, inspection cadence, and maintenance reminder from tank size and use.",
+                canonicalUrl,
+                "index,follow",
+                List.of(
+                        toJson(webPage(canonicalUrl, "Septic Pump Schedule Estimator",
+                                "Estimate a rough pumping cadence, inspection cadence, and maintenance reminder from tank size and use.", "WebPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Septic Pump Schedule Estimator", canonicalUrl)
                         )))
                 )
         );
@@ -117,6 +154,32 @@ public class SeoService {
                 canonicalUrl,
                 "index,follow",
                 jsonLdBlocks
+        );
+    }
+
+    public PageMeta basicPage(String title, String description, String path) {
+        String canonicalUrl = absoluteUrl(path);
+        return new PageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "WebPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb(title, canonicalUrl)
+                        )))
+                )
+        );
+    }
+
+    public List<String> staticPagePaths() {
+        return Arrays.asList(
+                "/about/",
+                "/privacy-policy/",
+                "/terms-of-use/",
+                "/contact/"
         );
     }
 
@@ -197,7 +260,6 @@ public class SeoService {
     private Map<String, Object> crumb(String name, String url) {
         Map<String, Object> crumb = new LinkedHashMap<>();
         crumb.put("@type", "ListItem");
-        crumb.put("position", 0);
         crumb.put("name", name);
         crumb.put("item", url);
         return crumb;

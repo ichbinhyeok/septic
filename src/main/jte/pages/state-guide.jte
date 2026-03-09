@@ -72,6 +72,41 @@
         </section>
     @endif
 
+    @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()) || (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()))
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                @if (state.whoToCallFirst() != null)
+                    <article class="detail-card">
+                        <h2>Who to call first</h2>
+                        <p>${state.whoToCallFirst()}</p>
+                    </article>
+                @endif
+
+                @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                    <article class="detail-card">
+                        <h2>Records to request first</h2>
+                        <ul class="detail-list">
+                            @for (var record : state.recordsToRequest())
+                                <li>${record}</li>
+                            @endfor
+                        </ul>
+                    </article>
+                @endif
+
+                @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
+                    <article class="detail-card detail-card--full">
+                        <h2>What can kill the low end</h2>
+                        <ul class="detail-list">
+                            @for (var risk : state.lowEndRiskChecks())
+                                <li>${risk}</li>
+                            @endfor
+                        </ul>
+                    </article>
+                @endif
+            </div>
+        </section>
+    @endif
+
     <section class="section">
         <div class="container content-grid">
             <article class="trust-box trust-box--large">

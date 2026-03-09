@@ -55,15 +55,35 @@
 
     <section class="section">
         <div class="container detail-grid">
-            <article class="detail-card">
-                <h2>What to verify before trusting the low end</h2>
-                <ul class="detail-list">
-                    @for (var step : state.permitPathSteps())
-                        <li>${step}</li>
-                    @endfor
-                    <li>${state.localOverrideNote()}</li>
-                </ul>
-            </article>
+            @if (state.whoToCallFirst() != null)
+                <article class="detail-card">
+                    <h2>Who to call first</h2>
+                    <p>${state.whoToCallFirst()}</p>
+                </article>
+            @endif
+
+            @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                <article class="detail-card">
+                    <h2>Records to request</h2>
+                    <ul class="detail-list">
+                        @for (var record : state.recordsToRequest())
+                            <li>${record}</li>
+                        @endfor
+                    </ul>
+                </article>
+            @endif
+
+            @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
+                <article class="detail-card detail-card--full">
+                    <h2>What can kill the low end</h2>
+                    <ul class="detail-list">
+                        @for (var risk : state.lowEndRiskChecks())
+                            <li>${risk}</li>
+                        @endfor
+                        <li>${state.localOverrideNote()}</li>
+                    </ul>
+                </article>
+            @endif
 
             <article class="trust-box">
                 <span class="trust-box__label">Official-source context</span>

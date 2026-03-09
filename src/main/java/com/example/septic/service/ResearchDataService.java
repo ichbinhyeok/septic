@@ -6,6 +6,7 @@ import com.example.septic.data.model.ContentPagesDocument;
 import com.example.septic.data.model.CostProfilesDocument;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
+import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateMoneyPagesDocument;
 import com.example.septic.data.model.StateProfile;
@@ -40,6 +41,7 @@ public class ResearchDataService {
     private Map<String, StateProfile> statesBySlug = Map.of();
     private Map<String, SourceRecord> sourcesById = Map.of();
     private Map<String, ProjectCostAnchor> anchorsByProjectType = Map.of();
+    private Map<String, StateCostProfile> costProfilesByStateCode = Map.of();
     private Map<String, ContentPage> contentPagesBySlug = Map.of();
     private Map<String, StateMoneyPage> stateMoneyPagesByKey = Map.of();
 
@@ -89,6 +91,8 @@ public class ResearchDataService {
                     .collect(Collectors.toMap(StateProfile::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.anchorsByProjectType = costDocument.nationalAnchors().stream()
                     .collect(Collectors.toMap(ProjectCostAnchor::projectType, Function.identity(), (left, right) -> left, LinkedHashMap::new));
+            this.costProfilesByStateCode = costDocument.states().stream()
+                    .collect(Collectors.toMap(StateCostProfile::stateCode, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.contentPagesBySlug = contentPagesDocument.pages().stream()
                     .collect(Collectors.toMap(ContentPage::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.stateMoneyPagesByKey = stateMoneyPagesDocument.pages().stream()
@@ -115,10 +119,16 @@ public class ResearchDataService {
     }
 
     public Optional<StateProfile> findStateByCode(String stateCode) {
+        if (stateCode == null || stateCode.isBlank()) {
+            return Optional.empty();
+        }
         return Optional.ofNullable(statesByCode.get(stateCode.toUpperCase(Locale.US)));
     }
 
     public Optional<StateProfile> findStateBySlug(String stateSlug) {
+        if (stateSlug == null || stateSlug.isBlank()) {
+            return Optional.empty();
+        }
         return Optional.ofNullable(statesBySlug.get(stateSlug.toLowerCase(Locale.US)));
     }
 
@@ -131,6 +141,13 @@ public class ResearchDataService {
 
     public Optional<ProjectCostAnchor> findNationalAnchor(String projectType) {
         return Optional.ofNullable(anchorsByProjectType.get(projectType));
+    }
+
+    public Optional<StateCostProfile> findStateCostProfile(String stateCode) {
+        if (stateCode == null || stateCode.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(costProfilesByStateCode.get(stateCode.toUpperCase(Locale.US)));
     }
 
     public Optional<ContentPage> findContentPage(String slug) {

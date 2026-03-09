@@ -59,6 +59,12 @@
                 </article>
 
                 <article class="feature-card">
+                    <h3>Dedicated size and pump tools</h3>
+                    <p>Separate estimator routes for tank sizing and maintenance cadence when the user is not ready for the full quote flow yet.</p>
+                    <a href="/septic-tank-size-estimator/">Open tank size estimator</a>
+                </article>
+
+                <article class="feature-card">
                     <h3>State guide pages</h3>
                     <p>Plain-English rule summary, permit path, local override note, and official links.</p>
                     <a href="#states">See launch states</a>

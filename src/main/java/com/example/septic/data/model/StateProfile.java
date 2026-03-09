@@ -23,6 +23,9 @@ public record StateProfile(
         String countyOverrideRisk,
         String lastVerifiedAt,
         List<String> officialSourceIds,
+        String whoToCallFirst,
+        List<String> recordsToRequest,
+        List<String> lowEndRiskChecks,
         Double confidenceScore,
         List<String> itemsNeedingVerification
 ) {

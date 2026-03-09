@@ -13,9 +13,16 @@ import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SeoService;
 import com.example.septic.service.SitemapService;
 import com.example.septic.service.SoilPercStatus;
+import com.example.septic.service.TankSizeEstimatorResult;
+import com.example.septic.service.TankSizeEstimatorService;
 import com.example.septic.service.TimelinePreference;
+import com.example.septic.service.PumpScheduleResult;
+import com.example.septic.service.PumpScheduleService;
+import com.example.septic.service.OccupancyProfile;
+import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -37,19 +44,25 @@ public class SiteController {
     private final LeadStorageService leadStorageService;
     private final SeoService seoService;
     private final SitemapService sitemapService;
+    private final TankSizeEstimatorService tankSizeEstimatorService;
+    private final PumpScheduleService pumpScheduleService;
 
     public SiteController(
             ResearchDataService researchDataService,
             EstimatorService estimatorService,
             LeadStorageService leadStorageService,
             SeoService seoService,
-            SitemapService sitemapService
+            SitemapService sitemapService,
+            TankSizeEstimatorService tankSizeEstimatorService,
+            PumpScheduleService pumpScheduleService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
         this.leadStorageService = leadStorageService;
         this.seoService = seoService;
         this.sitemapService = sitemapService;
+        this.tankSizeEstimatorService = tankSizeEstimatorService;
+        this.pumpScheduleService = pumpScheduleService;
     }
 
     @GetMapping("/")
@@ -57,6 +70,181 @@ public class SiteController {
         model.addAttribute("page", seoService.homePage());
         model.addAttribute("states", researchDataService.getStateProfiles());
         return "pages/home";
+    }
+
+    @GetMapping({"/about", "/about/"})
+    public String about(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "About Septic System Cost & Size Estimator",
+                        "Why this estimator exists, how it uses official sources, and what it is designed to do.",
+                        "/about/"
+                ),
+                "About this project",
+                "Built for homeowner planning, not engineered outputs.",
+                "This site exists to give homeowners and homebuyers a faster starting point for septic budgeting, likely system class, and the next practical questions to ask before they request quotes.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "What this site is for",
+                                "The goal is to reduce permit anxiety and cost uncertainty without pretending the result is permit-ready.",
+                                List.of(
+                                        "Planning ranges for septic cost, likely tank size, and likely system class.",
+                                        "State-aware pages with official-source links, agency attribution, and last verified dates.",
+                                        "Short quote-request flow after the user has already seen value."
+                                )
+                        ),
+                        new SitePageSection(
+                                "What this site is not",
+                                "This product is intentionally conservative where inputs are weak or local conditions are unknown.",
+                                List.of(
+                                        "Not engineering design software.",
+                                        "Not permit-ready calculation software.",
+                                        "Not a code-compliance certification tool."
+                                )
+                        ),
+                        new SitePageSection(
+                                "How data is handled",
+                                "Research data is versioned in files and reviewed before it becomes publishable guidance. Runtime leads and events are stored separately for auditability and export.",
+                                List.of(
+                                        "Official sources are preferred for rules and permit process context.",
+                                        "Commercial sources are used only for broad public cost anchors.",
+                                        "Where rules are unclear, the estimate widens instead of inventing certainty."
+                                )
+                        )
+                ),
+                "Estimate-first and source-transparent",
+                "Every result should be read as a planning estimate that still needs local verification."
+        );
+    }
+
+    @GetMapping({"/privacy-policy", "/privacy-policy/"})
+    public String privacyPolicy(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "Privacy Policy",
+                        "What information this site collects, why it is stored, and how lead requests are handled.",
+                        "/privacy-policy/"
+                ),
+                "Privacy policy",
+                "What this site collects and why.",
+                "This page describes the current handling of form submissions and site interaction data for Septic System Cost & Size Estimator. It is an operational policy page, not legal advice.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "Information collected",
+                                "When you request quotes, the site stores the contact and project details needed to route a homeowner inquiry and preserve source provenance.",
+                                List.of(
+                                        "Contact details such as name, email, phone number, and ZIP code.",
+                                        "Project inputs such as state, project type, bedroom count, and site-condition answers.",
+                                        "Technical request data such as timestamp, referring page, user agent, and remote address."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Why it is stored",
+                                "Lead submissions are stored so the estimate can be tied to the original consent and to support later routing to service partners.",
+                                List.of(
+                                        "To keep an auditable record of consent language and submission time.",
+                                        "To export normalized lead records for approved partner workflows.",
+                                        "To understand which pages and estimate flows create useful homeowner leads."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Operational limits",
+                                "This project is still an early-stage file-backed application. Storage and routing practices will be refined as partner workflows become more specific.",
+                                List.of(
+                                        "Do not submit sensitive financial information through the quote form.",
+                                        "Do not treat a quote request as a guarantee that a contractor will contact you.",
+                                        "This page should be reviewed by counsel before public launch if you commercialize lead routing at scale."
+                                )
+                        )
+                ),
+                "Consent matters here",
+                "Quote requests are tied to a stored consent snapshot and timestamp so the lead record remains attributable."
+        );
+    }
+
+    @GetMapping({"/terms-of-use", "/terms-of-use/"})
+    public String termsOfUse(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "Terms of Use",
+                        "The core use conditions for this estimate-only septic planning website.",
+                        "/terms-of-use/"
+                ),
+                "Terms of use",
+                "Use this site as a planning tool, not as engineering or legal approval.",
+                "These terms describe the intended use of the public estimator and related content. They are operational terms for the site and should be reviewed before commercial launch.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "Estimate-only use",
+                                "Results are planning estimates designed to help users ask better questions before speaking with local septic professionals.",
+                                List.of(
+                                        "Outputs are not engineered designs.",
+                                        "Outputs are not code-compliance determinations.",
+                                        "Outputs are not permit approvals or official state calculations."
+                                )
+                        ),
+                        new SitePageSection(
+                                "User responsibility",
+                                "Users remain responsible for confirming local permit rules, system feasibility, and contractor qualifications.",
+                                List.of(
+                                        "County and local authorities may override state-level general guidance.",
+                                        "Actual cost depends on site evaluation, system type, access, and local scope.",
+                                        "Homebuyers should still request system records and inspection evidence before closing."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Commercial use and availability",
+                                "The site may evolve, change, or stop accepting quote requests without notice while the product is in active development.",
+                                List.of(
+                                        "Content may be updated when sources change or pages are re-verified.",
+                                        "Quote matching is not guaranteed in every state or project category.",
+                                        "No warranty is made that any estimate range will match a final contractor proposal."
+                                )
+                        )
+                ),
+                "Trust the workflow, not fake precision",
+                "Use the estimate to narrow the likely range, then verify locally and collect real quotes."
+        );
+    }
+
+    @GetMapping({"/contact", "/contact/"})
+    public String contact(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "Contact",
+                        "How to contact the project and what channel to use for septic quote requests.",
+                        "/contact/"
+                ),
+                "Contact",
+                "Use the quote form for project-specific help.",
+                "Project-specific quote requests should start on the calculator result page so the lead is saved with the estimate context. This contact page exists for general project and policy questions.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "Best path for homeowner projects",
+                                "If you want septic pricing help, use the estimate flow first so the request includes the state, project type, and site assumptions that make the lead useful.",
+                                List.of(
+                                        "Open the main estimator and complete the project inputs.",
+                                        "Review the planning result and state-specific context.",
+                                        "Submit the short quote request form after you have seen value."
+                                )
+                        ),
+                        new SitePageSection(
+                                "General questions",
+                                "Business contact details should be published here before public launch. Until then, operational questions should be handled through the project owner workflow outside the public site.",
+                                List.of(
+                                        "Use this page as the placeholder for a public support email or business address.",
+                                        "Review privacy and terms pages before enabling broader lead routing.",
+                                        "Keep the public contact point aligned with the actual business entity and domain owner."
+                                )
+                        )
+                ),
+                "Publish real business contact details before launch",
+                "This page is intentionally honest: replace placeholder operational copy with the real support contact before you drive paid or organic traffic here."
+        );
     }
 
     @GetMapping(value = {"/robots.txt"}, produces = MediaType.TEXT_PLAIN_VALUE)
@@ -85,6 +273,28 @@ public class SiteController {
             estimateForm.setProjectType(ProjectType.fromValue(projectType).value());
         }
         return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false);
+    }
+
+    @GetMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
+    public String tankSizeEstimator(Model model) {
+        return renderTankSizeEstimator(model, new TankSizeForm(), null);
+    }
+
+    @PostMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
+    public String calculateTankSize(@ModelAttribute TankSizeForm tankSizeForm, Model model) {
+        TankSizeEstimatorResult result = tankSizeEstimatorService.estimate(tankSizeForm);
+        return renderTankSizeEstimator(model, tankSizeForm, result);
+    }
+
+    @GetMapping({"/septic-pump-schedule-estimator", "/septic-pump-schedule-estimator/"})
+    public String pumpScheduleEstimator(Model model) {
+        return renderPumpScheduleEstimator(model, new PumpScheduleForm(), null);
+    }
+
+    @PostMapping({"/septic-pump-schedule-estimator", "/septic-pump-schedule-estimator/"})
+    public String calculatePumpSchedule(@ModelAttribute PumpScheduleForm pumpScheduleForm, Model model) {
+        PumpScheduleResult result = pumpScheduleService.estimate(pumpScheduleForm);
+        return renderPumpScheduleEstimator(model, pumpScheduleForm, result);
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
@@ -154,6 +364,7 @@ public class SiteController {
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getStateProfiles().stream().limit(6).toList());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
+        model.addAttribute("calculatorPath", calculatorPathForModule(contentPage.calculatorModule()));
         return "pages/content-page";
     }
 
@@ -201,6 +412,16 @@ public class SiteController {
         return TimelinePreference.values();
     }
 
+    @ModelAttribute("occupancyProfiles")
+    public OccupancyProfile[] occupancyProfiles() {
+        return OccupancyProfile.values();
+    }
+
+    @ModelAttribute("usageProfiles")
+    public UsageProfile[] usageProfiles() {
+        return UsageProfile.values();
+    }
+
     private String renderCalculator(
             Model model,
             EstimateForm estimateForm,
@@ -217,5 +438,48 @@ public class SiteController {
         model.addAttribute("leadId", leadId);
         model.addAttribute("quoteHasErrors", quoteHasErrors);
         return "pages/calculator";
+    }
+
+    private String renderTankSizeEstimator(Model model, TankSizeForm tankSizeForm, TankSizeEstimatorResult result) {
+        model.addAttribute("page", seoService.tankSizeEstimatorPage());
+        model.addAttribute("states", researchDataService.getStateProfiles());
+        model.addAttribute("tankSizeForm", tankSizeForm);
+        model.addAttribute("result", result);
+        return "pages/tank-size-estimator";
+    }
+
+    private String renderPumpScheduleEstimator(Model model, PumpScheduleForm pumpScheduleForm, PumpScheduleResult result) {
+        model.addAttribute("page", seoService.pumpScheduleEstimatorPage());
+        model.addAttribute("pumpScheduleForm", pumpScheduleForm);
+        model.addAttribute("result", result);
+        return "pages/pump-schedule-estimator";
+    }
+
+    private String renderSitePage(
+            Model model,
+            PageMeta page,
+            String eyebrow,
+            String heading,
+            String intro,
+            List<SitePageSection> sections,
+            String calloutTitle,
+            String calloutBody
+    ) {
+        model.addAttribute("page", page);
+        model.addAttribute("eyebrow", eyebrow);
+        model.addAttribute("heading", heading);
+        model.addAttribute("intro", intro);
+        model.addAttribute("sections", sections);
+        model.addAttribute("calloutTitle", calloutTitle);
+        model.addAttribute("calloutBody", calloutBody);
+        return "pages/site-page";
+    }
+
+    private String calculatorPathForModule(String calculatorModule) {
+        return switch (calculatorModule) {
+            case "tank_size_estimator" -> "/septic-tank-size-estimator/";
+            case "pump_schedule_estimator" -> "/septic-pump-schedule-estimator/";
+            default -> "/septic-system-cost-calculator/";
+        };
     }
 }

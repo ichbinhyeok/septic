@@ -5,6 +5,7 @@
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
+@param String calculatorPath = "/septic-system-cost-calculator/"
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish">
@@ -14,7 +15,7 @@
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/">Open the main calculator</a>
+                    <a class="button button--primary" href="${calculatorPath}">Open the estimator</a>
                     <a class="button button--secondary" href="#faq">Jump to FAQs</a>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                 <span class="trust-box__label">Next best action</span>
                 <h2>Use the calculator with your state, bedroom count, and site assumptions before you ask for quotes.</h2>
                 <p>The result page explains what pushed the estimate and what could still move it. That tends to create better conversations with local pros.</p>
-                <a href="/septic-system-cost-calculator/">Run the estimate</a>
+                <a href="${calculatorPath}">Run the estimate</a>
             </article>
 
             <article class="detail-card">

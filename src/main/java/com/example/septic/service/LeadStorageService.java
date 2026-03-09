@@ -60,7 +60,7 @@ public class LeadStorageService {
         Instant now = Instant.now();
         String leadId = UUID.randomUUID().toString();
         Map<String, Object> provenance = buildProvenance(request, now, sourcePage);
-        Map<String, Object> consent = Map.of(
+        Map<String, Object> consent = orderedMap(
                 "accepted", quoteLeadForm.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", quoteLeadForm.getConsentTextSnapshot(),
@@ -74,13 +74,13 @@ public class LeadStorageService {
         payload.put("calculatorUsed", "main_cost_estimator");
         payload.put("stateCode", quoteLeadForm.getStateCode());
         payload.put("projectType", quoteLeadForm.getProjectType());
-        payload.put("contact", Map.of(
+        payload.put("contact", orderedMap(
                 "fullName", quoteLeadForm.getFullName(),
                 "email", quoteLeadForm.getEmail(),
                 "phone", quoteLeadForm.getPhone(),
                 "zipCode", quoteLeadForm.getZipCode()
         ));
-        payload.put("userInputs", Map.of(
+        payload.put("userInputs", orderedMap(
                 "bedrooms", estimateForm.getBedrooms(),
                 "occupants", estimateForm.getOccupants(),
                 "garbageDisposal", estimateForm.isGarbageDisposal(),
@@ -90,7 +90,7 @@ public class LeadStorageService {
                 "accessDifficulty", estimateForm.getAccessDifficulty(),
                 "timeline", estimateForm.getTimeline()
         ));
-        payload.put("resultSummary", Map.of(
+        payload.put("resultSummary", orderedMap(
                 "likelyMinimumTankGallons", result.likelyMinimumTankGallons(),
                 "recommendedTankLowGallons", result.recommendedTankLowGallons(),
                 "recommendedTankHighGallons", result.recommendedTankHighGallons(),
@@ -117,7 +117,7 @@ public class LeadStorageService {
             writeLeadFile(payload, leadId, now);
             writeExportFile(exportPayload, leadId, now);
             appendExportQueue(exportPayload, leadId, quoteLeadForm, estimateForm, result, now);
-            appendEvent(Map.of(
+            appendEvent(orderedMap(
                     "eventType", "quote_form_submitted",
                     "occurredAt", now.toString(),
                     "leadId", leadId,
@@ -148,14 +148,14 @@ public class LeadStorageService {
         payload.put("vertical", "home_services");
         payload.put("serviceCategory", "septic");
         payload.put("leadType", "quote_request");
-        payload.put("consumer", Map.of(
+        payload.put("consumer", orderedMap(
                 "fullName", quoteLeadForm.getFullName(),
                 "email", quoteLeadForm.getEmail(),
                 "phone", quoteLeadForm.getPhone(),
                 "zipCode", quoteLeadForm.getZipCode(),
                 "stateCode", quoteLeadForm.getStateCode()
         ));
-        payload.put("project", Map.of(
+        payload.put("project", orderedMap(
                 "projectType", quoteLeadForm.getProjectType(),
                 "bedrooms", estimateForm.getBedrooms(),
                 "occupants", estimateForm.getOccupants(),
@@ -166,7 +166,7 @@ public class LeadStorageService {
                 "accessDifficulty", estimateForm.getAccessDifficulty(),
                 "timeline", estimateForm.getTimeline()
         ));
-        payload.put("estimate", Map.of(
+        payload.put("estimate", orderedMap(
                 "likelyMinimumTankGallons", result.likelyMinimumTankGallons(),
                 "recommendedTankLowGallons", result.recommendedTankLowGallons(),
                 "recommendedTankHighGallons", result.recommendedTankHighGallons(),
@@ -178,20 +178,15 @@ public class LeadStorageService {
         ));
         payload.put("consent", consent);
         payload.put("provenance", provenance);
-        payload.put("routingHints", Map.of(
+        payload.put("routingHints", orderedMap(
                 "buyerChannels", List.of("batch_json", "batch_csv"),
                 "urgencyBucket", estimateForm.getTimeline(),
                 "riskBand", result.likelySystemClass(),
-                "geoTarget", Map.of(
+                "geoTarget", orderedMap(
                         "stateCode", quoteLeadForm.getStateCode(),
                         "zipCode", quoteLeadForm.getZipCode()
                 ),
-                "tags", List.of(
-                        "septic",
-                        quoteLeadForm.getStateCode(),
-                        quoteLeadForm.getProjectType(),
-                        slugify(result.likelySystemClass())
-                )
+                "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), slugify(result.likelySystemClass()))
         ));
         return payload;
     }
@@ -269,19 +264,18 @@ public class LeadStorageService {
 
         String exportPath = "exports/pending/" + YEAR.format(now) + "/" + MONTH.format(now) + "/" + DAY.format(now)
                 + "/" + TIMESTAMP.format(now) + "-" + leadId + ".json";
-        List<String> columns = List.of(
-                leadId,
-                now.toString(),
-                quoteLeadForm.getStateCode(),
-                quoteLeadForm.getZipCode(),
-                quoteLeadForm.getProjectType(),
-                estimateForm.getTimeline(),
-                result.likelySystemClass(),
-                String.valueOf(result.totalCostMid()),
-                String.valueOf(quoteLeadForm.isConsentAccepted()),
-                String.valueOf(exportPayload.get("exportStatus")),
-                exportPath
-        );
+        List<String> columns = new java.util.ArrayList<>();
+        columns.add(leadId);
+        columns.add(now.toString());
+        columns.add(quoteLeadForm.getStateCode());
+        columns.add(quoteLeadForm.getZipCode());
+        columns.add(quoteLeadForm.getProjectType());
+        columns.add(estimateForm.getTimeline());
+        columns.add(result.likelySystemClass());
+        columns.add(String.valueOf(result.totalCostMid()));
+        columns.add(String.valueOf(quoteLeadForm.isConsentAccepted()));
+        columns.add(String.valueOf(exportPayload.get("exportStatus")));
+        columns.add(exportPath);
         Files.writeString(
                 csvFile,
                 csvRow(columns),
@@ -342,5 +336,26 @@ public class LeadStorageService {
     private String csvEscape(String value) {
         String normalized = value == null ? "" : value;
         return "\"" + normalized.replace("\"", "\"\"") + "\"";
+    }
+
+    private Map<String, Object> orderedMap(Object... keyValues) {
+        if (keyValues.length % 2 != 0) {
+            throw new IllegalArgumentException("Key values must be even in length");
+        }
+        Map<String, Object> map = new LinkedHashMap<>();
+        for (int index = 0; index < keyValues.length; index += 2) {
+            map.put(String.valueOf(keyValues[index]), keyValues[index + 1]);
+        }
+        return map;
+    }
+
+    private List<String> compactList(String... values) {
+        List<String> list = new java.util.ArrayList<>();
+        for (String value : values) {
+            if (value != null && !value.isBlank()) {
+                list.add(value);
+            }
+        }
+        return list;
     }
 }

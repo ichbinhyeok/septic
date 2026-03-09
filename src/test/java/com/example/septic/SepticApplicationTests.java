@@ -1,5 +1,8 @@
 package com.example.septic;
 
+import com.example.septic.service.EstimatorResult;
+import com.example.septic.service.EstimatorService;
+import com.example.septic.web.EstimateForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +28,9 @@ class SepticApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
+	@Autowired
+	private EstimatorService estimatorService;
+
 	@Test
 	void contextLoads() {
 	}
@@ -34,6 +40,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost & Size Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")));
 	}
@@ -50,9 +57,29 @@ class SepticApplicationTests {
 	void sitemapXmlIncludesCoreUrls() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-pump-schedule-estimator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")));
+	}
+
+	@Test
+	void privacyPolicyPageRenders() throws Exception {
+		mockMvc.perform(get("/privacy-policy/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Privacy Policy")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("consent snapshot")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/terms-of-use/")));
+	}
+
+	@Test
+	void aboutPageRenders() throws Exception {
+		mockMvc.perform(get("/about/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("About this project")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Not engineering design software")));
 	}
 
 	@Test
@@ -71,7 +98,51 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Likely total cost range")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("state-level planning cost anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last verified")));
+	}
+
+	@Test
+	void tankSizeEstimatorPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-tank-size-estimator/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Tank Size Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Occupancy profile")));
+	}
+
+	@Test
+	void tankSizeEstimatorReturnsResult() throws Exception {
+		mockMvc.perform(post("/septic-tank-size-estimator/")
+						.param("stateCode", "GA")
+						.param("bedrooms", "4")
+						.param("occupancyProfile", "high")
+						.param("garbageDisposal", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia tank size planning range")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("High occupancy")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the full cost estimator")));
+	}
+
+	@Test
+	void pumpScheduleEstimatorPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-pump-schedule-estimator/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Pump Schedule Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use profile")));
+	}
+
+	@Test
+	void pumpScheduleEstimatorReturnsCadence() throws Exception {
+		mockMvc.perform(post("/septic-pump-schedule-estimator/")
+						.param("tankSizeGallons", "1000")
+						.param("occupants", "5")
+						.param("garbageDisposal", "true")
+						.param("usageProfile", "full_time"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("About every 2 to 3 years")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("homeowner check yearly")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the cost estimator")));
 	}
 
 	@Test
@@ -118,7 +189,9 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/massachusetts/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Title 5")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying or Selling Property with a Septic System")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying or Selling Property with a Septic System")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who to call first")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records to request first")));
 	}
 
 	@Test
@@ -153,7 +226,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to verify before trusting the low end")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What can kill the low end")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OR&projectType=perc_test")));
 	}
 
@@ -191,6 +264,20 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Main estimate drivers")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")));
+	}
+
+	@Test
+	void tankSizeContentPagePointsToDedicatedEstimator() throws Exception {
+		mockMvc.perform(get("/septic-tank-size/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-tank-size-estimator/")));
+	}
+
+	@Test
+	void pumpingContentPagePointsToDedicatedEstimator() throws Exception {
+		mockMvc.perform(get("/septic-pumping-cost/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-pump-schedule-estimator/")));
 	}
 
 	@Test
@@ -251,6 +338,51 @@ class SepticApplicationTests {
 		String exportCsvContent = Files.readString(exportCsv);
 		org.junit.jupiter.api.Assertions.assertTrue(exportCsvContent.contains("lead_id,submitted_at,state_code"));
 		org.junit.jupiter.api.Assertions.assertTrue(exportCsvContent.contains("\"GA\""));
+	}
+
+	@Test
+	void quoteSubmissionAllowsMissingOptionalOccupants() throws Exception {
+		mockMvc.perform(post("/quote-request/")
+						.param("stateCode", "GA")
+						.param("projectType", "replacement")
+						.param("bedrooms", "4")
+						.param("soilPercStatus", "poor_drainage")
+						.param("accessDifficulty", "hard")
+						.param("timeline", "this_month")
+						.param("fullName", "Taylor Shin")
+						.param("email", "taylor@example.com")
+						.param("phone", "5551234567")
+						.param("zipCode", "30301")
+						.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request received")));
+	}
+
+	@Test
+	void massachusettsEstimateRunsHigherThanGeorgiaForSameBaseInputs() {
+		EstimateForm georgia = new EstimateForm();
+		georgia.setStateCode("GA");
+		georgia.setProjectType("replacement");
+		georgia.setBedrooms(4);
+		georgia.setTimeline("researching");
+
+		EstimateForm massachusetts = new EstimateForm();
+		massachusetts.setStateCode("MA");
+		massachusetts.setProjectType("replacement");
+		massachusetts.setBedrooms(4);
+		massachusetts.setTimeline("researching");
+
+		EstimatorResult georgiaResult = estimatorService.estimate(georgia);
+		EstimatorResult massachusettsResult = estimatorService.estimate(massachusetts);
+
+		org.junit.jupiter.api.Assertions.assertTrue(
+				massachusettsResult.totalCostMid() > georgiaResult.totalCostMid(),
+				"Expected Massachusetts midpoint to exceed Georgia midpoint after state multiplier is applied"
+		);
+		org.junit.jupiter.api.Assertions.assertTrue(
+				massachusettsResult.costDrivers().stream().anyMatch(driver -> driver.contains("above the national price level")),
+				"Expected Massachusetts result to explain the regional price-level adjustment"
+		);
 	}
 
 	@Test
