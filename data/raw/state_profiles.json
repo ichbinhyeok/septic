@@ -1239,6 +1239,122 @@
       ]
     },
     {
+      "stateCode": "AR",
+      "stateName": "Arkansas",
+      "agencyName": "Arkansas Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Arkansas is stronger on county health permit routing, permit-copy retrieval, and soil-suitability reality than on a fake statewide install table. The homeowner wedge is knowing whether the county health unit file, the onsite specialist path, and the rule-backed site story are already in view before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "ADH's onsite wastewater program says the agency provides technical assistance to county Environmental Health Specialists and reviews permit applications under the state onsite wastewater rules. The Arkansas FAQ tells homeowners to start by calling the county health unit and asking for the Onsite Environmental Specialist, says permit copies come through the local health unit, and explains that the space needed for a system depends on soil suitability and number of bedrooms rather than a fixed minimum lot size. The local office path matters because Arkansas routes the practical permit file through county health units rather than a single statewide permit desk.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Arkansas homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Arkansas homeowners usually need the county health permit path clarified before they trust an install or replacement quote. The project is not really permit-ready until the local health unit confirms what is in the file, whether the onsite specialist path is clean, and whether the lot still supports the assumed system story.",
+      "permitPathSteps": [
+        "Start with the county health unit and ask for the Onsite Environmental Specialist handling the parcel.",
+        "Ask for any permit copy, prior file, or county note already tied to the property before treating the project as a clean permit path.",
+        "Use the local file and soil-suitability context to decide whether the lot is still on a low-end path or already widening beyond the simple installer story."
+      ],
+      "siteEvalSummary": "Arkansas public homeowner material is strongest on county health routing, permit-copy retrieval, and soil-suitability context rather than one simple statewide sizing story. The practical path turns on whether the county file is complete and whether the lot still supports the assumed system path.",
+      "ruleHighlights": [
+        "ADH says the onsite wastewater program provides technical assistance to county Environmental Health Specialists.",
+        "Arkansas tells homeowners to call the county health unit and ask for the Onsite Environmental Specialist first.",
+        "Permit copies are retrieved through the local health unit.",
+        "The space needed for the system depends on soil suitability and the number of bedrooms rather than a fixed minimum lot size."
+      ],
+      "localOverrideNote": "Arkansas looks statewide through ADH, but the real homeowner workflow changes quickly once you know which county health unit holds the file and what the onsite specialist sees in the lot conditions.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ar_01", "ar_02", "ar_03", "ar_04"],
+      "localAuthoritySourceIds": ["ar_03"],
+      "recordsLookupSourceIds": ["ar_02", "ar_03"],
+      "localActionSteps": [
+        "Open the Arkansas local health units page first and identify the county office holding the onsite wastewater file.",
+        "Ask for any permit copy, prior county note, or onsite specialist file already tied to the parcel.",
+        "Confirm whether soil suitability and bedroom count still support the expected system path before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the county health unit and ask for the Onsite Environmental Specialist handling onsite wastewater questions for the property.",
+      "recordsToRequest": [
+        "Any permit copy or prior onsite wastewater file already tied to the property.",
+        "Any county note showing what the onsite specialist concluded about soil suitability and system space.",
+        "Any local health-unit record showing whether the lot still fits the expected onsite path."
+      ],
+      "lowEndRiskChecks": [
+        "If the county health file is thin or missing, the low end is still a planning scenario rather than a permit-ready number.",
+        "If soil suitability or bedroom-count assumptions change, the system path can widen before contractor pricing becomes comparable.",
+        "If the onsite specialist identifies a lot constraint, the simple statewide permit story can break quickly."
+      ],
+      "permitTimelineNote": "Arkansas timing often turns on how quickly the county health unit surfaces the file, whether a permit copy already exists, and whether the onsite specialist still views the lot as straightforward.",
+      "buyerInspectionTrigger": "Buyers should ask for the county health-unit file and any permit copy early because Arkansas's local file often tells a more reliable story than the listing summary.",
+      "maintenanceInspectionNote": "Arkansas's current source set is strongest on county health routing, permit-copy retrieval, and lot-suitability context, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Arkansas's main wrinkle is that the county health unit and onsite specialist own the real permit conversation, so the file path matters more than a generic statewide price band.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Arkansas health units expose permit-copy or onsite wastewater records online.",
+        "Document where Arkansas counties publish clearer homeowner guidance on repair workflow and constrained lots."
+      ]
+    },
+    {
+      "stateCode": "MS",
+      "stateName": "Mississippi",
+      "agencyName": "Mississippi State Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Mississippi is stronger on county health file retrieval, permit-record visibility, and site-evaluation reality than on a fake statewide install table. The homeowner wedge is knowing whether the county file, the public-record trail, and the permit-or-recommendation path are already real before trusting the low end.",
+      "ruleType": "records_path",
+      "ruleSummaryPlainEnglish": "MSDH's onsite wastewater page says environmentalists conduct site evaluations and provide a Permit or Recommendation that is required to obtain a water meter and move into installation. The online application FAQ says the onsite wastewater division operates entirely in public records, that permit information can be researched if it exists, and that older properties may have no file available. Mississippi's county health departments and public-records request paths matter because the real homeowner records trail is often county-first and can still require a formal request when the file is thin.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Mississippi homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Mississippi homeowners usually need the county file and permit-or-recommendation story clarified before they trust an install or replacement quote. The project is not really file-backed until the county health department confirms whether the site evaluation, permit record, or public-record trail is strong enough to support the property story.",
+      "permitPathSteps": [
+        "Start with the county health department because Mississippi routes the practical onsite wastewater file through county health offices.",
+        "Ask whether a site evaluation, Permit or Recommendation, permit file, or online record already exists before treating the project as a simple records story.",
+        "Use the county file and public-records path to decide whether the homeowner has a usable record trail or is still working from a thin file."
+      ],
+      "siteEvalSummary": "Mississippi public homeowner material is strongest on site-evaluation workflow, public-record visibility, and county file retrieval rather than one simple statewide sizing story. The practical path turns on whether the county file is strong enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "MSDH says environmentalists conduct site evaluations and provide a Permit or Recommendation required to obtain a water meter.",
+        "Mississippi says the onsite wastewater division operates entirely in public records.",
+        "Permit information can be researched if it exists, but older properties may have no file available.",
+        "County health departments and public-record requests can both matter when the local file is thin."
+      ],
+      "localOverrideNote": "Mississippi looks statewide through MSDH, but the real homeowner workflow changes quickly once you know which county health department holds the file and whether the public-record trail is strong enough to trust.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ms_01", "ms_02", "ms_03", "ms_04"],
+      "localAuthoritySourceIds": ["ms_03"],
+      "recordsLookupSourceIds": ["ms_02", "ms_04"],
+      "localActionSteps": [
+        "Open the Mississippi county health departments page first and identify the office holding the practical onsite wastewater file.",
+        "Ask whether a site evaluation, Permit or Recommendation, or permit record already exists before you trust the low end.",
+        "If the county file is thin, confirm whether a formal public-records request is the next step."
+      ],
+      "whoToCallFirst": "Start with the county health department that handles onsite wastewater files and environmentalist questions for the property.",
+      "recordsToRequest": [
+        "Any site-evaluation report or Permit or Recommendation already tied to the property.",
+        "Any permit record or online file already identified through the county or MSDH system.",
+        "Any county or public-record note showing whether the property is old enough that no file may exist."
+      ],
+      "lowEndRiskChecks": [
+        "If the county or public-record trail cannot surface a meaningful file, the low end is still a planning scenario rather than a file-backed number.",
+        "If the property predates the available permit records, the homeowner may be relying on a much thinner story than expected.",
+        "If the site evaluation or Permit or Recommendation is missing, the install path can widen before contractor pricing becomes comparable."
+      ],
+      "permitTimelineNote": "Mississippi timing often turns on how quickly the county file surfaces, whether the public-record trail produces a permit file, and whether the site evaluation is already usable.",
+      "buyerInspectionTrigger": "Buyers should ask for the county file and any Permit or Recommendation early because Mississippi's public-record trail can reveal more risk than the seller summary.",
+      "maintenanceInspectionNote": "Mississippi's current source set is strongest on county file retrieval, permit-record visibility, and site-evaluation context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Mississippi's main wrinkle is that the program treats the onsite file as public records, but older properties can still have a thin or missing trail that breaks confidence fast.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Mississippi counties expose onsite wastewater permit or recommendation records online.",
+        "Document where Mississippi homeowners can retrieve stronger records for older properties with weak permit history."
+      ]
+    },
+    {
       "stateCode": "SC",
       "stateName": "South Carolina",
       "agencyName": "South Carolina Department of Environmental Services",
