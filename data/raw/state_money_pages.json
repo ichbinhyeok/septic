@@ -54,7 +54,11 @@
         "/perc-test-cost/georgia/",
         "/drain-field-replacement-cost/"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"]
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -107,7 +111,11 @@
         "/septic-replacement-cost/georgia/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"]
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -160,7 +168,11 @@
         "/perc-test-cost/pennsylvania/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["pa_01", "pa_02"]
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -213,7 +225,11 @@
         "/septic-replacement-cost/pennsylvania/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["pa_01", "pa_02"]
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -266,7 +282,13 @@
         "/perc-test-cost/connecticut/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"]
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -319,7 +341,12 @@
         "/septic-replacement-cost/connecticut/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03"]
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -372,7 +399,12 @@
         "/perc-test-cost/oregon/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["or_01", "or_02", "or_03"]
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -426,7 +458,12 @@
         "/septic-replacement-cost/oregon/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["or_01", "or_02", "or_03"]
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -479,7 +516,12 @@
         "/perc-test-cost/massachusetts/",
         "/buying-a-house-with-a-septic-system/"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -532,7 +574,12 @@
         "/septic-replacement-cost/massachusetts/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -585,7 +632,12 @@
         "/perc-test-cost/florida/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+      "officialSourceIds": [
+        "fl_01",
+        "fl_02",
+        "fl_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -638,7 +690,12 @@
         "/septic-replacement-cost/florida/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+      "officialSourceIds": [
+        "fl_01",
+        "fl_02",
+        "fl_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -691,7 +748,12 @@
         "/perc-test-cost/missouri/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["mo_01", "mo_02", "mo_05"]
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_05"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -744,7 +806,12 @@
         "/septic-permit-process/missouri/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["mo_01", "mo_02", "mo_03"]
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -797,7 +864,12 @@
         "/perc-test-cost/north-carolina/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["nc_01", "nc_02", "nc_03"]
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -850,7 +922,12 @@
         "/septic-permit-process/north-carolina/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["nc_01", "nc_02", "nc_03"]
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -903,7 +980,13 @@
         "/perc-test-cost/new-jersey/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -956,7 +1039,13 @@
         "/septic-permit-process/new-jersey/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-replacement-cost",
@@ -1009,7 +1098,13 @@
         "/perc-test-cost/washington/",
         "/septic-replacement-cost/"
       ],
-      "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_05"]
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_03",
+        "wa_05"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "perc-test-cost",
@@ -1062,7 +1157,13 @@
         "/septic-inspection-cost/washington/",
         "/perc-test-cost/"
       ],
-      "officialSourceIds": ["wa_01", "wa_02", "wa_04", "wa_05"]
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "buying-a-house-with-a-septic-system",
@@ -1116,7 +1217,12 @@
         "/septic-inspection-cost/massachusetts/",
         "/buying-a-house-with-a-septic-system/"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_03"]
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "buying-a-house-with-a-septic-system",
@@ -1170,7 +1276,13 @@
         "/buying-a-house-with-a-septic-system/",
         "/septic-records-checklist/new-jersey/"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"]
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "buying-a-house-with-a-septic-system",
@@ -1224,7 +1336,12 @@
         "/septic-inspection-cost/florida/",
         "/buying-a-house-with-a-septic-system/"
       ],
-      "officialSourceIds": ["fl_01", "fl_02", "fl_03"]
+      "officialSourceIds": [
+        "fl_01",
+        "fl_02",
+        "fl_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "drain-field-replacement-cost",
@@ -1277,7 +1394,12 @@
         "/septic-replacement-cost/oregon/",
         "/drain-field-replacement-cost/"
       ],
-      "officialSourceIds": ["or_01", "or_02", "or_03"]
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "drain-field-replacement-cost",
@@ -1330,7 +1452,11 @@
         "/septic-replacement-cost/georgia/",
         "/drain-field-replacement-cost/"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"]
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-pumping-cost",
@@ -1383,7 +1509,12 @@
         "/septic-pumping-cost/",
         "/septic-system-cost-calculator/"
       ],
-      "officialSourceIds": ["wa_02", "wa_03", "wa_04"]
+      "officialSourceIds": [
+        "wa_02",
+        "wa_03",
+        "wa_04"
+      ],
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1436,8 +1567,12 @@
         "/septic-records-checklist/georgia/",
         "/septic-replacement-cost/georgia/"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1490,8 +1625,12 @@
         "/septic-records-checklist/pennsylvania/",
         "/perc-test-cost/pennsylvania/"
       ],
-      "officialSourceIds": ["pa_01", "pa_02"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1544,8 +1683,14 @@
         "/perc-test-cost/connecticut/",
         "/septic-records-checklist/"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1598,8 +1743,13 @@
         "/perc-test-cost/oregon/",
         "/drain-field-replacement-cost/oregon/"
       ],
-      "officialSourceIds": ["or_01", "or_02", "or_03"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1652,8 +1802,13 @@
         "/buying-a-house-with-a-septic-system/massachusetts/",
         "/septic-records-checklist/massachusetts/"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_03"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -1706,8 +1861,13 @@
         "/buying-a-house-with-a-septic-system/florida/",
         "/septic-records-checklist/florida/"
       ],
-      "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "fl_01",
+        "fl_02",
+        "fl_03"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -1760,8 +1920,12 @@
         "/septic-permit-process/georgia/",
         "/septic-system-cost-calculator/?state=GA&projectType=buying_home"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -1814,8 +1978,12 @@
         "/septic-permit-process/pennsylvania/",
         "/septic-system-cost-calculator/?state=PA&projectType=buying_home"
       ],
-      "officialSourceIds": ["pa_01", "pa_02"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -1869,8 +2037,13 @@
         "/septic-system-cost-calculator/?state=WA&projectType=buying_home",
         "/septic-records-checklist/"
       ],
-      "officialSourceIds": ["wa_02", "wa_03", "wa_04"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "wa_02",
+        "wa_03",
+        "wa_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -1923,8 +2096,13 @@
         "/septic-permit-process/massachusetts/",
         "/septic-system-cost-calculator/?state=MA&projectType=buying_home"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_03"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_03"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -1977,8 +2155,13 @@
         "/septic-permit-process/florida/",
         "/septic-system-cost-calculator/?state=FL&projectType=buying_home"
       ],
-      "officialSourceIds": ["fl_01", "fl_02", "fl_03"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "fl_01",
+        "fl_02",
+        "fl_03"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -2031,8 +2214,14 @@
         "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
         "/septic-records-checklist/"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -2085,8 +2274,14 @@
         "/septic-records-checklist/washington/",
         "/septic-pumping-cost/washington/"
       ],
-      "officialSourceIds": ["wa_01", "wa_02", "wa_04", "wa_05"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -2140,8 +2335,14 @@
         "/septic-records-checklist/",
         "/septic-permit-process/"
       ],
-      "officialSourceIds": ["nc_01", "nc_02", "nc_03", "nc_04"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -2194,8 +2395,15 @@
         "/septic-records-checklist/new-jersey/",
         "/buying-a-house-with-a-septic-system/new-jersey/"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_04", "nj_05"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04",
+        "nj_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-permit-process",
@@ -2248,8 +2456,14 @@
         "/septic-records-checklist/missouri/",
         "/septic-replacement-cost/missouri/"
       ],
-      "officialSourceIds": ["mo_01", "mo_02", "mo_03", "mo_05"],
-      "calculatorProjectType": "new_install"
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_03",
+        "mo_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -2302,8 +2516,14 @@
         "/buying-a-house-with-a-septic-system/connecticut/",
         "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -2356,8 +2576,14 @@
         "/drain-field-replacement-cost/oregon/",
         "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
       ],
-      "officialSourceIds": ["or_01", "or_03", "or_04", "or_05"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "or_01",
+        "or_03",
+        "or_04",
+        "or_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -2410,8 +2636,14 @@
         "/septic-inspection-cost/missouri/",
         "/septic-system-cost-calculator/?state=MO&projectType=buying_home"
       ],
-      "officialSourceIds": ["mo_01", "mo_02", "mo_04", "mo_05"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_04",
+        "mo_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-records-checklist",
@@ -2464,8 +2696,14 @@
         "/septic-inspection-cost/north-carolina/",
         "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
       ],
-      "officialSourceIds": ["nc_01", "nc_02", "nc_03", "nc_04"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "buying-a-house-with-a-septic-system",
@@ -2519,8 +2757,14 @@
         "/septic-permit-process/connecticut/",
         "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
-      "calculatorProjectType": "buying_home"
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2573,8 +2817,13 @@
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/?state=MA&projectType=inspection"
       ],
-      "officialSourceIds": ["ma_01", "ma_02", "ma_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2627,8 +2876,14 @@
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/?state=FL&projectType=inspection"
       ],
-      "officialSourceIds": ["fl_01", "fl_03", "fl_04", "fl_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "fl_01",
+        "fl_03",
+        "fl_04",
+        "fl_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2681,8 +2936,14 @@
         "/septic-records-checklist/washington/",
         "/septic-system-cost-calculator/?state=WA&projectType=inspection"
       ],
-      "officialSourceIds": ["wa_01", "wa_02", "wa_03", "wa_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_03",
+        "wa_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2735,8 +2996,14 @@
         "/septic-records-checklist/new-jersey/",
         "/septic-system-cost-calculator/?state=NJ&projectType=inspection"
       ],
-      "officialSourceIds": ["nj_01", "nj_02", "nj_03", "nj_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2789,8 +3056,13 @@
         "/buying-a-house-with-a-septic-system/",
         "/septic-system-cost-calculator/?state=PA&projectType=inspection"
       ],
-      "officialSourceIds": ["pa_01", "pa_02", "pa_03"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2843,8 +3115,14 @@
         "/buying-a-house-with-a-septic-system/connecticut/",
         "/septic-system-cost-calculator/?state=CT&projectType=inspection"
       ],
-      "officialSourceIds": ["ct_01", "ct_02", "ct_03", "ct_04"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2897,8 +3175,12 @@
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/?state=GA&projectType=inspection"
       ],
-      "officialSourceIds": ["ga_01", "ga_02"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -2951,8 +3233,13 @@
         "/septic-permit-process/oregon/",
         "/septic-system-cost-calculator/?state=OR&projectType=inspection"
       ],
-      "officialSourceIds": ["or_01", "or_04", "or_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "or_01",
+        "or_04",
+        "or_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -3005,8 +3292,13 @@
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/?state=NC&projectType=inspection"
       ],
-      "officialSourceIds": ["nc_01", "nc_02", "nc_04"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     },
     {
       "contentSlug": "septic-inspection-cost",
@@ -3059,8 +3351,14 @@
         "/septic-records-checklist/",
         "/septic-permit-process/"
       ],
-      "officialSourceIds": ["mo_01", "mo_02", "mo_04", "mo_05"],
-      "calculatorProjectType": "inspection"
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_04",
+        "mo_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
     }
   ]
 }

@@ -5,6 +5,7 @@ import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.FaqBlock;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
+import com.example.septic.web.EditorialProfile;
 import com.example.septic.web.PageMeta;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -125,7 +126,7 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateGuide(StateProfile state, String lastReviewedAt) {
+    public PageMeta stateGuide(StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
         String title = stateGuideTitle(state);
         String description = stateGuideDescription(state);
@@ -134,7 +135,7 @@ public class SeoService {
         jsonLdBlocks.add(toJson(withEditorialMeta(webPage(canonicalUrl,
                 title,
                 description,
-                "Article"), lastReviewedAt)));
+                "Article"), lastReviewedAt, preparedBy, reviewedBy)));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
@@ -221,12 +222,14 @@ public class SeoService {
         return faqBlocks;
     }
 
-    public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt) {
+    public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
                 webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "CollectionPage"),
-                lastReviewedAt
+                lastReviewedAt,
+                preparedBy,
+                reviewedBy
         )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
@@ -244,12 +247,14 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt) {
+    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
                 webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "Article"),
-                lastReviewedAt
+                lastReviewedAt,
+                preparedBy,
+                reviewedBy
         )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
@@ -349,8 +354,14 @@ public class SeoService {
         return payload;
     }
 
-    private Map<String, Object> withEditorialMeta(Map<String, Object> payload, String lastReviewedAt) {
-        payload.put("author", editorialOrganizationReference());
+    private Map<String, Object> withEditorialMeta(
+            Map<String, Object> payload,
+            String lastReviewedAt,
+            EditorialProfile preparedBy,
+            EditorialProfile reviewedBy
+    ) {
+        payload.put("author", editorialContributorReference(preparedBy));
+        payload.put("editor", editorialContributorReference(reviewedBy));
         payload.put("publisher", editorialOrganizationReference());
         if (lastReviewedAt != null && !lastReviewedAt.isBlank()) {
             payload.put("dateModified", lastReviewedAt);
@@ -372,6 +383,18 @@ public class SeoService {
         payload.put("@type", "Organization");
         payload.put("name", "Septic System Cost & Size Estimator");
         payload.put("url", absoluteUrl("/"));
+        return payload;
+    }
+
+    private Map<String, Object> editorialContributorReference(EditorialProfile profile) {
+        if (profile == null) {
+            return editorialOrganizationReference();
+        }
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("@type", "Organization");
+        payload.put("name", profile.displayName());
+        payload.put("description", profile.roleTitle() + ". " + profile.focusSummary());
+        payload.put("url", absoluteUrl("/about/"));
         return payload;
     }
 

@@ -1,6 +1,7 @@
 @import com.example.septic.data.model.ContentPage
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.EditorialProfile
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
@@ -11,7 +12,8 @@
 @param String calculatorCtaLabel = "Open the estimator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param String calculatorCtaTargetType = "calculator"
-@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param EditorialProfile editorialPreparedBy = null
+@param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
@@ -51,7 +53,19 @@
                 <dl class="review-meta">
                     <div>
                         <dt>Prepared by</dt>
-                        <dd>${editorialPreparedBy}</dd>
+                        <dd>
+                            <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
+                            <span>${editorialPreparedBy.roleTitle()}</span>
+                            <span>${editorialPreparedBy.focusSummary()}</span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed by</dt>
+                        <dd>
+                            <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
+                            <span>${editorialReviewedBy.roleTitle()}</span>
+                            <span>${editorialReviewedBy.focusSummary()}</span>
+                        </dd>
                     </div>
                     <div>
                         <dt>Reviewed against</dt>
@@ -184,7 +198,10 @@
                 <span class="trust-box__label">Related pages</span>
                 <ul class="detail-list">
                     @for (var link : internalLinks)
-                        <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a></li>
+                        <li>
+                            <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a>
+                            <p class="detail-list__note">${link.note()}</p>
+                        </li>
                     @endfor
                 </ul>
             </article>

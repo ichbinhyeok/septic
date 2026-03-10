@@ -50,7 +50,21 @@
                     </span>
                 </a>
 
-                <nav class="site-nav">
+                <button class="site-nav-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="site-nav-menu"
+                        aria-label="Open navigation menu"
+                        data-site-nav-toggle>
+                    <span class="site-nav-toggle__icon" aria-hidden="true">
+                        <span class="site-nav-toggle__line"></span>
+                        <span class="site-nav-toggle__line"></span>
+                        <span class="site-nav-toggle__line"></span>
+                    </span>
+                    <span class="site-nav-toggle__label">Menu</span>
+                </button>
+
+                <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
                     <a href="/septic-tank-size-estimator/">Tank size</a>
                     <a href="/#states">State guides</a>

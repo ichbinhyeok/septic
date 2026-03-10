@@ -23,6 +23,29 @@ public record ContentPage(
         String publishStatus
 ) {
     public boolean isPublished() {
-        return publishStatus == null || publishStatus.isBlank() || "published".equalsIgnoreCase(publishStatus);
+        return "published".equalsIgnoreCase(publishStatus) && hasLaunchQuality();
+    }
+
+    public boolean hasLaunchQuality() {
+        return hasText(slug)
+                && hasText(title)
+                && hasText(metaDescription)
+                && hasText(introCopy)
+                && hasText(targetReader)
+                && hasItems(fitBullets, 2)
+                && hasItems(decisionSteps, 2)
+                && hasItems(lowEndBreakers, 1)
+                && hasItems(quotePrepChecklist, 1)
+                && hasItems(driverBullets, 2)
+                && hasItems(faqBlocks, 2)
+                && hasItems(internalLinkTargets, 1);
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.isBlank();
+    }
+
+    private boolean hasItems(List<?> values, int minimumSize) {
+        return values != null && values.size() >= minimumSize;
     }
 }

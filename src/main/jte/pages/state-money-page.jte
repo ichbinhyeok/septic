@@ -2,6 +2,7 @@
 @import com.example.septic.data.model.StateMoneyPage
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.EditorialProfile
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -14,7 +15,8 @@
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
-@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param EditorialProfile editorialPreparedBy = null
+@param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
@@ -25,12 +27,12 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
-                <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
+                <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <p>${calculatorCtaNote}</p>
             </div>
 
@@ -41,7 +43,19 @@
                 <dl class="review-meta">
                     <div>
                         <dt>Prepared by</dt>
-                        <dd>${editorialPreparedBy}</dd>
+                        <dd>
+                            <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
+                            <span>${editorialPreparedBy.roleTitle()}</span>
+                            <span>${editorialPreparedBy.focusSummary()}</span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed by</dt>
+                        <dd>
+                            <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
+                            <span>${editorialReviewedBy.roleTitle()}</span>
+                            <span>${editorialReviewedBy.focusSummary()}</span>
+                        </dd>
                     </div>
                     <div>
                         <dt>Reviewed against</dt>
@@ -88,7 +102,7 @@
 
                 @if (primaryLocalAuthoritySource != null)
                     <article class="detail-card">
-                        <h2>Find the local permitting authority</h2>
+                        <h2>${stateMoneyPage.localAuthorityHeading()}</h2>
                         <p>Use the local office first when you want to move from a planning page into an actual permit or records workflow.</p>
                         <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority directory</a>
                         <p>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
@@ -97,7 +111,7 @@
 
                 @if (primaryRecordsLookupSource != null)
                     <article class="detail-card">
-                        <h2>Look up septic records first</h2>
+                        <h2>${stateMoneyPage.recordsLookupHeading()}</h2>
                         <p>Use the existing record trail to confirm whether this property still fits the low end before you move into quote mode.</p>
                         <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
                         <p>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
@@ -153,7 +167,7 @@
 
             @if (state.localActionSteps() != null && !state.localActionSteps().isEmpty())
                 <article class="detail-card">
-                    <h2>Local action checklist</h2>
+                    <h2>${stateMoneyPage.actionChecklistHeading()}</h2>
                     <ol class="detail-list detail-list--numbered">
                         @for (var step : state.localActionSteps())
                             <li>${step}</li>
@@ -213,44 +227,43 @@
 
     <section class="section">
         <div class="container detail-grid">
-            @if (state.whoToCallFirst() != null)
+            @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()))
                 <article class="detail-card">
-                    <h2>Who to call first</h2>
-                    <p>${state.whoToCallFirst()}</p>
+                    <h2>${stateMoneyPage.localPrepHeading()}</h2>
+                    @if (state.whoToCallFirst() != null)
+                        <p><strong>Who to call first.</strong> ${state.whoToCallFirst()}</p>
+                    @endif
+                    @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                        <p><strong>Records to request.</strong></p>
+                        <ul class="detail-list">
+                            @for (var record : state.recordsToRequest())
+                                <li>${record}</li>
+                            @endfor
+                        </ul>
+                    @endif
                 </article>
             @endif
 
-            @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
-                <article class="detail-card">
-                    <h2>Records to request</h2>
-                    <ul class="detail-list">
-                        @for (var record : state.recordsToRequest())
-                            <li>${record}</li>
-                        @endfor
-                    </ul>
-                </article>
-            @endif
-
-            @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
+            @if ((state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()) || (stateMoneyPage.lowEndBreakers() != null && !stateMoneyPage.lowEndBreakers().isEmpty()))
                 <article class="detail-card detail-card--full">
-                    <h2>What can kill the low end</h2>
-                    <ul class="detail-list">
-                        @for (var risk : state.lowEndRiskChecks())
-                            <li>${risk}</li>
-                        @endfor
-                        <li>${state.localOverrideNote()}</li>
-                    </ul>
-                </article>
-            @endif
-
-            @if (stateMoneyPage.lowEndBreakers() != null && !stateMoneyPage.lowEndBreakers().isEmpty())
-                <article class="detail-card detail-card--full">
-                    <h2>What breaks the low end on this page</h2>
-                    <ul class="detail-list">
-                        @for (var lowEndBreaker : stateMoneyPage.lowEndBreakers())
-                            <li>${lowEndBreaker}</li>
-                        @endfor
-                    </ul>
+                    <h2>${stateMoneyPage.riskHeading(state.stateName())}</h2>
+                    @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
+                        <p><strong>State-level checks.</strong></p>
+                        <ul class="detail-list">
+                            @for (var risk : state.lowEndRiskChecks())
+                                <li>${risk}</li>
+                            @endfor
+                            <li>${state.localOverrideNote()}</li>
+                        </ul>
+                    @endif
+                    @if (stateMoneyPage.lowEndBreakers() != null && !stateMoneyPage.lowEndBreakers().isEmpty())
+                        <p><strong>Page-specific checks.</strong></p>
+                        <ul class="detail-list">
+                            @for (var lowEndBreaker : stateMoneyPage.lowEndBreakers())
+                                <li>${lowEndBreaker}</li>
+                            @endfor
+                        </ul>
+                    @endif
                 </article>
             @endif
 
@@ -261,16 +274,16 @@
                 </article>
             @endif
 
-            @if (state.buyerInspectionTrigger() != null)
+            @if (state.buyerInspectionTrigger() != null && stateMoneyPage.highlightBuyerTrigger())
                 <article class="detail-card">
-                    <h2>Buyer trigger</h2>
+                    <h2>${stateMoneyPage.buyerTriggerHeading()}</h2>
                     <p>${state.buyerInspectionTrigger()}</p>
                 </article>
             @endif
 
-            @if (state.maintenanceInspectionNote() != null)
+            @if (state.maintenanceInspectionNote() != null && stateMoneyPage.highlightMaintenanceNote())
                 <article class="detail-card">
-                    <h2>Maintenance / inspection note</h2>
+                    <h2>${stateMoneyPage.maintenanceHeading()}</h2>
                     <p>${state.maintenanceInspectionNote()}</p>
                 </article>
             @endif
@@ -284,7 +297,7 @@
 
             @if (stateMoneyPage.quotePrepChecklist() != null && !stateMoneyPage.quotePrepChecklist().isEmpty())
                 <article class="detail-card">
-                    <h2>Bring this into the next quote call</h2>
+                    <h2>${stateMoneyPage.quoteChecklistHeading()}</h2>
                     <ul class="detail-list">
                         @for (var checklistItem : stateMoneyPage.quotePrepChecklist())
                             <li>${checklistItem}</li>
@@ -293,31 +306,59 @@
                 </article>
             @endif
 
-            @if (!localAuthoritySources.isEmpty())
+            @if (!localAuthoritySources.isEmpty() || !recordsLookupSources.isEmpty())
                 <article class="detail-card">
-                    <h2>Verify locally</h2>
-                    <ul class="source-list source-list--compact">
-                        @for (var source : localAuthoritySources)
-                            <li>
-                                <strong>${source.agencyName()}</strong>
-                                <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
-                            </li>
-                        @endfor
-                    </ul>
-                </article>
-            @endif
-
-            @if (!recordsLookupSources.isEmpty())
-                <article class="detail-card">
-                    <h2>Records and lookup links</h2>
-                    <ul class="source-list source-list--compact">
-                        @for (var source : recordsLookupSources)
-                            <li>
-                                <strong>${source.agencyName()}</strong>
-                                <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
-                            </li>
-                        @endfor
-                    </ul>
+                    <h2>${stateMoneyPage.officialLinksHeading()}</h2>
+                    @if (!localAuthoritySources.isEmpty())
+                        <p><strong>${stateMoneyPage.localAuthorityHeading()}.</strong></p>
+                        <ul class="source-list source-list--compact">
+                            @for (var source : localAuthoritySources)
+                                <li>
+                                    <strong>${source.agencyName()}</strong>
+                                    <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                                    <div class="source-meta">
+                                        @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                            <span>Trust: ${source.trustLevel()}</span>
+                                        @endif
+                                        @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                            <span>Status: ${source.draftOrFinalStatus()}</span>
+                                        @endif
+                                        @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                            <span>Effective: ${source.effectiveDate()}</span>
+                                        @endif
+                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                        @endif
+                                    </div>
+                                </li>
+                            @endfor
+                        </ul>
+                    @endif
+                    @if (!recordsLookupSources.isEmpty())
+                        <p><strong>${stateMoneyPage.recordsLookupHeading()}.</strong></p>
+                        <ul class="source-list source-list--compact">
+                            @for (var source : recordsLookupSources)
+                                <li>
+                                    <strong>${source.agencyName()}</strong>
+                                    <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                                    <div class="source-meta">
+                                        @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                            <span>Trust: ${source.trustLevel()}</span>
+                                        @endif
+                                        @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                            <span>Status: ${source.draftOrFinalStatus()}</span>
+                                        @endif
+                                        @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                            <span>Effective: ${source.effectiveDate()}</span>
+                                        @endif
+                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                        @endif
+                                    </div>
+                                </li>
+                            @endfor
+                        </ul>
+                    @endif
                 </article>
             @endif
 
@@ -329,7 +370,20 @@
                         <li>
                             <strong>${source.agencyName()}</strong>
                             <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
-                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                            <div class="source-meta">
+                                @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                    <span>Trust: ${source.trustLevel()}</span>
+                                @endif
+                                @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                    <span>Status: ${source.draftOrFinalStatus()}</span>
+                                @endif
+                                @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                    <span>Effective: ${source.effectiveDate()}</span>
+                                @endif
+                                @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                    <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                @endif
+                            </div>
                         </li>
                     @endfor
                 </ul>
@@ -371,7 +425,10 @@
                 <h2>Related links</h2>
                 <ul class="detail-list">
                     @for (var link : internalLinks)
-                        <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_related_link" data-track-target-type="related_internal">${link.title()}</a></li>
+                        <li>
+                            <a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_related_link" data-track-target-type="related_internal">${link.title()}</a>
+                            <p class="detail-list__note">${link.note()}</p>
+                        </li>
                     @endfor
                 </ul>
             </article>

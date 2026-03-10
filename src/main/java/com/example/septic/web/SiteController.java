@@ -25,6 +25,7 @@ import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -46,9 +47,23 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class SiteController {
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
-    private static final String EDITORIAL_PREPARED_BY = "Septic System Cost & Size Estimator editorial workflow";
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
+    private static final EditorialProfile STATE_PAGE_PREPARER = new EditorialProfile(
+            "Homeowner Planning Desk",
+            "Planning editor",
+            "Turns state rules, permit friction, and buyer-risk signals into estimate-first homeowner guidance."
+    );
+    private static final EditorialProfile CONTENT_PAGE_PREPARER = new EditorialProfile(
+            "Intent Map Desk",
+            "Content editor",
+            "Keeps national pages aligned with the estimator, state guides, and the highest-intent next steps."
+    );
+    private static final EditorialProfile SOURCE_REVIEWER = new EditorialProfile(
+            "State Source Review Desk",
+            "Source reviewer",
+            "Checks official links, verification dates, and local workflow notes before a page stays public."
+    );
 
     private final ResearchDataService researchDataService;
     private final EstimatorService estimatorService;
@@ -168,11 +183,11 @@ public class SiteController {
                         ),
                         new SitePageSection(
                                 "Operational limits",
-                                "This project is still an early-stage file-backed application. Storage and routing practices will be refined as partner workflows become more specific.",
+                                "This site stores submissions for routing, audit logging, and export operations. Storage and routing practices may evolve as coverage and partner workflows change.",
                                 List.of(
-                                        "Do not submit sensitive financial information through the quote form.",
-                                        "Do not treat a quote request as a guarantee that a contractor will contact you.",
-                                        "This page should be reviewed by counsel before public launch if you commercialize lead routing at scale."
+                                        "Do not submit payment-card, bank-account, government-ID, or other highly sensitive personal information through the forms.",
+                                        "Do not treat a quote request as a guarantee that a contractor will contact you or accept the project.",
+                                        "Material changes to storage, export, or routing practices should be reflected in this policy page."
                                 )
                         )
                 ),
@@ -192,7 +207,7 @@ public class SiteController {
                 ),
                 "Terms of use",
                 "Use this site as a planning tool, not as engineering or legal approval.",
-                "These terms describe the intended use of the public estimator and related content. They are operational terms for the site and should be reviewed before commercial launch.",
+                "These terms describe the intended use of the public estimator and related content. They set the operating boundaries for a planning tool, not a permit or compliance service.",
                 Arrays.asList(
                         new SitePageSection(
                                 "Estimate-only use",
@@ -214,7 +229,7 @@ public class SiteController {
                         ),
                         new SitePageSection(
                                 "Commercial use and availability",
-                                "The site may evolve, change, or stop accepting quote requests without notice while the product is in active development.",
+                                "The site may evolve, change coverage, or stop accepting quote requests without notice if source coverage, partner availability, or product scope changes.",
                                 List.of(
                                         "Content may be updated when sources change or pages are re-verified.",
                                         "Quote matching is not guaranteed in every state or project category.",
@@ -365,12 +380,13 @@ public class SiteController {
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
+        List<StateRuleFactView> stateRuleFacts = stateRuleFactViews(state.stateCode());
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
-        model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt));
+        model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
@@ -378,13 +394,15 @@ public class SiteController {
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", researchDataService.listPublicStateMoneyPages(state.stateCode()));
+        model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
-        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
+        model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources listed below.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
@@ -408,23 +426,32 @@ public class SiteController {
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
         List<StateMoneyPageLink> stateMoneyPageLinks = researchDataService.listPublicStateMoneyPagesForContent(slug).stream()
-                .map(page -> researchDataService.findStateByCode(page.stateCode())
-                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug()))))
-                .flatMap(Optional::stream)
+                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
+                        .map(state -> Map.entry(page, state))
+                        .stream())
+                .sorted(Comparator
+                        .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> contentStateLinkScore(contentPage, entry.getKey(), entry.getValue()))
+                        .reversed()
+                        .thenComparing(entry -> entry.getValue().stateName()))
+                .map(entry -> new StateMoneyPageLink(
+                        entry.getKey().title(),
+                        entry.getValue().stateName(),
+                        entry.getKey().path(entry.getValue().slug())))
                 .toList();
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
-        model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt));
+        model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
-        model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets()));
+        model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null));
         model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
         model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
         model.addAttribute("calculatorCtaNote", contentActionNote(contentPage));
         model.addAttribute("calculatorCtaTargetType", contentActionTargetType(contentPage));
-        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
+        model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against the linked state-specific pages and source policy.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
@@ -456,7 +483,7 @@ public class SiteController {
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
-        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt));
+        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -467,8 +494,9 @@ public class SiteController {
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
-        model.addAttribute("internalLinks", pageLinks(stateMoneyPage.internalLinkTargets()));
-        model.addAttribute("editorialPreparedBy", EDITORIAL_PREPARED_BY);
+        model.addAttribute("internalLinks", pageLinks(stateMoneyPage.internalLinkTargets(), stateMoneyPage.contentSlug(), state.stateCode()));
+        model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
+        model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
@@ -527,7 +555,7 @@ public class SiteController {
         model.addAttribute("calculatorLanding", calculatorLanding);
         model.addAttribute("calculatorLandingLinks", calculatorLanding == null
                 ? List.of()
-                : pageLinks(calculatorLanding.internalLinkTargets()));
+                : pageLinks(calculatorLanding.internalLinkTargets(), calculatorLanding.slug(), null));
         model.addAttribute("costEvidence", result == null
                 ? List.of()
                 : costEvidenceViews(result.stateCode(), estimateForm.getProjectType()));
@@ -815,39 +843,32 @@ public class SiteController {
     }
 
     private Optional<StateMoneyPage> findPriorityStateMoneyPage(StateProfile state) {
-        List<String> prioritySlugs = List.of(
-                "septic-inspection-cost",
-                "buying-a-house-with-a-septic-system",
-                "septic-records-checklist",
-                "septic-permit-process",
-                "septic-replacement-cost"
-        );
-
-        for (String contentSlug : prioritySlugs) {
-            Optional<StateMoneyPage> page = researchDataService.findPublicStateMoneyPage(contentSlug, state.slug());
-            if (page.isPresent()) {
-                return page;
-            }
-        }
-        return Optional.empty();
+        return researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                .max(Comparator
+                        .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
+                        .thenComparing(StateMoneyPage::title));
     }
 
-    private List<PageLink> pageLinks(List<String> paths) {
+    private List<PageLink> pageLinks(List<String> paths, String sourceSlug, String sourceStateCode) {
         if (paths == null || paths.isEmpty()) {
             return List.of();
         }
         return paths.stream()
-                .map(this::pageLink)
+                .map(path -> pageLink(path, sourceSlug, sourceStateCode))
+                .sorted(Comparator
+                        .comparingInt((PageLink link) -> relatedLinkScore(sourceSlug, sourceStateCode, link.path()))
+                        .reversed()
+                        .thenComparing(PageLink::title))
                 .toList();
     }
 
-    private PageLink pageLink(String path) {
+    private PageLink pageLink(String path, String sourceSlug, String sourceStateCode) {
         String title = calculatorLinkTitle(path)
                 .or(() -> stateGuideLinkTitle(path))
                 .or(() -> stateMoneyPageLinkTitle(path))
                 .or(() -> contentPageLinkTitle(path))
                 .orElseGet(() -> prettifyPath(path));
-        return new PageLink(title, path);
+        return new PageLink(title, path, relatedLinkNote(sourceSlug, sourceStateCode, path));
     }
 
     private Optional<String> calculatorLinkTitle(String path) {
@@ -873,6 +894,61 @@ public class SiteController {
             return Optional.of("Septic pump schedule estimator");
         }
         return Optional.empty();
+    }
+
+    private int contentStateLinkScore(ContentPage contentPage, StateMoneyPage page, StateProfile state) {
+        int score = 0;
+        if ("anchor".equalsIgnoreCase(state.launchTier())) {
+            score += 20;
+        }
+        score += (int) Math.round((state.confidenceScore() == null ? 0.0 : state.confidenceScore()) * 10);
+        score += Math.min(size(page.officialSourceIds()), 3) * 3;
+        score += Math.min(size(page.lowEndBreakers()), 2);
+        if (contentPage.slug().equals(page.contentSlug())) {
+            score += 12;
+        }
+        return score;
+    }
+
+    private int stateMoneyPagePriorityScore(StateProfile state, StateMoneyPage page) {
+        int score = Math.min(size(page.officialSourceIds()), 3) * 3
+                + Math.min(size(page.decisionSteps()), 4)
+                + Math.min(size(page.lowEndBreakers()), 3)
+                + Math.min(size(page.quotePrepChecklist()), 3);
+
+        if ("anchor".equalsIgnoreCase(state.launchTier())) {
+            score += 2;
+        }
+
+        if (state.confidenceScore() != null && state.confidenceScore() < 0.7) {
+            score += switch (page.contentSlug()) {
+                case "septic-records-checklist", "septic-inspection-cost" -> 4;
+                default -> 0;
+            };
+        }
+
+        score += switch (page.contentSlug()) {
+            case "septic-records-checklist" -> (hasItems(state.recordsToRequest(), 2) ? 14 : 6)
+                    + (hasItems(state.recordsLookupSourceIds(), 1) ? 8 : 0);
+            case "buying-a-house-with-a-septic-system" -> (hasText(state.buyerInspectionTrigger()) ? 15 : 0)
+                    + (hasText(state.specialAreaNote()) ? 3 : 0);
+            case "septic-inspection-cost" -> (hasText(state.maintenanceInspectionNote()) ? 10 : 0)
+                    + (hasText(state.buyerInspectionTrigger()) ? 6 : 0);
+            case "septic-permit-process" -> (hasItems(state.permitPathSteps(), 3) ? 13 : 6)
+                    + (hasText(state.whoToCallFirst()) ? 4 : 0)
+                    + (hasItems(state.localAuthoritySourceIds(), 1) ? 6 : 0);
+            case "septic-replacement-cost" -> (researchDataService.findStateCostProfile(state.stateCode())
+                    .map(StateCostProfile::replacementMid)
+                    .filter(value -> value != null)
+                    .isPresent() ? 9 : 0)
+                    + (hasItems(state.lowEndRiskChecks(), 2) ? 4 : 0);
+            case "perc-test-cost" -> hasText(state.siteEvalSummary()) ? 9 : 0;
+            case "drain-field-replacement-cost" -> hasText(state.siteEvalSummary()) ? 6 : 0;
+            case "septic-pumping-cost" -> hasText(state.maintenanceInspectionNote()) ? 7 : 0;
+            default -> 0;
+        };
+
+        return score;
     }
 
     private Optional<String> stateGuideLinkTitle(String path) {
@@ -944,6 +1020,164 @@ public class SiteController {
                 .orElse("Related page");
     }
 
+    private int relatedLinkScore(String sourceSlug, String sourceStateCode, String targetPath) {
+        String normalizedPath = normalizePath(targetPath);
+        if (normalizedPath == null) {
+            return 0;
+        }
+
+        int score = 0;
+        if (isCalculatorPath(normalizedPath)) {
+            score += 20;
+            if ("septic-system-cost-calculator".equals(sourceSlug)) {
+                score += switch (calculatorProjectTypeFromPath(targetPath)) {
+                    case "replacement" -> 8;
+                    case "inspection" -> 7;
+                    case "perc_test" -> 6;
+                    default -> 0;
+                };
+            }
+        }
+
+        Optional<String> targetStateSlug = stateSlugFromPath(normalizedPath);
+        if (sourceStateCode != null && targetStateSlug.isPresent()) {
+            Optional<StateProfile> targetState = researchDataService.findStateBySlug(targetStateSlug.get());
+            if (targetState.filter(state -> state.stateCode().equalsIgnoreCase(sourceStateCode)).isPresent()) {
+                score += 18;
+            }
+        }
+
+        String targetContentSlug = targetContentSlug(normalizedPath);
+        if (targetContentSlug != null) {
+            List<String> preferredTargets = preferredTargetSlugs(sourceSlug);
+            int preferredIndex = preferredTargets.indexOf(targetContentSlug);
+            if (preferredIndex >= 0) {
+                score += 30 - (preferredIndex * 4);
+            }
+            if (targetContentSlug.equals(sourceSlug)) {
+                score -= 10;
+            }
+        }
+
+        if (targetStateSlug.isPresent()) {
+            score += 4;
+        }
+
+        return score;
+    }
+
+    private String relatedLinkNote(String sourceSlug, String sourceStateCode, String targetPath) {
+        String normalizedPath = normalizePath(targetPath);
+        if (normalizedPath == null) {
+            return "Use this page when you need the next step to be more specific than the current overview.";
+        }
+
+        if (isCalculatorPath(normalizedPath)) {
+            String projectType = calculatorProjectTypeFromPath(targetPath);
+            if (sourceStateCode != null && projectType != null) {
+                return "Run the estimate with " + sourceStateCode + " and " + projectTypeLabel(projectType) + " prefilled before you compare local quotes.";
+            }
+            return "Use the estimator when you still need a planning range before committing to one narrative.";
+        }
+
+        Optional<String> guideStateSlug = stateSlugFromPath(normalizedPath);
+        if (normalizedPath.startsWith("/septic-system-cost-calculator/") && guideStateSlug.isPresent()) {
+            return researchDataService.findStateBySlug(guideStateSlug.get())
+                    .map(state -> "Open the " + state.stateName() + " guide for permit path, local office, and records workflow context.")
+                    .orElse("Open the state guide for permit path and records context.");
+        }
+
+        String contentSlug = targetContentSlug(normalizedPath);
+        if (contentSlug != null) {
+            String intentNote = switch (contentSlug) {
+                case "septic-replacement-cost" -> "Use this when failure scope or full replacement risk is the real blocker.";
+                case "perc-test-cost" -> "Use this when soil, perc, or site-approval uncertainty is driving the decision.";
+                case "drain-field-replacement-cost" -> "Use this when the field layout may be the real problem rather than the tank alone.";
+                case "septic-pumping-cost" -> "Use this when maintenance cadence or advanced-system upkeep is the open question.";
+                case "septic-inspection-cost" -> "Use this when due-diligence scope or inspection leverage matters more than a generic average.";
+                case "buying-a-house-with-a-septic-system" -> "Use this when the property deal, not just the system price, is driving risk.";
+                case "septic-permit-process" -> "Use this when the next office, permit step, or approval sequence is the real bottleneck.";
+                case "septic-records-checklist" -> "Use this when the file is thinner than the current seller, owner, or contractor story.";
+                case "septic-tank-size" -> "Use this when bedroom sizing and minimum gallon band matter more than a full project quote.";
+                default -> "Use this page for the next layer of detail after the current overview.";
+            };
+            if (sourceStateCode != null && guideStateSlug.isPresent()) {
+                return intentNote;
+            }
+            return intentNote;
+        }
+
+        return "Use this page when you need the next step to be more specific than the current overview.";
+    }
+
+    private List<String> preferredTargetSlugs(String sourceSlug) {
+        return switch (sourceSlug) {
+            case "septic-system-cost-calculator" -> List.of(
+                    "septic-replacement-cost",
+                    "septic-inspection-cost",
+                    "perc-test-cost",
+                    "septic-records-checklist",
+                    "buying-a-house-with-a-septic-system",
+                    "septic-tank-size",
+                    "septic-pumping-cost"
+            );
+            case "septic-replacement-cost" -> List.of("drain-field-replacement-cost", "perc-test-cost", "buying-a-house-with-a-septic-system");
+            case "perc-test-cost" -> List.of("septic-replacement-cost", "drain-field-replacement-cost", "septic-permit-process");
+            case "drain-field-replacement-cost" -> List.of("septic-replacement-cost", "perc-test-cost", "septic-system-cost-calculator");
+            case "septic-pumping-cost" -> List.of("septic-tank-size", "septic-system-cost-calculator", "septic-inspection-cost");
+            case "septic-inspection-cost" -> List.of("septic-records-checklist", "buying-a-house-with-a-septic-system", "septic-system-cost-calculator");
+            case "buying-a-house-with-a-septic-system" -> List.of("septic-records-checklist", "septic-inspection-cost", "septic-replacement-cost");
+            case "septic-permit-process" -> List.of("septic-records-checklist", "septic-system-cost-calculator", "septic-replacement-cost");
+            case "septic-records-checklist" -> List.of("buying-a-house-with-a-septic-system", "septic-inspection-cost", "septic-permit-process");
+            default -> List.of();
+        };
+    }
+
+    private boolean isCalculatorPath(String normalizedPath) {
+        return "/septic-system-cost-calculator/".equals(normalizedPath)
+                || "/septic-system-cost-calculator".equals(normalizedPath)
+                || "/septic-tank-size-estimator/".equals(normalizedPath)
+                || "/septic-tank-size-estimator".equals(normalizedPath)
+                || "/septic-pump-schedule-estimator/".equals(normalizedPath)
+                || "/septic-pump-schedule-estimator".equals(normalizedPath);
+    }
+
+    private String calculatorProjectTypeFromPath(String path) {
+        var uri = UriComponentsBuilder.fromUriString(path).build();
+        String normalizedPath = uri.getPath();
+        if (!"/septic-system-cost-calculator/".equals(normalizedPath) && !"/septic-system-cost-calculator".equals(normalizedPath)) {
+            return null;
+        }
+        return uri.getQueryParams().getOrDefault("projectType", List.of()).stream().findFirst().orElse(null);
+    }
+
+    private Optional<String> stateSlugFromPath(String normalizedPath) {
+        String prefix = "/septic-system-cost-calculator/";
+        if (normalizedPath.startsWith(prefix)) {
+            String stateSlug = normalizedPath.substring(prefix.length()).replaceFirst("/$", "");
+            if (!stateSlug.isBlank() && !stateSlug.contains("/")) {
+                return Optional.of(stateSlug);
+            }
+        }
+
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        if (parts.length == 2) {
+            return Optional.of(parts[1]);
+        }
+        return Optional.empty();
+    }
+
+    private String targetContentSlug(String normalizedPath) {
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        if (parts.length == 1) {
+            return parts[0];
+        }
+        if (parts.length == 2) {
+            return parts[0];
+        }
+        return null;
+    }
+
     private List<StateRuleFactView> stateRuleFactViews(String stateCode) {
         return researchDataService.listPublicStateRuleFacts(stateCode).stream()
                 .map(fact -> {
@@ -952,10 +1186,15 @@ public class SiteController {
                             fact.label(),
                             fact.renderedValue(),
                             fact.note(),
+                            firstNonBlank(fact.effectiveDate(), source != null ? source.effectiveDate() : null),
+                            firstNonBlank(fact.lastVerifiedAt(), source != null ? source.lastVerifiedAt() : null),
+                            confidenceLabel(fact.confidence()),
                             source != null ? source.agencyName() : "",
                             source != null ? source.title() : "",
                             source != null ? source.url() : "",
-                            fact.sourceSection()
+                            fact.sourceSection(),
+                            source != null ? source.trustLevel() : "",
+                            source != null ? source.draftOrFinalStatus() : ""
                     );
                 })
                 .toList();
@@ -989,6 +1228,43 @@ public class SiteController {
             return range;
         }
         return "Planning evidence";
+    }
+
+    private String confidenceLabel(Double confidence) {
+        if (confidence == null) {
+            return "";
+        }
+        if (confidence >= 0.9) {
+            return "Very high confidence";
+        }
+        if (confidence >= 0.75) {
+            return "High confidence";
+        }
+        if (confidence >= 0.6) {
+            return "Moderate confidence";
+        }
+        return "Directional confidence";
+    }
+
+    private boolean hasText(String value) {
+        return value != null && !value.isBlank();
+    }
+
+    private boolean hasItems(List<?> values, int minimumSize) {
+        return values != null && values.size() >= minimumSize;
+    }
+
+    private int size(List<?> values) {
+        return values == null ? 0 : values.size();
+    }
+
+    private String firstNonBlank(String... values) {
+        for (String value : values) {
+            if (value != null && !value.isBlank()) {
+                return value;
+            }
+        }
+        return "";
     }
 
     private String firstListItem(List<String> items, String fallback) {

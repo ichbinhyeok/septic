@@ -6,7 +6,11 @@
       "slug": "septic-system-cost-calculator",
       "intentType": "calculator_hub",
       "primaryKeyword": "septic system cost calculator",
-      "secondaryKeywords": ["septic cost estimator", "septic install cost", "septic replacement estimate"],
+      "secondaryKeywords": [
+        "septic cost estimator",
+        "septic install cost",
+        "septic replacement estimate"
+      ],
       "title": "Septic System Cost Calculator",
       "metaDescription": "Estimate likely septic cost range, tank size, and system class before you call local pros.",
       "introCopy": "Use the main calculator to turn rough household and site inputs into a planning range. The output is designed to be useful before you have perfect site data.",
@@ -50,13 +54,23 @@
           "answer": "Final pricing depends on system type, site evaluation, access, permitting, and local installation conditions."
         }
       ],
-      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-tank-size/", "/perc-test-cost/", "/septic-inspection-cost/"]
+      "internalLinkTargets": [
+        "/septic-replacement-cost/",
+        "/septic-tank-size/",
+        "/perc-test-cost/",
+        "/septic-inspection-cost/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-replacement-cost",
       "intentType": "money_page",
       "primaryKeyword": "septic replacement cost",
-      "secondaryKeywords": ["replace septic system", "new septic replacement cost", "failed septic system cost"],
+      "secondaryKeywords": [
+        "replace septic system",
+        "new septic replacement cost",
+        "failed septic system cost"
+      ],
       "title": "Septic Replacement Cost",
       "metaDescription": "What drives septic replacement cost, what can widen the range, and how to estimate it before getting quotes.",
       "introCopy": "Replacement projects can be materially more expensive than routine maintenance because they often involve hidden field damage, access constraints, and restoration work. This page explains the main drivers before you open the calculator.",
@@ -100,13 +114,22 @@
           "answer": "Only if the field condition, permitting path, and site constraints are already clear."
         }
       ],
-      "internalLinkTargets": ["/septic-system-cost-calculator/", "/drain-field-replacement-cost/", "/buying-a-house-with-a-septic-system/"]
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/",
+        "/drain-field-replacement-cost/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-tank-size",
       "intentType": "money_page",
       "primaryKeyword": "septic tank size",
-      "secondaryKeywords": ["what size septic tank do i need", "bedroom septic tank size", "minimum septic tank size"],
+      "secondaryKeywords": [
+        "what size septic tank do i need",
+        "bedroom septic tank size",
+        "minimum septic tank size"
+      ],
       "title": "Septic Tank Size Guide",
       "metaDescription": "Understand what usually sets septic tank size, when the range widens, and when to use the dedicated tank size estimator.",
       "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This guide explains the main sizing drivers first, then points into the dedicated estimator when you want a state-aware planning range.",
@@ -150,13 +173,22 @@
           "answer": "It can affect pumping cadence more than it should shrink a homeowner-facing size recommendation."
         }
       ],
-      "internalLinkTargets": ["/septic-system-cost-calculator/", "/septic-pumping-cost/", "/septic-replacement-cost/"]
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/",
+        "/septic-pumping-cost/",
+        "/septic-replacement-cost/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "perc-test-cost",
       "intentType": "money_page",
       "primaryKeyword": "perc test cost",
-      "secondaryKeywords": ["percolation test cost", "soil test for septic", "perc test for septic system"],
+      "secondaryKeywords": [
+        "percolation test cost",
+        "soil test for septic",
+        "perc test for septic system"
+      ],
       "title": "Perc Test Cost",
       "metaDescription": "What a perc test can cost, why it matters so much to septic pricing, and what can delay the result.",
       "introCopy": "Perc and site evaluation costs are usually much smaller than install or replacement costs, but they can change the whole project. This page explains why they deserve their own estimate path.",
@@ -200,13 +232,22 @@
           "answer": "You can use it for planning, but the estimate should stay wide until the site is better defined."
         }
       ],
-      "internalLinkTargets": ["/septic-system-cost-calculator/", "/drain-field-replacement-cost/", "/septic-replacement-cost/"]
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/",
+        "/drain-field-replacement-cost/",
+        "/septic-replacement-cost/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "drain-field-replacement-cost",
       "intentType": "money_page",
       "primaryKeyword": "drain field replacement cost",
-      "secondaryKeywords": ["leach field replacement cost", "drain field repair cost", "septic field replacement"],
+      "secondaryKeywords": [
+        "leach field replacement cost",
+        "drain field repair cost",
+        "septic field replacement"
+      ],
       "title": "Drain Field Replacement Cost",
       "metaDescription": "Estimate drain field replacement cost, understand what raises the quote, and know when the system may no longer stay conventional.",
       "introCopy": "Drain field replacement is one of the biggest homeowner cost shocks in septic ownership. The field is where site conditions, soil limits, and access problems show up quickly.",
@@ -250,13 +291,22 @@
           "answer": "Because the cost depends on the field layout, the site, the likely system class, and whether additional work is uncovered."
         }
       ],
-      "internalLinkTargets": ["/septic-replacement-cost/", "/perc-test-cost/", "/septic-system-cost-calculator/"]
+      "internalLinkTargets": [
+        "/septic-replacement-cost/",
+        "/perc-test-cost/",
+        "/septic-system-cost-calculator/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-pumping-cost",
       "intentType": "money_page",
       "primaryKeyword": "septic pumping cost",
-      "secondaryKeywords": ["septic tank pumping cost", "pump septic tank price", "septic cleaning cost"],
+      "secondaryKeywords": [
+        "septic tank pumping cost",
+        "pump septic tank price",
+        "septic cleaning cost"
+      ],
       "title": "Septic Pumping Cost",
       "metaDescription": "Estimate septic pumping cost and understand how occupancy, tank size, and use patterns change the maintenance cadence.",
       "introCopy": "Pumping is the lower-cost recurring side of septic ownership, but it is one of the most useful hooks for maintenance content and later local service routing.",
@@ -300,13 +350,22 @@
           "answer": "Possibly, but a lower-use profile should affect cadence carefully rather than replace inspection guidance."
         }
       ],
-      "internalLinkTargets": ["/septic-tank-size/", "/septic-system-cost-calculator/", "/buying-a-house-with-a-septic-system/"]
+      "internalLinkTargets": [
+        "/septic-tank-size/",
+        "/septic-system-cost-calculator/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-inspection-cost",
       "intentType": "money_page",
       "primaryKeyword": "septic inspection cost",
-      "secondaryKeywords": ["home septic inspection cost", "septic inspection before buying", "septic system inspection price"],
+      "secondaryKeywords": [
+        "home septic inspection cost",
+        "septic inspection before buying",
+        "septic system inspection price"
+      ],
       "title": "Septic Inspection Cost",
       "metaDescription": "Estimate septic inspection cost, understand what the inspection should verify, and know when missing records or advanced systems raise the real risk.",
       "introCopy": "Inspection intent is one of the highest-value septic queries because it sits close to a home purchase, a repair decision, or a quote request. This page frames inspection cost as more than a line item: it is the fastest way to find out whether the low end is still believable.",
@@ -350,13 +409,22 @@
           "answer": "No. It helps narrow risk and records gaps first, then the calculator and local quote process become more useful."
         }
       ],
-      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-records-checklist/", "/septic-system-cost-calculator/"]
+      "internalLinkTargets": [
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "buying-a-house-with-a-septic-system",
       "intentType": "buyer_page",
       "primaryKeyword": "buying a house with a septic system",
-      "secondaryKeywords": ["home septic inspection", "buy house septic checklist", "septic inspection before buying"],
+      "secondaryKeywords": [
+        "home septic inspection",
+        "buy house septic checklist",
+        "septic inspection before buying"
+      ],
       "title": "Buying a House With a Septic System",
       "metaDescription": "What to inspect, what can become expensive after closing, and when to get a septic quote before buying.",
       "introCopy": "Buyer intent is high value because inspection timing and hidden failure risk matter. This page helps people ask better questions before they inherit a major septic problem.",
@@ -400,13 +468,23 @@
           "answer": "Yes, especially if the system age, pumping history, or field condition are not well documented."
         }
       ],
-      "internalLinkTargets": ["/septic-replacement-cost/", "/septic-system-cost-calculator/", "/septic-pumping-cost/", "/septic-inspection-cost/"]
+      "internalLinkTargets": [
+        "/septic-replacement-cost/",
+        "/septic-system-cost-calculator/",
+        "/septic-pumping-cost/",
+        "/septic-inspection-cost/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-permit-process",
       "intentType": "workflow_page",
       "primaryKeyword": "septic permit process",
-      "secondaryKeywords": ["septic permit checklist", "septic permit steps", "what permit do i need for septic"],
+      "secondaryKeywords": [
+        "septic permit checklist",
+        "septic permit steps",
+        "what permit do i need for septic"
+      ],
       "title": "Septic Permit Process",
       "metaDescription": "Understand the usual septic permit steps, what to verify before applying, and why state and local process can change the timeline.",
       "introCopy": "The permit process is one of the highest-value septic questions because it controls whether a homeowner estimate stays simple or turns into a longer site-review project. This page frames the permit path in homeowner language without pretending every county works the same way.",
@@ -450,13 +528,22 @@
           "answer": "No. The calculator helps frame likely size, system type, and cost range, but permit approval and local review still happen outside the estimator."
         }
       ],
-      "internalLinkTargets": ["/septic-system-cost-calculator/", "/septic-records-checklist/", "/septic-replacement-cost/"]
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/",
+        "/septic-records-checklist/",
+        "/septic-replacement-cost/"
+      ],
+      "publishStatus": "published"
     },
     {
       "slug": "septic-records-checklist",
       "intentType": "workflow_page",
       "primaryKeyword": "septic records checklist",
-      "secondaryKeywords": ["septic records to request", "septic permit records", "buying house septic records"],
+      "secondaryKeywords": [
+        "septic records to request",
+        "septic permit records",
+        "buying house septic records"
+      ],
       "title": "Septic Records Checklist",
       "metaDescription": "What septic records to request before trusting a quote, closing on a home, or assuming the current system is still straightforward.",
       "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on what paperwork matters first, why missing records widen the estimate, and how the answer changes by state.",
@@ -500,7 +587,13 @@
           "answer": "Because they make the site, system type, and maintenance history less certain, which usually means a wider cost range and more pre-quote verification."
         }
       ],
-      "internalLinkTargets": ["/buying-a-house-with-a-septic-system/", "/septic-system-cost-calculator/", "/septic-permit-process/", "/septic-inspection-cost/"]
+      "internalLinkTargets": [
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-system-cost-calculator/",
+        "/septic-permit-process/",
+        "/septic-inspection-cost/"
+      ],
+      "publishStatus": "published"
     }
   ]
 }

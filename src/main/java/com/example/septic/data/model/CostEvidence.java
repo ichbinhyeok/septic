@@ -17,6 +17,8 @@ public record CostEvidence(
         String publishStatus
 ) {
     public boolean isPublished() {
-        return publishStatus == null || publishStatus.isBlank() || "published".equalsIgnoreCase(publishStatus);
+        return "published".equalsIgnoreCase(publishStatus)
+                && title != null && !title.isBlank()
+                && sourceIds != null && !sourceIds.isEmpty();
     }
 }

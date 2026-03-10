@@ -243,6 +243,9 @@ public class ResearchDataService {
     }
 
     public List<StateMoneyPage> listPublicStateMoneyPages(String stateCode) {
+        if (findStateByCode(stateCode).filter(StateProfile::isPublished).isEmpty()) {
+            return List.of();
+        }
         return listStateMoneyPages(stateCode).stream()
                 .filter(StateMoneyPage::isPublished)
                 .toList();

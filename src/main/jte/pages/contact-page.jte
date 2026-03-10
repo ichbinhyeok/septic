@@ -14,6 +14,10 @@
                 <span class="eyebrow">Contact</span>
                 <h1>General questions, source corrections, and privacy requests</h1>
                 <p class="lede">Use this page for questions about the site itself. If you need septic pricing help, start with the estimator or quote flow so the request carries the project context that makes it useful.</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="#contact-request">Jump to contact form</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request">Use the quote form for project pricing</a>
+                </div>
                 <div class="hero__notes">
                     <span>General questions</span>
                     <span>Source correction</span>
@@ -26,32 +30,8 @@
                 <span class="pill">Working contact channel</span>
                 <strong>Best for non-quote requests</strong>
                 <p>This intake form gives the site a real public contact path before a support inbox or business address is published. Project-specific quote requests should still start in the estimator.</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request">Use the quote form for project pricing</a>
+                <p>The form appears immediately below this hero so source corrections and privacy requests do not get buried under trust copy.</p>
             </aside>
-        </div>
-    </section>
-
-    <section class="section section--tight">
-        <div class="container detail-grid">
-            <article class="detail-card">
-                <h2>Use this form when</h2>
-                <p>This form is for operational and trust-related questions about the project.</p>
-                <ul class="detail-list">
-                    <li>You found a source issue or want to flag a state-specific update.</li>
-                    <li>You need a privacy or data-handling request routed through the site.</li>
-                    <li>You have a partnership or project-level question that is not a local quote request.</li>
-                </ul>
-            </article>
-
-            <article class="detail-card">
-                <h2>Use the estimator instead when</h2>
-                <p>Homeowner pricing and contractor matching work best when the request includes the project assumptions used in the estimate.</p>
-                <ul class="detail-list">
-                    <li>Run the cost estimator first for install, replacement, inspection, or buyer planning questions.</li>
-                    <li>Use the short quote form after the estimate if you want local pricing help.</li>
-                    <li>Keep this contact form for site operations, not urgent septic dispatch.</li>
-                </ul>
-            </article>
         </div>
     </section>
 
@@ -139,6 +119,30 @@
                     <li>Use General question or Partnership inquiry for everything else that is not a quote request.</li>
                 </ul>
             </aside>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container detail-grid">
+            <article class="detail-card">
+                <h2>Use this form when</h2>
+                <p>This form is for operational and trust-related questions about the project.</p>
+                <ul class="detail-list">
+                    <li>You found a source issue or want to flag a state-specific update.</li>
+                    <li>You need a privacy or data-handling request routed through the site.</li>
+                    <li>You have a partnership or project-level question that is not a local quote request.</li>
+                </ul>
+            </article>
+
+            <article class="detail-card">
+                <h2>Use the estimator instead when</h2>
+                <p>Homeowner pricing and contractor matching work best when the request includes the project assumptions used in the estimate.</p>
+                <ul class="detail-list">
+                    <li>Run the cost estimator first for install, replacement, inspection, or buyer planning questions.</li>
+                    <li>Use the short quote form after the estimate if you want local pricing help.</li>
+                    <li>Keep this contact form for site operations, not urgent septic dispatch.</li>
+                </ul>
+            </article>
         </div>
     </section>
 `)

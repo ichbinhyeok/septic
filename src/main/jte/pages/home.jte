@@ -10,11 +10,11 @@
             <div class="hero__content">
                 <span class="eyebrow">Homeowner planning estimator</span>
                 <h1>Rough septic cost, likely tank size, and what to verify next.</h1>
-                <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/">Start quote-ready estimate</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/">Get matched with local septic pros</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request">Open short quote form</a>
                 </div>
+                <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
                 <a class="hero__subaction" href="#states">Browse state guides first</a>
                 <div class="hero__notes">
                     <span>Short match form unlocked after the estimate</span>

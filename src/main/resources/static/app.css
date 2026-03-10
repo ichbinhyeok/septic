@@ -150,7 +150,52 @@ h3,
     font-weight: 600;
 }
 
+.site-nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 16px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-soft);
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.94rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.site-nav-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(20, 34, 32, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.site-nav-toggle__icon {
+    display: inline-grid;
+    gap: 4px;
+}
+
+.site-nav-toggle__line {
+    display: block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.site-nav-toggle__label {
+    line-height: 1;
+}
+
 .site-nav a {
+    display: inline-flex;
+    align-items: center;
     padding: 11px 14px;
     border-radius: 999px;
     border: 1px solid transparent;
@@ -777,6 +822,13 @@ input[type="checkbox"] {
     padding-bottom: 0;
 }
 
+.detail-list__note {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+}
+
 .facts-table-wrap {
     margin-top: 16px;
     overflow-x: auto;
@@ -913,6 +965,16 @@ input[type="checkbox"] {
     line-height: 1.55;
 }
 
+.review-meta dd span {
+    display: block;
+}
+
+.review-meta__name {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+}
+
 .trust-box--large {
     border-radius: var(--radius-xl);
     padding: 30px;
@@ -988,6 +1050,23 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: column;
     gap: 6px;
+}
+
+.source-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.source-meta span {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.08);
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    color: var(--muted);
+    font-size: 0.83rem;
 }
 
 .source-list span {
@@ -1069,11 +1148,11 @@ input[type="checkbox"] {
     .state-card,
     .detail-card,
     .trust-box {
-        padding: 22px;
+        padding: 18px;
     }
 
     h1 {
-        font-size: 2.6rem;
+        font-size: 2.25rem;
     }
 
     .site-header__inner {
@@ -1111,8 +1190,68 @@ input[type="checkbox"] {
         border: 1px solid rgba(20, 34, 32, 0.08);
     }
 
-    .site-nav a:nth-child(n + 3) {
+    .js .site-nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+    }
+
+    .js .site-nav {
         display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px;
+        white-space: normal;
+        overflow: visible;
+        border-radius: 22px;
+        border: 1px solid rgba(20, 34, 32, 0.08);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav {
+        display: flex;
+    }
+
+    .js .site-nav a {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .lede {
+        margin-top: 14px;
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .hero__actions,
+    .form-actions {
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .hero__notes {
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .hero__notes span {
+        padding: 8px 10px;
+        font-size: 0.84rem;
     }
 
     .hero__actions .button,

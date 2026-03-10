@@ -303,7 +303,10 @@
                     <p>The calculator is strongest when it narrows the lane first and the next page answers the more specific replacement, inspection, or perc question behind the estimate.</p>
                     <ul class="detail-list">
                         @for (var link : calculatorLandingLinks)
-                            <li><a href="${link.path()}">${link.title()}</a></li>
+                            <li>
+                                <a href="${link.path()}">${link.title()}</a>
+                                <p class="detail-list__note">${link.note()}</p>
+                            </li>
                         @endfor
                     </ul>
                 </article>

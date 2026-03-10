@@ -1,6 +1,7 @@
 @import com.example.septic.data.model.SourceRecord
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.EditorialProfile
 @param PageMeta page
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
@@ -9,13 +10,15 @@
 @param SourceRecord primaryLocalAuthoritySource = null
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
 @param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
-@param String editorialPreparedBy = "Septic System Cost & Size Estimator editorial workflow"
+@param EditorialProfile editorialPreparedBy = null
+@param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
@@ -26,11 +29,11 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} state guide</span>
                 <h1>${guideHeading}</h1>
-                <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
                 </div>
+                <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
             </div>
             <div class="hero-sidecard">
                 <span class="pill">Official-source guide</span>
@@ -39,7 +42,19 @@
                 <dl class="review-meta">
                     <div>
                         <dt>Prepared by</dt>
-                        <dd>${editorialPreparedBy}</dd>
+                        <dd>
+                            <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
+                            <span>${editorialPreparedBy.roleTitle()}</span>
+                            <span>${editorialPreparedBy.focusSummary()}</span>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>Reviewed by</dt>
+                        <dd>
+                            <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
+                            <span>${editorialReviewedBy.roleTitle()}</span>
+                            <span>${editorialReviewedBy.focusSummary()}</span>
+                        </dd>
                     </div>
                     <div>
                         <dt>Reviewed against</dt>
@@ -149,6 +164,43 @@
                     </table>
                 </div>
             </article>
+
+            @if (stateRuleFacts != null && !stateRuleFacts.isEmpty())
+                <article class="detail-card detail-card--full">
+                    <h2>Source-backed rule facts for ${state.stateName()}</h2>
+                    <div class="detail-grid">
+                        @for (var fact : stateRuleFacts)
+                            <article class="detail-card">
+                                <span class="trust-box__label">${fact.label()}</span>
+                                <h3>${fact.renderedValue()}</h3>
+                                <p>${fact.note()}</p>
+                                <div class="source-meta">
+                                    @if (fact.confidenceLabel() != null && !fact.confidenceLabel().isBlank())
+                                        <span>${fact.confidenceLabel()}</span>
+                                    @endif
+                                    @if (fact.sourceTrustLevel() != null && !fact.sourceTrustLevel().isBlank())
+                                        <span>Trust: ${fact.sourceTrustLevel()}</span>
+                                    @endif
+                                    @if (fact.sourceStatus() != null && !fact.sourceStatus().isBlank())
+                                        <span>Status: ${fact.sourceStatus()}</span>
+                                    @endif
+                                    @if (fact.lastVerifiedAt() != null && !fact.lastVerifiedAt().isBlank())
+                                        <span>Last verified: ${fact.lastVerifiedAt()}</span>
+                                    @endif
+                                    @if (fact.effectiveDate() != null && !fact.effectiveDate().isBlank())
+                                        <span>Effective: ${fact.effectiveDate()}</span>
+                                    @endif
+                                </div>
+                                <p><strong>${fact.sourceAgency()}</strong></p>
+                                <p><a href="${fact.sourceUrl()}" target="_blank" rel="noreferrer">${fact.sourceTitle()}</a></p>
+                                @if (fact.sourceSection() != null && !fact.sourceSection().isBlank())
+                                    <p>Source section: ${fact.sourceSection()}</p>
+                                @endif
+                            </article>
+                        @endfor
+                    </div>
+                </article>
+            @endif
 
             @if (state.localActionSteps() != null && !state.localActionSteps().isEmpty())
                 <article class="detail-card">
@@ -287,6 +339,20 @@
                                 <li>
                                     <strong>${source.agencyName()}</strong>
                                     <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                                    <div class="source-meta">
+                                        @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                            <span>Trust: ${source.trustLevel()}</span>
+                                        @endif
+                                        @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                            <span>Status: ${source.draftOrFinalStatus()}</span>
+                                        @endif
+                                        @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                            <span>Effective: ${source.effectiveDate()}</span>
+                                        @endif
+                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                        @endif
+                                    </div>
                                 </li>
                             @endfor
                         </ul>
@@ -301,6 +367,20 @@
                                 <li>
                                     <strong>${source.agencyName()}</strong>
                                     <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                                    <div class="source-meta">
+                                        @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                            <span>Trust: ${source.trustLevel()}</span>
+                                        @endif
+                                        @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                            <span>Status: ${source.draftOrFinalStatus()}</span>
+                                        @endif
+                                        @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                            <span>Effective: ${source.effectiveDate()}</span>
+                                        @endif
+                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                        @endif
+                                    </div>
                                 </li>
                             @endfor
                         </ul>
@@ -422,7 +502,20 @@
                         <li>
                             <strong>${source.agencyName()}</strong>
                             <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
-                            <span>Last verified: ${source.lastVerifiedAt()}</span>
+                            <div class="source-meta">
+                                @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                    <span>Trust: ${source.trustLevel()}</span>
+                                @endif
+                                @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                    <span>Status: ${source.draftOrFinalStatus()}</span>
+                                @endif
+                                @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                    <span>Effective: ${source.effectiveDate()}</span>
+                                @endif
+                                @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                    <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                @endif
+                            </div>
                         </li>
                     @endfor
                 </ul>
