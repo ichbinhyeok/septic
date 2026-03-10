@@ -896,6 +896,10 @@ public class SiteController {
                     "Estimate before the permit-file pull",
                     "Tennessee quote conversations get more real once you know whether the parcel runs through a contract county or TDEC contact and whether a repair permit or inspection letter is already in the file."
             );
+            case "SC" -> new StateActionCopy(
+                    "Estimate before the permit copy pull",
+                    "South Carolina quote conversations get more real once you know which SCDES office holds the file and whether the permit copy, D-1740, or final-inspection path is already in view."
+            );
             case "CA" -> new StateActionCopy(
                     "Estimate before the county file pull",
                     "California usually gets real once you know the local agency path and whether the property sits in a default Tier 1 workflow or a LAMP-driven local program."

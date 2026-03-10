@@ -717,6 +717,64 @@
       ]
     },
     {
+      "stateCode": "SC",
+      "stateName": "South Carolina",
+      "agencyName": "South Carolina Department of Environmental Services",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "South Carolina is stronger on permit path, local office routing, and permit-copy retrieval than on a fake statewide tank table. The homeowner wedge is knowing whether the D-1740, the permit file, and the local office path are already in place before the quote pretends the project is permit-ready.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "SCDES says South Carolina law requires site approvals and permits for all septic systems and that a permit must be issued before the county can issue a building permit for the structure. SCDES's residential single-home-builder page describes filing the D-1740 application with a plat or deed, the agency site visit, a Permit to Construct for a traditional system, a final inspection, and a five-year permit life if construction has not started. SCDES also says permit copies can often be found by parcel details and that any person or organization can submit the D-1740 through the ePermitting Portal. The local office path matters because SCDES routes final inspections, permit-copy requests, and after-submission questions through county-specific contacts.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public South Carolina homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "South Carolina homeowners usually need the permit path clarified before they trust an install or replacement quote. The project is not permit-ready until the D-1740, the site review, and the right local office path are clearer, and the file can widen again if the permit copy is thin or the lot does not support a traditional system.",
+      "permitPathSteps": [
+        "Start with the right SCDES contact path because final inspections, permit-copy requests, and after-submission questions are routed through county-specific offices.",
+        "Pull any existing permit copy and confirm whether the D-1740 application has already been filed before treating the project as a fresh permit path.",
+        "Use the site-visit and permit status to decide whether the job is still on a traditional-system path or is widening beyond a simple low-end install or replacement story."
+      ],
+      "siteEvalSummary": "South Carolina's public homeowner set is strongest on permit timing, site approvals, permit-copy retrieval, and local office routing rather than a simple statewide homeowner sizing table. The practical path turns on whether the permit file is already usable and whether the site can still support a traditional system.",
+      "ruleHighlights": [
+        "SCDES says South Carolina law requires site approvals and permits for all septic systems.",
+        "SCDES says the permit must be issued before the county can issue a building permit for the structure.",
+        "SCDES describes the D-1740 application, site visit, Permit to Construct, final inspection, and five-year permit life.",
+        "SCDES says any person or organization can submit the D-1740 through the ePermitting Portal."
+      ],
+      "localOverrideNote": "South Carolina looks statewide through SCDES, but the homeowner workflow changes quickly once you know which local office handles the county and whether the permit copy on file is strong enough to trust.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["sc_01", "sc_02", "sc_03", "sc_04"],
+      "localAuthoritySourceIds": ["sc_03"],
+      "recordsLookupSourceIds": ["sc_02", "sc_03"],
+      "localActionSteps": [
+        "Open the SCDES contact page first and identify who handles final inspections and permit-copy requests for the county.",
+        "Ask for the permit copy on file and confirm whether the D-1740 application has already been submitted through ePermitting.",
+        "Confirm whether the site is still likely to support a traditional system before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the SCDES county or regional contact that handles septic questions, final inspections, and permit-copy requests for the property.",
+      "recordsToRequest": [
+        "The permit copy already on file for the parcel.",
+        "Any D-1740 application, plat, deed reference, or site-review note attached to the permit path.",
+        "Any final-inspection note or status update tied to the current system."
+      ],
+      "lowEndRiskChecks": [
+        "If the permit copy is missing or thin, the low end is still a planning scenario, not a permit-ready number.",
+        "If the D-1740 or site review has not been resolved, the install or replacement story can widen before contractor pricing becomes comparable.",
+        "If the lot does not support a traditional system path, the project can move beyond the cheapest permit story quickly."
+      ],
+      "permitTimelineNote": "South Carolina timing often turns on how quickly the permit file is found, whether the D-1740 and site visit are already complete, and whether the county contact can move the final-inspection path forward.",
+      "buyerInspectionTrigger": "Buyers should ask for the permit copy and any final-inspection or D-1740 history early because South Carolina permit files often tell a more reliable system story than the listing summary.",
+      "maintenanceInspectionNote": "South Carolina's current source set is strongest on permit path, permit-copy retrieval, and final-inspection routing, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "South Carolina's main wrinkle is the combination of statewide permit requirements, county-specific SCDES routing, and permit-copy friction before the homeowner can trust a low-end range.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable statewide matrix showing which South Carolina counties publish searchable septic records or permit-copy workflows.",
+        "Document where South Carolina local offices expose more detail on non-traditional or constrained-site approvals."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

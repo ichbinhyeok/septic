@@ -153,6 +153,9 @@ public class EstimatorService {
         if ("TN".equals(state.stateCode())) {
             checklist.add("Confirm whether Tennessee routes the parcel through a contract county or TDEC contact and whether the permit file or inspection letter is already on record.");
         }
+        if ("SC".equals(state.stateCode())) {
+            checklist.add("Confirm which South Carolina SCDES office handles the parcel and whether the permit copy, D-1740, or final-inspection file is already on record.");
+        }
         if ("CA".equals(state.stateCode())) {
             checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
         }
@@ -475,6 +478,9 @@ public class EstimatorService {
         }
         if ("TN".equals(state.stateCode())) {
             return "This Tennessee range stays wide because contract-county routing, repair-permit requirements, and permit-file gaps can all move the job quickly.";
+        }
+        if ("SC".equals(state.stateCode())) {
+            return "This South Carolina range stays wide because permit-copy gaps, local office routing, and site-approval timing can all move the job quickly.";
         }
         if ("CA".equals(state.stateCode())) {
             return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";
