@@ -2,10 +2,10 @@ name: Deploy OCI ARM64
 
 # Required secrets:
 # - DOCKERHUB_TOKEN
+# - DOCKERHUB_USERNAME
 # - OCI_HOST
-# - OCI_USER
-# - OCI_SSH_PRIVATE_KEY
-# - OCI_SSH_PORT
+# - OCI_KEY
+# - OCI_USERNAME
 
 on:
   push:
@@ -22,7 +22,6 @@ concurrency:
 
 env:
   IMAGE_NAME: shinhyeok22/septic
-  DOCKERHUB_USERNAME: shinhyeok22
 
 jobs:
   build-and-deploy:
@@ -56,7 +55,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ env.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push ARM64 image
@@ -75,25 +74,23 @@ jobs:
       - name: Set up SSH agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.OCI_SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.OCI_KEY }}
 
       - name: Add OCI host to known_hosts
         env:
           OCI_HOST: ${{ secrets.OCI_HOST }}
-          OCI_SSH_PORT: ${{ secrets.OCI_SSH_PORT }}
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p "${OCI_SSH_PORT}" "${OCI_HOST}" >> ~/.ssh/known_hosts
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
 
       - name: Deploy on OCI ARM64 server
         env:
           OCI_HOST: ${{ secrets.OCI_HOST }}
-          OCI_USER: ${{ secrets.OCI_USER }}
-          OCI_SSH_PORT: ${{ secrets.OCI_SSH_PORT }}
-          DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
-          ssh -p "${OCI_SSH_PORT}" "${OCI_USER}@${OCI_HOST}" 'bash -s' <<EOF
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' <<EOF
           set -euo pipefail
 
           DEPLOY_DIR="\$HOME/deploy/septic"
