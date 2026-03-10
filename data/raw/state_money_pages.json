@@ -4790,6 +4790,128 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "AK",
+      "title": "Buying a House With a Septic System in Alaska",
+      "metaDescription": "Alaska homebuyer septic checklist with approved-system record pulls, DEC versus Anchorage routing, and difficult-site risk.",
+      "introCopy": "Alaska buyer risk is rarely just about paying for an inspection. The official state guidance says the real first question is whether the approved-system record exists and whether the local DEC office or the Municipality of Anchorage controls it. Once that file is in hand, the age, size, location, and difficult-site notes can change the whole deal.",
+      "uniqueAngle": "Alaska buyer intent is strongest when the page explains file retrieval, local-office routing, and difficult-site risk together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Alaska buyers, sellers, and agents who know the property uses onsite wastewater but still need to know whether the approved-system record, file delay, or engineering triggers create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has pulled the approved-system record yet.",
+        "You need to know whether the file lives with the local DEC office or the Municipality of Anchorage before you trust the seller story.",
+        "You suspect the site may be remote, constrained, or tied to older records that make the file slower or thinner than expected."
+      ],
+      "decisionSteps": [
+        "Start with the local DEC office or the Municipality of Anchorage and request the approved-system record before you debate credits, inspection cost, or repair pricing.",
+        "Use the record to confirm the system age, tank size, and location instead of relying on seller memory alone.",
+        "Check whether difficult-site conditions, engineering triggers, lot-line changes, or older paper files widen the risk before you price the property as routine.",
+        "Then compare the file you received against the listing story so you can price buyer diligence, repair follow-up, or replacement planning on something real."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the approved-system record has not been surfaced yet.",
+        "A record delay or legal-description issue can leave the property file thinner than the seller summary suggests.",
+        "If difficult-site conditions push the property toward engineering or alternative design, the deal can widen beyond a simple homeowner story quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local DEC office or Municipality of Anchorage contact handling the parcel.",
+        "The approved-system record showing the system age, size, and location.",
+        "Any engineering or difficult-site note already tied to the file.",
+        "Any retrieval detail showing whether older paper records or legal-description changes affect the file."
+      ],
+      "driverBullets": [
+        "Alaska buyer risk starts with the record pull, not with a generic inspection fee.",
+        "Remote or difficult-site conditions can matter more than the listing summary.",
+        "A thin or slow file can be the first sign that the property story is not as clean as it looks."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Alaska septic question a buyer should ask?",
+          "answer": "Ask where the approved-system record is held and request it from the local DEC office or the Municipality of Anchorage before treating the property as a routine septic sale."
+        },
+        {
+          "question": "Why does the Alaska buyer page mention difficult site conditions?",
+          "answer": "Because Alaska's official guidance says difficult site conditions can trigger engineering review or alternative-system design, which can widen the property risk much earlier than a generic septic checklist suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alaska/",
+        "/septic-system-cost-calculator/?state=AK&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "ak_01",
+        "ak_02",
+        "ak_03",
+        "ak_04",
+        "ak_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "HI",
+      "title": "Hawaii Septic Permit Process",
+      "metaDescription": "Hawaii septic permit process with cesspool-upgrade triggers, county building-permit review, and approval-to-use timing.",
+      "introCopy": "Hawaii permit pages are useful because the official state path already shows where the generic story breaks. The homeowner first needs to know whether the property is still on a cesspool path, whether the local wastewater branch office has the file, and whether county building-permit review and approval-to-use timing are already part of the job.",
+      "uniqueAngle": "Hawaii permit intent is strongest when the page connects cesspool-upgrade triggers, county building-permit handoff, and approval-to-use workflow instead of pretending the project starts with a clean contractor number.",
+      "targetReader": "Best for Hawaii owners, buyers, builders, and agents who need to know whether the property is on a cesspool or IWS path, which local wastewater branch office controls the file, and why the county-permit handoff can widen the project before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed whether a cesspool trigger is already in play.",
+        "The contractor says the permit is routine, but no one has confirmed whether county building-permit review and DOH wastewater approval are aligned.",
+        "You need to know whether the file already includes the approval-to-use and final inspection paperwork before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the local wastewater branch office and the TMK so you can confirm whether the property is on a cesspool or IWS path and whether the file is complete.",
+        "Confirm whether a cesspool-upgrade trigger, permit application, or county building-permit handoff is already active before you treat the project as straightforward.",
+        "Check whether the final inspection report, contractor certification, and approval-to-use letter are already in the file or still part of the upcoming permit sequence.",
+        "Then compare permit readiness, trigger status, and county handoff risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If a cesspool trigger is already active, the permit path can widen quickly beyond a simple installer story.",
+        "If county building-permit review and local wastewater approval are not aligned, the schedule can move beyond the low-end timeline fast.",
+        "If the approval-to-use letter and final inspection paperwork are missing, the homeowner may still be budgeting a planning scenario rather than a file-backed job."
+      ],
+      "quotePrepChecklist": [
+        "The TMK and the local wastewater branch office handling the parcel.",
+        "Any file showing whether the property is on a cesspool path or an IWS permit path.",
+        "Any county building-permit or related review note tied to the project.",
+        "Any final inspection report, contractor certification form, or approval-to-use letter already in the file."
+      ],
+      "driverBullets": [
+        "Hawaii permit timing gets more real once the cesspool trigger and TMK-based file path are clear.",
+        "County building-permit review can matter earlier than homeowners expect.",
+        "Approval-to-use paperwork can separate a routine file from a much riskier wastewater story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Hawaii permit step a homeowner should take?",
+          "answer": "Call the local wastewater branch office with the TMK and confirm whether the property is on a cesspool or individual wastewater system path before treating the permit as routine."
+        },
+        {
+          "question": "Why does the Hawaii permit page mention cesspool triggers?",
+          "answer": "Because Hawaii's official FAQ says some cesspools must be addressed before 2050 when health risks or property changes are involved, which can move the whole project earlier than a generic permit page suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/hawaii/",
+        "/septic-system-cost-calculator/?state=HI&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "hi_01",
+        "hi_02",
+        "hi_03",
+        "hi_04",
+        "hi_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",

@@ -275,6 +275,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/idaho/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/nevada/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/delaware/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/alaska/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/hawaii/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/texas/")))
@@ -307,6 +309,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/idaho/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/nevada/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/delaware/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/alaska/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/hawaii/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/massachusetts/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/florida/")));
 	}
@@ -332,9 +336,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50-state coverage is expanding in waves")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Next rollout wave")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wave 6 | #1")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Target angle: buyer diligence, approved-system file retrieval, and remote-site risk before the rural property story sets the anchor.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/alaska/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Target angle: buyer diligence, HHE-200 file retrieval, and local inspection path before the listing story sets the anchor.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/maine/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open rollout plan")));
 	}
 
@@ -579,16 +583,16 @@ class SepticApplicationTests {
 	@Test
 	void queuedStateCalculatorFallsBackToNationalPlanningProfile() throws Exception {
 		mockMvc.perform(post("/septic-system-cost-calculator/")
-						.param("stateCode", "AK")
+						.param("stateCode", "ME")
 						.param("projectType", "replacement")
 						.param("bedrooms", "3")
 						.param("soilPercStatus", "unknown")
 						.param("accessDifficulty", "easy")
 						.param("timeline", "researching"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("The public Alaska guide is still in the research queue")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("planning range only until the Alaska source set is published")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The public Maine guide is still in the research queue")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("planning range only until the Maine source set is published")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guide research queue")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("National replacement planning anchor")));
 	}
@@ -1001,6 +1005,28 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void alaskaStateGuideShowsBuyerFileContext() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/alaska/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska Septic Cost Guide and Buyer File Path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Municipality of Anchorage")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$25")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the buyer file pull")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
+	}
+
+	@Test
+	void hawaiiStateGuideShowsCesspoolUpgradeContext() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/hawaii/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hawaii Septic Cost Guide and Cesspool Upgrade Path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("2050")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approval-to-use letter")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the cesspool-upgrade path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
+	}
+
+	@Test
 	void massachusettsStateGuideShowsTitle5Context() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/massachusetts/"))
 				.andExpect(status().isOk())
@@ -1013,20 +1039,20 @@ class SepticApplicationTests {
 
 	@Test
 	void queuedStateGuideRendersResearchLanding() throws Exception {
-		mockMvc.perform(get("/septic-system-cost-calculator/alaska/"))
+		mockMvc.perform(get("/septic-system-cost-calculator/maine/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska septic guide is in the research queue.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the Alaska estimate")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AK")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine septic guide is in the research queue.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the Maine estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=ME")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wave 6 priority #1")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Why Alaska moves early")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Why Maine moves early")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First source pack to build")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("buyer diligence, approved-system file retrieval, and remote-site risk before the rural property story sets the anchor")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("buyer diligence, HHE-200 file retrieval, and local inspection path before the listing story sets the anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What unlocks a live Alaska guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What unlocks a live Maine guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<meta name=\"robots\" content=\"noindex,follow\">")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/alaska/\">")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/maine/\">")));
 	}
 
 	@Test
@@ -1421,6 +1447,30 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Regulations 7101 and 7102")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("building permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=DE&projectType=new_install")));
+	}
+
+	@Test
+	void alaskaBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/alaska/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Alaska")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Alaska")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approved-system record")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Municipality of Anchorage")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AK&projectType=buying_home")));
+	}
+
+	@Test
+	void hawaiiPermitPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/hawaii/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hawaii Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Hawaii")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("cesspool")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approval-to-use")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=HI&projectType=new_install")));
 	}
 
 	@Test

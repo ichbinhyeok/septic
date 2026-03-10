@@ -920,6 +920,14 @@ public class SiteController {
                     "Estimate before the permit-file pull",
                     "Delaware quote conversations get more real once you know whether the DNREC report trail is usable and whether a county building-permit handoff changes the septic path."
             );
+            case "AK" -> new StateActionCopy(
+                    "Estimate before the buyer file pull",
+                    "Alaska quote conversations get more real once you know whether the local DEC office or the Municipality of Anchorage holds the approved-system record and whether difficult-site notes already widen the path."
+            );
+            case "HI" -> new StateActionCopy(
+                    "Estimate before the cesspool-upgrade path",
+                    "Hawaii quote conversations get more real once you know whether a cesspool trigger is active and whether the county building-permit handoff and approval-to-use file are already in play."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

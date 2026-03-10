@@ -1819,6 +1819,147 @@
       ]
     },
     {
+      "stateCode": "AK",
+      "stateName": "Alaska",
+      "agencyName": "Alaska Department of Environmental Conservation",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Alaska is stronger on buyer diligence, approved-system file retrieval, and difficult-site risk than on a fake statewide install table. The homeowner wedge is knowing whether the local DEC office or Municipality of Anchorage controls the file, whether the approved-system record is complete, and whether difficult site conditions or higher-flow design requirements widen the job before the listing story sets the anchor.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "Alaska DEC's homeowner pages say all septic systems are subject to Chapter 72 and that engineers are required for multiple buildings, higher-flow systems, or difficult site conditions such as poor soils, high groundwater, or nonconventional systems. Alaska's buying-a-home page tells buyers to check records with the local DEC office or the Municipality of Anchorage and says those records help confirm system age, size, and location. Alaska's real-estate and engineering pages add that document retrieval carries a fee, that old legal descriptions or lot-line changes can affect the file, and that some records are still being scanned and may take up to two weeks to retrieve. Alaska is therefore stronger on buyer file diligence and site-risk context than on a flat statewide cost story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": 1000,
+      "bedroomTable": [
+        {
+          "label": "Up to 3 bedrooms (official buyer page example)",
+          "minBedrooms": 1,
+          "maxBedrooms": 3,
+          "minTankGallons": 1000,
+          "sourceIds": ["ak_02"],
+          "verificationStatus": "official_homeowner_example"
+        },
+        {
+          "label": "4 bedrooms (official buyer page example)",
+          "minBedrooms": 4,
+          "maxBedrooms": 4,
+          "minTankGallons": 1250,
+          "sourceIds": ["ak_02"],
+          "verificationStatus": "official_homeowner_example"
+        },
+        {
+          "label": "5 bedrooms (official buyer page example)",
+          "minBedrooms": 5,
+          "maxBedrooms": 5,
+          "minTankGallons": 1500,
+          "sourceIds": ["ak_02"],
+          "verificationStatus": "official_homeowner_example"
+        }
+      ],
+      "garbageDisposalPolicy": "No direct public Alaska homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Alaska buyers and owners usually need the approved-system record and difficult-site story clarified before they trust a quote or transfer narrative. The project is not really file-backed until the local office confirms what record exists and whether site conditions keep the job on a conventional path.",
+      "permitPathSteps": [
+        "Start with the local DEC office or the Municipality of Anchorage and ask whether an approved-system file already exists for the property.",
+        "Pull the record set and confirm the age, tank size, and location of the system before you trust the listing or contractor summary.",
+        "Use the file and site-condition context to decide whether the property is still on a straightforward path or already widening toward engineering, alternative design, or a larger replacement story."
+      ],
+      "siteEvalSummary": "Alaska public homeowner material is strongest on approved-system files, engineering triggers, and difficult-site conditions rather than one simple statewide sizing story. The practical path turns on whether the local file is real and whether site conditions still support the expected system path.",
+      "ruleHighlights": [
+        "Alaska says all septic systems are subject to Chapter 72.",
+        "Alaska says engineers are required for multiple buildings, higher-flow systems, and difficult site conditions.",
+        "Alaska tells buyers to check records with the local DEC office or the Municipality of Anchorage.",
+        "Alaska says some records are still being scanned and retrieval can take up to two weeks."
+      ],
+      "localOverrideNote": "Alaska looks statewide through DEC, but the practical homeowner workflow changes quickly once you know whether the file sits with the local DEC office or the Municipality of Anchorage and whether difficult site conditions already push the job out of a simple path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ak_01", "ak_02", "ak_03", "ak_04", "ak_05"],
+      "localAuthoritySourceIds": ["ak_02", "ak_04"],
+      "recordsLookupSourceIds": ["ak_02", "ak_03", "ak_04"],
+      "localActionSteps": [
+        "Open the Alaska buyer and engineering pages first and identify whether the record request should go to the local DEC office or the Municipality of Anchorage.",
+        "Ask for the approved-system record, then compare the system age, tank size, and location against the property story before you trust the low end.",
+        "If the file is slow or thin, confirm whether difficult site conditions, lot-line changes, or scanning delays are already part of the problem."
+      ],
+      "whoToCallFirst": "Start with the local DEC office nearest the worksite or the Municipality of Anchorage if the property falls under Anchorage's local program.",
+      "recordsToRequest": [
+        "The approved-system record showing system age, tank size, and location.",
+        "Any document retrieval or file copy tied to the parcel, including older legal-description notes.",
+        "Any engineering or site-condition note showing whether difficult soils, high groundwater, or nonconventional design already widened the path."
+      ],
+      "lowEndRiskChecks": [
+        "If the approved-system record cannot be found quickly, the low end is still a planning scenario rather than a file-backed number.",
+        "If difficult site conditions or higher-flow triggers push the job into engineering review, the project can move beyond the simple homeowner story quickly.",
+        "If legal-description or lot-line changes break the record trail, the property story may be thinner than the seller summary suggests."
+      ],
+      "permitTimelineNote": "Alaska timing often turns on how fast the file can be pulled, whether paper records are still being scanned, and whether difficult site conditions trigger engineering review before the job feels straightforward.",
+      "buyerInspectionTrigger": "Buyers should ask for the approved-system record early because Alaska's file trail often tells a more reliable story than the listing summary when remote sites or older records are involved.",
+      "maintenanceInspectionNote": "Alaska's current source set is strongest on approved-system file retrieval, engineering triggers, and difficult-site context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Alaska's main wrinkle is that remote and difficult-site conditions can push the job into engineering or alternative-design territory long before a generic statewide number feels real.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable Alaska local-office matrix showing where Anchorage and local DEC file routing diverge for homeowners.",
+        "Document which Alaska offices expose approved-system records online versus manual retrieval only."
+      ]
+    },
+    {
+      "stateCode": "HI",
+      "stateName": "Hawaii",
+      "agencyName": "Hawaii Department of Health Wastewater Branch",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Hawaii is stronger on cesspool-upgrade pressure, county building-permit handoff, and approval-to-use timing than on a fake statewide install table. The homeowner wedge is knowing whether a cesspool trigger is already in play, whether the local wastewater branch and county building permit path are aligned, and whether the approval-to-use file is complete before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Hawaii DOH's wastewater FAQ says every cesspool in the state must be upgraded by 2050 and lists earlier triggers including modification of a building served by a cesspool, repeated pumping or overflow, and groundwater discharge. Hawaii's IWS homeowner page says plans are submitted online by the engineer after site work, that contractors need the right license class, and that the branch issues an approval-to-use letter after the final construction inspection report and contractor certification form are accepted. Hawaii's rules page says the director reviews all individual wastewater systems before signing a related county building permit application, and district office pages show that local wastewater branches handle record requests and county-permit review. Hawaii is therefore stronger on permit-path clarity and cesspool-upgrade timing than on a generic cost table.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Hawaii homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Hawaii homeowners usually need the cesspool trigger, county handoff, and approval-to-use story clarified before they trust a quote. The project is not really permit-ready until the local wastewater branch confirms the file, the county building-permit tie-in, and whether the property is still on a clean IWS path.",
+      "permitPathSteps": [
+        "Start with the local wastewater branch office and the TMK so you can confirm the file, permit status, and whether the property sits on a cesspool or an individual wastewater system path.",
+        "Confirm whether the project is a new IWS permit, a repair, or a cesspool upgrade triggered by property changes or health risks before you trust the low end.",
+        "Use the county building-permit handoff and approval-to-use requirements to decide whether the project is still routine or already widening into a bigger schedule."
+      ],
+      "siteEvalSummary": "Hawaii public homeowner material is strongest on cesspool-upgrade timing, county building-permit review, and approval-to-use workflow rather than one simple statewide sizing story. The practical path turns on whether the local file is complete and whether a trigger has already moved the property into a larger upgrade conversation.",
+      "ruleHighlights": [
+        "Hawaii says every cesspool must be upgraded by 2050.",
+        "Hawaii lists earlier cesspool-upgrade triggers including building modification, repeated pumping or overflow, and groundwater discharge.",
+        "Hawaii says the director reviews individual wastewater systems before signing a related county building permit application.",
+        "Hawaii says the approval-to-use letter is issued after final inspection paperwork and contractor certification are accepted."
+      ],
+      "localOverrideNote": "Hawaii looks statewide through DOH, but the practical homeowner workflow changes quickly once you know which local wastewater branch office holds the file and how the county building-permit review ties into the wastewater approval path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["hi_01", "hi_02", "hi_03", "hi_04", "hi_05"],
+      "localAuthoritySourceIds": ["hi_05", "hi_01"],
+      "recordsLookupSourceIds": ["hi_01", "hi_05"],
+      "localActionSteps": [
+        "Open the Hawaii wastewater FAQ first and identify the local wastewater branch office with the TMK before you trust the project story.",
+        "Ask whether the property is tied to a cesspool upgrade trigger, a current IWS permit, or an approval-to-use record before you anchor to the low end.",
+        "If the records are thin, use the local office record-request path and confirm whether county building-permit review is the next blocker."
+      ],
+      "whoToCallFirst": "Start with the local Hawaii wastewater branch office that serves the island and parcel, with the TMK ready for file and permit-status questions.",
+      "recordsToRequest": [
+        "Any existing IWS permit file, approval-to-use letter, and final inspection paperwork tied to the property.",
+        "Any record showing whether the property is on a cesspool path or already in an upgrade sequence.",
+        "Any local-office or county-building-permit note showing what handoff or next approval still blocks the project."
+      ],
+      "lowEndRiskChecks": [
+        "If a cesspool trigger is already in play, the low end can break before installer pricing becomes comparable.",
+        "If the approval-to-use letter or final inspection paperwork is missing, the homeowner may be budgeting a planning scenario rather than a file-backed job.",
+        "If county building-permit review and local wastewater approval are not aligned, the project can widen beyond a simple permit story quickly."
+      ],
+      "permitTimelineNote": "Hawaii timing often turns on whether a cesspool trigger is active, whether the TMK-based file lookup is clear, and whether county building-permit review and approval-to-use paperwork are already lined up.",
+      "buyerInspectionTrigger": "Buyers should ask whether the property still sits on a cesspool path and whether an approval-to-use file exists because Hawaii's wastewater records can expose much more risk than the listing summary.",
+      "maintenanceInspectionNote": "Hawaii's current source set is strongest on cesspool-upgrade timing, permit routing, approval-to-use workflow, and local-office record access, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Hawaii's main wrinkle is that cesspool conversion pressure, county building-permit review, and approval-to-use timing can turn a seemingly routine wastewater project into a much larger upgrade story.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable island-by-island office matrix showing where each Hawaii wastewater branch and county handoff changes homeowner workflow.",
+        "Document which Hawaii offices expose permit or approval-to-use records online versus by manual request."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",
