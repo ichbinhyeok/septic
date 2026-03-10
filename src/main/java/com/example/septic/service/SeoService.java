@@ -515,6 +515,7 @@ public class SeoService {
             case "NM" -> "New Mexico Septic Cost Guide and Buyer File Path";
             case "UT" -> "Utah Septic Cost Guide and Local Health Permit Path";
             case "WV" -> "West Virginia Septic Cost Guide and Local File Path";
+            case "SD" -> "South Dakota Septic Cost Guide and Permit Path";
             case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
@@ -558,6 +559,7 @@ public class SeoService {
             case "NM" -> "New Mexico septic planning estimates with buyer-file checks, permit-search context, and official-source links.";
             case "UT" -> "Utah septic planning estimates with local health routing, R317-4 permit workflow, and official-source links.";
             case "WV" -> "West Virginia septic planning estimates with local health routing, sewage-permit file context, and official-source links.";
+            case "SD" -> "South Dakota septic planning estimates with permit-certificate context, inspection sequencing, and official-source links.";
             case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";

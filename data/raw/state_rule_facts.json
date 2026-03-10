@@ -1806,6 +1806,58 @@
       "note": "West Virginia's Department of Health contact page directs FOIA requests for public records to the agency's records path when the local trail is not enough."
     },
     {
+      "stateCode": "SD",
+      "factType": "program_context",
+      "label": "Program context",
+      "value": "Plumbing Commission administers laws and licenses onsite wastewater installers",
+      "unit": "",
+      "sourceId": "sd_01",
+      "sourceSection": "South Dakota Plumbing Commission",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.83,
+      "note": "South Dakota says the Plumbing Commission administers plumbing laws and regulations, inspects plumbing installations, and licenses individual and small onsite wastewater installers."
+    },
+    {
+      "stateCode": "SD",
+      "factType": "permit_certificate",
+      "label": "Homeowner permit path",
+      "value": "Homeowner Plumbing Installation Certificate with proof of ownership",
+      "unit": "",
+      "sourceId": "sd_02",
+      "sourceSection": "Homeowner Plumbing",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.88,
+      "note": "South Dakota says homeowners need a Homeowner Plumbing Installation Certificate and must provide proof of ownership."
+    },
+    {
+      "stateCode": "SD",
+      "factType": "inspection_sequence",
+      "label": "Inspection sequence",
+      "value": "Underground, rough-in, and final inspections",
+      "unit": "",
+      "sourceId": "sd_02",
+      "sourceSection": "Homeowner Plumbing",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.9,
+      "note": "South Dakota's homeowner plumbing page says underground, rough-in, and final inspections are required."
+    },
+    {
+      "stateCode": "SD",
+      "factType": "local_override",
+      "label": "Local-rule wrinkle",
+      "value": "Cities may run their own inspections and local governments may be more stringent",
+      "unit": "",
+      "sourceId": "sd_04",
+      "sourceSection": "One Stop Environmental Permitting and Regulation Guide",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.78,
+      "note": "South Dakota's onsite wastewater guide says ARSD 74:53:01 and 74:53:02 are minimum state requirements and local governments may have more stringent regulations, while the inspections page lists cities with their own inspection requirements."
+    },
+    {
       "stateCode": "AR",
       "factType": "program_support",
       "label": "Program support",

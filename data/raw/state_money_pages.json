@@ -4547,6 +4547,67 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "SD",
+      "title": "South Dakota Septic Permit Process",
+      "metaDescription": "South Dakota septic permit process with homeowner installation certificate, inspection sequence, and local-rule exception context in mind.",
+      "introCopy": "South Dakota permit content is stronger than a generic install checklist because the practical homeowner path runs through a permit certificate and inspection sequence, not a vague statewide quote. The real job often turns on whether the Homeowner Plumbing Installation Certificate is in place, whether underground, rough-in, and final inspections are understood, and whether a city or local rule changes the default state path before the low end means much.",
+      "uniqueAngle": "South Dakota permit intent is strongest when the page explains the permit certificate, inspection sequence, and local-rule exceptions instead of pretending the project starts with a clean contractor number.",
+      "targetReader": "Best for South Dakota owners, buyers, builders, and agents who need to know whether the installation certificate already exists, whether the required inspections are lined up, and why city or county exceptions can move the whole schedule before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or repair quote, but no one has confirmed whether the Homeowner Plumbing Installation Certificate path is already in place.",
+        "The contractor says the permit is routine, but no one has surfaced whether underground, rough-in, and final inspections already define the real schedule.",
+        "You need to know whether a city or local rule changes the default state inspection path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the Plumbing Commission or the local authority handling the parcel and confirm whether the state inspection path or a city-run exception applies.",
+        "Ask whether the Homeowner Plumbing Installation Certificate, proof of ownership, and permit paperwork are already in place before treating the job as a fresh permit path.",
+        "Check whether underground, rough-in, and final inspections are required under the default state path or whether local rules change the sequence.",
+        "Then compare permit readiness, file quality, and local-rule friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the inspection path is still unclear, the low end is still a planning scenario rather than a permit-ready number.",
+        "If the certificate or ownership paperwork is missing, the permit path can widen before contractor pricing becomes comparable.",
+        "If a city or local government uses stricter rules than the statewide minimum, the project can move beyond the cheapest installer story quickly."
+      ],
+      "quotePrepChecklist": [
+        "Any Homeowner Plumbing Installation Certificate or permit paperwork already tied to the property.",
+        "Any underground, rough-in, or final inspection note already on record.",
+        "Any local rule or city-inspection note showing whether the parcel sits outside the default state inspection path.",
+        "A short note showing whether the job is a fresh install, repair follow-through, or a file-cleanup question before inspection scheduling."
+      ],
+      "driverBullets": [
+        "South Dakota permit timing depends heavily on the certificate path and inspection sequence being real and usable.",
+        "City-run inspection exceptions and stricter local rules can widen the whole permit path before pricing becomes comparable.",
+        "The default state minimum is not always the real homeowner path once local rules enter the conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first South Dakota permit step a homeowner should take?",
+          "answer": "Start by confirming whether the parcel follows the state Plumbing Commission inspection path or a city-run inspection exception, then ask whether the Homeowner Plumbing Installation Certificate is already required for the job."
+        },
+        {
+          "question": "Why does South Dakota permit content need to mention underground, rough-in, and final inspections?",
+          "answer": "Because South Dakota's homeowner plumbing page makes those inspections part of the permit story, which means scheduling and file readiness matter earlier than a generic quote suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-dakota/",
+        "/septic-system-cost-calculator/?state=SD&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "sd_01",
+        "sd_02",
+        "sd_03",
+        "sd_04",
+        "sd_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
       "metaDescription": "Arkansas septic permit process with county health routing, onsite specialist path, permit-copy context, and soil-suitability questions.",

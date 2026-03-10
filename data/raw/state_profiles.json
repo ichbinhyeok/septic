@@ -1587,6 +1587,64 @@
       ]
     },
     {
+      "stateCode": "SD",
+      "stateName": "South Dakota",
+      "agencyName": "South Dakota Plumbing Commission",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "South Dakota is stronger on permit certificates, inspection sequencing, and local-rule exceptions than on a fake statewide install table. The homeowner wedge is knowing whether the Homeowner Plumbing Installation Certificate, the inspection path, and any city or county exception are already in view before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "South Dakota's Plumbing Commission says it administers plumbing laws and regulations, inspects plumbing installations, and licenses individual and small on-site wastewater system installers. South Dakota's homeowner plumbing page says owner-occupants need a Homeowner Plumbing Installation Certificate, must provide proof of ownership, and need underground, rough-in, and final inspections. The inspections page says all plumbing installations need an inspection certificate except certain cities with their own inspection requirements, while the environmental permitting guide says ARSD 74:53:01 and 74:53:02 are the state's minimum onsite wastewater requirements and local governments may be more stringent. The practical homeowner path is therefore permit-first, but local inspection and stricter-rule exceptions matter early.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public South Dakota homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "South Dakota homeowners usually need the permit-certificate and inspection story clarified before they trust an install or repair quote. The project is not really permit-ready until the Homeowner Plumbing Installation Certificate path, the required inspections, and any city or county exception are clearer.",
+      "permitPathSteps": [
+        "Start with the Plumbing Commission or the local authority handling the parcel and confirm whether the state inspection path or a city-run inspection path applies.",
+        "Ask whether the Homeowner Plumbing Installation Certificate, proof of ownership, and any permit paperwork are already in place before treating the job as a clean install path.",
+        "Use the inspection sequence and local-rule context to decide whether the project is still on a straightforward path or already widening because of stricter local requirements."
+      ],
+      "siteEvalSummary": "South Dakota public homeowner material is strongest on permit certificates, inspection sequencing, and local-rule exceptions rather than one simple statewide sizing story. The practical path turns on whether the certificate and inspection file are usable enough to trust.",
+      "ruleHighlights": [
+        "South Dakota says the Plumbing Commission administers plumbing laws and regulations and licenses individual and small on-site wastewater installers.",
+        "South Dakota says homeowners need a Homeowner Plumbing Installation Certificate and must provide proof of ownership.",
+        "South Dakota requires underground, rough-in, and final inspections for homeowner plumbing work.",
+        "South Dakota says state onsite wastewater rules are minimum requirements and local governments may be more stringent."
+      ],
+      "localOverrideNote": "South Dakota looks statewide through the Plumbing Commission and DANR, but the real homeowner workflow changes quickly once you know whether a city handles its own inspections or whether county or local rules are stricter than the statewide minimum.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["sd_01", "sd_02", "sd_03", "sd_04", "sd_05"],
+      "localAuthoritySourceIds": ["sd_03", "sd_04"],
+      "recordsLookupSourceIds": ["sd_02", "sd_03"],
+      "localActionSteps": [
+        "Open the South Dakota inspection and homeowner permit pages first and confirm whether the parcel falls under the state inspection path or a city-run exception.",
+        "Ask whether the Homeowner Plumbing Installation Certificate, proof-of-ownership paperwork, and inspection sequence are already in place before you trust the low end.",
+        "Confirm whether county or local rules are stricter than the statewide minimum before you assume a standard install route."
+      ],
+      "whoToCallFirst": "Start with the South Dakota Plumbing Commission or the local authority handling inspections for the parcel, then confirm whether a city-run inspection exception applies.",
+      "recordsToRequest": [
+        "Any Homeowner Plumbing Installation Certificate or permit paperwork already tied to the property.",
+        "Any underground, rough-in, or final inspection note already on record.",
+        "Any local rule or city-inspection note showing whether the parcel sits outside the default state inspection path."
+      ],
+      "lowEndRiskChecks": [
+        "If the inspection path is still unclear, the low end is still a planning scenario rather than a permit-backed number.",
+        "If the certificate or ownership paperwork is missing, the permit path can widen before contractor pricing becomes comparable.",
+        "If a city or local government uses stricter rules than the statewide minimum, the project can move beyond the simplest installer story quickly."
+      ],
+      "permitTimelineNote": "South Dakota timing often turns on how quickly the certificate path is confirmed, whether the required inspections can be scheduled, and whether local rules are stricter than the state minimum.",
+      "buyerInspectionTrigger": "Buyers should ask for the inspection certificate path and any local-rule note early because South Dakota's permit story can be more local than the listing summary suggests.",
+      "maintenanceInspectionNote": "South Dakota's current source set is strongest on permit certificates, inspection sequencing, and local-rule exceptions, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "South Dakota's main wrinkle is that the state path is visible, but city-run inspections and stricter local rules can break the generic statewide permit story fast.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which South Dakota counties or cities use stricter onsite wastewater rules or their own inspection paths.",
+        "Document where South Dakota local offices expose online permit or inspection records to homeowners."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

@@ -3,21 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "SD",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 5",
-      "whyNow": "South Dakota is still open territory where permit path and county routing can beat a generic install-cost page before competitors lock in coverage.",
-      "launchAngle": "Target angle: permit path and county office confirmation before the homeowner anchors on a statewide average.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the statewide homeowner permit and inspection hub for onsite wastewater systems.",
-        "Collect county or local office routing that determines the real permit desk.",
-        "Pull a homeowner-safe permit sequence that can anchor the first live workflow page."
-      ]
-    },
-    {
       "stateCode": "ID",
-      "priorityRank": 2,
+      "priorityRank": 1,
       "rolloutWave": "Wave 5",
       "whyNow": "Idaho can likely support a perc and site-approval wedge where district routing and soil limitations matter more than flat install averages.",
       "launchAngle": "Target angle: soil, site approval, and district handoff before the owner assumes a conventional install path.",
@@ -30,7 +17,7 @@
     },
     {
       "stateCode": "NV",
-      "priorityRank": 3,
+      "priorityRank": 2,
       "rolloutWave": "Wave 5",
       "whyNow": "Nevada can likely support a buyer and records wedge where county file quality matters more than broad desert install averages.",
       "launchAngle": "Target angle: buyer diligence, permit history, and local file quality before the listing story sets the anchor.",
@@ -43,7 +30,7 @@
     },
     {
       "stateCode": "DE",
-      "priorityRank": 4,
+      "priorityRank": 3,
       "rolloutWave": "Wave 5",
       "whyNow": "Delaware is compact but commercially useful and likely supports a permit or records wedge where agency routing matters more than a flat statewide number.",
       "launchAngle": "Target angle: permit path, file retrieval, and agency handoff before the homeowner treats the project as routine.",

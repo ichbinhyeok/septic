@@ -159,6 +159,9 @@ public class EstimatorService {
         if ("WV".equals(state.stateCode())) {
             checklist.add("Confirm which West Virginia local health department controls the file and whether a sewage permit application, sanitarian note, or public-records gap is already on record.");
         }
+        if ("SD".equals(state.stateCode())) {
+            checklist.add("Confirm whether South Dakota uses the default Plumbing Commission inspection path or a city-run exception and whether the installation certificate and inspection notes are already on record.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -535,6 +538,9 @@ public class EstimatorService {
         }
         if ("WV".equals(state.stateCode())) {
             return "This West Virginia range stays wide because local health file quality, sewage-permit gaps, and public-record friction can all move the job quickly.";
+        }
+        if ("SD".equals(state.stateCode())) {
+            return "This South Dakota range stays wide because permit-certificate timing, inspection sequencing, and stricter local rules can all move the job quickly.";
         }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";
