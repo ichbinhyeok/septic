@@ -289,6 +289,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/new-york/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/california/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/michigan/")))
@@ -322,9 +323,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/delaware/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/texas/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/new-york/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/new-york/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/new-york/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/new-york/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/pennsylvania/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/north-carolina/")))
@@ -1239,6 +1242,17 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void californiaReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/california/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("California Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in California")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tier 1")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("LAMP-driven")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=CA&projectType=replacement")));
+	}
+
+	@Test
 	void pennsylvaniaReplacementPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-replacement-cost/pennsylvania/"))
 				.andExpect(status().isOk())
@@ -1247,6 +1261,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sewage Enforcement Officer before trusting any statewide replacement average.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Bring this into the next")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=PA&projectType=replacement")));
+	}
+
+	@Test
+	void texasReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/texas/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Texas")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approved plan")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=TX&projectType=replacement")));
 	}
 
 	@Test
@@ -1270,6 +1295,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("construction permit, any repair permit, and any inspection letter")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("contract county or TDEC regional contact")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=TN&projectType=replacement")));
+	}
+
+	@Test
+	void newYorkReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/new-york/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("New York Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in New York")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Appendix 75-A")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("under-1,000-gpd residential baseline")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NY&projectType=replacement")));
 	}
 
 	@Test

@@ -3776,6 +3776,65 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "CA",
+      "title": "California Septic Replacement Cost",
+      "metaDescription": "Estimate California septic replacement cost with local agency routing, Tier 1 versus LAMP context, and local file risk in mind.",
+      "introCopy": "California replacement projects look simple until the local agency file, Tier 1 versus LAMP path, and any repair or special-area history widen the job. This page keeps the estimate tied to California's OWTS workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "California replacement intent is strongest when the page explains local agency routing, local file quality, and LAMP-driven differences instead of pretending one statewide office owns the whole replacement story.",
+      "targetReader": "Best for California homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the county environmental health file and local program path support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The seller or contractor says it is just a replacement, but no one has confirmed which local agency controls the file yet.",
+        "The property may sit in a LAMP-driven local program, impaired-water area, or other special review path that makes the simple replacement story too optimistic.",
+        "You need to separate a routine tank-and-field conversation from a county-file, siting, or Regional Water Board problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Identify the local agency or county environmental health office before trusting any statewide-looking replacement range.",
+        "Ask whether the parcel follows the default Tier 1 path or a Regional Water Board-approved LAMP and pull the permit, as-built, repair, and local-review file first.",
+        "Use that local file to decide whether the replacement still looks conventional or whether special-area, siting, or water-quality context is already widening the job.",
+        "Only after those steps should you compare contractor replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if no one has identified the local agency actually holding the file.",
+        "A LAMP-driven local program can change siting, design, and review expectations enough to turn a routine replacement into a wider planning problem.",
+        "If the local file already shows repair history, special-area notes, or Regional Water Board friction, the homeowner is still budgeting a planning scenario rather than a clean replacement."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or other local agency handling the parcel.",
+        "Any permit, as-built, repair, or prior review record already tied to the current system.",
+        "Any note showing whether the lot falls under the default Tier 1 path or a LAMP-driven local program.",
+        "A short note on ADU, replacement follow-through, or water-quality constraints that could widen the scope."
+      ],
+      "driverBullets": [
+        "California replacement work gets real only after the right local agency and local program path are clear.",
+        "Tier 1 versus LAMP differences can matter more than a contractor's first replacement number.",
+        "A thin local file can hide the real siting and review burden behind an otherwise simple-looking replacement quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can a California replacement quote jump even if the job sounds routine?",
+          "answer": "Because the local agency file, Tier 1 versus LAMP path, and any special-area notes can change the practical replacement story before the contractor price is trustworthy."
+        },
+        {
+          "question": "What should a California owner pull before trusting a replacement quote?",
+          "answer": "Pull the local permit file, as-built, repair history, and any note showing whether the property falls under the default Tier 1 path or a LAMP-driven local program."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/california/",
+        "/septic-records-checklist/california/",
+        "/septic-permit-process/california/",
+        "/perc-test-cost/california/",
+        "/septic-system-cost-calculator/?state=CA&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ca_01",
+        "ca_02",
+        "ca_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "perc-test-cost",
       "stateCode": "CA",
       "title": "California Perc Test Cost",
@@ -3832,6 +3891,68 @@
         "ca_03"
       ],
       "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "TX",
+      "title": "Texas Septic Replacement Cost",
+      "metaDescription": "Estimate Texas septic replacement cost with local permitting authority routing, approved-plan risk, and site-evaluation context in mind.",
+      "introCopy": "Texas replacement projects look simple until the local permitting authority, approved plan, and site-evaluation history widen the job. This page keeps the estimate tied to Texas's real OSSF workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "Texas replacement intent is strongest when the page explains OARS authority lookup, approved-plan quality, and site-evaluation context instead of treating replacement like a generic like-for-like swap.",
+      "targetReader": "Best for Texas homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the local permit file, approved plan, and site evaluation support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The contractor says it is just a replacement, but no one has confirmed which local permitting authority controls the file yet.",
+        "The parcel may no longer fit the old site-evaluation assumptions, so the simple replacement story could already be too optimistic.",
+        "You need to separate a routine replacement conversation from a wider site-class, approved-plan, or aerobic-maintenance problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Use OARS or the homeowner hub to identify the local permitting authority before trusting any statewide-looking replacement range.",
+        "Request the permit file, approved plan, and most recent site evaluation tied to the property before treating the job as straightforward.",
+        "Confirm whether the property uses an aerobic or other advanced system and whether local rules are stricter than the statewide minimum before you assume a simple path.",
+        "Only after those steps should you compare replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if no one has identified the local permitting authority actually holding the file.",
+        "A missing approved plan or stale site evaluation can hide a very different system path than the owner or contractor summary suggests.",
+        "If the property uses an aerobic or advanced system, maintenance and local-rule friction can make the replacement much wider than a like-for-like swap."
+      ],
+      "quotePrepChecklist": [
+        "The county and local permitting authority identified through OARS or the homeowner hub.",
+        "Any permit file, approved plan, or site-evaluation record already tied to the property.",
+        "Any maintenance contract, inspection history, or repair note tied to an aerobic or advanced system.",
+        "A short note on whether the job is urgent replacement, buyer diligence, or replacement follow-through after a permit problem."
+      ],
+      "driverBullets": [
+        "Texas replacement work gets real only after OARS or the local authority lookup is settled.",
+        "A stale approved plan or site evaluation can matter more than the first replacement quote.",
+        "Aerobic-system maintenance and stricter local rules can widen the whole project before contractor pricing becomes comparable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can a Texas replacement quote jump even if the old system seems known?",
+          "answer": "Because the local permitting authority, approved plan, and site evaluation still decide whether the parcel fits a straightforward replacement path."
+        },
+        {
+          "question": "What should a Texas owner pull before trusting a replacement quote?",
+          "answer": "Pull the permit file, approved plan, site evaluation, and any aerobic-system maintenance history tied to the property through the local permitting authority."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/texas/",
+        "/septic-records-checklist/texas/",
+        "/septic-permit-process/texas/",
+        "/perc-test-cost/texas/",
+        "/septic-system-cost-calculator/?state=TX&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "tx_01",
+        "tx_02",
+        "tx_03",
+        "tx_04",
+        "tx_05",
+        "tx_06"
+      ],
       "publishStatus": "published"
     },
     {
@@ -4306,6 +4427,66 @@
         "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
         "/buying-a-house-with-a-septic-system/",
         "/septic-records-checklist/"
+      ],
+      "officialSourceIds": [
+        "ny_01",
+        "ny_02",
+        "ny_03",
+        "ny_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "NY",
+      "title": "New York Septic Replacement Cost",
+      "metaDescription": "Estimate New York septic replacement cost with Appendix 75-A baseline, county health routing, and waiver-file risk in mind.",
+      "introCopy": "New York replacement projects look simple until the county health file, Appendix 75-A design paperwork, and any specific waiver history widen the job. This page keeps the estimate tied to New York's real onsite workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "New York replacement intent is strongest when the page explains county-health routing, Appendix 75-A, and waiver-file quality instead of treating replacement like a generic like-for-like swap.",
+      "targetReader": "Best for New York homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the county health file and Appendix 75-A history support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The contractor says it is just a replacement, but no one has confirmed which county health department or district office controls the file yet.",
+        "The property may no longer fit the old Appendix 75-A design assumptions, so the simple replacement story could already be too optimistic.",
+        "You need to separate a routine replacement conversation from a wider waiver, design-flow, or local-health problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Identify the county health department or district office before trusting any statewide-looking replacement range.",
+        "Request the Appendix 75-A design file, as-built drawing, and any specific waiver already tied to the property before treating the job as straightforward.",
+        "Use that local file to decide whether the property still fits the under-1,000-gpd residential baseline or whether the job is already on a wider path.",
+        "Only after those steps should you compare replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the county health or district-office file cannot surface the Appendix 75-A design paperwork.",
+        "Specific waiver history can make the project more complex than the owner or contractor summary suggests.",
+        "If the property does not fit the under-1,000-gpd residential baseline cleanly, the simple statewide replacement story can break quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county health department or district office contact with jurisdiction over the property.",
+        "The Appendix 75-A design file, as-built drawing, and any local health approval paperwork already tied to the site.",
+        "Any specific waiver or other local health decision already issued for the property.",
+        "A short note on whether the job is urgent replacement, buyer diligence, or replacement follow-through after a permit problem."
+      ],
+      "driverBullets": [
+        "New York replacement work gets real only after the county health or district-office file is in hand.",
+        "Appendix 75-A creates a real baseline, but waiver history can widen the replacement path fast.",
+        "A thin local file can hide the true design-flow and site-review burden behind an otherwise simple-looking replacement quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can a New York replacement quote jump even if the current system seems known?",
+          "answer": "Because the county health file, Appendix 75-A design paperwork, and any specific waiver history still decide whether the property fits a straightforward replacement path."
+        },
+        {
+          "question": "What should a New York owner pull before trusting a replacement quote?",
+          "answer": "Pull the Appendix 75-A design file, as-built drawing, and any specific waiver or county health decision tied to the property first."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-york/",
+        "/septic-records-checklist/new-york/",
+        "/septic-permit-process/new-york/",
+        "/perc-test-cost/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=replacement"
       ],
       "officialSourceIds": [
         "ny_01",
