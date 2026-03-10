@@ -3894,6 +3894,66 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "CA",
+      "title": "California Septic Inspection Cost",
+      "metaDescription": "California septic inspection cost with county environmental health routing, LAMP context, and local-file quality in mind.",
+      "introCopy": "California inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the county environmental health office or other local agency file, any as-built or repair history, and the LAMP-driven local program context still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "California inspection content is strongest when it explains local-agency routing, Tier 1 versus LAMP context, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for California buyers and owners who can schedule an inspection but still need to know whether the local file, as-built trail, and LAMP context make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which county environmental health office or local agency actually controls the file.",
+        "You need to know whether a missing as-built or thin repair history makes the visit more consequential than the fee itself.",
+        "The parcel may sit in a LAMP-driven local program, so the inspection may be answering a bigger workflow question than the quote suggests."
+      ],
+      "decisionSteps": [
+        "Identify the local agency first because California routes practical OWTS permits and records through county environmental health offices or other local agencies.",
+        "Ask whether the file already contains the permit, as-built drawing, repair history, and any prior local review tied to the parcel before treating the visit as routine.",
+        "Confirm whether the property follows the default Tier 1 path or a LAMP-driven local program because that context can change what the inspection really needs to settle.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or local-program friction."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when no one has identified the local agency holding the OWTS file first.",
+        "A missing permit or as-built drawing can make the inspection more about file reconstruction than a simple visit.",
+        "If the property sits in a LAMP-driven local program, the practical inspection story can be more complex than a generic statewide checklist suggests."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or other local agency contact responsible for the property file.",
+        "Any permit, as-built, repair, or prior local review record already tied to the parcel.",
+        "Any note showing whether the site is in a default Tier 1 path or a LAMP-driven local program.",
+        "The reason for the inspection: sale, routine diligence, suspected issue, or follow-up after a repair."
+      ],
+      "driverBullets": [
+        "California buyers and owners need the local agency file before the inspection fee means much.",
+        "A missing as-built or repair trail can matter more than the visit price.",
+        "LAMP-driven local programs can turn a routine inspection into a larger local-workflow conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first California inspection step a homeowner should take?",
+          "answer": "Identify the local agency or county environmental health office first and ask for the permit file, as-built drawing, and any repair history tied to the property."
+        },
+        {
+          "question": "Why does California inspection content need to mention LAMP?",
+          "answer": "Because a LAMP-driven local program can change the practical siting and design context, which affects what the inspection really needs to confirm."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/california/",
+        "/septic-records-checklist/california/",
+        "/septic-permit-process/california/",
+        "/buying-a-house-with-a-septic-system/california/",
+        "/septic-system-cost-calculator/?state=CA&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ca_01",
+        "ca_02",
+        "ca_03"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-replacement-cost",
       "stateCode": "TX",
       "title": "Texas Septic Replacement Cost",
@@ -4554,6 +4614,67 @@
         "ny_04"
       ],
       "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NY",
+      "title": "New York Septic Inspection Cost",
+      "metaDescription": "New York septic inspection cost with county health routing, Appendix 75-A context, and waiver-file risk in mind.",
+      "introCopy": "New York inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the county health file, Appendix 75-A design paperwork, and any specific waiver still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "New York inspection content is strongest when it explains county-health routing, Appendix 75-A, and waiver-file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for New York buyers and owners who can schedule an inspection but still need to know whether the local file, design paperwork, and waiver history make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which county health department or district office actually controls the file.",
+        "You need to know whether weak Appendix 75-A paperwork or waiver history makes the visit more consequential than the fee itself.",
+        "The seller or contractor says the system is straightforward, but local health review may still be answering a bigger design-flow question."
+      ],
+      "decisionSteps": [
+        "Identify the county health department or district office first because New York routes the practical file and inspection path through those local or district contacts.",
+        "Ask whether the Appendix 75-A design file, as-built drawing, and any specific waiver already exist before treating the visit as routine.",
+        "Use the local file to decide whether the property still fits the residential under-1,000-gpd baseline or whether the inspection is already part of a wider local-health story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or waiver-driven risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county health or district-office file cannot surface the Appendix 75-A design paperwork first.",
+        "Specific waiver history can make the property more complex than a simple inspection quote suggests.",
+        "If the design flow assumptions in the file do not match current use, the visit can be more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county health department or district office contact with jurisdiction over the property.",
+        "The Appendix 75-A design file, as-built drawing, and any local health approval paperwork already tied to the site.",
+        "Any specific waiver or other local health decision already issued for the property.",
+        "The reason for the inspection: sale, routine diligence, suspected issue, or follow-up after a repair."
+      ],
+      "driverBullets": [
+        "New York buyers and owners need the county health or district-office file before the inspection fee means much.",
+        "Appendix 75-A paperwork and waiver history can matter more than the visit price.",
+        "A thin local file can turn a routine inspection into a larger design-flow conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New York inspection step a homeowner should take?",
+          "answer": "Identify the county health department or district office first and ask for the Appendix 75-A design file, as-built drawing, and any waiver history tied to the property."
+        },
+        {
+          "question": "Why does New York inspection content need to mention specific waivers?",
+          "answer": "Because Appendix 75-A allows specific waivers, and that history can change whether the inspection is routine or strategically important for the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-york/",
+        "/septic-records-checklist/new-york/",
+        "/septic-permit-process/new-york/",
+        "/buying-a-house-with-a-septic-system/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ny_01",
+        "ny_02",
+        "ny_03",
+        "ny_04"
+      ],
+      "calculatorProjectType": "inspection",
       "publishStatus": "published"
     },
     {
