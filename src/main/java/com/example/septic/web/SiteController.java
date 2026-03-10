@@ -880,6 +880,22 @@ public class SiteController {
 
     private StateActionCopy stateActionCopy(StateProfile state) {
         return switch (state.stateCode()) {
+            case "IA" -> new StateActionCopy(
+                    "Estimate before the county file pull",
+                    "Iowa quote conversations get more real once you know which county office or county sanitarian holds the file and whether the time-of-transfer record is already in view."
+            );
+            case "KS" -> new StateActionCopy(
+                    "Estimate before the soil-profile check",
+                    "Kansas quote conversations get more real once you know which local sanitary code controls the parcel and whether the lot is still on a straightforward soil-profile path."
+            );
+            case "NE" -> new StateActionCopy(
+                    "Estimate before the permit filing",
+                    "Nebraska quote conversations get more real once you know whether the parcel already has a registered-system file and whether the state permit path is still clean."
+            );
+            case "NM" -> new StateActionCopy(
+                    "Estimate before the buyer file check",
+                    "New Mexico quote conversations get more real once you know whether the permit-search result, homeowner notice, and transfer paperwork support the seller story."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

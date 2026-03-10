@@ -141,6 +141,18 @@ public class EstimatorService {
         if ("PA".equals(state.stateCode())) {
             checklist.add("Identify the municipality or local agency and Sewage Enforcement Officer before trusting the next-step permit path.");
         }
+        if ("IA".equals(state.stateCode())) {
+            checklist.add("Confirm which Iowa county environmental health office or county sanitarian controls the file and whether a permit record or time-of-transfer inspection is already on record.");
+        }
+        if ("KS".equals(state.stateCode())) {
+            checklist.add("Confirm which Kansas county or city sanitary code controls the parcel and whether the next step is a soil profile, modified soil profile, or percolation test.");
+        }
+        if ("NE".equals(state.stateCode())) {
+            checklist.add("Confirm whether the Nebraska parcel already has a registered-system file and whether a DHHS construction permit or local requirement still changes the path.");
+        }
+        if ("NM".equals(state.stateCode())) {
+            checklist.add("Confirm whether the New Mexico permit-search request, homeowner notice, and transfer paperwork already surface a usable liquid-waste file.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -500,6 +512,18 @@ public class EstimatorService {
     }
 
     private String rangeReason(StateProfile state) {
+        if ("IA".equals(state.stateCode())) {
+            return "This Iowa range stays wide because county-sanitarian routing, time-of-transfer inspection risk, and county-file gaps can all move the job quickly.";
+        }
+        if ("KS".equals(state.stateCode())) {
+            return "This Kansas range stays wide because local sanitary-code variation, soil-profile requirements, and modified-site risk can all move the job quickly.";
+        }
+        if ("NE".equals(state.stateCode())) {
+            return "This Nebraska range stays wide because registered-system history, DHHS permit filing, and local requirements can all move the job quickly.";
+        }
+        if ("NM".equals(state.stateCode())) {
+            return "This New Mexico range stays wide because buyer-file quality, permit-search gaps, and transfer paperwork can all move the job quickly.";
+        }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";
         }

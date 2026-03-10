@@ -4190,6 +4190,242 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "IA",
+      "title": "Iowa Septic Records Checklist",
+      "metaDescription": "Iowa septic records checklist with county sanitarian routing, time-of-transfer inspection context, and county file questions in mind.",
+      "introCopy": "Iowa records intent is stronger than a generic septic checklist because the practical homeowner file usually sits with the county environmental health office or county sanitarian, and Iowa's own transfer page makes the time-of-transfer inspection a real deal point. The real homeowner question is whether the county file and transfer record are strong enough before a buyer or owner trusts the low end.",
+      "uniqueAngle": "Iowa records intent is strongest when the page connects county-sanitarian file retrieval, time-of-transfer inspection risk, and county permit notes instead of pretending the owner only needs a permit copy.",
+      "targetReader": "Best for Iowa buyers, owners, and agents who know the property uses private sewage disposal but still need to know whether the county file, transfer inspection, or county-sanitarian note creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You know the property uses private sewage disposal, but no one has shown the county file or time-of-transfer inspection yet.",
+        "You need to know whether the county sanitarian already has a permit file, transfer note, or escrow or waiver issue tied to the parcel.",
+        "The seller or owner says the system is straightforward, but the county records story still feels thinner than it should."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office or county sanitarian because Iowa routes the practical file through that local path.",
+        "Request any permit file, county sanitarian note, and the latest time-of-transfer inspection tied to the property before relying on seller memory alone.",
+        "Ask whether the county record already shows a compliant system, an upgrade path, an escrow path, or a waiver conversation.",
+        "Then compare the file against the current property story and decide whether the next step is buyer diligence, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end story breaks quickly if the county office cannot surface a meaningful permit or transfer file.",
+        "If the time-of-transfer inspection is unresolved, buyer or repair risk can widen before you trust the quote.",
+        "If the county sanitarian sees site or soils issues in the file, the property can move beyond a simple low-end story fast."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian handling the private sewage file.",
+        "Any permit file or county note already tied to the parcel.",
+        "Any time-of-transfer inspection report or compliance note already linked to the property.",
+        "Any record showing whether the property is compliant, in upgrade, backed by escrow, or using a waiver path."
+      ],
+      "driverBullets": [
+        "Iowa homeowners usually need the county file before a records conversation becomes real.",
+        "The time-of-transfer inspection can expose more risk than the seller summary or installer quote.",
+        "County-sanitarian notes often tell a more reliable story than a flat statewide planning number."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Iowa?",
+          "answer": "Start with the county environmental health office or county sanitarian file, including any permit record and the latest time-of-transfer inspection tied to the property."
+        },
+        {
+          "question": "Why does the Iowa records checklist mention the time-of-transfer inspection?",
+          "answer": "Because Iowa says a time-of-transfer inspection is required before property transfer for buildings served by private sewage disposal, so that file can change buyer risk immediately."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "KS",
+      "title": "Kansas Perc Test Cost",
+      "metaDescription": "Kansas perc and soil-profile planning page with local sanitary-code variation, soil profile requirements, and modified-site risk in mind.",
+      "introCopy": "Kansas perc and soil-profile questions are stronger than a generic national test page because local sanitary codes vary from county to county and Kansas says a soil profile is required on all lots. The real homeowner question is whether the local sanitary code and the soil-profile path are still simple enough to trust the low end before the job widens.",
+      "uniqueAngle": "Kansas site-testing intent is strongest when the page connects local sanitary-code variation, soil profile requirements, and modified-soil or percolation risk instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Kansas owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward soil-profile path before design, permit, or alternative-system risk widens the job.",
+      "fitBullets": [
+        "You want a perc or soil-testing number, but no one has confirmed which county or city sanitary code controls the parcel.",
+        "The installer says the site looks straightforward, but the soil profile or modified soil-profile question is still unresolved.",
+        "You need to know whether the local code could push the project beyond a basic conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county or city sanitary-code path first because Kansas rules vary locally in practice.",
+        "Ask whether the parcel needs a soil profile only or a modified soil profile and percolation test before treating the job as a standalone test fee.",
+        "Use the local code and site evidence to decide whether the project is still on a straightforward path or already widening into a more complex system story.",
+        "Then compare perc or soil-profile cost in the context of the real local workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local sanitary code has not been identified yet.",
+        "If the parcel needs more than a basic soil profile, the project can widen quickly before contractor pricing becomes comparable.",
+        "If the local code pushes the lot toward a non-standard path, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary code that controls the parcel.",
+        "Any soil profile, modified soil profile, or site note already tied to the property.",
+        "Any county or city note showing whether the parcel is still on a conventional path.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Kansas site-testing conversations get real only after the local sanitary code and soil-profile path are clear.",
+        "A modified soil profile or percolation test can widen the project beyond the simple path the homeowner expected.",
+        "County and city code variation matters earlier than a generic national perc page suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kansas site-check step a homeowner should take?",
+          "answer": "Identify the county or city sanitary code first, because Kansas says local sanitary codes vary from county to county."
+        },
+        {
+          "question": "Why does Kansas perc content need to mention the soil profile?",
+          "answer": "Because Kansas says a soil profile is required on all lots, so the practical site path is broader than a single perc fee."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NE",
+      "title": "Nebraska Septic Permit Process",
+      "metaDescription": "Nebraska septic permit process with DHHS permit filing, registered-system lookup, and local requirement questions in mind.",
+      "introCopy": "Nebraska permit content is stronger than a generic install checklist because DHHS makes the permit path explicit for registered onsite wastewater treatment systems. The practical homeowner job often turns on whether the parcel already has a registered-system file from 2004 forward, whether the work is construction or alteration, and whether any local requirement widens the path before the low end means much.",
+      "uniqueAngle": "Nebraska permit intent is strongest when the page explains the DHHS permit filing path, the searchable registered-system history, and the local requirement layer instead of pretending the project starts with a clean contractor number.",
+      "targetReader": "Best for Nebraska owners, buyers, builders, and agents who need to know whether a registered-system file already exists, whether a construction permit is required, and why local requirements can still move the whole schedule before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or repair quote, but no one has confirmed whether the parcel already has a registered onsite wastewater file.",
+        "The contractor says the permit is routine, but no one has surfaced whether the work counts as construction, installation, reconstruction, or alteration.",
+        "You need to know whether Nebraska DHHS or a local requirement changes the filing path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the Nebraska DHHS permit path and ask whether the property already has a registered-system record.",
+        "Confirm whether the job needs a construction permit before construction, installation, reconstruction, or alteration goes any further.",
+        "Check the searchable record from 2004 forward and ask whether any local requirement adds another step on top of the state filing path.",
+        "Then compare permit readiness, file quality, and local requirement friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the registered-system file is missing, the low end is still a planning scenario rather than a permit-ready number.",
+        "If the job is treated as reconstruction or alteration rather than a clean install, the permit path can widen quickly.",
+        "If a local requirement adds more work on top of the state filing path, the project can move beyond the cheapest installer story fast."
+      ],
+      "quotePrepChecklist": [
+        "Any registered-system record already tied to the property.",
+        "Any DHHS construction permit, alteration filing, or related permit note already on record.",
+        "Any local requirement or local-office note that changes the standard state filing sequence.",
+        "A short note showing whether the job is a fresh install, alteration, reconstruction, or buyer file check."
+      ],
+      "driverBullets": [
+        "Nebraska permit timing depends heavily on whether the registered-system file is real and usable.",
+        "The construction-versus-alteration distinction can widen the whole permit path before pricing becomes comparable.",
+        "Local requirements can still change the sequence after the state filing path looks clear."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nebraska permit step a homeowner should take?",
+          "answer": "Start with the Nebraska DHHS permit path and ask whether the parcel already has a registered onsite wastewater treatment system record."
+        },
+        {
+          "question": "Why does Nebraska permit content mention registered systems from 2004 forward?",
+          "answer": "Because Nebraska tells homeowners they can search registered systems from 2004 forward, which can change whether the job is treated as a clean permit filing or a file-recovery question first."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NM",
+      "title": "Buying a House With a Septic System in New Mexico",
+      "metaDescription": "New Mexico buyer diligence page with homeowner notice, permit search request form, and liquid-waste file checks in mind.",
+      "introCopy": "New Mexico buyer content is stronger than a generic septic home-buying checklist because the state publishes a homeowner notice when buying a home connected to a liquid waste system and also gives buyers a permit search request form. The real homeowner question is whether the permit file and transfer paperwork support the seller story before the deal anchors on the low end.",
+      "uniqueAngle": "New Mexico buyer intent is strongest when the page explains the homeowner notice, permit-search workflow, and forms path instead of pretending a visual walkaround is enough.",
+      "targetReader": "Best for New Mexico buyers, sellers, and agents who need to know whether the liquid-waste permit file, transfer paperwork, or homeowner notice creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You are buying a home with a liquid waste system, but no one has shown the permit-search result or transfer paperwork yet.",
+        "The seller says the septic story is simple, but the file path still feels thinner than it should.",
+        "You need to know whether the homeowner notice, forms path, or permit search changes the deal before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the homeowner notice and permit-search request form because New Mexico puts those tools directly in front of buyers and owners.",
+        "Request any liquid-waste permit file, permit-search result, and transfer paperwork tied to the property before relying on seller memory alone.",
+        "Check whether the forms path or permit file shows a cleaner story than the listing or reveals missing permit history that changes the deal.",
+        "Then compare the file against the current property story and decide whether the next step is inspection leverage, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end buyer story breaks quickly if the permit-search path cannot surface a meaningful file.",
+        "If the homeowner notice or transfer paperwork reveals missing permit history, the deal can widen before a credit or quote discussion becomes useful.",
+        "If the file is thinner than the seller summary suggests, the property may be riskier than the low end implies."
+      ],
+      "quotePrepChecklist": [
+        "The permit-search request form result or any permit file already tied to the property.",
+        "Any homeowner notice or buyer-facing liquid-waste document already surfaced in the sale.",
+        "Any transfer paperwork or forms-path record already attached to the parcel history.",
+        "Any note showing what stage of the liquid-waste process the property has already reached."
+      ],
+      "driverBullets": [
+        "New Mexico buyers usually need the permit-search result before the property story becomes real.",
+        "The homeowner notice can reveal buyer risk that a generic national checklist misses.",
+        "Forms and transfer paperwork often matter earlier than a simple inspection-cost conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic file a New Mexico buyer should ask for?",
+          "answer": "Start with the permit-search request form result and any liquid-waste permit file already tied to the property."
+        },
+        {
+          "question": "Why does the New Mexico buyer page mention the homeowner notice?",
+          "answer": "Because New Mexico publishes a homeowner notice when buying a home connected to a liquid waste system, which makes buyer diligence a file question as much as an inspection question."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=buying_home",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",

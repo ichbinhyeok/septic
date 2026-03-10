@@ -509,6 +509,10 @@ public class SeoService {
 
     private String stateGuideTitle(StateProfile state) {
         return switch (state.stateCode()) {
+            case "IA" -> "Iowa Septic Cost Guide and County Records Path";
+            case "KS" -> "Kansas Septic Cost Guide and Soil-Profile Path";
+            case "NE" -> "Nebraska Septic Cost Guide and Permit Path";
+            case "NM" -> "New Mexico Septic Cost Guide and Buyer File Path";
             case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
@@ -546,6 +550,10 @@ public class SeoService {
 
     private String stateGuideDescription(StateProfile state) {
         return switch (state.stateCode()) {
+            case "IA" -> "Iowa septic planning estimates with county-sanitarian routing, time-of-transfer context, and official-source links.";
+            case "KS" -> "Kansas septic planning estimates with soil-profile requirements, local sanitary-code variation, and official-source links.";
+            case "NE" -> "Nebraska septic planning estimates with DHHS permit filing, registered-system context, and official-source links.";
+            case "NM" -> "New Mexico septic planning estimates with buyer-file checks, permit-search context, and official-source links.";
             case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";

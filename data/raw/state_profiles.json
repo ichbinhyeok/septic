@@ -1239,6 +1239,238 @@
       ]
     },
     {
+      "stateCode": "IA",
+      "stateName": "Iowa",
+      "agencyName": "Iowa Department of Natural Resources",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Iowa is stronger on county records, time-of-transfer friction, and county-sanitarian file quality than on a fake statewide install table. The homeowner wedge is knowing whether the county file, the time-of-transfer inspection, and the county sanitarian's view are already in hand before trusting the low end.",
+      "ruleType": "records_path",
+      "ruleSummaryPlainEnglish": "Iowa DNR's private sewage page says county environmental health offices issue permits and that the county sanitarian determines the appropriate system based on soils and site conditions. Iowa's time-of-transfer page says a time-of-transfer inspection is required before property transfer for buildings served by private sewage disposal. The real homeowner path therefore turns on whether the county file is usable and whether the transfer record already shows a compliant system, an upgrade path, an escrow path, or a waiver issue.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Iowa homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Iowa homeowners usually need the county file and time-of-transfer story clarified before they trust an install, repair, or buyer quote. The project is not really file-backed until the county sanitarian or county environmental health office confirms what is on record and whether the transfer path is already clean.",
+      "permitPathSteps": [
+        "Start with the county environmental health office or county sanitarian handling private sewage disposal permits for the parcel.",
+        "Ask whether a permit file, site note, or time-of-transfer inspection already exists before treating the project as a clean buyer or install path.",
+        "Use the county file to decide whether the property is already code-compliant, needs an upgrade, needs an escrow path, or still sits in a waiver conversation."
+      ],
+      "siteEvalSummary": "Iowa's homeowner path is stronger on county-sanitarian routing, site and soils context, and transfer-file quality than on one simple statewide sizing story. The practical path turns on whether the county file is complete enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "Iowa says county environmental health offices issue private sewage permits.",
+        "Iowa says the county sanitarian determines the appropriate system based on soils and site conditions.",
+        "A time-of-transfer inspection is required before property transfer for a building served by private sewage disposal.",
+        "The transfer path can turn on whether the property is compliant, is being upgraded, is backed by escrow, or is using a waiver path."
+      ],
+      "localOverrideNote": "Iowa looks statewide through DNR, but the real homeowner workflow changes quickly once you know which county office holds the file and what the county sanitarian sees in the permit and transfer record.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ia_01", "ia_02", "ia_03"],
+      "localAuthoritySourceIds": ["ia_01", "ia_03"],
+      "recordsLookupSourceIds": ["ia_02", "ia_03"],
+      "localActionSteps": [
+        "Open the county search or county environmental health path first and identify the office holding the private sewage file.",
+        "Ask for any permit file, site note, and the latest time-of-transfer inspection or compliance note tied to the property.",
+        "Confirm whether the county file shows a clean transfer path, an upgrade requirement, an escrow issue, or a waiver before you trust the low end."
+      ],
+      "whoToCallFirst": "Start with the county environmental health office or county sanitarian handling private sewage disposal for the property.",
+      "recordsToRequest": [
+        "Any permit file or county sanitarian note tied to the parcel.",
+        "Any time-of-transfer inspection report or compliance note already linked to the property.",
+        "Any document showing whether the property is code-compliant, in upgrade, backed by escrow, or using a waiver path."
+      ],
+      "lowEndRiskChecks": [
+        "If the county file cannot surface a useful permit or transfer record, the low end is still a planning scenario rather than a file-backed number.",
+        "If the time-of-transfer inspection is unresolved, buyer or repair risk can widen quickly.",
+        "If the county sanitarian sees site or soils issues, the property can move beyond the simplest installer story fast."
+      ],
+      "permitTimelineNote": "Iowa timing often turns on how quickly the county office surfaces the permit file, whether the time-of-transfer inspection is already usable, and whether the county sanitarian views the site as straightforward.",
+      "buyerInspectionTrigger": "Buyers should ask for the time-of-transfer inspection and county file early because Iowa's transfer path can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Iowa's current source set is strongest on county records, county-sanitarian routing, and transfer-file quality, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Iowa's main wrinkle is that the time-of-transfer file can matter as much as the permit file, so the county records path belongs early in the estimate conversation.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Iowa counties publish private-sewage permit or transfer records online.",
+        "Document where Iowa counties expose clearer homeowner guidance on escrow, waiver, or upgrade workflow."
+      ]
+    },
+    {
+      "stateCode": "KS",
+      "stateName": "Kansas",
+      "agencyName": "Kansas Department of Health and Environment / K-State Research and Extension",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Kansas is stronger on soil profile, local sanitary-code variation, and site-approval risk than on a fake statewide install table. The homeowner wedge is knowing whether the soil profile, the local sanitary code, and the county or city rule set are already pointing away from a standard path before trusting the low end.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "Kansas's homeowner path is local by design. K-State's wastewater bulletin says local sanitary codes vary from county to county, that a soil profile is required on all lots, and that some non-standard lagoons or lateral fields can require a modified soil profile and percolation test. KDHE's local-environmental-protection materials reinforce that county and local governments manage private wastewater systems in practice. The real homeowner question is whether the lot is still on a straightforward soil-profile path under the local sanitary code.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Kansas homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Kansas homeowners usually need the local sanitary-code and soil-profile story clarified before they trust a new-install, replacement, or perc quote. The project is not really site-ready until the county or city rule set and the soil-profile path are clearer.",
+      "permitPathSteps": [
+        "Start with the county or city sanitary-code path because Kansas rules vary locally in practice.",
+        "Ask whether a soil profile, modified soil profile, or percolation test is the real next step before treating the job as a simple conventional install path.",
+        "Use the local code and soil-profile context to decide whether the site is still on a straightforward path or widening toward a more complex system story."
+      ],
+      "siteEvalSummary": "Kansas public homeowner material is strongest on soil profiles, local sanitary codes, and modified-soil or perc risk rather than one simple statewide sizing story. The practical path turns on whether the local code and site evidence still support a simple system path.",
+      "ruleHighlights": [
+        "Kansas says local sanitary codes vary from county to county.",
+        "Kansas says a soil profile is required on all lots.",
+        "Modified soil profile and percolation test requirements can appear for non-standard lagoons or lateral fields.",
+        "KDHE's local program supports county and local governments that manage private wastewater systems."
+      ],
+      "localOverrideNote": "Kansas looks statewide on paper, but the real homeowner workflow changes quickly once you know which county or city sanitary code controls the parcel and what the soil profile says.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ks_01", "ks_02", "ks_03", "ks_04"],
+      "localAuthoritySourceIds": ["ks_02", "ks_03"],
+      "recordsLookupSourceIds": ["ks_03", "ks_04"],
+      "localActionSteps": [
+        "Open the local sanitary-code directory first and identify the county or city rule set holding the real permit path.",
+        "Ask whether the parcel needs a soil profile only or a modified soil profile and percolation test before you trust the low end.",
+        "Compare the local code, site evidence, and lot story before you assume a standard install route."
+      ],
+      "whoToCallFirst": "Start with the county or city office that administers the local sanitary code and private wastewater workflow for the property.",
+      "recordsToRequest": [
+        "The local sanitary-code reference that applies to the parcel.",
+        "Any soil profile, modified soil profile, or site note already tied to the property.",
+        "Any county or city note showing whether the lot already moved beyond a straightforward conventional path."
+      ],
+      "lowEndRiskChecks": [
+        "If the local sanitary code has not been identified, the low end is still a planning scenario rather than a code-backed number.",
+        "If the soil profile pushes the parcel toward a modified path, the project can widen before contractor pricing becomes comparable.",
+        "If the lot needs more than a basic soil profile, the simple perc number is no longer the real decision point."
+      ],
+      "permitTimelineNote": "Kansas timing often turns on how quickly the local sanitary code is identified, whether the soil profile is already complete, and whether the parcel is still on a conventional path.",
+      "buyerInspectionTrigger": "Buyers should ask for the local sanitary-code path and any soil profile early because Kansas site risk is often more local than statewide.",
+      "maintenanceInspectionNote": "Kansas's current source set is strongest on soil-profile and local-sanitary-code context, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Kansas's main wrinkle is that the soil profile is not optional in the homeowner story, so local code and site paperwork matter earlier than a generic national calculator implies.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Kansas counties publish septic code or permit-file lookups online.",
+        "Document where Kansas counties expose clearer homeowner guidance on lagoon, lateral-field, and modified-soil workflow."
+      ]
+    },
+    {
+      "stateCode": "NE",
+      "stateName": "Nebraska",
+      "agencyName": "Nebraska Department of Health and Human Services",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Nebraska is stronger on permit filing, registered-system records, and local requirement drift than on a fake statewide install table. The homeowner wedge is knowing whether the DHHS permit file, the registered-system history, and any local requirement are already in view before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Nebraska DHHS says the onsite wastewater program administers permitting and inspection of registered onsite wastewater treatment systems and installers. DHHS also says a construction permit is required before construction, installation, reconstruction, or alteration of a registered onsite wastewater treatment system, and tells homeowners they can search registered systems from 2004 forward. The homeowner path is therefore permit-first, but the file still changes once local requirements and older-system history enter the picture.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Nebraska homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Nebraska homeowners usually need the DHHS permit and registered-system story clarified before they trust an install or repair quote. The project is not really permit-ready until the state filing path and any local requirement are clearer.",
+      "permitPathSteps": [
+        "Start with the DHHS permit path and confirm whether the job touches a registered onsite wastewater treatment system.",
+        "Ask whether a registered-system file already exists from 2004 forward before treating the project as a fresh permit path.",
+        "Use the permit form, existing registration history, and local requirement check to decide whether the parcel is still on a straightforward path."
+      ],
+      "siteEvalSummary": "Nebraska public homeowner material is strongest on permitting, inspection of registered systems, and registered-system lookup rather than on one simple statewide sizing story. The practical path turns on whether the permit file and local requirement story are both usable.",
+      "ruleHighlights": [
+        "Nebraska says DHHS administers permitting and inspection of registered onsite wastewater treatment systems and installers.",
+        "Nebraska says a construction permit is required before construction, installation, reconstruction, or alteration of a registered system.",
+        "Nebraska tells homeowners they can search registered systems from 2004 forward.",
+        "Nebraska warns that local requirements can still apply even when the state filing path is clear."
+      ],
+      "localOverrideNote": "Nebraska looks statewide through DHHS, but the real homeowner workflow changes quickly once you know whether the property is already in the registered-system database and whether the local requirement layer adds more work.",
+      "countyOverrideRisk": "medium",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ne_01", "ne_02", "ne_03", "ne_04"],
+      "localAuthoritySourceIds": ["ne_01", "ne_02"],
+      "recordsLookupSourceIds": ["ne_02", "ne_04"],
+      "localActionSteps": [
+        "Open the Nebraska homeowner and permit pages first and confirm whether the parcel already has a registered-system file.",
+        "Ask whether the next step is a fresh construction permit, a reconstruction or alteration filing, or a local requirement check on top of the state path.",
+        "Compare the permit form, system-registration history, and local requirement story before you trust the low end."
+      ],
+      "whoToCallFirst": "Start with the Nebraska DHHS onsite wastewater permit path and then confirm any local requirement that still applies to the parcel.",
+      "recordsToRequest": [
+        "Any registered-system record or permit file already tied to the property.",
+        "Any construction permit, alteration filing, or reconstruction note already in the DHHS path.",
+        "Any local requirement or local-office note that changes the standard state filing sequence."
+      ],
+      "lowEndRiskChecks": [
+        "If the registered-system history is missing, the low end is still a planning scenario rather than a file-backed number.",
+        "If the project triggers reconstruction or alteration rather than a clean install, the permit path can widen quickly.",
+        "If a local requirement adds more work on top of the state filing path, the quote can widen beyond the simplest installer story."
+      ],
+      "permitTimelineNote": "Nebraska timing often turns on how quickly the DHHS permit file is surfaced, whether the system is already in the registered database, and whether any local requirement adds another step.",
+      "buyerInspectionTrigger": "Buyers should ask for the registered-system record and permit file early because Nebraska's searchable history can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Nebraska's current source set is strongest on permit filing, inspection of registered systems, and permit-history retrieval, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Nebraska's main wrinkle is that the searchable registered-system history starts only in 2004, so older properties can still carry file friction even with a clear state permit path.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a durable local matrix showing where Nebraska counties or local offices add requirements on top of the DHHS path.",
+        "Document where Nebraska homeowners can retrieve stronger records for older properties that predate the searchable registration history."
+      ]
+    },
+    {
+      "stateCode": "NM",
+      "stateName": "New Mexico",
+      "agencyName": "New Mexico Environment Department",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "New Mexico is stronger on buyer diligence, permit-search workflow, and liquid-waste file quality than on a fake statewide install table. The homeowner wedge is knowing whether the homeowner notice, permit-search trail, and property-transfer paperwork are already in hand before trusting the seller story.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "New Mexico's homeowner page includes a homeowner notice when buying a home connected to a liquid waste system. The Environment Department's permitting page splits homeowner and contractor responsibilities in the onsite liquid waste permitting process, and the agency also publishes forms and a permit search request form for file retrieval. The real homeowner question is whether the permit file and transfer paperwork support the seller story before a buyer trusts the low end.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public New Mexico homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "New Mexico buyers and owners usually need the liquid-waste file and permit-search story clarified before they trust a buyer, repair, or replacement quote. The project is not really file-backed until the permit-search result and any property-transfer paperwork are clearer.",
+      "permitPathSteps": [
+        "Start with the homeowner notice and permit-search path when the property is being bought, sold, or re-checked before work.",
+        "Ask whether a liquid-waste permit file, property-transfer form, or other application record already exists before treating the property story as clean.",
+        "Use the permit-search result and forms path to decide whether the deal is still on a straightforward path or already widening into a buyer-risk conversation."
+      ],
+      "siteEvalSummary": "New Mexico public homeowner material is strongest on buyer notice, permit-search workflow, and forms-driven file quality rather than on one simple statewide sizing story. The practical path turns on whether the permit file is usable enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "New Mexico publishes a homeowner notice when buying a home connected to a liquid waste system.",
+        "The onsite liquid waste permitting process makes homeowner and contractor responsibilities explicit.",
+        "New Mexico publishes a permit search request form for liquid-waste file retrieval.",
+        "The forms and applications path carries the practical property-transfer and permit paperwork a buyer or owner needs next."
+      ],
+      "localOverrideNote": "New Mexico looks statewide through NMED, but the real homeowner workflow changes quickly once you know whether the permit search surfaces a usable file and whether the transfer paperwork is already in hand.",
+      "countyOverrideRisk": "medium",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["nm_01", "nm_02", "nm_03", "nm_04"],
+      "localAuthoritySourceIds": ["nm_02", "nm_03"],
+      "recordsLookupSourceIds": ["nm_04", "nm_03"],
+      "localActionSteps": [
+        "Open the New Mexico homeowner notice and permit-search path first if the property is being bought, sold, or questioned before work.",
+        "Request any liquid-waste permit file, permit-search result, and transfer form tied to the property before you trust the listing story.",
+        "Compare the permit file, transfer paperwork, and responsibility split before you assume the deal is still on the low end."
+      ],
+      "whoToCallFirst": "Start with the New Mexico permit-search and forms path when the property file matters more than a fresh install quote.",
+      "recordsToRequest": [
+        "Any permit-search result or permit file tied to the property.",
+        "Any property-transfer form or buyer-facing notice already attached to the parcel history.",
+        "Any homeowner or contractor form showing what stage of the liquid-waste process the property already reached."
+      ],
+      "lowEndRiskChecks": [
+        "If the permit-search path cannot surface a useful file, the low end is still a planning scenario rather than a file-backed number.",
+        "If the homeowner notice or transfer paperwork reveals missing permit history, buyer risk can widen quickly.",
+        "If the file shows the property is not as straightforward as the seller summary suggests, the project can move beyond the simplest low-end story fast."
+      ],
+      "permitTimelineNote": "New Mexico timing often turns on how quickly the permit-search request surfaces the file, whether the transfer paperwork is already usable, and whether the permit path is clean enough to trust.",
+      "buyerInspectionTrigger": "Buyers should ask for the homeowner notice, permit-search result, and transfer paperwork early because New Mexico's file trail can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "New Mexico's current source set is strongest on buyer diligence, permit-search workflow, and file-quality checks, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "New Mexico's main wrinkle is that the homeowner notice and permit-search path belong in the buyer workflow earlier than a generic national septic page would suggest.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add a durable local matrix showing which New Mexico offices expose stronger liquid-waste records or transfer workflows online.",
+        "Document where New Mexico publishes clearer buyer-facing guidance on inspection triggers beyond the permit-search form."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",
