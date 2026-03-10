@@ -112,6 +112,8 @@ jobs:
                 APP_SITE_BASE_URL: https://septicpath.com
                 APP_DATA_ROOT: /app/data/raw
                 APP_STORAGE_ROOT: /app/storage
+                GG_JTE_DEVELOPMENT_MODE: "false"
+                GG_JTE_USE_PRECOMPILED_TEMPLATES: "true"
               volumes:
                 - ./storage:/app/storage
               mem_limit: 512m
