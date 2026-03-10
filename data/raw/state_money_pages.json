@@ -4614,6 +4614,64 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "OH",
+      "title": "Buying a House With a Septic System in Ohio",
+      "metaDescription": "Ohio homebuyer septic checklist with local health file review, operation-permit history, and off-lot-discharge risk in mind.",
+      "introCopy": "Ohio septic buyer risk is rarely just about paying for an inspection. The real early question is what the local health department file already shows, because the installation permit, operation permit, operational-inspection history, and any nuisance or off-lot-discharge issue often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Ohio buyer intent is strongest when the page explains local health department file quality, operation-permit history, and the off-lot-discharge wrinkle together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Ohio buyers, sellers, and agents who know the property uses a household sewage treatment system but still need to know whether the local health file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local health department file yet.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches operation-permit, nuisance, or off-lot-discharge risk before the negotiation turns into a replacement problem."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or board of health and ask for the installation permit, operation permit, and any operational-inspection record tied to the property.",
+        "Check whether the file also shows nuisance history, complaint history, repair work, or any note that the system discharges off lot.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the local health file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health department file is still thin or missing.",
+        "Operational-inspection or nuisance history can make the property more complex than the seller disclosure suggests.",
+        "If the system discharges off lot or triggers Ohio EPA involvement, the buyer may be inheriting more than a simple local-health problem."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or board of health contact with jurisdiction over the property.",
+        "The installation permit, operation permit, and any operational-inspection record tied to the system.",
+        "Any nuisance notice, complaint history, repair record, or off-lot-discharge note already tied to the property.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Ohio buyers need the local health department file before the inspection or repair quote means much.",
+        "Operation-permit and operational-inspection history can matter more than the seller's simple septic summary.",
+        "Off-lot-discharge or enforcement context can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document an Ohio buyer should ask for?",
+          "answer": "Ask the local health department for the installation permit, operation permit, and any operational-inspection history first, because Ohio buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does off-lot discharge matter in an Ohio septic deal?",
+          "answer": "Because off-lot discharge can widen the project beyond the normal local-health path and bring in more regulatory risk than a simple seller summary suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-permit-process/ohio/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?state=OH&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IL",
       "title": "Illinois Septic Records Checklist",
@@ -4670,6 +4728,66 @@
         "il_03",
         "il_04"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "IL",
+      "title": "Buying a House With a Septic System in Illinois",
+      "metaDescription": "Illinois homebuyer septic checklist with county health file pulls, evaluation-form flags, and IDPH code context in mind.",
+      "introCopy": "Illinois septic buyer risk is rarely just about paying for an inspection. The real early question is what the county or local health department file already shows, because the evaluation form, any flagged condition, and the local code path often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Illinois buyer intent is strongest when the page explains county-health file quality, evaluation-form flags, and local-office routing together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Illinois buyers, sellers, and agents who know the property uses private sewage disposal but still need to know whether the local file and evaluation-form history create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county or local health department file yet.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches evaluation-form flags and local-code risk before the negotiation turns into a repair or replacement problem."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Request any permit, plan-review, installation, inspection, or evaluation-form record tied to the property before relying on seller memory alone.",
+        "Use any flagged condition or county note to decide whether the story is still a routine transfer question or already a repair or replacement risk.",
+        "Then compare the local file against the seller disclosure so you know whether the current system story is actually supported."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county or local file is still thin or missing.",
+        "A flagged evaluation-form condition can make the property more complex than the seller disclosure suggests.",
+        "Local ordinance or county handling can widen the real workflow before the buyer treats the home as a simple septic transaction."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the property file.",
+        "Any permit, installation, plan-review, inspection, or evaluation-form record tied to the property.",
+        "Any county or code note showing whether the system has drifted toward repair or replacement.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Illinois buyers need the local health file before the inspection or repair quote means much.",
+        "Evaluation-form flags can matter more than the seller's simple septic summary.",
+        "County or local handling can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document an Illinois buyer should ask for?",
+          "answer": "Ask the county or local health department for the permit, installation, and evaluation-form record first, because Illinois buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does the Illinois buyer checklist mention the evaluation form?",
+          "answer": "Because IDPH's public evaluation form warns that flagged conditions may mean repair or replacement is needed, which can change the closing-risk story fast."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-records-checklist/illinois/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-system-cost-calculator/?state=IL&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
+      "calculatorProjectType": "buying_home",
       "publishStatus": "published"
     },
     {
@@ -6533,6 +6651,65 @@
         "mi_02",
         "mi_03"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MI",
+      "title": "Buying a House With a Septic System in Michigan",
+      "metaDescription": "Michigan homebuyer septic checklist with local health file pulls, failure evidence, and system-location risk in mind.",
+      "introCopy": "Michigan septic buyer risk is rarely just about paying for an inspection. The real early question is what the local health department file already shows, because failure evidence, complaint history, and even uncertainty about where the system is located often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Michigan buyer intent is strongest when the page explains local-health file quality, failure evidence, and system-location uncertainty together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Michigan buyers, sellers, and agents who know the property uses septic but still need to know whether the local file and system-location story create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local health department file yet.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches failure evidence, complaint history, and system-location risk before the negotiation turns into a replacement problem."
+      ],
+      "decisionSteps": [
+        "Start with the local health department because Michigan's public guidance pushes homeowners there when the system may have failed or the location is unknown.",
+        "Request any permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel instead of relying on seller memory alone.",
+        "Ask for any sketch, parcel note, or field comment that confirms where the septic system is actually located.",
+        "Then compare the local file against the seller disclosure so you know whether the current system story is actually supported."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health department cannot surface a meaningful file.",
+        "If no one can confirm where the system is located, the property is not ready for a confident low-end assumption.",
+        "Failure evidence or local ordinance issues can make the property riskier than the seller disclosure suggests."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "Any permit, inspection, failed sewage system evaluation, complaint, or repair record tied to the parcel.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Michigan buyers need the local health department file before the inspection or repair quote means much.",
+        "Unknown system location can matter more than the seller's simple septic summary.",
+        "Failure evidence and local ordinance requirements can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Michigan buyer should ask for?",
+          "answer": "Ask the local health department for the permit, inspection, and failed-system evaluation history first, because Michigan buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does system location matter in a Michigan septic deal?",
+          "answer": "Because EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the system is located, and that uncertainty can change the buyer-risk story fast."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-records-checklist/michigan/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-system-cost-calculator/?state=MI&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
+      "calculatorProjectType": "buying_home",
       "publishStatus": "published"
     },
     {
