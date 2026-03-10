@@ -3776,6 +3776,65 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "CA",
+      "title": "California Perc Test Cost",
+      "metaDescription": "California perc and site-review planning page with local agency routing, Tier 1 versus LAMP context, and local file checks in mind.",
+      "introCopy": "California perc and site-review questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local agency controls the parcel, whether the property sits in a default Tier 1 path or a LAMP-driven local program, and whether the local file already shows siting or review friction before the low end means much.",
+      "uniqueAngle": "California site-testing intent is strongest when the page connects local-agency routing, Tier 1 versus LAMP differences, and file quality instead of pretending a single statewide perc fee settles the job.",
+      "targetReader": "Best for California owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward OWTS path before permit, design, or special-area risk widens the project.",
+      "fitBullets": [
+        "You want a perc or site-review number, but no one has confirmed which county environmental health office or local agency controls the parcel.",
+        "The installer says the site looks straightforward, but the property may still sit in a LAMP-driven local program.",
+        "You need to know whether the local file already shows siting, repair, or Regional Water Board friction before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local agency first because California routes practical OWTS review through county environmental health offices or other local agencies.",
+        "Ask whether the parcel follows the default Tier 1 path or a Regional Water Board-approved LAMP before treating the job as a simple perc question.",
+        "Pull the local permit, as-built, and any repair or special-area note before assuming the site-review path is clean.",
+        "Then compare site-testing cost in the context of the real local workflow and file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if no one has identified the local agency actually holding the file.",
+        "A LAMP-driven local program can change siting and review expectations enough to make a generic statewide perc story misleading.",
+        "If the local file is thin or already shows special-area notes, the homeowner is still budgeting a planning scenario rather than a settled site path."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or other local agency handling the parcel.",
+        "Any local permit, as-built, repair, or prior review record already tied to the property.",
+        "Any note showing whether the lot falls under the default Tier 1 path or a LAMP-driven local program.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "California site-testing conversations get real only after the right local agency and local program path are clear.",
+        "Tier 1 versus LAMP differences can matter more than the first quoted perc fee.",
+        "A thin local file can hide the real siting and review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first California site-check step a homeowner should take?",
+          "answer": "Identify the local agency or county environmental health office first, because California routes practical OWTS review through those offices rather than a single statewide desk."
+        },
+        {
+          "question": "Why does California perc content need to mention LAMP?",
+          "answer": "Because California's LAMP-driven local programs can use siting and design standards that differ from the default Tier 1 path, which changes the practical site-review story for homeowners."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/california/",
+        "/septic-records-checklist/california/",
+        "/septic-permit-process/california/",
+        "/septic-system-cost-calculator/?state=CA&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ca_01",
+        "ca_02",
+        "ca_03"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "TX",
       "title": "Texas Septic Permit Process",
@@ -4017,6 +4076,68 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "TX",
+      "title": "Texas Septic Inspection Cost",
+      "metaDescription": "Texas septic inspection cost with local permitting authority routing, aerobic-system maintenance obligations, and file-quality risk in mind.",
+      "introCopy": "Texas inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the local permitting authority file, site-evaluation history, and any aerobic-system maintenance obligations still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Texas inspection content is strongest when it explains local-authority routing, approved-plan history, and aerobic-system maintenance instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Texas buyers and owners who can schedule an inspection but still need to know whether the local file, site evaluation, and ongoing maintenance obligations make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which local permitting authority controls the file yet.",
+        "You need to know whether weak approved-plan or site-evaluation history makes the inspection less useful by itself.",
+        "The property may use an aerobic or advanced system, so maintenance obligations could matter more than the visit fee."
+      ],
+      "decisionSteps": [
+        "Use OARS or the homeowner hub to identify the local permitting authority before you treat the inspection as a stand-alone cost.",
+        "Ask whether the file already contains the permit, approved plan, site evaluation, and any prior inspection or maintenance history tied to the system.",
+        "Confirm whether the property uses an aerobic or other advanced system and whether the local authority expects stricter maintenance than the basic statewide guidance.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited maintenance burden."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local permitting authority and file quality have not been reviewed first.",
+        "Missing approved-plan or site-evaluation history can make the inspection a file-reconstruction problem instead of a simple visit.",
+        "If the property uses an aerobic or advanced system, ongoing maintenance obligations can make the visit much more consequential than a generic inspection checklist suggests."
+      ],
+      "quotePrepChecklist": [
+        "The county and local permitting authority identified through OARS or the homeowner hub.",
+        "Any permit file, approved plan, site-evaluation record, or prior inspection paperwork tied to the property.",
+        "Any aerobic-system maintenance contract, inspection history, or repair note already tied to the site.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair."
+      ],
+      "driverBullets": [
+        "Texas buyers and owners need the local permitting authority file before the inspection fee means much.",
+        "TCEQ's three- to five-year pumping guidance does not erase stricter local or aerobic-system maintenance obligations.",
+        "A thin approved-plan or site-evaluation trail can turn a routine inspection into a larger ownership-risk conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why should a Texas homeowner tie the inspection to file history?",
+          "answer": "Because the permit file, approved plan, and site evaluation explain whether the current system story is still credible before the inspection alone does."
+        },
+        {
+          "question": "Why does aerobic-system history matter in a Texas inspection decision?",
+          "answer": "Because aerobic and other advanced systems can carry stricter maintenance and reporting obligations, so the real burden may be larger than the visit fee."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/texas/",
+        "/septic-records-checklist/texas/",
+        "/septic-permit-process/texas/",
+        "/buying-a-house-with-a-septic-system/texas/",
+        "/septic-system-cost-calculator/?state=TX&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "tx_01",
+        "tx_03",
+        "tx_04",
+        "tx_05",
+        "tx_06"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "buying-a-house-with-a-septic-system",
       "stateCode": "NY",
       "title": "Buying a House With a Septic System in New York",
@@ -4192,6 +4313,66 @@
         "ny_03",
         "ny_04"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "NY",
+      "title": "New York Perc Test Cost",
+      "metaDescription": "New York perc and site-appraisal planning page with Appendix 75-A, county health routing, and under-1,000-gpd baseline context.",
+      "introCopy": "New York perc and site-appraisal questions are stronger than a generic national test page because the real homeowner issue is not just a small field fee. The first questions are which county health department or district office controls the file, whether the property still fits the Appendix 75-A under-1,000-gpd baseline, and whether any specific waiver or weak design file already widens the job before the low end means much.",
+      "uniqueAngle": "New York site-testing intent is strongest when the page connects county-health routing, Appendix 75-A, and waiver-file quality instead of pretending a single statewide perc fee settles the project.",
+      "targetReader": "Best for New York owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward residential onsite path before permit, design, or waiver risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-appraisal number, but no one has confirmed which county health department or district office controls the file.",
+        "The installer says the site looks straightforward, but the Appendix 75-A design file or waiver history is still unresolved.",
+        "You need to know whether the property still fits the under-1,000-gpd residential baseline before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county health department or district office first because New York routes the practical site-review path through those local or district contacts.",
+        "Ask whether the Appendix 75-A design file, as-built drawing, and any specific waiver already exist before you treat the job as a simple perc question.",
+        "Use the local file to decide whether the property still fits the under-1,000-gpd residential baseline or is already on a wider path.",
+        "Then compare perc or site-appraisal cost in the context of the real county workflow and file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county health or district-office file cannot surface the Appendix 75-A design paperwork.",
+        "Specific waiver history can make the project more complex than an installer or owner summary suggests.",
+        "If the property does not fit the under-1,000-gpd residential baseline cleanly, the simple statewide perc story can break quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county health department or district office contact with jurisdiction over the property.",
+        "The Appendix 75-A design file, as-built drawing, and any local health approval paperwork already tied to the site.",
+        "Any specific waiver or other local health decision already issued for the property.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "New York site-testing conversations get real only after the county health or district-office file is in hand.",
+        "Appendix 75-A creates a real baseline, but waiver history can widen the project fast.",
+        "A thin local file can hide the true design-flow and site-review story behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New York site-check step a homeowner should take?",
+          "answer": "Identify the county health department or district office first, because New York routes the practical site-review path through those local or district contacts."
+        },
+        {
+          "question": "Why does New York perc content need to mention Appendix 75-A and specific waivers?",
+          "answer": "Because Appendix 75-A creates the residential baseline and specific waivers can change how straightforward the site path really is for the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-york/",
+        "/septic-records-checklist/new-york/",
+        "/septic-permit-process/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ny_01",
+        "ny_02",
+        "ny_03",
+        "ny_04"
+      ],
+      "calculatorProjectType": "perc_test",
       "publishStatus": "published"
     },
     {
