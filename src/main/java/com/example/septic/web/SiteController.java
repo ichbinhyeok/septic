@@ -908,6 +908,10 @@ public class SiteController {
                     "Estimate before the permit certificate",
                     "South Dakota quote conversations get more real once you know whether the installation certificate, inspection sequence, and any city-run inspection exception are already in play."
             );
+            case "ID" -> new StateActionCopy(
+                    "Estimate before the site evaluation",
+                    "Idaho quote conversations get more real once you know which public health district owns the file and whether the site evaluation or permit record is already in play."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

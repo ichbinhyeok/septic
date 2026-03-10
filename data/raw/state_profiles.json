@@ -1645,6 +1645,64 @@
       ]
     },
     {
+      "stateCode": "ID",
+      "stateName": "Idaho",
+      "agencyName": "Idaho Department of Environmental Quality / Public Health Districts",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Idaho is stronger on site evaluation, district-health handoff, and permit-file quality than on a fake statewide install table. The homeowner wedge is knowing whether the public health district has already done the site evaluation, whether the district permit path is real, and whether the local records trail is strong enough before trusting the low end.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "Idaho DEQ says the state's seven public health districts administer septic rules under an MOU with DEQ, permit and inspect septic systems, and conduct site evaluations for a fee. Idaho's homeowner guide says permit applications are available from the local district health department and that a site evaluation should be performed before buying property and applying for a permit. District pages also say they review applications, perform onsite evaluations, issue wastewater permits, and require a valid installation permit for modification, repair, or construction. The practical homeowner path is therefore district-first, with site evaluation and permit readiness mattering more than a flat statewide average.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Idaho homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Idaho homeowners usually need the district-health site-evaluation and permit story clarified before they trust a new-install, replacement, or buyer quote. The project is not really permit-ready until the district path, the site evaluation, and the record trail are clearer.",
+      "permitPathSteps": [
+        "Start with the local public health district because Idaho routes practical septic permits, inspections, and site evaluations through those districts.",
+        "Ask whether a site evaluation, wastewater permit, or installation-permit file already exists before treating the project as a clean install path.",
+        "Use the district file and site-approval context to decide whether the lot is still on a straightforward path or already widening toward a more complex system story."
+      ],
+      "siteEvalSummary": "Idaho public homeowner material is strongest on district-level site evaluation, permit inspection, and records variation rather than one simple statewide sizing story. The practical path turns on whether the district file is usable enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "Idaho says the seven public health districts administer septic rules under an MOU with DEQ.",
+        "Districts permit and inspect septic systems and conduct site evaluations for a fee.",
+        "Idaho's homeowner guide says a site evaluation should be performed before buying property and applying for a permit.",
+        "District guidance says a valid installation permit is required for modification, repair, or construction."
+      ],
+      "localOverrideNote": "Idaho looks statewide through DEQ, but the real homeowner workflow changes quickly once you know which public health district controls the parcel and whether the local site-evaluation and permit record are already in view.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["id_01", "id_02", "id_03", "id_04", "id_05"],
+      "localAuthoritySourceIds": ["id_02", "id_01"],
+      "recordsLookupSourceIds": ["id_03", "id_04"],
+      "localActionSteps": [
+        "Open the Idaho public health districts list first and identify which district handles environmental health for the parcel.",
+        "Ask whether the district already has a site evaluation, wastewater permit, or installation-permit note on file before you trust the low end.",
+        "If the district search is thin, confirm whether older records require an alternate lookup or public-records follow-up."
+      ],
+      "whoToCallFirst": "Start with the public health district that handles environmental health and septic permits for the property.",
+      "recordsToRequest": [
+        "Any site-evaluation report or district note already tied to the parcel.",
+        "Any wastewater permit, installation permit, or inspection note already in the district file.",
+        "Any record-search output showing whether older permits may need an alternate lookup path."
+      ],
+      "lowEndRiskChecks": [
+        "If the district file cannot surface a site evaluation or permit record, the low end is still a planning scenario rather than a file-backed number.",
+        "If the site evaluation points away from a straightforward system path, the project can widen before contractor pricing becomes comparable.",
+        "If older records do not appear in the searchable database, the property story may be thinner than the seller or installer summary suggests."
+      ],
+      "permitTimelineNote": "Idaho timing often turns on how quickly the public health district surfaces the site evaluation, whether a permit file already exists, and whether older records require a second lookup path.",
+      "buyerInspectionTrigger": "Buyers should ask for the site evaluation and district permit file early because Idaho's district-level records can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Idaho's current source set is strongest on site-evaluation workflow, district permit routing, and records variation, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Idaho's main wrinkle is that the statewide DEQ overview is real, but the actual homeowner path still turns on the district health handoff and whether the site evaluation was done early enough.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a durable district-level matrix showing which Idaho public health districts expose septic permit and inspection records online.",
+        "Document where Idaho districts publish clearer homeowner guidance on alternative systems, repairs, or constrained sites."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

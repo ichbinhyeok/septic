@@ -3,21 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "ID",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 5",
-      "whyNow": "Idaho can likely support a perc and site-approval wedge where district routing and soil limitations matter more than flat install averages.",
-      "launchAngle": "Target angle: soil, site approval, and district handoff before the owner assumes a conventional install path.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for site approval and permit workflow.",
-        "Collect district or local routing that determines who controls soil and permit questions.",
-        "Pull public language on site limits or alternative-system triggers that homeowners can use."
-      ]
-    },
-    {
       "stateCode": "NV",
-      "priorityRank": 2,
+      "priorityRank": 1,
       "rolloutWave": "Wave 5",
       "whyNow": "Nevada can likely support a buyer and records wedge where county file quality matters more than broad desert install averages.",
       "launchAngle": "Target angle: buyer diligence, permit history, and local file quality before the listing story sets the anchor.",
@@ -30,7 +17,7 @@
     },
     {
       "stateCode": "DE",
-      "priorityRank": 3,
+      "priorityRank": 2,
       "rolloutWave": "Wave 5",
       "whyNow": "Delaware is compact but commercially useful and likely supports a permit or records wedge where agency routing matters more than a flat statewide number.",
       "launchAngle": "Target angle: permit path, file retrieval, and agency handoff before the homeowner treats the project as routine.",

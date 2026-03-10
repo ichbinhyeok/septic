@@ -4607,6 +4607,66 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "ID",
+      "title": "Idaho Perc Test Cost",
+      "metaDescription": "Idaho site-evaluation planning page with public health district routing, permit-file context, and district records variation in mind.",
+      "introCopy": "Idaho perc and site-evaluation questions are stronger than a generic national test page because the real homeowner path runs through the public health district, not a flat statewide quote. The practical question is whether the district already has a site evaluation, whether a permit file already exists, and whether the local records trail is strong enough before the homeowner trusts the low end.",
+      "uniqueAngle": "Idaho site-testing intent is strongest when the page connects district-health routing, site evaluation before purchase, and permit-file variation instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Idaho owners, buyers, builders, and agents who need to know whether the district site-evaluation path is still simple enough to trust the low end before design, permit, or alternative-system risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-evaluation number, but no one has confirmed which public health district controls the parcel.",
+        "The installer says the site looks straightforward, but the district has not surfaced a site evaluation or permit file yet.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the public health district first because Idaho routes septic permits, inspections, and site evaluations through those districts.",
+        "Ask whether a site evaluation, wastewater permit, or installation-permit file already exists before treating the job as a standalone test fee.",
+        "Use the district file and site-evaluation context to decide whether the project is still on a straightforward path or already widening into a more complex system story.",
+        "Then compare site-evaluation cost in the context of the real district workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-evaluation story breaks if the district file cannot surface a useful site evaluation or permit record.",
+        "If the site evaluation points away from a straightforward system path, the project can widen quickly before contractor pricing becomes comparable.",
+        "If older records do not appear in the search, the local file story is already thinner than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The public health district that controls the parcel.",
+        "Any site-evaluation report, wastewater permit, or installation-permit note already tied to the property.",
+        "Any district search result showing whether older permits may need an alternate lookup path.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Idaho site-evaluation conversations get real only after the district health handoff and local file are clear.",
+        "A district site evaluation can move the project away from the simple path the homeowner expected.",
+        "Older permit records can be patchy enough that the local file trail matters more than a generic national perc article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Idaho site-check step a homeowner should take?",
+          "answer": "Identify the public health district first, because Idaho routes septic permits, inspections, and site evaluations through those districts."
+        },
+        {
+          "question": "Why does Idaho perc content need to mention the site evaluation before buying property?",
+          "answer": "Because Idaho's homeowner guide says a site evaluation should be performed before buying property and applying for a permit, which means site approval belongs in the buyer conversation earlier than a generic perc page suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/idaho/",
+        "/septic-system-cost-calculator/?state=ID&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "id_01",
+        "id_02",
+        "id_03",
+        "id_04",
+        "id_05"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
