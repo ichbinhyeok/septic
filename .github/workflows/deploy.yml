@@ -132,17 +132,38 @@ jobs:
             exit 1
           fi
 
-          curl -fsS \
-            -H 'Host: septicpath.com' \
-            -H 'X-Forwarded-Proto: https' \
-            -H 'X-Forwarded-Port: 443' \
-            http://127.0.0.1:8010/ >/dev/null
+          APP_READY=0
+          for attempt in $(seq 1 30); do
+            if curl -fsS \
+              -H 'Host: septicpath.com' \
+              -H 'X-Forwarded-Proto: https' \
+              -H 'X-Forwarded-Port: 443' \
+              http://127.0.0.1:8010/ >/dev/null \
+              && curl -fsS \
+              -H 'Host: septicpath.com' \
+              -H 'X-Forwarded-Proto: https' \
+              -H 'X-Forwarded-Port: 443' \
+              http://127.0.0.1:8010/about/ >/dev/null; then
+              APP_READY=1
+              break
+            fi
 
-          curl -fsS \
-            -H 'Host: septicpath.com' \
-            -H 'X-Forwarded-Proto: https' \
-            -H 'X-Forwarded-Port: 443' \
-            http://127.0.0.1:8010/about/ >/dev/null
+            if ! docker ps --format '{{.Names}}' | grep -qx 'septic'; then
+              echo "septic container is not running during readiness check"
+              docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+              docker logs --tail 200 septic || true
+              exit 1
+            fi
+
+            sleep 2
+          done
+
+          if [ "${APP_READY}" -ne 1 ]; then
+            echo "septic app did not become ready on 127.0.0.1:8010"
+            docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+            docker logs --tail 200 septic || true
+            exit 1
+          fi
 
           docker image prune -f
           EOF
