@@ -107,7 +107,7 @@ jobs:
               restart: unless-stopped
               platform: linux/arm64
               ports:
-                - "8010:8080"
+                - "8090:8080"
               environment:
                 APP_SITE_BASE_URL: https://septicpath.com
                 APP_DATA_ROOT: /app/data/raw
@@ -144,7 +144,7 @@ jobs:
 
           APP_READY=0
           for attempt in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30; do
-            if check_app_url http://127.0.0.1:8010/ && check_app_url http://127.0.0.1:8010/about/; then
+            if check_app_url http://127.0.0.1:8090/ && check_app_url http://127.0.0.1:8090/about/; then
               APP_READY=1
               break
             fi
@@ -160,7 +160,7 @@ jobs:
           done
 
           if [ "\${APP_READY}" -ne 1 ]; then
-            echo "septic app did not become ready on 127.0.0.1:8010"
+            echo "septic app did not become ready on 127.0.0.1:8090"
             docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
             docker logs --tail 200 septic || true
             exit 1
