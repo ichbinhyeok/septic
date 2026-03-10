@@ -1,0 +1,133 @@
+name: Deploy OCI ARM64
+
+# Required secrets:
+# - DOCKERHUB_TOKEN
+# - OCI_HOST
+# - OCI_USER
+# - OCI_SSH_PRIVATE_KEY
+# - OCI_SSH_PORT
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: septic-production-deploy
+  cancel-in-progress: true
+
+env:
+  IMAGE_NAME: shinhyeok22/septic
+  DOCKERHUB_USERNAME: shinhyeok22
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+
+      - name: Run tests and build boot jar
+        run: ./gradlew test bootJar
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push ARM64 image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_SSH_PRIVATE_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_SSH_PORT: ${{ secrets.OCI_SSH_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${OCI_SSH_PORT}" "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Deploy on OCI ARM64 server
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USER }}
+          OCI_SSH_PORT: ${{ secrets.OCI_SSH_PORT }}
+          DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          ssh -p "${OCI_SSH_PORT}" "${OCI_USER}@${OCI_HOST}" 'bash -s' <<EOF
+          set -euo pipefail
+
+          DEPLOY_DIR="\$HOME/deploy/septic"
+          mkdir -p "\$DEPLOY_DIR" "\$DEPLOY_DIR/storage"
+
+          cd "\$DEPLOY_DIR"
+
+          cat <<EOF_COMPOSE > docker-compose.yml
+          services:
+            septic:
+              image: shinhyeok22/septic:latest
+              container_name: septic
+              restart: unless-stopped
+              platform: linux/arm64
+              ports:
+                - "8810:8080"
+              environment:
+                APP_SITE_BASE_URL: https://septicpath.com
+                APP_DATA_ROOT: /app/data/raw
+                APP_STORAGE_ROOT: /app/storage
+              volumes:
+                - ./storage:/app/storage
+              mem_limit: 512m
+          EOF_COMPOSE
+
+          echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+
+          if docker compose version >/dev/null 2>&1; then
+            docker compose pull
+            docker compose up -d --remove-orphans
+          elif command -v docker-compose >/dev/null 2>&1; then
+            docker-compose pull
+            docker-compose up -d --remove-orphans
+          else
+            echo "docker compose not found on server"
+            exit 1
+          fi
+
+          docker image prune -f
+          EOF

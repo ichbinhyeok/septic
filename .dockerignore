@@ -1,0 +1,12 @@
+.git
+.github
+.gradle
+.idea
+.vscode
+bin
+build
+!build/libs
+!build/libs/*.jar
+jte-classes
+storage
+HELP.md

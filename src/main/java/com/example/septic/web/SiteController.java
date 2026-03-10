@@ -109,7 +109,7 @@ public class SiteController {
         return renderSitePage(
                 model,
                 seoService.basicPage(
-                        "About Septic System Cost & Size Estimator",
+                        "About SepticPath",
                         "Why this estimator exists, how it uses official sources, and what it is designed to do.",
                         "/about/"
                 ),
@@ -161,7 +161,7 @@ public class SiteController {
                 ),
                 "Privacy policy",
                 "What this site collects and why.",
-                "This page describes the current handling of form submissions and site interaction data for Septic System Cost & Size Estimator. It is an operational policy page, not legal advice.",
+                "This page describes the current handling of form submissions and site interaction data for SepticPath. It is an operational policy page, not legal advice.",
                 Arrays.asList(
                         new SitePageSection(
                                 "Information collected",

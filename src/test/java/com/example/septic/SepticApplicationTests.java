@@ -20,6 +20,7 @@ import java.util.stream.Stream;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(properties = {
@@ -143,7 +144,7 @@ class SepticApplicationTests {
 	void homePageRenders() throws Exception {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost & Size Estimator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-site-nav-toggle")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site-nav-menu")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
@@ -155,6 +156,20 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/social-card.svg")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Anchor states"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Supporting states"))));
+	}
+
+	@Test
+	void canonicalHostRedirectsWwwHttpRequests() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/")
+						.queryParam("state", "GA")
+						.with(request -> {
+							request.setScheme("http");
+							request.setServerName("www.example.test");
+							request.setServerPort(80);
+							return request;
+						}))
+				.andExpect(status().is(308))
+				.andExpect(header().string("Location", "https://example.test/septic-system-cost-calculator/?state=GA"));
 	}
 
 	@Test

@@ -43,10 +43,10 @@
         <header class="site-header">
             <div class="container site-header__inner">
                 <a class="brand" href="/">
-                    <img src="/favicon.png" alt="Septic System Estimator Logo" class="brand__logo" width="44" height="44">
+                    <img src="/favicon.png" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
-                        <strong>Septic System Cost & Size Estimator</strong>
-                        <span>planning estimates with official-source context</span>
+                        <strong>SepticPath</strong>
+                        <span>septic planning estimates with official-source context</span>
                     </span>
                 </a>
 
@@ -81,9 +81,9 @@
             <div class="container footer-grid">
                 <section class="footer-block footer-block--brand">
                     <a class="brand brand--footer" href="/">
-                        <img src="/favicon.png" alt="Septic System Estimator Logo" class="brand__logo" width="44" height="44">
+                        <img src="/favicon.png" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                         <span class="brand__text">
-                            <strong>Septic System Cost & Size Estimator</strong>
+                            <strong>SepticPath</strong>
                             <span>Estimate-first guidance with official-source context.</span>
                         </span>
                     </a>

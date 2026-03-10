@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Septic System Cost and Size Estimator</title>
-  <desc id="desc">State-aware septic planning estimates with official-source context.</desc>
+  <title id="title">SepticPath</title>
+  <desc id="desc">Septic planning estimates with official-source context.</desc>
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f7f2e8" />
@@ -10,10 +10,10 @@
   <rect width="1200" height="630" fill="url(#bg)" />
   <rect x="56" y="56" width="1088" height="518" rx="32" fill="#ffffff" opacity="0.92" />
   <rect x="88" y="92" width="94" height="94" rx="24" fill="#1f6b57" />
-  <text x="135" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#ffffff">SS</text>
-  <text x="88" y="256" font-family="Arial, sans-serif" font-size="60" font-weight="700" fill="#153a2f">Septic System Cost</text>
-  <text x="88" y="326" font-family="Arial, sans-serif" font-size="60" font-weight="700" fill="#153a2f">&amp; Size Estimator</text>
-  <text x="88" y="404" font-family="Arial, sans-serif" font-size="28" fill="#38554b">State-aware planning estimates, permit context, and official-source links.</text>
+  <text x="135" y="151" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#ffffff">SP</text>
+  <text x="88" y="256" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#153a2f">SepticPath</text>
+  <text x="88" y="338" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#153a2f">Septic cost and size estimator</text>
+  <text x="88" y="404" font-family="Arial, sans-serif" font-size="28" fill="#38554b">Planning estimates, permit context, and official-source links.</text>
   <text x="88" y="452" font-family="Arial, sans-serif" font-size="28" fill="#38554b">Built for homeowners and homebuyers, not permit-ready engineering output.</text>
   <rect x="88" y="498" width="318" height="54" rx="16" fill="#153a2f" />
   <text x="247" y="533" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#ffffff">Estimate-first guidance</text>

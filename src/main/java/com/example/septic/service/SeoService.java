@@ -30,15 +30,15 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic System Cost & Size Estimator",
+                "SepticPath | Septic System Cost & Size Estimator",
                 "State-aware septic planning estimates for tank size, system type, and rough cost.",
                 canonicalUrl,
                 "index,follow",
                 List.of(
                         toJson(editorialOrganization()),
-                        toJson(webSite(canonicalUrl, "Septic System Cost & Size Estimator",
+                        toJson(webSite(canonicalUrl, "SepticPath",
                                 "State-aware septic planning estimates for tank size, system type, and rough cost.")),
-                        toJson(webPage(canonicalUrl, "Septic System Cost & Size Estimator",
+                        toJson(webPage(canonicalUrl, "SepticPath",
                                 "State-aware septic planning estimates for tank size, system type, and rough cost.", "CollectionPage"))
                 )
         );
@@ -373,7 +373,7 @@ public class SeoService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@context", "https://schema.org");
         payload.put("@type", "Organization");
-        payload.put("name", "Septic System Cost & Size Estimator");
+        payload.put("name", "SepticPath");
         payload.put("url", absoluteUrl("/"));
         return payload;
     }
@@ -381,7 +381,7 @@ public class SeoService {
     private Map<String, Object> editorialOrganizationReference() {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@type", "Organization");
-        payload.put("name", "Septic System Cost & Size Estimator");
+        payload.put("name", "SepticPath");
         payload.put("url", absoluteUrl("/"));
         return payload;
     }

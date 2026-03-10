@@ -1,6 +1,6 @@
 # SEO Surface
 
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 
 ## What Exists
 
@@ -17,11 +17,14 @@ Last updated: 2026-03-09
 
 ## Production Requirement
 
-Set `app.site.base-url` to the real production origin before launch.
+Default production origin is `https://septicpath.com`.
 
-Current default:
+Override `app.site.base-url` with `APP_SITE_BASE_URL` in non-production environments.
 
-- `http://localhost:8080`
+Examples:
+
+- local: `APP_SITE_BASE_URL=http://localhost:8080`
+- preview: `APP_SITE_BASE_URL=https://preview-host.example`
 
 This value drives:
 
@@ -29,6 +32,8 @@ This value drives:
 - sitemap URLs
 - robots sitemap pointer
 - structured data URLs
+
+The app now also issues a permanent redirect when the incoming request is the same site on `http` or `www`, so production should converge on `https://septicpath.com`.
 
 ## Included In Sitemap
 
@@ -46,6 +51,5 @@ This value drives:
 
 ## Next SEO Tasks
 
-- add simple `Organization` / `LocalBusiness`-safe site entity only after a real business identity and domain are finalized
 - add sitemap tests for every newly added state-specific page family
 - add more FAQ-rich state-specific pages where official-source angle is already strong
