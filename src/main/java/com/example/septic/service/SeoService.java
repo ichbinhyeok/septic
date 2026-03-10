@@ -66,13 +66,13 @@ public class SeoService {
         String canonicalUrl = absoluteUrl("/states/");
         return pageMeta(
                 "State Coverage | SepticPath",
-                "Track live septic state guides, current deep-page coverage, and the research queue for the next rollout wave.",
+                "Track live septic state guides and deeper permit, records, buyer, replacement, and site-risk coverage across all 50 states.",
                 canonicalUrl,
                 "index,follow",
                 List.of(
                         toJson(webPage(canonicalUrl,
                                 "State Coverage",
-                                "Track live septic state guides, current deep-page coverage, and the research queue for the next rollout wave.",
+                                "Track live septic state guides and deeper permit, records, buyer, replacement, and site-risk coverage across all 50 states.",
                                 "CollectionPage")),
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
@@ -519,6 +519,8 @@ public class SeoService {
             case "ID" -> "Idaho Septic Cost Guide and Site Approval Path";
             case "NV" -> "Nevada Septic Cost Guide and Buyer File Path";
             case "DE" -> "Delaware Septic Cost Guide and Permit Path";
+            case "ND" -> "North Dakota Septic Cost Guide and Local Permit Path";
+            case "WY" -> "Wyoming Septic Cost Guide and Site-Risk Path";
             case "AK" -> "Alaska Septic Cost Guide and Buyer File Path";
             case "HI" -> "Hawaii Septic Cost Guide and Cesspool Upgrade Path";
             case "ME" -> "Maine Septic Cost Guide and HHE-200 File Path";
@@ -573,6 +575,8 @@ public class SeoService {
             case "ID" -> "Idaho septic planning estimates with district-health routing, site-evaluation context, and official-source links.";
             case "NV" -> "Nevada septic planning estimates with local-authority split, buyer-file diligence, inspection-plus-as-built context, and official-source links.";
             case "DE" -> "Delaware septic planning estimates with DNREC permit routing, report-lookup context, county handoff, and official-source links.";
+            case "ND" -> "North Dakota septic planning estimates with local public health routing, permit-file visibility, and official-source links.";
+            case "WY" -> "Wyoming septic planning estimates with delegated-county routing, site-suitability context, and official-source links.";
             case "AK" -> "Alaska septic planning estimates with approved-system record pulls, local-office routing, difficult-site risk, and official-source links.";
             case "HI" -> "Hawaii septic planning estimates with cesspool-upgrade triggers, county building-permit handoff, approval-to-use timing, and official-source links.";
             case "ME" -> "Maine septic planning estimates with HHE-200 file pulls, town-office routing, Local Plumbing Inspector context, and official-source links.";

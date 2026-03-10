@@ -2250,6 +2250,122 @@
       ]
     },
     {
+      "stateCode": "ND",
+      "stateName": "North Dakota",
+      "agencyName": "North Dakota Health and Human Services / Local Public Health Units",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "North Dakota is stronger on local public health permit routing, inspection-file visibility, and rural-site realities than on a fake statewide install table. The homeowner wedge is knowing which local public health unit owns the permit, whether inspection or complaint history already exists, and whether local sewer-system standards are already widening the job before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "North Dakota Century Code says local public health units issue permits for sewage treatment systems, inspect facilities, investigate complaints, and may charge permit and inspection fees. North Dakota HHS publishes the statewide local public health unit list so homeowners can identify the office that controls the practical file. A local North Dakota environmental-health page also shows those offices handling sewage and water facility applications, sewer system inspections, and sewer system standards. The practical homeowner path is therefore local-public-health first, with permit file quality and inspection history mattering more than a flat statewide average.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public North Dakota homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "North Dakota homeowners usually need the local public health permit file and inspection history clarified before they trust an install or replacement quote. The project is not really permit-ready until the local unit confirms what is in the file, whether complaint or inspection history exists, and whether local standards keep the parcel on a straightforward path.",
+      "permitPathSteps": [
+        "Start with the local public health unit that serves the parcel because North Dakota routes practical sewage-treatment permits and inspections through those offices.",
+        "Ask whether a permit, inspection note, complaint file, or local sewer-system standard is already tied to the property before treating the job as routine.",
+        "Use the local file and standards context to decide whether the project is still on a straightforward path or already widening beyond the simple installer story."
+      ],
+      "siteEvalSummary": "North Dakota public homeowner material is strongest on local public health routing, permit-file visibility, and inspection context rather than one simple statewide sizing story. The practical path turns on whether the local file is real enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "North Dakota says local public health units issue permits for sewage treatment systems.",
+        "North Dakota says local public health units inspect facilities and investigate complaints.",
+        "North Dakota HHS publishes statewide local public health unit contacts.",
+        "A local environmental-health office says it handles sewage and water facility applications, sewer system inspections, and sewer system standards."
+      ],
+      "localOverrideNote": "North Dakota looks statewide through HHS and the code, but the real homeowner workflow changes quickly once you know which local public health unit owns the permit file and how that office applies local sewer-system standards.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["nd_01", "nd_02", "nd_03", "nd_04"],
+      "localAuthoritySourceIds": ["nd_01", "nd_04"],
+      "recordsLookupSourceIds": ["nd_01", "nd_02", "nd_04"],
+      "localActionSteps": [
+        "Open the North Dakota local public health unit list first and identify which office handles environmental health for the parcel.",
+        "Ask for any permit, inspection, complaint, or sewer-system-standard note already tied to the property before you trust the low end.",
+        "If the local file is thin, confirm whether a broader HHS or code-backed follow-up is needed before you call the path clean."
+      ],
+      "whoToCallFirst": "Start with the local public health unit that handles environmental health and sewage-treatment permits for the property.",
+      "recordsToRequest": [
+        "Any sewage-treatment permit or application already tied to the parcel.",
+        "Any inspection note, complaint file, or local health-unit follow-up already on record.",
+        "Any local note showing whether sewer-system standards or site conditions already changed the expected path."
+      ],
+      "lowEndRiskChecks": [
+        "If the local public health file is thin, the low end is still a planning scenario rather than a permit-backed number.",
+        "If inspection or complaint history is already in the file, the job can widen before contractor pricing becomes comparable.",
+        "If local sewer-system standards or site constraints differ from the assumed path, the simple statewide permit story breaks quickly."
+      ],
+      "permitTimelineNote": "North Dakota timing often turns on how quickly the local public health unit surfaces the permit and inspection file and whether local standards or complaint history already complicate the parcel.",
+      "buyerInspectionTrigger": "Buyers should ask for the local public health permit and inspection file early because North Dakota's local record trail can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "North Dakota's current source set is strongest on local public health routing, permit-file visibility, and inspection context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "North Dakota's main wrinkle is that the statewide code points to a local public health workflow, so permit-file quality and local standards matter more than a generic statewide price band.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable local public health matrix showing which North Dakota units expose permit or inspection records online.",
+        "Document where North Dakota local offices publish clearer homeowner guidance on complaint history, repairs, or seasonal-site constraints."
+      ]
+    },
+    {
+      "stateCode": "WY",
+      "stateName": "Wyoming",
+      "agencyName": "Wyoming Department of Environmental Quality / Delegated County Programs",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Wyoming is stronger on delegated county permit routing, site-suitability risk, and engineer-design triggers than on a fake statewide install table. The homeowner wedge is knowing which county issues permits under DEQ delegation, whether perc and site-plan requirements are already in view, and whether remote-lot or engineer-design issues widen the job before trusting the low end.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "Wyoming county wastewater pages show that counties issue septic permits under delegation from Wyoming DEQ, that all new systems require a permit before construction, and that applications can require a percolation test, site plan, and fee. County guidance also says inspection happens before backfill and that engineer-designed systems may be required when a conventional system cannot be installed. Chapter 25 standards provide the statewide site-suitability framework behind those county permit decisions. The practical homeowner path is therefore county-first, with site suitability and engineer-design risk mattering more than a flat statewide average.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Wyoming homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Wyoming homeowners usually need the delegated county permit path and site-suitability story clarified before they trust a new-install, replacement, or buyer quote. The project is not really site-ready until the county confirms whether a perc test, site plan, inspection path, or engineer-design trigger already shapes the parcel.",
+      "permitPathSteps": [
+        "Start with the county office handling onsite wastewater because Wyoming routes practical permits through county programs delegated by DEQ.",
+        "Ask whether a permit, percolation test, site plan, or inspection note already exists before treating the project as a simple low-end install.",
+        "Use the county file and Chapter 25 site context to decide whether the parcel still fits a conventional path or is already widening toward engineer-designed work."
+      ],
+      "siteEvalSummary": "Wyoming public homeowner material is strongest on county-delegated permit routing, percolation and site-plan requirements, and engineer-design triggers rather than one simple statewide sizing story. The practical path turns on whether the county file is strong enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "Wyoming county programs issue septic permits under delegation from Wyoming DEQ.",
+        "County guidance says all new systems require a permit before construction.",
+        "County permit applications can require a percolation test, site plan, and fee.",
+        "Counties say engineer-designed systems may be required when a conventional system cannot be installed."
+      ],
+      "localOverrideNote": "Wyoming looks statewide through DEQ and Chapter 25 on paper, but the real homeowner workflow changes quickly once you know which county issues the permit and whether county site-suitability or engineer-design triggers already widen the path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["wy_01", "wy_02", "wy_03", "wy_04"],
+      "localAuthoritySourceIds": ["wy_02", "wy_03", "wy_04"],
+      "recordsLookupSourceIds": ["wy_02", "wy_03", "wy_04"],
+      "localActionSteps": [
+        "Open the county onsite-wastewater page first and identify which county office issues permits for the parcel under DEQ delegation.",
+        "Ask whether a permit, perc test, site plan, or inspection file already exists before you trust the low end.",
+        "If the county file points to a constrained site, confirm whether engineer design or a less-conventional path already applies."
+      ],
+      "whoToCallFirst": "Start with the county office handling onsite wastewater permits and inspections for the property under Wyoming DEQ delegation.",
+      "recordsToRequest": [
+        "Any county permit, application, or approval already tied to the parcel.",
+        "Any percolation-test result, site plan, or inspection note already on record.",
+        "Any county note showing whether engineer design or another non-conventional path already applies."
+      ],
+      "lowEndRiskChecks": [
+        "If the county file cannot surface a permit or site-plan trail, the low end is still a planning scenario rather than a permit-backed number.",
+        "If the parcel needs engineer design or a non-conventional path, the job can widen before contractor pricing becomes comparable.",
+        "If percolation or site-suitability requirements are still unresolved, the simple statewide price story breaks quickly."
+      ],
+      "permitTimelineNote": "Wyoming timing often turns on how quickly the county confirms the permit path, whether percolation and site-plan work are already done, and whether engineer-design triggers change the schedule.",
+      "buyerInspectionTrigger": "Buyers should ask for the county permit, inspection, and perc file early because Wyoming's delegated county path can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Wyoming's current source set is strongest on county delegation, permit path, and site-suitability context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Wyoming's main wrinkle is that county delegation is the real homeowner path, and remote or constrained lots can move the project into engineer-designed territory before a generic price band means much.",
+      "confidenceScore": 0.77,
+      "itemsNeedingVerification": [
+        "Add a durable county matrix showing which Wyoming counties expose septic permit or inspection records online.",
+        "Document where Wyoming counties publish clearer homeowner guidance on engineered systems, repairs, or remote-lot constraints."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

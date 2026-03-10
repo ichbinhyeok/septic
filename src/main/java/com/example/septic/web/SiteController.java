@@ -920,6 +920,14 @@ public class SiteController {
                     "Estimate before the permit-file pull",
                     "Delaware quote conversations get more real once you know whether the DNREC report trail is usable and whether a county building-permit handoff changes the septic path."
             );
+            case "ND" -> new StateActionCopy(
+                    "Estimate before the local permit call",
+                    "North Dakota quote conversations get more real once you know which local public health unit holds the permit file and whether inspection or complaint history is already in view."
+            );
+            case "WY" -> new StateActionCopy(
+                    "Estimate before the county site check",
+                    "Wyoming quote conversations get more real once you know which county issues the permit under DEQ delegation and whether perc, site-plan, or engineer-design friction is already in play."
+            );
             case "AK" -> new StateActionCopy(
                     "Estimate before the buyer file pull",
                     "Alaska quote conversations get more real once you know whether the local DEC office or the Municipality of Anchorage holds the approved-system record and whether difficult-site notes already widen the path."

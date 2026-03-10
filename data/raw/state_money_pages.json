@@ -5219,6 +5219,126 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "ND",
+      "title": "North Dakota Septic Permit Process",
+      "metaDescription": "North Dakota septic permit process with local public health routing, permit-file context, and inspection-history questions in mind.",
+      "introCopy": "North Dakota permit content is stronger than a generic install checklist because the real homeowner path runs through the local public health unit, not a vague statewide quote. The practical job often turns on whether the local office already has a permit, inspection, or complaint file and whether local sewer-system standards keep the parcel on the simple path before the low end means much.",
+      "uniqueAngle": "North Dakota permit intent is strongest when the page explains local public health routing, permit-file visibility, and inspection history together instead of pretending the state starts from a clean statewide permit desk.",
+      "targetReader": "Best for North Dakota owners, buyers, builders, and agents who need to know whether the local public health unit already holds a permit, inspection, or complaint file and why that local file matters before they trust the simplest install story.",
+      "fitBullets": [
+        "You have a quote, but no one has confirmed which local public health unit actually controls the permit path.",
+        "The installer says the permit is routine, but no one has surfaced whether the office already has inspection or complaint history tied to the parcel.",
+        "You need to know whether local sewer-system standards or file gaps will widen the schedule before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local public health unit first because North Dakota routes practical sewage-treatment permits and inspections through those offices.",
+        "Ask whether a permit, inspection note, complaint file, or sewer-system-standard note already exists before treating the job as a clean new permit.",
+        "Use the local file to decide whether the project still sits on a straightforward path or whether prior issues already widen the permit story.",
+        "Then compare installer timing and cost only after the local office confirms what is actually in the file."
+      ],
+      "lowEndBreakers": [
+        "If the local public health file is thin, the low end is still a planning scenario rather than a permit-backed number.",
+        "If inspection or complaint history is already in the file, the job can widen before contractor pricing becomes comparable.",
+        "If the local office flags sewer-system standards or other site issues, the simple statewide permit story can break quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local public health unit handling environmental health for the parcel.",
+        "Any sewage-treatment permit, application, or approval already tied to the property.",
+        "Any inspection note, complaint file, or local follow-up already in the office record.",
+        "A short note showing whether the job is a fresh install, replacement follow-through, or a file-cleanup question before permit timing."
+      ],
+      "driverBullets": [
+        "North Dakota permit conversations get real only after the local public health file is in view.",
+        "Inspection and complaint history can matter more than the first quoted permit fee.",
+        "Local sewer-system standards can widen the whole permit path before pricing becomes comparable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first North Dakota permit step a homeowner should take?",
+          "answer": "Identify the local public health unit first, because North Dakota routes practical sewage-treatment permits and inspections through those offices."
+        },
+        {
+          "question": "Why does North Dakota permit content need to mention inspection and complaint history?",
+          "answer": "Because North Dakota code says local public health units inspect facilities and investigate complaints, which means the local file can change the permit story earlier than a generic install page suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-dakota/",
+        "/septic-system-cost-calculator/?state=ND&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "nd_01",
+        "nd_02",
+        "nd_03",
+        "nd_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "WY",
+      "title": "Wyoming Perc Test Cost",
+      "metaDescription": "Wyoming perc and site-risk planning page with county delegation, site-plan requirements, and engineer-design triggers in mind.",
+      "introCopy": "Wyoming perc and site-risk questions are stronger than a generic national test page because the real homeowner path runs through a county program delegated by Wyoming DEQ, not a flat statewide quote. The practical question is whether the county already has a permit trail, whether the application still needs a perc test and site plan, and whether the lot is drifting toward engineer-designed work before the homeowner trusts the low end.",
+      "uniqueAngle": "Wyoming site-testing intent is strongest when the page connects county delegation, perc-and-site-plan requirements, and engineer-design triggers instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Wyoming owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward county permit path before design, permit, or engineer-only risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which county office actually controls the permit path.",
+        "The installer says the site looks straightforward, but the county has not surfaced whether a permit, site plan, or older file already exists.",
+        "You need to know whether engineer design or a constrained lot will widen the project before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county office first because Wyoming routes practical septic permits through county programs delegated by DEQ.",
+        "Ask whether a permit, percolation test, site plan, or inspection note already exists before treating the job as a standalone test fee.",
+        "Use the county file and Chapter 25 context to decide whether the lot still sits on a conventional path or is already widening into engineer-designed work.",
+        "Then compare perc or site-testing cost in the context of the real county workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county file cannot surface a permit or site-plan trail yet.",
+        "If the parcel needs engineer design because a conventional system will not work, the project can widen before contractor pricing becomes comparable.",
+        "If percolation or site-suitability requirements are still unresolved, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The county office handling onsite wastewater permits for the parcel.",
+        "Any permit, application, or approval already tied to the property.",
+        "Any percolation-test result, site plan, or inspection note already in the county file.",
+        "Any note showing whether the lot may require engineer design or another non-conventional path."
+      ],
+      "driverBullets": [
+        "Wyoming site-testing conversations get real only after the delegated county path is clear.",
+        "A county permit packet can matter more than the first quoted perc fee.",
+        "Engineer-design triggers can widen the project before a conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Wyoming site-check step a homeowner should take?",
+          "answer": "Identify the county office first, because Wyoming routes practical septic permits through county programs delegated by DEQ."
+        },
+        {
+          "question": "Why does Wyoming perc content need to mention engineer design?",
+          "answer": "Because Wyoming county guidance says engineer-designed systems are required when a conventional system cannot be installed, which means site suitability can widen the project earlier than a generic perc page suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/wyoming/",
+        "/septic-system-cost-calculator/?state=WY&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "wy_01",
+        "wy_02",
+        "wy_03",
+        "wy_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
       "metaDescription": "Arkansas septic permit process with county health routing, onsite specialist path, permit-copy context, and soil-suitability questions.",

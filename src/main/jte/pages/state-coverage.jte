@@ -14,8 +14,13 @@
         <div class="container content-grid">
             <article class="hero__content">
                 <span class="eyebrow">State coverage</span>
-                <h1>50-state coverage is expanding in waves, not with thin copy swaps.</h1>
-                <p class="lede">The goal is to match broad state coverage quickly while keeping the live guides tied to official sources, local office context, and real homeowner workflow differences.</p>
+                @if (queuedStateCount > 0)
+                    <h1>50-state coverage is expanding in waves, not with thin copy swaps.</h1>
+                    <p class="lede">The goal is to match broad state coverage quickly while keeping the live guides tied to official sources, local office context, and real homeowner workflow differences.</p>
+                @else
+                    <h1>All 50 state guides are live, and the next gains come from deeper intent pages.</h1>
+                    <p class="lede">Every state guide is now public. The next wave is deeper permit, records, buyer, replacement, and site-risk coverage built on official sources and real local workflow differences.</p>
+                @endif
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/">Run the main estimate</a>
                     <a class="button button--secondary" href="/#states">See current live guides</a>
@@ -98,28 +103,36 @@
 
     <section class="section section--muted">
         <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">Research queue</span>
-                <h2>Queued states are held back until the official-source set is strong enough.</h2>
-                <p class="lede">This is the tradeoff: coverage expands fast, but public state guides should still launch with a real local angle instead of generic state-name swaps.</p>
-            </div>
+            @if (queuedStateCount > 0)
+                <div class="section-heading">
+                    <span class="eyebrow">Research queue</span>
+                    <h2>Queued states are held back until the official-source set is strong enough.</h2>
+                    <p class="lede">This is the tradeoff: coverage expands fast, but public state guides should still launch with a real local angle instead of generic state-name swaps.</p>
+                </div>
 
-            <div class="coverage-grid coverage-grid--queued">
-                @for (var state : queuedStates)
-                    <article class="coverage-card coverage-card--queued">
-                        <div class="coverage-card__header">
-                            <div>
-                                <span class="pill pill--muted">${state.statusLabel()}</span>
-                                <h3>${state.stateName()}</h3>
+                <div class="coverage-grid coverage-grid--queued">
+                    @for (var state : queuedStates)
+                        <article class="coverage-card coverage-card--queued">
+                            <div class="coverage-card__header">
+                                <div>
+                                    <span class="pill pill--muted">${state.statusLabel()}</span>
+                                    <h3>${state.stateName()}</h3>
+                                </div>
+                                <strong>${state.stateCode()}</strong>
                             </div>
-                            <strong>${state.stateCode()}</strong>
-                        </div>
-                        <p>${state.summary()}</p>
-                        <p class="coverage-card__meta">${state.metaLine()}</p>
-                        <a class="button button--secondary" href="${state.actionPath()}">${state.actionLabel()}</a>
-                    </article>
-                @endfor
-            </div>
+                            <p>${state.summary()}</p>
+                            <p class="coverage-card__meta">${state.metaLine()}</p>
+                            <a class="button button--secondary" href="${state.actionPath()}">${state.actionLabel()}</a>
+                        </article>
+                    @endfor
+                </div>
+            @else
+                <div class="section-heading">
+                    <span class="eyebrow">Queue closed</span>
+                    <h2>All state guides are live. The next wave is deeper state intent coverage.</h2>
+                    <p class="lede">Coverage work now shifts from queued state launches into stronger permit, records, buyer, replacement, and site-risk pages inside the states already live.</p>
+                </div>
+            @endif
         </div>
     </section>
 `)

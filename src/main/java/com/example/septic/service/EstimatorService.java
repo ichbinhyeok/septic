@@ -171,6 +171,12 @@ public class EstimatorService {
         if ("DE".equals(state.stateCode())) {
             checklist.add("Confirm whether Delaware already shows a site evaluation report, inspection report, or permit file for the parcel and whether a county building-permit handoff applies first.");
         }
+        if ("ND".equals(state.stateCode())) {
+            checklist.add("Confirm which North Dakota local public health unit controls the file and whether a permit, inspection, complaint, or sewer-system-standard note is already on record.");
+        }
+        if ("WY".equals(state.stateCode())) {
+            checklist.add("Confirm which Wyoming county office controls the file and whether a permit, perc test, site plan, or engineer-design note is already on record.");
+        }
         if ("AK".equals(state.stateCode())) {
             checklist.add("Confirm whether Alaska routes the file through the local DEC office or the Municipality of Anchorage and whether the approved-system record and difficult-site notes are already on file.");
         }
@@ -580,6 +586,12 @@ public class EstimatorService {
         }
         if ("DE".equals(state.stateCode())) {
             return "This Delaware range stays wide because DNREC report gaps, permit-file quality, and county handoff can all move the job quickly.";
+        }
+        if ("ND".equals(state.stateCode())) {
+            return "This North Dakota range stays wide because local-public-health permit files, inspection history, and sewer-system standards can all move the job quickly.";
+        }
+        if ("WY".equals(state.stateCode())) {
+            return "This Wyoming range stays wide because delegated-county routing, perc-and-site-plan requirements, and engineer-design triggers can all move the job quickly.";
         }
         if ("AK".equals(state.stateCode())) {
             return "This Alaska range stays wide because approved-system record gaps, difficult-site conditions, and engineering triggers can all move the job quickly.";

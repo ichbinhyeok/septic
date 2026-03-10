@@ -1,32 +1,5 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-03-10",
-  "states": [
-    {
-      "stateCode": "ND",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 6",
-      "whyNow": "North Dakota can likely support a permit and records wedge where local file visibility and rural-site constraints matter more than a generic statewide quote.",
-      "launchAngle": "Target angle: permit path, file retrieval, and rural-site constraints before the homeowner treats the project as routine.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the homeowner entry point for onsite wastewater permits and file retrieval.",
-        "Collect the clearest public language on rural-site or seasonal constraints that can widen the job.",
-        "Document the state or local office split that determines the practical first call."
-      ]
-    },
-    {
-      "stateCode": "WY",
-      "priorityRank": 2,
-      "rolloutWave": "Wave 6",
-      "whyNow": "Wyoming can likely support a site-risk and permit wedge where local authority routing and remote-lot constraints matter more than a simple statewide average.",
-      "launchAngle": "Target angle: permit path, remote-lot site risk, and local-authority routing before the homeowner trusts the low end.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the homeowner entry point for septic permits and local routing in Wyoming.",
-        "Collect the clearest official language on lot suitability, water-table, or remote-access constraints.",
-        "Document whether state or county files are the practical source for the first homeowner page."
-      ]
-    }
-  ]
+  "states": []
 }
