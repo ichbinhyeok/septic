@@ -107,7 +107,7 @@ jobs:
               restart: unless-stopped
               platform: linux/arm64
               ports:
-                - "8810:8080"
+                - "8010:8080"
               environment:
                 APP_SITE_BASE_URL: https://septicpath.com
                 APP_DATA_ROOT: /app/data/raw
@@ -131,6 +131,18 @@ jobs:
             echo "docker compose not found on server"
             exit 1
           fi
+
+          curl -fsS \
+            -H 'Host: septicpath.com' \
+            -H 'X-Forwarded-Proto: https' \
+            -H 'X-Forwarded-Port: 443' \
+            http://127.0.0.1:8010/ >/dev/null
+
+          curl -fsS \
+            -H 'Host: septicpath.com' \
+            -H 'X-Forwarded-Proto: https' \
+            -H 'X-Forwarded-Port: 443' \
+            http://127.0.0.1:8010/about/ >/dev/null
 
           docker image prune -f
           EOF
