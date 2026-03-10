@@ -1761,6 +1761,64 @@
       ]
     },
     {
+      "stateCode": "DE",
+      "stateName": "Delaware",
+      "agencyName": "Delaware Department of Natural Resources and Environmental Control",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Delaware is stronger on permit path, report lookup, and agency handoff than on a fake statewide install table. The homeowner wedge is knowing whether the DNREC septic file, the site-evaluation and inspection-report trail, and any county handoff are already in view before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "DNREC's septic systems page is the homeowner hub for Delaware and links applications and permits plus searchable site evaluation reports and inspection reports. DNREC's laws-and-regulations page links Regulations 7101 and 7102 for onsite wastewater treatment and disposal systems. Sussex County's official septic permit page also shows why the local handoff matters: no individual onsite wastewater treatment and disposal system may be installed without a permit, applications are required before construction, repair, replacement, or alteration, and additions or major changes can require a county building permit before the septic review moves forward. Delaware is therefore stronger on permit and file-path clarity than on a generic cost table.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Delaware homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Delaware homeowners usually need the DNREC permit and report path clarified before they trust an install, repair, or addition quote. The project is not really permit-ready until the file, the searchable report trail, and any county building-permit handoff are clearer.",
+      "permitPathSteps": [
+        "Start with the DNREC septic systems hub because Delaware puts the practical homeowner path, applications, and searchable reports there.",
+        "Ask whether a site evaluation report, inspection report, or prior permit file already exists before treating the project as a fresh permit story.",
+        "If the project involves an addition, major change, repair, replacement, or alteration, confirm whether a county building-permit handoff changes the path before you trust the low end."
+      ],
+      "siteEvalSummary": "Delaware public homeowner material is strongest on permit-path clarity, searchable report trails, and agency handoff rather than one simple statewide sizing story. The practical path turns on whether the DNREC and local file is complete enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "DNREC's homeowner hub links applications and permits plus searchable site evaluation reports and inspection reports.",
+        "DNREC's laws page links Regulations 7101 and 7102 for onsite wastewater treatment and disposal systems.",
+        "Sussex County says no individual onsite wastewater treatment and disposal system may be installed without a permit.",
+        "Sussex County says additions or major changes may require a county building permit before the septic permit path continues."
+      ],
+      "localOverrideNote": "Delaware looks statewide through DNREC, but the real homeowner workflow changes quickly once the report trail is checked and any county building-permit or local handoff is known.",
+      "countyOverrideRisk": "medium",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["de_01", "de_02", "de_03", "de_04", "de_05", "de_06"],
+      "localAuthoritySourceIds": ["de_06", "de_01"],
+      "recordsLookupSourceIds": ["de_02", "de_03", "de_05"],
+      "localActionSteps": [
+        "Open the DNREC septic systems page first and use it to check whether the site evaluation report, inspection report, or permit file is already visible.",
+        "If the project is tied to an addition or major change, confirm whether a county building permit is required before you treat the septic path as routine.",
+        "Use the DNREC FOIA path only after the routine report lookup and permit trail still leave a real file gap."
+      ],
+      "whoToCallFirst": "Start with DNREC's septic systems hub, then confirm whether county permitting or building-review handoff changes the next call for the parcel.",
+      "recordsToRequest": [
+        "Any site evaluation report already tied to the property.",
+        "Any inspection report or permit file already in the DNREC or local workflow.",
+        "Any county building-permit note or handoff record tied to an addition, repair, or major change."
+      ],
+      "lowEndRiskChecks": [
+        "If the DNREC report trail is thin, the low end is still a planning scenario rather than a file-backed number.",
+        "If an addition or major change pulls in county building-review steps, the permit path can widen before contractor pricing becomes comparable.",
+        "If the property has no visible site evaluation or inspection report, the homeowner may be inheriting a thinner file than the seller summary suggests."
+      ],
+      "permitTimelineNote": "Delaware timing often turns on how quickly the report trail surfaces, whether the permit file is already in view, and whether county building-review handoff adds another step before the job feels routine.",
+      "buyerInspectionTrigger": "Buyers should ask for the site evaluation report, inspection report, and any permit or county handoff record early because Delaware's file trail can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Delaware's current source set is strongest on permit routing, searchable report trails, and agency handoff, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Delaware's main wrinkle is that the state hub is clear, but additions and major changes can pull county building-review steps into what otherwise looks like a simple septic permit path.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable county matrix showing which Delaware local offices add extra routing or online report access beyond the DNREC hub.",
+        "Document whether each Delaware county exposes more detail on repair, replacement, or addition-specific handoff outside the state septic pages."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

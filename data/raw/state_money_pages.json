@@ -4729,6 +4729,68 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "DE",
+      "title": "Delaware Septic Permit Process",
+      "metaDescription": "Delaware septic permit process with DNREC report lookup, Regulations 7101 and 7102 context, and county handoff risk.",
+      "introCopy": "Delaware permit pages are useful because the state already shows where the simple story breaks. DNREC gives homeowners a central septic hub plus searchable site evaluation and inspection reports, while the local handoff can still matter if an addition or major change pulls in county building review before the septic path is truly clear.",
+      "uniqueAngle": "Delaware permit intent is strongest when the page connects DNREC report searches, Regulations 7101 and 7102, and county handoff instead of pretending the job starts with a clean contractor number.",
+      "targetReader": "Best for Delaware owners, buyers, builders, and agents who need to know whether the report trail and permit file already exist, whether DNREC is enough for the next step, and why a county handoff can widen the project before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install, repair, or addition quote, but no one has shown the site evaluation report, inspection report, or permit file yet.",
+        "The contractor says the permit is routine, but no one has confirmed whether a county building-permit handoff changes the path first.",
+        "You need to know whether the DNREC file trail is strong enough to trust before you anchor to the low end."
+      ],
+      "decisionSteps": [
+        "Start with the DNREC septic systems hub and use it to check whether the site evaluation report, inspection report, or prior permit record is already visible.",
+        "Confirm whether the project is a new install, repair, replacement, alteration, or an addition that may need county building-review handoff before the septic path stays simple.",
+        "Use the DNREC rule set and any county note to decide whether the job is still a routine permit question or already widening toward a more complex schedule.",
+        "Then compare permit readiness, report quality, and handoff risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit path can widen quickly if the DNREC report trail is thin and the homeowner cannot surface a real file.",
+        "An addition or major change can pull in county building-review steps before the septic conversation stays routine.",
+        "If the property has no visible site evaluation or inspection report, the project can be much less permit-ready than the quote implies."
+      ],
+      "quotePrepChecklist": [
+        "The DNREC site evaluation report and inspection report status for the parcel.",
+        "Any permit file already tied to the property.",
+        "Any county building-permit or handoff note tied to an addition, repair, replacement, or major change.",
+        "A short note on whether the job is new install, repair, replacement, alteration, or an addition-linked permit path."
+      ],
+      "driverBullets": [
+        "Delaware permit timing gets more real once the DNREC report trail is visible.",
+        "County handoff can matter more than the homeowner expects when additions or major changes are involved.",
+        "A missing site evaluation or inspection report can break the low-end permit story fast."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Delaware permit step a homeowner should take?",
+          "answer": "Start with DNREC's septic systems hub and check whether the site evaluation report, inspection report, and any prior permit file are already visible before treating the permit as routine."
+        },
+        {
+          "question": "Why does the Delaware permit page mention county building permits?",
+          "answer": "Because official county guidance says additions or major changes may require a building permit before the septic approval path continues, which can widen the timeline earlier than a generic septic quote suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/delaware/",
+        "/septic-system-cost-calculator/?state=DE&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "de_01",
+        "de_02",
+        "de_03",
+        "de_04",
+        "de_05",
+        "de_06"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
       "metaDescription": "Arkansas septic permit process with county health routing, onsite specialist path, permit-copy context, and soil-suitability questions.",

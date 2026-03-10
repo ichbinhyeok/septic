@@ -3,16 +3,120 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "DE",
+      "stateCode": "AK",
       "priorityRank": 1,
-      "rolloutWave": "Wave 5",
-      "whyNow": "Delaware is compact but commercially useful and likely supports a permit or records wedge where agency routing matters more than a flat statewide number.",
-      "launchAngle": "Target angle: permit path, file retrieval, and agency handoff before the homeowner treats the project as routine.",
+      "rolloutWave": "Wave 6",
+      "whyNow": "Alaska can likely support a buyer and records wedge where approved-system file quality and remote-site constraints matter more than a flat statewide number.",
+      "launchAngle": "Target angle: buyer diligence, approved-system file retrieval, and remote-site risk before the rural property story sets the anchor.",
+      "recommendedPath": "/buying-a-house-with-a-septic-system/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for approved-system records and rural-site file retrieval.",
+        "Collect the clearest public language on remote access, frost, or site constraints that widen Alaska projects.",
+        "Document the agency or borough explanation that determines who controls the practical homeowner file."
+      ]
+    },
+    {
+      "stateCode": "HI",
+      "priorityRank": 2,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Hawaii can likely support a permit and replacement wedge where cesspool-upgrade pressure and island-specific routing matter more than a generic install table.",
+      "launchAngle": "Target angle: permit path, cesspool-upgrade pressure, and island program routing before the homeowner treats the job as routine.",
       "recommendedPath": "/septic-permit-process/",
       "researchTasks": [
-        "Find the statewide homeowner entry point for onsite permits and file retrieval.",
-        "Collect the clearest public permit-step or inspection sequence that can anchor a homeowner-safe page.",
-        "Document the local-authority explanation that can support both permit and records content."
+        "Find the statewide homeowner entry point for wastewater permits and cesspool-upgrade obligations.",
+        "Collect the clearest official language on island or county routing that changes the next step.",
+        "Pull the public-facing replacement or upgrade triggers that can anchor the first homeowner page."
+      ]
+    },
+    {
+      "stateCode": "ME",
+      "priorityRank": 3,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Maine can likely support a buyer and records wedge where HHE-200 paperwork and local inspection files matter more than a flat statewide quote.",
+      "launchAngle": "Target angle: buyer diligence, HHE-200 file retrieval, and local inspection path before the listing story sets the anchor.",
+      "recommendedPath": "/buying-a-house-with-a-septic-system/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for subsurface wastewater permits and HHE-200 records.",
+        "Collect the clearest public explanation of which local inspector or town office holds the practical file.",
+        "Pull buyer-safe language on inspection or transfer paperwork that can anchor the first Maine page."
+      ]
+    },
+    {
+      "stateCode": "NH",
+      "priorityRank": 4,
+      "rolloutWave": "Wave 6",
+      "whyNow": "New Hampshire can likely support a permit and approval wedge where design approval, system status, and file quality matter more than a simple statewide average.",
+      "launchAngle": "Target angle: permit path, approval status, and local file quality before the homeowner trusts the low end.",
+      "recommendedPath": "/septic-permit-process/",
+      "researchTasks": [
+        "Find the homeowner entry point for subsurface-system approvals and file retrieval.",
+        "Collect the clearest official language on when the state versus the local office owns the practical next step.",
+        "Pull any public approval-status or permit-search workflow that can support a first page."
+      ]
+    },
+    {
+      "stateCode": "RI",
+      "priorityRank": 5,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Rhode Island is compact but commercially useful and likely supports a repair and buyer wedge where DEM file quality matters more than a broad statewide install table.",
+      "launchAngle": "Target angle: buyer diligence, repair triggers, and DEM file retrieval before the small-state story looks simpler than it is.",
+      "recommendedPath": "/buying-a-house-with-a-septic-system/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for OWTS permits, repairs, and file retrieval.",
+        "Collect the clearest public buyer-safe language on inspection or property-transfer expectations.",
+        "Document the report or permit search path that can anchor a Rhode Island page."
+      ]
+    },
+    {
+      "stateCode": "VT",
+      "priorityRank": 6,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Vermont can likely support a permit and records wedge where wastewater permits, potable-water linkage, and town-file handoff matter more than a generic cost range.",
+      "launchAngle": "Target angle: permit path, potable-water linkage, and town-file retrieval before the homeowner treats the project as routine.",
+      "recommendedPath": "/septic-permit-process/",
+      "researchTasks": [
+        "Find the homeowner entry point for wastewater-system and potable-water permits.",
+        "Collect the clearest official explanation of state versus town file routing.",
+        "Pull permit-search or records-request language that can support a first Vermont page."
+      ]
+    },
+    {
+      "stateCode": "MT",
+      "priorityRank": 7,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Montana can likely support a site-risk wedge where lot review, county routing, and file quality matter more than a flat statewide install number.",
+      "launchAngle": "Target angle: site risk, lot-review paperwork, and local-authority routing before the homeowner trusts the low end.",
+      "recommendedPath": "/perc-test-cost/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for onsite wastewater approvals and local routing.",
+        "Collect the clearest public language on lot review or constrained-site paperwork that widens the project.",
+        "Document the county or local authority explanation that can anchor the first Montana page."
+      ]
+    },
+    {
+      "stateCode": "ND",
+      "priorityRank": 8,
+      "rolloutWave": "Wave 6",
+      "whyNow": "North Dakota can likely support a permit and records wedge where local file visibility and rural-site constraints matter more than a generic statewide quote.",
+      "launchAngle": "Target angle: permit path, file retrieval, and rural-site constraints before the homeowner treats the project as routine.",
+      "recommendedPath": "/septic-permit-process/",
+      "researchTasks": [
+        "Find the homeowner entry point for onsite wastewater permits and file retrieval.",
+        "Collect the clearest public language on rural-site or seasonal constraints that can widen the job.",
+        "Document the state or local office split that determines the practical first call."
+      ]
+    },
+    {
+      "stateCode": "WY",
+      "priorityRank": 9,
+      "rolloutWave": "Wave 6",
+      "whyNow": "Wyoming can likely support a site-risk and permit wedge where local authority routing and remote-lot constraints matter more than a simple statewide average.",
+      "launchAngle": "Target angle: permit path, remote-lot site risk, and local-authority routing before the homeowner trusts the low end.",
+      "recommendedPath": "/perc-test-cost/",
+      "researchTasks": [
+        "Find the homeowner entry point for septic permits and local routing in Wyoming.",
+        "Collect the clearest official language on lot suitability, water-table, or remote-access constraints.",
+        "Document whether state or county files are the practical source for the first homeowner page."
       ]
     }
   ]

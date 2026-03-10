@@ -916,6 +916,10 @@ public class SiteController {
                     "Estimate before the buyer file pull",
                     "Nevada quote conversations get more real once you know whether NDEP, Southern Nevada Health District, or another local path holds the file and whether the inspection and as-built trail is actually complete."
             );
+            case "DE" -> new StateActionCopy(
+                    "Estimate before the permit-file pull",
+                    "Delaware quote conversations get more real once you know whether the DNREC report trail is usable and whether a county building-permit handoff changes the septic path."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

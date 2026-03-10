@@ -168,6 +168,9 @@ public class EstimatorService {
         if ("NV".equals(state.stateCode())) {
             checklist.add("Confirm whether Nevada routes the parcel through NDEP, Southern Nevada Health District, or another local office and whether the permit, inspection, occupancy, and as-built file is already on record.");
         }
+        if ("DE".equals(state.stateCode())) {
+            checklist.add("Confirm whether Delaware already shows a site evaluation report, inspection report, or permit file for the parcel and whether a county building-permit handoff applies first.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -553,6 +556,9 @@ public class EstimatorService {
         }
         if ("NV".equals(state.stateCode())) {
             return "This Nevada range stays wide because local-authority splits, buyer-file gaps, and inspection-plus-as-built issues can all move the job quickly.";
+        }
+        if ("DE".equals(state.stateCode())) {
+            return "This Delaware range stays wide because DNREC report gaps, permit-file quality, and county handoff can all move the job quickly.";
         }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";
