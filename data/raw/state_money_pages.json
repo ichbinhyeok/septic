@@ -5025,6 +5025,64 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "OH",
+      "title": "Ohio Perc Test Cost",
+      "metaDescription": "Ohio perc test cost with local health department routing, site-risk context, and off-lot discharge questions in mind.",
+      "introCopy": "Ohio perc and site-check questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department controls the file, whether the site story is already thin, and whether nuisance or off-lot discharge risk means the low end is still only a planning scenario.",
+      "uniqueAngle": "Ohio site-testing intent is strongest when the page explains local health department routing, file quality, and off-lot discharge context instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Ohio owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward local-health path before permit, design, or enforcement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-check number, but no one has identified the local health department or board of health yet.",
+        "The installer says the lot looks straightforward, but the local file is still thin and no one has checked whether complaint or nuisance history changes the next step.",
+        "You need to know whether the parcel is still on a normal local path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or board of health first because Ohio EPA says local health departments handle permitting and operational inspections.",
+        "Ask whether the file already contains any permit history, complaint trail, nuisance note, or other local record that changes how simple the site story really is.",
+        "Use that local file to decide whether the parcel still looks like a straightforward local-health project or whether off-lot discharge or Ohio EPA involvement is already widening the path.",
+        "Then compare perc or site-testing cost in the context of the real local workflow and file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local health department and property file are still unclear.",
+        "Complaint, nuisance, or off-lot-discharge context can make the perc number far less useful than the owner expects.",
+        "If the site is already carrying local-health friction, the test is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or board of health contact with jurisdiction over the parcel.",
+        "Any installation permit, operation permit, complaint history, or nuisance note already tied to the property.",
+        "Any repair, inspection, or file note showing whether the site has already widened beyond a simple planning scenario.",
+        "A short note on whether the job is buyer diligence, new install planning, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Ohio site-testing conversations get real only after the local health department and file path are clear.",
+        "Local complaint or nuisance context can matter more than the first quoted perc fee.",
+        "Off-lot-discharge risk can widen the whole project before a simple site-check story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Ohio site-check step a homeowner should take?",
+          "answer": "Identify the local health department or board of health first, because Ohio EPA says local health departments handle the practical permit and inspection path."
+        },
+        {
+          "question": "Why does Ohio perc content need to mention off-lot discharge?",
+          "answer": "Because off-lot discharge can widen the project beyond the normal local-health path and make the site-testing number much less useful by itself."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-permit-process/ohio/",
+        "/septic-records-checklist/ohio/",
+        "/septic-system-cost-calculator/?state=OH&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IL",
       "title": "Illinois Septic Records Checklist",
@@ -5321,6 +5379,66 @@
         "il_03",
         "il_04"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "IL",
+      "title": "Illinois Perc Test Cost",
+      "metaDescription": "Illinois perc test cost with county health routing, evaluation-form risk, and local-file quality in mind.",
+      "introCopy": "Illinois perc and site-check questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which county or local health department controls the file, whether an evaluation-form flag or county note already widens the project, and whether the parcel is still on a clean local path before the low end means much.",
+      "uniqueAngle": "Illinois site-testing intent is strongest when the page explains county-health routing, evaluation-form context, and local-file quality instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Illinois owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward county-health path before permit, design, or repair risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-check number, but no one has confirmed which county or local health department controls the file.",
+        "The installer says the lot looks straightforward, but the evaluation form or county note is still unresolved.",
+        "You need to know whether the parcel is still on a clean local path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Ask whether the file already contains the permit, installation record, inspection note, or evaluation-form history tied to the property before treating the test as a standalone fee.",
+        "Use any flagged evaluation-form condition or county note to decide whether the site still fits a straightforward path or is already widening into a repair or replacement story.",
+        "Then compare perc or site-testing cost in the context of the real county workflow and file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county or local office and file path are still unclear.",
+        "A flagged evaluation-form condition can make the site much more complex than the owner expects.",
+        "If the local office applies a stronger county or ordinance path, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the parcel.",
+        "Any permit, installation, inspection, or evaluation-form record tied to the property.",
+        "Any county or code note showing whether the project has already drifted toward repair or replacement risk.",
+        "A short note on whether the job is buyer diligence, new install planning, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Illinois site-testing conversations get real only after the county or local health file is in hand.",
+        "Evaluation-form history can matter more than the first quoted perc fee.",
+        "County or local handling can widen the whole project before a simple site-check story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Illinois site-check step a homeowner should take?",
+          "answer": "Identify the county or local health department first, because IDPH says local offices usually control the practical file path for private sewage work."
+        },
+        {
+          "question": "Why does Illinois perc content need to mention the evaluation form?",
+          "answer": "Because IDPH's public evaluation form warns that flagged conditions may mean repair or replacement is needed, which can change whether the site path is still straightforward."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-permit-process/illinois/",
+        "/septic-records-checklist/illinois/",
+        "/septic-system-cost-calculator/?state=IL&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
+      "calculatorProjectType": "perc_test",
       "publishStatus": "published"
     },
     {
@@ -7420,6 +7538,65 @@
         "mi_02",
         "mi_03"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MI",
+      "title": "Michigan Perc Test Cost",
+      "metaDescription": "Michigan perc test cost with local health department routing, failed-system evaluation context, and system-location risk in mind.",
+      "introCopy": "Michigan perc and site-check questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department controls the file, whether failure evidence is already on record, and whether the owner can even confirm where the system is located before the low end means much.",
+      "uniqueAngle": "Michigan site-testing intent is strongest when the page explains local-health routing, failed-system evaluation context, and system-location risk instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Michigan owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward local-health path before permit, design, or failure risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-check number, but no one has confirmed which local health department controls the file.",
+        "The installer says the site looks straightforward, but failed-system evaluation history or system-location uncertainty is still unresolved.",
+        "You need to know whether the parcel is still on a clean local path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because Michigan's public guidance routes practical permitting and inspections through that office.",
+        "Ask whether the file already contains the permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel before treating the test as a standalone fee.",
+        "If the system location is unclear, use the local file first because EGLE's public FAQ says to contact the local health department when the owner is unsure where the system is located.",
+        "Then compare perc or site-testing cost in the context of the real local workflow and file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local health department and file path are still unclear.",
+        "A failed-system evaluation or weak local file can make the site much more complex than the owner expects.",
+        "If no one can confirm where the system is located, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the parcel.",
+        "Any permit, inspection, failed-system evaluation, complaint, or repair record tied to the property.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "A short note on whether the job is buyer diligence, new install planning, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Michigan site-testing conversations get real only after the local health department and file path are clear.",
+        "Failed-system evaluation history can matter more than the first quoted perc fee.",
+        "Unknown system location can widen the whole project before a simple site-check story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Michigan site-check step a homeowner should take?",
+          "answer": "Identify the local health department first, because Michigan's public guidance routes the practical file and permit path through that office."
+        },
+        {
+          "question": "Why does Michigan perc content need to mention system location?",
+          "answer": "Because EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the system is located, and that uncertainty can change whether the site path is still straightforward."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-permit-process/michigan/",
+        "/septic-records-checklist/michigan/",
+        "/septic-system-cost-calculator/?state=MI&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
+      "calculatorProjectType": "perc_test",
       "publishStatus": "published"
     },
     {

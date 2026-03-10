@@ -298,11 +298,13 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/ohio/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/michigan/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/arizona/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/texas/")))
@@ -316,6 +318,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/illinois/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/maryland/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/wisconsin/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/louisiana/")))
@@ -726,6 +729,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before calling the health district")));
 	}
 
@@ -741,6 +745,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the local file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -835,6 +840,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the local file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1395,6 +1401,42 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The property address and county environmental health office handling the lot.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=perc_test")));
+	}
+
+	@Test
+	void ohioPercPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/ohio/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Ohio")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("off-lot discharge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OH&projectType=perc_test")));
+	}
+
+	@Test
+	void illinoisPercPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/illinois/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Illinois")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county or local health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("evaluation-form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=IL&projectType=perc_test")));
+	}
+
+	@Test
+	void michiganPercPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/michigan/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Michigan")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("failed-system evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("system is located")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MI&projectType=perc_test")));
 	}
 
 	@Test
