@@ -9510,6 +9510,1198 @@
       ],
       "calculatorProjectType": "perc_test",
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "LA",
+      "title": "Louisiana Septic Replacement Cost",
+      "metaDescription": "Louisiana septic replacement cost with parish health unit routing, application packet and property plat checks, and community-sewer gate and parish packet friction.",
+      "introCopy": "Louisiana replacement projects look simple until the parish health unit file, the application packet and property plat, and any permit application packet already tied to the property show that the system is not really on a clean like-for-like path. That is why community-sewer gate and parish packet friction matters before the low end means much.",
+      "uniqueAngle": "Louisiana replacement intent is strongest when the page ties parish health unit routing, application packet and property plat, and permit application packet together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Louisiana owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the parish health unit file actually says.",
+        "The contractor says it is a simple swap, but the application packet and property plat or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the parish health unit and pull the permit, application packet and property plat, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the parish health unit file is thin or missing.",
+        "A missing application packet and property plat or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "community-sewer gate and parish packet friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit contact responsible for the property file.",
+        "The application packet and property plat, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Louisiana replacement conversations get real only after the parish health unit file is in hand.",
+        "application packet and property plat quality can matter more than a generic replacement average implies.",
+        "community-sewer gate and parish packet friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Louisiana replacement step a homeowner should take?",
+          "answer": "Start with the parish health unit file and pull the application packet and property plat, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Louisiana replacement content need to mention application packet and property plat?",
+          "answer": "Because the application packet and property plat usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/perc-test-cost/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "LA",
+      "title": "Louisiana Septic Permit Process",
+      "metaDescription": "Louisiana septic permit process with parish health unit routing, permit application packet context, and community-sewer gate and parish packet friction.",
+      "introCopy": "Louisiana permit content is stronger than a generic install checklist because the real homeowner path runs through the parish health unit, not one vague statewide desk. The practical question is whether the permit application packet, the application packet and property plat, and the local file already support a clean install or replacement story before community-sewer gate and parish packet friction widens the job.",
+      "uniqueAngle": "Louisiana permit intent is strongest when the page explains parish health unit routing, permit application packet, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Louisiana owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which parish health unit actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the permit application packet or the local file already tied to the lot.",
+        "You need to know whether community-sewer gate and parish packet friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the parish health unit first because that office controls the practical next permit step for the parcel.",
+        "Ask for the permit application packet, the application packet and property plat, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the parish health unit actually holding the file.",
+        "A missing permit application packet or application packet and property plat can make the project more complex than the owner or contractor summary suggests.",
+        "community-sewer gate and parish packet friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit contact with jurisdiction over the property.",
+        "The permit application packet, the application packet and property plat, and any permit, design, or approval paperwork already tied to the site.",
+        "Any transfer, complaint, or follow-up record that changes the normal path.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "Louisiana permit timing depends first on identifying the right parish health unit.",
+        "permit application packet quality can matter more than a generic statewide permit article implies.",
+        "A thin local file can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Louisiana permit step a homeowner should take?",
+          "answer": "Identify the parish health unit first and ask what file already exists for the property before you treat the permit as routine."
+        },
+        {
+          "question": "Why does Louisiana permit content need to mention permit application packet?",
+          "answer": "Because the permit application packet usually marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/septic-replacement-cost/louisiana/",
+        "/perc-test-cost/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "OK",
+      "title": "Oklahoma Septic Replacement Cost",
+      "metaDescription": "Oklahoma septic replacement cost with local DEQ office or county environmental specialist routing, request-for-service and soil-profile file checks, and soil-profile path and system-choice friction.",
+      "introCopy": "Oklahoma replacement projects look simple until the local DEQ office or county environmental specialist file, the request-for-service and soil-profile file, and any authorization or permit to construct already tied to the property show that the system is not really on a clean like-for-like path. That is why soil-profile path and system-choice friction matters before the low end means much.",
+      "uniqueAngle": "Oklahoma replacement intent is strongest when the page ties local DEQ office or county environmental specialist routing, request-for-service and soil-profile file, and authorization or permit to construct together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Oklahoma owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the local DEQ office or county environmental specialist file actually says.",
+        "The contractor says it is a simple swap, but the request-for-service and soil-profile file or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the local DEQ office or county environmental specialist and pull the permit, request-for-service and soil-profile file, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local DEQ office or county environmental specialist file is thin or missing.",
+        "A missing request-for-service and soil-profile file or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "soil-profile path and system-choice friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist contact responsible for the property file.",
+        "The request-for-service and soil-profile file, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Oklahoma replacement conversations get real only after the local DEQ office or county environmental specialist file is in hand.",
+        "request-for-service and soil-profile file quality can matter more than a generic replacement average implies.",
+        "soil-profile path and system-choice friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oklahoma replacement step a homeowner should take?",
+          "answer": "Start with the local DEQ office or county environmental specialist file and pull the request-for-service and soil-profile file, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Oklahoma replacement content need to mention request-for-service and soil-profile file?",
+          "answer": "Because the request-for-service and soil-profile file usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/perc-test-cost/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "OK",
+      "title": "Oklahoma Septic Permit Process",
+      "metaDescription": "Oklahoma septic permit process with local DEQ office or county environmental specialist routing, authorization or permit to construct context, and soil-profile path and system-choice friction.",
+      "introCopy": "Oklahoma permit content is stronger than a generic install checklist because the real homeowner path runs through the local DEQ office or county environmental specialist, not one vague statewide desk. The practical question is whether the authorization or permit to construct, the request-for-service and soil-profile file, and the local file already support a clean install or replacement story before soil-profile path and system-choice friction widens the job.",
+      "uniqueAngle": "Oklahoma permit intent is strongest when the page explains local DEQ office or county environmental specialist routing, authorization or permit to construct, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Oklahoma owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which local DEQ office or county environmental specialist actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the authorization or permit to construct or the local file already tied to the lot.",
+        "You need to know whether soil-profile path and system-choice friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the local DEQ office or county environmental specialist first because that office controls the practical next permit step for the parcel.",
+        "Ask for the authorization or permit to construct, the request-for-service and soil-profile file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the local DEQ office or county environmental specialist actually holding the file.",
+        "A missing authorization or permit to construct or request-for-service and soil-profile file can make the project more complex than the owner or contractor summary suggests.",
+        "soil-profile path and system-choice friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist contact with jurisdiction over the property.",
+        "The authorization or permit to construct, the request-for-service and soil-profile file, and any permit, design, or approval paperwork already tied to the site.",
+        "Any transfer, complaint, or follow-up record that changes the normal path.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "Oklahoma permit timing depends first on identifying the right local DEQ office or county environmental specialist.",
+        "authorization or permit to construct quality can matter more than a generic statewide permit article implies.",
+        "A thin local file can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oklahoma permit step a homeowner should take?",
+          "answer": "Identify the local DEQ office or county environmental specialist first and ask what file already exists for the property before you treat the permit as routine."
+        },
+        {
+          "question": "Why does Oklahoma permit content need to mention authorization or permit to construct?",
+          "answer": "Because the authorization or permit to construct usually marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/septic-replacement-cost/oklahoma/",
+        "/perc-test-cost/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "KS",
+      "title": "Kansas Septic Replacement Cost",
+      "metaDescription": "Kansas septic replacement cost with county or city sanitary-code office routing, soil-profile and sanitary-code file checks, and local sanitary-code variation and modified-soil review.",
+      "introCopy": "Kansas replacement projects look simple until the county or city sanitary-code office file, the soil-profile and sanitary-code file, and any local sanitary-code permit path already tied to the property show that the system is not really on a clean like-for-like path. That is why local sanitary-code variation and modified-soil review matters before the low end means much.",
+      "uniqueAngle": "Kansas replacement intent is strongest when the page ties county or city sanitary-code office routing, soil-profile and sanitary-code file, and local sanitary-code permit path together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Kansas owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the county or city sanitary-code office file actually says.",
+        "The contractor says it is a simple swap, but the soil-profile and sanitary-code file or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the county or city sanitary-code office and pull the permit, soil-profile and sanitary-code file, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the county or city sanitary-code office file is thin or missing.",
+        "A missing soil-profile and sanitary-code file or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "local sanitary-code variation and modified-soil review can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary-code office contact responsible for the property file.",
+        "The soil-profile and sanitary-code file, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Kansas replacement conversations get real only after the county or city sanitary-code office file is in hand.",
+        "soil-profile and sanitary-code file quality can matter more than a generic replacement average implies.",
+        "local sanitary-code variation and modified-soil review can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kansas replacement step a homeowner should take?",
+          "answer": "Start with the county or city sanitary-code office file and pull the soil-profile and sanitary-code file, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Kansas replacement content need to mention soil-profile and sanitary-code file?",
+          "answer": "Because the soil-profile and sanitary-code file usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/perc-test-cost/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "KS",
+      "title": "Kansas Septic Permit Process",
+      "metaDescription": "Kansas septic permit process with county or city sanitary-code office routing, local sanitary-code permit path context, and local sanitary-code variation and modified-soil review.",
+      "introCopy": "Kansas permit content is stronger than a generic install checklist because the real homeowner path runs through the county or city sanitary-code office, not one vague statewide desk. The practical question is whether the local sanitary-code permit path, the soil-profile and sanitary-code file, and the local file already support a clean install or replacement story before local sanitary-code variation and modified-soil review widens the job.",
+      "uniqueAngle": "Kansas permit intent is strongest when the page explains county or city sanitary-code office routing, local sanitary-code permit path, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Kansas owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county or city sanitary-code office actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the local sanitary-code permit path or the local file already tied to the lot.",
+        "You need to know whether local sanitary-code variation and modified-soil review could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the county or city sanitary-code office first because that office controls the practical next permit step for the parcel.",
+        "Ask for the local sanitary-code permit path, the soil-profile and sanitary-code file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the county or city sanitary-code office actually holding the file.",
+        "A missing local sanitary-code permit path or soil-profile and sanitary-code file can make the project more complex than the owner or contractor summary suggests.",
+        "local sanitary-code variation and modified-soil review can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary-code office contact with jurisdiction over the property.",
+        "The local sanitary-code permit path, the soil-profile and sanitary-code file, and any permit, design, or approval paperwork already tied to the site.",
+        "Any transfer, complaint, or follow-up record that changes the normal path.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "Kansas permit timing depends first on identifying the right county or city sanitary-code office.",
+        "local sanitary-code permit path quality can matter more than a generic statewide permit article implies.",
+        "A thin local file can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kansas permit step a homeowner should take?",
+          "answer": "Identify the county or city sanitary-code office first and ask what file already exists for the property before you treat the permit as routine."
+        },
+        {
+          "question": "Why does Kansas permit content need to mention local sanitary-code permit path?",
+          "answer": "Because the local sanitary-code permit path usually marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/septic-replacement-cost/kansas/",
+        "/perc-test-cost/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "IN",
+      "title": "Indiana Septic Replacement Cost",
+      "metaDescription": "Indiana septic replacement cost with county or local health office routing, county permit and site file checks, and sewer-availability gate and local-board variation.",
+      "introCopy": "Indiana replacement projects look simple until the county or local health office file, the county permit and site file, and any county permit path already tied to the property show that the system is not really on a clean like-for-like path. That is why sewer-availability gate and local-board variation matters before the low end means much.",
+      "uniqueAngle": "Indiana replacement intent is strongest when the page ties county or local health office routing, county permit and site file, and county permit path together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Indiana owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the county or local health office file actually says.",
+        "The contractor says it is a simple swap, but the county permit and site file or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health office and pull the permit, county permit and site file, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the county or local health office file is thin or missing.",
+        "A missing county permit and site file or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "sewer-availability gate and local-board variation can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office contact responsible for the property file.",
+        "The county permit and site file, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Indiana replacement conversations get real only after the county or local health office file is in hand.",
+        "county permit and site file quality can matter more than a generic replacement average implies.",
+        "sewer-availability gate and local-board variation can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Indiana replacement step a homeowner should take?",
+          "answer": "Start with the county or local health office file and pull the county permit and site file, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Indiana replacement content need to mention county permit and site file?",
+          "answer": "Because the county permit and site file usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-permit-process/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "IN",
+      "title": "Indiana Septic Records Checklist",
+      "metaDescription": "Indiana septic records checklist with county or local health office routing, county permit and site file pulls, and sewer-availability gate and local-board variation.",
+      "introCopy": "Indiana records work is less about one statewide file and more about getting the right county or local health office file in hand. If the homeowner cannot surface the county permit and site file, the permit trail, and any local board of health file, the low end is still just a planning story.",
+      "uniqueAngle": "Indiana records intent is strongest when the page connects county or local health office routing, county permit and site file, and sewer-availability gate and local-board variation instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Indiana buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which county or local health office actually controls the file.",
+        "The owner says the system is permitted, but there is still no county permit and site file or comparable local file in hand.",
+        "You need to know whether sewer-availability gate and local-board variation makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health office and confirm who actually holds the onsite file for the property.",
+        "Request the county permit and site file, permit file, approval path, and any local board of health file or transfer-related record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the county or local health office holding the actual record.",
+        "A missing county permit and site file can hide a very different system path than the owner summary suggests.",
+        "sewer-availability gate and local-board variation can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office identified for the property.",
+        "Any county permit and site file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any local board of health file, transfer, complaint, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Indiana records conversations get real only after the county or local health office is clear.",
+        "A thin county permit and site file trail can hide the real approval story behind the current system.",
+        "sewer-availability gate and local-board variation can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Indiana septic records in practice?",
+          "answer": "Usually the county or local health office, which is the first office to identify before you ask for the county permit and site file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Indiana homeowner ask for the county permit and site file when pulling septic records?",
+          "answer": "Because the county permit and site file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-replacement-cost/indiana/",
+        "/septic-permit-process/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "NE",
+      "title": "Nebraska Septic Replacement Cost",
+      "metaDescription": "Nebraska septic replacement cost with Nebraska DHHS or local office routing, registered-system record checks, and registered-system file gaps and local requirement friction.",
+      "introCopy": "Nebraska replacement projects look simple until the Nebraska DHHS or local office file, the registered-system record, and any construction permit already tied to the property show that the system is not really on a clean like-for-like path. That is why registered-system file gaps and local requirement friction matters before the low end means much.",
+      "uniqueAngle": "Nebraska replacement intent is strongest when the page ties Nebraska DHHS or local office routing, registered-system record, and construction permit together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Nebraska owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the Nebraska DHHS or local office file actually says.",
+        "The contractor says it is a simple swap, but the registered-system record or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the Nebraska DHHS or local office and pull the permit, registered-system record, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the Nebraska DHHS or local office file is thin or missing.",
+        "A missing registered-system record or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "registered-system file gaps and local requirement friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The Nebraska DHHS or local office contact responsible for the property file.",
+        "The registered-system record, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Nebraska replacement conversations get real only after the Nebraska DHHS or local office file is in hand.",
+        "registered-system record quality can matter more than a generic replacement average implies.",
+        "registered-system file gaps and local requirement friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nebraska replacement step a homeowner should take?",
+          "answer": "Start with the Nebraska DHHS or local office file and pull the registered-system record, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Nebraska replacement content need to mention registered-system record?",
+          "answer": "Because the registered-system record usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/septic-permit-process/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NE",
+      "title": "Nebraska Septic Records Checklist",
+      "metaDescription": "Nebraska septic records checklist with Nebraska DHHS or local office routing, registered-system record pulls, and registered-system file gaps and local requirement friction.",
+      "introCopy": "Nebraska records work is less about one statewide file and more about getting the right Nebraska DHHS or local office file in hand. If the homeowner cannot surface the registered-system record, the permit trail, and any registered-system lookup, the low end is still just a planning story.",
+      "uniqueAngle": "Nebraska records intent is strongest when the page connects Nebraska DHHS or local office routing, registered-system record, and registered-system file gaps and local requirement friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Nebraska buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which Nebraska DHHS or local office actually controls the file.",
+        "The owner says the system is permitted, but there is still no registered-system record or comparable local file in hand.",
+        "You need to know whether registered-system file gaps and local requirement friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the Nebraska DHHS or local office and confirm who actually holds the onsite file for the property.",
+        "Request the registered-system record, permit file, approval path, and any registered-system lookup or transfer-related record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the Nebraska DHHS or local office holding the actual record.",
+        "A missing registered-system record can hide a very different system path than the owner summary suggests.",
+        "registered-system file gaps and local requirement friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The Nebraska DHHS or local office identified for the property.",
+        "Any registered-system record, permit file, design packet, or approval note already tied to the parcel.",
+        "Any registered-system lookup, transfer, complaint, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Nebraska records conversations get real only after the Nebraska DHHS or local office is clear.",
+        "A thin registered-system record trail can hide the real approval story behind the current system.",
+        "registered-system file gaps and local requirement friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Nebraska septic records in practice?",
+          "answer": "Usually the Nebraska DHHS or local office, which is the first office to identify before you ask for the registered-system record or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Nebraska homeowner ask for the registered-system record when pulling septic records?",
+          "answer": "Because the registered-system record usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/septic-replacement-cost/nebraska/",
+        "/septic-permit-process/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "NM",
+      "title": "New Mexico Septic Replacement Cost",
+      "metaDescription": "New Mexico septic replacement cost with NMED liquid-waste program routing, permit-search result checks, and permit-search gaps and forms-path friction.",
+      "introCopy": "New Mexico replacement projects look simple until the NMED liquid-waste program file, the permit-search result, and any onsite liquid waste permit already tied to the property show that the system is not really on a clean like-for-like path. That is why permit-search gaps and forms-path friction matters before the low end means much.",
+      "uniqueAngle": "New Mexico replacement intent is strongest when the page ties NMED liquid-waste program routing, permit-search result, and onsite liquid waste permit together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for New Mexico owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the NMED liquid-waste program file actually says.",
+        "The contractor says it is a simple swap, but the permit-search result or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the NMED liquid-waste program and pull the permit, permit-search result, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the NMED liquid-waste program file is thin or missing.",
+        "A missing permit-search result or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "permit-search gaps and forms-path friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The NMED liquid-waste program contact responsible for the property file.",
+        "The permit-search result, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "New Mexico replacement conversations get real only after the NMED liquid-waste program file is in hand.",
+        "permit-search result quality can matter more than a generic replacement average implies.",
+        "permit-search gaps and forms-path friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Mexico replacement step a homeowner should take?",
+          "answer": "Start with the NMED liquid-waste program file and pull the permit-search result, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does New Mexico replacement content need to mention permit-search result?",
+          "answer": "Because the permit-search result usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/buying-a-house-with-a-septic-system/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NM",
+      "title": "New Mexico Septic Records Checklist",
+      "metaDescription": "New Mexico septic records checklist with NMED liquid-waste program routing, permit-search result pulls, and permit-search gaps and forms-path friction.",
+      "introCopy": "New Mexico records work is less about one statewide file and more about getting the right NMED liquid-waste program file in hand. If the homeowner cannot surface the permit-search result, the permit trail, and any homeowner notice, the low end is still just a planning story.",
+      "uniqueAngle": "New Mexico records intent is strongest when the page connects NMED liquid-waste program routing, permit-search result, and permit-search gaps and forms-path friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for New Mexico buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which NMED liquid-waste program actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit-search result or comparable local file in hand.",
+        "You need to know whether permit-search gaps and forms-path friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the NMED liquid-waste program and confirm who actually holds the onsite file for the property.",
+        "Request the permit-search result, permit file, approval path, and any homeowner notice or transfer-related record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the NMED liquid-waste program holding the actual record.",
+        "A missing permit-search result can hide a very different system path than the owner summary suggests.",
+        "permit-search gaps and forms-path friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The NMED liquid-waste program identified for the property.",
+        "Any permit-search result, permit file, design packet, or approval note already tied to the parcel.",
+        "Any homeowner notice, transfer, complaint, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "New Mexico records conversations get real only after the NMED liquid-waste program is clear.",
+        "A thin permit-search result trail can hide the real approval story behind the current system.",
+        "permit-search gaps and forms-path friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds New Mexico septic records in practice?",
+          "answer": "Usually the NMED liquid-waste program, which is the first office to identify before you ask for the permit-search result or any transfer paperwork."
+        },
+        {
+          "question": "Why should a New Mexico homeowner ask for the permit-search result when pulling septic records?",
+          "answer": "Because the permit-search result usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/septic-replacement-cost/new-mexico/",
+        "/buying-a-house-with-a-septic-system/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "UT",
+      "title": "Utah Septic Replacement Cost",
+      "metaDescription": "Utah septic replacement cost with local health department or district engineer routing, soil log and percolation test results checks, and local control and operating-permit friction.",
+      "introCopy": "Utah replacement projects look simple until the local health department or district engineer file, the soil log and percolation test results, and any onsite wastewater permit already tied to the property show that the system is not really on a clean like-for-like path. That is why local control and operating-permit friction matters before the low end means much.",
+      "uniqueAngle": "Utah replacement intent is strongest when the page ties local health department or district engineer routing, soil log and percolation test results, and onsite wastewater permit together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Utah owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the local health department or district engineer file actually says.",
+        "The contractor says it is a simple swap, but the soil log and percolation test results or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or district engineer and pull the permit, soil log and percolation test results, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local health department or district engineer file is thin or missing.",
+        "A missing soil log and percolation test results or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "local control and operating-permit friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer contact responsible for the property file.",
+        "The soil log and percolation test results, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Utah replacement conversations get real only after the local health department or district engineer file is in hand.",
+        "soil log and percolation test results quality can matter more than a generic replacement average implies.",
+        "local control and operating-permit friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Utah replacement step a homeowner should take?",
+          "answer": "Start with the local health department or district engineer file and pull the soil log and percolation test results, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Utah replacement content need to mention soil log and percolation test results?",
+          "answer": "Because the soil log and percolation test results usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/septic-permit-process/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "UT",
+      "title": "Utah Septic Records Checklist",
+      "metaDescription": "Utah septic records checklist with local health department or district engineer routing, soil log and percolation test results pulls, and local control and operating-permit friction.",
+      "introCopy": "Utah records work is less about one statewide file and more about getting the right local health department or district engineer file in hand. If the homeowner cannot surface the soil log and percolation test results, the permit trail, and any operating permit note, the low end is still just a planning story.",
+      "uniqueAngle": "Utah records intent is strongest when the page connects local health department or district engineer routing, soil log and percolation test results, and local control and operating-permit friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Utah buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which local health department or district engineer actually controls the file.",
+        "The owner says the system is permitted, but there is still no soil log and percolation test results or comparable local file in hand.",
+        "You need to know whether local control and operating-permit friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or district engineer and confirm who actually holds the onsite file for the property.",
+        "Request the soil log and percolation test results, permit file, approval path, and any operating permit note or transfer-related record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local health department or district engineer holding the actual record.",
+        "A missing soil log and percolation test results can hide a very different system path than the owner summary suggests.",
+        "local control and operating-permit friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer identified for the property.",
+        "Any soil log and percolation test results, permit file, design packet, or approval note already tied to the parcel.",
+        "Any operating permit note, transfer, complaint, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Utah records conversations get real only after the local health department or district engineer is clear.",
+        "A thin soil log and percolation test results trail can hide the real approval story behind the current system.",
+        "local control and operating-permit friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Utah septic records in practice?",
+          "answer": "Usually the local health department or district engineer, which is the first office to identify before you ask for the soil log and percolation test results or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Utah homeowner ask for the soil log and percolation test results when pulling septic records?",
+          "answer": "Because the soil log and percolation test results usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/septic-replacement-cost/utah/",
+        "/septic-permit-process/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "KY",
+      "title": "Kentucky Septic Replacement Cost",
+      "metaDescription": "Kentucky septic replacement cost with local health department routing, site-evaluation report checks, and site-suitability and local-file friction.",
+      "introCopy": "Kentucky replacement projects look simple until the local health department file, the site-evaluation report, and any OSDS construction permit already tied to the property show that the system is not really on a clean like-for-like path. That is why site-suitability and local-file friction matters before the low end means much.",
+      "uniqueAngle": "Kentucky replacement intent is strongest when the page ties local health department routing, site-evaluation report, and OSDS construction permit together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Kentucky owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the local health department file actually says.",
+        "The contractor says it is a simple swap, but the site-evaluation report or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the local health department and pull the permit, site-evaluation report, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local health department file is thin or missing.",
+        "A missing site-evaluation report or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "site-suitability and local-file friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "The site-evaluation report, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Kentucky replacement conversations get real only after the local health department file is in hand.",
+        "site-evaluation report quality can matter more than a generic replacement average implies.",
+        "site-suitability and local-file friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kentucky replacement step a homeowner should take?",
+          "answer": "Start with the local health department file and pull the site-evaluation report, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Kentucky replacement content need to mention site-evaluation report?",
+          "answer": "Because the site-evaluation report usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/septic-records-checklist/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "KY",
+      "title": "Buying a House With a Septic System in Kentucky",
+      "metaDescription": "Kentucky homebuyer septic checklist with local health department routing, homeowner permit note context, and site-suitability and local-file friction.",
+      "introCopy": "Kentucky buyer risk is rarely just about paying for an inspection. The real early question is whether the local health department file, the site-evaluation report, and any homeowner permit note already support the seller story before site-suitability and local-file friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Kentucky buyer intent is strongest when the page ties local health department routing, homeowner permit note, and site-evaluation report together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Kentucky buyers, sellers, and agents who know the property uses septic but still need to know whether the local health department file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local health department file yet.",
+        "You need to know whether the site-evaluation report and any homeowner permit note are complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches site-suitability and local-file friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local health department and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the site-evaluation report, any homeowner permit note, and the permit or approval paperwork already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health department file is still thin or incomplete.",
+        "site-evaluation report gaps can make the property more complex than the seller summary suggests.",
+        "site-suitability and local-file friction can widen the deal before a simple inspection or credit conversation feels real."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact with jurisdiction over the property.",
+        "The site-evaluation report and any permit, design, or approval paperwork already tied to the parcel.",
+        "Any homeowner permit note or transfer-related inspection material already shared in the deal.",
+        "The inspection report, seller disclosure, and any septic paperwork already circulating with the property."
+      ],
+      "driverBullets": [
+        "Kentucky buyers need the local health department file before the inspection or repair quote means much.",
+        "homeowner permit note quality can matter more than the seller's simple septic summary.",
+        "site-suitability and local-file friction can widen buyer risk earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Kentucky buyer should ask for?",
+          "answer": "Start with the local health department file and ask for the site-evaluation report, any permit or approval paperwork, and any homeowner permit note already tied to the property."
+        },
+        {
+          "question": "Why does Kentucky buyer content need to mention homeowner permit note?",
+          "answer": "Because homeowner permit note quality often tells you whether the deal is still on a simple path or whether the buyer is inheriting a bigger septic story than the listing implies."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/septic-replacement-cost/kentucky/",
+        "/septic-records-checklist/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "IA",
+      "title": "Iowa Septic Replacement Cost",
+      "metaDescription": "Iowa septic replacement cost with county environmental health office or county sanitarian routing, time-of-transfer inspection checks, and time-of-transfer and county-sanitarian friction.",
+      "introCopy": "Iowa replacement projects look simple until the county environmental health office or county sanitarian file, the time-of-transfer inspection, and any county permit file already tied to the property show that the system is not really on a clean like-for-like path. That is why time-of-transfer and county-sanitarian friction matters before the low end means much.",
+      "uniqueAngle": "Iowa replacement intent is strongest when the page ties county environmental health office or county sanitarian routing, time-of-transfer inspection, and county permit file together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for Iowa owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the county environmental health office or county sanitarian file actually says.",
+        "The contractor says it is a simple swap, but the time-of-transfer inspection or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office or county sanitarian and pull the permit, time-of-transfer inspection, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the county environmental health office or county sanitarian file is thin or missing.",
+        "A missing time-of-transfer inspection or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "time-of-transfer and county-sanitarian friction can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian contact responsible for the property file.",
+        "The time-of-transfer inspection, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "Iowa replacement conversations get real only after the county environmental health office or county sanitarian file is in hand.",
+        "time-of-transfer inspection quality can matter more than a generic replacement average implies.",
+        "time-of-transfer and county-sanitarian friction can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Iowa replacement step a homeowner should take?",
+          "answer": "Start with the county environmental health office or county sanitarian file and pull the time-of-transfer inspection, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does Iowa replacement content need to mention time-of-transfer inspection?",
+          "answer": "Because the time-of-transfer inspection usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/septic-records-checklist/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "IA",
+      "title": "Buying a House With a Septic System in Iowa",
+      "metaDescription": "Iowa homebuyer septic checklist with county environmental health office or county sanitarian routing, escrow or waiver record context, and time-of-transfer and county-sanitarian friction.",
+      "introCopy": "Iowa buyer risk is rarely just about paying for an inspection. The real early question is whether the county environmental health office or county sanitarian file, the time-of-transfer inspection, and any escrow or waiver record already support the seller story before time-of-transfer and county-sanitarian friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Iowa buyer intent is strongest when the page ties county environmental health office or county sanitarian routing, escrow or waiver record, and time-of-transfer inspection together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Iowa buyers, sellers, and agents who know the property uses septic but still need to know whether the county environmental health office or county sanitarian file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county environmental health office or county sanitarian file yet.",
+        "You need to know whether the time-of-transfer inspection and any escrow or waiver record are complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches time-of-transfer and county-sanitarian friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office or county sanitarian and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the time-of-transfer inspection, any escrow or waiver record, and the permit or approval paperwork already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county environmental health office or county sanitarian file is still thin or incomplete.",
+        "time-of-transfer inspection gaps can make the property more complex than the seller summary suggests.",
+        "time-of-transfer and county-sanitarian friction can widen the deal before a simple inspection or credit conversation feels real."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian contact with jurisdiction over the property.",
+        "The time-of-transfer inspection and any permit, design, or approval paperwork already tied to the parcel.",
+        "Any escrow or waiver record or transfer-related inspection material already shared in the deal.",
+        "The inspection report, seller disclosure, and any septic paperwork already circulating with the property."
+      ],
+      "driverBullets": [
+        "Iowa buyers need the county environmental health office or county sanitarian file before the inspection or repair quote means much.",
+        "escrow or waiver record quality can matter more than the seller's simple septic summary.",
+        "time-of-transfer and county-sanitarian friction can widen buyer risk earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Iowa buyer should ask for?",
+          "answer": "Start with the county environmental health office or county sanitarian file and ask for the time-of-transfer inspection, any permit or approval paperwork, and any escrow or waiver record already tied to the property."
+        },
+        {
+          "question": "Why does Iowa buyer content need to mention escrow or waiver record?",
+          "answer": "Because escrow or waiver record quality often tells you whether the deal is still on a simple path or whether the buyer is inheriting a bigger septic story than the listing implies."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/septic-replacement-cost/iowa/",
+        "/septic-records-checklist/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "WV",
+      "title": "West Virginia Septic Replacement Cost",
+      "metaDescription": "West Virginia septic replacement cost with local health department routing, sewage permit application checks, and thin local file and public-record delay.",
+      "introCopy": "West Virginia replacement projects look simple until the local health department file, the sewage permit application, and any permit issuance file already tied to the property show that the system is not really on a clean like-for-like path. That is why thin local file and public-record delay matters before the low end means much.",
+      "uniqueAngle": "West Virginia replacement intent is strongest when the page ties local health department routing, sewage permit application, and permit issuance file together instead of pretending replacement is just a tank price.",
+      "targetReader": "Best for West Virginia owners, buyers, and agents who already know there is a failing, aging, or suspect system but still need to know whether the file supports a straightforward replacement story.",
+      "fitBullets": [
+        "You know the system may need replacement, but no one has confirmed what the local health department file actually says.",
+        "The contractor says it is a simple swap, but the sewage permit application or permit trail is still missing.",
+        "You need to separate a normal replacement quote from a wider file, site, or review problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the local health department and pull the permit, sewage permit application, and any transfer or inspection note tied to the parcel.",
+        "Confirm whether the current system story still matches the file or whether prior approvals, complaints, or transfer notes already changed the risk.",
+        "Use the local file to decide whether the project still looks like a straight replacement or whether a bigger review, redesign, or approval path is already visible.",
+        "Only after that file review should you compare a straightforward replacement estimate against a wider scenario."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local health department file is thin or missing.",
+        "A missing sewage permit application or weak permit trail can make the current system story less trustworthy than the seller or contractor summary suggests.",
+        "thin local file and public-record delay can move the job away from a like-for-like replacement much faster than the homeowner expects."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "The sewage permit application, permit trail, and any transfer, complaint, or inspection record already tied to the system.",
+        "Any note showing whether the current system is failing, undersized, overdue, or already flagged in the local file.",
+        "A short note on whether the replacement question is tied to a sale, obvious failure, capacity change, or permit cleanup."
+      ],
+      "driverBullets": [
+        "West Virginia replacement conversations get real only after the local health department file is in hand.",
+        "sewage permit application quality can matter more than a generic replacement average implies.",
+        "thin local file and public-record delay can widen replacement scope well before the installer quote looks final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first West Virginia replacement step a homeowner should take?",
+          "answer": "Start with the local health department file and pull the sewage permit application, permit history, and any transfer or inspection record before trusting a simple replacement quote."
+        },
+        {
+          "question": "Why does West Virginia replacement content need to mention sewage permit application?",
+          "answer": "Because the sewage permit application usually tells you whether the property still supports the clean replacement story the owner or contractor is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/septic-records-checklist/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "calculatorProjectType": "replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "WV",
+      "title": "Buying a House With a Septic System in West Virginia",
+      "metaDescription": "West Virginia homebuyer septic checklist with local health department routing, public-records request trail context, and thin local file and public-record delay.",
+      "introCopy": "West Virginia buyer risk is rarely just about paying for an inspection. The real early question is whether the local health department file, the sewage permit application, and any public-records request trail already support the seller story before thin local file and public-record delay turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "West Virginia buyer intent is strongest when the page ties local health department routing, public-records request trail, and sewage permit application together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for West Virginia buyers, sellers, and agents who know the property uses septic but still need to know whether the local health department file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local health department file yet.",
+        "You need to know whether the sewage permit application and any public-records request trail are complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches thin local file and public-record delay before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local health department and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the sewage permit application, any public-records request trail, and the permit or approval paperwork already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health department file is still thin or incomplete.",
+        "sewage permit application gaps can make the property more complex than the seller summary suggests.",
+        "thin local file and public-record delay can widen the deal before a simple inspection or credit conversation feels real."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact with jurisdiction over the property.",
+        "The sewage permit application and any permit, design, or approval paperwork already tied to the parcel.",
+        "Any public-records request trail or transfer-related inspection material already shared in the deal.",
+        "The inspection report, seller disclosure, and any septic paperwork already circulating with the property."
+      ],
+      "driverBullets": [
+        "West Virginia buyers need the local health department file before the inspection or repair quote means much.",
+        "public-records request trail quality can matter more than the seller's simple septic summary.",
+        "thin local file and public-record delay can widen buyer risk earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a West Virginia buyer should ask for?",
+          "answer": "Start with the local health department file and ask for the sewage permit application, any permit or approval paperwork, and any public-records request trail already tied to the property."
+        },
+        {
+          "question": "Why does West Virginia buyer content need to mention public-records request trail?",
+          "answer": "Because public-records request trail quality often tells you whether the deal is still on a simple path or whether the buyer is inheriting a bigger septic story than the listing implies."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/septic-replacement-cost/west-virginia/",
+        "/septic-records-checklist/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
     }
   ]
 }

@@ -290,9 +290,10 @@ public class SeoService {
 
     public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
+        String seoTitle = contentPageSeoTitle(contentPage);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
-                webPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), "CollectionPage"),
+                webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), "CollectionPage"),
                 lastReviewedAt,
                 preparedBy,
                 reviewedBy
@@ -302,10 +303,10 @@ public class SeoService {
                 crumb(contentPage.title(), canonicalUrl)
         ))));
         if (contentPage.faqBlocks() != null && !contentPage.faqBlocks().isEmpty()) {
-            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, contentPage.title(), contentPage.metaDescription(), contentPage.faqBlocks())));
+            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, contentPage.metaDescription(), contentPage.faqBlocks())));
         }
         return pageMeta(
-                contentPage.title(),
+                seoTitle,
                 contentPage.metaDescription(),
                 canonicalUrl,
                 "index,follow",
@@ -510,6 +511,10 @@ public class SeoService {
 
     private String stateGuideSeoTitle(StateProfile state) {
         return stateGuideTitle(state) + " | SepticPath";
+    }
+
+    private String contentPageSeoTitle(ContentPage contentPage) {
+        return contentPage.title() + " | SepticPath";
     }
 
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage) {

@@ -6,8 +6,11 @@
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.StateMoneyPageLink> featuredStateMoneyPageLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> contentEvidenceLanes = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
 @param String calculatorCtaLabel = "Open the estimator"
@@ -38,6 +41,18 @@
                     <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                     <a class="button button--secondary" href="#faq">Jump to FAQs</a>
                 </div>
+                @if (!featuredInternalLinks.isEmpty())
+                    <div class="quick-link-strip" aria-label="Fast next steps">
+                        <span class="quick-link-strip__label">Fast next steps</span>
+                        @for (var link : featuredInternalLinks)
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_featured_link"
+                               data-track-target-type="internal_page">${link.title()}</a>
+                        @endfor
+                    </div>
+                @endif
             </div>
 
             <article class="hero-sidecard">
@@ -208,6 +223,18 @@
             <div class="container">
                 <article class="detail-card detail-card--full">
                     <h2>State-specific pages</h2>
+                    @if (!featuredStateMoneyPageLinks.isEmpty())
+                        <div class="quick-link-strip" aria-label="Featured state-specific pages">
+                            <span class="quick-link-strip__label">Featured states</span>
+                            @for (var stateMoneyPageLink : featuredStateMoneyPageLinks)
+                                <a class="button button--secondary quick-link-strip__button"
+                                   href="${stateMoneyPageLink.path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_featured_state_specific"
+                                   data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a>
+                            @endfor
+                        </div>
+                    @endif
                     <ul class="detail-list">
                         @for (var stateMoneyPageLink : stateMoneyPageLinks)
                             <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
@@ -241,7 +268,7 @@
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Related pages</span>
                 <ul class="detail-list">
-                    @for (var link : internalLinks)
+                    @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
                         <li>
                             <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a>
                             <p class="detail-list__note">${link.note()}</p>

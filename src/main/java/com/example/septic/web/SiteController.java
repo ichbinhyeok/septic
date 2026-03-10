@@ -531,14 +531,18 @@ public class SiteController {
                 .limit(4)
                 .map(entry -> contentEvidenceLane(entry.getKey(), entry.getValue()))
                 .toList();
+        List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
+        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(6).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
-        model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null));
+        model.addAttribute("internalLinks", internalLinks);
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(3).toList());
+        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
         model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
         model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
