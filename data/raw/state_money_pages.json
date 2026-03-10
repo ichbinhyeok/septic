@@ -2045,6 +2045,66 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "PA",
+      "title": "Buying a House With a Septic System in Pennsylvania",
+      "metaDescription": "Pennsylvania homebuyer septic checklist with municipality routing, SEO file pulls, and permit-history risk in mind.",
+      "introCopy": "Pennsylvania septic buyer risk is rarely about the inspection alone. The real early question is which municipality or local agency controls the file, because the Sewage Enforcement Officer path, permit history, and field notes often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Pennsylvania buyer intent is strongest when the page explains municipality routing, Sewage Enforcement Officer file quality, and local permit history together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Pennsylvania buyers, sellers, and agents who know the property uses onsite sewage but still need to know whether the municipality file, SEO notes, and permit history create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown which municipality or local agency actually holds the file.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches Sewage Enforcement Officer and missing-file risk before the negotiation becomes a replacement problem."
+      ],
+      "decisionSteps": [
+        "Identify the municipality or local agency first and ask which Sewage Enforcement Officer handles the property.",
+        "Request the permit file, as-built, pumping history, inspection notes, and any enforcement record tied to that local path.",
+        "Compare the local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the municipality and SEO file make the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the municipality or Sewage Enforcement Officer file is still unclear.",
+        "A missing as-built or permit history can hide field constraints that the seller summary never explains.",
+        "If the local file already shows soil, repair, or enforcement friction, the buyer may be inheriting more risk than the listing suggests."
+      ],
+      "quotePrepChecklist": [
+        "The municipality or local agency name plus the Sewage Enforcement Officer contact for the property.",
+        "The permit file, as-built drawing, and any pumping, inspection, repair, or enforcement record tied to the site.",
+        "Any note showing known field or soil constraints already visible in the local file.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Pennsylvania buyers need the municipality and SEO file before the inspection or repair quote means much.",
+        "A missing as-built or permit file can matter more than the seller's simple septic summary.",
+        "Local field or soil notes can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Pennsylvania buyer should ask for?",
+          "answer": "Ask the municipality or local agency for the permit file and as-built first, because Pennsylvania buyer risk usually starts with the local SEO path."
+        },
+        {
+          "question": "Why does the Sewage Enforcement Officer matter in a Pennsylvania septic deal?",
+          "answer": "Because the SEO often holds the most practical permit and enforcement context for the property, which can change how trustworthy the seller story really is."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-records-checklist/pennsylvania/",
+        "/septic-permit-process/pennsylvania/",
+        "/septic-inspection-cost/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "WA",
       "title": "Washington Septic Records Checklist",
@@ -2751,6 +2811,67 @@
       ],
       "internalLinkTargets": [
         "/septic-system-cost-calculator/north-carolina/",
+        "/septic-permit-process/north-carolina/",
+        "/septic-inspection-cost/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NC",
+      "title": "Buying a House With a Septic System in North Carolina",
+      "metaDescription": "North Carolina homebuyer septic checklist with county health permit-ladder review and operation-permit gaps in mind.",
+      "introCopy": "North Carolina septic buyer risk is rarely just about the inspection. The real early question is whether the county health file shows a clean permit ladder, because the improvement permit, construction authorization, and operation permit history often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "North Carolina buyer intent is strongest when the page explains permit-ladder history and county-health file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for North Carolina buyers, sellers, and agents who know the property uses onsite wastewater treatment but still need to know whether the county health file and permit ladder create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county health file yet.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches missing permit-ladder history before the negotiation becomes a replacement problem."
+      ],
+      "decisionSteps": [
+        "Start with the county health department and ask for the improvement permit, construction authorization, and operation record tied to the property.",
+        "Compare those permit-ladder documents against the current home, bedroom count, additions, and seller disclosure.",
+        "Use the county file to decide whether the property still fits the old assumptions or whether the buyer is inheriting a wider site or permit problem.",
+        "Then price inspection, repair, or replacement risk only after the permit ladder makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county health file is still missing key permit-ladder documents.",
+        "If the current home no longer matches the old improvement-permit assumptions, the deal can widen fast.",
+        "Missing construction or operation approval can signal more county friction than the seller summary suggests."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact with jurisdiction over the property.",
+        "The improvement permit, construction authorization, and operation permit or certificate of completion tied to the site.",
+        "Any site, bedroom-count, addition, or use-change history that may affect the county file.",
+        "The inspection report, seller disclosure, and any repair history already shared during the deal."
+      ],
+      "driverBullets": [
+        "North Carolina buyers need the county health file before the inspection or repair quote means much.",
+        "Missing improvement-permit or operation-permit history can matter more than the seller's simple septic summary.",
+        "Bedroom-count and use-change drift can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a North Carolina buyer should ask for?",
+          "answer": "Ask the county health department for the improvement permit, construction authorization, and operation record first, because North Carolina buyer risk usually starts with permit-ladder quality."
+        },
+        {
+          "question": "Why does operation-permit history matter in a North Carolina septic deal?",
+          "answer": "Because the county health department uses separate approval stages, and missing one can mean the buyer is inheriting an incomplete or weaker file than the seller suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-records-checklist/north-carolina/",
         "/septic-permit-process/north-carolina/",
         "/septic-inspection-cost/north-carolina/",
         "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
@@ -3830,6 +3951,69 @@
         "tx_04",
         "tx_05"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "TX",
+      "title": "Buying a House With a Septic System in Texas",
+      "metaDescription": "Texas homebuyer septic checklist with OARS authority lookup, approved-plan review, site-evaluation records, and aerobic-system risk.",
+      "introCopy": "Texas septic buyer risk is rarely just about the inspection bill. The real early question is which local permitting authority owns the OSSF file, because the approved plan, site evaluation, and any aerobic-system maintenance obligations often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Texas buyer intent is strongest when the page explains OARS authority lookup, approved-plan quality, and site-evaluation context together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Texas buyers, sellers, and agents who know the property uses an OSSF but still need to know whether the local permit file, approved plan, site evaluation, and aerobic-system history create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown which local permitting authority actually holds the OSSF file.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches approved-plan, site-evaluation, and aerobic-maintenance risk before the negotiation turns into a replacement fight."
+      ],
+      "decisionSteps": [
+        "Use OARS or the homeowner hub to identify the local permitting authority before you debate inspection cost or repair credits.",
+        "Ask that office for the permit file, approved plan, and most recent site evaluation tied to the property.",
+        "Confirm whether the system is conventional, aerobic, or otherwise advanced so you know whether maintenance obligations widen the buyer story.",
+        "Then price inspection, repair, or replacement risk only after the file and maintenance trail make the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local permitting authority and approved plan are still unclear.",
+        "A missing site evaluation can hide a very different system path than the seller summary suggests.",
+        "If the property uses an aerobic or advanced system, weak maintenance history can make the deal more complex than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county and local permitting authority identified through OARS or the Texas homeowner hub.",
+        "The permit file, approved plan, and most recent site evaluation tied to the property.",
+        "Any aerobic-system maintenance contract, inspection history, or repair notes already tied to the site.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Texas buyers need the local permitting authority file before the inspection or repair quote means much.",
+        "A missing approved plan or site evaluation can matter more than the seller's simple septic summary.",
+        "Aerobic-system maintenance obligations can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Texas buyer should ask for?",
+          "answer": "Ask the local permitting authority for the permit file, approved plan, and site evaluation first, because Texas buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does aerobic-system history matter in a Texas septic deal?",
+          "answer": "Because aerobic and other advanced systems can carry ongoing maintenance and reporting obligations, which means the buyer may inherit more than a basic permit file."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/texas/",
+        "/septic-records-checklist/texas/",
+        "/septic-permit-process/texas/",
+        "/perc-test-cost/texas/",
+        "/septic-system-cost-calculator/?state=TX&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "tx_01",
+        "tx_02",
+        "tx_03",
+        "tx_04",
+        "tx_05",
+        "tx_06"
+      ],
+      "calculatorProjectType": "buying_home",
       "publishStatus": "published"
     },
     {
