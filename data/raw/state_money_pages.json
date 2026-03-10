@@ -12688,6 +12688,2192 @@
       ],
       "calculatorProjectType": "buying_home",
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "AK",
+      "title": "Alaska Septic Records Checklist",
+      "metaDescription": "Alaska septic records checklist with local DEC office or the Municipality of Anchorage routing, approved-system record and archive-scanning note pulls, and remote-site conditions and archive-scanning delay.",
+      "introCopy": "Alaska records work is less about one statewide file and more about getting the right local DEC office or the Municipality of Anchorage file in hand. If the homeowner cannot surface the approved-system record and archive-scanning note, the low end is still just a planning story.",
+      "uniqueAngle": "Alaska records intent is strongest when the page connects local DEC office or the Municipality of Anchorage routing, approved-system record and archive-scanning note, and remote-site conditions and archive-scanning delay instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Alaska buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which local DEC office or the Municipality of Anchorage actually controls the file.",
+        "The owner says the system is permitted, but there is still no approved-system record and archive-scanning note in hand.",
+        "You need to know whether remote-site conditions and archive-scanning delay makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the local DEC office or the Municipality of Anchorage and confirm who actually holds the onsite file for the property.",
+        "Request the approved-system record and archive-scanning note, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local DEC office or the Municipality of Anchorage holding the actual record.",
+        "A missing approved-system record and archive-scanning note can hide a very different system path than the owner summary suggests.",
+        "remote-site conditions and archive-scanning delay can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local DEC office or the Municipality of Anchorage identified for the property.",
+        "Any approved-system record and archive-scanning note, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Alaska records conversations get real only after the local DEC office or the Municipality of Anchorage is clear.",
+        "A thin approved-system record and archive-scanning note trail can hide the real approval story behind the current system.",
+        "remote-site conditions and archive-scanning delay can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Alaska septic records in practice?",
+          "answer": "Usually the local DEC office or the Municipality of Anchorage, which is the first office to identify before you ask for the approved-system record and archive-scanning note or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Alaska homeowner ask for the approved-system record and archive-scanning note when pulling septic records?",
+          "answer": "Because the approved-system record and archive-scanning note usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alaska/",
+        "/buying-a-house-with-a-septic-system/alaska/",
+        "/septic-inspection-cost/alaska/",
+        "/septic-system-cost-calculator/?state=AK&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ak_01",
+        "ak_02",
+        "ak_03",
+        "ak_04",
+        "ak_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "AK",
+      "title": "Alaska Septic Inspection Cost",
+      "metaDescription": "Alaska septic inspection cost with local DEC office or the Municipality of Anchorage routing, approved-system record and difficult-site note context, and remote-site conditions and archive-scanning delay in mind.",
+      "introCopy": "Alaska inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the approved-system record and difficult-site note still support the current system story. That makes the inspection fee only part of the real risk when remote-site conditions and archive-scanning delay is still in play.",
+      "uniqueAngle": "Alaska inspection content is strongest when it explains local DEC office or the Municipality of Anchorage routing, approved-system record and difficult-site note, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Alaska buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local DEC office or the Municipality of Anchorage file yet.",
+        "You need to know whether the approved-system record and difficult-site note makes the visit more consequential than the fee itself.",
+        "remote-site conditions and archive-scanning delay may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local DEC office or the Municipality of Anchorage first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the approved-system record and difficult-site note, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local DEC office or the Municipality of Anchorage file has not been reviewed first.",
+        "The approved-system record and difficult-site note can make the property much more complicated than the owner summary suggests.",
+        "remote-site conditions and archive-scanning delay can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local DEC office or the Municipality of Anchorage contact with jurisdiction over the property.",
+        "Any approved-system record and difficult-site note, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Alaska buyers and owners need the local DEC office or the Municipality of Anchorage file before the inspection fee means much.",
+        "approved-system record and difficult-site note can matter more than the visit price.",
+        "remote-site conditions and archive-scanning delay can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Alaska inspection step a homeowner should take?",
+          "answer": "Find the local DEC office or the Municipality of Anchorage first and ask for the approved-system record and difficult-site note, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Alaska inspection content need to mention approved-system record and difficult-site note?",
+          "answer": "Because approved-system record and difficult-site note often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alaska/",
+        "/buying-a-house-with-a-septic-system/alaska/",
+        "/septic-records-checklist/alaska/",
+        "/septic-system-cost-calculator/?state=AK&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ak_01",
+        "ak_02",
+        "ak_03",
+        "ak_04",
+        "ak_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "AL",
+      "title": "Buying a House With a Septic System in Alabama",
+      "metaDescription": "Alabama homebuyer septic checklist with county health department routing, Approval for Use, Permit to Install, and soil-test history context, and county-file and soil-test friction.",
+      "introCopy": "Alabama buyer risk is rarely just about paying for an inspection. The real early question is whether the Approval for Use, Permit to Install, and soil-test history already support the seller story before county-file and soil-test friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Alabama buyer intent is strongest when the page ties county health department routing, Approval for Use, Permit to Install, and soil-test history, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Alabama buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the Approval for Use, Permit to Install, and soil-test history yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches county-file and soil-test friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county health department and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the Approval for Use, Permit to Install, and soil-test history, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county health department file is still thin or incomplete.",
+        "Approval for Use, Permit to Install, and soil-test history gaps can make the property more complex than the seller summary suggests.",
+        "county-file and soil-test friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact responsible for the property file.",
+        "The Approval for Use, Permit to Install, and soil-test history already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Alabama buyer conversations get real only after the county health department file is in hand.",
+        "Approval for Use quality can matter more than the listing summary or first inspection fee.",
+        "county-file and soil-test friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Alabama buyer step a homeowner should take?",
+          "answer": "Start with the county health department file and ask for the Approval for Use, Permit to Install, and soil-test history, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Alabama buyer content need to mention Approval for Use?",
+          "answer": "Because Approval for Use, Permit to Install, and soil-test history often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alabama/",
+        "/septic-records-checklist/alabama/",
+        "/septic-permit-process/alabama/",
+        "/septic-system-cost-calculator/?state=AL&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "al_01",
+        "al_02",
+        "al_03",
+        "al_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "AL",
+      "title": "Alabama Septic Records Checklist",
+      "metaDescription": "Alabama septic records checklist with county health department routing, Approval for Use and Permit to Install pulls, and county-file and soil-test friction.",
+      "introCopy": "Alabama records work is less about one statewide file and more about getting the right county health department file in hand. If the homeowner cannot surface the Approval for Use and Permit to Install, the low end is still just a planning story.",
+      "uniqueAngle": "Alabama records intent is strongest when the page connects county health department routing, Approval for Use and Permit to Install, and county-file and soil-test friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Alabama buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which county health department actually controls the file.",
+        "The owner says the system is permitted, but there is still no Approval for Use and Permit to Install in hand.",
+        "You need to know whether county-file and soil-test friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the county health department and confirm who actually holds the onsite file for the property.",
+        "Request the Approval for Use and Permit to Install, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the county health department holding the actual record.",
+        "A missing Approval for Use and Permit to Install can hide a very different system path than the owner summary suggests.",
+        "county-file and soil-test friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The county health department identified for the property.",
+        "Any Approval for Use and Permit to Install, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Alabama records conversations get real only after the county health department is clear.",
+        "A thin Approval for Use and Permit to Install trail can hide the real approval story behind the current system.",
+        "county-file and soil-test friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Alabama septic records in practice?",
+          "answer": "Usually the county health department, which is the first office to identify before you ask for the Approval for Use and Permit to Install or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Alabama homeowner ask for the Approval for Use and Permit to Install when pulling septic records?",
+          "answer": "Because the Approval for Use and Permit to Install usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alabama/",
+        "/buying-a-house-with-a-septic-system/alabama/",
+        "/septic-permit-process/alabama/",
+        "/septic-system-cost-calculator/?state=AL&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "al_01",
+        "al_02",
+        "al_03",
+        "al_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "AR",
+      "title": "Buying a House With a Septic System in Arkansas",
+      "metaDescription": "Arkansas homebuyer septic checklist with county health unit and Onsite Environmental Specialist routing, permit copy and county health-unit file context, and county-file and soil-suitability friction.",
+      "introCopy": "Arkansas buyer risk is rarely just about paying for an inspection. The real early question is whether the permit copy and county health-unit file already support the seller story before county-file and soil-suitability friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Arkansas buyer intent is strongest when the page ties county health unit and Onsite Environmental Specialist routing, permit copy and county health-unit file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Arkansas buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the permit copy and county health-unit file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches county-file and soil-suitability friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county health unit and Onsite Environmental Specialist and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the permit copy and county health-unit file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county health unit and Onsite Environmental Specialist file is still thin or incomplete.",
+        "permit copy and county health-unit file gaps can make the property more complex than the seller summary suggests.",
+        "county-file and soil-suitability friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county health unit and Onsite Environmental Specialist contact responsible for the property file.",
+        "The permit copy and county health-unit file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Arkansas buyer conversations get real only after the county health unit and Onsite Environmental Specialist file is in hand.",
+        "permit copy and county health-unit file quality can matter more than the listing summary or first inspection fee.",
+        "county-file and soil-suitability friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Arkansas buyer step a homeowner should take?",
+          "answer": "Start with the county health unit and Onsite Environmental Specialist file and ask for the permit copy and county health-unit file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Arkansas buyer content need to mention permit copy and county health-unit file?",
+          "answer": "Because permit copy and county health-unit file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/arkansas/",
+        "/septic-records-checklist/arkansas/",
+        "/septic-permit-process/arkansas/",
+        "/septic-system-cost-calculator/?state=AR&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ar_01",
+        "ar_02",
+        "ar_03",
+        "ar_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "AR",
+      "title": "Arkansas Septic Records Checklist",
+      "metaDescription": "Arkansas septic records checklist with county health unit and Onsite Environmental Specialist routing, permit copy and county health-unit file pulls, and county-file and soil-suitability friction.",
+      "introCopy": "Arkansas records work is less about one statewide file and more about getting the right county health unit and Onsite Environmental Specialist file in hand. If the homeowner cannot surface the permit copy and county health-unit file, the low end is still just a planning story.",
+      "uniqueAngle": "Arkansas records intent is strongest when the page connects county health unit and Onsite Environmental Specialist routing, permit copy and county health-unit file, and county-file and soil-suitability friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Arkansas buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which county health unit and Onsite Environmental Specialist actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit copy and county health-unit file in hand.",
+        "You need to know whether county-file and soil-suitability friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the county health unit and Onsite Environmental Specialist and confirm who actually holds the onsite file for the property.",
+        "Request the permit copy and county health-unit file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the county health unit and Onsite Environmental Specialist holding the actual record.",
+        "A missing permit copy and county health-unit file can hide a very different system path than the owner summary suggests.",
+        "county-file and soil-suitability friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The county health unit and Onsite Environmental Specialist identified for the property.",
+        "Any permit copy and county health-unit file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Arkansas records conversations get real only after the county health unit and Onsite Environmental Specialist is clear.",
+        "A thin permit copy and county health-unit file trail can hide the real approval story behind the current system.",
+        "county-file and soil-suitability friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Arkansas septic records in practice?",
+          "answer": "Usually the county health unit and Onsite Environmental Specialist, which is the first office to identify before you ask for the permit copy and county health-unit file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Arkansas homeowner ask for the permit copy and county health-unit file when pulling septic records?",
+          "answer": "Because the permit copy and county health-unit file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/arkansas/",
+        "/buying-a-house-with-a-septic-system/arkansas/",
+        "/septic-permit-process/arkansas/",
+        "/septic-system-cost-calculator/?state=AR&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ar_01",
+        "ar_02",
+        "ar_03",
+        "ar_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "DE",
+      "title": "Buying a House With a Septic System in Delaware",
+      "metaDescription": "Delaware homebuyer septic checklist with DNREC septic systems hub or county handoff office routing, site evaluation report and inspection report context, and county-handoff and suitability-review friction.",
+      "introCopy": "Delaware buyer risk is rarely just about paying for an inspection. The real early question is whether the site evaluation report and inspection report already support the seller story before county-handoff and suitability-review friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Delaware buyer intent is strongest when the page ties DNREC septic systems hub or county handoff office routing, site evaluation report and inspection report, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Delaware buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the site evaluation report and inspection report yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches county-handoff and suitability-review friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the DNREC septic systems hub or county handoff office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the site evaluation report and inspection report, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the DNREC septic systems hub or county handoff office file is still thin or incomplete.",
+        "site evaluation report and inspection report gaps can make the property more complex than the seller summary suggests.",
+        "county-handoff and suitability-review friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The DNREC septic systems hub or county handoff office contact responsible for the property file.",
+        "The site evaluation report and inspection report already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Delaware buyer conversations get real only after the DNREC septic systems hub or county handoff office file is in hand.",
+        "site evaluation report and inspection report quality can matter more than the listing summary or first inspection fee.",
+        "county-handoff and suitability-review friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Delaware buyer step a homeowner should take?",
+          "answer": "Start with the DNREC septic systems hub or county handoff office file and ask for the site evaluation report and inspection report, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Delaware buyer content need to mention site evaluation report and inspection report?",
+          "answer": "Because site evaluation report and inspection report often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/delaware/",
+        "/septic-records-checklist/delaware/",
+        "/septic-permit-process/delaware/",
+        "/septic-system-cost-calculator/?state=DE&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "de_01",
+        "de_02",
+        "de_03",
+        "de_04",
+        "de_05",
+        "de_06"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "DE",
+      "title": "Delaware Septic Records Checklist",
+      "metaDescription": "Delaware septic records checklist with DNREC septic systems hub or county handoff office routing, site evaluation report and inspection report pulls, and county-handoff and suitability-review friction.",
+      "introCopy": "Delaware records work is less about one statewide file and more about getting the right DNREC septic systems hub or county handoff office file in hand. If the homeowner cannot surface the site evaluation report and inspection report, the low end is still just a planning story.",
+      "uniqueAngle": "Delaware records intent is strongest when the page connects DNREC septic systems hub or county handoff office routing, site evaluation report and inspection report, and county-handoff and suitability-review friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Delaware buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which DNREC septic systems hub or county handoff office actually controls the file.",
+        "The owner says the system is permitted, but there is still no site evaluation report and inspection report in hand.",
+        "You need to know whether county-handoff and suitability-review friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the DNREC septic systems hub or county handoff office and confirm who actually holds the onsite file for the property.",
+        "Request the site evaluation report and inspection report, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the DNREC septic systems hub or county handoff office holding the actual record.",
+        "A missing site evaluation report and inspection report can hide a very different system path than the owner summary suggests.",
+        "county-handoff and suitability-review friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The DNREC septic systems hub or county handoff office identified for the property.",
+        "Any site evaluation report and inspection report, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Delaware records conversations get real only after the DNREC septic systems hub or county handoff office is clear.",
+        "A thin site evaluation report and inspection report trail can hide the real approval story behind the current system.",
+        "county-handoff and suitability-review friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Delaware septic records in practice?",
+          "answer": "Usually the DNREC septic systems hub or county handoff office, which is the first office to identify before you ask for the site evaluation report and inspection report or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Delaware homeowner ask for the site evaluation report and inspection report when pulling septic records?",
+          "answer": "Because the site evaluation report and inspection report usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/delaware/",
+        "/buying-a-house-with-a-septic-system/delaware/",
+        "/septic-permit-process/delaware/",
+        "/septic-system-cost-calculator/?state=DE&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "de_01",
+        "de_02",
+        "de_03",
+        "de_04",
+        "de_05",
+        "de_06"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "HI",
+      "title": "Buying a House With a Septic System in Hawaii",
+      "metaDescription": "Hawaii homebuyer septic checklist with local wastewater branch office routing, cesspool-upgrade trigger and approval-to-use file context, and cesspool-upgrade and TMK-file friction.",
+      "introCopy": "Hawaii buyer risk is rarely just about paying for an inspection. The real early question is whether the cesspool-upgrade trigger and approval-to-use file already support the seller story before cesspool-upgrade and TMK-file friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Hawaii buyer intent is strongest when the page ties local wastewater branch office routing, cesspool-upgrade trigger and approval-to-use file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Hawaii buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the cesspool-upgrade trigger and approval-to-use file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches cesspool-upgrade and TMK-file friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local wastewater branch office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the cesspool-upgrade trigger and approval-to-use file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local wastewater branch office file is still thin or incomplete.",
+        "cesspool-upgrade trigger and approval-to-use file gaps can make the property more complex than the seller summary suggests.",
+        "cesspool-upgrade and TMK-file friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local wastewater branch office contact responsible for the property file.",
+        "The cesspool-upgrade trigger and approval-to-use file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Hawaii buyer conversations get real only after the local wastewater branch office file is in hand.",
+        "cesspool-upgrade trigger and approval-to-use file quality can matter more than the listing summary or first inspection fee.",
+        "cesspool-upgrade and TMK-file friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Hawaii buyer step a homeowner should take?",
+          "answer": "Start with the local wastewater branch office file and ask for the cesspool-upgrade trigger and approval-to-use file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Hawaii buyer content need to mention cesspool-upgrade trigger and approval-to-use file?",
+          "answer": "Because cesspool-upgrade trigger and approval-to-use file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/hawaii/",
+        "/septic-records-checklist/hawaii/",
+        "/septic-permit-process/hawaii/",
+        "/septic-system-cost-calculator/?state=HI&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "hi_01",
+        "hi_02",
+        "hi_03",
+        "hi_04",
+        "hi_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "HI",
+      "title": "Hawaii Septic Records Checklist",
+      "metaDescription": "Hawaii septic records checklist with local wastewater branch office routing, approval-to-use letter and local branch record pulls, and cesspool-upgrade and TMK-file friction.",
+      "introCopy": "Hawaii records work is less about one statewide file and more about getting the right local wastewater branch office file in hand. If the homeowner cannot surface the approval-to-use letter and local branch record, the low end is still just a planning story.",
+      "uniqueAngle": "Hawaii records intent is strongest when the page connects local wastewater branch office routing, approval-to-use letter and local branch record, and cesspool-upgrade and TMK-file friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Hawaii buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which local wastewater branch office actually controls the file.",
+        "The owner says the system is permitted, but there is still no approval-to-use letter and local branch record in hand.",
+        "You need to know whether cesspool-upgrade and TMK-file friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the local wastewater branch office and confirm who actually holds the onsite file for the property.",
+        "Request the approval-to-use letter and local branch record, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local wastewater branch office holding the actual record.",
+        "A missing approval-to-use letter and local branch record can hide a very different system path than the owner summary suggests.",
+        "cesspool-upgrade and TMK-file friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local wastewater branch office identified for the property.",
+        "Any approval-to-use letter and local branch record, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Hawaii records conversations get real only after the local wastewater branch office is clear.",
+        "A thin approval-to-use letter and local branch record trail can hide the real approval story behind the current system.",
+        "cesspool-upgrade and TMK-file friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Hawaii septic records in practice?",
+          "answer": "Usually the local wastewater branch office, which is the first office to identify before you ask for the approval-to-use letter and local branch record or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Hawaii homeowner ask for the approval-to-use letter and local branch record when pulling septic records?",
+          "answer": "Because the approval-to-use letter and local branch record usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/hawaii/",
+        "/buying-a-house-with-a-septic-system/hawaii/",
+        "/septic-permit-process/hawaii/",
+        "/septic-system-cost-calculator/?state=HI&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "hi_01",
+        "hi_02",
+        "hi_03",
+        "hi_04",
+        "hi_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "ID",
+      "title": "Idaho Septic Permit Process",
+      "metaDescription": "Idaho septic permit process with public health district routing, installation permit and district site-evaluation file context, and district-file and site-evaluation friction.",
+      "introCopy": "Idaho permit content is stronger than a generic install checklist because the real homeowner path runs through the public health district, not one vague statewide desk. The practical question is whether the installation permit and district site-evaluation file and the local file already support a clean install or replacement story before district-file and site-evaluation friction widens the job.",
+      "uniqueAngle": "Idaho permit intent is strongest when the page explains public health district routing, installation permit and district site-evaluation file, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Idaho owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which public health district actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the installation permit and district site-evaluation file or the local file already tied to the lot.",
+        "You need to know whether district-file and site-evaluation friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the public health district first because that office controls the practical next permit step for the parcel.",
+        "Ask for the installation permit and district site-evaluation file, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the public health district actually holding the file.",
+        "A missing installation permit and district site-evaluation file can make the project more complex than the owner or contractor summary suggests.",
+        "district-file and site-evaluation friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The public health district handling the parcel's permit path.",
+        "The installation permit and district site-evaluation file, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Idaho permit conversations get real only after the public health district is clear.",
+        "installation permit and district site-evaluation file quality can matter more than a generic statewide permit article implies.",
+        "district-file and site-evaluation friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Idaho permit step a homeowner should take?",
+          "answer": "Start with the public health district because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Idaho permit content need to mention installation permit and district site-evaluation file?",
+          "answer": "Because the installation permit and district site-evaluation file often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/idaho/",
+        "/septic-records-checklist/idaho/",
+        "/perc-test-cost/idaho/",
+        "/septic-system-cost-calculator/?state=ID&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "id_01",
+        "id_02",
+        "id_03",
+        "id_04",
+        "id_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "ID",
+      "title": "Idaho Septic Records Checklist",
+      "metaDescription": "Idaho septic records checklist with public health district routing, site evaluation and district permit file pulls, and district-file and site-evaluation friction.",
+      "introCopy": "Idaho records work is less about one statewide file and more about getting the right public health district file in hand. If the homeowner cannot surface the site evaluation and district permit file, the low end is still just a planning story.",
+      "uniqueAngle": "Idaho records intent is strongest when the page connects public health district routing, site evaluation and district permit file, and district-file and site-evaluation friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Idaho buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which public health district actually controls the file.",
+        "The owner says the system is permitted, but there is still no site evaluation and district permit file in hand.",
+        "You need to know whether district-file and site-evaluation friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the public health district and confirm who actually holds the onsite file for the property.",
+        "Request the site evaluation and district permit file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the public health district holding the actual record.",
+        "A missing site evaluation and district permit file can hide a very different system path than the owner summary suggests.",
+        "district-file and site-evaluation friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The public health district identified for the property.",
+        "Any site evaluation and district permit file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Idaho records conversations get real only after the public health district is clear.",
+        "A thin site evaluation and district permit file trail can hide the real approval story behind the current system.",
+        "district-file and site-evaluation friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Idaho septic records in practice?",
+          "answer": "Usually the public health district, which is the first office to identify before you ask for the site evaluation and district permit file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Idaho homeowner ask for the site evaluation and district permit file when pulling septic records?",
+          "answer": "Because the site evaluation and district permit file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/idaho/",
+        "/septic-permit-process/idaho/",
+        "/perc-test-cost/idaho/",
+        "/septic-system-cost-calculator/?state=ID&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "id_01",
+        "id_02",
+        "id_03",
+        "id_04",
+        "id_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "ME",
+      "title": "Maine Septic Records Checklist",
+      "metaDescription": "Maine septic records checklist with town office or Local Plumbing Inspector routing, HHE-200 design and permit record pulls, and town-office file gaps and online-search limits.",
+      "introCopy": "Maine records work is less about one statewide file and more about getting the right town office or Local Plumbing Inspector file in hand. If the homeowner cannot surface the HHE-200 design and permit record, the low end is still just a planning story.",
+      "uniqueAngle": "Maine records intent is strongest when the page connects town office or Local Plumbing Inspector routing, HHE-200 design and permit record, and town-office file gaps and online-search limits instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Maine buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which town office or Local Plumbing Inspector actually controls the file.",
+        "The owner says the system is permitted, but there is still no HHE-200 design and permit record in hand.",
+        "You need to know whether town-office file gaps and online-search limits makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the town office or Local Plumbing Inspector and confirm who actually holds the onsite file for the property.",
+        "Request the HHE-200 design and permit record, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the town office or Local Plumbing Inspector holding the actual record.",
+        "A missing HHE-200 design and permit record can hide a very different system path than the owner summary suggests.",
+        "town-office file gaps and online-search limits can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The town office or Local Plumbing Inspector identified for the property.",
+        "Any HHE-200 design and permit record, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Maine records conversations get real only after the town office or Local Plumbing Inspector is clear.",
+        "A thin HHE-200 design and permit record trail can hide the real approval story behind the current system.",
+        "town-office file gaps and online-search limits can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Maine septic records in practice?",
+          "answer": "Usually the town office or Local Plumbing Inspector, which is the first office to identify before you ask for the HHE-200 design and permit record or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Maine homeowner ask for the HHE-200 design and permit record when pulling septic records?",
+          "answer": "Because the HHE-200 design and permit record usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/maine/",
+        "/buying-a-house-with-a-septic-system/maine/",
+        "/septic-inspection-cost/maine/",
+        "/septic-system-cost-calculator/?state=ME&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "me_01",
+        "me_02",
+        "me_03",
+        "me_04",
+        "me_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "ME",
+      "title": "Maine Septic Inspection Cost",
+      "metaDescription": "Maine septic inspection cost with town office or Local Plumbing Inspector routing, Local Plumbing Inspector trail and HHE-200 file context, and town-office file gaps and online-search limits in mind.",
+      "introCopy": "Maine inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the Local Plumbing Inspector trail and HHE-200 file still support the current system story. That makes the inspection fee only part of the real risk when town-office file gaps and online-search limits is still in play.",
+      "uniqueAngle": "Maine inspection content is strongest when it explains town office or Local Plumbing Inspector routing, Local Plumbing Inspector trail and HHE-200 file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Maine buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the town office or Local Plumbing Inspector file yet.",
+        "You need to know whether the Local Plumbing Inspector trail and HHE-200 file makes the visit more consequential than the fee itself.",
+        "town-office file gaps and online-search limits may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the town office or Local Plumbing Inspector first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the Local Plumbing Inspector trail and HHE-200 file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the town office or Local Plumbing Inspector file has not been reviewed first.",
+        "The Local Plumbing Inspector trail and HHE-200 file can make the property much more complicated than the owner summary suggests.",
+        "town-office file gaps and online-search limits can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The town office or Local Plumbing Inspector contact with jurisdiction over the property.",
+        "Any Local Plumbing Inspector trail and HHE-200 file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Maine buyers and owners need the town office or Local Plumbing Inspector file before the inspection fee means much.",
+        "Local Plumbing Inspector trail and HHE-200 file can matter more than the visit price.",
+        "town-office file gaps and online-search limits can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Maine inspection step a homeowner should take?",
+          "answer": "Find the town office or Local Plumbing Inspector first and ask for the Local Plumbing Inspector trail and HHE-200 file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Maine inspection content need to mention Local Plumbing Inspector trail and HHE-200 file?",
+          "answer": "Because Local Plumbing Inspector trail and HHE-200 file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/maine/",
+        "/buying-a-house-with-a-septic-system/maine/",
+        "/septic-records-checklist/maine/",
+        "/septic-system-cost-calculator/?state=ME&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "me_01",
+        "me_02",
+        "me_03",
+        "me_04",
+        "me_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MS",
+      "title": "Buying a House With a Septic System in Mississippi",
+      "metaDescription": "Mississippi homebuyer septic checklist with county health department routing, Permit or Recommendation and county file context, and public-records and county-file friction.",
+      "introCopy": "Mississippi buyer risk is rarely just about paying for an inspection. The real early question is whether the Permit or Recommendation and county file already support the seller story before public-records and county-file friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Mississippi buyer intent is strongest when the page ties county health department routing, Permit or Recommendation and county file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Mississippi buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the Permit or Recommendation and county file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches public-records and county-file friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county health department and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the Permit or Recommendation and county file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county health department file is still thin or incomplete.",
+        "Permit or Recommendation and county file gaps can make the property more complex than the seller summary suggests.",
+        "public-records and county-file friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact responsible for the property file.",
+        "The Permit or Recommendation and county file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Mississippi buyer conversations get real only after the county health department file is in hand.",
+        "Permit or Recommendation and county file quality can matter more than the listing summary or first inspection fee.",
+        "public-records and county-file friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Mississippi buyer step a homeowner should take?",
+          "answer": "Start with the county health department file and ask for the Permit or Recommendation and county file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Mississippi buyer content need to mention Permit or Recommendation and county file?",
+          "answer": "Because Permit or Recommendation and county file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/mississippi/",
+        "/septic-records-checklist/mississippi/",
+        "/septic-inspection-cost/mississippi/",
+        "/septic-system-cost-calculator/?state=MS&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ms_01",
+        "ms_02",
+        "ms_03",
+        "ms_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "MS",
+      "title": "Mississippi Septic Inspection Cost",
+      "metaDescription": "Mississippi septic inspection cost with county health department routing, Permit or Recommendation and public-record trail context, and public-records and county-file friction in mind.",
+      "introCopy": "Mississippi inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the Permit or Recommendation and public-record trail still support the current system story. That makes the inspection fee only part of the real risk when public-records and county-file friction is still in play.",
+      "uniqueAngle": "Mississippi inspection content is strongest when it explains county health department routing, Permit or Recommendation and public-record trail, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Mississippi buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the county health department file yet.",
+        "You need to know whether the Permit or Recommendation and public-record trail makes the visit more consequential than the fee itself.",
+        "public-records and county-file friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the county health department first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the Permit or Recommendation and public-record trail, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county health department file has not been reviewed first.",
+        "The Permit or Recommendation and public-record trail can make the property much more complicated than the owner summary suggests.",
+        "public-records and county-file friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact with jurisdiction over the property.",
+        "Any Permit or Recommendation and public-record trail, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Mississippi buyers and owners need the county health department file before the inspection fee means much.",
+        "Permit or Recommendation and public-record trail can matter more than the visit price.",
+        "public-records and county-file friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Mississippi inspection step a homeowner should take?",
+          "answer": "Find the county health department first and ask for the Permit or Recommendation and public-record trail, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Mississippi inspection content need to mention Permit or Recommendation and public-record trail?",
+          "answer": "Because Permit or Recommendation and public-record trail often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/mississippi/",
+        "/buying-a-house-with-a-septic-system/mississippi/",
+        "/septic-records-checklist/mississippi/",
+        "/septic-system-cost-calculator/?state=MS&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ms_01",
+        "ms_02",
+        "ms_03",
+        "ms_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MT",
+      "title": "Buying a House With a Septic System in Montana",
+      "metaDescription": "Montana homebuyer septic checklist with county or tribal health department routing, subdivision file and COSA or sanitary restriction note context, and lot-review and local-delegation friction.",
+      "introCopy": "Montana buyer risk is rarely just about paying for an inspection. The real early question is whether the subdivision file and COSA or sanitary restriction note already support the seller story before lot-review and local-delegation friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Montana buyer intent is strongest when the page ties county or tribal health department routing, subdivision file and COSA or sanitary restriction note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Montana buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the subdivision file and COSA or sanitary restriction note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches lot-review and local-delegation friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county or tribal health department and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the subdivision file and COSA or sanitary restriction note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county or tribal health department file is still thin or incomplete.",
+        "subdivision file and COSA or sanitary restriction note gaps can make the property more complex than the seller summary suggests.",
+        "lot-review and local-delegation friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county or tribal health department contact responsible for the property file.",
+        "The subdivision file and COSA or sanitary restriction note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Montana buyer conversations get real only after the county or tribal health department file is in hand.",
+        "subdivision file and COSA or sanitary restriction note quality can matter more than the listing summary or first inspection fee.",
+        "lot-review and local-delegation friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Montana buyer step a homeowner should take?",
+          "answer": "Start with the county or tribal health department file and ask for the subdivision file and COSA or sanitary restriction note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Montana buyer content need to mention subdivision file and COSA or sanitary restriction note?",
+          "answer": "Because subdivision file and COSA or sanitary restriction note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/montana/",
+        "/septic-permit-process/montana/",
+        "/perc-test-cost/montana/",
+        "/septic-system-cost-calculator/?state=MT&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "mt_01",
+        "mt_02",
+        "mt_03",
+        "mt_04",
+        "mt_05",
+        "mt_06"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "MT",
+      "title": "Montana Septic Permit Process",
+      "metaDescription": "Montana septic permit process with county or tribal health department routing, drainfield permit and local-health file context, and lot-review and local-delegation friction.",
+      "introCopy": "Montana permit content is stronger than a generic install checklist because the real homeowner path runs through the county or tribal health department, not one vague statewide desk. The practical question is whether the drainfield permit and local-health file and the local file already support a clean install or replacement story before lot-review and local-delegation friction widens the job.",
+      "uniqueAngle": "Montana permit intent is strongest when the page explains county or tribal health department routing, drainfield permit and local-health file, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Montana owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county or tribal health department actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the drainfield permit and local-health file or the local file already tied to the lot.",
+        "You need to know whether lot-review and local-delegation friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the county or tribal health department first because that office controls the practical next permit step for the parcel.",
+        "Ask for the drainfield permit and local-health file, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the county or tribal health department actually holding the file.",
+        "A missing drainfield permit and local-health file can make the project more complex than the owner or contractor summary suggests.",
+        "lot-review and local-delegation friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or tribal health department handling the parcel's permit path.",
+        "The drainfield permit and local-health file, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Montana permit conversations get real only after the county or tribal health department is clear.",
+        "drainfield permit and local-health file quality can matter more than a generic statewide permit article implies.",
+        "lot-review and local-delegation friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Montana permit step a homeowner should take?",
+          "answer": "Start with the county or tribal health department because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Montana permit content need to mention drainfield permit and local-health file?",
+          "answer": "Because the drainfield permit and local-health file often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/montana/",
+        "/buying-a-house-with-a-septic-system/montana/",
+        "/perc-test-cost/montana/",
+        "/septic-system-cost-calculator/?state=MT&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "mt_01",
+        "mt_02",
+        "mt_03",
+        "mt_04",
+        "mt_05",
+        "mt_06"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "ND",
+      "title": "North Dakota Septic Records Checklist",
+      "metaDescription": "North Dakota septic records checklist with local public health unit routing, permit and inspection file pulls, and local-permit and complaint-file friction.",
+      "introCopy": "North Dakota records work is less about one statewide file and more about getting the right local public health unit file in hand. If the homeowner cannot surface the permit and inspection file, the low end is still just a planning story.",
+      "uniqueAngle": "North Dakota records intent is strongest when the page connects local public health unit routing, permit and inspection file, and local-permit and complaint-file friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for North Dakota buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which local public health unit actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit and inspection file in hand.",
+        "You need to know whether local-permit and complaint-file friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the local public health unit and confirm who actually holds the onsite file for the property.",
+        "Request the permit and inspection file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local public health unit holding the actual record.",
+        "A missing permit and inspection file can hide a very different system path than the owner summary suggests.",
+        "local-permit and complaint-file friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local public health unit identified for the property.",
+        "Any permit and inspection file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "North Dakota records conversations get real only after the local public health unit is clear.",
+        "A thin permit and inspection file trail can hide the real approval story behind the current system.",
+        "local-permit and complaint-file friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds North Dakota septic records in practice?",
+          "answer": "Usually the local public health unit, which is the first office to identify before you ask for the permit and inspection file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a North Dakota homeowner ask for the permit and inspection file when pulling septic records?",
+          "answer": "Because the permit and inspection file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-dakota/",
+        "/septic-inspection-cost/north-dakota/",
+        "/septic-permit-process/north-dakota/",
+        "/septic-system-cost-calculator/?state=ND&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nd_01",
+        "nd_02",
+        "nd_03",
+        "nd_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "ND",
+      "title": "North Dakota Septic Inspection Cost",
+      "metaDescription": "North Dakota septic inspection cost with local public health unit routing, permit, inspection, and complaint file context, and local-permit and complaint-file friction in mind.",
+      "introCopy": "North Dakota inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the permit, inspection, and complaint file still support the current system story. That makes the inspection fee only part of the real risk when local-permit and complaint-file friction is still in play.",
+      "uniqueAngle": "North Dakota inspection content is strongest when it explains local public health unit routing, permit, inspection, and complaint file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for North Dakota buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local public health unit file yet.",
+        "You need to know whether the permit, inspection, and complaint file makes the visit more consequential than the fee itself.",
+        "local-permit and complaint-file friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local public health unit first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the permit, inspection, and complaint file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local public health unit file has not been reviewed first.",
+        "The permit, inspection, and complaint file can make the property much more complicated than the owner summary suggests.",
+        "local-permit and complaint-file friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local public health unit contact with jurisdiction over the property.",
+        "Any permit, inspection, and complaint file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "North Dakota buyers and owners need the local public health unit file before the inspection fee means much.",
+        "permit can matter more than the visit price.",
+        "local-permit and complaint-file friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first North Dakota inspection step a homeowner should take?",
+          "answer": "Find the local public health unit first and ask for the permit, inspection, and complaint file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does North Dakota inspection content need to mention permit?",
+          "answer": "Because permit, inspection, and complaint file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-dakota/",
+        "/septic-records-checklist/north-dakota/",
+        "/septic-permit-process/north-dakota/",
+        "/septic-system-cost-calculator/?state=ND&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "nd_01",
+        "nd_02",
+        "nd_03",
+        "nd_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NH",
+      "title": "Buying a House With a Septic System in New Hampshire",
+      "metaDescription": "New Hampshire homebuyer septic checklist with NHDES or the local health officer routing, operational-approval status and local failure-verification note context, and operational-approval and archive-gap friction.",
+      "introCopy": "New Hampshire buyer risk is rarely just about paying for an inspection. The real early question is whether the operational-approval status and local failure-verification note already support the seller story before operational-approval and archive-gap friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "New Hampshire buyer intent is strongest when the page ties NHDES or the local health officer routing, operational-approval status and local failure-verification note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for New Hampshire buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the operational-approval status and local failure-verification note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches operational-approval and archive-gap friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the NHDES or the local health officer and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the operational-approval status and local failure-verification note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the NHDES or the local health officer file is still thin or incomplete.",
+        "operational-approval status and local failure-verification note gaps can make the property more complex than the seller summary suggests.",
+        "operational-approval and archive-gap friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The NHDES or the local health officer contact responsible for the property file.",
+        "The operational-approval status and local failure-verification note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "New Hampshire buyer conversations get real only after the NHDES or the local health officer file is in hand.",
+        "operational-approval status and local failure-verification note quality can matter more than the listing summary or first inspection fee.",
+        "operational-approval and archive-gap friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Hampshire buyer step a homeowner should take?",
+          "answer": "Start with the NHDES or the local health officer file and ask for the operational-approval status and local failure-verification note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does New Hampshire buyer content need to mention operational-approval status and local failure-verification note?",
+          "answer": "Because operational-approval status and local failure-verification note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-hampshire/",
+        "/septic-records-checklist/new-hampshire/",
+        "/septic-permit-process/new-hampshire/",
+        "/septic-system-cost-calculator/?state=NH&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nh_01",
+        "nh_02",
+        "nh_03",
+        "nh_04",
+        "nh_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NH",
+      "title": "New Hampshire Septic Records Checklist",
+      "metaDescription": "New Hampshire septic records checklist with NHDES or the local health officer routing, OneStop record and local failure-verification note pulls, and operational-approval and archive-gap friction.",
+      "introCopy": "New Hampshire records work is less about one statewide file and more about getting the right NHDES or the local health officer file in hand. If the homeowner cannot surface the OneStop record and local failure-verification note, the low end is still just a planning story.",
+      "uniqueAngle": "New Hampshire records intent is strongest when the page connects NHDES or the local health officer routing, OneStop record and local failure-verification note, and operational-approval and archive-gap friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for New Hampshire buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which NHDES or the local health officer actually controls the file.",
+        "The owner says the system is permitted, but there is still no OneStop record and local failure-verification note in hand.",
+        "You need to know whether operational-approval and archive-gap friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the NHDES or the local health officer and confirm who actually holds the onsite file for the property.",
+        "Request the OneStop record and local failure-verification note, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the NHDES or the local health officer holding the actual record.",
+        "A missing OneStop record and local failure-verification note can hide a very different system path than the owner summary suggests.",
+        "operational-approval and archive-gap friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The NHDES or the local health officer identified for the property.",
+        "Any OneStop record and local failure-verification note, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "New Hampshire records conversations get real only after the NHDES or the local health officer is clear.",
+        "A thin OneStop record and local failure-verification note trail can hide the real approval story behind the current system.",
+        "operational-approval and archive-gap friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds New Hampshire septic records in practice?",
+          "answer": "Usually the NHDES or the local health officer, which is the first office to identify before you ask for the OneStop record and local failure-verification note or any transfer paperwork."
+        },
+        {
+          "question": "Why should a New Hampshire homeowner ask for the OneStop record and local failure-verification note when pulling septic records?",
+          "answer": "Because the OneStop record and local failure-verification note usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-hampshire/",
+        "/buying-a-house-with-a-septic-system/new-hampshire/",
+        "/septic-permit-process/new-hampshire/",
+        "/septic-system-cost-calculator/?state=NH&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nh_01",
+        "nh_02",
+        "nh_03",
+        "nh_04",
+        "nh_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NV",
+      "title": "Nevada Septic Records Checklist",
+      "metaDescription": "Nevada septic records checklist with NDEP, Southern Nevada Health District, or the relevant county office routing, permit file, inspection note, and as-built plans pulls, and authority-split and as-built-file friction.",
+      "introCopy": "Nevada records work is less about one statewide file and more about getting the right NDEP, Southern Nevada Health District, or the relevant county office file in hand. If the homeowner cannot surface the permit file, inspection note, and as-built plans, the low end is still just a planning story.",
+      "uniqueAngle": "Nevada records intent is strongest when the page connects NDEP, Southern Nevada Health District, or the relevant county office routing, permit file, inspection note, and as-built plans, and authority-split and as-built-file friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Nevada buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which NDEP, Southern Nevada Health District, or the relevant county office actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit file, inspection note, and as-built plans in hand.",
+        "You need to know whether authority-split and as-built-file friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the NDEP, Southern Nevada Health District, or the relevant county office and confirm who actually holds the onsite file for the property.",
+        "Request the permit file, inspection note, and as-built plans, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the NDEP, Southern Nevada Health District, or the relevant county office holding the actual record.",
+        "A missing permit file, inspection note, and as-built plans can hide a very different system path than the owner summary suggests.",
+        "authority-split and as-built-file friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The NDEP, Southern Nevada Health District, or the relevant county office identified for the property.",
+        "Any permit file, inspection note, and as-built plans, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Nevada records conversations get real only after the NDEP, Southern Nevada Health District, or the relevant county office is clear.",
+        "A thin permit file trail can hide the real approval story behind the current system.",
+        "authority-split and as-built-file friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Nevada septic records in practice?",
+          "answer": "Usually the NDEP, Southern Nevada Health District, or the relevant county office, which is the first office to identify before you ask for the permit file, inspection note, and as-built plans or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Nevada homeowner ask for the permit file when pulling septic records?",
+          "answer": "Because the permit file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nevada/",
+        "/buying-a-house-with-a-septic-system/nevada/",
+        "/septic-inspection-cost/nevada/",
+        "/septic-system-cost-calculator/?state=NV&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "nv_01",
+        "nv_02",
+        "nv_03",
+        "nv_04",
+        "nv_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NV",
+      "title": "Nevada Septic Inspection Cost",
+      "metaDescription": "Nevada septic inspection cost with NDEP, Southern Nevada Health District, or the relevant county office routing, inspection note and occupancy signoff context, and authority-split and as-built-file friction in mind.",
+      "introCopy": "Nevada inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the inspection note and occupancy signoff still support the current system story. That makes the inspection fee only part of the real risk when authority-split and as-built-file friction is still in play.",
+      "uniqueAngle": "Nevada inspection content is strongest when it explains NDEP, Southern Nevada Health District, or the relevant county office routing, inspection note and occupancy signoff, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Nevada buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the NDEP, Southern Nevada Health District, or the relevant county office file yet.",
+        "You need to know whether the inspection note and occupancy signoff makes the visit more consequential than the fee itself.",
+        "authority-split and as-built-file friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the NDEP, Southern Nevada Health District, or the relevant county office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the inspection note and occupancy signoff, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the NDEP, Southern Nevada Health District, or the relevant county office file has not been reviewed first.",
+        "The inspection note and occupancy signoff can make the property much more complicated than the owner summary suggests.",
+        "authority-split and as-built-file friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The NDEP, Southern Nevada Health District, or the relevant county office contact with jurisdiction over the property.",
+        "Any inspection note and occupancy signoff, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Nevada buyers and owners need the NDEP, Southern Nevada Health District, or the relevant county office file before the inspection fee means much.",
+        "inspection note and occupancy signoff can matter more than the visit price.",
+        "authority-split and as-built-file friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nevada inspection step a homeowner should take?",
+          "answer": "Find the NDEP, Southern Nevada Health District, or the relevant county office first and ask for the inspection note and occupancy signoff, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Nevada inspection content need to mention inspection note and occupancy signoff?",
+          "answer": "Because inspection note and occupancy signoff often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nevada/",
+        "/buying-a-house-with-a-septic-system/nevada/",
+        "/septic-records-checklist/nevada/",
+        "/septic-system-cost-calculator/?state=NV&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "nv_01",
+        "nv_02",
+        "nv_03",
+        "nv_04",
+        "nv_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "RI",
+      "title": "Rhode Island Septic Records Checklist",
+      "metaDescription": "Rhode Island septic records checklist with DEM OWTS permit-search and record path routing, active and historic permit search plus the underlying file pulls, and permit-history and suitability-review friction.",
+      "introCopy": "Rhode Island records work is less about one statewide file and more about getting the right DEM OWTS permit-search and record path file in hand. If the homeowner cannot surface the active and historic permit search plus the underlying file, the low end is still just a planning story.",
+      "uniqueAngle": "Rhode Island records intent is strongest when the page connects DEM OWTS permit-search and record path routing, active and historic permit search plus the underlying file, and permit-history and suitability-review friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Rhode Island buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which DEM OWTS permit-search and record path actually controls the file.",
+        "The owner says the system is permitted, but there is still no active and historic permit search plus the underlying file in hand.",
+        "You need to know whether permit-history and suitability-review friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the DEM OWTS permit-search and record path and confirm who actually holds the onsite file for the property.",
+        "Request the active and historic permit search plus the underlying file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the DEM OWTS permit-search and record path holding the actual record.",
+        "A missing active and historic permit search plus the underlying file can hide a very different system path than the owner summary suggests.",
+        "permit-history and suitability-review friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The DEM OWTS permit-search and record path identified for the property.",
+        "Any active and historic permit search plus the underlying file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Rhode Island records conversations get real only after the DEM OWTS permit-search and record path is clear.",
+        "A thin active and historic permit search plus the underlying file trail can hide the real approval story behind the current system.",
+        "permit-history and suitability-review friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Rhode Island septic records in practice?",
+          "answer": "Usually the DEM OWTS permit-search and record path, which is the first office to identify before you ask for the active and historic permit search plus the underlying file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Rhode Island homeowner ask for the active and historic permit search plus the underlying file when pulling septic records?",
+          "answer": "Because the active and historic permit search plus the underlying file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/rhode-island/",
+        "/buying-a-house-with-a-septic-system/rhode-island/",
+        "/septic-inspection-cost/rhode-island/",
+        "/septic-system-cost-calculator/?state=RI&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ri_01",
+        "ri_02",
+        "ri_03",
+        "ri_04",
+        "ri_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "RI",
+      "title": "Rhode Island Septic Inspection Cost",
+      "metaDescription": "Rhode Island septic inspection cost with DEM OWTS permit-search and record path routing, DEM file and suitability-determination note context, and permit-history and suitability-review friction in mind.",
+      "introCopy": "Rhode Island inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the DEM file and suitability-determination note still support the current system story. That makes the inspection fee only part of the real risk when permit-history and suitability-review friction is still in play.",
+      "uniqueAngle": "Rhode Island inspection content is strongest when it explains DEM OWTS permit-search and record path routing, DEM file and suitability-determination note, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Rhode Island buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the DEM OWTS permit-search and record path file yet.",
+        "You need to know whether the DEM file and suitability-determination note makes the visit more consequential than the fee itself.",
+        "permit-history and suitability-review friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the DEM OWTS permit-search and record path first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the DEM file and suitability-determination note, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the DEM OWTS permit-search and record path file has not been reviewed first.",
+        "The DEM file and suitability-determination note can make the property much more complicated than the owner summary suggests.",
+        "permit-history and suitability-review friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The DEM OWTS permit-search and record path contact with jurisdiction over the property.",
+        "Any DEM file and suitability-determination note, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Rhode Island buyers and owners need the DEM OWTS permit-search and record path file before the inspection fee means much.",
+        "DEM file and suitability-determination note can matter more than the visit price.",
+        "permit-history and suitability-review friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Rhode Island inspection step a homeowner should take?",
+          "answer": "Find the DEM OWTS permit-search and record path first and ask for the DEM file and suitability-determination note, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Rhode Island inspection content need to mention DEM file and suitability-determination note?",
+          "answer": "Because DEM file and suitability-determination note often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/rhode-island/",
+        "/buying-a-house-with-a-septic-system/rhode-island/",
+        "/septic-records-checklist/rhode-island/",
+        "/septic-system-cost-calculator/?state=RI&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ri_01",
+        "ri_02",
+        "ri_03",
+        "ri_04",
+        "ri_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "SC",
+      "title": "Buying a House With a Septic System in South Carolina",
+      "metaDescription": "South Carolina homebuyer septic checklist with SCDES county or regional contact routing, permit copy and final-inspection history context, and permit-copy and county-office friction.",
+      "introCopy": "South Carolina buyer risk is rarely just about paying for an inspection. The real early question is whether the permit copy and final-inspection history already support the seller story before permit-copy and county-office friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "South Carolina buyer intent is strongest when the page ties SCDES county or regional contact routing, permit copy and final-inspection history, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for South Carolina buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the permit copy and final-inspection history yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches permit-copy and county-office friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the SCDES county or regional contact and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the permit copy and final-inspection history, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the SCDES county or regional contact file is still thin or incomplete.",
+        "permit copy and final-inspection history gaps can make the property more complex than the seller summary suggests.",
+        "permit-copy and county-office friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The SCDES county or regional contact contact responsible for the property file.",
+        "The permit copy and final-inspection history already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "South Carolina buyer conversations get real only after the SCDES county or regional contact file is in hand.",
+        "permit copy and final-inspection history quality can matter more than the listing summary or first inspection fee.",
+        "permit-copy and county-office friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first South Carolina buyer step a homeowner should take?",
+          "answer": "Start with the SCDES county or regional contact file and ask for the permit copy and final-inspection history, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does South Carolina buyer content need to mention permit copy and final-inspection history?",
+          "answer": "Because permit copy and final-inspection history often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-carolina/",
+        "/septic-records-checklist/south-carolina/",
+        "/septic-permit-process/south-carolina/",
+        "/septic-system-cost-calculator/?state=SC&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "sc_01",
+        "sc_02",
+        "sc_03",
+        "sc_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "SC",
+      "title": "South Carolina Septic Records Checklist",
+      "metaDescription": "South Carolina septic records checklist with SCDES county or regional contact routing, permit copy and D-1740 history pulls, and permit-copy and county-office friction.",
+      "introCopy": "South Carolina records work is less about one statewide file and more about getting the right SCDES county or regional contact file in hand. If the homeowner cannot surface the permit copy and D-1740 history, the low end is still just a planning story.",
+      "uniqueAngle": "South Carolina records intent is strongest when the page connects SCDES county or regional contact routing, permit copy and D-1740 history, and permit-copy and county-office friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for South Carolina buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which SCDES county or regional contact actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit copy and D-1740 history in hand.",
+        "You need to know whether permit-copy and county-office friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the SCDES county or regional contact and confirm who actually holds the onsite file for the property.",
+        "Request the permit copy and D-1740 history, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the SCDES county or regional contact holding the actual record.",
+        "A missing permit copy and D-1740 history can hide a very different system path than the owner summary suggests.",
+        "permit-copy and county-office friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The SCDES county or regional contact identified for the property.",
+        "Any permit copy and D-1740 history, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "South Carolina records conversations get real only after the SCDES county or regional contact is clear.",
+        "A thin permit copy and D-1740 history trail can hide the real approval story behind the current system.",
+        "permit-copy and county-office friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds South Carolina septic records in practice?",
+          "answer": "Usually the SCDES county or regional contact, which is the first office to identify before you ask for the permit copy and D-1740 history or any transfer paperwork."
+        },
+        {
+          "question": "Why should a South Carolina homeowner ask for the permit copy and D-1740 history when pulling septic records?",
+          "answer": "Because the permit copy and D-1740 history usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-carolina/",
+        "/buying-a-house-with-a-septic-system/south-carolina/",
+        "/septic-permit-process/south-carolina/",
+        "/septic-system-cost-calculator/?state=SC&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "sc_01",
+        "sc_02",
+        "sc_03",
+        "sc_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "SD",
+      "title": "Buying a House With a Septic System in South Dakota",
+      "metaDescription": "South Dakota homebuyer septic checklist with South Dakota Plumbing Commission or local inspection office routing, Homeowner Plumbing Installation Certificate and inspection sequence context, and inspection-certificate and local-rule friction.",
+      "introCopy": "South Dakota buyer risk is rarely just about paying for an inspection. The real early question is whether the Homeowner Plumbing Installation Certificate and inspection sequence already support the seller story before inspection-certificate and local-rule friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "South Dakota buyer intent is strongest when the page ties South Dakota Plumbing Commission or local inspection office routing, Homeowner Plumbing Installation Certificate and inspection sequence, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for South Dakota buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the Homeowner Plumbing Installation Certificate and inspection sequence yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches inspection-certificate and local-rule friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the South Dakota Plumbing Commission or local inspection office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the Homeowner Plumbing Installation Certificate and inspection sequence, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the South Dakota Plumbing Commission or local inspection office file is still thin or incomplete.",
+        "Homeowner Plumbing Installation Certificate and inspection sequence gaps can make the property more complex than the seller summary suggests.",
+        "inspection-certificate and local-rule friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The South Dakota Plumbing Commission or local inspection office contact responsible for the property file.",
+        "The Homeowner Plumbing Installation Certificate and inspection sequence already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "South Dakota buyer conversations get real only after the South Dakota Plumbing Commission or local inspection office file is in hand.",
+        "Homeowner Plumbing Installation Certificate and inspection sequence quality can matter more than the listing summary or first inspection fee.",
+        "inspection-certificate and local-rule friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first South Dakota buyer step a homeowner should take?",
+          "answer": "Start with the South Dakota Plumbing Commission or local inspection office file and ask for the Homeowner Plumbing Installation Certificate and inspection sequence, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does South Dakota buyer content need to mention Homeowner Plumbing Installation Certificate and inspection sequence?",
+          "answer": "Because Homeowner Plumbing Installation Certificate and inspection sequence often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-dakota/",
+        "/septic-inspection-cost/south-dakota/",
+        "/septic-permit-process/south-dakota/",
+        "/septic-system-cost-calculator/?state=SD&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "sd_01",
+        "sd_02",
+        "sd_03",
+        "sd_04",
+        "sd_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "SD",
+      "title": "South Dakota Septic Inspection Cost",
+      "metaDescription": "South Dakota septic inspection cost with South Dakota Plumbing Commission or local inspection office routing, inspection certificate path and local-rule note context, and inspection-certificate and local-rule friction in mind.",
+      "introCopy": "South Dakota inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the inspection certificate path and local-rule note still support the current system story. That makes the inspection fee only part of the real risk when inspection-certificate and local-rule friction is still in play.",
+      "uniqueAngle": "South Dakota inspection content is strongest when it explains South Dakota Plumbing Commission or local inspection office routing, inspection certificate path and local-rule note, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for South Dakota buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the South Dakota Plumbing Commission or local inspection office file yet.",
+        "You need to know whether the inspection certificate path and local-rule note makes the visit more consequential than the fee itself.",
+        "inspection-certificate and local-rule friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the South Dakota Plumbing Commission or local inspection office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the inspection certificate path and local-rule note, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the South Dakota Plumbing Commission or local inspection office file has not been reviewed first.",
+        "The inspection certificate path and local-rule note can make the property much more complicated than the owner summary suggests.",
+        "inspection-certificate and local-rule friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The South Dakota Plumbing Commission or local inspection office contact with jurisdiction over the property.",
+        "Any inspection certificate path and local-rule note, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "South Dakota buyers and owners need the South Dakota Plumbing Commission or local inspection office file before the inspection fee means much.",
+        "inspection certificate path and local-rule note can matter more than the visit price.",
+        "inspection-certificate and local-rule friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first South Dakota inspection step a homeowner should take?",
+          "answer": "Find the South Dakota Plumbing Commission or local inspection office first and ask for the inspection certificate path and local-rule note, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does South Dakota inspection content need to mention inspection certificate path and local-rule note?",
+          "answer": "Because inspection certificate path and local-rule note often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-dakota/",
+        "/buying-a-house-with-a-septic-system/south-dakota/",
+        "/septic-permit-process/south-dakota/",
+        "/septic-system-cost-calculator/?state=SD&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "sd_01",
+        "sd_02",
+        "sd_03",
+        "sd_04",
+        "sd_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "TN",
+      "title": "Tennessee Septic Permit Process",
+      "metaDescription": "Tennessee septic permit process with TDEC regional contact or contract county office routing, construction permit and repair permit context, and regional-contact and repair-permit friction.",
+      "introCopy": "Tennessee permit content is stronger than a generic install checklist because the real homeowner path runs through the TDEC regional contact or contract county office, not one vague statewide desk. The practical question is whether the construction permit and repair permit and the local file already support a clean install or replacement story before regional-contact and repair-permit friction widens the job.",
+      "uniqueAngle": "Tennessee permit intent is strongest when the page explains TDEC regional contact or contract county office routing, construction permit and repair permit, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Tennessee owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which TDEC regional contact or contract county office actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the construction permit and repair permit or the local file already tied to the lot.",
+        "You need to know whether regional-contact and repair-permit friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the TDEC regional contact or contract county office first because that office controls the practical next permit step for the parcel.",
+        "Ask for the construction permit and repair permit, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the TDEC regional contact or contract county office actually holding the file.",
+        "A missing construction permit and repair permit can make the project more complex than the owner or contractor summary suggests.",
+        "regional-contact and repair-permit friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The TDEC regional contact or contract county office handling the parcel's permit path.",
+        "The construction permit and repair permit, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Tennessee permit conversations get real only after the TDEC regional contact or contract county office is clear.",
+        "construction permit and repair permit quality can matter more than a generic statewide permit article implies.",
+        "regional-contact and repair-permit friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Tennessee permit step a homeowner should take?",
+          "answer": "Start with the TDEC regional contact or contract county office because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Tennessee permit content need to mention construction permit and repair permit?",
+          "answer": "Because the construction permit and repair permit often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/tennessee/",
+        "/septic-inspection-cost/tennessee/",
+        "/septic-replacement-cost/tennessee/",
+        "/septic-system-cost-calculator/?state=TN&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "tn_01",
+        "tn_02",
+        "tn_03",
+        "tn_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "TN",
+      "title": "Tennessee Septic Inspection Cost",
+      "metaDescription": "Tennessee septic inspection cost with TDEC regional contact or contract county office routing, inspection letter and permit file context, and regional-contact and repair-permit friction in mind.",
+      "introCopy": "Tennessee inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the inspection letter and permit file still support the current system story. That makes the inspection fee only part of the real risk when regional-contact and repair-permit friction is still in play.",
+      "uniqueAngle": "Tennessee inspection content is strongest when it explains TDEC regional contact or contract county office routing, inspection letter and permit file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Tennessee buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the TDEC regional contact or contract county office file yet.",
+        "You need to know whether the inspection letter and permit file makes the visit more consequential than the fee itself.",
+        "regional-contact and repair-permit friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the TDEC regional contact or contract county office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the inspection letter and permit file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the TDEC regional contact or contract county office file has not been reviewed first.",
+        "The inspection letter and permit file can make the property much more complicated than the owner summary suggests.",
+        "regional-contact and repair-permit friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The TDEC regional contact or contract county office contact with jurisdiction over the property.",
+        "Any inspection letter and permit file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Tennessee buyers and owners need the TDEC regional contact or contract county office file before the inspection fee means much.",
+        "inspection letter and permit file can matter more than the visit price.",
+        "regional-contact and repair-permit friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Tennessee inspection step a homeowner should take?",
+          "answer": "Find the TDEC regional contact or contract county office first and ask for the inspection letter and permit file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Tennessee inspection content need to mention inspection letter and permit file?",
+          "answer": "Because inspection letter and permit file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/tennessee/",
+        "/septic-permit-process/tennessee/",
+        "/septic-replacement-cost/tennessee/",
+        "/septic-system-cost-calculator/?state=TN&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "tn_01",
+        "tn_02",
+        "tn_03",
+        "tn_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "VT",
+      "title": "Buying a House With a Septic System in Vermont",
+      "metaDescription": "Vermont homebuyer septic checklist with permit-search path, the Town, or the DEC regional office routing, permit-search result and town-review note context, and regional-office and town-review friction.",
+      "introCopy": "Vermont buyer risk is rarely just about paying for an inspection. The real early question is whether the permit-search result and town-review note already support the seller story before regional-office and town-review friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Vermont buyer intent is strongest when the page ties permit-search path, the Town, or the DEC regional office routing, permit-search result and town-review note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Vermont buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the permit-search result and town-review note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches regional-office and town-review friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the permit-search path, the Town, or the DEC regional office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the permit-search result and town-review note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the permit-search path, the Town, or the DEC regional office file is still thin or incomplete.",
+        "permit-search result and town-review note gaps can make the property more complex than the seller summary suggests.",
+        "regional-office and town-review friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The permit-search path, the Town, or the DEC regional office contact responsible for the property file.",
+        "The permit-search result and town-review note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Vermont buyer conversations get real only after the permit-search path, the Town, or the DEC regional office file is in hand.",
+        "permit-search result and town-review note quality can matter more than the listing summary or first inspection fee.",
+        "regional-office and town-review friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Vermont buyer step a homeowner should take?",
+          "answer": "Start with the permit-search path, the Town, or the DEC regional office file and ask for the permit-search result and town-review note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Vermont buyer content need to mention permit-search result and town-review note?",
+          "answer": "Because permit-search result and town-review note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/vermont/",
+        "/septic-records-checklist/vermont/",
+        "/septic-permit-process/vermont/",
+        "/septic-system-cost-calculator/?state=VT&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "vt_01",
+        "vt_02",
+        "vt_03",
+        "vt_04",
+        "vt_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "VT",
+      "title": "Vermont Septic Records Checklist",
+      "metaDescription": "Vermont septic records checklist with permit-search path, the Town, or the DEC regional office routing, permit-search result and state-issued permit file pulls, and regional-office and town-review friction.",
+      "introCopy": "Vermont records work is less about one statewide file and more about getting the right permit-search path, the Town, or the DEC regional office file in hand. If the homeowner cannot surface the permit-search result and state-issued permit file, the low end is still just a planning story.",
+      "uniqueAngle": "Vermont records intent is strongest when the page connects permit-search path, the Town, or the DEC regional office routing, permit-search result and state-issued permit file, and regional-office and town-review friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Vermont buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which permit-search path, the Town, or the DEC regional office actually controls the file.",
+        "The owner says the system is permitted, but there is still no permit-search result and state-issued permit file in hand.",
+        "You need to know whether regional-office and town-review friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the permit-search path, the Town, or the DEC regional office and confirm who actually holds the onsite file for the property.",
+        "Request the permit-search result and state-issued permit file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the permit-search path, the Town, or the DEC regional office holding the actual record.",
+        "A missing permit-search result and state-issued permit file can hide a very different system path than the owner summary suggests.",
+        "regional-office and town-review friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The permit-search path, the Town, or the DEC regional office identified for the property.",
+        "Any permit-search result and state-issued permit file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Vermont records conversations get real only after the permit-search path, the Town, or the DEC regional office is clear.",
+        "A thin permit-search result and state-issued permit file trail can hide the real approval story behind the current system.",
+        "regional-office and town-review friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Vermont septic records in practice?",
+          "answer": "Usually the permit-search path, the Town, or the DEC regional office, which is the first office to identify before you ask for the permit-search result and state-issued permit file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Vermont homeowner ask for the permit-search result and state-issued permit file when pulling septic records?",
+          "answer": "Because the permit-search result and state-issued permit file usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/vermont/",
+        "/buying-a-house-with-a-septic-system/vermont/",
+        "/septic-permit-process/vermont/",
+        "/septic-system-cost-calculator/?state=VT&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "vt_01",
+        "vt_02",
+        "vt_03",
+        "vt_04",
+        "vt_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "WY",
+      "title": "Buying a House With a Septic System in Wyoming",
+      "metaDescription": "Wyoming homebuyer septic checklist with county office under Wyoming DEQ delegation routing, county permit, inspection, and perc file context, and delegated-county and engineer-design friction.",
+      "introCopy": "Wyoming buyer risk is rarely just about paying for an inspection. The real early question is whether the county permit, inspection, and perc file already support the seller story before delegated-county and engineer-design friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Wyoming buyer intent is strongest when the page ties county office under Wyoming DEQ delegation routing, county permit, inspection, and perc file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Wyoming buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county permit, inspection, and perc file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches delegated-county and engineer-design friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county office under Wyoming DEQ delegation and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the county permit, inspection, and perc file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county office under Wyoming DEQ delegation file is still thin or incomplete.",
+        "county permit, inspection, and perc file gaps can make the property more complex than the seller summary suggests.",
+        "delegated-county and engineer-design friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county office under Wyoming DEQ delegation contact responsible for the property file.",
+        "The county permit, inspection, and perc file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Wyoming buyer conversations get real only after the county office under Wyoming DEQ delegation file is in hand.",
+        "county permit quality can matter more than the listing summary or first inspection fee.",
+        "delegated-county and engineer-design friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Wyoming buyer step a homeowner should take?",
+          "answer": "Start with the county office under Wyoming DEQ delegation file and ask for the county permit, inspection, and perc file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Wyoming buyer content need to mention county permit?",
+          "answer": "Because county permit, inspection, and perc file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/wyoming/",
+        "/septic-permit-process/wyoming/",
+        "/perc-test-cost/wyoming/",
+        "/septic-system-cost-calculator/?state=WY&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "wy_01",
+        "wy_02",
+        "wy_03",
+        "wy_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "WY",
+      "title": "Wyoming Septic Permit Process",
+      "metaDescription": "Wyoming septic permit process with county office under Wyoming DEQ delegation routing, county permit, site plan, and DEQ-delegation file context, and delegated-county and engineer-design friction.",
+      "introCopy": "Wyoming permit content is stronger than a generic install checklist because the real homeowner path runs through the county office under Wyoming DEQ delegation, not one vague statewide desk. The practical question is whether the county permit, site plan, and DEQ-delegation file and the local file already support a clean install or replacement story before delegated-county and engineer-design friction widens the job.",
+      "uniqueAngle": "Wyoming permit intent is strongest when the page explains county office under Wyoming DEQ delegation routing, county permit, site plan, and DEQ-delegation file, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Wyoming owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county office under Wyoming DEQ delegation actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the county permit, site plan, and DEQ-delegation file or the local file already tied to the lot.",
+        "You need to know whether delegated-county and engineer-design friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the county office under Wyoming DEQ delegation first because that office controls the practical next permit step for the parcel.",
+        "Ask for the county permit, site plan, and DEQ-delegation file, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the county office under Wyoming DEQ delegation actually holding the file.",
+        "A missing county permit, site plan, and DEQ-delegation file can make the project more complex than the owner or contractor summary suggests.",
+        "delegated-county and engineer-design friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county office under Wyoming DEQ delegation handling the parcel's permit path.",
+        "The county permit, site plan, and DEQ-delegation file, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Wyoming permit conversations get real only after the county office under Wyoming DEQ delegation is clear.",
+        "county permit quality can matter more than a generic statewide permit article implies.",
+        "delegated-county and engineer-design friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Wyoming permit step a homeowner should take?",
+          "answer": "Start with the county office under Wyoming DEQ delegation because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Wyoming permit content need to mention county permit?",
+          "answer": "Because the county permit often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/wyoming/",
+        "/buying-a-house-with-a-septic-system/wyoming/",
+        "/perc-test-cost/wyoming/",
+        "/septic-system-cost-calculator/?state=WY&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "wy_01",
+        "wy_02",
+        "wy_03",
+        "wy_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
     }
   ]
 }

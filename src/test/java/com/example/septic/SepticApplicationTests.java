@@ -442,7 +442,43 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/oregon/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/washington/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/massachusetts/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/florida/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/florida/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alaska/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/alaska/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/alabama/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/arkansas/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/arkansas/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/delaware/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/delaware/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/hawaii/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/hawaii/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/idaho/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/idaho/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/maine/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/maine/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/mississippi/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/mississippi/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/montana/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/montana/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/north-dakota/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/north-dakota/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/new-hampshire/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/new-hampshire/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/nevada/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/nevada/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/rhode-island/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/rhode-island/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/south-carolina/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/south-dakota/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/south-dakota/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/tennessee/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/tennessee/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/vermont/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/vermont/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/wyoming/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/wyoming/")));
 	}
 
 	@Test
@@ -898,6 +934,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit should always be obtained before starting dirt work")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("repair permit is required before work begins on a failing septic system")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Inspection Letter")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the permit-file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")));
 	}
@@ -911,6 +949,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site approvals and permits for all septic systems")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit must be issued before the county can issue a building permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the permit copy pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -924,6 +964,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Alabama")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before calling the county health department")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1072,6 +1114,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Arkansas Septic Cost Guide and County Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("call the county health unit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit copies")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Arkansas")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Arkansas Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the health-unit call")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1084,6 +1128,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Mississippi Septic Cost Guide and Public Records Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operates entirely in public records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit or Recommendation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Mississippi")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Mississippi Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the file lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1191,6 +1237,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Dakota Septic Cost Guide and Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Homeowner Plumbing Installation Certificate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("underground, rough-in, and final inspections")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in South Dakota")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Dakota Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the permit certificate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")));
 	}
@@ -1202,6 +1250,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Idaho Septic Cost Guide and Site Approval Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("public health districts administer septic rules")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation should be performed before buying property")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Idaho Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Idaho Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the site evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1213,6 +1263,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nevada Septic Cost Guide and Buyer File Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Southern Nevada Health District")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("occupancy requires inspection and as-built plans")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nevada Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nevada Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the buyer file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1224,6 +1276,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Delaware Septic Cost Guide and Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation reports")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection reports")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Delaware")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Delaware Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the permit-file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1235,6 +1289,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska Septic Cost Guide and Buyer File Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Municipality of Anchorage")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("$25")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the buyer file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1246,6 +1302,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hawaii Septic Cost Guide and Cesspool Upgrade Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("2050")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("approval-to-use letter")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Hawaii")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hawaii Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the cesspool-upgrade path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1257,6 +1315,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine Septic Cost Guide and HHE-200 File Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("HHE-200")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local Plumbing Inspector")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the buyer file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1268,6 +1328,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Cost Guide and Approval Status Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operationally approved septic system")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("OneStop")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in New Hampshire")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the approval-status check")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1279,6 +1341,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Rhode Island Septic Cost Guide and DEM File Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("1968 forward")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("historic permit searches")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Rhode Island Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Rhode Island Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the DEM file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1290,6 +1354,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Vermont Septic Cost Guide and WW Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("five regional offices")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("check with the Town")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Vermont")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Vermont Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the regional-office handoff")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1301,6 +1367,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Montana Septic Cost Guide and Site-Risk Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("COSA")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("drainfield permit")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Montana")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Montana Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the lot-review check")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1312,6 +1380,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Dakota Septic Cost Guide and Local Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("local public health units issue permits")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("investigate complaints")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Dakota Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Dakota Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the local permit call")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1323,6 +1393,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wyoming Septic Cost Guide and Site-Risk Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("all new systems require a permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("engineer-designed systems")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Wyoming")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wyoming Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the county site check")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -2046,6 +2118,186 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("five regional offices")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("check with the Town")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=VT&projectType=new_install")));
+	}
+
+	@Test
+	void alaskaRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/alaska/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alaska Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approved-system record and archive-scanning note")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("remote-site conditions and archive-scanning delay")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AK&projectType=buying_home")));
+	}
+
+	@Test
+	void alabamaBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/alabama/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Alabama")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use, Permit to Install, and soil-test history")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-file and soil-test friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AL&projectType=buying_home")));
+	}
+
+	@Test
+	void arkansasRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/arkansas/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Arkansas Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit copy and county health-unit file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-file and soil-suitability friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AR&projectType=buying_home")));
+	}
+
+	@Test
+	void delawareBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/delaware/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Delaware")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation report and inspection report")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-handoff and suitability-review friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=DE&projectType=buying_home")));
+	}
+
+	@Test
+	void hawaiiRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/hawaii/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hawaii Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approval-to-use letter and local branch record")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("cesspool-upgrade and TMK-file friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=HI&projectType=buying_home")));
+	}
+
+	@Test
+	void idahoPermitProcessPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/idaho/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Idaho Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("installation permit and district site-evaluation file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("district-file and site-evaluation friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=ID&projectType=new_install")));
+	}
+
+	@Test
+	void maineInspectionCostPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/maine/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Maine Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local Plumbing Inspector trail and HHE-200 file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("town-office file gaps and online-search limits")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=ME&projectType=inspection")));
+	}
+
+	@Test
+	void mississippiBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/mississippi/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Mississippi")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit or Recommendation and county file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("public-records and county-file friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MS&projectType=buying_home")));
+	}
+
+	@Test
+	void montanaPermitProcessPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/montana/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Montana Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("drainfield permit and local-health file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("lot-review and local-delegation friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MT&projectType=new_install")));
+	}
+
+	@Test
+	void northDakotaRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-dakota/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Dakota Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit and inspection file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local-permit and complaint-file friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=ND&projectType=buying_home")));
+	}
+
+	@Test
+	void newHampshireBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/new-hampshire/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in New Hampshire")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("operational-approval status and local failure-verification note")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("operational-approval and archive-gap friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NH&projectType=buying_home")));
+	}
+
+	@Test
+	void nevadaInspectionCostPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/nevada/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nevada Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection note and occupancy signoff")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("authority-split and as-built-file friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NV&projectType=inspection")));
+	}
+
+	@Test
+	void rhodeIslandRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/rhode-island/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Rhode Island Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("active and historic permit search plus the underlying file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit-history and suitability-review friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=RI&projectType=buying_home")));
+	}
+
+	@Test
+	void southCarolinaBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/south-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit copy and final-inspection history")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit-copy and county-office friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=SC&projectType=buying_home")));
+	}
+
+	@Test
+	void southDakotaInspectionCostPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/south-dakota/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Dakota Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection certificate path and local-rule note")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection-certificate and local-rule friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=SD&projectType=inspection")));
+	}
+
+	@Test
+	void tennesseeInspectionCostPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-cost/tennessee/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection letter and permit file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("regional-contact and repair-permit friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=TN&projectType=inspection")));
+	}
+
+	@Test
+	void vermontRecordsChecklistPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/vermont/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Vermont Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit-search result and state-issued permit file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("regional-office and town-review friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=VT&projectType=buying_home")));
+	}
+
+	@Test
+	void wyomingPermitProcessPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-process/wyoming/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wyoming Septic Permit Process")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county permit, site plan, and DEQ-delegation file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("delegated-county and engineer-design friction")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WY&projectType=new_install")));
 	}
 
 	@Test
