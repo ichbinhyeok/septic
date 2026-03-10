@@ -194,6 +194,36 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void canonicalHostDoesNotRedirectWhenForwardedProtoIsAlreadyHttps() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/")
+						.queryParam("state", "GA")
+						.header("X-Forwarded-Proto", "https")
+						.with(request -> {
+							request.setScheme("http");
+							request.setServerName("example.test");
+							request.setServerPort(80);
+							return request;
+						}))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost Calculator")));
+	}
+
+	@Test
+	void canonicalHostDoesNotRedirectWhenCloudflareVisitorSchemeIsHttps() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/")
+						.queryParam("state", "GA")
+						.header("CF-Visitor", "{\"scheme\":\"https\"}")
+						.with(request -> {
+							request.setScheme("http");
+							request.setServerName("example.test");
+							request.setServerPort(80);
+							return request;
+						}))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic System Cost Calculator")));
+	}
+
+	@Test
 	void robotsTxtExposesSitemap() throws Exception {
 		mockMvc.perform(get("/robots.txt"))
 				.andExpect(status().isOk())

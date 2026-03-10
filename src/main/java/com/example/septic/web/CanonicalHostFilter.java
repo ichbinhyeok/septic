@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Locale;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -53,11 +54,12 @@ public class CanonicalHostFilter extends OncePerRequestFilter {
 
     private boolean shouldRedirect(HttpServletRequest request) {
         String requestHost = request.getServerName();
+        String effectiveScheme = originalScheme(request);
         if (!isCanonicalHost(requestHost) && !isEquivalentWwwVariant(requestHost)) {
             return false;
         }
 
-        if (!canonicalScheme.equalsIgnoreCase(request.getScheme())) {
+        if (!canonicalScheme.equalsIgnoreCase(effectiveScheme)) {
             return true;
         }
 
@@ -65,7 +67,7 @@ public class CanonicalHostFilter extends OncePerRequestFilter {
             return true;
         }
 
-        return normalizedPort(request.getServerPort(), request.getScheme()) != canonicalPort;
+        return normalizedPort(originalPort(request, effectiveScheme), effectiveScheme) != canonicalPort;
     }
 
     private boolean isCanonicalHost(String host) {
@@ -81,6 +83,49 @@ public class CanonicalHostFilter extends OncePerRequestFilter {
 
     private String stripWww(String host) {
         return host.toLowerCase().startsWith("www.") ? host.substring(4) : host;
+    }
+
+    private String originalScheme(HttpServletRequest request) {
+        String forwardedProto = firstHeaderValue(request, "X-Forwarded-Proto");
+        if (forwardedProto != null) {
+            return forwardedProto.toLowerCase(Locale.ROOT);
+        }
+
+        String cfVisitor = request.getHeader("CF-Visitor");
+        if (cfVisitor != null) {
+            String normalized = cfVisitor.toLowerCase(Locale.ROOT);
+            if (normalized.contains("\"scheme\":\"https\"")) {
+                return "https";
+            }
+            if (normalized.contains("\"scheme\":\"http\"")) {
+                return "http";
+            }
+        }
+
+        return request.getScheme();
+    }
+
+    private int originalPort(HttpServletRequest request, String effectiveScheme) {
+        String forwardedPort = firstHeaderValue(request, "X-Forwarded-Port");
+        if (forwardedPort != null) {
+            try {
+                return Integer.parseInt(forwardedPort);
+            } catch (NumberFormatException ignored) {
+                return normalizedPort(-1, effectiveScheme);
+            }
+        }
+        if (!effectiveScheme.equalsIgnoreCase(request.getScheme())) {
+            return normalizedPort(-1, effectiveScheme);
+        }
+        return request.getServerPort();
+    }
+
+    private String firstHeaderValue(HttpServletRequest request, String headerName) {
+        String value = request.getHeader(headerName);
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        return value.split(",")[0].trim();
     }
 
     private int normalizedPort(int port, String scheme) {
