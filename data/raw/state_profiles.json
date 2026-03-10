@@ -485,6 +485,64 @@
       ]
     },
     {
+      "stateCode": "AZ",
+      "stateName": "Arizona",
+      "agencyName": "Arizona Department of Environmental Quality",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Arizona is stronger on county delegation and site-approval risk than on a fake statewide tank table. The homeowner wedge is knowing that the county usually owns the permit path and that the site investigation can move the project fast.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "ADEQ's onsite wastewater program explains that ADEQ has delegated permitting authority to all 15 counties, so homeowners usually submit permit applications to the county where the property is located. ADEQ's Type 4 general permit page says the permit covers onsite wastewater treatment facilities from 0 to 24,000 gallons per day and describes the Notice of Intent to Construct, two-year construction window, and Notice of Intent to Discharge sequence. ADEQ's delegation page also points homeowners to county forms and the Uniform Site Investigation Report used by delegated counties.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Arizona homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Arizona homeowners usually work through the delegated county program, not directly through ADEQ. The permit conversation is usually real only after the county-level site investigation and the Notice of Intent to Construct path are in view.",
+      "permitPathSteps": [
+        "Identify the county or delegated local program first because ADEQ says homeowners submit permit applications to the county where the property is located.",
+        "Check whether the site investigation and county permit forms are already in hand before you trust the low end.",
+        "Use the Type 4 general permit sequence to understand whether the project is still at the Notice of Intent to Construct stage or closer to discharge approval."
+      ],
+      "siteEvalSummary": "Arizona's public homeowner set is strongest on delegated county permitting and site-investigation paperwork rather than a simple statewide homeowner tank chart. The practical path still depends on the county forms, the Uniform Site Investigation Report, and whether the system fits the Type 4 general permit path cleanly.",
+      "ruleHighlights": [
+        "ADEQ says it has delegated permitting authority to all 15 Arizona counties for onsite wastewater treatment facilities.",
+        "ADEQ's homeowner page tells applicants to submit the permit application to the county in which the property is located.",
+        "ADEQ's Type 4 general permit authorizes onsite wastewater treatment facilities from 0 to 24,000 gallons per day.",
+        "ADEQ describes a Notice of Intent to Construct, a two-year construction window, and a Notice of Intent to Discharge sequence for the permit path."
+      ],
+      "localOverrideNote": "Arizona looks statewide through ADEQ, but the practical homeowner path changes quickly once you know which county owns the permit file and what the site investigation says.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["az_01", "az_02", "az_03", "az_04"],
+      "localAuthoritySourceIds": ["az_03"],
+      "recordsLookupSourceIds": ["az_04"],
+      "localActionSteps": [
+        "Open the delegation page first so you know which county or delegated program controls the file.",
+        "Ask for the permit application form, the Uniform Site Investigation Report, and any county review notes tied to the parcel.",
+        "Check whether any prior notice of transfer already exists before you trust the current system story."
+      ],
+      "whoToCallFirst": "Start with the county or delegated local program that handles onsite wastewater permits for the property.",
+      "recordsToRequest": [
+        "The county permit application file and any associated review notes.",
+        "The Uniform Site Investigation Report or other county site-evaluation paperwork tied to the parcel.",
+        "Any prior notice of transfer or ownership record already attached to the facility."
+      ],
+      "lowEndRiskChecks": [
+        "If the county file or site investigation is thin, the low end is still a planning scenario, not a permit-ready path.",
+        "If the site investigation points toward a more complex or alternative system, the project can widen quickly.",
+        "A missing transfer or ownership record can weaken confidence in the current system story."
+      ],
+      "permitTimelineNote": "Arizona timing often turns on how quickly the county reviews the Notice of Intent to Construct package and whether the site investigation supports a straightforward Type 4 path.",
+      "buyerInspectionTrigger": "Buyers should ask for the county file, site investigation paperwork, and any notice of transfer early because Arizona risk often lives in the delegated county record rather than the seller summary.",
+      "maintenanceInspectionNote": "Arizona's current source set is strongest on delegated permitting, site investigation, and transfer records, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Arizona's main wrinkle is delegated county control plus the site-investigation paperwork that often decides whether the homeowner is still on a conventional path.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add county-specific examples once a stable sample of Arizona county permit workflows is documented.",
+        "Document when Arizona county programs push homeowners from standard site approval into a more complex system path."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

@@ -3650,6 +3650,65 @@
         "mi_03"
       ],
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "AZ",
+      "title": "Arizona Perc Test Cost",
+      "metaDescription": "Arizona perc and site-approval planning page with county delegation, site investigation paperwork, and ADEQ permit sequence context.",
+      "introCopy": "Arizona perc and site-approval questions are stronger than a generic national test page because county delegation and site-investigation paperwork usually decide whether the homeowner is still on a straightforward permit path.",
+      "uniqueAngle": "Arizona site-testing intent is strongest when the page connects county delegation, the Uniform Site Investigation Report, and ADEQ's Type 4 permit sequence instead of pretending a soil test alone decides the project.",
+      "targetReader": "Best for Arizona owners, buyers, builders, and agents who need to know whether the county site-investigation path is still simple enough to trust the low end before design, permit, or alternative-system risk widens the job.",
+      "fitBullets": [
+        "You want a perc or soil-testing number, but no one has confirmed which county program controls the permit path.",
+        "The installer says the site looks straightforward, but the Uniform Site Investigation Report or county form is not in hand yet.",
+        "You need to know whether the site-approval path could push the project into a more complex system before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county or delegated local program first because Arizona permit applications usually go through the county.",
+        "Ask for the Uniform Site Investigation Report or the county's equivalent site-evaluation paperwork before treating the test as a standalone fee.",
+        "Use the ADEQ Type 4 permit sequence to decide whether the project is still at the Notice of Intent to Construct stage or moving toward discharge approval.",
+        "Then compare perc or site-approval cost in the context of the real county workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county file or site investigation paperwork is still missing.",
+        "If the site investigation points away from a straightforward conventional path, the project can widen quickly.",
+        "A missing notice-of-transfer or county ownership record can weaken confidence in the current system story before testing even starts."
+      ],
+      "quotePrepChecklist": [
+        "The county or delegated local program that controls the permit path for the parcel.",
+        "The Uniform Site Investigation Report or county site-evaluation paperwork already tied to the property.",
+        "Any prior notice of transfer or ownership record already attached to the facility.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Arizona site-testing conversations get real only after the county program and site-investigation paperwork are clear.",
+        "The Uniform Site Investigation Report can move the project toward a more complex system path than the homeowner expected.",
+        "ADEQ's Type 4 permit sequence means the perc discussion is usually part of a larger county approval workflow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Arizona site-approval step a homeowner should take?",
+          "answer": "Identify the county or delegated local program first, because ADEQ says homeowners usually submit onsite wastewater permit applications to the county where the property is located."
+        },
+        {
+          "question": "Why does Arizona perc content need to mention the Uniform Site Investigation Report?",
+          "answer": "Because ADEQ's delegation page points homeowners to county forms and the Uniform Site Investigation Report used by delegated county programs."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/arizona/",
+        "/septic-system-cost-calculator/?state=AZ&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "az_01",
+        "az_02",
+        "az_03",
+        "az_04"
+      ],
+      "publishStatus": "published"
     }
   ]
 }

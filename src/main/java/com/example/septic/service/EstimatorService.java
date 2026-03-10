@@ -141,6 +141,9 @@ public class EstimatorService {
         if ("PA".equals(state.stateCode())) {
             checklist.add("Identify the municipality or local agency and Sewage Enforcement Officer before trusting the next-step permit path.");
         }
+        if ("AZ".equals(state.stateCode())) {
+            checklist.add("Confirm which Arizona county controls the permit file and whether the site investigation paperwork is already on record.");
+        }
         if ("CA".equals(state.stateCode())) {
             checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
         }
@@ -452,6 +455,9 @@ public class EstimatorService {
     }
 
     private String rangeReason(StateProfile state) {
+        if ("AZ".equals(state.stateCode())) {
+            return "This Arizona range stays wide because county delegation and site-investigation paperwork often decide whether the project stays on a straightforward permit path.";
+        }
         if ("CA".equals(state.stateCode())) {
             return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";
         }

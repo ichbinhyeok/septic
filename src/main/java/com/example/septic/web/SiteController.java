@@ -880,6 +880,10 @@ public class SiteController {
 
     private StateActionCopy stateActionCopy(StateProfile state) {
         return switch (state.stateCode()) {
+            case "AZ" -> new StateActionCopy(
+                    "Estimate before site approval",
+                    "Arizona quote conversations get more real once you know which county controls the permit file and whether the site-investigation paperwork is already on record."
+            );
             case "CA" -> new StateActionCopy(
                     "Estimate before the county file pull",
                     "California usually gets real once you know the local agency path and whether the property sits in a default Tier 1 workflow or a LAMP-driven local program."
