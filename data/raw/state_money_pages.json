@@ -3538,6 +3538,64 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "CA",
+      "title": "Buying a House With a Septic System in California",
+      "metaDescription": "California homebuyer septic checklist with local agency file pulls, as-built review, repair history, and LAMP context.",
+      "introCopy": "California septic buyer risk is rarely just about the inspection bill. The real first question is which local agency owns the OWTS file, because the permit trail, as-built drawing, repair history, and any LAMP-driven local rules often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "California buyer intent is strongest when the page explains local agency file quality, as-built review, and LAMP context together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for California buyers, sellers, and agents who know the property uses OWTS but still need to know whether the permit file, as-built, repair history, and local program context create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown which county environmental health office or local agency actually holds the file.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches local-program and missing-file risk before the negotiation becomes a replacement fight."
+      ],
+      "decisionSteps": [
+        "Start with the local agency or county environmental health office and ask for the permit file, as-built drawing, and any repair history tied to the property.",
+        "Confirm whether the parcel sits in the default Tier 1 path or a LAMP-driven local program before you treat the deal as routine.",
+        "Compare the local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file and local-program context make the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local agency file or as-built is still missing.",
+        "A LAMP-driven local program can change the practical siting and design context enough to make the deal more complex than the seller summary suggests.",
+        "If the repair history or local review notes are thin, the buyer may be inheriting more uncertainty than the listing shows."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or other local agency contact with jurisdiction over the property.",
+        "The permit file, as-built drawing, and any prior repair or local review tied to the parcel.",
+        "Any note showing whether the property sits in a default Tier 1 path or a LAMP-driven local program.",
+        "The inspection report, seller disclosure, and any repair history already shared during the deal."
+      ],
+      "driverBullets": [
+        "California buyers need the local agency file before the inspection or repair quote means much.",
+        "A missing as-built or repair file can matter more than the seller's simple septic summary.",
+        "LAMP-driven local programs can widen the buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a California buyer should ask for?",
+          "answer": "Ask the local agency or county environmental health office for the permit file and as-built drawing first, because California buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does LAMP matter in a California septic deal?",
+          "answer": "Because a LAMP-driven local program can change the practical siting and design path, which means the buyer may need more than a basic permit copy to understand the real risk."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/california/",
+        "/septic-system-cost-calculator/?state=CA&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "ca_01",
+        "ca_02",
+        "ca_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "CA",
       "title": "California Septic Permit Process",
@@ -3646,6 +3704,65 @@
         "/septic-system-cost-calculator/?state=TX&projectType=new_install",
         "/septic-records-checklist/",
         "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "tx_01",
+        "tx_02",
+        "tx_03",
+        "tx_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "TX",
+      "title": "Texas Perc Test Cost",
+      "metaDescription": "Texas perc and site-evaluation planning page with local permitting authority routing, site evaluator rules, and approved-plan context.",
+      "introCopy": "Texas perc and site-evaluation questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local permitting authority controls the parcel, whether a site evaluation by a licensed site evaluator or professional engineer already exists, and whether the approved-plan path is still clean before the homeowner trusts the low end.",
+      "uniqueAngle": "Texas site-testing intent is strongest when the page connects OARS authority lookup, site evaluation, and approved-plan readiness instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Texas owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward OSSF path before permit, design, or advanced-system risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-evaluation number, but no one has confirmed which local permitting authority controls the parcel.",
+        "The installer says the site looks straightforward, but the site evaluation or approved plan is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Use OARS or the homeowner page to identify the local permitting authority before you treat the job as a standalone test fee.",
+        "Ask whether a site evaluation by a licensed site evaluator or professional engineer already exists and whether the approved-plan path is still clean.",
+        "Use the site-evaluation file to decide whether the project is still on a straightforward path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local permitting authority and approved-plan path are still unclear.",
+        "If the site evaluation points away from a conventional system, the project can widen before contractor pricing becomes comparable.",
+        "If the approved-plan trail is thin, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The county and local permitting authority identified through OARS or the homeowner hub.",
+        "Any site evaluation or design file prepared by a licensed site evaluator or professional engineer.",
+        "Any approved plan, permit note, or application record already tied to the parcel.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Texas site-testing conversations get real only after the local permitting authority and site-evaluation path are clear.",
+        "A licensed site-evaluation file can matter more than the first quoted perc fee.",
+        "Approved-plan friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Texas site-check step a homeowner should take?",
+          "answer": "Identify the local permitting authority first, usually through OARS or the Texas homeowner guidance, because that office controls the real OSSF path."
+        },
+        {
+          "question": "Why does Texas perc content need to mention a licensed site evaluator or professional engineer?",
+          "answer": "Because Texas says the site must be evaluated by a licensed site evaluator or professional engineer before the real system choice becomes clear."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/texas/",
+        "/septic-system-cost-calculator/?state=TX&projectType=perc_test",
+        "/septic-permit-process/",
+        "/perc-test-cost/"
       ],
       "officialSourceIds": [
         "tx_01",
@@ -3772,6 +3889,66 @@
         "ny_03",
         "ny_04"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NY",
+      "title": "New York Septic Permit Process",
+      "metaDescription": "New York septic permit process with county health routing, Appendix 75-A baseline, and specific-waiver context.",
+      "introCopy": "New York permit content is stronger than a generic install checklist because the real homeowner path runs through the county health department or district office, not a vague statewide desk. Appendix 75-A creates the residential baseline, but the practical job often turns on whether the design file, any specific waiver, and the local health review path are already in view before the low end means much.",
+      "uniqueAngle": "New York permit intent is strongest when the page explains county-health routing, Appendix 75-A, and waiver history together instead of pretending the state starts from a clean statewide permit desk.",
+      "targetReader": "Best for New York owners, buyers, builders, and agents who need to know which health office controls the permit path, what design file should already exist, and why waiver history can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county health department or district office actually controls the file.",
+        "The contractor says the permit is straightforward, but no one has surfaced whether the Appendix 75-A design file or waiver history is already on record.",
+        "You need to know whether local health review will keep the project on a simple path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county health department or district office first because New York routes the practical permit path through local or district health contacts.",
+        "Ask whether the Appendix 75-A design file, as-built drawing, and any specific waiver already exist before treating the job as routine.",
+        "Use the local file to decide whether the property stays cleanly inside the residential under-1,000-gpd baseline or is already on a wider path.",
+        "Then compare permit timing, file quality, and waiver risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if the county health file cannot surface the Appendix 75-A design paperwork.",
+        "Specific waiver history can make the project more complex than the owner or contractor summary suggests.",
+        "If the property does not fit the under-1,000-gpd baseline cleanly, the simple statewide permit story can break quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county health department or district office contact with jurisdiction over the property.",
+        "The Appendix 75-A design file, as-built drawing, and any local health approval paperwork already tied to the site.",
+        "Any specific waiver or other local health decision already issued for the property.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "New York permit conversations get real only after the county health or district-office file is in hand.",
+        "Appendix 75-A creates a real baseline, but waiver history can widen the project fast.",
+        "A thin local file can hide the true design-flow and approval story behind the current system."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New York permit step a homeowner should take?",
+          "answer": "Identify the county health department or district office first, because New York routes the practical permit path through those local or district contacts."
+        },
+        {
+          "question": "Why does New York permit content need to mention specific waivers?",
+          "answer": "Because Appendix 75-A allows specific waivers, and that history can change how straightforward the permit path really is for the property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "ny_01",
+        "ny_02",
+        "ny_03",
+        "ny_04"
+      ],
+      "calculatorProjectType": "new_install",
       "publishStatus": "published"
     },
     {
