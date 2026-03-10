@@ -99,23 +99,6 @@ jobs:
 
           cd "\$DEPLOY_DIR"
 
-          cat <<'EOF_NGINX' > nginx.conf
-          server {
-            listen 80;
-            server_name septicpath.com www.septicpath.com;
-
-            location / {
-              proxy_pass http://septic:8080;
-              proxy_http_version 1.1;
-              proxy_set_header Host \$host;
-              proxy_set_header X-Real-IP \$remote_addr;
-              proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Host \$host;
-              proxy_set_header CF-Visitor \$http_cf_visitor;
-            }
-          }
-          EOF_NGINX
-
           cat <<EOF_COMPOSE > docker-compose.yml
           services:
             septic:
@@ -132,19 +115,11 @@ jobs:
               volumes:
                 - ./storage:/app/storage
               mem_limit: 512m
-            nginx:
-              image: nginx:1.27-alpine
-              container_name: septic-nginx
-              restart: unless-stopped
-              depends_on:
-                - septic
-              ports:
-                - "80:80"
-              volumes:
-                - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
           EOF_COMPOSE
 
           echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+
+          docker rm -f septic-nginx >/dev/null 2>&1 || true
 
           if docker compose version >/dev/null 2>&1; then
             docker compose pull
