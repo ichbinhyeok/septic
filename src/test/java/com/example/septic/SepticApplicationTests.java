@@ -6,14 +6,17 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
 import com.example.septic.web.EstimateForm;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,12 +32,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 })
 @AutoConfigureMockMvc
 class SepticApplicationTests {
+	private static final Path TEST_STORAGE_ROOT = Path.of("build/test-storage");
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Autowired
 	private EstimatorService estimatorService;
+
+	@BeforeEach
+	void resetTestStorage() throws IOException {
+		if (Files.notExists(TEST_STORAGE_ROOT)) {
+			return;
+		}
+		try (Stream<Path> paths = Files.walk(TEST_STORAGE_ROOT)) {
+			paths.sorted(Comparator.reverseOrder())
+					.forEach(path -> {
+						try {
+							Files.deleteIfExists(path);
+						} catch (IOException exception) {
+							throw new RuntimeException("Failed to clean test storage at " + path, exception);
+						}
+					});
+		}
+	}
 
 	@Test
 	void contextLoads() {
