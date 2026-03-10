@@ -104,7 +104,7 @@
                     <article class="detail-card">
                         <h2>Find the local permitting authority</h2>
                         <p>${state.stateName()} usually becomes more concrete once you confirm the actual local office handling septic permitting and review.</p>
-                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority directory</a>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
                         <p>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
                     </article>
                 @endif

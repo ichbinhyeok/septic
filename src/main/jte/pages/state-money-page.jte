@@ -104,7 +104,7 @@
                     <article class="detail-card">
                         <h2>${stateMoneyPage.localAuthorityHeading()}</h2>
                         <p>Use the local office first when you want to move from a planning page into an actual permit or records workflow.</p>
-                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority directory</a>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
                         <p>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
                     </article>
                 @endif

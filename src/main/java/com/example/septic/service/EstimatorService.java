@@ -150,6 +150,9 @@ public class EstimatorService {
         if ("NY".equals(state.stateCode())) {
             checklist.add("Ask the county health department for the Appendix 75-A file and any specific waiver before trusting the low end.");
         }
+        if ("OH".equals(state.stateCode())) {
+            checklist.add("Ask the local health department whether an installation permit, operation permit, or operational-inspection file already exists.");
+        }
         if ("OR".equals(state.stateCode())) {
             checklist.add("Confirm whether Oregon site evaluation or an authorization notice applies before trusting the low end of the range.");
         }
@@ -454,6 +457,9 @@ public class EstimatorService {
         }
         if ("NY".equals(state.stateCode())) {
             return "This New York range bridges Appendix 75-A design-flow rules into a homeowner planning estimate. County health files and any waiver history can still move the job.";
+        }
+        if ("OH".equals(state.stateCode())) {
+            return "This Ohio range stays wide because the local health department permit file and any operational-inspection history often decide the real path.";
         }
         if ("OR".equals(state.stateCode())) {
             return "This Oregon range is intentionally wide because DEQ says site evaluation does not guarantee approval of any specific system type.";

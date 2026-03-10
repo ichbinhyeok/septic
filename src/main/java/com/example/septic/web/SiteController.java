@@ -892,6 +892,10 @@ public class SiteController {
                     "Estimate with Appendix 75-A context",
                     "New York questions often turn on Appendix 75-A, county health files, and any waiver history rather than the seller's simple septic summary."
             );
+            case "OH" -> new StateActionCopy(
+                    "Estimate before calling the health district",
+                    "Ohio quote conversations get more real once you know which local health department holds the permit file and whether the property already has an operation-permit or inspection history."
+            );
             case "GA" -> new StateActionCopy(
                     "Estimate with the disposal rule in mind",
                     "Georgia homeowners often need to check whether a garbage disposal changes the likely tank band before they call the county office."

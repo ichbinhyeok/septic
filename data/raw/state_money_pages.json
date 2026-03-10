@@ -3535,6 +3535,63 @@
         "ny_04"
       ],
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "OH",
+      "title": "Ohio Septic Permit Process",
+      "metaDescription": "Ohio septic permit process with local health department routing, permit-file questions, and Chapter 3701-29 context.",
+      "introCopy": "Ohio permit pages are useful because the state tells homeowners the work is local in practice. The local health department controls permitting and operational inspections, and the job stays theoretical until the permit file is clearer.",
+      "uniqueAngle": "Ohio permit intent is strongest when the page explains local health department control, installation-permit and operation-permit context, and the off-lot-discharge wrinkle instead of pretending one statewide office handles everything directly.",
+      "targetReader": "Best for Ohio owners, buyers, builders, and agents who need to know who handles the permit, what the file should already contain, and why a local health department conversation can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has identified the local health department or board of health for the property yet.",
+        "The contractor says the permit is straightforward, but no one has surfaced whether the property already has an installation permit, operation permit, or inspection history.",
+        "You need to know whether off-lot discharge or local nuisance history could widen the project before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or board of health before you treat any quote as permit-ready.",
+        "Ask whether the file already contains an installation permit, operation permit, inspection record, or nuisance history tied to the system.",
+        "Check whether the property stays on the normal local-health path or whether off-lot discharge or Ohio EPA involvement changes the conversation.",
+        "Then compare permit readiness, file quality, and system-path risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story breaks fast if the local health department file is thin or missing.",
+        "Operational-inspection history or nuisance enforcement can make the job bigger than the installer summary suggests.",
+        "Off-lot discharge or Ohio EPA involvement can move the project beyond a simple local permit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the property.",
+        "Any installation permit, operation permit, or operational-inspection record already tied to the system.",
+        "Any nuisance notice, complaint history, or repair record the local health department already has on file.",
+        "A short note showing whether the project is new install, replacement follow-through, or a problem system that may involve off-lot discharge."
+      ],
+      "driverBullets": [
+        "Ohio permit timing depends heavily on identifying the correct local health department first.",
+        "A missing permit file or operation-permit history means the low end is still a planning scenario.",
+        "Off-lot discharge or enforcement history can widen the permit path beyond the simple installer quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Ohio permit step a homeowner should take?",
+          "answer": "Find the local health department or board of health first, because Ohio EPA says local health departments handle permitting and operational inspections for household sewage systems."
+        },
+        {
+          "question": "Why does Ohio permit content need to mention operation permits?",
+          "answer": "Because Chapter 3701-29 includes operation-permit requirements for HSTS and SFOSTS work, so homeowners should check the real permit file before trusting the low end."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-system-cost-calculator/?state=OH&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "publishStatus": "published"
     }
   ]
 }

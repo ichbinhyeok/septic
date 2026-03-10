@@ -369,6 +369,64 @@
       ]
     },
     {
+      "stateCode": "OH",
+      "stateName": "Ohio",
+      "agencyName": "Ohio Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Ohio is more useful as a permit-path and local-health-district state than as a fake statewide install table. The practical homeowner wedge is knowing which local health department controls the file and whether the permit record is already real.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Ohio household sewage treatment systems serving one-, two-, or three-family dwellings are regulated under Chapter 3701-29 of the Ohio Administrative Code through the Ohio Department of Health. Ohio EPA's homeowner FAQ says local health departments are responsible for permitting, code enforcement, nuisance investigations, and operational inspections, and the Ohio rules include installation-permit and operation-permit requirements for HSTS and SFOSTS work.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Ohio homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Ohio homeowners usually start with the local health department or board of health that has jurisdiction over the property. Ohio's public FAQ says local health departments handle permitting and operational inspections, while Chapter 3701-29 ties installation and operation permits to system installation or alteration.",
+      "permitPathSteps": [
+        "Identify the local health department or board of health before you treat any install or replacement quote as complete.",
+        "Ask whether the property already has an installation permit, operation permit, or prior operational-inspection record on file.",
+        "If the system discharges off lot or has nuisance history, surface that early because Ohio EPA and local health review can widen the path."
+      ],
+      "siteEvalSummary": "Ohio's public homeowner framing is strongest on permit responsibility and local enforcement rather than a simple statewide tank table. The practical path still depends on the local health department's file, permit status, and whether the property stays inside the standard HSTS path.",
+      "ruleHighlights": [
+        "Ohio household sewage treatment systems are regulated under Chapter 3701-29 through the Ohio Department of Health.",
+        "Ohio EPA's homeowner FAQ says local health departments are responsible for permitting, code enforcement, nuisance investigations, and operational inspections.",
+        "Chapter 3701-29 includes installation-permit and operation-permit requirements for HSTS and SFOSTS work.",
+        "Ohio EPA says off-lot discharge systems may need NPDES coverage, but the local health department is still the first point of contact."
+      ],
+      "localOverrideNote": "Ohio looks statewide on paper, but the real homeowner path still runs through the local health district's permit file, inspection history, and enforcement context.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["oh_01", "oh_02"],
+      "localAuthoritySourceIds": ["oh_01"],
+      "recordsLookupSourceIds": [],
+      "localActionSteps": [
+        "Use the Ohio EPA homeowner FAQ first so you know the local health department owns permitting and operational inspections.",
+        "Ask whether the property already has an installation permit, operation permit, inspection record, or nuisance file.",
+        "If the system discharges off lot or has unresolved complaint history, flag that before trusting the low end."
+      ],
+      "whoToCallFirst": "Start with the local health department or board of health that has jurisdiction over the property.",
+      "recordsToRequest": [
+        "The installation permit and any operation permit tied to the current or proposed household sewage treatment system.",
+        "Any operational-inspection record, nuisance notice, repair history, or complaint file already tied to the property.",
+        "Any note showing whether the system discharges off lot or has Ohio EPA involvement beyond the normal local health path."
+      ],
+      "lowEndRiskChecks": [
+        "If the local health department file is thin or missing, the low end is still a planning scenario, not a permit-ready job.",
+        "Operational-inspection history or nuisance enforcement can reveal a bigger problem than the seller or installer summary suggests.",
+        "Off-lot discharge or Ohio EPA involvement can widen the project beyond a simple local permit conversation."
+      ],
+      "permitTimelineNote": "Ohio timing is usually driven by how quickly the local health department can surface the permit file and whether the property is still on a standard HSTS path.",
+      "buyerInspectionTrigger": "Buyers should ask for the installation permit, operation permit, and any operational-inspection history early because Ohio risk often lives in the local health file.",
+      "maintenanceInspectionNote": "Ohio's public homeowner framing is strongest on local operational inspections and enforcement responsibility, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Ohio's main wrinkle is that the local health department owns the normal permit and inspection path, but off-lot discharge systems can trigger Ohio EPA NPDES coverage.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable local-health-district directory once Ohio's current public path is stable again.",
+        "Document which Ohio local health departments publish usable septic permit or inspection lookup workflows."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

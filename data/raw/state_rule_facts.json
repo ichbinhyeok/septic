@@ -400,6 +400,59 @@
     },
 
     {
+      "stateCode": "OH",
+      "factType": "regulatory_scope",
+      "label": "Program scope",
+      "value": "One-, two-, or three-family dwellings",
+      "unit": "",
+      "sourceId": "oh_01",
+      "sourceSection": "Who regulates household sewage treatment systems?",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.88,
+      "note": "Ohio EPA's homeowner FAQ says household sewage treatment systems serving one-, two-, or three-family dwellings are regulated under Chapter 3701-29 through the Ohio Department of Health."
+    },
+    {
+      "stateCode": "OH",
+      "factType": "local_permitting_authority",
+      "label": "Primary permitting context",
+      "value": "Local health departments",
+      "unit": "",
+      "sourceId": "oh_01",
+      "sourceSection": "Who regulates household sewage treatment systems?",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.95,
+      "note": "Ohio EPA says local health departments are responsible for permitting, code enforcement, nuisance investigations, and operational inspections for household sewage systems."
+    },
+    {
+      "stateCode": "OH",
+      "factType": "permit_requirement",
+      "label": "Permit requirement",
+      "value": "Installation permit and operation permit",
+      "unit": "",
+      "sourceId": "oh_02",
+      "sourceSection": "Rule 3701-29-09 permits",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.9,
+      "note": "Chapter 3701-29 includes installation-permit and operation-permit requirements for HSTS and SFOSTS work, which is why Ohio homeowners need the local permit file early."
+    },
+    {
+      "stateCode": "OH",
+      "factType": "special_case",
+      "label": "Off-lot discharge wrinkle",
+      "value": "NPDES coverage may apply",
+      "unit": "",
+      "sourceId": "oh_01",
+      "sourceSection": "Ohio EPA off-lot discharge note",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.8,
+      "note": "Ohio EPA says household sewage treatment systems that discharge off lot may need NPDES general permit coverage, even though the local health department remains the first point of contact."
+    },
+
+    {
       "stateCode": "MA",
       "factType": "title_5_context",
       "label": "Primary rule context",
