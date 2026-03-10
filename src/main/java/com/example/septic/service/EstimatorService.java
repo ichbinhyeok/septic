@@ -177,6 +177,12 @@ public class EstimatorService {
         if ("HI".equals(state.stateCode())) {
             checklist.add("Confirm whether Hawaii routes the parcel through a cesspool trigger or IWS path and whether the local wastewater branch, county permit review, and approval-to-use file are already aligned.");
         }
+        if ("ME".equals(state.stateCode())) {
+            checklist.add("Confirm whether the Maine town office can surface the HHE-200 and whether the Local Plumbing Inspector trail matches the current use of the property.");
+        }
+        if ("NH".equals(state.stateCode())) {
+            checklist.add("Confirm whether the New Hampshire property is operationally approved for the intended use and whether OneStop or archive records show the current file before trusting the permit path.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -571,6 +577,12 @@ public class EstimatorService {
         }
         if ("HI".equals(state.stateCode())) {
             return "This Hawaii range stays wide because cesspool-upgrade triggers, county handoff, and approval-to-use timing can all move the job quickly.";
+        }
+        if ("ME".equals(state.stateCode())) {
+            return "This Maine range stays wide because HHE-200 file gaps, town-office record quality, and Local Plumbing Inspector history can all move the job quickly.";
+        }
+        if ("NH".equals(state.stateCode())) {
+            return "This New Hampshire range stays wide because approval-status gaps, OneStop file quality, and local-verification triggers can all move the job quickly.";
         }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";

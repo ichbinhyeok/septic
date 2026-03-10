@@ -4912,6 +4912,128 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "ME",
+      "title": "Buying a House With a Septic System in Maine",
+      "metaDescription": "Maine homebuyer septic checklist with HHE-200 file pulls, town-office records, and Local Plumbing Inspector history.",
+      "introCopy": "Maine buyer risk is rarely just about paying for an inspection. The official state guidance says the real first question is whether the town office can surface the HHE-200 design and permit record, because a blank statewide search does not necessarily mean the file is clean or complete. Once the HHE-200 and Local Plumbing Inspector trail are in hand, the property story can change quickly.",
+      "uniqueAngle": "Maine buyer intent is strongest when the page explains HHE-200 retrieval, town-office file quality, and Local Plumbing Inspector records together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Maine buyers, sellers, and agents who know the property uses subsurface wastewater disposal but still need to know whether the HHE-200, permit search result, or Local Plumbing Inspector trail creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the HHE-200 design or permit record yet.",
+        "You need to know whether the town office has the file or whether the online search is incomplete for this parcel.",
+        "You want a buyer checklist that catches thin local records before repair or redesign risk lands on you after closing."
+      ],
+      "decisionSteps": [
+        "Start with the town office and request the HHE-200 design and permit record before you price inspection cost or seller credits.",
+        "Run the online septic permit search, but treat it as a supplement to the town-office file instead of the final answer.",
+        "Compare the HHE-200, permit search result, and Local Plumbing Inspector trail against the listing story so you know whether the system history is actually supported.",
+        "Then price buyer diligence, repair follow-up, or redesign risk only after the file makes the property story clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the town office cannot surface the HHE-200.",
+        "A blank or incomplete database result can hide a thinner file than the listing summary suggests.",
+        "If the Local Plumbing Inspector record does not match the current use of the property, the deal can widen beyond a routine buyer checklist quickly."
+      ],
+      "quotePrepChecklist": [
+        "The town office contact that holds the HHE-200 and permit file.",
+        "The HHE-200 design and permit application tied to the property.",
+        "Any online septic permit search result or database printout for the parcel.",
+        "Any Local Plumbing Inspector inspection record or installer note tied to the approved design."
+      ],
+      "driverBullets": [
+        "Maine buyer risk starts with the HHE-200 file pull, not with a generic inspection fee.",
+        "Town-office records often matter more than a statewide search result.",
+        "A thin Local Plumbing Inspector trail can be the first sign that the property story is not as clean as it looks."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Maine septic document a buyer should ask for?",
+          "answer": "Ask the town office for the HHE-200 design and permit record first, then use the statewide search as a backup rather than the other way around."
+        },
+        {
+          "question": "Why does the Maine buyer page mention the Local Plumbing Inspector?",
+          "answer": "Because Maine's official wastewater guidance ties licensed-work inspections and the practical file trail to the Local Plumbing Inspector, which can reveal more about the property than the listing summary."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/maine/",
+        "/septic-system-cost-calculator/?state=ME&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "me_01",
+        "me_02",
+        "me_03",
+        "me_04",
+        "me_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NH",
+      "title": "New Hampshire Septic Permit Process",
+      "metaDescription": "New Hampshire septic permit process with approval-status checks, OneStop records, and local-health verification risk.",
+      "introCopy": "New Hampshire permit pages are useful because the official state guidance already shows where the simple story breaks. The first real question is whether the property is operationally approved for the intended use and whether the file is visible in OneStop or archive records, because expansions, failed systems, and some special shoreline transfers can widen the whole project before a contractor quote means much.",
+      "uniqueAngle": "New Hampshire permit intent is strongest when the page explains approval status, OneStop and archive records, and local-health verification together instead of pretending the project starts with a clean installer number.",
+      "targetReader": "Best for New Hampshire owners, buyers, builders, and agents who need to know whether the property is operationally approved, whether the current file is visible, and why local verification or special-rule triggers can widen the project before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install, replacement, or expansion quote, but no one has confirmed whether the property is operationally approved for the intended use.",
+        "The file looks thin, and you still do not know whether OneStop or archive records can surface the real septic history.",
+        "You need to know whether local-health verification, failed-system rules, or a shoreline-transfer wrinkle changes the permit path first."
+      ],
+      "decisionSteps": [
+        "Start with the current NHDES septic workflow and check OneStop before treating the project as a routine permit story.",
+        "Confirm whether the property already has an operationally approved septic system for the intended use and whether any expansion, conversion, or replacement still needs approval.",
+        "If the system is failed or the file is thin, check whether a town health officer, permitted designer, or other local official has to verify the next step in writing.",
+        "Then compare permit readiness, record quality, and local-verification risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit path can widen quickly if the operational-approval status is still unclear.",
+        "If the file depends on archive records or local verification, the timeline can move beyond the low-end quote fast.",
+        "If a failed-system or shoreline-transfer rule applies, the project can become much less routine than the homeowner expected."
+      ],
+      "quotePrepChecklist": [
+        "The current NHDES septic workflow or OneStop record for the parcel.",
+        "Any operational approval, septic permit, or Individual Sewage Disposal System file tied to the property.",
+        "Any local-health, designer, or other written verification tied to failure or special review.",
+        "A short note on whether the job is new install, replacement, expansion, conversion, or transfer-driven review."
+      ],
+      "driverBullets": [
+        "New Hampshire permit timing gets more real once the approval-status check is done.",
+        "OneStop or archive file quality can matter more than the initial contractor story.",
+        "Local verification can move the schedule faster than homeowners expect when the system is failed or the file is thin."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Hampshire permit step a homeowner should take?",
+          "answer": "Start with the current NHDES septic workflow and check whether OneStop or the current state record already shows the approval history before treating the permit as routine."
+        },
+        {
+          "question": "Why does the New Hampshire permit page mention local-health verification?",
+          "answer": "Because New Hampshire's failed-system guidance says local officials can have to verify failure in writing, which means the next step can depend on more than the installer's schedule."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-hampshire/",
+        "/septic-system-cost-calculator/?state=NH&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "nh_01",
+        "nh_02",
+        "nh_03",
+        "nh_04",
+        "nh_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",

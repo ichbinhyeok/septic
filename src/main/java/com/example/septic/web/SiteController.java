@@ -928,6 +928,14 @@ public class SiteController {
                     "Estimate before the cesspool-upgrade path",
                     "Hawaii quote conversations get more real once you know whether a cesspool trigger is active and whether the county building-permit handoff and approval-to-use file are already in play."
             );
+            case "ME" -> new StateActionCopy(
+                    "Estimate before the buyer file pull",
+                    "Maine quote conversations get more real once you know whether the town office can surface the HHE-200 and whether the Local Plumbing Inspector trail actually supports the property story."
+            );
+            case "NH" -> new StateActionCopy(
+                    "Estimate before the approval-status check",
+                    "New Hampshire quote conversations get more real once you know whether the property is operationally approved for the intended use and whether OneStop or archive records actually support the file story."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

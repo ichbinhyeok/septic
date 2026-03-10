@@ -1960,6 +1960,122 @@
       ]
     },
     {
+      "stateCode": "ME",
+      "stateName": "Maine",
+      "agencyName": "Maine Center for Disease Control and Prevention",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Maine is stronger on buyer diligence, HHE-200 file retrieval, and town-office inspection records than on a fake statewide install table. The homeowner wedge is knowing whether the town office still has the HHE-200 design, whether the septic plans database actually covers the parcel, and whether the Local Plumbing Inspector record matches the property story before trusting the listing.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "Maine's wastewater resources tell homeowners to visit the town office first for the HHE-200 system design and permit application and say an online septic permit search may also help. Maine's HHE update page says that since July 1, 1974 a town office should keep copies of approved HHE-200 forms, that the state is digitizing those permits, and that the issuing town office relies on the installer's section when the Local Plumbing Inspector performs inspections. Maine's licensing page adds that the Local Plumbing Inspector performs inspections of licensed work and that HHE-200 forms are the designs for which permits are issued and inspections are performed. Maine is therefore stronger on buyer file retrieval and town-office workflow than on a flat statewide cost story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Maine homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Maine buyers and owners usually need the HHE-200 file and town-office record story clarified before they trust a quote or transfer narrative. The project is not really file-backed until the town office, the database search, and the Local Plumbing Inspector trail are clearer.",
+      "permitPathSteps": [
+        "Start with the town office and ask for the HHE-200 design and permit record before you trust the listing or contractor summary.",
+        "Check whether the online septic plans database actually surfaces the parcel file or whether the town office still holds the only usable record.",
+        "Use the HHE-200, permit, and Local Plumbing Inspector record to decide whether the property is still on a straightforward path or already widening into buyer-risk, repair, or redesign territory."
+      ],
+      "siteEvalSummary": "Maine public homeowner material is strongest on town-office records, HHE-200 file quality, and Local Plumbing Inspector inspection history rather than one simple statewide sizing story. The practical path turns on whether the file is real and complete enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "Maine tells homeowners to visit the town office first for the HHE-200 design and permit application.",
+        "Maine says an online septic permit search may help, but the database does not cover every file equally.",
+        "Maine says town offices should keep copies of approved HHE-200 forms from July 1, 1974 forward.",
+        "Maine says the Local Plumbing Inspector performs inspections of licensed work and the HHE-200 is the design tied to that inspection path."
+      ],
+      "localOverrideNote": "Maine looks statewide through CDC wastewater guidance, but the real homeowner workflow changes quickly once you know whether the town office has the HHE-200 and whether the Local Plumbing Inspector record is complete.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["me_01", "me_02", "me_03", "me_04", "me_05"],
+      "localAuthoritySourceIds": ["me_01", "me_03", "me_04"],
+      "recordsLookupSourceIds": ["me_01", "me_02", "me_03", "me_05"],
+      "localActionSteps": [
+        "Open the Maine wastewater resources page first and ask the town office for the HHE-200 design and permit record tied to the parcel.",
+        "Run the online septic permit search, but do not treat a blank result as proof that no file exists.",
+        "If the file is thin, confirm whether the Local Plumbing Inspector inspection trail or installer section is still available from the issuing town office."
+      ],
+      "whoToCallFirst": "Start with the town office that issued the HHE-200 and coordinates Local Plumbing Inspector records for the property.",
+      "recordsToRequest": [
+        "The HHE-200 system design and permit application tied to the property.",
+        "Any online septic plans database result or permit-search printout for the parcel.",
+        "Any Local Plumbing Inspector inspection record or installer note tied to the approved design."
+      ],
+      "lowEndRiskChecks": [
+        "If the town office cannot surface the HHE-200, the low end is still a planning scenario rather than a file-backed number.",
+        "If the online database is incomplete or blank, the property story can be much thinner than the listing summary suggests.",
+        "If the Local Plumbing Inspector record does not match the current use of the property, the job can widen beyond the simple buyer story quickly."
+      ],
+      "permitTimelineNote": "Maine timing often turns on how fast the town office can surface the HHE-200, whether the online search is usable, and whether the Local Plumbing Inspector trail still supports the current property story.",
+      "buyerInspectionTrigger": "Buyers should ask for the HHE-200 and Local Plumbing Inspector trail early because Maine's town-office file often tells a more reliable story than the listing summary.",
+      "maintenanceInspectionNote": "Maine's current source set is strongest on HHE-200 retrieval, town-office workflow, and Local Plumbing Inspector context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Maine's main wrinkle is that the file path is often local and town-office driven, so a blank statewide search result does not automatically mean the septic story is clean or complete.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable Maine town-by-town view showing which municipalities expose HHE-200 records online versus manual request only.",
+        "Document where Maine towns publish clearer buyer-transfer or repair-file workflows outside the state guidance."
+      ]
+    },
+    {
+      "stateCode": "NH",
+      "stateName": "New Hampshire",
+      "agencyName": "New Hampshire Department of Environmental Services",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "New Hampshire is stronger on permit path, approval status, and local-file quality than on a fake statewide install table. The homeowner wedge is knowing whether the property is operationally approved for the intended use, whether the current file is visible in OneStop or archive records, and whether local-health or special-rule triggers widen the project before the homeowner trusts the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "New Hampshire's Septic online forms page is the current NHDES entry point for septic subsurface workflow. NHDES's Municipal EcoLink says property owners must have proper septic system permits to utilize properties as intended, that proof of an operationally approved septic system may be needed for existing or proposed use, and that some additions or conversions require Individual Sewage Disposal System application and approval. Another NHDES EcoLink bulletin says septic records access is getting easier and faster and tells users to check OneStop first. NHDES's failed-system fact sheet says a town health officer, permitted designer, or other local official must verify failure in writing and that construction approval is tied to a 90-day completion window. New Hampshire is therefore stronger on approval-status and permit-path clarity than on a generic cost story, with a waterfront-transfer wrinkle for certain protected-shoreland properties after September 1, 2024.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public New Hampshire homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "New Hampshire homeowners usually need the approval-status and local-file story clarified before they trust an install, replacement, or expansion quote. The project is not really permit-ready until the record path, operational approval, and any local-health or special-rule trigger are clearer.",
+      "permitPathSteps": [
+        "Start with NHDES Septic online forms and the current record path before treating the project as a routine permit story.",
+        "Confirm whether the property already has an operationally approved septic system for the intended use and whether any expansion or conversion still needs Individual Sewage Disposal System approval.",
+        "Use OneStop, archive records, and any local-health or failure-verification note to decide whether the project is still on a straightforward path or already widening into a more complex schedule."
+      ],
+      "siteEvalSummary": "New Hampshire public homeowner material is strongest on approval-status checks, OneStop or archive file retrieval, and local-official signoff rather than one simple statewide sizing story. The practical path turns on whether the file is real and whether the current use still matches the approval history.",
+      "ruleHighlights": [
+        "New Hampshire says property owners must have proper septic permits to use properties as intended.",
+        "New Hampshire says proof of an operationally approved septic system may be required for existing or proposed use.",
+        "New Hampshire says septic records access is getting easier and faster and tells users to check OneStop first.",
+        "New Hampshire says failed-system replacements need local failure verification in writing and a 90-day construction window."
+      ],
+      "localOverrideNote": "New Hampshire looks statewide through NHDES, but the real homeowner workflow changes quickly once you know whether OneStop has the record, whether local officials must sign off, and whether a shoreline or conversion rule changes the path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["nh_01", "nh_02", "nh_03", "nh_04", "nh_05"],
+      "localAuthoritySourceIds": ["nh_03", "nh_05", "nh_01"],
+      "recordsLookupSourceIds": ["nh_02", "nh_04", "nh_03"],
+      "localActionSteps": [
+        "Open the Septic online forms or current record path first and check OneStop before assuming the file is missing.",
+        "Ask whether the property is operationally approved for the intended use and whether any conversion, addition, or expansion still needs approval.",
+        "If the system is failed or the file is thin, confirm whether a local health officer, permitted designer, or other local official needs to verify the next step in writing."
+      ],
+      "whoToCallFirst": "Start with NHDES's current septic workflow and record path, then confirm whether the town health officer or another local official has to verify the next step.",
+      "recordsToRequest": [
+        "Any current approval, operational approval, or Individual Sewage Disposal System file tied to the property.",
+        "Any OneStop result or archive record showing prior septic approvals or system status.",
+        "Any local-health or designer statement tied to failure, expansion, or transfer-specific review."
+      ],
+      "lowEndRiskChecks": [
+        "If the operational-approval status is unclear, the low end is still a planning scenario rather than a file-backed number.",
+        "If the file only exists in archive records or needs local-official verification, the timeline can widen before contractor pricing becomes comparable.",
+        "If a shoreline transfer rule, failure verification, or expansion approval applies, the project can move beyond the simplest permit story quickly."
+      ],
+      "permitTimelineNote": "New Hampshire timing often turns on whether OneStop or archive records surface the file, whether local-health verification is required, and whether a failure or shoreline trigger changes the approval path before the job feels routine.",
+      "buyerInspectionTrigger": "Buyers should ask whether the system is operationally approved for the intended use and whether any special shoreline evaluation or archive-file gap changes the property story.",
+      "maintenanceInspectionNote": "New Hampshire's current source set is strongest on approval-status checks, file retrieval, and local-verification workflow, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "New Hampshire's main wrinkle is that special property-transfer rules can apply to certain protected-shoreland waterfront properties, while failure verification and expansion approvals can still widen non-waterfront projects.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable New Hampshire map showing where local health officers or municipal file paths create extra friction beyond NHDES workflow.",
+        "Document whether OneStop exposes enough homeowner-visible approval detail in each region or whether archive requests remain common."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",
