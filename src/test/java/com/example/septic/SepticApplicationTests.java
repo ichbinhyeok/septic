@@ -288,13 +288,12 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/states/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50-state coverage is expanding in waves")))
-				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Next rollout wave"))))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Queued states are held back until the official-source set is strong enough.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Next rollout wave")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wave 3 | #1")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Research queue")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Queued for 50-state rollout | not yet published")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Target angle: county health permit routing and site-risk friction before the homeowner trusts the low end.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/alabama/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open research page")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open rollout plan")));
 	}
 
 	@Test
@@ -734,8 +733,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama septic guide is in the research queue.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the Alabama estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=AL")))
-				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Wave 2 priority"))))
-				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Why Alabama moves early"))))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wave 3 priority #1")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Why Alabama moves early")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("First source pack to build")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health permit routing and site-risk friction before the homeowner trusts the low end")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What unlocks a live Alabama guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<meta name=\"robots\" content=\"noindex,follow\">")))

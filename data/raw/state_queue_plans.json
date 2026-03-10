@@ -3,133 +3,133 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "CA",
+      "stateCode": "AL",
       "priorityRank": 1,
-      "rolloutWave": "Wave 2",
-      "whyNow": "California is a major surface-area gap and is more likely to win on records and local routing than on a fake statewide sizing table.",
-      "launchAngle": "Target angle: county permit file retrieval plus environmental health routing before the homeowner trusts the low end.",
-      "recommendedPath": "/septic-records-checklist/",
-      "researchTasks": [
-        "Find the statewide onsite wastewater program entry point and the county or local authority handoff.",
-        "Collect official permit, as-built, or septic file request workflows that a homeowner can actually use.",
-        "Document the safest buyer-facing explanation of when local review changes the project scope."
-      ]
-    },
-    {
-      "stateCode": "TX",
-      "priorityRank": 2,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Texas fills a large market gap and likely has enough local-authority variation to make permit-path content genuinely useful.",
-      "launchAngle": "Target angle: delegated local routing and permit-step confusion, not one fake statewide install story.",
+      "rolloutWave": "Wave 3",
+      "whyNow": "Alabama closes a large Southeast coverage gap right next to the live Georgia, Florida, Tennessee, and South Carolina cluster, so it can compound internal links faster than a distant state.",
+      "launchAngle": "Target angle: county health permit routing and site-risk friction before the homeowner trusts the low end.",
       "recommendedPath": "/septic-permit-process/",
       "researchTasks": [
-        "Find the statewide homeowner entry point for septic or onsite sewage permitting.",
-        "Map where local authority or delegated-program routing changes the first call.",
-        "Pull any official permit checklist or application sequence that can anchor a homeowner-safe workflow page."
+        "Find the statewide homeowner entry point for onsite sewage permits and county health routing.",
+        "Collect the cleanest public permit-step language that explains when the county path controls the project.",
+        "Pull any file-request or inspection-history workflow that can later support a records checklist."
       ]
     },
     {
-      "stateCode": "NY",
+      "stateCode": "IL",
+      "priorityRank": 2,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Illinois is one of the bigger Midwest surface-area gaps, and a records-first wedge is more defensible than pretending there is one simple statewide install story.",
+      "launchAngle": "Target angle: county or local file retrieval plus permit-path reality before the buyer or owner trusts a flat estimate.",
+      "recommendedPath": "/septic-records-checklist/",
+      "researchTasks": [
+        "Find the statewide homeowner-facing onsite wastewater or private sewage guidance hub.",
+        "Map where county or local office control changes the first file request or permit call.",
+        "Collect the safest public language on permit files, inspection records, or transfer-related diligence."
+      ]
+    },
+    {
+      "stateCode": "MD",
       "priorityRank": 3,
-      "rolloutWave": "Wave 2",
-      "whyNow": "New York is a high-value coverage gap where buyer due diligence and local file quality can become the real wedge.",
-      "launchAngle": "Target angle: buyer-risk and records friction before a homeowner assumes the listing or seller file is enough.",
+      "rolloutWave": "Wave 3",
+      "whyNow": "Maryland fills a high-value Mid-Atlantic gap and can likely support a buyer-risk and local-authority story that sits naturally beside Pennsylvania and Virginia.",
+      "launchAngle": "Target angle: buyer diligence, local health routing, and file quality before a homeowner assumes the listing story is enough.",
       "recommendedPath": "/buying-a-house-with-a-septic-system/",
       "researchTasks": [
-        "Find the official state homeowner entry point for onsite wastewater or residential septic guidance.",
-        "Collect county or local file-request paths that buyers can realistically follow.",
-        "Document which official inspection or transfer triggers are safe to publish without overclaiming."
+        "Find the statewide homeowner guidance for septic permits, inspections, or property-transfer context.",
+        "Collect county or local health routing that changes who actually holds the file.",
+        "Document which official deal-risk or inspection triggers are safe to publish for buyer pages."
       ]
     },
     {
-      "stateCode": "OH",
+      "stateCode": "WI",
       "priorityRank": 4,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Ohio is a broad Midwest gap and is likely to be more competitive on permit workflow than on generic install pricing.",
-      "launchAngle": "Target angle: local health district routing and permit sequence before replacement or install estimates harden.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the statewide onsite sewage homeowner guidance hub.",
-        "Find the local health district or permitting directory that tells users who handles the property.",
-        "Extract a homeowner-safe permit sequence that does not pretend all local paths are identical."
-      ]
-    },
-    {
-      "stateCode": "MI",
-      "priorityRank": 5,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Michigan can likely support a records-first and buyer-first wedge because file quality and local variation often matter more than broad averages.",
-      "launchAngle": "Target angle: septic file retrieval, inspection evidence, and local authority confirmation before purchase or replacement.",
-      "recommendedPath": "/septic-records-checklist/",
-      "researchTasks": [
-        "Find the clearest statewide homeowner guidance or state program landing page.",
-        "Collect county or local record lookup patterns that can become a usable checklist.",
-        "Document any official inspection or disclosure language that is safe for buyer pages."
-      ]
-    },
-    {
-      "stateCode": "AZ",
-      "priorityRank": 6,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Arizona is a strong Southwest gap and likely has site-risk and alternative-system angles that generic national pages usually flatten.",
-      "launchAngle": "Target angle: perc and site-approval risk before a homeowner assumes a conventional system path.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide onsite wastewater homeowner guide and permitting frame.",
-        "Pull source-backed language on soil, site, or alternative-system approval risk.",
-        "Find any local authority directory or delegated-program path that changes the next call."
-      ]
-    },
-    {
-      "stateCode": "CO",
-      "priorityRank": 7,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Colorado can likely support a site-risk and county-workflow story that feels more specific than a generic mountain-state cost page.",
-      "launchAngle": "Target angle: site evaluation, OWTS permit workflow, and county authority routing.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide OWTS homeowner guidance and local authority structure.",
-        "Collect official site-evaluation or soil-testing language safe for homeowner planning pages.",
-        "Find county-level directories or permit lookups that can support a records or permit page later."
-      ]
-    },
-    {
-      "stateCode": "VA",
-      "priorityRank": 8,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Virginia can likely win on inspection and maintenance obligations once the state and local workflow are mapped cleanly.",
-      "launchAngle": "Target angle: inspection and maintenance obligations plus the local path that controls the real next step.",
+      "rolloutWave": "Wave 3",
+      "whyNow": "Wisconsin is a meaningful Upper Midwest gap where inspection and maintenance obligations may create a stronger wedge than generic install pricing.",
+      "launchAngle": "Target angle: inspection timing, maintenance obligations, and local office control before the owner anchors to the low end.",
       "recommendedPath": "/septic-inspection-cost/",
       "researchTasks": [
-        "Find the statewide homeowner-facing onsite sewage program hub.",
-        "Extract official inspection or maintenance obligations that are publishable without guessing.",
-        "Document the local authority or permit-office routing a homeowner actually needs."
+        "Find the statewide homeowner entry point for POWTS, septic inspections, or maintenance obligations.",
+        "Pull official language showing how local or county administration changes the real workflow.",
+        "Collect any public inspection cadence or transfer-related requirement that can anchor an inspection page."
       ]
     },
     {
-      "stateCode": "TN",
-      "priorityRank": 9,
-      "rolloutWave": "Wave 2",
-      "whyNow": "Tennessee is a useful Southeast gap where repair and existing-system file ambiguity can drive replacement and buyer intent.",
-      "launchAngle": "Target angle: repair history and permit file retrieval before the homeowner anchors to a simple replacement quote.",
-      "recommendedPath": "/septic-replacement-cost/",
+      "stateCode": "LA",
+      "priorityRank": 5,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Louisiana covers a Gulf-state gap and is more likely to win on site and system-risk nuance than on a fake exact statewide tank narrative.",
+      "launchAngle": "Target angle: site constraints, system-path risk, and permit friction before the homeowner assumes a conventional low-end install.",
+      "recommendedPath": "/perc-test-cost/",
       "researchTasks": [
-        "Find the statewide homeowner entry page for septic or subsurface sewage disposal.",
-        "Collect permit, repair, or as-built retrieval paths that can become a real checklist.",
-        "Identify the safest official language on repair, replacement, or site-approval triggers."
+        "Find the statewide homeowner guidance for septic approvals, soil limits, or site review.",
+        "Collect the public permit or site-evaluation sequence that decides whether the system path stays straightforward.",
+        "Find any parish or local-office routing that changes the next call."
       ]
     },
     {
-      "stateCode": "SC",
-      "priorityRank": 10,
-      "rolloutWave": "Wave 2",
-      "whyNow": "South Carolina closes a regional gap and is likely to support a permit-first page once the state and local workflow is tied down.",
-      "launchAngle": "Target angle: permit path and repair-file friction before the homeowner trusts a low-end install or replacement range.",
+      "stateCode": "IN",
+      "priorityRank": 6,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Indiana is a broad Midwest gap where local health department routing can create a real permit-path wedge without needing fake technical precision.",
+      "launchAngle": "Target angle: local permit path, county file quality, and next-call clarity before install quotes harden.",
       "recommendedPath": "/septic-permit-process/",
       "researchTasks": [
-        "Find the statewide homeowner septic or onsite wastewater program entry point.",
-        "Collect official permit-step language and any local office routing that changes the first call.",
-        "Find a records or permit lookup process that can support a later checklist page."
+        "Find the statewide homeowner-facing onsite sewage or residential septic guidance hub.",
+        "Collect county or local health department routing that determines the real permit office.",
+        "Pull a homeowner-safe permit sequence that can anchor a permit page without overclaiming."
+      ]
+    },
+    {
+      "stateCode": "OK",
+      "priorityRank": 7,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Oklahoma fills a central coverage gap and likely supports a site-risk wedge that national install pages flatten too aggressively.",
+      "launchAngle": "Target angle: perc, soil, and system-path risk before the homeowner assumes a standard install route.",
+      "recommendedPath": "/perc-test-cost/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for onsite sewage permits or site evaluation.",
+        "Collect public source language on soil, site, lagoon, or alternative-system risk that homeowners can safely use.",
+        "Map any county or local-office handoff that changes the first call."
+      ]
+    },
+    {
+      "stateCode": "KY",
+      "priorityRank": 8,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Kentucky rounds out the Tennessee and Ohio corridor and can likely support a records-first wedge where local file quality matters more than broad averages.",
+      "launchAngle": "Target angle: permit-file retrieval and local office confirmation before the homeowner treats the quote as settled.",
+      "recommendedPath": "/septic-records-checklist/",
+      "researchTasks": [
+        "Find the statewide homeowner guidance for onsite sewage permits, inspections, or local health routing.",
+        "Collect any permit-copy, file-request, or records lookup workflow that a homeowner can actually use.",
+        "Document the safest local-authority explanation that can later support both records and permit pages."
+      ]
+    },
+    {
+      "stateCode": "MN",
+      "priorityRank": 9,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Minnesota can likely support a buyer-risk and compliance wedge that is stronger than generic install pricing, especially if the file and transfer story are thin.",
+      "launchAngle": "Target angle: buyer diligence, compliance status, and local office routing before the seller story sets the anchor.",
+      "recommendedPath": "/buying-a-house-with-a-septic-system/",
+      "researchTasks": [
+        "Find the statewide homeowner-facing entry point for septic compliance, inspections, or property-transfer context.",
+        "Collect county or local office routing that determines who controls the file.",
+        "Pull official language on compliance or transfer triggers that is safe to publish for buyer pages."
+      ]
+    },
+    {
+      "stateCode": "AR",
+      "priorityRank": 10,
+      "rolloutWave": "Wave 3",
+      "whyNow": "Arkansas closes a regional gap next to Missouri, Tennessee, and Oklahoma and can likely support a permit-first page before the cluster loses momentum.",
+      "launchAngle": "Target angle: permit path and local-office handoff before the homeowner trusts a flat install range.",
+      "recommendedPath": "/septic-permit-process/",
+      "researchTasks": [
+        "Find the statewide homeowner entry point for septic permitting and approvals.",
+        "Collect the clearest public permit-step or inspection sequence that can anchor a homeowner-safe page.",
+        "Map any county or local-office routing that changes the real first call."
       ]
     }
   ]
