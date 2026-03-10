@@ -447,7 +447,7 @@ public class SiteController {
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", sortedStateMoneyPages);
-        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(4).toList());
+        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(5).toList());
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
@@ -538,12 +538,13 @@ public class SiteController {
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
-        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(8).toList());
+        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(10).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("internalLinks", internalLinks);
-        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
-        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
+        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
         model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
+        model.addAttribute("contentQuotePath", contentQuotePathForContentPage(contentPage));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
         model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
         model.addAttribute("calculatorCtaNote", contentActionNote(contentPage));
@@ -596,8 +597,8 @@ public class SiteController {
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("internalLinks", internalLinks);
-        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
-        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
+        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
@@ -829,6 +830,14 @@ public class SiteController {
             return modulePath;
         }
         return "/septic-system-cost-calculator/?projectType=" + contentPage.calculatorProjectType();
+    }
+
+    private String contentQuotePathForContentPage(ContentPage contentPage) {
+        String calculatorPath = calculatorPathForContentPage(contentPage);
+        if (!calculatorPath.startsWith("/septic-system-cost-calculator/")) {
+            return null;
+        }
+        return calculatorPath + (calculatorPath.contains("?") ? "&" : "?") + "quoteMode=true#quote-request";
     }
 
     private String contentActionHeading(ContentPage contentPage) {

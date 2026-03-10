@@ -12,6 +12,7 @@
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
+@param String contentQuotePath = null
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
 @param String calculatorCtaLabel = "Open the estimator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
@@ -39,7 +40,11 @@
                 <p class="lede">${contentPage.introCopy()}</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="#faq">Jump to FAQs</a>
+                    @if (contentQuotePath != null)
+                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
+                    @else
+                        <a class="button button--secondary" href="#faq">Jump to FAQs</a>
+                    @endif
                 </div>
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
@@ -98,8 +103,59 @@
     </section>
 
     <section class="section section--tight">
+        <div class="container">
+            <div class="section-jump-strip" aria-label="Jump between sections">
+                <span class="section-jump-strip__label">Jump between sections</span>
+                <a href="#drivers">Drivers</a>
+                <a href="#state-pages">State pages</a>
+                @if (!contentEvidenceLanes.isEmpty())
+                    <a href="#state-lanes">Sources</a>
+                @endif
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="intent-rail">
+                <article class="intent-card intent-card--primary">
+                    <span class="intent-card__label">Run the estimate</span>
+                    <h2>${calculatorCtaLabel}</h2>
+                    <p>${calculatorCtaNote}</p>
+                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                </article>
+
+                <article class="intent-card">
+                    @if (contentQuotePath != null)
+                        <span class="intent-card__label">Go straight to conversion</span>
+                        <h2>Open the short quote form</h2>
+                        <p>Use this when you already know the intent lane and want to skip directly into the shorter conversion path.</p>
+                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_action_rail_quote" data-track-target-type="quote_form">Start short quote form</a>
+                    @else
+                        <span class="intent-card__label">Clear the basics first</span>
+                        <h2>Jump to the FAQ section</h2>
+                        <p>Use the FAQs when this page is still too generic and you need the fastest clarification before clicking deeper.</p>
+                        <a class="button button--secondary" href="#faq">Jump to FAQs</a>
+                    @endif
+                </article>
+
+                <article class="intent-card">
+                    @if (!featuredStateMoneyPageLinks.isEmpty())
+                        <span class="intent-card__label">Best state-specific example</span>
+                        <h2>${featuredStateMoneyPageLinks.get(0).title()}</h2>
+                        <p>Open the strongest live state-specific page first when you want to see the official-source workflow behind this national overview.</p>
+                        <a class="button button--secondary" href="${featuredStateMoneyPageLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_action_rail_featured_state" data-track-target-type="state_money_page">Open this state page</a>
+                    @elseif (!featuredInternalLinks.isEmpty())
+                        <span class="intent-card__label">Most likely next move</span>
+                        <h2>${featuredInternalLinks.get(0).title()}</h2>
+                        <p>${featuredInternalLinks.get(0).note()}</p>
+                        <a class="button button--secondary" href="${featuredInternalLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_action_rail_internal" data-track-target-type="internal_page">Open next step</a>
+                    @endif
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight">
         <div class="container detail-grid">
-            <article class="detail-card detail-card--full">
+            <article class="detail-card detail-card--full" id="drivers">
                 <h2>Main estimate drivers</h2>
                 <ul class="detail-list">
                     @for (var driver : contentPage.driverBullets())
@@ -161,7 +217,12 @@
                 <span class="trust-box__label">Next best action</span>
                 <h2>${calculatorCtaHeading}</h2>
                 <p>${calculatorCtaNote} The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.</p>
-                <a href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                    @if (contentQuotePath != null)
+                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_next_best_quote" data-track-target-type="quote_form">Start short quote form</a>
+                    @endif
+                </div>
             </article>
 
             <article class="detail-card">
@@ -176,7 +237,7 @@
     </section>
 
     @if (!contentEvidenceLanes.isEmpty())
-        <section class="section section--tight">
+        <section class="section section--tight" id="state-lanes">
             <div class="container">
                 <article class="trust-box trust-box--large">
                     <span class="trust-box__label">How this page is sourced</span>
@@ -221,7 +282,7 @@
     @if (!stateMoneyPageLinks.isEmpty())
         <section class="section section--tight">
             <div class="container">
-                <article class="detail-card detail-card--full">
+                <article class="detail-card detail-card--full" id="state-pages">
                     <h2>State-specific pages</h2>
                     @if (!featuredStateMoneyPageLinks.isEmpty())
                         <div class="quick-link-strip" aria-label="Featured state-specific pages">

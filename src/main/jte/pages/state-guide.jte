@@ -85,6 +85,63 @@
         </div>
     </section>
 
+    <section class="section section--tight">
+        <div class="container">
+            <div class="section-jump-strip" aria-label="Jump between sections">
+                <span class="section-jump-strip__label">Jump between sections</span>
+                <a href="#facts">Quick facts</a>
+                <a href="#prep">Prep</a>
+                @if (!stateMoneyPages.isEmpty())
+                    <a href="#intents">Intent pages</a>
+                @endif
+                <a href="#sources">Sources</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="intent-rail">
+                <article class="intent-card intent-card--primary">
+                    <span class="intent-card__label">Run the state estimate</span>
+                    <h2>${calculatorCtaLabel}</h2>
+                    <p>${calculatorCtaNote}</p>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                </article>
+
+                <article class="intent-card">
+                    @if (primaryRecordsLookupSource != null)
+                        <span class="intent-card__label">Pull records first</span>
+                        <h2>Open the local file path before you trust the low end</h2>
+                        <p>Use the records lookup before you compare the cheapest quote against the real permit, as-built, or inspection story.</p>
+                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
+                    @elseif (primaryLocalAuthoritySource != null)
+                        <span class="intent-card__label">Verify the right office</span>
+                        <h2>Confirm the local authority before you schedule work</h2>
+                        <p>Use the official local authority path when the homeowner still has not confirmed which office actually controls the next permit or review step.</p>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
+                    @else
+                        <span class="intent-card__label">Use the official source section</span>
+                        <h2>Jump to the verified source list</h2>
+                        <p>Use the source block when you still need the official local workflow, file path, or policy context before you move deeper.</p>
+                        <a class="button button--secondary" href="#sources">Jump to sources</a>
+                    @endif
+                </article>
+
+                <article class="intent-card">
+                    @if (!featuredStateMoneyPages.isEmpty())
+                        <span class="intent-card__label">Most likely next move</span>
+                        <h2>${featuredStateMoneyPages.get(0).title()}</h2>
+                        <p>${featuredStateMoneyPages.get(0).uniqueAngle()}</p>
+                        <a class="button button--secondary" href="${featuredStateMoneyPages.get(0).path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_action_rail_featured" data-track-target-type="state_money_page">Open next page</a>
+                    @else
+                        <span class="intent-card__label">Stay in the guide</span>
+                        <h2>Work through the facts, records, and source sections</h2>
+                        <p>Use the state guide when you still need the broad rule style, local office path, and low-end risk before choosing one intent page.</p>
+                        <a class="button button--secondary" href="#facts">Jump to quick facts</a>
+                    @endif
+                </article>
+            </div>
+        </div>
+    </section>
+
     @if (planningSnapshot != null || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
         <section class="section section--tight">
             <div class="container detail-grid">
@@ -136,7 +193,7 @@
 
     <section class="section section--tight">
         <div class="container detail-grid">
-            <article class="detail-card detail-card--full">
+            <article class="detail-card detail-card--full" id="facts">
                 <h2>Quick facts</h2>
                 <div class="facts-table-wrap">
                     <table class="facts-table">
@@ -273,7 +330,7 @@
     @endif
 
     @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()) || (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()))
-        <section class="section section--tight">
+        <section class="section section--tight" id="prep">
             <div class="container detail-grid">
                 @if (state.whoToCallFirst() != null)
                     <article class="detail-card">
@@ -535,7 +592,7 @@
             </details>
 
             @if (!stateMoneyPages.isEmpty())
-                <article class="detail-card detail-card--full">
+                <article class="detail-card detail-card--full" id="intents">
                     <h2>High-intent next steps in ${state.stateName()}</h2>
                     <p>Use these pages when the guide is not specific enough and the real bottleneck is replacement scope, the file, permit path, buyer risk, inspection history, or the site-review story.</p>
                     <div class="detail-grid">

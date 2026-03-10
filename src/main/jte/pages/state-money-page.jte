@@ -86,6 +86,53 @@
         </div>
     </section>
 
+    <section class="section section--tight">
+        <div class="container">
+            <div class="section-jump-strip" aria-label="Jump between sections">
+                <span class="section-jump-strip__label">Jump between sections</span>
+                <a href="#workflow">Workflow</a>
+                <a href="#risk">Risk checks</a>
+                <a href="#sources">Sources</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="intent-rail">
+                <article class="intent-card intent-card--primary">
+                    <span class="intent-card__label">Run the state estimate</span>
+                    <h2>${calculatorCtaLabel}</h2>
+                    <p>${calculatorCtaNote}</p>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
+                </article>
+
+                <article class="intent-card">
+                    <span class="intent-card__label">Return to the broader state guide</span>
+                    <h2>Open the ${state.stateName()} guide</h2>
+                    <p>Use the broader guide when you still need the state-level rule style, local office path, and low-end risk before committing to this one intent lane.</p>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_action_rail_guide" data-track-target-type="state_guide">Open the guide</a>
+                </article>
+
+                <article class="intent-card">
+                    @if (primaryRecordsLookupSource != null)
+                        <span class="intent-card__label">Pull the file first</span>
+                        <h2>Open records before you trust the price story</h2>
+                        <p>Use the official records path when you still need the permit, as-built, inspection, or maintenance file before moving into quote mode.</p>
+                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
+                    @elseif (primaryLocalAuthoritySource != null)
+                        <span class="intent-card__label">Verify the next office</span>
+                        <h2>Confirm the local authority before you schedule work</h2>
+                        <p>Use the local office path when you still need the real permit desk, reviewing authority, or delegated county office before trusting the low end.</p>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
+                    @elseif (!featuredInternalLinks.isEmpty())
+                        <span class="intent-card__label">Most likely next move</span>
+                        <h2>${featuredInternalLinks.get(0).title()}</h2>
+                        <p>${featuredInternalLinks.get(0).note()}</p>
+                        <a class="button button--secondary" href="${featuredInternalLinks.get(0).path()}" data-track-click="nav" data-track-source-context="state_money_action_rail_internal" data-track-target-type="related_internal">Open next step</a>
+                    @endif
+                </article>
+            </div>
+        </div>
+    </section>
+
     @if (planningSnapshot != null || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
         <section class="section section--tight">
             <div class="container detail-grid">
@@ -227,7 +274,7 @@
             </article>
 
             @if (stateMoneyPage.decisionSteps() != null && !stateMoneyPage.decisionSteps().isEmpty())
-                <article class="detail-card detail-card--full">
+                <article class="detail-card detail-card--full" id="workflow">
                     <h2>How this workflow usually unfolds in ${state.stateName()}</h2>
                     <ol class="detail-list detail-list--numbered">
                         @for (var step : stateMoneyPage.decisionSteps())
@@ -239,7 +286,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="sources">
         <div class="container detail-grid">
             @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()))
                 <article class="detail-card">
@@ -259,7 +306,7 @@
             @endif
 
             @if ((state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()) || (stateMoneyPage.lowEndBreakers() != null && !stateMoneyPage.lowEndBreakers().isEmpty()))
-                <article class="detail-card detail-card--full">
+                <article class="detail-card detail-card--full" id="risk">
                     <h2>${stateMoneyPage.riskHeading(state.stateName())}</h2>
                     @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
                         <p><strong>State-level checks.</strong></p>

@@ -30,16 +30,16 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "SepticPath | Septic System Cost & Size Estimator",
-                "State-aware septic planning estimates for tank size, system type, and rough cost.",
+                "Septic Cost Calculator, Permit & Records Guides by State | SepticPath",
+                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.",
                 canonicalUrl,
                 "index,follow",
                 List.of(
                         toJson(editorialOrganization()),
                         toJson(webSite(canonicalUrl, "SepticPath",
-                                "State-aware septic planning estimates for tank size, system type, and rough cost.")),
+                                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.")),
                         toJson(webPage(canonicalUrl, "SepticPath",
-                                "State-aware septic planning estimates for tank size, system type, and rough cost.", "CollectionPage"))
+                                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.", "CollectionPage"))
                 )
         );
     }
@@ -47,13 +47,13 @@ public class SeoService {
     public PageMeta calculatorPage() {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/");
         return pageMeta(
-                "Septic System Cost Calculator",
-                "Estimate likely tank size, system class, and septic project cost range by state.",
+                "Septic Cost Calculator by State | SepticPath",
+                "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.",
                 canonicalUrl,
                 "index,follow",
                 List.of(
-                        toJson(webPage(canonicalUrl, "Septic System Cost Calculator",
-                                "Estimate likely tank size, system class, and septic project cost range by state.", "WebPage")),
+                        toJson(webPage(canonicalUrl, "Septic Cost Calculator by State",
+                                "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.", "WebPage")),
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
                                 crumb("Septic System Cost Calculator", canonicalUrl)
@@ -65,14 +65,14 @@ public class SeoService {
     public PageMeta stateCoveragePage() {
         String canonicalUrl = absoluteUrl("/states/");
         return pageMeta(
-                "State Coverage | SepticPath",
-                "Track live septic state guides and deeper permit, records, buyer, replacement, and site-risk coverage across all 50 states.",
+                "All 50 State Septic Guides and Intent Pages | SepticPath",
+                "Track live septic state guides and the permit, records, buyer, replacement, inspection, and site-risk pages behind them across all 50 states.",
                 canonicalUrl,
                 "index,follow",
                 List.of(
                         toJson(webPage(canonicalUrl,
                                 "State Coverage",
-                                "Track live septic state guides and deeper permit, records, buyer, replacement, and site-risk coverage across all 50 states.",
+                                "Track live septic state guides and the permit, records, buyer, replacement, inspection, and site-risk pages behind them across all 50 states.",
                                 "CollectionPage")),
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
@@ -514,19 +514,31 @@ public class SeoService {
     }
 
     private String contentPageSeoTitle(ContentPage contentPage) {
-        return contentPage.title() + " | SepticPath";
+        return switch (contentPage.slug()) {
+            case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
+            case "perc-test-cost" -> "Perc Test Cost | Soil, site, and permit risk | SepticPath";
+            case "drain-field-replacement-cost" -> "Drain Field Replacement Cost | Field layout and replacement risk | SepticPath";
+            case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
+            case "septic-inspection-cost" -> "Septic Inspection Cost | Scope, records, and buyer leverage | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Buyer risk, files, and closing steps | SepticPath";
+            case "septic-permit-process" -> "Septic Permit Process | Office, file, and approval steps | SepticPath";
+            case "septic-records-checklist" -> "Septic Records Checklist | Permit files, as-builts, and lookup steps | SepticPath";
+            case "septic-system-cost-calculator" -> "Septic Cost Calculator | State estimate, permit, and file context | SepticPath";
+            case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
+            default -> contentPage.title() + " | SepticPath";
+        };
     }
 
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage) {
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
-            case "septic-replacement-cost" -> " | Replacement scope and file-risk guide";
-            case "perc-test-cost" -> " | Soil, site, and permit-risk guide";
-            case "buying-a-house-with-a-septic-system" -> " | Buyer, file, and closing-risk guide";
-            case "septic-records-checklist" -> " | Local file and permit-record guide";
-            case "septic-permit-process" -> " | Local office and permit-file guide";
-            case "septic-inspection-cost" -> " | Inspection scope and file-risk guide";
-            case "septic-pumping-cost" -> " | Maintenance cadence and service-risk guide";
-            case "drain-field-replacement-cost" -> " | Field layout and replacement-risk guide";
+            case "septic-replacement-cost" -> " | Quotes, file risk, and replacement scope | SepticPath";
+            case "perc-test-cost" -> " | Soil, site, and permit risk | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> " | Buyer risk, files, and closing steps | SepticPath";
+            case "septic-records-checklist" -> " | Permit files, as-builts, and lookup steps | SepticPath";
+            case "septic-permit-process" -> " | Office, file, and approval steps | SepticPath";
+            case "septic-inspection-cost" -> " | Inspection scope, records, and buyer leverage | SepticPath";
+            case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";
+            case "drain-field-replacement-cost" -> " | Field layout and replacement risk | SepticPath";
             default -> " | SepticPath";
         };
     }

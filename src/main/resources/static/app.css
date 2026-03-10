@@ -447,6 +447,91 @@ h4 {
     padding: 0 16px;
 }
 
+.section-jump-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.section-jump-strip__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.section-jump-strip a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--muted);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.section-jump-strip a:hover {
+    transform: translateY(-1px);
+    border-color: rgba(20, 34, 32, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text);
+}
+
+.intent-rail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.intent-card {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-soft);
+}
+
+.intent-card--primary {
+    background: linear-gradient(180deg, rgba(225, 240, 234, 0.66), rgba(255, 255, 255, 0.94));
+}
+
+.intent-card__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.intent-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.intent-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.intent-card .button {
+    justify-self: start;
+}
+
 .hero-card__stack,
 .card-grid,
 .state-grid,
@@ -1254,6 +1339,7 @@ input[type="checkbox"] {
     .calculator-layout,
     .content-grid,
     .card-grid,
+    .intent-rail,
     .coverage-grid,
     .coverage-summary__stats,
     .state-grid,
@@ -1308,6 +1394,17 @@ input[type="checkbox"] {
 
     .disclosure-card {
         padding: 16px;
+    }
+
+    .section-jump-strip {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    .section-jump-strip a {
+        min-height: 36px;
+        padding: 0 12px;
+        font-size: 0.85rem;
     }
 
     h1 {
