@@ -35,30 +35,41 @@ public class EstimatorService {
 
         List<String> drivers = new ArrayList<>();
         List<String> checklist = new ArrayList<>();
+        List<String> officialBasis = new ArrayList<>();
+        List<String> heuristicAdjustments = new ArrayList<>();
+        List<String> methodologyLimits = new ArrayList<>();
+
+        officialBasis.add(sizingBasisNote(state, bedrooms));
 
         if (form.isGarbageDisposal()) {
             if ("GA".equals(state.stateCode())) {
                 loadPadding += Math.max(250, likelyMinimum / 2);
                 drivers.add("Georgia's homeowner guide says a garbage disposal requires a septic tank that is 50 percent larger.");
+                officialBasis.add("Georgia's published homeowner guidance treats a garbage disposal as a larger-tank signal, so this estimate widens the sizing range before cost is calculated.");
             } else if ("PA".equals(state.stateCode())) {
                 loadPadding += 100;
                 drivers.add("Pennsylvania DEP says garbage disposal use should be sparse because it places a greater burden on the system.");
+                officialBasis.add("Pennsylvania DEP warns that garbage disposal use places a greater burden on the system, so the estimate treats that input as a state-backed load signal.");
             } else {
                 loadPadding += 150;
                 drivers.add("Garbage disposal use can increase the effective wastewater load.");
+                heuristicAdjustments.add("Garbage disposal input adds extra wastewater load and a small planning uplift even where the public state source set does not publish a specific rule.");
             }
         }
         if (form.isAdditionalKitchen()) {
             loadPadding += 250;
             drivers.add("An additional kitchen or ADU can push the recommended tank range upward.");
+            heuristicAdjustments.add("Additional kitchen or ADU input adds +250 gallons of planning padding and a +8% cost multiplier.");
         }
         if (form.getOccupants() != null && form.getOccupants() > bedrooms * 2) {
             if ("CT".equals(state.stateCode())) {
                 loadPadding += 100;
                 drivers.add("Connecticut's official design-flow method is bedroom-based, so unusually high occupancy mainly widens the planning range rather than rewriting the base rule.");
+                officialBasis.add("Connecticut's public design-flow method is bedroom-based, so higher occupancy widens the planning band instead of replacing the official bedroom anchor.");
             } else {
                 loadPadding += 150;
                 drivers.add("Higher occupancy than the bedroom count suggests can increase the planning range.");
+                heuristicAdjustments.add("Higher-than-typical occupancy adds planning padding because live load can outrun the simple bedroom count.");
             }
         }
 
@@ -69,15 +80,18 @@ public class EstimatorService {
                 riskScore += 3;
                 rangePadding += 250;
                 drivers.add("A failed perc result can push the project toward a higher-cost alternative system.");
+                heuristicAdjustments.add("Failed perc input raises system risk and adds +20% to the planning cost model.");
             }
             case POOR_DRAINAGE -> {
                 riskScore += 2;
                 rangePadding += 250;
                 drivers.add("Poor drainage usually increases excavation and system-type risk.");
+                heuristicAdjustments.add("Poor drainage raises system risk and adds +10% to the planning cost model.");
             }
             case UNKNOWN -> {
                 rangePadding += 250;
                 drivers.add("Unknown soil and perc conditions widen the estimate because the site is not yet defined.");
+                methodologyLimits.add("Soil and perc conditions are still unknown, so the low end stays intentionally conservative.");
             }
             case PASSED -> {
                 // no-op
@@ -88,31 +102,39 @@ public class EstimatorService {
             riskScore += 2;
             rangePadding += 250;
             drivers.add("A high water table or shallow bedrock can require a more complex system.");
+            heuristicAdjustments.add("High water table or shallow bedrock adds +12% to the planning cost model and widens the likely system class.");
         }
 
         AccessDifficulty accessDifficulty = AccessDifficulty.fromValue(form.getAccessDifficulty());
         if (accessDifficulty == AccessDifficulty.MEDIUM) {
             riskScore += 1;
             drivers.add("Medium access can add hauling and excavation time.");
+            heuristicAdjustments.add("Medium access adds +8% for hauling and excavation friction.");
         } else if (accessDifficulty == AccessDifficulty.HARD) {
             riskScore += 1;
             rangePadding += 150;
             drivers.add("Hard access often raises excavation, hauling, and restoration costs.");
+            heuristicAdjustments.add("Hard access adds +16% and extra range padding for excavation, hauling, and restoration complexity.");
         }
 
         ProjectType projectType = ProjectType.fromValue(form.getProjectType());
         if (projectType == ProjectType.REPLACEMENT || projectType == ProjectType.DRAINFIELD_REPLACEMENT) {
             riskScore += 1;
             drivers.add("Replacement work can uncover field, excavation, or restoration complexity.");
+            if (projectType == ProjectType.REPLACEMENT) {
+                heuristicAdjustments.add("Replacement jobs add +12% because demolition, field surprises, and restoration can widen the planning range.");
+            }
         }
 
         if ("OR".equals(state.stateCode())) {
             rangePadding += 250;
             drivers.add("Oregon puts site evaluation before permit certainty, and DEQ says the site evaluation does not guarantee approval of a specific system type.");
+            officialBasis.add("Oregon's published homeowner path is site-evaluation-first, so the estimate widens before pretending a specific system type is approved.");
         }
 
         if ("CT".equals(state.stateCode()) && state.designFlowPerBedroomGpd() != null) {
             drivers.add("Connecticut's official residential design flow uses " + state.designFlowPerBedroomGpd() + " gallons per bedroom.");
+            officialBasis.add("Connecticut's public sizing basis starts from " + state.designFlowPerBedroomGpd() + " gallons per bedroom before local design review.");
         }
 
         if ("PA".equals(state.stateCode())) {
@@ -174,6 +196,9 @@ public class EstimatorService {
         } else if (usingStateSpecificAnchor) {
             drivers.add(0, state.stateName() + " has a state-level planning cost anchor in this estimator, so the base range is not relying on the national public anchor alone.");
         }
+        officialBasis.add(costAnchorNote(state, usingStateSpecificAnchor ? costAnchor : nationalAnchor, stateCostProfile));
+        addMultiplierNote(heuristicAdjustments, "Likely system class \"" + likelySystemClass + "\"", systemClassMultiplier(likelySystemClass));
+        addMultiplierNote(heuristicAdjustments, "Timeline preference", timelineMultiplier(TimelinePreference.fromValue(form.getTimeline())));
 
         ProjectCostAnchor baseAnchor = usingStateSpecificAnchor ? costAnchor : nationalAnchor;
         int totalCostLow = roundTo100(baseAnchor.low() * multiplier * stateRegionalMultiplier);
@@ -196,6 +221,12 @@ public class EstimatorService {
         String confidenceLabel = confidenceLabel(state, soilStatus);
         String rangeReason = rangeReason(state);
         String costAnchorNote = costAnchorNote(state, baseAnchor, stateCostProfile);
+        methodologyLimits.add("This is a planning estimate, not a permit-ready design, final permit fee schedule, or contractor quote.");
+        methodologyLimits.add(state.localOverrideNote());
+        methodologyLimits.add("Final pricing still depends on the local permit path, the real system type, and what the site evaluation or inspection uncovers.");
+        if (heuristicAdjustments.isEmpty()) {
+            heuristicAdjustments.add("No major heuristic uplifts were applied beyond the baseline state profile and the selected job type.");
+        }
         List<String> sourceLabels = Stream.concat(
                         researchDataService.getSources(state.officialSourceIds()).stream(),
                         researchDataService.getSources(baseAnchor.sourceIds()).stream()
@@ -222,6 +253,9 @@ public class EstimatorService {
                 state.localOverrideNote(),
                 state.lastVerifiedAt(),
                 costAnchorNote,
+                officialBasis.stream().distinct().limit(4).toList(),
+                heuristicAdjustments.stream().distinct().limit(5).toList(),
+                methodologyLimits.stream().filter(value -> value != null && !value.isBlank()).distinct().limit(4).toList(),
                 drivers.stream().distinct().limit(4).toList(),
                 checklist.stream().distinct().limit(4).toList(),
                 state.ruleHighlights().stream().limit(4).toList(),
@@ -346,6 +380,27 @@ public class EstimatorService {
             return state.stateName() + " is using national public septic cost anchors with a broad BEA regional price-level adjustment. Treat it as a state-aware planning range, not a local market quote.";
         }
         return state.stateName() + " is using a state-level planning anchor in this estimator. Final pricing still depends on the site, the permit path, and the system type.";
+    }
+
+    private void addMultiplierNote(List<String> notes, String label, double multiplier) {
+        if (multiplier <= 0.0) {
+            return;
+        }
+        notes.add(label + " adds +" + Math.round(multiplier * 100) + "% to the planning cost model.");
+    }
+
+    private String sizingBasisNote(StateProfile state, int bedrooms) {
+        if (!state.bedroomTable().isEmpty()) {
+            return state.stateName() + " has a publishable bedroom-to-tank signal in the public source set, so the starting minimum is anchored before site-specific widening.";
+        }
+        if (state.designFlowPerBedroomGpd() != null) {
+            return state.stateName() + " uses a design-flow basis of " + state.designFlowPerBedroomGpd()
+                    + " gallons per bedroom, and this planner bridges that into a conservative tank band for " + bedrooms + " bedrooms.";
+        }
+        if (state.minTankSizeGallons() != null) {
+            return state.stateName() + " publishes a minimum tank-size anchor, so the planner starts there and widens only when the job inputs justify it.";
+        }
+        return state.stateName() + " does not publish a clean statewide homeowner tank table in the current source set, so the planner starts from a conservative fallback minimum.";
     }
 
     private int flowToTankHeuristic(int estimatedDailyFlow, Integer stateMinimum) {

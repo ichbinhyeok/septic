@@ -425,7 +425,7 @@ public class SiteController {
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
-        List<StateMoneyPageLink> stateMoneyPageLinks = researchDataService.listPublicStateMoneyPagesForContent(slug).stream()
+        List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries = researchDataService.listPublicStateMoneyPagesForContent(slug).stream()
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> Map.entry(page, state))
                         .stream())
@@ -433,10 +433,16 @@ public class SiteController {
                         .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> contentStateLinkScore(contentPage, entry.getKey(), entry.getValue()))
                         .reversed()
                         .thenComparing(entry -> entry.getValue().stateName()))
+                .toList();
+        List<StateMoneyPageLink> stateMoneyPageLinks = rankedStateEntries.stream()
                 .map(entry -> new StateMoneyPageLink(
                         entry.getKey().title(),
                         entry.getValue().stateName(),
                         entry.getKey().path(entry.getValue().slug())))
+                .toList();
+        List<ContentEvidenceLaneView> contentEvidenceLanes = rankedStateEntries.stream()
+                .limit(4)
+                .map(entry -> contentEvidenceLane(entry.getKey(), entry.getValue()))
                 .toList();
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
@@ -444,6 +450,7 @@ public class SiteController {
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
+        model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("internalLinks", pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null));
         model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
@@ -452,7 +459,9 @@ public class SiteController {
         model.addAttribute("calculatorCtaTargetType", contentActionTargetType(contentPage));
         model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
-        model.addAttribute("editorialReviewedAgainst", "Reviewed against the linked state-specific pages and source policy.");
+        model.addAttribute("editorialReviewedAgainst", contentEvidenceLanes.isEmpty()
+                ? "Reviewed against the linked state-specific pages and source policy."
+                : "Reviewed against " + contentEvidenceLanes.size() + " source-backed state-specific pages and the source policy.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
         return "pages/content-page";
@@ -847,6 +856,23 @@ public class SiteController {
                 .max(Comparator
                         .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
                         .thenComparing(StateMoneyPage::title));
+    }
+
+    private ContentEvidenceLaneView contentEvidenceLane(StateMoneyPage page, StateProfile state) {
+        List<SourceRecord> sources = researchDataService.getSources(page.officialSourceIds()).stream()
+                .limit(3)
+                .toList();
+        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
+        String reviewedAgainst = "Reviewed against " + sources.size() + " official source" + (sources.size() == 1 ? "" : "s")
+                + " tied to the " + state.stateName() + " workflow.";
+        return new ContentEvidenceLaneView(
+                page.title(),
+                state.stateName(),
+                page.path(state.slug()),
+                reviewedAgainst,
+                lastReviewedAt,
+                sources
+        );
     }
 
     private List<PageLink> pageLinks(List<String> paths, String sourceSlug, String sourceStateCode) {

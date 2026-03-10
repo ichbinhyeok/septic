@@ -55,6 +55,35 @@
 
     <div class="detail-grid">
         <article class="detail-card">
+            <h3>Official rule and state anchor</h3>
+            <ul class="detail-list">
+                @for (var item : result.officialBasis())
+                    <li>${item}</li>
+                @endfor
+            </ul>
+        </article>
+
+        <article class="detail-card">
+            <h3>Heuristic adjustments applied</h3>
+            <ul class="detail-list">
+                @for (var item : result.heuristicAdjustments())
+                    <li>${item}</li>
+                @endfor
+            </ul>
+        </article>
+
+        <article class="detail-card">
+            <h3>Methodology limits</h3>
+            <ul class="detail-list">
+                @for (var item : result.methodologyLimits())
+                    <li>${item}</li>
+                @endfor
+            </ul>
+        </article>
+    </div>
+
+    <div class="detail-grid">
+        <article class="detail-card">
             <h3>What pushed the estimate</h3>
             <ul class="detail-list">
                 @for (var driver : result.costDrivers())

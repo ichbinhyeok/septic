@@ -6,6 +6,7 @@
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.ContentEvidenceLaneView> contentEvidenceLanes = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
@@ -158,6 +159,49 @@
             </article>
         </div>
     </section>
+
+    @if (!contentEvidenceLanes.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <article class="trust-box trust-box--large">
+                    <span class="trust-box__label">How this page is sourced</span>
+                    <h2>State-specific pages carry the official sources behind this national overview.</h2>
+                    <p>This page stays generic on purpose. The linked state lanes below carry direct official sources, state-specific workflow context, and the last-reviewed dates that support the broader national guidance.</p>
+                </article>
+                <div class="detail-grid">
+                    @for (var lane : contentEvidenceLanes)
+                        <article class="detail-card">
+                            <h3><a href="${lane.path()}" data-track-click="nav" data-track-source-context="content_page_source_lane" data-track-target-type="state_money_page">${lane.title()}</a></h3>
+                            <p><strong>${lane.stateName()}</strong></p>
+                            <p>${lane.reviewedAgainst()} Last reviewed ${lane.lastReviewedAt()}.</p>
+                            <ul class="source-list source-list--compact">
+                                @for (var source : lane.sources())
+                                    <li>
+                                        <strong>${source.agencyName()}</strong>
+                                        <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
+                                        <div class="source-meta">
+                                            @if (source.trustLevel() != null && !source.trustLevel().isBlank())
+                                                <span>Trust: ${source.trustLevel()}</span>
+                                            @endif
+                                            @if (source.draftOrFinalStatus() != null && !source.draftOrFinalStatus().isBlank())
+                                                <span>Status: ${source.draftOrFinalStatus()}</span>
+                                            @endif
+                                            @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
+                                                <span>Effective: ${source.effectiveDate()}</span>
+                                            @endif
+                                            @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
+                                                <span>Last verified: ${source.lastVerifiedAt()}</span>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endfor
+                            </ul>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     @if (!stateMoneyPageLinks.isEmpty())
         <section class="section section--tight">
