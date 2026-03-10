@@ -1754,6 +1754,58 @@
       "note": "Utah DEQ says counties and health districts have been urged to administer the operating permit program to provide more local control."
     },
     {
+      "stateCode": "WV",
+      "factType": "program_support",
+      "label": "Program support",
+      "value": "Regulatory interpretation and technical assistance on conventional and non-conventional sewage treatment systems",
+      "unit": "",
+      "sourceId": "wv_01",
+      "sourceSection": "On-Site Wastewater Management",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.8,
+      "note": "West Virginia says the onsite wastewater program provides regulatory interpretation and technical assistance on conventional and non-conventional sewage treatment systems."
+    },
+    {
+      "stateCode": "WV",
+      "factType": "permit_path",
+      "label": "Permit path",
+      "value": "Application review and permit issuance for new individual sewage disposal systems and home aeration units",
+      "unit": "",
+      "sourceId": "wv_02",
+      "sourceSection": "Apply for a License Permit or Certification - Sewage",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.84,
+      "note": "West Virginia's sewage-permit page covers application review and permit issuance for installation of new individual sewage disposal systems and home aeration units."
+    },
+    {
+      "stateCode": "WV",
+      "factType": "local_office_routing",
+      "label": "Who to call first",
+      "value": "Local health departments handle permit and operational questions in practice",
+      "unit": "",
+      "sourceId": "wv_03",
+      "sourceSection": "General Environmental Health",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.76,
+      "note": "West Virginia's public-health sanitation page says local health departments permit and inspect many facilities and should handle permit or operational questions."
+    },
+    {
+      "stateCode": "WV",
+      "factType": "public_records_request",
+      "label": "When the local file is thin",
+      "value": "Department of Health FOIA path remains available",
+      "unit": "",
+      "sourceId": "wv_04",
+      "sourceSection": "Contact Us",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.74,
+      "note": "West Virginia's Department of Health contact page directs FOIA requests for public records to the agency's records path when the local trail is not enough."
+    },
+    {
       "stateCode": "AR",
       "factType": "program_support",
       "label": "Program support",

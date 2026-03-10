@@ -1529,6 +1529,64 @@
       ]
     },
     {
+      "stateCode": "WV",
+      "stateName": "West Virginia",
+      "agencyName": "West Virginia Office of Environmental Health Services",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "West Virginia is stronger on local health file retrieval, sewage-permit application routing, and public-health sanitation record quality than on a fake statewide install table. The homeowner wedge is knowing whether the local file, the sewage permit application, and any FOIA path are already in hand before trusting the low end.",
+      "ruleType": "records_path",
+      "ruleSummaryPlainEnglish": "West Virginia's On-Site Wastewater Management program says it provides regulatory interpretation and technical assistance on conventional and non-conventional sewage treatment systems. The sewage permit page covers application review and permit issuance for installation of new individual sewage disposal systems and home aeration units, while the public-health sanitation program says local health departments permit and inspect many facilities and handle permit or operational questions in practice. The real homeowner question is therefore whether the local file, permit application, and any public-record request path are strong enough before a buyer or owner trusts the low end.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public West Virginia homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "West Virginia homeowners usually need the local health file and sewage-permit story clarified before they trust an install, repair, or buyer quote. The project is not really file-backed until the local health department confirms what is in the public-health sanitation file and whether the permit path is already real.",
+      "permitPathSteps": [
+        "Start with the local health department because West Virginia routes permit and operational questions through local public-health sanitation offices in practice.",
+        "Ask whether a sewage permit application, permit issuance note, sanitarian file, or complaint or inspection record already exists before treating the property as a clean records story.",
+        "Use the local file and any FOIA path to decide whether the homeowner has a usable record trail or is still working from a thin file."
+      ],
+      "siteEvalSummary": "West Virginia public homeowner material is strongest on local-health routing, sewage-permit application workflow, and public-record file quality rather than one simple statewide sizing story. The practical path turns on whether the local file is strong enough to trust before the low end means much.",
+      "ruleHighlights": [
+        "West Virginia says the onsite wastewater program provides regulatory interpretation and technical assistance on conventional and non-conventional sewage treatment systems.",
+        "West Virginia's sewage-permit page covers application review and permit issuance for new individual sewage disposal systems and home aeration units.",
+        "West Virginia says local health departments permit and inspect many facilities and should handle permit and operational questions in practice.",
+        "West Virginia's Department of Health publishes a FOIA path for public records requests when the normal local file trail is not enough."
+      ],
+      "localOverrideNote": "West Virginia looks statewide through OEHS, but the real homeowner workflow changes quickly once you know which local health department holds the file and whether the public-health sanitation record is strong enough to trust.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["wv_01", "wv_02", "wv_03", "wv_04"],
+      "localAuthoritySourceIds": ["wv_02", "wv_03"],
+      "recordsLookupSourceIds": ["wv_03", "wv_04"],
+      "localActionSteps": [
+        "Open the local health department path first and identify the office holding the practical public-health sanitation file.",
+        "Ask for any sewage permit application, permit note, sanitarian file, or local inspection or complaint record tied to the parcel.",
+        "If the local file is thin, confirm whether a public-records request through the Department of Health is the next step."
+      ],
+      "whoToCallFirst": "Start with the local health department handling public-health sanitation permits and file questions for the property.",
+      "recordsToRequest": [
+        "Any sewage permit application or permit note already tied to the property.",
+        "Any local sanitarian file, inspection note, complaint record, or operational note already on record.",
+        "Any public-records request response or file note that fills gaps when the local office trail is thin."
+      ],
+      "lowEndRiskChecks": [
+        "If the local health file cannot surface a meaningful permit or sanitarian record, the low end is still a planning scenario rather than a file-backed number.",
+        "If the sewage permit path is still thin or unresolved, install or buyer risk can widen quickly.",
+        "If a public-records request becomes necessary, the project is already less straightforward than the seller or installer summary suggests."
+      ],
+      "permitTimelineNote": "West Virginia timing often turns on how quickly the local health department surfaces the file, whether a sewage permit application or permit note already exists, and whether a FOIA path is needed to fill gaps.",
+      "buyerInspectionTrigger": "Buyers should ask for the local health file and any sewage permit paperwork early because West Virginia's file trail can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "West Virginia's current source set is strongest on local-health routing, permit-file retrieval, and public-record context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "West Virginia's main wrinkle is that the state program exists, but the practical homeowner file still lives in local public-health sanitation workflow more than in a simple statewide lookup.",
+      "confidenceScore": 0.77,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which West Virginia local health departments expose sewage permit or inspection records online.",
+        "Document where West Virginia counties publish clearer homeowner guidance on complaint history, repairs, or non-conventional system follow-up."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

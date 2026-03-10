@@ -4487,6 +4487,65 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "WV",
+      "title": "West Virginia Septic Records Checklist",
+      "metaDescription": "West Virginia septic records checklist with local health department routing, sewage-permit file questions, and public-record request context in mind.",
+      "introCopy": "West Virginia records intent is stronger than a generic septic checklist because the practical homeowner file usually sits with the local health department and public-health sanitation workflow, not a clean statewide lookup. The real homeowner question is whether a sewage permit application, sanitarian note, or public-record trail is strong enough before a buyer or owner trusts the low end.",
+      "uniqueAngle": "West Virginia records intent is strongest when the page connects local health file retrieval, sewage-permit application history, and the public-record request path instead of pretending the owner only needs a permit copy.",
+      "targetReader": "Best for West Virginia buyers, owners, and agents who know the property uses onsite wastewater but still need to know whether the local health file, sewage permit, or public-record trail creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You know the property uses onsite wastewater, but no one has shown the local health department file yet.",
+        "You need to know whether a sewage permit application, permit note, sanitarian file, or complaint record already exists.",
+        "The seller or owner says the system is straightforward, but the real local file trail still feels thin."
+      ],
+      "decisionSteps": [
+        "Start with the local health department because West Virginia routes public-health sanitation permit and operational questions through local offices in practice.",
+        "Request any sewage permit application, permit note, sanitarian file, inspection note, or complaint record tied to the property before relying on seller memory alone.",
+        "If the local trail is thin, confirm whether a Department of Health public-records request is needed to surface older or missing file details.",
+        "Then compare the file against the current property story and decide whether the next step is buyer diligence, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end story breaks quickly if the local health department cannot surface a meaningful permit or sanitarian file.",
+        "If the sewage permit path is unresolved or thin, the property may be less straightforward than the seller or installer summary suggests.",
+        "If a public-records request becomes necessary, the file trail is already weaker than a clean buyer or repair story should be."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the public-health sanitation file.",
+        "Any sewage permit application, permit note, or sanitarian file already tied to the property.",
+        "Any inspection note, complaint record, or operational note already found through the local office.",
+        "Any public-records request response or file note that fills gaps in the local trail."
+      ],
+      "driverBullets": [
+        "West Virginia homeowners usually need the local health file before a records conversation becomes real.",
+        "The sewage permit application and sanitarian file can expose more risk than a generic seller summary or installer quote.",
+        "A public-records request usually means the property file is thinner than the low end suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in West Virginia?",
+          "answer": "Start with the local health department file, including any sewage permit application, permit note, sanitarian record, or inspection note tied to the property."
+        },
+        {
+          "question": "Why does the West Virginia records checklist mention public records requests?",
+          "answer": "Because West Virginia's Department of Health publishes a FOIA path for public records when the normal local file trail is not enough."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
