@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-03-09",
+  "generatedAt": "2026-03-10",
   "states": [
     {
       "stateCode": "GA",
@@ -192,6 +192,180 @@
       "itemsNeedingVerification": [
         "Extract a homeowner-safe tank sizing bridge from design flow to public gallon recommendations.",
         "Document whether any local health district patterns deserve special publishing caveats."
+      ]
+    },
+    {
+      "stateCode": "CA",
+      "stateName": "California",
+      "agencyName": "California State Water Resources Control Board",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "California is stronger on local agency routing and file quality than on a fake statewide tank table. The real homeowner wedge is county environmental health or another local agency reviewing the property under the OWTS Policy.",
+      "ruleType": "local_authority",
+      "ruleSummaryPlainEnglish": "California's OWTS Policy sets the statewide frame, but local agencies usually issue OWTS permits and can implement either the default Tier 1 program or a Regional Water Board-approved Local Agency Management Program. The practical homeowner path usually starts with the local agency or county environmental health office, not a one-size statewide permit desk.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public statewide garbage-disposal tank multiplier has been verified in the current California source set.",
+      "permitSummary": "California homeowners usually move through the local agency that issues OWTS permits, often a county environmental health department. The State Water Board's OWTS Policy authorizes that local permitting role and points case-specific questions to the local agency or the Regional Water Board.",
+      "permitPathSteps": [
+        "Identify the local agency or county environmental health office before treating a California quote as real.",
+        "Ask whether the property is handled under the default Tier 1 program or a Regional Water Board-approved Local Agency Management Program.",
+        "Pull the existing permit, as-built, and repair file from the local agency before anchoring to the low end."
+      ],
+      "siteEvalSummary": "California's statewide OWTS framework still leaves the final siting and design path heavily dependent on local agency review and local program requirements. Tier 2 LAMP standards can differ from the default Tier 1 path.",
+      "ruleHighlights": [
+        "The OWTS Policy authorizes local agencies such as county environmental health departments to issue OWTS permits.",
+        "Local agencies may implement the default Tier 1 program when a Local Agency Management Program has not been approved.",
+        "Regional Water Board-approved LAMPs can create different siting and design requirements than the default Tier 1 path.",
+        "For permitting and case-specific questions, the State Water Board points homeowners to the local agency or the Regional Water Board."
+      ],
+      "localOverrideNote": "California is unusually local. Two properties in different counties can face different practical siting, file, and permit workflows even under the same statewide OWTS Policy.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ca_01", "ca_02", "ca_03"],
+      "localAuthoritySourceIds": ["ca_03"],
+      "recordsLookupSourceIds": [],
+      "localActionSteps": [
+        "Open the LAMP and regional contact list first so you know which local agency owns the file.",
+        "Ask whether the lot already has an OWTS permit, as-built, repair history, or water-quality restriction on record.",
+        "Surface ADU, replacement, or impaired-water-area details early because those can push the project beyond a simple low-end assumption."
+      ],
+      "whoToCallFirst": "Start with the local agency or county environmental health office that issues OWTS permits for the property.",
+      "recordsToRequest": [
+        "The current OWTS permit file, if one exists.",
+        "Any as-built drawing, repair record, or prior local review tied to the property.",
+        "Any local notes showing whether the property is subject to a LAMP, special area, or Regional Water Board referral."
+      ],
+      "lowEndRiskChecks": [
+        "California's local agency routing means the same statewide policy can still produce materially different county-level answers.",
+        "If the local file is incomplete or missing, the low end is not trustworthy yet.",
+        "ADU, replacement, or water-quality program context can move the project beyond a simple conventional assumption."
+      ],
+      "permitTimelineNote": "California timing is usually driven by how fast the local agency confirms the governing program, file history, and any Regional Water Board involvement.",
+      "buyerInspectionTrigger": "Buyers should pull the local permit and as-built file early because California's main risk is often missing local records, not just tank size.",
+      "maintenanceInspectionNote": "The current California source set is strongest on local permitting structure and LAMP routing, not on a simple statewide homeowner pumping cadence.",
+      "specialAreaNote": "The statewide OWTS Policy matters, but California's real homeowner wrinkle is whether the property falls into a default Tier 1 path or a LAMP-driven local program.",
+      "confidenceScore": 0.76,
+      "itemsNeedingVerification": [
+        "Document which California local agencies publish real online septic file request workflows worth linking directly.",
+        "Expand the public guide with county-level examples once the first local file request paths are verified."
+      ]
+    },
+    {
+      "stateCode": "TX",
+      "stateName": "Texas",
+      "agencyName": "Texas Commission on Environmental Quality",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Texas is more useful as a permit-path and site-evaluation state than as a fake statewide install table. The local permitting authority and the site evaluation usually decide what is actually possible.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Texas requires a permit and approved plan before most OSSF construction, alteration, repair, extension, or operation. TCEQ says the local permitting authority usually handles that path and local programs can be more stringent than state minimums. Site evaluation by a licensed site evaluator or professional engineer drives which systems are suitable for the property.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct Texas public homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Texas homeowners usually start with the local permitting authority, not TCEQ itself. TCEQ's OSSF permit guidance says a permit and approved plan are required for most work and local permitting programs can be more stringent than the statewide minimums.",
+      "permitPathSteps": [
+        "Use OARS or the homeowner hub to identify the local permitting authority before comparing quotes.",
+        "Submit the application and planning materials to the permitting authority, not just to the installer.",
+        "Expect the permitting authority to lean on the site evaluation before the system type or permit path is final."
+      ],
+      "siteEvalSummary": "Before an OSSF can be constructed, installed, altered, extended, or repaired, the site must first be evaluated by a licensed site evaluator or a licensed professional engineer. System suitability depends on that site evaluation, not on a generic statewide price table.",
+      "ruleHighlights": [
+        "A permit and approved plan are required to construct, alter, repair, extend, and operate an OSSF.",
+        "Texas says the local permitting authority often controls the real permit path and local programs can be more stringent than state minimums.",
+        "The permitting authority must approve or deny the application and planning materials within 30 days of receipt.",
+        "Before system work begins, the site must be evaluated by a licensed site evaluator or licensed professional engineer."
+      ],
+      "localOverrideNote": "Texas looks statewide on paper, but the homeowner experience changes fast once you know which county or local permitting authority controls the file and whether local rules are stricter than the state minimum.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["tx_01", "tx_02", "tx_03", "tx_04", "tx_05", "tx_06"],
+      "localAuthoritySourceIds": ["tx_04", "tx_06"],
+      "recordsLookupSourceIds": [],
+      "localActionSteps": [
+        "Open OARS and identify the local permitting authority by county before trusting the low end.",
+        "Ask whether there is already a permit file, approved plan, site evaluation, or maintenance history on record.",
+        "If the property uses an aerobic or advanced system, surface that early because maintenance and reporting obligations can be stricter."
+      ],
+      "whoToCallFirst": "Start with the local permitting authority for the county where the property is located, using OARS if needed to identify the right office.",
+      "recordsToRequest": [
+        "The permit file and approved plan tied to the current or proposed OSSF.",
+        "The most recent site evaluation or design materials for the property.",
+        "Any maintenance contract, inspection history, or repair notes if the property has an aerobic or advanced system."
+      ],
+      "lowEndRiskChecks": [
+        "Texas local permitting programs can be more stringent than state minimums, so the low end can shift after the first local call.",
+        "If the site evaluation points away from a conventional system, the project scope can widen quickly.",
+        "Aerobic or other advanced systems can add maintenance and service obligations that basic quote screens miss."
+      ],
+      "permitTimelineNote": "Texas permit timing is clearer than many states because the permitting authority is supposed to approve or deny the application within 30 days, but that still assumes the planning materials are complete.",
+      "buyerInspectionTrigger": "Buyers should ask whether the property already has an approved plan, site evaluation, or ongoing aerobic-system maintenance obligations before trusting the seller's summary.",
+      "maintenanceInspectionNote": "TCEQ recommends pumping conventional systems every three to five years and warns that some permitting authorities may have more stringent maintenance requirements.",
+      "specialAreaNote": "Texas can look simple from the state page, but the practical homeowner wrinkle is delegated local authority plus site-evaluation-driven system choice.",
+      "confidenceScore": 0.86,
+      "itemsNeedingVerification": [
+        "Document which local Texas permitting authorities publish usable septic file request workflows.",
+        "Add buyer-safe guidance for grandfathered and ten-acre-rule edge cases without overclaiming."
+      ]
+    },
+    {
+      "stateCode": "NY",
+      "stateName": "New York",
+      "agencyName": "New York State Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "New York is a design-standard and local-file state. Appendix 75-A creates a real statewide baseline, but county health files and specific waivers often decide how confident a buyer or owner can be.",
+      "ruleType": "design_flow",
+      "ruleSummaryPlainEnglish": "New York's Appendix 75-A applies to residential onsite systems serving properties under 1,000 gallons per day, and new construction is based on a minimum daily flow of 110 gallons per bedroom. Specific waivers can be issued by the State Commissioner of Health or a designated city, county, or part-county health department official, so local health records still matter.",
+      "designFlowPerBedroomGpd": 110,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public statewide garbage-disposal tank multiplier has been verified in the current New York source set.",
+      "permitSummary": "New York homeowners usually need the county health department or the State Health Department district office with jurisdiction over the property. Appendix 75-A creates the baseline residential wastewater standard, but local health files and waiver history can change the practical next step.",
+      "permitPathSteps": [
+        "Start with the county health department or district office that has jurisdiction over the property.",
+        "Confirm whether Appendix 75-A is the governing baseline and whether any specific waiver has already been issued for the site.",
+        "Pull the design file and as-built history before trusting a low-end replacement or buyer assumption."
+      ],
+      "siteEvalSummary": "New York's residential design handbook and Appendix 75-A are strongest on design flow, site appraisal, and local health review rather than a simple statewide homeowner tank table. Soil and site conditions still decide whether the property works cleanly under the baseline standard.",
+      "ruleHighlights": [
+        "Appendix 75-A applies to residential onsite wastewater treatment systems serving properties under 1,000 gallons per day.",
+        "New construction is based on a minimum daily flow of 110 gallons per bedroom.",
+        "Specific waivers can be issued by the State Commissioner of Health or a designated city, county, or part-county health department official.",
+        "New York publishes a field-office and local-health-department directory because local jurisdiction still matters."
+      ],
+      "localOverrideNote": "New York has a real statewide standard, but the homeowner outcome can still change once county health files, site conditions, and any waiver history are surfaced.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ny_01", "ny_02", "ny_03", "ny_04"],
+      "localAuthoritySourceIds": ["ny_04"],
+      "recordsLookupSourceIds": [],
+      "localActionSteps": [
+        "Identify the county health department or district office before relying on a listing description or seller memory.",
+        "Ask for the Appendix 75-A design file, any specific waiver, and any prior repair or replacement history.",
+        "Confirm whether the property stays within the residential under-1,000-gpd baseline before you assume a simple path."
+      ],
+      "whoToCallFirst": "Start with the county health department or the State Health Department district office that has jurisdiction over the property.",
+      "recordsToRequest": [
+        "The Appendix 75-A design file or approval packet tied to the property.",
+        "Any specific waiver, variance-style relief, or local health decision already issued for the site.",
+        "Any as-built drawing, repair history, or failure notes for the existing system."
+      ],
+      "lowEndRiskChecks": [
+        "If the local file is thin or missing, the low end is not trustworthy yet.",
+        "Specific waivers and local health decisions can matter more than a seller's simple septic summary.",
+        "If the property does not fit the under-1,000-gpd residential baseline cleanly, the project path can change fast."
+      ],
+      "permitTimelineNote": "New York timing usually depends on how quickly the county health department or district office can surface the design file and confirm whether Appendix 75-A alone controls the job.",
+      "buyerInspectionTrigger": "Buyers should ask for the Appendix 75-A file, waiver history, and any county health notes early because New York risk is often in the file quality, not just the tank.",
+      "maintenanceInspectionNote": "The current New York source set is strongest on design standards and local health jurisdiction, not on a single statewide homeowner pumping cadence.",
+      "specialAreaNote": "The two biggest New York wrinkles are the under-1,000-gpd residential baseline and the fact that specific waivers can be issued by state or designated local health officials.",
+      "confidenceScore": 0.82,
+      "itemsNeedingVerification": [
+        "Document which New York counties publish usable septic file request workflows or transfer guidance.",
+        "Add a buyer-focused page once the strongest county-level record patterns are confirmed."
       ]
     },
     {

@@ -2,156 +2,129 @@
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param java.util.List<StateProfile> featuredStates
-@param java.util.List<StateProfile> additionalStates
+@param java.util.List<StateProfile> spotlightStates
+@param int liveGuideCount
+@param int liveIntentCount
+@param int queuedStateCount
 
 @template.layouts.app(page = page, content = @`
     <section class="hero">
         <div class="container hero__grid">
             <div class="hero__content">
-                <span class="eyebrow">Homeowner planning estimator</span>
-                <h1>Rough septic cost, likely tank size, and what to verify next.</h1>
+                <span class="eyebrow">Estimate-first septic planning</span>
+                <h1>Get a septic planning range fast, then open the state guide that actually changes the next step.</h1>
+                <p class="lede">SepticPath is built for homeowners and buyers who need a directionally honest budget before they start chasing quotes, county offices, or half-complete septic files.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/">Start quote-ready estimate</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request">Open short quote form</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/">Run the main estimate</a>
+                    <a class="button button--secondary" href="/states/">Browse all state coverage</a>
                 </div>
-                <p class="lede">A state-aware planning tool for homeowners and homebuyers. Built for estimate ranges, source transparency, and fast next steps, not fake permit-ready precision.</p>
-                <a class="hero__subaction" href="#states">Browse state guides first</a>
                 <div class="hero__notes">
-                    <span>Short match form unlocked after the estimate</span>
-                    <span>Official-source module on each state page</span>
-                    <span>10 state guides</span>
+                    <span>${liveGuideCount} live guides</span>
+                    <span>${liveIntentCount} live state pages</span>
+                    <span>${queuedStateCount} states in research queue</span>
                 </div>
             </div>
 
             <aside class="hero-card">
                 <div class="hero-card__top">
-                    <span class="eyebrow">What the tool returns</span>
-                    <h2>Planning output, not fake certainty</h2>
+                    <span class="eyebrow">Start with one lane</span>
+                    <h2>Use the shortest path to the real question.</h2>
                 </div>
                 <div class="hero-card__stack">
                     <div class="mini-card">
-                        <strong>Likely tank range</strong>
-                        <p>Official minimums when available, widened when inputs are weak.</p>
+                        <strong>Need a budget now?</strong>
+                        <p>Use the main estimator when replacement, permit, inspection, or perc risk is still mixed together.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Likely system class</strong>
-                        <p>Conventional, chamber, alternative, or site-specific review.</p>
+                        <strong>Need one state fast?</strong>
+                        <p>Open the live state guide when the county office, records path, or buyer trigger matters more than the average.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Cost drivers</strong>
-                        <p>Soil, access, water table, replacement complexity, and permit steps.</p>
+                        <strong>Only need tank size?</strong>
+                        <p>Use the tank size tool when gallon band is the only open question.</p>
                     </div>
                 </div>
             </aside>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">What you can use here</span>
-                <h2>Built around homeowner cost, permit, records, and buyer-risk questions.</h2>
-            </div>
-
-            <div class="card-grid">
-                <article class="feature-card">
-                    <h3>Main cost estimator</h3>
-                    <p>State-aware planning range for install, replacement, pumping, inspection, and more.</p>
-                    <a href="/septic-system-cost-calculator/">Launch calculator</a>
-                </article>
-
-                <article class="feature-card">
-                    <h3>Dedicated size and pump tools</h3>
-                    <p>Separate estimator routes for tank sizing and maintenance cadence when the user is not ready for the full quote flow yet.</p>
-                    <a href="/septic-tank-size-estimator/">Open tank size estimator</a>
-                </article>
-
-                <article class="feature-card">
-                    <h3>State guide pages</h3>
-                    <p>Plain-English rule summary, permit path, local override note, and official links.</p>
-                    <a href="#states">See state guides</a>
-                </article>
-
-                <article class="feature-card">
-                    <h3>Permit and records workflows</h3>
-                    <p>State-specific pages for septic permit process, records to request, and buyer-side verification steps.</p>
-                    <a href="/septic-permit-process/">Browse workflow pages</a>
-                </article>
-
-                <article class="feature-card">
-                    <h3>Inspection and buyer-risk pages</h3>
-                    <p>High-intent content for septic inspection cost, transfer timing, and the records gaps that can blow up a home purchase.</p>
-                    <a href="/septic-inspection-cost/">Open inspection cost page</a>
-                </article>
-
-                <article class="feature-card">
-                    <h3>Source transparency</h3>
-                    <p>Each state page is built around official sources, visible agency attribution, and a clear local-override warning.</p>
-                    <a href="#sources">See source policy</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--muted" id="states">
-        <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">State guides</span>
-                <h2>Ten state guides with different rule styles and permit paths.</h2>
-                <p class="lede">Each guide explains the likely sizing logic, permit path, local verification steps, and the main reasons your final quote can move away from the low end.</p>
-            </div>
-
-            <div class="state-group">
-                <h3 class="state-group__heading">Featured guides</h3>
-                <div class="state-grid">
-                    @for (var state : featuredStates)
-                        <article class="state-card">
-                            <div class="state-card__header">
-                                <span class="pill">Featured</span>
-                                <strong>${state.stateName()}</strong>
-                            </div>
-                            <p>${state.pageAngle()}</p>
-                            <ul class="state-card__meta">
-                                <li>${state.ruleType()}</li>
-                                <li>${state.agencyName()}</li>
-                                <li>Updated ${state.lastVerifiedAt()}</li>
-                            </ul>
-                            <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                        </article>
-                    @endfor
-                </div>
-            </div>
-
-            <div class="state-group">
-                <h3 class="state-group__heading">More state guides</h3>
-                <div class="state-grid">
-                    @for (var state : additionalStates)
-                        <article class="state-card">
-                            <div class="state-card__header">
-                                <span class="pill">State guide</span>
-                                <strong>${state.stateName()}</strong>
-                            </div>
-                            <p>${state.pageAngle()}</p>
-                            <ul class="state-card__meta">
-                                <li>${state.ruleType()}</li>
-                                <li>${state.officialSourceIds().size()} official sources</li>
-                                <li>Updated ${state.lastVerifiedAt()}</li>
-                            </ul>
-                            <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                        </article>
-                    @endfor
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="sources">
-        <div class="container">
-            <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Source policy</span>
-                <h2>Every publishable state page needs official links, agency attribution, last verified date, and a local override note.</h2>
-                <p>Commercial sources are allowed for broad public cost anchors only. If the rule is unclear, the estimate gets wider instead of pretending to be exact.</p>
+    <section class="section section--tight">
+        <div class="container card-grid card-grid--primary">
+            <article class="feature-card feature-card--primary">
+                <span class="pill">Primary</span>
+                <h3>Main cost estimator</h3>
+                <p>Best first stop when you need one practical range before you decide whether this is really a replacement, permit, buyer-risk, or perc problem.</p>
+                <a href="/septic-system-cost-calculator/">Start the estimate</a>
             </article>
+
+            <article class="feature-card">
+                <span class="pill">State guides</span>
+                <h3>Official-source state coverage</h3>
+                <p>Use the live guides for permit path, records to request, local office routing, and state-specific low-end breakers.</p>
+                <a href="/states/">Browse all state coverage</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Quick tool</span>
+                <h3>Tank size estimator</h3>
+                <p>Use the shorter tool when bedroom count, occupancy, disposal load, or ADU risk is the main question.</p>
+                <a href="/septic-tank-size-estimator/">Open tank size estimator</a>
+            </article>
+        </div>
+    </section>
+
+    <section class="section section--muted">
+        <div class="container content-grid">
+            <article class="trust-box trust-box--large">
+                <span class="trust-box__label">50-state rollout</span>
+                <h2>Coverage is widening now, but live guides still need a real state angle.</h2>
+                <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides launch only when the official-source set, local office path, records checklist, and state-specific wrinkle are strong enough.</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="/states/">See live and queued states</a>
+                    <a class="button button--secondary" href="/about/">Read the source standard</a>
+                </div>
+            </article>
+
+            <article class="detail-card">
+                <h2>Why the live pages are heavier</h2>
+                <ul class="detail-list">
+                    <li>Each live guide keeps a visible official-source module and last reviewed date.</li>
+                    <li>Permit, records, buyer, and replacement pages are published only where the state workflow is actually distinct.</li>
+                    <li>Unknown rule details widen the estimate instead of being invented to fill the page.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section class="section" id="states">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">Live guide spotlight</span>
+                <h2>Current live states with the clearest homeowner workflow angles.</h2>
+                <p class="lede">These are the states where the published guide is already doing real work beyond a generic calculator result.</p>
+            </div>
+
+            <div class="state-grid">
+                @for (var state : spotlightStates)
+                    <article class="state-card">
+                        <div class="state-card__header">
+                            <span class="pill">${"anchor".equalsIgnoreCase(state.launchTier()) ? "Featured" : "Live"}</span>
+                            <strong>${state.stateName()}</strong>
+                        </div>
+                        <p>${state.pageAngle()}</p>
+                        <ul class="state-card__meta">
+                            <li>${state.ruleType()}</li>
+                            <li>${state.officialSourceIds().size()} official sources</li>
+                            <li>Updated ${state.lastVerifiedAt()}</li>
+                        </ul>
+                        <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
+                    </article>
+                @endfor
+            </div>
+
+            <div class="hero__actions home-section-actions">
+                <a class="button button--secondary" href="/states/">Browse all live and queued states</a>
+            </div>
         </div>
     </section>
 `)

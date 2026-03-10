@@ -62,6 +62,26 @@ public class SeoService {
         );
     }
 
+    public PageMeta stateCoveragePage() {
+        String canonicalUrl = absoluteUrl("/states/");
+        return pageMeta(
+                "State Coverage | SepticPath",
+                "Track live septic state guides, current deep-page coverage, and the research queue for the next rollout wave.",
+                canonicalUrl,
+                "index,follow",
+                List.of(
+                        toJson(webPage(canonicalUrl,
+                                "State Coverage",
+                                "Track live septic state guides, current deep-page coverage, and the research queue for the next rollout wave.",
+                                "CollectionPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("State Coverage", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     public PageMeta tankSizeEstimatorPage() {
         String canonicalUrl = absoluteUrl("/septic-tank-size-estimator/");
         List<FaqBlock> faqBlocks = tankSizeEstimatorFaqs();
@@ -158,8 +178,36 @@ public class SeoService {
         );
     }
 
+    public PageMeta queuedStateGuide(String stateName, String stateSlug) {
+        String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + stateSlug + "/");
+        String title = stateName + " Septic Guide | Research Queue";
+        String description = "Planning starter for " + stateName + " homeowners while the official-source state guide is still in the research queue.";
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "noindex,follow",
+                List.of(
+                        toJson(webPage(
+                                canonicalUrl,
+                                title,
+                                description,
+                                "WebPage"
+                        )),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("State Coverage", absoluteUrl("/states/")),
+                                crumb(stateName + " Research Queue", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
+            case "CA" -> "California septic cost guide and county permit path";
+            case "TX" -> "Texas septic cost guide and local OSSF permit path";
+            case "NY" -> "New York septic cost guide and Appendix 75-A rules";
             case "GA" -> "Georgia septic cost guide and tank size estimate";
             case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
             case "CT" -> "Connecticut septic cost guide and design flow rules";
@@ -291,6 +339,7 @@ public class SeoService {
 
     public List<String> staticPagePaths() {
         return Arrays.asList(
+                "/states/",
                 "/about/",
                 "/privacy-policy/",
                 "/terms-of-use/",
@@ -442,6 +491,9 @@ public class SeoService {
 
     private String stateGuideTitle(StateProfile state) {
         return switch (state.stateCode()) {
+            case "CA" -> "California Septic Cost Guide and County Permit Path";
+            case "TX" -> "Texas Septic Cost Guide and Local OSSF Permit Path";
+            case "NY" -> "New York Septic Cost Guide and Appendix 75-A Rules";
             case "GA" -> "Georgia Septic Cost Guide, Tank Size, and Permit Notes";
             case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
             case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
@@ -458,6 +510,9 @@ public class SeoService {
 
     private String stateGuideDescription(StateProfile state) {
         return switch (state.stateCode()) {
+            case "CA" -> "California septic planning estimates with local agency routing, OWTS policy context, and county permit-file questions.";
+            case "TX" -> "Texas septic planning estimates with local permitting authority routing, site-evaluation context, and official OSSF sources.";
+            case "NY" -> "New York septic planning estimates with Appendix 75-A rules, county health workflow, and official-source links.";
             case "GA" -> "Georgia septic planning estimates with bedroom sizing, disposal upsizing, county permit context, and official-source links.";
             case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
             case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";

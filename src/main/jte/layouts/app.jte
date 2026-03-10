@@ -67,8 +67,8 @@
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
                     <a href="/septic-tank-size-estimator/">Tank size</a>
-                    <a href="/#states">State guides</a>
-                    <a href="/#sources">Source policy</a>
+                    <a href="/states/">All states</a>
+                    <a href="/about/">About</a>
                 </nav>
             </div>
         </header>
@@ -96,6 +96,7 @@
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
                         <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
+                        <li><a href="/states/">All state coverage</a></li>
                         <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
                         <li><a href="/septic-inspection-cost/">Inspection cost</a></li>
                         <li><a href="/septic-permit-process/">Permit process</a></li>

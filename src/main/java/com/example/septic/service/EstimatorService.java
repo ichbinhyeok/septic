@@ -19,14 +19,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class EstimatorService {
     private final ResearchDataService researchDataService;
+    private final PlanningStateService planningStateService;
 
-    public EstimatorService(ResearchDataService researchDataService) {
+    public EstimatorService(ResearchDataService researchDataService, PlanningStateService planningStateService) {
         this.researchDataService = researchDataService;
+        this.planningStateService = planningStateService;
     }
 
     public EstimatorResult estimate(EstimateForm form) {
-        StateProfile state = researchDataService.findStateByCode(form.getStateCode())
-                .orElseThrow(() -> new IllegalArgumentException("Unknown state: " + form.getStateCode()));
+        StateProfile state = planningStateService.planningStateByCode(form.getStateCode());
 
         int bedrooms = Math.max(1, form.getBedrooms() == null ? 3 : form.getBedrooms());
         int likelyMinimum = resolveLikelyMinimumTank(state, bedrooms);
@@ -62,10 +63,10 @@ public class EstimatorService {
             heuristicAdjustments.add("Additional kitchen or ADU input adds +250 gallons of planning padding and a +8% cost multiplier.");
         }
         if (form.getOccupants() != null && form.getOccupants() > bedrooms * 2) {
-            if ("CT".equals(state.stateCode())) {
+            if (state.designFlowPerBedroomGpd() != null && state.bedroomTable().isEmpty()) {
                 loadPadding += 100;
-                drivers.add("Connecticut's official design-flow method is bedroom-based, so unusually high occupancy mainly widens the planning range rather than rewriting the base rule.");
-                officialBasis.add("Connecticut's public design-flow method is bedroom-based, so higher occupancy widens the planning band instead of replacing the official bedroom anchor.");
+                drivers.add(state.stateName() + "'s official design-flow method is bedroom-based, so unusually high occupancy mainly widens the planning range rather than rewriting the base rule.");
+                officialBasis.add(state.stateName() + "'s public design-flow method is bedroom-based, so higher occupancy widens the planning band instead of replacing the official bedroom anchor.");
             } else {
                 loadPadding += 150;
                 drivers.add("Higher occupancy than the bedroom count suggests can increase the planning range.");
@@ -132,13 +133,22 @@ public class EstimatorService {
             officialBasis.add("Oregon's published homeowner path is site-evaluation-first, so the estimate widens before pretending a specific system type is approved.");
         }
 
-        if ("CT".equals(state.stateCode()) && state.designFlowPerBedroomGpd() != null) {
-            drivers.add("Connecticut's official residential design flow uses " + state.designFlowPerBedroomGpd() + " gallons per bedroom.");
-            officialBasis.add("Connecticut's public sizing basis starts from " + state.designFlowPerBedroomGpd() + " gallons per bedroom before local design review.");
+        if (state.designFlowPerBedroomGpd() != null && state.bedroomTable().isEmpty()) {
+            drivers.add(state.stateName() + "'s official residential design flow uses " + state.designFlowPerBedroomGpd() + " gallons per bedroom.");
+            officialBasis.add(state.stateName() + "'s public sizing basis starts from " + state.designFlowPerBedroomGpd() + " gallons per bedroom before local design review.");
         }
 
         if ("PA".equals(state.stateCode())) {
             checklist.add("Identify the municipality or local agency and Sewage Enforcement Officer before trusting the next-step permit path.");
+        }
+        if ("CA".equals(state.stateCode())) {
+            checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
+        }
+        if ("TX".equals(state.stateCode())) {
+            checklist.add("Use OARS to confirm the local permitting authority and whether the site evaluation is already on file.");
+        }
+        if ("NY".equals(state.stateCode())) {
+            checklist.add("Ask the county health department for the Appendix 75-A file and any specific waiver before trusting the low end.");
         }
         if ("OR".equals(state.stateCode())) {
             checklist.add("Confirm whether Oregon site evaluation or an authorization notice applies before trusting the low end of the range.");
@@ -422,8 +432,8 @@ public class EstimatorService {
     }
 
     private String officialMinimumNote(StateProfile state) {
-        if ("CT".equals(state.stateCode()) && state.designFlowPerBedroomGpd() != null) {
-            return "Connecticut's official residential design flow uses " + state.designFlowPerBedroomGpd()
+        if (state.designFlowPerBedroomGpd() != null && state.bedroomTable().isEmpty()) {
+            return state.stateName() + "'s official residential design flow uses " + state.designFlowPerBedroomGpd()
                     + " gallons per bedroom. The gallon-size recommendation shown here is a product planning bridge, not an official tank table.";
         }
         if ("OR".equals(state.stateCode())) {
@@ -436,6 +446,15 @@ public class EstimatorService {
     }
 
     private String rangeReason(StateProfile state) {
+        if ("CA".equals(state.stateCode())) {
+            return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";
+        }
+        if ("TX".equals(state.stateCode())) {
+            return "This Texas range stays wide because the local permitting authority and the site evaluation often decide the real system path.";
+        }
+        if ("NY".equals(state.stateCode())) {
+            return "This New York range bridges Appendix 75-A design-flow rules into a homeowner planning estimate. County health files and any waiver history can still move the job.";
+        }
         if ("OR".equals(state.stateCode())) {
             return "This Oregon range is intentionally wide because DEQ says site evaluation does not guarantee approval of any specific system type.";
         }

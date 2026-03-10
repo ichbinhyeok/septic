@@ -6,6 +6,7 @@ import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
+import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
@@ -15,12 +16,14 @@ import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SeoService;
 import com.example.septic.service.SitemapService;
 import com.example.septic.service.SoilPercStatus;
+import com.example.septic.service.StateQueuePlanService;
 import com.example.septic.service.TankSizeEstimatorResult;
 import com.example.septic.service.TankSizeEstimatorService;
 import com.example.septic.service.TimelinePreference;
 import com.example.septic.service.PumpScheduleResult;
 import com.example.septic.service.PumpScheduleService;
 import com.example.septic.service.OccupancyProfile;
+import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -72,6 +75,8 @@ public class SiteController {
     private final SitemapService sitemapService;
     private final TankSizeEstimatorService tankSizeEstimatorService;
     private final PumpScheduleService pumpScheduleService;
+    private final StateQueuePlanService stateQueuePlanService;
+    private final UsStateDirectoryService usStateDirectoryService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -80,7 +85,9 @@ public class SiteController {
             SeoService seoService,
             SitemapService sitemapService,
             TankSizeEstimatorService tankSizeEstimatorService,
-            PumpScheduleService pumpScheduleService
+            PumpScheduleService pumpScheduleService,
+            StateQueuePlanService stateQueuePlanService,
+            UsStateDirectoryService usStateDirectoryService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -89,6 +96,8 @@ public class SiteController {
         this.sitemapService = sitemapService;
         this.tankSizeEstimatorService = tankSizeEstimatorService;
         this.pumpScheduleService = pumpScheduleService;
+        this.stateQueuePlanService = stateQueuePlanService;
+        this.usStateDirectoryService = usStateDirectoryService;
     }
 
     @GetMapping("/")
@@ -98,10 +107,38 @@ public class SiteController {
         model.addAttribute("featuredStates", publicStates.stream()
                 .filter(state -> "anchor".equalsIgnoreCase(state.launchTier()))
                 .toList());
-        model.addAttribute("additionalStates", publicStates.stream()
-                .filter(state -> !"anchor".equalsIgnoreCase(state.launchTier()))
+        model.addAttribute("spotlightStates", publicStates.stream()
+                .sorted(Comparator
+                        .comparing((StateProfile state) -> !"anchor".equalsIgnoreCase(state.launchTier()))
+                        .thenComparing(StateProfile::stateName))
+                .limit(6)
                 .toList());
+        model.addAttribute("liveGuideCount", publicStates.size());
+        model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
+        model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - publicStates.size(), 0));
         return "pages/home";
+    }
+
+    @GetMapping({"/states", "/states/"})
+    public String stateCoverage(Model model) {
+        List<StateCoverageCardView> coverageCards = buildStateCoverageCards();
+        model.addAttribute("page", seoService.stateCoveragePage());
+        model.addAttribute("liveStates", coverageCards.stream()
+                .filter(StateCoverageCardView::published)
+                .toList());
+        model.addAttribute("priorityQueuePlans", stateQueuePlanService.topPlans(10).stream()
+                .filter(plan -> researchDataService.findStateByCode(plan.stateCode())
+                        .filter(StateProfile::isPublished)
+                        .isEmpty())
+                .map(this::stateQueuePlanView)
+                .toList());
+        model.addAttribute("queuedStates", coverageCards.stream()
+                .filter(card -> !card.published())
+                .toList());
+        model.addAttribute("liveGuideCount", researchDataService.getPublicStateProfiles().size());
+        model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
+        model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - researchDataService.getPublicStateProfiles().size(), 0));
+        return "pages/state-coverage";
     }
 
     @GetMapping({"/about", "/about/"})
@@ -282,7 +319,7 @@ public class SiteController {
             Model model
     ) {
         EstimateForm estimateForm = new EstimateForm();
-        if (stateCode != null && researchDataService.findStateByCode(stateCode).isPresent()) {
+        if (stateCode != null && usStateDirectoryService.findByCode(stateCode).isPresent()) {
             estimateForm.setStateCode(stateCode.toUpperCase(Locale.US));
         }
         if (projectType != null) {
@@ -375,8 +412,18 @@ public class SiteController {
 
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
     public String stateGuide(@PathVariable String stateSlug, Model model) {
-        StateProfile state = researchDataService.findPublicStateBySlug(stateSlug)
+        Optional<StateProfile> stateProfile = researchDataService.findStateBySlug(stateSlug);
+        if (stateProfile.filter(StateProfile::isPublished).isPresent()) {
+            return renderPublishedStateGuide(model, stateProfile.orElseThrow());
+        }
+        UsStateDirectoryService.UsStateReference stateReference = stateProfile
+                .map(state -> new UsStateDirectoryService.UsStateReference(state.stateCode(), state.stateName()))
+                .or(() -> usStateDirectoryService.findBySlug(stateSlug))
                 .orElseThrow(() -> new StateNotFoundException(stateSlug));
+        return renderQueuedStateGuide(model, stateReference);
+    }
+
+    private String renderPublishedStateGuide(Model model, StateProfile state) {
         List<SourceRecord> sources = researchDataService.getSources(state.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
@@ -407,6 +454,39 @@ public class SiteController {
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
         return "pages/state-guide";
+    }
+
+    private String renderQueuedStateGuide(Model model, UsStateDirectoryService.UsStateReference stateReference) {
+        Optional<StateQueuePlan> queuePlan = stateQueuePlanService.findByStateCode(stateReference.stateCode());
+        java.util.ArrayList<String> starterPaths = new java.util.ArrayList<>();
+        queuePlan.map(StateQueuePlan::recommendedPath).ifPresent(starterPaths::add);
+        for (String path : List.of(
+                "/septic-permit-process/",
+                "/septic-records-checklist/",
+                "/buying-a-house-with-a-septic-system/",
+                "/septic-replacement-cost/",
+                "/perc-test-cost/"
+        )) {
+            if (!starterPaths.contains(path)) {
+                starterPaths.add(path);
+            }
+        }
+        model.addAttribute("page", seoService.queuedStateGuide(stateReference.stateName(), stateReference.slug()));
+        model.addAttribute("stateCode", stateReference.stateCode());
+        model.addAttribute("stateName", stateReference.stateName());
+        model.addAttribute("queuePlan", queuePlan.map(plan -> stateQueuePlanView(plan, stateReference)).orElse(null));
+        model.addAttribute("starterLinks", pageLinks(starterPaths, "septic-system-cost-calculator", null));
+        model.addAttribute("benchmarkGuides", pageLinks(
+                CORE_STATE_CODES.stream()
+                        .map(researchDataService::findStateByCode)
+                        .flatMap(Optional::stream)
+                        .map(state -> "/septic-system-cost-calculator/" + state.slug() + "/")
+                        .toList(),
+                "septic-system-cost-calculator",
+                null
+        ));
+        model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - researchDataService.getPublicStateProfiles().size(), 0));
+        return "pages/state-guide-queued";
     }
 
     @GetMapping({
@@ -554,7 +634,7 @@ public class SiteController {
         ContentPage calculatorLanding = researchDataService.findPublicContentPage("septic-system-cost-calculator")
                 .orElse(null);
         model.addAttribute("page", seoService.calculatorPage());
-        model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        model.addAttribute("states", calculatorStateOptions());
         model.addAttribute("estimateForm", estimateForm);
         model.addAttribute("result", result);
         model.addAttribute("quoteLeadForm", quoteLeadForm);
@@ -571,6 +651,12 @@ public class SiteController {
         return "pages/calculator";
     }
 
+    private List<StateOptionView> calculatorStateOptions() {
+        return usStateDirectoryService.allStates().stream()
+                .map(state -> new StateOptionView(state.stateCode(), state.stateName()))
+                .toList();
+    }
+
     private boolean isTrackableInternalPath(String path) {
         if (path == null || path.isBlank()) {
             return false;
@@ -583,7 +669,7 @@ public class SiteController {
         List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
         StateProfile selectedState = researchDataService.findStateByCode(tankSizeForm.getStateCode())
                 .filter(StateProfile::isPublished)
-                .orElse(publicStates.isEmpty() ? null : publicStates.get(0));
+                .orElseGet(() -> preferredTankSizeState(publicStates));
         model.addAttribute("states", publicStates);
         model.addAttribute("tankSizeForm", tankSizeForm);
         model.addAttribute("result", result);
@@ -591,6 +677,80 @@ public class SiteController {
         model.addAttribute("tankSizeFaqs", seoService.tankSizeEstimatorFaqs());
         model.addAttribute("stateRuleFacts", selectedState == null ? List.of() : stateRuleFactViews(selectedState.stateCode()));
         return "pages/tank-size-estimator";
+    }
+
+    private StateProfile preferredTankSizeState(List<StateProfile> publicStates) {
+        if (publicStates.isEmpty()) {
+            return null;
+        }
+        return researchDataService.findStateByCode("GA")
+                .filter(StateProfile::isPublished)
+                .orElse(publicStates.get(0));
+    }
+
+    private List<StateCoverageCardView> buildStateCoverageCards() {
+        return usStateDirectoryService.allStates().stream()
+                .map(stateReference -> researchDataService.findStateByCode(stateReference.stateCode())
+                        .filter(StateProfile::isPublished)
+                        .map(this::publishedCoverageCard)
+                        .orElseGet(() -> queuedCoverageCard(stateReference)))
+                .sorted(Comparator
+                        .comparing((StateCoverageCardView card) -> !card.published())
+                        .thenComparingInt(card -> card.published()
+                                ? 0
+                                : stateQueuePlanService.findByStateCode(card.stateCode())
+                                        .map(StateQueuePlan::priorityRank)
+                                        .orElse(Integer.MAX_VALUE))
+                        .thenComparing(StateCoverageCardView::stateName))
+                .toList();
+    }
+
+    private StateCoverageCardView publishedCoverageCard(StateProfile state) {
+        int liveIntentCount = researchDataService.listPublicStateMoneyPages(state.stateCode()).size();
+        String confidenceLabel = confidenceLabel(state.confidenceScore());
+        String metaLine = liveIntentCount + " live intent pages"
+                + " | " + size(state.officialSourceIds()) + " official sources"
+                + (confidenceLabel.isBlank() ? "" : " | " + confidenceLabel);
+        return new StateCoverageCardView(
+                state.stateCode(),
+                state.stateName(),
+                true,
+                "Live guide",
+                "live",
+                state.pageAngle(),
+                metaLine,
+                "/septic-system-cost-calculator/" + state.slug() + "/",
+                "Open live guide"
+        );
+    }
+
+    private StateCoverageCardView queuedCoverageCard(UsStateDirectoryService.UsStateReference stateReference) {
+        Optional<StateQueuePlan> queuePlan = stateQueuePlanService.findByStateCode(stateReference.stateCode());
+        if (queuePlan.isPresent()) {
+            PageLink recommendedLink = pageLink(queuePlan.get().recommendedPath(), "septic-system-cost-calculator", null);
+            return new StateCoverageCardView(
+                    stateReference.stateCode(),
+                    stateReference.stateName(),
+                    false,
+                    "Priority #" + queuePlan.get().priorityRank(),
+                    "queued",
+                    queuePlan.get().launchAngle(),
+                    queuePlan.get().rolloutWave() + " | Start with " + recommendedLink.title(),
+                    "/septic-system-cost-calculator/" + stateReference.slug() + "/",
+                    "Open rollout plan"
+            );
+        }
+        return new StateCoverageCardView(
+                stateReference.stateCode(),
+                stateReference.stateName(),
+                false,
+                "Research queue",
+                "queued",
+                "Official-source guide work has not been published yet. Use the national estimator while this state moves through the source and workflow review queue.",
+                "Queued for 50-state rollout | not yet published",
+                "/septic-system-cost-calculator/" + stateReference.slug() + "/",
+                "Open research page"
+        );
     }
 
     private String renderPumpScheduleEstimator(Model model, PumpScheduleForm pumpScheduleForm, PumpScheduleResult result) {
@@ -720,6 +880,18 @@ public class SiteController {
 
     private StateActionCopy stateActionCopy(StateProfile state) {
         return switch (state.stateCode()) {
+            case "CA" -> new StateActionCopy(
+                    "Estimate before the county file pull",
+                    "California usually gets real once you know the local agency path and whether the property sits in a default Tier 1 workflow or a LAMP-driven local program."
+            );
+            case "TX" -> new StateActionCopy(
+                    "Estimate before calling the permitting authority",
+                    "Texas quote conversations get sharper once you know the local permitting authority and whether the site evaluation is already on file."
+            );
+            case "NY" -> new StateActionCopy(
+                    "Estimate with Appendix 75-A context",
+                    "New York questions often turn on Appendix 75-A, county health files, and any waiver history rather than the seller's simple septic summary."
+            );
             case "GA" -> new StateActionCopy(
                     "Estimate with the disposal rule in mind",
                     "Georgia homeowners often need to check whether a garbage disposal changes the likely tank band before they call the county office."
@@ -837,6 +1009,26 @@ public class SiteController {
                         state.stateCode().equals(currentState.stateCode())
                 ))
                 .toList();
+    }
+
+    private StateQueuePlanView stateQueuePlanView(StateQueuePlan plan) {
+        UsStateDirectoryService.UsStateReference stateReference = usStateDirectoryService.findByCode(plan.stateCode())
+                .orElseThrow(() -> new StateNotFoundException(plan.stateCode()));
+        return stateQueuePlanView(plan, stateReference);
+    }
+
+    private StateQueuePlanView stateQueuePlanView(StateQueuePlan plan, UsStateDirectoryService.UsStateReference stateReference) {
+        return new StateQueuePlanView(
+                stateReference.stateCode(),
+                stateReference.stateName(),
+                plan.priorityRank(),
+                plan.rolloutWave(),
+                plan.whyNow(),
+                plan.launchAngle(),
+                "/septic-system-cost-calculator/" + stateReference.slug() + "/",
+                pageLink(plan.recommendedPath(), "septic-system-cost-calculator", null),
+                plan.researchTasks()
+        );
     }
 
     private String nextBestIntentTitle(StateProfile state) {
@@ -984,7 +1176,9 @@ public class SiteController {
             String stateSlug = normalizedPath.substring(prefix.length()).replaceFirst("/$", "");
             if (!stateSlug.isBlank() && !stateSlug.contains("/")) {
                 return researchDataService.findStateBySlug(stateSlug)
-                        .map(state -> state.stateName() + " septic guide");
+                        .map(StateProfile::stateName)
+                        .or(() -> usStateDirectoryService.findBySlug(stateSlug).map(UsStateDirectoryService.UsStateReference::stateName))
+                        .map(stateName -> stateName + " septic guide");
             }
         }
         return Optional.empty();
@@ -1109,7 +1303,9 @@ public class SiteController {
         Optional<String> guideStateSlug = stateSlugFromPath(normalizedPath);
         if (normalizedPath.startsWith("/septic-system-cost-calculator/") && guideStateSlug.isPresent()) {
             return researchDataService.findStateBySlug(guideStateSlug.get())
-                    .map(state -> "Open the " + state.stateName() + " guide for permit path, local office, and records workflow context.")
+                    .map(StateProfile::stateName)
+                    .or(() -> usStateDirectoryService.findBySlug(guideStateSlug.get()).map(UsStateDirectoryService.UsStateReference::stateName))
+                    .map(stateName -> "Open the " + stateName + " guide for permit path, local office, and records workflow context.")
                     .orElse("Open the state guide for permit path and records context.");
         }
 
