@@ -543,6 +543,64 @@
       ]
     },
     {
+      "stateCode": "CO",
+      "stateName": "Colorado",
+      "agencyName": "Colorado Department of Public Health and Environment",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Colorado is stronger on local public health agency routing and site-evaluation risk than on a fake statewide tank table. The homeowner wedge is knowing that the local agency usually owns the file and that permit, site, and transfer-of-title steps can change fast.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "CDPHE's onsite wastewater page says a permit is required before installing, altering, or repairing an OWTS and that local public health agencies typically implement and regulate systems with design capacities of 2,000 gallons per day or less. CDPHE's public page also points homeowners to permit data and a map of local agencies that implement transfer of title inspections. Colorado's local public health agency directory is the cleanest first stop when the county or district permit path is still unclear.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Colorado homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Colorado homeowners usually start with the local public health agency because CDPHE says those agencies typically regulate systems with capacities of 2,000 gallons per day or less. The permit path is not trustworthy until the local agency confirms whether site and soil paperwork or transfer-of-title review is already in play.",
+      "permitPathSteps": [
+        "Start with the local public health agency because CDPHE says those agencies usually implement and regulate OWTS up to 2,000 gallons per day.",
+        "Confirm whether a permit is needed for installation, alteration, or repair before trusting a quick low-end quote.",
+        "Ask whether the local agency requires a Site and Soil Evaluation Report, transfer-of-title inspection step, or another local file review before design narrows."
+      ],
+      "siteEvalSummary": "Colorado's public homeowner set is strongest on local public health agency routing, permit timing, and site-and-soil paperwork rather than a single statewide homeowner sizing table. The practical path turns on whether the local agency wants a Site and Soil Evaluation Report and whether the parcel already has permit or transfer-of-title history.",
+      "ruleHighlights": [
+        "CDPHE says permits are required before installing, altering, or repairing an onsite wastewater treatment system.",
+        "CDPHE says local public health agencies typically implement and regulate systems with design capacities of 2,000 gallons per day or less.",
+        "CDPHE's homeowner page points to permit data and a map of local agencies that implement transfer of title inspections.",
+        "Colorado's local public health agency directory is the fastest way to confirm who owns the next call."
+      ],
+      "localOverrideNote": "Colorado looks statewide through CDPHE, but the homeowner workflow changes quickly once you know which local public health agency controls the file and whether site or transfer requirements are already active.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["co_01", "co_02"],
+      "localAuthoritySourceIds": ["co_02"],
+      "recordsLookupSourceIds": ["co_01"],
+      "localActionSteps": [
+        "Open the local public health agency directory first and confirm which office owns the parcel.",
+        "Ask whether a Site and Soil Evaluation Report, permit history, or transfer-of-title inspection file already exists for the property.",
+        "Confirm whether the job is an install, alteration, repair, or buyer-diligence step before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the local public health agency that regulates onsite wastewater systems for the parcel.",
+      "recordsToRequest": [
+        "The local permit history, repair notes, and any transfer-of-title inspection record tied to the parcel.",
+        "Any Site and Soil Evaluation Report or equivalent local site-evaluation paperwork already on file.",
+        "The local public health agency's notes on whether the job is treated as install, alteration, repair, or buyer transfer review."
+      ],
+      "lowEndRiskChecks": [
+        "If the local agency has not confirmed the permit path, the low end is still a planning scenario, not a permit-ready number.",
+        "If a Site and Soil Evaluation Report or transfer inspection points toward more work, the project can widen fast.",
+        "If permit history is missing or inconsistent, buyer and replacement risk can rise before design even starts."
+      ],
+      "permitTimelineNote": "Colorado timing often turns on how quickly the local public health agency can review the site-and-soil file and whether a transfer-of-title or repair-history question is already in play.",
+      "buyerInspectionTrigger": "Buyers should ask for local permit history, any transfer-of-title inspection record, and site-evaluation paperwork early because Colorado risk often sits in the local file rather than the seller summary.",
+      "maintenanceInspectionNote": "Colorado's current source set is strongest on local permit routing, transfer-of-title context, and site paperwork, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Colorado's main wrinkle is that CDPHE sets the statewide frame, but the real homeowner workflow usually turns on the local public health agency and whether site, permit, or transfer requirements are already attached to the property.",
+      "confidenceScore": 0.77,
+      "itemsNeedingVerification": [
+        "Add a durable statewide matrix for Colorado local agencies that publish searchable OWTS permit or transfer records.",
+        "Document which Colorado local public health agencies publish public site-and-soil forms or inspection lookup tools."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

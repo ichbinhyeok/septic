@@ -596,6 +596,71 @@
       "confidence": 0.8,
       "note": "ADEQ's OWN portal lets users search prior notices of transfer for onsite wastewater treatment facilities."
     },
+    {
+      "stateCode": "CO",
+      "factType": "permit_requirement",
+      "label": "Permit trigger",
+      "value": "Permit required before install alter or repair",
+      "unit": "",
+      "sourceId": "co_01",
+      "sourceSection": "OWTS overview",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.87,
+      "note": "CDPHE's OWTS page says a permit is required before installing, altering, or repairing an onsite wastewater treatment system."
+    },
+    {
+      "stateCode": "CO",
+      "factType": "local_authority_scope",
+      "label": "Primary authority",
+      "value": "Local public health agencies usually regulate up to 2,000 gpd",
+      "unit": "",
+      "sourceId": "co_01",
+      "sourceSection": "OWTS overview",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.88,
+      "note": "CDPHE says local public health agencies typically implement and regulate onsite wastewater systems with design capacities of 2,000 gallons per day or less."
+    },
+    {
+      "stateCode": "CO",
+      "factType": "site_evaluation",
+      "label": "First technical document",
+      "value": "Site and Soil Evaluation Report may be required",
+      "unit": "",
+      "sourceId": "co_01",
+      "sourceSection": "Site and soil context",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.8,
+      "note": "CDPHE's homeowner-facing OWTS page notes that the local public health agency may require the Site and Soil Evaluation Report form."
+    },
+    {
+      "stateCode": "CO",
+      "factType": "records_and_transfer",
+      "label": "Records and buyer context",
+      "value": "Permit data and transfer-of-title resources are local-path driven",
+      "unit": "",
+      "sourceId": "co_01",
+      "sourceSection": "Permit data and transfer resources",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.77,
+      "note": "CDPHE's OWTS page points homeowners to Colorado county OWTS permit data and a map of local agencies that implement transfer of title inspections."
+    },
+    {
+      "stateCode": "CO",
+      "factType": "local_directory",
+      "label": "Who to call first",
+      "value": "Use the local public health agency directory",
+      "unit": "",
+      "sourceId": "co_02",
+      "sourceSection": "Local agency directory",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.84,
+      "note": "CDPHE's public directory is the cleanest statewide way to identify the local public health agency that owns the OWTS file."
+    },
 
     {
       "stateCode": "MA",

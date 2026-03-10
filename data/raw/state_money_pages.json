@@ -3709,6 +3709,63 @@
         "az_04"
       ],
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "CO",
+      "title": "Colorado Perc Test Cost",
+      "metaDescription": "Colorado perc and site-evaluation planning page with local public health agency routing, permit trigger context, and transfer-of-title file risk.",
+      "introCopy": "Colorado perc and site-evaluation questions are stronger than a generic national test page because the local public health agency, the permit trigger, and the Site and Soil Evaluation Report often decide whether the homeowner is still on a straightforward path.",
+      "uniqueAngle": "Colorado site-testing intent is strongest when the page connects local public health agency routing, CDPHE's permit trigger, and site-and-soil paperwork instead of pretending a perc number alone settles the project.",
+      "targetReader": "Best for Colorado owners, buyers, builders, and agents who need to know whether the local public health agency path is still simple enough to trust the low end before site, permit, or transfer-of-title risk widens the job.",
+      "fitBullets": [
+        "You want a perc or soil-testing number, but no one has confirmed which local public health agency controls the parcel.",
+        "The installer says the site looks straightforward, but the Site and Soil Evaluation Report or local permit file is not in hand yet.",
+        "You need to know whether local permit or transfer-of-title workflow could push the project beyond a simple test-and-design story."
+      ],
+      "decisionSteps": [
+        "Identify the local public health agency first because CDPHE says those agencies typically regulate systems up to 2,000 gallons per day.",
+        "Confirm whether the job is treated as install, alteration, repair, or buyer diligence before treating the test as a standalone fee.",
+        "Ask whether the local agency requires a Site and Soil Evaluation Report, permit history review, or transfer-of-title inspection path for the parcel.",
+        "Then compare perc or site-evaluation cost in the context of the real local workflow and any alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local public health agency has not confirmed the permit path.",
+        "If the Site and Soil Evaluation Report points toward more work, the project can widen quickly.",
+        "A missing transfer-of-title or permit history file can weaken confidence in the current system story before testing even starts."
+      ],
+      "quotePrepChecklist": [
+        "The local public health agency that regulates onsite wastewater systems for the parcel.",
+        "Any Site and Soil Evaluation Report or equivalent local site paperwork already tied to the property.",
+        "The local permit history, repair notes, and any transfer-of-title inspection record already attached to the parcel.",
+        "A short note on whether the job is buyer diligence, new install, repair follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Colorado site-testing conversations get real only after the local public health agency and permit path are clear.",
+        "The Site and Soil Evaluation Report can move the project away from the simple path the homeowner expected.",
+        "Transfer-of-title and permit history can change what the local agency wants before design narrows."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Colorado site-evaluation step a homeowner should take?",
+          "answer": "Identify the local public health agency first, because CDPHE says those agencies typically regulate onsite wastewater systems with design capacities of 2,000 gallons per day or less."
+        },
+        {
+          "question": "Why does Colorado perc content need to mention the Site and Soil Evaluation Report?",
+          "answer": "Because CDPHE's homeowner-facing OWTS page notes that the local public health agency may require the Site and Soil Evaluation Report form before the permit path is fully clear."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "publishStatus": "published"
     }
   ]
 }

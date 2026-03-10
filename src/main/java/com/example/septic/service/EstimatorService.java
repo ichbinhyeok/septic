@@ -144,6 +144,9 @@ public class EstimatorService {
         if ("AZ".equals(state.stateCode())) {
             checklist.add("Confirm which Arizona county controls the permit file and whether the site investigation paperwork is already on record.");
         }
+        if ("CO".equals(state.stateCode())) {
+            checklist.add("Confirm which Colorado local public health agency controls the file and whether a Site and Soil Evaluation Report or transfer-of-title review is already on record.");
+        }
         if ("CA".equals(state.stateCode())) {
             checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
         }
@@ -457,6 +460,9 @@ public class EstimatorService {
     private String rangeReason(StateProfile state) {
         if ("AZ".equals(state.stateCode())) {
             return "This Arizona range stays wide because county delegation and site-investigation paperwork often decide whether the project stays on a straightforward permit path.";
+        }
+        if ("CO".equals(state.stateCode())) {
+            return "This Colorado range stays wide because the local public health agency, the Site and Soil Evaluation Report, and transfer-of-title or permit history can all move the job quickly.";
         }
         if ("CA".equals(state.stateCode())) {
             return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";
