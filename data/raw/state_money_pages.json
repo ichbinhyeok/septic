@@ -4673,6 +4673,64 @@
     },
     {
       "contentSlug": "septic-records-checklist",
+      "stateCode": "OH",
+      "title": "Ohio Septic Records Checklist",
+      "metaDescription": "Ohio septic records checklist with local health file pulls, installation-permit history, and operational-inspection context in mind.",
+      "introCopy": "Ohio septic records work is less about a generic county lookup and more about pulling the local health department file that sits behind the system story. If the homeowner cannot surface the installation permit, operation permit, operational-inspection history, and any nuisance or off-lot-discharge note, the low end is not trustworthy yet.",
+      "uniqueAngle": "Ohio records intent is strongest when the page explains local health department routing, permit-file quality, and operational-inspection history together instead of pretending the file is just a permit copy.",
+      "targetReader": "Best for Ohio buyers, owners, agents, and builders who know the property uses a household sewage treatment system but still need to know whether the local health file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the property uses septic, but no one has shown the local health department file yet.",
+        "The seller says the system is permitted, but there is still no installation permit, operation permit, or inspection history in hand.",
+        "You need to separate a manageable paperwork gap from a property where nuisance history or off-lot discharge makes the file much riskier."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or board of health first because Ohio EPA says local health departments handle permitting and operational inspections.",
+        "Request the installation permit, operation permit, and any operational-inspection record tied to the system before relying on the seller or installer summary.",
+        "Ask whether the file also shows nuisance history, complaint history, repair work, or any note that the system discharges off lot.",
+        "Then compare the file you received against the property story and decide whether the next step is buyer diligence, permit cleanup, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if the local health department file is still thin or missing.",
+        "Operational-inspection or nuisance history can make the property more complex than the owner summary suggests.",
+        "If the system discharges off lot or triggers Ohio EPA involvement, the file can be much wider than a simple local permit lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or board of health contact with jurisdiction over the property.",
+        "The installation permit, operation permit, and any operational-inspection record tied to the system.",
+        "Any nuisance notice, complaint history, repair record, or off-lot-discharge note already tied to the property.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or file verification."
+      ],
+      "driverBullets": [
+        "Ohio records conversations get real only after the local health department file is in hand.",
+        "Operation-permit and operational-inspection history can matter more than a simple permit copy.",
+        "Off-lot-discharge or nuisance context can widen the real risk far beyond the seller's summary."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Ohio septic record a homeowner should ask for?",
+          "answer": "Ask the local health department for the installation permit, operation permit, and any operational-inspection history tied to the property."
+        },
+        {
+          "question": "Why does an Ohio records checklist need to mention off-lot discharge?",
+          "answer": "Because off-lot discharge can widen the file beyond the normal local-health path and change how much confidence a homeowner should have in the current system story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-permit-process/ohio/",
+        "/buying-a-house-with-a-septic-system/ohio/",
+        "/septic-system-cost-calculator/?state=OH&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
       "stateCode": "IL",
       "title": "Illinois Septic Records Checklist",
       "metaDescription": "Illinois septic records checklist with county health routing, evaluation-form risk, and IDPH code context in mind.",
@@ -4788,6 +4846,66 @@
         "il_04"
       ],
       "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "IL",
+      "title": "Illinois Septic Permit Process",
+      "metaDescription": "Illinois septic permit process with county health routing, evaluation-form risk, and IDPH code context in mind.",
+      "introCopy": "Illinois permit content is stronger than a generic install checklist because the real homeowner path runs through the county or local health department, not a single statewide permit desk. The practical question is what the local file already shows and whether any evaluation-form flag or county note already widens the job before the low end means much.",
+      "uniqueAngle": "Illinois permit intent is strongest when the page explains county-health routing, evaluation-form context, and local-file quality together instead of pretending one statewide office owns the whole workflow.",
+      "targetReader": "Best for Illinois owners, buyers, builders, and agents who need to know which local office controls the permit path, what file should already exist, and why county handling can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county or local health department actually controls the file.",
+        "The contractor says the permit is routine, but no one has checked whether the local file already shows an evaluation-form flag or code issue.",
+        "You need to know whether county handling will keep the project on a simple path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Ask which permit, plan-review, inspection, or evaluation-form record is already on file before treating the job as routine.",
+        "Use any flagged condition or county note to decide whether the project still fits a clean permit lane or is already widening into repair or replacement.",
+        "Then compare permit timing, local-file quality, and county-specific friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if the county or local office cannot surface a meaningful file.",
+        "A flagged evaluation-form condition can make the project more complex than the contractor summary suggests.",
+        "If the local office applies a stronger county or ordinance path, the simple statewide estimate can break quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the permit path.",
+        "Any permit, installation, plan-review, inspection, or evaluation-form record tied to the property.",
+        "Any county or code note showing whether the system has drifted toward repair or replacement.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "Illinois permit timing depends heavily on identifying the correct county or local office first.",
+        "A flagged evaluation-form or thin local file can matter more than a generic statewide permit article implies.",
+        "County or local handling can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Illinois permit step a homeowner should take?",
+          "answer": "Identify the county or local health department first, because Illinois routes the practical file and permit path through those offices rather than a single statewide permit desk."
+        },
+        {
+          "question": "Why does Illinois permit content need to mention the evaluation form?",
+          "answer": "Because IDPH's public evaluation form warns that flagged conditions may mean repair or replacement is needed, which can change how straightforward the permit path really is."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-records-checklist/illinois/",
+        "/buying-a-house-with-a-septic-system/illinois/",
+        "/septic-system-cost-calculator/?state=IL&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
+      "calculatorProjectType": "new_install",
       "publishStatus": "published"
     },
     {
@@ -6710,6 +6828,65 @@
         "mi_03"
       ],
       "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "MI",
+      "title": "Michigan Septic Permit Process",
+      "metaDescription": "Michigan septic permit process with local health department routing, permit-file questions, and failure-history context in mind.",
+      "introCopy": "Michigan permit content is stronger than a generic install checklist because the real homeowner path runs through the local health department, not a vague statewide permit desk. The practical question is what the local file already shows and whether permit, inspection, failure-history, or location issues already widen the job before the low end means much.",
+      "uniqueAngle": "Michigan permit intent is strongest when the page explains local-health routing, permit-file quality, and failure-history context together instead of pretending one statewide office owns the whole workflow.",
+      "targetReader": "Best for Michigan owners, buyers, builders, and agents who need to know which local health department controls the permit path, what file should already exist, and why failure history can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which local health department actually controls the file.",
+        "The contractor says the permit is routine, but no one has checked whether the local file already shows failure evidence, inspection history, or system-location uncertainty.",
+        "You need to know whether local ordinance or file quality will keep the project on a simple path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because Michigan's public guidance routes practical permitting and inspections through that office.",
+        "Ask which permit, inspection, failed-system evaluation, complaint, or repair record is already on file before treating the job as routine.",
+        "If the system location is unclear, use the local file first because EGLE's public FAQ says to contact the local health department when the system location is unknown.",
+        "Then compare permit timing, local-file quality, and failure-history risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if the local health department cannot surface a meaningful file.",
+        "If no one can confirm where the system is located, the homeowner is still budgeting a planning scenario rather than a permit-ready job.",
+        "Failure evidence or local ordinance issues can make the project more complex than the contractor or owner summary suggests."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the permit path.",
+        "Any permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "A short note showing whether the job is new install, replacement follow-through, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "Michigan permit timing depends heavily on identifying the correct local health department first.",
+        "Unknown system location or failure evidence can matter more than a generic statewide permit article implies.",
+        "A thin local file can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Michigan permit step a homeowner should take?",
+          "answer": "Identify the local health department first, because Michigan routes the practical file and permit path through that office rather than a single statewide permit desk."
+        },
+        {
+          "question": "Why does Michigan permit content need to mention system location?",
+          "answer": "Because EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the system is located, and that uncertainty can change how real the permit path actually is."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-records-checklist/michigan/",
+        "/buying-a-house-with-a-septic-system/michigan/",
+        "/septic-system-cost-calculator/?state=MI&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
+      "calculatorProjectType": "new_install",
       "publishStatus": "published"
     },
     {
