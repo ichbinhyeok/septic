@@ -3539,6 +3539,65 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "CA",
+      "title": "California Septic Permit Process",
+      "metaDescription": "California septic permit process with local agency routing, Tier 1 versus LAMP context, and local file checks in mind.",
+      "introCopy": "California permit content is stronger than a generic install checklist because the real homeowner path runs through the local agency, not a single statewide permit desk. The practical question is whether the property sits in a default Tier 1 workflow or a LAMP-driven local program, and whether the local file already shows permit, as-built, repair, or Regional Water Board friction before the low end means much.",
+      "uniqueAngle": "California permit intent is strongest when the page explains local agency routing, Tier 1 versus LAMP differences, and file quality together instead of pretending one statewide office owns the whole path.",
+      "targetReader": "Best for California owners, buyers, builders, and agents who need to know which local agency controls the permit path, what file should already exist, and why county-level workflow differences can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county environmental health office or local agency actually controls the OWTS permit path.",
+        "The contractor says the permit is routine, but no one has checked whether the lot follows the default Tier 1 path or a LAMP-driven local program.",
+        "You need to know whether the local file already shows permit, as-built, repair, or impaired-water-area complications before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local agency first because California routes practical OWTS permits through county environmental health offices or other local agencies.",
+        "Ask whether the property follows the default Tier 1 path or a Regional Water Board-approved LAMP before treating the job as a standard permit.",
+        "Pull the local permit file, as-built drawing, and any repair or local-review history before assuming the path is clean.",
+        "Then compare permit timing, file quality, and local-program friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit path widens fast if no one has identified the local agency actually holding the file.",
+        "A LAMP-driven local program can change siting, design, and review expectations enough to break a generic statewide permit story.",
+        "If the local file is thin or shows repair or special-area notes, the homeowner is still budgeting a planning scenario rather than a permit-ready project."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or other local agency handling the parcel.",
+        "Any local permit, as-built, repair, or prior review record already tied to the property.",
+        "Any note showing whether the lot falls under the default Tier 1 path or a LAMP-driven local program.",
+        "A short note showing whether the job is new install, replacement, ADU expansion, or permit cleanup before construction."
+      ],
+      "driverBullets": [
+        "California permit timing depends first on identifying the right local agency and local program path.",
+        "Tier 1 versus LAMP differences can matter more than a generic statewide permit article implies.",
+        "A thin local file can hide the real review burden behind an otherwise simple-looking contractor quote."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first California permit step a homeowner should take?",
+          "answer": "Identify the local agency or county environmental health office first, because California routes practical OWTS permits through those offices rather than a single statewide permit desk."
+        },
+        {
+          "question": "Why does California permit content need to mention LAMP?",
+          "answer": "Because California's LAMP-driven local programs can use siting and design standards that differ from the default Tier 1 path, which changes the practical permit story for homeowners."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/california/",
+        "/septic-system-cost-calculator/?state=CA&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "ca_01",
+        "ca_02",
+        "ca_03"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "TX",
       "title": "Texas Septic Permit Process",
       "metaDescription": "Texas septic permit process with local permitting authority routing, OARS lookup, and site-evaluation requirements.",
@@ -3597,6 +3656,66 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "TX",
+      "title": "Texas Septic Records Checklist",
+      "metaDescription": "Texas septic records checklist with OARS authority lookup, permit-file pulls, and site-evaluation context in mind.",
+      "introCopy": "Texas septic records work is less about one statewide file and more about finding the local permitting authority that owns the OSSF record. If the homeowner cannot surface the permit file, approved plan, site evaluation, and any aerobic maintenance trail, the low end is not trustworthy yet.",
+      "uniqueAngle": "Texas records intent is strongest when the page connects OARS authority lookup, permit-file quality, and site-evaluation context instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Texas buyers, owners, agents, and builders who know the property uses an OSSF but still need to know whether the permit file, approved plan, site evaluation, and maintenance history are complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses an OSSF, but no one has confirmed which local permitting authority actually controls the file.",
+        "The seller says the system is permitted, but there is still no approved plan, site evaluation, or permit file in hand.",
+        "You need to know whether an aerobic-system maintenance trail or repair history makes the file more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Use OARS or the Texas homeowner hub to identify the local permitting authority before you ask for any specific record.",
+        "Request the permit file, approved plan, and most recent site evaluation instead of relying on the seller or installer summary.",
+        "Ask whether the property has aerobic or advanced-system maintenance records because those can matter more than a simple permit copy.",
+        "Then compare the file you received against the property story and decide whether the next step is buyer diligence, permit cleanup, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local permitting authority holding the OSSF file.",
+        "A missing approved plan or site evaluation can hide a very different system path than the owner summary suggests.",
+        "If the property has aerobic or advanced-system maintenance obligations, the file can be more demanding than a generic permit lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The county and local permitting authority identified through OARS or the homeowner hub.",
+        "Any permit file, approved plan, or site-evaluation record already tied to the property.",
+        "Any maintenance contract, inspection history, or repair note tied to an aerobic or advanced system.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Texas records conversations get real only after OARS or the local authority lookup is settled.",
+        "A thin permit file can hide the real approved-plan and site-evaluation story behind the current system.",
+        "Aerobic maintenance history can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Texas septic records in practice?",
+          "answer": "Usually the local permitting authority for the county, which homeowners can identify through OARS or the Texas OSSF homeowner guidance."
+        },
+        {
+          "question": "Why should a Texas homeowner ask for the site evaluation when pulling septic records?",
+          "answer": "Because Texas says the site must be evaluated by a licensed site evaluator or professional engineer before the real system choice becomes clear, so the file is weaker without that document."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/texas/",
+        "/septic-system-cost-calculator/?state=TX&projectType=buying_home",
+        "/septic-permit-process/",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": [
+        "tx_01",
+        "tx_02",
+        "tx_03",
+        "tx_04",
+        "tx_05"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "buying-a-house-with-a-septic-system",
       "stateCode": "NY",
       "title": "Buying a House With a Septic System in New York",
@@ -3646,6 +3765,65 @@
         "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
         "/septic-records-checklist/",
         "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "ny_01",
+        "ny_02",
+        "ny_03",
+        "ny_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "NY",
+      "title": "New York Septic Records Checklist",
+      "metaDescription": "New York septic records checklist with Appendix 75-A file pulls, county health routing, and waiver history in mind.",
+      "introCopy": "New York septic records work is less about a generic municipal lookup and more about pulling the county health or district-office file that sits behind the system story. If the homeowner cannot surface the Appendix 75-A design paperwork, any specific waiver, and the as-built or repair history, the low end is not trustworthy yet.",
+      "uniqueAngle": "New York records intent is strongest when the page explains Appendix 75-A design files, local health routing, and specific-waiver history together instead of pretending a septic file is just a permit copy.",
+      "targetReader": "Best for New York buyers, owners, agents, and builders who know the property uses onsite wastewater treatment but still need to know whether the Appendix 75-A file, waiver history, and local health records are complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses onsite wastewater treatment, but no one has shown the Appendix 75-A design file or county health paperwork yet.",
+        "The seller says the system is approved, but there is still no as-built drawing, local health record, or waiver file in hand.",
+        "You need to separate a manageable paperwork gap from a property where the design flow and waiver history are too thin to trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county health department or district office first because New York routes the practical file through those local or district contacts.",
+        "Request the Appendix 75-A design file, as-built drawing, and any prior repair or local-health decision tied to the property.",
+        "Ask whether any specific waiver or other local health relief has already been issued because that history can change the real risk.",
+        "Then compare the file you received against the seller story and decide whether the next step is buyer diligence, permit follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if the county health or district-office file cannot surface the Appendix 75-A design paperwork.",
+        "A missing as-built drawing or repair history can hide a different system path than the owner remembers.",
+        "Specific waiver history can make the property more complicated than a simple septic summary implies."
+      ],
+      "quotePrepChecklist": [
+        "The county health department or district office contact with jurisdiction over the property.",
+        "The Appendix 75-A design file, as-built drawing, and any local health approval paperwork already tied to the site.",
+        "Any specific waiver or other local health decision already issued for the property.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or file verification."
+      ],
+      "driverBullets": [
+        "New York records conversations get real only after the county health or district-office file is in hand.",
+        "Appendix 75-A paperwork and waiver history can matter more than a simple permit copy.",
+        "A thin local file can hide the real design-flow and repair story behind the current system."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New York septic record a homeowner should ask for?",
+          "answer": "Ask for the Appendix 75-A design file and any as-built drawing tied to the property through the county health department or district office."
+        },
+        {
+          "question": "Why does New York septic records content need to mention specific waivers?",
+          "answer": "Because Appendix 75-A allows specific waivers, and that history can change how much confidence a homeowner should have in the current system story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/"
       ],
       "officialSourceIds": [
         "ny_01",

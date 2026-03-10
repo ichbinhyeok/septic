@@ -522,15 +522,24 @@
             </details>
 
             @if (!stateMoneyPages.isEmpty())
-                <details class="detail-card disclosure-card">
-                    <summary>Next high-intent pages in ${state.stateName()}</summary>
-                    <ul class="detail-list disclosure-card__body">
+                <article class="detail-card detail-card--full">
+                    <h2>High-intent next steps in ${state.stateName()}</h2>
+                    <p>Use these pages when the guide is not specific enough and the real bottleneck is the file, permit path, buyer risk, or site-review story.</p>
+                    <div class="detail-grid">
                         @for (var stateMoneyPage : stateMoneyPages)
-                            <li><a href="${stateMoneyPage.path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent" data-track-target-type="state_money_page">${stateMoneyPage.title()}</a></li>
+                            <article class="detail-card">
+                                <h3><a href="${stateMoneyPage.path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent" data-track-target-type="state_money_page">${stateMoneyPage.title()}</a></h3>
+                                <p>${stateMoneyPage.uniqueAngle()}</p>
+                                <a class="button button--secondary" href="${stateMoneyPage.path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_cta" data-track-target-type="state_money_page">Open this page</a>
+                            </article>
                         @endfor
-                        <li><a href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Main septic cost calculator</a></li>
-                    </ul>
-                </details>
+                        <article class="detail-card">
+                            <h3>Main septic cost calculator</h3>
+                            <p>Use the calculator when you still need a state-specific planning range before you choose one file, permit, or buyer narrative.</p>
+                            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Open the calculator</a>
+                        </article>
+                    </div>
+                </article>
             @endif
 
         </div>
