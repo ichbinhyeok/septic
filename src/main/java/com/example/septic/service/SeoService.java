@@ -205,6 +205,7 @@ public class SeoService {
 
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
+            case "AL" -> "Alabama septic cost guide and county permit path";
             case "AZ" -> "Arizona septic cost guide and site approval path";
             case "CO" -> "Colorado septic cost guide and local OWTS permit path";
             case "VA" -> "Virginia septic cost guide and inspection obligations";
@@ -498,6 +499,7 @@ public class SeoService {
 
     private String stateGuideTitle(StateProfile state) {
         return switch (state.stateCode()) {
+            case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
             case "AZ" -> "Arizona Septic Cost Guide and Site Approval Path";
             case "CO" -> "Colorado Septic Cost Guide and Local OWTS Permit Path";
             case "VA" -> "Virginia Septic Cost Guide and Inspection Obligations";
@@ -524,6 +526,7 @@ public class SeoService {
 
     private String stateGuideDescription(StateProfile state) {
         return switch (state.stateCode()) {
+            case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
             case "AZ" -> "Arizona septic planning estimates with county delegation, site-investigation paperwork, and official ADEQ source links.";
             case "CO" -> "Colorado septic planning estimates with local public health routing, site-and-soil paperwork, and official-source links.";
             case "VA" -> "Virginia septic planning estimates with local health district routing, operation-permit context, and inspection obligations.";

@@ -880,6 +880,10 @@ public class SiteController {
 
     private StateActionCopy stateActionCopy(StateProfile state) {
         return switch (state.stateCode()) {
+            case "AL" -> new StateActionCopy(
+                    "Estimate before calling the county health department",
+                    "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."
+            );
             case "AZ" -> new StateActionCopy(
                     "Estimate before site approval",
                     "Arizona quote conversations get more real once you know which county controls the permit file and whether the site-investigation paperwork is already on record."

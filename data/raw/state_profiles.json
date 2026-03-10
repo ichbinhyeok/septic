@@ -717,6 +717,64 @@
       ]
     },
     {
+      "stateCode": "AL",
+      "stateName": "Alabama",
+      "agencyName": "Alabama Department of Public Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Alabama is stronger on county health permit path, soil-testing risk, and permit-file retrieval than on a fake statewide tank table. The homeowner wedge is knowing whether the Permit to Install, the Approval for Use, and the county health office path are already in place before the quote pretends the job is ready.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments. ADPH's before-construction guidance says that when sewer is unavailable, homeowners may need soil testing or a percolation test and must submit an Application for a Permit to Install an onsite sewage disposal system to the local county health department before construction begins. ADPH's septic tank systems page says property owners or their agents can request septic tank information from the local health department, that non-owners can use the Records Request path for a permit copy, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. The local office path matters because ADPH publishes county health department locations and contacts rather than pretending the statewide branch handles every parcel directly.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Alabama homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Alabama homeowners usually need the county health permit path clarified before they trust an install or repair quote. The project is not permit-ready until the local office, the Permit to Install path, and the soil or file story are clearer, and the range can widen again if the Approval for Use is missing or the lot does not support a conventional path.",
+      "permitPathSteps": [
+        "Start with the right county health department because ADPH coordinates onsite sewage work through those local offices.",
+        "Confirm whether soil testing or a percolation test has already been completed before treating the job as a straightforward Permit to Install path.",
+        "Pull any existing permit copy or Approval for Use and use that file to decide whether the parcel is still on a conventional low-end path or widening into a bigger job."
+      ],
+      "siteEvalSummary": "Alabama's public homeowner set is strongest on county health routing, before-construction soil testing, Permit to Install timing, and Approval-for-Use file retrieval rather than a simple statewide sizing table. The practical path turns on whether the county file is usable and whether the site still supports a straightforward onsite system.",
+      "ruleHighlights": [
+        "ADPH says the onsite sewage program is coordinated in county health departments.",
+        "ADPH says homeowners must submit an Application for a Permit to Install to the local county health department before construction begins.",
+        "ADPH says soil testing or a percolation test may be required when sewer is unavailable.",
+        "ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation."
+      ],
+      "localOverrideNote": "Alabama looks statewide through ADPH, but the homeowner workflow changes quickly once you know which county health department holds the file and whether the Permit to Install or Approval for Use is already on record.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["al_01", "al_02", "al_03", "al_04"],
+      "localAuthoritySourceIds": ["al_04"],
+      "recordsLookupSourceIds": ["al_03", "al_04"],
+      "localActionSteps": [
+        "Open the ADPH county health department directory first and identify the local office handling onsite sewage questions for the parcel.",
+        "Ask whether a Permit to Install, Approval for Use, or older septic file already exists before treating the project as a fresh permit path.",
+        "Confirm whether soil testing or a previous site evaluation is already on record before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the county health department that handles onsite sewage permits, inspections, and file questions for the property.",
+      "recordsToRequest": [
+        "Any Permit to Install already issued for the parcel.",
+        "The completed permit or Approval for Use showing the actual system diagram and installation details.",
+        "Any soil test, percolation test, or site-evaluation note already attached to the county file."
+      ],
+      "lowEndRiskChecks": [
+        "If the county file cannot surface an Approval for Use or older permit copy, the low end is still a planning scenario rather than a permit-ready number.",
+        "If the lot still needs soil testing or a percolation test, the system path can widen before quotes become comparable.",
+        "If the county health department identifies a repair or site limitation issue, the project can move beyond the cheapest install story quickly."
+      ],
+      "permitTimelineNote": "Alabama timing often turns on how quickly the county health file is found, whether soil testing is already complete, and whether the Permit to Install can move without a new round of site work.",
+      "buyerInspectionTrigger": "Buyers should ask for the Approval for Use, the Permit to Install, and any soil-test history early because Alabama county files often tell a more reliable story than the listing summary.",
+      "maintenanceInspectionNote": "Alabama's current source set is strongest on county health routing, Permit to Install timing, and Approval-for-Use file retrieval, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Alabama's main wrinkle is the combination of county health department control, before-construction soil-testing risk, and Approval-for-Use file friction before the homeowner can trust a low-end range.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a durable statewide matrix showing which Alabama counties publish septic file lookups or permit forms online.",
+        "Document where Alabama county offices expose more detail on repair workflow or constrained-site approvals."
+      ]
+    },
+    {
       "stateCode": "SC",
       "stateName": "South Carolina",
       "agencyName": "South Carolina Department of Environmental Services",

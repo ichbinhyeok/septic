@@ -141,6 +141,9 @@ public class EstimatorService {
         if ("PA".equals(state.stateCode())) {
             checklist.add("Identify the municipality or local agency and Sewage Enforcement Officer before trusting the next-step permit path.");
         }
+        if ("AL".equals(state.stateCode())) {
+            checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
+        }
         if ("AZ".equals(state.stateCode())) {
             checklist.add("Confirm which Arizona county controls the permit file and whether the site investigation paperwork is already on record.");
         }
@@ -467,6 +470,9 @@ public class EstimatorService {
     }
 
     private String rangeReason(StateProfile state) {
+        if ("AL".equals(state.stateCode())) {
+            return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";
+        }
         if ("AZ".equals(state.stateCode())) {
             return "This Arizona range stays wide because county delegation and site-investigation paperwork often decide whether the project stays on a straightforward permit path.";
         }

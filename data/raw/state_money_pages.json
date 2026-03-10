@@ -3714,6 +3714,66 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "AL",
+      "title": "Alabama Septic Permit Process",
+      "metaDescription": "Alabama septic permit process with county health routing, Permit to Install timing, soil-testing context, and Approval-for-Use file questions.",
+      "introCopy": "Alabama permit content is stronger than a generic install checklist because the real homeowner path runs through the county health department, not a vague statewide quote. The practical job often turns on whether the Permit to Install path is clean, whether soil testing is already done, and whether an Approval for Use or older permit file is already on record.",
+      "uniqueAngle": "Alabama permit intent is strongest when the page explains county health routing, before-construction soil-testing risk, the Permit to Install path, and Approval-for-Use file retrieval instead of pretending the project starts with a clean contractor number.",
+      "targetReader": "Best for Alabama owners, buyers, builders, and agents who need to know which county health department controls the file, whether the Permit to Install or Approval for Use already exists, and why the site-evaluation story can move the whole schedule before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or repair quote, but no one has confirmed whether the county health department already has a Permit to Install or Approval for Use on file.",
+        "The contractor says the permit is routine, but no one has surfaced whether soil testing or a percolation test still needs to happen.",
+        "You need to know which county health department handles the parcel before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the county health department that handles onsite sewage permits and file questions for the parcel.",
+        "Ask whether a Permit to Install, Approval for Use, soil test, or older septic file already exists before treating the job as a fresh permit path.",
+        "Confirm whether the lot still needs soil testing, a percolation test, or a new site evaluation before you assume the project stays on the low end.",
+        "Then compare permit readiness, file quality, and site-risk context before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the county file cannot surface a Permit to Install or Approval for Use, the low end is still a planning scenario rather than a permit-ready number.",
+        "If soil testing or a percolation test is still unresolved, the system path can widen before contractor pricing becomes comparable.",
+        "If the county health department identifies a repair or site limitation issue, the job can move beyond the cheapest install story quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact responsible for onsite sewage permits and file questions.",
+        "Any Permit to Install already issued for the parcel.",
+        "Any completed permit or Approval for Use showing the actual system diagram and installation details.",
+        "Any soil test, percolation test, or site-evaluation note already attached to the county file."
+      ],
+      "driverBullets": [
+        "Alabama permit timing depends heavily on the county health department file being real and usable.",
+        "The Permit to Install path can widen quickly if soil testing or site conditions are still unresolved.",
+        "An Approval for Use or older permit file often tells a better homeowner story than the contractor summary."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Alabama permit step a homeowner should take?",
+          "answer": "Find the county health department first, because ADPH coordinates the onsite sewage program through county health departments and the local office controls the practical permit conversation."
+        },
+        {
+          "question": "Why does Alabama permit content need to mention the Approval for Use?",
+          "answer": "Because ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation and other information that helps homeowners verify the real file before trusting the low end."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/alabama/",
+        "/septic-system-cost-calculator/?state=AL&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "al_01",
+        "al_02",
+        "al_03",
+        "al_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "SC",
       "title": "South Carolina Septic Permit Process",
       "metaDescription": "South Carolina septic permit process with SCDES permit-copy retrieval, D-1740 workflow, local office routing, and building-permit gate context.",
