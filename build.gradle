@@ -39,15 +39,19 @@ dependencies {
 }
 
 jte {
-	precompile()
+	generate()
 }
 
-tasks.named('bootJar') {
-	dependsOn tasks.named('precompileJte')
-	from(fileTree('jte-classes')) {
-		include '**/*.class'
-		include '**/*.bin'
+sourceSets {
+	main {
+		java {
+			srcDir layout.buildDirectory.dir('generated-sources/jte')
+		}
 	}
+}
+
+tasks.named('compileJava') {
+	dependsOn tasks.named('generateJte')
 }
 
 tasks.named('test') {
