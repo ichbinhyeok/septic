@@ -144,6 +144,18 @@ public class EstimatorService {
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
+        if ("IN".equals(state.stateCode())) {
+            checklist.add("Confirm which Indiana county or local health office controls the file and whether sanitary sewer availability, a county permit record, or local ordinance variation already changes the path.");
+        }
+        if ("OK".equals(state.stateCode())) {
+            checklist.add("Confirm which Oklahoma DEQ office handles the parcel and whether the next step is a soil test, soil profile, or request-for-service file already on record.");
+        }
+        if ("KY".equals(state.stateCode())) {
+            checklist.add("Confirm which Kentucky local health department controls the file and whether the site-evaluation report, construction permit, or homeowner-permit note is already on record.");
+        }
+        if ("MN".equals(state.stateCode())) {
+            checklist.add("Confirm which Minnesota local SSTS program controls the property and whether disclosure, local transfer requirements, or a prior inspection report are already in view.");
+        }
         if ("IL".equals(state.stateCode())) {
             checklist.add("Confirm which Illinois county or local health department holds the file and whether an evaluation form, permit record, or county note already shows repair risk.");
         }

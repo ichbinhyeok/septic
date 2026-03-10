@@ -884,6 +884,22 @@ public class SiteController {
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."
             );
+            case "IN" -> new StateActionCopy(
+                    "Estimate before the county permit call",
+                    "Indiana quote conversations get more real once you know which county office holds the file and whether sewer availability or local ordinance variation changes the onsite path."
+            );
+            case "OK" -> new StateActionCopy(
+                    "Estimate before the soil-test request",
+                    "Oklahoma quote conversations get more real once you know which local DEQ office handles the parcel and whether the site still sits on a conventional soil-test path."
+            );
+            case "KY" -> new StateActionCopy(
+                    "Estimate before the local health file pull",
+                    "Kentucky quote conversations get more real once you know whether the local health department already holds the site-evaluation and permit file behind the property story."
+            );
+            case "MN" -> new StateActionCopy(
+                    "Estimate before the disclosure check",
+                    "Minnesota quote conversations get more real once you know which local SSTS program controls the sale and whether disclosure or compliance-inspection friction is already in play."
+            );
             case "IL" -> new StateActionCopy(
                     "Estimate before the local file pull",
                     "Illinois quote conversations get more real once you know which county or local health department holds the file and whether an evaluation form or flagged condition is already in view."

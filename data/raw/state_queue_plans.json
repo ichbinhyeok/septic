@@ -3,60 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "IN",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Indiana is a broad Midwest gap where local health department routing can create a real permit-path wedge without needing fake technical precision.",
-      "launchAngle": "Target angle: local permit path, county file quality, and next-call clarity before install quotes harden.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the statewide homeowner-facing onsite sewage or residential septic guidance hub.",
-        "Collect county or local health department routing that determines the real permit office.",
-        "Pull a homeowner-safe permit sequence that can anchor a permit page without overclaiming."
-      ]
-    },
-    {
-      "stateCode": "OK",
-      "priorityRank": 2,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Oklahoma fills a central coverage gap and likely supports a site-risk wedge that national install pages flatten too aggressively.",
-      "launchAngle": "Target angle: perc, soil, and system-path risk before the homeowner assumes a standard install route.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for onsite sewage permits or site evaluation.",
-        "Collect public source language on soil, site, lagoon, or alternative-system risk that homeowners can safely use.",
-        "Map any county or local-office handoff that changes the first call."
-      ]
-    },
-    {
-      "stateCode": "KY",
-      "priorityRank": 3,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Kentucky rounds out the Tennessee and Ohio corridor and can likely support a records-first wedge where local file quality matters more than broad averages.",
-      "launchAngle": "Target angle: permit-file retrieval and local office confirmation before the homeowner treats the quote as settled.",
-      "recommendedPath": "/septic-records-checklist/",
-      "researchTasks": [
-        "Find the statewide homeowner guidance for onsite sewage permits, inspections, or local health routing.",
-        "Collect any permit-copy, file-request, or records lookup workflow that a homeowner can actually use.",
-        "Document the safest local-authority explanation that can later support both records and permit pages."
-      ]
-    },
-    {
-      "stateCode": "MN",
-      "priorityRank": 4,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Minnesota can likely support a buyer-risk and compliance wedge that is stronger than generic install pricing, especially if the file and transfer story are thin.",
-      "launchAngle": "Target angle: buyer diligence, compliance status, and local office routing before the seller story sets the anchor.",
-      "recommendedPath": "/buying-a-house-with-a-septic-system/",
-      "researchTasks": [
-        "Find the statewide homeowner-facing entry point for septic compliance, inspections, or property-transfer context.",
-        "Collect county or local office routing that determines who controls the file.",
-        "Pull official language on compliance or transfer triggers that is safe to publish for buyer pages."
-      ]
-    },
-    {
       "stateCode": "AR",
-      "priorityRank": 5,
+      "priorityRank": 1,
       "rolloutWave": "Wave 3",
       "whyNow": "Arkansas closes a regional gap next to Missouri, Tennessee, and Oklahoma and can likely support a permit-first page before the cluster loses momentum.",
       "launchAngle": "Target angle: permit path and local-office handoff before the homeowner trusts a flat install range.",
@@ -69,7 +17,7 @@
     },
     {
       "stateCode": "MS",
-      "priorityRank": 6,
+      "priorityRank": 2,
       "rolloutWave": "Wave 3",
       "whyNow": "Mississippi keeps the Southeast buildout moving and likely supports a county-health permit and records story before the regional cluster loses pace.",
       "launchAngle": "Target angle: county health permit path and file retrieval before the homeowner trusts a simple install quote.",

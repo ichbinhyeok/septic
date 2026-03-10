@@ -1007,6 +1007,238 @@
       ]
     },
     {
+      "stateCode": "IN",
+      "stateName": "Indiana",
+      "agencyName": "Indiana Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Indiana is stronger on county permit path, sewer-availability gating, and local-board workflow than on a fake statewide install table. The homeowner wedge is knowing whether the county file, the sewer question, and local ordinance variation are already in view before trusting a flat install quote.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "IDOH's onsite sewage systems page says onsite systems are prohibited when sanitary sewer is available within a reasonable distance and connection is required. Indiana's 410 IAC 6-8.3 rule says the residential onsite sewage program is administered by local boards of health and uses 150 gallons per day per bedroom for residential design flow. IDOH also publishes county environmental territory contacts and a technical-review page warning that local ordinances may be stricter or interpreted differently than the state minimum, so the real homeowner permit path is county-first in practice.",
+      "designFlowPerBedroomGpd": 150,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Indiana homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Indiana homeowners usually need the county or local health permit path clarified before they trust a new-install or replacement quote. The project is not really permit-ready until the county file confirms whether sanitary sewer blocks the onsite path, whether the site file is usable, and whether local ordinance variation changes the next step.",
+      "permitPathSteps": [
+        "Start with the county or local health path because Indiana's residential onsite sewage program is administered by local boards of health in practice.",
+        "Ask whether sanitary sewer is available within a reasonable distance before you treat the parcel like a normal onsite permit path.",
+        "Use the county file, local ordinance notes, and any site or design-flow record to decide whether the job is still on a low-end permit path or widening."
+      ],
+      "siteEvalSummary": "Indiana public homeowner material is strongest on county permit control, sewer-availability gating, and local-board variation rather than one simple statewide sizing table. The practical path turns on whether the county file is clear and whether local ordinance changes the state-minimum story.",
+      "ruleHighlights": [
+        "IDOH says onsite sewage systems are prohibited if sanitary sewer is available within a reasonable distance.",
+        "Indiana's residential onsite sewage rule is administered by local boards of health.",
+        "Indiana uses 150 gallons per day per bedroom for residential design flow in 410 IAC 6-8.3.",
+        "IDOH says local health departments may have more stringent ordinances or may vary in interpretation from the state minimums."
+      ],
+      "localOverrideNote": "Indiana looks statewide through IDOH, but the real homeowner workflow changes quickly once you know which county or local board holds the file and whether a stricter local ordinance applies.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["in_01", "in_02", "in_03", "in_04"],
+      "localAuthoritySourceIds": ["in_02"],
+      "recordsLookupSourceIds": ["in_02", "in_03"],
+      "localActionSteps": [
+        "Open the county environmental territory contacts page first and identify the county or local office handling the parcel.",
+        "Ask whether sanitary sewer availability removes the parcel from the onsite path before you anchor to the low end.",
+        "Pull any county permit, site, or operating-permit note already tied to the property before you compare contractor timing."
+      ],
+      "whoToCallFirst": "Start with the county or local health office that handles residential onsite sewage questions and permit workflow for the parcel.",
+      "recordsToRequest": [
+        "Any county permit, site-review, or design record already tied to the property.",
+        "Any note showing whether sanitary sewer availability affects the parcel.",
+        "Any operating-permit, local-board, or ordinance note already attached to the onsite file."
+      ],
+      "lowEndRiskChecks": [
+        "If sanitary sewer is available within a reasonable distance, the onsite low-end story may no longer be the right frame.",
+        "If the county file is thin or missing, the permit story is still a planning scenario rather than a permit-ready number.",
+        "If local ordinances are stricter than the state minimum, the simple statewide estimate can break quickly."
+      ],
+      "permitTimelineNote": "Indiana timing often turns on how quickly the county file surfaces, whether sewer availability has already been resolved, and whether local ordinance variation adds friction.",
+      "buyerInspectionTrigger": "Buyers should ask for the county onsite file and any sewer-availability note early because Indiana's county-first permit path can expose more risk than the seller summary.",
+      "maintenanceInspectionNote": "Indiana's current source set is strongest on county permit control, sewer-availability gating, and local-board variation, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Indiana's main wrinkle is that sanitary-sewer availability and local-board variation can change the onsite path before a homeowner even reaches normal permit timing.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Indiana offices expose onsite permit or records lookup online.",
+        "Document where Indiana counties publish clearer homeowner guidance on site reviews, repairs, and operating permits."
+      ]
+    },
+    {
+      "stateCode": "OK",
+      "stateName": "Oklahoma",
+      "agencyName": "Oklahoma Department of Environmental Quality",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Oklahoma is stronger on soil-test path, local DEQ office routing, and system-choice risk than on a fake statewide install table. The homeowner wedge is knowing whether the soil-profile path, county environmental specialist, and request-for-service workflow already keep the lot on a conventional track before trusting the low end.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "DEQ says its Environmental Complaints and Local Services division administers Oklahoma's onsite sewage treatment program through 21 local offices. The homeowner page says the first step is a soil test and that system design depends on soil results, property size, and number of bedrooms. DEQ's request-for-service page lists soil tests, authorizations or permits to construct, and existing-system evaluations, while the soil-profilers page says perc tests fit only some conventional paths, soil profiles are used for all approved systems, and topography, water usage, and future land use can all change the outcome.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Oklahoma homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Oklahoma homeowners usually need the soil-test and local-office path clarified before they trust a new-install or perc-related quote. The project is not really permit-ready until the local DEQ office confirms whether the request is staying on a conventional path, whether a permit to construct is the next move, and whether broader site factors already widen the story.",
+      "permitPathSteps": [
+        "Start with the local DEQ office because ECLS runs the onsite sewage program through regional offices and county environmental specialists.",
+        "Treat the soil test or soil profile as the first real step because DEQ says design depends on soil results, property size, and bedroom count.",
+        "Use the request-for-service and system-choice guidance to decide whether the lot stays on a conventional low-end path or widens into a larger site-risk story."
+      ],
+      "siteEvalSummary": "Oklahoma public homeowner material is strongest on the soil-test-first path, local office routing, and the way soil profile, topography, water usage, and future land use affect the system choice. The practical path turns on whether the lot still supports the simple system assumption.",
+      "ruleHighlights": [
+        "DEQ says ECLS administers the onsite sewage treatment program through 21 local offices.",
+        "DEQ says the first step is a soil test and that design depends on soil results, property size, and number of bedrooms.",
+        "DEQ's request-for-service path includes soil tests, authorizations or permits to construct, and existing-system evaluations.",
+        "DEQ says perc tests fit only some conventional paths and that soil profiles are used for all approved systems."
+      ],
+      "localOverrideNote": "Oklahoma looks statewide through DEQ, but the real homeowner workflow changes quickly once you know which local office or county environmental specialist handles the parcel and whether the soil story still supports a conventional path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ok_01", "ok_02", "ok_03", "ok_04", "ok_05"],
+      "localAuthoritySourceIds": ["ok_01", "ok_04"],
+      "recordsLookupSourceIds": ["ok_03", "ok_05"],
+      "localActionSteps": [
+        "Open the DEQ local-office or environmental specialist path first and identify who handles the county.",
+        "Ask whether the first real step is a soil test, a soil profile, or an existing-system evaluation before you trust the low end.",
+        "Confirm whether topography, water usage, or future land use is already pushing the project beyond a conventional path."
+      ],
+      "whoToCallFirst": "Start with the DEQ local office or county environmental specialist handling onsite sewage questions for the parcel.",
+      "recordsToRequest": [
+        "Any request-for-service or permit-to-construct record already tied to the lot.",
+        "Any soil test, soil profile, or 641-581 form already attached to the site file.",
+        "Any note showing whether the lot stays conventional or is already widening toward a different system path."
+      ],
+      "lowEndRiskChecks": [
+        "If the site still needs soil-test or soil-profile work, the low end is still a planning scenario rather than a site-backed number.",
+        "If topography, water usage, or future land use push the design off the conventional path, the cost story can widen quickly.",
+        "If the request-for-service record is weak or missing, the homeowner is still early in the permit path."
+      ],
+      "permitTimelineNote": "Oklahoma timing often turns on how quickly the local office can schedule the soil step, whether the file already holds a usable request record, and whether the lot still supports the assumed system path.",
+      "buyerInspectionTrigger": "Buyers should ask for any soil-test, soil-profile, or existing-system evaluation early because Oklahoma's file often explains more than a generic installer quote or listing note.",
+      "maintenanceInspectionNote": "Oklahoma's current source set is strongest on soil-test workflow, request-for-service routing, and system-choice risk, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Oklahoma's main wrinkle is that perc-test language alone is not enough because DEQ says soil profiles, topography, water usage, and future land use can all change the approved path.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Oklahoma local offices expose onsite service-request or permit records online.",
+        "Document where Oklahoma homeowners can retrieve more detailed site files once the request-for-service workflow has started."
+      ]
+    },
+    {
+      "stateCode": "KY",
+      "stateName": "Kentucky",
+      "agencyName": "Kentucky Department for Public Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Kentucky is stronger on local health file retrieval, site-evaluation reality, and homeowner-permit context than on a fake statewide install table. The homeowner wedge is knowing whether the local health file, the site evaluation, and the permit path are already real before the quote feels settled.",
+      "ruleType": "records_path",
+      "ruleSummaryPlainEnglish": "Kentucky's onsite sewage disposal systems program says it is administered through local health departments and begins with onsite evaluations to determine site and soil suitability. The program page says local health department inspectors perform site evaluations and inspections, and a homeowner installing their own system needs a homeowner's permit through the local health department. Kentucky's homeowner brochure adds that the application for site evaluation and the OSDS construction permit are submitted through the local health department, so the practical records trail is local in practice.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Kentucky homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Kentucky homeowners usually need the local health file and site-evaluation story clarified before they trust an install or replacement quote. The project is not really file-backed until the local health department confirms whether the site evaluation, construction permit, and any homeowner-permit context are already on record.",
+      "permitPathSteps": [
+        "Start with the local health department because Kentucky says the onsite sewage program is administered through local health departments.",
+        "Ask whether the site evaluation, construction permit, and inspection notes already exist before you treat the project as a simple permit or records story.",
+        "Use the file to decide whether the lot is still on a straightforward path or whether site and soil suitability already widen the project."
+      ],
+      "siteEvalSummary": "Kentucky public homeowner material is strongest on local health routing, site-evaluation-first workflow, and local inspection files rather than one simple statewide sizing story. The practical path turns on whether the local file is strong enough to trust before you anchor to the low end.",
+      "ruleHighlights": [
+        "Kentucky says the onsite sewage disposal systems program is administered through local health departments.",
+        "Kentucky says the program begins with onsite evaluations to determine site and soil suitability.",
+        "Local health department inspectors perform site evaluations and inspections.",
+        "The homeowner brochure says the site-evaluation application and OSDS construction permit are submitted through the local health department."
+      ],
+      "localOverrideNote": "Kentucky looks statewide through KDPH, but the real homeowner workflow changes quickly once you know which local health department holds the file and how complete the site-evaluation trail really is.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ky_01", "ky_02", "ky_03", "ky_04"],
+      "localAuthoritySourceIds": ["ky_02", "ky_04"],
+      "recordsLookupSourceIds": ["ky_01", "ky_03"],
+      "localActionSteps": [
+        "Open the Kentucky local health department listing first and identify the office holding the practical onsite sewage file.",
+        "Ask for any site-evaluation, construction-permit, inspection, or homeowner-permit record tied to the parcel.",
+        "Confirm whether the file is strong enough to trust the low end before you compare contractor timing or buyer credits."
+      ],
+      "whoToCallFirst": "Start with the local health department that handles onsite sewage questions, site evaluations, and permit files for the property.",
+      "recordsToRequest": [
+        "Any site-evaluation report already tied to the parcel.",
+        "Any OSDS construction permit, homeowner's permit, or inspection note already on file.",
+        "Any local health note showing whether the lot still fits the assumed onsite path."
+      ],
+      "lowEndRiskChecks": [
+        "If the local health file cannot surface a site evaluation or permit record, the low end is still a planning scenario.",
+        "If site and soil suitability are still unresolved, the project can widen beyond a simple install or transfer story quickly.",
+        "If the property only has partial local records, the homeowner may be pricing a thinner story than the local file supports."
+      ],
+      "permitTimelineNote": "Kentucky timing often turns on how quickly the local health file surfaces, whether the site evaluation is already usable, and whether the lot still fits the assumed system path.",
+      "buyerInspectionTrigger": "Buyers should ask for the site evaluation and local health permit file early because Kentucky's local records usually tell a more reliable story than the listing summary.",
+      "maintenanceInspectionNote": "Kentucky's current source set is strongest on local health routing, site-evaluation files, and homeowner-permit context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Kentucky's main wrinkle is that the site-evaluation trail sits inside the local health file, so the real records story is usually stronger than the generic statewide quote story.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Kentucky health departments expose onsite permit or site-evaluation records online.",
+        "Document where Kentucky counties publish clearer homeowner instructions for file retrieval and repair workflow."
+      ]
+    },
+    {
+      "stateCode": "MN",
+      "stateName": "Minnesota",
+      "agencyName": "Minnesota Pollution Control Agency",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Minnesota is stronger on buyer diligence, seller disclosure, and local compliance-inspection risk than on a fake statewide install table. The homeowner wedge is knowing whether the local SSTS program, the disclosure file, and any prior inspection report are already strong enough before a buyer trusts the listing story.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "MPCA says more than 600,000 Minnesota homes and businesses use septic systems and that statewide SSTS rules are implemented and enforced through local ordinances. MPCA's local-program page says around 200 local SSTS programs review permits, inspect new and replacement systems, and that some local governments require compliance inspections prior to property transfer. MPCA's disclosure PDF says no statewide compliance inspection is required before sale but many local ordinances and lenders still require one, and state law requires written seller disclosure plus attachment of any prior inspection report in the seller's possession.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Minnesota homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Minnesota homeowners and buyers usually need the local SSTS program and disclosure trail clarified before they trust a sale, inspection, or replacement quote. The deal is not really file-backed until the local program confirms whether a compliance inspection is locally required and whether the seller has surfaced the real disclosure and prior inspection paperwork.",
+      "permitPathSteps": [
+        "Start with the local SSTS program because Minnesota's septic rules are implemented and enforced through local ordinances in practice.",
+        "Ask whether the local government requires a compliance inspection for property transfer before you treat the sale like a generic statewide story.",
+        "Use the disclosure form and any prior inspection report to decide whether the buyer is inheriting a straightforward septic story or a larger compliance problem."
+      ],
+      "siteEvalSummary": "Minnesota public homeowner material is strongest on local-program control, property-transfer disclosure, and compliance-inspection risk rather than one simple statewide sizing story. The practical path turns on whether the local program requires more than the seller disclosure before the deal feels safe.",
+      "ruleHighlights": [
+        "MPCA says more than 600,000 Minnesota homes and businesses use septic systems.",
+        "MPCA says statewide septic rules are implemented and enforced through local ordinances.",
+        "MPCA says some local governments require compliance inspections prior to property transfer.",
+        "Minnesota law requires written seller disclosure and attachment of any prior inspection report in the seller's possession."
+      ],
+      "localOverrideNote": "Minnesota looks statewide through MPCA, but the real buyer workflow changes quickly once you know which local SSTS program controls the property and whether local transfer rules are stricter than the statewide baseline.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["mn_01", "mn_02", "mn_03", "mn_04"],
+      "localAuthoritySourceIds": ["mn_02"],
+      "recordsLookupSourceIds": ["mn_03", "mn_04"],
+      "localActionSteps": [
+        "Open the local SSTS program path first and confirm which county, city, or township controls the property file.",
+        "Ask whether the local government requires a compliance inspection before transfer and whether any prior inspection report exists.",
+        "Compare the seller disclosure against local program expectations before you trust the listing story or repair credits."
+      ],
+      "whoToCallFirst": "Start with the local SSTS program or local government office that handles septic permits, inspections, and transfer questions for the property.",
+      "recordsToRequest": [
+        "The written septic disclosure tied to the sale.",
+        "Any prior compliance inspection report in the seller's possession.",
+        "Any local SSTS permit, inspection, or compliance-status note already tied to the property."
+      ],
+      "lowEndRiskChecks": [
+        "If the local program requires a compliance inspection for transfer, the seller disclosure alone is not enough to trust the low end.",
+        "If a prior inspection report exists but has not been surfaced, the buyer may be inheriting more risk than the listing suggests.",
+        "If local ordinances are stricter than the statewide baseline, the deal can widen beyond a simple inspection or credit conversation."
+      ],
+      "permitTimelineNote": "Minnesota timing often turns on how quickly the local SSTS program confirms transfer requirements, whether a prior inspection report exists, and whether local ordinances demand more than the statewide disclosure baseline.",
+      "buyerInspectionTrigger": "Buyers should ask for the disclosure form, any prior inspection report, and the local SSTS transfer rule early because Minnesota's local compliance requirements can change the deal fast.",
+      "maintenanceInspectionNote": "Minnesota's current source set is strongest on local-program control, transfer disclosure, and compliance-inspection risk, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Minnesota's main wrinkle is that there is no statewide pre-sale compliance-inspection rule, but many local ordinances and lenders still require one, so the local program owns the real buyer workflow.",
+      "confidenceScore": 0.83,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Minnesota local SSTS programs require compliance inspections before property transfer.",
+        "Document where Minnesota local programs expose online septic permit or compliance records to homeowners and buyers."
+      ]
+    },
+    {
       "stateCode": "SC",
       "stateName": "South Carolina",
       "agencyName": "South Carolina Department of Environmental Services",

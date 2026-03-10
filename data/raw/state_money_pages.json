@@ -3952,6 +3952,245 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "IN",
+      "title": "Indiana Septic Permit Process",
+      "metaDescription": "Indiana septic permit process with county health routing, sewer-availability context, local-board variation, and file questions in mind.",
+      "introCopy": "Indiana permit content is stronger than a generic install checklist because the real homeowner path runs through the county or local health office, not a single statewide desk. The practical job often turns on whether sanitary sewer availability blocks the onsite path, whether the county file is usable, and whether local ordinance variation changes the next step.",
+      "uniqueAngle": "Indiana permit intent is strongest when the page explains county permit routing, sewer-availability gating, and local-board variation instead of pretending one simple statewide permit story fits every parcel.",
+      "targetReader": "Best for Indiana owners, buyers, builders, and agents who need to know which county office controls the file, whether the parcel can even stay on the onsite path, and why local ordinance variation can move the schedule before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county or local office owns the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced whether sanitary sewer availability changes the whole story.",
+        "You need to know whether the county file and local ordinance path are strong enough before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health office that handles residential onsite sewage questions for the parcel.",
+        "Ask whether sanitary sewer is available within a reasonable distance before you treat the project as a normal onsite permit path.",
+        "Pull any county permit, site, design, or operating-permit record already tied to the property and check whether local ordinance variation changes the next step.",
+        "Then compare permit readiness, file quality, and sewer-path risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If sanitary sewer availability removes the parcel from the onsite path, the low-end septic story is no longer the right frame.",
+        "If the county file is thin or missing, the homeowner is still pricing a planning scenario rather than a permit-ready job.",
+        "If local ordinances are stricter than the state minimum, the simple statewide permit story can widen quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office contact responsible for the onsite file.",
+        "Any county permit, site-review, or design record already tied to the property.",
+        "Any note showing whether sanitary sewer availability affects the parcel.",
+        "Any operating-permit or local-board note already on file."
+      ],
+      "driverBullets": [
+        "Indiana permit timing depends heavily on identifying the county office first.",
+        "Sewer availability can end the onsite conversation before the low end becomes real.",
+        "Local-board variation can widen the permit path beyond the simple installer summary."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Indiana permit step a homeowner should take?",
+          "answer": "Find the county or local health office first, because Indiana's residential onsite sewage program is administered through local boards of health in practice."
+        },
+        {
+          "question": "Why does Indiana permit content need to mention sewer availability?",
+          "answer": "Because IDOH says onsite sewage systems are prohibited where sanitary sewer is available within a reasonable distance, which can remove the parcel from the normal onsite permit story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "OK",
+      "title": "Oklahoma Perc Test Cost",
+      "metaDescription": "Oklahoma perc and soil-test planning page with local DEQ routing, request-for-service context, and system-choice risk in mind.",
+      "introCopy": "Oklahoma perc and soil-test questions are stronger than a generic national test page because DEQ makes the soil step explicit. The real homeowner path usually turns on whether the local office is asking for a soil test, a soil profile, or an existing-system evaluation before the permit story feels real.",
+      "uniqueAngle": "Oklahoma site-testing intent is strongest when the page connects local DEQ offices, request-for-service workflow, and the difference between perc tests and soil profiles instead of pretending one test settles the whole project.",
+      "targetReader": "Best for Oklahoma owners, buyers, builders, and agents who need to know whether the lot still sits on a conventional path and what local-office or soil-profile friction can widen the job before design and permit pricing mean much.",
+      "fitBullets": [
+        "You want a perc or soil-testing estimate, but no one has confirmed which DEQ office or environmental specialist handles the county.",
+        "The contractor says the lot looks straightforward, but no one has surfaced whether the next step is a soil test, soil profile, or existing-system evaluation.",
+        "You need to know whether the parcel is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the local DEQ office or county environmental specialist because Oklahoma runs the onsite sewage path through local offices.",
+        "Confirm whether the next request is a soil test, a soil profile, an existing-system evaluation, or a permit-to-construct workflow.",
+        "Check whether topography, water usage, future land use, or broader site risk already move the lot beyond the conventional path.",
+        "Then compare site-path risk, request quality, and system-choice friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the lot still needs soil-test or soil-profile work, the low end is still a planning scenario rather than a site-backed number.",
+        "If topography, water usage, or future land use push the project off the conventional path, the cost story can widen quickly.",
+        "If the request-for-service record is weak or missing, the homeowner is still too early to trust a precise perc number."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist responsible for the parcel.",
+        "Any request-for-service or permit-to-construct record already tied to the lot.",
+        "Any soil test, soil profile, or 641-581 form already in the file.",
+        "Any note showing whether the lot stays conventional or is already widening into another system path."
+      ],
+      "driverBullets": [
+        "Oklahoma site-testing timing depends heavily on the local DEQ office being clear first.",
+        "The soil-profile path can widen the story well beyond a generic perc quote.",
+        "Topography and future land use can change the approved path before the low end means much."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oklahoma site-review step a homeowner should take?",
+          "answer": "Call the local DEQ office or county environmental specialist first, because Oklahoma's onsite sewage program runs through local offices and the first real step is usually the soil question."
+        },
+        {
+          "question": "Why does Oklahoma perc content need to mention soil profiles?",
+          "answer": "Because DEQ says perc tests fit only some conventional paths while soil profiles are used for all approved systems, so a simple perc quote can be too narrow."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=perc_test",
+        "/septic-permit-process/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "KY",
+      "title": "Kentucky Septic Records Checklist",
+      "metaDescription": "Kentucky septic records checklist with local health routing, site-evaluation files, and homeowner-permit context in mind.",
+      "introCopy": "Kentucky records intent is stronger than a generic septic checklist because the practical file usually lives with the local health department, and the official program says the onsite sewage path begins with site and soil evaluation before the homeowner can trust the permit story.",
+      "uniqueAngle": "Kentucky records intent is strongest when the page connects local health file retrieval, site-evaluation records, and homeowner-permit context instead of pretending the buyer or owner only needs a permit copy.",
+      "targetReader": "Best for Kentucky buyers, owners, and agents who know the property uses onsite sewage disposal but still need to know whether the local file, the site evaluation, or the permit path creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You know the property uses onsite sewage disposal, but no one has shown the local health department file yet.",
+        "You need to know whether a site-evaluation report, construction permit, or homeowner-permit note already exists.",
+        "The seller or owner says the system is straightforward, but the real file path still feels thin."
+      ],
+      "decisionSteps": [
+        "Start with the local health department because Kentucky's onsite sewage program is administered through local health departments.",
+        "Request any site-evaluation report, construction permit, homeowner-permit note, inspection record, or local health file tied to the parcel.",
+        "Use the file to decide whether the lot is still on a straightforward onsite path or whether site and soil suitability already widen the story.",
+        "Then compare the local file against the current property story before you move into buyer diligence, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end story breaks quickly if the local health department cannot surface a meaningful site-evaluation or permit file.",
+        "If site and soil suitability are still unclear, the property is not ready for a confident low-end assumption.",
+        "If the file only shows partial local records, the homeowner may be relying on a thinner story than the county actually supports."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the onsite sewage file.",
+        "Any site-evaluation report already tied to the parcel.",
+        "Any OSDS construction permit, homeowner's permit, or inspection note already on file.",
+        "Any local health note showing whether the lot still fits the assumed onsite path."
+      ],
+      "driverBullets": [
+        "Kentucky homeowners usually need the local health file before a records conversation becomes real.",
+        "Site-evaluation records can surface more risk than a generic seller summary.",
+        "If the permit trail is thin, the low end is still only a planning scenario."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Kentucky?",
+          "answer": "Start with the local health department file, including any site-evaluation report, construction permit, homeowner's permit, and inspection note tied to the property."
+        },
+        {
+          "question": "Why does the Kentucky records checklist mention site evaluation?",
+          "answer": "Because Kentucky's program says the onsite sewage path begins with site and soil evaluation, so the site-evaluation file can tell a more reliable story than the seller summary."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MN",
+      "title": "Buying a House With a Septic System in Minnesota",
+      "metaDescription": "Minnesota homebuyer septic checklist with local SSTS programs, seller disclosure, and compliance-inspection risk in mind.",
+      "introCopy": "Minnesota buyer risk is rarely just about paying for an inspection. The real story turns on whether the local SSTS program requires a compliance inspection, whether the seller disclosure is complete, and whether any prior inspection report is already hiding in the file.",
+      "uniqueAngle": "Minnesota buyer intent is strongest when the page explains local transfer rules, seller disclosure, and prior inspection reports together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Minnesota buyers, sellers, and agents who know the property uses a septic system but still need to know whether the local program, the disclosure file, or prior inspection history creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local SSTS program requirements or the seller disclosure yet.",
+        "You need to know whether a compliance inspection is locally required before you trust the current system story.",
+        "You want a due-diligence checklist that catches missing disclosures or prior inspection reports before negotiation turns into a repair problem."
+      ],
+      "decisionSteps": [
+        "Start with the local SSTS program and ask whether the county, city, or township requires a compliance inspection before transfer.",
+        "Request the written seller disclosure, any prior inspection report in the seller's possession, and any local permit or inspection record already tied to the property.",
+        "Compare the disclosure against local program expectations so you know whether the file is complete enough to trust the system story.",
+        "Then price inspection, repair, or replacement risk only after the local program makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local SSTS program requires a compliance inspection that has not happened yet.",
+        "A prior inspection report can change the deal quickly if it exists but has not been surfaced.",
+        "If local ordinances are stricter than the statewide disclosure baseline, the sale can widen beyond a simple inspection or credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local SSTS program contact with jurisdiction over the property.",
+        "The written septic disclosure tied to the sale.",
+        "Any prior compliance-inspection report in the seller's possession.",
+        "Any local permit, inspection, or compliance-status note already tied to the property."
+      ],
+      "driverBullets": [
+        "Minnesota buyer risk depends heavily on local SSTS program rules, not just the statewide baseline.",
+        "The disclosure form is not the same as a compliance inspection, so the buyer file can still be thin.",
+        "Prior inspection reports can change how much risk the buyer is actually inheriting after closing."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Minnesota buyer should ask for?",
+          "answer": "Ask for the local SSTS program requirements, the written seller disclosure, and any prior inspection report already in the seller's possession."
+        },
+        {
+          "question": "Why does local transfer context matter in a Minnesota septic deal?",
+          "answer": "Because MPCA says some local governments require compliance inspections before property transfer even though there is no one statewide pre-sale inspection rule."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/minnesota/",
+        "/septic-system-cost-calculator/?state=MN&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "mn_01",
+        "mn_02",
+        "mn_03",
+        "mn_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "AL",
       "title": "Alabama Septic Permit Process",
       "metaDescription": "Alabama septic permit process with county health routing, Permit to Install timing, soil-testing context, and Approval-for-Use file questions.",

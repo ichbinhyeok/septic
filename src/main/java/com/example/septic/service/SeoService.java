@@ -206,6 +206,10 @@ public class SeoService {
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama septic cost guide and county permit path";
+            case "IN" -> "Indiana septic cost guide and county permit path";
+            case "OK" -> "Oklahoma septic cost guide and soil-test path";
+            case "KY" -> "Kentucky septic cost guide and local file path";
+            case "MN" -> "Minnesota septic cost guide and property transfer risk";
             case "IL" -> "Illinois septic cost guide and local health file path";
             case "MD" -> "Maryland septic cost guide and property transfer risk";
             case "WI" -> "Wisconsin septic cost guide and POWTS inspection path";
@@ -504,6 +508,10 @@ public class SeoService {
     private String stateGuideTitle(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
+            case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
+            case "OK" -> "Oklahoma Septic Cost Guide and Soil-Test Path";
+            case "KY" -> "Kentucky Septic Cost Guide and Local File Path";
+            case "MN" -> "Minnesota Septic Cost Guide and Property Transfer Risk";
             case "IL" -> "Illinois Septic Cost Guide and Local Health File Path";
             case "MD" -> "Maryland Septic Cost Guide and Property Transfer Risk";
             case "WI" -> "Wisconsin Septic Cost Guide and POWTS Inspection Path";
@@ -535,6 +543,10 @@ public class SeoService {
     private String stateGuideDescription(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
+            case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";
+            case "OK" -> "Oklahoma septic planning estimates with local DEQ routing, soil-test context, and official-source links.";
+            case "KY" -> "Kentucky septic planning estimates with local health routing, site-evaluation files, and official-source links.";
+            case "MN" -> "Minnesota septic planning estimates with local SSTS transfer rules, seller-disclosure context, and official-source links.";
             case "IL" -> "Illinois septic planning estimates with local health file routing, evaluation-form context, and official-source links.";
             case "MD" -> "Maryland septic planning estimates with local approving authority routing, PTI transfer context, and official-source links.";
             case "WI" -> "Wisconsin septic planning estimates with county POWTS routing, maintenance-tracking context, and official-source links.";
