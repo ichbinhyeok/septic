@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-03-10",
+  "generatedAt": "2026-03-11",
   "pages": [
     {
       "contentSlug": "septic-replacement-cost",
@@ -10699,6 +10699,1992 @@
         "wv_02",
         "wv_03",
         "wv_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "LA",
+      "title": "Buying a House With a Septic System in Louisiana",
+      "metaDescription": "Louisiana homebuyer septic checklist with parish health unit routing, parish health file and sewer-availability note context, and community-sewer gate and parish packet friction.",
+      "introCopy": "Louisiana buyer risk is rarely just about paying for an inspection. The real early question is whether the parish health file and sewer-availability note already support the seller story before community-sewer gate and parish packet friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Louisiana buyer intent is strongest when the page ties parish health unit routing, parish health file and sewer-availability note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Louisiana buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the parish health file and sewer-availability note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches community-sewer gate and parish packet friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the parish health unit and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the parish health file and sewer-availability note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the parish health unit file is still thin or incomplete.",
+        "parish health file and sewer-availability note gaps can make the property more complex than the seller summary suggests.",
+        "community-sewer gate and parish packet friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit contact responsible for the property file.",
+        "The parish health file and sewer-availability note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Louisiana buyer conversations get real only after the parish health unit file is in hand.",
+        "parish health file and sewer-availability note quality can matter more than the listing summary or first inspection fee.",
+        "community-sewer gate and parish packet friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Louisiana buyer step a homeowner should take?",
+          "answer": "Start with the parish health unit file and ask for the parish health file and sewer-availability note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Louisiana buyer content need to mention parish health file?",
+          "answer": "Because parish health file and sewer-availability note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/septic-records-checklist/louisiana/",
+        "/septic-inspection-cost/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "LA",
+      "title": "Louisiana Septic Records Checklist",
+      "metaDescription": "Louisiana septic records checklist with parish health unit routing, application packet and property plat pulls, and community-sewer gate and parish packet friction.",
+      "introCopy": "Louisiana records work is less about one statewide file and more about getting the right parish health unit file in hand. If the homeowner cannot surface the application packet and property plat, the low end is still just a planning story.",
+      "uniqueAngle": "Louisiana records intent is strongest when the page connects parish health unit routing, application packet and property plat, and community-sewer gate and parish packet friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Louisiana buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which parish health unit actually controls the file.",
+        "The owner says the system is permitted, but there is still no application packet and property plat in hand.",
+        "You need to know whether community-sewer gate and parish packet friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the parish health unit and confirm who actually holds the onsite file for the property.",
+        "Request the application packet and property plat, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the parish health unit holding the actual record.",
+        "A missing application packet and property plat can hide a very different system path than the owner summary suggests.",
+        "community-sewer gate and parish packet friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit identified for the property.",
+        "Any application packet and property plat, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Louisiana records conversations get real only after the parish health unit is clear.",
+        "A thin application packet trail can hide the real approval story behind the current system.",
+        "community-sewer gate and parish packet friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Louisiana septic records in practice?",
+          "answer": "Usually the parish health unit, which is the first office to identify before you ask for the application packet and property plat or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Louisiana homeowner ask for the application packet when pulling septic records?",
+          "answer": "Because the application packet usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/buying-a-house-with-a-septic-system/louisiana/",
+        "/septic-permit-process/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "LA",
+      "title": "Louisiana Septic Inspection Cost",
+      "metaDescription": "Louisiana septic inspection cost with parish health unit routing, parish inspection note and sewer-availability story context, and community-sewer gate and parish packet friction in mind.",
+      "introCopy": "Louisiana inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the parish inspection note and sewer-availability story still support the current system story. That makes the inspection fee only part of the real risk when community-sewer gate and parish packet friction is still in play.",
+      "uniqueAngle": "Louisiana inspection content is strongest when it explains parish health unit routing, parish inspection note and sewer-availability story, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Louisiana buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the parish health unit file yet.",
+        "You need to know whether the parish inspection note and sewer-availability story makes the visit more consequential than the fee itself.",
+        "community-sewer gate and parish packet friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the parish health unit first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the parish inspection note and sewer-availability story, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the parish health unit file has not been reviewed first.",
+        "The parish inspection note and sewer-availability story can make the property much more complicated than the owner summary suggests.",
+        "community-sewer gate and parish packet friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit contact with jurisdiction over the property.",
+        "Any parish inspection note and sewer-availability story, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Louisiana buyers and owners need the parish health unit file before the inspection fee means much.",
+        "parish inspection note can matter more than the visit price.",
+        "community-sewer gate and parish packet friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Louisiana inspection step a homeowner should take?",
+          "answer": "Find the parish health unit first and ask for the parish inspection note and sewer-availability story, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Louisiana inspection content need to mention parish inspection note?",
+          "answer": "Because parish inspection note and sewer-availability story often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/buying-a-house-with-a-septic-system/louisiana/",
+        "/septic-records-checklist/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "OK",
+      "title": "Buying a House With a Septic System in Oklahoma",
+      "metaDescription": "Oklahoma homebuyer septic checklist with local DEQ office or county environmental specialist routing, soil test, soil profile, and existing-system evaluation context, and soil-profile path and system-choice friction.",
+      "introCopy": "Oklahoma buyer risk is rarely just about paying for an inspection. The real early question is whether the soil test, soil profile, and existing-system evaluation already support the seller story before soil-profile path and system-choice friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Oklahoma buyer intent is strongest when the page ties local DEQ office or county environmental specialist routing, soil test, soil profile, and existing-system evaluation, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Oklahoma buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the soil test, soil profile, and existing-system evaluation yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches soil-profile path and system-choice friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local DEQ office or county environmental specialist and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the soil test, soil profile, and existing-system evaluation, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local DEQ office or county environmental specialist file is still thin or incomplete.",
+        "soil test, soil profile, and existing-system evaluation gaps can make the property more complex than the seller summary suggests.",
+        "soil-profile path and system-choice friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist contact responsible for the property file.",
+        "The soil test, soil profile, and existing-system evaluation already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Oklahoma buyer conversations get real only after the local DEQ office or county environmental specialist file is in hand.",
+        "soil test, soil profile, and existing-system evaluation quality can matter more than the listing summary or first inspection fee.",
+        "soil-profile path and system-choice friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oklahoma buyer step a homeowner should take?",
+          "answer": "Start with the local DEQ office or county environmental specialist file and ask for the soil test, soil profile, and existing-system evaluation, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Oklahoma buyer content need to mention soil test, soil profile,?",
+          "answer": "Because soil test, soil profile, and existing-system evaluation often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/septic-records-checklist/oklahoma/",
+        "/septic-inspection-cost/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "OK",
+      "title": "Oklahoma Septic Records Checklist",
+      "metaDescription": "Oklahoma septic records checklist with local DEQ office or county environmental specialist routing, request-for-service and soil-profile file pulls, and soil-profile path and system-choice friction.",
+      "introCopy": "Oklahoma records work is less about one statewide file and more about getting the right local DEQ office or county environmental specialist file in hand. If the homeowner cannot surface the request-for-service and soil-profile file, the low end is still just a planning story.",
+      "uniqueAngle": "Oklahoma records intent is strongest when the page connects local DEQ office or county environmental specialist routing, request-for-service and soil-profile file, and soil-profile path and system-choice friction instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Oklahoma buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which local DEQ office or county environmental specialist actually controls the file.",
+        "The owner says the system is permitted, but there is still no request-for-service and soil-profile file in hand.",
+        "You need to know whether soil-profile path and system-choice friction makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the local DEQ office or county environmental specialist and confirm who actually holds the onsite file for the property.",
+        "Request the request-for-service and soil-profile file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the local DEQ office or county environmental specialist holding the actual record.",
+        "A missing request-for-service and soil-profile file can hide a very different system path than the owner summary suggests.",
+        "soil-profile path and system-choice friction can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist identified for the property.",
+        "Any request-for-service and soil-profile file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Oklahoma records conversations get real only after the local DEQ office or county environmental specialist is clear.",
+        "A thin request-for-service trail can hide the real approval story behind the current system.",
+        "soil-profile path and system-choice friction can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Oklahoma septic records in practice?",
+          "answer": "Usually the local DEQ office or county environmental specialist, which is the first office to identify before you ask for the request-for-service and soil-profile file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Oklahoma homeowner ask for the request-for-service when pulling septic records?",
+          "answer": "Because the request-for-service usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/buying-a-house-with-a-septic-system/oklahoma/",
+        "/septic-permit-process/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "OK",
+      "title": "Oklahoma Septic Inspection Cost",
+      "metaDescription": "Oklahoma septic inspection cost with local DEQ office or county environmental specialist routing, authorization or permit to construct and existing-system evaluation record context, and soil-profile path and system-choice friction in mind.",
+      "introCopy": "Oklahoma inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the authorization or permit to construct and existing-system evaluation record still support the current system story. That makes the inspection fee only part of the real risk when soil-profile path and system-choice friction is still in play.",
+      "uniqueAngle": "Oklahoma inspection content is strongest when it explains local DEQ office or county environmental specialist routing, authorization or permit to construct and existing-system evaluation record, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Oklahoma buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local DEQ office or county environmental specialist file yet.",
+        "You need to know whether the authorization or permit to construct and existing-system evaluation record makes the visit more consequential than the fee itself.",
+        "soil-profile path and system-choice friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local DEQ office or county environmental specialist first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the authorization or permit to construct and existing-system evaluation record, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local DEQ office or county environmental specialist file has not been reviewed first.",
+        "The authorization or permit to construct and existing-system evaluation record can make the property much more complicated than the owner summary suggests.",
+        "soil-profile path and system-choice friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local DEQ office or county environmental specialist contact with jurisdiction over the property.",
+        "Any authorization or permit to construct and existing-system evaluation record, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Oklahoma buyers and owners need the local DEQ office or county environmental specialist file before the inspection fee means much.",
+        "authorization or permit to construct can matter more than the visit price.",
+        "soil-profile path and system-choice friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oklahoma inspection step a homeowner should take?",
+          "answer": "Find the local DEQ office or county environmental specialist first and ask for the authorization or permit to construct and existing-system evaluation record, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Oklahoma inspection content need to mention authorization or permit to construct?",
+          "answer": "Because authorization or permit to construct and existing-system evaluation record often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oklahoma/",
+        "/buying-a-house-with-a-septic-system/oklahoma/",
+        "/septic-records-checklist/oklahoma/",
+        "/septic-system-cost-calculator/?state=OK&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ok_01",
+        "ok_02",
+        "ok_03",
+        "ok_04",
+        "ok_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "KS",
+      "title": "Buying a House With a Septic System in Kansas",
+      "metaDescription": "Kansas homebuyer septic checklist with county or city sanitary-code office routing, local sanitary-code file and soil-profile record context, and local sanitary-code variation and modified-soil review.",
+      "introCopy": "Kansas buyer risk is rarely just about paying for an inspection. The real early question is whether the local sanitary-code file and soil-profile record already support the seller story before local sanitary-code variation and modified-soil review turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Kansas buyer intent is strongest when the page ties county or city sanitary-code office routing, local sanitary-code file and soil-profile record, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Kansas buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local sanitary-code file and soil-profile record yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches local sanitary-code variation and modified-soil review before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county or city sanitary-code office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the local sanitary-code file and soil-profile record, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county or city sanitary-code office file is still thin or incomplete.",
+        "local sanitary-code file and soil-profile record gaps can make the property more complex than the seller summary suggests.",
+        "local sanitary-code variation and modified-soil review can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary-code office contact responsible for the property file.",
+        "The local sanitary-code file and soil-profile record already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Kansas buyer conversations get real only after the county or city sanitary-code office file is in hand.",
+        "local sanitary-code file and soil-profile record quality can matter more than the listing summary or first inspection fee.",
+        "local sanitary-code variation and modified-soil review can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kansas buyer step a homeowner should take?",
+          "answer": "Start with the county or city sanitary-code office file and ask for the local sanitary-code file and soil-profile record, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Kansas buyer content need to mention local sanitary-code file?",
+          "answer": "Because local sanitary-code file and soil-profile record often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/septic-records-checklist/kansas/",
+        "/septic-inspection-cost/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "KS",
+      "title": "Kansas Septic Records Checklist",
+      "metaDescription": "Kansas septic records checklist with county or city sanitary-code office routing, soil-profile and sanitary-code file pulls, and local sanitary-code variation and modified-soil review.",
+      "introCopy": "Kansas records work is less about one statewide file and more about getting the right county or city sanitary-code office file in hand. If the homeowner cannot surface the soil-profile and sanitary-code file, the low end is still just a planning story.",
+      "uniqueAngle": "Kansas records intent is strongest when the page connects county or city sanitary-code office routing, soil-profile and sanitary-code file, and local sanitary-code variation and modified-soil review instead of pretending the state keeps one simple homeowner database.",
+      "targetReader": "Best for Kansas buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
+      "fitBullets": [
+        "You know the parcel uses septic, but no one has confirmed which county or city sanitary-code office actually controls the file.",
+        "The owner says the system is permitted, but there is still no soil-profile and sanitary-code file in hand.",
+        "You need to know whether local sanitary-code variation and modified-soil review makes the record trail more complicated than the owner remembers."
+      ],
+      "decisionSteps": [
+        "Start with the county or city sanitary-code office and confirm who actually holds the onsite file for the property.",
+        "Request the soil-profile and sanitary-code file, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
+        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
+        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+      ],
+      "lowEndBreakers": [
+        "The low-end file story breaks if no one has identified the county or city sanitary-code office holding the actual record.",
+        "A missing soil-profile and sanitary-code file can hide a very different system path than the owner summary suggests.",
+        "local sanitary-code variation and modified-soil review can make the file much more demanding than a generic record lookup implies."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary-code office identified for the property.",
+        "Any soil-profile and sanitary-code file, permit file, design packet, or approval note already tied to the parcel.",
+        "Any transfer, complaint, inspection, or follow-up record already in the file.",
+        "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
+      ],
+      "driverBullets": [
+        "Kansas records conversations get real only after the county or city sanitary-code office is clear.",
+        "A thin soil-profile trail can hide the real approval story behind the current system.",
+        "local sanitary-code variation and modified-soil review can matter as much as the permit copy before the homeowner trusts the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who holds Kansas septic records in practice?",
+          "answer": "Usually the county or city sanitary-code office, which is the first office to identify before you ask for the soil-profile and sanitary-code file or any transfer paperwork."
+        },
+        {
+          "question": "Why should a Kansas homeowner ask for the soil-profile when pulling septic records?",
+          "answer": "Because the soil-profile usually tells you whether the property still fits the simple story the owner, seller, or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/buying-a-house-with-a-septic-system/kansas/",
+        "/septic-permit-process/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "KS",
+      "title": "Kansas Septic Inspection Cost",
+      "metaDescription": "Kansas septic inspection cost with county or city sanitary-code office routing, local sanitary-code inspection note and modified-soil review context, and local sanitary-code variation and modified-soil review in mind.",
+      "introCopy": "Kansas inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the local sanitary-code inspection note and modified-soil review still support the current system story. That makes the inspection fee only part of the real risk when local sanitary-code variation and modified-soil review is still in play.",
+      "uniqueAngle": "Kansas inspection content is strongest when it explains county or city sanitary-code office routing, local sanitary-code inspection note and modified-soil review, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Kansas buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the county or city sanitary-code office file yet.",
+        "You need to know whether the local sanitary-code inspection note and modified-soil review makes the visit more consequential than the fee itself.",
+        "local sanitary-code variation and modified-soil review may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the county or city sanitary-code office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the local sanitary-code inspection note and modified-soil review, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county or city sanitary-code office file has not been reviewed first.",
+        "The local sanitary-code inspection note and modified-soil review can make the property much more complicated than the owner summary suggests.",
+        "local sanitary-code variation and modified-soil review can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county or city sanitary-code office contact with jurisdiction over the property.",
+        "Any local sanitary-code inspection note and modified-soil review, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Kansas buyers and owners need the county or city sanitary-code office file before the inspection fee means much.",
+        "local sanitary-code inspection note can matter more than the visit price.",
+        "local sanitary-code variation and modified-soil review can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kansas inspection step a homeowner should take?",
+          "answer": "Find the county or city sanitary-code office first and ask for the local sanitary-code inspection note and modified-soil review, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Kansas inspection content need to mention local sanitary-code inspection note?",
+          "answer": "Because local sanitary-code inspection note and modified-soil review often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kansas/",
+        "/buying-a-house-with-a-septic-system/kansas/",
+        "/septic-records-checklist/kansas/",
+        "/septic-system-cost-calculator/?state=KS&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ks_01",
+        "ks_02",
+        "ks_03",
+        "ks_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "IN",
+      "title": "Indiana Perc Test Cost",
+      "metaDescription": "Indiana perc and site-planning page with county or local health office routing, county site-review file and sewer-availability note, and sewer-availability gate and local-board variation in mind.",
+      "introCopy": "Indiana perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which county or local health office controls the parcel, whether the county site-review file and sewer-availability note already exists, and whether sewer-availability gate and local-board variation is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "Indiana site-testing intent is strongest when the page connects county or local health office, county site-review file and sewer-availability note, and sewer-availability gate and local-board variation instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Indiana owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which county or local health office controls the parcel.",
+        "The installer says the site looks straightforward, but the county site-review file and sewer-availability note is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county or local health office before you treat the job as a standalone test fee.",
+        "Ask whether the county site-review file and sewer-availability note already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county or local health office and the county site-review file and sewer-availability note are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "sewer-availability gate and local-board variation can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office identified for the parcel.",
+        "Any county site-review file and sewer-availability note, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "Indiana site-testing conversations get real only after the county or local health office and site file are clear.",
+        "county site-review file can matter more than the first quoted perc fee.",
+        "sewer-availability gate and local-board variation can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Indiana site-check step a homeowner should take?",
+          "answer": "Identify the county or local health office first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does Indiana perc content need to mention county site-review file?",
+          "answer": "Because the county site-review file usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-permit-process/indiana/",
+        "/septic-replacement-cost/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "IN",
+      "title": "Buying a House With a Septic System in Indiana",
+      "metaDescription": "Indiana homebuyer septic checklist with county or local health office routing, county permit and site file context, and sewer-availability gate and local-board variation.",
+      "introCopy": "Indiana buyer risk is rarely just about paying for an inspection. The real early question is whether the county permit and site file already support the seller story before sewer-availability gate and local-board variation turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Indiana buyer intent is strongest when the page ties county or local health office routing, county permit and site file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Indiana buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county permit and site file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches sewer-availability gate and local-board variation before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the county permit and site file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the county or local health office file is still thin or incomplete.",
+        "county permit and site file gaps can make the property more complex than the seller summary suggests.",
+        "sewer-availability gate and local-board variation can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office contact responsible for the property file.",
+        "The county permit and site file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Indiana buyer conversations get real only after the county or local health office file is in hand.",
+        "county permit and site file quality can matter more than the listing summary or first inspection fee.",
+        "sewer-availability gate and local-board variation can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Indiana buyer step a homeowner should take?",
+          "answer": "Start with the county or local health office file and ask for the county permit and site file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Indiana buyer content need to mention county permit?",
+          "answer": "Because county permit and site file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-records-checklist/indiana/",
+        "/septic-inspection-cost/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "IN",
+      "title": "Indiana Septic Inspection Cost",
+      "metaDescription": "Indiana septic inspection cost with county or local health office routing, operating-permit note and local-board file context, and sewer-availability gate and local-board variation in mind.",
+      "introCopy": "Indiana inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the operating-permit note and local-board file still support the current system story. That makes the inspection fee only part of the real risk when sewer-availability gate and local-board variation is still in play.",
+      "uniqueAngle": "Indiana inspection content is strongest when it explains county or local health office routing, operating-permit note and local-board file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Indiana buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the county or local health office file yet.",
+        "You need to know whether the operating-permit note and local-board file makes the visit more consequential than the fee itself.",
+        "sewer-availability gate and local-board variation may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the county or local health office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the operating-permit note and local-board file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county or local health office file has not been reviewed first.",
+        "The operating-permit note and local-board file can make the property much more complicated than the owner summary suggests.",
+        "sewer-availability gate and local-board variation can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health office contact with jurisdiction over the property.",
+        "Any operating-permit note and local-board file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Indiana buyers and owners need the county or local health office file before the inspection fee means much.",
+        "operating-permit note can matter more than the visit price.",
+        "sewer-availability gate and local-board variation can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Indiana inspection step a homeowner should take?",
+          "answer": "Find the county or local health office first and ask for the operating-permit note and local-board file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Indiana inspection content need to mention operating-permit note?",
+          "answer": "Because operating-permit note and local-board file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/septic-records-checklist/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "KY",
+      "title": "Kentucky Perc Test Cost",
+      "metaDescription": "Kentucky perc and site-planning page with local health department routing, site-evaluation report and site-and-soil suitability file, and site-suitability and local-file friction in mind.",
+      "introCopy": "Kentucky perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department controls the parcel, whether the site-evaluation report and site-and-soil suitability file already exists, and whether site-suitability and local-file friction is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "Kentucky site-testing intent is strongest when the page connects local health department, site-evaluation report and site-and-soil suitability file, and site-suitability and local-file friction instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Kentucky owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which local health department controls the parcel.",
+        "The installer says the site looks straightforward, but the site-evaluation report and site-and-soil suitability file is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department before you treat the job as a standalone test fee.",
+        "Ask whether the site-evaluation report and site-and-soil suitability file already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local health department and the site-evaluation report and site-and-soil suitability file are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "site-suitability and local-file friction can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The local health department identified for the parcel.",
+        "Any site-evaluation report and site-and-soil suitability file, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "Kentucky site-testing conversations get real only after the local health department and site file are clear.",
+        "site-evaluation report can matter more than the first quoted perc fee.",
+        "site-suitability and local-file friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kentucky site-check step a homeowner should take?",
+          "answer": "Identify the local health department first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does Kentucky perc content need to mention site-evaluation report?",
+          "answer": "Because the site-evaluation report usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/septic-permit-process/kentucky/",
+        "/septic-replacement-cost/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "KY",
+      "title": "Kentucky Septic Permit Process",
+      "metaDescription": "Kentucky septic permit process with local health department routing, OSDS construction permit and site-evaluation report context, and site-suitability and local-file friction.",
+      "introCopy": "Kentucky permit content is stronger than a generic install checklist because the real homeowner path runs through the local health department, not one vague statewide desk. The practical question is whether the OSDS construction permit and site-evaluation report and the local file already support a clean install or replacement story before site-suitability and local-file friction widens the job.",
+      "uniqueAngle": "Kentucky permit intent is strongest when the page explains local health department routing, OSDS construction permit and site-evaluation report, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Kentucky owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which local health department actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the OSDS construction permit and site-evaluation report or the local file already tied to the lot.",
+        "You need to know whether site-suitability and local-file friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because that office controls the practical next permit step for the parcel.",
+        "Ask for the OSDS construction permit and site-evaluation report, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the local health department actually holding the file.",
+        "A missing OSDS construction permit and site-evaluation report can make the project more complex than the owner or contractor summary suggests.",
+        "site-suitability and local-file friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local health department handling the parcel's permit path.",
+        "The OSDS construction permit and site-evaluation report, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Kentucky permit conversations get real only after the local health department is clear.",
+        "OSDS construction permit quality can matter more than a generic statewide permit article implies.",
+        "site-suitability and local-file friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kentucky permit step a homeowner should take?",
+          "answer": "Start with the local health department because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Kentucky permit content need to mention OSDS construction permit?",
+          "answer": "Because the OSDS construction permit often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/perc-test-cost/kentucky/",
+        "/septic-records-checklist/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "KY",
+      "title": "Kentucky Septic Inspection Cost",
+      "metaDescription": "Kentucky septic inspection cost with local health department routing, site-evaluation report and local inspection note context, and site-suitability and local-file friction in mind.",
+      "introCopy": "Kentucky inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the site-evaluation report and local inspection note still support the current system story. That makes the inspection fee only part of the real risk when site-suitability and local-file friction is still in play.",
+      "uniqueAngle": "Kentucky inspection content is strongest when it explains local health department routing, site-evaluation report and local inspection note, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Kentucky buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local health department file yet.",
+        "You need to know whether the site-evaluation report and local inspection note makes the visit more consequential than the fee itself.",
+        "site-suitability and local-file friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the site-evaluation report and local inspection note, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local health department file has not been reviewed first.",
+        "The site-evaluation report and local inspection note can make the property much more complicated than the owner summary suggests.",
+        "site-suitability and local-file friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact with jurisdiction over the property.",
+        "Any site-evaluation report and local inspection note, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Kentucky buyers and owners need the local health department file before the inspection fee means much.",
+        "site-evaluation report can matter more than the visit price.",
+        "site-suitability and local-file friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Kentucky inspection step a homeowner should take?",
+          "answer": "Find the local health department first and ask for the site-evaluation report and local inspection note, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Kentucky inspection content need to mention site-evaluation report?",
+          "answer": "Because site-evaluation report and local inspection note often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/kentucky/",
+        "/buying-a-house-with-a-septic-system/kentucky/",
+        "/septic-records-checklist/kentucky/",
+        "/septic-system-cost-calculator/?state=KY&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ky_01",
+        "ky_02",
+        "ky_03",
+        "ky_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "IA",
+      "title": "Iowa Perc Test Cost",
+      "metaDescription": "Iowa perc and site-planning page with county environmental health office or county sanitarian routing, soils-and-site review and county sanitarian note, and time-of-transfer and county-sanitarian friction in mind.",
+      "introCopy": "Iowa perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which county environmental health office or county sanitarian controls the parcel, whether the soils-and-site review and county sanitarian note already exists, and whether time-of-transfer and county-sanitarian friction is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "Iowa site-testing intent is strongest when the page connects county environmental health office or county sanitarian, soils-and-site review and county sanitarian note, and time-of-transfer and county-sanitarian friction instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Iowa owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which county environmental health office or county sanitarian controls the parcel.",
+        "The installer says the site looks straightforward, but the soils-and-site review and county sanitarian note is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county environmental health office or county sanitarian before you treat the job as a standalone test fee.",
+        "Ask whether the soils-and-site review and county sanitarian note already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the county environmental health office or county sanitarian and the soils-and-site review and county sanitarian note are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "time-of-transfer and county-sanitarian friction can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian identified for the parcel.",
+        "Any soils-and-site review and county sanitarian note, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "Iowa site-testing conversations get real only after the county environmental health office or county sanitarian and site file are clear.",
+        "soils-and-site review can matter more than the first quoted perc fee.",
+        "time-of-transfer and county-sanitarian friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Iowa site-check step a homeowner should take?",
+          "answer": "Identify the county environmental health office or county sanitarian first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does Iowa perc content need to mention soils-and-site review?",
+          "answer": "Because the soils-and-site review usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/septic-permit-process/iowa/",
+        "/septic-replacement-cost/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "IA",
+      "title": "Iowa Septic Permit Process",
+      "metaDescription": "Iowa septic permit process with county environmental health office or county sanitarian routing, private sewage permit and county site file context, and time-of-transfer and county-sanitarian friction.",
+      "introCopy": "Iowa permit content is stronger than a generic install checklist because the real homeowner path runs through the county environmental health office or county sanitarian, not one vague statewide desk. The practical question is whether the private sewage permit and county site file and the local file already support a clean install or replacement story before time-of-transfer and county-sanitarian friction widens the job.",
+      "uniqueAngle": "Iowa permit intent is strongest when the page explains county environmental health office or county sanitarian routing, private sewage permit and county site file, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for Iowa owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which county environmental health office or county sanitarian actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the private sewage permit and county site file or the local file already tied to the lot.",
+        "You need to know whether time-of-transfer and county-sanitarian friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the county environmental health office or county sanitarian first because that office controls the practical next permit step for the parcel.",
+        "Ask for the private sewage permit and county site file, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the county environmental health office or county sanitarian actually holding the file.",
+        "A missing private sewage permit and county site file can make the project more complex than the owner or contractor summary suggests.",
+        "time-of-transfer and county-sanitarian friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian handling the parcel's permit path.",
+        "The private sewage permit and county site file, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "Iowa permit conversations get real only after the county environmental health office or county sanitarian is clear.",
+        "private sewage permit quality can matter more than a generic statewide permit article implies.",
+        "time-of-transfer and county-sanitarian friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Iowa permit step a homeowner should take?",
+          "answer": "Start with the county environmental health office or county sanitarian because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does Iowa permit content need to mention private sewage permit?",
+          "answer": "Because the private sewage permit often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/perc-test-cost/iowa/",
+        "/septic-records-checklist/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "IA",
+      "title": "Iowa Septic Inspection Cost",
+      "metaDescription": "Iowa septic inspection cost with county environmental health office or county sanitarian routing, time-of-transfer inspection and escrow-or-waiver record context, and time-of-transfer and county-sanitarian friction in mind.",
+      "introCopy": "Iowa inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the time-of-transfer inspection and escrow-or-waiver record still support the current system story. That makes the inspection fee only part of the real risk when time-of-transfer and county-sanitarian friction is still in play.",
+      "uniqueAngle": "Iowa inspection content is strongest when it explains county environmental health office or county sanitarian routing, time-of-transfer inspection and escrow-or-waiver record, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Iowa buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the county environmental health office or county sanitarian file yet.",
+        "You need to know whether the time-of-transfer inspection and escrow-or-waiver record makes the visit more consequential than the fee itself.",
+        "time-of-transfer and county-sanitarian friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the county environmental health office or county sanitarian first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the time-of-transfer inspection and escrow-or-waiver record, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county environmental health office or county sanitarian file has not been reviewed first.",
+        "The time-of-transfer inspection and escrow-or-waiver record can make the property much more complicated than the owner summary suggests.",
+        "time-of-transfer and county-sanitarian friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office or county sanitarian contact with jurisdiction over the property.",
+        "Any time-of-transfer inspection and escrow-or-waiver record, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Iowa buyers and owners need the county environmental health office or county sanitarian file before the inspection fee means much.",
+        "time-of-transfer inspection can matter more than the visit price.",
+        "time-of-transfer and county-sanitarian friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Iowa inspection step a homeowner should take?",
+          "answer": "Find the county environmental health office or county sanitarian first and ask for the time-of-transfer inspection and escrow-or-waiver record, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Iowa inspection content need to mention time-of-transfer inspection?",
+          "answer": "Because time-of-transfer inspection and escrow-or-waiver record often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/iowa/",
+        "/buying-a-house-with-a-septic-system/iowa/",
+        "/septic-records-checklist/iowa/",
+        "/septic-system-cost-calculator/?state=IA&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ia_01",
+        "ia_02",
+        "ia_03"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "NE",
+      "title": "Nebraska Perc Test Cost",
+      "metaDescription": "Nebraska perc and site-planning page with Nebraska DHHS or local office routing, site-suitability review and registered-system file, and registered-system file gaps and local requirement friction in mind.",
+      "introCopy": "Nebraska perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which Nebraska DHHS or local office controls the parcel, whether the site-suitability review and registered-system file already exists, and whether registered-system file gaps and local requirement friction is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "Nebraska site-testing intent is strongest when the page connects Nebraska DHHS or local office, site-suitability review and registered-system file, and registered-system file gaps and local requirement friction instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Nebraska owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which Nebraska DHHS or local office controls the parcel.",
+        "The installer says the site looks straightforward, but the site-suitability review and registered-system file is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the Nebraska DHHS or local office before you treat the job as a standalone test fee.",
+        "Ask whether the site-suitability review and registered-system file already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the Nebraska DHHS or local office and the site-suitability review and registered-system file are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "registered-system file gaps and local requirement friction can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The Nebraska DHHS or local office identified for the parcel.",
+        "Any site-suitability review and registered-system file, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "Nebraska site-testing conversations get real only after the Nebraska DHHS or local office and site file are clear.",
+        "site-suitability review can matter more than the first quoted perc fee.",
+        "registered-system file gaps and local requirement friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nebraska site-check step a homeowner should take?",
+          "answer": "Identify the Nebraska DHHS or local office first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does Nebraska perc content need to mention site-suitability review?",
+          "answer": "Because the site-suitability review usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/septic-permit-process/nebraska/",
+        "/septic-replacement-cost/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NE",
+      "title": "Buying a House With a Septic System in Nebraska",
+      "metaDescription": "Nebraska homebuyer septic checklist with Nebraska DHHS or local office routing, registered-system record and local requirement note context, and registered-system file gaps and local requirement friction.",
+      "introCopy": "Nebraska buyer risk is rarely just about paying for an inspection. The real early question is whether the registered-system record and local requirement note already support the seller story before registered-system file gaps and local requirement friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Nebraska buyer intent is strongest when the page ties Nebraska DHHS or local office routing, registered-system record and local requirement note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Nebraska buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the registered-system record and local requirement note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches registered-system file gaps and local requirement friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the Nebraska DHHS or local office and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the registered-system record and local requirement note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the Nebraska DHHS or local office file is still thin or incomplete.",
+        "registered-system record and local requirement note gaps can make the property more complex than the seller summary suggests.",
+        "registered-system file gaps and local requirement friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The Nebraska DHHS or local office contact responsible for the property file.",
+        "The registered-system record and local requirement note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Nebraska buyer conversations get real only after the Nebraska DHHS or local office file is in hand.",
+        "registered-system record and local requirement note quality can matter more than the listing summary or first inspection fee.",
+        "registered-system file gaps and local requirement friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nebraska buyer step a homeowner should take?",
+          "answer": "Start with the Nebraska DHHS or local office file and ask for the registered-system record and local requirement note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Nebraska buyer content need to mention registered-system record?",
+          "answer": "Because registered-system record and local requirement note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/septic-records-checklist/nebraska/",
+        "/septic-inspection-cost/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NE",
+      "title": "Nebraska Septic Inspection Cost",
+      "metaDescription": "Nebraska septic inspection cost with Nebraska DHHS or local office routing, registered-system inspection history and local requirement note context, and registered-system file gaps and local requirement friction in mind.",
+      "introCopy": "Nebraska inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the registered-system inspection history and local requirement note still support the current system story. That makes the inspection fee only part of the real risk when registered-system file gaps and local requirement friction is still in play.",
+      "uniqueAngle": "Nebraska inspection content is strongest when it explains Nebraska DHHS or local office routing, registered-system inspection history and local requirement note, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Nebraska buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the Nebraska DHHS or local office file yet.",
+        "You need to know whether the registered-system inspection history and local requirement note makes the visit more consequential than the fee itself.",
+        "registered-system file gaps and local requirement friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the Nebraska DHHS or local office first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the registered-system inspection history and local requirement note, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the Nebraska DHHS or local office file has not been reviewed first.",
+        "The registered-system inspection history and local requirement note can make the property much more complicated than the owner summary suggests.",
+        "registered-system file gaps and local requirement friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The Nebraska DHHS or local office contact with jurisdiction over the property.",
+        "Any registered-system inspection history and local requirement note, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Nebraska buyers and owners need the Nebraska DHHS or local office file before the inspection fee means much.",
+        "registered-system inspection history can matter more than the visit price.",
+        "registered-system file gaps and local requirement friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nebraska inspection step a homeowner should take?",
+          "answer": "Find the Nebraska DHHS or local office first and ask for the registered-system inspection history and local requirement note, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Nebraska inspection content need to mention registered-system inspection history?",
+          "answer": "Because registered-system inspection history and local requirement note often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nebraska/",
+        "/buying-a-house-with-a-septic-system/nebraska/",
+        "/septic-records-checklist/nebraska/",
+        "/septic-system-cost-calculator/?state=NE&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ne_01",
+        "ne_02",
+        "ne_03",
+        "ne_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "NM",
+      "title": "New Mexico Perc Test Cost",
+      "metaDescription": "New Mexico perc and site-planning page with NMED liquid-waste program routing, permit-search result and forms-path file, and permit-search gaps and forms-path friction in mind.",
+      "introCopy": "New Mexico perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which NMED liquid-waste program controls the parcel, whether the permit-search result and forms-path file already exists, and whether permit-search gaps and forms-path friction is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "New Mexico site-testing intent is strongest when the page connects NMED liquid-waste program, permit-search result and forms-path file, and permit-search gaps and forms-path friction instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for New Mexico owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which NMED liquid-waste program controls the parcel.",
+        "The installer says the site looks straightforward, but the permit-search result and forms-path file is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the NMED liquid-waste program before you treat the job as a standalone test fee.",
+        "Ask whether the permit-search result and forms-path file already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the NMED liquid-waste program and the permit-search result and forms-path file are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "permit-search gaps and forms-path friction can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The NMED liquid-waste program identified for the parcel.",
+        "Any permit-search result and forms-path file, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "New Mexico site-testing conversations get real only after the NMED liquid-waste program and site file are clear.",
+        "permit-search result can matter more than the first quoted perc fee.",
+        "permit-search gaps and forms-path friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Mexico site-check step a homeowner should take?",
+          "answer": "Identify the NMED liquid-waste program first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does New Mexico perc content need to mention permit-search result?",
+          "answer": "Because the permit-search result usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/septic-permit-process/new-mexico/",
+        "/septic-replacement-cost/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "NM",
+      "title": "New Mexico Septic Permit Process",
+      "metaDescription": "New Mexico septic permit process with NMED liquid-waste program routing, onsite liquid-waste permit file and forms path context, and permit-search gaps and forms-path friction.",
+      "introCopy": "New Mexico permit content is stronger than a generic install checklist because the real homeowner path runs through the NMED liquid-waste program, not one vague statewide desk. The practical question is whether the onsite liquid-waste permit file and forms path and the local file already support a clean install or replacement story before permit-search gaps and forms-path friction widens the job.",
+      "uniqueAngle": "New Mexico permit intent is strongest when the page explains NMED liquid-waste program routing, onsite liquid-waste permit file and forms path, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for New Mexico owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which NMED liquid-waste program actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the onsite liquid-waste permit file and forms path or the local file already tied to the lot.",
+        "You need to know whether permit-search gaps and forms-path friction could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the NMED liquid-waste program first because that office controls the practical next permit step for the parcel.",
+        "Ask for the onsite liquid-waste permit file and forms path, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the NMED liquid-waste program actually holding the file.",
+        "A missing onsite liquid-waste permit file and forms path can make the project more complex than the owner or contractor summary suggests.",
+        "permit-search gaps and forms-path friction can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The NMED liquid-waste program handling the parcel's permit path.",
+        "The onsite liquid-waste permit file and forms path, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "New Mexico permit conversations get real only after the NMED liquid-waste program is clear.",
+        "onsite liquid-waste permit file quality can matter more than a generic statewide permit article implies.",
+        "permit-search gaps and forms-path friction can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Mexico permit step a homeowner should take?",
+          "answer": "Start with the NMED liquid-waste program because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does New Mexico permit content need to mention onsite liquid-waste permit file?",
+          "answer": "Because the onsite liquid-waste permit file often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/perc-test-cost/new-mexico/",
+        "/septic-records-checklist/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "NM",
+      "title": "New Mexico Septic Inspection Cost",
+      "metaDescription": "New Mexico septic inspection cost with NMED liquid-waste program routing, permit-search result and liquid-waste file context, and permit-search gaps and forms-path friction in mind.",
+      "introCopy": "New Mexico inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the permit-search result and liquid-waste file still support the current system story. That makes the inspection fee only part of the real risk when permit-search gaps and forms-path friction is still in play.",
+      "uniqueAngle": "New Mexico inspection content is strongest when it explains NMED liquid-waste program routing, permit-search result and liquid-waste file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for New Mexico buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the NMED liquid-waste program file yet.",
+        "You need to know whether the permit-search result and liquid-waste file makes the visit more consequential than the fee itself.",
+        "permit-search gaps and forms-path friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the NMED liquid-waste program first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the permit-search result and liquid-waste file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the NMED liquid-waste program file has not been reviewed first.",
+        "The permit-search result and liquid-waste file can make the property much more complicated than the owner summary suggests.",
+        "permit-search gaps and forms-path friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The NMED liquid-waste program contact with jurisdiction over the property.",
+        "Any permit-search result and liquid-waste file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "New Mexico buyers and owners need the NMED liquid-waste program file before the inspection fee means much.",
+        "permit-search result can matter more than the visit price.",
+        "permit-search gaps and forms-path friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first New Mexico inspection step a homeowner should take?",
+          "answer": "Find the NMED liquid-waste program first and ask for the permit-search result and liquid-waste file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does New Mexico inspection content need to mention permit-search result?",
+          "answer": "Because permit-search result and liquid-waste file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-mexico/",
+        "/buying-a-house-with-a-septic-system/new-mexico/",
+        "/septic-records-checklist/new-mexico/",
+        "/septic-system-cost-calculator/?state=NM&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "nm_01",
+        "nm_02",
+        "nm_03",
+        "nm_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "UT",
+      "title": "Utah Perc Test Cost",
+      "metaDescription": "Utah perc and site-planning page with local health department or district engineer routing, soil log and percolation test results, and local control and operating-permit friction in mind.",
+      "introCopy": "Utah perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department or district engineer controls the parcel, whether the soil log and percolation test results already exists, and whether local control and operating-permit friction is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "Utah site-testing intent is strongest when the page connects local health department or district engineer, soil log and percolation test results, and local control and operating-permit friction instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Utah owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which local health department or district engineer controls the parcel.",
+        "The installer says the site looks straightforward, but the soil log and percolation test results is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or district engineer before you treat the job as a standalone test fee.",
+        "Ask whether the soil log and percolation test results already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local health department or district engineer and the soil log and percolation test results are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "local control and operating-permit friction can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer identified for the parcel.",
+        "Any soil log and percolation test results, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "Utah site-testing conversations get real only after the local health department or district engineer and site file are clear.",
+        "soil log can matter more than the first quoted perc fee.",
+        "local control and operating-permit friction can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Utah site-check step a homeowner should take?",
+          "answer": "Identify the local health department or district engineer first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does Utah perc content need to mention soil log?",
+          "answer": "Because the soil log usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/septic-permit-process/utah/",
+        "/septic-replacement-cost/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "UT",
+      "title": "Buying a House With a Septic System in Utah",
+      "metaDescription": "Utah homebuyer septic checklist with local health department or district engineer routing, soil log, permit file, and operating-permit note context, and local control and operating-permit friction.",
+      "introCopy": "Utah buyer risk is rarely just about paying for an inspection. The real early question is whether the soil log, permit file, and operating-permit note already support the seller story before local control and operating-permit friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Utah buyer intent is strongest when the page ties local health department or district engineer routing, soil log, permit file, and operating-permit note, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Utah buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the soil log, permit file, and operating-permit note yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches local control and operating-permit friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or district engineer and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the soil log, permit file, and operating-permit note, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health department or district engineer file is still thin or incomplete.",
+        "soil log, permit file, and operating-permit note gaps can make the property more complex than the seller summary suggests.",
+        "local control and operating-permit friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer contact responsible for the property file.",
+        "The soil log, permit file, and operating-permit note already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Utah buyer conversations get real only after the local health department or district engineer file is in hand.",
+        "soil log, permit file, and operating-permit note quality can matter more than the listing summary or first inspection fee.",
+        "local control and operating-permit friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Utah buyer step a homeowner should take?",
+          "answer": "Start with the local health department or district engineer file and ask for the soil log, permit file, and operating-permit note, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Utah buyer content need to mention soil log, permit file,?",
+          "answer": "Because soil log, permit file, and operating-permit note often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/septic-records-checklist/utah/",
+        "/septic-inspection-cost/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "UT",
+      "title": "Utah Septic Inspection Cost",
+      "metaDescription": "Utah septic inspection cost with local health department or district engineer routing, operating-permit note and local health file context, and local control and operating-permit friction in mind.",
+      "introCopy": "Utah inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the operating-permit note and local health file still support the current system story. That makes the inspection fee only part of the real risk when local control and operating-permit friction is still in play.",
+      "uniqueAngle": "Utah inspection content is strongest when it explains local health department or district engineer routing, operating-permit note and local health file, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Utah buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local health department or district engineer file yet.",
+        "You need to know whether the operating-permit note and local health file makes the visit more consequential than the fee itself.",
+        "local control and operating-permit friction may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or district engineer first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the operating-permit note and local health file, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local health department or district engineer file has not been reviewed first.",
+        "The operating-permit note and local health file can make the property much more complicated than the owner summary suggests.",
+        "local control and operating-permit friction can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer contact with jurisdiction over the property.",
+        "Any operating-permit note and local health file, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "Utah buyers and owners need the local health department or district engineer file before the inspection fee means much.",
+        "operating-permit note can matter more than the visit price.",
+        "local control and operating-permit friction can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Utah inspection step a homeowner should take?",
+          "answer": "Find the local health department or district engineer first and ask for the operating-permit note and local health file, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does Utah inspection content need to mention operating-permit note?",
+          "answer": "Because operating-permit note and local health file often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/buying-a-house-with-a-septic-system/utah/",
+        "/septic-records-checklist/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "WV",
+      "title": "West Virginia Perc Test Cost",
+      "metaDescription": "West Virginia perc and site-planning page with local health department routing, sewage permit application and local site file, and thin local file and public-record delay in mind.",
+      "introCopy": "West Virginia perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department controls the parcel, whether the sewage permit application and local site file already exists, and whether thin local file and public-record delay is already moving the project beyond a simple low-end story.",
+      "uniqueAngle": "West Virginia site-testing intent is strongest when the page connects local health department, sewage permit application and local site file, and thin local file and public-record delay instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for West Virginia owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed which local health department controls the parcel.",
+        "The installer says the site looks straightforward, but the sewage permit application and local site file is still unresolved.",
+        "You need to know whether the lot is still on a conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health department before you treat the job as a standalone test fee.",
+        "Ask whether the sewage permit application and local site file already exists and whether the local file still supports a straightforward path.",
+        "Use the site file to decide whether the project is still on a simple path or already widening into a more complex system story.",
+        "Then compare perc or site-testing cost in the context of the real authority workflow and permit-file quality."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the local health department and the sewage permit application and local site file are still unclear.",
+        "If the site file points away from a conventional path, the project can widen before contractor pricing becomes comparable.",
+        "thin local file and public-record delay can make the perc number less important than the real file story."
+      ],
+      "quotePrepChecklist": [
+        "The local health department identified for the parcel.",
+        "Any sewage permit application and local site file, design note, or permit file already tied to the property.",
+        "Any document showing whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing.",
+        "A short note on whether the lot still appears conventional once the file is open."
+      ],
+      "driverBullets": [
+        "West Virginia site-testing conversations get real only after the local health department and site file are clear.",
+        "sewage permit application can matter more than the first quoted perc fee.",
+        "thin local file and public-record delay can widen the whole project before a simple conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first West Virginia site-check step a homeowner should take?",
+          "answer": "Identify the local health department first because that office controls the practical onsite path and the file you need before a perc number means much."
+        },
+        {
+          "question": "Why does West Virginia perc content need to mention sewage permit application?",
+          "answer": "Because the sewage permit application usually tells you whether the property still fits the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/septic-permit-process/west-virginia/",
+        "/septic-replacement-cost/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
+      "stateCode": "WV",
+      "title": "West Virginia Septic Permit Process",
+      "metaDescription": "West Virginia septic permit process with local health department routing, sewage permit application and sanitarian file context, and thin local file and public-record delay.",
+      "introCopy": "West Virginia permit content is stronger than a generic install checklist because the real homeowner path runs through the local health department, not one vague statewide desk. The practical question is whether the sewage permit application and sanitarian file and the local file already support a clean install or replacement story before thin local file and public-record delay widens the job.",
+      "uniqueAngle": "West Virginia permit intent is strongest when the page explains local health department routing, sewage permit application and sanitarian file, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "targetReader": "Best for West Virginia owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "fitBullets": [
+        "You have an install or replacement quote, but no one has confirmed which local health department actually controls the permit path.",
+        "The contractor says the permit is routine, but no one has surfaced the sewage permit application and sanitarian file or the local file already tied to the lot.",
+        "You need to know whether thin local file and public-record delay could break the low-end permit story before you schedule work."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because that office controls the practical next permit step for the parcel.",
+        "Ask for the sewage permit application and sanitarian file, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
+        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
+        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "The permit story widens fast if no one has identified the local health department actually holding the file.",
+        "A missing sewage permit application and sanitarian file can make the project more complex than the owner or contractor summary suggests.",
+        "thin local file and public-record delay can push the job beyond a simple permit conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local health department handling the parcel's permit path.",
+        "The sewage permit application and sanitarian file, permit file, and any design or approval paperwork already tied to the site.",
+        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
+        "A short note on whether the lot still appears straightforward once the file is open."
+      ],
+      "driverBullets": [
+        "West Virginia permit conversations get real only after the local health department is clear.",
+        "sewage permit application quality can matter more than a generic statewide permit article implies.",
+        "thin local file and public-record delay can widen the project before the permit fee or schedule feels final."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first West Virginia permit step a homeowner should take?",
+          "answer": "Start with the local health department because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+        },
+        {
+          "question": "Why does West Virginia permit content need to mention sewage permit application?",
+          "answer": "Because the sewage permit application often marks where the homeowner moves from a planning story into the real local approval sequence."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/perc-test-cost/west-virginia/",
+        "/septic-records-checklist/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=new_install"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "WV",
+      "title": "West Virginia Septic Inspection Cost",
+      "metaDescription": "West Virginia septic inspection cost with local health department routing, sanitarian file and public-records request trail context, and thin local file and public-record delay in mind.",
+      "introCopy": "West Virginia inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the sanitarian file and public-records request trail still support the current system story. That makes the inspection fee only part of the real risk when thin local file and public-record delay is still in play.",
+      "uniqueAngle": "West Virginia inspection content is strongest when it explains local health department routing, sanitarian file and public-records request trail, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for West Virginia buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local health department file yet.",
+        "You need to know whether the sanitarian file and public-records request trail makes the visit more consequential than the fee itself.",
+        "thin local file and public-record delay may turn a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because that office controls the practical inspection and file path for the parcel.",
+        "Ask whether the file already contains the sanitarian file and public-records request trail, permit history, and any complaint or follow-up notes tied to the system.",
+        "Confirm whether the property stays on the normal local path or whether the file already points to a bigger repair, replacement, or enforcement story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local health department file has not been reviewed first.",
+        "The sanitarian file and public-records request trail can make the property much more complicated than the owner summary suggests.",
+        "thin local file and public-record delay can make the visit much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact with jurisdiction over the property.",
+        "Any sanitarian file and public-records request trail, permit note, complaint history, or repair record already tied to the system.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair.",
+        "A short note showing whether the current system story is backed by the local file or still mostly guesswork."
+      ],
+      "driverBullets": [
+        "West Virginia buyers and owners need the local health department file before the inspection fee means much.",
+        "sanitarian file can matter more than the visit price.",
+        "thin local file and public-record delay can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first West Virginia inspection step a homeowner should take?",
+          "answer": "Find the local health department first and ask for the sanitarian file and public-records request trail, permit history, and any complaint or inspection record tied to the property."
+        },
+        {
+          "question": "Why does West Virginia inspection content need to mention sanitarian file?",
+          "answer": "Because sanitarian file and public-records request trail often decides whether the visit is routine diligence or part of a wider septic problem."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/west-virginia/",
+        "/buying-a-house-with-a-septic-system/west-virginia/",
+        "/septic-records-checklist/west-virginia/",
+        "/septic-system-cost-calculator/?state=WV&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "wv_01",
+        "wv_02",
+        "wv_03",
+        "wv_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MO",
+      "title": "Buying a House With a Septic System in Missouri",
+      "metaDescription": "Missouri homebuyer septic checklist with local permitting authority routing, county permitting-jurisdiction map and existing permit file context, and local-authority routing and acreage-based permit friction.",
+      "introCopy": "Missouri buyer risk is rarely just about paying for an inspection. The real early question is whether the county permitting-jurisdiction map and existing permit file already support the seller story before local-authority routing and acreage-based permit friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Missouri buyer intent is strongest when the page ties local permitting authority routing, county permitting-jurisdiction map and existing permit file, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Missouri buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county permitting-jurisdiction map and existing permit file yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches local-authority routing and acreage-based permit friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local permitting authority and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the county permitting-jurisdiction map and existing permit file, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local permitting authority file is still thin or incomplete.",
+        "county permitting-jurisdiction map and existing permit file gaps can make the property more complex than the seller summary suggests.",
+        "local-authority routing and acreage-based permit friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local permitting authority contact responsible for the property file.",
+        "The county permitting-jurisdiction map and existing permit file already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Missouri buyer conversations get real only after the local permitting authority file is in hand.",
+        "county permitting-jurisdiction map and existing permit file quality can matter more than the listing summary or first inspection fee.",
+        "local-authority routing and acreage-based permit friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Missouri buyer step a homeowner should take?",
+          "answer": "Start with the local permitting authority file and ask for the county permitting-jurisdiction map and existing permit file, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Missouri buyer content need to mention county permitting-jurisdiction map?",
+          "answer": "Because county permitting-jurisdiction map and existing permit file often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/missouri/",
+        "/septic-records-checklist/missouri/",
+        "/septic-inspection-cost/missouri/",
+        "/septic-system-cost-calculator/?state=MO&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "mo_01",
+        "mo_02",
+        "mo_03",
+        "mo_04",
+        "mo_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "OR",
+      "title": "Buying a House With a Septic System in Oregon",
+      "metaDescription": "Oregon homebuyer septic checklist with local onsite septic permitting authority or county program routing, latest site evaluation and any authorization notice context, and site-evaluation-first sequencing and authorization-notice friction.",
+      "introCopy": "Oregon buyer risk is rarely just about paying for an inspection. The real early question is whether the latest site evaluation and any authorization notice already support the seller story before site-evaluation-first sequencing and authorization-notice friction turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Oregon buyer intent is strongest when the page ties local onsite septic permitting authority or county program routing, latest site evaluation and any authorization notice, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Oregon buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the latest site evaluation and any authorization notice yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches site-evaluation-first sequencing and authorization-notice friction before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local onsite septic permitting authority or county program and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the latest site evaluation and any authorization notice, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local onsite septic permitting authority or county program file is still thin or incomplete.",
+        "latest site evaluation and any authorization notice gaps can make the property more complex than the seller summary suggests.",
+        "site-evaluation-first sequencing and authorization-notice friction can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local onsite septic permitting authority or county program contact responsible for the property file.",
+        "The latest site evaluation and any authorization notice already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Oregon buyer conversations get real only after the local onsite septic permitting authority or county program file is in hand.",
+        "latest site evaluation and any authorization notice quality can matter more than the listing summary or first inspection fee.",
+        "site-evaluation-first sequencing and authorization-notice friction can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Oregon buyer step a homeowner should take?",
+          "answer": "Start with the local onsite septic permitting authority or county program file and ask for the latest site evaluation and any authorization notice, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Oregon buyer content need to mention latest site evaluation?",
+          "answer": "Because latest site evaluation and any authorization notice often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-records-checklist/oregon/",
+        "/septic-inspection-cost/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03",
+        "or_04",
+        "or_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "WA",
+      "title": "Buying a House With a Septic System in Washington",
+      "metaDescription": "Washington homebuyer septic checklist with local health jurisdiction routing, as-built permit record and O&M logs context, and local-LHJ control and O&M-log risk.",
+      "introCopy": "Washington buyer risk is rarely just about paying for an inspection. The real early question is whether the as-built permit record and O&M logs already support the seller story before local-LHJ control and O&M-log risk turns the deal into something wider than the listing suggests.",
+      "uniqueAngle": "Washington buyer intent is strongest when the page ties local health jurisdiction routing, as-built permit record and O&M logs, and file quality together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Washington buyers, sellers, and agents who know the property uses septic but still need to know whether the local file creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the as-built permit record and O&M logs yet.",
+        "You need to know whether the local file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches local-LHJ control and O&M-log risk before negotiation turns into repair or replacement pressure."
+      ],
+      "decisionSteps": [
+        "Start with the local health jurisdiction and ask for the septic file tied to the property before you debate inspection price or credits.",
+        "Request the as-built permit record and O&M logs, permit or approval paperwork, and any transfer-related file already tied to the parcel.",
+        "Compare that local file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local health jurisdiction file is still thin or incomplete.",
+        "as-built permit record and O&M logs gaps can make the property more complex than the seller summary suggests.",
+        "local-LHJ control and O&M-log risk can push the deal beyond a simple inspection-credit conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local health jurisdiction contact responsible for the property file.",
+        "The as-built permit record and O&M logs already tied to the parcel.",
+        "Any permit, transfer, complaint, or inspection record already surfaced in the sale.",
+        "A short note showing whether the buyer's real question is file cleanup, inspection leverage, repair risk, or replacement risk."
+      ],
+      "driverBullets": [
+        "Washington buyer conversations get real only after the local health jurisdiction file is in hand.",
+        "as-built permit record and O&M logs quality can matter more than the listing summary or first inspection fee.",
+        "local-LHJ control and O&M-log risk can widen buyer risk well before contractor pricing becomes useful."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Washington buyer step a homeowner should take?",
+          "answer": "Start with the local health jurisdiction file and ask for the as-built permit record and O&M logs, permit history, and any transfer or inspection record before trusting the seller story."
+        },
+        {
+          "question": "Why does Washington buyer content need to mention as-built permit record?",
+          "answer": "Because as-built permit record and O&M logs often tells you whether the property still fits the simple story the seller or agent is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-records-checklist/washington/",
+        "/septic-inspection-cost/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_03",
+        "wa_04",
+        "wa_05"
       ],
       "calculatorProjectType": "buying_home",
       "publishStatus": "published"

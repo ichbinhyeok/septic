@@ -447,7 +447,7 @@ public class SiteController {
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", sortedStateMoneyPages);
-        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(3).toList());
+        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(4).toList());
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
@@ -538,10 +538,10 @@ public class SiteController {
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
-        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(6).toList());
+        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(8).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("internalLinks", internalLinks);
-        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(3).toList());
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
         model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
@@ -596,7 +596,7 @@ public class SiteController {
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("internalLinks", internalLinks);
-        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(3).toList());
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
