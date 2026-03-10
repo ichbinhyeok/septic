@@ -285,6 +285,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/north-dakota/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/wyoming/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/new-york/")))
@@ -296,10 +297,12 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/ohio/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/ohio/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/michigan/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/michigan/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/arizona/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/texas/")))
@@ -312,6 +315,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/illinois/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/illinois/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/maryland/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/wisconsin/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/louisiana/")))
@@ -649,6 +653,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit timeline watch")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verify locally")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official sources")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_guide_primary_calculator\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_guide_next_high_intent\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<link rel=\"canonical\" href=\"https://example.test/septic-system-cost-calculator/georgia/\">")))
@@ -720,6 +725,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Ohio")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before calling the health district")));
 	}
 
@@ -734,6 +740,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Michigan")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the local file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -827,6 +834,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Illinois")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the local file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -1331,6 +1339,39 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Appendix 75-A")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("under-1,000-gpd residential baseline")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NY&projectType=replacement")));
+	}
+
+	@Test
+	void ohioReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/ohio/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Ohio")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("operation permit")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("off-lot discharge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OH&projectType=replacement")));
+	}
+
+	@Test
+	void illinoisReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/illinois/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Illinois Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Illinois")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county or local health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("evaluation-form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=IL&projectType=replacement")));
+	}
+
+	@Test
+	void michiganReplacementPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-replacement-cost/michigan/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Replacement Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Michigan")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("failed-system evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("system is located")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=MI&projectType=replacement")));
 	}
 
 	@Test
@@ -2369,6 +2410,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county environmental health office")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("LAMP-driven local program")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=CA&projectType=inspection")));
+	}
+
+	@Test
+	void georgiaBuyerPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/georgia/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county environmental health office")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("garbage disposal")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=buying_home")));
 	}
 
 	@Test

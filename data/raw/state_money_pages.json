@@ -3601,6 +3601,64 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "GA",
+      "title": "Buying a House With a Septic System in Georgia",
+      "metaDescription": "Georgia homebuyer septic checklist with county environmental health file pulls, soil-analysis context, and garbage-disposal sizing risk in mind.",
+      "introCopy": "Georgia septic buyer risk is rarely just about paying for an inspection. The real early question is what the county environmental health file already shows, because the soil analysis, permit history, bedroom count, and garbage-disposal sizing rule often decide whether the deal is routine or risky before the low end means much.",
+      "uniqueAngle": "Georgia buyer intent is strongest when the page explains county-file quality, soil-analysis context, and disposal-driven sizing risk together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Georgia buyers, sellers, and agents who know the property uses septic but still need to know whether the county file, soil-analysis trail, and sizing assumptions create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the county environmental health file or soil analysis yet.",
+        "You need to know whether the seller file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches bedroom-count mismatch, garbage-disposal risk, and county repair history before the negotiation turns into a replacement problem."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office and ask for the soil analysis, permit file, as-built sketch, and any repair history tied to the property.",
+        "Use that file to confirm the current bedroom count, garbage-disposal use, and whether the current home still matches the county assumptions.",
+        "Compare the county file against the seller disclosure so you know whether the current system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the county record trail makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the soil analysis or county file is still missing.",
+        "Garbage-disposal use or a bedroom-count mismatch can make the property more complex than the seller disclosure suggests.",
+        "County repair history can reveal recurring problems that widen buyer risk much earlier than a simple listing summary implies."
+      ],
+      "quotePrepChecklist": [
+        "The county environmental health office contact responsible for the property file.",
+        "Any soil analysis, permit, as-built sketch, or county repair record tied to the system.",
+        "Confirmation of current bedroom count and whether a garbage disposal is installed.",
+        "The inspection report, seller disclosure, and any septic paperwork already shared during the deal."
+      ],
+      "driverBullets": [
+        "Georgia buyers need the county file and soil analysis before the inspection or repair quote means much.",
+        "Garbage-disposal sizing risk can matter more than the seller's simple septic summary.",
+        "County repair history can widen buyer risk much earlier than a generic national checklist suggests."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Georgia buyer should ask for?",
+          "answer": "Ask the county environmental health office for the soil analysis, permit file, and as-built sketch first, because Georgia buyer risk usually starts with file quality."
+        },
+        {
+          "question": "Why does garbage-disposal use matter in a Georgia septic deal?",
+          "answer": "Because Georgia's public homeowner guidance says a house with a garbage disposal needs a septic tank that is 50 percent larger than the same house without one."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-records-checklist/georgia/",
+        "/septic-inspection-cost/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=buying_home"
+      ],
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "CA",
       "title": "California Septic Records Checklist",
@@ -4910,6 +4968,63 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "OH",
+      "title": "Ohio Septic Replacement Cost",
+      "metaDescription": "Estimate Ohio septic replacement cost with local health department routing, operation-permit history, and off-lot discharge risk in mind.",
+      "introCopy": "Ohio replacement projects look simple until the local health department file, operation-permit history, and any nuisance or off-lot discharge note widen the job. This page keeps the estimate tied to Ohio's real local-health workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "Ohio replacement intent is strongest when the page explains local health department routing, operation-permit history, and off-lot discharge context instead of treating replacement like a generic like-for-like swap.",
+      "targetReader": "Best for Ohio homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the local file and operational history support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The contractor says it is just a replacement, but no one has confirmed which local health department or board of health controls the file yet.",
+        "The property may already carry operation-permit or nuisance history, so the simple replacement story could be too optimistic.",
+        "You need to separate a routine replacement conversation from a wider enforcement, off-lot-discharge, or file-reconstruction problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or board of health before trusting any statewide-looking replacement range.",
+        "Request the installation permit, operation permit, operational-inspection record, and any nuisance or complaint history tied to the property before treating the job as straightforward.",
+        "Use that local file to decide whether the system stays on the normal local-health path or whether off-lot discharge or Ohio EPA involvement is already widening the story.",
+        "Only after those steps should you compare replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local health department file is still thin or missing.",
+        "Operation-permit or operational-inspection history can make the project more complex than the owner or contractor summary suggests.",
+        "If the property discharges off lot or triggers Ohio EPA involvement, the simple local replacement story can widen quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or board of health contact with jurisdiction over the property.",
+        "The installation permit, operation permit, operational-inspection record, and any nuisance or complaint history tied to the system.",
+        "Any repair note, complaint trail, or off-lot-discharge record already tied to the property.",
+        "A short note on whether the job is urgent replacement, buyer diligence, or replacement follow-through after a permit or nuisance problem."
+      ],
+      "driverBullets": [
+        "Ohio replacement work gets real only after the local health department file is in hand.",
+        "Operation-permit and operational-inspection history can matter more than the first replacement quote.",
+        "Off-lot-discharge or enforcement context can widen the whole project before contractor pricing becomes comparable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can an Ohio replacement quote jump even if the current system seems known?",
+          "answer": "Because the local health department file, operation-permit history, and any nuisance or off-lot discharge note still decide whether the property fits a straightforward replacement path."
+        },
+        {
+          "question": "What should an Ohio owner pull before trusting a replacement quote?",
+          "answer": "Pull the installation permit, operation permit, operational-inspection history, and any nuisance or complaint record tied to the property through the local health department first."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-records-checklist/ohio/",
+        "/septic-permit-process/ohio/",
+        "/septic-system-cost-calculator/?state=OH&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IL",
       "title": "Illinois Septic Records Checklist",
@@ -5147,6 +5262,65 @@
         "il_04"
       ],
       "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "IL",
+      "title": "Illinois Septic Replacement Cost",
+      "metaDescription": "Estimate Illinois septic replacement cost with county health routing, evaluation-form risk, and local-file quality in mind.",
+      "introCopy": "Illinois replacement projects look simple until the county or local health department file, evaluation-form history, and local code path widen the job. This page keeps the estimate tied to Illinois's real county-health workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "Illinois replacement intent is strongest when the page explains county-health routing, evaluation-form context, and local-file quality instead of treating replacement like a generic like-for-like swap.",
+      "targetReader": "Best for Illinois homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the county file and evaluation-form history support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The contractor says it is just a replacement, but no one has confirmed which county or local health department controls the file yet.",
+        "The property may already carry an evaluation-form flag or county note, so the simple replacement story could be too optimistic.",
+        "You need to separate a routine replacement conversation from a wider county-file, ordinance, or repair-history problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Request the permit, installation record, inspection note, and any evaluation-form history tied to the property before treating the job as straightforward.",
+        "Use any flagged evaluation-form condition or county note to decide whether the project still fits a clean replacement lane or is already widening into a more complex repair story.",
+        "Only after those steps should you compare replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the county or local office cannot surface a meaningful file.",
+        "A flagged evaluation-form condition can make the project more complex than the owner or contractor summary suggests.",
+        "If the local office applies a stronger county or ordinance path, the simple statewide replacement story can widen quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the property file.",
+        "Any permit, installation, plan-review, inspection, or evaluation-form record tied to the property.",
+        "Any county or code note showing whether the system has already drifted into repair or replacement risk.",
+        "A short note on whether the job is urgent replacement, buyer diligence, or replacement follow-through after a flagged condition."
+      ],
+      "driverBullets": [
+        "Illinois replacement work gets real only after the county or local health file is in hand.",
+        "Evaluation-form history can matter more than the first replacement quote.",
+        "County or local handling can widen the whole project before contractor pricing becomes comparable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can an Illinois replacement quote jump even if the system seems known?",
+          "answer": "Because the county or local health department file and any evaluation-form history still decide whether the property fits a straightforward replacement path."
+        },
+        {
+          "question": "What should an Illinois owner pull before trusting a replacement quote?",
+          "answer": "Pull the permit, installation record, inspection note, and any evaluation-form history tied to the property through the county or local health department first."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-records-checklist/illinois/",
+        "/septic-permit-process/illinois/",
+        "/septic-system-cost-calculator/?state=IL&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
       "publishStatus": "published"
     },
     {
@@ -7188,6 +7362,64 @@
         "mi_03"
       ],
       "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "MI",
+      "title": "Michigan Septic Replacement Cost",
+      "metaDescription": "Estimate Michigan septic replacement cost with local health department routing, failed-system evaluation context, and system-location risk in mind.",
+      "introCopy": "Michigan replacement projects look simple until the local health department file, any failed-system evaluation, and system-location uncertainty widen the job. This page keeps the estimate tied to Michigan's real local-health workflow instead of pretending the state is one flat replacement table.",
+      "uniqueAngle": "Michigan replacement intent is strongest when the page explains local-health routing, failed-system evaluation context, and system-location risk instead of treating replacement like a generic like-for-like swap.",
+      "targetReader": "Best for Michigan homeowners, buyers, and agents who already know a replacement is possible or likely but still do not know whether the local file and failure history support a straightforward replacement or a much wider scenario.",
+      "fitBullets": [
+        "The contractor says it is just a replacement, but no one has confirmed which local health department controls the file yet.",
+        "The property may already carry failed-system evaluation notes or uncertain system-location history, so the simple replacement story could be too optimistic.",
+        "You need to separate a routine replacement conversation from a wider local-file, ordinance, or failure-history problem before calling contractors."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because Michigan's public guidance routes practical permitting and inspections through that office.",
+        "Request the permit, inspection, failed-system evaluation, complaint, and repair record tied to the parcel before treating the job as straightforward.",
+        "If the system location is unclear, use the local file first because EGLE's public FAQ says to contact the local health department when the owner is unsure where the system is located.",
+        "Only after those steps should you compare replacement quotes and schedule assumptions."
+      ],
+      "lowEndBreakers": [
+        "The low-end replacement story breaks if the local health department cannot surface a meaningful file.",
+        "If no one can confirm where the system is located, the homeowner is still budgeting a planning scenario rather than a replacement-ready job.",
+        "Failure evidence or local ordinance issues can make the project more complex than the owner or contractor summary suggests."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "Any permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "A short note on whether the job is urgent replacement, buyer diligence, or replacement follow-through after a failed-system review."
+      ],
+      "driverBullets": [
+        "Michigan replacement work gets real only after the local health department file is in hand.",
+        "Failed-system evaluation history can matter more than the first replacement quote.",
+        "Unknown system location can widen the whole project before contractor pricing becomes comparable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why can a Michigan replacement quote jump even if the current system seems known?",
+          "answer": "Because the local health department file, any failed-system evaluation, and system-location uncertainty still decide whether the property fits a straightforward replacement path."
+        },
+        {
+          "question": "What should a Michigan owner pull before trusting a replacement quote?",
+          "answer": "Pull the permit, inspection, failed-system evaluation history, and any sketch showing where the system is located through the local health department first."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-records-checklist/michigan/",
+        "/septic-permit-process/michigan/",
+        "/septic-system-cost-calculator/?state=MI&projectType=replacement"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
       "publishStatus": "published"
     },
     {
