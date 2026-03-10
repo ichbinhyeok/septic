@@ -132,18 +132,17 @@ jobs:
             exit 1
           fi
 
+          check_app_url() {
+            curl -fsS \
+              -H 'Host: septicpath.com' \
+              -H 'X-Forwarded-Proto: https' \
+              -H 'X-Forwarded-Port: 443' \
+              "$1" >/dev/null
+          }
+
           APP_READY=0
           for attempt in $(seq 1 30); do
-            if curl -fsS \
-              -H 'Host: septicpath.com' \
-              -H 'X-Forwarded-Proto: https' \
-              -H 'X-Forwarded-Port: 443' \
-              http://127.0.0.1:8010/ >/dev/null \
-              && curl -fsS \
-              -H 'Host: septicpath.com' \
-              -H 'X-Forwarded-Proto: https' \
-              -H 'X-Forwarded-Port: 443' \
-              http://127.0.0.1:8010/about/ >/dev/null; then
+            if check_app_url http://127.0.0.1:8010/ && check_app_url http://127.0.0.1:8010/about/; then
               APP_READY=1
               break
             fi
