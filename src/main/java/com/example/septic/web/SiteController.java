@@ -896,6 +896,10 @@ public class SiteController {
                     "Estimate before calling the health district",
                     "Ohio quote conversations get more real once you know which local health department holds the permit file and whether the property already has an operation-permit or inspection history."
             );
+            case "MI" -> new StateActionCopy(
+                    "Estimate before the local file pull",
+                    "Michigan questions get more real once you know which local health department holds the file and whether failure evidence or system-location uncertainty is already on record."
+            );
             case "GA" -> new StateActionCopy(
                     "Estimate with the disposal rule in mind",
                     "Georgia homeowners often need to check whether a garbage disposal changes the likely tank band before they call the county office."

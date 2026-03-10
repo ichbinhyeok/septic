@@ -153,6 +153,9 @@ public class EstimatorService {
         if ("OH".equals(state.stateCode())) {
             checklist.add("Ask the local health department whether an installation permit, operation permit, or operational-inspection file already exists.");
         }
+        if ("MI".equals(state.stateCode())) {
+            checklist.add("Confirm which local health department controls the file and whether any failed-system evaluation or location note already exists.");
+        }
         if ("OR".equals(state.stateCode())) {
             checklist.add("Confirm whether Oregon site evaluation or an authorization notice applies before trusting the low end of the range.");
         }
@@ -460,6 +463,9 @@ public class EstimatorService {
         }
         if ("OH".equals(state.stateCode())) {
             return "This Ohio range stays wide because the local health department permit file and any operational-inspection history often decide the real path.";
+        }
+        if ("MI".equals(state.stateCode())) {
+            return "This Michigan range stays wide because local health department files, system-location uncertainty, and community-specific rules can move the job fast.";
         }
         if ("OR".equals(state.stateCode())) {
             return "This Oregon range is intentionally wide because DEQ says site evaluation does not guarantee approval of any specific system type.";

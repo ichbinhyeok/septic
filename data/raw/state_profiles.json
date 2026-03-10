@@ -427,6 +427,64 @@
       ]
     },
     {
+      "stateCode": "MI",
+      "stateName": "Michigan",
+      "agencyName": "Michigan Department of Environment, Great Lakes, and Energy",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Michigan is stronger on local health department records and failure evidence than on a fake statewide tank table. The real homeowner wedge is pulling the local file before trusting the low end.",
+      "ruleType": "local_authority",
+      "ruleSummaryPlainEnglish": "Michigan's onsite wastewater management program is described by EGLE as a required service for local health departments under the Michigan Public Health Code. EGLE's public materials say the program is administered in coordination with local health departments that permit and inspect systems, and homeowners are told to contact the local health department if they suspect failure or are unsure where the system is located.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Michigan homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Michigan homeowners usually start with the local health department because EGLE's onsite wastewater program is built around local health departments permitting and inspecting systems. The practical path gets clearer only after the local file shows whether permits, failure evaluations, or local ordinance issues already exist.",
+      "permitPathSteps": [
+        "Identify the local health department before you treat any install or replacement quote as complete.",
+        "Ask whether the property already has a permit file, inspection history, failed sewage system evaluation, or local ordinance note tied to the parcel.",
+        "If the system location is unclear, use the local file first because EGLE's public homeowner FAQ says to contact the local health department when the system location is unknown."
+      ],
+      "siteEvalSummary": "Michigan's public homeowner set is strongest on failure response, system-location uncertainty, and local permit responsibility rather than a simple statewide tank-size chart. The real path still depends on the local health department file and any added local ordinance requirements.",
+      "ruleHighlights": [
+        "EGLE describes onsite wastewater management as a required service for local health departments under the Michigan Public Health Code.",
+        "Michigan's environmental regulations guide says the program is administered in coordination with local health departments that permit and inspect onsite sanitary wastewater systems.",
+        "EGLE's public septic FAQ says homeowners should contact the local health department if they suspect the system has failed.",
+        "The same public FAQ says homeowners should contact the local health department if they are unsure where the system is located."
+      ],
+      "localOverrideNote": "Michigan can look statewide from the EGLE pages, but the homeowner outcome changes quickly once you know which local health department controls the file and whether the county or community adds its own ordinance requirements.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["mi_01", "mi_02", "mi_03"],
+      "localAuthoritySourceIds": ["mi_01"],
+      "recordsLookupSourceIds": ["mi_02"],
+      "localActionSteps": [
+        "Open the EGLE onsite wastewater page first so you frame the property around local health department control instead of a fake statewide permit desk.",
+        "Ask whether the local health department already has a permit file, failed sewage system evaluation, inspection history, or system-location note tied to the parcel.",
+        "Surface any local ordinance, shoreline, or nuisance issue before trusting the low end of the estimate."
+      ],
+      "whoToCallFirst": "Start with the local health department that has jurisdiction over the property.",
+      "recordsToRequest": [
+        "Any permit, approval, or local health department file tied to the system.",
+        "Any failed sewage system evaluation, complaint, inspection, or repair record already tied to the property.",
+        "Any parcel note, sketch, or local-health comment that helps confirm where the system is actually located."
+      ],
+      "lowEndRiskChecks": [
+        "If the local file is thin or missing, the low end is still a planning scenario, not a verified local path.",
+        "If no one can show where the system is located, the property is not ready for a low-end assumption yet.",
+        "Local ordinances or community rules can add requirements beyond the statewide EGLE framing."
+      ],
+      "permitTimelineNote": "Michigan timing is usually driven by how quickly the local health department can surface the file and confirm whether local ordinance or failure history adds more work.",
+      "buyerInspectionTrigger": "Buyers should ask for the local health department file early because Michigan risk often starts with missing records, unknown system location, or prior failure evidence.",
+      "maintenanceInspectionNote": "Michigan's current source set is strongest on failure response and local permit responsibility, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Michigan's core wrinkle is that EGLE provides the statewide framework while local health departments still control the homeowner's practical file and some communities can add local ordinance requirements.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable current directory for Michigan local health departments once a stable official path is confirmed.",
+        "Document which Michigan counties publish usable online septic permit or inspection lookup workflows."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

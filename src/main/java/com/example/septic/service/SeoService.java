@@ -209,6 +209,7 @@ public class SeoService {
             case "TX" -> "Texas septic cost guide and local OSSF permit path";
             case "NY" -> "New York septic cost guide and Appendix 75-A rules";
             case "OH" -> "Ohio septic cost guide and local health permit path";
+            case "MI" -> "Michigan septic cost guide and local health records path";
             case "GA" -> "Georgia septic cost guide and tank size estimate";
             case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
             case "CT" -> "Connecticut septic cost guide and design flow rules";
@@ -496,6 +497,7 @@ public class SeoService {
             case "TX" -> "Texas Septic Cost Guide and Local OSSF Permit Path";
             case "NY" -> "New York Septic Cost Guide and Appendix 75-A Rules";
             case "OH" -> "Ohio Septic Cost Guide and Local Health Permit Path";
+            case "MI" -> "Michigan Septic Cost Guide and Local Health Records Path";
             case "GA" -> "Georgia Septic Cost Guide, Tank Size, and Permit Notes";
             case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
             case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
@@ -516,6 +518,7 @@ public class SeoService {
             case "TX" -> "Texas septic planning estimates with local permitting authority routing, site-evaluation context, and official OSSF sources.";
             case "NY" -> "New York septic planning estimates with Appendix 75-A rules, county health workflow, and official-source links.";
             case "OH" -> "Ohio septic planning estimates with local health department routing, Chapter 3701-29 permit context, and official-source links.";
+            case "MI" -> "Michigan septic planning estimates with local health department routing, file-retrieval context, and official-source links.";
             case "GA" -> "Georgia septic planning estimates with bedroom sizing, disposal upsizing, county permit context, and official-source links.";
             case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
             case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";

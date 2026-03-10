@@ -453,6 +453,72 @@
     },
 
     {
+      "stateCode": "MI",
+      "factType": "program_service",
+      "label": "Program structure",
+      "value": "Required service for local health departments",
+      "unit": "",
+      "sourceId": "mi_01",
+      "sourceSection": "EGLE onsite wastewater management overview",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.86,
+      "note": "EGLE describes onsite wastewater management as a required service for local health departments under the Michigan Public Health Code."
+    },
+    {
+      "stateCode": "MI",
+      "factType": "local_permitting_authority",
+      "label": "Primary permitting context",
+      "value": "Local health departments permit and inspect",
+      "unit": "",
+      "sourceId": "mi_03",
+      "sourceSection": "Onsite sanitary wastewater systems overview",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.9,
+      "note": "Michigan's environmental regulations guide says the onsite sanitary wastewater program is administered in coordination with local health departments that permit and inspect systems."
+    },
+    {
+      "stateCode": "MI",
+      "factType": "failure_response",
+      "label": "If failure is suspected",
+      "value": "Contact local health department",
+      "unit": "",
+      "sourceId": "mi_02",
+      "sourceSection": "What should I do if I suspect my septic system has failed",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.88,
+      "note": "EGLE's public septic FAQ tells homeowners to contact the local health department if they suspect the system has failed."
+    },
+    {
+      "stateCode": "MI",
+      "factType": "records_path",
+      "label": "If system location is unclear",
+      "value": "Contact local health department",
+      "unit": "",
+      "sourceId": "mi_02",
+      "sourceSection": "I need to know where my septic system is located",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.84,
+      "note": "EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the septic system is located."
+    },
+    {
+      "stateCode": "MI",
+      "factType": "local_ordinance_variation",
+      "label": "Local variation risk",
+      "value": "Communities may add local ordinance requirements",
+      "unit": "",
+      "sourceId": "mi_03",
+      "sourceSection": "Local ordinances note",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.79,
+      "note": "Michigan's environmental regulations guide notes that some communities may have local ordinance requirements in addition to the statewide framework."
+    },
+
+    {
       "stateCode": "MA",
       "factType": "title_5_context",
       "label": "Primary rule context",

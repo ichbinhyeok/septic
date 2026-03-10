@@ -3592,6 +3592,64 @@
         "oh_02"
       ],
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "MI",
+      "title": "Michigan Septic Records Checklist",
+      "metaDescription": "Michigan septic records checklist with local health department routing, failed-system evidence, and system-location questions in mind.",
+      "introCopy": "Michigan records intent is stronger than a generic septic checklist because the local health department usually owns the practical file, and EGLE's public guidance tells homeowners to call that office if the system may have failed or if they do not even know where the system is located.",
+      "uniqueAngle": "Michigan records intent is strongest when the page explains that the local health department file is the real starting point and that unknown system location or failure evidence can break the low end before a buyer or owner gets to quotes.",
+      "targetReader": "Best for Michigan buyers, owners, and agents who know the property uses septic but still need to know whether the local file, failed-system evidence, or system-location uncertainty creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You know the property uses septic, but no one has shown the local health department file yet.",
+        "You need to know whether a failed sewage system evaluation, complaint file, or local inspection record already exists.",
+        "The seller or owner cannot clearly show where the system is located, so the low end still feels too easy."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because Michigan's public guidance pushes homeowners there when the system may have failed or the location is unknown.",
+        "Request any permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel instead of relying on seller memory alone.",
+        "Ask for any sketch, parcel note, or field comment that confirms where the septic system is actually located.",
+        "Then compare the file against the current property story and decide whether the next step is buyer diligence, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The low-end story breaks quickly if the local health department cannot surface a meaningful file.",
+        "If no one can confirm where the system is located, the property is not ready for a confident low-end assumption.",
+        "Failure evidence or local ordinance issues can make the property riskier than the seller or installer summary suggests."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "Any permit, inspection, failed sewage system evaluation, complaint, or repair record tied to the parcel.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "Any local ordinance or community-specific note that changes the normal local path."
+      ],
+      "driverBullets": [
+        "Michigan homeowners usually need the local health department file before a records conversation becomes real.",
+        "Unknown system location can hide bigger replacement or buyer risk than the listing suggests.",
+        "Failure evidence and local ordinance requirements can widen the project before you trust the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Michigan?",
+          "answer": "Start with the local health department file, including any permit, inspection, failed-system evaluation, or repair record tied to the property."
+        },
+        {
+          "question": "Why does system location belong in a Michigan records checklist?",
+          "answer": "Because EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the system is located."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-system-cost-calculator/?state=MI&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
+      "publishStatus": "published"
     }
   ]
 }
