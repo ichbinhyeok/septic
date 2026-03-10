@@ -524,7 +524,7 @@
             @if (!stateMoneyPages.isEmpty())
                 <article class="detail-card detail-card--full">
                     <h2>High-intent next steps in ${state.stateName()}</h2>
-                    <p>Use these pages when the guide is not specific enough and the real bottleneck is the file, permit path, buyer risk, or site-review story.</p>
+                    <p>Use these pages when the guide is not specific enough and the real bottleneck is replacement scope, the file, permit path, buyer risk, inspection history, or the site-review story.</p>
                     <div class="detail-grid">
                         @for (var stateMoneyPage : stateMoneyPages)
                             <article class="detail-card">

@@ -440,7 +440,12 @@ public class SiteController {
         model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
-        model.addAttribute("stateMoneyPages", researchDataService.listPublicStateMoneyPages(state.stateCode()));
+        model.addAttribute("stateMoneyPages", researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                .sorted(Comparator
+                        .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
+                        .reversed()
+                        .thenComparing(StateMoneyPage::title))
+                .toList());
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
