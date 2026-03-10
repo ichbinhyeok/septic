@@ -659,6 +659,64 @@
       ]
     },
     {
+      "stateCode": "TN",
+      "stateName": "Tennessee",
+      "agencyName": "Tennessee Department of Environment and Conservation",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Tennessee is stronger on permit-file retrieval, repair permits, and inspection-letter workflow than on a fake statewide tank table. The homeowner wedge is knowing whether the job is a simple replacement, a failing-system repair permit, or a wider file problem before the first quote anchors the project.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "TDEC's SSDS permit program says septic construction permits cover installation and repair work. TDEC's online services page says a septic permit should always be obtained before starting dirt work and a repair permit is required before work begins on a failing septic system. That same page says inspection letters document the status of an existing septic system and are often requested for sales, mortgages, or subdivision approval, and that alternative systems are used when soil or site conditions are not favorable. TDEC's contacts page also says counties listed as contract counties have their own septic system assistance services, so the first call changes by county.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Tennessee homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Tennessee homeowners usually need the permit file before they trust a replacement number. The practical path changes depending on whether the job is installation, failing-system repair, or an inspection-letter pull tied to a sale or mortgage, and it can change again if the county is a contract county.",
+      "permitPathSteps": [
+        "Start with the right TDEC regional contact or contract county office because counties listed as contract counties have their own septic system assistance services.",
+        "Confirm whether the job is a new install, a failing-system repair permit, or an inspection-letter request before you trust a simple replacement story.",
+        "Pull the permit file and any inspection-letter or repair history first so you know whether the current system still supports a straightforward path."
+      ],
+      "siteEvalSummary": "Tennessee's public homeowner set is strongest on permit timing, inspection-letter retrieval, and replacement-versus-alternative-system risk rather than a simple statewide homeowner sizing table. The practical path turns on whether the file already shows a straightforward repair or whether soil and site conditions widen the system class.",
+      "ruleHighlights": [
+        "TDEC says a septic permit should always be obtained before starting dirt work or building a pad over the septic system.",
+        "TDEC says a repair permit is required before work begins on a failing septic system.",
+        "TDEC says inspection letters document the status of an existing septic system and are often requested during home sales, mortgages, or subdivision approval.",
+        "TDEC says alternative systems are used when soil or site conditions are not favorable for a conventional system."
+      ],
+      "localOverrideNote": "Tennessee looks statewide through TDEC, but the practical homeowner path changes quickly once you know whether the parcel is handled by a contract county or a TDEC regional contact and whether the permit file is complete.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["tn_01", "tn_02", "tn_03", "tn_04"],
+      "localAuthoritySourceIds": ["tn_04"],
+      "recordsLookupSourceIds": ["tn_01"],
+      "localActionSteps": [
+        "Open the regional contacts page first and confirm whether the parcel is handled by a contract county or a TDEC contact.",
+        "Ask for the construction permit, any repair permit, and any inspection letter or prior file tied to the property.",
+        "Confirm whether soil or site limits are pushing the job toward an alternative system before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the correct TDEC regional contact or the contract county office that handles septic assistance for the property.",
+      "recordsToRequest": [
+        "The septic system construction permit and any repair permit tied to the current system.",
+        "Any inspection letter documenting the status of the existing septic system for sale, mortgage, or subdivision use.",
+        "Any sketch, soils map, or site file already attached to the permit record."
+      ],
+      "lowEndRiskChecks": [
+        "If the homeowner has not confirmed whether the parcel is handled by a contract county or a TDEC regional office, the low end is still a planning scenario.",
+        "If the job actually needs a repair permit for a failing system, the project can be wider than a simple replacement quote suggests.",
+        "If soil or site conditions push the job toward an alternative system, the replacement path can widen quickly."
+      ],
+      "permitTimelineNote": "Tennessee timing often turns on how quickly the permit file is pulled, whether an inspection letter is needed for a transaction, and whether the job stays conventional or widens into an alternative-system conversation.",
+      "buyerInspectionTrigger": "Buyers should ask for the permit file and any inspection letter early because Tennessee inspection letters are often used for sales and mortgages and can reveal whether the existing system story is thinner than the listing suggests.",
+      "maintenanceInspectionNote": "Tennessee's current source set is strongest on permit timing, repair permits, and inspection-letter workflow, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Tennessee's main wrinkle is the split between contract-county routing and TDEC contacts plus the inspection-letter path that often matters before replacement or buyer decisions.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a durable statewide matrix showing which Tennessee counties publish searchable septic records or permit forms online.",
+        "Document where Tennessee homeowners can retrieve more detailed site files beyond the inspection-letter workflow."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

@@ -756,6 +756,65 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-replacement-cost",
+      "stateCode": "TN",
+      "title": "Tennessee Septic Replacement Cost",
+      "metaDescription": "Estimate Tennessee septic replacement cost with permit-file retrieval, repair-permit context, inspection-letter workflow, and contract-county routing in mind.",
+      "introCopy": "Tennessee replacement pricing is not just a statewide average. The real homeowner path often turns on whether the permit file is complete, whether the job needs a repair permit for a failing system, and whether the parcel runs through a contract county or a TDEC regional contact.",
+      "uniqueAngle": "Tennessee replacement content is strongest when it explains permit-file retrieval, inspection letters, and repair-permit risk instead of pretending the project starts with a flat contractor number.",
+      "targetReader": "Best for Tennessee owners and buyers who suspect replacement is coming but still do not know whether the permit file, repair history, and county routing support a straightforward path or a much wider alternative-system conversation.",
+      "fitBullets": [
+        "You have a replacement estimate, but no one has pulled the permit file or inspection letter yet.",
+        "The system may already be failing, and you need to know whether the project needs a repair permit before any work starts.",
+        "You need to separate a normal replacement discussion from a larger alternative-system or site-condition problem."
+      ],
+      "decisionSteps": [
+        "Start by confirming whether the parcel is handled by a contract county or a TDEC regional contact before trusting the first replacement number.",
+        "Pull the construction permit, any repair permit, and any inspection letter tied to the existing system so the quote is anchored to the real file.",
+        "Use the file and visible site story to decide whether the project still looks conventional or whether soil and site limits are pushing the job wider.",
+        "Then compare replacement quotes with the permit path, records, and alternative-system risk already in view."
+      ],
+      "lowEndBreakers": [
+        "The low end does not mean much if the homeowner has not confirmed the correct contract-county or TDEC contact path.",
+        "A failing system that actually needs a repair permit can widen the project faster than the first replacement quote suggests.",
+        "If soil or site conditions push the parcel toward an alternative system, the replacement path can move well beyond a simple conventional swap."
+      ],
+      "quotePrepChecklist": [
+        "The property address and the contract county or TDEC regional contact that handles the file.",
+        "The construction permit, any repair permit, and any inspection letter already tied to the current system.",
+        "Any sketch, soils map, or site note already attached to the permit record.",
+        "A short note on whether replacement is being discussed because of failure, buyer diligence, refinancing, or planned upgrade."
+      ],
+      "driverBullets": [
+        "Permit-file retrieval can matter more than the first contractor number because it tells you whether the replacement path is even straightforward.",
+        "Repair-permit requirements can turn a simple replacement quote into a broader regulatory and scheduling problem.",
+        "Contract-county routing and alternative-system risk can widen both timeline and total project cost quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Tennessee septic replacement cost tied to the permit file so closely?",
+          "answer": "Because the permit file, repair history, and any inspection letter help show whether the homeowner is pricing a routine replacement or a wider failing-system or file-rebuild problem."
+        },
+        {
+          "question": "What should a Tennessee homeowner verify before trusting the low end?",
+          "answer": "Verify the correct TDEC or contract-county contact, pull the construction or repair permit file, and check whether soil or site conditions are pushing the project toward an alternative system."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/tennessee/",
+        "/septic-system-cost-calculator/?state=TN&projectType=replacement",
+        "/septic-permit-process/",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": [
+        "tn_01",
+        "tn_02",
+        "tn_03",
+        "tn_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "perc-test-cost",
       "stateCode": "MO",
       "title": "Missouri Perc Test Cost",

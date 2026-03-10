@@ -150,6 +150,9 @@ public class EstimatorService {
         if ("VA".equals(state.stateCode())) {
             checklist.add("Confirm which Virginia local health district controls the file and whether operation-permit, operator, or recent inspection records are already on record.");
         }
+        if ("TN".equals(state.stateCode())) {
+            checklist.add("Confirm whether Tennessee routes the parcel through a contract county or TDEC contact and whether the permit file or inspection letter is already on record.");
+        }
         if ("CA".equals(state.stateCode())) {
             checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
         }
@@ -469,6 +472,9 @@ public class EstimatorService {
         }
         if ("VA".equals(state.stateCode())) {
             return "This Virginia range stays wide because the local health district file, operation-permit obligations, and conventional-versus-AOSS inspection cadence can all move the job quickly.";
+        }
+        if ("TN".equals(state.stateCode())) {
+            return "This Tennessee range stays wide because contract-county routing, repair-permit requirements, and permit-file gaps can all move the job quickly.";
         }
         if ("CA".equals(state.stateCode())) {
             return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";
