@@ -3,21 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "UT",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 4",
-      "whyNow": "Utah can likely support a permit-first wedge where county or district health routing matters more than a generic install estimate.",
-      "launchAngle": "Target angle: permit path and county or district handoff before the homeowner trusts a flat install range.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the statewide homeowner-facing permit and approval path for onsite wastewater systems.",
-        "Collect county or local health routing that determines the real first call for the parcel.",
-        "Pull a homeowner-safe permit and inspection sequence that can anchor a Utah permit page."
-      ]
-    },
-    {
       "stateCode": "WV",
-      "priorityRank": 2,
+      "priorityRank": 1,
       "rolloutWave": "Wave 4",
       "whyNow": "West Virginia keeps the eastern buildout moving and likely supports a records-first wedge where county file quality matters before the homeowner trusts the low end.",
       "launchAngle": "Target angle: permit-file retrieval and local office confirmation before the homeowner treats the quote as settled.",
@@ -30,7 +17,7 @@
     },
     {
       "stateCode": "SD",
-      "priorityRank": 3,
+      "priorityRank": 2,
       "rolloutWave": "Wave 5",
       "whyNow": "South Dakota is still open territory where permit path and county routing can beat a generic install-cost page before competitors lock in coverage.",
       "launchAngle": "Target angle: permit path and county office confirmation before the homeowner anchors on a statewide average.",
@@ -43,7 +30,7 @@
     },
     {
       "stateCode": "ID",
-      "priorityRank": 4,
+      "priorityRank": 3,
       "rolloutWave": "Wave 5",
       "whyNow": "Idaho can likely support a perc and site-approval wedge where district routing and soil limitations matter more than flat install averages.",
       "launchAngle": "Target angle: soil, site approval, and district handoff before the owner assumes a conventional install path.",
@@ -56,7 +43,7 @@
     },
     {
       "stateCode": "NV",
-      "priorityRank": 5,
+      "priorityRank": 4,
       "rolloutWave": "Wave 5",
       "whyNow": "Nevada can likely support a buyer and records wedge where county file quality matters more than broad desert install averages.",
       "launchAngle": "Target angle: buyer diligence, permit history, and local file quality before the listing story sets the anchor.",
@@ -69,7 +56,7 @@
     },
     {
       "stateCode": "DE",
-      "priorityRank": 6,
+      "priorityRank": 5,
       "rolloutWave": "Wave 5",
       "whyNow": "Delaware is compact but commercially useful and likely supports a permit or records wedge where agency routing matters more than a flat statewide number.",
       "launchAngle": "Target angle: permit path, file retrieval, and agency handoff before the homeowner treats the project as routine.",

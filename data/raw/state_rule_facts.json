@@ -1702,6 +1702,58 @@
       "note": "New Mexico's forms and applications page is the practical file path for permit and transfer paperwork tied to liquid-waste systems."
     },
     {
+      "stateCode": "UT",
+      "factType": "permit_authority",
+      "label": "Who owns the first call",
+      "value": "Local health departments have jurisdiction under R317-4",
+      "unit": "",
+      "sourceId": "ut_04",
+      "sourceSection": "Rule R317-4 Onsite Wastewater Systems",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.88,
+      "note": "Utah's rule says local health departments have jurisdiction to administer the onsite wastewater program."
+    },
+    {
+      "stateCode": "UT",
+      "factType": "local_lookup",
+      "label": "Local authority map",
+      "value": "13 local health departments and district engineers published statewide",
+      "unit": "",
+      "sourceId": "ut_02",
+      "sourceSection": "Local Health Departments and District Engineers",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.8,
+      "note": "Utah DEQ publishes the 13 local health departments and district engineers so homeowners can identify the office holding the real permit path."
+    },
+    {
+      "stateCode": "UT",
+      "factType": "site_testing",
+      "label": "Site paperwork",
+      "value": "Soil logs and percolation test results go to the regulatory authority",
+      "unit": "",
+      "sourceId": "ut_04",
+      "sourceSection": "Rule R317-4 Onsite Wastewater Systems",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.82,
+      "note": "Utah's rule says soil logs and percolation test results are submitted to the regulatory authority as part of the onsite wastewater workflow."
+    },
+    {
+      "stateCode": "UT",
+      "factType": "operating_permit_context",
+      "label": "Operating-permit wrinkle",
+      "value": "Counties and health districts urged to administer operating permits for local control",
+      "unit": "",
+      "sourceId": "ut_03",
+      "sourceSection": "Wastewater Treatment and Disposal Systems Operating Permits",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-03-10",
+      "confidence": 0.77,
+      "note": "Utah DEQ says counties and health districts have been urged to administer the operating permit program to provide more local control."
+    },
+    {
       "stateCode": "AR",
       "factType": "program_support",
       "label": "Program support",

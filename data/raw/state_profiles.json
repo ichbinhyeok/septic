@@ -1471,6 +1471,64 @@
       ]
     },
     {
+      "stateCode": "UT",
+      "stateName": "Utah",
+      "agencyName": "Utah Department of Environmental Quality",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Utah is stronger on local health handoff, R317-4 permit workflow, and operating-permit context than on a fake statewide install table. The homeowner wedge is knowing which local health department owns the file and whether soil logs, percolation tests, or local operating-permit context are already in view before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Utah DEQ's onsite wastewater program says the program includes review of onsite septic designs and plans, operating permits, and homeowner assistance. Utah's R317-4 rule says local health departments have jurisdiction to administer the onsite wastewater program and that soil logs and percolation test results are submitted to the regulatory authority. DEQ also publishes the 13 local health departments and says counties and health districts have been urged to administer the operating permit program to provide more local control. The practical homeowner path is therefore local-health-first, with permit and site paperwork carrying more weight than a generic statewide tank table.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Utah homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Utah homeowners usually need the local health department and permit-workflow story clarified before they trust an install or repair quote. The project is not really permit-ready until the local health handoff, soil paperwork, and any local operating-permit wrinkle are clearer.",
+      "permitPathSteps": [
+        "Start with the local health department or district engineer because Utah routes the practical permit and review conversation through local health authorities.",
+        "Ask whether the parcel already has soil logs, percolation test results, permit paperwork, or an operating-permit context on file before treating the job as a clean install path.",
+        "Use the local file and R317-4 workflow to decide whether the project is still on a straightforward path or already widening because of site and local-control issues."
+      ],
+      "siteEvalSummary": "Utah public homeowner material is strongest on local-health routing, R317-4 permit workflow, and soil-log or percolation paperwork rather than one simple statewide sizing story. The practical path turns on whether the local authority and site file are both usable enough to trust.",
+      "ruleHighlights": [
+        "Utah says local health departments have jurisdiction to administer the onsite wastewater program under R317-4.",
+        "Utah publishes the 13 local health departments and district engineers that support local wastewater issues.",
+        "Utah's rule says soil logs and percolation test results are submitted to the regulatory authority.",
+        "Utah says counties and health districts have been urged to administer the operating permit program to provide more local control."
+      ],
+      "localOverrideNote": "Utah looks statewide through DEQ, but the real homeowner workflow changes quickly once you know which local health department owns the file and whether that local program adds more site or permit friction than the generic state overview suggests.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ut_01", "ut_02", "ut_03", "ut_04", "ut_05"],
+      "localAuthoritySourceIds": ["ut_02", "ut_01"],
+      "recordsLookupSourceIds": ["ut_05", "ut_03"],
+      "localActionSteps": [
+        "Open the Utah local health department list first and identify the office handling onsite wastewater permits for the parcel.",
+        "Ask whether soil logs, percolation test results, permit paperwork, or operating-permit notes already exist before you trust the low end.",
+        "Compare the local health handoff, site paperwork, and any local operating-permit wrinkle before you assume a standard install route."
+      ],
+      "whoToCallFirst": "Start with the local health department or district engineer that handles onsite wastewater permits and file questions for the property.",
+      "recordsToRequest": [
+        "Any soil log, percolation test result, or site note already tied to the parcel.",
+        "Any permit application, design review, or operating-permit note already in the local or DEQ file.",
+        "Any local health department note showing whether the parcel still sits on a straightforward conventional path."
+      ],
+      "lowEndRiskChecks": [
+        "If the local health handoff is still unclear, the low end is still a planning scenario rather than a permit-backed number.",
+        "If soil logs or percolation test results point away from a simple path, the project can widen before contractor pricing becomes comparable.",
+        "If a local operating-permit wrinkle or added local review appears, the job can move beyond the simplest installer story quickly."
+      ],
+      "permitTimelineNote": "Utah timing often turns on how quickly the local health department confirms the permit path, whether soil paperwork is already usable, and whether local operating-permit control adds another step.",
+      "buyerInspectionTrigger": "Buyers should ask for the local health file and any soil or permit paperwork early because Utah's local-control layer can reveal more risk than the listing summary.",
+      "maintenanceInspectionNote": "Utah's current source set is strongest on local-health routing, permit workflow, and operating-permit context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Utah's main wrinkle is that the state program is visible, but the real permit and operating-permit path still turns on the local health department handoff.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Utah local health departments expose permit or onsite records online.",
+        "Document where Utah local programs publish stronger homeowner guidance on operating permits or advanced-system obligations."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

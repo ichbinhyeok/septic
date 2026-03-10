@@ -4427,6 +4427,67 @@
     },
     {
       "contentSlug": "septic-permit-process",
+      "stateCode": "UT",
+      "title": "Utah Septic Permit Process",
+      "metaDescription": "Utah septic permit process with local health department handoff, R317-4 site paperwork, and operating-permit context in mind.",
+      "introCopy": "Utah permit content is stronger than a generic install checklist because the practical homeowner path runs through the local health department under R317-4, not a vague statewide quote. The real job often turns on whether soil logs, percolation test results, permit paperwork, or an operating-permit wrinkle are already in the file before the low end means much.",
+      "uniqueAngle": "Utah permit intent is strongest when the page explains the local health handoff, soil-log and percolation paperwork, and operating-permit context instead of pretending the project starts with a clean contractor number.",
+      "targetReader": "Best for Utah owners, buyers, builders, and agents who need to know which local health department controls the file, whether soil or permit paperwork already exists, and why local operating-permit context can move the whole schedule before the lowest quote means much.",
+      "fitBullets": [
+        "You have an install or repair quote, but no one has confirmed which local health department or district engineer owns the file.",
+        "The contractor says the permit is routine, but no one has surfaced whether soil logs, percolation tests, or permit forms are already in hand.",
+        "You need to know whether local operating-permit context changes the permit path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or district engineer that handles onsite wastewater permits for the parcel.",
+        "Ask whether soil logs, percolation test results, permit paperwork, or any operating-permit note already exists before treating the job as a fresh permit path.",
+        "Confirm whether the parcel still sits on a straightforward local-health path or whether site paperwork and local control widen the project beyond the simple installer story.",
+        "Then compare permit readiness, file quality, and local-control friction before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the local health handoff is still unclear, the low end is still a planning scenario rather than a permit-ready number.",
+        "If soil logs or percolation test results are missing or push the parcel away from a conventional path, the project can widen quickly.",
+        "If local operating-permit context or added local review shows up, the job can move beyond the cheapest installer story fast."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or district engineer handling onsite wastewater permits for the parcel.",
+        "Any soil log, percolation test result, or site note already tied to the property.",
+        "Any permit application, design review, or operating-permit note already in the file.",
+        "Any local note showing whether the parcel still sits on a straightforward conventional path."
+      ],
+      "driverBullets": [
+        "Utah permit timing depends heavily on the local health handoff being real and usable.",
+        "Soil logs and percolation tests can widen the permit path before contractor pricing becomes comparable.",
+        "Operating-permit context matters because Utah pushes more control down to counties and health districts."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Utah permit step a homeowner should take?",
+          "answer": "Start with the local health department or district engineer first, because Utah routes practical onsite wastewater administration through local health departments under R317-4."
+        },
+        {
+          "question": "Why does Utah permit content need to mention soil logs and percolation tests?",
+          "answer": "Because Utah's onsite wastewater rule says soil logs and percolation test results are submitted to the regulatory authority, so the permit story is tied to site paperwork earlier than a generic quote suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/utah/",
+        "/septic-system-cost-calculator/?state=UT&projectType=new_install",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "ut_01",
+        "ut_02",
+        "ut_03",
+        "ut_04",
+        "ut_05"
+      ],
+      "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",
       "metaDescription": "Arkansas septic permit process with county health routing, onsite specialist path, permit-copy context, and soil-suitability questions.",
