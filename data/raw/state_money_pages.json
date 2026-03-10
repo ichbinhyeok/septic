@@ -4730,6 +4730,65 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "OH",
+      "title": "Ohio Septic Inspection Cost",
+      "metaDescription": "Ohio septic inspection cost with local health department routing, operation-permit history, and off-lot discharge risk in mind.",
+      "introCopy": "Ohio inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the local health department file, operation-permit history, and any operational inspections or off-lot discharge notes still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Ohio inspection content is strongest when it explains local health department routing, operation-permit history, and off-lot discharge context instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Ohio buyers and owners who can schedule an inspection but still need to know whether the local file, operational history, and any off-lot discharge issue make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has identified the local health department or board of health file yet.",
+        "You need to know whether operation-permit or operational-inspection history makes the visit more consequential than the fee itself.",
+        "The property may carry nuisance history or off-lot discharge risk that turns a routine inspection into a much bigger conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local health department or board of health first because Ohio EPA says local health departments handle permitting and operational inspections.",
+        "Ask whether the file already contains the installation permit, operation permit, operational-inspection record, and any nuisance or complaint history tied to the system.",
+        "Confirm whether the property stays on the normal local-health path or whether any off-lot discharge note or Ohio EPA involvement changes the inspection story.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited enforcement risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local health department file has not been reviewed first.",
+        "Operation-permit or operational-inspection history can make the property much more complicated than the owner summary suggests.",
+        "If the system discharges off lot or triggers Ohio EPA involvement, the visit can be much more consequential than a generic inspection checklist implies."
+      ],
+      "quotePrepChecklist": [
+        "The local health department or board of health contact with jurisdiction over the property.",
+        "Any installation permit, operation permit, or operational-inspection record tied to the system.",
+        "Any nuisance notice, complaint history, repair note, or off-lot discharge record already tied to the property.",
+        "The reason for the inspection: sale, routine diligence, suspected problem, or follow-up after a repair."
+      ],
+      "driverBullets": [
+        "Ohio buyers and owners need the local health department file before the inspection fee means much.",
+        "Operation-permit and operational-inspection history can matter more than the visit price.",
+        "Off-lot discharge or enforcement context can widen the real risk far beyond a generic inspection article."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Ohio inspection step a homeowner should take?",
+          "answer": "Find the local health department or board of health first and ask for the installation permit, operation permit, and any operational-inspection history tied to the property."
+        },
+        {
+          "question": "Why does off-lot discharge matter in an Ohio inspection decision?",
+          "answer": "Because off-lot discharge can widen the project beyond the normal local-health path and make the inspection more about inherited regulatory risk than the visit fee."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/ohio/",
+        "/septic-records-checklist/ohio/",
+        "/septic-permit-process/ohio/",
+        "/buying-a-house-with-a-septic-system/ohio/",
+        "/septic-system-cost-calculator/?state=OH&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "oh_01",
+        "oh_02"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IL",
       "title": "Illinois Septic Records Checklist",
@@ -4906,6 +4965,67 @@
         "il_04"
       ],
       "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "IL",
+      "title": "Illinois Septic Inspection Cost",
+      "metaDescription": "Illinois septic inspection cost with county health routing, evaluation-form risk, and local-file quality in mind.",
+      "introCopy": "Illinois inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the county or local health department file, any evaluation-form flag, and the local code path still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Illinois inspection content is strongest when it explains county-health routing, evaluation-form context, and local-file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Illinois buyers and owners who can schedule an inspection but still need to know whether the county or local health department file and evaluation-form history make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which county or local health department actually controls the file.",
+        "You need to know whether an evaluation-form flag or thin local file makes the visit more consequential than the fee itself.",
+        "The seller or contractor says the inspection is routine, but local county handling may still widen the real workflow."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Ask whether the file already contains the permit, installation record, inspection note, or evaluation-form record tied to the property before treating the visit as routine.",
+        "Use any flagged evaluation-form condition or county note to decide whether the inspection is simple diligence or already part of a repair or replacement conversation.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is missing file history, county-specific friction, or actual system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county or local office cannot surface a meaningful file first.",
+        "A flagged evaluation-form condition can make the property more complex than a simple inspection quote suggests.",
+        "If the local office applies a stronger county or ordinance path, the routine inspection story can widen quickly."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the property file.",
+        "Any permit, installation, plan-review, inspection, or evaluation-form record tied to the property.",
+        "Any county or code note showing whether the system has drifted toward repair or replacement.",
+        "The reason for the inspection: sale, routine diligence, suspected issue, or follow-up after a flagged condition."
+      ],
+      "driverBullets": [
+        "Illinois buyers and owners need the county or local health department file before the inspection fee means much.",
+        "Evaluation-form flags can matter more than the visit price.",
+        "County or local handling can turn a routine inspection into a larger repair or replacement conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Illinois inspection step a homeowner should take?",
+          "answer": "Identify the county or local health department first and ask for the permit, installation, inspection, and evaluation-form record tied to the property."
+        },
+        {
+          "question": "Why does Illinois inspection content need to mention the evaluation form?",
+          "answer": "Because IDPH's public evaluation form warns that flagged conditions may mean repair or replacement is needed, which can change whether the inspection is routine or strategic."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-records-checklist/illinois/",
+        "/septic-permit-process/illinois/",
+        "/buying-a-house-with-a-septic-system/illinois/",
+        "/septic-system-cost-calculator/?state=IL&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
+      "calculatorProjectType": "inspection",
       "publishStatus": "published"
     },
     {
@@ -6887,6 +7007,66 @@
         "mi_03"
       ],
       "calculatorProjectType": "new_install",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "MI",
+      "title": "Michigan Septic Inspection Cost",
+      "metaDescription": "Michigan septic inspection cost with local health department routing, failed-system evaluation context, and system-location risk in mind.",
+      "introCopy": "Michigan inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the local health department file, any failed-system evaluation, and system-location uncertainty still support the current system story. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Michigan inspection content is strongest when it explains local-health routing, failed-system evaluation context, and system-location risk instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Michigan buyers and owners who can schedule an inspection but still need to know whether the local file, failure evidence, and system-location questions make the visit routine or strategically important.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which local health department actually controls the file.",
+        "You need to know whether a failed-system evaluation, inspection history, or thin local file makes the visit more consequential than the fee itself.",
+        "The seller or contractor cannot clearly show where the system is located, so the inspection may be answering a much bigger question."
+      ],
+      "decisionSteps": [
+        "Identify the local health department first because Michigan's public guidance routes practical permitting and inspections through that office.",
+        "Ask whether the file already contains the permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel before treating the visit as routine.",
+        "If the system location is unclear, use the local file first because EGLE's public FAQ says to contact the local health department when the owner is unsure where the system is located.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine diligence, missing file history, or inherited failure risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local health department cannot surface a meaningful file first.",
+        "If no one can confirm where the system is located, the property is not ready for a confident routine-inspection assumption.",
+        "Failure evidence or local ordinance issues can make the visit much more consequential than a generic inspection checklist suggests."
+      ],
+      "quotePrepChecklist": [
+        "The local health department contact responsible for the property file.",
+        "Any permit, inspection, failed-system evaluation, complaint, or repair record tied to the parcel.",
+        "Any sketch, parcel note, or field comment showing where the system is located.",
+        "The reason for the inspection: sale, routine diligence, suspected failure, or follow-up after a repair."
+      ],
+      "driverBullets": [
+        "Michigan buyers and owners need the local health department file before the inspection fee means much.",
+        "A failed-system evaluation or thin file can matter more than the visit price.",
+        "Unknown system location can widen the real risk far beyond a routine inspection conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Michigan inspection step a homeowner should take?",
+          "answer": "Identify the local health department first and ask for the permit, inspection, and any failed-system evaluation history tied to the property."
+        },
+        {
+          "question": "Why does system location matter in a Michigan inspection decision?",
+          "answer": "Because EGLE's public septic FAQ tells homeowners to contact the local health department if they are unsure where the system is located, and that uncertainty can change whether the inspection is routine or strategic."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/michigan/",
+        "/septic-records-checklist/michigan/",
+        "/septic-permit-process/michigan/",
+        "/buying-a-house-with-a-septic-system/michigan/",
+        "/septic-system-cost-calculator/?state=MI&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "mi_01",
+        "mi_02",
+        "mi_03"
+      ],
+      "calculatorProjectType": "inspection",
       "publishStatus": "published"
     },
     {
