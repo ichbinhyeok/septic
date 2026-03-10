@@ -148,7 +148,7 @@ public class SeoService {
 
     public PageMeta stateGuide(StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
-        String title = stateGuideTitle(state);
+        String title = stateGuideSeoTitle(state);
         String description = stateGuideDescription(state);
         List<FaqBlock> faqBlocks = stateGuideFaqs(state);
         List<String> jsonLdBlocks = new ArrayList<>();
@@ -315,9 +315,10 @@ public class SeoService {
 
     public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
+        String seoTitle = stateMoneyPageSeoTitle(stateMoneyPage);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
-                webPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), "Article"),
+                webPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), "Article"),
                 lastReviewedAt,
                 preparedBy,
                 reviewedBy
@@ -327,10 +328,10 @@ public class SeoService {
                 crumb(stateMoneyPage.title(), canonicalUrl)
         ))));
         if (stateMoneyPage.faqBlocks() != null && !stateMoneyPage.faqBlocks().isEmpty()) {
-            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, stateMoneyPage.title(), stateMoneyPage.metaDescription(), stateMoneyPage.faqBlocks())));
+            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), stateMoneyPage.faqBlocks())));
         }
         return pageMeta(
-                stateMoneyPage.title(),
+                seoTitle,
                 stateMoneyPage.metaDescription(),
                 canonicalUrl,
                 "index,follow",
@@ -505,6 +506,24 @@ public class SeoService {
 
     private boolean hasText(String value) {
         return value != null && !value.isBlank();
+    }
+
+    private String stateGuideSeoTitle(StateProfile state) {
+        return stateGuideTitle(state) + " | SepticPath";
+    }
+
+    private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage) {
+        return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
+            case "septic-replacement-cost" -> " | Replacement scope and file-risk guide";
+            case "perc-test-cost" -> " | Soil, site, and permit-risk guide";
+            case "buying-a-house-with-a-septic-system" -> " | Buyer, file, and closing-risk guide";
+            case "septic-records-checklist" -> " | Local file and permit-record guide";
+            case "septic-permit-process" -> " | Local office and permit-file guide";
+            case "septic-inspection-cost" -> " | Inspection scope and file-risk guide";
+            case "septic-pumping-cost" -> " | Maintenance cadence and service-risk guide";
+            case "drain-field-replacement-cost" -> " | Field layout and replacement-risk guide";
+            default -> " | SepticPath";
+        };
     }
 
     private String stateGuideTitle(StateProfile state) {

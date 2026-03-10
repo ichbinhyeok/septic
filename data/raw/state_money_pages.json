@@ -9152,6 +9152,364 @@
       ],
       "calculatorProjectType": "replacement",
       "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "AZ",
+      "title": "Arizona Septic Inspection Cost",
+      "metaDescription": "Arizona septic inspection cost with county or delegated local program routing, Uniform Site Investigation Report context, and county delegation and ADEQ Type 4 permit sequencing in mind.",
+      "introCopy": "Arizona inspection intent is stronger than a generic national inspection page because the real homeowner question is whether the county or delegated local program file, the Uniform Site Investigation Report, and any Notice of Transfer make the visit routine or strategically important. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Arizona inspection content is strongest when it explains county or delegated local program routing, Uniform Site Investigation Report, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Arizona buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or leverage-heavy.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which county or delegated local program actually controls the file.",
+        "You need to know whether the Uniform Site Investigation Report and any Notice of Transfer make the visit more consequential than the fee itself.",
+        "The seller or contractor says the inspection is routine, but county delegation and ADEQ Type 4 permit sequencing may still widen the workflow."
+      ],
+      "decisionSteps": [
+        "Start with the county or delegated local program and ask for the inspection, permit, and transfer-related record tied to the property before treating the visit as routine.",
+        "Pull the Uniform Site Investigation Report, any Notice of Transfer, and the permit trail already in the file.",
+        "Use any flagged local condition, transfer note, or missing paperwork to decide whether the inspection is simple diligence or already part of a repair or replacement conversation.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is file quality, transfer leverage, or actual system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the county or delegated local program cannot surface a meaningful file first.",
+        "A thin Uniform Site Investigation Report trail can make the property more complex than a simple inspection quote suggests.",
+        "county delegation and ADEQ Type 4 permit sequencing can turn a routine inspection into a larger buyer or ownership-risk conversation."
+      ],
+      "quotePrepChecklist": [
+        "The county or delegated local program contact responsible for the property file.",
+        "Any permit, inspection, Uniform Site Investigation Report, or Notice of Transfer already tied to the property.",
+        "Any local note showing whether the system has drifted toward repair, replacement, or transfer friction.",
+        "The reason for the inspection: sale, routine diligence, suspected issue, or follow-up after a flagged condition."
+      ],
+      "driverBullets": [
+        "Arizona buyers and owners need the county or delegated local program file before the inspection fee means much.",
+        "Uniform Site Investigation Report quality can matter more than the visit price.",
+        "county delegation and ADEQ Type 4 permit sequencing can turn a routine inspection into a larger repair or replacement conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Arizona inspection step a homeowner should take?",
+          "answer": "Identify the county or delegated local program first and ask for the inspection, permit, and transfer-related record tied to the property."
+        },
+        {
+          "question": "Why does Arizona inspection content need to mention Uniform Site Investigation Report?",
+          "answer": "Because the Uniform Site Investigation Report usually tells you whether the visit is still routine or already part of a bigger file and closing-risk story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/arizona/",
+        "/septic-records-checklist/arizona/",
+        "/buying-a-house-with-a-septic-system/arizona/",
+        "/septic-system-cost-calculator/?state=AZ&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "az_01",
+        "az_02",
+        "az_03",
+        "az_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "CO",
+      "title": "Colorado Septic Inspection Cost",
+      "metaDescription": "Colorado septic inspection cost with local public health agency routing, Site and Soil Evaluation Report context, and local permit triggers and transfer-of-title friction in mind.",
+      "introCopy": "Colorado inspection intent is stronger than a generic national inspection page because the real homeowner question is whether the local public health agency file, the Site and Soil Evaluation Report, and any transfer-of-title inspection make the visit routine or strategically important. That makes the inspection fee only part of the real risk.",
+      "uniqueAngle": "Colorado inspection content is strongest when it explains local public health agency routing, Site and Soil Evaluation Report, and file quality instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Colorado buyers and owners who can schedule an inspection but still need to know whether the local file makes the visit routine or leverage-heavy.",
+      "fitBullets": [
+        "The inspection can be booked, but no one has confirmed which local public health agency actually controls the file.",
+        "You need to know whether the Site and Soil Evaluation Report and any transfer-of-title inspection make the visit more consequential than the fee itself.",
+        "The seller or contractor says the inspection is routine, but local permit triggers and transfer-of-title friction may still widen the workflow."
+      ],
+      "decisionSteps": [
+        "Start with the local public health agency and ask for the inspection, permit, and transfer-related record tied to the property before treating the visit as routine.",
+        "Pull the Site and Soil Evaluation Report, any transfer-of-title inspection, and the permit trail already in the file.",
+        "Use any flagged local condition, transfer note, or missing paperwork to decide whether the inspection is simple diligence or already part of a repair or replacement conversation.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is file quality, transfer leverage, or actual system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story fails when the local public health agency cannot surface a meaningful file first.",
+        "A thin Site and Soil Evaluation Report trail can make the property more complex than a simple inspection quote suggests.",
+        "local permit triggers and transfer-of-title friction can turn a routine inspection into a larger buyer or ownership-risk conversation."
+      ],
+      "quotePrepChecklist": [
+        "The local public health agency contact responsible for the property file.",
+        "Any permit, inspection, Site and Soil Evaluation Report, or transfer-of-title inspection already tied to the property.",
+        "Any local note showing whether the system has drifted toward repair, replacement, or transfer friction.",
+        "The reason for the inspection: sale, routine diligence, suspected issue, or follow-up after a flagged condition."
+      ],
+      "driverBullets": [
+        "Colorado buyers and owners need the local public health agency file before the inspection fee means much.",
+        "Site and Soil Evaluation Report quality can matter more than the visit price.",
+        "local permit triggers and transfer-of-title friction can turn a routine inspection into a larger repair or replacement conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Colorado inspection step a homeowner should take?",
+          "answer": "Identify the local public health agency first and ask for the inspection, permit, and transfer-related record tied to the property."
+        },
+        {
+          "question": "Why does Colorado inspection content need to mention Site and Soil Evaluation Report?",
+          "answer": "Because the Site and Soil Evaluation Report usually tells you whether the visit is still routine or already part of a bigger file and closing-risk story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-records-checklist/colorado/",
+        "/buying-a-house-with-a-septic-system/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=inspection"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "VA",
+      "title": "Virginia Perc Test Cost",
+      "metaDescription": "Virginia perc and site-review planning page with local health district environmental health office routing, operation and maintenance manual context, and operation-permit burden and AOSS follow-up.",
+      "introCopy": "Virginia perc and site-review questions are stronger than a generic national test page because the real homeowner question is whether the local health district environmental health office, the operation and maintenance manual, and the permit path still support a straightforward project before operation-permit burden and AOSS follow-up widens the job.",
+      "uniqueAngle": "Virginia site-testing intent is strongest when the page connects local health district environmental health office, operation and maintenance manual, and construction permit and operation permit path instead of pretending a soil test alone decides the project.",
+      "targetReader": "Best for Virginia owners, buyers, builders, and agents who need to know whether the local site-review path is still simple enough to trust the low end before design or permit risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-review number, but no one has confirmed which local health district environmental health office controls the parcel.",
+        "The installer says the site looks straightforward, but the operation and maintenance manual or local file is not in hand yet.",
+        "You need to know whether the site-review path could push the project into a more complex system before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local health district environmental health office first because that office controls the practical site-review path for the parcel.",
+        "Ask for the operation and maintenance manual or local site paperwork before treating the test as a standalone fee.",
+        "Use the permit and file history to decide whether the project is still on a straightforward path or already carrying bigger review risk.",
+        "Then compare perc or site-review cost in the context of the real local workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the operation and maintenance manual or file is still missing.",
+        "If the site-review paperwork points away from a straightforward path, the project can widen quickly.",
+        "operation-permit burden and AOSS follow-up can make the test discussion part of a bigger permit and replacement story."
+      ],
+      "quotePrepChecklist": [
+        "The local health district environmental health office that controls the parcel's site-review path.",
+        "The operation and maintenance manual or equivalent site-evaluation paperwork already tied to the property.",
+        "Any permit, transfer, or approval note already attached to the system or lot.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Virginia site-testing conversations get real only after the local health district environmental health office and file path are clear.",
+        "operation and maintenance manual can move the project away from the simple path the homeowner expected.",
+        "operation-permit burden and AOSS follow-up means the perc discussion is usually part of a larger permit or replacement workflow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Virginia site-review step a homeowner should take?",
+          "answer": "Identify the local health district environmental health office first and ask for the operation and maintenance manual or local site-evaluation paperwork tied to the property."
+        },
+        {
+          "question": "Why does Virginia perc content need to mention operation and maintenance manual?",
+          "answer": "Because the operation and maintenance manual usually tells you whether the parcel still supports the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/virginia/",
+        "/septic-permit-process/virginia/",
+        "/septic-replacement-cost/virginia/",
+        "/septic-system-cost-calculator/?state=VA&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "va_01",
+        "va_02",
+        "va_03",
+        "va_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "WI",
+      "title": "Wisconsin Perc Test Cost",
+      "metaDescription": "Wisconsin perc and site-review planning page with county or delegated agent routing, maintenance-tracking history context, and three-year inspection cadence and delegated review.",
+      "introCopy": "Wisconsin perc and site-review questions are stronger than a generic national test page because the real homeowner question is whether the county or delegated agent, the maintenance-tracking history, and the permit path still support a straightforward project before three-year inspection cadence and delegated review widens the job.",
+      "uniqueAngle": "Wisconsin site-testing intent is strongest when the page connects county or delegated agent, maintenance-tracking history, and sanitary permit instead of pretending a soil test alone decides the project.",
+      "targetReader": "Best for Wisconsin owners, buyers, builders, and agents who need to know whether the local site-review path is still simple enough to trust the low end before design or permit risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-review number, but no one has confirmed which county or delegated agent controls the parcel.",
+        "The installer says the site looks straightforward, but the maintenance-tracking history or local file is not in hand yet.",
+        "You need to know whether the site-review path could push the project into a more complex system before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county or delegated agent first because that office controls the practical site-review path for the parcel.",
+        "Ask for the maintenance-tracking history or local site paperwork before treating the test as a standalone fee.",
+        "Use the permit and file history to decide whether the project is still on a straightforward path or already carrying bigger review risk.",
+        "Then compare perc or site-review cost in the context of the real local workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the maintenance-tracking history or file is still missing.",
+        "If the site-review paperwork points away from a straightforward path, the project can widen quickly.",
+        "three-year inspection cadence and delegated review can make the test discussion part of a bigger permit and replacement story."
+      ],
+      "quotePrepChecklist": [
+        "The county or delegated agent that controls the parcel's site-review path.",
+        "The maintenance-tracking history or equivalent site-evaluation paperwork already tied to the property.",
+        "Any permit, transfer, or approval note already attached to the system or lot.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Wisconsin site-testing conversations get real only after the county or delegated agent and file path are clear.",
+        "maintenance-tracking history can move the project away from the simple path the homeowner expected.",
+        "three-year inspection cadence and delegated review means the perc discussion is usually part of a larger permit or replacement workflow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Wisconsin site-review step a homeowner should take?",
+          "answer": "Identify the county or delegated agent first and ask for the maintenance-tracking history or local site-evaluation paperwork tied to the property."
+        },
+        {
+          "question": "Why does Wisconsin perc content need to mention maintenance-tracking history?",
+          "answer": "Because the maintenance-tracking history usually tells you whether the parcel still supports the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/wisconsin/",
+        "/septic-permit-process/wisconsin/",
+        "/septic-replacement-cost/wisconsin/",
+        "/septic-system-cost-calculator/?state=WI&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "wi_01",
+        "wi_02",
+        "wi_03",
+        "wi_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MD",
+      "title": "Maryland Perc Test Cost",
+      "metaDescription": "Maryland perc and site-review planning page with county or local approving authority routing, file search context, and PTI timing and Public Information Act delays.",
+      "introCopy": "Maryland perc and site-review questions are stronger than a generic national test page because the real homeowner question is whether the county or local approving authority, the file search, and the permit path still support a straightforward project before PTI timing and Public Information Act delays widens the job.",
+      "uniqueAngle": "Maryland site-testing intent is strongest when the page connects county or local approving authority, file search, and local approving authority permit path instead of pretending a soil test alone decides the project.",
+      "targetReader": "Best for Maryland owners, buyers, builders, and agents who need to know whether the local site-review path is still simple enough to trust the low end before design or permit risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-review number, but no one has confirmed which county or local approving authority controls the parcel.",
+        "The installer says the site looks straightforward, but the file search or local file is not in hand yet.",
+        "You need to know whether the site-review path could push the project into a more complex system before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the county or local approving authority first because that office controls the practical site-review path for the parcel.",
+        "Ask for the file search or local site paperwork before treating the test as a standalone fee.",
+        "Use the permit and file history to decide whether the project is still on a straightforward path or already carrying bigger review risk.",
+        "Then compare perc or site-review cost in the context of the real local workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the file search or file is still missing.",
+        "If the site-review paperwork points away from a straightforward path, the project can widen quickly.",
+        "PTI timing and Public Information Act delays can make the test discussion part of a bigger permit and replacement story."
+      ],
+      "quotePrepChecklist": [
+        "The county or local approving authority that controls the parcel's site-review path.",
+        "The file search or equivalent site-evaluation paperwork already tied to the property.",
+        "Any permit, transfer, or approval note already attached to the system or lot.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Maryland site-testing conversations get real only after the county or local approving authority and file path are clear.",
+        "file search can move the project away from the simple path the homeowner expected.",
+        "PTI timing and Public Information Act delays means the perc discussion is usually part of a larger permit or replacement workflow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Maryland site-review step a homeowner should take?",
+          "answer": "Identify the county or local approving authority first and ask for the file search or local site-evaluation paperwork tied to the property."
+        },
+        {
+          "question": "Why does Maryland perc content need to mention file search?",
+          "answer": "Because the file search usually tells you whether the parcel still supports the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/maryland/",
+        "/septic-permit-process/maryland/",
+        "/septic-replacement-cost/maryland/",
+        "/septic-system-cost-calculator/?state=MD&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "md_01",
+        "md_02",
+        "md_03",
+        "md_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MN",
+      "title": "Minnesota Perc Test Cost",
+      "metaDescription": "Minnesota perc and site-review planning page with local SSTS program routing, prior compliance-inspection report context, and local compliance-inspection rules and seller-disclosure gaps.",
+      "introCopy": "Minnesota perc and site-review questions are stronger than a generic national test page because the real homeowner question is whether the local SSTS program, the prior compliance-inspection report, and the permit path still support a straightforward project before local compliance-inspection rules and seller-disclosure gaps widens the job.",
+      "uniqueAngle": "Minnesota site-testing intent is strongest when the page connects local SSTS program, prior compliance-inspection report, and local permit and inspection path instead of pretending a soil test alone decides the project.",
+      "targetReader": "Best for Minnesota owners, buyers, builders, and agents who need to know whether the local site-review path is still simple enough to trust the low end before design or permit risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-review number, but no one has confirmed which local SSTS program controls the parcel.",
+        "The installer says the site looks straightforward, but the prior compliance-inspection report or local file is not in hand yet.",
+        "You need to know whether the site-review path could push the project into a more complex system before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Identify the local SSTS program first because that office controls the practical site-review path for the parcel.",
+        "Ask for the prior compliance-inspection report or local site paperwork before treating the test as a standalone fee.",
+        "Use the permit and file history to decide whether the project is still on a straightforward path or already carrying bigger review risk.",
+        "Then compare perc or site-review cost in the context of the real local workflow and alternative-system risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the prior compliance-inspection report or file is still missing.",
+        "If the site-review paperwork points away from a straightforward path, the project can widen quickly.",
+        "local compliance-inspection rules and seller-disclosure gaps can make the test discussion part of a bigger permit and replacement story."
+      ],
+      "quotePrepChecklist": [
+        "The local SSTS program that controls the parcel's site-review path.",
+        "The prior compliance-inspection report or equivalent site-evaluation paperwork already tied to the property.",
+        "Any permit, transfer, or approval note already attached to the system or lot.",
+        "A short note on whether the job is buyer diligence, new install, replacement follow-through, or a site-risk check before pricing."
+      ],
+      "driverBullets": [
+        "Minnesota site-testing conversations get real only after the local SSTS program and file path are clear.",
+        "prior compliance-inspection report can move the project away from the simple path the homeowner expected.",
+        "local compliance-inspection rules and seller-disclosure gaps means the perc discussion is usually part of a larger permit or replacement workflow."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Minnesota site-review step a homeowner should take?",
+          "answer": "Identify the local SSTS program first and ask for the prior compliance-inspection report or local site-evaluation paperwork tied to the property."
+        },
+        {
+          "question": "Why does Minnesota perc content need to mention prior compliance-inspection report?",
+          "answer": "Because the prior compliance-inspection report usually tells you whether the parcel still supports the simple site story the owner or installer is using."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/minnesota/",
+        "/septic-permit-process/minnesota/",
+        "/septic-replacement-cost/minnesota/",
+        "/septic-system-cost-calculator/?state=MN&projectType=perc_test"
+      ],
+      "officialSourceIds": [
+        "mn_01",
+        "mn_02",
+        "mn_03",
+        "mn_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
     }
   ]
 }

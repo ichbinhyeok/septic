@@ -15,6 +15,8 @@
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -34,6 +36,18 @@
                 </div>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
                 <p>${calculatorCtaNote}</p>
+                @if (!featuredInternalLinks.isEmpty())
+                    <div class="quick-link-strip" aria-label="Fast next steps">
+                        <span class="quick-link-strip__label">Fast next steps</span>
+                        @for (var link : featuredInternalLinks)
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_money_featured_link"
+                               data-track-target-type="related_internal">${link.title()}</a>
+                        @endfor
+                    </div>
+                @endif
             </div>
 
             <article class="hero-sidecard">
@@ -424,7 +438,7 @@
             <article class="detail-card">
                 <h2>Related links</h2>
                 <ul class="detail-list">
-                    @for (var link : internalLinks)
+                    @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
                         <li>
                             <a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_related_link" data-track-target-type="related_internal">${link.title()}</a>
                             <p class="detail-list__note">${link.note()}</p>

@@ -431,6 +431,12 @@ public class SiteController {
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
+        List<StateMoneyPage> sortedStateMoneyPages = researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                .sorted(Comparator
+                        .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
+                        .reversed()
+                        .thenComparing(StateMoneyPage::title))
+                .toList();
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
         model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -440,12 +446,8 @@ public class SiteController {
         model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
-        model.addAttribute("stateMoneyPages", researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
-                .sorted(Comparator
-                        .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
-                        .reversed()
-                        .thenComparing(StateMoneyPage::title))
-                .toList());
+        model.addAttribute("stateMoneyPages", sortedStateMoneyPages);
+        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(3).toList());
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
@@ -575,6 +577,7 @@ public class SiteController {
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
+        List<PageLink> internalLinks = pageLinks(stateMoneyPage.internalLinkTargets(), stateMoneyPage.contentSlug(), state.stateCode());
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -588,7 +591,9 @@ public class SiteController {
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
-        model.addAttribute("internalLinks", pageLinks(stateMoneyPage.internalLinkTargets(), stateMoneyPage.contentSlug(), state.stateCode()));
+        model.addAttribute("internalLinks", internalLinks);
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(3).toList());
+        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(3).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
@@ -1496,14 +1501,45 @@ public class SiteController {
                     "septic-tank-size",
                     "septic-pumping-cost"
             );
-            case "septic-replacement-cost" -> List.of("drain-field-replacement-cost", "perc-test-cost", "buying-a-house-with-a-septic-system");
-            case "perc-test-cost" -> List.of("septic-replacement-cost", "drain-field-replacement-cost", "septic-permit-process");
+            case "septic-replacement-cost" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "perc-test-cost",
+                    "buying-a-house-with-a-septic-system",
+                    "drain-field-replacement-cost"
+            );
+            case "perc-test-cost" -> List.of(
+                    "septic-permit-process",
+                    "septic-replacement-cost",
+                    "septic-records-checklist",
+                    "drain-field-replacement-cost"
+            );
             case "drain-field-replacement-cost" -> List.of("septic-replacement-cost", "perc-test-cost", "septic-system-cost-calculator");
             case "septic-pumping-cost" -> List.of("septic-tank-size", "septic-system-cost-calculator", "septic-inspection-cost");
-            case "septic-inspection-cost" -> List.of("septic-records-checklist", "buying-a-house-with-a-septic-system", "septic-system-cost-calculator");
-            case "buying-a-house-with-a-septic-system" -> List.of("septic-records-checklist", "septic-inspection-cost", "septic-replacement-cost");
-            case "septic-permit-process" -> List.of("septic-records-checklist", "septic-system-cost-calculator", "septic-replacement-cost");
-            case "septic-records-checklist" -> List.of("buying-a-house-with-a-septic-system", "septic-inspection-cost", "septic-permit-process");
+            case "septic-inspection-cost" -> List.of(
+                    "septic-records-checklist",
+                    "buying-a-house-with-a-septic-system",
+                    "septic-permit-process",
+                    "septic-system-cost-calculator"
+            );
+            case "buying-a-house-with-a-septic-system" -> List.of(
+                    "septic-records-checklist",
+                    "septic-inspection-cost",
+                    "septic-permit-process",
+                    "septic-replacement-cost"
+            );
+            case "septic-permit-process" -> List.of(
+                    "septic-records-checklist",
+                    "septic-replacement-cost",
+                    "buying-a-house-with-a-septic-system",
+                    "septic-system-cost-calculator"
+            );
+            case "septic-records-checklist" -> List.of(
+                    "buying-a-house-with-a-septic-system",
+                    "septic-permit-process",
+                    "septic-inspection-cost",
+                    "septic-replacement-cost"
+            );
             default -> List.of();
         };
     }

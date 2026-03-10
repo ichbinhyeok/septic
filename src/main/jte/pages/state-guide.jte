@@ -10,6 +10,7 @@
 @param SourceRecord primaryLocalAuthoritySource = null
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.StateMoneyPage> featuredStateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
@@ -34,6 +35,18 @@
                     <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
                 </div>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
+                @if (!featuredStateMoneyPages.isEmpty())
+                    <div class="quick-link-strip" aria-label="Fast next steps">
+                        <span class="quick-link-strip__label">Fast next steps</span>
+                        @for (var stateMoneyPage : featuredStateMoneyPages)
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="${stateMoneyPage.path(state.slug())}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_featured_link"
+                               data-track-target-type="state_money_page">${stateMoneyPage.title()}</a>
+                        @endfor
+                    </div>
+                @endif
             </div>
             <div class="hero-sidecard">
                 <span class="pill">Official-source guide</span>
