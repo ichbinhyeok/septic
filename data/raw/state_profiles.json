@@ -775,6 +775,238 @@
       ]
     },
     {
+      "stateCode": "IL",
+      "stateName": "Illinois",
+      "agencyName": "Illinois Department of Public Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Illinois is stronger on county or local file retrieval, evaluation-form reality, and permit-path context than on a fake statewide install table. The homeowner wedge is knowing whether the local health file, the state code path, and any yellow-flagged evaluation issue are already in view before a buyer or owner trusts the low end.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "IDPH says Illinois regulates private sewage disposal systems and that about 90 local health departments review construction plans either under local ordinance or as state agents. IDPH also keeps the statewide rules visible through the Private Sewage Disposal Code and related rule pages, while the public evaluation form warns that flagged conditions can mean repair or replacement is needed. The local office path matters because the real homeowner file usually lives with the county or local health department rather than with a generic statewide estimator.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Illinois homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Illinois homeowners usually need the local file and permit path clarified before they trust an install, sale, or repair quote. The project is not really file-backed until the county or local health department confirms what it has on record and whether the issue is still a simple permit question or already drifting toward repair or replacement.",
+      "permitPathSteps": [
+        "Start with the county or local health department because IDPH says local offices review many construction plans either through local ordinance or as state agents.",
+        "Ask which permit, evaluation, or private sewage file is already on record before treating the project as a clean install or transfer story.",
+        "Use any evaluation-form flags and code references to decide whether the job is still on a low-end path or widening into repair or replacement."
+      ],
+      "siteEvalSummary": "Illinois public homeowner material is strongest on local health routing, state code visibility, and evaluation-form risk rather than one simple statewide sizing table. The practical homeowner path turns on whether the local file is complete and whether any flagged condition already points toward a bigger job.",
+      "ruleHighlights": [
+        "IDPH says Illinois regulates private sewage disposal systems.",
+        "IDPH says about 90 local health departments review construction plans by local ordinance or as state agents.",
+        "IDPH publicly links the Private Sewage Disposal Code, Licensing Act, and Mound Code from its laws-and-rules page.",
+        "The Illinois evaluation form warns that flagged system conditions may require repair or replacement."
+      ],
+      "localOverrideNote": "Illinois looks statewide through IDPH, but the real homeowner workflow changes quickly once you know which county or local health department holds the file and how complete that file actually is.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["il_01", "il_02", "il_03", "il_04"],
+      "localAuthoritySourceIds": ["il_02"],
+      "recordsLookupSourceIds": ["il_02", "il_04"],
+      "localActionSteps": [
+        "Open the IDPH regional and local health department directory first and identify the office that actually holds the parcel file.",
+        "Ask for any permit file, evaluation form, inspection note, or older private sewage record tied to the property.",
+        "Confirm whether any flagged condition already points toward repair or replacement before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the county or local health department that handles private sewage disposal files and plan review for the parcel.",
+      "recordsToRequest": [
+        "Any permit, plan-review, or installation file already tied to the property.",
+        "Any private sewage disposal evaluation form or transfer-related inspection note already in the file.",
+        "Any code, violation, or local-office note showing whether the system is already drifting toward repair or replacement."
+      ],
+      "lowEndRiskChecks": [
+        "If the county or local health department file is thin, the low end is still a planning scenario rather than a file-backed number.",
+        "If the evaluation form shows flagged conditions, the job can widen beyond a basic install or transfer story quickly.",
+        "If the local office applies a stronger county or ordinance path, the simple statewide estimate can break fast."
+      ],
+      "permitTimelineNote": "Illinois timing often turns on how quickly the local health file surfaces, whether the evaluation form is usable, and whether the issue stays in a clean permit lane or widens toward repair.",
+      "buyerInspectionTrigger": "Buyers should ask for the local health file and any private sewage evaluation form early because the yellow-flagged condition story can be more revealing than the seller summary.",
+      "maintenanceInspectionNote": "Illinois's current source set is strongest on local health routing, code visibility, and evaluation-form context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Illinois's main wrinkle is the split between statewide IDPH code visibility and the county or local office that actually controls the file a homeowner needs next.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable county-level matrix showing which Illinois health departments publish searchable private sewage records.",
+        "Document which Illinois local offices publish transfer-specific septic forms or inspection workflows."
+      ]
+    },
+    {
+      "stateCode": "MD",
+      "stateName": "Maryland",
+      "agencyName": "Maryland Department of the Environment",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Maryland is stronger on buyer diligence, property-transfer inspection risk, and local approving authority routing than on a fake statewide install table. The homeowner wedge is knowing whether the file search, PTI path, and county health record are strong enough before the listing story becomes the anchor.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "MDE says the On-Site Systems Division gives technical assistance to county health departments and local approving authorities, which means the real homeowner file is often local in practice. MDE also publishes the local approving authority directory, the current PTI licensing path, and property-transfer inspection guidance stating that a proper PTI includes a file search, homeowner interview, site inspection, and report. The official guidance further says file access may require a Public Information Act request and that the file may hold age, type, design, location, soils or perc information, complaints, and violations.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Maryland homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Maryland homeowners usually need the local approving authority file and property-transfer context clarified before they trust a sale, inspection, or replacement quote. The project is not really file-backed until the county or local authority confirms what is in the record and whether a PTI or transfer workflow exposes bigger risk than the listing suggests.",
+      "permitPathSteps": [
+        "Start with the county or local approving authority because MDE's onsite division supports those local offices rather than replacing them.",
+        "Ask whether the file search, PTI history, permit paperwork, and any complaint or violation notes are already in view before treating the deal as routine.",
+        "Use the property-transfer guidance to decide whether the current system story is still clean enough for the low end or already widening toward repair, inspection, or negotiation."
+      ],
+      "siteEvalSummary": "Maryland public homeowner material is strongest on local approving authority routing, PTI workflow, and file-search quality rather than one simple statewide sizing story. The practical path turns on whether the county file is available and whether transfer guidance exposes design, soils, or complaint issues.",
+      "ruleHighlights": [
+        "MDE says the On-Site Systems Division gives technical assistance to county health departments and local approving authorities.",
+        "MDE publishes a statewide local approving authority directory for onsite-system questions.",
+        "MDE says PTI licensing applies in the current Maryland transfer and inspection workflow.",
+        "MDE's property-transfer guidance says a proper PTI includes a file search, homeowner interview, inspection, and report."
+      ],
+      "localOverrideNote": "Maryland looks statewide through MDE, but the real homeowner workflow changes quickly once you know which local approving authority controls the file and how complete that file search actually is.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["md_01", "md_02", "md_03", "md_04"],
+      "localAuthoritySourceIds": ["md_02"],
+      "recordsLookupSourceIds": ["md_02", "md_04"],
+      "localActionSteps": [
+        "Open the MDE local approving authority directory first and identify the county office holding the practical file.",
+        "Ask for the permit file, any PTI-related inspection record, and any complaint, violation, soil, or perc note already attached to the parcel.",
+        "Confirm whether the file search will require a Public Information Act request before you assume the sale timeline is straightforward."
+      ],
+      "whoToCallFirst": "Start with the county or local approving authority that handles onsite-system files and property questions for the parcel.",
+      "recordsToRequest": [
+        "Any permit file, design drawing, and as-built or location record tied to the property.",
+        "Any PTI or transfer-related inspection report and the file-search notes behind it.",
+        "Any complaint, violation, soils, or percolation note already in the county record."
+      ],
+      "lowEndRiskChecks": [
+        "If the county or local approving authority file is incomplete, the low end is still a planning scenario rather than a transfer-safe number.",
+        "If the PTI or transfer workflow surfaces complaint, violation, or soils issues, the buyer may inherit more risk than the listing suggests.",
+        "If file access requires a Public Information Act request, the schedule can widen before the quote story feels real."
+      ],
+      "permitTimelineNote": "Maryland timing often turns on how quickly the local file search can be completed, whether PTI paperwork is already usable, and whether complaints or soil limits widen the conversation.",
+      "buyerInspectionTrigger": "Buyers should ask for the local approving authority file and any PTI-backed transfer report early because Maryland's official guidance makes file search quality part of the real risk story.",
+      "maintenanceInspectionNote": "Maryland's current source set is strongest on local approving authority routing, PTI workflow, and transfer-file quality, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Maryland's main wrinkle is that the official property-transfer workflow turns file search quality into part of the deal risk rather than a back-office detail.",
+      "confidenceScore": 0.82,
+      "itemsNeedingVerification": [
+        "Add a county-level matrix showing which Maryland local approving authorities expose online permit or septic-record access.",
+        "Document whether any Maryland counties publish simpler homeowner instructions for Public Information Act file requests."
+      ]
+    },
+    {
+      "stateCode": "WI",
+      "stateName": "Wisconsin",
+      "agencyName": "Wisconsin Department of Safety and Professional Services",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Wisconsin is stronger on county inspection control, POWTS maintenance tracking, and delegated-review reality than on a fake statewide install table. The homeowner wedge is knowing whether the county file, maintenance history, and latest inspection paperwork are real before trusting the cheapest story.",
+      "ruleType": "inspection_path",
+      "ruleSummaryPlainEnglish": "DSPS says counties have primary responsibility to inspect private onsite wastewater treatment systems, that sanitary permit applications are submitted to the county, and that plan review may go through a delegated county or the department. DSPS also says all POWTS entered the maintenance tracking program on October 1 2019 and that systems are visually inspected at least once every three years. The official inspection-report form and delegated-agent directory matter because the real homeowner workflow is county-driven in practice rather than controlled by one generic statewide office.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Wisconsin homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Wisconsin homeowners usually need the county file and POWTS maintenance story clarified before they trust an inspection, sale, or replacement quote. The project is not really inspection-backed until the county or delegated agent confirms what is on file and whether the system has stayed current in the maintenance program.",
+      "permitPathSteps": [
+        "Start with the county or delegated agent because DSPS says counties carry primary inspection responsibility and sanitary permit applications go to the county.",
+        "Ask for the sanitary permit file, the latest POWTS inspection paperwork, and any maintenance-tracking history before treating the system as low-risk.",
+        "Use the inspection and maintenance record to decide whether the project is still a straightforward inspection story or already widening toward repair, transfer, or replacement."
+      ],
+      "siteEvalSummary": "Wisconsin public homeowner material is strongest on county inspection control, maintenance-tracking obligations, and delegated review rather than one simple statewide sizing story. The practical path turns on whether the county file is current and whether the three-year inspection cadence has actually been followed.",
+      "ruleHighlights": [
+        "DSPS says counties have primary responsibility to inspect POWTS.",
+        "DSPS says sanitary permit applications are submitted to the county.",
+        "DSPS says all POWTS entered the maintenance tracking program on October 1 2019.",
+        "DSPS says POWTS are visually inspected at least once every three years."
+      ],
+      "localOverrideNote": "Wisconsin looks statewide through DSPS, but the real homeowner workflow changes quickly once you know which county or delegated agent holds the file and whether the maintenance record is current.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["wi_01", "wi_02", "wi_03", "wi_04"],
+      "localAuthoritySourceIds": ["wi_04"],
+      "recordsLookupSourceIds": ["wi_03", "wi_04"],
+      "localActionSteps": [
+        "Open the DSPS delegated-agent list first and confirm which county or local agent handles POWTS questions for the parcel.",
+        "Ask for the sanitary permit, the latest inspection report, and any maintenance-tracking status already tied to the system.",
+        "Confirm whether the three-year inspection cadence has been met before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the county zoning, sanitation, or delegated-agent office that handles POWTS files and inspection workflow for the property.",
+      "recordsToRequest": [
+        "The sanitary permit file and any plan-review material already on record.",
+        "The latest POWTS inspection report and any maintenance-tracking history tied to the system.",
+        "Any county or delegated-agent note showing whether the system is overdue, flagged, or already drifting toward repair."
+      ],
+      "lowEndRiskChecks": [
+        "If the county file cannot surface the sanitary permit or recent inspection paperwork, the low end is still a planning scenario.",
+        "If the maintenance-tracking history is thin or overdue, the system may be riskier than the seller or installer summary suggests.",
+        "If plan review or inspection routed through a delegated county with added requirements, the simple statewide estimate can break quickly."
+      ],
+      "permitTimelineNote": "Wisconsin timing often turns on how quickly the county file surfaces, whether the inspection cadence is current, and whether delegated review adds local friction.",
+      "buyerInspectionTrigger": "Buyers should ask for the sanitary permit file and latest POWTS inspection report early because Wisconsin's maintenance-tracking story can expose risk that a generic inspection quote misses.",
+      "maintenanceInspectionNote": "Wisconsin's current source set is strongest on county inspection control, maintenance tracking, and delegated-agent routing, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Wisconsin's main wrinkle is that the official three-year inspection cadence and county POWTS file make maintenance history part of the real inspection conversation.",
+      "confidenceScore": 0.81,
+      "itemsNeedingVerification": [
+        "Add a county-level matrix showing which Wisconsin counties expose POWTS permit or maintenance records online.",
+        "Document whether Wisconsin counties publish homeowner-facing transfer or inspection checklists beyond the DSPS forms."
+      ]
+    },
+    {
+      "stateCode": "LA",
+      "stateName": "Louisiana",
+      "agencyName": "Louisiana Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Louisiana is stronger on parish health routing, site-path risk, and sewer-availability friction than on a fake statewide tank table. The homeowner wedge is knowing whether the parish file, sewer gate, and application packet still keep the job on a conventional path before trusting the low end.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "LDH's wastewater program says parish sanitarians in local health units inform, advise, and operate the onsite wastewater permitting workflow. LDH's permit application information and application packet point homeowners toward the real file path, and the packet says community sewer must be used when available, the homeowner must be the applicant, and a legible property plat is required. The local office path matters because Louisiana's practical homeowner workflow is routed through parish health units rather than a generic statewide estimator.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Louisiana homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Louisiana homeowners usually need the parish health path and application packet clarified before they trust a new-install, perc, or replacement quote. The project is not really site-ready until the parish office confirms whether community sewer is available, whether the homeowner packet is complete, and whether the lot still fits a straightforward system path.",
+      "permitPathSteps": [
+        "Start with the parish health unit because LDH routes onsite wastewater permitting through sanitarians in local health offices.",
+        "Confirm whether community sewer is available before you assume the parcel stays on a septic path at all.",
+        "Use the application packet, property plat, and parish-office feedback to decide whether the job is still on a conventional low-end path or widening toward a more complex site story."
+      ],
+      "siteEvalSummary": "Louisiana public homeowner material is strongest on parish health routing, sewer-availability gating, and application-packet friction rather than one simple statewide sizing story. The practical path turns on whether the parish file is clean and whether the lot still qualifies for the assumed system path.",
+      "ruleHighlights": [
+        "LDH says parish sanitarians in local health units inform, advise, and operate the onsite wastewater permitting path.",
+        "LDH's application packet says community sewer must be used when available.",
+        "LDH's application packet says the homeowner must be the applicant.",
+        "LDH's application packet requires a legible property plat."
+      ],
+      "localOverrideNote": "Louisiana looks statewide through LDH, but the real homeowner workflow changes quickly once you know which parish health unit owns the file and whether community sewer blocks the septic path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["la_01", "la_02", "la_03", "la_04"],
+      "localAuthoritySourceIds": ["la_04"],
+      "recordsLookupSourceIds": ["la_02", "la_04"],
+      "localActionSteps": [
+        "Open the LDH directory first and identify the parish health unit that handles onsite wastewater questions for the parcel.",
+        "Ask whether community sewer availability blocks the septic path before you anchor to a conventional low-end range.",
+        "Confirm that the homeowner application packet, property plat, and parish-office requirements are actually complete before you trust the site story."
+      ],
+      "whoToCallFirst": "Start with the parish health unit or sanitarian that handles onsite wastewater permits and file questions for the property.",
+      "recordsToRequest": [
+        "Any parish permit file or application packet already tied to the property.",
+        "Any property plat, sewer-availability note, or site-review comment already attached to the parcel file.",
+        "Any parish health-unit note showing whether the lot is still on a straightforward system path or already widening."
+      ],
+      "lowEndRiskChecks": [
+        "If the parish office says community sewer is available, the septic low end is no longer the right planning frame.",
+        "If the application packet or property plat is incomplete, the project is still a planning scenario rather than a site-ready number.",
+        "If parish review surfaces site limits or a different treatment path, the job can move beyond the cheapest conventional story quickly."
+      ],
+      "permitTimelineNote": "Louisiana timing often turns on how quickly the parish office confirms sewer availability, whether the homeowner packet is complete, and whether the lot still fits the assumed system path.",
+      "buyerInspectionTrigger": "Buyers should ask for the parish health file and sewer-availability story early because the application packet and parish route can reveal more risk than the seller summary.",
+      "maintenanceInspectionNote": "Louisiana's current source set is strongest on parish routing, permit-packet friction, and sewer-availability gating, not on one simple statewide maintenance cadence.",
+      "specialAreaNote": "Louisiana's main wrinkle is that the sewer-availability gate and parish health routing can remove the parcel from the simple septic story before perc or install pricing means much.",
+      "confidenceScore": 0.75,
+      "itemsNeedingVerification": [
+        "Add a parish-level matrix showing which Louisiana health units publish wastewater forms or permit instructions online.",
+        "Document whether LDH publishes a simpler statewide homeowner explanation of site evaluation or perc workflow outside the application packet."
+      ]
+    },
+    {
       "stateCode": "SC",
       "stateName": "South Carolina",
       "agencyName": "South Carolina Department of Environmental Services",

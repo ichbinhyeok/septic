@@ -3,60 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "IL",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Illinois is one of the bigger Midwest surface-area gaps, and a records-first wedge is more defensible than pretending there is one simple statewide install story.",
-      "launchAngle": "Target angle: county or local file retrieval plus permit-path reality before the buyer or owner trusts a flat estimate.",
-      "recommendedPath": "/septic-records-checklist/",
-      "researchTasks": [
-        "Find the statewide homeowner-facing onsite wastewater or private sewage guidance hub.",
-        "Map where county or local office control changes the first file request or permit call.",
-        "Collect the safest public language on permit files, inspection records, or transfer-related diligence."
-      ]
-    },
-    {
-      "stateCode": "MD",
-      "priorityRank": 2,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Maryland fills a high-value Mid-Atlantic gap and can likely support a buyer-risk and local-authority story that sits naturally beside Pennsylvania and Virginia.",
-      "launchAngle": "Target angle: buyer diligence, local health routing, and file quality before a homeowner assumes the listing story is enough.",
-      "recommendedPath": "/buying-a-house-with-a-septic-system/",
-      "researchTasks": [
-        "Find the statewide homeowner guidance for septic permits, inspections, or property-transfer context.",
-        "Collect county or local health routing that changes who actually holds the file.",
-        "Document which official deal-risk or inspection triggers are safe to publish for buyer pages."
-      ]
-    },
-    {
-      "stateCode": "WI",
-      "priorityRank": 3,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Wisconsin is a meaningful Upper Midwest gap where inspection and maintenance obligations may create a stronger wedge than generic install pricing.",
-      "launchAngle": "Target angle: inspection timing, maintenance obligations, and local office control before the owner anchors to the low end.",
-      "recommendedPath": "/septic-inspection-cost/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for POWTS, septic inspections, or maintenance obligations.",
-        "Pull official language showing how local or county administration changes the real workflow.",
-        "Collect any public inspection cadence or transfer-related requirement that can anchor an inspection page."
-      ]
-    },
-    {
-      "stateCode": "LA",
-      "priorityRank": 4,
-      "rolloutWave": "Wave 3",
-      "whyNow": "Louisiana covers a Gulf-state gap and is more likely to win on site and system-risk nuance than on a fake exact statewide tank narrative.",
-      "launchAngle": "Target angle: site constraints, system-path risk, and permit friction before the homeowner assumes a conventional low-end install.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide homeowner guidance for septic approvals, soil limits, or site review.",
-        "Collect the public permit or site-evaluation sequence that decides whether the system path stays straightforward.",
-        "Find any parish or local-office routing that changes the next call."
-      ]
-    },
-    {
       "stateCode": "IN",
-      "priorityRank": 5,
+      "priorityRank": 1,
       "rolloutWave": "Wave 3",
       "whyNow": "Indiana is a broad Midwest gap where local health department routing can create a real permit-path wedge without needing fake technical precision.",
       "launchAngle": "Target angle: local permit path, county file quality, and next-call clarity before install quotes harden.",
@@ -69,7 +17,7 @@
     },
     {
       "stateCode": "OK",
-      "priorityRank": 6,
+      "priorityRank": 2,
       "rolloutWave": "Wave 3",
       "whyNow": "Oklahoma fills a central coverage gap and likely supports a site-risk wedge that national install pages flatten too aggressively.",
       "launchAngle": "Target angle: perc, soil, and system-path risk before the homeowner assumes a standard install route.",
@@ -82,7 +30,7 @@
     },
     {
       "stateCode": "KY",
-      "priorityRank": 7,
+      "priorityRank": 3,
       "rolloutWave": "Wave 3",
       "whyNow": "Kentucky rounds out the Tennessee and Ohio corridor and can likely support a records-first wedge where local file quality matters more than broad averages.",
       "launchAngle": "Target angle: permit-file retrieval and local office confirmation before the homeowner treats the quote as settled.",
@@ -95,7 +43,7 @@
     },
     {
       "stateCode": "MN",
-      "priorityRank": 8,
+      "priorityRank": 4,
       "rolloutWave": "Wave 3",
       "whyNow": "Minnesota can likely support a buyer-risk and compliance wedge that is stronger than generic install pricing, especially if the file and transfer story are thin.",
       "launchAngle": "Target angle: buyer diligence, compliance status, and local office routing before the seller story sets the anchor.",
@@ -108,7 +56,7 @@
     },
     {
       "stateCode": "AR",
-      "priorityRank": 9,
+      "priorityRank": 5,
       "rolloutWave": "Wave 3",
       "whyNow": "Arkansas closes a regional gap next to Missouri, Tennessee, and Oklahoma and can likely support a permit-first page before the cluster loses momentum.",
       "launchAngle": "Target angle: permit path and local-office handoff before the homeowner trusts a flat install range.",
@@ -121,7 +69,7 @@
     },
     {
       "stateCode": "MS",
-      "priorityRank": 10,
+      "priorityRank": 6,
       "rolloutWave": "Wave 3",
       "whyNow": "Mississippi keeps the Southeast buildout moving and likely supports a county-health permit and records story before the regional cluster loses pace.",
       "launchAngle": "Target angle: county health permit path and file retrieval before the homeowner trusts a simple install quote.",

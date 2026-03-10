@@ -3713,6 +3713,244 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-records-checklist",
+      "stateCode": "IL",
+      "title": "Illinois Septic Records Checklist",
+      "metaDescription": "Illinois septic records checklist with county health routing, evaluation-form risk, and IDPH code context in mind.",
+      "introCopy": "Illinois records intent is stronger than a generic septic checklist because the real homeowner file usually sits with the county or local health department, while the statewide code page and evaluation form explain why a thin file can hide repair or replacement risk.",
+      "uniqueAngle": "Illinois records intent is strongest when the page connects county or local file retrieval, evaluation-form flags, and the state code path instead of pretending the buyer or owner only needs a permit copy.",
+      "targetReader": "Best for Illinois buyers, owners, and agents who know the property uses private sewage disposal but still need to know whether the local file, the evaluation form, or county-specific handling creates real risk before purchase, repair, or replacement.",
+      "fitBullets": [
+        "You know the property uses a private sewage system, but no one has shown the county or local health department file yet.",
+        "You need to know whether an evaluation form, code note, or flagged condition already points toward repair or replacement.",
+        "The seller or owner says the system is fine, but the real file path still feels thin."
+      ],
+      "decisionSteps": [
+        "Start with the county or local health department because IDPH says local offices review many private sewage construction plans and usually control the practical file path.",
+        "Request any permit, plan-review, installation, inspection, or evaluation-form record tied to the property before relying on seller memory alone.",
+        "Use any flagged evaluation-form condition or county note to decide whether the story is still a routine records question or already a repair or replacement risk.",
+        "Then compare the local file against the current property story before you move into buyer negotiation, repair follow-up, or replacement planning."
+      ],
+      "lowEndBreakers": [
+        "The file can break the low-end story quickly if the county or local office cannot surface a meaningful permit or evaluation record.",
+        "A flagged evaluation-form condition can make the system riskier than a simple transfer summary suggests.",
+        "Local ordinance or county handling can widen the real workflow before you trust the cheapest quote."
+      ],
+      "quotePrepChecklist": [
+        "The county or local health department contact responsible for the file.",
+        "Any permit, installation, or plan-review document tied to the property.",
+        "Any private sewage disposal evaluation form or transfer-related inspection note already in the file.",
+        "Any county or code note showing whether the system has drifted toward repair or replacement."
+      ],
+      "driverBullets": [
+        "Illinois homeowners usually need the local health file before a records conversation becomes real.",
+        "Evaluation-form flags can surface repair or replacement risk that the seller story skips.",
+        "County or local handling can matter more than a generic statewide septic estimate."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Illinois?",
+          "answer": "Start with the county or local health department file, including any permit, installation, plan-review, or evaluation-form record tied to the property."
+        },
+        {
+          "question": "Why does the Illinois records checklist mention the evaluation form?",
+          "answer": "Because IDPH's public evaluation form warns that flagged conditions may mean repair or replacement is needed, which can change the buyer or owner risk story fast."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/illinois/",
+        "/septic-system-cost-calculator/?state=IL&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "il_01",
+        "il_02",
+        "il_03",
+        "il_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "MD",
+      "title": "Buying a House With a Septic System in Maryland",
+      "metaDescription": "Maryland homebuyer septic checklist with local approving authority routing, PTI context, and property-transfer file-search risk.",
+      "introCopy": "Maryland buyer risk is rarely just about paying for an inspection. The official MDE transfer guidance says a proper PTI includes a file search, homeowner interview, inspection, and report, which means the county or local approving authority file can change the deal before anyone trusts the listing story.",
+      "uniqueAngle": "Maryland buyer intent is strongest when the page explains local approving authority files and property-transfer inspection workflow together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Maryland buyers, sellers, and agents who know the property uses onsite wastewater treatment but still need to know whether the local file, PTI path, or transfer paperwork creates real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has shown the local approving authority file or PTI-backed transfer record yet.",
+        "You need to know whether the county file is complete enough to trust the current system story before closing.",
+        "You want a due-diligence checklist that catches complaint, violation, or soils risk before negotiation turns into repair or replacement."
+      ],
+      "decisionSteps": [
+        "Start with the county or local approving authority and ask for the onsite-system file tied to the property before you debate inspection price or credits.",
+        "Confirm whether a property-transfer inspection, file search, or PTI-backed report already exists and whether it is complete enough to trust.",
+        "Compare the permit file, design paperwork, complaint history, and seller disclosure so you know whether the system story is actually supported.",
+        "Then price inspection, repair, or replacement risk only after the local file makes the buyer's real inheritance clearer."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the local approving authority file is thin or incomplete.",
+        "Complaint, violation, soils, or perc notes in the file can make the deal more complex than the listing suggests.",
+        "If file access requires a Public Information Act request, timing can widen before closing feels simple."
+      ],
+      "quotePrepChecklist": [
+        "The county or local approving authority contact with jurisdiction over the property.",
+        "The permit file, design paperwork, and any location or as-built material tied to the site.",
+        "Any PTI or transfer-related inspection report and the file-search notes behind it.",
+        "Any complaint, violation, soils, or percolation note already shared during the deal."
+      ],
+      "driverBullets": [
+        "MDE's property-transfer workflow makes file-search quality part of the real buyer risk story.",
+        "The local approving authority file can reveal complaint, violation, or soils problems before closing.",
+        "If the file is weak, the inspection alone is not enough to trust the low end."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic document a Maryland buyer should ask for?",
+          "answer": "Ask for the county or local approving authority file, especially any permit paperwork, PTI-backed transfer report, and location or design record tied to the property."
+        },
+        {
+          "question": "Why does PTI context matter in a Maryland septic deal?",
+          "answer": "Because MDE's guidance says a proper PTI includes a file search, homeowner interview, inspection, and report, so the quality of that file search can change how much risk the buyer is really inheriting."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/maryland/",
+        "/septic-system-cost-calculator/?state=MD&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "md_01",
+        "md_02",
+        "md_03",
+        "md_04"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "WI",
+      "title": "Wisconsin Septic Inspection Cost",
+      "metaDescription": "Wisconsin septic inspection cost with county POWTS routing, maintenance-tracking context, and delegated-agent file questions.",
+      "introCopy": "Wisconsin inspection pages are useful because the state makes the county role explicit. DSPS says counties have primary responsibility to inspect POWTS, and the maintenance program means the real homeowner story often starts with the county file and whether the system has stayed current on inspection and tracking.",
+      "uniqueAngle": "Wisconsin inspection intent is strongest when the page connects county inspection control, maintenance tracking, and delegated review instead of pretending a septic inspection is the same statewide everywhere.",
+      "targetReader": "Best for Wisconsin owners, buyers, and agents who need to know which county or delegated agent controls the file, whether the sanitary permit and inspection paperwork already exist, and why maintenance history can change the inspection conversation.",
+      "fitBullets": [
+        "You need an inspection quote, but no one has confirmed which county or delegated agent controls the POWTS file.",
+        "The seller says the system is maintained, but no one has shown the latest inspection report or maintenance-tracking history.",
+        "You need to know whether the system is really current before you trust a simple inspection number."
+      ],
+      "decisionSteps": [
+        "Start with the county or delegated agent because DSPS says counties carry primary POWTS inspection responsibility.",
+        "Ask for the sanitary permit file, latest inspection report, and maintenance-tracking history before treating the inspection as routine.",
+        "Check whether the three-year inspection cadence appears current or whether the file is already signaling overdue or flagged conditions.",
+        "Then compare inspection scope, file quality, and maintenance status before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If the county file cannot surface the sanitary permit or latest inspection report, the low end is still a planning scenario.",
+        "If maintenance tracking is overdue or thin, the system may need more than a simple inspection visit.",
+        "If delegated review added county-specific requirements, the inspection path can widen beyond a generic statewide assumption."
+      ],
+      "quotePrepChecklist": [
+        "The county or delegated-agent contact responsible for the POWTS file.",
+        "The sanitary permit and any plan-review material already tied to the system.",
+        "The latest POWTS inspection report and maintenance-tracking history.",
+        "Any note showing whether the system is overdue, flagged, or already under follow-up."
+      ],
+      "driverBullets": [
+        "Wisconsin inspection timing depends heavily on the county file being real and current.",
+        "The maintenance-tracking program can expose risk that a simple seller summary misses.",
+        "Delegated-agent routing can change how quickly the inspection path becomes usable."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Wisconsin inspection step a homeowner should take?",
+          "answer": "Find the county or delegated-agent office first, because DSPS says counties have primary responsibility to inspect POWTS and control the practical file path."
+        },
+        {
+          "question": "Why does Wisconsin inspection content need to mention maintenance tracking?",
+          "answer": "Because DSPS says all POWTS entered the maintenance-tracking program and are visually inspected at least once every three years, so the maintenance record is part of the real inspection story."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/wisconsin/",
+        "/septic-system-cost-calculator/?state=WI&projectType=inspection",
+        "/septic-records-checklist/",
+        "/septic-inspection-cost/"
+      ],
+      "officialSourceIds": [
+        "wi_01",
+        "wi_02",
+        "wi_03",
+        "wi_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "LA",
+      "title": "Louisiana Perc Test Cost",
+      "metaDescription": "Louisiana perc and site-path planning page with parish health routing, sewer-availability gate, and application-packet friction in mind.",
+      "introCopy": "Louisiana perc and site-path questions are stronger than a generic national test page because the parish health route and the application packet often decide whether the parcel is even staying on a septic path. The community-sewer gate can kill the simple perc story before a homeowner ever reaches a normal low-end assumption.",
+      "uniqueAngle": "Louisiana site-testing intent is strongest when the page connects parish health routing, sewer-availability checks, and the homeowner application packet instead of pretending a perc result alone decides the project.",
+      "targetReader": "Best for Louisiana owners, buyers, builders, and agents who need to know whether the parish health unit still views the lot as a septic site and what file or packet friction can widen the project before design and install pricing mean much.",
+      "fitBullets": [
+        "You want a perc or site-approval estimate, but no one has confirmed whether community sewer availability already changes the whole path.",
+        "The contractor says the lot looks straightforward, but no one has surfaced the parish application packet or property-plat requirements.",
+        "You need to know whether the parcel is still on a conventional septic path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the parish health unit because Louisiana's practical onsite wastewater path runs through local sanitarians and parish offices.",
+        "Confirm whether community sewer is available before you treat the parcel like a normal septic or perc-test conversation.",
+        "Check whether the homeowner application packet, property plat, and parish requirements are already complete enough to support site review.",
+        "Then compare site-path risk, packet quality, and parish-office feedback before you schedule work around the lowest quote."
+      ],
+      "lowEndBreakers": [
+        "If community sewer is available, the septic low-end story is no longer the right frame.",
+        "If the application packet or property plat is incomplete, the project is still a planning scenario rather than a site-ready number.",
+        "If parish review surfaces site or treatment-path limits, the perc or site-review job can widen beyond the cheapest conventional story."
+      ],
+      "quotePrepChecklist": [
+        "The parish health unit contact responsible for onsite wastewater questions.",
+        "Any parish permit or application packet already tied to the property.",
+        "The property plat and any sewer-availability or site-review note already on file.",
+        "A short note showing whether the project is still being treated as a septic path or has already hit a sewer-availability gate."
+      ],
+      "driverBullets": [
+        "Louisiana site-testing timing depends heavily on the parish health route being clear first.",
+        "The sewer-availability gate can remove the parcel from the normal septic conversation fast.",
+        "Packet completeness and property-plat quality can widen the site-review path before the low end means much."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Louisiana site-review step a homeowner should take?",
+          "answer": "Call the parish health unit first, because Louisiana routes practical onsite wastewater questions and permitting through parish sanitarians and local health offices."
+        },
+        {
+          "question": "Why does Louisiana perc content need to mention community sewer availability?",
+          "answer": "Because LDH's application packet says community sewer must be used when available, which means a normal septic or perc path can disappear before the homeowner trusts the low end."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/louisiana/",
+        "/septic-system-cost-calculator/?state=LA&projectType=perc_test",
+        "/septic-permit-process/",
+        "/perc-test-cost/"
+      ],
+      "officialSourceIds": [
+        "la_01",
+        "la_02",
+        "la_03",
+        "la_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AL",
       "title": "Alabama Septic Permit Process",

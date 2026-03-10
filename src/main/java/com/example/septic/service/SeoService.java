@@ -206,6 +206,10 @@ public class SeoService {
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama septic cost guide and county permit path";
+            case "IL" -> "Illinois septic cost guide and local health file path";
+            case "MD" -> "Maryland septic cost guide and property transfer risk";
+            case "WI" -> "Wisconsin septic cost guide and POWTS inspection path";
+            case "LA" -> "Louisiana septic cost guide and parish site-risk path";
             case "AZ" -> "Arizona septic cost guide and site approval path";
             case "CO" -> "Colorado septic cost guide and local OWTS permit path";
             case "VA" -> "Virginia septic cost guide and inspection obligations";
@@ -500,6 +504,10 @@ public class SeoService {
     private String stateGuideTitle(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
+            case "IL" -> "Illinois Septic Cost Guide and Local Health File Path";
+            case "MD" -> "Maryland Septic Cost Guide and Property Transfer Risk";
+            case "WI" -> "Wisconsin Septic Cost Guide and POWTS Inspection Path";
+            case "LA" -> "Louisiana Septic Cost Guide and Parish Site-Risk Path";
             case "AZ" -> "Arizona Septic Cost Guide and Site Approval Path";
             case "CO" -> "Colorado Septic Cost Guide and Local OWTS Permit Path";
             case "VA" -> "Virginia Septic Cost Guide and Inspection Obligations";
@@ -527,6 +535,10 @@ public class SeoService {
     private String stateGuideDescription(StateProfile state) {
         return switch (state.stateCode()) {
             case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
+            case "IL" -> "Illinois septic planning estimates with local health file routing, evaluation-form context, and official-source links.";
+            case "MD" -> "Maryland septic planning estimates with local approving authority routing, PTI transfer context, and official-source links.";
+            case "WI" -> "Wisconsin septic planning estimates with county POWTS routing, maintenance-tracking context, and official-source links.";
+            case "LA" -> "Louisiana septic planning estimates with parish health routing, sewer-availability context, and official-source links.";
             case "AZ" -> "Arizona septic planning estimates with county delegation, site-investigation paperwork, and official ADEQ source links.";
             case "CO" -> "Colorado septic planning estimates with local public health routing, site-and-soil paperwork, and official-source links.";
             case "VA" -> "Virginia septic planning estimates with local health district routing, operation-permit context, and inspection obligations.";
