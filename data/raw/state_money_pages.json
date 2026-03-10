@@ -3361,6 +3361,66 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "septic-inspection-cost",
+      "stateCode": "VA",
+      "title": "Virginia Septic Inspection Cost",
+      "metaDescription": "Virginia septic inspection cost with local health district routing, operation-permit context, and conventional-versus-AOSS maintenance risk in mind.",
+      "introCopy": "Virginia inspection intent is stronger than a generic national inspection page because the real homeowner question is usually whether the system is conventional or AOSS, what the local health district file says, and whether an operation permit changes the ownership burden after the visit.",
+      "uniqueAngle": "Virginia inspection content is strongest when it explains conventional-versus-AOSS cadence, operation permits, and local health-district records instead of stopping at one flat inspection fee.",
+      "targetReader": "Best for Virginia buyers and owners who want an inspection price but still need to know whether the system type, operation-permit obligations, and local file make the visit routine or strategically important.",
+      "fitBullets": [
+        "You can schedule an inspection, but you still do not know whether the system is conventional or AOSS.",
+        "The property may carry an operation permit, operator reports, or other maintenance duties that matter more than the sticker price.",
+        "You need to know whether the local health district file supports a routine inspection or a broader compliance and buyer-risk conversation."
+      ],
+      "decisionSteps": [
+        "Identify the local health district environmental health office first because that office controls the practical next call for the parcel.",
+        "Confirm whether the system is conventional or AOSS and whether an operation permit or operator cadence already applies.",
+        "Pull permits, the operation and maintenance manual, inspection reports, as-built drawings, and any notice of recordation before treating the inspection as a stand-alone line item.",
+        "Then compare inspection pricing with a clear view of whether the bigger issue is routine maintenance, inherited operation-permit burden, or missing file history."
+      ],
+      "lowEndBreakers": [
+        "The low-end inspection story breaks if the system type is still unclear and no one has confirmed whether the property is conventional or AOSS.",
+        "Missing operation-permit, operator, or inspection records can make the visit much more than a routine check.",
+        "A thin local health district file can turn buyer diligence into a broader compliance or repair conversation quickly."
+      ],
+      "quotePrepChecklist": [
+        "The local health district environmental health contact for the property.",
+        "The construction permit and any operation permit already tied to the system.",
+        "The operation and maintenance manual plus any recent inspection or operator reports.",
+        "As-built drawings, notice of recordation, and the reason for the inspection: sale, routine maintenance, or follow-up on a concern."
+      ],
+      "driverBullets": [
+        "A conventional system and an AOSS do not carry the same ongoing inspection and maintenance burden in Virginia.",
+        "Operation-permit and operator-visit obligations can matter more than the inspection fee itself.",
+        "Local health district file quality can turn a routine inspection into a larger ownership-risk conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does Virginia septic inspection cost depend so much on system type?",
+          "answer": "Because VDH distinguishes between conventional maintenance expectations and AOSS systems that can carry operator visits and operation-permit obligations."
+        },
+        {
+          "question": "What should a Virginia buyer request with the inspection?",
+          "answer": "Ask for the construction permit, any operation permit, the operation and maintenance manual, inspection or operator reports, as-built drawings, and any notice of recordation tied to the system."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/virginia/",
+        "/septic-system-cost-calculator/?state=VA&projectType=inspection",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/"
+      ],
+      "officialSourceIds": [
+        "va_01",
+        "va_02",
+        "va_03",
+        "va_04"
+      ],
+      "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "CA",
       "title": "California Septic Records Checklist",

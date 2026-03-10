@@ -147,6 +147,9 @@ public class EstimatorService {
         if ("CO".equals(state.stateCode())) {
             checklist.add("Confirm which Colorado local public health agency controls the file and whether a Site and Soil Evaluation Report or transfer-of-title review is already on record.");
         }
+        if ("VA".equals(state.stateCode())) {
+            checklist.add("Confirm which Virginia local health district controls the file and whether operation-permit, operator, or recent inspection records are already on record.");
+        }
         if ("CA".equals(state.stateCode())) {
             checklist.add("Confirm which local agency controls the file and whether the property is in a default Tier 1 path or a LAMP-driven local program.");
         }
@@ -463,6 +466,9 @@ public class EstimatorService {
         }
         if ("CO".equals(state.stateCode())) {
             return "This Colorado range stays wide because the local public health agency, the Site and Soil Evaluation Report, and transfer-of-title or permit history can all move the job quickly.";
+        }
+        if ("VA".equals(state.stateCode())) {
+            return "This Virginia range stays wide because the local health district file, operation-permit obligations, and conventional-versus-AOSS inspection cadence can all move the job quickly.";
         }
         if ("CA".equals(state.stateCode())) {
             return "This California range stays wide because local agency routing and LAMP versus Tier 1 differences matter more than a single statewide homeowner tank table.";

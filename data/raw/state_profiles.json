@@ -601,6 +601,64 @@
       ]
     },
     {
+      "stateCode": "VA",
+      "stateName": "Virginia",
+      "agencyName": "Virginia Department of Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Virginia is stronger on inspection obligations, operation permits, and local health-district routing than on fake statewide tank precision. The homeowner wedge is knowing whether the system is conventional or AOSS and what the local file says before trusting the low end.",
+      "ruleType": "hybrid",
+      "ruleSummaryPlainEnglish": "VDH's onsite sewage page says owners must obtain a construction permit from the health department or VDH before a sewage disposal system is installed and that some systems are eligible for operation permits, including alternative onsite sewage systems and private pumped systems. VDH's onsite sewage handbook says a conventional system generally should be pumped every 3 to 5 years, that some AOSS require licensed operator visits every 3, 6, or 12 months, and that the operation and maintenance manual should stay with the system. VDH's buyer page tells homeowners to ask for permits, operation permits, the operation and maintenance manual, inspection reports, as-built drawings, and any notice of recordation tied to the system.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Virginia homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Virginia homeowners usually start with the local health district because construction permits still run through the health department or VDH and some systems carry operation-permit duties after installation. The practical path is usually not clear until the local file shows whether the property is conventional or AOSS and what inspection cadence follows.",
+      "permitPathSteps": [
+        "Start with the local health district environmental health office because that office controls the homeowner's practical onsite sewage path.",
+        "Confirm whether the property only has a construction permit path or whether an operation permit, AOSS, or private pumped-system duty is already attached to the file.",
+        "Ask for permits, the operation and maintenance manual, inspection reports, and as-built drawings before you trust the low end."
+      ],
+      "siteEvalSummary": "Virginia's public homeowner set is strongest on local health-district routing, inspection cadence, and operation-permit obligations rather than a simple statewide sizing table. The practical path turns on whether the system is conventional or AOSS and whether the local file is complete enough to trust the next step.",
+      "ruleHighlights": [
+        "VDH says owners obtain a construction permit from the health department or VDH before a sewage disposal system is installed.",
+        "VDH says some systems are eligible for operation permits, including alternative onsite sewage systems and private pumped systems.",
+        "VDH's homeowner handbook says a conventional system generally should be pumped every 3 to 5 years.",
+        "VDH's homeowner handbook says some AOSS require licensed operator visits every 3, 6, or 12 months."
+      ],
+      "localOverrideNote": "Virginia looks statewide through VDH, but the homeowner workflow changes quickly once you know which local health district owns the file and whether the system carries operation-permit or AOSS obligations.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["va_01", "va_02", "va_03", "va_04"],
+      "localAuthoritySourceIds": ["va_03"],
+      "recordsLookupSourceIds": ["va_04"],
+      "localActionSteps": [
+        "Open the local health district page first and identify the environmental health office for the parcel.",
+        "Ask for the construction permit, any operation permit, the operation and maintenance manual, inspection reports, and as-built drawings tied to the property.",
+        "Confirm whether the system is conventional or AOSS and what pump-out or operator-visit cadence applies before you anchor to the low end."
+      ],
+      "whoToCallFirst": "Start with the local health district environmental health office that handles onsite sewage for the property.",
+      "recordsToRequest": [
+        "The construction permit and any operation permit tied to the system.",
+        "The operation and maintenance manual plus any recent inspection or operator reports.",
+        "As-built drawings and any notice of recordation tied to the property."
+      ],
+      "lowEndRiskChecks": [
+        "If the system type is still unclear, the low end is still a planning scenario, not a reliable inspection or maintenance number.",
+        "If operation-permit, operator, or inspection reports are missing, the homeowner may be inheriting more than a routine pump-out cycle.",
+        "If the local file is thin, buyer diligence can widen into a larger compliance or repair conversation quickly."
+      ],
+      "permitTimelineNote": "Virginia timing often turns on how quickly the local health district can surface the file and whether the property carries conventional maintenance or AOSS operator obligations.",
+      "buyerInspectionTrigger": "Buyers should ask for permits, operation permits, the operation and maintenance manual, inspection reports, as-built drawings, and any notice of recordation early because Virginia risk often lives in the file rather than the seller summary.",
+      "maintenanceInspectionNote": "Virginia's current source set is strongest on pump-out cadence for conventional systems and recurring operator visits for some AOSS, not on one simple statewide maintenance rule for every system.",
+      "specialAreaNote": "Virginia's main wrinkle is conventional versus AOSS treatment plus the local health district file that determines whether the owner inherits routine pump-out expectations or a more active operation-permit burden.",
+      "confidenceScore": 0.82,
+      "itemsNeedingVerification": [
+        "Add a durable statewide matrix showing which Virginia districts publish searchable onsite records or online permit forms.",
+        "Document where Virginia local offices surface AOSS operator reports or notice-of-recordation details online."
+      ]
+    },
+    {
       "stateCode": "OR",
       "stateName": "Oregon",
       "agencyName": "Oregon Department of Environmental Quality",

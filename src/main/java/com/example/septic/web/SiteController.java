@@ -888,6 +888,10 @@ public class SiteController {
                     "Estimate before calling the local public health agency",
                     "Colorado quote conversations get more real once you know which local public health agency owns the file and whether site-and-soil or transfer-of-title paperwork is already in play."
             );
+            case "VA" -> new StateActionCopy(
+                    "Estimate before the local health-district call",
+                    "Virginia quote conversations get more real once you know whether the system is conventional or AOSS and whether operation-permit or inspection records are already in the file."
+            );
             case "CA" -> new StateActionCopy(
                     "Estimate before the county file pull",
                     "California usually gets real once you know the local agency path and whether the property sits in a default Tier 1 workflow or a LAMP-driven local program."
