@@ -5156,6 +5156,68 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "perc-test-cost",
+      "stateCode": "MT",
+      "title": "Montana Perc Test Cost",
+      "metaDescription": "Montana perc and site-risk planning page with COSA checks, local health routing, and DEQ-4 replacement-area context in mind.",
+      "introCopy": "Montana perc and site-risk questions are stronger than a generic national test page because the real homeowner issue is not just the test fee. The first questions are whether the lot already has a Certificate of Subdivision Approval or sanitary restriction, whether the local health department still controls the drainfield permit, and whether DEQ-4 site or replacement-area criteria already widen the path before the homeowner trusts the low end.",
+      "uniqueAngle": "Montana site-testing intent is strongest when the page connects COSA checks, local-health drainfield permits, and DEQ-4 site-risk paperwork instead of pretending a single perc fee settles the project.",
+      "targetReader": "Best for Montana owners, buyers, builders, and agents who need to know whether the lot is still on a straightforward site-review path before design, permit, or replacement-area risk widens the job.",
+      "fitBullets": [
+        "You want a perc or site-testing number, but no one has confirmed whether the lot already carries COSA or sanitary restrictions.",
+        "The installer says the site looks straightforward, but the local health department or local reviewing authority path is still unresolved.",
+        "You need to know whether replacement-area or fill conditions could push the project beyond a basic conventional path before you trust the low end."
+      ],
+      "decisionSteps": [
+        "Start with the county or tribal health department and ask whether the lot already has COSA, sanitary restrictions, or a drainfield-permit history.",
+        "Confirm whether the county is a contracted local reviewing authority or whether DEQ still owns the subdivision review path before treating the job as a standalone test fee.",
+        "Use DEQ-4 site and replacement-area criteria to decide whether the parcel is still on a straightforward path or already widening into a more complex wastewater story.",
+        "Then compare perc or site-testing cost in the context of the real lot file, local permit path, and design risk."
+      ],
+      "lowEndBreakers": [
+        "The low-end site-testing story breaks if the lot file does not clearly show COSA or sanitary restrictions yet.",
+        "If the local health department still controls a separate drainfield-permit step, the project can widen quickly before contractor pricing becomes comparable.",
+        "If DEQ-4 replacement-area or fill conditions already affect the lot, the perc number is no longer the real decision point."
+      ],
+      "quotePrepChecklist": [
+        "The county or tribal health department handling the parcel.",
+        "Any COSA, sanitary restriction, or subdivision review note already tied to the lot.",
+        "Any local drainfield permit, site note, or lot-layout document already on file.",
+        "Any DEQ-4 or local note showing replacement-area, fill, or constrained-site conditions."
+      ],
+      "driverBullets": [
+        "Montana site-testing conversations get real only after the lot file and local-health path are clear.",
+        "A local drainfield-permit step can matter more than the first quoted perc fee.",
+        "Replacement-area and constrained-site paperwork can widen the project before a conventional-system story survives."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Montana site-check step a homeowner should take?",
+          "answer": "Start with the county or tribal health department and ask whether the lot already has a COSA, sanitary restriction, or local drainfield-permit history."
+        },
+        {
+          "question": "Why does Montana perc content need to mention COSA and the local health department?",
+          "answer": "Because Montana says local health departments can help determine whether a property has COSA or sanitary restrictions and that a drainfield permit is still required through the local health department."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/montana/",
+        "/septic-system-cost-calculator/?state=MT&projectType=perc_test",
+        "/perc-test-cost/",
+        "/septic-permit-process/"
+      ],
+      "officialSourceIds": [
+        "mt_01",
+        "mt_02",
+        "mt_03",
+        "mt_04",
+        "mt_05",
+        "mt_06"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",

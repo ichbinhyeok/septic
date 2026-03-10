@@ -3,21 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "MT",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 6",
-      "whyNow": "Montana can likely support a site-risk wedge where lot review, county routing, and file quality matter more than a flat statewide install number.",
-      "launchAngle": "Target angle: site risk, lot-review paperwork, and local-authority routing before the homeowner trusts the low end.",
-      "recommendedPath": "/perc-test-cost/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for onsite wastewater approvals and local routing.",
-        "Collect the clearest public language on lot review or constrained-site paperwork that widens the project.",
-        "Document the county or local authority explanation that can anchor the first Montana page."
-      ]
-    },
-    {
       "stateCode": "ND",
-      "priorityRank": 2,
+      "priorityRank": 1,
       "rolloutWave": "Wave 6",
       "whyNow": "North Dakota can likely support a permit and records wedge where local file visibility and rural-site constraints matter more than a generic statewide quote.",
       "launchAngle": "Target angle: permit path, file retrieval, and rural-site constraints before the homeowner treats the project as routine.",
@@ -30,7 +17,7 @@
     },
     {
       "stateCode": "WY",
-      "priorityRank": 3,
+      "priorityRank": 2,
       "rolloutWave": "Wave 6",
       "whyNow": "Wyoming can likely support a site-risk and permit wedge where local authority routing and remote-lot constraints matter more than a simple statewide average.",
       "launchAngle": "Target angle: permit path, remote-lot site risk, and local-authority routing before the homeowner trusts the low end.",

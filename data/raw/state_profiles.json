@@ -2192,6 +2192,64 @@
       ]
     },
     {
+      "stateCode": "MT",
+      "stateName": "Montana",
+      "agencyName": "Montana Department of Environmental Quality",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Montana is stronger on subdivision file quality, COSA and sanitary-restriction checks, and local site-risk paperwork than on a fake statewide install table. The homeowner wedge is knowing whether the lot already has a Certificate of Subdivision Approval or sanitary restriction, whether the local health department still controls the drainfield permit, and whether DEQ-4 site criteria widen the project before trusting the low end.",
+      "ruleType": "site_approval",
+      "ruleSummaryPlainEnglish": "Montana DEQ's engineering and subdivisions program says it reviews proposed divisions of land under 20 acres and sanitation facilities tied to sewage disposal. Montana's county and tribal health department page says local health departments can help determine whether a property has a Certificate of Subdivision Approval or sanitary restrictions and says a drainfield permit is still required through the local health department even if a lot already has COSA. Montana's subdivision-review guidance says counties contracted to perform review can take the application locally rather than routing it straight to DEQ. Montana's DEQ-4 criteria and onsite-wastewater manual also show that site, replacement-area, and local-review issues can widen the path. Montana is therefore stronger on lot-review and local-authority risk than on a generic statewide cost story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Montana homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Montana homeowners usually need the subdivision file, COSA or sanitary-restriction story, and local health permit path clarified before they trust a quote. The project is not really site-ready until the lot file, the local reviewing authority, and the DEQ-4 site-risk context are clearer.",
+      "permitPathSteps": [
+        "Start with the county or tribal health department and ask whether the lot already has a COSA, sanitary restriction, or other subdivision file tied to sewage disposal.",
+        "Confirm whether the local health department still owns the drainfield permit and whether the county is a contracted local reviewing authority for the subdivision path.",
+        "Use the subdivision file and DEQ-4 site criteria to decide whether the parcel is still on a straightforward path or already widening into lot-review, replacement-area, or more complex design risk."
+      ],
+      "siteEvalSummary": "Montana public homeowner material is strongest on subdivision-file visibility, COSA and sanitary-restriction checks, local-health routing, and DEQ-4 site criteria rather than one simple statewide sizing story. The practical path turns on whether the lot file is real and whether replacement-area or local-review issues already widen the scope.",
+      "ruleHighlights": [
+        "Montana DEQ reviews proposed divisions of land under 20 acres and sanitation facilities tied to sewage disposal.",
+        "Montana says local health departments can help determine whether a property has a COSA or sanitary restrictions.",
+        "Montana says a drainfield permit is still required through the local health department even if the lot already has COSA.",
+        "Montana says counties contracted to perform subdivision review may take the application locally instead of routing it straight to DEQ."
+      ],
+      "localOverrideNote": "Montana looks statewide through DEQ on paper, but the practical homeowner workflow changes quickly once you know whether the lot already has COSA or sanitary restrictions, whether local health still owns the drainfield permit, and whether a contracted local reviewing authority is in the middle of the file path.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["mt_01", "mt_02", "mt_03", "mt_04", "mt_05", "mt_06"],
+      "localAuthoritySourceIds": ["mt_02", "mt_03", "mt_05"],
+      "recordsLookupSourceIds": ["mt_02", "mt_06"],
+      "localActionSteps": [
+        "Open the county or tribal health department path first and ask whether the lot already has a COSA, sanitary restriction, or drainfield-permit history.",
+        "If the subdivision file is thin, confirm whether the county is a contracted local reviewing authority or whether DEQ still owns the review path.",
+        "Use DEQ-4 site and replacement-area context to decide whether the lot is still on a straightforward path before you trust the low end."
+      ],
+      "whoToCallFirst": "Start with the county or tribal health department that handles the parcel and ask whether the lot already carries COSA, sanitary restrictions, or a drainfield-permit file.",
+      "recordsToRequest": [
+        "Any Certificate of Subdivision Approval, sanitary restriction, or subdivision review note tied to the property.",
+        "Any local health department drainfield permit, lot-layout note, or site-review record tied to the parcel.",
+        "Any DEQ or local-review document showing replacement-area, fill, or site-risk conditions that widen the wastewater story."
+      ],
+      "lowEndRiskChecks": [
+        "If the lot file does not clearly show COSA or sanitary restrictions, the low end is still a planning scenario rather than a file-backed number.",
+        "If the local health department still owns a separate drainfield-permit step, the schedule can widen before contractor pricing becomes comparable.",
+        "If DEQ-4 site or replacement-area issues already affect the lot, the project can move beyond a simple conventional-system assumption quickly."
+      ],
+      "permitTimelineNote": "Montana timing often turns on whether the lot file clearly shows COSA or sanitary restrictions, whether the county is a contracted local reviewing authority, and whether site-risk or replacement-area questions move the project beyond a simple local permit story.",
+      "buyerInspectionTrigger": "Buyers should ask for the subdivision file and local health permit history early because Montana's lot-review story often matters more than the listing summary or installer quote.",
+      "maintenanceInspectionNote": "Montana's current source set is strongest on subdivision review, lot-file quality, local-health routing, and DEQ-4 site-risk context, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Montana's main wrinkle is that COSA, sanitary restrictions, and local-review or replacement-area issues can make one lot look straightforward on paper while the real wastewater path is already wider and more local.",
+      "confidenceScore": 0.78,
+      "itemsNeedingVerification": [
+        "Add a durable Montana map showing which counties act as contracted local reviewing authorities for subdivision review.",
+        "Document where Montana counties expose COSA or sanitary-restriction records online versus manual request only."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",

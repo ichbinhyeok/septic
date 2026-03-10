@@ -189,6 +189,9 @@ public class EstimatorService {
         if ("VT".equals(state.stateCode())) {
             checklist.add("Confirm whether Vermont's permit search already shows a state-issued wastewater and potable water permit, whether the Town changes the path, and which regional office owns the next filing.");
         }
+        if ("MT".equals(state.stateCode())) {
+            checklist.add("Confirm whether the Montana lot already has COSA or sanitary restrictions, whether the local health department still owns the drainfield permit, and whether DEQ-4 site-risk or replacement-area issues are already in the file.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -595,6 +598,9 @@ public class EstimatorService {
         }
         if ("VT".equals(state.stateCode())) {
             return "This Vermont range stays wide because permit-search gaps, Town review, and regional-office routing can all move the job quickly.";
+        }
+        if ("MT".equals(state.stateCode())) {
+            return "This Montana range stays wide because COSA or lot-file gaps, local-health routing, and DEQ-4 site-risk paperwork can all move the job quickly.";
         }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";

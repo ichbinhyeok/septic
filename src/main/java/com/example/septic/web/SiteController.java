@@ -944,6 +944,10 @@ public class SiteController {
                     "Estimate before the regional-office handoff",
                     "Vermont quote conversations get more real once you know whether the parcel already has a state-issued permit, whether the Town changes the path, and which regional office owns the next filing."
             );
+            case "MT" -> new StateActionCopy(
+                    "Estimate before the lot-review check",
+                    "Montana quote conversations get more real once you know whether the lot already has COSA or sanitary restrictions, whether the local health department still owns the drainfield permit, and whether DEQ-4 site-risk paperwork already widens the project."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."
