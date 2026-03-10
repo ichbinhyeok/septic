@@ -912,6 +912,10 @@ public class SiteController {
                     "Estimate before the site evaluation",
                     "Idaho quote conversations get more real once you know which public health district owns the file and whether the site evaluation or permit record is already in play."
             );
+            case "NV" -> new StateActionCopy(
+                    "Estimate before the buyer file pull",
+                    "Nevada quote conversations get more real once you know whether NDEP, Southern Nevada Health District, or another local path holds the file and whether the inspection and as-built trail is actually complete."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

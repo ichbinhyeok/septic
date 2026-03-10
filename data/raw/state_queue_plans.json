@@ -3,21 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "NV",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 5",
-      "whyNow": "Nevada can likely support a buyer and records wedge where county file quality matters more than broad desert install averages.",
-      "launchAngle": "Target angle: buyer diligence, permit history, and local file quality before the listing story sets the anchor.",
-      "recommendedPath": "/buying-a-house-with-a-septic-system/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for permit history, transfers, or septic file questions.",
-        "Collect county or district routing that determines who controls the actual file.",
-        "Pull official buyer-safe language on transfer or inspection triggers that can anchor a first page."
-      ]
-    },
-    {
       "stateCode": "DE",
-      "priorityRank": 2,
+      "priorityRank": 1,
       "rolloutWave": "Wave 5",
       "whyNow": "Delaware is compact but commercially useful and likely supports a permit or records wedge where agency routing matters more than a flat statewide number.",
       "launchAngle": "Target angle: permit path, file retrieval, and agency handoff before the homeowner treats the project as routine.",

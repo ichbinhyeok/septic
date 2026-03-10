@@ -4667,6 +4667,67 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "buying-a-house-with-a-septic-system",
+      "stateCode": "NV",
+      "title": "Buying a House With a Septic System in Nevada",
+      "metaDescription": "Nevada homebuyer septic checklist with NDEP versus local authority routing, permit-history checks, and inspection-plus-as-built risk.",
+      "introCopy": "Nevada buyer risk is rarely just about the inspection bill. The official state path says the real first question is which authority controls the parcel, because NDEP, Southern Nevada Health District, and some county paths do not tell the same file story. Once the right office is identified, the permit history, inspection note, occupancy signoff, and as-built plans can change the whole deal.",
+      "uniqueAngle": "Nevada buyer intent is strongest when the page explains the authority split, permit history, and inspection-plus-as-built trail together instead of treating the sale like a generic septic transaction.",
+      "targetReader": "Best for Nevada buyers, sellers, and agents who know the property uses an individual sewage disposal system but still need to know whether the correct authority file, inspection trail, and as-built paperwork create real closing risk.",
+      "fitBullets": [
+        "The listing says the home has septic, but no one has confirmed whether NDEP, Southern Nevada Health District, or another local path actually controls the file.",
+        "The seller says the system is permitted, but there is still no inspection note, occupancy signoff, or as-built plan in hand.",
+        "You need to know whether the property still sits on a straightforward path or whether county routing or a special area changes the buyer risk story."
+      ],
+      "decisionSteps": [
+        "Identify the authority that actually controls the parcel before you debate inspection price or closing credits, because Nevada's file path changes by location and system size.",
+        "Request the permit file, inspection notes, occupancy signoff, and as-built plans tied to the property before you trust the seller or contractor summary.",
+        "Use the NDEP public-records request and public document search paths if the initial file pull is thin or if the authority handoff leaves older records unclear.",
+        "Then compare the file you received against the listing story so you can price buyer diligence, repair follow-up, or replacement risk on something real."
+      ],
+      "lowEndBreakers": [
+        "The buyer cannot trust a low-end septic story if the correct Nevada authority has not even been identified yet.",
+        "A file with no inspection note, occupancy signoff, or as-built plan can hide a much thinner permit history than the listing suggests.",
+        "If the property falls into a special-area or advanced-system wrinkle, the deal can widen beyond the simple septic story quickly."
+      ],
+      "quotePrepChecklist": [
+        "The exact Nevada authority controlling the parcel: NDEP, Southern Nevada Health District, or the applicable local office.",
+        "Any permit, alteration, repair, or extension file already tied to the property.",
+        "Any inspection note, occupancy signoff, and as-built plans already in the file.",
+        "Any public-records or document-search result showing whether older file material still exists."
+      ],
+      "driverBullets": [
+        "Nevada buyer risk starts with the authority split, not with a generic inspection fee.",
+        "Inspection and as-built paperwork can matter more than the seller summary when the file is thin.",
+        "A public-records request or document search can be the difference between a routine closing and a bigger septic problem."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Nevada septic question a buyer should ask?",
+          "answer": "Ask which authority actually controls the parcel, because Nevada can route the file through NDEP, Southern Nevada Health District, or another local path depending on location and system size."
+        },
+        {
+          "question": "Why does a Nevada buyer need the inspection note and as-built plans?",
+          "answer": "Because Nevada's public permit guidance says occupancy requires inspection and as-built plans, so a missing file can expose more risk than the listing summary suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/nevada/",
+        "/septic-system-cost-calculator/?state=NV&projectType=buying_home",
+        "/septic-records-checklist/",
+        "/buying-a-house-with-a-septic-system/"
+      ],
+      "officialSourceIds": [
+        "nv_01",
+        "nv_02",
+        "nv_03",
+        "nv_04",
+        "nv_05"
+      ],
+      "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-permit-process",
       "stateCode": "AR",
       "title": "Arkansas Septic Permit Process",

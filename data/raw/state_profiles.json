@@ -1703,6 +1703,64 @@
       ]
     },
     {
+      "stateCode": "NV",
+      "stateName": "Nevada",
+      "agencyName": "Nevada Division of Environmental Protection / Nevada Division of Public and Behavioral Health",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Nevada is stronger on buyer diligence, local-authority splits, and permit-file quality than on a fake statewide install table. The homeowner wedge is knowing whether NDEP, Southern Nevada Health District, or Nye County actually controls the parcel and whether the permit, inspection, and as-built trail is strong enough before trusting the listing story.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "Nevada's NDEP onsite sewage page says Washoe County systems are permitted by NDEP, Clark County systems below 3,000 gallons per day are permitted by Southern Nevada Health District, and Nye County systems below 3,000 gallons per day are permitted by Nye County Building Safety. Nevada's individual sewage permits page says approval must be obtained to construct, alter, or extend an individual sewage disposal system, that permit submittals include percolation-test and soil-profile data, and that occupancy requires inspection and as-built plans. NDEP also publishes a public-records request path and a public document search, which makes Nevada stronger on buyer file diligence than on a simple statewide price story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Nevada homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Nevada buyers and owners usually need the local-authority split and permit-file story clarified before they trust an install, replacement, or transfer quote. The project is not really file-backed until the right authority confirms the permit trail, inspection status, and as-built story behind the parcel.",
+      "permitPathSteps": [
+        "Start by identifying whether NDEP, Southern Nevada Health District, or Nye County actually controls the parcel before treating the project as one simple statewide permit story.",
+        "Ask for any permit file, inspection note, occupancy signoff, or as-built plan already tied to the property before you trust the listing or contractor summary.",
+        "Use the local file and permit-history trail to decide whether the property is still on a straightforward path or already widening into a buyer-risk, repair, or advanced-system story."
+      ],
+      "siteEvalSummary": "Nevada public homeowner material is strongest on authority splits, permit-file quality, and buyer due diligence rather than one simple statewide sizing story. The practical path turns on whether the correct authority can surface a usable file and whether the occupancy and as-built trail is complete enough to trust.",
+      "ruleHighlights": [
+        "Nevada says the practical authority split can run through NDEP, Southern Nevada Health District, or Nye County depending on location and system size.",
+        "Nevada says approval is required to construct, alter, or extend an individual sewage disposal system.",
+        "Nevada says permit submittals include percolation-test and soil-profile data.",
+        "Nevada says occupancy requires inspection and as-built plans."
+      ],
+      "localOverrideNote": "Nevada looks statewide through NDEP and DPBH, but the real homeowner workflow changes quickly once you know whether the file lives with NDEP, Southern Nevada Health District, or a county path such as Nye County Building Safety.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["nv_01", "nv_02", "nv_03", "nv_04", "nv_05"],
+      "localAuthoritySourceIds": ["nv_01", "nv_02"],
+      "recordsLookupSourceIds": ["nv_04", "nv_05"],
+      "localActionSteps": [
+        "Open the Nevada authority page first and confirm whether the property routes to NDEP, Southern Nevada Health District, or Nye County before you ask for any file.",
+        "Ask for the permit file, inspection note, occupancy signoff, and as-built plans tied to the property before you trust the low end.",
+        "If the file is thin, use the NDEP public-records request and public document search path before you anchor to the seller's version of the system story."
+      ],
+      "whoToCallFirst": "Start with the authority that actually controls the parcel: NDEP, Southern Nevada Health District, or the relevant county or district office identified by Nevada's public guidance.",
+      "recordsToRequest": [
+        "Any permit, alteration, repair, or extension file already tied to the property.",
+        "Any inspection note, occupancy signoff, and as-built plans already in the file.",
+        "Any public-records or document-search output showing whether the state or local office still holds older file material."
+      ],
+      "lowEndRiskChecks": [
+        "If the correct Nevada authority is still unclear, the low end is still a planning scenario rather than a file-backed number.",
+        "If the permit file cannot surface inspection and as-built material, the property story can be thinner than the seller or installer summary suggests.",
+        "If the parcel sits in a special-area path such as Pahrump's nitrogen-management area, the job can move beyond the simplest septic story quickly."
+      ],
+      "permitTimelineNote": "Nevada timing often turns on identifying the right authority first, confirming whether the permit and inspection file is complete, and resolving any county or special-area wrinkle before the project feels routine.",
+      "buyerInspectionTrigger": "Buyers should ask for the permit file, inspection notes, occupancy signoff, and as-built plans early because Nevada's authority split can hide more risk than the listing summary suggests.",
+      "maintenanceInspectionNote": "Nevada's current source set is strongest on authority splits, permit readiness, inspection and as-built requirements, and public-records retrieval, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Nevada's main wrinkle is that authority can split across NDEP, Southern Nevada Health District, or county routing, and special areas like Pahrump can push the job toward more advanced system expectations.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable Nevada county matrix showing where NDEP stops and local or district permitting control begins for homeowner-facing file pulls.",
+        "Document which Nevada counties or districts expose septic permit or inspection records online without a separate records request."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",
