@@ -936,6 +936,14 @@ public class SiteController {
                     "Estimate before the approval-status check",
                     "New Hampshire quote conversations get more real once you know whether the property is operationally approved for the intended use and whether OneStop or archive records actually support the file story."
             );
+            case "RI" -> new StateActionCopy(
+                    "Estimate before the DEM file pull",
+                    "Rhode Island quote conversations get more real once you know whether DEM's active or historic permit searches surface the file and whether suitability or advanced-technology rules already widen the story."
+            );
+            case "VT" -> new StateActionCopy(
+                    "Estimate before the regional-office handoff",
+                    "Vermont quote conversations get more real once you know whether the parcel already has a state-issued permit, whether the Town changes the path, and which regional office owns the next filing."
+            );
             case "AL" -> new StateActionCopy(
                     "Estimate before calling the county health department",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."

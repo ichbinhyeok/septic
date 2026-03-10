@@ -3,34 +3,8 @@
   "generatedAt": "2026-03-10",
   "states": [
     {
-      "stateCode": "RI",
-      "priorityRank": 1,
-      "rolloutWave": "Wave 6",
-      "whyNow": "Rhode Island is compact but commercially useful and likely supports a repair and buyer wedge where DEM file quality matters more than a broad statewide install table.",
-      "launchAngle": "Target angle: buyer diligence, repair triggers, and DEM file retrieval before the small-state story looks simpler than it is.",
-      "recommendedPath": "/buying-a-house-with-a-septic-system/",
-      "researchTasks": [
-        "Find the statewide homeowner entry point for OWTS permits, repairs, and file retrieval.",
-        "Collect the clearest public buyer-safe language on inspection or property-transfer expectations.",
-        "Document the report or permit search path that can anchor a Rhode Island page."
-      ]
-    },
-    {
-      "stateCode": "VT",
-      "priorityRank": 2,
-      "rolloutWave": "Wave 6",
-      "whyNow": "Vermont can likely support a permit and records wedge where wastewater permits, potable-water linkage, and town-file handoff matter more than a generic cost range.",
-      "launchAngle": "Target angle: permit path, potable-water linkage, and town-file retrieval before the homeowner treats the project as routine.",
-      "recommendedPath": "/septic-permit-process/",
-      "researchTasks": [
-        "Find the homeowner entry point for wastewater-system and potable-water permits.",
-        "Collect the clearest official explanation of state versus town file routing.",
-        "Pull permit-search or records-request language that can support a first Vermont page."
-      ]
-    },
-    {
       "stateCode": "MT",
-      "priorityRank": 3,
+      "priorityRank": 1,
       "rolloutWave": "Wave 6",
       "whyNow": "Montana can likely support a site-risk wedge where lot review, county routing, and file quality matter more than a flat statewide install number.",
       "launchAngle": "Target angle: site risk, lot-review paperwork, and local-authority routing before the homeowner trusts the low end.",
@@ -43,7 +17,7 @@
     },
     {
       "stateCode": "ND",
-      "priorityRank": 4,
+      "priorityRank": 2,
       "rolloutWave": "Wave 6",
       "whyNow": "North Dakota can likely support a permit and records wedge where local file visibility and rural-site constraints matter more than a generic statewide quote.",
       "launchAngle": "Target angle: permit path, file retrieval, and rural-site constraints before the homeowner treats the project as routine.",
@@ -56,7 +30,7 @@
     },
     {
       "stateCode": "WY",
-      "priorityRank": 5,
+      "priorityRank": 3,
       "rolloutWave": "Wave 6",
       "whyNow": "Wyoming can likely support a site-risk and permit wedge where local authority routing and remote-lot constraints matter more than a simple statewide average.",
       "launchAngle": "Target angle: permit path, remote-lot site risk, and local-authority routing before the homeowner trusts the low end.",

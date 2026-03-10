@@ -523,6 +523,8 @@ public class SeoService {
             case "HI" -> "Hawaii Septic Cost Guide and Cesspool Upgrade Path";
             case "ME" -> "Maine Septic Cost Guide and HHE-200 File Path";
             case "NH" -> "New Hampshire Septic Cost Guide and Approval Status Path";
+            case "RI" -> "Rhode Island Septic Cost Guide and DEM File Path";
+            case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "AL" -> "Alabama Septic Cost Guide and County Permit Path";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
@@ -574,6 +576,8 @@ public class SeoService {
             case "HI" -> "Hawaii septic planning estimates with cesspool-upgrade triggers, county building-permit handoff, approval-to-use timing, and official-source links.";
             case "ME" -> "Maine septic planning estimates with HHE-200 file pulls, town-office routing, Local Plumbing Inspector context, and official-source links.";
             case "NH" -> "New Hampshire septic planning estimates with approval-status checks, OneStop records, local verification, and official-source links.";
+            case "RI" -> "Rhode Island septic planning estimates with DEM permit searches, 1968-forward file retrieval, suitability triggers, and official-source links.";
+            case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "AL" -> "Alabama septic planning estimates with county health routing, Permit to Install timing, and official ADPH source links.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";

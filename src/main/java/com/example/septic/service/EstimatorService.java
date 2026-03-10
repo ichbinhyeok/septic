@@ -183,6 +183,12 @@ public class EstimatorService {
         if ("NH".equals(state.stateCode())) {
             checklist.add("Confirm whether the New Hampshire property is operationally approved for the intended use and whether OneStop or archive records show the current file before trusting the permit path.");
         }
+        if ("RI".equals(state.stateCode())) {
+            checklist.add("Confirm whether Rhode Island DEM's active or historic permit searches surface a usable file and whether a suitability determination or advanced-technology note already changes the project path.");
+        }
+        if ("VT".equals(state.stateCode())) {
+            checklist.add("Confirm whether Vermont's permit search already shows a state-issued wastewater and potable water permit, whether the Town changes the path, and which regional office owns the next filing.");
+        }
         if ("AL".equals(state.stateCode())) {
             checklist.add("Confirm which Alabama county health department controls the file and whether the Permit to Install, Approval for Use, or soil-test record is already on record.");
         }
@@ -583,6 +589,12 @@ public class EstimatorService {
         }
         if ("NH".equals(state.stateCode())) {
             return "This New Hampshire range stays wide because approval-status gaps, OneStop file quality, and local-verification triggers can all move the job quickly.";
+        }
+        if ("RI".equals(state.stateCode())) {
+            return "This Rhode Island range stays wide because DEM file gaps, suitability-determination triggers, and advanced-technology requirements can all move the job quickly.";
+        }
+        if ("VT".equals(state.stateCode())) {
+            return "This Vermont range stays wide because permit-search gaps, Town review, and regional-office routing can all move the job quickly.";
         }
         if ("AL".equals(state.stateCode())) {
             return "This Alabama range stays wide because county health routing, soil-testing results, and permit-file gaps can all move the job quickly.";

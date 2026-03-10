@@ -2076,6 +2076,122 @@
       ]
     },
     {
+      "stateCode": "RI",
+      "stateName": "Rhode Island",
+      "agencyName": "Rhode Island Department of Environmental Management",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Rhode Island is stronger on DEM file retrieval, buyer diligence, and renovation-trigger risk than on a fake statewide install table. The homeowner wedge is knowing whether the active or historic permit search already exposes the file, whether a full-record pull is still needed, and whether suitability or advanced-technology rules change the story before trusting the low end.",
+      "ruleType": "buyer_risk",
+      "ruleSummaryPlainEnglish": "Rhode Island DEM's OWTS program page says the agency has records of most septic systems from 1968 forward, offers active and historic permit searches online, and accepts record requests for full files. DEM's suitability-determination fact sheet says owners can use a suitability determination to learn whether a renovation will require an OWTS permit and that the answer depends on the size and status of the current system. DEM's OWTS materials also note that some areas require advanced technology. Rhode Island is therefore stronger on file retrieval, renovation-trigger clarity, and buyer diligence than on a flat statewide cost story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Rhode Island homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Rhode Island buyers and owners usually need the DEM permit-search results, full-file story, and renovation-trigger context clarified before they trust a quote. The project is not really file-backed until the active or historic search, approved-plan trail, and any suitability question are clearer.",
+      "permitPathSteps": [
+        "Start with DEM's OWTS hub and run the active and historic permit searches before you trust the seller or contractor summary.",
+        "If the file looks thin, request the full record set so you can compare approved plans, permit status, and final documents against the property story.",
+        "If the job involves renovation, repair, or a sale with unclear system history, ask whether a suitability determination or advanced-technology requirement widens the project before you anchor to the low end."
+      ],
+      "siteEvalSummary": "Rhode Island public homeowner material is strongest on DEM file retrieval, permit-search visibility, and suitability-determination triggers rather than one simple statewide sizing story. The practical path turns on whether the file is real and whether renovation or advanced-technology rules already widen the scope.",
+      "ruleHighlights": [
+        "Rhode Island DEM says it has records of most septic systems from 1968 forward.",
+        "Rhode Island DEM offers active and historic OWTS permit searches online.",
+        "Rhode Island says a suitability determination helps owners know whether a renovation will require an OWTS permit.",
+        "Rhode Island notes that some areas require advanced wastewater technology."
+      ],
+      "localOverrideNote": "Rhode Island looks statewide through DEM, but the practical homeowner workflow changes quickly once you know whether the active or historic permit search surfaces the file, whether a full-record pull is still needed, and whether suitability or advanced-technology rules already widen the project.",
+      "countyOverrideRisk": "medium",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["ri_01", "ri_02", "ri_03", "ri_04", "ri_05"],
+      "localAuthoritySourceIds": ["ri_01", "ri_02"],
+      "recordsLookupSourceIds": ["ri_01", "ri_02", "ri_05"],
+      "localActionSteps": [
+        "Open the DEM OWTS page first and run the active and historic permit searches before you trust the property story.",
+        "If the online results are partial, request the full record set so you can compare approved plans, final permits, and status notes.",
+        "If the work involves renovation or a thin file, confirm whether a suitability determination or advanced-technology requirement is already part of the real project path."
+      ],
+      "whoToCallFirst": "Start with Rhode Island DEM's OWTS permit-search and record path, then confirm whether a designer or DEM suitability review changes the next step.",
+      "recordsToRequest": [
+        "Any active permit-search result showing application history, status, materials, and approved plans tied to the property.",
+        "Any historic OWTS permit-search result or printout tied to the parcel.",
+        "Any full-file record request response, including final permit documents, approved plans, and any suitability or advanced-technology note."
+      ],
+      "lowEndRiskChecks": [
+        "If the active or historic permit search does not surface a usable file, the low end is still a planning scenario rather than a file-backed number.",
+        "If the property needs a suitability determination for renovation or expansion, the job can widen beyond the routine buyer or repair story quickly.",
+        "If an advanced-technology requirement applies in the area, the project can move beyond a simple conventional-system assumption fast."
+      ],
+      "permitTimelineNote": "Rhode Island timing often turns on whether the DEM searches surface the file immediately, whether a full record request is still needed, and whether renovation or advanced-technology review changes the permit path before the job feels routine.",
+      "buyerInspectionTrigger": "Buyers should ask for DEM search results and the underlying file early because Rhode Island's permit history and suitability triggers often tell a more reliable story than the listing summary.",
+      "maintenanceInspectionNote": "Rhode Island's current source set is strongest on permit search, file retrieval, suitability-determination context, and compliance workflow, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Rhode Island's main wrinkle is that renovation-trigger review and advanced-technology areas can turn a seemingly ordinary septic story into a more expensive or more regulated project quickly.",
+      "confidenceScore": 0.8,
+      "itemsNeedingVerification": [
+        "Add a durable Rhode Island map showing where advanced-technology or watershed-related requirements most often change the homeowner path.",
+        "Document which DEM file elements are consistently visible in the public search versus only through manual record requests."
+      ]
+    },
+    {
+      "stateCode": "VT",
+      "stateName": "Vermont",
+      "agencyName": "Vermont Department of Environmental Conservation",
+      "launchTier": "supporting",
+      "publishStatus": "published",
+      "pageAngle": "Vermont is stronger on wastewater-plus-potable-water permit routing, town checks, and regional-office handoff than on a fake statewide install table. The homeowner wedge is knowing whether the lot already has a state-issued permit, whether the town changes the path, and which regional office owns the next move before trusting the low end.",
+      "ruleType": "permit_path",
+      "ruleSummaryPlainEnglish": "Vermont DEC's wastewater program page says the state issues wastewater system and potable water supply permits through five regional offices. Vermont's permit-search guide explains how to search for state-issued permits by address, permit number, or town. Vermont's permit FAQ says applicants should check with the Town the lot is located in and use permit resources to determine whether a wastewater and potable water permit is required. The current rules say a permit is required for construction or modification and that applications go to the appropriate regional office. Vermont's shoreland page adds that some Agency-permitted wastewater systems can be exempt from a separate shoreland permit and that delegated municipalities may handle shoreland permitting locally. Vermont is therefore stronger on permit-path clarity and town-plus-regional routing than on a generic cost story.",
+      "designFlowPerBedroomGpd": null,
+      "minTankSizeGallons": null,
+      "bedroomTable": [],
+      "garbageDisposalPolicy": "No direct public Vermont homeowner garbage-disposal tank multiplier has been verified in the current source set.",
+      "permitSummary": "Vermont homeowners usually need the permit-search result, town check, and regional-office path clarified before they trust a quote. The project is not really permit-ready until you know whether a state-issued wastewater and potable water permit already exists and whether town or shoreland issues change the next step.",
+      "permitPathSteps": [
+        "Start with Vermont's permit-search tools and look for a state-issued wastewater and potable water permit tied to the parcel.",
+        "Check with the Town the lot is located in so you know whether local conditions, local records, or other municipal review changes the permit story.",
+        "If construction or modification is still required, route the application and next questions to the appropriate DEC regional office before you treat the project as routine."
+      ],
+      "siteEvalSummary": "Vermont public homeowner material is strongest on permit-search visibility, town checks, and regional-office permit routing rather than one simple statewide sizing story. The practical path turns on whether a state-issued permit already exists and whether local or shoreland factors change the filing path.",
+      "ruleHighlights": [
+        "Vermont says the wastewater system and potable water supply program issues permits through five regional offices.",
+        "Vermont provides a permit-search guide to check whether a state-issued permit exists by address, permit number, or town.",
+        "Vermont says applicants should check with the Town the lot is located in to determine whether a wastewater and potable water permit is required.",
+        "Vermont says a permit is required for construction or modification and applications go to the appropriate regional office."
+      ],
+      "localOverrideNote": "Vermont looks statewide through DEC, but the real homeowner workflow changes quickly once you know whether the lot already has a state-issued permit, whether the Town changes the path, and whether shoreland or delegated-municipality review adds another layer.",
+      "countyOverrideRisk": "high",
+      "lastVerifiedAt": "2026-03-10",
+      "officialSourceIds": ["vt_01", "vt_02", "vt_03", "vt_04", "vt_05"],
+      "localAuthoritySourceIds": ["vt_01", "vt_03", "vt_05"],
+      "recordsLookupSourceIds": ["vt_02", "vt_03"],
+      "localActionSteps": [
+        "Open the Vermont wastewater program page and the permit-search guide before you trust the property or contractor story.",
+        "Check with the Town the lot is located in so you know whether local records or local review change the permit path.",
+        "If the lot still needs a permit, confirm which DEC regional office handles the parcel and whether shoreland or delegated-municipality issues widen the filing sequence."
+      ],
+      "whoToCallFirst": "Start with Vermont's permit-search path and the Town where the lot is located, then confirm the correct DEC regional office for the parcel.",
+      "recordsToRequest": [
+        "Any state-issued wastewater and potable water permit tied to the property.",
+        "Any permit-search result showing the permit number, address match, or town-based record for the parcel.",
+        "Any town or regional-office note showing whether construction, modification, shoreland review, or another local step still changes the path."
+      ],
+      "lowEndRiskChecks": [
+        "If the permit search does not surface a usable file, the low end is still a planning scenario rather than a permit-backed number.",
+        "If the Town says another municipal or local review layer applies, the schedule can widen before contractor pricing becomes comparable.",
+        "If shoreland or delegated-municipality review changes the path, the job can move beyond a straightforward wastewater permit story quickly."
+      ],
+      "permitTimelineNote": "Vermont timing often turns on whether the permit search surfaces a usable state-issued file, whether the Town changes the review path, and how quickly the correct regional office can own the next step.",
+      "buyerInspectionTrigger": "Buyers should ask whether a state-issued wastewater and potable water permit already exists and whether the Town sees any local review wrinkle before trusting the property story.",
+      "maintenanceInspectionNote": "Vermont's current source set is strongest on permit search, town checks, regional-office routing, and filing requirements, not on one simple statewide pumping cadence.",
+      "specialAreaNote": "Vermont's main wrinkle is that town review, regional-office routing, and shoreland or delegated-municipality issues can turn a simple permit story into a more layered filing path.",
+      "confidenceScore": 0.79,
+      "itemsNeedingVerification": [
+        "Add a durable Vermont regional-office map showing which offices most often handle the next homeowner step by county or town.",
+        "Document where Vermont towns expose enough wastewater-permit history online versus where the regional office remains the only practical file source."
+      ]
+    },
+    {
       "stateCode": "AR",
       "stateName": "Arkansas",
       "agencyName": "Arkansas Department of Health",
