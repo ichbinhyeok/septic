@@ -3202,6 +3202,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use a live state page before you trust the national range")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this page is really helping you decide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Homeowners usually get anchored to one replacement number too early.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A strong replacement page should help you name what is actually widening the spread")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Representative state examples behind this national page")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this national page can answer before you touch a quote")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("When this page stops being enough")))
@@ -3248,6 +3249,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_link\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_state_specific\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most homeowners get stuck because permit sounds like one step")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Permit Process")));
 	}
@@ -3260,6 +3262,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Checklist | Permit files, as-builts, and lookup steps | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this page is really helping you decide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records change the estimate because they change what you can safely assume.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("one missing as-built or permit can matter more than several contractor opinions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Representative state examples behind this national page")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this national page can answer before you touch a quote")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("When this page stops being enough")))
@@ -3287,6 +3290,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Michigan Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Massachusetts Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Septic Records Checklist")));
+	}
+
+	@Test
+	void buyerContentPageRenders() throws Exception {
+		mockMvc.perform(get("/buying-a-house-with-a-septic-system/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic buyer risk is rarely about one inspection fee.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The real buyer question is not just whether the house has septic.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/georgia/")));
 	}
 
 	@Test
@@ -4486,6 +4500,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/drain-field-replacement-cost/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Drain field tool")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A field problem stops being local trench work the moment the replacement footprint is uncertain.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a drain field estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start short quote form")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=drainfield_replacement&amp;quoteMode=true#quote-request")))
