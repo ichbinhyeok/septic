@@ -4727,8 +4727,18 @@ class SepticApplicationTests {
 				.andExpect(status().isNotFound())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Closest next pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("closest intent match")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/states/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-estimator/")));
+	}
+
+	@Test
+	void drainfieldLikeNotFoundPathShowsIntentAwareRecoveryLinks() throws Exception {
+		mockMvc.perform(get("/wet-yard-over-septic-drain-field/not-a-real-state/"))
+				.andExpect(status().isNotFound())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/wet-yard-over-septic-drain-field/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-replacement-area/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-estimator/")));
 	}
 

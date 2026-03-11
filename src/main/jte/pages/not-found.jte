@@ -19,6 +19,7 @@
             <div class="container narrow">
                 <article class="detail-card">
                     <h2>Closest next pages</h2>
+                    <p class="detail-list__note">These are ordered from the closest intent match to the safest broader recovery path.</p>
                     <ul class="detail-list">
                         @for (var link : relatedLinks)
                             <li>
