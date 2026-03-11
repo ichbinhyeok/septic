@@ -18,7 +18,7 @@
 
     <section class="section section--tight">
         <div class="container calculator-layout">
-            <form class="calculator-form" method="post" action="/septic-pump-schedule-estimator/">
+            <form class="calculator-form" id="pump-schedule-estimator-form" name="pump-schedule-estimator-form" method="post" action="/septic-pump-schedule-estimator/">
                 <div class="field-grid">
                     <label class="field">
                         <span>Tank size in gallons</span>
@@ -53,7 +53,10 @@
 
             <div class="calculator-output">
                 @if (result != null)
-                    <section class="result-panel">
+                    <section class="result-panel"
+                             data-ga-event="calculator_submit"
+                             data-ga-param-estimator-type="pump_schedule_estimator"
+                             data-ga-param-usage-profile="${pumpScheduleForm.getUsageProfile()}">
                         <div class="result-panel__header">
                             <div>
                                 <span class="eyebrow">Pump schedule result</span>

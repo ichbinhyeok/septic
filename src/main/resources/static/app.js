@@ -161,6 +161,59 @@
 
     setupStickyMobileCtas();
 
+    function buildGaParams(element) {
+        const params = {};
+
+        for (const attribute of element.attributes) {
+            if (!attribute.name.startsWith("data-ga-param-") || attribute.value === "") {
+                continue;
+            }
+
+            const parameterName = attribute.name
+                .substring("data-ga-param-".length)
+                .replace(/-/g, "_");
+
+            params[parameterName] = attribute.value;
+        }
+
+        return params;
+    }
+
+    function emitGaEvent(eventName, params) {
+        if (!eventName || typeof window.gtag !== "function") {
+            return;
+        }
+
+        window.gtag("event", eventName, params);
+    }
+
+    function trackGaEvents() {
+        document.querySelectorAll("[data-ga-event]").forEach((element) => {
+            const eventName = element.getAttribute("data-ga-event");
+            const trackOnceKey = element.getAttribute("data-ga-track-once");
+            const params = buildGaParams(element);
+
+            if (!trackOnceKey) {
+                emitGaEvent(eventName, params);
+                return;
+            }
+
+            try {
+                const storageKey = `septicpath_ga:${trackOnceKey}`;
+                if (window.sessionStorage.getItem(storageKey) === "1") {
+                    return;
+                }
+
+                emitGaEvent(eventName, params);
+                window.sessionStorage.setItem(storageKey, "1");
+            } catch (_error) {
+                emitGaEvent(eventName, params);
+            }
+        });
+    }
+
+    trackGaEvents();
+
     document.addEventListener("click", (event) => {
         const anchor = event.target.closest("a[data-track-click]");
         if (!anchor) {

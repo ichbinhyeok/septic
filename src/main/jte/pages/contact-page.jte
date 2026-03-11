@@ -47,7 +47,11 @@
                 </div>
 
                 @if (contactRequestId != null)
-                    <article class="status-box status-box--success">
+                    <article class="status-box status-box--success"
+                             data-ga-event="generate_lead"
+                             data-ga-track-once="contact-request:${contactRequestId}"
+                             data-ga-param-lead-type="contact_request"
+                             data-ga-param-form-id="contact_request_form">
                         <strong>Request received</strong>
                         <p>Your request is stored with reference ID ${contactRequestId}. Keep that ID if you need to follow up on a source correction or privacy request.</p>
                     </article>
@@ -60,7 +64,7 @@
                     </article>
                 @endif
 
-                <form class="quote-form" method="post" action="/contact/">
+                <form class="quote-form" id="contact-request-form" name="contact-request-form" method="post" action="/contact/">
                     <div class="field-grid">
                         <label class="field">
                             <span>Full name</span>

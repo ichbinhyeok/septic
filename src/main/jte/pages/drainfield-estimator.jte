@@ -44,7 +44,7 @@
 
     <section class="section section--tight">
         <div class="container calculator-layout">
-            <form class="calculator-form" method="post" action="/drain-field-estimator/">
+            <form class="calculator-form" id="drain-field-estimator-form" name="drain-field-estimator-form" method="post" action="/drain-field-estimator/">
                 <div class="field-grid">
                     <label class="field">
                         <span>State</span>
@@ -106,7 +106,10 @@
 
             <div class="calculator-output">
                 @if (result != null)
-                    <section class="result-panel">
+                    <section class="result-panel"
+                             data-ga-event="calculator_submit"
+                             data-ga-param-estimator-type="drain_field_estimator"
+                             data-ga-param-state-code="${drainfieldEstimatorForm.getStateCode()}">
                         <div class="result-panel__header">
                             <div>
                                 <span class="eyebrow">Drain field result</span>

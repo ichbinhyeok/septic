@@ -35,6 +35,13 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S1SY1NS71P"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S1SY1NS71P');
+    </script>
     <script src="${AssetPaths.versioned("/app.js")}" defer></script>
     @for (var jsonLd : page.jsonLdBlocks())
         <script type="application/ld+json">$unsafe{jsonLd}</script>

@@ -43,7 +43,7 @@
 
     <section class="section section--tight">
         <div class="container calculator-layout">
-            <form class="calculator-form" method="post" action="/septic-system-cost-calculator/">
+            <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/">
                 <div class="calculator-form__intro">
                     <span class="pill">Fast start</span>
                     <p>Choose the basics first. The secondary fields only help tighten the range.</p>
@@ -147,6 +147,11 @@
 
             <div class="calculator-output">
                 @if (result != null)
+                    <div hidden
+                         data-ga-event="calculator_submit"
+                         data-ga-param-estimator-type="cost_estimator"
+                         data-ga-param-state-code="${estimateForm.getStateCode()}"
+                         data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
                     @template.tags.estimateResult(result = result, costEvidence = costEvidence)
                 @else
                     <article class="placeholder-panel">
@@ -178,7 +183,13 @@
                         @endif
 
                         @if (leadId != null)
-                            <article class="status-box status-box--success">
+                            <article class="status-box status-box--success"
+                                     data-ga-event="generate_lead"
+                                     data-ga-track-once="quote-request:${leadId}"
+                                     data-ga-param-lead-type="quote_request"
+                                     data-ga-param-form-id="quote_request_form"
+                                     data-ga-param-state-code="${estimateForm.getStateCode()}"
+                                     data-ga-param-project-type="${estimateForm.getProjectType()}">
                                 <strong>Request received</strong>
                                 <p>Your project details are in. Use lead ID ${leadId} if you need to reference this request while you compare local septic quotes.</p>
                             </article>
@@ -191,7 +202,7 @@
                             </article>
                         @endif
 
-                        <form class="quote-form" method="post" action="/quote-request/">
+                        <form class="quote-form" id="quote-request-form" name="quote-request-form" method="post" action="/quote-request/">
                             @if (result != null)
                                 <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
                                 <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
