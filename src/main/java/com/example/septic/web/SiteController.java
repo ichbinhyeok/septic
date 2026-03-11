@@ -119,6 +119,7 @@ public class SiteController {
                         .thenComparing(StateProfile::stateName))
                 .limit(6)
                 .toList());
+        model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
         model.addAttribute("liveGuideCount", publicStates.size());
         model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
         model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - publicStates.size(), 0));
@@ -138,6 +139,7 @@ public class SiteController {
                         .isEmpty())
                 .map(this::stateQueuePlanView)
                 .toList());
+        model.addAttribute("featuredIntentPages", coverageGrowthSpotlights());
         model.addAttribute("queuedStates", coverageCards.stream()
                 .filter(card -> !card.published())
                 .toList());
@@ -836,6 +838,88 @@ public class SiteController {
                                         .orElse(Integer.MAX_VALUE))
                         .thenComparing(StateCoverageCardView::stateName))
                 .toList();
+    }
+
+    private List<PageLink> homeGrowthSpotlights() {
+        return CORE_STATE_CODES.stream()
+                .map(researchDataService::findStateByCode)
+                .flatMap(Optional::stream)
+                .filter(StateProfile::isPublished)
+                .map(state -> researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                        .sorted(Comparator
+                                .comparingInt((StateMoneyPage page) -> growthPageScore(page, state))
+                                .reversed()
+                                .thenComparing(StateMoneyPage::title))
+                        .findFirst()
+                        .map(page -> growthSpotlightLink(page, state))
+                        .orElse(null))
+                .filter(java.util.Objects::nonNull)
+                .toList();
+    }
+
+    private List<PageLink> coverageGrowthSpotlights() {
+        return researchDataService.getPublicStateProfiles().stream()
+                .flatMap(state -> researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                        .sorted(Comparator
+                                .comparingInt((StateMoneyPage page) -> growthPageScore(page, state))
+                                .reversed()
+                                .thenComparing(StateMoneyPage::title))
+                        .limit(2)
+                        .map(page -> Map.entry(page, state)))
+                .sorted(Comparator
+                        .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> growthPageScore(entry.getKey(), entry.getValue()))
+                        .reversed()
+                        .thenComparing(entry -> entry.getValue().stateName())
+                        .thenComparing(entry -> entry.getKey().title()))
+                .limit(12)
+                .map(entry -> growthSpotlightLink(entry.getKey(), entry.getValue()))
+                .toList();
+    }
+
+    private PageLink growthSpotlightLink(StateMoneyPage page, StateProfile state) {
+        return new PageLink(
+                page.title(),
+                page.path(state.slug()),
+                state.stateName() + " | " + firstNonBlank(page.uniqueAngle(), page.metaDescription())
+        );
+    }
+
+    private int growthPageScore(StateMoneyPage page, StateProfile state) {
+        int score = switch (page.contentSlug()) {
+            case "septic-permit-process" -> 120;
+            case "septic-records-checklist" -> 116;
+            case "buying-a-house-with-a-septic-system" -> 112;
+            case "septic-replacement-cost" -> 108;
+            case "perc-test-cost" -> 104;
+            case "drain-field-replacement-cost" -> 78;
+            case "failed-perc-test-septic" -> 74;
+            case "septic-replacement-area" -> 70;
+            case "wet-yard-over-septic-drain-field" -> 66;
+            case "septic-inspection-cost" -> 60;
+            case "septic-pumping-cost" -> 24;
+            default -> 40;
+        };
+
+        score += switch (state.stateCode()) {
+            case "WA" -> 18;
+            case "NJ", "NC" -> 12;
+            case "MO" -> 8;
+            default -> 0;
+        };
+
+        if (CORE_STATE_CODES.contains(state.stateCode())) {
+            score += 30;
+        }
+        if ("anchor".equalsIgnoreCase(state.launchTier())) {
+            score += 8;
+        }
+        if (page.highlightBuyerTrigger()) {
+            score += 4;
+        }
+        if (page.highlightMaintenanceNote()) {
+            score += 2;
+        }
+        return score;
     }
 
     private StateCoverageCardView publishedCoverageCard(StateProfile state) {

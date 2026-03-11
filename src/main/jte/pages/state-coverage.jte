@@ -3,6 +3,7 @@
 @import com.example.septic.web.StateQueuePlanView
 @param PageMeta page
 @param java.util.List<StateCoverageCardView> liveStates
+@param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
 @param java.util.List<StateQueuePlanView> priorityQueuePlans = java.util.List.of()
 @param java.util.List<StateCoverageCardView> queuedStates
 @param int liveGuideCount
@@ -49,6 +50,32 @@
             </article>
         </div>
     </section>
+
+    @if (!featuredIntentPages.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Best live deep pages</span>
+                    <h2>Use the directory to open real intent pages, not just state guides.</h2>
+                    <p class="lede">These live pages already cover the strongest permit, records, buyer, replacement, and site-risk wedges across the states with the best source-backed angles.</p>
+                </div>
+
+                <div class="card-grid">
+                    @for (var link : featuredIntentPages)
+                        <article class="detail-card">
+                            <span class="pill">Live intent page</span>
+                            <h3>${link.title()}</h3>
+                            <p>${link.note()}</p>
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_coverage_featured_intent"
+                               data-track-target-type="state_money_page">Open page</a>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     @if (!priorityQueuePlans.isEmpty())
         <section class="section section--tight">

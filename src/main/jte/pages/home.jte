@@ -3,6 +3,7 @@
 @param PageMeta page
 @param java.util.List<StateProfile> featuredStates
 @param java.util.List<StateProfile> spotlightStates
+@param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
 @param int liveGuideCount
 @param int liveIntentCount
 @param int queuedStateCount
@@ -72,6 +73,32 @@
             </article>
         </div>
     </section>
+
+    @if (!featuredIntentPages.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Live intent pages</span>
+                    <h2>Open the highest-intent state-specific pages directly.</h2>
+                    <p class="lede">These pages are already live and tend to match the strongest homeowner search intent better than a generic state directory click.</p>
+                </div>
+
+                <div class="card-grid">
+                    @for (var link : featuredIntentPages)
+                        <article class="detail-card">
+                            <span class="pill">State-specific page</span>
+                            <h3>${link.title()}</h3>
+                            <p>${link.note()}</p>
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="home_featured_intent"
+                               data-track-target-type="state_money_page">Open page</a>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--muted">
         <div class="container content-grid">
