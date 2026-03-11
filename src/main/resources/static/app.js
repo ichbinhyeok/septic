@@ -103,6 +103,64 @@
 
     setupSiteNav();
 
+    function setupStickyMobileCtas() {
+        const stickyCtas = Array.from(document.querySelectorAll("[data-sticky-mobile-cta]"));
+        if (!stickyCtas.length || !window.matchMedia) {
+            return;
+        }
+
+        const mobileQuery = window.matchMedia("(max-width: 720px)");
+        const updates = [];
+
+        function setVisible(stickyCta, visible) {
+            stickyCta.classList.toggle("is-visible", mobileQuery.matches && visible);
+        }
+
+        function installTracker(stickyCta, anchor) {
+            const update = () => {
+                if (anchor) {
+                    const rect = anchor.getBoundingClientRect();
+                    const revealLine = window.innerHeight - 88;
+                    setVisible(stickyCta, rect.top <= revealLine);
+                    return;
+                }
+
+                const threshold = Math.min(window.innerHeight * 0.7, 420);
+                setVisible(stickyCta, window.scrollY > threshold);
+            };
+
+            window.addEventListener("scroll", update, { passive: true });
+            window.addEventListener("resize", update);
+            update();
+            updates.push({ stickyCta, update });
+        }
+
+        stickyCtas.forEach((stickyCta) => {
+            const selector = stickyCta.dataset.showAfter;
+            const anchor = selector ? document.querySelector(selector) : null;
+            installTracker(stickyCta, anchor);
+        });
+
+        const handleViewportChange = (event) => {
+            if (event.matches) {
+                updates.forEach(({ update }) => update());
+                return;
+            }
+
+            stickyCtas.forEach((stickyCta) => setVisible(stickyCta, false));
+        };
+
+        if (typeof mobileQuery.addEventListener === "function") {
+            mobileQuery.addEventListener("change", handleViewportChange);
+        } else if (typeof mobileQuery.addListener === "function") {
+            mobileQuery.addListener(handleViewportChange);
+        }
+
+        handleViewportChange(mobileQuery);
+    }
+
+    setupStickyMobileCtas();
+
     document.addEventListener("click", (event) => {
         const anchor = event.target.closest("a[data-track-click]");
         if (!anchor) {

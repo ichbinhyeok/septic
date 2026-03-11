@@ -1,4 +1,5 @@
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.AssetPaths
 @import gg.jte.Content
 @param PageMeta page
 @param Content content
@@ -11,7 +12,7 @@
     <title>${page.title()}</title>
     <meta name="description" content="${page.description()}">
     <meta name="robots" content="${page.robots()}">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="${AssetPaths.versioned("/favicon.png")}" />
     <link rel="canonical" href="${page.canonicalUrl()}">
     <meta property="og:title" content="${page.title()}">
     <meta property="og:description" content="${page.description()}">
@@ -27,13 +28,14 @@
     @if (page.socialImageUrl() != null && !page.socialImageUrl().isBlank())
         <meta name="twitter:image" content="${page.socialImageUrl()}">
     @endif
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="${AssetPaths.versioned("/favicon.svg")}" type="image/svg+xml">
+    <link rel="shortcut icon" href="${AssetPaths.versioned("/favicon.svg")}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/app.css">
-    <script src="/app.js" defer></script>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
+    <script src="${AssetPaths.versioned("/app.js")}" defer></script>
     @for (var jsonLd : page.jsonLdBlocks())
         <script type="application/ld+json">$unsafe{jsonLd}</script>
     @endfor
@@ -43,7 +45,7 @@
         <header class="site-header">
             <div class="container site-header__inner">
                 <a class="brand" href="/">
-                    <img src="/favicon.png" alt="SepticPath logo" class="brand__logo" width="44" height="44">
+                    <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
                         <span>septic planning estimates with official-source context</span>
@@ -74,6 +76,25 @@
         </header>
 
         <main>
+            @if (page.breadcrumbs() != null && page.breadcrumbs().size() > 1)
+                <section class="section section--breadcrumb">
+                    <div class="container">
+                        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                            <ol class="breadcrumb-list">
+                                @for (var crumb : page.breadcrumbs())
+                                    <li class="breadcrumb-list__item">
+                                        @if (crumb == page.breadcrumbs().get(page.breadcrumbs().size() - 1))
+                                            <span aria-current="page">${crumb.title()}</span>
+                                        @else
+                                            <a href="${crumb.path()}">${crumb.title()}</a>
+                                        @endif
+                                    </li>
+                                @endfor
+                            </ol>
+                        </nav>
+                    </div>
+                </section>
+            @endif
             ${content}
         </main>
 
@@ -81,7 +102,7 @@
             <div class="container footer-grid">
                 <section class="footer-block footer-block--brand">
                     <a class="brand brand--footer" href="/">
-                        <img src="/favicon.png" alt="SepticPath logo" class="brand__logo" width="44" height="44">
+                        <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                         <span class="brand__text">
                             <strong>SepticPath</strong>
                             <span>Estimate-first guidance with official-source context.</span>
@@ -96,6 +117,7 @@
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
                         <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
+                        <li><a href="/drain-field-estimator/">Drain field estimator</a></li>
                         <li><a href="/states/">All state coverage</a></li>
                         <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
                         <li><a href="/septic-inspection-cost/">Inspection cost</a></li>
@@ -109,6 +131,7 @@
                     <h2 class="footer-heading">Trust</h2>
                     <ul class="footer-list">
                         <li><a href="/about/">About</a></li>
+                        <li><a href="/editorial-standards/">Editorial Standards</a></li>
                         <li><a href="/privacy-policy/">Privacy Policy</a></li>
                         <li><a href="/terms-of-use/">Terms of Use</a></li>
                         <li><a href="/contact/">Contact</a></li>

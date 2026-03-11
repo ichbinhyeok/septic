@@ -8,6 +8,7 @@
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> stateMoneyPageLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> featuredStateMoneyPageLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> contentEvidenceLanes = java.util.List.of()
+@param java.util.List<com.example.septic.web.ContentEvidenceLaneView> featuredContentEvidenceLanes = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
@@ -64,6 +65,8 @@
                 <span class="pill">
                     @if ("tank_size_estimator".equals(contentPage.calculatorModule()))
                         Tank size tool
+                    @elseif ("drainfield_estimator".equals(contentPage.calculatorModule()))
+                        Drain field tool
                     @elseif ("pump_schedule_estimator".equals(contentPage.calculatorModule()))
                         Pump schedule tool
                     @else
@@ -189,6 +192,128 @@
         </div>
     </section>
 
+    @if (!featuredStateMoneyPageLinks.isEmpty())
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <h2>Use a live state page before you trust the national range</h2>
+                    <p>
+                        This page stays national on purpose. If you want the source-backed version of this workflow, start with
+                        <a href="${featuredStateMoneyPageLinks.get(0).path()}"
+                           data-track-click="nav"
+                           data-track-source-context="content_page_inline_state_link"
+                           data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(0).title()}</a>
+                        @if (featuredStateMoneyPageLinks.size() > 1)
+                            and compare it with
+                            <a href="${featuredStateMoneyPageLinks.get(1).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_state_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(1).title()}</a>.
+                        @else
+                            before you trust a broad national range.
+                        @endif
+                    </p>
+                    @if (!contentEvidenceLanes.isEmpty())
+                        <p>
+                            The linked state pages carry direct official sources, last-reviewed dates, and the local file path that changes the quote story. That is why
+                            <a href="${contentEvidenceLanes.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_evidence_link"
+                               data-track-target-type="state_money_page">${contentEvidenceLanes.get(0).title()}</a>
+                            @if (contentEvidenceLanes.size() > 1)
+                                and
+                                <a href="${contentEvidenceLanes.get(1).path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_inline_evidence_link"
+                                   data-track-target-type="state_money_page">${contentEvidenceLanes.get(1).title()}</a>
+                            @endif
+                            are stronger next clicks than another generic explainer when you are about to pull records or call a contractor.
+                        </p>
+                    @endif
+                    @if (featuredStateMoneyPageLinks.size() > 2)
+                        <p>
+                            If your situation looks closer to
+                            <a href="${featuredStateMoneyPageLinks.get(2).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_state_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(2).title()}</a>,
+                            click through before you rely on the checklist below. The national page frames the question; the state page carries the file, office, and risk context that changes the answer.
+                        </p>
+                    @endif
+                </article>
+            </div>
+        </section>
+    @endif
+
+    <section class="section section--tight">
+        <div class="container detail-grid">
+            <article class="detail-card detail-card--full">
+                <h2>What this national page can answer before you touch a quote</h2>
+                <p>${contentPage.targetReader()} This national page is strongest when you still need to frame the problem correctly before you call a contractor, ask for transfer records, or push into a permit conversation.</p>
+                <p>${contentPage.introCopy()} Use this page to separate the broad cost story from the real bottleneck. In practice, that usually means deciding whether the next move is the estimator, a state-specific page, or a records and inspection workflow instead of another generic explainer.</p>
+                @if (!featuredStateMoneyPageLinks.isEmpty())
+                    <p>
+                        If the shape of your situation already feels state-specific, move next into
+                        <a href="${featuredStateMoneyPageLinks.get(0).path()}"
+                           data-track-click="nav"
+                           data-track-source-context="content_page_inline_state_link"
+                           data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(0).title()}</a>
+                        @if (featuredStateMoneyPageLinks.size() > 1)
+                            or
+                            <a href="${featuredStateMoneyPageLinks.get(1).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_state_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(1).title()}</a>
+                        @endif
+                        before you trust any low-end national range.
+                    </p>
+                @endif
+            </article>
+        </div>
+    </section>
+
+    @if (contentPage.deepDiveParagraphs() != null && !contentPage.deepDiveParagraphs().isEmpty())
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <h2>What this page is really helping you decide</h2>
+                    @for (var paragraph : contentPage.deepDiveParagraphs())
+                        <p>${paragraph}</p>
+                    @endfor
+                </article>
+            </div>
+        </section>
+    @endif
+
+    @if (!featuredContentEvidenceLanes.isEmpty())
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <h2>Representative state examples behind this national page</h2>
+                    @for (var lane : featuredContentEvidenceLanes)
+                        <p>
+                            In <strong>${lane.stateName()}</strong>,
+                            <a href="${lane.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_state_example_link"
+                               data-track-target-type="state_money_page">${lane.title()}</a>
+                            is the stronger next read when ${lane.summary()}
+                            @if (!lane.sources().isEmpty())
+                                One of the primary official sources behind this example is
+                                <a href="${lane.sources().get(0).url()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_state_example_source"
+                                   data-track-target-type="official_source">${lane.sources().get(0).agencyName()}</a>.
+                            @endif
+                        </p>
+                    @endfor
+                </article>
+            </div>
+        </section>
+    @endif
+
     <section class="section section--tight">
         <div class="container detail-grid">
             <article class="detail-card">
@@ -210,6 +335,52 @@
             </article>
         </div>
     </section>
+
+    @if (!featuredInternalLinks.isEmpty() || !featuredStateMoneyPageLinks.isEmpty())
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <h2>When this page stops being enough</h2>
+                    <p>The national page should get you to the right lane, not keep you here forever. Once you need the real file path, local office, reserve-area risk, transfer rule, or state review wrinkle, move into the narrower page that matches the blocker instead of rereading the same overview.</p>
+                    @if (!featuredInternalLinks.isEmpty())
+                        <p>
+                            If the blocker is workflow rather than geography, go next to
+                            <a href="${featuredInternalLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_internal_link"
+                               data-track-target-type="internal_page">${featuredInternalLinks.get(0).title()}</a>
+                            @if (featuredInternalLinks.size() > 1)
+                                or
+                                <a href="${featuredInternalLinks.get(1).path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_inline_internal_link"
+                                   data-track-target-type="internal_page">${featuredInternalLinks.get(1).title()}</a>
+                            @endif
+                            when the next question is really about records, permits, buyer timing, or inspection evidence.
+                        </p>
+                    @endif
+                    @if (!featuredStateMoneyPageLinks.isEmpty())
+                        <p>
+                            If the blocker is state-specific, move from this overview into
+                            <a href="${featuredStateMoneyPageLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_inline_state_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(0).title()}</a>
+                            @if (featuredStateMoneyPageLinks.size() > 2)
+                                and keep
+                                <a href="${featuredStateMoneyPageLinks.get(2).path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_inline_state_link"
+                                   data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(2).title()}</a>
+                                as the comparison page
+                            @endif
+                            so the estimate and quote conversation stays tied to a real local workflow.
+                        </p>
+                    @endif
+                </article>
+            </div>
+        </section>
+    @endif
 
     <section class="section">
         <div class="container content-grid">

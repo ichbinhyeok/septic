@@ -85,6 +85,8 @@
         </div>
     </section>
 
+    <div data-sticky-trigger="state-guide-after-hero" aria-hidden="true"></div>
+
     <section class="section section--tight">
         <div class="container">
             <div class="section-jump-strip" aria-label="Jump between sections">
@@ -304,6 +306,61 @@
             </article>
         </div>
     </section>
+
+    @if (!featuredStateMoneyPages.isEmpty() || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
+        <section class="section section--tight">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <h2>How to use this ${state.stateName()} guide before you click into one intent page</h2>
+                    <p>
+                        Use this guide for the broad statewide story first: rule style, office path, file trail, and what usually breaks the low end. Once you know which part of the workflow is actually blocking you, move into
+                        @if (!featuredStateMoneyPages.isEmpty())
+                            <a href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_inline_intent_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPages.get(0).title()}</a>
+                        @else
+                            the most specific next page
+                        @endif
+                        instead of staying at the statewide level.
+                    </p>
+                    @if (featuredStateMoneyPages.size() > 1)
+                        <p>
+                            If your bottleneck is different, compare it with
+                            <a href="${featuredStateMoneyPages.get(1).path(state.slug())}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_inline_intent_link"
+                               data-track-target-type="state_money_page">${featuredStateMoneyPages.get(1).title()}</a>.
+                            The goal is to carry the right file, permit, or site-risk narrative into the estimate instead of relying on one statewide average.
+                        </p>
+                    @endif
+                    @if (primaryRecordsLookupSource != null)
+                        <p>
+                            Before you trust the low end, pull the actual file from
+                            <a href="${primaryRecordsLookupSource.url()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_inline_source_link"
+                               data-track-target-type="official_source">${primaryRecordsLookupSource.agencyName()}</a>.
+                            The permit, as-built, inspection, or management record usually tells you faster than a contractor quote whether this property still fits the cheaper path.
+                        </p>
+                    @elseif (primaryLocalAuthoritySource != null)
+                        <p>
+                            Before you trust the low end, verify the actual reviewing office through
+                            <a href="${primaryLocalAuthoritySource.url()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_inline_source_link"
+                               data-track-target-type="official_source">${primaryLocalAuthoritySource.agencyName()}</a>.
+                            The right county, district, or delegated authority changes how fast the project moves and which requirements matter first.
+                        </p>
+                    @endif
+                </article>
+            </div>
+        </section>
+    @endif
 
     @if (state.permitPathSteps() != null && !state.permitPathSteps().isEmpty())
         <section class="section section--tight">
@@ -616,10 +673,12 @@
     </section>
 
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
-    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
+    <section class="sticky-mobile-cta sticky-mobile-cta--single"
+             aria-label="Run estimate"
+             data-sticky-mobile-cta
+             data-show-after='[data-sticky-trigger="state-guide-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_sticky_quote" data-track-target-type="quote_form">Short quote form</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
         </div>
     </section>
 `)

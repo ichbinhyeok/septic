@@ -13,6 +13,7 @@ public record ContentPage(
         String calculatorModule,
         String calculatorProjectType,
         String targetReader,
+        List<String> deepDiveParagraphs,
         List<String> fitBullets,
         List<String> decisionSteps,
         List<String> lowEndBreakers,

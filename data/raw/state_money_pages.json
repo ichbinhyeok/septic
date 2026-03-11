@@ -118,6 +118,190 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "GA",
+      "title": "Georgia Failed Perc Test for Septic",
+      "metaDescription": "What a failed Georgia perc or soil-analysis result means for septic cost, usable drainfield area, and the next county step.",
+      "introCopy": "A failed Georgia perc or soil-analysis result is usually bigger than a small testing invoice. Georgia's homeowner guidance makes soil analysis, water table depth, limiting layers, and usable drainfield area part of the real project path, so a failed result can quickly widen the whole estimate.",
+      "uniqueAngle": "Georgia is strong for failed-perc intent because the public homeowner material openly ties soil analysis and site limits to usable drainfield area rather than treating perc as a tiny side cost.",
+      "targetReader": "Best for Georgia owners, buyers, and lot shoppers who already know the perc or soil result was weak or failed and need to decide whether the real issue is retesting, field viability, or a wider redesign path.",
+      "fitBullets": [
+        "You already have a weak or failed Georgia soil result and need to know whether the lot still supports enough usable drainfield area.",
+        "The county process is still unclear, so you do not know whether the next step is a cleaner site review, a field redesign, or a much wider replacement conversation.",
+        "You need a Georgia-specific explanation before a contractor turns one failed result into an oversimplified quote story."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office and confirm exactly what the failed or weak soil-analysis result says about water table, limiting layers, and usable drainfield area.",
+        "Pull any prior soil analysis, permit, repair, or field-design record tied to the parcel so you can compare the failed result against older site assumptions.",
+        "Treat the failed result as a field-viability signal first, not a small testing fee, because Georgia's public guidance makes site limits part of the practical drainfield path.",
+        "Then compare the failed-perc story against the drain field and replacement pages before you trust any low-end quote."
+      ],
+      "lowEndBreakers": [
+        "A failed Georgia soil result can mean the lot no longer supports enough usable drainfield area for the current home load.",
+        "Water table depth and limiting-layer issues can turn a failed perc conversation into a much larger field or system-class decision.",
+        "If the county file is thin, homeowners can over-trust a retest narrative when the real issue is site viability.",
+        "The low end breaks quickly once the field path depends on whether the old footprint or load assumptions still work."
+      ],
+      "quotePrepChecklist": [
+        "The failed or weak soil-analysis result with the date, county reviewer, and any note about water table, limiting layers, or usable area.",
+        "Any prior permit, as-built, field sketch, or repair history tied to the lot.",
+        "The current bedroom count, disposal status, and any added kitchen or load change that affects how much field area is needed.",
+        "Any visible wetness, slope, drainage, or access issue already mentioned by the county or contractor."
+      ],
+      "driverBullets": [
+        "Georgia's county soil-review path can widen the project faster than the testing invoice itself.",
+        "Failed or weak site results matter because they directly affect usable drainfield area.",
+        "The real issue is often field viability, not whether the owner can schedule one more perc-style visit.",
+        "Weak records make the failed result much harder to interpret conservatively."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Georgia perc result always kill the project?",
+          "answer": "No, but it does mean the homeowner should stop assuming the lot still supports the same drainfield path until the county file and site limits are clearer."
+        },
+        {
+          "question": "Why is a failed soil result a bigger deal in Georgia than just a test fee?",
+          "answer": "Because Georgia's public homeowner guidance ties site conditions like water table and limiting layers to usable drainfield area, which directly affects the practical system path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=perc_test",
+        "/drain-field-replacement-cost/georgia/",
+        "/septic-records-checklist/georgia/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "GA",
+      "title": "Georgia Septic Replacement Area Guide",
+      "metaDescription": "Use Georgia's soil-analysis and county file context to judge whether the lot still has usable replacement area before trusting a drain field quote.",
+      "introCopy": "In Georgia, replacement-area questions are really about whether the lot still has enough usable drainfield area after current soil analysis, water table, and limiting-layer constraints are applied. That means a field quote can widen even before the contractor touches the old trenches.",
+      "uniqueAngle": "Georgia is strong for replacement-area intent because the public homeowner guidance openly ties soil conditions to usable drainfield area, which is closer to the real lot-risk question than a generic reserve-area article.",
+      "targetReader": "Best for Georgia owners and buyers who already suspect the field is failing and need to know whether the county file and current soil conditions still support a workable replacement area.",
+      "fitBullets": [
+        "A county reviewer, inspector, or contractor already questioned whether the lot still has enough usable drainfield area.",
+        "The old field footprint may not be the real issue anymore, and you need to know whether the parcel still supports a workable next layout.",
+        "You want to separate a field-only repair story from a bigger Georgia site-viability problem before comparing quotes."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office and ask what soil analysis, permit, or field layout file is already tied to the property.",
+        "Check whether the latest file still supports enough usable drainfield area for the home's current load, not just the old footprint.",
+        "Compare the lot's current water table, limiting-layer, and access story against the older permit assumptions before you trust the low end.",
+        "Then use the replacement-area answer to decide whether the project is still a straightforward field job or a wider redesign conversation."
+      ],
+      "lowEndBreakers": [
+        "If the county file no longer supports enough usable drainfield area, the cheapest field-replacement story stops being realistic.",
+        "Water table depth and limiting layers can erase the apparent replacement area even when the old field location looks familiar.",
+        "A changed bedroom count, disposal setup, or added load can make the old layout assumptions too optimistic.",
+        "Thin records make owners over-trust the visible field footprint instead of the parcel's real current limits."
+      ],
+      "quotePrepChecklist": [
+        "Any soil analysis, permit sketch, or field layout already tied to the property.",
+        "The current bedroom count, disposal status, and any load change that affects required field area.",
+        "Any note about water table depth, limiting layers, drainage, slope, or access limits near the field.",
+        "Any contractor or county note already suggesting the old layout may not be reusable."
+      ],
+      "driverBullets": [
+        "Georgia replacement-area risk is really about usable drainfield area under current site conditions.",
+        "The county soil-review path matters because water table and limiting layers can change lot viability fast.",
+        "Load changes like disposal use or bedroom drift can undermine the old permit assumptions.",
+        "Field quotes get wider when the file is too thin to prove the parcel still supports the next layout."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Georgia replacement area the same thing as the old field footprint?",
+          "answer": "No. The safer question is whether the lot still has enough usable drainfield area under current soil and load assumptions, not whether the old footprint once worked."
+        },
+        {
+          "question": "Why does Georgia replacement-area risk show up before a full redesign is confirmed?",
+          "answer": "Because Georgia's public guidance makes soil conditions and usable field area part of the practical path, so lot viability can weaken before a contractor gives a final redesign answer."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/georgia/",
+        "/failed-perc-test-septic/georgia/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "GA",
+      "title": "Georgia Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Georgia drain field can mean, when it points to usable drainfield-area failure, and how county soil context widens the estimate.",
+      "introCopy": "A wet yard over a Georgia drain field is usually not just a surface-water annoyance. Georgia's homeowner guidance says soil analysis, water table depth, limiting layers, and usable drainfield area all matter, so visible sogginess can be the sign that the lot's real field path is already weaker than the low-end repair story suggests.",
+      "uniqueAngle": "Georgia is strong for wet-yard intent because the public homeowner framing already ties wet-site symptoms back to soil analysis and usable drainfield area instead of treating the problem like a generic puddle near a trench.",
+      "targetReader": "Best for Georgia owners and buyers seeing soggy ground, seepage, or odor near the field and trying to decide whether the parcel still supports a narrow field fix or is drifting toward a larger usable-area problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the suspected field area and need to know whether the real issue is field failure, water-table pressure, or a wider site-limit problem.",
+        "A contractor or county contact has hinted that the yard symptom may point to a larger drainfield issue, but the file and soil story are still thin.",
+        "You want Georgia-specific guidance before a visible wet spot gets simplified into a repair quote that ignores usable drainfield area."
+      ],
+      "decisionSteps": [
+        "Start with the county environmental health office and ask what soil-analysis, repair, or field-layout record is already tied to the property.",
+        "Compare the wet-yard symptom against any note about water table depth, limiting layers, drainage, or reduced usable drainfield area in the county file.",
+        "Treat the wet area as a field-viability signal first, not just a pumping or surface-drainage nuisance, because Georgia's public guidance makes site limits part of the real path.",
+        "Then compare the wet-yard story against the drain field, inspection, and records pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the parcel no longer supports enough usable drainfield area for the current home load.",
+        "Water table depth, limiting layers, or drainage issues can turn a wet-yard complaint into a much larger field decision quickly.",
+        "If the county file is thin, a contractor can mistake chronic field failure for a small maintenance issue.",
+        "The low end breaks fast once the wet symptom points toward a weaker field layout instead of a single narrow repair."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "Any soil-analysis, permit sketch, repair note, or field-layout document already tied to the lot.",
+        "Any note about water table depth, limiting layers, drainage, slope, or access limits near the field.",
+        "Any pumping, inspection, or contractor note already warning that the issue is larger than normal maintenance."
+      ],
+      "driverBullets": [
+        "Georgia wet-yard risk is really about whether the parcel still has enough usable drainfield area under current site conditions.",
+        "County soil-review context matters because water table and limiting layers can turn visible sogginess into a larger field story.",
+        "Thin records make it easy to over-trust a simple repair explanation when the wet symptom is actually chronic field failure.",
+        "Visible seepage gets more expensive when layout, drainage, and field viability are all uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Georgia yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the county file, soil conditions, and usable field area are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in Georgia than just a drainage annoyance?",
+          "answer": "Because Georgia's public homeowner guidance ties soil conditions and limiting layers to usable drainfield area, so visible sogginess can signal a much larger field-viability issue."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/georgia/",
+        "/septic-system-cost-calculator/?state=GA&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/georgia/",
+        "/septic-inspection-cost/georgia/",
+        "/septic-records-checklist/georgia/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "ga_01",
+        "ga_02"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-replacement-cost",
       "stateCode": "PA",
       "title": "Pennsylvania Septic Replacement Cost",
@@ -229,6 +413,255 @@
         "pa_01",
         "pa_02"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "PA",
+      "title": "Pennsylvania Failed Perc Test for Septic",
+      "metaDescription": "What a failed Pennsylvania perc or soil-suitability result can mean for septic cost, local SEO review, and the next field decision.",
+      "introCopy": "In Pennsylvania, a failed perc or weak soil-suitability result is usually bigger than the testing invoice. DEP says septic systems only work on sites with suitable soil conditions, and the practical next step still runs through the municipality or local agency and the Sewage Enforcement Officer, not through a generic statewide quote.",
+      "uniqueAngle": "Pennsylvania is strong for failed-perc intent because the failed result sits directly on top of local SEO review and the state-level soil-suitability warning, which together make the homeowner path much more specific than a generic perc article.",
+      "targetReader": "Best for Pennsylvania owners, buyers, and land shoppers who already know the site or soil result was weak and need to decide whether the real issue is another test, local SEO review, or a wider field and replacement problem.",
+      "fitBullets": [
+        "You already have a weak or failed site result and need to know whether the municipality and Sewage Enforcement Officer still see the lot as workable.",
+        "The testing invoice looks small, but the real question is whether the result pushes the project beyond a conventional path.",
+        "You need Pennsylvania-specific guidance before a contractor turns one failed result into a misleading low-end quote."
+      ],
+      "decisionSteps": [
+        "Identify the municipality or local agency and the Sewage Enforcement Officer first so the failed result is read in the right local review path.",
+        "Pull any older permit, perc note, as-built, repair, or enforcement record tied to the parcel before assuming the failed result is brand new information.",
+        "Treat the failed result as a field-viability signal first, not as a small testing fee, because DEP's own homeowner framing says suitable soil conditions are foundational.",
+        "Then compare the failed-site story against the replacement-area, wet-yard, and records pages before you trust any low-end scope."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can move the project out of a conventional path long before the contractor quote catches up.",
+        "If the municipality or SEO path is still unclear, the owner can misread a local review problem as a small testing problem.",
+        "Old field issues or undocumented repairs can make the new failed result much more consequential than it first looks.",
+        "The low end breaks quickly once the failed result is really about site suitability and field viability, not another visit."
+      ],
+      "quotePrepChecklist": [
+        "The municipality, county, and any Sewage Enforcement Officer contact already tied to the property.",
+        "Any prior permit, perc result, as-built drawing, repair file, or local enforcement note tied to the lot.",
+        "A short description of wet-soil, drainfield, or visible failure issues already known on site.",
+        "The project goal: new install, replacement, or buyer diligence before a sale."
+      ],
+      "driverBullets": [
+        "Pennsylvania failed-perc risk is really about whether the site still counts as suitable under local review.",
+        "Municipality and SEO context matters because the failed result is not operational until the local path is clear.",
+        "Field history and weak records can make one failed result much harder to interpret conservatively.",
+        "A failed result gets expensive fast when the real issue is field viability, not the test invoice."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Pennsylvania perc result always mean replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the project stays conventional until the municipality, SEO file, and site-suitability story are clearer."
+        },
+        {
+          "question": "Why is a failed site result a bigger deal in Pennsylvania than just a testing fee?",
+          "answer": "Because DEP says septic systems only work on sites with suitable soil conditions, and the local SEO path still has to interpret what that failed result means for the project."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=perc_test",
+        "/septic-replacement-area/pennsylvania/",
+        "/septic-records-checklist/pennsylvania/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "PA",
+      "title": "Pennsylvania Septic Replacement Area Guide",
+      "metaDescription": "Use Pennsylvania municipality, SEO, and soil-suitability context to judge whether the parcel still supports a workable next field path.",
+      "introCopy": "Pennsylvania does not publish replacement-area language the same way some states do, but the homeowner problem is still real. When the field is failing or the site is weak, the practical question is whether the parcel still supports a workable next path once the municipality, SEO file, and soil-suitability story are in view.",
+      "uniqueAngle": "Pennsylvania is useful for replacement-area intent because the real homeowner wedge is local SEO review plus soil suitability, not a generic reserve-area theory page.",
+      "targetReader": "Best for Pennsylvania owners and buyers who suspect the field issue is larger than a simple repair and need to know whether the next path still looks workable enough to price conservatively.",
+      "fitBullets": [
+        "A contractor, inspector, or seller already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether the parcel still supports a workable next field path once the municipality and SEO file are considered.",
+        "You want Pennsylvania-specific guidance before the visible field issue gets reduced to a generic trench quote."
+      ],
+      "decisionSteps": [
+        "Identify the municipality or local agency and the Sewage Enforcement Officer so the replacement-area question starts in the right local lane.",
+        "Pull any permit, as-built, repair, perc, or enforcement file already tied to the system before you assume the next field path is simple.",
+        "Ask whether poor soil, field limits, or older repair history now make the project look more like a wider replacement story than a narrow fix.",
+        "Then compare the field story against the wet-yard, inspection, and replacement pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the municipality or SEO path is still unclear.",
+        "Poor soil or field constraints can make the parcel's next path much wider than a contractor's first repair story suggests.",
+        "Weak local records can hide how much of the visible field issue was already known before the current quote.",
+        "The low end breaks when the owner is really dealing with a wider replacement decision instead of a narrow field fix."
+      ],
+      "quotePrepChecklist": [
+        "The municipality, county, and Sewage Enforcement Officer contact already tied to the property.",
+        "Any permit, as-built, repair, perc, or field-history record already tied to the system.",
+        "A short note on known wet-soil, drainfield, or visible field concerns already raised by the owner, buyer, or contractor.",
+        "A short note on whether the question is tied to repair follow-through, active replacement pricing, or buyer diligence."
+      ],
+      "driverBullets": [
+        "Pennsylvania replacement-area risk starts with the local SEO path because the wrong local story distorts the whole field decision.",
+        "Poor soil and field limits matter because they can widen the project before the first quote is truly comparable.",
+        "File history matters because the visible field issue may sit on top of older permits, repairs, or enforcement notes.",
+        "Owners under-budget when they price the field symptom without reconciling it to local site-suitability context."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Pennsylvania replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the parcel still supports a workable next field path once the municipality, SEO file, and soil-suitability story are in view."
+        },
+        {
+          "question": "Why does Pennsylvania replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in local SEO review, soil constraints, and the existing field file before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=drainfield_replacement",
+        "/wet-yard-over-septic-drain-field/pennsylvania/",
+        "/septic-inspection-cost/pennsylvania/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "PA",
+      "title": "Pennsylvania Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Pennsylvania drain field can mean, when it points to soil-suitability trouble, and how local SEO review widens the estimate.",
+      "introCopy": "A wet yard over a Pennsylvania drain field is usually not just a nuisance symptom. DEP says septic systems only work if the site has suitable soil conditions, and the practical next step still runs through the municipality or local agency and the Sewage Enforcement Officer. That makes visible wetness a local field-risk story, not just a puddle.",
+      "uniqueAngle": "Pennsylvania is strong for wet-yard intent because visible field failure sits directly on top of soil-suitability risk and local SEO review.",
+      "targetReader": "Best for Pennsylvania owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the parcel still supports a narrow fix or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the suspected field area and need to know whether the real issue is field failure, poor soil, or a wider local review problem.",
+        "A contractor or local contact has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want Pennsylvania-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Identify the municipality or local agency and the Sewage Enforcement Officer so the wet-yard symptom is read against the right local file.",
+        "Pull any permit, as-built, repair, perc, or inspection note tied to the property before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not as a maintenance nuisance, because Pennsylvania's public framing makes suitable soil conditions central to the whole path.",
+        "Then compare the wet-yard story against the replacement-area, inspection, and records pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the site-suitability story is weaker than the owner assumed.",
+        "If the municipality or SEO path is still unclear, a local review problem can get misread as a small field repair.",
+        "Old field issues or undocumented repairs can make the visible symptom much more consequential than it first looks.",
+        "The low end breaks fast once the soggy yard is really about field viability instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The municipality, county, and any Sewage Enforcement Officer contact already tied to the property.",
+        "Any permit, as-built, repair, perc, or inspection note already tied to the system.",
+        "A short note on wet-soil, drainfield, or visible failure issues already observed on the parcel."
+      ],
+      "driverBullets": [
+        "Pennsylvania wet-yard risk is really about whether the site still counts as suitable under local review.",
+        "Municipality and SEO context matters because visible wetness is not operationally meaningful until the local path is clear.",
+        "Weak records make it easy to under-read a chronic field symptom.",
+        "Visible seepage gets more expensive when field viability and local review are both uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Pennsylvania yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the municipality, SEO file, and soil-suitability story are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in Pennsylvania than just a drainage annoyance?",
+          "answer": "Because DEP says septic systems only work on sites with suitable soil conditions, so visible wetness can be a much larger field-viability signal than it first appears."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=drainfield_replacement",
+        "/septic-inspection-cost/pennsylvania/",
+        "/septic-records-checklist/pennsylvania/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "PA",
+      "title": "Pennsylvania Drain Field Replacement Cost",
+      "metaDescription": "Estimate Pennsylvania drain field replacement cost with municipality and SEO review, soil-suitability risk, and field-history context in mind.",
+      "introCopy": "In Pennsylvania, drain field replacement cost is not just a trenching number. DEP says onlot systems only work where suitable soil conditions exist, and the practical next step still runs through the municipality or local agency and the Sewage Enforcement Officer. That makes field replacement a local soil-and-file question first.",
+      "uniqueAngle": "Pennsylvania supports a stronger drain-field page because suitable-soil language and the local SEO path make field replacement wider than a generic national estimate suggests.",
+      "targetReader": "Best for Pennsylvania owners who already think the drain field is the main problem but still need to know whether the parcel and local file support a workable next field path.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the parcel still has a workable field path under local review.",
+        "You need to know whether soil-suitability concerns and the existing file let the old field concept keep working or force a wider replacement story.",
+        "You want to budget a field job without ignoring municipality, SEO, and field-history risk."
+      ],
+      "decisionSteps": [
+        "Identify the municipality or local agency and the Sewage Enforcement Officer before you treat the field problem like a simple contractor scope.",
+        "Pull any permit, as-built, repair, perc, or inspection note tied to the property so the field question is read against the real local file.",
+        "Ask whether suitable-soil conditions and the parcel's current field story still support a narrow replacement path or point toward a wider redesign.",
+        "Then compare drain field quotes only after the local lane, soil-suitability story, and file history are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the municipality or SEO path is still unclear because the owner may be pricing the wrong local process.",
+        "Poor soil or field constraints can make the next field path much wider than a basic trench-replacement assumption.",
+        "Older repair history or undocumented field trouble can make the previous footprint a weak budget anchor.",
+        "The low end fails quickly when the drain field problem is really a larger site-suitability and local-review story."
+      ],
+      "quotePrepChecklist": [
+        "The municipality, county, and Sewage Enforcement Officer contact already tied to the property.",
+        "Any permit, as-built, repair, perc, or inspection note already tied to the system.",
+        "A short note on wet soil, drainage, surfacing, or other field symptoms already observed on the parcel.",
+        "Any contractor note suggesting the old field footprint or next field path may not work as assumed."
+      ],
+      "driverBullets": [
+        "Pennsylvania drain-field ranges widen when the municipality and SEO path are still unresolved.",
+        "Suitable-soil conditions matter because they shape whether the parcel still supports a workable field path.",
+        "Older permits and repair history can show that the visible field problem is not a brand-new event.",
+        "Owners under-budget when they price trench work without reconciling it to local review and site suitability."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Pennsylvania drain field replacement cost tied to local review so closely?",
+          "answer": "Because DEP frames onlot systems around suitable soil conditions, and the municipality or local agency plus the Sewage Enforcement Officer still control the practical next step."
+        },
+        {
+          "question": "Can I assume an old Pennsylvania field footprint will still work?",
+          "answer": "Not safely. The local file, soil-suitability story, and field history can all change whether the next field path is still narrow enough to price conservatively."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/pennsylvania/",
+        "/septic-system-cost-calculator/?state=PA&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/pennsylvania/",
+        "/septic-replacement-area/pennsylvania/",
+        "/wet-yard-over-septic-drain-field/pennsylvania/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "pa_01",
+        "pa_02",
+        "pa_03"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
     },
     {
@@ -349,6 +782,259 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "CT",
+      "title": "Connecticut Failed Perc Test for Septic",
+      "metaDescription": "What a failed Connecticut perc or site result can mean for local health review, code-complying area risk, and the next septic cost decision.",
+      "introCopy": "In Connecticut, a failed perc or weak site result is rarely just a small testing invoice. Local health review, code-complying area, reserve area, and bedroom-based design assumptions all stay live in the background, so one failed result can quickly widen the project.",
+      "uniqueAngle": "Connecticut is strong for failed-perc intent because site-testing questions immediately overlap with local health approval, reserve-area risk, and potential-bedroom logic rather than behaving like a simple generic perc page.",
+      "targetReader": "Best for Connecticut owners, buyers, and builders who already know the site result was weak or failed and need to decide whether the real issue is another test, a code-complying-area problem, or a wider replacement path.",
+      "fitBullets": [
+        "You already have a weak or failed site result, but no one has explained what it means for local health review or code-complying area.",
+        "The testing invoice looks small, yet the real risk may be whether the property still works under current bedroom and use assumptions.",
+        "You need Connecticut-specific guidance before a contractor treats one failed result like a narrow site issue."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or approved agent so the failed result is read in the right local approval path.",
+        "Pull any prior site investigation, approval-to-construct, permit-to-discharge, or soil-testing record tied to the property before assuming the failed result is new information.",
+        "Treat the failed result as a code-complying-area and reserve-area signal first, not as a small test fee, because Connecticut's public path makes site conditions central to the whole approval story.",
+        "Then compare the failed-site story against the replacement-area, wet-yard, and records pages before you trust any low-end scope."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can reopen reserve-area and code-complying-area questions that the owner thought were settled.",
+        "If local health review or older approval records are still unclear, the owner can misread a local approval problem as a small testing problem.",
+        "Potential-bedroom or addition history can make the failed result more consequential than current occupancy suggests.",
+        "The low end breaks quickly once the failed result points toward a wider site and field problem instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local health department or approved-agent contact for the file.",
+        "Any prior site investigation, soil-testing, approval-to-construct, or permit-to-discharge record.",
+        "The current and intended bedroom count or use of the property.",
+        "Any contractor or inspector note already questioning the reserve area, code-complying area, or site viability."
+      ],
+      "driverBullets": [
+        "Connecticut failed-perc risk is really about whether the property still works under current site and bedroom assumptions.",
+        "Local health review matters because the failed result is not meaningful until it is reconciled with the approval file.",
+        "Potential-bedroom and addition history can make one failed result much larger than it first appears.",
+        "A failed result gets expensive fast when the real issue is reserve-area and field viability, not the test invoice."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Connecticut perc result always mean replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the local health file, reserve-area story, and current use assumptions are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in Connecticut?",
+          "answer": "Because Connecticut ties site conditions, code-complying area, and bedroom-based design logic directly to the local approval path, so the failed result can widen the project quickly."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=perc_test",
+        "/septic-replacement-area/connecticut/",
+        "/septic-records-checklist/connecticut/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "CT",
+      "title": "Connecticut Septic Replacement Area Guide",
+      "metaDescription": "Use Connecticut code-complying-area, reserve-area, and local health context to judge whether the property still supports a workable next field path.",
+      "introCopy": "Connecticut is one of the clearest replacement-area states because public guidance openly talks about code-complying area, reserve area, soil testing, and additions. That means the homeowner question is not just whether the field failed, but whether the property still works under current local health and bedroom assumptions.",
+      "uniqueAngle": "Connecticut is strong for replacement-area intent because the public homeowner path already ties reserve area and code-complying area directly to additions, change in use, and local approval risk.",
+      "targetReader": "Best for Connecticut owners and buyers who suspect the field issue is larger than a simple repair and need to know whether the property still supports a workable next path under current local-health rules.",
+      "fitBullets": [
+        "A contractor, inspector, or local reviewer already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether the property still has workable code-complying and reserve area under current bedroom or use assumptions.",
+        "You want Connecticut-specific guidance before the visible field problem gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or approved agent so the replacement-area question is read in the right local lane.",
+        "Pull any prior site investigation, approval-to-construct, permit-to-discharge, or soil-testing record already tied to the system.",
+        "Ask whether reserve area, code-complying area, bedroom count, or addition history now make the project look more like a wider replacement story than a narrow fix.",
+        "Then compare the field story against the wet-yard, inspection, and replacement pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if reserve area or code-complying area is weaker than the owner assumed.",
+        "Potential-bedroom or addition history can widen the project even when current occupancy looks low.",
+        "Weak local records can hide how much of the visible field issue was already known before the current quote.",
+        "The low end breaks when the owner is really dealing with a wider replacement decision instead of a narrow field fix."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local health department or approved-agent contact for the file.",
+        "Any prior site investigation, soil-testing, approval-to-construct, or permit-to-discharge record already tied to the system.",
+        "The current and intended bedroom count or use of the property.",
+        "Any contractor or inspector note already questioning the reserve area, code-complying area, or visible field issue."
+      ],
+      "driverBullets": [
+        "Connecticut replacement-area risk starts with reserve area and code-complying area, not just visible field failure.",
+        "Local health review matters because the wrong local story distorts the whole field decision.",
+        "Bedroom-based design logic and addition history can widen the project before the first quote is truly comparable.",
+        "Owners under-budget when they price the field symptom without reconciling it to reserve-area and use assumptions."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Connecticut replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the property still supports a workable next field path once reserve area, code-complying area, and current use assumptions are in view."
+        },
+        {
+          "question": "Why does Connecticut replacement-area concern show up before a final design answer?",
+          "answer": "Because reserve area, code-complying area, additions, and local approval risk usually surface before anyone has a final engineered path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=drainfield_replacement",
+        "/wet-yard-over-septic-drain-field/connecticut/",
+        "/septic-inspection-cost/connecticut/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "CT",
+      "title": "Connecticut Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Connecticut drain field can mean, when it points to reserve-area trouble, and how local health review widens the estimate.",
+      "introCopy": "A wet yard over a Connecticut drain field is usually not just a nuisance symptom. Local health review, code-complying area, reserve area, and bedroom-based design assumptions can all stay live in the background, so visible sogginess can be the sign that the property's field path is already weaker than the low-end repair story suggests.",
+      "uniqueAngle": "Connecticut is strong for wet-yard intent because visible field failure sits directly on top of reserve-area and local health review risk rather than just a generic soggy-yard story.",
+      "targetReader": "Best for Connecticut owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the property still supports a narrow fix or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the suspected field area and need to know whether the real issue is field failure, reserve-area trouble, or a wider local approval problem.",
+        "A contractor or local reviewer has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want Connecticut-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or approved agent so the wet-yard symptom is read against the right local file.",
+        "Pull any site investigation, soil-testing, approval-to-construct, permit-to-discharge, or repair note tied to the property before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not as a maintenance nuisance, because Connecticut's public path makes reserve area and code-complying area central to the whole story.",
+        "Then compare the wet-yard story against the replacement-area, inspection, and records pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the reserve-area and code-complying-area story is weaker than the owner assumed.",
+        "If local health review or older approval records are still unclear, a local approval problem can get misread as a small field repair.",
+        "Potential-bedroom or addition history can make the visible symptom much more consequential than current occupancy suggests.",
+        "The low end breaks fast once the soggy yard is really about field viability and reserve area instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The property address and local health department or approved-agent contact for the file.",
+        "Any site investigation, soil-testing, approval-to-construct, permit-to-discharge, or repair note already tied to the system.",
+        "The current and intended bedroom count or use of the property."
+      ],
+      "driverBullets": [
+        "Connecticut wet-yard risk is really about whether the property still works under reserve-area and local review assumptions.",
+        "Local health review matters because visible wetness is not operationally meaningful until the approval file is clear.",
+        "Potential-bedroom and addition history can make a chronic field symptom much larger than it first appears.",
+        "Visible seepage gets more expensive when reserve area, code-complying area, and field viability are all uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Connecticut yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the local health file, reserve-area story, and current use assumptions are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in Connecticut than just a drainage annoyance?",
+          "answer": "Because Connecticut ties site conditions, reserve area, and code-complying area directly to the local approval story, so visible wetness can be a much larger field-viability signal than it first appears."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=drainfield_replacement",
+        "/septic-inspection-cost/connecticut/",
+        "/septic-records-checklist/connecticut/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "CT",
+      "title": "Connecticut Drain Field Replacement Cost",
+      "metaDescription": "Estimate Connecticut drain field replacement cost with local health review, code-complying area, and reserve-area risk in mind.",
+      "introCopy": "In Connecticut, drain field replacement cost is rarely just a trench and stone number. Local health review, code-complying area, reserve area, and bedroom-based design assumptions stay live in the background, so a field replacement can widen long before a contractor gives a final layout.",
+      "uniqueAngle": "Connecticut supports a stronger drain-field page because reserve area, code-complying area, and bedroom-based design logic all stay attached to the field conversation.",
+      "targetReader": "Best for Connecticut owners who already think the drain field is the main problem but still need to know whether the property supports a workable next field path under current local-health assumptions.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the property still supports a code-complying next field path.",
+        "You need to know whether reserve area, addition history, or current bedroom assumptions make the field story wider than it first looks.",
+        "You want to budget a field job without ignoring local health review and use-history risk."
+      ],
+      "decisionSteps": [
+        "Start with the local health department or approved agent so the field question is read against the right approval file.",
+        "Pull any site investigation, soil-testing, approval-to-construct, permit-to-discharge, or repair note already tied to the property.",
+        "Ask whether reserve area, code-complying area, bedroom count, or addition history now make the project look more like a wider replacement path than a narrow field swap.",
+        "Then compare drain field pricing only after the local-health lane and site assumptions are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if reserve area or code-complying area is weaker than the owner assumed.",
+        "Potential-bedroom or addition history can make the field story much wider than current occupancy suggests.",
+        "Weak local files can hide how much of the visible field problem was already known before the current quote.",
+        "The low end fails quickly when the drain field issue is really a broader local-approval and site-viability problem."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local health department or approved-agent contact for the file.",
+        "Any site investigation, soil-testing, approval-to-construct, permit-to-discharge, or repair note already tied to the system.",
+        "The current and intended bedroom count or use of the property.",
+        "Any contractor note already questioning the reserve area, code-complying area, or current field footprint."
+      ],
+      "driverBullets": [
+        "Connecticut drain-field ranges widen when reserve area or code-complying area is uncertain.",
+        "Local health review matters because the field question is not meaningful until it is reconciled with the approval file.",
+        "Potential-bedroom and addition history can make the next field path larger than the owner expects.",
+        "Owners under-budget when they price the field symptom without reconciling it to current use and local assumptions."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Connecticut drain field replacement cost tied to reserve area?",
+          "answer": "Because the homeowner-safe question is whether the property still supports a workable next field path once reserve area, code-complying area, and current use assumptions are in view."
+        },
+        {
+          "question": "Can I assume a Connecticut field replacement stays narrow if current occupancy is low?",
+          "answer": "No. Connecticut's public logic is still bedroom-based, so reserve area, code-complying area, and addition history can widen the path even when the home feels lightly used."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/connecticut/",
+        "/septic-system-cost-calculator/?state=CT&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/connecticut/",
+        "/septic-replacement-area/connecticut/",
+        "/wet-yard-over-septic-drain-field/connecticut/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "ct_01",
+        "ct_02",
+        "ct_03",
+        "ct_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-replacement-cost",
       "stateCode": "OR",
       "title": "Oregon Septic Replacement Cost",
@@ -463,6 +1149,193 @@
         "or_02",
         "or_03"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "OR",
+      "title": "Oregon Failed Perc Test for Septic",
+      "metaDescription": "What a failed Oregon site evaluation or perc-style result means for septic cost, replacement absorption area, and redesign risk.",
+      "introCopy": "In Oregon, a failed perc-style result is really a site-evaluation and replacement-area problem. DEQ says the site evaluation reviews both the proposed initial and replacement soil absorption areas and still does not guarantee any particular system approval, which makes a failed result much bigger than a testing fee.",
+      "uniqueAngle": "Oregon is especially strong for failed-perc intent because the public process already treats site evaluation, replacement absorption area, and permit sequencing as the real homeowner path.",
+      "targetReader": "Best for Oregon owners, buyers, and land shoppers who already know the site evaluation was weak or failed and need to understand whether the lot still has a viable replacement area or is drifting into redesign and authorization-notice risk.",
+      "fitBullets": [
+        "The site evaluation did not come back clean, and you need to know whether the parcel still supports both initial and replacement absorption-area logic.",
+        "You suspect the real issue is not just the test result but whether Oregon will still view the lot as workable for the intended flow and use.",
+        "You need to know whether an ADU, use change, or added flow makes the failed result even more consequential."
+      ],
+      "decisionSteps": [
+        "Start with the latest Oregon site evaluation and read it as a replacement-area and system-path signal, not as a normal small perc invoice.",
+        "Pull any older site evaluation, permit, repair file, or authorization notice so you can compare the failed result against the parcel's prior assumptions.",
+        "Ask whether the weak result now affects both the initial and replacement absorption-area story, because that is the safer Oregon planning frame.",
+        "Then compare the failed-evaluation result against the drain field and replacement pages before you trust any low-end field quote."
+      ],
+      "lowEndBreakers": [
+        "DEQ says a site evaluation does not guarantee approval of a specific system type, so a failed Oregon result can widen the likely system class immediately.",
+        "If the replacement absorption area no longer looks viable, the low-end field-replacement story stops being a safe anchor.",
+        "Use change, increased flow, or ADU context can make a failed result larger by adding authorization-notice or redesign pressure.",
+        "Thin file history makes it harder to know whether the failed result is new or whether the parcel was already constrained."
+      ],
+      "quotePrepChecklist": [
+        "The latest site evaluation showing what failed or came back weak and whether both initial and replacement areas were reviewed.",
+        "Any older site evaluation, permit, authorization notice, or repair file tied to the parcel.",
+        "Any ADU plan, change in use, or added-flow detail that could reshape the approval path.",
+        "Any contractor or county note already questioning the replacement area or likely system class."
+      ],
+      "driverBullets": [
+        "In Oregon, a failed site result is really about replacement-area viability and likely system approval risk.",
+        "The failed result matters because DEQ's site-evaluation path does not promise a specific system type even before failure enters the picture.",
+        "Authorization-notice and use-change issues can compound the failed-perc story quickly.",
+        "A weak record trail makes it harder to separate a retest issue from a deeper parcel constraint."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is a failed Oregon perc result the same as a failed simple perc test elsewhere?",
+          "answer": "Not really. Oregon's safer framing is site evaluation, replacement absorption area, and permit sequencing, so the failed result often carries more design and approval meaning."
+        },
+        {
+          "question": "Why does a failed Oregon result push the range wider so fast?",
+          "answer": "Because the site evaluation affects both the replacement-area story and the likely system type, and DEQ still does not guarantee a specific approval outcome."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=perc_test",
+        "/drain-field-replacement-cost/oregon/",
+        "/septic-records-checklist/oregon/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "OR",
+      "title": "Oregon Septic Replacement Area Guide",
+      "metaDescription": "Use Oregon's site-evaluation and replacement absorption-area rules to judge whether the parcel still has a viable replacement area before trusting a field quote.",
+      "introCopy": "In Oregon, replacement-area risk is unusually visible because DEQ says the site evaluation reviews both the proposed initial and replacement soil absorption areas. That means the real question is not just whether the old field failed, but whether the parcel still has a workable replacement absorption area at all.",
+      "uniqueAngle": "Oregon is one of the clearest replacement-area states because the public process explicitly forces homeowners to think about both the initial and replacement absorption areas before treating a field quote as simple.",
+      "targetReader": "Best for Oregon owners and buyers who already suspect the old field is not the only issue and need to know whether the parcel still supports a viable replacement area under current site-evaluation logic.",
+      "fitBullets": [
+        "The lot may no longer have an easy replacement absorption area, and you need to know whether the parcel still supports the intended system path.",
+        "You want to compare field quotes without pretending the old Oregon footprint or old file is automatically still usable.",
+        "The property may have an ADU, use change, or added flow issue that makes replacement-area risk even more important."
+      ],
+      "decisionSteps": [
+        "Start with the latest site evaluation and read it as a replacement-area question first, because Oregon makes both initial and replacement areas part of the real review path.",
+        "Pull any older permit, site-evaluation, authorization-notice, or repair file so you can compare the current parcel limits against older assumptions.",
+        "Ask whether the replacement absorption area is still viable under current flow and use conditions, especially if an ADU or change in use is in the picture.",
+        "Then compare the replacement-area answer against drain field and replacement pricing before you trust a low-end quote."
+      ],
+      "lowEndBreakers": [
+        "If the replacement absorption area no longer looks viable, the cheapest field story stops being a safe budget anchor.",
+        "DEQ says site evaluation does not guarantee approval of a specific system type, so a marginal replacement area can widen the likely system class quickly.",
+        "ADU, use-change, or increased-flow context can make replacement-area risk larger by adding authorization-notice friction.",
+        "A thin file trail makes it hard to know whether the lot was ever as workable as the old footprint suggests."
+      ],
+      "quotePrepChecklist": [
+        "The latest site evaluation showing both initial and replacement absorption-area findings.",
+        "Any older permit, site evaluation, authorization notice, or repair file tied to the parcel.",
+        "Any ADU, use-change, or added-flow detail that changes what the replacement area has to support.",
+        "Any contractor or county note questioning the replacement area, system type, or old field footprint."
+      ],
+      "driverBullets": [
+        "Oregon replacement-area risk is really about whether the parcel still supports a workable replacement absorption area.",
+        "Site evaluation matters because it can widen both the lot-viability story and the likely system type at the same time.",
+        "Authorization-notice and flow-change issues can compound replacement-area risk quickly.",
+        "The old field footprint is not a safe planning shortcut when the current site-evaluation path is weaker."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Oregon replacement area different from a generic reserve-area article?",
+          "answer": "Because Oregon's public process explicitly reviews both the initial and replacement absorption areas, so the parcel's future layout viability is part of the real homeowner workflow."
+        },
+        {
+          "question": "Can an old Oregon field footprint prove the replacement area is still fine?",
+          "answer": "No. The safer planning question is whether the current site evaluation still supports a viable replacement absorption area under today's use and flow assumptions."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/oregon/",
+        "/failed-perc-test-septic/oregon/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "OR",
+      "title": "Oregon Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over an Oregon drain field can mean, when it points to replacement-absorption-area risk, and why site evaluation widens the estimate.",
+      "introCopy": "In Oregon, a wet yard over the drain field is usually bigger than a soggy-yard complaint. DEQ says the site evaluation reviews both the proposed initial and replacement soil absorption areas and still does not guarantee a specific system approval, so visible seepage can be the clue that the parcel's field story is already widening.",
+      "uniqueAngle": "Oregon is especially strong for wet-yard intent because the public process already forces homeowners to think about site evaluation, replacement absorption area, and likely system approval rather than treating a wet patch like a simple maintenance anecdote.",
+      "targetReader": "Best for Oregon owners and buyers seeing seepage, odor, or soggy ground near the field and trying to judge whether the symptom still looks repair-sized or has already become a replacement-area and redesign risk story.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the field and need to know whether the parcel still supports a viable replacement absorption area.",
+        "A contractor or county contact has hinted that the visible symptom may reflect a bigger site-evaluation problem, not just a wet-weather nuisance.",
+        "You need Oregon-specific guidance before the first quote turns a seepage symptom into a narrow trench or pumping explanation."
+      ],
+      "decisionSteps": [
+        "Start with the latest site evaluation and any repair or authorization file so you can read the wet-yard symptom against the parcel's current replacement-area story.",
+        "Ask whether the visible seepage now affects the likely replacement absorption area or likely system class, because that is the safer Oregon planning frame.",
+        "Check whether an ADU, use change, or added-flow issue makes the wet-yard symptom more consequential by adding authorization-notice or redesign pressure.",
+        "Then compare the wet-yard story against the drain field, inspection, and records pages before you trust any low-end field-repair quote."
+      ],
+      "lowEndBreakers": [
+        "If the wet-yard symptom points to a weaker replacement absorption area, the cheapest field-repair story stops being a safe planning anchor.",
+        "DEQ says site evaluation does not guarantee approval of a specific system type, so visible seepage can widen the likely system class quickly.",
+        "ADU, use-change, or added-flow context can make a wet-yard problem larger by adding authorization-notice or redesign friction.",
+        "Thin file history makes it harder to know whether the symptom is new or whether the parcel was already constrained before the yard turned wet."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and whether the symptom is seasonal or chronic.",
+        "The latest site evaluation and any older permit, authorization notice, repair file, or field-layout document tied to the parcel.",
+        "Any ADU, use-change, or added-flow detail that could reshape the replacement-area story.",
+        "Any contractor or county note already questioning the field footprint, replacement area, or likely system type."
+      ],
+      "driverBullets": [
+        "Oregon wet-yard risk is really about whether the parcel still supports a workable replacement absorption area.",
+        "Site evaluation matters because visible seepage can widen both the field-viability story and the likely system type at the same time.",
+        "Authorization-notice and flow-change issues can compound a wet-yard symptom quickly.",
+        "A weak record trail makes it easy to misread a chronic field problem as a one-off wet patch."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Oregon yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the site evaluation, replacement-area story, and file history are clearer."
+        },
+        {
+          "question": "Why does a wet-yard symptom widen the Oregon range so quickly?",
+          "answer": "Because Oregon's site-evaluation path already ties the field symptom to replacement absorption area and likely system approval risk, not just a narrow repair invoice."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/oregon/",
+        "/septic-system-cost-calculator/?state=OR&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/oregon/",
+        "/septic-inspection-cost/oregon/",
+        "/septic-records-checklist/oregon/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "or_01",
+        "or_02",
+        "or_03"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
     },
     {
@@ -582,6 +1455,130 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "MA",
+      "title": "Massachusetts Failed Perc Test for Septic",
+      "metaDescription": "What a failed Massachusetts perc or site test can mean for Title 5 timing, Board of Health review, and the next septic cost decision.",
+      "introCopy": "In Massachusetts, a failed perc or weak site-testing result is rarely just a small investigation bill. Once Title 5 timing, local Board of Health review, and visible replacement pressure enter the picture, the failed result can quickly become a larger repair-or-replacement decision.",
+      "uniqueAngle": "Massachusetts is strong for failed-perc intent because site-testing questions usually overlap with Title 5 timing, Board of Health files, and whether the current property story is still safe to trust.",
+      "targetReader": "Best for Massachusetts owners, buyers, and sellers who already know the site or soil result was weak and need to decide whether the real issue is more testing, a Title 5 problem, or a wider replacement path.",
+      "fitBullets": [
+        "You have a weak or failed site-testing result, but no one has explained what it means for Title 5 timing or the next inspection decision.",
+        "A sale, refinance, addition, or replacement conversation is already active, so the failed result may matter more than the testing invoice itself.",
+        "You need Massachusetts-specific guidance before a contractor or seller turns one failed result into an oversimplified low-end quote."
+      ],
+      "decisionSteps": [
+        "Start with the latest Title 5 inspection report and any Board of Health file so you can compare the failed result against the current compliance story.",
+        "Ask the local Board of Health or designer what site information is already on file before assuming the failed test is a standalone event.",
+        "Treat the failed result as a project-path signal first, not a small testing bill, because Massachusetts owners usually encounter it inside a larger Title 5 or replacement conversation.",
+        "Then compare the failed-site story against the replacement-area, wet-yard, and inspection pages before you trust a low-end scope."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can push the owner out of a simple testing conversation and into a much larger Title 5 timing problem.",
+        "Board of Health files for additions, repairs, or use changes can make the failed result more consequential than the homeowner expected.",
+        "If the property is in a sale or refinance window, the failed result can compress timing and make a conservative low end unrealistic.",
+        "The low end breaks quickly when the failed test points toward a larger replacement path instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The latest Title 5 inspection report and inspection date.",
+        "Any Board of Health filing, older site-testing paperwork, or design sketch tied to the property.",
+        "Any pumping receipts or repair history that still affect the current paperwork story.",
+        "The current sale, refinance, or owner-project timeline if timing is part of the failed-site risk."
+      ],
+      "driverBullets": [
+        "Massachusetts failed-perc risk is often a Title 5 timing and local-file problem, not just a testing fee.",
+        "Board of Health review matters because the failed result is usually interpreted inside a larger local compliance story.",
+        "A sale or project deadline can make the failed result much more urgent than the site invoice suggests.",
+        "Thin records make it easier to misread a failed site result as small when it is really pointing toward replacement."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Massachusetts perc result always mean replacement?",
+          "answer": "Not automatically, but it is a strong reason to stop assuming the issue is minor until the Title 5 file, Board of Health context, and next-step scope are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in Massachusetts?",
+          "answer": "Because site-testing questions often overlap with Title 5 timing, local Board of Health review, and property-transfer decisions, so the failed result can become more than a narrow testing problem fast."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=perc_test",
+        "/septic-replacement-area/massachusetts/",
+        "/septic-records-checklist/massachusetts/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_05"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "MA",
+      "title": "Massachusetts Septic Replacement Area Guide",
+      "metaDescription": "Use Massachusetts Title 5 timing and local file context to judge whether a failing field still looks like a narrow fix or a wider replacement-area problem.",
+      "introCopy": "Massachusetts does not frame replacement-area risk the same way Oregon does, but the homeowner problem is still real. When a field is failing, the next question is whether the issue still looks like a narrow repair or whether Title 5 timing, local files, and visible site limits make the replacement path much wider than expected.",
+      "uniqueAngle": "Massachusetts is useful for replacement-area intent because the real homeowner risk is often not abstract reserve-area theory, but whether the visible field problem is now colliding with Title 5 timing and Board of Health paperwork.",
+      "targetReader": "Best for Massachusetts owners, buyers, and sellers who suspect the field problem is larger than a simple repair and need to know whether the next path still looks narrow enough to price conservatively.",
+      "fitBullets": [
+        "A contractor, inspector, or seller already hinted that the field problem may be wider than a small repair.",
+        "You need to know whether the current site story still supports a narrow fix or whether the project is drifting toward a larger replacement path.",
+        "You want Massachusetts-specific guidance before a visible field issue gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the latest Title 5 inspection report and any Board of Health file so you can see whether the field issue is already part of a larger compliance story.",
+        "Ask whether additions, use changes, repairs, or prior filings already make the current field assumptions too optimistic.",
+        "Treat replacement-area concern as a planning-width question first, not a design guarantee, because the practical homeowner issue is whether the job stays narrow enough to price safely.",
+        "Then compare the field story against the wet-yard, inspection, and replacement pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "A field problem that collides with Title 5 timing can stop being a narrow repair conversation very quickly.",
+        "Board of Health filings for additions or earlier repairs can show that the visible field issue is not as simple as it looks.",
+        "A stale or weak inspection story can make the apparent replacement path much riskier than a contractor's first number suggests.",
+        "The low end breaks when the owner is really dealing with a larger replacement decision instead of a limited field fix."
+      ],
+      "quotePrepChecklist": [
+        "The latest Title 5 inspection report and any note describing the field issue.",
+        "Any Board of Health filing, repair invoice, or upgrade paperwork already tied to the system.",
+        "Any pumping receipts or project-timing note that still affects the validity or urgency story.",
+        "A short note on whether a sale, refinance, or active replacement quote is driving the question."
+      ],
+      "driverBullets": [
+        "Massachusetts replacement-area risk is often really a Title 5 timing and field-failure width problem.",
+        "Board of Health records matter because they can show whether the current field issue sits on top of older repair or use-change history.",
+        "A visible field problem can widen quickly when transfer timing or stale inspection paperwork is already in play.",
+        "Owners can under-budget when they price the field symptom without reconciling it to the local file."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Massachusetts replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the visible field problem still looks narrow enough to price conservatively or whether the local file and Title 5 story already widen the job."
+        },
+        {
+          "question": "Why does Massachusetts replacement-area concern show up before a full design answer?",
+          "answer": "Because the practical risk often appears in the inspection timing, Board of Health file, and visible field condition before anyone has a final engineered path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=drainfield_replacement",
+        "/wet-yard-over-septic-drain-field/massachusetts/",
+        "/septic-inspection-cost/massachusetts/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-replacement-cost",
       "stateCode": "FL",
       "title": "Florida Septic Replacement Cost",
@@ -695,6 +1692,130 @@
         "fl_02",
         "fl_03"
       ],
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "FL",
+      "title": "Florida Failed Perc Test for Septic",
+      "metaDescription": "What a failed Florida perc or site result can mean for septic cost, jurisdiction, and whether the next step is repair, modification, or broader replacement.",
+      "introCopy": "In Florida, a failed perc or weak site result is rarely just a small testing problem. The first homeowner question is often jurisdiction, not the invoice: DEP-managed county or county health department. After that, high water, drainfield limits, and permit sequencing can make the failed result much larger than expected.",
+      "uniqueAngle": "Florida is strong for failed-perc intent because the failed site result sits on top of two public friction points at once: the authority split and the way water-table and field limits can widen the project fast.",
+      "targetReader": "Best for Florida owners, buyers, and builders who already know the site result was weak or failed and need to know whether the real issue is another small step, a broader repair-versus-modification question, or a full replacement path.",
+      "fitBullets": [
+        "You have a weak or failed site result, but no one has confirmed which Florida authority actually controls the next step.",
+        "The failed result may be exposing a larger drainfield, water-table, or modification problem than the initial invoice suggests.",
+        "You need Florida-specific guidance before a contractor treats one failed result like a generic small test miss."
+      ],
+      "decisionSteps": [
+        "Start by confirming whether the property sits in a DEP-managed county or a county health department path before you interpret the failed result too narrowly.",
+        "Pull the permit, inspection, repair, and any private-provider paperwork already tied to the system so the failed site story sits in the right file context.",
+        "Ask whether high water, field limits, or the current system type now make the failed result a repair, modification, or wider replacement problem.",
+        "Then compare the failed-site story against the replacement-area, wet-yard, and records pages before you trust any low-end quote."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can look smaller than it is if the owner starts with the wrong authority.",
+        "High water or field constraints can make the failed result much more consequential than a normal testing invoice.",
+        "Private-provider, operating-permit, or prior repair history can widen the failed-site story beyond a simple retest idea.",
+        "The low end breaks quickly when the failed result points toward modification or broader replacement instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "Jurisdiction confirmation showing whether DEP or the county health department controls the parcel.",
+        "Any permit, inspection, repair, private-provider, or operating-permit paperwork already tied to the system.",
+        "Any note about high water, drainfield limits, or other field constraints already raised by the owner, buyer, or contractor.",
+        "The current project goal, such as new build, repair, replacement follow-through, or buyer diligence."
+      ],
+      "driverBullets": [
+        "Florida failed-perc risk starts with jurisdiction because the wrong authority can distort the whole next-step story.",
+        "High water and field limits can turn one weak site result into a much larger project path quickly.",
+        "Prior permit and inspection history matter because the failed result may sit on top of an already complicated system file.",
+        "A failed result gets more expensive when the real issue is modification or replacement scope, not just retesting."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Florida perc result always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the authority path, file history, and field constraints are clearer."
+        },
+        {
+          "question": "Why is jurisdiction part of a Florida failed-site problem?",
+          "answer": "Because Florida's DEP-versus-county split changes who controls the next permit and inspection decisions, and starting with the wrong authority can hide the real scope."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=perc_test",
+        "/septic-replacement-area/florida/",
+        "/septic-records-checklist/florida/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "fl_01",
+        "fl_03",
+        "fl_05"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "FL",
+      "title": "Florida Septic Replacement Area Guide",
+      "metaDescription": "Use Florida jurisdiction, field-limit, and water-table context to judge whether the parcel still supports a narrow field path before trusting a quote.",
+      "introCopy": "Florida does not publish replacement-area language the way some states do, but homeowners still face the same planning problem. When the field is failing or the site result is weak, the real question is whether the parcel still supports a narrow next path or whether jurisdiction, water-table limits, and field scope are already widening the job.",
+      "uniqueAngle": "Florida is useful for replacement-area intent because the practical homeowner risk is not abstract reserve-area theory. It is whether the parcel's field story still stays narrow once the right authority, site limits, and repair-versus-modification scope come into view.",
+      "targetReader": "Best for Florida owners and buyers who already suspect the field issue is larger than a simple repair and need to know whether the next path still looks narrow enough to price conservatively.",
+      "fitBullets": [
+        "A contractor, inspector, or seller already hinted that the field story may be larger than a limited repair.",
+        "You need to know whether the parcel still supports a narrow next step once water-table and field limits are considered.",
+        "You want Florida-specific guidance before a visible field problem gets treated like a generic trench quote."
+      ],
+      "decisionSteps": [
+        "Start by confirming whether the property sits in a DEP-managed county or a county health department path so the replacement-area question starts in the right authority lane.",
+        "Pull the permit, inspection, repair, and any private-provider paperwork already tied to the system before you assume the field path is simple.",
+        "Ask whether high water, field limits, or the current system type now make the project look more like modification or broader replacement than a narrow fix.",
+        "Then compare the field story against the wet-yard, inspection, and replacement pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the owner starts with the wrong authority.",
+        "High water or field constraints can make the parcel's next path much wider than a contractor's first repair story suggests.",
+        "Private-provider or operating-permit history can reveal a more complicated ownership and compliance burden than the visible field symptom alone.",
+        "The low end breaks when the owner is really dealing with modification or broader replacement scope instead of a narrow field fix."
+      ],
+      "quotePrepChecklist": [
+        "Jurisdiction confirmation showing whether DEP or the county health department controls the parcel.",
+        "Any permit, inspection, repair, abandonment, private-provider, or operating-permit paperwork already tied to the system.",
+        "Any note about high water, drainfield limits, or visible field problems already raised by the owner, buyer, or contractor.",
+        "A short note on whether the question is tied to repair follow-through, active replacement pricing, or buyer diligence."
+      ],
+      "driverBullets": [
+        "Florida replacement-area risk starts with the right authority because the wrong path distorts the whole field story.",
+        "High water and field limits matter because they can widen the project before the first quote is even comparable.",
+        "File history matters because the visible field issue may sit on top of older permits, repairs, or operating-permit obligations.",
+        "Owners under-budget when they price the visible field symptom without reconciling it to jurisdiction and scope."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Florida replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the parcel still supports a narrow next field path once the right authority, file history, and site limits are in view."
+        },
+        {
+          "question": "Why does Florida replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in jurisdiction, high-water or field-limit signals, and the existing permit file before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=drainfield_replacement",
+        "/wet-yard-over-septic-drain-field/florida/",
+        "/septic-inspection-cost/florida/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "fl_01",
+        "fl_03",
+        "fl_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
     },
     {
@@ -2224,6 +3345,132 @@
       "publishStatus": "published"
     },
     {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "MA",
+      "title": "Massachusetts Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Massachusetts drain field can mean, when it points to Title 5 failure risk, and why Board of Health files matter before quotes.",
+      "introCopy": "In Massachusetts, a wet yard over the drain field is rarely just a landscaping nuisance. Under Title 5, visible failure signs, inspection timing, and Board of Health filings can turn a soggy-yard complaint into a sale, repair, or replacement problem much faster than a simple service quote suggests.",
+      "uniqueAngle": "Massachusetts is strong for wet-yard intent because Title 5 gives homeowners a public framework for treating visible field failure as an inspection and compliance problem, not just a puddle near the yard.",
+      "targetReader": "Best for Massachusetts owners, buyers, and sellers seeing seepage, odor, or soft ground near the field and trying to decide whether the real issue is a narrow repair, a failed inspection story, or a larger Title 5 replacement path.",
+      "fitBullets": [
+        "You are seeing soggy ground or odor near the field and need to know whether the symptom could trigger a larger Title 5 conversation.",
+        "A sale, refinance, or inspection timeline is already in motion, so the visible wetness may matter more than a normal maintenance call.",
+        "You want Massachusetts-specific guidance before the first contractor or seller explanation turns the wet area into a misleading small-fix story."
+      ],
+      "decisionSteps": [
+        "Start with the latest Title 5 inspection report and any Board of Health filing so you can compare the wet-yard symptom against the current compliance story.",
+        "Ask whether the visible wetness changes the likely inspection outcome, the sale timeline, or whether a repair-versus-replacement discussion is already overdue.",
+        "Treat the symptom as a field-failure signal first, not just a drainage nuisance, because Massachusetts ties visible failure and transfer timing closely together.",
+        "Then compare the wet-yard story against the inspection, records, and replacement pages before you trust a low-end repair quote."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the issue is already larger than a simple service visit once Title 5 timing or failure status enters the picture.",
+        "A seller-side report can look current while the wet-yard symptom points toward a newer and riskier field story.",
+        "Board of Health filings for repairs, upgrades, or additions can make the soggy-yard problem bigger than the visible symptom alone suggests.",
+        "The low end breaks quickly when the wet area threatens a sale, inspection validity, or a broader replacement conversation."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and whether the symptom is getting worse.",
+        "The latest Title 5 inspection report and any pumping receipts tied to the current validity story.",
+        "Any Board of Health filing, repair invoice, or upgrade paperwork already tied to the system.",
+        "The current sale, refinance, or project timeline if transfer pressure is part of the risk."
+      ],
+      "driverBullets": [
+        "Massachusetts wet-yard risk is often a Title 5 timing and failure problem, not just a drainage complaint.",
+        "Board of Health paperwork matters because the visible symptom can sit on top of an older repair or inspection story.",
+        "Wet-yard cases get more urgent when a transfer or refinance timeline is already active.",
+        "A stale report can make owners underestimate how much the visible field symptom changes the real scope."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Massachusetts yard over the field always mean the system failed Title 5?",
+          "answer": "Not automatically, but it is a strong reason to stop assuming the system is fine until the latest Title 5 report, Board of Health file, and visible conditions are reconciled."
+        },
+        {
+          "question": "Why is a wet-yard symptom especially risky in Massachusetts?",
+          "answer": "Because Title 5 ties visible system condition, inspection timing, and property-transfer decisions together, so a soggy yard can quickly become more than a maintenance issue."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=drainfield_replacement",
+        "/septic-inspection-cost/massachusetts/",
+        "/septic-records-checklist/massachusetts/",
+        "/septic-replacement-cost/massachusetts/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "MA",
+      "title": "Massachusetts Drain Field Replacement Cost",
+      "metaDescription": "Estimate Massachusetts drain field replacement cost with Title 5 timing, Board of Health files, and visible field-failure risk in mind.",
+      "introCopy": "In Massachusetts, drain field replacement cost is not just a trenching quote. Title 5 timing, visible field-failure signs, and Board of Health filings can all widen the job before anyone has a final layout, so the homeowner-safe question is whether the field problem still stays narrow enough to price conservatively.",
+      "uniqueAngle": "Massachusetts supports a stronger drain-field page because field-failure questions usually overlap with Title 5 timing, local Board of Health paperwork, and active transfer or refinance pressure.",
+      "targetReader": "Best for Massachusetts owners, buyers, and sellers who already think the drain field is the main problem but still need to know whether the next path looks like a narrow field fix or a wider Title 5 replacement story.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the visible field problem still fits a narrow replacement path.",
+        "You need to know whether Title 5 timing, Board of Health files, or older repairs make the field quote wider than it first appears.",
+        "You want to budget a field job without ignoring sale timing, stale paperwork, or visible failure risk."
+      ],
+      "decisionSteps": [
+        "Start with the latest Title 5 inspection report and any Board of Health file so the field question is read against the current compliance story.",
+        "Pull any repair invoice, upgrade paperwork, pumping receipt, or older field note already tied to the property before assuming the visible field issue is brand new.",
+        "Ask whether the current symptom still looks like a narrow field replacement or whether transfer timing, stale reports, or local filings already widen the project.",
+        "Then compare drain field quotes only after the Title 5 lane and file story are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the current Title 5 report is stale, failed, or disconnected from the visible field symptom.",
+        "Board of Health filings for repairs, upgrades, or additions can make the drain field story much wider than a contractor's first number.",
+        "A sale, refinance, or active inspection timeline can compress decisions and make the low-end range unrealistic fast.",
+        "The low end fails quickly when the drain field problem is really a larger Title 5 and local-file story."
+      ],
+      "quotePrepChecklist": [
+        "The latest Title 5 inspection report and any note already describing the field issue.",
+        "Any Board of Health filing, repair invoice, or upgrade paperwork already tied to the system.",
+        "Any pumping receipts or project-timing note that still affects the current urgency or validity story.",
+        "Any contractor note already suggesting the visible field problem is wider than a narrow repair."
+      ],
+      "driverBullets": [
+        "Massachusetts drain-field ranges widen when Title 5 timing and visible field failure are both in play.",
+        "Board of Health paperwork matters because the current field symptom can sit on top of older repair or use-change history.",
+        "Transfer or refinance timing can make a field problem more urgent and less priceable at the low end.",
+        "Owners under-budget when they price trench work without reconciling it to the Title 5 and local-file story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Massachusetts drain field replacement cost tied to Title 5 timing?",
+          "answer": "Because visible field-failure questions often collide with inspection timing, Board of Health paperwork, and sale or refinance pressure before the homeowner has a final replacement path."
+        },
+        {
+          "question": "Can I treat a Massachusetts drain field replacement like a simple trench job?",
+          "answer": "Not safely. The latest Title 5 report, local file, and visible field condition can all widen the practical path before the contractor scope is truly comparable."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/massachusetts/",
+        "/septic-system-cost-calculator/?state=MA&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/massachusetts/",
+        "/septic-replacement-area/massachusetts/",
+        "/wet-yard-over-septic-drain-field/massachusetts/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "ma_01",
+        "ma_02",
+        "ma_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
       "contentSlug": "septic-records-checklist",
       "stateCode": "FL",
       "title": "Florida Septic Records Checklist",
@@ -2944,6 +4191,132 @@
         "ct_04"
       ],
       "calculatorProjectType": "buying_home",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "FL",
+      "title": "Florida Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Florida drain field can mean, when it points to repair-versus-modification risk, and why DEP-versus-county routing matters first.",
+      "introCopy": "In Florida, a wet yard over the drain field is not just a soggy-grass problem. High water, field limits, and permit sequencing matter, but the first homeowner mistake is often jurisdiction: DEP-managed county or county health department. That split changes how quickly a wet-yard complaint turns into a repair, modification, or broader replacement story.",
+      "uniqueAngle": "Florida is strong for wet-yard intent because the visible symptom sits on top of two unusually important public signals at once: water-table and drainfield limits, plus the DEP-versus-county authority split.",
+      "targetReader": "Best for Florida owners and buyers seeing seepage, odor, or soggy ground near the field and trying to decide whether the next step is a simple repair call or a wider jurisdiction, permit, and field-viability problem.",
+      "fitBullets": [
+        "You are seeing wet or soft ground near the drain field and need to know whether the problem still fits a narrow repair story.",
+        "No one has confirmed whether DEP or the county health department controls the parcel, so the visible symptom still lacks a real permit path.",
+        "You need Florida-specific guidance before a contractor simplifies a wet-yard symptom that may already involve modification, abandonment, or operating-permit risk."
+      ],
+      "decisionSteps": [
+        "Start by confirming whether the parcel is in a DEP-managed county or still handled by the county health department, because that is the first practical Florida fork.",
+        "Pull the permit, inspection, repair, and any private-provider paperwork already tied to the system so the wet-yard symptom can be read against the real file.",
+        "Ask whether the visible seepage now looks like a repair, modification, or broader field-viability problem, especially if high water or drainfield limits are already known.",
+        "Then compare the wet-yard story against the inspection, records, and replacement pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "If the property starts from the wrong authority, the wet-yard problem can look smaller than the real permit and inspection path.",
+        "High water and drainfield limits can turn visible seepage into a larger field decision quickly.",
+        "Missing private-provider or operating-permit paperwork can hide ownership risk behind a simple wet-yard symptom.",
+        "The low end breaks fast once the issue looks more like modification, abandonment, or a wider replacement path than a narrow repair."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and whether the symptom looks seasonal or persistent.",
+        "Jurisdiction confirmation showing whether DEP or the county health department controls the parcel.",
+        "Any permit, inspection, repair, abandonment, private-provider, or operating-permit paperwork tied to the system.",
+        "Any note about high water, drainfield limits, or visible field problems already raised by the owner, buyer, or contractor."
+      ],
+      "driverBullets": [
+        "Florida wet-yard risk starts with jurisdiction because the wrong authority can distort the whole next-step story.",
+        "High water and drainfield limits matter because they turn a soggy-yard symptom into a larger field decision fast.",
+        "Private-provider and operating-permit paperwork can make the visible symptom more consequential than it first looks.",
+        "Wet-yard cases widen when repair-versus-modification scope is still unresolved."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Florida yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the authority path, permit file, and field conditions are clearer."
+        },
+        {
+          "question": "Why is jurisdiction part of a Florida wet-yard problem?",
+          "answer": "Because Florida's DEP-versus-county split changes who controls the next inspection and permit steps, and starting with the wrong authority can hide the real scope."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=drainfield_replacement",
+        "/septic-inspection-cost/florida/",
+        "/septic-records-checklist/florida/",
+        "/septic-replacement-cost/florida/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "fl_01",
+        "fl_03",
+        "fl_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "FL",
+      "title": "Florida Drain Field Replacement Cost",
+      "metaDescription": "Estimate Florida drain field replacement cost with DEP-versus-county routing, high-water risk, and field-limit context in mind.",
+      "introCopy": "In Florida, drain field replacement cost is not just a field-material number. The first homeowner question is usually jurisdiction: DEP-managed county or county health department. After that, high water, field limits, and whether the system can really be replaced in kind can widen the job quickly.",
+      "uniqueAngle": "Florida supports a stronger drain-field page because the field problem sits on top of both the DEP-versus-county authority split and the way water-table and field limits can widen the next step fast.",
+      "targetReader": "Best for Florida owners who already think the drain field is the main problem but still need to know whether the parcel supports an in-kind next field path under the right authority.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the parcel still supports a workable next field path under the right authority.",
+        "You need to know whether high water, field limits, or the current system type make the project look more like modification or broader replacement than a narrow field fix.",
+        "You want to budget a field job without ignoring DEP-versus-county routing and the risk that the current design cannot simply be repeated."
+      ],
+      "decisionSteps": [
+        "Start by confirming whether the parcel is in a DEP-managed county or still handled by the county health department before treating the field story like a simple contractor scope.",
+        "Pull the permit, inspection, repair, abandonment, private-provider, and any operating-permit paperwork already tied to the system.",
+        "Ask whether high water, field limits, or the current system type now make the field problem a repair, modification, or wider replacement question instead of a narrow in-kind swap.",
+        "Then compare drain field quotes only after the authority lane and likely field path are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the owner starts with the wrong authority because the real permit and inspection path was never confirmed.",
+        "High water and field limits can make the next field path much wider than a basic trench-replacement assumption.",
+        "Private-provider, operating-permit, or advanced-system history can make an in-kind field replacement much less likely than it first appears.",
+        "The low end fails quickly when the drain field issue is really about modification or broader replacement scope."
+      ],
+      "quotePrepChecklist": [
+        "Jurisdiction confirmation showing whether DEP or the county health department controls the parcel.",
+        "Any permit, inspection, repair, abandonment, private-provider, or operating-permit paperwork already tied to the system.",
+        "Any note about high water, drainfield limits, or visible field problems already raised by the owner, buyer, or contractor.",
+        "Any contractor note already suggesting the current field footprint cannot simply be replaced in kind."
+      ],
+      "driverBullets": [
+        "Florida drain-field ranges widen when the owner has not confirmed DEP-versus-county routing first.",
+        "High water and field limits matter because they can turn a narrow field quote into a much wider design decision.",
+        "Private-provider and operating-permit history can reveal a more regulated path than a simple field replacement story suggests.",
+        "Owners under-budget when they price trench work without reconciling it to authority, field viability, and system-type risk."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Florida drain field replacement cost tied to counties so much?",
+          "answer": "Because Florida's DEP-versus-county split changes who controls the next permit and inspection decisions, and that authority question comes before the homeowner can trust any field quote."
+        },
+        {
+          "question": "Can I assume a Florida drain field can be replaced in kind?",
+          "answer": "Not safely. High water, field limits, and the current system file can all change whether an in-kind next field path is still realistic."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/florida/",
+        "/septic-system-cost-calculator/?state=FL&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/florida/",
+        "/septic-replacement-area/florida/",
+        "/wet-yard-over-septic-drain-field/florida/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "fl_01",
+        "fl_03",
+        "fl_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
     },
     {
@@ -18206,6 +19579,1022 @@
         "wy_04"
       ],
       "calculatorProjectType": "inspection",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "NJ",
+      "title": "New Jersey Failed Perc Test for Septic",
+      "metaDescription": "What a failed New Jersey perc or site result can mean for board of health review, Pinelands context, and the next septic cost decision.",
+      "introCopy": "In New Jersey, a failed perc or weak site result is rarely just a small testing invoice. Local board of health review, Pinelands context, and advanced-system management obligations can all stay live in the background, so one failed result can widen the project much faster than a generic national page suggests.",
+      "uniqueAngle": "New Jersey is strong for failed-perc intent because the site result can quickly overlap with local board of health review, Pinelands rules, and long-run management obligations.",
+      "targetReader": "Best for New Jersey owners, buyers, and land shoppers who already know the site result was weak or failed and need to decide whether the real issue is another small test, a local-oversight problem, or a wider field path.",
+      "fitBullets": [
+        "You have a weak or failed site result, but no one has explained what it means for local board of health review or special-area context.",
+        "The testing invoice looks small, yet the real risk may be whether the property still fits a workable path under Pinelands or advanced-system assumptions.",
+        "You need New Jersey-specific guidance before one failed result gets treated like a narrow site issue."
+      ],
+      "decisionSteps": [
+        "Start with the local board of health or acting authority so the failed result is read in the right oversight lane.",
+        "Pull any prior testing, permit, design, inspection, or management record tied to the parcel before assuming the failed result is brand-new information.",
+        "Ask whether Pinelands context, advanced treatment, or local management obligations now make the failed result a wider field or ownership problem.",
+        "Then compare the failed-site story against the replacement-area, drain-field, and records pages before you trust any low-end scope."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can look smaller than it is if the owner has not confirmed the local board of health or special-area context first.",
+        "Pinelands or advanced-system obligations can make the failed result much more consequential than the test invoice suggests.",
+        "Missing management paperwork can hide a bigger field decision behind a simple retest idea.",
+        "The low end breaks fast when the failed result points toward a wider field and oversight story instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local board of health or acting authority contact.",
+        "Any prior testing, permit, design, inspection, or maintenance record tied to the parcel.",
+        "A note on whether the property is in the Pinelands or already points toward advanced treatment.",
+        "Any service contract, management notice, or recurring certification document tied to the property."
+      ],
+      "driverBullets": [
+        "New Jersey failed-perc risk starts with local board of health context because the wrong oversight story distorts the whole next step.",
+        "Pinelands or advanced-system context can widen one weak site result into a much larger project path.",
+        "Management paperwork matters because the failed result may sit on top of an already more regulated system story.",
+        "Owners under-budget when they price the test miss without reconciling it to local oversight and long-run obligations."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed New Jersey perc result always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the local board of health path, file history, and special-area context are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in New Jersey?",
+          "answer": "Because local oversight, Pinelands context, and advanced-system obligations can all make the result more consequential than a simple test fee suggests."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=perc_test",
+        "/septic-replacement-area/new-jersey/",
+        "/drain-field-replacement-cost/new-jersey/",
+        "/septic-records-checklist/new-jersey/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "NJ",
+      "title": "New Jersey Septic Replacement Area Guide",
+      "metaDescription": "Use New Jersey board of health, Pinelands, and field-viability context to judge whether the property still supports a workable next field path.",
+      "introCopy": "New Jersey does not surface replacement-area language the same way Oregon does, but the homeowner problem is still real. When the field looks weak, the next question is whether the property still supports a workable path once local board of health review, Pinelands context, and system-management obligations are in view.",
+      "uniqueAngle": "New Jersey is useful for replacement-area intent because the real homeowner risk is whether local oversight and special-area context make the next field path much wider than a simple repair story.",
+      "targetReader": "Best for New Jersey owners and buyers who suspect the field issue is larger than a small repair and need to know whether the property still supports a workable next path.",
+      "fitBullets": [
+        "A contractor or inspector already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether local board of health review, Pinelands context, or management obligations make the field story larger than it looks.",
+        "You want New Jersey-specific guidance before a visible field problem gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the local board of health or acting authority so the field question is read against the right local file.",
+        "Pull any testing, permit, design, inspection, or management record already tied to the system.",
+        "Ask whether Pinelands context, advanced treatment, or ongoing service obligations now make the next field path wider than a narrow repair story.",
+        "Then compare the field story against the wet-yard, failed-perc, and drain-field pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the owner has not confirmed the right local board of health path.",
+        "Pinelands or advanced-system obligations can make the next field path much wider than a simple trench quote suggests.",
+        "Missing management records can hide how much of the current field issue was already visible before the latest quote.",
+        "The low end breaks when the owner is really dealing with a wider field and oversight story instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local board of health or acting authority contact.",
+        "Any testing, permit, design, inspection, or maintenance record tied to the current system.",
+        "A note on whether the property is in the Pinelands or uses advanced treatment.",
+        "Any service contract, management notice, or recurring certification document tied to the property."
+      ],
+      "driverBullets": [
+        "New Jersey replacement-area risk starts with local board of health context rather than a generic field assumption.",
+        "Pinelands and advanced-treatment context matter because they can widen the next field path fast.",
+        "Management obligations can turn a field question into a much larger ownership and compliance story.",
+        "Owners under-budget when they price the visible field symptom without reconciling it to local oversight and long-run duties."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is New Jersey replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the property still supports a workable next field path once local oversight, special-area context, and management obligations are in view."
+        },
+        {
+          "question": "Why does New Jersey replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in local board of health review, management records, and the visible field story before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/new-jersey/",
+        "/wet-yard-over-septic-drain-field/new-jersey/",
+        "/septic-inspection-cost/new-jersey/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "NJ",
+      "title": "New Jersey Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a New Jersey drain field can mean, when it points to field-viability trouble, and how board of health review widens the estimate.",
+      "introCopy": "A wet yard over a New Jersey drain field is rarely just a drainage nuisance. Local board of health practice, Pinelands context, and advanced-system management obligations can all make visible seepage a much larger field-risk story than a basic service quote suggests.",
+      "uniqueAngle": "New Jersey is strong for wet-yard intent because visible field failure can quickly overlap with local oversight and special-area obligations rather than behaving like a simple soggy-yard complaint.",
+      "targetReader": "Best for New Jersey owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the next step is a narrow repair or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the field and need to know whether the real issue is field failure, local oversight, or a wider system-management problem.",
+        "A contractor or local contact has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want New Jersey-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Start with the local board of health or acting authority so the wet-yard symptom is read against the right file.",
+        "Pull any permit, testing, inspection, maintenance, or management record tied to the system before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not a maintenance nuisance, because local oversight and special-area context can widen the path quickly.",
+        "Then compare the wet-yard story against the records, drain-field, and replacement-area pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the local oversight and field-viability story is weaker than the owner assumed.",
+        "If the board of health or special-area context is still unclear, a wider field problem can get misread as a small repair.",
+        "Missing management records can make the visible symptom much more consequential than it first looks.",
+        "The low end breaks fast once the soggy yard is really about field viability and oversight instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The property address and local board of health or acting authority contact.",
+        "Any permit, testing, inspection, maintenance, or management record tied to the system.",
+        "A note on whether the property is in the Pinelands or already carries advanced-treatment obligations."
+      ],
+      "driverBullets": [
+        "New Jersey wet-yard risk starts with local board of health context because the wrong file story can understate the real issue.",
+        "Pinelands or advanced-system context can make visible seepage much more consequential than a simple yard complaint.",
+        "Management records matter because the visible field symptom may sit on top of an already regulated ownership story.",
+        "Visible seepage gets more expensive when field viability and local oversight are both uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet New Jersey yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the board of health path, field history, and special-area context are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in New Jersey than just a drainage annoyance?",
+          "answer": "Because visible field failure can quickly overlap with local oversight, Pinelands context, and ongoing management obligations in ways a generic drainage story misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/new-jersey/",
+        "/septic-inspection-cost/new-jersey/",
+        "/septic-records-checklist/new-jersey/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "NJ",
+      "title": "New Jersey Drain Field Replacement Cost",
+      "metaDescription": "Estimate New Jersey drain field replacement cost with board of health review, Pinelands context, and long-run management risk in mind.",
+      "introCopy": "In New Jersey, drain field replacement cost is not just a trenching number. The local board of health path, Pinelands context, and advanced-system management obligations can all widen the job before anyone has a final layout, so the homeowner-safe question is whether the field still supports a workable next path under the right local story.",
+      "uniqueAngle": "New Jersey supports a stronger drain-field page because the field question can quickly become a local-oversight and long-run management problem instead of a simple excavation quote.",
+      "targetReader": "Best for New Jersey owners who already think the drain field is the main problem but still need to know whether the property supports a workable next field path under local review.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the property still supports a workable next field path.",
+        "You need to know whether Pinelands or advanced-treatment context makes the field story wider than a simple replacement quote.",
+        "You want to budget a field job without ignoring local board of health review and long-run management risk."
+      ],
+      "decisionSteps": [
+        "Start with the local board of health or acting authority so the field question is read against the right file.",
+        "Pull any testing, permit, design, inspection, or maintenance record already tied to the system.",
+        "Ask whether Pinelands context, advanced treatment, or service obligations now make the project look more like a wider field and ownership story than a narrow in-kind swap.",
+        "Then compare drain field pricing only after the oversight lane and likely next field path are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the owner has not confirmed the local board of health path and special-area context first.",
+        "Pinelands or advanced-system obligations can make the next field path much wider than a basic trench assumption.",
+        "Missing management records can hide a larger ownership burden behind the visible field problem.",
+        "The low end fails quickly when the drain field issue is really a broader oversight and field-viability story."
+      ],
+      "quotePrepChecklist": [
+        "The property address and local board of health or acting authority contact.",
+        "Any testing, permit, design, inspection, or maintenance record tied to the current system.",
+        "A note on whether the property is in the Pinelands or uses advanced treatment.",
+        "Any service contract, management notice, or recurring certification document tied to the property."
+      ],
+      "driverBullets": [
+        "New Jersey drain-field ranges widen when the local board of health path or special-area context is still unclear.",
+        "Pinelands and advanced-treatment obligations matter because they can change what the owner is really buying after replacement.",
+        "Management paperwork can show that the visible field problem sits on top of a more regulated system story.",
+        "Owners under-budget when they price trench work without reconciling it to local oversight and long-run obligations."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is New Jersey drain field replacement cost tied to local review so closely?",
+          "answer": "Because the practical homeowner path can run through local board of health review, Pinelands context, and ongoing management obligations before the field quote is truly comparable."
+        },
+        {
+          "question": "Can I assume an old New Jersey field footprint will still work?",
+          "answer": "Not safely. The local file, special-area context, and management story can all change whether the next field path is still narrow enough to price conservatively."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/new-jersey/",
+        "/septic-system-cost-calculator/?state=NJ&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/new-jersey/",
+        "/septic-replacement-area/new-jersey/",
+        "/wet-yard-over-septic-drain-field/new-jersey/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "nj_01",
+        "nj_02",
+        "nj_03",
+        "nj_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "WA",
+      "title": "Washington Failed Perc Test for Septic",
+      "metaDescription": "What a failed Washington perc or site result can mean for local health jurisdiction review, system-type risk, and the next septic cost decision.",
+      "introCopy": "In Washington, a failed perc or weak site result is rarely just a small testing problem. The local health jurisdiction, the actual system type, and the quality of the as-built and O&M record trail can all widen the project quickly, so one failed result often points to a larger field and approval question.",
+      "uniqueAngle": "Washington is strong for failed-perc intent because site-testing questions overlap with local health jurisdiction review, system-type differences, and the strength of the as-built and O&M file.",
+      "targetReader": "Best for Washington owners, buyers, and builders who already know the site result was weak or failed and need to know whether the real issue is another small test, a system-type problem, or a wider field path.",
+      "fitBullets": [
+        "You have a weak or failed site result, but no one has explained what it means for local health review or likely system type.",
+        "The testing invoice looks manageable, yet the real risk may be whether the as-built and O&M records support the low-end story at all.",
+        "You need Washington-specific guidance before one failed result gets treated like a narrow site miss."
+      ],
+      "decisionSteps": [
+        "Start with the local health jurisdiction so the failed result is read against the right authority path.",
+        "Pull the as-built drawing, any prior design or permit file, and O&M history before assuming the failed result is brand-new information.",
+        "Ask whether the site result, system type, or weak record trail now make the property look more like a wider field problem than a small retest issue.",
+        "Then compare the failed-site story against the replacement-area, drain-field, and records pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can look smaller than it is if the actual system type is still unclear.",
+        "Weak as-built and O&M records can make the failed result much more consequential than the invoice suggests.",
+        "A more protective local health jurisdiction can widen the path beyond a simple retest story quickly.",
+        "The low end breaks fast when the failed result points toward a wider field and approval story instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The local health jurisdiction contact or permit reference for the property.",
+        "The as-built drawing and any prior design or permit file tied to the system.",
+        "Any O&M logs, inspection history, or repair notes tied to the current system.",
+        "Any contractor note already suggesting the result points toward a different system type or wider field issue."
+      ],
+      "driverBullets": [
+        "Washington failed-perc risk starts with the local health jurisdiction because that office controls the practical next step.",
+        "System type matters because gravity and advanced paths do not carry the same maintenance and review burden.",
+        "Weak as-built and O&M records can make one failed result much more consequential than it first appears.",
+        "Owners under-budget when they price the testing miss without reconciling it to the true system and local file."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Washington perc result always mean replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the local health path, system type, and record trail are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in Washington?",
+          "answer": "Because it can overlap with local health jurisdiction review, uncertain system type, and weak as-built or O&M records in ways a generic testing page misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=perc_test",
+        "/septic-replacement-area/washington/",
+        "/drain-field-replacement-cost/washington/",
+        "/septic-records-checklist/washington/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "WA",
+      "title": "Washington Septic Replacement Area Guide",
+      "metaDescription": "Use Washington local health jurisdiction, system-type, and as-built context to judge whether the property still supports a workable next field path.",
+      "introCopy": "Washington does not talk about replacement-area risk in exactly the same way as Oregon, but the homeowner problem is still real. When the field looks weak, the next question is whether the property still supports a workable next path once the local health jurisdiction, actual system type, and as-built file are in view.",
+      "uniqueAngle": "Washington is useful for replacement-area intent because the real homeowner risk is whether the current field story still fits the true system type and local health file rather than a generic trench assumption.",
+      "targetReader": "Best for Washington owners and buyers who suspect the field issue is larger than a small repair and need to know whether the property still supports a workable next path.",
+      "fitBullets": [
+        "A contractor or inspector already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether the as-built, O&M logs, and actual system type make the next field path larger than it first appears.",
+        "You want Washington-specific guidance before a visible field problem gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the local health jurisdiction so the field question is read against the right file.",
+        "Pull the as-built drawing, any prior design or permit file, and O&M records already tied to the system.",
+        "Ask whether the true system type, weak records, or local review now make the next field path look wider than a narrow repair story.",
+        "Then compare the field story against the wet-yard, failed-perc, and drain-field pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the actual system type is still unclear.",
+        "Missing as-built and O&M records can make the next field path much less certain than the first quote suggests.",
+        "A more protective local health jurisdiction can widen the project well beyond a narrow field fix.",
+        "The low end breaks when the owner is really dealing with a wider field and file story instead of a limited repair."
+      ],
+      "quotePrepChecklist": [
+        "The local health jurisdiction contact or permit reference for the property.",
+        "The as-built drawing and any prior design or permit file tied to the system.",
+        "Any O&M logs, inspection history, or repair notes tied to the current system.",
+        "Any contractor note already suggesting the field path or actual system type may not match the current assumption."
+      ],
+      "driverBullets": [
+        "Washington replacement-area risk starts with the local health jurisdiction because that office controls the practical next step.",
+        "System type matters because the next field path can widen if the property is more complex than a gravity assumption.",
+        "Weak as-built and O&M records can hide how much of the field issue was already visible before the current quote.",
+        "Owners under-budget when they price the visible field symptom without reconciling it to the real system and local file."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Washington replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the property still supports a workable next field path once the true system type, local health review, and as-built file are in view."
+        },
+        {
+          "question": "Why does Washington replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in the local health file, the as-built story, and the visible field condition before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/washington/",
+        "/wet-yard-over-septic-drain-field/washington/",
+        "/septic-inspection-cost/washington/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "WA",
+      "title": "Washington Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Washington drain field can mean, when it points to field-viability trouble, and how local health review widens the estimate.",
+      "introCopy": "A wet yard over a Washington drain field is rarely just a yard-drainage problem. The local health jurisdiction, the true system type, and the quality of the as-built and O&M record trail can all make visible seepage a much larger field-risk story than a basic service quote suggests.",
+      "uniqueAngle": "Washington is strong for wet-yard intent because visible field failure can quickly overlap with system-type risk and local health review rather than behaving like a simple soggy-yard complaint.",
+      "targetReader": "Best for Washington owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the next step is a narrow repair or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the field and need to know whether the real issue is field failure, system type, or a wider local review problem.",
+        "A contractor or local contact has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want Washington-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Start with the local health jurisdiction so the wet-yard symptom is read against the right file.",
+        "Pull the as-built drawing, O&M logs, and any permit or repair record tied to the system before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not a maintenance nuisance, because the true system type and local review can widen the path quickly.",
+        "Then compare the wet-yard story against the records, drain-field, and inspection pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the field and system-type story is weaker than the owner assumed.",
+        "If the as-built or O&M trail is weak, a larger field problem can get misread as a small repair.",
+        "A more protective local health jurisdiction can make visible seepage much more consequential than it first looks.",
+        "The low end breaks fast once the soggy yard is really about field viability and local review instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The as-built drawing and confirmation of the actual system type.",
+        "Any O&M logs, inspection history, or repair notes tied to the current system.",
+        "The local health jurisdiction contact or permit file if the inspection and field history are still unclear."
+      ],
+      "driverBullets": [
+        "Washington wet-yard risk starts with the local health jurisdiction because that office controls the practical next step.",
+        "System type matters because visible seepage can mean a different burden on advanced systems than on gravity systems.",
+        "Weak as-built and O&M records can make the visible field symptom much more consequential than it first appears.",
+        "Visible seepage gets more expensive when field viability and local review are both uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Washington yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the local health path, system type, and record trail are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in Washington than just a drainage annoyance?",
+          "answer": "Because visible field failure can quickly overlap with uncertain system type, local health review, and weak as-built or O&M records in ways a generic drainage story misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/washington/",
+        "/septic-inspection-cost/washington/",
+        "/septic-records-checklist/washington/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "WA",
+      "title": "Washington Drain Field Replacement Cost",
+      "metaDescription": "Estimate Washington drain field replacement cost with local health jurisdiction review, system-type risk, and as-built context in mind.",
+      "introCopy": "In Washington, drain field replacement cost is not just a trenching number. The local health jurisdiction, the true system type, and the quality of the as-built and O&M file can all widen the job before anyone has a final layout, so the homeowner-safe question is whether the field still supports a workable next path under the right local story.",
+      "uniqueAngle": "Washington supports a stronger drain-field page because the field question can quickly become a local-health and system-type problem instead of a simple excavation quote.",
+      "targetReader": "Best for Washington owners who already think the drain field is the main problem but still need to know whether the property supports a workable next field path under local review.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the property still supports a workable next field path.",
+        "You need to know whether the actual system type and weak as-built records make the field story wider than a simple replacement quote.",
+        "You want to budget a field job without ignoring local health review and O&M-file risk."
+      ],
+      "decisionSteps": [
+        "Start with the local health jurisdiction so the field question is read against the right file.",
+        "Pull the as-built drawing, any prior design or permit file, and O&M history already tied to the system.",
+        "Ask whether the actual system type, weak records, or local review now make the project look more like a wider field story than a narrow in-kind swap.",
+        "Then compare drain field pricing only after the authority lane and likely next field path are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the actual system type is still unclear because the owner may be pricing the wrong path.",
+        "Weak as-built and O&M records can make the next field path much wider than a basic trench assumption.",
+        "A more protective local health jurisdiction can materially widen the project before the first quote is comparable.",
+        "The low end fails quickly when the drain field issue is really a broader local-review and system-story problem."
+      ],
+      "quotePrepChecklist": [
+        "The local health jurisdiction contact or permit reference for the property.",
+        "The as-built drawing and confirmation of whether the system is gravity or advanced.",
+        "Any O&M logs, inspection history, or repair notes tied to the current system.",
+        "Any contractor note already suggesting the current field footprint or actual system type may not match the current assumption."
+      ],
+      "driverBullets": [
+        "Washington drain-field ranges widen when the local health jurisdiction path or system type is still unclear.",
+        "As-built and O&M records matter because they can change what the owner is really pricing after replacement.",
+        "A more protective local review path can make a field problem much larger than a simple trench quote suggests.",
+        "Owners under-budget when they price trench work without reconciling it to the real system and local file."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Washington drain field replacement cost tied to system type so closely?",
+          "answer": "Because gravity and advanced systems carry different inspection and maintenance burdens, and that changes how safe a simple field assumption really is."
+        },
+        {
+          "question": "Can I assume an old Washington field footprint will still work?",
+          "answer": "Not safely. The local health file, actual system type, and as-built story can all change whether the next field path is still narrow enough to price conservatively."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/washington/",
+        "/septic-system-cost-calculator/?state=WA&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/washington/",
+        "/septic-replacement-area/washington/",
+        "/wet-yard-over-septic-drain-field/washington/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "wa_01",
+        "wa_02",
+        "wa_04",
+        "wa_05"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "NC",
+      "title": "North Carolina Failed Perc Test for Septic",
+      "metaDescription": "What a failed North Carolina perc or site result can mean for county health review, permit-ladder risk, and the next septic cost decision.",
+      "introCopy": "In North Carolina, a failed perc or weak site result is rarely just a small testing invoice. County health review, the improvement-permit ladder, and the existing authorization record can all widen the project quickly, so one failed result often points to a larger field and permit story.",
+      "uniqueAngle": "North Carolina is strong for failed-perc intent because site-testing questions overlap with the county health path and permit-ladder quality rather than behaving like a simple test-fee problem.",
+      "targetReader": "Best for North Carolina owners, buyers, and builders who already know the site result was weak or failed and need to know whether the real issue is another small test, a county-file problem, or a wider field path.",
+      "fitBullets": [
+        "You have a weak or failed site result, but no one has explained what it means for county health review or permit history.",
+        "The testing invoice looks manageable, yet the real risk may be whether the current site still fits the old permit ladder.",
+        "You need North Carolina-specific guidance before one failed result gets treated like a narrow site miss."
+      ],
+      "decisionSteps": [
+        "Start with the county health department so the failed result is read against the right local file.",
+        "Pull the improvement permit, construction authorization, operation record, and any older site note tied to the property before assuming the failed result is brand-new information.",
+        "Ask whether the weak result, visible field condition, or stale permit ladder now make the property look more like a wider field and authorization problem than a small retest issue.",
+        "Then compare the failed-site story against the replacement-area, drain-field, and records pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can look smaller than it is if the county file and permit ladder are still unclear.",
+        "Weak or stale authorization records can make the failed result much more consequential than the invoice suggests.",
+        "Visible field or drainage problems can turn a failed perc into a much larger county-review story quickly.",
+        "The low end breaks fast when the failed result points toward a wider field and permit problem instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact and file reference for the property.",
+        "Any improvement permit, construction authorization, operation record, or older site note tied to the parcel.",
+        "A note on current bedroom count, use changes, and visible field condition.",
+        "Any contractor note already suggesting the site result points toward a wider field or authorization issue."
+      ],
+      "driverBullets": [
+        "North Carolina failed-perc risk starts with the county health path because that file controls the practical next step.",
+        "Permit-ladder quality matters because a weak or stale file can widen one failed result into a larger project path.",
+        "Visible field and drainage issues can make a failed result much more consequential than it first appears.",
+        "Owners under-budget when they price the testing miss without reconciling it to the county file and authorization story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed North Carolina perc result always mean replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the county health path, permit ladder, and field condition are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in North Carolina?",
+          "answer": "Because it can overlap with county health review, stale authorization records, and visible field issues in ways a generic testing page misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=perc_test",
+        "/septic-replacement-area/north-carolina/",
+        "/drain-field-replacement-cost/north-carolina/",
+        "/septic-records-checklist/north-carolina/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "NC",
+      "title": "North Carolina Septic Replacement Area Guide",
+      "metaDescription": "Use North Carolina county health, permit-ladder, and field-condition context to judge whether the property still supports a workable next field path.",
+      "introCopy": "North Carolina does not use replacement-area language in the same way as Oregon, but the homeowner problem is still real. When the field looks weak, the next question is whether the property still supports a workable path once the county health file, permit ladder, and visible field condition are in view.",
+      "uniqueAngle": "North Carolina is useful for replacement-area intent because the real homeowner risk is whether the county file and permit ladder still support a workable next field path rather than a generic trench assumption.",
+      "targetReader": "Best for North Carolina owners and buyers who suspect the field issue is larger than a small repair and need to know whether the property still supports a workable next path.",
+      "fitBullets": [
+        "A contractor or inspector already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether the county file, permit ladder, and visible field condition make the next path larger than it first appears.",
+        "You want North Carolina-specific guidance before a visible field problem gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the county health department so the field question is read against the right file.",
+        "Pull the improvement permit, construction authorization, operation record, and any older site or repair note tied to the system.",
+        "Ask whether the field condition, current home use, or stale permit ladder now make the next field path look wider than a narrow repair story.",
+        "Then compare the field story against the wet-yard, failed-perc, and drain-field pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the county file and permit ladder are still unclear.",
+        "Missing authorization history can make the next field path much less certain than the first quote suggests.",
+        "Visible field or drainage issues can widen the project well beyond a narrow repair conversation.",
+        "The low end breaks when the owner is really dealing with a wider field and county-review story instead of a limited fix."
+      ],
+      "quotePrepChecklist": [
+        "The county health department contact and file reference for the property.",
+        "Any improvement permit, construction authorization, operation record, or site note tied to the system.",
+        "A note on current bedroom count, use changes, and visible field condition.",
+        "Any contractor note already suggesting the current field path may not match the old approval story."
+      ],
+      "driverBullets": [
+        "North Carolina replacement-area risk starts with the county health path because that file controls the practical next step.",
+        "Permit-ladder quality matters because it can widen the next field path before the first quote is comparable.",
+        "Visible field and drainage issues can show that the current home no longer fits the old file assumptions.",
+        "Owners under-budget when they price the visible field symptom without reconciling it to the county file and authorization story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is North Carolina replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the property still supports a workable next field path once the county health file, permit ladder, and visible field condition are in view."
+        },
+        {
+          "question": "Why does North Carolina replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in the county file, authorization history, and visible field story before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/north-carolina/",
+        "/wet-yard-over-septic-drain-field/north-carolina/",
+        "/septic-inspection-cost/north-carolina/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "NC",
+      "title": "North Carolina Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a North Carolina drain field can mean, when it points to field-viability trouble, and how county health review widens the estimate.",
+      "introCopy": "A wet yard over a North Carolina drain field is rarely just a soggy-grass complaint. The county health department, the permit ladder, and the visible field condition can all make seepage a much larger field-risk story than a basic service quote suggests.",
+      "uniqueAngle": "North Carolina is strong for wet-yard intent because visible field failure can quickly overlap with county health review and stale permit-ladder history rather than behaving like a simple yard complaint.",
+      "targetReader": "Best for North Carolina owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the next step is a narrow repair or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the field and need to know whether the real issue is field failure, county review, or a wider permit problem.",
+        "A contractor or local contact has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want North Carolina-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Start with the county health department so the wet-yard symptom is read against the right file.",
+        "Pull the improvement permit, construction authorization, operation record, and any repair note tied to the system before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not a maintenance nuisance, because the permit ladder and visible field condition can widen the path quickly.",
+        "Then compare the wet-yard story against the records, drain-field, and inspection pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the field and permit-ladder story is weaker than the owner assumed.",
+        "If the county file is weak or stale, a larger field problem can get misread as a small repair.",
+        "Visible field and drainage issues can make the symptom much more consequential than it first looks.",
+        "The low end breaks fast once the soggy yard is really about field viability and county review instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The county health department contact and file reference for the property.",
+        "Any improvement permit, construction authorization, operation record, or repair note tied to the system.",
+        "A note on current bedroom count, use changes, and visible field condition."
+      ],
+      "driverBullets": [
+        "North Carolina wet-yard risk starts with the county health path because that file controls the practical next step.",
+        "Permit-ladder quality matters because visible seepage can show that the property no longer fits the old approval story.",
+        "Visible field and drainage issues can make the symptom much more consequential than it first appears.",
+        "Visible seepage gets more expensive when field viability and county review are both uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet North Carolina yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the county health path, permit ladder, and field condition are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in North Carolina than just a drainage annoyance?",
+          "answer": "Because visible field failure can quickly overlap with county health review, stale authorization records, and weak field condition in ways a generic drainage story misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/north-carolina/",
+        "/septic-inspection-cost/north-carolina/",
+        "/septic-records-checklist/north-carolina/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "NC",
+      "title": "North Carolina Drain Field Replacement Cost",
+      "metaDescription": "Estimate North Carolina drain field replacement cost with county health review, permit-ladder risk, and field-condition context in mind.",
+      "introCopy": "In North Carolina, drain field replacement cost is not just a trenching number. The county health department, the permit ladder, and the visible field condition can all widen the job before anyone has a final layout, so the homeowner-safe question is whether the field still supports a workable next path under the right county story.",
+      "uniqueAngle": "North Carolina supports a stronger drain-field page because the field question can quickly become a county-health and permit-ladder problem instead of a simple excavation quote.",
+      "targetReader": "Best for North Carolina owners who already think the drain field is the main problem but still need to know whether the property supports a workable next field path under county review.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the property still supports a workable next field path.",
+        "You need to know whether the county file, permit ladder, and visible field condition make the field story wider than a simple replacement quote.",
+        "You want to budget a field job without ignoring county review and authorization risk."
+      ],
+      "decisionSteps": [
+        "Start with the county health department so the field question is read against the right file.",
+        "Pull the improvement permit, construction authorization, operation record, and any older field note already tied to the system.",
+        "Ask whether the field condition, current home use, or stale permit ladder now make the project look more like a wider field story than a narrow in-kind swap.",
+        "Then compare drain field pricing only after the county lane and likely next field path are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the county file and permit ladder are still unclear because the owner may be pricing the wrong path.",
+        "Missing authorization history can make the next field path much wider than a basic trench assumption.",
+        "Visible field and drainage issues can make a field problem much larger than the first quote suggests.",
+        "The low end fails quickly when the drain field issue is really a broader county-review and field-story problem."
+      ],
+      "quotePrepChecklist": [
+        "The county health department file reference and contact for the property.",
+        "Any improvement permit, construction authorization, operation record, or older field note tied to the system.",
+        "A note on current bedroom count, use changes, and visible field condition.",
+        "Any contractor note already suggesting the current field path may not match the old approval story."
+      ],
+      "driverBullets": [
+        "North Carolina drain-field ranges widen when the county file or permit ladder is still unclear.",
+        "Authorization history matters because it can change what the owner is really pricing after replacement.",
+        "Visible field and drainage issues can make a field problem much larger than a simple trench quote suggests.",
+        "Owners under-budget when they price trench work without reconciling it to the county file and authorization story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is North Carolina drain field replacement cost tied to county review so closely?",
+          "answer": "Because the practical homeowner path runs through the county health file and permit ladder before the field quote is truly comparable."
+        },
+        {
+          "question": "Can I assume an old North Carolina field footprint will still work?",
+          "answer": "Not safely. The county file, authorization history, and visible field condition can all change whether the next field path is still narrow enough to price conservatively."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/north-carolina/",
+        "/septic-system-cost-calculator/?state=NC&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/north-carolina/",
+        "/septic-replacement-area/north-carolina/",
+        "/wet-yard-over-septic-drain-field/north-carolina/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "nc_01",
+        "nc_02",
+        "nc_03",
+        "nc_04"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "failed-perc-test-septic",
+      "stateCode": "CO",
+      "title": "Colorado Failed Perc Test for Septic",
+      "metaDescription": "What a failed Colorado perc or site result can mean for local public health agency review, Site and Soil Evaluation Report risk, and the next septic cost decision.",
+      "introCopy": "In Colorado, a failed perc or weak site result is rarely just a small testing invoice. The local public health agency, the Site and Soil Evaluation Report, and the permit-before-install file can all widen the project quickly, so one failed result often points to a larger field and permit story.",
+      "uniqueAngle": "Colorado is strong for failed-perc intent because site-testing questions overlap with local public health agency routing and Site and Soil Evaluation Report quality rather than behaving like a simple test-fee problem.",
+      "targetReader": "Best for Colorado owners, buyers, and builders who already know the site result was weak or failed and need to know whether the real issue is another small test, a file problem, or a wider field path.",
+      "fitBullets": [
+        "You have a weak or failed site result, but no one has explained what it means for the local public health agency or Site and Soil Evaluation Report.",
+        "The testing invoice looks manageable, yet the real risk may be whether the local file still supports the low-end story at all.",
+        "You need Colorado-specific guidance before one failed result gets treated like a narrow site miss."
+      ],
+      "decisionSteps": [
+        "Start with the local public health agency so the failed result is read against the right file.",
+        "Pull the Site and Soil Evaluation Report, permit history, and any transfer-of-title or inspection note tied to the property before assuming the failed result is brand-new information.",
+        "Ask whether the weak result, visible field condition, or permit-before-install story now make the property look more like a wider field and approval problem than a small retest issue.",
+        "Then compare the failed-site story against the replacement-area, drain-field, and records pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "A failed site result can look smaller than it is if the local public health agency file is still thin.",
+        "A weak Site and Soil Evaluation Report trail can make the failed result much more consequential than the invoice suggests.",
+        "Transfer-of-title or permit-trigger friction can turn a failed perc into a much larger project story quickly.",
+        "The low end breaks fast when the failed result points toward a wider field and permit problem instead of a narrow follow-up visit."
+      ],
+      "quotePrepChecklist": [
+        "The local public health agency contact with jurisdiction over the property.",
+        "The Site and Soil Evaluation Report, permit file, and any transfer-of-title or inspection note tied to the parcel.",
+        "A note on visible field condition, standing water, or other site concerns already affecting the property.",
+        "Any contractor note already suggesting the site result points toward a wider field or approval issue."
+      ],
+      "driverBullets": [
+        "Colorado failed-perc risk starts with the local public health agency because that file controls the practical next step.",
+        "Site and Soil Evaluation Report quality matters because a thin file can widen one failed result into a much larger project path.",
+        "Transfer-of-title and permit-trigger context can make a failed result much more consequential than it first appears.",
+        "Owners under-budget when they price the testing miss without reconciling it to the real local file and site story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed Colorado perc result always mean replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the issue is minor until the local public health agency path, Site and Soil Evaluation Report, and field condition are clearer."
+        },
+        {
+          "question": "Why is a failed site result especially risky in Colorado?",
+          "answer": "Because it can overlap with local public health agency review, a thin Site and Soil Evaluation Report trail, and permit-trigger friction in ways a generic testing page misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=perc_test",
+        "/septic-replacement-area/colorado/",
+        "/drain-field-replacement-cost/colorado/",
+        "/septic-records-checklist/colorado/",
+        "/failed-perc-test-septic/"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "calculatorProjectType": "perc_test",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "septic-replacement-area",
+      "stateCode": "CO",
+      "title": "Colorado Septic Replacement Area Guide",
+      "metaDescription": "Use Colorado local public health agency, Site and Soil Evaluation Report, and field-condition context to judge whether the property still supports a workable next field path.",
+      "introCopy": "Colorado does not use replacement-area language in exactly the same way as Oregon, but the homeowner problem is still real. When the field looks weak, the next question is whether the property still supports a workable path once the local public health agency file, the Site and Soil Evaluation Report, and visible field condition are in view.",
+      "uniqueAngle": "Colorado is useful for replacement-area intent because the real homeowner risk is whether the local file and Site and Soil Evaluation Report still support a workable next field path rather than a generic trench assumption.",
+      "targetReader": "Best for Colorado owners and buyers who suspect the field issue is larger than a small repair and need to know whether the property still supports a workable next path.",
+      "fitBullets": [
+        "A contractor or inspector already hinted that the field issue may be wider than a limited repair.",
+        "You need to know whether the local file, Site and Soil Evaluation Report, and visible field condition make the next path larger than it first appears.",
+        "You want Colorado-specific guidance before a visible field problem gets treated like a generic trench job."
+      ],
+      "decisionSteps": [
+        "Start with the local public health agency so the field question is read against the right file.",
+        "Pull the Site and Soil Evaluation Report, permit history, and any older field or transfer-of-title note tied to the system.",
+        "Ask whether the field condition, permit-before-install story, or weak local file now make the next field path look wider than a narrow repair story.",
+        "Then compare the field story against the wet-yard, failed-perc, and drain-field pages before you trust the low end."
+      ],
+      "lowEndBreakers": [
+        "The field problem can look smaller than it is if the local public health agency file is still thin.",
+        "A weak Site and Soil Evaluation Report trail can make the next field path much less certain than the first quote suggests.",
+        "Transfer-of-title or permit-trigger friction can widen the project well beyond a narrow repair conversation.",
+        "The low end breaks when the owner is really dealing with a wider field and local-file story instead of a limited fix."
+      ],
+      "quotePrepChecklist": [
+        "The local public health agency contact with jurisdiction over the property.",
+        "The Site and Soil Evaluation Report, permit file, and any transfer-of-title or inspection note tied to the parcel.",
+        "A note on visible field condition, standing water, or other site concerns already affecting the property.",
+        "Any contractor note already suggesting the current field path may not match the old file story."
+      ],
+      "driverBullets": [
+        "Colorado replacement-area risk starts with the local public health agency because that file controls the practical next step.",
+        "Site and Soil Evaluation Report quality matters because it can widen the next field path before the first quote is comparable.",
+        "Transfer-of-title and permit-trigger context can show that the current property no longer fits the old file assumptions.",
+        "Owners under-budget when they price the visible field symptom without reconciling it to the local file and site story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is Colorado replacement-area risk the same as a reserve-area engineering question?",
+          "answer": "Not exactly. The homeowner-safe framing is whether the property still supports a workable next field path once the local public health agency file, Site and Soil Evaluation Report, and visible field condition are in view."
+        },
+        {
+          "question": "Why does Colorado replacement-area concern show up before a final design answer?",
+          "answer": "Because the practical risk often appears in the local file, Site and Soil Evaluation Report, and visible field story before a final engineered path is settled."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/colorado/",
+        "/wet-yard-over-septic-drain-field/colorado/",
+        "/septic-inspection-cost/colorado/",
+        "/septic-replacement-area/"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "wet-yard-over-septic-drain-field",
+      "stateCode": "CO",
+      "title": "Colorado Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a Colorado drain field can mean, when it points to field-viability trouble, and how local public health review widens the estimate.",
+      "introCopy": "A wet yard over a Colorado drain field is rarely just a soggy-grass complaint. The local public health agency, the Site and Soil Evaluation Report, and the visible field condition can all make seepage a much larger field-risk story than a basic service quote suggests.",
+      "uniqueAngle": "Colorado is strong for wet-yard intent because visible field failure can quickly overlap with local public health review and Site and Soil Evaluation Report risk rather than behaving like a simple yard complaint.",
+      "targetReader": "Best for Colorado owners and buyers seeing seepage, odor, or soft ground near the field and trying to decide whether the next step is a narrow repair or a wider field problem.",
+      "fitBullets": [
+        "You are seeing wet or mushy ground near the field and need to know whether the real issue is field failure, local review, or a wider permit problem.",
+        "A contractor or local contact has hinted that the visible symptom may point to a larger drainfield issue, but the file story is still thin.",
+        "You want Colorado-specific guidance before a soggy area turns into an oversimplified repair quote."
+      ],
+      "decisionSteps": [
+        "Start with the local public health agency so the wet-yard symptom is read against the right file.",
+        "Pull the Site and Soil Evaluation Report, permit history, and any transfer-of-title or repair note tied to the system before assuming the visible wetness is brand new information.",
+        "Treat the wet area as a field-viability signal first, not a maintenance nuisance, because the local file and site story can widen the path quickly.",
+        "Then compare the wet-yard story against the records, drain-field, and inspection pages before you trust a low-end repair number."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness can mean the field and local-file story is weaker than the owner assumed.",
+        "If the Site and Soil Evaluation Report trail is weak, a larger field problem can get misread as a small repair.",
+        "Transfer-of-title or permit-trigger friction can make the symptom much more consequential than it first looks.",
+        "The low end breaks fast once the soggy yard is really about field viability and local review instead of a narrow fix."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, whether odor or surfacing is present, and how long the symptom has been recurring.",
+        "The local public health agency contact with jurisdiction over the property.",
+        "The Site and Soil Evaluation Report, permit file, and any transfer-of-title or inspection note tied to the parcel.",
+        "A note on visible field condition, standing water, or other site concerns already affecting the property."
+      ],
+      "driverBullets": [
+        "Colorado wet-yard risk starts with the local public health agency because that file controls the practical next step.",
+        "Site and Soil Evaluation Report quality matters because visible seepage can show that the property no longer fits the old file story.",
+        "Transfer-of-title and permit-trigger context can make the symptom much more consequential than it first appears.",
+        "Visible seepage gets more expensive when field viability and local review are both uncertain."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet Colorado yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the local public health agency path, Site and Soil Evaluation Report, and field condition are clearer."
+        },
+        {
+          "question": "Why is a wet-yard symptom a bigger deal in Colorado than just a drainage annoyance?",
+          "answer": "Because visible field failure can quickly overlap with local public health review, a thin Site and Soil Evaluation Report trail, and permit-trigger friction in ways a generic drainage story misses."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=drainfield_replacement",
+        "/drain-field-replacement-cost/colorado/",
+        "/septic-inspection-cost/colorado/",
+        "/septic-records-checklist/colorado/",
+        "/wet-yard-over-septic-drain-field/"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
+      "publishStatus": "published"
+    },
+    {
+      "contentSlug": "drain-field-replacement-cost",
+      "stateCode": "CO",
+      "title": "Colorado Drain Field Replacement Cost",
+      "metaDescription": "Estimate Colorado drain field replacement cost with local public health agency review, Site and Soil Evaluation Report risk, and field-condition context in mind.",
+      "introCopy": "In Colorado, drain field replacement cost is not just a trenching number. The local public health agency, the Site and Soil Evaluation Report, and the visible field condition can all widen the job before anyone has a final layout, so the homeowner-safe question is whether the field still supports a workable next path under the right local story.",
+      "uniqueAngle": "Colorado supports a stronger drain-field page because the field question can quickly become a local-file and site-evaluation problem instead of a simple excavation quote.",
+      "targetReader": "Best for Colorado owners who already think the drain field is the main problem but still need to know whether the property supports a workable next field path under local review.",
+      "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the property still supports a workable next field path.",
+        "You need to know whether the local file, Site and Soil Evaluation Report, and visible field condition make the field story wider than a simple replacement quote.",
+        "You want to budget a field job without ignoring local review and permit-trigger risk."
+      ],
+      "decisionSteps": [
+        "Start with the local public health agency so the field question is read against the right file.",
+        "Pull the Site and Soil Evaluation Report, permit history, and any older field or transfer-of-title note already tied to the system.",
+        "Ask whether the visible field condition, permit-before-install story, or weak local file now make the project look more like a wider field story than a narrow in-kind swap.",
+        "Then compare drain field pricing only after the authority lane and likely next field path are clear enough to trust the range."
+      ],
+      "lowEndBreakers": [
+        "The low end breaks if the local public health agency file is still thin because the owner may be pricing the wrong path.",
+        "A weak Site and Soil Evaluation Report trail can make the next field path much wider than a basic trench assumption.",
+        "Transfer-of-title or permit-trigger friction can make a field problem much larger than the first quote suggests.",
+        "The low end fails quickly when the drain field issue is really a broader local-review and site-story problem."
+      ],
+      "quotePrepChecklist": [
+        "The local public health agency contact with jurisdiction over the property.",
+        "The Site and Soil Evaluation Report, permit file, and any transfer-of-title or field note tied to the parcel.",
+        "A note on visible field condition, standing water, or other site concerns already affecting the property.",
+        "Any contractor note already suggesting the current field path may not match the old file story."
+      ],
+      "driverBullets": [
+        "Colorado drain-field ranges widen when the local public health agency file or Site and Soil Evaluation Report is still thin.",
+        "Permit-trigger and transfer-of-title context matter because they can change what the owner is really pricing after replacement.",
+        "Visible field and drainage issues can make a field problem much larger than a simple trench quote suggests.",
+        "Owners under-budget when they price trench work without reconciling it to the local file and site story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Colorado drain field replacement cost tied to the Site and Soil Evaluation Report so closely?",
+          "answer": "Because the practical homeowner path runs through the local public health agency file and Site and Soil Evaluation Report before the field quote is truly comparable."
+        },
+        {
+          "question": "Can I assume an old Colorado field footprint will still work?",
+          "answer": "Not safely. The local file, Site and Soil Evaluation Report, and visible field condition can all change whether the next field path is still narrow enough to price conservatively."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-system-cost-calculator/colorado/",
+        "/septic-system-cost-calculator/?state=CO&projectType=drainfield_replacement",
+        "/failed-perc-test-septic/colorado/",
+        "/septic-replacement-area/colorado/",
+        "/wet-yard-over-septic-drain-field/colorado/",
+        "/drain-field-replacement-cost/"
+      ],
+      "officialSourceIds": [
+        "co_01",
+        "co_02"
+      ],
+      "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
     }
   ]

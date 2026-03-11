@@ -54,6 +54,9 @@ public record StateMoneyPage(
         return switch (contentSlug) {
             case "septic-replacement-cost" -> "replacement";
             case "perc-test-cost" -> "perc_test";
+            case "failed-perc-test-septic" -> "perc_test";
+            case "septic-replacement-area" -> "drainfield_replacement";
+            case "wet-yard-over-septic-drain-field" -> "drainfield_replacement";
             case "drain-field-replacement-cost" -> "drainfield_replacement";
             case "septic-pumping-cost" -> "pumping";
             case "septic-inspection-cost" -> "inspection";
@@ -75,6 +78,9 @@ public record StateMoneyPage(
             case "buying-a-house-with-a-septic-system" -> "Find the office tied to this deal";
             case "septic-inspection-cost" -> "Find the office behind the inspection file";
             case "perc-test-cost" -> "Find the office behind the site review";
+            case "failed-perc-test-septic" -> "Find the office behind the failed site review";
+            case "septic-replacement-area" -> "Find the office behind the replacement-area file";
+            case "wet-yard-over-septic-drain-field" -> "Find the office behind the wet-yard or failure file";
             default -> "Find the local permitting authority";
         };
     }
@@ -85,6 +91,9 @@ public record StateMoneyPage(
             case "buying-a-house-with-a-septic-system" -> "Pull the deal paperwork first";
             case "septic-inspection-cost" -> "Pull the inspection file first";
             case "septic-permit-process" -> "Pull the permit file first";
+            case "failed-perc-test-septic" -> "Open the site and permit file first";
+            case "septic-replacement-area" -> "Open the replacement-area file first";
+            case "wet-yard-over-septic-drain-field" -> "Open the failure, inspection, and repair file first";
             default -> "Look up septic records first";
         };
     }
@@ -97,6 +106,9 @@ public record StateMoneyPage(
             case "septic-inspection-cost" -> "Inspection prep checklist";
             case "septic-replacement-cost", "drain-field-replacement-cost" -> "Replacement prep checklist";
             case "perc-test-cost" -> "Site review checklist";
+            case "failed-perc-test-septic" -> "Failed-site prep checklist";
+            case "septic-replacement-area" -> "Replacement-area prep checklist";
+            case "wet-yard-over-septic-drain-field" -> "Wet-yard failure checklist";
             case "septic-pumping-cost" -> "Maintenance prep checklist";
             default -> "Local action checklist";
         };
@@ -110,6 +122,9 @@ public record StateMoneyPage(
             case "septic-inspection-cost" -> "Start with this inspection prep";
             case "septic-replacement-cost", "drain-field-replacement-cost" -> "Start with this replacement prep";
             case "perc-test-cost" -> "Start with this site-review prep";
+            case "failed-perc-test-septic" -> "Start with this failed-site prep";
+            case "septic-replacement-area" -> "Start with this replacement-area prep";
+            case "wet-yard-over-septic-drain-field" -> "Start with this wet-yard prep";
             case "septic-pumping-cost" -> "Start with this maintenance prep";
             default -> "Start with this local prep";
         };
@@ -124,6 +139,9 @@ public record StateMoneyPage(
             case "septic-replacement-cost" -> "What widens this " + stateName + " replacement range";
             case "drain-field-replacement-cost" -> "What widens this " + stateName + " drain field repair path";
             case "perc-test-cost" -> "What widens this " + stateName + " site-testing range";
+            case "failed-perc-test-septic" -> "What widens this " + stateName + " failed-perc path";
+            case "septic-replacement-area" -> "What widens this " + stateName + " replacement-area path";
+            case "wet-yard-over-septic-drain-field" -> "What widens this " + stateName + " wet-yard failure path";
             case "septic-pumping-cost" -> "What turns pumping into a bigger " + stateName + " maintenance issue";
             default -> "What widens this page in " + stateName;
         };
@@ -153,6 +171,9 @@ public record StateMoneyPage(
             case "septic-records-checklist" -> "Bring this into the next records call";
             case "septic-permit-process" -> "Bring this into the next permit call";
             case "septic-inspection-cost" -> "Bring this into the next inspection call";
+            case "failed-perc-test-septic" -> "Bring this into the next site-review call";
+            case "septic-replacement-area" -> "Bring this into the next replacement-area call";
+            case "wet-yard-over-septic-drain-field" -> "Bring this into the next failure-risk call";
             default -> "Bring this into the next quote call";
         };
     }
@@ -163,6 +184,9 @@ public record StateMoneyPage(
             case "septic-records-checklist" -> "Official file and lookup links";
             case "septic-permit-process" -> "Official permit and file links";
             case "septic-inspection-cost" -> "Official inspection and file links";
+            case "failed-perc-test-septic" -> "Official site-review and file links";
+            case "septic-replacement-area" -> "Official replacement-area and file links";
+            case "wet-yard-over-septic-drain-field" -> "Official failure, inspection, and file links";
             default -> "Official links to use next";
         };
     }

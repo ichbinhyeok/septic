@@ -255,9 +255,48 @@ h3,
     padding: 42px 0 72px;
 }
 
+.section--breadcrumb {
+    padding: 12px 0 0;
+}
+
 .section--heroish {
     padding-top: 56px;
     padding-bottom: 28px;
+}
+
+.section--breadcrumb + .section--heroish {
+    padding-top: 28px;
+}
+
+.breadcrumb-nav {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.breadcrumb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.breadcrumb-list__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumb-list__item:not(:last-child)::after {
+    content: "/";
+    color: rgba(20, 34, 32, 0.35);
+}
+
+.breadcrumb-list__item span[aria-current="page"] {
+    color: var(--text);
+    font-weight: 700;
 }
 
 .section--tight {
@@ -795,6 +834,10 @@ li,
 
 .sticky-mobile-cta--dual .sticky-mobile-cta__inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sticky-mobile-cta--single .sticky-mobile-cta__inner {
+    grid-template-columns: 1fr;
 }
 
 .sticky-mobile-cta-spacer {
@@ -1442,7 +1485,8 @@ input[type="checkbox"] {
     }
 
     .site-nav a {
-        padding: 9px 12px;
+        min-height: 44px;
+        padding: 10px 12px;
         background: rgba(255, 255, 255, 0.78);
         border: 1px solid rgba(20, 34, 32, 0.08);
     }
@@ -1497,6 +1541,14 @@ input[type="checkbox"] {
         margin-top: 14px;
         font-size: 1rem;
         line-height: 1.55;
+    }
+
+    .section--breadcrumb {
+        padding: 8px 0 0;
+    }
+
+    .section--breadcrumb + .section--heroish {
+        padding-top: 4px;
     }
 
     .hero__actions,
@@ -1579,14 +1631,24 @@ input[type="checkbox"] {
 
     .sticky-mobile-cta {
         display: block;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(18px);
+        transition: opacity 0.18s ease, transform 0.18s ease;
     }
 
     .sticky-mobile-cta-spacer {
         display: block;
-        height: 96px;
+        height: 82px;
     }
 
     .sticky-mobile-cta--dual .sticky-mobile-cta__inner {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sticky-mobile-cta.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
     }
 }

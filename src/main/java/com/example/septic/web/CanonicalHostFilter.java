@@ -34,25 +34,34 @@ public class CanonicalHostFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        if (!shouldRedirect(request)) {
+        String redirectUrl = redirectUrl(request);
+        if (redirectUrl == null) {
             filterChain.doFilter(request, response);
             return;
         }
-
-        String redirectUrl = UriComponentsBuilder.newInstance()
-                .scheme(canonicalScheme)
-                .host(canonicalHost)
-                .port(shouldIncludePort(canonicalScheme, canonicalUri.getPort()) ? canonicalUri.getPort() : -1)
-                .path(request.getRequestURI())
-                .query(request.getQueryString())
-                .build(true)
-                .toUriString();
 
         response.setStatus(HttpStatus.PERMANENT_REDIRECT.value());
         response.setHeader(HttpHeaders.LOCATION, redirectUrl);
     }
 
-    private boolean shouldRedirect(HttpServletRequest request) {
+    private String redirectUrl(HttpServletRequest request) {
+        boolean redirectCanonicalOrigin = shouldRedirectCanonicalOrigin(request);
+        boolean redirectTrailingSlash = shouldRedirectTrailingSlash(request);
+        if (!redirectCanonicalOrigin && !redirectTrailingSlash) {
+            return null;
+        }
+
+        return UriComponentsBuilder.newInstance()
+                .scheme(canonicalScheme)
+                .host(canonicalHost)
+                .port(shouldIncludePort(canonicalScheme, canonicalUri.getPort()) ? canonicalUri.getPort() : -1)
+                .path(redirectTrailingSlash ? request.getRequestURI() + "/" : request.getRequestURI())
+                .query(request.getQueryString())
+                .build(true)
+                .toUriString();
+    }
+
+    private boolean shouldRedirectCanonicalOrigin(HttpServletRequest request) {
         String requestHost = request.getServerName();
         String effectiveScheme = originalScheme(request);
         if (!isCanonicalHost(requestHost) && !isEquivalentWwwVariant(requestHost)) {
@@ -68,6 +77,29 @@ public class CanonicalHostFilter extends OncePerRequestFilter {
         }
 
         return normalizedPort(originalPort(request, effectiveScheme), effectiveScheme) != canonicalPort;
+    }
+
+    private boolean shouldRedirectTrailingSlash(HttpServletRequest request) {
+        if (!"GET".equalsIgnoreCase(request.getMethod()) && !"HEAD".equalsIgnoreCase(request.getMethod())) {
+            return false;
+        }
+
+        String requestHost = request.getServerName();
+        if (!isCanonicalHost(requestHost) && !isEquivalentWwwVariant(requestHost)) {
+            return false;
+        }
+
+        String path = request.getRequestURI();
+        if (path == null || path.isBlank() || "/".equals(path) || path.endsWith("/")) {
+            return false;
+        }
+
+        if (path.startsWith("/events/") || "/quote-request".equals(path)) {
+            return false;
+        }
+
+        String lastSegment = path.substring(path.lastIndexOf('/') + 1);
+        return !lastSegment.contains(".");
     }
 
     private boolean isCanonicalHost(String host) {

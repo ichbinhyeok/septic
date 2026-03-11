@@ -53,6 +53,14 @@
         </div>
     </article>
 
+    @if ("Drain field replacement".equals(result.projectTypeLabel()))
+        <article class="trust-box">
+            <span class="trust-box__label">Field-specific next move</span>
+            <p>If the field is clearly the main issue, use the dedicated drain field estimator to pressure-test redesign risk, replacement-area limits, and field-only versus whole-system scope.</p>
+            <a href="/drain-field-estimator/?state=${result.stateCode()}">Open the drain field estimator</a>
+        </article>
+    @endif
+
     <div class="detail-grid">
         <article class="detail-card">
             <h3>Official rule and state anchor</h3>

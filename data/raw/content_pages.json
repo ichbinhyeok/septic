@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-03-09",
+  "generatedAt": "2026-03-11",
   "pages": [
     {
       "slug": "septic-system-cost-calculator",
@@ -77,6 +77,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "replacement",
       "targetReader": "Best for homeowners, buyers, and agents who already suspect replacement is likely but still need to know whether the field, records, and site story support anything close to the low end.",
+      "deepDiveParagraphs": [
+        "Homeowners usually get anchored to one replacement number too early. The real question is whether the job is still a conventional swap or whether field damage, access, restoration, or file uncertainty have already pushed it into a wider lane.",
+        "This page is meant to break the routine-install mindset before a contractor does it for you. Use it to decide whether the next conversation should be about field viability, records, or emergency scope before a low headline number sets the story."
+      ],
       "fitBullets": [
         "The system is failing or aging, but no one has confirmed whether replacement still looks conventional.",
         "The visible problem may be bigger than the tank because field damage, access, or restoration risk is already in the background.",
@@ -195,6 +199,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
       "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but actually need to know whether the result could push the entire project into a different cost lane.",
+      "deepDiveParagraphs": [
+        "Most owners search for a perc fee when the bigger risk is what the result will do to the whole project. A cheap test can still be the event that moves the job from a conventional assumption into redesign or alternative-system territory.",
+        "This page is most useful when you need to keep site uncertainty visible in the budget. If the lot story is still vague, the testing question is really a system-class question and should be treated that way early."
+      ],
       "fitBullets": [
         "The testing invoice looks small, but the real concern is what the result will do to the system choice.",
         "You need to price site uncertainty before you call installers as if the lot is already straightforward.",
@@ -235,7 +243,8 @@
       "internalLinkTargets": [
         "/septic-system-cost-calculator/",
         "/drain-field-replacement-cost/",
-        "/septic-replacement-cost/"
+        "/septic-replacement-cost/",
+        "/failed-perc-test-septic/"
       ],
       "publishStatus": "published"
     },
@@ -250,36 +259,47 @@
       ],
       "title": "Drain Field Replacement Cost",
       "metaDescription": "Estimate drain field replacement cost, understand what raises the quote, and know when the system may no longer stay conventional.",
-      "introCopy": "Drain field replacement is one of the biggest homeowner cost shocks in septic ownership. The field is where site conditions, soil limits, and access problems show up quickly.",
-      "calculatorModule": "main_cost_estimator",
+      "introCopy": "Drain field replacement is one of the biggest homeowner cost shocks in septic ownership because the field is where soil limits, reserve-area problems, drainage issues, and restoration work all collide. This page is meant to help you decide whether you are still looking at a conventional field story or whether the lot is drifting into redesign risk.",
+      "calculatorModule": "drainfield_estimator",
       "calculatorProjectType": "drainfield_replacement",
       "targetReader": "Best for homeowners and buyers who already know the field is the likely issue but still need to know whether the site can support another conventional layout.",
+      "deepDiveParagraphs": [
+        "Drain field replacement is where owners most often underestimate how much the lot matters. The trenches you can see are only part of the story; reserve area, soil history, drainage, and restoration usually decide whether the project stays narrow.",
+        "This page is trying to stop a field job from being priced like a simple equipment swap. If the parcel can no longer support the old story, the field question becomes a parcel and system question very quickly."
+      ],
       "fitBullets": [
         "The tank is not the main cost concern and the field may be driving the quote swing.",
         "You need to know whether access, restoration, or site limits make the field story much larger than trench work alone.",
-        "The old field footprint may not be a safe planning assumption anymore."
+        "The old field footprint may not be a safe planning assumption anymore.",
+        "You are trying to separate a field-only problem from a wider redesign or full-system replacement conversation before you call contractors."
       ],
       "decisionSteps": [
         "Start with the field as the real project, not just an accessory to the tank, because site and soil limits dominate here.",
-        "Check whether records, perc history, or visible drainage issues already suggest the same layout may not be viable.",
-        "Run the drain-field replacement lane so excavation, restoration, and system-class uncertainty show up early.",
+        "Check whether records, perc history, reserve-area notes, or visible drainage issues already suggest the same layout may not be viable.",
+        "Run the drain-field replacement lane so excavation, restoration, replacement-area risk, and system-class uncertainty show up early.",
+        "Use the result to decide whether you are still in a field-only planning lane or whether the real issue is site viability and redesign.",
         "Then move into the replacement or perc page if the field issue starts looking like a broader redesign."
       ],
       "lowEndBreakers": [
         "Field failure often signals deeper drainage or site constraints that the cheapest quote does not capture.",
         "Access, excavation, and restoration can outweigh the visible field hardware fast.",
-        "If the site no longer supports a conventional field, the low-end replacement story breaks immediately."
+        "If the site no longer supports a conventional field, the low-end replacement story breaks immediately.",
+        "No clear replacement area or reserve area can turn a field quote into a parcel-layout problem quickly.",
+        "Weak records, unknown perc history, or an unclear old field footprint make the visible low-end number much less trustworthy."
       ],
       "quotePrepChecklist": [
         "Any inspection note or contractor comment focused on the field rather than the tank.",
         "Perc, soil, or site-evaluation records already tied to the property.",
         "A note on access, wet areas, slope, landscaping, and restoration concerns near the field.",
-        "Whether the system is a buyer issue, a failure event, or a planned upgrade."
+        "Whether the system is a buyer issue, a failure event, or a planned upgrade.",
+        "Any clue about reserve area, old field layout, or whether the parcel still supports a conventional replacement footprint."
       ],
       "driverBullets": [
         "Field failure often points to deeper site or drainage constraints.",
         "Access, excavation, and restoration can dominate the price band.",
-        "A replacement field does not always mean the same system type is still viable."
+        "A replacement field does not always mean the same system type is still viable.",
+        "Reserve-area uncertainty can matter as much as the visible failed trench line.",
+        "Unknown perc or site-evaluation history weakens the low end faster than most homeowners expect."
       ],
       "faqBlocks": [
         {
@@ -289,12 +309,238 @@
         {
           "question": "Why is the range often so wide?",
           "answer": "Because the cost depends on the field layout, the site, the likely system class, and whether additional work is uncovered."
+        },
+        {
+          "question": "Why does replacement area matter so much?",
+          "answer": "Because the cheapest drain field story usually assumes the lot still has a viable replacement layout. If it does not, redesign and alternative-system risk rise quickly."
+        },
+        {
+          "question": "Should I treat wet spots near the field as a simple repair signal?",
+          "answer": "Not usually. Wetness, seepage, or odor can be the first sign that the field problem is larger than a narrow trench repair."
         }
       ],
       "internalLinkTargets": [
+        "/drain-field-estimator/",
+        "/septic-replacement-area/",
+        "/failed-perc-test-septic/",
+        "/wet-yard-over-septic-drain-field/",
         "/septic-replacement-cost/",
         "/perc-test-cost/",
+        "/septic-records-checklist/",
         "/septic-system-cost-calculator/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "failed-perc-test-septic",
+      "intentType": "planning_page",
+      "primaryKeyword": "failed perc test septic",
+      "secondaryKeywords": [
+        "what happens if septic perc test fails",
+        "failed perc test for septic",
+        "septic perc test failed"
+      ],
+      "title": "Failed Perc Test for Septic",
+      "metaDescription": "What a failed perc test means for septic cost, whether the lot can stay conventional, and what to do before quotes.",
+      "introCopy": "A failed perc test is rarely just a small testing problem. It is usually the first clear signal that the lot, soil, or field layout may not support the cheap conventional septic story homeowners hope for.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "perc_test",
+      "targetReader": "Best for owners, buyers, and land shoppers who already know the perc result was weak or failed and need to understand whether the real issue is testing cost, drain field viability, or a broader redesign path.",
+      "deepDiveParagraphs": [
+        "A failed perc result should change the conversation immediately. The main question is no longer the testing invoice but whether the property still has a conventional path that makes the low end believable.",
+        "This page helps you decide whether the next move is retesting, file review, drain-field analysis, or a broader replacement conversation. If the soil story broke, the budget story usually widens with it."
+      ],
+      "fitBullets": [
+        "You already know the perc result was weak or failed and now need to understand what it changes behind the estimate.",
+        "You need to know whether the lot can still support a conventional field or whether the low end is no longer the right anchor.",
+        "You are deciding whether the next step is retesting, records pull, drain field review, or a broader replacement conversation."
+      ],
+      "decisionSteps": [
+        "Treat the failed perc result as a system-path signal first, not a small testing invoice.",
+        "Check whether the parcel already has older perc, site-evaluation, reserve-area, or approval records that make the failure easier to interpret.",
+        "Run the site-risk estimate while keeping the range wide on purpose so soil and field uncertainty show up early.",
+        "Then compare the result against the drain field, permit, and replacement pages to see whether the lot is still in a conventional lane."
+      ],
+      "lowEndBreakers": [
+        "A failed perc result can move the project away from a conventional field much faster than most owners expect.",
+        "Retesting or seasonal timing does not automatically restore a simple low-end story.",
+        "Weak reserve-area or replacement-area evidence can make the failed test much more expensive than the test invoice itself.",
+        "If the parcel is drifting toward redesign or alternative-system territory, the lowest install number is no longer the right anchor."
+      ],
+      "quotePrepChecklist": [
+        "The exact perc result, date, and who performed or reviewed it.",
+        "Any older perc, soil, or site-evaluation record tied to the parcel.",
+        "Notes on wetness, slope, drainage, fill, shallow rock, or high-water-table concerns.",
+        "Whether the failed result affects a new build, a replacement, or a purchase decision."
+      ],
+      "driverBullets": [
+        "Failed perc signals can change the likely system class, not just the testing fee.",
+        "Older records and reserve-area notes can materially change how severe the result really is.",
+        "The field story may already be wider than the tank or install headline before design starts.",
+        "Retesting is not the same as proving the low end is still realistic."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a failed perc test always mean the property cannot have septic?",
+          "answer": "No, but it does mean the lot should no longer be treated as a simple conventional-field assumption without stronger site evidence."
+        },
+        {
+          "question": "Should I price only the retest first?",
+          "answer": "Not by itself. The retest matters, but the bigger question is whether the lot still supports a conventional field and replacement layout."
+        },
+        {
+          "question": "When does a failed perc result become a drain field or redesign issue?",
+          "answer": "It becomes a larger field or redesign issue when reserve area, layout fit, or system-class viability is now uncertain rather than just the testing date."
+        }
+      ],
+      "internalLinkTargets": [
+        "/perc-test-cost/",
+        "/drain-field-replacement-cost/",
+        "/septic-permit-process/",
+        "/septic-replacement-area/",
+        "/septic-system-cost-calculator/?projectType=perc_test"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-replacement-area",
+      "intentType": "planning_page",
+      "primaryKeyword": "septic replacement area",
+      "secondaryKeywords": [
+        "septic reserve area",
+        "replacement area septic system",
+        "reserve area for septic"
+      ],
+      "title": "Septic Replacement Area Guide",
+      "metaDescription": "Why septic replacement area matters, how reserve-area uncertainty widens quotes, and when the lot may no longer support a simple field replacement.",
+      "introCopy": "The cheapest drain field quote usually assumes the parcel still has a workable replacement area. Once that assumption gets weak, the project can stop being a trench-replacement story and become a layout, reserve-area, or redesign problem.",
+      "calculatorModule": "drainfield_estimator",
+      "calculatorProjectType": "drainfield_replacement",
+      "targetReader": "Best for owners and buyers who already suspect the existing field is failing and need to know whether the lot still has a code-complying replacement area before trusting a lower quote.",
+      "deepDiveParagraphs": [
+        "Replacement area is where many drain-field quotes get overly optimistic. The active field can fail without proving there is an easy backup layout, and that gap is where redesign pressure usually appears.",
+        "Use this page when you need to know whether the parcel still supports a code-complying path. If that answer is unclear, the cheapest field quote is usually not the right anchor."
+      ],
+      "fitBullets": [
+        "A contractor, inspector, or county note already raised the replacement area or reserve-area question.",
+        "The old field footprint may no longer be usable, but no one has confirmed a viable backup layout.",
+        "You need to know whether the lot still supports a field-only fix before you compare quotes."
+      ],
+      "decisionSteps": [
+        "Start by separating field hardware failure from parcel-layout viability because those are not the same problem.",
+        "Check the file for older permits, as-builts, perc notes, or reserve-area references that show whether a backup layout was ever identified.",
+        "Run the drain field estimate so replacement-area risk and redesign pressure show up before you anchor on the low end.",
+        "Then pull records or site review notes to confirm whether the parcel still has a code-complying path."
+      ],
+      "lowEndBreakers": [
+        "No clear replacement or reserve area is one of the fastest ways a field quote stops looking conventional.",
+        "A parcel can have a failed field and still not have an easy like-for-like replacement location.",
+        "Weak file quality makes homeowners over-trust the current footprint.",
+        "If the backup layout is gone, redesign and alternative-system pressure can rise quickly."
+      ],
+      "quotePrepChecklist": [
+        "Any note that mentions reserve area, repair area, or replacement layout.",
+        "As-built, permit, or site review records showing the original field footprint.",
+        "Known setbacks, slope, drainage, tree, wall, driveway, or lot-line constraints.",
+        "Whether the question came from a failure event, inspection, sale, or planned upgrade."
+      ],
+      "driverBullets": [
+        "Replacement-area viability matters as much as the visible failed trenches.",
+        "Reserve-area uncertainty can turn a narrow repair story into a parcel-layout problem.",
+        "Weak records make the low end much harder to trust.",
+        "Layout failure often pushes the project toward broader redesign decisions."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is replacement area the same as the existing drain field footprint?",
+          "answer": "Not necessarily. The active field and the viable future replacement area can be different, and that difference is where quote risk often appears."
+        },
+        {
+          "question": "Why do contractors ask about reserve area so early?",
+          "answer": "Because it helps determine whether the lot still supports a code-complying field path or whether redesign risk should already be in the estimate."
+        },
+        {
+          "question": "Can missing records hide a replacement-area problem?",
+          "answer": "Yes. Thin files often make owners assume the old layout is reusable when no record actually confirms that."
+        }
+      ],
+      "internalLinkTargets": [
+        "/drain-field-estimator/",
+        "/drain-field-replacement-cost/",
+        "/septic-records-checklist/",
+        "/failed-perc-test-septic/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "wet-yard-over-septic-drain-field",
+      "intentType": "planning_page",
+      "primaryKeyword": "wet yard over septic drain field",
+      "secondaryKeywords": [
+        "wet spot over septic field",
+        "water over septic drain field",
+        "soggy yard over septic field"
+      ],
+      "title": "Wet Yard Over Septic Drain Field",
+      "metaDescription": "What a wet yard over a septic drain field can mean, when it points to field failure, and how to estimate the likely cost swing before quotes.",
+      "introCopy": "Wet or spongy ground near the drain field is one of the clearest homeowner-facing signs that the field story may be larger than routine maintenance. The question is usually not whether the yard looks wet, but whether the field still has a viable path that keeps the project narrow.",
+      "calculatorModule": "drainfield_estimator",
+      "calculatorProjectType": "drainfield_replacement",
+      "targetReader": "Best for homeowners and buyers seeing seepage, odor, soggy ground, or surfacing near the field and trying to decide whether the issue still looks repair-sized or is drifting toward field replacement risk.",
+      "deepDiveParagraphs": [
+        "A wet yard over the field is useful because it is visible, but it is dangerous because owners often treat it as proof of a small repair. In practice, the visible symptom tells you less than the file, field layout, and replacement-area story behind it.",
+        "This page is meant to turn a vague failure symptom into a planning decision. If the wet area is chronic or the records are weak, the job should be treated as a broader field-risk question early."
+      ],
+      "fitBullets": [
+        "You are seeing moisture, seepage, odor, or mushy ground near the suspected field area.",
+        "The visible symptom may be the first clue that the field story is larger than a simple service visit.",
+        "You need a planning path that accounts for failure risk before you trust a low-end repair quote."
+      ],
+      "decisionSteps": [
+        "Start by treating visible wetness as a field-condition signal, not just a nuisance symptom.",
+        "Ask whether the property already has inspection notes, pumping history, or older file records that explain the field layout and age.",
+        "Run the drain field estimate so wetness, replacement-area uncertainty, and restoration pressure show up in the range.",
+        "Then compare the result against inspection, records, and replacement pages before you move into quote mode."
+      ],
+      "lowEndBreakers": [
+        "Visible wetness or odor often means the practical field problem is larger than a narrow trench repair.",
+        "If the wet area is tied to broader drainage or layout failure, field-only quotes widen quickly.",
+        "Unknown records and unclear field boundaries make symptom-based low-end quotes risky.",
+        "Surface symptoms plus weak perc or reserve-area signals can push the job toward redesign."
+      ],
+      "quotePrepChecklist": [
+        "Where the wet area shows up, how long it has been visible, and whether odor or surfacing is present.",
+        "Any recent pumping, inspection, or contractor note tied to the system.",
+        "Rainfall or seasonal context that may help distinguish chronic failure from a temporary surface condition.",
+        "Any records showing field age, layout, or prior repair work."
+      ],
+      "driverBullets": [
+        "Visible wetness is often a field-failure signal, not just a maintenance clue.",
+        "Symptom severity matters less than whether the parcel still has a viable replacement path.",
+        "Inspection notes and file history can change how alarming the symptom really is.",
+        "Wet-yard cases widen faster when records, perc history, and layout boundaries are unclear."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a wet yard over the field always mean full replacement?",
+          "answer": "Not always, but it is a strong reason to stop assuming the problem is minor until the field path and file are clearer."
+        },
+        {
+          "question": "Should I wait for a contractor before estimating the risk?",
+          "answer": "No. A planning estimate helps you frame whether the symptom already points to drain field or redesign risk before the first quote sets the narrative."
+        },
+        {
+          "question": "Why do records matter when the symptom is visible?",
+          "answer": "Because the visible wet spot does not tell you whether the lot still has replacement area, what the field layout is, or whether the issue has already been documented before."
+        }
+      ],
+      "internalLinkTargets": [
+        "/drain-field-estimator/",
+        "/septic-inspection-cost/",
+        "/drain-field-replacement-cost/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement"
       ],
       "publishStatus": "published"
     },
@@ -372,6 +618,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "inspection",
       "targetReader": "Best for buyers and owners who can schedule an inspection but still need to know whether the real risk is missing records, advanced-system scope, or a bigger replacement conversation hiding behind the visit.",
+      "deepDiveParagraphs": [
+        "Inspection cost matters because it sits right next to the decision. A modest inspection invoice can still unlock a much larger replacement, records, or advanced-system story once the visit is tied to the real file.",
+        "Use this page when you need to know whether an inspection is still a routine check or whether it is actually the trigger for a wider budget conversation. The price of the visit is usually less important than what the visit is likely to reveal."
+      ],
       "fitBullets": [
         "The inspection price is easy to get, but the property file and maintenance history are still thin.",
         "You need to know whether the inspection is routine diligence or the fastest way to test whether the low end is fake.",
@@ -431,6 +681,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers, sellers, and agents who need a due-diligence checklist before a septic question turns into leverage, surprise repair cost, or post-closing regret.",
+      "deepDiveParagraphs": [
+        "Septic buyer risk is rarely about one inspection fee. It is about whether the file, field condition, and transfer timing can still be settled before closing without turning the deal into a repair-credit fight or a post-closing surprise.",
+        "Use this page to separate normal septic ownership from hidden downside. If the deal is moving faster than the paperwork, the estimate needs to reflect that tension instead of assuming the seller story is complete."
+      ],
       "fitBullets": [
         "The deal is moving and the septic story still depends on inspection timing, records quality, and worst-case replacement exposure.",
         "You need to know whether the risk is a manageable paperwork issue or a likely expensive post-closing problem.",
@@ -491,6 +745,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "new_install",
       "targetReader": "Best for homeowners, buyers, and builders who know a septic decision is coming but still need to know whether site review, local authority, or project type is the first real permit gate.",
+      "deepDiveParagraphs": [
+        "Permit questions sound procedural, but they usually decide whether the project stays simple. Once the wrong office, wrong project type, or missing site-review step enters the picture, the timeline and budget can both widen fast.",
+        "This page is meant to keep homeowners from treating permitting as paperwork after the quote. In many states, the permit path is what tells you whether the quote story was realistic in the first place."
+      ],
       "fitBullets": [
         "A contractor conversation has started, but no one has clarified which permit step is actually blocking progress.",
         "The project could be a new install, replacement, repair, or use change, and you need to know which lane is closest.",
@@ -550,6 +808,10 @@
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which missing records make the estimate or sale much riskier.",
+      "deepDiveParagraphs": [
+        "Records change the estimate because they change what you can safely assume. A permit, as-built, or old inspection note can keep a quote grounded; a missing file can force you to treat the same property as much riskier.",
+        "This page should help you decide whether the next step is a records pull, an inspection, or a buyer-risk estimate. It is less about collecting every document and more about identifying which missing record would change the story fastest."
+      ],
       "fitBullets": [
         "The seller or owner has partial paperwork, but no one has confirmed whether the important permit and inspection records are actually there.",
         "You need a records-first way to judge whether the low end is believable before you request quotes.",

@@ -7,6 +7,7 @@ public record ContentEvidenceLaneView(
         String title,
         String stateName,
         String path,
+        String summary,
         String reviewedAgainst,
         String lastReviewedAt,
         List<SourceRecord> sources

@@ -34,6 +34,7 @@ public class SitemapService {
         entries.add(entry(seoService.absoluteUrl("/septic-system-cost-calculator/"), defaultLastMod));
         entries.add(entry(seoService.absoluteUrl("/septic-tank-size-estimator/"), defaultLastMod));
         entries.add(entry(seoService.absoluteUrl("/septic-pump-schedule-estimator/"), defaultLastMod));
+        entries.add(entry(seoService.absoluteUrl("/drain-field-estimator/"), defaultLastMod));
         seoService.staticPagePaths().stream()
                 .map(seoService::absoluteUrl)
                 .map(url -> entry(url, defaultLastMod))

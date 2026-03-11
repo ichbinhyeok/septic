@@ -272,7 +272,10 @@
 
                 @if (result != null)
                     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
-                    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Quick mobile actions">
+                    <section class="sticky-mobile-cta sticky-mobile-cta--dual"
+                             aria-label="Quick mobile actions"
+                             data-sticky-mobile-cta
+                             data-show-after=".result-panel">
                         <div class="sticky-mobile-cta__inner">
                             <a class="button button--secondary" href="#result-top">Back to result</a>
                             <a class="button button--primary" href="#quote-request">Jump to quote form</a>

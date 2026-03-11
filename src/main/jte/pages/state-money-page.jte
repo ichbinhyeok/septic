@@ -81,10 +81,12 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
-                <p>${stateMoneyPage.uniqueAngle()}</p>
+                <p>This page stays narrow on purpose. Use it when this exact cost lane is already the real question and the broader state guide would slow the next decision down.</p>
             </article>
         </div>
     </section>
+
+    <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
 
     <section class="section section--tight">
         <div class="container">
@@ -254,9 +256,27 @@
                 </article>
             @endif
 
-            <article class="detail-card">
+            <article class="detail-card detail-card--full">
                 <h2>What changes this page in ${state.stateName()}</h2>
-                <p>${stateMoneyPage.uniqueAngle()}</p>
+                <p>${stateMoneyPage.targetReader()} ${stateMoneyPage.uniqueAngle()}</p>
+                @if (state.permitSummary() != null && !state.permitSummary().isBlank())
+                    @if (state.whoToCallFirst() != null && !state.whoToCallFirst().isBlank())
+                        <p>${state.permitSummary()} The first practical check is usually the office, file path, or reviewer identified in this state workflow: ${state.whoToCallFirst()}</p>
+                    @else
+                        <p>${state.permitSummary()} Use the local file and authority path below before you treat the lower planning range as real.</p>
+                    @endif
+                @endif
+                @if (state.specialAreaNote() != null && !state.specialAreaNote().isBlank())
+                    <p>${state.specialAreaNote()} That is why this page pairs a planning estimate with official sources, records links, and a local checklist before you move into quote mode.</p>
+                @elseif (state.permitTimelineNote() != null && !state.permitTimelineNote().isBlank())
+                    <p>${state.permitTimelineNote()} That is why this page pairs a planning estimate with official sources, records links, and a local checklist before you move into quote mode.</p>
+                @elseif (state.buyerInspectionTrigger() != null && !state.buyerInspectionTrigger().isBlank() && stateMoneyPage.highlightBuyerTrigger())
+                    <p>${state.buyerInspectionTrigger()} That is why this page pairs a planning estimate with official sources, records links, and a local checklist before you move into quote mode.</p>
+                @elseif (state.maintenanceInspectionNote() != null && !state.maintenanceInspectionNote().isBlank() && stateMoneyPage.highlightMaintenanceNote())
+                    <p>${state.maintenanceInspectionNote()} That is why this page pairs a planning estimate with official sources, records links, and a local checklist before you move into quote mode.</p>
+                @else
+                    <p>Use the official links and checklist below before you treat any estimate or contractor range as final. This page is designed to move you from a statewide planning number into the real local file and permit path.</p>
+                @endif
             </article>
 
             <article class="detail-card">
@@ -497,10 +517,12 @@
     </section>
 
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
-    <section class="sticky-mobile-cta sticky-mobile-cta--dual" aria-label="Run estimate or quote">
+    <section class="sticky-mobile-cta sticky-mobile-cta--single"
+             aria-label="Run estimate"
+             data-sticky-mobile-cta
+             data-show-after='[data-sticky-trigger="state-money-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_sticky_quote" data-track-target-type="quote_form">Short quote form</a>
+            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
         </div>
     </section>
 `)

@@ -7,6 +7,7 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.web.EditorialProfile;
 import com.example.septic.web.PageMeta;
+import com.example.septic.web.PageLink;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -34,6 +35,7 @@ public class SeoService {
                 "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.",
                 canonicalUrl,
                 "index,follow",
+                List.of(),
                 List.of(
                         toJson(editorialOrganization()),
                         toJson(webSite(canonicalUrl, "SepticPath",
@@ -51,6 +53,10 @@ public class SeoService {
                 "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.",
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic System Cost Calculator", canonicalUrl)
+                ),
                 List.of(
                         toJson(webPage(canonicalUrl, "Septic Cost Calculator by State",
                                 "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.", "WebPage")),
@@ -69,6 +75,10 @@ public class SeoService {
                 "Track live septic state guides and the permit, records, buyer, replacement, inspection, and site-risk pages behind them across all 50 states.",
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("State Coverage", canonicalUrl)
+                ),
                 List.of(
                         toJson(webPage(canonicalUrl,
                                 "State Coverage",
@@ -103,6 +113,10 @@ public class SeoService {
                 "Estimate likely minimum septic tank size, a conservative range, and a rough pumping cadence by state.",
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Tank Size Estimator", canonicalUrl)
+                ),
                 jsonLdBlocks
         );
     }
@@ -128,6 +142,56 @@ public class SeoService {
         );
     }
 
+    public PageMeta drainfieldEstimatorPage() {
+        String canonicalUrl = absoluteUrl("/drain-field-estimator/");
+        List<FaqBlock> faqBlocks = drainfieldEstimatorFaqs();
+        List<String> jsonLdBlocks = new ArrayList<>();
+        jsonLdBlocks.add(toJson(webPage(canonicalUrl, "Drain Field Replacement Estimator",
+                "Estimate drain field replacement risk, redesign pressure, and likely cost swing by state before you collect quotes.", "WebPage")));
+        jsonLdBlocks.add(toJson(breadcrumb(List.of(
+                crumb("Home", absoluteUrl("/")),
+                crumb("Drain Field Replacement Estimator", canonicalUrl)
+        ))));
+        jsonLdBlocks.add(toJson(faqPage(
+                canonicalUrl,
+                "Drain Field Replacement Estimator",
+                "Estimate drain field replacement risk, redesign pressure, and likely cost swing by state before you collect quotes.",
+                faqBlocks
+        )));
+        return pageMeta(
+                "Drain Field Replacement Estimator",
+                "Estimate drain field replacement risk, redesign pressure, and likely cost swing by state before you collect quotes.",
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Drain Field Replacement Estimator", canonicalUrl)
+                ),
+                jsonLdBlocks
+        );
+    }
+
+    public List<FaqBlock> drainfieldEstimatorFaqs() {
+        return List.of(
+                new FaqBlock(
+                        "When should a homeowner use a drain field estimator instead of a full septic calculator?",
+                        "Use it when the field layout, replacement area, wetness, or site viability looks like the main problem and you need to know whether the quote may widen beyond simple trench work."
+                ),
+                new FaqBlock(
+                        "Does a drain field issue always mean the whole septic system must be replaced?",
+                        "Not always. Sometimes the field is the main issue, but weak soil, missing replacement area, or site limits can turn a field question into a broader redesign or full-system conversation."
+                ),
+                new FaqBlock(
+                        "Why does replacement area matter so much to drain field cost?",
+                        "Because a field job stays cheaper only when the parcel still supports a credible replacement layout. If the lot does not, redesign and alternative-system risk rise quickly."
+                ),
+                new FaqBlock(
+                        "Should I trust the low end if the soil or perc status is still unknown?",
+                        "No. Unknown soil status is one of the clearest reasons to keep the drain field range wide until the site story is more defined."
+                )
+        );
+    }
+
     public PageMeta pumpScheduleEstimatorPage() {
         String canonicalUrl = absoluteUrl("/septic-pump-schedule-estimator/");
         return pageMeta(
@@ -135,6 +199,10 @@ public class SeoService {
                 "Estimate a rough pumping cadence, inspection cadence, and maintenance reminder from tank size and use.",
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Pump Schedule Estimator", canonicalUrl)
+                ),
                 List.of(
                         toJson(webPage(canonicalUrl, "Septic Pump Schedule Estimator",
                                 "Estimate a rough pumping cadence, inspection cadence, and maintenance reminder from tank size and use.", "WebPage")),
@@ -174,6 +242,11 @@ public class SeoService {
                 description,
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
+                        crumb(state.stateName() + " Guide", canonicalUrl)
+                ),
                 jsonLdBlocks
         );
     }
@@ -187,6 +260,11 @@ public class SeoService {
                 description,
                 canonicalUrl,
                 "noindex,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("State Coverage", absoluteUrl("/states/")),
+                        crumb(stateName + " Research Queue", canonicalUrl)
+                ),
                 List.of(
                         toJson(webPage(
                                 canonicalUrl,
@@ -310,6 +388,10 @@ public class SeoService {
                 contentPage.metaDescription(),
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb(contentPage.title(), canonicalUrl)
+                ),
                 jsonLdBlocks
         );
     }
@@ -336,6 +418,10 @@ public class SeoService {
                 stateMoneyPage.metaDescription(),
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb(stateMoneyPage.title(), canonicalUrl)
+                ),
                 jsonLdBlocks
         );
     }
@@ -347,6 +433,10 @@ public class SeoService {
                 description,
                 canonicalUrl,
                 "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb(title, canonicalUrl)
+                ),
                 List.of(
                         toJson(webPage(canonicalUrl, title, description, "WebPage")),
                         toJson(breadcrumb(List.of(
@@ -361,6 +451,7 @@ public class SeoService {
         return Arrays.asList(
                 "/states/",
                 "/about/",
+                "/editorial-standards/",
                 "/privacy-policy/",
                 "/terms-of-use/",
                 "/contact/"
@@ -373,6 +464,10 @@ public class SeoService {
                 message,
                 absoluteUrl("/404"),
                 "noindex,nofollow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Not Found", absoluteUrl("/404"))
+                ),
                 List.of()
         );
     }
@@ -389,15 +484,34 @@ public class SeoService {
         return baseUrl + normalizedPath;
     }
 
-    private PageMeta pageMeta(String title, String description, String canonicalUrl, String robots, List<String> jsonLdBlocks) {
+    private PageMeta pageMeta(String title, String description, String canonicalUrl, String robots, List<PageLink> breadcrumbs, List<String> jsonLdBlocks) {
         return new PageMeta(
                 title,
                 description,
                 canonicalUrl,
                 robots,
                 absoluteUrl("/social-card.svg"),
+                breadcrumbs,
                 jsonLdBlocks
         );
+    }
+
+    private List<PageLink> breadcrumbLinks(Map<String, Object>... crumbs) {
+        return Arrays.stream(crumbs)
+                .map(crumb -> new PageLink((String) crumb.get("name"), relativePath((String) crumb.get("item")), ""))
+                .toList();
+    }
+
+    private String relativePath(String url) {
+        if (url == null || url.isBlank()) {
+            return "/";
+        }
+        String baseUrl = siteProperties.baseUrl();
+        if (url.startsWith(baseUrl)) {
+            String relativePath = url.substring(baseUrl.length());
+            return relativePath.isBlank() ? "/" : relativePath;
+        }
+        return url;
     }
 
     private Map<String, Object> webSite(String url, String name, String description) {
@@ -518,6 +632,9 @@ public class SeoService {
             case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
             case "perc-test-cost" -> "Perc Test Cost | Soil, site, and permit risk | SepticPath";
             case "drain-field-replacement-cost" -> "Drain Field Replacement Cost | Field layout and replacement risk | SepticPath";
+            case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil, field, and redesign risk | SepticPath";
+            case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve area, layout, and field risk | SepticPath";
+            case "wet-yard-over-septic-drain-field" -> "Wet Yard Over Septic Drain Field | Failure signals and field risk | SepticPath";
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Scope, records, and buyer leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Buyer risk, files, and closing steps | SepticPath";
@@ -533,6 +650,9 @@ public class SeoService {
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
             case "septic-replacement-cost" -> " | Quotes, file risk, and replacement scope | SepticPath";
             case "perc-test-cost" -> " | Soil, site, and permit risk | SepticPath";
+            case "failed-perc-test-septic" -> " | Soil, field, and redesign risk | SepticPath";
+            case "septic-replacement-area" -> " | Reserve area, layout, and field risk | SepticPath";
+            case "wet-yard-over-septic-drain-field" -> " | Seepage, failure, and field risk | SepticPath";
             case "buying-a-house-with-a-septic-system" -> " | Buyer risk, files, and closing steps | SepticPath";
             case "septic-records-checklist" -> " | Permit files, as-builts, and lookup steps | SepticPath";
             case "septic-permit-process" -> " | Office, file, and approval steps | SepticPath";

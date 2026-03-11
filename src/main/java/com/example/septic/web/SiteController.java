@@ -8,6 +8,8 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
+import com.example.septic.service.DrainfieldEstimatorResult;
+import com.example.septic.service.DrainfieldEstimatorService;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
 import com.example.septic.service.LeadStorageService;
@@ -33,6 +35,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -73,6 +76,7 @@ public class SiteController {
     private final LeadStorageService leadStorageService;
     private final SeoService seoService;
     private final SitemapService sitemapService;
+    private final DrainfieldEstimatorService drainfieldEstimatorService;
     private final TankSizeEstimatorService tankSizeEstimatorService;
     private final PumpScheduleService pumpScheduleService;
     private final StateQueuePlanService stateQueuePlanService;
@@ -84,6 +88,7 @@ public class SiteController {
             LeadStorageService leadStorageService,
             SeoService seoService,
             SitemapService sitemapService,
+            DrainfieldEstimatorService drainfieldEstimatorService,
             TankSizeEstimatorService tankSizeEstimatorService,
             PumpScheduleService pumpScheduleService,
             StateQueuePlanService stateQueuePlanService,
@@ -94,6 +99,7 @@ public class SiteController {
         this.leadStorageService = leadStorageService;
         this.seoService = seoService;
         this.sitemapService = sitemapService;
+        this.drainfieldEstimatorService = drainfieldEstimatorService;
         this.tankSizeEstimatorService = tankSizeEstimatorService;
         this.pumpScheduleService = pumpScheduleService;
         this.stateQueuePlanService = stateQueuePlanService;
@@ -233,6 +239,52 @@ public class SiteController {
         );
     }
 
+    @GetMapping({"/editorial-standards", "/editorial-standards/"})
+    public String editorialStandards(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "Editorial Standards",
+                        "How SepticPath builds, reviews, updates, and limits source-backed septic planning guidance.",
+                        "/editorial-standards/"
+                ),
+                "Editorial standards",
+                "How this site is reviewed, updated, and kept inside planning-tool boundaries.",
+                "This page explains how SepticPath turns public rules, file paths, and official-source context into homeowner-facing planning guidance without pretending to be permit software or engineering design.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "What we prefer as evidence",
+                                "Official state, county, district, or delegated authority sources come first whenever they are available and readable enough to support a homeowner-facing explanation.",
+                                List.of(
+                                        "Rules, forms, manuals, and official local office directories are preferred for workflow claims.",
+                                        "Public cost anchors are used only as broad planning context, not as permit truth.",
+                                        "When sources conflict or stay vague, the page should widen uncertainty instead of inventing precision."
+                                )
+                        ),
+                        new SitePageSection(
+                                "How pages are reviewed",
+                                "Published pages are expected to carry source references, reviewed-against copy, and a last-reviewed date tied to the workflow described on the page.",
+                                List.of(
+                                        "State guides are reviewed against official state-level or delegated local sources.",
+                                        "State intent pages are reviewed against the sources tied to that exact workflow and state.",
+                                        "FAQ, CTA, and internal links are written to move the user toward the next real file, office, or estimate step."
+                                )
+                        ),
+                        new SitePageSection(
+                                "What we deliberately avoid",
+                                "The product is intentionally conservative where local file context, site conditions, or delegated authority rules could change the answer.",
+                                List.of(
+                                        "We do not present outputs as engineered design recommendations.",
+                                        "We do not present outputs as permit approval or code-compliance decisions.",
+                                        "We do not narrow cost or scope ranges aggressively when source coverage is weak."
+                                )
+                        )
+                ),
+                "Trust the source trail",
+                "Use the pages as planning guidance, then confirm the local file, reviewing office, and site conditions before relying on a quote or design decision."
+        );
+    }
+
     @GetMapping({"/terms-of-use", "/terms-of-use/"})
     public String termsOfUse(Model model) {
         return renderSitePage(
@@ -355,6 +407,24 @@ public class SiteController {
     public String calculatePumpSchedule(@ModelAttribute PumpScheduleForm pumpScheduleForm, Model model) {
         PumpScheduleResult result = pumpScheduleService.estimate(pumpScheduleForm);
         return renderPumpScheduleEstimator(model, pumpScheduleForm, result);
+    }
+
+    @GetMapping({"/drain-field-estimator", "/drain-field-estimator/"})
+    public String drainfieldEstimator(
+            @RequestParam(name = "state", required = false) String stateCode,
+            Model model
+    ) {
+        DrainfieldEstimatorForm drainfieldEstimatorForm = new DrainfieldEstimatorForm();
+        if (stateCode != null && researchDataService.findStateByCode(stateCode).filter(StateProfile::isPublished).isPresent()) {
+            drainfieldEstimatorForm.setStateCode(stateCode.toUpperCase(Locale.US));
+        }
+        return renderDrainfieldEstimator(model, drainfieldEstimatorForm, null);
+    }
+
+    @PostMapping({"/drain-field-estimator", "/drain-field-estimator/"})
+    public String calculateDrainfield(@ModelAttribute DrainfieldEstimatorForm drainfieldEstimatorForm, Model model) {
+        DrainfieldEstimatorResult result = drainfieldEstimatorService.estimate(drainfieldEstimatorForm);
+        return renderDrainfieldEstimator(model, drainfieldEstimatorForm, result);
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
@@ -501,6 +571,9 @@ public class SiteController {
             "/septic-tank-size", "/septic-tank-size/",
             "/perc-test-cost", "/perc-test-cost/",
             "/drain-field-replacement-cost", "/drain-field-replacement-cost/",
+            "/failed-perc-test-septic", "/failed-perc-test-septic/",
+            "/septic-replacement-area", "/septic-replacement-area/",
+            "/wet-yard-over-septic-drain-field", "/wet-yard-over-septic-drain-field/",
             "/septic-pumping-cost", "/septic-pumping-cost/",
             "/septic-inspection-cost", "/septic-inspection-cost/",
             "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",
@@ -528,7 +601,7 @@ public class SiteController {
                         entry.getKey().path(entry.getValue().slug())))
                 .toList();
         List<ContentEvidenceLaneView> contentEvidenceLanes = rankedStateEntries.stream()
-                .limit(4)
+                .limit(6)
                 .map(entry -> contentEvidenceLane(entry.getKey(), entry.getValue()))
                 .toList();
         List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
@@ -540,6 +613,7 @@ public class SiteController {
         model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
         model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(10).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
+        model.addAttribute("featuredContentEvidenceLanes", contentEvidenceLanes.stream().limit(3).toList());
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
@@ -562,6 +636,9 @@ public class SiteController {
     @GetMapping({
             "/septic-replacement-cost/{stateSlug}", "/septic-replacement-cost/{stateSlug}/",
             "/perc-test-cost/{stateSlug}", "/perc-test-cost/{stateSlug}/",
+            "/failed-perc-test-septic/{stateSlug}", "/failed-perc-test-septic/{stateSlug}/",
+            "/septic-replacement-area/{stateSlug}", "/septic-replacement-area/{stateSlug}/",
+            "/wet-yard-over-septic-drain-field/{stateSlug}", "/wet-yard-over-septic-drain-field/{stateSlug}/",
             "/buying-a-house-with-a-septic-system/{stateSlug}", "/buying-a-house-with-a-septic-system/{stateSlug}/",
             "/drain-field-replacement-cost/{stateSlug}", "/drain-field-replacement-cost/{stateSlug}/",
             "/septic-pumping-cost/{stateSlug}", "/septic-pumping-cost/{stateSlug}/",
@@ -582,7 +659,11 @@ public class SiteController {
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
-        List<PageLink> internalLinks = pageLinks(stateMoneyPage.internalLinkTargets(), stateMoneyPage.contentSlug(), state.stateCode());
+        List<PageLink> internalLinks = pageLinks(
+                mergedPaths(stateMoneyPage.internalLinkTargets(), defaultStateCrossLinks(stateMoneyPage, state)),
+                stateMoneyPage.contentSlug(),
+                state.stateCode()
+        );
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -692,6 +773,43 @@ public class SiteController {
         model.addAttribute("tankSizeFaqs", seoService.tankSizeEstimatorFaqs());
         model.addAttribute("stateRuleFacts", selectedState == null ? List.of() : stateRuleFactViews(selectedState.stateCode()));
         return "pages/tank-size-estimator";
+    }
+
+    private String renderDrainfieldEstimator(
+            Model model,
+            DrainfieldEstimatorForm drainfieldEstimatorForm,
+            DrainfieldEstimatorResult result
+    ) {
+        model.addAttribute("page", seoService.drainfieldEstimatorPage());
+        List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
+        StateProfile selectedState = researchDataService.findStateByCode(drainfieldEstimatorForm.getStateCode())
+                .filter(StateProfile::isPublished)
+                .orElseGet(() -> preferredTankSizeState(publicStates));
+        String selectedDrainfieldPagePath = "";
+        String selectedDrainfieldPageTitle = "";
+        if (selectedState != null) {
+            Optional<StateMoneyPage> drainfieldPage = researchDataService.findPublicStateMoneyPage("drain-field-replacement-cost", selectedState.slug());
+            if (drainfieldPage.isPresent()) {
+                selectedDrainfieldPagePath = drainfieldPage.get().path(selectedState.slug());
+                selectedDrainfieldPageTitle = drainfieldPage.get().title();
+            }
+        }
+        List<StateMoneyPageLink> drainfieldStateLinks = researchDataService.listPublicStateMoneyPagesForContent("drain-field-replacement-cost").stream()
+                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
+                        .filter(StateProfile::isPublished)
+                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug())))
+                        .stream())
+                .limit(8)
+                .toList();
+        model.addAttribute("states", publicStates);
+        model.addAttribute("drainfieldEstimatorForm", drainfieldEstimatorForm);
+        model.addAttribute("result", result);
+        model.addAttribute("selectedState", selectedState);
+        model.addAttribute("drainfieldFaqs", seoService.drainfieldEstimatorFaqs());
+        model.addAttribute("drainfieldStateLinks", drainfieldStateLinks);
+        model.addAttribute("selectedDrainfieldPagePath", selectedDrainfieldPagePath);
+        model.addAttribute("selectedDrainfieldPageTitle", selectedDrainfieldPageTitle);
+        return "pages/drainfield-estimator";
     }
 
     private StateProfile preferredTankSizeState(List<StateProfile> publicStates) {
@@ -817,6 +935,7 @@ public class SiteController {
         return switch (calculatorModule) {
             case "tank_size_estimator" -> "/septic-tank-size-estimator/";
             case "pump_schedule_estimator" -> "/septic-pump-schedule-estimator/";
+            case "drainfield_estimator" -> "/drain-field-estimator/";
             default -> "/septic-system-cost-calculator/";
         };
     }
@@ -834,6 +953,9 @@ public class SiteController {
 
     private String contentQuotePathForContentPage(ContentPage contentPage) {
         String calculatorPath = calculatorPathForContentPage(contentPage);
+        if ("/drain-field-estimator/".equals(calculatorPath)) {
+            calculatorPath = "/septic-system-cost-calculator/?projectType=drainfield_replacement";
+        }
         if (!calculatorPath.startsWith("/septic-system-cost-calculator/")) {
             return null;
         }
@@ -845,6 +967,9 @@ public class SiteController {
             case "septic-replacement-cost" -> "Use the replacement estimate before you compare contractor quotes.";
             case "perc-test-cost" -> "Use the site-risk estimate before you trust the low end.";
             case "drain-field-replacement-cost" -> "Use the drain field estimate before you assume the old layout still works.";
+            case "failed-perc-test-septic" -> "Use the site-risk estimate before you assume the lot can stay conventional.";
+            case "septic-replacement-area" -> "Use the field-layout estimate before you assume the parcel still has a viable backup area.";
+            case "wet-yard-over-septic-drain-field" -> "Use the field-failure estimate before you treat a wet yard as a small repair story.";
             case "septic-inspection-cost" -> "Use the inspection-risk estimate before you schedule the next call.";
             case "buying-a-house-with-a-septic-system" -> "Use the buyer-risk estimate before you rely on the seller story.";
             case "septic-permit-process" -> "Use the permit-path estimate before you call the next office.";
@@ -860,6 +985,9 @@ public class SiteController {
             case "septic-replacement-cost" -> "Run a replacement planning estimate";
             case "perc-test-cost" -> "Run a site-risk estimate";
             case "drain-field-replacement-cost" -> "Run a drain field estimate";
+            case "failed-perc-test-septic" -> "Run a failed-perc estimate";
+            case "septic-replacement-area" -> "Run a replacement-area estimate";
+            case "wet-yard-over-septic-drain-field" -> "Run a field-failure estimate";
             case "septic-inspection-cost" -> "Run an inspection-risk estimate";
             case "buying-a-house-with-a-septic-system" -> "Run a buyer-risk estimate";
             case "septic-permit-process" -> "Run a permit-path estimate";
@@ -875,6 +1003,9 @@ public class SiteController {
             case "septic-replacement-cost" -> "Prefill the replacement lane first so field condition, restoration, and system-class risk show up before you talk price.";
             case "perc-test-cost" -> "Use the estimate with site uncertainty in view. If perc status is still unknown, the range should stay wide on purpose.";
             case "drain-field-replacement-cost" -> "Use the drain field lane when the tank is not the main issue and the field may be driving the cost swing.";
+            case "failed-perc-test-septic" -> "Keep the estimate wide until the failed or weak perc result is reconciled with the file, replacement area, and state review path.";
+            case "septic-replacement-area" -> "Use the drain field lane when reserve area, replacement footprint, or code-complying layout risk is the main blocker.";
+            case "wet-yard-over-septic-drain-field" -> "Use the drain field lane when seepage, odor, or soggy ground near the field is already visible.";
             case "septic-inspection-cost" -> "This estimate is most useful when inspection timing, records gaps, or advanced-system scope are still unclear.";
             case "buying-a-house-with-a-septic-system" -> "Treat the estimate as a due-diligence tool first, then compare it against the inspection and records story tied to the property.";
             case "septic-permit-process" -> "Start with the install lane to frame cost and system type, then verify the real local path before you anchor on the low end.";
@@ -889,6 +1020,7 @@ public class SiteController {
         return switch (contentPage.calculatorModule()) {
             case "tank_size_estimator" -> "tank_size_estimator";
             case "pump_schedule_estimator" -> "pump_schedule_estimator";
+            case "drainfield_estimator" -> "drainfield_estimator";
             default -> "calculator";
         };
     }
@@ -1232,6 +1364,7 @@ public class SiteController {
                 page.title(),
                 state.stateName(),
                 page.path(state.slug()),
+                page.uniqueAngle(),
                 reviewedAgainst,
                 lastReviewedAt,
                 sources
@@ -1260,6 +1393,43 @@ public class SiteController {
         return new PageLink(title, path, relatedLinkNote(sourceSlug, sourceStateCode, path));
     }
 
+    private List<String> mergedPaths(List<String> primaryPaths, List<String> supplementalPaths) {
+        return Stream.concat(
+                        primaryPaths == null ? Stream.<String>empty() : primaryPaths.stream(),
+                        supplementalPaths == null ? Stream.<String>empty() : supplementalPaths.stream()
+                )
+                .filter(path -> path != null && !path.isBlank())
+                .distinct()
+                .toList();
+    }
+
+    private List<String> defaultStateCrossLinks(StateMoneyPage stateMoneyPage, StateProfile state) {
+        List<String> targetSlugs = switch (stateMoneyPage.contentSlug()) {
+            case "septic-inspection-cost" -> List.of(
+                    "wet-yard-over-septic-drain-field",
+                    "drain-field-replacement-cost",
+                    "failed-perc-test-septic"
+            );
+            case "septic-records-checklist" -> List.of(
+                    "drain-field-replacement-cost",
+                    "failed-perc-test-septic",
+                    "septic-replacement-area"
+            );
+            case "buying-a-house-with-a-septic-system" -> List.of(
+                    "drain-field-replacement-cost",
+                    "wet-yard-over-septic-drain-field",
+                    "septic-replacement-area"
+            );
+            default -> List.of();
+        };
+
+        return targetSlugs.stream()
+                .map(targetSlug -> researchDataService.findPublicStateMoneyPage(targetSlug, state.slug()))
+                .flatMap(Optional::stream)
+                .map(page -> page.path(state.slug()))
+                .toList();
+    }
+
     private Optional<String> calculatorLinkTitle(String path) {
         var uri = UriComponentsBuilder.fromUriString(path).build();
         String normalizedPath = uri.getPath();
@@ -1281,6 +1451,9 @@ public class SiteController {
         }
         if ("/septic-pump-schedule-estimator/".equals(normalizedPath) || "/septic-pump-schedule-estimator".equals(normalizedPath)) {
             return Optional.of("Septic pump schedule estimator");
+        }
+        if ("/drain-field-estimator/".equals(normalizedPath) || "/drain-field-estimator".equals(normalizedPath)) {
+            return Optional.of("Drain field replacement estimator");
         }
         return Optional.empty();
     }
@@ -1332,6 +1505,12 @@ public class SiteController {
                     .isPresent() ? 9 : 0)
                     + (hasItems(state.lowEndRiskChecks(), 2) ? 4 : 0);
             case "perc-test-cost" -> hasText(state.siteEvalSummary()) ? 9 : 0;
+            case "failed-perc-test-septic" -> (hasText(state.siteEvalSummary()) ? 9 : 0)
+                    + (hasItems(state.recordsLookupSourceIds(), 1) ? 4 : 0);
+            case "septic-replacement-area" -> (hasText(state.siteEvalSummary()) ? 8 : 0)
+                    + (hasItems(state.recordsToRequest(), 2) ? 4 : 0);
+            case "wet-yard-over-septic-drain-field" -> (hasText(state.siteEvalSummary()) ? 8 : 0)
+                    + (hasItems(state.recordsToRequest(), 2) ? 4 : 0);
             case "drain-field-replacement-cost" -> hasText(state.siteEvalSummary()) ? 6 : 0;
             case "septic-pumping-cost" -> hasText(state.maintenanceInspectionNote()) ? 7 : 0;
             default -> 0;
@@ -1486,6 +1665,9 @@ public class SiteController {
                 case "septic-replacement-cost" -> "Use this when failure scope or full replacement risk is the real blocker.";
                 case "perc-test-cost" -> "Use this when soil, perc, or site-approval uncertainty is driving the decision.";
                 case "drain-field-replacement-cost" -> "Use this when the field layout may be the real problem rather than the tank alone.";
+                case "failed-perc-test-septic" -> "Use this when a failed or weak perc result is forcing a bigger field or system decision.";
+                case "septic-replacement-area" -> "Use this when reserve area or replacement-layout viability is the real blocker.";
+                case "wet-yard-over-septic-drain-field" -> "Use this when seepage, odor, or soggy ground near the field is driving urgency.";
                 case "septic-pumping-cost" -> "Use this when maintenance cadence or advanced-system upkeep is the open question.";
                 case "septic-inspection-cost" -> "Use this when due-diligence scope or inspection leverage matters more than a generic average.";
                 case "buying-a-house-with-a-septic-system" -> "Use this when the property deal, not just the system price, is driving risk.";
@@ -1522,14 +1704,47 @@ public class SiteController {
                     "drain-field-replacement-cost"
             );
             case "perc-test-cost" -> List.of(
+                    "failed-perc-test-septic",
+                    "septic-replacement-area",
                     "septic-permit-process",
                     "septic-replacement-cost",
                     "septic-records-checklist",
                     "drain-field-replacement-cost"
             );
-            case "drain-field-replacement-cost" -> List.of("septic-replacement-cost", "perc-test-cost", "septic-system-cost-calculator");
+            case "drain-field-replacement-cost" -> List.of(
+                    "septic-replacement-area",
+                    "wet-yard-over-septic-drain-field",
+                    "failed-perc-test-septic",
+                    "perc-test-cost",
+                    "septic-records-checklist",
+                    "septic-system-cost-calculator"
+            );
+            case "failed-perc-test-septic" -> List.of(
+                    "perc-test-cost",
+                    "drain-field-replacement-cost",
+                    "septic-replacement-area",
+                    "septic-permit-process",
+                    "septic-system-cost-calculator"
+            );
+            case "septic-replacement-area" -> List.of(
+                    "drain-field-replacement-cost",
+                    "septic-records-checklist",
+                    "failed-perc-test-septic",
+                    "perc-test-cost",
+                    "septic-system-cost-calculator"
+            );
+            case "wet-yard-over-septic-drain-field" -> List.of(
+                    "drain-field-replacement-cost",
+                    "septic-inspection-cost",
+                    "septic-records-checklist",
+                    "septic-replacement-cost",
+                    "septic-system-cost-calculator"
+            );
             case "septic-pumping-cost" -> List.of("septic-tank-size", "septic-system-cost-calculator", "septic-inspection-cost");
             case "septic-inspection-cost" -> List.of(
+                    "wet-yard-over-septic-drain-field",
+                    "drain-field-replacement-cost",
+                    "failed-perc-test-septic",
                     "septic-records-checklist",
                     "buying-a-house-with-a-septic-system",
                     "septic-permit-process",
@@ -1538,6 +1753,9 @@ public class SiteController {
             case "buying-a-house-with-a-septic-system" -> List.of(
                     "septic-records-checklist",
                     "septic-inspection-cost",
+                    "drain-field-replacement-cost",
+                    "wet-yard-over-septic-drain-field",
+                    "septic-replacement-area",
                     "septic-permit-process",
                     "septic-replacement-cost"
             );
@@ -1548,6 +1766,9 @@ public class SiteController {
                     "septic-system-cost-calculator"
             );
             case "septic-records-checklist" -> List.of(
+                    "drain-field-replacement-cost",
+                    "failed-perc-test-septic",
+                    "septic-replacement-area",
                     "buying-a-house-with-a-septic-system",
                     "septic-permit-process",
                     "septic-inspection-cost",
@@ -1563,7 +1784,9 @@ public class SiteController {
                 || "/septic-tank-size-estimator/".equals(normalizedPath)
                 || "/septic-tank-size-estimator".equals(normalizedPath)
                 || "/septic-pump-schedule-estimator/".equals(normalizedPath)
-                || "/septic-pump-schedule-estimator".equals(normalizedPath);
+                || "/septic-pump-schedule-estimator".equals(normalizedPath)
+                || "/drain-field-estimator/".equals(normalizedPath)
+                || "/drain-field-estimator".equals(normalizedPath);
     }
 
     private String calculatorProjectTypeFromPath(String path) {
