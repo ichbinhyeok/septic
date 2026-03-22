@@ -1460,6 +1460,9 @@ public class SiteController {
             return List.of();
         }
         return paths.stream()
+                .map(this::canonicalEditorialPath)
+                .filter(path -> path != null && !path.isBlank())
+                .distinct()
                 .map(path -> pageLink(path, sourceSlug, sourceStateCode))
                 .sorted(Comparator
                         .comparingInt((PageLink link) -> relatedLinkScore(sourceSlug, sourceStateCode, link.path()))
@@ -1512,6 +1515,50 @@ public class SiteController {
                 .flatMap(Optional::stream)
                 .map(page -> page.path(state.slug()))
                 .toList();
+    }
+
+    private String canonicalEditorialPath(String path) {
+        var uri = UriComponentsBuilder.fromUriString(path).build();
+        String normalizedPath = uri.getPath();
+        if (!"/septic-system-cost-calculator/".equals(normalizedPath) && !"/septic-system-cost-calculator".equals(normalizedPath)) {
+            return path;
+        }
+
+        Map<String, List<String>> queryParams = uri.getQueryParams();
+        String stateCode = queryParams.getOrDefault("state", List.of()).stream().findFirst().orElse(null);
+        String projectType = queryParams.getOrDefault("projectType", List.of()).stream().findFirst().orElse(null);
+        Optional<StateProfile> state = researchDataService.findStateByCode(stateCode);
+
+        if (state.isPresent() && projectType != null) {
+            Optional<String> contentSlug = contentSlugForProjectType(projectType);
+            if (contentSlug.isPresent()) {
+                Optional<StateMoneyPage> stateMoneyPage = researchDataService.findPublicStateMoneyPage(contentSlug.get(), state.get().slug());
+                if (stateMoneyPage.isPresent()) {
+                    return stateMoneyPage.get().path(state.get().slug());
+                }
+            }
+        }
+
+        if (state.isPresent()) {
+            return "/septic-system-cost-calculator/" + state.get().slug() + "/";
+        }
+
+        return contentSlugForProjectType(projectType)
+                .map(contentSlug -> "/" + contentSlug + "/")
+                .orElse(path);
+    }
+
+    private Optional<String> contentSlugForProjectType(String projectType) {
+        if (projectType == null || projectType.isBlank()) {
+            return Optional.empty();
+        }
+        return switch (projectType) {
+            case "replacement" -> Optional.of("septic-replacement-cost");
+            case "perc_test" -> Optional.of("perc-test-cost");
+            case "drainfield_replacement" -> Optional.of("drain-field-replacement-cost");
+            case "inspection" -> Optional.of("septic-inspection-cost");
+            default -> Optional.empty();
+        };
     }
 
     private Optional<String> calculatorLinkTitle(String path) {

@@ -196,13 +196,13 @@
         "perc test for septic system"
       ],
       "title": "Perc Test Cost",
-      "metaDescription": "What a perc test can cost, why it matters so much to septic pricing, and what can delay the result.",
-      "introCopy": "Perc and site evaluation costs are usually much smaller than install or replacement costs, but they can change the whole project. This page explains why they deserve their own estimate path.",
+      "metaDescription": "Average perc test cost, percolation test price ranges, and the soil or permit issues that can change the whole septic budget.",
+      "introCopy": "Most homeowners search perc test cost when they really need to know whether a percolation result will keep the project conventional or push it into a more expensive septic lane. This page explains the fee, the site-risk story, and why perc, perk, and percolation test searches all lead to the same budget question.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
       "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but actually need to know whether the result could push the entire project into a different cost lane.",
       "deepDiveParagraphs": [
-        "Most owners search for a perc fee when the bigger risk is what the result will do to the whole project. A cheap test can still be the event that moves the job from a conventional assumption into redesign or alternative-system territory.",
+        "Most owners search for a perc fee when the bigger risk is what the result will do to the whole project. A cheap perc or percolation test can still be the event that moves the job from a conventional assumption into redesign or alternative-system territory.",
         "This page is most useful when you need to keep site uncertainty visible in the budget. If the lot story is still vague, the testing question is really a system-class question and should be treated that way early."
       ],
       "fitBullets": [
@@ -234,19 +234,20 @@
       ],
       "faqBlocks": [
         {
-          "question": "Why does a perc result matter so much to the total quote?",
-          "answer": "It helps determine whether a conventional field is plausible or whether a more expensive alternative system may be required."
+          "question": "How much does a perc test cost?",
+          "answer": "The test fee is usually much smaller than the total septic budget, but the real cost story is whether the result keeps the job conventional or pushes it into redesign, permit delay, or alternative-system pricing."
         },
         {
-          "question": "If my perc status is unknown, should I trust the calculator?",
-          "answer": "You can use it for planning, but the estimate should stay wide until the site is better defined."
+          "question": "Is a perc test the same as a percolation test or a perk test?",
+          "answer": "Yes. Homeowners, agents, and contractors often use perc, perk, and percolation test to describe the same soil-absorption question, even if the local process also includes a broader site evaluation."
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/",
-        "/drain-field-replacement-cost/",
-        "/septic-replacement-cost/",
-        "/failed-perc-test-septic/"
+        "/failed-perc-test-septic/",
+        "/septic-replacement-area/",
+        "/septic-permit-process/",
+        "/septic-records-checklist/",
+        "/septic-replacement-cost/"
       ],
       "publishStatus": "published"
     },
@@ -746,8 +747,8 @@
         "what permit do i need for septic"
       ],
       "title": "Septic Permit Process",
-      "metaDescription": "Understand the usual septic permit steps, what to verify before applying, and why state and local process can change the timeline.",
-      "introCopy": "The permit process is one of the highest-value septic questions because it controls whether a homeowner estimate stays simple or turns into a longer site-review project. This page frames the permit path in homeowner language without pretending every county works the same way.",
+      "metaDescription": "Understand septic permit steps by state, which local office to call first, and which records or site reviews can slow approval.",
+      "introCopy": "The permit process matters because it tells you whether the next call is to a county health office, a records desk, or a site evaluator before you trust a clean-looking septic quote. This page translates septic permit steps into homeowner language without pretending every county works the same way.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "new_install",
       "targetReader": "Best for homeowners, buyers, and builders who know a septic decision is coming but still need to know whether site review, local authority, or project type is the first real permit gate.",
@@ -795,9 +796,11 @@
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/",
         "/septic-records-checklist/",
-        "/septic-replacement-cost/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-inspection-cost/",
+        "/septic-replacement-cost/",
+        "/septic-system-cost-calculator/"
       ],
       "publishStatus": "published"
     },
@@ -811,8 +814,8 @@
         "buying house septic records"
       ],
       "title": "Septic Records Checklist",
-      "metaDescription": "What septic records to request before trusting a quote, closing on a home, or assuming the current system is still straightforward.",
-      "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on what paperwork matters first, why missing records widen the estimate, and how the answer changes by state.",
+      "metaDescription": "Use this septic records checklist to pull permit records, as-builts, inspection notes, and pumping history before trusting a quote or closing.",
+      "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on permit records, as-builts, inspection notes, pumping history, and the missing paperwork most likely to widen the estimate.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which missing records make the estimate or sale much riskier.",
@@ -861,9 +864,10 @@
       ],
       "internalLinkTargets": [
         "/buying-a-house-with-a-septic-system/",
-        "/septic-system-cost-calculator/",
+        "/septic-inspection-cost/",
         "/septic-permit-process/",
-        "/septic-inspection-cost/"
+        "/septic-replacement-cost/",
+        "/perc-test-cost/"
       ],
       "publishStatus": "published"
     }

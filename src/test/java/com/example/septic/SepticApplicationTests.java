@@ -953,8 +953,8 @@ class SepticApplicationTests {
 	void stateGuideRenders() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic cost guide and tank size estimate")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Cost Guide, Tank Size, and Permit Notes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic permit cost, tank size, and county records guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Permit Cost, Tank Size, and Records Guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prepared by")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Homeowner Planning Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed by")))
@@ -1176,8 +1176,8 @@ class SepticApplicationTests {
 	void alabamaStateGuideShowsCountyHealthPermitContext() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama septic cost guide and county permit path")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Cost Guide and County Permit Path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama septic permit cost, records, and county health guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Permit Cost, Records, and County Guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use")))
@@ -3238,7 +3238,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-permit-process/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Process")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Process | Office, file, and approval steps | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Process by State | Permits, records, and next steps | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How to use this page before you ask for quotes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast next steps")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jump between sections")))
@@ -3255,11 +3255,27 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void percTestCostContentPageRenders() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Perc Test Cost and Percolation Test Price | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("percolation result will keep the project conventional")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A cheap perc or percolation test can still be the event")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Is a perc test the same as a percolation test or a perk test?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/failed-perc-test-septic/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/"))));
+	}
+
+	@Test
 	void recordsChecklistContentPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Checklist | Permit files, as-builts, and lookup steps | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Checklist | Permit records, as-builts, and file lookup | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this page is really helping you decide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records change the estimate because they change what you can safely assume.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("one missing as-built or permit can matter more than several contractor opinions")))

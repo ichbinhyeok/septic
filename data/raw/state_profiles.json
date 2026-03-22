@@ -8,9 +8,9 @@
       "agencyName": "Georgia Department of Public Health",
       "launchTier": "anchor",
       "publishStatus": "published",
-      "pageAngle": "Georgia is a strong early state because the homeowner guidance clearly ties size to bedroom count and explicitly says garbage disposals require a 50 percent larger tank.",
+      "pageAngle": "Georgia is strongest when framed around county permit routing, soil analysis, and tank-size rules rather than a generic calculator. The homeowner wedge is knowing the county office, permit file, and disposal upsizing rule before trusting a simple quote.",
       "ruleType": "bedroom_table",
-      "ruleSummaryPlainEnglish": "Georgia's homeowner guide says the number of bedrooms determines the septic tank size for a single-family residence. It also says the minimum approved tank size is 1,000 gallons and that homes with garbage disposals need a tank that is 50 percent larger.",
+      "ruleSummaryPlainEnglish": "Georgia's homeowner guide says the number of bedrooms determines the septic tank size for a single-family residence and that the minimum approved tank size is 1,000 gallons. The same guidance says homes with garbage disposals need a tank that is 50 percent larger, while county environmental health offices handle the practical permit, soil-analysis, and records path.",
       "designFlowPerBedroomGpd": 150,
       "minTankSizeGallons": 1000,
       "bedroomTable": [
@@ -24,7 +24,7 @@
         }
       ],
       "garbageDisposalPolicy": "Georgia's homeowner guide says a house with a garbage disposal is required to have a septic tank 50 percent larger than the same house without one.",
-      "permitSummary": "Georgia's onsite sewage program routes homeowners through the county health department. The county environmental health office handles site review, permitting, and inspection in practical terms.",
+      "permitSummary": "Georgia homeowners usually need the county environmental health office and permit file clarified before they trust an install or replacement quote. The practical path runs through county soil analysis, permitting, records, and inspection, not a generic statewide checklist.",
       "permitPathSteps": [
         "Start with the county environmental health office instead of assuming a statewide permit path is enough.",
         "Expect a soil analysis before a septic permit is issued.",
@@ -45,13 +45,13 @@
       "recordsLookupSourceIds": ["ga_02"],
       "localActionSteps": [
         "Open the county environmental health resource first and confirm the correct county office.",
-        "Ask whether the lot already has a soil analysis, permit file, or repair history on record.",
-        "If the home has a garbage disposal, mention it before trusting the first tank-size quote."
+        "Ask whether the lot already has a soil analysis, permit file, as-built sketch, or repair history on record.",
+        "If the home has a garbage disposal, mention it before trusting the first tank-size or permit-cost quote."
       ],
       "whoToCallFirst": "Start with the county environmental health office that handles onsite sewage permits and soil review for the property.",
       "recordsToRequest": [
         "The most recent soil analysis or site review tied to the lot.",
-        "Any existing septic permit, as-built sketch, or county repair record if the project is a replacement.",
+        "Any existing septic permit, as-built sketch, county repair record, or county inspection note if the project is a replacement.",
         "Confirmation of current bedroom count and whether a garbage disposal is installed."
       ],
       "lowEndRiskChecks": [
@@ -722,14 +722,14 @@
       "agencyName": "Alabama Department of Public Health",
       "launchTier": "supporting",
       "publishStatus": "published",
-      "pageAngle": "Alabama is stronger on county health permit path, soil-testing risk, and permit-file retrieval than on a fake statewide tank table. The homeowner wedge is knowing whether the Permit to Install, the Approval for Use, and the county health office path are already in place before the quote pretends the job is ready.",
+      "pageAngle": "Alabama is strongest when framed around county health permit routing, soil-testing risk, and permit-file retrieval rather than a generic install table. The homeowner wedge is knowing whether the Permit to Install, the Approval for Use, and the county health file are already in place before the quote pretends the job is ready.",
       "ruleType": "permit_path",
-      "ruleSummaryPlainEnglish": "ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments. ADPH's before-construction guidance says that when sewer is unavailable, homeowners may need soil testing or a percolation test and must submit an Application for a Permit to Install an onsite sewage disposal system to the local county health department before construction begins. ADPH's septic tank systems page says property owners or their agents can request septic tank information from the local health department, that non-owners can use the Records Request path for a permit copy, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. The local office path matters because ADPH publishes county health department locations and contacts rather than pretending the statewide branch handles every parcel directly.",
+      "ruleSummaryPlainEnglish": "ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments. ADPH's before-construction guidance says that when sewer is unavailable, homeowners may need soil testing or a percolation test and must submit an Application for a Permit to Install to the local county health department before construction begins. ADPH's septic tank systems page says property owners or their agents can request septic tank information from the local health department, that non-owners can use the Records Request path for a permit copy, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. The real homeowner path is therefore county-file first, with permit records and soil history mattering before a quote looks trustworthy.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": "No direct public Alabama homeowner garbage-disposal tank multiplier has been verified in the current source set.",
-      "permitSummary": "Alabama homeowners usually need the county health permit path clarified before they trust an install or repair quote. The project is not permit-ready until the local office, the Permit to Install path, and the soil or file story are clearer, and the range can widen again if the Approval for Use is missing or the lot does not support a conventional path.",
+      "permitSummary": "Alabama homeowners usually need the county health permit path and permit records clarified before they trust an install or repair quote. The project is not permit-ready until the local office, the Permit to Install path, and the soil or file story are clearer, and the range can widen again if the Approval for Use is missing or the lot does not support a conventional path.",
       "permitPathSteps": [
         "Start with the right county health department because ADPH coordinates onsite sewage work through those local offices.",
         "Confirm whether soil testing or a percolation test has already been completed before treating the job as a straightforward Permit to Install path.",
