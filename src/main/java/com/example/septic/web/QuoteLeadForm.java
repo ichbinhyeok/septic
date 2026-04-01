@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 public class QuoteLeadForm {
     private String stateCode = "GA";
     private String projectType = "new_install";
+    private String sourcePageHint;
     private Integer bedrooms = 3;
     private Integer occupants;
     private boolean garbageDisposal;
@@ -38,6 +39,7 @@ public class QuoteLeadForm {
         QuoteLeadForm quoteLeadForm = new QuoteLeadForm();
         quoteLeadForm.stateCode = estimateForm.getStateCode();
         quoteLeadForm.projectType = estimateForm.getProjectType();
+        quoteLeadForm.sourcePageHint = estimateForm.getSourcePageHint();
         quoteLeadForm.bedrooms = estimateForm.getBedrooms();
         quoteLeadForm.occupants = estimateForm.getOccupants();
         quoteLeadForm.garbageDisposal = estimateForm.isGarbageDisposal();
@@ -53,6 +55,7 @@ public class QuoteLeadForm {
         EstimateForm estimateForm = new EstimateForm();
         estimateForm.setStateCode(stateCode);
         estimateForm.setProjectType(projectType);
+        estimateForm.setSourcePageHint(sourcePageHint);
         estimateForm.setBedrooms(bedrooms);
         estimateForm.setOccupants(occupants);
         estimateForm.setGarbageDisposal(garbageDisposal);
@@ -102,6 +105,14 @@ public class QuoteLeadForm {
 
     public void setProjectType(String projectType) {
         this.projectType = projectType;
+    }
+
+    public String getSourcePageHint() {
+        return sourcePageHint;
+    }
+
+    public void setSourcePageHint(String sourcePageHint) {
+        this.sourcePageHint = sourcePageHint;
     }
 
     public Integer getBedrooms() {

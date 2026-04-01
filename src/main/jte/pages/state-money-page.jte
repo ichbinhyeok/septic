@@ -30,8 +30,8 @@
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&sourcePageHint=/${stateMoneyPage.contentSlug()}/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&sourcePageHint=/${stateMoneyPage.contentSlug()}/${state.slug()}/&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                     <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>

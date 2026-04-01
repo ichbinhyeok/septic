@@ -31,8 +31,8 @@
                 <span class="eyebrow">${state.stateCode()} state guide</span>
                 <h1>${guideHeading}</h1>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
                 </div>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
                 @if (!featuredStateMoneyPages.isEmpty())

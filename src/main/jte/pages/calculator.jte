@@ -44,6 +44,7 @@
     <section class="section section--tight">
         <div class="container calculator-layout">
             <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/">
+                <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
                 <div class="calculator-form__intro">
                     <span class="pill">Fast start</span>
                     <p>Choose the basics first. The secondary fields only help tighten the range.</p>
@@ -206,8 +207,12 @@
                             @if (result != null)
                                 <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
                                 <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
+                                <input type="hidden" name="sourcePageHint" value="${quoteLeadForm.getSourcePageHint()}">
                                 <input type="hidden" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
                                 <input type="hidden" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
+                            @endif
+                            @if (result == null)
+                                <input type="hidden" name="sourcePageHint" value="${quoteLeadForm.getSourcePageHint()}">
                             @endif
                             <input type="hidden" name="soilPercStatus" value="${quoteLeadForm.getSoilPercStatus()}">
                             <input type="hidden" name="accessDifficulty" value="${quoteLeadForm.getAccessDifficulty()}">

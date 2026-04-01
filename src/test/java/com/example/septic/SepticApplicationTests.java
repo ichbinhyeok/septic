@@ -55,6 +55,7 @@ class SepticApplicationTests {
 						}
 					});
 		}
+		Files.createDirectories(TEST_STORAGE_ROOT);
 	}
 
 	@Test
@@ -789,12 +790,14 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/")
 						.param("state", "GA")
 						.param("projectType", "replacement")
+						.param("sourcePageHint", "/septic-replacement-cost/")
 						.param("quoteMode", "true"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Already know the job type?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Full name")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Project type")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Project type")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"sourcePageHint\" value=\"/septic-replacement-cost/\"")));
 	}
 
 	@Test
@@ -953,8 +956,8 @@ class SepticApplicationTests {
 	void stateGuideRenders() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic permit cost, tank size, and county records guide")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Permit Cost, Tank Size, and Records Guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia septic permit cost, permit requirements, and county records guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Permit Cost, Permit Requirements, and County Records Guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prepared by")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Homeowner Planning Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed by")))
@@ -974,7 +977,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local action checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQ")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("FAQPage")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before trusting permit cost or county rules")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Trust: high")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("quoteMode=true#quote-request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
@@ -1176,8 +1179,8 @@ class SepticApplicationTests {
 	void alabamaStateGuideShowsCountyHealthPermitContext() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama septic permit cost, records, and county health guide")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Permit Cost, Records, and County Guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama septic permit cost, permit records, and county health guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Permit Cost, Permit Records, and County Health Guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use")))
@@ -1186,7 +1189,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Inspection Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before calling the county health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before trusting permit cost or county records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
 
@@ -1710,7 +1713,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("50 percent larger")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The first practical check is usually the office, file path, or reviewer identified in this state workflow:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("That is why this page pairs a planning estimate with official sources, records links, and a local checklist before you move into quote mode.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate with the disposal rule in mind")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before trusting permit cost or county rules")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("quote-request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get matched with local septic pros")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official-source context")))
@@ -3225,10 +3228,12 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run an inspection-risk estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run an inspection-scope estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What records should you gather before a septic inspection?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=inspection")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Massachusetts Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washington Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Septic Records Checklist<")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Buying a House With a Septic System<")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("This page exists to support high-intent search"))));
 	}
@@ -3244,7 +3249,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jump between sections")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a permit-path estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start short quote form")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=new_install&amp;quoteMode=true#quote-request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=new_install&amp;sourcePageHint=/septic-permit-process/&amp;quoteMode=true#quote-request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=new_install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_link\"")))
@@ -3287,7 +3292,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jump between sections")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a records-aware estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start short quote form")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home&amp;quoteMode=true#quote-request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home&amp;sourcePageHint=/septic-records-checklist/&amp;quoteMode=true#quote-request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed against 6 source-backed state-specific pages and the source policy.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Intent Map Desk")))
@@ -3313,9 +3318,13 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/buying-a-house-with-a-septic-system/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic buyer risk is rarely about one inspection fee.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("The real buyer question is not just whether the house has septic.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic home purchase usually turns on the file story before it turns on the repair number.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The real buyer question is not just whether the house has septic. It is whether the septic story survives diligence once you test the permit file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What septic records should a buyer ask for?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a buyer due-diligence estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/georgia/")));
 	}
 
@@ -4516,11 +4525,16 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/drain-field-replacement-cost/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Drain field tool")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("A field problem stops being local trench work the moment the replacement footprint is uncertain.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a drain field estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A field problem stops being local trench work the moment the replacement footprint is uncertain or the contractor is no longer sure the tank, distribution box, or dosing setup can stay.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a drain field replacement estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start short quote form")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=drainfield_replacement&amp;quoteMode=true#quote-request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=drainfield_replacement&amp;sourcePageHint=/drain-field-replacement-cost/&amp;quoteMode=true#quote-request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-estimator/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does drain field replacement cost?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Is a leach field the same as a drain field?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/oregon/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/massachusetts/")))
@@ -4573,7 +4587,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-replacement-area/florida/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-replacement-area/pennsylvania/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-replacement-area/connecticut/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=drainfield_replacement&amp;quoteMode=true#quote-request")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=drainfield_replacement&amp;sourcePageHint=/septic-replacement-area/&amp;quoteMode=true#quote-request")));
 	}
 
 	@Test
@@ -4595,10 +4609,16 @@ class SepticApplicationTests {
 	@Test
 	void priorityStateDueDiligencePagesLinkIntoDrainfieldCluster() throws Exception {
 		String[][] expectations = {
+				{"/septic-records-checklist/alabama/", "/drain-field-replacement-cost/alabama/"},
+				{"/septic-inspection-cost/alabama/", "/drain-field-replacement-cost/alabama/"},
+				{"/buying-a-house-with-a-septic-system/alabama/", "/drain-field-replacement-cost/alabama/"},
 				{"/septic-records-checklist/georgia/", "/drain-field-replacement-cost/georgia/"},
 				{"/septic-records-checklist/georgia/", "/failed-perc-test-septic/georgia/"},
 				{"/septic-inspection-cost/georgia/", "/wet-yard-over-septic-drain-field/georgia/"},
 				{"/buying-a-house-with-a-septic-system/georgia/", "/septic-replacement-area/georgia/"},
+				{"/septic-records-checklist/indiana/", "/drain-field-replacement-cost/indiana/"},
+				{"/septic-inspection-cost/indiana/", "/drain-field-replacement-cost/indiana/"},
+				{"/buying-a-house-with-a-septic-system/indiana/", "/drain-field-replacement-cost/indiana/"},
 				{"/septic-records-checklist/pennsylvania/", "/drain-field-replacement-cost/pennsylvania/"},
 				{"/septic-inspection-cost/pennsylvania/", "/wet-yard-over-septic-drain-field/pennsylvania/"},
 				{"/buying-a-house-with-a-septic-system/pennsylvania/", "/septic-replacement-area/pennsylvania/"},
@@ -4613,7 +4633,13 @@ class SepticApplicationTests {
 				{"/buying-a-house-with-a-septic-system/massachusetts/", "/wet-yard-over-septic-drain-field/massachusetts/"},
 				{"/septic-records-checklist/florida/", "/drain-field-replacement-cost/florida/"},
 				{"/septic-inspection-cost/florida/", "/failed-perc-test-septic/florida/"},
-				{"/buying-a-house-with-a-septic-system/florida/", "/septic-replacement-area/florida/"}
+				{"/buying-a-house-with-a-septic-system/florida/", "/septic-replacement-area/florida/"},
+				{"/septic-records-checklist/south-carolina/", "/drain-field-replacement-cost/south-carolina/"},
+				{"/septic-inspection-cost/south-carolina/", "/drain-field-replacement-cost/south-carolina/"},
+				{"/buying-a-house-with-a-septic-system/south-carolina/", "/drain-field-replacement-cost/south-carolina/"},
+				{"/septic-records-checklist/rhode-island/", "/drain-field-replacement-cost/rhode-island/"},
+				{"/septic-inspection-cost/rhode-island/", "/drain-field-replacement-cost/rhode-island/"},
+				{"/buying-a-house-with-a-septic-system/rhode-island/", "/drain-field-replacement-cost/rhode-island/"}
 		};
 
 		for (String[] expectation : expectations) {
@@ -4648,10 +4674,32 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void drainfieldStatePagesLinkBackIntoWorkflowCluster() throws Exception {
+		String[][] expectations = {
+				{"/drain-field-replacement-cost/georgia/", "/septic-records-checklist/georgia/"},
+				{"/drain-field-replacement-cost/georgia/", "/septic-permit-process/georgia/"},
+				{"/drain-field-replacement-cost/georgia/", "/septic-inspection-cost/georgia/"},
+				{"/wet-yard-over-septic-drain-field/florida/", "/septic-records-checklist/florida/"},
+				{"/wet-yard-over-septic-drain-field/florida/", "/septic-permit-process/florida/"},
+				{"/wet-yard-over-septic-drain-field/florida/", "/septic-inspection-cost/florida/"},
+				{"/septic-replacement-area/connecticut/", "/septic-records-checklist/connecticut/"},
+				{"/septic-replacement-area/connecticut/", "/septic-permit-process/connecticut/"},
+				{"/septic-replacement-area/connecticut/", "/septic-inspection-cost/connecticut/"}
+		};
+
+		for (String[] expectation : expectations) {
+			mockMvc.perform(get(expectation[0]))
+					.andExpect(status().isOk())
+					.andExpect(content().string(org.hamcrest.Matchers.containsString(expectation[1])));
+		}
+	}
+
+	@Test
 	void quoteSubmissionCreatesLeadArtifacts() throws Exception {
 		mockMvc.perform(post("/quote-request/")
 						.param("stateCode", "GA")
 						.param("projectType", "replacement")
+						.param("sourcePageHint", "/septic-replacement-cost/")
 						.param("bedrooms", "4")
 						.param("occupants", "5")
 						.param("soilPercStatus", "poor_drainage")
@@ -4669,23 +4717,35 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request received")));
 
-		try (Stream<Path> leadFiles = Files.walk(Path.of("build/test-storage/leads"))) {
-			org.junit.jupiter.api.Assertions.assertTrue(
-					leadFiles.anyMatch(path -> path.toString().endsWith(".json")),
-					"Expected at least one stored lead file"
-			);
+		Path leadsRoot = TEST_STORAGE_ROOT.resolve("leads");
+		Path eventsRoot = TEST_STORAGE_ROOT.resolve("events");
+		Path pendingExportsRoot = TEST_STORAGE_ROOT.resolve("exports").resolve("pending");
+		Path dailyExportsRoot = TEST_STORAGE_ROOT.resolve("exports").resolve("daily");
+
+		try (Stream<Path> leadFiles = Files.walk(TEST_STORAGE_ROOT)) {
+			Path leadJson = leadFiles
+					.filter(path -> path.startsWith(leadsRoot))
+					.filter(path -> path.toString().endsWith(".json"))
+					.findFirst()
+					.orElseThrow(() -> new AssertionError("Expected at least one stored lead file"));
+			String leadContent = Files.readString(leadJson);
+			org.junit.jupiter.api.Assertions.assertTrue(leadContent.contains("\"sourcePage\" : \"/septic-replacement-cost/\""));
+			org.junit.jupiter.api.Assertions.assertTrue(leadContent.contains("\"sourcePageHint\" : \"/septic-replacement-cost/\""));
 		}
 
-		try (Stream<Path> eventFiles = Files.walk(Path.of("build/test-storage/events"))) {
+		try (Stream<Path> eventFiles = Files.walk(TEST_STORAGE_ROOT)) {
 			org.junit.jupiter.api.Assertions.assertTrue(
-					eventFiles.anyMatch(path -> path.toString().endsWith(".ndjson")),
+					eventFiles
+							.filter(path -> path.startsWith(eventsRoot))
+							.anyMatch(path -> path.toString().endsWith(".ndjson")),
 					"Expected at least one stored event file"
 			);
 		}
 
 		Path exportJson;
-		try (Stream<Path> exportFiles = Files.walk(Path.of("build/test-storage/exports/pending"))) {
+		try (Stream<Path> exportFiles = Files.walk(TEST_STORAGE_ROOT)) {
 			exportJson = exportFiles
+					.filter(path -> path.startsWith(pendingExportsRoot))
 					.filter(path -> path.toString().endsWith(".json"))
 					.findFirst()
 					.orElseThrow(() -> new AssertionError("Expected at least one export JSON file"));
@@ -4694,10 +4754,12 @@ class SepticApplicationTests {
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"exportStatus\" : \"pending_routing\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"2026-03-09-v1\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"userAgent\" : \"MockBrowser/1.0\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"sourcePage\" : \"/septic-replacement-cost/\""));
 
 		Path exportCsv;
-		try (Stream<Path> exportCsvFiles = Files.walk(Path.of("build/test-storage/exports/daily"))) {
+		try (Stream<Path> exportCsvFiles = Files.walk(TEST_STORAGE_ROOT)) {
 			exportCsv = exportCsvFiles
+					.filter(path -> path.startsWith(dailyExportsRoot))
 					.filter(path -> path.toString().endsWith(".csv"))
 					.findFirst()
 					.orElseThrow(() -> new AssertionError("Expected at least one export CSV file"));

@@ -369,6 +369,7 @@ public class SiteController {
     public String calculator(
             @RequestParam(name = "state", required = false) String stateCode,
             @RequestParam(name = "projectType", required = false) String projectType,
+            @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
     ) {
@@ -378,6 +379,9 @@ public class SiteController {
         }
         if (projectType != null) {
             estimateForm.setProjectType(ProjectType.fromValue(projectType).value());
+        }
+        if (isValidSourcePageHint(sourcePageHint)) {
+            estimateForm.setSourcePageHint(sourcePageHint);
         }
         return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, quoteMode);
     }
@@ -619,8 +623,8 @@ public class SiteController {
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
-        model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage));
-        model.addAttribute("contentQuotePath", contentQuotePathForContentPage(contentPage));
+        model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
+        model.addAttribute("contentQuotePath", contentQuotePathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
         model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
         model.addAttribute("calculatorCtaNote", contentActionNote(contentPage));
@@ -1024,21 +1028,21 @@ public class SiteController {
         };
     }
 
-    private String calculatorPathForContentPage(ContentPage contentPage) {
+    private String calculatorPathForContentPage(ContentPage contentPage, String sourcePage) {
         String modulePath = calculatorPathForModule(contentPage.calculatorModule());
         if (!"/septic-system-cost-calculator/".equals(modulePath)) {
             return modulePath;
         }
         if (contentPage.calculatorProjectType() == null || contentPage.calculatorProjectType().isBlank()) {
-            return modulePath;
+            return appendSourcePageHint(modulePath, sourcePage);
         }
-        return "/septic-system-cost-calculator/?projectType=" + contentPage.calculatorProjectType();
+        return appendSourcePageHint("/septic-system-cost-calculator/?projectType=" + contentPage.calculatorProjectType(), sourcePage);
     }
 
-    private String contentQuotePathForContentPage(ContentPage contentPage) {
-        String calculatorPath = calculatorPathForContentPage(contentPage);
+    private String contentQuotePathForContentPage(ContentPage contentPage, String sourcePage) {
+        String calculatorPath = calculatorPathForContentPage(contentPage, sourcePage);
         if ("/drain-field-estimator/".equals(calculatorPath)) {
-            calculatorPath = "/septic-system-cost-calculator/?projectType=drainfield_replacement";
+            calculatorPath = appendSourcePageHint("/septic-system-cost-calculator/?projectType=drainfield_replacement", sourcePage);
         }
         if (!calculatorPath.startsWith("/septic-system-cost-calculator/")) {
             return null;
@@ -1046,16 +1050,33 @@ public class SiteController {
         return calculatorPath + (calculatorPath.contains("?") ? "&" : "?") + "quoteMode=true#quote-request";
     }
 
+    private String appendSourcePageHint(String path, String sourcePage) {
+        if (sourcePage == null || sourcePage.isBlank() || !path.startsWith("/")) {
+            return path;
+        }
+        return org.springframework.web.util.UriComponentsBuilder.fromUriString(path)
+                .queryParam("sourcePageHint", sourcePage)
+                .build()
+                .toUriString();
+    }
+
+    private boolean isValidSourcePageHint(String sourcePageHint) {
+        return sourcePageHint != null
+                && !sourcePageHint.isBlank()
+                && sourcePageHint.startsWith("/")
+                && !sourcePageHint.startsWith("//");
+    }
+
     private String contentActionHeading(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Use the replacement estimate before you compare contractor quotes.";
             case "perc-test-cost" -> "Use the site-risk estimate before you trust the low end.";
-            case "drain-field-replacement-cost" -> "Use the drain field estimate before you assume the old layout still works.";
+            case "drain-field-replacement-cost" -> "Use the drain field replacement estimate before you assume the old layout still works.";
             case "failed-perc-test-septic" -> "Use the site-risk estimate before you assume the lot can stay conventional.";
             case "septic-replacement-area" -> "Use the field-layout estimate before you assume the parcel still has a viable backup area.";
             case "wet-yard-over-septic-drain-field" -> "Use the field-failure estimate before you treat a wet yard as a small repair story.";
-            case "septic-inspection-cost" -> "Use the inspection-risk estimate before you schedule the next call.";
-            case "buying-a-house-with-a-septic-system" -> "Use the buyer-risk estimate before you rely on the seller story.";
+            case "septic-inspection-cost" -> "Use the inspection-risk estimate after you know what the file is missing.";
+            case "buying-a-house-with-a-septic-system" -> "Use the buyer-risk estimate after you check the file and inspection story.";
             case "septic-permit-process" -> "Use the permit-path estimate before you call the next office.";
             case "septic-records-checklist" -> "Use the records-aware estimate before you trust the file.";
             case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
@@ -1068,12 +1089,12 @@ public class SiteController {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Run a replacement planning estimate";
             case "perc-test-cost" -> "Run a site-risk estimate";
-            case "drain-field-replacement-cost" -> "Run a drain field estimate";
+            case "drain-field-replacement-cost" -> "Run a drain field replacement estimate";
             case "failed-perc-test-septic" -> "Run a failed-perc estimate";
             case "septic-replacement-area" -> "Run a replacement-area estimate";
             case "wet-yard-over-septic-drain-field" -> "Run a field-failure estimate";
-            case "septic-inspection-cost" -> "Run an inspection-risk estimate";
-            case "buying-a-house-with-a-septic-system" -> "Run a buyer-risk estimate";
+            case "septic-inspection-cost" -> "Run an inspection-scope estimate";
+            case "buying-a-house-with-a-septic-system" -> "Run a buyer due-diligence estimate";
             case "septic-permit-process" -> "Run a permit-path estimate";
             case "septic-records-checklist" -> "Run a records-aware estimate";
             case "septic-tank-size" -> "Open the tank size estimator";
@@ -1086,12 +1107,12 @@ public class SiteController {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Prefill the replacement lane first so field condition, restoration, and system-class risk show up before you talk price.";
             case "perc-test-cost" -> "Use the estimate with site uncertainty in view. If perc status is still unknown, the range should stay wide on purpose.";
-            case "drain-field-replacement-cost" -> "Use the drain field lane when the tank is not the main issue and the field may be driving the cost swing.";
+            case "drain-field-replacement-cost" -> "Use the drain field replacement lane when the tank is not the main issue and you still need to know whether the tank, box, and replacement area can stay on the same story.";
             case "failed-perc-test-septic" -> "Keep the estimate wide until the failed or weak perc result is reconciled with the file, replacement area, and state review path.";
             case "septic-replacement-area" -> "Use the drain field lane when reserve area, replacement footprint, or code-complying layout risk is the main blocker.";
             case "wet-yard-over-septic-drain-field" -> "Use the drain field lane when seepage, odor, or soggy ground near the field is already visible.";
-            case "septic-inspection-cost" -> "This estimate is most useful when inspection timing, records gaps, or advanced-system scope are still unclear.";
-            case "buying-a-house-with-a-septic-system" -> "Treat the estimate as a due-diligence tool first, then compare it against the inspection and records story tied to the property.";
+            case "septic-inspection-cost" -> "Pull the permit file, as-built, pumping history, and O&M records first, then use the estimate to judge whether the visit is routine diligence or leverage for a bigger next step.";
+            case "buying-a-house-with-a-septic-system" -> "Pull the permit file, as-built, pumping history, and bedroom-use story first, then use the estimate to judge whether the deal risk is routine diligence, a credit fight, or a wider replacement problem.";
             case "septic-permit-process" -> "Start with the install lane to frame cost and system type, then verify the real local path before you anchor on the low end.";
             case "septic-records-checklist" -> "Use the buyer lane as a planning shortcut when the file is still thin and you need to understand downside risk before asking for quotes.";
             case "septic-tank-size" -> "Use the dedicated estimator when bedroom count, occupancy profile, or disposal load matter more than a full project quote.";
@@ -1196,7 +1217,7 @@ public class SiteController {
                     "Montana quote conversations get more real once you know whether the lot already has COSA or sanitary restrictions, whether the local health department still owns the drainfield permit, and whether DEQ-4 site-risk paperwork already widens the project."
             );
             case "AL" -> new StateActionCopy(
-                    "Estimate before calling the county health department",
+                    "Estimate before trusting permit cost or county records",
                     "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."
             );
             case "AR" -> new StateActionCopy(
@@ -1280,8 +1301,8 @@ public class SiteController {
                     "Michigan questions get more real once you know which local health department holds the file and whether failure evidence or system-location uncertainty is already on record."
             );
             case "GA" -> new StateActionCopy(
-                    "Estimate with the disposal rule in mind",
-                    "Georgia homeowners often need to check whether a garbage disposal changes the likely tank band before they call the county office."
+                    "Estimate before trusting permit cost or county rules",
+                    "Georgia homeowners usually need the county office, permit file, soil analysis, and garbage-disposal rule clarified before the first septic permit quote looks real."
             );
             case "PA" -> new StateActionCopy(
                     "Estimate before calling the SEO",
@@ -1493,6 +1514,8 @@ public class SiteController {
     private List<String> defaultStateCrossLinks(StateMoneyPage stateMoneyPage, StateProfile state) {
         List<String> targetSlugs = switch (stateMoneyPage.contentSlug()) {
             case "septic-inspection-cost" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
                     "wet-yard-over-septic-drain-field",
                     "drain-field-replacement-cost",
                     "failed-perc-test-septic"
@@ -1503,8 +1526,40 @@ public class SiteController {
                     "septic-replacement-area"
             );
             case "buying-a-house-with-a-septic-system" -> List.of(
+                    "septic-records-checklist",
+                    "septic-inspection-cost",
+                    "septic-permit-process",
                     "drain-field-replacement-cost",
                     "wet-yard-over-septic-drain-field",
+                    "septic-replacement-area"
+            );
+            case "drain-field-replacement-cost" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "septic-inspection-cost",
+                    "septic-replacement-area",
+                    "wet-yard-over-septic-drain-field",
+                    "failed-perc-test-septic"
+            );
+            case "failed-perc-test-septic" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "drain-field-replacement-cost",
+                    "septic-replacement-area",
+                    "perc-test-cost"
+            );
+            case "septic-replacement-area" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "septic-inspection-cost",
+                    "drain-field-replacement-cost",
+                    "failed-perc-test-septic"
+            );
+            case "wet-yard-over-septic-drain-field" -> List.of(
+                    "septic-inspection-cost",
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "drain-field-replacement-cost",
                     "septic-replacement-area"
             );
             default -> List.of();
@@ -1844,50 +1899,58 @@ public class SiteController {
             );
             case "drain-field-replacement-cost" -> List.of(
                     "septic-replacement-area",
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "septic-inspection-cost",
                     "wet-yard-over-septic-drain-field",
                     "failed-perc-test-septic",
                     "perc-test-cost",
-                    "septic-records-checklist",
                     "septic-system-cost-calculator"
             );
             case "failed-perc-test-septic" -> List.of(
                     "perc-test-cost",
+                    "septic-records-checklist",
+                    "septic-permit-process",
                     "drain-field-replacement-cost",
                     "septic-replacement-area",
-                    "septic-permit-process",
+                    "septic-inspection-cost",
                     "septic-system-cost-calculator"
             );
             case "septic-replacement-area" -> List.of(
                     "drain-field-replacement-cost",
                     "septic-records-checklist",
+                    "septic-permit-process",
+                    "septic-inspection-cost",
                     "failed-perc-test-septic",
                     "perc-test-cost",
                     "septic-system-cost-calculator"
             );
             case "wet-yard-over-septic-drain-field" -> List.of(
-                    "drain-field-replacement-cost",
                     "septic-inspection-cost",
                     "septic-records-checklist",
+                    "septic-permit-process",
+                    "drain-field-replacement-cost",
+                    "septic-replacement-area",
                     "septic-replacement-cost",
                     "septic-system-cost-calculator"
             );
             case "septic-pumping-cost" -> List.of("septic-tank-size", "septic-system-cost-calculator", "septic-inspection-cost");
             case "septic-inspection-cost" -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "buying-a-house-with-a-septic-system",
                     "wet-yard-over-septic-drain-field",
                     "drain-field-replacement-cost",
                     "failed-perc-test-septic",
-                    "septic-records-checklist",
-                    "buying-a-house-with-a-septic-system",
-                    "septic-permit-process",
                     "septic-system-cost-calculator"
             );
             case "buying-a-house-with-a-septic-system" -> List.of(
                     "septic-records-checklist",
                     "septic-inspection-cost",
+                    "septic-permit-process",
                     "drain-field-replacement-cost",
                     "wet-yard-over-septic-drain-field",
                     "septic-replacement-area",
-                    "septic-permit-process",
                     "septic-replacement-cost"
             );
             case "septic-permit-process" -> List.of(

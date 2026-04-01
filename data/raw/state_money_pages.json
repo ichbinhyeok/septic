@@ -7352,8 +7352,8 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "NE",
-      "title": "Nebraska Septic Permit Process",
-      "metaDescription": "Nebraska septic permit process with DHHS permit filing, registered-system lookup, and local requirement questions in mind.",
+      "title": "Nebraska Septic Permit Process and DHHS File Guide",
+      "metaDescription": "Nebraska septic permit process with DHHS permit filing, registered-system file lookup, permit requirements, and local requirement questions.",
       "introCopy": "Nebraska permit content is stronger than a generic install checklist because DHHS makes the permit path explicit for registered onsite wastewater treatment systems. The practical homeowner job often turns on whether the parcel already has a registered-system file from 2004 forward, whether the work is construction or alteration, and whether any local requirement widens the path before the low end means much.",
       "uniqueAngle": "Nebraska permit intent is strongest when the page explains the DHHS permit filing path, the searchable registered-system history, and the local requirement layer instead of pretending the project starts with a clean contractor number.",
       "targetReader": "Best for Nebraska owners, buyers, builders, and agents who need to know whether a registered-system file already exists, whether a construction permit is required, and why local requirements can still move the whole schedule before the lowest quote means much.",
@@ -8562,8 +8562,8 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "SC",
-      "title": "South Carolina Septic Permit Process",
-      "metaDescription": "South Carolina septic permit process with SCDES permit-copy retrieval, D-1740 workflow, local office routing, and building-permit gate context.",
+      "title": "South Carolina Septic Permit Process and Permit Copy Guide",
+      "metaDescription": "South Carolina septic permit process with SCDES permit copy lookup, D-1740 steps, permit requirements, and county office routing.",
       "introCopy": "South Carolina permit content is stronger than a generic install checklist because SCDES makes the permit path explicit. The real homeowner job often turns on whether the permit copy is already on file, whether the D-1740 and site visit are complete, and which county contact handles final inspections and follow-up.",
       "uniqueAngle": "South Carolina permit intent is strongest when the page explains the D-1740, Permit to Construct, final-inspection path, and permit-copy lookup instead of pretending the project starts with a clean contractor quote.",
       "targetReader": "Best for South Carolina owners, buyers, builders, and agents who need to know which SCDES office controls the file, whether the permit copy and D-1740 history already exist, and why the county building-permit gate can move the whole schedule.",
@@ -11305,8 +11305,8 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IN",
-      "title": "Indiana Septic Records Checklist",
-      "metaDescription": "Indiana septic records checklist with county or local health office routing, county permit and site file pulls, and sewer-availability gate and local-board variation.",
+      "title": "Indiana Septic Records Checklist and County Permit File Guide",
+      "metaDescription": "Indiana septic records checklist with county permit and site file lookup, local health office routing, and sewer-availability questions.",
       "introCopy": "Indiana records work is less about one statewide file and more about getting the right county or local health office file in hand. If the homeowner cannot surface the county permit and site file, the permit trail, and any local board of health file, the low end is still just a planning story.",
       "uniqueAngle": "Indiana records intent is strongest when the page connects county or local health office routing, county permit and site file, and sewer-availability gate and local-board variation instead of pretending the state keeps one simple homeowner database.",
       "targetReader": "Best for Indiana buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
@@ -18601,8 +18601,8 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "RI",
-      "title": "Rhode Island Septic Permit Process",
-      "metaDescription": "Rhode Island septic permit process with DEM permit file and suitability-determination note, Rhode Island DEM's OWTS permit-search path routing, and permit-history and suitability-review friction.",
+      "title": "Rhode Island Septic Permit Process and DEM File Search",
+      "metaDescription": "Rhode Island septic permit process with DEM file search, permit history, suitability review notes, and renovation trigger questions.",
       "introCopy": "Rhode Island permit content is stronger than a generic install checklist because the real path starts with Rhode Island DEM's OWTS permit-search path, not a vague statewide desk. The permit only stays simple if the DEM permit file and suitability-determination note already supports the project story before permit-history and suitability-review friction widens the job.",
       "uniqueAngle": "Rhode Island permit intent is strongest when the page connects Rhode Island DEM's OWTS permit-search path, DEM permit file and suitability-determination note, and permit-history and suitability-review friction instead of pretending the job starts with a clean contractor number.",
       "targetReader": "Best for Rhode Island owners, buyers, builders, and agents who need to know which office controls the permit path and whether the file is strong enough to keep the job routine.",
@@ -20596,6 +20596,259 @@
       ],
       "calculatorProjectType": "drainfield_replacement",
       "publishStatus": "published"
-    }
+    },
+    {
+    "contentSlug": "drain-field-replacement-cost",
+    "stateCode": "AL",
+    "title": "Alabama Drain Field Replacement Cost",
+    "metaDescription": "Estimate Alabama drain field replacement cost with county health routing, soil-testing history, and Approval for Use file risk in mind.",
+    "introCopy": "An Alabama drain field replacement is not just trenching and stone. The county health department, the soil-testing or perc story, and the Approval for Use file can all decide whether the field still has a workable next path or whether the job is already wider than the first quote suggests.",
+    "uniqueAngle": "Alabama supports a stronger drain-field page because county health control, soil-testing history, and the Approval for Use diagram can all widen a field job before the owner has a final layout.",
+    "targetReader": "Best for Alabama owners who already think the drain field is the likely problem but still need to know whether the county file and soil story support a narrow replacement path.",
+    "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the county file still supports a workable next field path.",
+        "You need to know whether soil-testing history and the Approval for Use diagram still match the current field story.",
+        "You want to budget a field job without ignoring county health review and file friction."
+    ],
+    "decisionSteps": [
+        "Start with the county health department so the field question is read against the right permit and file history.",
+        "Pull the Permit to Install, Approval for Use, and any soil-test or percolation record already tied to the property.",
+        "Ask whether the current field problem still looks like a narrow replacement or whether the file and soil story already point toward a wider redesign.",
+        "Then compare drain field quotes only after the county-file lane is clear enough to trust the range."
+    ],
+    "lowEndBreakers": [
+        "The low end falls apart if the county file or Approval for Use diagram no longer supports the current field story.",
+        "Soil-testing or perc history can show the lot was never as simple as the first trench quote assumes.",
+        "If the county health path is still unclear, a field replacement can widen into a larger permit and site problem quickly."
+    ],
+    "quotePrepChecklist": [
+        "The property address and county health department handling the onsite sewage file.",
+        "Any Permit to Install, Approval for Use, soil-test, or percolation record already tied to the parcel.",
+        "A note on visible wet ground, field odor, or drainage issues near the current field.",
+        "Any contractor note already suggesting the old field layout or replacement area may not still work."
+    ],
+    "driverBullets": [
+        "County-file clarity matters because Alabama field questions often start with Permit to Install and Approval for Use history.",
+        "Soil-testing and percolation history can widen the job beyond a simple trench replacement assumption.",
+        "Visible drainage issues and missing diagrams make the low end less trustworthy fast.",
+        "Owners under-budget when they price field work before reconciling it with the county health file."
+    ],
+    "faqBlocks": [
+        {
+            "question": "Why is Alabama drain field replacement tied to county health files so closely?",
+            "answer": "Because the county health department controls the onsite sewage file, and the Permit to Install, Approval for Use, and soil-testing history often tell you faster than the first quote whether the field path is still narrow enough to trust."
+        },
+        {
+            "question": "Can I assume an old Alabama field layout still works?",
+            "answer": "Not safely. The county file, soil-testing story, and current field condition can all change whether the next path is still a straightforward drain field replacement."
+        }
+    ],
+    "internalLinkTargets": [
+        "/septic-system-cost-calculator/alabama/",
+        "/septic-system-cost-calculator/?state=AL&projectType=drainfield_replacement",
+        "/septic-records-checklist/alabama/",
+        "/septic-permit-process/alabama/",
+        "/buying-a-house-with-a-septic-system/alabama/",
+        "/drain-field-replacement-cost/"
+    ],
+    "officialSourceIds": [
+        "al_01",
+        "al_02",
+        "al_03",
+        "al_04"
+    ],
+    "calculatorProjectType": "drainfield_replacement",
+    "publishStatus": "published"
+},
+{
+    "contentSlug": "drain-field-replacement-cost",
+    "stateCode": "IN",
+    "title": "Indiana Drain Field Replacement Cost",
+    "metaDescription": "Estimate Indiana drain field replacement cost with county file routing, sewer-availability risk, and local-board variation in mind.",
+    "introCopy": "An Indiana drain field replacement is not just a trenching number. The county or local health office, the onsite file, and even the sewer-availability question can all change whether the parcel still supports a workable next field path before the owner should trust a simple quote.",
+    "uniqueAngle": "Indiana supports a stronger drain-field page because county-file control, sewer-availability gating, and local-board variation can all widen a field job before the owner has a final layout.",
+    "targetReader": "Best for Indiana owners who already think the drain field is the likely problem but still need to know whether the county file and sewer story support a narrow replacement path.",
+    "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the county file still supports a workable next field path.",
+        "You need to know whether sewer availability, local-board rules, or old site notes make the field story wider than it first looks.",
+        "You want to budget a field job without ignoring county routing and local ordinance variation."
+    ],
+    "decisionSteps": [
+        "Start with the county or local health office so the field question is read against the right onsite file.",
+        "Pull the county permit and site file, any sewer-availability note, and any local-board review already tied to the parcel.",
+        "Ask whether the current field problem still fits a narrow replacement story or whether county-file gaps and sewer constraints already widen the path.",
+        "Then compare drain field quotes only after the county-file and sewer lane are clear enough to trust the range."
+    ],
+    "lowEndBreakers": [
+        "The low end falls apart if the county file is thin or sewer availability changes the onsite replacement story.",
+        "Local-board variation can make a simple statewide field assumption much too optimistic.",
+        "If the parcel's old field path no longer fits the current county or local rule set, the project widens quickly."
+    ],
+    "quotePrepChecklist": [
+        "The county or local health office handling the residential onsite sewage file.",
+        "Any county permit, site file, sewer-availability note, or local-board record already tied to the property.",
+        "A note on visible wet areas, field condition, and access concerns near the current layout.",
+        "Any contractor note already suggesting the old field footprint or reserve area may not still work."
+    ],
+    "driverBullets": [
+        "County-file quality matters because Indiana's onsite path is county-first in practice.",
+        "Sewer-availability questions can change whether a drain field replacement story is still viable at all.",
+        "Local-board variation can widen the field job beyond a simple replacement assumption.",
+        "Weak site files and visible field condition issues make the low end less trustworthy fast."
+    ],
+    "faqBlocks": [
+        {
+            "question": "Why is Indiana drain field replacement tied to county files and sewer availability?",
+            "answer": "Because Indiana's residential onsite path runs through county or local health offices, and a sewer-availability note can change whether the parcel should still be priced like a straightforward onsite field replacement."
+        },
+        {
+            "question": "Can I assume an old Indiana field path still works?",
+            "answer": "Not safely. The county site file, local-board variation, and sewer question can all change whether the next field path is still narrow enough to trust."
+        }
+    ],
+    "internalLinkTargets": [
+        "/septic-system-cost-calculator/indiana/",
+        "/septic-system-cost-calculator/?state=IN&projectType=drainfield_replacement",
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-process/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/drain-field-replacement-cost/"
+    ],
+    "officialSourceIds": [
+        "in_01",
+        "in_02",
+        "in_03",
+        "in_04"
+    ],
+    "calculatorProjectType": "drainfield_replacement",
+    "publishStatus": "published"
+},
+{
+    "contentSlug": "drain-field-replacement-cost",
+    "stateCode": "SC",
+    "title": "South Carolina Drain Field Replacement Cost",
+    "metaDescription": "Estimate South Carolina drain field replacement cost with SCDES permit-copy history, D-1740 context, and traditional-system viability in mind.",
+    "introCopy": "A South Carolina drain field replacement is not just a trenching quote. The SCDES file, the permit copy and D-1740 history, and whether the site still supports a traditional system can all change whether the field problem stays narrow or becomes a wider replacement story.",
+    "uniqueAngle": "South Carolina supports a stronger drain-field page because permit-copy retrieval, D-1740 history, and traditional-system viability can all widen a field job before the owner has a final layout.",
+    "targetReader": "Best for South Carolina owners who already think the drain field is the likely problem but still need to know whether the SCDES file and site history support a narrow replacement path.",
+    "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the SCDES file still supports a workable next field path.",
+        "You need to know whether permit-copy history, D-1740 context, or site limits make the field story wider than it first looks.",
+        "You want to budget a field job without ignoring county or regional SCDES routing and traditional-system risk."
+    ],
+    "decisionSteps": [
+        "Start with the SCDES county or regional contact so the field question is read against the right permit file.",
+        "Pull the permit copy, D-1740 history, final-inspection trail, and any site note already tied to the property.",
+        "Ask whether the current field problem still fits a traditional-system replacement story or whether the site history already points toward a wider redesign.",
+        "Then compare drain field quotes only after the permit-copy lane and site story are clear enough to trust the range."
+    ],
+    "lowEndBreakers": [
+        "The low end falls apart if the permit copy or D-1740 history no longer supports a straightforward field path.",
+        "If the site no longer looks viable for a traditional system, a narrow drain field quote becomes misleading quickly.",
+        "County or regional routing friction can slow the file story enough that the cheapest quote stops being the useful anchor."
+    ],
+    "quotePrepChecklist": [
+        "The SCDES county or regional contact handling the septic file.",
+        "Any permit copy, D-1740 application, final-inspection history, or site note already tied to the property.",
+        "A note on visible wet ground, field odor, drainage problems, or access issues near the current field.",
+        "Any contractor note already suggesting the old field path or traditional-system assumption may no longer hold."
+    ],
+    "driverBullets": [
+        "Permit-copy and D-1740 history matter because South Carolina field stories often widen through the SCDES file first.",
+        "Traditional-system viability can change whether the field problem still fits the cheap end of the range.",
+        "Visible field and drainage issues make the low end less trustworthy fast.",
+        "Owners under-budget when they price trench work before reconciling it with the permit-copy trail."
+    ],
+    "faqBlocks": [
+        {
+            "question": "Why is South Carolina drain field replacement tied to permit-copy history?",
+            "answer": "Because the SCDES permit copy, D-1740 history, and final-inspection trail often tell you faster than the first quote whether the field still has a straightforward next path."
+        },
+        {
+            "question": "Can I assume an old South Carolina field layout still works?",
+            "answer": "Not safely. The permit-copy trail, site history, and question of whether a traditional system still fits the parcel can all change the real replacement path."
+        }
+    ],
+    "internalLinkTargets": [
+        "/septic-system-cost-calculator/south-carolina/",
+        "/septic-system-cost-calculator/?state=SC&projectType=drainfield_replacement",
+        "/septic-records-checklist/south-carolina/",
+        "/septic-permit-process/south-carolina/",
+        "/buying-a-house-with-a-septic-system/south-carolina/",
+        "/drain-field-replacement-cost/"
+    ],
+    "officialSourceIds": [
+        "sc_01",
+        "sc_02",
+        "sc_03",
+        "sc_04"
+    ],
+    "calculatorProjectType": "drainfield_replacement",
+    "publishStatus": "published"
+},
+{
+    "contentSlug": "drain-field-replacement-cost",
+    "stateCode": "RI",
+    "title": "Rhode Island Drain Field Replacement Cost",
+    "metaDescription": "Estimate Rhode Island drain field replacement cost with DEM file search, suitability triggers, and advanced-technology area risk in mind.",
+    "introCopy": "A Rhode Island drain field replacement is not just a trenching number. DEM file search results, suitability-determination triggers, and the possibility of advanced-technology areas can all decide whether the field still has a workable next path or whether the project is already wider than the first quote suggests.",
+    "uniqueAngle": "Rhode Island supports a stronger drain-field page because DEM file retrieval, suitability-determination triggers, and advanced-technology area risk can all widen a field job before the owner has a final layout.",
+    "targetReader": "Best for Rhode Island owners who already think the drain field is the likely problem but still need to know whether the DEM file and suitability story support a narrow replacement path.",
+    "fitBullets": [
+        "The tank is not the main issue, and the real question is whether the DEM file still supports a workable next field path.",
+        "You need to know whether suitability triggers, renovation context, or advanced-technology rules make the field story wider than it first looks.",
+        "You want to budget a field job without ignoring DEM file-search friction and regulatory scope risk."
+    ],
+    "decisionSteps": [
+        "Start with Rhode Island DEM's OWTS permit-search and record path so the field question is read against the right file.",
+        "Pull the active or historic permit search, the underlying file, and any suitability-determination note already tied to the property.",
+        "Ask whether the current field problem still fits a narrow replacement story or whether renovation triggers or advanced-technology rules already widen the path.",
+        "Then compare drain field quotes only after the DEM-file lane and suitability story are clear enough to trust the range."
+    ],
+    "lowEndBreakers": [
+        "The low end falls apart if the DEM file or suitability note no longer supports a straightforward field path.",
+        "Renovation-trigger review can widen a simple field replacement story much faster than owners expect.",
+        "If advanced-technology rules apply in the area, a narrow drain field quote becomes misleading quickly."
+    ],
+    "quotePrepChecklist": [
+        "The DEM permit-search results and any underlying file already tied to the property.",
+        "Any suitability-determination note, renovation plan, or older design document already linked to the parcel.",
+        "A note on visible wet soil, field condition, and drainage issues near the current layout.",
+        "Any contractor note already suggesting the old field story or system class may no longer hold."
+    ],
+    "driverBullets": [
+        "DEM file quality matters because Rhode Island field stories often widen through permit-search and record retrieval first.",
+        "Suitability-determination triggers can change whether a field replacement stays narrow enough to trust the low end.",
+        "Advanced-technology area risk can push the project beyond a simple trench-replacement assumption.",
+        "Owners under-budget when they price field work before reconciling it with the DEM file and suitability story."
+    ],
+    "faqBlocks": [
+        {
+            "question": "Why is Rhode Island drain field replacement tied to DEM file search and suitability review?",
+            "answer": "Because Rhode Island DEM's permit-search path and suitability-determination process often tell you faster than the first quote whether the parcel still supports a straightforward next field path."
+        },
+        {
+            "question": "Can I assume an old Rhode Island field layout still works?",
+            "answer": "Not safely. The DEM file, suitability triggers, and advanced-technology area rules can all change whether the next field path is still narrow enough to trust."
+        }
+    ],
+    "internalLinkTargets": [
+        "/septic-system-cost-calculator/rhode-island/",
+        "/septic-system-cost-calculator/?state=RI&projectType=drainfield_replacement",
+        "/septic-records-checklist/rhode-island/",
+        "/septic-permit-process/rhode-island/",
+        "/buying-a-house-with-a-septic-system/rhode-island/",
+        "/drain-field-replacement-cost/"
+    ],
+    "officialSourceIds": [
+        "ri_01",
+        "ri_02",
+        "ri_03",
+        "ri_04",
+        "ri_05"
+    ],
+    "calculatorProjectType": "drainfield_replacement",
+    "publishStatus": "published"
+}
   ]
 }

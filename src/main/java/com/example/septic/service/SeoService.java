@@ -283,7 +283,7 @@ public class SeoService {
 
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
-            case "AL" -> "Alabama septic permit cost, records, and county health guide";
+            case "AL" -> "Alabama septic permit cost, permit records, and county health guide";
             case "AR" -> "Arkansas septic cost guide and county permit path";
             case "MS" -> "Mississippi septic cost guide and public records path";
             case "IN" -> "Indiana septic cost guide and county permit path";
@@ -304,7 +304,7 @@ public class SeoService {
             case "NY" -> "New York septic cost guide and Appendix 75-A rules";
             case "OH" -> "Ohio septic cost guide and local health permit path";
             case "MI" -> "Michigan septic cost guide and local health records path";
-            case "GA" -> "Georgia septic permit cost, tank size, and county records guide";
+            case "GA" -> "Georgia septic permit cost, permit requirements, and county records guide";
             case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
             case "CT" -> "Connecticut septic cost guide and design flow rules";
             case "OR" -> "Oregon septic cost guide and site evaluation path";
@@ -320,6 +320,31 @@ public class SeoService {
 
     public List<FaqBlock> stateGuideFaqs(StateProfile state) {
         List<FaqBlock> faqBlocks = new ArrayList<>();
+
+        switch (state.stateCode()) {
+            case "AL" -> {
+                faqBlocks.add(new FaqBlock(
+                        "How much does a septic permit cost in Alabama?",
+                        "The county health department and the parcel file usually decide whether the cheap Alabama permit story is real. Permit to Install timing, soil testing or percolation work, and missing Approval for Use records can all widen the practical path before you trust the low end."
+                ));
+                faqBlocks.add(new FaqBlock(
+                        "How do you get septic permit records in Alabama?",
+                        "Start with the county health department that handles the property. Property owners or agents can request septic tank information from that office, while non-owners may need the Records Request path for a permit copy or related file history."
+                ));
+            }
+            case "GA" -> {
+                faqBlocks.add(new FaqBlock(
+                        "How much is a septic permit in Georgia?",
+                        "Georgia permit questions usually get real only after the county environmental health office, the soil-analysis requirement, and any existing permit file are clear. Garbage-disposal sizing rules can also change the real project cost before you treat the first quote like a permit-ready number."
+                ));
+                faqBlocks.add(new FaqBlock(
+                        "What should you check before trusting a Georgia septic permit quote?",
+                        "Check the county office first, then ask for any existing soil analysis, permit file, as-built sketch, repair history, and confirmation of whether a garbage disposal is installed. Those details usually tell you faster than the first quote whether the cheaper path is still realistic."
+                ));
+            }
+            default -> {
+            }
+        }
 
         if (hasText(state.whoToCallFirst())) {
             faqBlocks.add(new FaqBlock(
@@ -631,13 +656,13 @@ public class SeoService {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
             case "perc-test-cost" -> "Perc Test Cost and Percolation Test Price | SepticPath";
-            case "drain-field-replacement-cost" -> "Drain Field Replacement Cost | Field layout and replacement risk | SepticPath";
+            case "drain-field-replacement-cost" -> "Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath";
             case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil, field, and redesign risk | SepticPath";
             case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve area, layout, and field risk | SepticPath";
             case "wet-yard-over-septic-drain-field" -> "Wet Yard Over Septic Drain Field | Failure signals and field risk | SepticPath";
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
-            case "septic-inspection-cost" -> "Septic Inspection Cost | Scope, records, and buyer leverage | SepticPath";
-            case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Buyer risk, files, and closing steps | SepticPath";
+            case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | Permits, records, and next steps | SepticPath";
             case "septic-records-checklist" -> "Septic Records Checklist | Permit records, as-builts, and file lookup | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | State estimate, permit, and file context | SepticPath";
@@ -653,10 +678,10 @@ public class SeoService {
             case "failed-perc-test-septic" -> " | Soil, field, and redesign risk | SepticPath";
             case "septic-replacement-area" -> " | Reserve area, layout, and field risk | SepticPath";
             case "wet-yard-over-septic-drain-field" -> " | Seepage, failure, and field risk | SepticPath";
-            case "buying-a-house-with-a-septic-system" -> " | Buyer risk, files, and closing steps | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> " | Inspection, file checks, and closing risk | SepticPath";
             case "septic-records-checklist" -> " | Permit files, as-builts, and lookup steps | SepticPath";
             case "septic-permit-process" -> " | Office, file, and approval steps | SepticPath";
-            case "septic-inspection-cost" -> " | Inspection scope, records, and buyer leverage | SepticPath";
+            case "septic-inspection-cost" -> " | Permit files, records, and buyer leverage | SepticPath";
             case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";
             case "drain-field-replacement-cost" -> " | Field layout and replacement risk | SepticPath";
             default -> " | SepticPath";
@@ -684,7 +709,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Cost Guide and DEM File Path";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "Alabama Septic Permit Cost, Records, and County Guide";
+            case "AL" -> "Alabama Septic Permit Cost, Permit Records, and County Health Guide";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -705,7 +730,7 @@ public class SeoService {
             case "NY" -> "New York Septic Cost Guide and Appendix 75-A Rules";
             case "OH" -> "Ohio Septic Cost Guide and Local Health Permit Path";
             case "MI" -> "Michigan Septic Cost Guide and Local Health Records Path";
-            case "GA" -> "Georgia Septic Permit Cost, Tank Size, and Records Guide";
+            case "GA" -> "Georgia Septic Permit Cost, Permit Requirements, and County Records Guide";
             case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
             case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
             case "OR" -> "Oregon Septic Cost Guide and Site Evaluation Path";
@@ -740,7 +765,7 @@ public class SeoService {
             case "RI" -> "Rhode Island septic planning estimates with DEM permit searches, 1968-forward file retrieval, suitability triggers, and official-source links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "Alabama septic planning guide covering county permit steps, Permit to Install and Approval for Use records, soil-testing risk, and official ADPH source links.";
+            case "AL" -> "Alabama septic permit cost guide with county health department routing, Permit to Install and Approval for Use records, soil-test questions, and official ADPH links.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";
@@ -761,7 +786,7 @@ public class SeoService {
             case "NY" -> "New York septic planning estimates with Appendix 75-A rules, county health workflow, and official-source links.";
             case "OH" -> "Ohio septic planning estimates with local health department routing, Chapter 3701-29 permit context, and official-source links.";
             case "MI" -> "Michigan septic planning estimates with local health department routing, file-retrieval context, and official-source links.";
-            case "GA" -> "Georgia septic planning guide covering county permit steps, tank-size rules, garbage-disposal upsizing, soil analysis, and records to pull before trusting a quote.";
+            case "GA" -> "Georgia septic permit cost guide with county permit requirements, county records, soil-analysis steps, garbage-disposal tank rules, and official DPH links.";
             case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
             case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";
             case "OR" -> "Oregon septic planning estimates with site evaluation, permit sequencing, and official-source links.";

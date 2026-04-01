@@ -61,7 +61,9 @@ public class LeadStorageService {
     ) {
         Instant now = Instant.now();
         String leadId = UUID.randomUUID().toString();
-        Map<String, Object> provenance = buildProvenance(request, now, sourcePage);
+        String sanitizedSourcePageHint = sanitizeSourcePageHint(quoteLeadForm.getSourcePageHint()).orElse("");
+        String effectiveSourcePage = sanitizedSourcePageHint.isBlank() ? sourcePage : sanitizedSourcePageHint;
+        Map<String, Object> provenance = buildProvenance(request, now, effectiveSourcePage);
         Map<String, Object> consent = orderedMap(
                 "accepted", quoteLeadForm.isConsentAccepted(),
                 "acceptedAt", now.toString(),
@@ -72,7 +74,8 @@ public class LeadStorageService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("leadId", leadId);
         payload.put("submittedAt", now.toString());
-        payload.put("sourcePage", sourcePage);
+        payload.put("sourcePage", effectiveSourcePage);
+        payload.put("sourcePageHint", sanitizedSourcePageHint);
         payload.put("calculatorUsed", "main_cost_estimator");
         payload.put("stateCode", quoteLeadForm.getStateCode());
         payload.put("projectType", quoteLeadForm.getProjectType());
@@ -123,7 +126,8 @@ public class LeadStorageService {
                     "eventType", "quote_form_submitted",
                     "occurredAt", now.toString(),
                     "leadId", leadId,
-                    "sourcePage", sourcePage,
+                    "sourcePage", effectiveSourcePage,
+                    "sourcePageHint", sanitizedSourcePageHint,
                     "stateCode", quoteLeadForm.getStateCode(),
                     "projectType", quoteLeadForm.getProjectType()
             ), now);
@@ -249,10 +253,15 @@ public class LeadStorageService {
         ));
         payload.put("consent", consent);
         payload.put("provenance", provenance);
+        payload.put("source", orderedMap(
+                "sourcePage", provenance.get("sourcePage"),
+                "sourcePageHint", sanitizeSourcePageHint(quoteLeadForm.getSourcePageHint()).orElse("")
+        ));
         payload.put("routingHints", orderedMap(
                 "buyerChannels", List.of("batch_json", "batch_csv"),
                 "urgencyBucket", estimateForm.getTimeline(),
                 "riskBand", result.likelySystemClass(),
+                "sourcePage", provenance.get("sourcePage"),
                 "geoTarget", orderedMap(
                         "stateCode", quoteLeadForm.getStateCode(),
                         "zipCode", quoteLeadForm.getZipCode()
@@ -278,6 +287,17 @@ public class LeadStorageService {
         provenance.put("forwardedFor", forwardedFor);
         provenance.put("remoteAddress", remoteAddress);
         return provenance;
+    }
+
+    private java.util.Optional<String> sanitizeSourcePageHint(String sourcePageHint) {
+        if (sourcePageHint == null || sourcePageHint.isBlank()) {
+            return java.util.Optional.empty();
+        }
+        String trimmed = safeValue(sourcePageHint, 240);
+        if (!trimmed.startsWith("/") || trimmed.startsWith("//")) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.of(trimmed);
     }
 
     private void writeLeadFile(Map<String, Object> payload, String leadId, Instant now) throws IOException {

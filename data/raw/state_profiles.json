@@ -10,7 +10,7 @@
       "publishStatus": "published",
       "pageAngle": "Georgia is strongest when framed around county permit routing, soil analysis, and tank-size rules rather than a generic calculator. The homeowner wedge is knowing the county office, permit file, and disposal upsizing rule before trusting a simple quote.",
       "ruleType": "bedroom_table",
-      "ruleSummaryPlainEnglish": "Georgia's homeowner guide says the number of bedrooms determines the septic tank size for a single-family residence and that the minimum approved tank size is 1,000 gallons. The same guidance says homes with garbage disposals need a tank that is 50 percent larger, while county environmental health offices handle the practical permit, soil-analysis, and records path.",
+      "ruleSummaryPlainEnglish": "Georgia homeowners usually need the county environmental health office, permit file, and soil-analysis path clarified before they trust a septic permit cost or install quote. The homeowner guide says the number of bedrooms determines the septic tank size for a single-family residence, that the minimum approved tank size is 1,000 gallons, and that homes with garbage disposals need a tank that is 50 percent larger.",
       "designFlowPerBedroomGpd": 150,
       "minTankSizeGallons": 1000,
       "bedroomTable": [
@@ -724,7 +724,7 @@
       "publishStatus": "published",
       "pageAngle": "Alabama is strongest when framed around county health permit routing, soil-testing risk, and permit-file retrieval rather than a generic install table. The homeowner wedge is knowing whether the Permit to Install, the Approval for Use, and the county health file are already in place before the quote pretends the job is ready.",
       "ruleType": "permit_path",
-      "ruleSummaryPlainEnglish": "ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments. ADPH's before-construction guidance says that when sewer is unavailable, homeowners may need soil testing or a percolation test and must submit an Application for a Permit to Install to the local county health department before construction begins. ADPH's septic tank systems page says property owners or their agents can request septic tank information from the local health department, that non-owners can use the Records Request path for a permit copy, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. The real homeowner path is therefore county-file first, with permit records and soil history mattering before a quote looks trustworthy.",
+      "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments, that homeowners may need soil testing or a percolation test before submitting an Application for a Permit to Install, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. Property owners or their agents can request septic tank information from the local health department, while non-owners may need the Records Request path for a permit copy.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],

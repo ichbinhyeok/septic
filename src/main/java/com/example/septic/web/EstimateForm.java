@@ -3,6 +3,7 @@ package com.example.septic.web;
 public class EstimateForm {
     private String stateCode = "GA";
     private String projectType = "new_install";
+    private String sourcePageHint;
     private Integer bedrooms = 3;
     private Integer occupants;
     private boolean garbageDisposal;
@@ -26,6 +27,14 @@ public class EstimateForm {
 
     public void setProjectType(String projectType) {
         this.projectType = projectType;
+    }
+
+    public String getSourcePageHint() {
+        return sourcePageHint;
+    }
+
+    public void setSourcePageHint(String sourcePageHint) {
+        this.sourcePageHint = sourcePageHint;
     }
 
     public Integer getBedrooms() {
