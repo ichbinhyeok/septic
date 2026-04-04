@@ -1034,10 +1034,10 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/alabama/madison-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Madison County Alabama Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Alabama records page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Alabama records checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Alabama guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Related Alabama pages")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use Alabama's septic permit and records path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check Alabama permit-copy and Approval for Use rules")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Open the Indiana records page"))));
 	}
 
@@ -1049,7 +1049,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request a DeKalb certification letter")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("dekalb.eh@dph.ga.gov")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("445 Winn Way, Suite 320")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Georgia records page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Georgia records checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Georgia guide")));
 	}
 

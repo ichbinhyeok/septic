@@ -264,16 +264,16 @@
       "title": "Madison County Alabama Septic Records Checklist",
       "metaDescription": "Madison County septic records checklist with county environmental-services routing, Alabama permit-copy rules, and records-first next steps before you trust a quote or sale story.",
       "introCopy": "Madison County is a useful Alabama county wedge because the county environmental-services page makes the local environmental phone path clear while ADPH keeps the actual septic permit-copy and records-request rules on the statewide septic-tank systems page. Homeowners usually need both pages, not one generic Alabama explainer.",
-      "uniqueAngle": "Madison County is different because the local office path is visible through Environmental Services and the Soil and Onsite Sewage branch, but the owner-agent and non-owner records rules still live on Alabama's statewide septic page. That split is exactly where buyer and seller confusion starts.",
+      "uniqueAngle": "Madison County is different because the local office path is visible through Environmental Services and the Soil and Onsite Sewage branch, but Alabama keeps the owner-agent versus non-owner file-access rules on the statewide septic page. That split is exactly where buyer and seller confusion starts.",
       "targetReader": "Best for Madison County owners, buyers, sellers, and agents who need to sort out whether the next move is the county environmental office, the Alabama permit-copy path, or a wider repair conversation.",
       "officeLabel": "Madison County environmental services office",
       "officeUrl": "https://www.alabamapublichealth.gov/madison/environmental-services.html",
-      "recordsLabel": "Use Alabama's septic permit and records path",
+      "recordsLabel": "Check Alabama permit-copy and Approval for Use rules",
       "recordsUrl": "https://www.alabamapublichealth.gov/onsite/septic-tanks.html",
       "contactLine": "Madison County Environmental Services | 256-533-8726",
       "decisionSteps": [
         "Open Madison County Environmental Services first so you are working from the right county environmental-health desk instead of guessing which office owns the parcel story.",
-        "Use Alabama's septic-tank systems page next because ADPH explains how owners, agents, and non-owners actually request septic permit information.",
+        "Use Alabama's septic-tank systems page next because ADPH explains that owners or their agents can request septic information through the local health department, while non-owners use the records-request path for a permit copy.",
         "Pull the permit copy, Approval for Use, and any system diagram before you trust a low-end repair, transfer, or installer story."
       ],
       "recordsToRequest": [
@@ -289,7 +289,7 @@
       "faqBlocks": [
         {
           "question": "What is the first Madison County septic record to ask for?",
-          "answer": "Start with the permit copy, Approval for Use, and any diagram tied to the property after confirming the right county office through Madison County Environmental Services."
+          "answer": "Start with the permit copy, Approval for Use, and any diagram tied to the property after confirming the right county office through Madison County Environmental Services. ADPH also distinguishes between owner-agent requests and non-owner permit-copy requests."
         },
         {
           "question": "Why is Madison County a records page before it is a price page?",

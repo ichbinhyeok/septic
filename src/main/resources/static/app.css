@@ -658,9 +658,9 @@ li,
     padding: 24px;
 }
 
-.feature-card a,
-.state-card a,
-.trust-box a {
+.feature-card a:not(.button),
+.state-card a:not(.button),
+.trust-box a:not(.button) {
     display: inline-flex;
     margin-top: 18px;
     color: var(--accent-strong);
