@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-04-04",
+  "pages": [
+    {
+      "stateCode": "IN",
+      "countyName": "Howard County",
+      "countySlug": "howard-county",
+      "title": "Howard County Indiana Septic Records Checklist",
+      "metaDescription": "Howard County septic records checklist with existing-system approval forms, county permit routing, and on-site sewage file pulls before you trust a quote or closing story.",
+      "introCopy": "Howard County is a strong county-level wedge because the health department publishes a real on-site sewage page with a live septic permit application, an existing-system approval request form, and homeowner checklist material. This is closer to how people actually solve the problem than another broad Indiana septic explainer.",
+      "uniqueAngle": "Howard County is different because owners can move directly from the county sewage page into either a new permit workflow or an existing-system approval request. That makes the file quality question visible much earlier than on counties that only list one phone number.",
+      "targetReader": "Best for Howard County buyers, sellers, owners, and agents who need to know whether the system already has enough county paperwork behind it to support a sale, an addition, or a cautious contractor conversation.",
+      "officeLabel": "Howard County on-site sewage office",
+      "officeUrl": "https://www.in.gov/localhealth/howardcounty/environmental-health/on-site-sewage-systems/",
+      "recordsLabel": "Request existing-system approval from Howard County",
+      "recordsUrl": "https://www.in.gov/localhealth/howardcounty/files/Existing-system-request-application.pdf",
+      "contactLine": "Howard County Environmental Health | environmental@howardcountyin.gov",
+      "decisionSteps": [
+        "Open the Howard County on-site sewage page first and confirm whether you are really on a new permit path or an existing-system approval path.",
+        "If the property is existing construction, use the county's existing-system approval request form instead of assuming the old septic story is already file-backed.",
+        "Pull any prior inspection form, plan-review material, or homeowner OSS checklist item that shows what the county still needs before you compare quotes or promise a clean closing."
+      ],
+      "recordsToRequest": [
+        "The existing-system approval request and any county response tied to the parcel.",
+        "Any septic tank inspection form, plan-review checklist, or prior permit note already held by Howard County.",
+        "Any soil or field information the county used to size or review the onsite system."
+      ],
+      "lowEndBreakers": [
+        "If the property still needs existing-system approval, the low-end quote is only a planning number.",
+        "If Howard County cannot tie the parcel to a usable onsite file, the buyer or contractor may be pricing the wrong system story.",
+        "Any missing field or inspection paperwork can turn a simple reuse assumption into a wider repair or redesign conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Howard County septic record to ask for?",
+          "answer": "Start with the existing-system approval path when the property already has septic, because Howard County makes that request form explicit on its onsite sewage page."
+        },
+        {
+          "question": "Why is Howard County a records page before it is a price page?",
+          "answer": "Because the county publishes both a permit route and an existing-system approval route, so the file question usually comes before a trustworthy cost number."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-process/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/septic-system-cost-calculator/indiana/"
+      ],
+      "officialSourceIds": [
+        "in_howard_01",
+        "in_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "IN",
+      "countyName": "Floyd County",
+      "countySlug": "floyd-county",
+      "title": "Floyd County Indiana Septic Records Checklist",
+      "metaDescription": "Floyd County septic records checklist with public-records routing, repair and replacement permit fees, and county file pulls before you trust a repair or sale story.",
+      "introCopy": "Floyd County is one of the clearest Indiana county wedges because the health department explicitly tells owners to request septic records through its public-records form and warns that its office only has septic records back to 1974. That is exactly the kind of county-specific friction the state guide cannot capture alone.",
+      "uniqueAngle": "Floyd County makes three useful things public at once: repair and replacement applications, repair and replacement permit fees, and a specific public-records route for septic history. That lets homeowners separate a missing-file problem from a straightforward repair job fast.",
+      "targetReader": "Best for Floyd County buyers, owners, and agents who need to know whether the county file is strong enough to support a repair, replacement, or transaction conversation.",
+      "officeLabel": "Floyd County septic systems office",
+      "officeUrl": "https://www.in.gov/counties/floyd/health-department/environmental-health/septic-systems/",
+      "recordsLabel": "Open Floyd County public-records request",
+      "recordsUrl": "https://www.in.gov/counties/floyd/health-department/public-records-request/",
+      "contactLine": "Floyd County Health Department | 812-948-4726 option 2 option 1 | environmental@floydcounty.in.gov",
+      "decisionSteps": [
+        "Open the Floyd County septic systems page first and decide whether you are dealing with new construction, repair and replacement, or site-approval fallout.",
+        "Use the Floyd County public-records request path to ask for septic records instead of relying on seller memory, especially because the county notes its septic records only go back to 1974.",
+        "Compare the record trail against the county's repair and replacement application path and fees before you treat a contractor quote as the real scope."
+      ],
+      "recordsToRequest": [
+        "Any septic record the county can still surface for the parcel through the public-records request path.",
+        "Any repair or replacement application history already tied to the property.",
+        "Any site-approval or inspection material that explains whether the lot already had county setbacks or structure conflicts."
+      ],
+      "lowEndBreakers": [
+        "If the county file is incomplete because the system predates the records available from 1974 forward, the low-end story gets weaker fast.",
+        "Floyd County's repair and replacement fees are visible, but fee visibility is not the same thing as file clarity.",
+        "If the county file points to structure conflicts, older repairs, or pump replacement issues, a simple repair quote can widen quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "How do you pull septic records in Floyd County?",
+          "answer": "Floyd County tells owners to request septic records through its public-records request path, and the county notes that its office only has septic records dated back to 1974."
+        },
+        {
+          "question": "Why does Floyd County belong in the records wedge instead of only the permit wedge?",
+          "answer": "Because the county explicitly couples repair and replacement permits with a public-records route, so file quality and permit cost have to be read together."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-process/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/septic-system-cost-calculator/indiana/"
+      ],
+      "officialSourceIds": [
+        "in_floyd_01",
+        "in_floyd_02"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "IN",
+      "countyName": "Noble County",
+      "countySlug": "noble-county",
+      "title": "Noble County Indiana Septic Records Checklist",
+      "metaDescription": "Noble County septic records checklist with in-office permit routing, septic search form pulls, and county contact details before you trust a repair or buyer story.",
+      "introCopy": "Noble County is a useful county wedge because the health department publishes its contact details, states that septic applications must be made in the office, and gives residents a dedicated Septic Search Form. That is a real county records workflow, not a generic statewide summary.",
+      "uniqueAngle": "Noble County turns the county-file step into a concrete action because the same page publishes both the permit materials and the septic search form. That makes it easier to diagnose whether the property has a missing-file problem or just needs a normal new-install or repair path.",
+      "targetReader": "Best for Noble County homeowners, buyers, and agents who need to know whether the county can surface an existing system record before the next permit or closing call.",
+      "officeLabel": "Noble County septic and wastewater office",
+      "officeUrl": "https://www.in.gov/localhealth/noblecounty/septic-and-wastewater/septic-sanitation-information",
+      "recordsLabel": "Open the Noble County septic search form",
+      "recordsUrl": "https://www.in.gov/localhealth/noblecounty/files/Septic-Search-Form.pdf",
+      "contactLine": "Noble County Health Department | 260-636-2191 ext. 2 | jason.pippenger@nobleco.gov",
+      "decisionSteps": [
+        "Start on Noble County's septic sanitation page and confirm whether the next move is an in-office permit application, a septic search, or an inspection question.",
+        "Use the Septic Search Form before you trust the seller's description of the system location, age, or approval story.",
+        "Once the file is clearer, compare that county record trail with the permit, installer, and inspection materials published by Noble County before pricing the next step."
+      ],
+      "recordsToRequest": [
+        "The Septic Search Form response for the parcel.",
+        "Any county permit or repair paperwork already tied to the property.",
+        "Any inspection form or county note showing whether a new installation or repair was already reviewed."
+      ],
+      "lowEndBreakers": [
+        "If the Septic Search Form cannot surface a usable county file, the low-end repair or buyer story is still weak.",
+        "Noble County requires in-office permit applications, so a missing file can delay the real permit path more than owners expect.",
+        "If the county history and system location are uncertain, even a normal buyer inspection can turn into a larger replacement conversation."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What makes Noble County different from a broad Indiana records page?",
+          "answer": "Noble County gives residents a dedicated Septic Search Form and also makes clear that septic applications happen in the office, so the county workflow is unusually concrete."
+        },
+        {
+          "question": "Should a Noble County buyer ask for the septic search before an estimate?",
+          "answer": "Yes. The search is the fastest way to test whether the county can back up the current system story before you price repairs or negotiate credits."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-process/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/septic-system-cost-calculator/indiana/"
+      ],
+      "officialSourceIds": [
+        "in_noble_01",
+        "in_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "IN",
+      "countyName": "Wayne County",
+      "countySlug": "wayne-county",
+      "title": "Wayne County Indiana Septic Records Checklist",
+      "metaDescription": "Wayne County septic records checklist with septic location request forms, local permit guidance, and county file checks before you trust an existing-system story.",
+      "introCopy": "Wayne County is a strong county wedge because the health department publishes both on-site sewage guidance and a direct Septic Location Request form. That means buyers and owners can test the county file before they fall back to a statewide estimate.",
+      "uniqueAngle": "Wayne County stands out because it warns that connections to existing systems only stay on a simple path when the current system passed inspection and the new use does not increase the bedroom count. That makes the county file and inspection status central, not optional.",
+      "targetReader": "Best for Wayne County owners, buyers, and agents who need to know whether the county can confirm the system location and whether the existing system can still support the current property story.",
+      "officeLabel": "Wayne County on-site sewage office",
+      "officeUrl": "https://secure.in.gov/localhealth/waynecounty/environmental-health/on-site-sewage/",
+      "recordsLabel": "Open the Wayne County septic location request form",
+      "recordsUrl": "https://secure.in.gov/localhealth/waynecounty/files/Septic-Location-Request.pdf",
+      "contactLine": "Wayne County Health Department | health@co.wayne.in.us",
+      "decisionSteps": [
+        "Start on Wayne County's on-site sewage page and confirm whether the issue is location uncertainty, an existing-system connection question, or a new permit path.",
+        "Use the Septic Location Request form before you trust the current system layout, especially when a buyer or contractor cannot prove where the system actually sits.",
+        "Read the county file against Wayne County's warning on connections to existing systems so you know whether the current inspection status and bedroom load still support the old setup."
+      ],
+      "recordsToRequest": [
+        "The Septic Location Request response for the parcel.",
+        "Any county inspection note showing whether the current system previously passed inspection.",
+        "Any permit or file note that explains whether the existing system was sized for the current bedroom count or use."
+      ],
+      "lowEndBreakers": [
+        "If Wayne County cannot confirm the system location, the low-end repair or buyer narrative is still too thin.",
+        "If an addition or new connection changes the bedroom count, the old system story may stop working even if the tank is still present.",
+        "A passed inspection on an existing system matters in Wayne County, so missing inspection history can widen the next step quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why start with a septic location request in Wayne County?",
+          "answer": "Because Wayne County makes the system-location pull explicit, and a missing location is one of the fastest ways for a buyer or repair quote to drift off the real file."
+        },
+        {
+          "question": "When does Wayne County stop being a simple existing-system story?",
+          "answer": "The county's own on-site sewage guidance makes inspection status and bedroom-count changes matter, so a reuse assumption can break once those facts are unclear."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-process/indiana/",
+        "/buying-a-house-with-a-septic-system/indiana/",
+        "/septic-system-cost-calculator/indiana/"
+      ],
+      "officialSourceIds": [
+        "in_wayne_01",
+        "in_wayne_02"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "countyName": "Baldwin County",
+      "countySlug": "baldwin-county",
+      "title": "Baldwin County Alabama Septic Records Checklist",
+      "metaDescription": "Baldwin County septic records checklist with Baldwin environmental office routing, Alabama permit-copy rules, and buyer-seller file checks before you trust a quote or closing story.",
+      "introCopy": "Baldwin County is worth its own county wedge because the county health department publishes dedicated environmental office contacts in both Robertsdale and Bay Minette, while Alabama keeps the actual septic permit-copy and owner-request rules on the statewide septic-tank systems page. That is a more realistic workflow than a broad Alabama cost guide alone.",
+      "uniqueAngle": "Baldwin County stands out because the local office path is clear, but the record-copy path still runs through Alabama's owner-agent and records-request rules. That split makes Baldwin a real workflow page, not just another cost summary.",
+      "targetReader": "Best for Baldwin County buyers, sellers, owners, and agents who need to know which environmental office to call first and whether the county or statewide file path should settle the next septic question.",
+      "officeLabel": "Baldwin County environmental office contacts",
+      "officeUrl": "https://www.alabamapublichealth.gov/baldwin/contact.html",
+      "recordsLabel": "Use Alabama's septic permit and records path",
+      "recordsUrl": "https://www.alabamapublichealth.gov/onsite/septic-tanks.html",
+      "contactLine": "Baldwin County Environmental and Vital Statistics | Robertsdale 251-947-3618 | Bay Minette 251-937-6935",
+      "decisionSteps": [
+        "Start with the Baldwin County environmental office contact page so you know which office is actually closest to the parcel before you rely on a seller or contractor story.",
+        "Use Alabama's statewide septic-tank systems page next, because ADPH makes the permit-copy and owner-agent record rules explicit there instead of on each county page.",
+        "Ask for the permit copy, Approval for Use, and any system diagram tied to the property before you trust a clean low-end repair or transfer number."
+      ],
+      "recordsToRequest": [
+        "Any septic permit copy or Approval for Use tied to the Baldwin County parcel.",
+        "Any system diagram, location sketch, or installation information that came with the completed permit package.",
+        "Any county note or office guidance that explains which Baldwin environmental office should handle the next local question."
+      ],
+      "lowEndBreakers": [
+        "If the file still needs a permit copy or Approval for Use pulled through Alabama's records path, the low-end story is still too thin.",
+        "A Baldwin County office contact does not mean the local file is already in hand, and that gap can distort both quote timing and closing confidence.",
+        "If no diagram or installation record surfaces, the buyer or contractor may be anchoring on the wrong system layout."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first septic record to ask for in Baldwin County?",
+          "answer": "Start by identifying the right Baldwin environmental office, then use Alabama's septic-tank systems page to pull the permit copy, Approval for Use, and any diagram tied to the property."
+        },
+        {
+          "question": "Why does Baldwin County need its own records page?",
+          "answer": "Because the local office routing is county-specific, while the permit-copy and owner-agent record rules are spelled out on the statewide Alabama septic page. You need both to move cleanly."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/alabama/",
+        "/septic-permit-process/alabama/",
+        "/buying-a-house-with-a-septic-system/alabama/",
+        "/septic-system-cost-calculator/alabama/"
+      ],
+      "officialSourceIds": [
+        "al_baldwin_01",
+        "al_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "countyName": "Madison County",
+      "countySlug": "madison-county",
+      "title": "Madison County Alabama Septic Records Checklist",
+      "metaDescription": "Madison County septic records checklist with county environmental-services routing, Alabama permit-copy rules, and records-first next steps before you trust a quote or sale story.",
+      "introCopy": "Madison County is a useful Alabama county wedge because the county environmental-services page makes the local environmental phone path clear while ADPH keeps the actual septic permit-copy and records-request rules on the statewide septic-tank systems page. Homeowners usually need both pages, not one generic Alabama explainer.",
+      "uniqueAngle": "Madison County is different because the local office path is visible through Environmental Services and the Soil and Onsite Sewage branch, but the owner-agent and non-owner records rules still live on Alabama's statewide septic page. That split is exactly where buyer and seller confusion starts.",
+      "targetReader": "Best for Madison County owners, buyers, sellers, and agents who need to sort out whether the next move is the county environmental office, the Alabama permit-copy path, or a wider repair conversation.",
+      "officeLabel": "Madison County environmental services office",
+      "officeUrl": "https://www.alabamapublichealth.gov/madison/environmental-services.html",
+      "recordsLabel": "Use Alabama's septic permit and records path",
+      "recordsUrl": "https://www.alabamapublichealth.gov/onsite/septic-tanks.html",
+      "contactLine": "Madison County Environmental Services | 256-533-8726",
+      "decisionSteps": [
+        "Open Madison County Environmental Services first so you are working from the right county environmental-health desk instead of guessing which office owns the parcel story.",
+        "Use Alabama's septic-tank systems page next because ADPH explains how owners, agents, and non-owners actually request septic permit information.",
+        "Pull the permit copy, Approval for Use, and any system diagram before you trust a low-end repair, transfer, or installer story."
+      ],
+      "recordsToRequest": [
+        "Any septic permit copy or Approval for Use attached to the Madison County parcel.",
+        "Any system diagram or installation information that came with the completed ADPH permit record.",
+        "Any county note that clarifies whether the next step belongs with Madison County Environmental Services or a broader Alabama records request."
+      ],
+      "lowEndBreakers": [
+        "If the permit copy and Approval for Use have not been surfaced yet, the low-end repair or transfer number is still only a placeholder.",
+        "Madison County's local office path helps route the question, but it does not guarantee the underlying septic file is complete.",
+        "If no diagram or installation record turns up, the parcel may be carrying more location and layout risk than the first quote assumes."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the first Madison County septic record to ask for?",
+          "answer": "Start with the permit copy, Approval for Use, and any diagram tied to the property after confirming the right county office through Madison County Environmental Services."
+        },
+        {
+          "question": "Why is Madison County a records page before it is a price page?",
+          "answer": "Because the county office path and the Alabama records path are different steps, and the price story stays weak until both are clearer."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/alabama/",
+        "/septic-permit-process/alabama/",
+        "/buying-a-house-with-a-septic-system/alabama/",
+        "/septic-system-cost-calculator/alabama/"
+      ],
+      "officialSourceIds": [
+        "al_madison_01",
+        "al_03"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "GA",
+      "countyName": "DeKalb County",
+      "countySlug": "dekalb-county",
+      "title": "DeKalb County Georgia Septic Records Checklist",
+      "metaDescription": "DeKalb County septic records checklist with certification-letter routing, repair and permit steps, and county file pulls before you trust a buyer or quote story.",
+      "introCopy": "DeKalb County is one of the clearest Georgia county wedges because the county septic page does three things in one place: it explains repair and new-system permits, lists the Environmental Health intake route, and gives property owners a certification-letter path for existing systems. That is real workflow intent, not generic cost intent.",
+      "uniqueAngle": "DeKalb County makes the existing-system question visible because the same septic page covers new permits, repairs, inspection-report history, and certification letters used for refinancing or similar diligence. That is exactly the bridge between records and transfer compliance.",
+      "targetReader": "Best for DeKalb County buyers, owners, sellers, and agents who need to know whether the county file supports an existing-system story or whether a permit and site-approval conversation is about to widen.",
+      "officeLabel": "DeKalb Public Health septic systems office",
+      "officeUrl": "https://dekalbhealth.net/environmental-health/septic-systems/",
+      "recordsLabel": "Request a DeKalb certification letter",
+      "recordsUrl": "https://dekalbhealth.net/environmental-health/septic-systems/",
+      "contactLine": "DeKalb Public Health Environmental Health | 404-294-3700 | dekalb.eh@dph.ga.gov | 445 Winn Way, Suite 320, Decatur, GA 30030",
+      "decisionSteps": [
+        "Open DeKalb's septic systems page first and decide whether the property is really an existing-system certification question, a repair, or a new permit path.",
+        "If the goal is financing, transfer, or another existing-system check, use the certification-letter path before you trust the seller's description of the system.",
+        "If work is actually needed, line up the Construction Permit and Site Approval path, site-plan checklist, and any most recent inspection report before you treat a contractor quote as the real scope."
+      ],
+      "recordsToRequest": [
+        "Any certification-letter evaluation or existing-system note tied to the property.",
+        "The most recent inspection report or installation inspection report the county can surface.",
+        "Any DeKalb construction permit, site-approval application, or repair history already attached to the parcel."
+      ],
+      "lowEndBreakers": [
+        "If the property still needs a DeKalb certification-letter evaluation, the low-end buyer or refinance story is still incomplete.",
+        "A missing inspection report or installation history makes it harder to trust both system capacity and condition.",
+        "If the repair lane and the existing-system lane are still blurred together, the cheapest visible quote is probably modeling the wrong job."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is DeKalb County strong for transfer and records intent?",
+          "answer": "Because the county septic page pairs repair and permit rules with a certification-letter path for existing systems, which is exactly the kind of file-backed diligence buyers and owners need."
+        },
+        {
+          "question": "What should a DeKalb buyer or owner ask for first?",
+          "answer": "Start with the certification-letter or most recent inspection-report path when the system already exists, then move into permit and site-approval documents if work is actually needed."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/georgia/",
+        "/septic-permit-process/georgia/",
+        "/buying-a-house-with-a-septic-system/georgia/",
+        "/septic-system-cost-calculator/georgia/"
+      ],
+      "officialSourceIds": [
+        "ga_dekalb_01",
+        "ga_02"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "GA",
+      "countyName": "Fulton County",
+      "countySlug": "fulton-county",
+      "title": "Fulton County Georgia Septic Records Checklist",
+      "metaDescription": "Fulton County septic records checklist with well-and-septic inspection routing, plan-review context, and county file checks before you trust a permit or replacement story.",
+      "introCopy": "Fulton County is a good Georgia county wedge because the Board of Health publishes a dedicated well-and-septic inspection page that spells out onsite sewage permitting, inspection, and plan-review rules. That is much closer to the real county workflow than another broad Georgia cost explainer.",
+      "uniqueAngle": "Fulton County is different because the county makes plan review part of the septic story early. When a county office is already reviewing onsite sewage and drinking-water supply plans, the file path matters before the low-end quote does.",
+      "targetReader": "Best for Fulton County owners, buyers, sellers, and builders who need to know whether the next blocker is county plan review, county septic permitting, or a thinner existing-system file than expected.",
+      "officeLabel": "Fulton County Board of Health",
+      "officeUrl": "https://fultoncountyga.gov/boardofhealth",
+      "recordsLabel": "Open Fulton well and septic inspection",
+      "recordsUrl": "https://fultoncountyga.gov/inside-fulton-county/fulton-county-departments/board-of-health/environmental-health/well-and-septic-inspection",
+      "contactLine": "Fulton County Board of Health | 404-612-4000 | customerservice@fultoncountyga.gov",
+      "decisionSteps": [
+        "Start with the Fulton well-and-septic inspection page so you can tell whether the property is on a normal onsite sewage path or already in a county plan-review conversation.",
+        "If the parcel is outside public sewer service, ask what county permit, inspection, and plan-review materials already exist before you anchor on a contractor story.",
+        "Use the county file and plan-review context to separate a routine onsite sewage job from a wider design or development issue."
+      ],
+      "recordsToRequest": [
+        "Any Fulton County onsite sewage permit or inspection record tied to the parcel.",
+        "Any county plan-review material or lot-review history attached to the onsite sewage system.",
+        "Any note showing whether the property was treated as an onsite sewage management system because public sewer was unavailable."
+      ],
+      "lowEndBreakers": [
+        "If Fulton County plan review is still unresolved, the low-end permit or replacement story is probably too narrow.",
+        "A property outside public sewer service can look simple until the county file reveals a larger onsite sewage review path.",
+        "If the county permit and inspection trail is thin, the first quote may be missing the real scope."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does Fulton County belong in the county wedge?",
+          "answer": "Because the county well-and-septic page ties onsite sewage permitting and inspection to plan review, which makes the county file more important than a generic statewide estimate."
+        },
+        {
+          "question": "What is the first Fulton septic record to ask for?",
+          "answer": "Start with any county onsite sewage permit, inspection note, or plan-review material already tied to the parcel so you know whether the property is still on a simple septic path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/georgia/",
+        "/septic-permit-process/georgia/",
+        "/buying-a-house-with-a-septic-system/georgia/",
+        "/septic-system-cost-calculator/georgia/"
+      ],
+      "officialSourceIds": [
+        "ga_fulton_01",
+        "ga_02"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "GA",
+      "countyName": "Gwinnett County",
+      "countySlug": "gwinnett-county",
+      "title": "Gwinnett County Georgia Septic Records Checklist",
+      "metaDescription": "Gwinnett County septic records checklist with local environmental-health routing, existing-system certification context, and permit-path checks before you trust a quote or transfer story.",
+      "introCopy": "Gwinnett County is a strong Georgia county wedge because the local environmental-health office spells out site evaluation, permitting and inspection of construction, certification of existing systems, and septic complaint investigation. That is the kind of county-specific workflow users actually need before pricing anything.",
+      "uniqueAngle": "Gwinnett County is useful because the office location page is explicit about existing-system certification, while the county homeowner septic page adds complaint, development, and permit-prep context plus the Level 3 soil-report rule for septic permits. Together they make the county file and permit lane much clearer than a state summary alone.",
+      "targetReader": "Best for Gwinnett County buyers, owners, sellers, and agents who need to know whether the next move is existing-system certification, local environmental-health review, or a wider permit and soil-report conversation.",
+      "officeLabel": "Gwinnett Environmental Health Department",
+      "officeUrl": "https://old.gnrhealth.com/locations/gwinnett/environmental-health-dept/",
+      "recordsLabel": "Open Gwinnett septic homeowner guidance",
+      "recordsUrl": "https://old.gnrhealth.com/services/environmental-health-index/septic-systems-homeownerslandlords/",
+      "contactLine": "Gwinnett Environmental | 770-963-5132",
+      "decisionSteps": [
+        "Open the Gwinnett Environmental Health Department page first so you can confirm whether the county issue is existing-system certification, site evaluation, complaint investigation, or construction permitting.",
+        "Use the county homeowner septic page next because it explains how environmental health treats septic-related development, failing-system complaints, and permit-prep expectations like the Level 3 soil report.",
+        "Pull any existing-system certification note, site-evaluation record, or permit history before you trust a transfer or repair quote."
+      ],
+      "recordsToRequest": [
+        "Any Gwinnett certification of an existing system tied to the parcel.",
+        "Any site-evaluation, permit, or construction-inspection history the county can surface.",
+        "Any county note showing whether the property has an active complaint, failing-system issue, or permit-prep requirement that changes the next step."
+      ],
+      "lowEndBreakers": [
+        "If the county still needs to certify the existing system, the low-end transfer story is still too optimistic.",
+        "A missing site-evaluation or permit trail makes it harder to trust the current system story, especially when a Level 3 soil report may still be required.",
+        "If the parcel already carries a complaint or failing-system history, the cheapest visible repair number can widen quickly."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why is Gwinnett County strong for records and transfer intent?",
+          "answer": "Because Gwinnett's local office explicitly handles certification of existing systems while the county septic guidance also explains site evaluation, permits, and complaint investigations."
+        },
+        {
+          "question": "What should a Gwinnett owner or buyer ask for first?",
+          "answer": "Start with any existing-system certification, site-evaluation record, or permit history the county already has before you price repairs or negotiate credits."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/georgia/",
+        "/septic-permit-process/georgia/",
+        "/buying-a-house-with-a-septic-system/georgia/",
+        "/septic-system-cost-calculator/georgia/"
+      ],
+      "officialSourceIds": [
+        "ga_gwinnett_01",
+        "ga_gwinnett_02"
+      ],
+      "publishStatus": "published"
+    }
+  ]
+}

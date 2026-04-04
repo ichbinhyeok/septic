@@ -126,6 +126,17 @@ public class EstimatorService {
                 heuristicAdjustments.add("Replacement jobs add +12% because demolition, field surprises, and restoration can widen the planning range.");
             }
         }
+        if (projectType == ProjectType.BUYING_HOME) {
+            drivers.add("Transfer risk depends on permit-file quality, bedroom-count match, and whether the inspection story survives the closing timeline.");
+            checklist.add("Pull the permit, as-built, pumping, and inspection records before you trust the seller's septic story.");
+        }
+        if (projectType == ProjectType.INSPECTION) {
+            drivers.add("Inspection scope depends on the permit file, as-built evidence, and whether the system is conventional, advanced, or already showing failure signals.");
+            checklist.add("Pull the permit file, as-built sketch, pumping history, and any O&M records before you price the inspection as a simple line item.");
+        }
+        if (projectType == ProjectType.NEW_INSTALL) {
+            drivers.add("Permit routing and site-evaluation steps often decide timing before installer price is truly comparable.");
+        }
 
         if ("OR".equals(state.stateCode())) {
             rangePadding += 250;
@@ -479,7 +490,7 @@ public class EstimatorService {
 
     private String defaultDriverFor(int index) {
         return switch (index) {
-            case 0 -> "Permit, site-evaluation, and inspection fees can vary by county.";
+            case 0 -> "County file quality, permit routing, and site-evaluation steps can vary enough to change the quote.";
             case 1 -> "Excavation access and restoration work can move the final quote up or down.";
             default -> "The final system type often matters more than the tank alone.";
         };

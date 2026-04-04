@@ -36,6 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 jte-classes/
+.playwright-cli/
+output/
 storage/leads/**
 storage/events/**/*.ndjson
 storage/exports/**

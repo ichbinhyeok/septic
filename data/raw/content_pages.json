@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-03-11",
+  "generatedAt": "2026-04-04",
   "pages": [
     {
       "slug": "septic-system-cost-calculator",
@@ -12,37 +12,37 @@
         "septic replacement estimate"
       ],
       "title": "Septic System Cost Calculator",
-      "metaDescription": "Estimate likely septic cost range, tank size, and system class before you call local pros.",
-      "introCopy": "Use the main calculator to turn rough household and site inputs into a planning range. The output is designed to be useful before you have perfect site data.",
+      "metaDescription": "Estimate likely septic cost range, tank size, and system class after you clarify the permit path, records gap, or buyer workflow.",
+      "introCopy": "Use the main calculator after you know the likely workflow lane, or when the file is still too thin to trust the low end and you need one cautious planning range before the next county, records, or inspection step.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "",
-      "targetReader": "Best for homeowners, buyers, and agents who need one planning range first but still do not know whether replacement risk, inspection timing, permit steps, or site uncertainty is the real problem.",
+      "targetReader": "Best for homeowners, buyers, and agents who already know the likely permit, records, inspection, or transfer lane and now need one planning range that sharpens the next decision instead of replacing it.",
       "fitBullets": [
-        "You need a conservative first range before you call local installers or county offices.",
-        "The project type is roughly clear, but the site, records, or permit path are still incomplete.",
-        "You want one estimate that makes the next inspection, records request, or quote conversation more specific."
+        "You already know the likely lane, but still need one planning range before you call local installers or county offices.",
+        "The project type is roughly clear, but the file, inspection, or permit path is still incomplete enough that the low end could be fake.",
+        "You want one estimate that makes the next records request, state workflow page, or quote conversation more specific."
       ],
       "decisionSteps": [
-        "Start with the closest project type and state you can identify instead of waiting for perfect site data.",
-        "Use the result to see which driver is doing the most work: system type, perc uncertainty, access, or replacement risk.",
-        "Carry the estimate into the state guide or high-intent page that matches the actual bottleneck behind the project.",
+        "Start with the closest state and project type you can identify after you check the file, permit path, or buyer workflow question first.",
+        "Use the result to see which driver is doing the most work: system type, records gap, site uncertainty, access, or replacement risk.",
+        "Carry the estimate into the state guide or workflow page that matches the actual bottleneck behind the project.",
         "Then compare local quotes only after the estimate and the next page together make the range feel directionally honest."
       ],
       "lowEndBreakers": [
+        "Missing permit, as-built, or inspection records can keep the low end from being trustworthy even when the form looks simple.",
         "Unknown soil, perc, or water-table conditions can widen the estimate faster than tank size alone.",
-        "Replacement, field failure, or limited access can make a neat statewide average useless.",
-        "Missing records or an unclear permit path can keep the low end from being trustworthy even when the form looks simple."
+        "Replacement, field failure, limited access, or transfer timing can make a neat statewide average useless."
       ],
       "quotePrepChecklist": [
-        "The state and the closest project type, even if some site details are still unknown.",
+        "The state and the closest project type, after you identify whether records, permits, inspection, or transfer timing is the real blocker.",
         "Bedroom count, occupant estimate, and any garbage-disposal or ADU signal.",
-        "Any records, inspection findings, or seller notes already tied to the property.",
-        "The main uncertainty you still need the next page or local pro to settle."
+        "Any permit records, as-builts, inspection findings, pumping history, or seller notes already tied to the property.",
+        "The main uncertainty you still need the next page, county office, or local pro to settle."
       ],
       "driverBullets": [
+        "Permit path, file quality, and transfer timing can change how trustworthy the estimate really is.",
         "System type can move the quote more than the tank alone.",
-        "Perc results, drainage, and water table risk widen the estimate fast.",
-        "Replacement work usually carries more excavation and restoration uncertainty."
+        "Perc results, drainage, water table risk, and replacement scope widen the estimate fast."
       ],
       "faqBlocks": [
         {
@@ -50,14 +50,15 @@
           "answer": "No. It is a homeowner planning estimate meant to narrow the likely range before local review."
         },
         {
-          "question": "Why is the result a range instead of one number?",
-          "answer": "Final pricing depends on system type, site evaluation, access, permitting, and local installation conditions."
+          "question": "When should I use the calculator instead of the records or permit pages?",
+          "answer": "Use the calculator after you know the likely workflow lane, or when the file is still too thin to trust the low end and you need one cautious planning range before the next move."
         }
       ],
       "internalLinkTargets": [
-        "/septic-replacement-cost/",
-        "/septic-tank-size/",
-        "/perc-test-cost/",
+        "/septic-records-checklist/",
+        "/septic-transfer-compliance/",
+        "/septic-permit-process/",
+        "/buying-a-house-with-a-septic-system/",
         "/septic-inspection-cost/"
       ],
       "publishStatus": "published"
@@ -883,6 +884,76 @@
         "/septic-permit-process/",
         "/septic-replacement-cost/",
         "/perc-test-cost/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-transfer-compliance",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic transfer compliance",
+      "secondaryKeywords": [
+        "septic transfer checklist",
+        "septic buyer seller workflow",
+        "septic records permit transfer"
+      ],
+      "title": "Septic Transfer Compliance",
+      "metaDescription": "Use this septic transfer compliance guide to line up records, permit history, buyer inspection steps, and county workflow before closing or trusting a low-end quote.",
+      "introCopy": "Most septic transfer problems are not pricing problems first. They are records, permit, inspection, and county-routing problems that stay hidden until the deal is moving. This page is the shortest path to the actual transfer workflow behind the estimate.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, sellers, and agents who need one transfer-focused workflow before closing risk, missing files, or permit uncertainty get collapsed into a fake repair number.",
+      "deepDiveParagraphs": [
+        "Transfer compliance is where septic product positioning gets real. Buyers and sellers do not usually start with the estimator because the urgent question is whether the file exists, which office owns the record, and whether the current house story still matches what was permitted.",
+        "Use this page to separate three different problems that often get mixed together: missing records, permit-path uncertainty, and buyer-diligence timing. If those are still blurred together, the estimate is only a planning placeholder.",
+        "A strong transfer workflow tells you which county or district office to call, which documents matter enough to change the closing story, and whether inspection timing or bedroom-use mismatch is the bigger risk. That is much closer to what real users are trying to solve than one national average number.",
+        "The practical goal is not to prove perfect compliance from one national page. The goal is to move the user into the right state and county lane fast enough that the next action changes: file pull, permit check, inspection order, credit negotiation, or a wider replacement conversation."
+      ],
+      "fitBullets": [
+        "The deal is moving, but no one has shown the actual permit file, as-built, or maintenance trail yet.",
+        "The buyer, seller, or agent needs to know whether the main risk is records, permit routing, inspection timing, or a use mismatch.",
+        "You want one workflow that routes into the right state page before you trust a repair number or promise a clean closing."
+      ],
+      "decisionSteps": [
+        "Start with the state-specific transfer workflow page that looks closest to the property, because transfer friction is mostly local authority, local file, and local timing friction.",
+        "Decide whether the next blocker is really missing records, permit-path uncertainty, or a buyer inspection question instead of calling all three issues one vague septic risk.",
+        "If the property is already in Indiana or another county-heavy state, move down into the county records page before you rely on the state summary alone.",
+        "Use the calculator only after the transfer lane is clearer, so the estimate reflects whether the file is thin, the closing is rushed, or the system story no longer matches the property."
+      ],
+      "lowEndBreakers": [
+        "A thin permit or as-built file can turn an ordinary-looking transfer into a much wider diligence problem fast.",
+        "If the county or local authority path is still unclear, a low-end estimate is usually modeling the wrong workflow.",
+        "Bedroom-count drift, missing pumping history, or late inspection timing can change negotiation leverage more than the visible repair number."
+      ],
+      "quotePrepChecklist": [
+        "The property address, county, and the office most likely holding the septic file.",
+        "Any permit copy, as-built, pumping history, inspection report, or seller disclosure already on hand.",
+        "The target closing date and whether the issue is buyer diligence, seller cleanup, or contractor quoting.",
+        "The single biggest unknown still blocking the next move: records gap, permit path, inspection timing, or replacement risk."
+      ],
+      "driverBullets": [
+        "Transfer compliance is usually a records and local-authority problem before it is a contractor-pricing problem.",
+        "Permit-path clarity changes both the timeline and how much of the low-end quote is believable.",
+        "Buyer diligence, inspection timing, and bedroom-use mismatch can reshape negotiation risk even if the system still appears functional."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What does septic transfer compliance usually mean in practice?",
+          "answer": "Usually it means lining up the permit file, as-built, pumping or maintenance history, inspection timing, and the local office path before closing instead of treating septic as one generic repair question."
+        },
+        {
+          "question": "Should a buyer or seller use this page before the estimator?",
+          "answer": "Yes. Use this page first when the real question is records, permit routing, or inspection timing. Use the estimator after the transfer lane is clearer and you need a planning range for the downside."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/",
+        "/septic-permit-process/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/indiana/",
+        "/septic-records-checklist/indiana/floyd-county/",
+        "/septic-records-checklist/alabama/madison-county/",
+        "/septic-records-checklist/georgia/dekalb-county/",
+        "/septic-system-cost-calculator/"
       ],
       "publishStatus": "published"
     }

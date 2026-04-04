@@ -3,13 +3,13 @@ package com.example.septic.service;
 import java.util.Arrays;
 
 public enum ProjectType {
-    NEW_INSTALL("new_install", "New install"),
-    REPLACEMENT("replacement", "Replace existing"),
-    DRAINFIELD_REPLACEMENT("drainfield_replacement", "Drain field replacement"),
-    PERC_TEST("perc_test", "Perc test"),
-    PUMPING("pumping", "Pumping"),
-    INSPECTION("inspection", "Inspection"),
-    BUYING_HOME("buying_home", "Buying a home");
+    NEW_INSTALL("new_install", "New install / permit path"),
+    REPLACEMENT("replacement", "Full replacement"),
+    DRAINFIELD_REPLACEMENT("drainfield_replacement", "Drain field / leach field"),
+    PERC_TEST("perc_test", "Perc / site test"),
+    PUMPING("pumping", "Pumping / maintenance"),
+    INSPECTION("inspection", "Inspection / records review"),
+    BUYING_HOME("buying_home", "Buying / transfer diligence");
 
     private final String value;
     private final String label;

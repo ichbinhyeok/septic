@@ -17,6 +17,8 @@
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -94,6 +96,9 @@
                 <span class="section-jump-strip__label">Jump between sections</span>
                 <a href="#workflow">Workflow</a>
                 <a href="#risk">Risk checks</a>
+                @if (!countyRecordLinks.isEmpty())
+                    <a href="#county-pages">County pages</a>
+                @endif
                 <a href="#sources">Sources</a>
                 <a href="#faq">FAQ</a>
             </div>
@@ -305,6 +310,28 @@
             @endif
         </div>
     </section>
+
+    @if (!countyRecordLinks.isEmpty())
+        <section class="section section--tight" id="county-pages">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County Wedge</span>
+                    <h2>County record pages behind this state workflow</h2>
+                    <p class="lede">Use these when the state page is still too broad and the real blocker is a specific county file, location request, or local records form.</p>
+                </div>
+
+                <div class="detail-grid">
+                    @for (var link : featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks)
+                        <article class="detail-card">
+                            <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
+                            <p>${link.note()}</p>
+                            <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_county_page_cta" data-track-target-type="county_page">Open county page</a>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="section" id="sources">
         <div class="container detail-grid">

@@ -29,14 +29,22 @@
     <section class="section section--heroish">
         <div class="container content-grid">
             <div class="section-heading">
-                <span class="eyebrow">Main calculator</span>
-                <h1>Get the core septic range first, then tighten it only when the extra details matter.</h1>
-                <p class="lede">Start with state, job type, and bedroom count. Add site and access details only when you know them.</p>
+                <span class="eyebrow">Planning range</span>
+                <h1>Use the estimate after the workflow is clearer, or when the file is still too thin to trust the low end.</h1>
+                <p class="lede">Start with state and job type, but keep the permit path, record gaps, and buyer timing in view. The estimate is strongest when it sharpens the next file, county, or inspection decision.</p>
+                @if (!calculatorLandingLinks.isEmpty())
+                    <div class="quick-link-strip" aria-label="Workflow shortcuts">
+                        <span class="quick-link-strip__label">Start with workflow instead</span>
+                        @for (var link : calculatorLandingLinks.stream().limit(4).toList())
+                            <a class="button button--secondary quick-link-strip__button" href="${link.path()}">${link.title()}</a>
+                        @endfor
+                    </div>
+                @endif
             </div>
 
             <article class="detail-card calculator-intro-card">
                 <h2>Best use case</h2>
-                <p>Use this when you need one practical planning range before you decide whether the real blocker is replacement risk, permit path, inspection timing, or missing records.</p>
+                <p>Use this when you need one practical planning range after you identify the likely lane, or when records, permits, and inspection evidence are still incomplete and you need a cautious number before the next move.</p>
             </article>
         </div>
     </section>
@@ -306,7 +314,7 @@
         <section class="section section--tight">
             <div class="container detail-grid">
                 <article class="detail-card">
-                    <h2>Who should use this first</h2>
+                    <h2>When this estimate is the right next step</h2>
                     <p>${calculatorLanding.targetReader()}</p>
                     <ul class="detail-list">
                         @for (var bullet : calculatorLanding.fitBullets())
@@ -330,7 +338,7 @@
             <div class="container content-grid">
                 <article class="trust-box trust-box--large">
                     <span class="trust-box__label">Next best pages</span>
-                    <h2>After the estimate, move into the page that matches the real bottleneck.</h2>
+                    <h2>Use the page that matches the real bottleneck before or after the estimate.</h2>
                     <ul class="detail-list">
                         @for (var link : calculatorLandingLinks)
                             <li>

@@ -53,7 +53,7 @@
         </div>
     </article>
 
-    @if ("Drain field replacement".equals(result.projectTypeLabel()))
+    @if (result.projectTypeLabel() != null && result.projectTypeLabel().startsWith("Drain field"))
         <article class="trust-box">
             <span class="trust-box__label">Field-specific next move</span>
             <p>If the field is clearly the main issue, use the dedicated drain field estimator to pressure-test redesign risk, replacement-area limits, and field-only versus whole-system scope.</p>

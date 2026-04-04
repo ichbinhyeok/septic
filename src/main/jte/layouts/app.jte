@@ -55,7 +55,7 @@
                     <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
-                        <span>septic planning estimates with official-source context</span>
+                        <span>septic transfer, records, permit paths, and planning ranges by state</span>
                     </span>
                 </a>
 
@@ -74,9 +74,10 @@
                 </button>
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
+                    <a href="/septic-records-checklist/">Records checklist</a>
+                    <a href="/septic-transfer-compliance/">Transfer compliance</a>
+                    <a href="/states/">State guides</a>
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
-                    <a href="/septic-tank-size-estimator/">Tank size</a>
-                    <a href="/states/">All states</a>
                     <a href="/about/">About</a>
                 </nav>
             </div>
@@ -112,25 +113,26 @@
                         <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                         <span class="brand__text">
                             <strong>SepticPath</strong>
-                            <span>Estimate-first guidance with official-source context.</span>
+                            <span>Records-first guidance with official-source context.</span>
                         </span>
                     </a>
-                    <p class="footer-copy">This site is a homeowner planning tool. It does not provide engineering design, permit approval, or legal compliance certification.</p>
+                    <p class="footer-copy">This site is a homeowner workflow and planning tool. It helps with records, permit path, buyer diligence, and cost framing, but it does not provide engineering design, permit approval, or legal compliance certification.</p>
                 </section>
 
                 <nav class="footer-block" aria-label="Core pages">
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
+                        <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
+                        <li><a href="/septic-records-checklist/">Records checklist</a></li>
+                        <li><a href="/septic-permit-process/">Permit process</a></li>
+                        <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
+                        <li><a href="/states/">State guides</a></li>
                         <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
                         <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
                         <li><a href="/drain-field-estimator/">Drain field estimator</a></li>
-                        <li><a href="/states/">All state coverage</a></li>
                         <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
                         <li><a href="/septic-inspection-cost/">Inspection cost</a></li>
-                        <li><a href="/septic-permit-process/">Permit process</a></li>
-                        <li><a href="/septic-records-checklist/">Records checklist</a></li>
-                        <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                     </ul>
                 </nav>
 

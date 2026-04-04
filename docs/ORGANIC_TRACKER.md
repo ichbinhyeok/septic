@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-01
+Last updated: 2026-04-04
 
 ## Why this file exists
 
@@ -499,6 +499,130 @@ Copy this block for the next review:
   few long-tail terms.
 - Interpretation: it is not the best immediate CTR lever this week.
 
+## 2026-04-04
+
+### Data
+
+- Source:
+  - Google Search Console MCP for `sc-domain:septicpath.com`
+  - live product-surface review of home, nav, calculator, and national workflow pages
+  - targeted external web review of current official-source records and permit surfaces
+- Window:
+  - site summary: `2026-03-04` to `2026-04-01`
+  - short comparison: `2026-03-27` to `2026-04-02` vs `2026-03-20` to `2026-03-26`
+- Fresh-data note:
+  - the `2026-04-02` edge can still move slightly, so the stronger read remains on `2026-04-01` and earlier
+- Site summary:
+  - clicks: `22`
+  - impressions: `3,571`
+  - CTR: `0.616%`
+  - average position: `10.56`
+- Short comparison:
+  - clicks: `10` vs `9`, up `11.1%`
+  - impressions: `1,094` vs `1,223`, down `10.5%`
+  - CTR: `0.914%` vs `0.736%`, up `24.2%`
+  - average position: `9.94` vs `10.50`, improved by `0.56`
+- Page-family movement:
+  - state guides: `8 clicks / 1,673 impressions / position 9.96`
+  - records pages: `7 clicks / 418 impressions / position 7.40`
+  - permit pages: `3 clicks / 349 impressions / position 7.75`
+  - buyer pages: `1 click / 212 impressions / position 7.12`
+  - `perc-test-cost`: `0 clicks / 622 impressions / position 10.50`
+  - `septic-replacement-cost`: `0 clicks / 122 impressions / position 5.76`
+  - `drain-field-replacement-cost`: `0 clicks / 113 impressions / position 47.93`
+- Priority URL movement:
+  - `/septic-records-checklist/indiana/`: `6 clicks / 210 impressions / position 6.22`
+  - `/septic-system-cost-calculator/alabama/`: `6 clicks / 587 impressions / position 7.62`
+  - `/septic-system-cost-calculator/georgia/`: `2 clicks / 395 impressions / position 7.78`
+  - `/buying-a-house-with-a-septic-system/new-york/`: first click with buyer-intent proof
+  - `/septic-permit-process/nebraska/`, `/rhode-island/`, `/south-carolina/`: continued click proof for permit workflow pages
+- External official-source note:
+  - current public-government surfaces continue to reinforce the same wedge shape: permit search, septic-record lookup, county or district routing, and transfer or inspection workflow
+
+### Changes Shipped
+
+- Commit status:
+  - not committed yet in this tracker entry
+- Files:
+  - `src/main/jte/layouts/app.jte`
+  - `src/main/jte/pages/home.jte`
+  - `src/main/jte/pages/state-coverage.jte`
+  - `src/main/jte/pages/calculator.jte`
+  - `src/main/jte/pages/content-page.jte`
+  - `src/main/jte/pages/state-guide.jte`
+  - `src/main/jte/pages/state-money-page.jte`
+  - `src/main/jte/pages/county-records-page.jte`
+  - `src/main/java/com/example/septic/service/SeoService.java`
+  - `src/main/java/com/example/septic/service/SitemapService.java`
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/main/java/com/example/septic/service/ResearchDataService.java`
+  - `src/main/java/com/example/septic/service/ProjectType.java`
+  - `src/main/java/com/example/septic/service/EstimatorService.java`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+  - `data/raw/content_pages.json`
+  - `data/raw/state_profiles.json`
+  - `data/raw/source_registry.csv`
+  - `data/raw/county_records_pages.json`
+- What changed:
+  - repositioned the product surface from estimator-first toward records, permit, and buyer-workflow-first entry points
+  - moved home and navigation emphasis toward records checklist, permit process, and state guides
+  - changed national workflow and buyer pages so the first action points to state-specific workflow pages, with the estimator moved into the secondary slot
+  - updated calculator copy and calculator-hub internal links so the estimator behaves more like step two in the workflow instead of the site-wide front door
+  - adjusted estimator project-type labels and workflow-specific checklist language for buyer and inspection scenarios so the result pages better match the actual organic wedge
+  - restructured the state-guide template so state guides now lead with the highest-intent workflow page, then the county office and records path, then permit and buyer-risk context, with the estimator demoted to the later planning step
+  - tightened the Alabama, Georgia, Arizona, Virginia, and Missouri state-guide copy around county file retrieval, permit steps, transfer or buyer risk, and local authority routing
+  - added Georgia county environmental health office sources so the Georgia guide can point to an actual county-office list instead of only a broad onsite-program page
+  - launched Indiana county records pages for Howard, Floyd, Noble, and Wayne counties, each tied to real county office or records-request surfaces rather than generic statewide copy
+  - added a dedicated county-records template, route, sitemap support, and SEO/breadcrumb handling for `/septic-records-checklist/{state}/{county}/`
+  - surfaced county-page cards on the Indiana state guide and Indiana records workflow page so the state-level winner now routes directly into the county-file step
+  - added current Indiana county official sources and records-form links so the new pages can point to actual local forms, office pages, and request paths
+  - launched a national `septic-transfer-compliance` hub so the product now has one clear umbrella page for records, permit routing, buyer diligence, and county-file friction
+  - changed home and global navigation so transfer compliance is now a primary surface, while permit process remains inside the flow instead of competing with the umbrella concept
+  - changed the transfer-compliance page to rank and surface live state pages across records, permit, and buyer families instead of pretending transfer is a standalone empty family
+
+### Insights
+
+- Observation: the records and permit cluster is now producing a meaningful share of the real clicks, not just impressions.
+- Interpretation: SepticPath should be presented more like a septic transfer, records, and permit-workflow product with a cost estimator inside it, not like an estimator product with workflow support pages around it.
+- Observation: Alabama and Georgia are still strong, but their winning query shape is permit cost, permit records, and county-file language rather than pure estimator intent.
+- Interpretation: the state-guide surface should keep leaning into workflow and file context instead of generic cost-guide framing.
+- Observation: top state guides with the best impression volume are still Alabama, Georgia, Virginia, Arizona, and Missouri, but only Alabama and Georgia are turning that into clicks right now.
+- Interpretation: the broad guide pages need to behave more like workflow routers in those states, not like generic estimate landing pages.
+- Observation: buyer pages now have early click proof, while `perc-test-cost` and broad cost pages still lag on clicks.
+- Interpretation: buyer, records, and permit pages deserve the front-door position before another round of generic money-page expansion.
+- Observation: current official-source surfaces on the public web keep resolving to county, district, or delegated local file paths.
+- Interpretation: county-aware workflow remains the stronger wedge than a purely statewide estimator promise.
+- Observation: Indiana records already had the clearest state-level click proof, and Indiana counties also expose usable public record or request surfaces.
+- Interpretation: Indiana was the right first state for a county wedge because it compounds an already-winning records family instead of starting a new family from zero.
+- Observation: Georgia's environmental-health contact page explicitly routes record requests and other locally related questions to county environmental health offices, and Alabama's ADPH septic-tank page explicitly sends owners or agents to the local health department or the records-request path for permit copies.
+- Interpretation: `transfer compliance` is not just copy polish; it matches the actual official-source shape where transfer risk resolves through county office routing, permit-file access, and buyer-side diligence rather than through a standalone estimator promise.
+
+### Next Actions
+
+- Verify production after deploy to make sure:
+  - home and nav now lead with workflow pages
+  - national workflow pages lead with state-specific workflow pages
+  - calculator still remains easy to reach as a secondary step
+  - the top state guides now lead with workflow pages and show county office, records, and permit-risk sections before estimate CTAs
+- Watch whether:
+  - records, permit, and buyer pages pick up higher CTR once they become primary site entry points
+  - state-guide clicks hold or improve even after estimator prominence is reduced on the broad site surface
+  - estimator conversions from workflow pages remain attributable through `sourcePageHint`
+- Decide the next deeper build:
+  - verify whether Indiana county pages begin appearing in impressions and internal-link traffic before expanding the county wedge further
+  - if early engagement is real, add county-level wedges in the next records- or transfer-proof states
+  - if the new transfer-compliance hub starts attracting internal clicks, decide whether it deserves its own state family or should remain an umbrella page that routes into records, permit, and buyer winners
+
+### Next Check
+
+- Date: `2026-04-11`
+- What to verify:
+  - whether workflow-first navigation changes shift clicks toward records, permit, and buyer pages
+  - whether calculator-assisted leads still flow after the estimator is demoted to step two on national workflow pages
+  - whether Alabama, Georgia, and Indiana keep strengthening on permit-record and county-file query shapes
+  - whether the new Indiana county pages start collecting impressions or assist clicks from the state-guide and records-page surfaces
+  - whether the new transfer-compliance hub earns internal clicks and starts behaving like the right umbrella page for buyer, records, and permit intent
+
 ### Next Actions
 
 - Deploy the CTR-oriented copy changes.
@@ -610,3 +734,147 @@ Copy this block for the next review:
     drain-field links from their workflow pages
   - whether the next drain-field expansion should keep following proven states
     or shift to a larger batch
+
+## 2026-04-04 (County Wedge Expansion in Alabama and Georgia)
+
+### Data
+
+- Source: official-source review plus current county-page architecture follow-up
+- Window: same-day execution follow-up on 2026-04-04
+- Fresh-data note: this is a structural expansion entry, not a new Google
+  Search Console pull
+- Site summary:
+  - county pages were previously Indiana-only in practice
+  - Alabama and Georgia already had proven state-level permit and records
+    traction, so they were the highest-value next county wedge
+- Coverage summary:
+  - Indiana county pages live: 4
+  - Alabama county pages added today: 2
+  - Georgia county pages added today: 3
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `data/raw/county_records_pages.json`
+  - `data/raw/source_registry.csv`
+  - `data/raw/content_pages.json`
+  - `src/main/jte/pages/county-records-page.jte`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - removed Indiana-only copy from the reusable county-records template so
+    county pages can scale cleanly across states
+  - added Alabama county pages for:
+    - Baldwin County
+    - Madison County
+  - added Georgia county pages for:
+    - DeKalb County
+    - Fulton County
+    - Gwinnett County
+  - added official local-source rows for those counties using county public
+    health or environmental-health pages
+  - surfaced Alabama and Georgia county examples inside the transfer-compliance
+    hub so the new wedge is not trapped only behind state pages
+  - expanded sitemap and render coverage with county-page assertions
+  - reran `./gradlew.bat test` after the county expansion and the suite passed
+
+### Insights
+
+- Observation: Alabama and Georgia were already winning on permit and records
+  query shapes at the state-guide level.
+- Interpretation: those states are better next county-wedge targets than
+  starting from colder states with no workflow proof yet.
+- Observation: the reusable county template still hard-coded Indiana copy.
+- Interpretation: leaving that in place would have made the county expansion
+  look thin and product-incoherent the moment Alabama or Georgia pages went
+  live.
+- Observation: Georgia county pages are especially strong where a county page
+  exposes existing-system certification, plan review, or site-evaluation
+  workflow on one screen.
+- Interpretation: transfer-compliance and records surfaces should keep leaning
+  into counties where the office path and the file path are both visible.
+
+### Next Actions
+
+- Deploy the Alabama and Georgia county-page expansion.
+- After deploy, request indexing only for the five new county pages:
+  - `/septic-records-checklist/alabama/baldwin-county/`
+  - `/septic-records-checklist/alabama/madison-county/`
+  - `/septic-records-checklist/georgia/dekalb-county/`
+  - `/septic-records-checklist/georgia/fulton-county/`
+  - `/septic-records-checklist/georgia/gwinnett-county/`
+- Check internal-click flow from:
+  - Georgia state guide
+  - Alabama state records page
+  - national transfer-compliance hub
+
+### Next Check
+
+- Date: 2026-04-11
+- What to verify:
+  - whether the new Alabama and Georgia county pages start collecting
+    impressions or assisted clicks
+  - whether county links on Georgia and Alabama state surfaces earn internal
+    navigation events
+  - whether the next county expansion should stay inside proven states or move
+    to a new state family
+
+## 2026-04-04 (Transfer Compliance Surface Polish)
+
+- Source: same-day follow-up after county wedge expansion plus browser QA
+- Window: 2026-04-04
+- Fresh-data note: this is a structural polish entry, not a new GSC export
+- Site summary:
+  - the county wedge was live, but the national transfer-compliance surface
+    still visually led with Indiana examples
+  - that made the newest Alabama and Georgia county work less visible than it
+    should be
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - reweighted transfer-compliance state ranking so Georgia and Alabama
+    records pages surface ahead of Indiana on the national hub
+  - promoted county records pages inside related-link scoring so county pages
+    can appear before broader state pages when the page intent is transfer or
+    records workflow
+  - updated county-link notes to talk about county file, certification-letter,
+    and local health-office workflow rather than generic state navigation
+  - extended path parsing so county records pages inherit the same state and
+    content-family scoring logic as their parent records family
+  - updated transfer-compliance assertions to require Georgia and Alabama
+    county examples, not just Indiana state examples
+  - reran `./gradlew.bat test` after the ranking polish and the suite passed
+
+### QA Check
+
+- Browser check: verified on `http://127.0.0.1:8081/septic-transfer-compliance/`
+- What changed visually:
+  - fast next steps now start with:
+    - `DeKalb County Georgia Septic Records Checklist`
+    - `Madison County Alabama Septic Records Checklist`
+    - `Floyd County Indiana Septic Records Checklist`
+  - best state-specific example now resolves to `Georgia Septic Records Checklist`
+  - representative state examples now lead with Georgia, then Alabama, then
+    Indiana
+  - county examples now appear before broader state examples in the
+    "When this page stops being enough" surface
+
+### Insight
+
+- Observation: the county wedge became materially stronger once the national
+  hub stopped defaulting to Indiana-first ordering.
+- Interpretation: the product surface is now more consistent with where the
+  newest workflow proof exists, which should improve both perceived relevance
+  and downstream discovery of the new county pages.
+
+### Next Actions
+
+- Deploy the transfer-compliance ranking polish with the rest of the county
+  wedge work.
+- After deploy, watch whether Georgia and Alabama county pages receive more
+  internal navigation from the national transfer-compliance hub.

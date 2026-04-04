@@ -3,6 +3,8 @@ package com.example.septic.service;
 import com.example.septic.config.AppDataProperties;
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.ContentPagesDocument;
+import com.example.septic.data.model.CountyRecordsPage;
+import com.example.septic.data.model.CountyRecordsPagesDocument;
 import com.example.septic.data.model.CostEvidence;
 import com.example.septic.data.model.CostEvidenceDocument;
 import com.example.septic.data.model.CostProfilesDocument;
@@ -48,11 +50,13 @@ public class ResearchDataService {
     private Map<String, StateCostProfile> costProfilesByStateCode = Map.of();
     private Map<String, ContentPage> contentPagesBySlug = Map.of();
     private Map<String, StateMoneyPage> stateMoneyPagesByKey = Map.of();
+    private Map<String, CountyRecordsPage> countyRecordsPagesByKey = Map.of();
     private Map<String, List<StateRuleFact>> stateRuleFactsByStateCode = Map.of();
     private List<CostEvidence> costEvidence = List.of();
     private String stateProfilesGeneratedAt = "";
     private String contentPagesGeneratedAt = "";
     private String stateMoneyPagesGeneratedAt = "";
+    private String countyRecordsPagesGeneratedAt = "";
     private String stateRuleFactsGeneratedAt = "";
     private String costEvidenceGeneratedAt = "";
 
@@ -86,6 +90,10 @@ public class ResearchDataService {
                     root.resolve("state_money_pages.json").toFile(),
                     StateMoneyPagesDocument.class
             );
+            CountyRecordsPagesDocument countyRecordsPagesDocument = objectMapper.readValue(
+                    root.resolve("county_records_pages.json").toFile(),
+                    CountyRecordsPagesDocument.class
+            );
             StateRuleFactsDocument stateRuleFactsDocument = objectMapper.readValue(
                     root.resolve("state_rule_facts.json").toFile(),
                     StateRuleFactsDocument.class
@@ -107,6 +115,7 @@ public class ResearchDataService {
             this.stateProfilesGeneratedAt = stateDocument.generatedAt();
             this.contentPagesGeneratedAt = contentPagesDocument.generatedAt();
             this.stateMoneyPagesGeneratedAt = stateMoneyPagesDocument.generatedAt();
+            this.countyRecordsPagesGeneratedAt = countyRecordsPagesDocument.generatedAt();
             this.stateRuleFactsGeneratedAt = stateRuleFactsDocument.generatedAt();
             this.costEvidenceGeneratedAt = costEvidenceDocument.generatedAt();
             this.statesByCode = this.stateProfiles.stream()
@@ -121,6 +130,8 @@ public class ResearchDataService {
                     .collect(Collectors.toMap(ContentPage::slug, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.stateMoneyPagesByKey = stateMoneyPagesDocument.pages().stream()
                     .collect(Collectors.toMap(StateMoneyPage::key, Function.identity(), (left, right) -> left, LinkedHashMap::new));
+            this.countyRecordsPagesByKey = countyRecordsPagesDocument.pages().stream()
+                    .collect(Collectors.toMap(CountyRecordsPage::key, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.costEvidence = costEvidenceDocument.evidence().stream()
                     .filter(CostEvidence::isPublished)
                     .toList();
@@ -166,6 +177,21 @@ public class ResearchDataService {
     public List<StateMoneyPage> getPublicStateMoneyPages() {
         return getStateMoneyPages().stream()
                 .filter(StateMoneyPage::isPublished)
+                .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false))
+                .toList();
+    }
+
+    public List<CountyRecordsPage> getCountyRecordsPages() {
+        return countyRecordsPagesByKey.values().stream()
+                .sorted(Comparator
+                        .comparing(CountyRecordsPage::stateCode)
+                        .thenComparing(CountyRecordsPage::countyName))
+                .toList();
+    }
+
+    public List<CountyRecordsPage> getPublicCountyRecordsPages() {
+        return getCountyRecordsPages().stream()
+                .filter(CountyRecordsPage::isPublished)
                 .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false))
                 .toList();
     }
@@ -231,6 +257,20 @@ public class ResearchDataService {
                 .filter(StateMoneyPage::isPublished);
     }
 
+    public Optional<CountyRecordsPage> findCountyRecordsPage(String stateSlug, String countySlug) {
+        Optional<StateProfile> state = findStateBySlug(stateSlug);
+        if (state.isEmpty() || countySlug == null || countySlug.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(countyRecordsPagesByKey.get(state.get().stateCode() + "::" + countySlug.toLowerCase(Locale.US)));
+    }
+
+    public Optional<CountyRecordsPage> findPublicCountyRecordsPage(String stateSlug, String countySlug) {
+        return findCountyRecordsPage(stateSlug, countySlug)
+                .filter(CountyRecordsPage::isPublished)
+                .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false));
+    }
+
     public boolean hasStateMoneyPage(String contentSlug, String stateCode) {
         return stateMoneyPagesByKey.containsKey(contentSlug + "::" + stateCode);
     }
@@ -248,6 +288,22 @@ public class ResearchDataService {
         }
         return listStateMoneyPages(stateCode).stream()
                 .filter(StateMoneyPage::isPublished)
+                .toList();
+    }
+
+    public List<CountyRecordsPage> listCountyRecordsPages(String stateCode) {
+        return countyRecordsPagesByKey.values().stream()
+                .filter(page -> page.stateCode().equalsIgnoreCase(stateCode))
+                .sorted(Comparator.comparing(CountyRecordsPage::countyName))
+                .toList();
+    }
+
+    public List<CountyRecordsPage> listPublicCountyRecordsPages(String stateCode) {
+        if (findStateByCode(stateCode).filter(StateProfile::isPublished).isEmpty()) {
+            return List.of();
+        }
+        return listCountyRecordsPages(stateCode).stream()
+                .filter(CountyRecordsPage::isPublished)
                 .toList();
     }
 
@@ -310,6 +366,10 @@ public class ResearchDataService {
 
     public String stateMoneyPagesGeneratedAt() {
         return stateMoneyPagesGeneratedAt;
+    }
+
+    public String countyRecordsPagesGeneratedAt() {
+        return countyRecordsPagesGeneratedAt;
     }
 
     public String stateRuleFactsGeneratedAt() {

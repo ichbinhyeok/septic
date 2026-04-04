@@ -17,14 +17,14 @@
                 <span class="eyebrow">State coverage</span>
                 @if (queuedStateCount > 0)
                     <h1>50-state coverage is expanding in waves, not with thin copy swaps.</h1>
-                    <p class="lede">The goal is to match broad state coverage quickly while keeping the live guides tied to official sources, local office context, and real homeowner workflow differences.</p>
+                    <p class="lede">The goal is to match broad state coverage quickly while keeping the live guides tied to official sources, local office context, county file paths, and real homeowner workflow differences.</p>
                 @else
                     <h1>All 50 state guides are live, and the next gains come from deeper intent pages.</h1>
-                    <p class="lede">Every state guide is now public. The next wave is deeper permit, records, buyer, replacement, and site-risk coverage built on official sources and real local workflow differences.</p>
+                    <p class="lede">Every state guide is now public. The next wave is deeper permit, records, buyer, and transfer coverage built on official sources and real local workflow differences.</p>
                 @endif
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/">Run the main estimate</a>
-                    <a class="button button--secondary" href="/#states">See current live guides</a>
+                    <a class="button button--primary" href="/septic-records-checklist/">Start with records checklist</a>
+                    <a class="button button--secondary" href="/septic-permit-process/">Open permit process guide</a>
                 </div>
             </article>
 

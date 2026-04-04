@@ -14,6 +14,8 @@
 @param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
@@ -28,13 +30,47 @@
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${state.stateCode()} state guide</span>
+                <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
+                    @if (!featuredStateMoneyPages.isEmpty())
+                        <a class="button button--primary"
+                           href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_primary_workflow"
+                           data-track-target-type="state_money_page">${featuredStateMoneyPages.get(0).title()}</a>
+                        <a class="button button--secondary"
+                           href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_secondary_calculator"
+                           data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    @else
+                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    @endif
+                    @if (primaryRecordsLookupSource != null)
+                        <a class="button button--secondary"
+                           href="${primaryRecordsLookupSource.url()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_primary_records"
+                           data-track-target-type="official_source">Open local records path</a>
+                    @elseif (primaryLocalAuthoritySource != null)
+                        <a class="button button--secondary"
+                           href="${primaryLocalAuthoritySource.url()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_primary_local_authority"
+                           data-track-target-type="official_source">Open county office path</a>
+                    @endif
                 </div>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
+                @if (!featuredStateMoneyPages.isEmpty())
+                    <p>Use the narrower workflow page first when the real blocker is permit steps, county file retrieval, buyer diligence, or inspection history. Run the estimate after that local story is clear enough to price.</p>
+                @else
+                    <p>${calculatorCtaNote}</p>
+                @endif
                 @if (!featuredStateMoneyPages.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Fast next steps</span>
@@ -79,8 +115,17 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
-                <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_side_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
-                <p>${calculatorCtaNote}</p>
+                @if (!featuredStateMoneyPages.isEmpty())
+                    <a class="button button--secondary"
+                       href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                       data-track-click="nav"
+                       data-track-source-context="state_guide_side_workflow"
+                       data-track-target-type="state_money_page">Open the next workflow page</a>
+                    <p>This guide is the overview. The next move should usually be the narrower workflow page, not a quote form.</p>
+                @else
+                    <a class="button button--secondary" href="#sources">Jump to official sources</a>
+                    <p>${calculatorCtaNote}</p>
+                @endif
             </div>
         </div>
     </section>
@@ -91,8 +136,13 @@
         <div class="container">
             <div class="section-jump-strip" aria-label="Jump between sections">
                 <span class="section-jump-strip__label">Jump between sections</span>
+                <a href="#workflow-overview">Workflow</a>
+                <a href="#records">Records</a>
+                <a href="#permit-risk">Permit & buyer risk</a>
                 <a href="#facts">Quick facts</a>
-                <a href="#prep">Prep</a>
+                @if (!countyRecordLinks.isEmpty())
+                    <a href="#county-pages">County pages</a>
+                @endif
                 @if (!stateMoneyPages.isEmpty())
                     <a href="#intents">Intent pages</a>
                 @endif
@@ -102,10 +152,21 @@
 
             <div class="intent-rail">
                 <article class="intent-card intent-card--primary">
-                    <span class="intent-card__label">Run the state estimate</span>
-                    <h2>${calculatorCtaLabel}</h2>
-                    <p>${calculatorCtaNote}</p>
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    @if (!featuredStateMoneyPages.isEmpty())
+                        <span class="intent-card__label">Open the most likely next workflow page</span>
+                        <h2>${featuredStateMoneyPages.get(0).title()}</h2>
+                        <p>${featuredStateMoneyPages.get(0).uniqueAngle()}</p>
+                        <a class="button button--primary"
+                           href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_action_rail_workflow"
+                           data-track-target-type="state_money_page">Open next workflow page</a>
+                    @else
+                        <span class="intent-card__label">Run the state estimate</span>
+                        <h2>${calculatorCtaLabel}</h2>
+                        <p>${calculatorCtaNote}</p>
+                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    @endif
                 </article>
 
                 <article class="intent-card">
@@ -128,17 +189,10 @@
                 </article>
 
                 <article class="intent-card">
-                    @if (!featuredStateMoneyPages.isEmpty())
-                        <span class="intent-card__label">Most likely next move</span>
-                        <h2>${featuredStateMoneyPages.get(0).title()}</h2>
-                        <p>${featuredStateMoneyPages.get(0).uniqueAngle()}</p>
-                        <a class="button button--secondary" href="${featuredStateMoneyPages.get(0).path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_action_rail_featured" data-track-target-type="state_money_page">Open next page</a>
-                    @else
-                        <span class="intent-card__label">Stay in the guide</span>
-                        <h2>Work through the facts, records, and source sections</h2>
-                        <p>Use the state guide when you still need the broad rule style, local office path, and low-end risk before choosing one intent page.</p>
-                        <a class="button button--secondary" href="#facts">Jump to quick facts</a>
-                    @endif
+                    <span class="intent-card__label">Price it after the workflow is clearer</span>
+                    <h2>${calculatorCtaLabel}</h2>
+                    <p>${calculatorCtaNote}</p>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator_followup" data-track-target-type="calculator">Run the estimate</a>
                 </article>
             </div>
         </div>
@@ -189,6 +243,96 @@
                         <p>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
                     </article>
                 @endif
+            </div>
+        </section>
+    @endif
+
+    <section class="section section--tight" id="workflow-overview">
+        <div class="container detail-grid">
+            <article class="detail-card" id="records">
+                <h2>County office and records path</h2>
+                @if (state.whoToCallFirst() != null && !state.whoToCallFirst().isBlank())
+                    <p><strong>Who to call first.</strong> ${state.whoToCallFirst()}</p>
+                @endif
+                @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                    <p><strong>Pull these records before you trust the low end.</strong></p>
+                    <ul class="detail-list">
+                        @for (var record : state.recordsToRequest())
+                            <li>${record}</li>
+                        @endfor
+                    </ul>
+                @endif
+                @if (primaryLocalAuthoritySource != null)
+                    <p><a href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open the local authority source</a></p>
+                @endif
+                @if (primaryRecordsLookupSource != null)
+                    <p><a href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open the records lookup path</a></p>
+                @endif
+            </article>
+
+            <article class="detail-card" id="permit-risk">
+                <h2>Permit requirements and timing</h2>
+                <p>${state.permitSummary()}</p>
+                @if (state.permitTimelineNote() != null && !state.permitTimelineNote().isBlank())
+                    <p>${state.permitTimelineNote()}</p>
+                @endif
+                @if (state.permitPathSteps() != null && !state.permitPathSteps().isEmpty())
+                    <ol class="detail-list detail-list--numbered">
+                        @for (var step : state.permitPathSteps())
+                            <li>${step}</li>
+                        @endfor
+                    </ol>
+                @endif
+            </article>
+
+            @if ((state.buyerInspectionTrigger() != null && !state.buyerInspectionTrigger().isBlank())
+                    || (state.maintenanceInspectionNote() != null && !state.maintenanceInspectionNote().isBlank())
+                    || (state.specialAreaNote() != null && !state.specialAreaNote().isBlank()))
+                <article class="detail-card">
+                    <h2>Transfer, buyer, and ownership risk</h2>
+                    @if (state.buyerInspectionTrigger() != null && !state.buyerInspectionTrigger().isBlank())
+                        <p>${state.buyerInspectionTrigger()}</p>
+                    @endif
+                    @if (state.maintenanceInspectionNote() != null && !state.maintenanceInspectionNote().isBlank())
+                        <p>${state.maintenanceInspectionNote()}</p>
+                    @endif
+                    @if (state.specialAreaNote() != null && !state.specialAreaNote().isBlank())
+                        <p><strong>State wrinkle.</strong> ${state.specialAreaNote()}</p>
+                    @endif
+                </article>
+            @endif
+
+            @if (state.localActionSteps() != null && !state.localActionSteps().isEmpty())
+                <article class="detail-card detail-card--full" id="prep">
+                    <h2>County-aware prep checklist</h2>
+                    <ol class="detail-list detail-list--numbered">
+                        @for (var step : state.localActionSteps())
+                            <li>${step}</li>
+                        @endfor
+                    </ol>
+                </article>
+            @endif
+        </div>
+    </section>
+
+    @if (!countyRecordLinks.isEmpty())
+        <section class="section section--tight" id="county-pages">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County Wedge</span>
+                    <h2>County records pages now live in ${state.stateName()}</h2>
+                    <p class="lede">Use these when the state guide is still too broad and the real question is which county file, search form, or local office controls the next step.</p>
+                </div>
+
+                <div class="detail-grid">
+                    @for (var link : featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks)
+                        <article class="detail-card">
+                            <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
+                            <p>${link.note()}</p>
+                            <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta" data-track-target-type="county_page">Open county page</a>
+                        </article>
+                    @endfor
+                </div>
             </div>
         </section>
     @endif
@@ -274,31 +418,26 @@
                 </article>
             @endif
 
-            @if (state.localActionSteps() != null && !state.localActionSteps().isEmpty())
-                <article class="detail-card">
-                    <h2>Local action checklist</h2>
-                    <ol class="detail-list detail-list--numbered">
-                        @for (var step : state.localActionSteps())
-                            <li>${step}</li>
-                        @endfor
-                    </ol>
-                </article>
-            @endif
-
             <article class="detail-card">
                 <h2>Why this state is unique</h2>
                 <p>${state.pageAngle()}</p>
             </article>
 
             <article class="detail-card">
-                <h2>Permit path summary</h2>
-                <p>${state.permitSummary()}</p>
-            </article>
-
-            <article class="detail-card">
                 <h2>Site evaluation summary</h2>
                 <p>${state.siteEvalSummary()}</p>
             </article>
+
+            @if (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty())
+                <article class="detail-card">
+                    <h2>What breaks the low end</h2>
+                    <ul class="detail-list">
+                        @for (var check : state.lowEndRiskChecks())
+                            <li>${check}</li>
+                        @endfor
+                    </ul>
+                </article>
+            @endif
 
             <article class="detail-card detail-card--full">
                 <h2>Local override note</h2>
@@ -609,12 +748,18 @@
     <section class="section section--tight">
         <div class="container">
             <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Ready for real quotes?</span>
-                <h2>Use the estimate first, or skip straight to the short quote form.</h2>
-                <p>${calculatorCtaNote} If you already know the state and job type, you can move straight into the short quote request flow.</p>
+                <span class="trust-box__label">Need a planning range after the county check?</span>
+                <h2>Use the estimate after the file, permit path, and buyer story are clear enough.</h2>
+                <p>${calculatorCtaNote} If the local file is still thin, go back to the narrower workflow page instead of jumping into quote mode too early.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_ready_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_guide_ready_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    @if (!featuredStateMoneyPages.isEmpty())
+                        <a class="button button--secondary"
+                           href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                           data-track-click="nav"
+                           data-track-source-context="state_guide_ready_workflow"
+                           data-track-target-type="state_money_page">Return to the workflow page</a>
+                    @endif
                 </div>
             </article>
         </div>
@@ -678,7 +823,15 @@
              data-sticky-mobile-cta
              data-show-after='[data-sticky-trigger="state-guide-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+            @if (!featuredStateMoneyPages.isEmpty())
+                <a class="button button--primary"
+                   href="${featuredStateMoneyPages.get(0).path(state.slug())}"
+                   data-track-click="nav"
+                   data-track-source-context="state_guide_sticky_workflow"
+                   data-track-target-type="state_money_page">Open next workflow page</a>
+            @else
+                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+            @endif
         </div>
     </section>
 `)

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-03-10",
+  "generatedAt": "2026-04-04",
   "states": [
     {
       "stateCode": "GA",
@@ -8,9 +8,9 @@
       "agencyName": "Georgia Department of Public Health",
       "launchTier": "anchor",
       "publishStatus": "published",
-      "pageAngle": "Georgia is strongest when framed around county permit routing, soil analysis, and tank-size rules rather than a generic calculator. The homeowner wedge is knowing the county office, permit file, and disposal upsizing rule before trusting a simple quote.",
+      "pageAngle": "Georgia is strongest when framed around county environmental health offices, soil analysis, and file retrieval rather than a generic statewide calculator. The homeowner wedge is knowing which county office to call for record requests, whether the soil analysis and permit file are already in hand, and whether the garbage-disposal upsizing rule breaks the simple low-end story.",
       "ruleType": "bedroom_table",
-      "ruleSummaryPlainEnglish": "Georgia homeowners usually need the county environmental health office, permit file, and soil-analysis path clarified before they trust a septic permit cost or install quote. The homeowner guide says the number of bedrooms determines the septic tank size for a single-family residence, that the minimum approved tank size is 1,000 gallons, and that homes with garbage disposals need a tank that is 50 percent larger.",
+      "ruleSummaryPlainEnglish": "Georgia homeowners usually need the county environmental health office, the local file, and the soil-analysis path clarified before they trust a septic permit cost or install quote. DPH's homeowner guidance says the number of bedrooms determines tank size, the minimum approved tank size is 1,000 gallons, and a garbage disposal requires a tank that is 50 percent larger. DPH's environmental health contact page also tells homeowners to send record requests, services, inspection questions, and other locally related questions to the county environmental health office rather than treating this as one flat statewide workflow.",
       "designFlowPerBedroomGpd": 150,
       "minTankSizeGallons": 1000,
       "bedroomTable": [
@@ -24,7 +24,7 @@
         }
       ],
       "garbageDisposalPolicy": "Georgia's homeowner guide says a house with a garbage disposal is required to have a septic tank 50 percent larger than the same house without one.",
-      "permitSummary": "Georgia homeowners usually need the county environmental health office and permit file clarified before they trust an install or replacement quote. The practical path runs through county soil analysis, permitting, records, and inspection, not a generic statewide checklist.",
+      "permitSummary": "Georgia homeowners usually need the county environmental health office and county file clarified before they trust an install or replacement quote. The practical path runs through county soil analysis, county record requests, permitting, and inspection, not a generic statewide checklist.",
       "permitPathSteps": [
         "Start with the county environmental health office instead of assuming a statewide permit path is enough.",
         "Expect a soil analysis before a septic permit is issued.",
@@ -37,16 +37,16 @@
         "The minimum approved tank size is 1,000 gallons, which the guide says serves a 3- or 4-bedroom house.",
         "A garbage disposal requires a septic tank that is 50 percent larger."
       ],
-      "localOverrideNote": "County health department implementation and site conditions can still change the final system recommendation even when the homeowner guide examples look straightforward.",
+      "localOverrideNote": "Georgia still looks statewide from the homeowner guide, but the real workflow changes quickly once the county environmental health office and the county file are both identified.",
       "countyOverrideRisk": "medium",
       "lastVerifiedAt": "2026-03-09",
-      "officialSourceIds": ["ga_01", "ga_02"],
-      "localAuthoritySourceIds": ["ga_02"],
-      "recordsLookupSourceIds": ["ga_02"],
+      "officialSourceIds": ["ga_01", "ga_02", "ga_03", "ga_04"],
+      "localAuthoritySourceIds": ["ga_04", "ga_02"],
+      "recordsLookupSourceIds": ["ga_04", "ga_02"],
       "localActionSteps": [
-        "Open the county environmental health resource first and confirm the correct county office.",
-        "Ask whether the lot already has a soil analysis, permit file, as-built sketch, or repair history on record.",
-        "If the home has a garbage disposal, mention it before trusting the first tank-size or permit-cost quote."
+        "Open the Georgia environmental health county-office list first and confirm the county office handling the parcel.",
+        "Ask whether the lot already has a soil analysis, permit file, as-built sketch, repair history, or inspection note on record.",
+        "If the home has a garbage disposal or added bedroom load, mention it before trusting the first tank-size or permit-cost quote."
       ],
       "whoToCallFirst": "Start with the county environmental health office that handles onsite sewage permits and soil review for the property.",
       "recordsToRequest": [
@@ -60,7 +60,7 @@
         "County process, excavation, and restoration scope often matter more than the tank number alone."
       ],
       "permitTimelineNote": "County environmental health review and soil analysis come before trusting the quote, so local scheduling often drives the real Georgia timeline.",
-      "buyerInspectionTrigger": "Georgia's public homeowner guidance is stronger on records and soil analysis than on a statewide transfer-inspection trigger, so buyers should ask for permit and repair records early.",
+      "buyerInspectionTrigger": "Buyers should ask the county environmental health office for permit, repair, and inspection records early because DPH routes record requests and locally related questions to the county office, not to one statewide septic desk.",
       "maintenanceInspectionNote": "No single statewide recurring homeowner inspection cadence has been verified from the current Georgia source set, so local contractor or county practice should still be confirmed.",
       "specialAreaNote": "Garbage disposal is the clearest public statewide wrinkle because Georgia's homeowner guide says it requires a septic tank that is 50 percent larger.",
       "confidenceScore": 0.82,
@@ -490,14 +490,14 @@
       "agencyName": "Arizona Department of Environmental Quality",
       "launchTier": "supporting",
       "publishStatus": "published",
-      "pageAngle": "Arizona is stronger on county delegation and site-approval risk than on a fake statewide tank table. The homeowner wedge is knowing that the county usually owns the permit path and that the site investigation can move the project fast.",
+      "pageAngle": "Arizona is strongest when framed around delegated county control, site-investigation paperwork, and Notice of Transfer history rather than a fake statewide tank table. The homeowner wedge is knowing which county program owns the file and whether the site investigation and transfer record already point away from the simplest path.",
       "ruleType": "site_approval",
       "ruleSummaryPlainEnglish": "ADEQ's onsite wastewater program explains that ADEQ has delegated permitting authority to all 15 counties, so homeowners usually submit permit applications to the county where the property is located. ADEQ's Type 4 general permit page says the permit covers onsite wastewater treatment facilities from 0 to 24,000 gallons per day and describes the Notice of Intent to Construct, two-year construction window, and Notice of Intent to Discharge sequence. ADEQ's delegation page also points homeowners to county forms and the Uniform Site Investigation Report used by delegated counties.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": "No direct public Arizona homeowner garbage-disposal tank multiplier has been verified in the current source set.",
-      "permitSummary": "Arizona homeowners usually work through the delegated county program, not directly through ADEQ. The permit conversation is usually real only after the county-level site investigation and the Notice of Intent to Construct path are in view.",
+      "permitSummary": "Arizona homeowners usually work through the delegated county program, not directly through ADEQ. The permit conversation gets real only after the county site investigation, county forms, and any Notice of Intent to Construct or Notice of Transfer record are in view.",
       "permitPathSteps": [
         "Identify the county or delegated local program first because ADEQ says homeowners submit permit applications to the county where the property is located.",
         "Check whether the site investigation and county permit forms are already in hand before you trust the low end.",
@@ -606,7 +606,7 @@
       "agencyName": "Virginia Department of Health",
       "launchTier": "supporting",
       "publishStatus": "published",
-      "pageAngle": "Virginia is stronger on inspection obligations, operation permits, and local health-district routing than on fake statewide tank precision. The homeowner wedge is knowing whether the system is conventional or AOSS and what the local file says before trusting the low end.",
+      "pageAngle": "Virginia is strongest on local health-district routing, operation permits, and buyer-file diligence rather than fake statewide tank precision. The homeowner wedge is knowing whether the system is conventional or AOSS, what the file says, and whether ongoing operator or inspection duties come with the property.",
       "ruleType": "hybrid",
       "ruleSummaryPlainEnglish": "VDH's onsite sewage page says owners must obtain a construction permit from the health department or VDH before a sewage disposal system is installed and that some systems are eligible for operation permits, including alternative onsite sewage systems and private pumped systems. VDH's onsite sewage handbook says a conventional system generally should be pumped every 3 to 5 years, that some AOSS require licensed operator visits every 3, 6, or 12 months, and that the operation and maintenance manual should stay with the system. VDH's buyer page tells homeowners to ask for permits, operation permits, the operation and maintenance manual, inspection reports, as-built drawings, and any notice of recordation tied to the system.",
       "designFlowPerBedroomGpd": null,
@@ -722,7 +722,7 @@
       "agencyName": "Alabama Department of Public Health",
       "launchTier": "supporting",
       "publishStatus": "published",
-      "pageAngle": "Alabama is strongest when framed around county health permit routing, soil-testing risk, and permit-file retrieval rather than a generic install table. The homeowner wedge is knowing whether the Permit to Install, the Approval for Use, and the county health file are already in place before the quote pretends the job is ready.",
+      "pageAngle": "Alabama is strongest when framed around county health departments, Permit to Install timing, Approval-for-Use file retrieval, and buyer diligence rather than a generic install table. The homeowner wedge is knowing whether the county file is complete enough to trust the project before a contractor turns it into a simple permit-cost story.",
       "ruleType": "permit_path",
       "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments, that homeowners may need soil testing or a percolation test before submitting an Application for a Permit to Install, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. Property owners or their agents can request septic tank information from the local health department, while non-owners may need the Records Request path for a permit copy.",
       "designFlowPerBedroomGpd": null,
@@ -765,7 +765,7 @@
         "If the county health department identifies a repair or site limitation issue, the project can move beyond the cheapest install story quickly."
       ],
       "permitTimelineNote": "Alabama timing often turns on how quickly the county health file is found, whether soil testing is already complete, and whether the Permit to Install can move without a new round of site work.",
-      "buyerInspectionTrigger": "Buyers should ask for the Approval for Use, the Permit to Install, and any soil-test history early because Alabama county files often tell a more reliable story than the listing summary.",
+      "buyerInspectionTrigger": "Buyers should ask the county health department for the Approval for Use, Permit to Install, and any soil-test history early because closing risk in Alabama usually sits in the county file, not in the listing summary.",
       "maintenanceInspectionNote": "Alabama's current source set is strongest on county health routing, Permit to Install timing, and Approval-for-Use file retrieval, not on one simple statewide maintenance cadence.",
       "specialAreaNote": "Alabama's main wrinkle is the combination of county health department control, before-construction soil-testing risk, and Approval-for-Use file friction before the homeowner can trust a low-end range.",
       "confidenceScore": 0.81,
@@ -2603,14 +2603,14 @@
       "agencyName": "Missouri Department of Health and Senior Services",
       "launchTier": "supporting",
       "publishStatus": "published",
-      "pageAngle": "Missouri is stronger than a generic cost page because DHSS explicitly separates state minimum standards, local authority control, and permit triggers in homeowner-facing materials.",
+      "pageAngle": "Missouri is strongest when framed around the county permitting-jurisdiction map, major-change triggers, and acreage or local-authority questions rather than a generic cost page. The homeowner wedge is knowing who actually issues the permit and whether the job is still a simple residential path.",
       "ruleType": "hybrid",
       "ruleSummaryPlainEnglish": "Missouri DHSS says OWTS standards cover new systems and major changes to existing systems, and that local authority can be more restrictive than the statewide minimum. The homeowner value here is understanding permit authority, site-and-soil limits, and whether a project counts as a major change.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
       "garbageDisposalPolicy": null,
-      "permitSummary": "In most counties, the local health department issues OWTS construction permits, but some counties and cities use another local authority or DHSS directly. Missouri also separates smaller domestic systems from larger or industrial systems that move to DNR oversight.",
+      "permitSummary": "In most counties the local health department issues OWTS construction permits, but some counties and cities use another local authority or DHSS directly. Missouri also separates smaller domestic systems from larger or industrial systems that move to DNR oversight, so the first task is to identify the real permitting authority before trusting the low end.",
       "permitPathSteps": [
         "Check the local permitting authority first because Missouri uses DHSS, local authority by contract, and local authority by ordinance.",
         "Expect a construction permit before installing or repairing most residential OWTS work.",
@@ -2631,8 +2631,8 @@
       "recordsLookupSourceIds": ["mo_05", "mo_02"],
       "localActionSteps": [
         "Use the county permitting-jurisdiction map before calling a contractor or assuming DHSS is the direct authority.",
-        "Confirm whether the property is under a local health department, another local authority, or DHSS.",
-        "Pull any existing permit or repair record before treating the project as a simple replacement."
+        "Confirm whether the property is under a local health department, another local authority, or DHSS and whether an acreage-based exception even applies.",
+        "Pull any existing permit, repair, or soil-review record before treating the project as a simple replacement."
       ],
       "whoToCallFirst": "Start with the local permitting authority because Missouri can route onsite work through the county health department, another local authority, or DHSS depending on location.",
       "recordsToRequest": [

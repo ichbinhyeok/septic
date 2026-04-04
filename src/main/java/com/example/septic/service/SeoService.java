@@ -2,6 +2,7 @@ package com.example.septic.service;
 
 import com.example.septic.config.AppSiteProperties;
 import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.FaqBlock;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
@@ -31,17 +32,17 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic Cost Calculator, Permit & Records Guides by State | SepticPath",
-                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.",
+                "Septic Transfer Compliance, Records Checklist & Cost Guides by State | SepticPath",
+                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.",
                 canonicalUrl,
                 "index,follow",
                 List.of(),
                 List.of(
                         toJson(editorialOrganization()),
                         toJson(webSite(canonicalUrl, "SepticPath",
-                                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.")),
+                                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.")),
                         toJson(webPage(canonicalUrl, "SepticPath",
-                                "State-aware septic cost estimates plus permit, records, buyer-risk, and site-review guides across all 50 states.", "CollectionPage"))
+                                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.", "CollectionPage"))
                 )
         );
     }
@@ -49,8 +50,8 @@ public class SeoService {
     public PageMeta calculatorPage() {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/");
         return pageMeta(
-                "Septic Cost Calculator by State | SepticPath",
-                "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.",
+                "Septic Cost Calculator by State | Use after records, permits, and site checks | SepticPath",
+                "Estimate septic cost, tank size, system class, and quote risk by state after you clarify the file, permit path, or buyer workflow.",
                 canonicalUrl,
                 "index,follow",
                 breadcrumbLinks(
@@ -59,7 +60,7 @@ public class SeoService {
                 ),
                 List.of(
                         toJson(webPage(canonicalUrl, "Septic Cost Calculator by State",
-                                "Estimate septic cost, tank size, system class, and quote risk by state before you call local offices or contractors.", "WebPage")),
+                                "Estimate septic cost, tank size, system class, and quote risk by state after you clarify the file, permit path, or buyer workflow.", "WebPage")),
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
                                 crumb("Septic System Cost Calculator", canonicalUrl)
@@ -71,7 +72,7 @@ public class SeoService {
     public PageMeta stateCoveragePage() {
         String canonicalUrl = absoluteUrl("/states/");
         return pageMeta(
-                "All 50 State Septic Guides and Intent Pages | SepticPath",
+                "State Septic Guides, Records Pages, and Permit Workflows | SepticPath",
                 "Track live septic state guides and the permit, records, buyer, replacement, inspection, and site-risk pages behind them across all 50 states.",
                 canonicalUrl,
                 "index,follow",
@@ -451,6 +452,46 @@ public class SeoService {
         );
     }
 
+    public PageMeta countyRecordsPage(CountyRecordsPage countyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
+        String canonicalUrl = absoluteUrl(countyPage.path(state.slug()));
+        String title = countyPage.title() + " | SepticPath";
+        String description = countyPage.metaDescription();
+        List<String> jsonLdBlocks = new ArrayList<>();
+        jsonLdBlocks.add(toJson(withEditorialMeta(webPage(
+                canonicalUrl,
+                title,
+                description,
+                "Article"
+        ), lastReviewedAt, preparedBy, reviewedBy)));
+        jsonLdBlocks.add(toJson(breadcrumb(List.of(
+                crumb("Home", absoluteUrl("/")),
+                crumb("Septic Records Checklist", absoluteUrl("/septic-records-checklist/")),
+                crumb(state.stateName() + " Septic Records Checklist", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
+                crumb(countyPage.countyName() + " Septic Records", canonicalUrl)
+        ))));
+        if (countyPage.faqBlocks() != null && !countyPage.faqBlocks().isEmpty()) {
+            jsonLdBlocks.add(toJson(faqPage(
+                    canonicalUrl,
+                    title,
+                    description,
+                    countyPage.faqBlocks()
+            )));
+        }
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Records Checklist", absoluteUrl("/septic-records-checklist/")),
+                        crumb(state.stateName() + " Septic Records Checklist", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
+                        crumb(countyPage.countyName() + " Septic Records", canonicalUrl)
+                ),
+                jsonLdBlocks
+        );
+    }
+
     public PageMeta basicPage(String title, String description, String path) {
         String canonicalUrl = absoluteUrl(path);
         return pageMeta(
@@ -665,7 +706,8 @@ public class SeoService {
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | Permits, records, and next steps | SepticPath";
             case "septic-records-checklist" -> "Septic Records Checklist | Permit records, as-builts, and file lookup | SepticPath";
-            case "septic-system-cost-calculator" -> "Septic Cost Calculator | State estimate, permit, and file context | SepticPath";
+            case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
+            case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";
         };

@@ -1,6 +1,7 @@
 package com.example.septic.service;
 
 import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import java.util.ArrayList;
@@ -69,6 +70,19 @@ public class SitemapService {
                     )));
         }
 
+        for (CountyRecordsPage countyPage : researchDataService.getPublicCountyRecordsPages()) {
+            researchDataService.findStateByCode(countyPage.stateCode())
+                    .map(StateProfile::slug)
+                    .map(countyPage::path)
+                    .map(seoService::absoluteUrl)
+                    .ifPresent(url -> entries.add(entry(
+                            url,
+                            researchDataService.findStateByCode(countyPage.stateCode())
+                                    .map(StateProfile::lastVerifiedAt)
+                                    .orElse(researchDataService.countyRecordsPagesGeneratedAt())
+                    )));
+        }
+
         StringBuilder xml = new StringBuilder();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
@@ -91,7 +105,8 @@ public class SitemapService {
         return List.of(
                         researchDataService.stateProfilesGeneratedAt(),
                         researchDataService.contentPagesGeneratedAt(),
-                        researchDataService.stateMoneyPagesGeneratedAt()
+                        researchDataService.stateMoneyPagesGeneratedAt(),
+                        researchDataService.countyRecordsPagesGeneratedAt()
                 ).stream()
                 .filter(value -> value != null && !value.isBlank())
                 .max(String::compareTo)

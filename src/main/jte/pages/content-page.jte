@@ -18,6 +18,10 @@
 @param String calculatorCtaLabel = "Open the estimator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param String calculatorCtaTargetType = "calculator"
+@param String secondaryActionPath = null
+@param String secondaryActionLabel = "Run the estimate"
+@param String secondaryActionNote = ""
+@param String secondaryActionTargetType = "calculator"
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -29,7 +33,9 @@
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">
-                    @if ("buyer_page".equals(contentPage.intentType()))
+                    @if ("septic-transfer-compliance".equals(contentPage.slug()))
+                        Transfer compliance guide
+                    @elseif ("buyer_page".equals(contentPage.intentType()))
                         Homebuyer guide
                     @elseif ("workflow_page".equals(contentPage.intentType()))
                         Permit and records guide
@@ -40,8 +46,10 @@
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
-                    @if (contentQuotePath != null)
+                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                    @if (secondaryActionPath != null)
+                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_secondary_action" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                    @elseif (contentQuotePath != null)
                         <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
                     @else
                         <a class="button button--secondary" href="#faq">Jump to FAQs</a>
@@ -119,14 +127,19 @@
 
             <div class="intent-rail">
                 <article class="intent-card intent-card--primary">
-                    <span class="intent-card__label">Run the estimate</span>
+                    <span class="intent-card__label">${secondaryActionPath != null ? "Primary move" : "Run the estimate"}</span>
                     <h2>${calculatorCtaLabel}</h2>
                     <p>${calculatorCtaNote}</p>
-                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_calculator" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                 </article>
 
                 <article class="intent-card">
-                    @if (contentQuotePath != null)
+                    @if (secondaryActionPath != null)
+                        <span class="intent-card__label">Use the estimate after the workflow check</span>
+                        <h2>${secondaryActionLabel}</h2>
+                        <p>${secondaryActionNote}</p>
+                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                    @elseif (contentQuotePath != null)
                         <span class="intent-card__label">Go straight to conversion</span>
                         <h2>Open the short quote form</h2>
                         <p>Use this when you already know the intent lane and want to skip directly into the shorter conversion path.</p>
@@ -384,16 +397,18 @@
 
     <section class="section">
         <div class="container content-grid">
-            <article class="trust-box trust-box--large">
-                <span class="trust-box__label">Next best action</span>
-                <h2>${calculatorCtaHeading}</h2>
-                <p>${calculatorCtaNote} The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.</p>
-                <div class="hero__actions">
-                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
-                    @if (contentQuotePath != null)
-                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_next_best_quote" data-track-target-type="quote_form">Start short quote form</a>
-                    @endif
-                </div>
+                <article class="trust-box trust-box--large">
+                    <span class="trust-box__label">Next best action</span>
+                    <h2>${calculatorCtaHeading}</h2>
+                    <p>${calculatorCtaNote} The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.</p>
+                    <div class="hero__actions">
+                        <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                        @if (secondaryActionPath != null)
+                            <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_next_best_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                        @elseif (contentQuotePath != null)
+                            <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_next_best_quote" data-track-target-type="quote_form">Start short quote form</a>
+                        @endif
+                    </div>
             </article>
 
             <article class="detail-card">
@@ -454,7 +469,13 @@
         <section class="section section--tight">
             <div class="container">
                 <article class="detail-card detail-card--full" id="state-pages">
-                    <h2>State-specific pages</h2>
+                    <h2>
+                        @if ("septic-transfer-compliance".equals(contentPage.slug()))
+                            State-specific transfer workflow pages
+                        @else
+                            State-specific pages
+                        @endif
+                    </h2>
                     @if (!featuredStateMoneyPageLinks.isEmpty())
                         <div class="quick-link-strip" aria-label="Featured state-specific pages">
                             <span class="quick-link-strip__label">Featured states</span>

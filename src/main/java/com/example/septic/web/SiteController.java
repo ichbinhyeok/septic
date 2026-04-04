@@ -1,6 +1,7 @@
 package com.example.septic.web;
 
 import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
@@ -53,6 +54,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class SiteController {
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
+    private static final String TRANSFER_COMPLIANCE_SLUG = "septic-transfer-compliance";
+    private static final List<String> TRANSFER_COMPLIANCE_STATE_SLUGS = List.of(
+            "septic-records-checklist",
+            "septic-permit-process",
+            "buying-a-house-with-a-septic-system"
+    );
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
     private static final EditorialProfile STATE_PAGE_PREPARER = new EditorialProfile(
@@ -507,6 +514,7 @@ public class SiteController {
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
+        List<PageLink> countyRecordLinks = countyRecordPageLinks(state.stateCode());
         List<StateMoneyPage> sortedStateMoneyPages = researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
                 .sorted(Comparator
                         .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
@@ -531,6 +539,8 @@ public class SiteController {
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
+        model.addAttribute("countyRecordLinks", countyRecordLinks);
+        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources listed below.");
@@ -584,22 +594,15 @@ public class SiteController {
             "/septic-inspection-cost", "/septic-inspection-cost/",
             "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",
             "/septic-permit-process", "/septic-permit-process/",
-            "/septic-records-checklist", "/septic-records-checklist/"
+            "/septic-records-checklist", "/septic-records-checklist/",
+            "/septic-transfer-compliance", "/septic-transfer-compliance/"
     })
     public String contentPage(org.springframework.web.context.request.WebRequest request, Model model) {
         String path = request.getDescription(false).replace("uri=", "");
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
-        List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries = researchDataService.listPublicStateMoneyPagesForContent(slug).stream()
-                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
-                        .map(state -> Map.entry(page, state))
-                        .stream())
-                .sorted(Comparator
-                        .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> contentStateLinkScore(contentPage, entry.getKey(), entry.getValue()))
-                        .reversed()
-                        .thenComparing(entry -> entry.getValue().stateName()))
-                .toList();
+        List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries = rankedStateEntriesForContentPage(contentPage);
         List<StateMoneyPageLink> stateMoneyPageLinks = rankedStateEntries.stream()
                 .map(entry -> new StateMoneyPageLink(
                         entry.getKey().title(),
@@ -623,12 +626,18 @@ public class SiteController {
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
-        model.addAttribute("calculatorPath", calculatorPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
-        model.addAttribute("contentQuotePath", contentQuotePathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
+        model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
+        model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
+                ? null
+                : contentQuotePathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
         model.addAttribute("calculatorCtaLabel", contentActionLabel(contentPage));
         model.addAttribute("calculatorCtaNote", contentActionNote(contentPage));
         model.addAttribute("calculatorCtaTargetType", contentActionTargetType(contentPage));
+        model.addAttribute("secondaryActionPath", secondaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
+        model.addAttribute("secondaryActionLabel", secondaryActionLabel(contentPage));
+        model.addAttribute("secondaryActionNote", secondaryActionNote(contentPage));
+        model.addAttribute("secondaryActionTargetType", secondaryActionTargetType(contentPage));
         model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", contentEvidenceLanes.isEmpty()
@@ -637,6 +646,36 @@ public class SiteController {
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
         return "pages/content-page";
+    }
+
+    @GetMapping({
+            "/septic-records-checklist/{stateSlug}/{countySlug}", "/septic-records-checklist/{stateSlug}/{countySlug}/"
+    })
+    public String countyRecordsPage(@PathVariable String stateSlug, @PathVariable String countySlug, Model model) {
+        CountyRecordsPage countyPage = researchDataService.findPublicCountyRecordsPage(stateSlug, countySlug)
+                .orElseThrow(() -> new StateNotFoundException("septic-records-checklist/" + stateSlug + "/" + countySlug));
+        StateProfile state = researchDataService.findStateByCode(countyPage.stateCode())
+                .orElseThrow(() -> new StateNotFoundException(stateSlug));
+        List<SourceRecord> sources = researchDataService.getSources(countyPage.officialSourceIds());
+        List<PageLink> internalLinks = pageLinks(
+                countyPage.internalLinkTargets(),
+                "septic-records-checklist",
+                state.stateCode()
+        );
+        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
+
+        model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("countyPage", countyPage);
+        model.addAttribute("state", state);
+        model.addAttribute("sources", sources);
+        model.addAttribute("internalLinks", internalLinks);
+        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
+        model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
+        model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
+        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official county or state sources tied to this county workflow.");
+        model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
+        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
+        return "pages/county-records-page";
     }
 
     @GetMapping({
@@ -670,6 +709,9 @@ public class SiteController {
                 stateMoneyPage.contentSlug(),
                 state.stateCode()
         );
+        List<PageLink> countyRecordLinks = "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                ? countyRecordPageLinks(state.stateCode())
+                : List.of();
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -686,6 +728,8 @@ public class SiteController {
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
+        model.addAttribute("countyRecordLinks", countyRecordLinks);
+        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
@@ -1028,6 +1072,20 @@ public class SiteController {
         };
     }
 
+    private String primaryActionPathForContentPage(ContentPage contentPage, String sourcePage) {
+        if (shouldLeadWithStateWorkflow(contentPage)) {
+            return "#state-pages";
+        }
+        return calculatorPathForContentPage(contentPage, sourcePage);
+    }
+
+    private String secondaryActionPathForContentPage(ContentPage contentPage, String sourcePage) {
+        if (!shouldLeadWithStateWorkflow(contentPage)) {
+            return null;
+        }
+        return calculatorPathForContentPage(contentPage, sourcePage);
+    }
+
     private String calculatorPathForContentPage(ContentPage contentPage, String sourcePage) {
         String modulePath = calculatorPathForModule(contentPage.calculatorModule());
         if (!"/septic-system-cost-calculator/".equals(modulePath)) {
@@ -1076,9 +1134,10 @@ public class SiteController {
             case "septic-replacement-area" -> "Use the field-layout estimate before you assume the parcel still has a viable backup area.";
             case "wet-yard-over-septic-drain-field" -> "Use the field-failure estimate before you treat a wet yard as a small repair story.";
             case "septic-inspection-cost" -> "Use the inspection-risk estimate after you know what the file is missing.";
-            case "buying-a-house-with-a-septic-system" -> "Use the buyer-risk estimate after you check the file and inspection story.";
-            case "septic-permit-process" -> "Use the permit-path estimate before you call the next office.";
-            case "septic-records-checklist" -> "Use the records-aware estimate before you trust the file.";
+            case "buying-a-house-with-a-septic-system" -> "Start with the state-specific buyer workflow before you price the downside.";
+            case "septic-permit-process" -> "Start with the state-specific permit page before you trust the timeline.";
+            case "septic-records-checklist" -> "Start with the state-specific records page before you trust the file.";
+            case TRANSFER_COMPLIANCE_SLUG -> "Start with the state-specific transfer workflow before you trust the closing story.";
             case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
             case "septic-pumping-cost" -> "Open the pump schedule estimator before you assume a maintenance cadence.";
             default -> "Use the main estimator before you ask for quotes.";
@@ -1094,9 +1153,10 @@ public class SiteController {
             case "septic-replacement-area" -> "Run a replacement-area estimate";
             case "wet-yard-over-septic-drain-field" -> "Run a field-failure estimate";
             case "septic-inspection-cost" -> "Run an inspection-scope estimate";
-            case "buying-a-house-with-a-septic-system" -> "Run a buyer due-diligence estimate";
-            case "septic-permit-process" -> "Run a permit-path estimate";
-            case "septic-records-checklist" -> "Run a records-aware estimate";
+            case "buying-a-house-with-a-septic-system" -> "Open state buyer pages";
+            case "septic-permit-process" -> "Open state permit pages";
+            case "septic-records-checklist" -> "Open state records pages";
+            case TRANSFER_COMPLIANCE_SLUG -> "Open state transfer pages";
             case "septic-tank-size" -> "Open the tank size estimator";
             case "septic-pumping-cost" -> "Open the pump schedule estimator";
             default -> "Open the main estimator";
@@ -1112,9 +1172,10 @@ public class SiteController {
             case "septic-replacement-area" -> "Use the drain field lane when reserve area, replacement footprint, or code-complying layout risk is the main blocker.";
             case "wet-yard-over-septic-drain-field" -> "Use the drain field lane when seepage, odor, or soggy ground near the field is already visible.";
             case "septic-inspection-cost" -> "Pull the permit file, as-built, pumping history, and O&M records first, then use the estimate to judge whether the visit is routine diligence or leverage for a bigger next step.";
-            case "buying-a-house-with-a-septic-system" -> "Pull the permit file, as-built, pumping history, and bedroom-use story first, then use the estimate to judge whether the deal risk is routine diligence, a credit fight, or a wider replacement problem.";
-            case "septic-permit-process" -> "Start with the install lane to frame cost and system type, then verify the real local path before you anchor on the low end.";
-            case "septic-records-checklist" -> "Use the buyer lane as a planning shortcut when the file is still thin and you need to understand downside risk before asking for quotes.";
+            case "buying-a-house-with-a-septic-system" -> "Transfer rules, county records, inspection triggers, and bedroom-use mismatches vary enough that the state-specific page is the faster first move.";
+            case "septic-permit-process" -> "The first real answer is usually which office, file, or site-review step controls this property, so start with the state-specific permit page before you model the cost.";
+            case "septic-records-checklist" -> "County record access, permit history, and as-built availability vary enough that the state-specific records page is the faster first move.";
+            case TRANSFER_COMPLIANCE_SLUG -> "Transfer problems usually resolve through records, permit path, buyer timing, and county workflow, so open the state-specific page before you try to compress everything into one quote number.";
             case "septic-tank-size" -> "Use the dedicated estimator when bedroom count, occupancy profile, or disposal load matter more than a full project quote.";
             case "septic-pumping-cost" -> "Use the dedicated estimator when cadence, use profile, and tank size matter more than a one-time pumping invoice.";
             default -> "Use your state and project assumptions first, then verify locally.";
@@ -1122,12 +1183,62 @@ public class SiteController {
     }
 
     private String contentActionTargetType(ContentPage contentPage) {
+        if (shouldLeadWithStateWorkflow(contentPage)) {
+            return "state_money_page_directory";
+        }
         return switch (contentPage.calculatorModule()) {
             case "tank_size_estimator" -> "tank_size_estimator";
             case "pump_schedule_estimator" -> "pump_schedule_estimator";
             case "drainfield_estimator" -> "drainfield_estimator";
             default -> "calculator";
         };
+    }
+
+    private String secondaryActionLabel(ContentPage contentPage) {
+        if (!shouldLeadWithStateWorkflow(contentPage)) {
+            return null;
+        }
+        return switch (contentPage.slug()) {
+            case "buying-a-house-with-a-septic-system" -> "Run a buyer due-diligence estimate";
+            case "septic-permit-process" -> "Run a permit-path estimate";
+            case "septic-records-checklist" -> "Run a records-aware estimate";
+            case TRANSFER_COMPLIANCE_SLUG -> "Run a transfer-risk estimate";
+            default -> "Open the main estimator";
+        };
+    }
+
+    private String secondaryActionNote(ContentPage contentPage) {
+        if (!shouldLeadWithStateWorkflow(contentPage)) {
+            return null;
+        }
+        return switch (contentPage.slug()) {
+            case "buying-a-house-with-a-septic-system" -> "Pull the permit file, as-built, pumping history, and bedroom-use story first, then use the estimate to judge whether the deal risk is routine diligence, a credit fight, or a wider replacement problem.";
+            case "septic-permit-process" -> "Use the estimate after you know whether the real blocker is authority routing, project classification, or site review.";
+            case "septic-records-checklist" -> "Use the estimate after you know which missing record is actually changing the downside.";
+            case TRANSFER_COMPLIANCE_SLUG -> "Use the estimate after you know whether the live issue is missing records, permit sequence, buyer inspection timing, or a county-file gap that changes the downside.";
+            default -> "Use your state and project assumptions first, then verify locally.";
+        };
+    }
+
+    private String secondaryActionTargetType(ContentPage contentPage) {
+        if (!shouldLeadWithStateWorkflow(contentPage)) {
+            return null;
+        }
+        return switch (contentPage.calculatorModule()) {
+            case "tank_size_estimator" -> "tank_size_estimator";
+            case "pump_schedule_estimator" -> "pump_schedule_estimator";
+            case "drainfield_estimator" -> "drainfield_estimator";
+            default -> "calculator";
+        };
+    }
+
+    private boolean shouldLeadWithStateWorkflow(ContentPage contentPage) {
+        return "workflow_page".equals(contentPage.intentType())
+                || "buyer_page".equals(contentPage.intentType());
+    }
+
+    private boolean isTransferComplianceHub(ContentPage contentPage) {
+        return TRANSFER_COMPLIANCE_SLUG.equals(contentPage.slug());
     }
 
     private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {
@@ -1476,6 +1587,18 @@ public class SiteController {
         );
     }
 
+    private List<PageLink> countyRecordPageLinks(String stateCode) {
+        return researchDataService.listPublicCountyRecordsPages(stateCode).stream()
+                .map(page -> researchDataService.findStateByCode(page.stateCode())
+                        .map(state -> new PageLink(
+                                page.title(),
+                                page.path(state.slug()),
+                                page.uniqueAngle()
+                        )))
+                .flatMap(Optional::stream)
+                .toList();
+    }
+
     private List<PageLink> pageLinks(List<String> paths, String sourceSlug, String sourceStateCode) {
         if (paths == null || paths.isEmpty()) {
             return List.of();
@@ -1495,6 +1618,7 @@ public class SiteController {
     private PageLink pageLink(String path, String sourceSlug, String sourceStateCode) {
         String title = calculatorLinkTitle(path)
                 .or(() -> stateGuideLinkTitle(path))
+                .or(() -> countyRecordsPageLinkTitle(path))
                 .or(() -> stateMoneyPageLinkTitle(path))
                 .or(() -> contentPageLinkTitle(path))
                 .orElseGet(() -> prettifyPath(path));
@@ -1644,7 +1768,28 @@ public class SiteController {
         return Optional.empty();
     }
 
+    private List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntriesForContentPage(ContentPage contentPage) {
+        Stream<StateMoneyPage> stateMoneyPages = isTransferComplianceHub(contentPage)
+                ? TRANSFER_COMPLIANCE_STATE_SLUGS.stream()
+                        .flatMap(slug -> researchDataService.listPublicStateMoneyPagesForContent(slug).stream())
+                : researchDataService.listPublicStateMoneyPagesForContent(contentPage.slug()).stream();
+
+        return stateMoneyPages
+                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
+                        .map(state -> Map.entry(page, state))
+                        .stream())
+                .sorted(Comparator
+                        .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> contentStateLinkScore(contentPage, entry.getKey(), entry.getValue()))
+                        .reversed()
+                        .thenComparing(entry -> entry.getValue().stateName())
+                        .thenComparing(entry -> entry.getKey().title()))
+                .toList();
+    }
+
     private int contentStateLinkScore(ContentPage contentPage, StateMoneyPage page, StateProfile state) {
+        if (isTransferComplianceHub(contentPage)) {
+            return transferComplianceStateLinkScore(page, state);
+        }
         int score = 0;
         if ("anchor".equalsIgnoreCase(state.launchTier())) {
             score += 20;
@@ -1654,6 +1799,41 @@ public class SiteController {
         score += Math.min(size(page.lowEndBreakers()), 2);
         if (contentPage.slug().equals(page.contentSlug())) {
             score += 12;
+        }
+        return score;
+    }
+
+    private int transferComplianceStateLinkScore(StateMoneyPage page, StateProfile state) {
+        int score = stateMoneyPagePriorityScore(state, page);
+        score += switch (page.contentSlug()) {
+            case "septic-records-checklist" -> 28;
+            case "septic-permit-process" -> 24;
+            case "buying-a-house-with-a-septic-system" -> 20;
+            default -> -100;
+        };
+        if (!researchDataService.listPublicCountyRecordsPages(state.stateCode()).isEmpty()) {
+            score += 10;
+        }
+        score += switch (state.stateCode()) {
+            case "GA" -> 22;
+            case "AL" -> 20;
+            case "IN" -> 12;
+            case "CO", "NC", "NY" -> 8;
+            default -> 0;
+        };
+        if ("septic-records-checklist".equals(page.contentSlug())) {
+            score += switch (state.stateCode()) {
+                case "GA" -> 10;
+                case "AL" -> 8;
+                case "IN" -> 4;
+                default -> 0;
+            };
+        }
+        if (page.highlightBuyerTrigger()) {
+            score += 4;
+        }
+        if (page.highlightMaintenanceNote()) {
+            score += 2;
         }
         return score;
     }
@@ -1729,6 +1909,19 @@ public class SiteController {
         if (parts.length == 2) {
             return researchDataService.findStateMoneyPage(parts[0], parts[1])
                     .map(StateMoneyPage::title);
+        }
+        return Optional.empty();
+    }
+
+    private Optional<String> countyRecordsPageLinkTitle(String path) {
+        String normalizedPath = normalizePath(path);
+        if (normalizedPath == null) {
+            return Optional.empty();
+        }
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        if (parts.length == 3 && "septic-records-checklist".equals(parts[0])) {
+            return researchDataService.findCountyRecordsPage(parts[1], parts[2])
+                    .map(CountyRecordsPage::title);
         }
         return Optional.empty();
     }
@@ -1819,6 +2012,24 @@ public class SiteController {
             score += 4;
         }
 
+        if (isCountyRecordsPath(normalizedPath)) {
+            score += switch (sourceSlug) {
+                case TRANSFER_COMPLIANCE_SLUG -> 42;
+                case "septic-records-checklist" -> 18;
+                default -> 8;
+            };
+            score += targetStateSlug
+                    .flatMap(researchDataService::findStateBySlug)
+                    .map(StateProfile::stateCode)
+                    .map(stateCode -> switch (stateCode) {
+                        case "GA" -> 10;
+                        case "AL" -> 8;
+                        case "IN" -> 4;
+                        default -> 0;
+                    })
+                    .orElse(0);
+        }
+
         return score;
     }
 
@@ -1845,6 +2056,13 @@ public class SiteController {
                     .orElse("Open the state guide for permit path and records context.");
         }
 
+        if (isCountyRecordsPath(normalizedPath)) {
+            if (TRANSFER_COMPLIANCE_SLUG.equals(sourceSlug)) {
+                return "Use this when closing risk turns on a county file, certification letter, or local health-office workflow instead of one statewide summary.";
+            }
+            return "Use this when the next step is a county file, certification letter, or local health-office workflow rather than a broader state page.";
+        }
+
         String contentSlug = targetContentSlug(normalizedPath);
         if (contentSlug != null) {
             String intentNote = switch (contentSlug) {
@@ -1859,6 +2077,7 @@ public class SiteController {
                 case "buying-a-house-with-a-septic-system" -> "Use this when the property deal, not just the system price, is driving risk.";
                 case "septic-permit-process" -> "Use this when the next office, permit step, or approval sequence is the real bottleneck.";
                 case "septic-records-checklist" -> "Use this when the file is thinner than the current seller, owner, or contractor story.";
+                case TRANSFER_COMPLIANCE_SLUG -> "Use this when records, permits, buyer timing, and county workflow need to be resolved together.";
                 case "septic-tank-size" -> "Use this when bedroom sizing and minimum gallon band matter more than a full project quote.";
                 default -> "Use this page for the next layer of detail after the current overview.";
             };
@@ -1874,6 +2093,7 @@ public class SiteController {
     private List<String> preferredTargetSlugs(String sourceSlug) {
         return switch (sourceSlug) {
             case "septic-system-cost-calculator" -> List.of(
+                    TRANSFER_COMPLIANCE_SLUG,
                     "septic-replacement-cost",
                     "septic-inspection-cost",
                     "perc-test-cost",
@@ -1968,6 +2188,13 @@ public class SiteController {
                     "septic-inspection-cost",
                     "septic-replacement-cost"
             );
+            case TRANSFER_COMPLIANCE_SLUG -> List.of(
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "buying-a-house-with-a-septic-system",
+                    "septic-inspection-cost",
+                    "septic-system-cost-calculator"
+            );
             default -> List.of();
         };
     }
@@ -2002,7 +2229,7 @@ public class SiteController {
         }
 
         String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
-        if (parts.length == 2) {
+        if (parts.length == 2 || (parts.length == 3 && "septic-records-checklist".equals(parts[0]))) {
             return Optional.of(parts[1]);
         }
         return Optional.empty();
@@ -2016,7 +2243,15 @@ public class SiteController {
         if (parts.length == 2) {
             return parts[0];
         }
+        if (parts.length == 3 && "septic-records-checklist".equals(parts[0])) {
+            return parts[0];
+        }
         return null;
+    }
+
+    private boolean isCountyRecordsPath(String normalizedPath) {
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        return parts.length == 3 && "septic-records-checklist".equals(parts[0]);
     }
 
     private List<StateRuleFactView> stateRuleFactViews(String stateCode) {

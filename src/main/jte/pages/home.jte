@@ -12,12 +12,12 @@
     <section class="hero">
         <div class="container hero__grid">
             <div class="hero__content">
-                <span class="eyebrow">Estimate-first septic planning</span>
-                <h1>Get a septic planning range fast, then open the state guide that actually changes the next step.</h1>
-                <p class="lede">SepticPath is built for homeowners and buyers who need a directionally honest budget before they start chasing quotes, county offices, or half-complete septic files.</p>
+                <span class="eyebrow">Septic records, permits, and transfer prep</span>
+                <h1>Start with the file, permit path, or buyer workflow that actually changes the septic story.</h1>
+                <p class="lede">SepticPath is built for homeowners, buyers, and agents who need to know which county office, permit record, inspection trigger, or transfer step matters before they trust a clean-looking quote.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/">Run the main estimate</a>
-                    <a class="button button--secondary" href="/states/">Browse all state coverage</a>
+                    <a class="button button--primary" href="/septic-records-checklist/">Start with records checklist</a>
+                    <a class="button button--secondary" href="/septic-transfer-compliance/">Open transfer compliance guide</a>
                 </div>
                 <div class="hero__notes">
                     <span>${liveGuideCount} live guides</span>
@@ -33,16 +33,20 @@
                 </div>
                 <div class="hero-card__stack">
                     <div class="mini-card">
-                        <strong>Need a budget now?</strong>
-                        <p>Use the main estimator when replacement, permit, inspection, or perc risk is still mixed together.</p>
+                        <strong>Missing the file?</strong>
+                        <p>Open records checklist when the permit copy, as-built, pumping history, or inspection notes are thinner than the current story.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Need one state fast?</strong>
-                        <p>Open the live state guide when the county office, records path, or buyer trigger matters more than the average.</p>
+                        <strong>Blocked on the next office?</strong>
+                        <p>Use permit process when the real bottleneck is county routing, site review, or figuring out which authority owns the next approval step.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Only need tank size?</strong>
-                        <p>Use the tank size tool when gallon band is the only open question.</p>
+                        <strong>Stuck in a sale or closing?</strong>
+                        <p>Open transfer compliance when records, permit history, buyer diligence, and county file quality all need to be sorted together before the deal moves.</p>
+                    </div>
+                    <div class="mini-card">
+                        <strong>Need the number anyway?</strong>
+                        <p>Run the estimator after the workflow is clearer, or when the file is still thin and you need a cautious planning range before the next call.</p>
                     </div>
                 </div>
             </aside>
@@ -53,23 +57,30 @@
         <div class="container card-grid card-grid--primary">
             <article class="feature-card feature-card--primary">
                 <span class="pill">Primary</span>
-                <h3>Main cost estimator</h3>
-                <p>Best first stop when you need one practical range before you decide whether this is really a replacement, permit, buyer-risk, or perc problem.</p>
-                <a href="/septic-system-cost-calculator/">Start the estimate</a>
+                <h3>Records checklist</h3>
+                <p>Start here when the septic story depends on permit records, as-builts, maintenance history, or one missing file that could widen the downside fast.</p>
+                <a href="/septic-records-checklist/">Open records checklist</a>
             </article>
 
             <article class="feature-card">
-                <span class="pill">State guides</span>
-                <h3>Official-source state coverage</h3>
-                <p>Use the live guides for permit path, records to request, local office routing, and state-specific low-end breakers.</p>
-                <a href="/states/">Browse all state coverage</a>
+                <span class="pill">Transfer</span>
+                <h3>Transfer compliance</h3>
+                <p>Use this when records, permit routing, inspection timing, and buyer-seller workflow need to be resolved together before closing.</p>
+                <a href="/septic-transfer-compliance/">Open transfer compliance</a>
             </article>
 
             <article class="feature-card">
-                <span class="pill">Quick tool</span>
-                <h3>Tank size estimator</h3>
-                <p>Use the shorter tool when bedroom count, occupancy, disposal load, or ADU risk is the main question.</p>
-                <a href="/septic-tank-size-estimator/">Open tank size estimator</a>
+                <span class="pill">Workflow</span>
+                <h3>Permit process</h3>
+                <p>Use this when the next office, permit step, site review, or approval sequence is the actual blocker behind the budget question.</p>
+                <a href="/septic-permit-process/">Open permit process</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Planning tool</span>
+                <h3>Cost estimator</h3>
+                <p>Use the estimator after the workflow is clearer, or when you still need one practical range before the next county, file, or inspection step.</p>
+                <a href="/septic-system-cost-calculator/">Open cost estimator</a>
             </article>
         </div>
     </section>
@@ -78,9 +89,9 @@
         <section class="section section--tight">
             <div class="container">
                 <div class="section-heading">
-                    <span class="eyebrow">Live intent pages</span>
-                    <h2>Open the highest-intent state-specific pages directly.</h2>
-                    <p class="lede">These pages are already live and tend to match the strongest homeowner search intent better than a generic state directory click.</p>
+                    <span class="eyebrow">Live workflow pages</span>
+                    <h2>Open the state-specific permit, records, and buyer pages already proving demand.</h2>
+                    <p class="lede">These pages are the clearest proof that users want county file paths, permit routing, and transfer diligence before they want another broad septic explainer.</p>
                 </div>
 
                 <div class="card-grid">
@@ -104,10 +115,10 @@
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">50-state rollout</span>
-                <h2>Coverage is widening now, but live guides still need a real state angle.</h2>
-                <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides launch only when the official-source set, local office path, records checklist, and state-specific wrinkle are strong enough.</p>
+                <h2>Coverage is widening now, but the wedge is county records and permit workflow, not generic estimator copy.</h2>
+                <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides and state pages should launch only when the official-source set, local office path, records workflow, and state-specific wrinkle are strong enough to change the next action.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/states/">See live and queued states</a>
+                    <a class="button button--primary" href="/states/">Browse state guides</a>
                     <a class="button button--secondary" href="/about/">Read the source standard</a>
                 </div>
             </article>
@@ -116,7 +127,7 @@
                 <h2>Why the live pages are heavier</h2>
                 <ul class="detail-list">
                     <li>Each live guide keeps a visible official-source module and last reviewed date.</li>
-                    <li>Permit, records, buyer, and replacement pages are published only where the state workflow is actually distinct.</li>
+                    <li>Permit, records, buyer, and transfer pages are published only where the state or local workflow is actually distinct.</li>
                     <li>Unknown rule details widen the estimate instead of being invented to fill the page.</li>
                 </ul>
             </article>
