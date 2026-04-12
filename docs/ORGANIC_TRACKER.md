@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-04
+Last updated: 2026-04-12
 
 ## Why this file exists
 
@@ -78,6 +78,81 @@ Copy this block for the next review:
 ### Data
 
 - Source:
+
+## 2026-04-12
+
+### Data
+
+- Source: Google Search Console MCP
+- Compare window:
+  - current: 2026-03-30 to 2026-04-10
+  - prior: 2026-03-18 to 2026-03-29
+- Fresh-data note: Search Console data still carries normal short lag, so this
+  read should be treated as directional rather than final for the latest 1 to 2
+  days.
+- Site summary:
+  - clicks: 9 vs 11 before
+  - impressions: 2,275 vs 1,932 before
+  - CTR: 0.40% vs 0.57% before
+  - average position: 8.86 vs 10.48 before
+- Page signals that mattered:
+  - `/septic-records-checklist/indiana/` kept the strongest click efficiency
+  - `/septic-system-cost-calculator/alabama/` and
+    `/septic-system-cost-calculator/georgia/` kept earning the biggest
+    impression pools
+  - `/buying-a-house-with-a-septic-system/new-york/` showed early buyer-intent
+    proof at page-one average position
+  - `/septic-permit-process/south-carolina/` showed impression growth but still
+    needed sharper query-language alignment
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `src/main/java/com/example/septic/service/SeoService.java`
+  - `data/raw/state_money_pages.json`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - retitled Alabama and Georgia state guides around the exact intent that is
+    already surfacing in Search Console, especially `perc test`, `county
+    records`, and `soil analysis`
+  - added Alabama and Georgia FAQ language that directly answers hidden-but-real
+    query shapes around perc testing and county file checks
+  - tightened the New York buyer page around the real pre-closing wedge:
+    Appendix 75-A file review, county health records, as-built history, and
+    direct links into New York state subpages
+  - sharpened the South Carolina permit page around `permit requirements`,
+    `site evaluation`, `D-1740`, and stronger state-specific internal links
+
+### Insights
+
+- Observation: visibility is still rising while average position improved into a
+  page-one range on important terms.
+- Interpretation: the problem is not discovery; the problem is click yield once
+  Google already shows the page.
+- Observation: Alabama and Georgia are being interpreted more like permit,
+  records, and site-prep workflows than generic cost calculators.
+- Interpretation: those pages should lean harder into exact workflow language
+  instead of protecting a broader but weaker "calculator" framing.
+- Observation: New York buyer and South Carolina permit pages already have query
+  and impression proof, but the page copy and link paths were still too generic.
+- Interpretation: these are worth polishing now because they are already close
+  enough to convert impressions into the next clicks.
+
+### Next Actions
+
+- Deploy these copy and internal-link changes.
+- After deploy, request indexing for:
+  - `/septic-system-cost-calculator/alabama/`
+  - `/septic-system-cost-calculator/georgia/`
+  - `/buying-a-house-with-a-septic-system/new-york/`
+  - `/septic-permit-process/south-carolina/`
+- Recheck on 2026-04-19:
+  - whether Alabama starts earning more `perc test` and permit-file clicks
+  - whether Georgia picks up better CTR on county-record and soil-analysis
+    queries
+  - whether New York buyer and South Carolina permit pages convert their current
+    page-one impressions into actual clicks
 - Window:
 - Fresh-data note:
 - Site summary:

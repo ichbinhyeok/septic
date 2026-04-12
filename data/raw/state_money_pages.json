@@ -5753,9 +5753,9 @@
       "contentSlug": "buying-a-house-with-a-septic-system",
       "stateCode": "NY",
       "title": "Buying a House With a Septic System in New York",
-      "metaDescription": "New York homebuyer septic checklist with Appendix 75-A, county health file review, and waiver risk in mind.",
-      "introCopy": "New York septic buyer risk is rarely just about the inspection. Appendix 75-A creates a real statewide baseline, but the county health file, any specific waiver, and the quality of the design paperwork often decide whether the deal is routine or risky.",
-      "uniqueAngle": "New York buyer intent is strongest when the page explains Appendix 75-A and local health file quality together instead of treating the sale like a generic septic transaction.",
+      "metaDescription": "New York septic buyer checklist with Appendix 75-A design file, county health records, as-built checks, and waiver risk before closing.",
+      "introCopy": "A New York septic home purchase is a file-check problem before it is an inspection problem. Appendix 75-A creates a real statewide baseline, but the county health file, any specific waiver, and the quality of the design paperwork usually decide whether the deal is routine or risky.",
+      "uniqueAngle": "New York buyer intent is strongest when the page treats Appendix 75-A, county health records, and as-built history as the real pre-closing checklist instead of treating the sale like a generic septic transaction.",
       "targetReader": "Best for New York buyers, sellers, and agents who know the property uses onsite wastewater treatment but still need to know whether the county health file, design flow assumptions, or waiver history create real closing risk.",
       "fitBullets": [
         "The listing says the home has septic, but no one has shown the Appendix 75-A design file or any county health paperwork yet.",
@@ -5796,9 +5796,9 @@
       ],
       "internalLinkTargets": [
         "/septic-system-cost-calculator/new-york/",
-        "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
-        "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/septic-records-checklist/new-york/",
+        "/septic-permit-process/new-york/",
+        "/septic-system-cost-calculator/?state=NY&projectType=buying_home"
       ],
       "officialSourceIds": [
         "ny_01",
@@ -8562,36 +8562,36 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "SC",
-      "title": "South Carolina Septic Permit Process and Permit Copy Guide",
-      "metaDescription": "South Carolina septic permit process with SCDES permit copy lookup, D-1740 steps, permit requirements, and county office routing.",
-      "introCopy": "South Carolina permit content is stronger than a generic install checklist because SCDES makes the permit path explicit. The real homeowner job often turns on whether the permit copy is already on file, whether the D-1740 and site visit are complete, and which county contact handles final inspections and follow-up.",
-      "uniqueAngle": "South Carolina permit intent is strongest when the page explains the D-1740, Permit to Construct, final-inspection path, and permit-copy lookup instead of pretending the project starts with a clean contractor quote.",
-      "targetReader": "Best for South Carolina owners, buyers, builders, and agents who need to know which SCDES office controls the file, whether the permit copy and D-1740 history already exist, and why the county building-permit gate can move the whole schedule.",
+      "title": "South Carolina Septic Permit Requirements, Site Evaluation, and Permit Copy Guide",
+      "metaDescription": "South Carolina septic permit requirements with SCDES permit copy lookup, D-1740 steps, site evaluation path, and county office routing.",
+      "introCopy": "South Carolina permit content is stronger than a generic install checklist because SCDES makes the permit path explicit. The real homeowner job often turns on whether the permit copy is already on file, whether the D-1740 and site evaluation path are complete, and which county contact handles final inspections and follow-up.",
+      "uniqueAngle": "South Carolina permit intent is strongest when the page explains the D-1740, site evaluation, Permit to Construct, final-inspection path, and permit-copy lookup instead of pretending the project starts with a clean contractor quote.",
+      "targetReader": "Best for South Carolina owners, buyers, builders, and agents who need to know which SCDES office controls the file, whether the permit copy, D-1740, and site-evaluation history already exist, and why the county building-permit gate can move the whole schedule.",
       "fitBullets": [
         "You have an install or replacement quote, but no one has confirmed whether a permit copy is already on file for the parcel.",
-        "The contractor says the permit is routine, but no one has surfaced whether the D-1740, site visit, or Permit to Construct already exist.",
+        "The contractor says the permit is routine, but no one has surfaced whether the D-1740, site evaluation, or Permit to Construct already exist.",
         "You need to know which SCDES office handles final inspections and follow-up before you anchor on the low end."
       ],
       "decisionSteps": [
         "Start with the SCDES county or regional contact that handles final inspections, permit-copy requests, and after-submission questions for the parcel.",
-        "Ask for the permit copy on file and confirm whether the D-1740 application, plat, deed reference, or site-review note already exists.",
-        "Check whether the parcel already moved through the site visit and Permit to Construct path or whether the permit story is still too thin to trust.",
+        "Ask for the permit copy on file and confirm whether the D-1740 application, plat, deed reference, or site-evaluation note already exists.",
+        "Check whether the parcel already moved through the site evaluation and Permit to Construct path or whether the permit story is still too thin to trust.",
         "Then compare permit readiness, file quality, and local-office timing before you schedule work around the lowest quote."
       ],
       "lowEndBreakers": [
         "If the permit copy is missing or thin, the low end is still a planning scenario rather than a permit-ready number.",
-        "If the D-1740 or site review has not been resolved, the install or replacement path can widen before contractor pricing becomes comparable.",
+        "If the D-1740 or site evaluation has not been resolved, the install or replacement path can widen before contractor pricing becomes comparable.",
         "If the county office path is unclear, final-inspection timing and the broader schedule can move quickly."
       ],
       "quotePrepChecklist": [
         "The SCDES county or regional contact responsible for permit-copy requests and final inspections.",
         "Any permit copy already on file for the parcel.",
-        "Any D-1740 application, plat, deed reference, or site-review note tied to the permit path.",
+        "Any D-1740 application, plat, deed reference, or site-evaluation note tied to the permit path.",
         "A short note showing whether the job is a fresh install, replacement follow-through, or a file-cleanup question before the county building permit."
       ],
       "driverBullets": [
         "South Carolina permit timing depends heavily on pulling the permit copy first.",
-        "The D-1740 and site-visit path often decide whether the homeowner is still in a planning scenario or on a real permit track.",
+        "The D-1740 and site-evaluation path often decide whether the homeowner is still in a planning scenario or on a real permit track.",
         "County-specific SCDES routing can widen the schedule before the installer quote feels real."
       ],
       "faqBlocks": [
@@ -8600,15 +8600,15 @@
           "answer": "Find the SCDES county or regional contact first, because South Carolina routes final inspections, permit-copy requests, and after-submission questions through county-specific offices."
         },
         {
-          "question": "Why does South Carolina permit content need to mention D-1740 and permit copies?",
-          "answer": "Because SCDES describes the D-1740 application, site visit, Permit to Construct, and final inspection path, while also saying permit copies can often be found by parcel details before the homeowner treats the job as permit-ready."
+          "question": "Why does South Carolina permit content need to mention D-1740, site evaluation, and permit copies?",
+          "answer": "Because SCDES describes the D-1740 application, site evaluation, Permit to Construct, and final inspection path, while also saying permit copies can often be found by parcel details before the homeowner treats the job as permit-ready."
         }
       ],
       "internalLinkTargets": [
         "/septic-system-cost-calculator/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=new_install",
-        "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-records-checklist/south-carolina/",
+        "/buying-a-house-with-a-septic-system/south-carolina/",
+        "/septic-system-cost-calculator/?state=SC&projectType=new_install"
       ],
       "officialSourceIds": [
         "sc_01",
