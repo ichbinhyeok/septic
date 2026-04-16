@@ -3,6 +3,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.StateMoneyPrimaryAction
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -11,6 +12,10 @@
 @param java.util.List<SourceRecord> recordsLookupSources = java.util.List.of()
 @param SourceRecord primaryLocalAuthoritySource = null
 @param SourceRecord primaryRecordsLookupSource = null
+@param StateMoneyPrimaryAction primaryAction
+@param String calculatorPath
+@param String quotePath
+@param String guidePath
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
@@ -32,12 +37,16 @@
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&sourcePageHint=/${stateMoneyPage.contentSlug()}/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&sourcePageHint=/${stateMoneyPage.contentSlug()}/${state.slug()}/&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
+                    <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
+                    @if (primaryAction.calculator())
+                        <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    @else
+                        <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    @endif
+                    <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
                 <p class="lede">${stateMoneyPage.introCopy()}</p>
-                <p>${calculatorCtaNote}</p>
+                <p>${primaryAction.note()}</p>
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Fast next steps</span>
@@ -105,18 +114,27 @@
 
             <div class="intent-rail">
                 <article class="intent-card intent-card--primary">
-                    <span class="intent-card__label">Run the state estimate</span>
-                    <h2>${calculatorCtaLabel}</h2>
-                    <p>${calculatorCtaNote}</p>
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    <span class="intent-card__label">${primaryAction.eyebrow()}</span>
+                    <h2>${primaryAction.heading()}</h2>
+                    <p>${primaryAction.note()}</p>
+                    <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                 </article>
 
-                <article class="intent-card">
-                    <span class="intent-card__label">Return to the broader state guide</span>
-                    <h2>Open the ${state.stateName()} guide</h2>
-                    <p>Use the broader guide when you still need the state-level rule style, local office path, and low-end risk before committing to this one intent lane.</p>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_action_rail_guide" data-track-target-type="state_guide">Open the guide</a>
-                </article>
+                @if (primaryAction.calculator())
+                    <article class="intent-card">
+                        <span class="intent-card__label">Return to the broader state guide</span>
+                        <h2>Open the ${state.stateName()} guide</h2>
+                        <p>Use the broader guide when you still need the state-level rule style, local office path, and low-end risk before committing to this one intent lane.</p>
+                        <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_action_rail_guide" data-track-target-type="state_guide">Open the guide</a>
+                    </article>
+                @else
+                    <article class="intent-card">
+                        <span class="intent-card__label">Run the state estimate</span>
+                        <h2>${calculatorCtaLabel}</h2>
+                        <p>${calculatorCtaNote}</p>
+                        <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    </article>
+                @endif
 
                 <article class="intent-card">
                     @if (primaryRecordsLookupSource != null)

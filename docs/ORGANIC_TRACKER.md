@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-12
+Last updated: 2026-04-16
 
 ## Why this file exists
 
@@ -67,6 +67,104 @@ Rules:
 - Internal editorial links should prefer clean canonical paths over calculator
   query-string URLs.
 - `drain-field-replacement-cost` needs deeper content, not just better metadata.
+
+## 2026-04-16
+
+### Data
+
+- Source: Google Search Console MCP for `sc-domain:septicpath.com`
+- Compare window:
+  - current: 2026-03-16 to 2026-04-13
+  - prior: 2026-02-17 to 2026-03-15
+- Fresh-data note: the newest few Search Console days can still move, but this
+  window is already stable enough for page-family decisions.
+- Site summary:
+  - clicks: 22 vs 2 before
+  - impressions: 5,211 vs 713 before
+  - CTR: 0.42% vs 0.28% before
+  - average position: 9.42 vs 11.89 before
+- Priority page movement:
+  - `/septic-records-checklist/indiana/`: 7 clicks, 330 impressions, 2.12% CTR,
+    average position 6.58
+  - `/septic-system-cost-calculator/alabama/`: 6 clicks, 948 impressions,
+    average position 8.04, with visible perc, permit, and record-file intent
+  - `/septic-system-cost-calculator/georgia/`: 2 clicks, 567 impressions,
+    average position 7.82, with permit-cost and state-specific perc intent
+  - `/buying-a-house-with-a-septic-system/new-york/`: 1 click, 155 impressions,
+    average position 6.46
+  - `/septic-permit-process/south-carolina/`: 1 click, 128 impressions,
+    average position 12.09
+  - `/perc-test-cost/`: 0 clicks, 406 impressions, average position 10.64
+  - `/failed-perc-test-septic/`: 0 clicks, 149 impressions, average position
+    13.28
+  - `/drain-field-replacement-cost/`: 0 clicks, 61 impressions, average
+    position 40.57
+- Query movement:
+  - Alabama guide is earning impressions for:
+    - `perc test cost alabama`
+    - `how much is a perc test in alabama`
+    - `septic tank permit records alabama`
+  - Georgia guide is earning impressions for:
+    - `how much is a perc test in georgia`
+    - `septic tank records georgia`
+    - `septic permit cost`
+  - South Carolina permit page is earning impressions for:
+    - `septic permitting south carolina`
+    - `septic system permit requirements south carolina`
+    - `site evaluation for septic permit sc`
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/main/jte/pages/state-money-page.jte`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - kept home workflow-first ordering intact
+  - moved `/perc-test-cost/` to a state-first handoff so the national page
+    pushes visitors into state-specific perc pages before the estimator
+  - boosted county-records-backed records pages inside state guides so states
+    like Indiana, Alabama, and Georgia hand off to the narrower record surface
+    first
+  - boosted state-specific examples on national hubs where Search Console
+    already shows real proof: Indiana records, Alabama and Georgia perc/records,
+    New York buyer, and South Carolina permit
+  - fixed state-specific primary next action for Alabama, Georgia, Indiana, New
+    York, and South Carolina so the canonical page stops leading with the
+    estimator when the real next move is county pages, a narrower records page,
+    or official permit/file links
+  - sharpened `/failed-perc-test-septic/` and
+    `/drain-field-replacement-cost/` so the national pages act more like
+    sorting pages with state-specific proof ahead of the estimate, instead of
+    standing in front like final broad answers
+
+### Insights
+
+- Observation: this window is not a site-level decline. Search visibility,
+  clicks, and average position all improved versus the prior 28-day period.
+- Interpretation: the main problem is surface fit, not discovery failure.
+- Observation: Indiana records is the clearest proof-of-fit page in the current
+  set.
+- Interpretation: county-backed records workflows are a real wedge, not a side
+  support page.
+- Observation: Alabama and Georgia state guides are ranking for perc, permit,
+  and records language at the same time.
+- Interpretation: that is useful only if the guide quickly hands off to the
+  narrower state workflow page instead of acting like the final answer itself.
+- Observation: `failed-perc-test-septic` and `drain-field-replacement-cost`
+  still have little click proof and weak ranking depth.
+- Interpretation: keep them indexed, but do not let them lead the surface until
+  they earn narrower proof.
+
+### Next Actions
+
+- Recheck on 2026-04-30 whether `/perc-test-cost/` starts shifting clicks into
+  Alabama and Georgia state-specific perc pages.
+- Watch whether Indiana records and county-backed records pages keep producing
+  the best click efficiency in the current footprint.
+- Watch whether New York buyer and South Carolina permit pages hold page-one
+  average positions and turn more impressions into clicks.
 
 ## Entry Template
 
