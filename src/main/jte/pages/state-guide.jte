@@ -11,6 +11,7 @@
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> featuredStateMoneyPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredStateWorkflowLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
@@ -32,54 +33,171 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
-                <div class="hero__actions">
-                    @if (!featuredStateMoneyPages.isEmpty())
-                        <a class="button button--primary"
-                           href="${featuredStateMoneyPages.get(0).path(state.slug())}"
-                           data-track-click="nav"
-                           data-track-source-context="state_guide_primary_workflow"
-                           data-track-target-type="state_money_page">${featuredStateMoneyPages.get(0).title()}</a>
-                        <a class="button button--secondary"
-                           href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/"
-                           data-track-click="nav"
-                           data-track-source-context="state_guide_secondary_calculator"
-                           data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    @else
-                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="state_guide_primary_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
-                    @endif
-                    @if (primaryRecordsLookupSource != null)
-                        <a class="button button--secondary"
-                           href="${primaryRecordsLookupSource.url()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-track-source-context="state_guide_primary_records"
-                           data-track-target-type="official_source">Open local records path</a>
-                    @elseif (primaryLocalAuthoritySource != null)
-                        <a class="button button--secondary"
-                           href="${primaryLocalAuthoritySource.url()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-track-source-context="state_guide_primary_local_authority"
-                           data-track-target-type="official_source">Open county office path</a>
-                    @endif
-                </div>
                 <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
-                @if (!featuredStateMoneyPages.isEmpty())
-                    <p>Use the narrower workflow page first when the real blocker is permit steps, county file retrieval, buyer diligence, or inspection history. Run the estimate after that local story is clear enough to price.</p>
+                @if (!featuredStateWorkflowLinks.isEmpty())
+                    <p class="hero-router-intro">Pick the first move that matches the blocker. Use the narrower workflow or file path first, and estimate only after the local story is clear enough to price.</p>
                 @else
-                    <p>${calculatorCtaNote}</p>
+                    <p class="hero-router-intro">${calculatorCtaNote}</p>
                 @endif
-                @if (!featuredStateMoneyPages.isEmpty())
+                <div class="micro-tool micro-tool--hero" data-choice-group>
+                    <div class="hero-decision-grid hero-decision-grid--three micro-tool__choices">
+                        <button class="hero-decision-card hero-decision-card--accent micro-tool__choice is-active"
+                                type="button"
+                                data-choice="file"
+                                aria-pressed="true">
+                            <span class="hero-decision-card__label">File or office first</span>
+                            <h3>I need the local file or county office before I trust the story</h3>
+                            <p>Choose this when the main blocker is the permit file, parcel record, county page, or the official office that owns the next step.</p>
+                        </button>
+
+                        <button class="hero-decision-card micro-tool__choice"
+                                type="button"
+                                data-choice="workflow"
+                                aria-pressed="false">
+                            <span class="hero-decision-card__label">Workflow first</span>
+                            <h3>I need the narrow state workflow before I price anything</h3>
+                            <p>Choose this when the broad state guide is not enough and the real question is records, permit path, buyer diligence, or one narrower lane.</p>
+                        </button>
+
+                        <button class="hero-decision-card micro-tool__choice"
+                                type="button"
+                                data-choice="estimate"
+                                aria-pressed="false">
+                            <span class="hero-decision-card__label">Planning range</span>
+                            <h3>I need a cautious number after the path is clearer</h3>
+                            <p>Choose this when you already understand the workflow well enough to use a planning estimate without flattening the local story.</p>
+                        </button>
+                    </div>
+
+                    <div class="micro-tool__panels">
+                        <article class="micro-tool__panel is-active" data-choice-panel="file">
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            @if (primaryRecordsLookupSource != null)
+                                <h2>Pull the local septic file first</h2>
+                                <p>Open the records path before you trust a quote, because the permit copy, as-built sketch, inspection trail, or parcel file can change the whole downside faster than another broad guide.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${primaryRecordsLookupSource.url()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_micro_tool_records"
+                                       data-track-target-type="official_source">Open local records path</a>
+                                    @if (!featuredCountyRecordLinks.isEmpty())
+                                        <a class="button button--secondary"
+                                           href="${featuredCountyRecordLinks.get(0).path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_micro_tool_county"
+                                           data-track-target-type="county_records_page">Open county records page</a>
+                                    @endif
+                                </div>
+                            @elseif (!featuredCountyRecordLinks.isEmpty())
+                                <h2>Open the county records page first</h2>
+                                <p>The state guide has done enough to narrow the problem. The next move is the county page, where the actual parcel file and office path become concrete enough to trust.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${featuredCountyRecordLinks.get(0).path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_micro_tool_county"
+                                       data-track-target-type="county_records_page">Open county records page</a>
+                                    @if (primaryLocalAuthoritySource != null)
+                                        <a class="button button--secondary"
+                                           href="${primaryLocalAuthoritySource.url()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_micro_tool_authority"
+                                           data-track-target-type="official_source">Open county office path</a>
+                                    @endif
+                                </div>
+                            @elseif (primaryLocalAuthoritySource != null)
+                                <h2>Verify the right county office first</h2>
+                                <p>When the file path is still fuzzy, the safest first move is confirming which local authority actually owns the next permit, review, or inspection step.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${primaryLocalAuthoritySource.url()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_micro_tool_authority"
+                                       data-track-target-type="official_source">Open county office path</a>
+                                    <a class="button button--secondary" href="#sources">Jump to source block</a>
+                                </div>
+                            @else
+                                <h2>Use the official source block first</h2>
+                                <p>This state still needs the verified agency trail before the next move becomes specific. Start with the source list, then move into the narrower workflow only after the rule path is clearer.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary" href="#sources">Jump to sources</a>
+                                    @if (!featuredStateWorkflowLinks.isEmpty())
+                                        <a class="button button--secondary"
+                                           href="${featuredStateWorkflowLinks.get(0).path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_micro_tool_workflow"
+                                           data-track-target-type="state_money_page">${featuredStateWorkflowLinks.get(0).title()}</a>
+                                    @endif
+                                </div>
+                            @endif
+                        </article>
+
+                        <article class="micro-tool__panel" data-choice-panel="workflow" hidden>
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            @if (!featuredStateMoneyPages.isEmpty())
+                                <h2>Open the narrow state workflow now</h2>
+                                <p>${featuredStateMoneyPages.get(0).uniqueAngle()} Use the narrower workflow page once the broad state story is clear enough and the live blocker is no longer "what kind of state is this?" but "what do I do next?"</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${featuredStateWorkflowLinks.get(0).path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_micro_tool_workflow"
+                                       data-track-target-type="state_money_page">${featuredStateWorkflowLinks.get(0).title()}</a>
+                                    @if (featuredStateWorkflowLinks.size() > 1)
+                                        <a class="button button--secondary"
+                                           href="${featuredStateWorkflowLinks.get(1).path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_micro_tool_workflow_alt"
+                                           data-track-target-type="state_money_page">${featuredStateWorkflowLinks.get(1).title()}</a>
+                                    @endif
+                                </div>
+                            @else
+                                <h2>Stay in the guide just long enough to narrow the workflow</h2>
+                                <p>No stronger state-specific lane is published yet, so use the workflow overview, permit-risk section, and sources to decide whether the next move is records, local office verification, or a cautious estimate.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary" href="#workflow-overview">Review workflow overview</a>
+                                    <a class="button button--secondary" href="#permit-risk">Review permit and buyer risk</a>
+                                </div>
+                            @endif
+                        </article>
+
+                        <article class="micro-tool__panel" data-choice-panel="estimate" hidden>
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            <h2>Run the planning estimate after the local story is clear enough</h2>
+                            <p>${calculatorCtaNote} The estimate is strongest after you confirm the file, county office, or narrow workflow that actually governs this property.</p>
+                            <div class="micro-tool__actions">
+                                <a class="button button--primary"
+                                   href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/"
+                                   data-track-click="nav"
+                                   data-track-source-context="state_guide_micro_tool_calculator"
+                                   data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                                @if (!featuredStateWorkflowLinks.isEmpty())
+                                    <a class="button button--secondary"
+                                       href="${featuredStateWorkflowLinks.get(0).path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_micro_tool_calculator_workflow"
+                                       data-track-target-type="state_money_page">${featuredStateWorkflowLinks.get(0).title()}</a>
+                                @endif
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                @if (!featuredStateWorkflowLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Fast next steps</span>
-                        @for (var stateMoneyPage : featuredStateMoneyPages)
+                        @for (var workflowLink : featuredStateWorkflowLinks)
                             <a class="button button--secondary quick-link-strip__button"
-                               href="${stateMoneyPage.path(state.slug())}"
+                               href="${workflowLink.path()}"
                                data-track-click="nav"
                                data-track-source-context="state_guide_featured_link"
-                               data-track-target-type="state_money_page">${stateMoneyPage.title()}</a>
+                               data-track-target-type="state_money_page">${workflowLink.title()}</a>
                         @endfor
                     </div>
                 @endif

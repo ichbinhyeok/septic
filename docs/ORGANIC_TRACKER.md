@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-16
+Last updated: 2026-04-22
 
 ## Why this file exists
 
@@ -12,6 +12,9 @@ Use it to track:
 - what was changed in the product or content
 - what we learned from that data
 - what to check next and when
+
+Workflow-channel work is tracked separately in `docs/WORKFLOW_TRACKER.md` so
+search decisions do not get mixed with vendor-send experiments.
 
 This is not a brainstorming doc. Each entry should leave a clear audit trail from
 data -> change -> insight -> next action.
@@ -165,6 +168,134 @@ Rules:
   the best click efficiency in the current footprint.
 - Watch whether New York buyer and South Carolina permit pages hold page-one
   average positions and turn more impressions into clicks.
+
+## 2026-04-22
+
+### Data
+
+- Source: Google Search Console MCP for `sc-domain:septicpath.com`
+- Compare window:
+  - current: 2026-03-23 to 2026-04-19
+  - prior: 2026-02-23 to 2026-03-22
+- Fresh-data note: 2026-04-20 to 2026-04-22 was excluded on purpose to avoid
+  normal Search Console lag. This read is stable enough for page-family and
+  query-fit decisions.
+- Site summary:
+  - clicks: 24 vs 6 before
+  - impressions: 5,126 vs 1,795 before
+  - CTR: 0.47% vs 0.33% before
+  - average position: 9.07 vs 11.32 before
+- Stable week-over-week read:
+  - 2026-04-13 to 2026-04-19: 6 clicks, 1,336 impressions, 0.45% CTR,
+    average position 8.48
+  - 2026-04-06 to 2026-04-12: 1 click, 1,322 impressions, 0.08% CTR,
+    average position 9.10
+- Priority page movement:
+  - `/septic-system-cost-calculator/alabama/`: 10 clicks, 984 impressions,
+    1.02% CTR, average position 8.04
+  - `/septic-system-cost-calculator/georgia/`: 2 clicks, 547 impressions,
+    0.37% CTR, average position 7.76
+  - `/perc-test-cost/`: 0 clicks, 159 impressions, average position 7.84
+    versus 432 impressions and average position 11.44 before
+  - `/septic-permit-process/`: 0 clicks, 123 impressions, average position
+    5.20 versus 66 impressions before
+  - `/septic-records-checklist/`: 0 clicks, 168 impressions, average position
+    7.65 versus 70 impressions before
+- Page-family movement:
+  - `septic-records-checklist` family rose from roughly 2 clicks / 208
+    impressions to roughly 7 clicks / 902 impressions, led again by
+    `/septic-records-checklist/indiana/`
+  - `septic-permit-process` family rose from roughly 0 clicks / 129
+    impressions to roughly 3 clicks / 631 impressions, with South Carolina,
+    Rhode Island, and Nebraska now carrying the visible click proof
+  - `perc-test-cost` family fell from roughly 451 impressions to roughly 314
+    impressions overall, but the national parent improved in average position
+    and West Virginia picked up a new 144-impression state wedge
+- Query movement for the tracked exact set:
+  - total clicks across the exact tracked queries were still 0
+  - `septic tank permit`: 3 impressions at average position 6.67 versus 2
+    impressions at 10.00 before
+  - `how much does a septic permit cost`: 1 impression at average position
+    4.00 versus 1 impression at 9.00 before
+  - `perc test cost`: 6 impressions at average position 38.83 versus 23
+    impressions at 39.39 before
+  - `perc test cost near me`: no exact impressions in this window after 2
+    impressions in the prior one
+- Query-to-page mapping that mattered:
+  - the exact permit-intent tracked queries that did fire mapped to
+    `/septic-system-cost-calculator/alabama/`
+  - the exact `perc test cost` query still mapped primarily to
+    `/perc-test-cost/`, with only a small spill into the Alabama guide
+- Technical check:
+  - inspected priority URLs for `/perc-test-cost/`, `/septic-permit-process/`,
+    `/septic-records-checklist/`, and the Alabama and Georgia guides all
+    returned `Submitted and indexed`
+  - user canonical and Google canonical matched on all five inspected URLs
+  - FAQ and breadcrumb rich-result detection passed on all five inspected URLs
+  - workflow packet URLs for Indiana, New York, and South Carolina were still
+    `URL is unknown to Google`, which is consistent with the intended public
+    `noindex` separation
+  - sitemap report currently shows `428 submitted / 0 indexed` even though the
+    sampled URLs above are explicitly reported as submitted and indexed
+
+### Changes Shipped
+
+- Commit: none in this check-in
+- Files referenced as operating inputs:
+  - `docs/ORGANIC_TRACKER.md`
+  - `docs/SEO_SURFACE.md`
+  - `docs/ORGANIC_5000_SPRINT.md`
+  - `docs/WORKFLOW_CHANNEL.md`
+- What changed:
+  - this was a measurement-only Search Console inspection
+  - verified that workflow packet URLs are still off the search surface
+  - verified that the tracked canonical URLs are indexed and canonicalized
+
+### Insights
+
+- Observation: site-level clicks, impressions, CTR, and average position all
+  improved versus the prior stable 28-day window.
+- Interpretation: the site is still in active growth, not in a stall or
+  decline phase.
+- Observation: Alabama is now the clearest live winner and is absorbing the
+  tracked exact permit-intent queries that still surface.
+- Interpretation: Alabama remains the strongest proof that state-guide plus
+  workflow intent is outperforming broader national framing.
+- Observation: records and permit families are compounding visibility faster
+  than the perc family.
+- Interpretation: the next SEO work should keep leaning into records, permit,
+  buyer, and county-file wedges instead of widening back into broader
+  educational surfaces.
+- Observation: the national `perc-test-cost` page improved in average position
+  but lost exact-query demand and still did not earn clicks.
+- Interpretation: perc intent should keep handing off into proven state pages
+  rather than relying on the national parent to be the final click winner.
+- Observation: workflow packet URLs are still unknown to Google.
+- Interpretation: the search surface and workflow-channel surface are still
+  separated correctly.
+- Observation: sitemap reporting is now the main technical anomaly because the
+  sitemap says `0 indexed` while inspected sample URLs from that sitemap are
+  clearly indexed.
+- Interpretation: this is the highest-priority technical follow-up from this
+  check-in.
+
+### Next Actions
+
+- Manually verify the sitemap report in the Search Console UI for
+  `https://septicpath.com/sitemap.xml`.
+- If the UI still shows `428 submitted / 0 indexed` after verification,
+  resubmit the sitemap and recheck whether the downloaded timestamp and indexed
+  count move together.
+- Keep `/septic-system-cost-calculator/alabama/` as the benchmark page for
+  blended permit, perc, and records intent.
+- Recheck on 2026-04-29 whether the permit and records families continue
+  compounding clicks and whether the national parent pages convert any of their
+  improved page-one visibility into actual clicks.
+- If new internal-link work ships before that recheck, bias it toward:
+  - `/septic-records-checklist/` -> live county and state records wedges
+  - `/septic-permit-process/` -> proven state permit pages
+  - `/perc-test-cost/` -> proven state-specific perc wedges instead of broader
+    parent-page copy
 
 ## Entry Template
 

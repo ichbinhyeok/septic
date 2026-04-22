@@ -30,6 +30,7 @@ import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -60,6 +61,9 @@ public class SiteController {
             "septic-permit-process",
             "buying-a-house-with-a-septic-system"
     );
+    private static final String INDIANA_RECORDS_PACKET_PATH = "/for-professionals/records-packet/indiana/";
+    private static final String NEW_YORK_BUYER_PACKET_PATH = "/for-professionals/buyer-diligence-packet/new-york/";
+    private static final String SOUTH_CAROLINA_PERMIT_PACKET_PATH = "/for-professionals/permit-prep-packet/south-carolina/";
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
     private static final EditorialProfile STATE_PAGE_PREPARER = new EditorialProfile(
@@ -360,6 +364,226 @@ public class SiteController {
         return renderContactPage(model, new ContactRequestForm(), false, requestId);
     }
 
+    @GetMapping({"/for-professionals/records-packet/indiana", "/for-professionals/records-packet/indiana/"})
+    public String indianaRecordsPacket(Model model) {
+        StateProfile state = researchDataService.findPublicStateBySlug("indiana")
+                .orElseThrow(() -> new StateNotFoundException("indiana"));
+        StateMoneyPage recordsPage = researchDataService.findPublicStateMoneyPage("septic-records-checklist", "indiana")
+                .orElseThrow(() -> new StateNotFoundException("septic-records-checklist/indiana"));
+        StateMoneyPage buyerPage = researchDataService.findPublicStateMoneyPage("buying-a-house-with-a-septic-system", "indiana")
+                .orElseThrow(() -> new StateNotFoundException("buying-a-house-with-a-septic-system/indiana"));
+        String packetUrl = seoService.absoluteUrl(INDIANA_RECORDS_PACKET_PATH);
+        List<PageLink> countyLinks = countyRecordPageLinks(state.stateCode()).stream().limit(4).toList();
+        WorkflowPacketView packet = new WorkflowPacketView(
+                "Professional workflow packet",
+                "Indiana septic records packet for buyer agents and coordinators",
+                "Use this share page when the real blocker is the county file, sewer-availability note, or local board history behind an Indiana septic story. The first send should narrow into the records workflow, not a broad cost page.",
+                "Records packet",
+                "Public noindex handoff for Indiana file checks",
+                "This packet is meant to shorten the first buyer or seller explanation when the next real move is county records, existing permits, or local-board confirmation.",
+                "The packet should move the recipient into the Indiana records checklist first, then into the county page or official file source that matches the parcel.",
+                "Indiana septic records and county file check",
+                """
+Hi,
+
+Before we rely on the current septic story, start with this Indiana records packet:
+%s
+
+Open the Indiana records checklist first. If the parcel is already clearly tied to a county health office, use one of the linked county pages right after that.
+
+The goal is to confirm the file, the local office, and any sewer-availability note before we treat a quote or seller summary as the real answer.
+""".formatted(packetUrl),
+                new PageLink(
+                        recordsPage.title(),
+                        recordsPage.path(state.slug()),
+                        "Start with the Indiana records checklist before you price the downside. That page is the pinned first move because Indiana's county-first file path changes the next action faster than a broad guide."
+                ),
+                List.of(
+                        new PageLink(
+                                buyerPage.title(),
+                                buyerPage.path(state.slug()),
+                                "Use the Indiana buyer workflow after the file path is clearer and the next question shifts from record retrieval to deal risk."
+                        ),
+                        new PageLink(
+                                "Indiana Septic Guide",
+                                "/septic-system-cost-calculator/indiana/",
+                                "Use the broader Indiana guide only when you still need statewide permit-path and sewer-gating context around the file."
+                        )
+                ),
+                countyLinks,
+                workflowPacketSources(
+                        recordsPage.officialSourceIds(),
+                        state.recordsLookupSourceIds(),
+                        state.localAuthoritySourceIds(),
+                        state.officialSourceIds()
+                ),
+                List.of(
+                        "A buyer or seller cannot produce a septic file with enough confidence for closing.",
+                        "You need a county or local board path before you let the conversation drift into quote mode.",
+                        "The parcel story may break if sanitary sewer is available or the local board file contradicts the seller summary."
+                ),
+                state.recordsToRequest(),
+                List.of(
+                        "Confirm the county before you send this packet so the recipient can move into the right county page fast.",
+                        "Send the Indiana records checklist first, and use the county page only when the parcel already has a clear county office.",
+                        "Keep the estimator and quote links out of the first send unless the file is already strong enough to trust."
+                )
+        );
+        return renderWorkflowPacketPage(
+                model,
+                seoService.workflowPacketPage(
+                        "Indiana Septic Records Packet for Professionals | SepticPath",
+                        "Public noindex Indiana septic records packet for buyer agents and coordinators who need a county-file-first handoff before a quote story.",
+                        INDIANA_RECORDS_PACKET_PATH
+                ),
+                packet
+        );
+    }
+
+    @GetMapping({"/for-professionals/buyer-diligence-packet/new-york", "/for-professionals/buyer-diligence-packet/new-york/"})
+    public String newYorkBuyerDiligencePacket(Model model) {
+        StateProfile state = researchDataService.findPublicStateBySlug("new-york")
+                .orElseThrow(() -> new StateNotFoundException("new-york"));
+        StateMoneyPage buyerPage = researchDataService.findPublicStateMoneyPage("buying-a-house-with-a-septic-system", "new-york")
+                .orElseThrow(() -> new StateNotFoundException("buying-a-house-with-a-septic-system/new-york"));
+        StateMoneyPage recordsPage = researchDataService.findPublicStateMoneyPage("septic-records-checklist", "new-york")
+                .orElseThrow(() -> new StateNotFoundException("septic-records-checklist/new-york"));
+        String packetUrl = seoService.absoluteUrl(NEW_YORK_BUYER_PACKET_PATH);
+        WorkflowPacketView packet = new WorkflowPacketView(
+                "Professional workflow packet",
+                "New York septic buyer diligence packet for agents and coordinators",
+                "Use this when the deal needs Appendix 75-A, county health file, and waiver history clarified before anyone pretends the septic story is routine. The first send should frame the deal risk, then hand off into records.",
+                "Buyer diligence packet",
+                "Public noindex handoff for New York septic deals",
+                "This packet is for buyer-side teams who keep repeating the same file and waiver explanation in New York transactions.",
+                "The packet should move the recipient into the New York buyer workflow first, then into the New York records checklist and official file sources.",
+                "New York septic due diligence before closing",
+                """
+Hi,
+
+Start with this New York septic buyer diligence packet:
+%s
+
+Open the New York buyer workflow first. It then hands off into the records checklist and the official file path that matters for Appendix 75-A, waiver history, and county health review.
+
+The goal is to settle the file and local authority story before we treat the septic issue like a simple inspection line item.
+""".formatted(packetUrl),
+                new PageLink(
+                        buyerPage.title(),
+                        buyerPage.path(state.slug()),
+                        "Start with the New York buyer workflow when the deal risk is still broader than one records request. That page pins the first move around buyer diligence, then narrows into the records file."
+                ),
+                List.of(
+                        new PageLink(
+                                recordsPage.title(),
+                                recordsPage.path(state.slug()),
+                                "Use the New York records checklist right after the buyer page when the next move is pulling the Appendix 75-A file, waiver history, or county health record."
+                        ),
+                        new PageLink(
+                                "New York Septic Guide",
+                                "/septic-system-cost-calculator/new-york/",
+                                "Use the broader New York guide only when you still need statewide design-baseline context around the file."
+                        )
+                ),
+                List.of(),
+                workflowPacketSources(
+                        buyerPage.officialSourceIds(),
+                        recordsPage.officialSourceIds(),
+                        state.recordsLookupSourceIds(),
+                        state.localAuthoritySourceIds(),
+                        state.officialSourceIds()
+                ),
+                List.of(
+                        "A buyer needs the septic file story clarified before inspection or repair conversations drift.",
+                        "The deal is already moving, but Appendix 75-A, waiver history, or county health review is still unclear.",
+                        "You need a reusable buyer-facing explanation that keeps the next move on records instead of generic fear or quote shopping."
+                ),
+                state.recordsToRequest(),
+                List.of(
+                        "Use the buyer packet first when the main problem is deal diligence, not a stand-alone records request.",
+                        "Expect the next internal click to be the New York records checklist, not the broad state guide.",
+                        "Do not lead with estimate ranges until the buyer understands the file quality and waiver story."
+                )
+        );
+        return renderWorkflowPacketPage(
+                model,
+                seoService.workflowPacketPage(
+                        "New York Septic Buyer Diligence Packet for Professionals | SepticPath",
+                        "Public noindex New York septic buyer diligence packet for agents and coordinators who need an Appendix 75-A and county-file-first handoff.",
+                        NEW_YORK_BUYER_PACKET_PATH
+                ),
+                packet
+        );
+    }
+
+    @GetMapping({"/for-professionals/permit-prep-packet/south-carolina", "/for-professionals/permit-prep-packet/south-carolina/"})
+    public String southCarolinaPermitPrepPacket(Model model) {
+        StateProfile state = researchDataService.findPublicStateBySlug("south-carolina")
+                .orElseThrow(() -> new StateNotFoundException("south-carolina"));
+        StateMoneyPage permitPage = researchDataService.findPublicStateMoneyPage("septic-permit-process", "south-carolina")
+                .orElseThrow(() -> new StateNotFoundException("septic-permit-process/south-carolina"));
+        String packetUrl = seoService.absoluteUrl(SOUTH_CAROLINA_PERMIT_PACKET_PATH);
+        WorkflowPacketView packet = new WorkflowPacketView(
+                "Professional workflow packet",
+                "South Carolina septic permit prep packet for installers and coordinators",
+                "Use this when the real blocker is D-1740, site review, permit-copy retrieval, or county routing in South Carolina. The first send should narrow into the permit workflow before anyone treats the project like a standard install quote.",
+                "Permit prep packet",
+                "Public noindex handoff for South Carolina permit prep",
+                "This packet is for teams that keep re-explaining South Carolina permit routing, permit-copy retrieval, and local office handoff before the job is truly permit-ready.",
+                "The packet should move the recipient into the South Carolina permit workflow first, then into the permit links and county routing inside that page.",
+                "South Carolina septic permit prep and D-1740 path",
+                """
+Hi,
+
+Use this South Carolina permit prep packet as the first reference:
+%s
+
+Open the South Carolina permit workflow first. It points to the permit links and county routing that matter for D-1740, site review, and permit-copy questions.
+
+The goal is to settle the permit path before we frame the project as a normal install or replacement quote.
+""".formatted(packetUrl),
+                new PageLink(
+                        permitPage.title(),
+                        permitPage.path(state.slug()),
+                        "Start with the South Carolina permit workflow when D-1740, local office routing, or permit-copy retrieval is the real bottleneck."
+                ),
+                List.of(
+                        new PageLink(
+                                "South Carolina Septic Guide",
+                                "/septic-system-cost-calculator/south-carolina/",
+                                "Use the broader South Carolina guide only when you still need statewide permit context around the local office path."
+                        )
+                ),
+                List.of(),
+                workflowPacketSources(
+                        permitPage.officialSourceIds(),
+                        state.localAuthoritySourceIds(),
+                        state.recordsLookupSourceIds(),
+                        state.officialSourceIds()
+                ),
+                List.of(
+                        "The recipient still needs the permit sequence clarified before site work or contractor scheduling starts.",
+                        "D-1740, site approval, or permit-copy retrieval is still an open question.",
+                        "You need a sendable explanation that narrows the recipient into the permit path instead of a broad cost discussion."
+                ),
+                permitPage.quotePrepChecklist(),
+                List.of(
+                        "Send this before an estimate when D-1740 or permit-copy friction is still unresolved.",
+                        "Expect the next move to be the permit workflow page and then the official source links inside it.",
+                        "Keep quote and estimator links out of the first handoff until the permit path is actually clearer."
+                )
+        );
+        return renderWorkflowPacketPage(
+                model,
+                seoService.workflowPacketPage(
+                        "South Carolina Septic Permit Prep Packet for Professionals | SepticPath",
+                        "Public noindex South Carolina septic permit prep packet for installers and coordinators who need a D-1740 and permit-path-first handoff.",
+                        SOUTH_CAROLINA_PERMIT_PACKET_PATH
+                ),
+                packet
+        );
+    }
+
     @GetMapping(value = {"/robots.txt"}, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String robotsTxt() {
@@ -532,6 +756,10 @@ public class SiteController {
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
         model.addAttribute("stateMoneyPages", sortedStateMoneyPages);
         model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(5).toList());
+        model.addAttribute("featuredStateWorkflowLinks", sortedStateMoneyPages.stream()
+                .limit(5)
+                .map(page -> stateGuideHeroWorkflowLink(page, state))
+                .toList());
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
@@ -607,7 +835,10 @@ public class SiteController {
                 .map(entry -> new StateMoneyPageLink(
                         entry.getKey().title(),
                         entry.getValue().stateName(),
-                        entry.getKey().path(entry.getValue().slug())))
+                        entry.getValue().stateCode(),
+                        stateSurfaceRouteTitle(entry.getKey(), entry.getValue()),
+                        entry.getKey().path(entry.getValue().slug()),
+                        stateSurfaceSignalView(contentPage, entry.getKey(), entry.getValue())))
                 .toList();
         List<ContentEvidenceLaneView> contentEvidenceLanes = rankedStateEntries.stream()
                 .limit(6)
@@ -858,7 +1089,7 @@ public class SiteController {
         List<StateMoneyPageLink> drainfieldStateLinks = researchDataService.listPublicStateMoneyPagesForContent("drain-field-replacement-cost").stream()
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .filter(StateProfile::isPublished)
-                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), page.path(state.slug())))
+                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), state.stateCode(), page.path(state.slug())))
                         .stream())
                 .limit(8)
                 .toList();
@@ -941,6 +1172,47 @@ public class SiteController {
                 page.path(state.slug()),
                 state.stateName() + " | " + firstNonBlank(page.uniqueAngle(), page.metaDescription())
         );
+    }
+
+    private PageLink stateGuideHeroWorkflowLink(StateMoneyPage page, StateProfile state) {
+        return new PageLink(
+                stateGuideHeroWorkflowLabel(page),
+                page.path(state.slug()),
+                page.title()
+        );
+    }
+
+    private String stateSurfaceRouteTitle(StateMoneyPage page, StateProfile state) {
+        return switch (page.contentSlug()) {
+            case "septic-records-checklist" -> state.stateName() + " records workflow";
+            case "septic-permit-process" -> state.stateName() + " permit workflow";
+            case "buying-a-house-with-a-septic-system" -> state.stateName() + " buyer workflow";
+            case "septic-inspection-cost" -> state.stateName() + " inspection file path";
+            case "perc-test-cost" -> state.stateName() + " perc path";
+            case "failed-perc-test-septic" -> state.stateName() + " failed-perc path";
+            case "septic-replacement-cost" -> state.stateName() + " replacement path";
+            case "drain-field-replacement-cost" -> state.stateName() + " drain field path";
+            case "septic-replacement-area" -> state.stateName() + " replacement-area path";
+            case "wet-yard-over-septic-drain-field" -> state.stateName() + " field-failure path";
+            case "septic-pumping-cost" -> state.stateName() + " maintenance path";
+            default -> state.stateName() + " state page";
+        };
+    }
+
+    private String stateGuideHeroWorkflowLabel(StateMoneyPage page) {
+        return switch (page.contentSlug()) {
+            case "septic-permit-process" -> "Open permit workflow";
+            case "septic-records-checklist" -> "Open records checklist";
+            case "buying-a-house-with-a-septic-system" -> "Open buyer workflow";
+            case "perc-test-cost" -> "Open perc page";
+            case "failed-perc-test-septic" -> "Open failed-perc page";
+            case "septic-replacement-cost" -> "Open replacement path";
+            case "drain-field-replacement-cost" -> "Open drain field page";
+            case "septic-replacement-area" -> "Open replacement-area guide";
+            case "wet-yard-over-septic-drain-field" -> "Open wet-yard guide";
+            case "septic-inspection-cost" -> "Open inspection page";
+            default -> "Open state page";
+        };
     }
 
     private int growthPageScore(StateMoneyPage page, StateProfile state) {
@@ -1056,6 +1328,12 @@ public class SiteController {
         return "pages/site-page";
     }
 
+    private String renderWorkflowPacketPage(Model model, PageMeta page, WorkflowPacketView packet) {
+        model.addAttribute("page", page);
+        model.addAttribute("packet", packet);
+        return "pages/workflow-packet-page";
+    }
+
     private String renderContactPage(
             Model model,
             ContactRequestForm contactRequestForm,
@@ -1139,16 +1417,16 @@ public class SiteController {
     private String contentActionHeading(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Use the replacement estimate before you compare contractor quotes.";
-            case "perc-test-cost" -> "Start with the state-specific perc page before you trust a national range.";
-            case "drain-field-replacement-cost" -> "Start with a source-backed state drain field page before you trust a trench-only story.";
-            case "failed-perc-test-septic" -> "Start with a source-backed state failed-perc page before you price redesign risk.";
+            case "perc-test-cost" -> "Open a state perc page first.";
+            case "drain-field-replacement-cost" -> "Open a state drain field page first.";
+            case "failed-perc-test-septic" -> "Open a state failed-perc page first.";
             case "septic-replacement-area" -> "Use the field-layout estimate before you assume the parcel still has a viable backup area.";
             case "wet-yard-over-septic-drain-field" -> "Use the field-failure estimate before you treat a wet yard as a small repair story.";
             case "septic-inspection-cost" -> "Use the inspection-risk estimate after you know what the file is missing.";
-            case "buying-a-house-with-a-septic-system" -> "Start with the state-specific buyer workflow before you price the downside.";
-            case "septic-permit-process" -> "Start with the state-specific permit page before you trust the timeline.";
-            case "septic-records-checklist" -> "Start with the state-specific records page before you trust the file.";
-            case TRANSFER_COMPLIANCE_SLUG -> "Start with the state-specific transfer workflow before you trust the closing story.";
+            case "buying-a-house-with-a-septic-system" -> "Open a state buyer page first.";
+            case "septic-permit-process" -> "Open a state permit page first.";
+            case "septic-records-checklist" -> "Open a state records page first.";
+            case TRANSFER_COMPLIANCE_SLUG -> "Open a state transfer page first.";
             case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
             case "septic-pumping-cost" -> "Open the pump schedule estimator before you assume a maintenance cadence.";
             default -> "Use the main estimator before you ask for quotes.";
@@ -1292,8 +1570,8 @@ public class SiteController {
                     "Utah quote conversations get more real once you know which local health department owns the file and whether soil logs, percolation tests, or an operating-permit wrinkle are already in play."
             );
             case "WV" -> new StateActionCopy(
-                    "Estimate before the local file check",
-                    "West Virginia quote conversations get more real once you know whether the local health department can actually surface a sewage permit file, sanitarian note, or public-record trail."
+                    "Estimate after the local file check",
+                    "West Virginia quotes get real after you confirm the local health file, the sewage permit application, and any sanitarian or public-record trail."
             );
             case "SD" -> new StateActionCopy(
                     "Estimate before the permit certificate",
@@ -1336,8 +1614,8 @@ public class SiteController {
                     "New Hampshire quote conversations get more real once you know whether the property is operationally approved for the intended use and whether OneStop or archive records actually support the file story."
             );
             case "RI" -> new StateActionCopy(
-                    "Estimate before the DEM file pull",
-                    "Rhode Island quote conversations get more real once you know whether DEM's active or historic permit searches surface the file and whether suitability or advanced-technology rules already widen the story."
+                    "Estimate after the DEM file pull",
+                    "Rhode Island quotes get real after you confirm the DEM search results, the full file, and any suitability or advanced-technology trigger."
             );
             case "VT" -> new StateActionCopy(
                     "Estimate before the regional-office handoff",
@@ -1408,8 +1686,8 @@ public class SiteController {
                     "Tennessee quote conversations get more real once you know whether the parcel runs through a contract county or TDEC contact and whether a repair permit or inspection letter is already in the file."
             );
             case "SC" -> new StateActionCopy(
-                    "Estimate before the permit copy pull",
-                    "South Carolina quote conversations get more real once you know which SCDES office holds the file and whether the permit copy, D-1740, or final-inspection path is already in view."
+                    "Estimate after the permit-copy pull",
+                    "South Carolina quotes get real after you confirm the SCDES office, the D-1740 path, the permit copy, and final-inspection status."
             );
             case "CA" -> new StateActionCopy(
                     "Estimate before the county file pull",
@@ -1432,8 +1710,8 @@ public class SiteController {
                     "Michigan questions get more real once you know which local health department holds the file and whether failure evidence or system-location uncertainty is already on record."
             );
             case "GA" -> new StateActionCopy(
-                    "Estimate before trusting permit cost or county rules",
-                    "Georgia homeowners usually need the county office, permit file, soil analysis, and garbage-disposal rule clarified before the first septic permit quote looks real."
+                    "Estimate after the county file pull",
+                    "Georgia quotes get real after you confirm the county office, the permit file, the soil analysis, and the garbage-disposal sizing rule."
             );
             case "PA" -> new StateActionCopy(
                     "Estimate before calling the SEO",
@@ -1605,6 +1883,19 @@ public class SiteController {
                 lastReviewedAt,
                 sources
         );
+    }
+
+    @SafeVarargs
+    private final List<SourceRecord> workflowPacketSources(List<String>... sourceIdGroups) {
+        return Stream.of(sourceIdGroups)
+                .filter(java.util.Objects::nonNull)
+                .flatMap(List::stream)
+                .filter(sourceId -> sourceId != null && !sourceId.isBlank())
+                .distinct()
+                .map(researchDataService::findSource)
+                .flatMap(Optional::stream)
+                .limit(5)
+                .toList();
     }
 
     private List<PageLink> countyRecordPageLinks(String stateCode) {
@@ -1806,6 +2097,112 @@ public class SiteController {
                 .toList();
     }
 
+    private StateSurfaceSignalView stateSurfaceSignalView(ContentPage contentPage, StateMoneyPage page, StateProfile state) {
+        int linkScore = contentStateLinkScore(contentPage, page, state);
+        int observedBoost = observedIntentSignalBoost(contentPage.slug(), state.stateCode(), page.contentSlug());
+        int pageSourceCount = size(page.officialSourceIds());
+        int backingSourceCount = distinctSourceCount(
+                page.officialSourceIds(),
+                state.officialSourceIds(),
+                state.localAuthoritySourceIds(),
+                state.recordsLookupSourceIds()
+        );
+        int localRiskCheckCount = Math.max(size(page.lowEndBreakers()), size(state.lowEndRiskChecks()));
+        boolean exactMatch = contentPage.slug().equals(page.contentSlug());
+        boolean anchorState = "anchor".equalsIgnoreCase(state.launchTier());
+        boolean hasCountyRecords = !researchDataService.listPublicCountyRecordsPages(state.stateCode()).isEmpty();
+        boolean leadWithStateWorkflow = shouldLeadWithStateWorkflow(contentPage);
+        boolean stateAwareTool = supportsStateAwareTool(contentPage);
+
+        String workflowFitLabel = linkScore >= 48 || observedBoost >= 16
+                ? "Strong"
+                : linkScore >= 34 || observedBoost >= 8
+                        ? "Good"
+                        : "Emerging";
+        List<String> workflowReasons = new ArrayList<>();
+        if (exactMatch) {
+            workflowReasons.add("the live page already matches this intent directly");
+        } else if (isTransferComplianceHub(contentPage)) {
+            workflowReasons.add("the transfer route already resolves through a live supporting workflow page");
+        }
+        if (anchorState) {
+            workflowReasons.add("it is an anchor launch state");
+        }
+        if (observedBoost >= 12) {
+            workflowReasons.add("observed search and lead signals are already strong");
+        } else if (observedBoost >= 8) {
+            workflowReasons.add("observed intent signals are already present");
+        }
+        if (hasCountyRecords) {
+            workflowReasons.add("county file pages are already live");
+        }
+        String workflowFitPrefix = switch (workflowFitLabel) {
+            case "Strong" -> "a strong";
+            case "Good" -> "a good";
+            default -> "an emerging";
+        };
+        String workflowFitNote = workflowReasons.isEmpty()
+                ? state.stateName() + " is live, but the local wedge is still more directional than dominant."
+                : state.stateName() + " is " + workflowFitPrefix + " local wedge because " + joinWithAnd(workflowReasons) + ".";
+
+        Double confidence = state.confidenceScore();
+        String confidenceText = confidenceLabel(confidence);
+        String evidenceDepthLabel = backingSourceCount >= 7 || (pageSourceCount >= 3 && confidence != null && confidence >= 0.75)
+                ? "Source-backed"
+                : backingSourceCount >= 4 || (pageSourceCount >= 2 && confidence != null && confidence >= 0.6)
+                        ? "Solid"
+                        : "Developing";
+        String evidenceDepthNote = confidenceText.isBlank()
+                ? "Backed by " + backingSourceCount + " distinct official or workflow source"
+                        + (backingSourceCount == 1 ? "" : "s")
+                        + " across the state page, records path, and authority notes."
+                : "Backed by " + backingSourceCount + " distinct official or workflow source"
+                        + (backingSourceCount == 1 ? "" : "s")
+                        + " and a " + confidenceText.toLowerCase(Locale.US) + " state profile.";
+
+        String toolHandoffLabel;
+        String toolHandoffNote;
+        String riskSuffix = localRiskCheckCount >= 3
+                ? " It already surfaces " + localRiskCheckCount + " local risk checks that can widen the downside."
+                : "";
+        if (leadWithStateWorkflow) {
+            if (!stateAwareTool) {
+                toolHandoffLabel = "Use after local workflow";
+                toolHandoffNote = "The next tool step does not carry " + state.stateName()
+                        + " directly, so keep the state page open as the backstop." + riskSuffix;
+            } else if (backingSourceCount >= 6 || observedBoost >= 8 || hasCountyRecords) {
+                toolHandoffLabel = "Ready after one local check";
+                toolHandoffNote = state.stateName()
+                        + " can follow into the tool, but narrow the file, permit, or buyer lane first." + riskSuffix;
+            } else {
+                toolHandoffLabel = "Cautious handoff";
+                toolHandoffNote = "The tool can take " + state.stateName()
+                        + ", but one local workflow check should happen before the number carries much weight." + riskSuffix;
+            }
+        } else if (stateAwareTool && (backingSourceCount >= 4 || (confidence != null && confidence >= 0.6))) {
+            toolHandoffLabel = "Ready now";
+            toolHandoffNote = "The tool can carry " + state.stateName()
+                    + " directly, so this page can hand off fast and use the state page only as a backstop." + riskSuffix;
+        } else if (stateAwareTool) {
+            toolHandoffLabel = "Ready with backstop";
+            toolHandoffNote = "Start in the tool with " + state.stateName()
+                    + " attached, then open the state page if the result still feels broad." + riskSuffix;
+        } else {
+            toolHandoffLabel = "Use with local backstop";
+            toolHandoffNote = "The tool step does not hold " + state.stateName()
+                    + " context directly, so keep the local page beside the estimate." + riskSuffix;
+        }
+
+        return new StateSurfaceSignalView(
+                workflowFitLabel,
+                workflowFitNote,
+                evidenceDepthLabel,
+                evidenceDepthNote,
+                toolHandoffLabel,
+                toolHandoffNote
+        );
+    }
+
     private int contentStateLinkScore(ContentPage contentPage, StateMoneyPage page, StateProfile state) {
         if (isTransferComplianceHub(contentPage)) {
             return transferComplianceStateLinkScore(page, state);
@@ -1891,6 +2288,13 @@ public class SiteController {
             score += 2;
         }
         return score;
+    }
+
+    private boolean supportsStateAwareTool(ContentPage contentPage) {
+        return switch (calculatorPathForModule(contentPage.calculatorModule())) {
+            case "/septic-system-cost-calculator/", "/septic-tank-size-estimator/", "/drain-field-estimator/" -> true;
+            default -> false;
+        };
     }
 
     private int stateMoneyPagePriorityScore(StateProfile state, StateMoneyPage page) {
@@ -2465,6 +2869,30 @@ public class SiteController {
             return "Moderate confidence";
         }
         return "Directional confidence";
+    }
+
+    @SafeVarargs
+    private final int distinctSourceCount(List<String>... sourceIdGroups) {
+        return (int) Stream.of(sourceIdGroups)
+                .filter(group -> group != null)
+                .flatMap(List::stream)
+                .filter(sourceId -> sourceId != null && !sourceId.isBlank())
+                .distinct()
+                .count();
+    }
+
+    private String joinWithAnd(List<String> values) {
+        if (values == null || values.isEmpty()) {
+            return "";
+        }
+        if (values.size() == 1) {
+            return values.get(0);
+        }
+        if (values.size() == 2) {
+            return values.get(0) + " and " + values.get(1);
+        }
+        return String.join(", ", values.subList(0, values.size() - 1))
+                + ", and " + values.get(values.size() - 1);
     }
 
     private boolean hasText(String value) {

@@ -284,6 +284,7 @@ public class SeoService {
 
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
+            case "WV" -> "West Virginia septic permit cost, sewage permit file, and local health guide";
             case "AL" -> "Alabama septic permit cost, permit records, and perc test guide";
             case "AR" -> "Arkansas septic cost guide and county permit path";
             case "MS" -> "Mississippi septic cost guide and public records path";
@@ -299,13 +300,14 @@ public class SeoService {
             case "CO" -> "Colorado septic cost guide and local OWTS permit path";
             case "VA" -> "Virginia septic cost guide and inspection obligations";
             case "TN" -> "Tennessee septic cost guide and permit file path";
-            case "SC" -> "South Carolina septic cost guide and permit path";
+            case "SC" -> "South Carolina septic permit cost, permit copy, and D-1740 guide";
             case "CA" -> "California septic cost guide and county permit path";
             case "TX" -> "Texas septic cost guide and local OSSF permit path";
             case "NY" -> "New York septic cost guide and Appendix 75-A rules";
             case "OH" -> "Ohio septic cost guide and local health permit path";
             case "MI" -> "Michigan septic cost guide and local health records path";
-            case "GA" -> "Georgia septic permit cost, county records, and soil analysis guide";
+            case "GA" -> "Georgia septic permit cost, permit records, and soil analysis guide";
+            case "RI" -> "Rhode Island septic permit cost, DEM file search, and suitability guide";
             case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
             case "CT" -> "Connecticut septic cost guide and design flow rules";
             case "OR" -> "Oregon septic cost guide and site evaluation path";
@@ -521,6 +523,27 @@ public class SeoService {
         );
     }
 
+    public PageMeta workflowPacketPage(String title, String description, String path) {
+        String canonicalUrl = absoluteUrl(path);
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "noindex,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb(title, canonicalUrl)
+                ),
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "WebPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb(title, canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     public List<String> staticPagePaths() {
         return Arrays.asList(
                 "/states/",
@@ -704,7 +727,7 @@ public class SeoService {
     private String contentPageSeoTitle(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
-            case "perc-test-cost" -> "Perc Test Cost and Percolation Test Price | SepticPath";
+            case "perc-test-cost" -> "Perc Test Cost by State | Percolation Test, Soil Review, and Permit Risk | SepticPath";
             case "drain-field-replacement-cost" -> "Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath";
             case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil, field, and redesign risk | SepticPath";
             case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve area, layout, and field risk | SepticPath";
@@ -712,8 +735,8 @@ public class SeoService {
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
-            case "septic-permit-process" -> "Septic Permit Process by State | Permits, records, and next steps | SepticPath";
-            case "septic-records-checklist" -> "Septic Records Checklist | Permit records, as-builts, and file lookup | SepticPath";
+            case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
+            case "septic-records-checklist" -> "Septic Records Checklist by State | Permits, As-Builts, and County Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
@@ -745,7 +768,7 @@ public class SeoService {
             case "NE" -> "Nebraska Septic Cost Guide and Permit Path";
             case "NM" -> "New Mexico Septic Cost Guide and Buyer File Path";
             case "UT" -> "Utah Septic Cost Guide and Local Health Permit Path";
-            case "WV" -> "West Virginia Septic Cost Guide and Local File Path";
+            case "WV" -> "West Virginia Septic Permit Cost, Sewage Permit File, and Local Health Guide";
             case "SD" -> "South Dakota Septic Cost Guide and Permit Path";
             case "ID" -> "Idaho Septic Cost Guide and Site Approval Path";
             case "NV" -> "Nevada Septic Cost Guide and Buyer File Path";
@@ -756,7 +779,7 @@ public class SeoService {
             case "HI" -> "Hawaii Septic Cost Guide and Cesspool Upgrade Path";
             case "ME" -> "Maine Septic Cost Guide and HHE-200 File Path";
             case "NH" -> "New Hampshire Septic Cost Guide and Approval Status Path";
-            case "RI" -> "Rhode Island Septic Cost Guide and DEM File Path";
+            case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
             case "AL" -> "Alabama Septic Permit Cost, Permit Records, and Perc Test Guide";
@@ -774,13 +797,13 @@ public class SeoService {
             case "CO" -> "Colorado Septic Cost Guide and Local OWTS Permit Path";
             case "VA" -> "Virginia Septic Cost Guide and Inspection Obligations";
             case "TN" -> "Tennessee Septic Cost Guide and Permit File Path";
-            case "SC" -> "South Carolina Septic Cost Guide and Permit Path";
+            case "SC" -> "South Carolina Septic Permit Cost, Permit Copy, and D-1740 Guide";
             case "CA" -> "California Septic Cost Guide and County Permit Path";
             case "TX" -> "Texas Septic Cost Guide and Local OSSF Permit Path";
             case "NY" -> "New York Septic Cost Guide and Appendix 75-A Rules";
             case "OH" -> "Ohio Septic Cost Guide and Local Health Permit Path";
             case "MI" -> "Michigan Septic Cost Guide and Local Health Records Path";
-            case "GA" -> "Georgia Septic Permit Cost, County Records, and Soil Analysis Guide";
+            case "GA" -> "Georgia Septic Permit Cost, Permit Records, and Soil Analysis Guide";
             case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
             case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
             case "OR" -> "Oregon Septic Cost Guide and Site Evaluation Path";
@@ -801,7 +824,7 @@ public class SeoService {
             case "NE" -> "Nebraska septic planning estimates with DHHS permit filing, registered-system context, and official-source links.";
             case "NM" -> "New Mexico septic planning estimates with buyer-file checks, permit-search context, and official-source links.";
             case "UT" -> "Utah septic planning estimates with local health routing, R317-4 permit workflow, and official-source links.";
-            case "WV" -> "West Virginia septic planning estimates with local health routing, sewage-permit file context, and official-source links.";
+            case "WV" -> "West Virginia septic permit cost guide with local health routing, sewage-permit file checks, sanitarian-record context, public-record paths, and official OEHS links.";
             case "SD" -> "South Dakota septic planning estimates with permit-certificate context, inspection sequencing, and official-source links.";
             case "ID" -> "Idaho septic planning estimates with district-health routing, site-evaluation context, and official-source links.";
             case "NV" -> "Nevada septic planning estimates with local-authority split, buyer-file diligence, inspection-plus-as-built context, and official-source links.";
@@ -812,7 +835,7 @@ public class SeoService {
             case "HI" -> "Hawaii septic planning estimates with cesspool-upgrade triggers, county building-permit handoff, approval-to-use timing, and official-source links.";
             case "ME" -> "Maine septic planning estimates with HHE-200 file pulls, town-office routing, Local Plumbing Inspector context, and official-source links.";
             case "NH" -> "New Hampshire septic planning estimates with approval-status checks, OneStop records, local verification, and official-source links.";
-            case "RI" -> "Rhode Island septic planning estimates with DEM permit searches, 1968-forward file retrieval, suitability triggers, and official-source links.";
+            case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
             case "AL" -> "Alabama septic permit cost guide with county health department routing, Permit to Install and Approval for Use records, perc test questions, and official ADPH links.";
@@ -830,13 +853,13 @@ public class SeoService {
             case "CO" -> "Colorado septic planning estimates with local public health routing, site-and-soil paperwork, and official-source links.";
             case "VA" -> "Virginia septic planning estimates with local health district routing, operation-permit context, and inspection obligations.";
             case "TN" -> "Tennessee septic planning estimates with permit-file retrieval, repair-permit context, and official-source links.";
-            case "SC" -> "South Carolina septic planning estimates with permit-copy retrieval, local office routing, and official-source links.";
+            case "SC" -> "South Carolina septic permit cost guide with D-1740 filing, permit-copy retrieval, local office routing, final-inspection steps, and official SCDES links.";
             case "CA" -> "California septic planning estimates with local agency routing, OWTS policy context, and county permit-file questions.";
             case "TX" -> "Texas septic planning estimates with local permitting authority routing, site-evaluation context, and official OSSF sources.";
             case "NY" -> "New York septic planning estimates with Appendix 75-A rules, county health workflow, and official-source links.";
             case "OH" -> "Ohio septic planning estimates with local health department routing, Chapter 3701-29 permit context, and official-source links.";
             case "MI" -> "Michigan septic planning estimates with local health department routing, file-retrieval context, and official-source links.";
-            case "GA" -> "Georgia septic permit cost guide with county environmental health routing, county records, soil analysis steps, garbage-disposal tank rules, and official DPH links.";
+            case "GA" -> "Georgia septic permit cost guide with county office lookups, permit records, soil analysis steps, garbage-disposal sizing risk, and official DPH links.";
             case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
             case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";
             case "OR" -> "Oregon septic planning estimates with site evaluation, permit sequencing, and official-source links.";

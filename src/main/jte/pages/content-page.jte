@@ -45,15 +45,278 @@
                 </span>
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
-                <div class="hero__actions">
-                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_primary_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
-                    @if (secondaryActionPath != null)
-                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_secondary_action" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
-                    @elseif (contentQuotePath != null)
-                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_primary_quote" data-track-target-type="quote_form">Start short quote form</a>
-                    @else
-                        <a class="button button--secondary" href="#faq">Jump to FAQs</a>
+                <p class="hero-router-intro">Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it.</p>
+                <div class="micro-tool micro-tool--hero"
+                     data-choice-group
+                     data-state-surface-tool
+                     data-state-surface-mode="${secondaryActionPath != null ? "state-first" : "tool-first"}"
+                     data-state-surface-tool-label="${secondaryActionPath != null ? secondaryActionLabel : calculatorCtaLabel}"
+                     data-state-surface-tool-supports-state="${calculatorPath.startsWith("/septic-system-cost-calculator") || calculatorPath.startsWith("/septic-tank-size-estimator") || calculatorPath.startsWith("/drain-field-estimator")}">
+                    <div class="hero-decision-grid hero-decision-grid--three micro-tool__choices">
+                        <button class="hero-decision-card hero-decision-card--accent micro-tool__choice is-active"
+                                type="button"
+                                data-choice="first"
+                                aria-pressed="true">
+                            @if (secondaryActionPath != null)
+                                <span class="hero-decision-card__label">State-first move</span>
+                                <h3>I need the state-specific workflow before I price anything</h3>
+                                <p>Choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.</p>
+                            @else
+                                <span class="hero-decision-card__label">Tool-first move</span>
+                                <h3>I need the planning tool before I read around</h3>
+                                <p>Choose this when the main value of this page is getting you into the right calculator or planning tool quickly, then using the article as support.</p>
+                            @endif
+                        </button>
+
+                        <button class="hero-decision-card micro-tool__choice"
+                                type="button"
+                                data-choice="second"
+                                aria-pressed="false">
+                            @if (secondaryActionPath != null)
+                                <span class="hero-decision-card__label">Estimate after workflow</span>
+                                <h3>I need the cautious number after I narrow the lane</h3>
+                                <p>Choose this when you know the workflow well enough to use the estimate without flattening the problem too early.</p>
+                            @elseif (contentQuotePath != null)
+                                <span class="hero-decision-card__label">Conversion-ready</span>
+                                <h3>I already know the lane and need the short form</h3>
+                                <p>Choose this when the page already matches the live problem and you do not need another broad explainer first.</p>
+                            @else
+                                <span class="hero-decision-card__label">Fast clarification</span>
+                                <h3>I need one short clarification before I click deeper</h3>
+                                <p>Choose this when the page is close but you still need the shortest possible answer before the next move.</p>
+                            @endif
+                        </button>
+
+                        <button class="hero-decision-card micro-tool__choice"
+                                type="button"
+                                data-choice="example"
+                                aria-pressed="false">
+                            @if (!featuredStateMoneyPageLinks.isEmpty())
+                                <span class="hero-decision-card__label">Live example</span>
+                                <h3>Show me a source-backed state page first</h3>
+                                <p>Choose this when you want to see how the national problem turns into a concrete local workflow and file story.</p>
+                            @elseif (!featuredInternalLinks.isEmpty())
+                                <span class="hero-decision-card__label">Next internal move</span>
+                                <h3>Show me the strongest next page now</h3>
+                                <p>Choose this when the broad page already did enough and the main question is where to go next inside the site.</p>
+                            @else
+                                <span class="hero-decision-card__label">Read the evidence</span>
+                                <h3>Use the page itself to narrow the question</h3>
+                                <p>Choose this when no stronger live example exists yet and the fastest move is using the page structure below.</p>
+                            @endif
+                        </button>
+                    </div>
+
+                    @if (!stateMoneyPageLinks.isEmpty())
+                        <div class="micro-tool__picker micro-tool__picker--shared">
+                            <span class="micro-tool__kicker">State-aware route</span>
+                            <label class="micro-tool__picker-label" for="state-picker-${contentPage.slug()}">Pick your state once. The workflow, estimate, and example actions below will update for that state.</label>
+                            <div class="micro-tool__picker-row">
+                                <select id="state-picker-${contentPage.slug()}" data-state-surface-select>
+                                    <option value="" data-state-path="#state-pages">Choose your state</option>
+                                    @for (var stateMoneyPageLink : stateMoneyPageLinks)
+                                        <option value="${stateMoneyPageLink.stateCode()}"
+                                                data-state-path="${stateMoneyPageLink.path()}"
+                                                data-state-title="${stateMoneyPageLink.surfaceTitle()}"
+                                                data-state-workflow-fit="${stateMoneyPageLink.surfaceSignals().workflowFitLabel()}"
+                                                data-state-workflow-fit-note="${stateMoneyPageLink.surfaceSignals().workflowFitNote()}"
+                                                data-state-evidence-depth="${stateMoneyPageLink.surfaceSignals().evidenceDepthLabel()}"
+                                                data-state-evidence-depth-note="${stateMoneyPageLink.surfaceSignals().evidenceDepthNote()}"
+                                                data-state-tool-handoff="${stateMoneyPageLink.surfaceSignals().toolHandoffLabel()}"
+                                                data-state-tool-handoff-note="${stateMoneyPageLink.surfaceSignals().toolHandoffNote()}">${stateMoneyPageLink.stateName()}</option>
+                                    @endfor
+                                </select>
+                                <a class="button button--primary"
+                                   href="#state-pages"
+                                   data-state-surface-link="state-page"
+                                   data-state-surface-default-label="Browse state pages"
+                                   data-state-surface-selected-label="Open selected state page"
+                                   data-state-surface-selected-target-type="state_money_page"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_page_surface_picker"
+                                   data-track-target-type="state_money_page_directory">Browse state pages</a>
+                            </div>
+                            <p class="micro-tool__picker-note">This makes the national page act more like a routing tool than a long article. Choose the state once, then use the lane below that matches the blocker.</p>
+                        </div>
+
+                        <article class="micro-tool__result" data-state-surface-result aria-live="polite">
+                            <span class="micro-tool__kicker">Current route</span>
+                            <h2 data-state-surface-result-heading>Choose a state to turn this broad page into a sharper next-step route.</h2>
+                            <p data-state-surface-result-body>This page should help you decide the next move fast. Once you choose a state, the route below will tell you whether to open the local workflow first or move straight into the tool.</p>
+                            <div class="micro-tool__signal-grid">
+                                <article class="mini-card mini-card--signal">
+                                    <span class="intent-card__label">Workflow fit</span>
+                                    <strong data-state-surface-result-fit>Choose a state</strong>
+                                    <p data-state-surface-result-fit-note>See how strong the selected state is as the local wedge for this broad surface.</p>
+                                </article>
+                                <article class="mini-card mini-card--signal">
+                                    <span class="intent-card__label">Evidence depth</span>
+                                    <strong data-state-surface-result-evidence>Waiting for state</strong>
+                                    <p data-state-surface-result-evidence-note>We will show whether the state page is lightly directional or strongly source-backed.</p>
+                                </article>
+                                <article class="mini-card mini-card--signal">
+                                    <span class="intent-card__label">Tool handoff</span>
+                                    <strong data-state-surface-result-handoff>Waiting for state</strong>
+                                    <p data-state-surface-result-handoff-note>We will show if the tool should be used now, after one local check, or only as a backstop.</p>
+                                </article>
+                            </div>
+                            <div class="micro-tool__result-grid">
+                                <article class="mini-card">
+                                    <span class="intent-card__label">Start here</span>
+                                    <strong data-state-surface-result-primary>Open a selected state page</strong>
+                                    <p data-state-surface-result-primary-note>Use the matching state page when the main blocker is local workflow, records, permits, or buyer timing.</p>
+                                </article>
+                                <article class="mini-card">
+                                    <span class="intent-card__label">Then do this</span>
+                                    <strong data-state-surface-result-secondary>${secondaryActionPath != null ? secondaryActionLabel : calculatorCtaLabel}</strong>
+                                    <p data-state-surface-result-secondary-note>Use the tool only after the route is narrow enough that the number means something.</p>
+                                </article>
+                            </div>
+                        </article>
                     @endif
+
+                    <div class="micro-tool__panels">
+                        <article class="micro-tool__panel is-active" data-choice-panel="first">
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            @if (secondaryActionPath != null)
+                                <h2>Open the state-specific workflow first</h2>
+                                <p>${calculatorCtaNote} This page is the broad overview. The next move should usually be the live state-specific workflow, because that is where the file, office path, and local rule differences stop being generic.</p>
+                                @if (!stateMoneyPageLinks.isEmpty())
+                                    <div class="micro-tool__actions">
+                                        <a class="button button--primary"
+                                           href="#state-pages"
+                                           data-state-surface-link="state-page"
+                                           data-state-surface-default-label="Browse state pages"
+                                           data-state-surface-selected-label="Open selected state page"
+                                           data-state-surface-selected-target-type="state_money_page"
+                                           data-track-click="nav"
+                                           data-track-source-context="content_page_micro_tool_primary_state_page"
+                                           data-track-target-type="${calculatorCtaTargetType}">Browse state pages</a>
+                                        <a class="button button--secondary"
+                                           href="${secondaryActionPath}"
+                                           data-state-surface-link="tool"
+                                           data-state-surface-default-label="${secondaryActionLabel}"
+                                           data-state-surface-selected-label="${secondaryActionLabel}"
+                                           data-track-click="nav"
+                                           data-track-source-context="content_page_micro_tool_secondary"
+                                           data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                                    </div>
+                                @else
+                                    <div class="micro-tool__actions">
+                                        <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_micro_tool_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_micro_tool_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                                    </div>
+                                @endif
+                            @else
+                                <h2>Start with the planning tool now</h2>
+                                <p>${calculatorCtaNote} This page should support the tool, not make you read the whole article before you act.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${calculatorPath}"
+                                       data-state-surface-link="tool"
+                                       data-state-surface-default-label="${calculatorCtaLabel}"
+                                       data-state-surface-selected-label="${calculatorCtaLabel}"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_primary"
+                                       data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                                    @if (!featuredInternalLinks.isEmpty())
+                                        <a class="button button--secondary" href="${featuredInternalLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_micro_tool_primary_internal" data-track-target-type="internal_page">Open next step</a>
+                                    @endif
+                                </div>
+                            @endif
+                        </article>
+
+                        <article class="micro-tool__panel" data-choice-panel="second" hidden>
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            @if (secondaryActionPath != null)
+                                <h2>Run the estimate after the workflow check</h2>
+                                <p>${secondaryActionNote} Use the narrower workflow first when needed, then come back to the estimate once the state, file, or permit path is clear enough to make the number honest.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${secondaryActionPath}"
+                                       data-state-surface-link="tool"
+                                       data-state-surface-default-label="${secondaryActionLabel}"
+                                       data-state-surface-selected-label="${secondaryActionLabel}"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_secondary"
+                                       data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                                    <a class="button button--secondary"
+                                       href="${calculatorPath}"
+                                       data-state-surface-link="state-page"
+                                       data-state-surface-default-label="${calculatorCtaLabel}"
+                                       data-state-surface-selected-label="Return to selected state page"
+                                       data-state-surface-selected-target-type="state_money_page"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_secondary_back"
+                                       data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                                </div>
+                            @elseif (contentQuotePath != null)
+                                <h2>Open the short quote form now</h2>
+                                <p>Use the short quote form only when this page already matches the live problem and you do not need another state, records, or permit detour first.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${contentQuotePath}"
+                                       data-state-surface-link="tool"
+                                       data-state-surface-default-label="Start short quote form"
+                                       data-state-surface-selected-label="Start short quote form"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_quote"
+                                       data-track-target-type="quote_form">Start short quote form</a>
+                                    <a class="button button--secondary"
+                                       href="${calculatorPath}"
+                                       data-state-surface-link="tool"
+                                       data-state-surface-default-label="${calculatorCtaLabel}"
+                                       data-state-surface-selected-label="${calculatorCtaLabel}"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_quote_estimate"
+                                       data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                                </div>
+                            @else
+                                <h2>Use the FAQ or drivers for one fast clarification</h2>
+                                <p>When no stronger second action exists yet, the fastest move is using the structure below to narrow the question before you click deeper.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary" href="#faq">Jump to FAQs</a>
+                                    <a class="button button--secondary" href="#drivers">Jump to drivers</a>
+                                </div>
+                            @endif
+                        </article>
+
+                        <article class="micro-tool__panel" data-choice-panel="example" hidden>
+                            <span class="micro-tool__kicker">Recommended next best action</span>
+                            @if (!featuredStateMoneyPageLinks.isEmpty())
+                                <h2>Open one live state-specific example</h2>
+                                <p>Use a live state-specific page when you want to see how this national overview turns into a local file path, permit sequence, or buyer-risk workflow.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary"
+                                       href="${featuredStateMoneyPageLinks.get(0).path()}"
+                                       data-state-surface-link="state-page"
+                                       data-state-surface-default-label="Open live state page"
+                                       data-state-surface-selected-label="Open selected state page"
+                                       data-state-surface-selected-target-type="state_money_page"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_page_micro_tool_example_state"
+                                       data-track-target-type="state_money_page">Open live state page</a>
+                                    @if (featuredStateMoneyPageLinks.size() > 1)
+                                        <a class="button button--secondary" href="${featuredStateMoneyPageLinks.get(1).path()}" data-track-click="nav" data-track-source-context="content_page_micro_tool_example_state_alt" data-track-target-type="state_money_page">Compare another state page</a>
+                                    @endif
+                                </div>
+                            @elseif (!featuredInternalLinks.isEmpty())
+                                <h2>Open the strongest next page in this workflow</h2>
+                                <p>${featuredInternalLinks.get(0).note()}</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary" href="${featuredInternalLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_micro_tool_example_internal" data-track-target-type="internal_page">Open next step</a>
+                                    <a class="button button--secondary" href="#drivers">Jump to drivers</a>
+                                </div>
+                            @else
+                                <h2>Use the page itself as the working surface</h2>
+                                <p>No stronger live example exists yet, so use the drivers, decision steps, state pages, and FAQ below as the fastest way to narrow the question into a real next move.</p>
+                                <div class="micro-tool__actions">
+                                    <a class="button button--primary" href="#drivers">Jump to drivers</a>
+                                    <a class="button button--secondary" href="#state-pages">Jump to state pages</a>
+                                </div>
+                            @endif
+                        </article>
+                    </div>
                 </div>
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
@@ -396,11 +659,16 @@
     @endif
 
     <section class="section">
-        <div class="container content-grid">
+        <div class="container content-grid content-grid--top">
                 <article class="trust-box trust-box--large">
                     <span class="trust-box__label">Next best action</span>
                     <h2>${calculatorCtaHeading}</h2>
-                    <p>${calculatorCtaNote} The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.</p>
+                    <p>
+                        ${calculatorCtaNote}
+                        @if (secondaryActionPath == null)
+                            The result is most useful when you carry the file, inspection, or site uncertainty from this page into the estimate instead of starting from a generic statewide average.
+                        @endif
+                    </p>
                     <div class="hero__actions">
                         <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                         @if (secondaryActionPath != null)
@@ -413,7 +681,7 @@
 
             <article class="detail-card">
                 <h2>State guides</h2>
-                <ul class="detail-list">
+                <ul class="detail-list detail-list--compact detail-list--split">
                     @for (var state : states)
                         <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
                     @endfor

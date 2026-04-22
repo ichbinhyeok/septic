@@ -196,12 +196,12 @@
         "soil test for septic",
         "perc test for septic system"
       ],
-      "title": "Perc Test Cost",
-      "metaDescription": "Average perc test cost, percolation test price ranges, and the soil or permit issues that can change the whole septic budget.",
-      "introCopy": "Most homeowners search perc test cost when they really need to know whether a percolation result will keep the project conventional or push it into a more expensive septic lane. This page explains the fee, the site-risk story, and why perc, perk, and percolation test searches all lead to the same budget question.",
+      "title": "Perc Test Cost by State",
+      "metaDescription": "Perc test cost by state, percolation test and soil-review pricing, and the permit or drainfield risk that can change the whole septic budget.",
+      "introCopy": "Most homeowners search perc test cost when the real question is which state or county rule turns a small test fee into a bigger septic decision. Use this page as a state-by-state sorting page: start with the state-specific perc path, then decide whether the result stays conventional or pushes the project into a wider permit, drainfield, or redesign lane.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
-      "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but actually need to know whether the result could push the entire project into a different cost lane.",
+      "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but really need to know which state-specific page explains whether the result could push the project into a different cost lane.",
       "deepDiveParagraphs": [
         "Most owners search for a perc fee when the bigger risk is what the result will do to the whole project. A cheap perc or percolation test can still be the event that moves the job from a conventional assumption into redesign or alternative-system territory.",
         "This page is most useful when you need to keep site uncertainty visible in the budget. If the lot story is still vague, the testing question is really a system-class question and should be treated that way early."
@@ -212,10 +212,10 @@
         "The project is early enough that one weak perc result could change everything behind the estimate."
       ],
       "decisionSteps": [
-        "Start by treating perc and site evaluation as a system-risk question, not just a small line-item fee.",
+        "Start by treating perc and site evaluation as a state-specific permit and system-risk question, not just a small line-item fee.",
         "Ask whether the property already has records, prior testing, or local notes that make the result more predictable.",
-        "Run the perc-test lane first so the estimate stays honest about soil uncertainty and possible system-class change.",
-        "Then move into the replacement or permit page if the real next question becomes field viability or local review."
+        "Open the matching state perc page first so the local authority path and likely soil-review lane are clearer before you run the estimate.",
+        "Then move into the replacement or permit page only after the state-specific site story is clearer."
       ],
       "lowEndBreakers": [
         "Unknown or weak perc status can widen the entire project far more than the testing invoice itself.",
@@ -764,12 +764,12 @@
         "septic permit steps",
         "what permit do i need for septic"
       ],
-      "title": "Septic Permit Process",
-      "metaDescription": "Understand septic permit steps by state, which local office to call first, and which records or site reviews can slow approval.",
-      "introCopy": "The permit process matters because it tells you whether the next call is to a county health office, a records desk, or a site evaluator before you trust a clean-looking septic quote. This page translates septic permit steps into homeowner language without pretending every county works the same way.",
+      "title": "Septic Permit Process by State",
+      "metaDescription": "Septic permit process by state, including which county or local office to call first, which site review comes before approval, and what slows the next step.",
+      "introCopy": "The permit process is not one national checklist. The first real question is which county or local office controls the property, whether a file already exists, and which site review comes before you trust a clean-looking quote. Use this page as a state-by-state handoff into the narrower permit path.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "new_install",
-      "targetReader": "Best for homeowners, buyers, and builders who know a septic decision is coming but still need to know whether site review, local authority, or project type is the first real permit gate.",
+      "targetReader": "Best for homeowners, buyers, and builders who know a septic decision is coming but still need to know which state-specific permit page matches the first real gate.",
       "deepDiveParagraphs": [
         "Permit questions sound procedural, but they usually decide whether the project stays simple. Once the wrong office, wrong project type, or missing site-review step enters the picture, the timeline and budget can both widen fast.",
         "This page is meant to keep homeowners from treating permitting as paperwork after the quote. In many states, the permit path is what tells you whether the quote story was realistic in the first place.",
@@ -785,7 +785,7 @@
         "Start by asking which local office or local program actually controls the next step for this property.",
         "Check whether the project is really new install, replacement, repair, or change in use because permit logic changes with that answer.",
         "Run the install lane first to frame system type and budget while keeping the permit path in view.",
-        "Then move into the state-specific permit page once you know whether site evaluation, records, or authority routing is the real bottleneck."
+        "Then move into the state-specific permit page once you know whether office routing, the file, or site review is the real bottleneck."
       ],
       "lowEndBreakers": [
         "A clean-looking estimate can become unreliable if the permit path is longer or more local than expected.",
@@ -831,12 +831,12 @@
         "septic permit records",
         "buying house septic records"
       ],
-      "title": "Septic Records Checklist",
-      "metaDescription": "Use this septic records checklist to pull permit records, as-builts, inspection notes, and pumping history before trusting a quote or closing.",
-      "introCopy": "Septic records are one of the fastest ways to separate a manageable project from a messy one. This page focuses on permit records, as-builts, inspection notes, pumping history, and the missing paperwork most likely to widen the estimate.",
+      "title": "Septic Records Checklist by State",
+      "metaDescription": "Use this septic records checklist by state to pull permit records, as-builts, inspection notes, soil or site-review files, and the county paperwork that can change the quote.",
+      "introCopy": "Septic records are one of the fastest ways to tell whether the seller story, contractor quote, or buyer assumption is real. Use this page as a state-by-state records handoff: start with the local file path, then pull the permit, as-built, inspection, and soil or site-review documents that change the downside fastest.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
-      "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which missing records make the estimate or sale much riskier.",
+      "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which state-specific records page and missing document make the estimate or sale much riskier.",
       "deepDiveParagraphs": [
         "Records change the estimate because they change what you can safely assume. A permit, as-built, or old inspection note can keep a quote grounded; a missing file can force you to treat the same property as much riskier.",
         "This page should help you decide whether the next step is a records pull, an inspection, or a buyer-risk estimate. It is less about collecting every document and more about identifying which missing record would change the story fastest.",
@@ -852,7 +852,7 @@
         "Start with the newest permit, as-built, inspection, or site-review record tied to the system.",
         "Check whether the file includes maintenance logs, pumping receipts, and anything that confirms the current system story is real.",
         "Run the buyer-risk lane when the records are still thin so the estimate reflects documentation risk instead of pretending the file is complete.",
-        "Then move into inspection, buyer, or state-specific records pages once you know what the missing paperwork is likely to change."
+        "Then move into the state-specific records page, inspection, or buyer page once you know what the missing paperwork is likely to change."
       ],
       "lowEndBreakers": [
         "Missing permit and as-built records can make even a modest project feel much wider once the real file is requested.",

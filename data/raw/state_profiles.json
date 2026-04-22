@@ -8,9 +8,9 @@
       "agencyName": "Georgia Department of Public Health",
       "launchTier": "anchor",
       "publishStatus": "published",
-      "pageAngle": "Georgia is strongest when framed around county environmental health offices, soil analysis, and file retrieval rather than a generic statewide calculator. The homeowner wedge is knowing which county office to call for record requests, whether the soil analysis and permit file are already in hand, and whether the garbage-disposal upsizing rule breaks the simple low-end story.",
+      "pageAngle": "Georgia is strongest when framed around county environmental health offices, septic permit records, soil analysis, and file retrieval rather than a generic statewide calculator. The homeowner wedge is knowing which county office to call, whether the soil analysis and permit file are already in hand, and whether the garbage-disposal upsizing rule breaks the simple low-end story.",
       "ruleType": "bedroom_table",
-      "ruleSummaryPlainEnglish": "Georgia homeowners usually need the county environmental health office, the local file, and the soil-analysis path clarified before they trust a septic permit cost or install quote. DPH's homeowner guidance says the number of bedrooms determines tank size, the minimum approved tank size is 1,000 gallons, and a garbage disposal requires a tank that is 50 percent larger. DPH's environmental health contact page also tells homeowners to send record requests, services, inspection questions, and other locally related questions to the county environmental health office rather than treating this as one flat statewide workflow.",
+      "ruleSummaryPlainEnglish": "Georgia homeowners usually need the county environmental health office, the septic permit file, and the soil-analysis path clarified before they trust a septic permit cost or install quote. DPH's homeowner guidance says bedroom count drives tank size, the minimum approved tank size is 1,000 gallons, and a garbage disposal requires a tank that is 50 percent larger. DPH's county contact page also tells homeowners to route record requests, service questions, and other local septic issues to the county environmental health office instead of treating Georgia like one flat statewide workflow.",
       "designFlowPerBedroomGpd": 150,
       "minTankSizeGallons": 1000,
       "bedroomTable": [

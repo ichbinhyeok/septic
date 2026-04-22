@@ -63,10 +63,10 @@
     {
       "contentSlug": "perc-test-cost",
       "stateCode": "GA",
-      "title": "Georgia Perc Test Cost",
-      "metaDescription": "Estimate Georgia perc and soil-analysis cost, and understand why county review affects septic pricing before install or replacement.",
-      "introCopy": "In Georgia, the perc or soil-analysis step matters because the county health process and the usable drainfield area depend on what the site can actually support. The test cost is usually not the main bill, but it can change the whole project.",
-      "uniqueAngle": "Georgia's public homeowner materials make soil analysis and drainfield suitability very visible, so the perc page can explain more than just a small testing fee.",
+      "title": "Georgia Perc Test Cost and Soil Analysis",
+      "metaDescription": "Georgia perc test and soil-analysis cost with county environmental health routing, usable drainfield-area risk, and the next permit step in mind.",
+      "introCopy": "In Georgia, perc test cost is really a county soil-analysis and usable-drainfield-area question. Start with the county environmental health path first, because the test fee is usually small but the result can change the whole install or replacement story.",
+      "uniqueAngle": "Georgia's public homeowner materials make county soil analysis, usable drainfield area, and county routing visible enough that the perc page can do real workflow work instead of acting like a generic test-fee explainer.",
       "targetReader": "Best for Georgia owners, buyers, and builders who want a quick perc or soil-analysis number but still need to know whether county review and usable field area will keep the project simple.",
       "fitBullets": [
         "The soil-analysis quote looks small, but no one has explained how county review affects the real next step.",
@@ -2699,10 +2699,10 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "GA",
-      "title": "Georgia Septic Permit Process",
-      "metaDescription": "Georgia septic permit steps for homeowners, including county environmental health, soil analysis, and what can slow the approval path.",
-      "introCopy": "Georgia's permit path is easier to explain than many states, but homeowners still get tripped up when they skip county environmental health or assume a rough tank estimate is enough. This page turns Georgia's official public guidance into a homeowner permit checklist.",
-      "uniqueAngle": "Georgia is a strong permit-process state because the public homeowner guidance is clear about county health, soil analysis, bedroom-based sizing, and the garbage-disposal modifier.",
+      "title": "Georgia Septic Permit Process by County",
+      "metaDescription": "Georgia septic permit process by county, including county environmental health, soil analysis, permit records, and what slows approval.",
+      "introCopy": "Georgia's permit path is county-first in practice. Start with county environmental health, pull the file, and confirm soil analysis, bedroom count, and garbage-disposal load before you trust the first install quote or timeline.",
+      "uniqueAngle": "Georgia is a strong permit-process state because the public homeowner guidance is clear about county health, soil analysis, permit records, bedroom-based sizing, and the garbage-disposal modifier.",
       "targetReader": "Best for Georgia homeowners who are moving from a planning estimate into a real county permit path and still need to know whether soil analysis, bedroom count, or garbage-disposal use will complicate the next step.",
       "fitBullets": [
         "The homeowner has a rough quote, but no county environmental health contact or soil analysis is confirmed yet.",
@@ -3052,10 +3052,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "GA",
-      "title": "Georgia Septic Records Checklist",
-      "metaDescription": "Georgia septic records to request before trusting a quote, including soil analysis, permits, and county repair history.",
-      "introCopy": "In Georgia, records matter because county environmental health and soil analysis still shape whether the simple homeowner estimate holds. This checklist keeps the records request focused on what actually changes the quote.",
-      "uniqueAngle": "Georgia's records page is strongest when it starts with county environmental health records and the disposal-driven size modifier instead of generic seller paperwork.",
+      "title": "Georgia Septic Records Checklist and County File Path",
+      "metaDescription": "Georgia septic records checklist with county environmental health file pulls, soil analysis, permit records, and repair history before you trust a quote.",
+      "introCopy": "In Georgia, the file usually beats the quote. Start with the county environmental health office, then pull the soil analysis, permit records, as-built sketch, and repair history that tell you whether the current septic story is real.",
+      "uniqueAngle": "Georgia's records page is strongest when it starts with county environmental health file pulls, soil analysis, and disposal-driven sizing risk instead of generic seller paperwork.",
       "targetReader": "Best for Georgia buyers and owners who have a quote or listing in hand but still need the county file, soil analysis, and sizing details that tell them whether the current septic story is actually credible.",
       "fitBullets": [
         "The seller has some septic paperwork, but no one has confirmed the county environmental health file yet.",

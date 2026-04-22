@@ -15,9 +15,35 @@
                 <span class="eyebrow">Septic records, permits, and transfer prep</span>
                 <h1>Start with the file, permit path, or buyer workflow that actually changes the septic story.</h1>
                 <p class="lede">SepticPath is built for homeowners, buyers, and agents who need to know which county office, permit record, inspection trigger, or transfer step matters before they trust a clean-looking quote.</p>
-                <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-records-checklist/">Start with records checklist</a>
-                    <a class="button button--secondary" href="/septic-transfer-compliance/">Open transfer compliance guide</a>
+                <p class="hero-router-intro">Pick the first move that matches your live problem. The deeper reading and state guides can wait until the route is clear.</p>
+                <div class="hero-decision-grid">
+                    <article class="hero-decision-card hero-decision-card--accent">
+                        <span class="hero-decision-card__label">File first</span>
+                        <h3>I need the septic file before I trust the story</h3>
+                        <p>Start here when the permit copy, as-built, pumping history, or inspection notes are thinner than the current seller, buyer, or contractor story.</p>
+                        <a class="button button--primary" href="/septic-records-checklist/">Open records checklist</a>
+                    </article>
+
+                    <article class="hero-decision-card">
+                        <span class="hero-decision-card__label">Permit path</span>
+                        <h3>I do not know which office or step controls this job</h3>
+                        <p>Use the permit workflow when the real blocker is county routing, site review, project classification, or the next approval step.</p>
+                        <a class="button button--secondary" href="/septic-permit-process/">Open permit process</a>
+                    </article>
+
+                    <article class="hero-decision-card">
+                        <span class="hero-decision-card__label">Sale or transfer</span>
+                        <h3>I am trying to keep a deal or closing on track</h3>
+                        <p>Use the transfer workflow when records, permit history, inspection timing, and county file quality all need to be sorted together before the deal moves.</p>
+                        <a class="button button--secondary" href="/septic-transfer-compliance/">Open transfer compliance</a>
+                    </article>
+
+                    <article class="hero-decision-card">
+                        <span class="hero-decision-card__label">Planning range</span>
+                        <h3>I need one cautious number before the next call</h3>
+                        <p>Run the estimator after the workflow is clearer, or when the file is still thin and you need a conservative planning range instead of a fake low end.</p>
+                        <a class="button button--secondary" href="/septic-system-cost-calculator/">Open cost estimator</a>
+                    </article>
                 </div>
                 <div class="hero__notes">
                     <span>${liveGuideCount} live guides</span>
@@ -28,25 +54,22 @@
 
             <aside class="hero-card">
                 <div class="hero-card__top">
-                    <span class="eyebrow">Start with one lane</span>
-                    <h2>Use the shortest path to the real question.</h2>
+                    <span class="eyebrow">Use it like a tool</span>
+                    <h2>Choose first. Read deeper second.</h2>
+                    <p>The site works best when you match the live problem to one lane, get the next action, and only then open the longer explanation.</p>
                 </div>
                 <div class="hero-card__stack">
                     <div class="mini-card">
-                        <strong>Missing the file?</strong>
-                        <p>Open records checklist when the permit copy, as-built, pumping history, or inspection notes are thinner than the current story.</p>
+                        <strong>1. Match the real blocker</strong>
+                        <p>File gap, permit bottleneck, sale timing, or cautious range. Do not start from a generic quote question.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Blocked on the next office?</strong>
-                        <p>Use permit process when the real bottleneck is county routing, site review, or figuring out which authority owns the next approval step.</p>
+                        <strong>2. Open the narrow workflow</strong>
+                        <p>Use the records, permit, buyer, or transfer lane before you let one statewide average flatten the problem.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>Stuck in a sale or closing?</strong>
-                        <p>Open transfer compliance when records, permit history, buyer diligence, and county file quality all need to be sorted together before the deal moves.</p>
-                    </div>
-                    <div class="mini-card">
-                        <strong>Need the number anyway?</strong>
-                        <p>Run the estimator after the workflow is clearer, or when the file is still thin and you need a cautious planning range before the next call.</p>
+                        <strong>3. Price after the story is clearer</strong>
+                        <p>The estimator is there to sharpen the next decision, not to replace the file, county office, or inspection history.</p>
                     </div>
                 </div>
             </aside>

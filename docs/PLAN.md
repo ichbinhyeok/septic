@@ -11,6 +11,8 @@ later implementation work should follow.
 - Homeowner planning estimator, not engineering design software.
 - Estimate-first, source-transparent, quote-lead business.
 - State-aware cost and sizing guidance with honest uncertainty.
+- Search capture plus workflow-channel distribution, with vendor-sendable
+  artifacts staying separate from search surfaces.
 - File-based application and data pipeline. No database in V1.
 
 ## Core product for V1
@@ -22,6 +24,8 @@ later implementation work should follow.
 - Quote form
 - National money and workflow pages
 - Ten state guides
+- Narrow professional workflow packets that stay `noindex` and route into state
+  workflow pages
 
 ## Rollout decision
 
@@ -98,6 +102,7 @@ Use files for three different jobs:
 
 - docs/
   - PLAN.md
+  - B2B_LAYER_DEFINITION.md
   - DATA_STRATEGY.md
 - data/
   - README.md
@@ -143,8 +148,9 @@ Use files for three different jobs:
 1. Keep the current layout foundation aligned with trust and conversion.
 2. Deepen state data with homeowner workflow modules and cost multipliers where source quality supports it.
 3. Expand only the strongest state x intent combinations first, especially permit-process and records-checklist wedges in the strongest states.
-4. Refine the dedicated tank size and pump estimator routes after the main calculator and quote funnel stabilize.
-5. Refine cost profiles from public sources without inventing false state precision.
+4. Add workflow-channel artifacts only where a narrow state workflow page already has proof and a county or official-source chain exists.
+5. Refine the dedicated tank size and pump estimator routes after the main calculator and quote funnel stabilize.
+6. Refine cost profiles from public sources without inventing false state precision.
 
 ## Definition of done for the next working phase
 
@@ -153,5 +159,7 @@ Use files for three different jobs:
 - State profiles include homeowner workflow modules, not just rule summaries.
 - Workflow pages exist for permit-process and records-checklist intent where the state angle is genuinely unique.
 - Strong state guides expose official local-verification and records-lookup links where the source set supports it.
+- Workflow-channel docs and tracker exist, and at least one public `noindex`
+  packet routes cleanly into a narrow state workflow page.
 - Storage convention exists for leads, events, and buyer-ready exports.
 - Legal and trust pages exist in the footer before public launch.
