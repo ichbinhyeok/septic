@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-22
+Last updated: 2026-04-23
 
 ## Why this file exists
 
@@ -70,6 +70,74 @@ Rules:
 - Internal editorial links should prefer clean canonical paths over calculator
   query-string URLs.
 - `drain-field-replacement-cost` needs deeper content, not just better metadata.
+
+## 2026-04-23
+
+### Data
+
+- Source: internal execution follow-up after the 2026-04-22 Search Console read
+- Fresh-data note: no new Search Console pull was used in this entry; this is a
+  shipped-change log that locks the product state after the 2026-04-22
+  interpretation.
+- Page families touched:
+  - `/septic-records-checklist/`
+  - `/septic-permit-process/`
+  - `/perc-test-cost/`
+  - `/septic-inspection-cost/`
+  - state guide surface
+  - state money pages and workflow packets
+
+### Changes Shipped
+
+- Commit: `f9e7a41`
+- Files:
+  - `src/main/jte/pages/content-page.jte`
+  - `src/main/resources/static/app.js`
+  - `src/main/resources/static/app.css`
+  - `src/main/jte/pages/state-guide.jte`
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/main/java/com/example/septic/web/StateSurfaceSignalView.java`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - converted broad organic parents into a clearer state-aware router instead of
+    leaving them as long national explainers
+  - made state selection change not only CTA targets but also visible route
+    judgment through `workflow fit`, `evidence depth`, and `tool handoff`
+    signals
+  - shortened state-specific route labels on broad parents so the chosen next
+    move reads like a workflow action instead of a long editorial title
+  - tightened the state-guide action rail around workflow-first and
+    estimate-followup handoff
+  - locked workflow packet pages, sitemap exclusion, and render tests into the
+    shipped branch
+
+### Insights
+
+- Observation: the product surface now matches the 2026-04-22 interpretation
+  more closely than it did before this push.
+- Interpretation: the national pages are less likely to be read as final
+  information destinations and more likely to act as a routing layer into the
+  narrower state workflow or tool.
+- Observation: state-aware route labels and decision signals reduce the amount
+  of editorial wording inside the first-action block.
+- Interpretation: this should help the broad parents behave more like a tool
+  surface without deleting the supporting explanation that prevents thin
+  content.
+- Observation: workflow packet pages, state surfaces, and tests are now aligned
+  in one pushed commit.
+- Interpretation: the next read should focus on whether these surface changes
+  change click distribution, not on whether the implementation shipped
+  incompletely.
+
+### Next Actions
+
+- Recheck Search Console on 2026-04-29 or later so the 2026-04-23 ship has time
+  to be reflected in impressions and click distribution.
+- Watch whether `/septic-records-checklist/` and `/septic-permit-process/`
+  start sending more visibility into state-specific records and permit pages
+  instead of keeping it trapped on the national parent.
+- Watch whether state-guide and state-money click paths show better handoff into
+  the workflow pages and calculator after the shorter route labels.
 
 ## 2026-04-16
 

@@ -1,6 +1,6 @@
 # Workflow Tracker
 
-Last updated: 2026-04-16
+Last updated: 2026-04-23
 
 ## Why this file exists
 
@@ -35,6 +35,46 @@ directly affect packet routing.
 - `V1 queued`: Alabama records / perc packet
 - `V1 queued`: Georgia records / perc packet
 - `V2 backlog`: packet generator and sender-specific reuse
+
+## 2026-04-23
+
+### What changed
+
+- Commit: `f9e7a41`
+- packet pages remained public `noindex` and were locked with render and
+  sitemap-exclusion tests
+- broad surfaces and state guides were tightened so the packet handoff now
+  lands on a more explicit workflow-first route instead of a softer editorial
+  surface
+- active packet set remains:
+  - Indiana -> `/septic-records-checklist/indiana/`
+  - New York -> `/buying-a-house-with-a-septic-system/new-york/`
+  - South Carolina -> `/septic-permit-process/south-carolina/`
+
+### Early signals
+
+- packet page visits: not checked in this entry
+- packet -> state workflow clicks: not checked in this entry
+- packet -> county clicks: not checked in this entry
+- repeat sends: not checked in this entry
+- vendor feedback: not checked in this entry
+
+### Interpretation
+
+- the workflow channel is now better separated from the organic surface at both
+  the page and tracking-doc level
+- packet recipients should hit a narrower and more obviously actionable first
+  move than before this push
+- the next useful workflow read is performance and reuse, not more structural
+  setup
+
+### Next action
+
+- narrow: verify packet -> pinned workflow clicks after the next real outreach
+  motion
+- expand: only after Indiana, New York, and South Carolina show repeatable use
+- pause: packet generator and sender-specific reuse until the current three
+  packets prove their first-move chain
 
 ## 2026-04-16
 
