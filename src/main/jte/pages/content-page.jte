@@ -9,6 +9,7 @@
 @param java.util.List<com.example.septic.web.StateMoneyPageLink> featuredStateMoneyPageLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> contentEvidenceLanes = java.util.List.of()
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> featuredContentEvidenceLanes = java.util.List.of()
+@param com.example.septic.web.ContentWorkflowCoverageView contentWorkflowCoverage = null
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
@@ -29,6 +30,7 @@
 @param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
+    <div class="content-page">
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
@@ -45,7 +47,7 @@
                 </span>
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
-                <p class="hero-router-intro">Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it.</p>
+                <p class="hero-router-intro">Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif</p>
                 <div class="micro-tool micro-tool--hero"
                      data-choice-group
                      data-state-surface-tool
@@ -372,6 +374,15 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
+                @if (contentWorkflowCoverage != null)
+                    <div class="mini-card">
+                        <strong>County-backed coverage</strong>
+                        <p>${contentWorkflowCoverage.summary()}</p>
+                        @if (!contentWorkflowCoverage.bullets().isEmpty())
+                            <p>${contentWorkflowCoverage.bullets().get(0)}</p>
+                        @endif
+                    </div>
+                @endif
             </article>
         </div>
     </section>
@@ -392,7 +403,7 @@
                 <article class="intent-card intent-card--primary">
                     <span class="intent-card__label">${secondaryActionPath != null ? "Primary move" : "Run the estimate"}</span>
                     <h2>${calculatorCtaLabel}</h2>
-                    <p>${calculatorCtaNote}</p>
+                    <p>${calculatorCtaNote} @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif</p>
                     <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                 </article>
 
@@ -400,7 +411,7 @@
                     @if (secondaryActionPath != null)
                         <span class="intent-card__label">Use the estimate after the workflow check</span>
                         <h2>${secondaryActionLabel}</h2>
-                        <p>${secondaryActionNote}</p>
+                        <p>${secondaryActionNote} @if (contentWorkflowCoverage != null && !contentWorkflowCoverage.bullets().isEmpty()) ${contentWorkflowCoverage.bullets().get(0)} @endif</p>
                         <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
                     @elseif (contentQuotePath != null)
                         <span class="intent-card__label">Go straight to conversion</span>
@@ -419,7 +430,7 @@
                     @if (!featuredStateMoneyPageLinks.isEmpty())
                         <span class="intent-card__label">Best state-specific example</span>
                         <h2>${featuredStateMoneyPageLinks.get(0).title()}</h2>
-                        <p>Open the strongest live state-specific page first when you want to see the official-source workflow behind this national overview.</p>
+                        <p>Open the strongest live state-specific page first when you want to see the official-source workflow behind this national overview. @if (contentWorkflowCoverage != null && contentWorkflowCoverage.bullets().size() > 1) ${contentWorkflowCoverage.bullets().get(1)} @endif</p>
                         <a class="button button--secondary" href="${featuredStateMoneyPageLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_action_rail_featured_state" data-track-target-type="state_money_page">Open this state page</a>
                     @elseif (!featuredInternalLinks.isEmpty())
                         <span class="intent-card__label">Most likely next move</span>
@@ -548,15 +559,39 @@
         </div>
     </section>
 
-    @if (contentPage.deepDiveParagraphs() != null && !contentPage.deepDiveParagraphs().isEmpty())
+    @if (contentWorkflowCoverage != null)
         <section class="section section--tight">
             <div class="container detail-grid">
                 <article class="detail-card detail-card--full">
-                    <h2>What this page is really helping you decide</h2>
-                    @for (var paragraph : contentPage.deepDiveParagraphs())
-                        <p>${paragraph}</p>
-                    @endfor
+                    <h2>${contentWorkflowCoverage.heading()}</h2>
+                    <p>${contentWorkflowCoverage.summary()}</p>
+                    <ul class="detail-list">
+                        @for (var bullet : contentWorkflowCoverage.bullets())
+                            <li>${bullet}</li>
+                        @endfor
+                    </ul>
                 </article>
+            </div>
+        </section>
+    @endif
+
+    @if (contentPage.deepDiveParagraphs() != null && !contentPage.deepDiveParagraphs().isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <details class="state-money-disclosure">
+                    <summary>
+                        <span class="eyebrow">Decision context</span>
+                        <strong>What this page is really helping you decide</strong>
+                        <span>Open this if you need the deeper explanation behind the short route above.</span>
+                    </summary>
+                    <div class="detail-grid">
+                        <article class="detail-card detail-card--full">
+                            @for (var paragraph : contentPage.deepDiveParagraphs())
+                                <p>${paragraph}</p>
+                            @endfor
+                        </article>
+                    </div>
+                </details>
             </div>
         </section>
     @endif
@@ -682,10 +717,20 @@
             <article class="detail-card">
                 <h2>State guides</h2>
                 <ul class="detail-list detail-list--compact detail-list--split">
-                    @for (var state : states)
+                    @for (var state : states.stream().limit(12).toList())
                         <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
                     @endfor
                 </ul>
+                @if (states.size() > 12)
+                    <details class="county-link-overflow">
+                        <summary>Show all state guides</summary>
+                        <ul class="detail-list detail-list--compact detail-list--split">
+                            @for (var state : states)
+                                <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides_overflow" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
+                            @endfor
+                        </ul>
+                    </details>
+                @endif
             </article>
         </div>
     </section>
@@ -699,7 +744,7 @@
                     <p>This page stays generic on purpose. The linked state lanes below carry direct official sources, state-specific workflow context, and the last-reviewed dates that support the broader national guidance.</p>
                 </article>
                 <div class="detail-grid">
-                    @for (var lane : contentEvidenceLanes)
+                    @for (var lane : contentEvidenceLanes.stream().limit(6).toList())
                         <article class="detail-card">
                             <h3><a href="${lane.path()}" data-track-click="nav" data-track-source-context="content_page_source_lane" data-track-target-type="state_money_page">${lane.title()}</a></h3>
                             <p><strong>${lane.stateName()}</strong></p>
@@ -729,6 +774,20 @@
                         </article>
                     @endfor
                 </div>
+                @if (contentEvidenceLanes.size() > 6)
+                    <details class="county-link-overflow">
+                        <summary>Show all source-backed state lanes</summary>
+                        <div class="detail-grid">
+                            @for (var lane : contentEvidenceLanes)
+                                <article class="detail-card">
+                                    <h3><a href="${lane.path()}" data-track-click="nav" data-track-source-context="content_page_source_lane_overflow" data-track-target-type="state_money_page">${lane.title()}</a></h3>
+                                    <p><strong>${lane.stateName()}</strong></p>
+                                    <p>${lane.reviewedAgainst()} Last reviewed ${lane.lastReviewedAt()}.</p>
+                                </article>
+                            @endfor
+                        </div>
+                    </details>
+                @endif
             </div>
         </section>
     @endif
@@ -757,10 +816,20 @@
                         </div>
                     @endif
                     <ul class="detail-list">
-                        @for (var stateMoneyPageLink : stateMoneyPageLinks)
+                        @for (var stateMoneyPageLink : stateMoneyPageLinks.stream().limit(12).toList())
                             <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
                         @endfor
                     </ul>
+                    @if (stateMoneyPageLinks.size() > 12)
+                        <details class="county-link-overflow">
+                            <summary>Show all state-specific workflow pages</summary>
+                            <ul class="detail-list">
+                                @for (var stateMoneyPageLink : stateMoneyPageLinks)
+                                    <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific_overflow" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
+                                @endfor
+                            </ul>
+                        </details>
+                    @endif
                 </article>
             </div>
         </section>
@@ -774,13 +843,26 @@
             </div>
 
             <div class="detail-grid">
-                @for (var faq : contentPage.faqBlocks())
+                @for (var faq : contentPage.faqBlocks().stream().limit(4).toList())
                     <article class="detail-card">
                         <h3>${faq.question()}</h3>
                         <p>${faq.answer()}</p>
                     </article>
                 @endfor
             </div>
+            @if (contentPage.faqBlocks().size() > 4)
+                <details class="county-link-overflow">
+                    <summary>Show all FAQ answers</summary>
+                    <div class="detail-grid">
+                        @for (var faq : contentPage.faqBlocks())
+                            <article class="detail-card">
+                                <h3>${faq.question()}</h3>
+                                <p>${faq.answer()}</p>
+                            </article>
+                        @endfor
+                    </div>
+                </details>
+            @endif
         </div>
     </section>
 
@@ -789,14 +871,28 @@
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Related pages</span>
                 <ul class="detail-list">
-                    @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
+                    @for (var link : (secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks).stream().limit(6).toList())
                         <li>
                             <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a>
                             <p class="detail-list__note">${link.note()}</p>
                         </li>
                     @endfor
                 </ul>
+                @if ((secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks).size() > 6)
+                    <details class="county-link-overflow">
+                        <summary>Show all related pages</summary>
+                        <ul class="detail-list">
+                            @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
+                                <li>
+                                    <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links_overflow" data-track-target-type="internal_page">${link.title()}</a>
+                                    <p class="detail-list__note">${link.note()}</p>
+                                </li>
+                            @endfor
+                        </ul>
+                    </details>
+                @endif
             </article>
         </div>
     </section>
+    </div>
 `)

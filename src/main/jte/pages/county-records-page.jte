@@ -2,12 +2,14 @@
 @import com.example.septic.data.model.SourceRecord
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param CountyRecordsPage countyPage
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
+@param CountyWorkflowStructureView countyWorkflowStructure = null
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
@@ -17,11 +19,45 @@
 @param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
+    <div class="county-records-page">
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${state.stateCode()} county records page</span>
                 <h1>${countyPage.title()}</h1>
+                <div class="money-answer-panel" aria-label="County answer-first workflow">
+                    <div class="money-answer-panel__header">
+                        <span class="eyebrow">County file first</span>
+                        <h2>Do these before you trust a quote.</h2>
+                    </div>
+                    <ol class="money-answer-steps">
+                        <li>
+                            <span class="money-answer-steps__number">1</span>
+                            <div>
+                                <strong>Open the county record path</strong>
+                                <p>${countyPage.recordsLabel()}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="money-answer-steps__number">2</span>
+                            <div>
+                                <strong>Verify the owning office</strong>
+                                <p>${countyPage.officeLabel()}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="money-answer-steps__number">3</span>
+                            <div>
+                                <strong>Price only after the file is clearer</strong>
+                                @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
+                                    <p>${countyWorkflowStructure.quoteGate()}</p>
+                                @else
+                                    <p>${countyPage.contactLine()}</p>
+                                @endif
+                            </div>
+                        </li>
+                    </ol>
+                </div>
                 <div class="hero__actions">
                     <a class="button button--primary"
                        href="${countyPage.recordsUrl()}"
@@ -44,7 +80,6 @@
                        data-track-target-type="state_money_page">Open ${state.stateName()} records checklist</a>
                 </div>
                 <p class="lede">${countyPage.introCopy()}</p>
-                <p>${countyPage.contactLine()}</p>
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Next best state pages</span>
@@ -90,7 +125,6 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
-                <p>This page is intentionally narrow. It exists to help a homeowner reach the right county file or form before using a broader state estimate.</p>
             </article>
         </div>
     </section>
@@ -138,8 +172,16 @@
         </div>
     </section>
 
-    <section class="section section--tight">
-        <div class="container detail-grid">
+    <section class="section section--tight state-money-disclosure-section">
+        <div class="container">
+            <details class="state-money-disclosure">
+                <summary>
+                    <span class="eyebrow">County detail</span>
+                    <strong>Workflow structure, requests, and low-end breakers</strong>
+                    <span>Open when you need the full county file logic behind the answer panel.</span>
+                </summary>
+
+        <div class="detail-grid">
             <article class="detail-card">
                 <h2>Why ${countyPage.countyName()} is worth its own page</h2>
                 <p>${countyPage.uniqueAngle()}</p>
@@ -152,6 +194,24 @@
                 <p><strong>Records path.</strong> <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a></p>
                 <p>${countyPage.contactLine()}</p>
             </article>
+
+            @if (countyWorkflowStructure != null)
+                <article class="detail-card detail-card--full">
+                    <h2>County workflow structure</h2>
+                    <div class="detail-grid">
+                        @for (var field : countyWorkflowStructure.fields())
+                            <article class="detail-card">
+                                <h3>${field.label()}</h3>
+                                <p>${field.value()}</p>
+                            </article>
+                        @endfor
+                        <article class="detail-card">
+                            <h3>Do not price yet when</h3>
+                            <p>${countyWorkflowStructure.quoteGate()}</p>
+                        </article>
+                    </div>
+                </article>
+            @endif
 
             <article class="detail-card detail-card--full">
                 <h2>How this county workflow usually unfolds</h2>
@@ -180,10 +240,20 @@
                 </ul>
             </article>
         </div>
+            </details>
+        </div>
     </section>
 
-    <section class="section section--muted">
-        <div class="container detail-grid">
+    <section class="section section--muted state-money-disclosure-section">
+        <div class="container">
+            <details class="state-money-disclosure">
+                <summary>
+                    <span class="eyebrow">Source layer</span>
+                    <strong>FAQs and official county sources</strong>
+                    <span>Open when you need the source list or county-specific FAQ answers.</span>
+                </summary>
+
+        <div class="detail-grid">
             @for (var faq : countyPage.faqBlocks())
                 <article class="detail-card">
                     <h3>${faq.question()}</h3>
@@ -211,6 +281,8 @@
                 </ul>
             </article>
         </div>
+            </details>
+        </div>
     </section>
 
     <section class="section">
@@ -237,7 +309,7 @@
                 <article class="detail-card">
                     <h2>Related ${state.stateName()} pages</h2>
                     <ul class="detail-list">
-                        @for (var link : internalLinks)
+                        @for (var link : internalLinks.stream().limit(6).toList())
                             <li>
                                 <a href="${link.path()}"
                                    data-track-click="nav"
@@ -246,9 +318,22 @@
                                 <p class="detail-list__note">${link.note()}</p>
                             </li>
                         @endfor
+                        @if (internalLinks.size() > 6)
+                            <li>
+                                <details class="county-link-overflow">
+                                    <summary>Show more related pages</summary>
+                                    <ul class="detail-list">
+                                        @for (var link : internalLinks)
+                                            <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="county_records_related_link_all" data-track-target-type="related_internal">${link.title()}</a></li>
+                                        @endfor
+                                    </ul>
+                                </details>
+                            </li>
+                        @endif
                     </ul>
                 </article>
             @endif
         </div>
     </section>
+    </div>
 `)

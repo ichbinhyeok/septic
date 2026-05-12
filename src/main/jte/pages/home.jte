@@ -6,7 +6,10 @@
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
 @param int liveGuideCount
 @param int liveIntentCount
+@param int liveCountyCount = 0
+@param int countyBackedStateCount = 0
 @param int queuedStateCount
+@param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
 @template.layouts.app(page = page, content = @`
     <section class="hero">
@@ -48,7 +51,13 @@
                 <div class="hero__notes">
                     <span>${liveGuideCount} live guides</span>
                     <span>${liveIntentCount} live state pages</span>
-                    <span>${queuedStateCount} states in research queue</span>
+                    <span>${liveCountyCount} live county workflow pages</span>
+                    <span>${countyBackedStateCount} county-backed states</span>
+                    @if (queuedStateCount > 0)
+                        <span>${queuedStateCount} states in research queue</span>
+                    @else
+                        <span>All 50 state guides live</span>
+                    @endif
                 </div>
             </div>
 
@@ -134,12 +143,49 @@
         </section>
     @endif
 
+    @if (workflowNetworkSnapshot != null)
+        <section class="section section--tight">
+            <div class="container content-grid">
+                <article class="trust-box trust-box--large">
+                    <span class="trust-box__label">County-backed network</span>
+                    <h2>${workflowNetworkSnapshot.heading()}</h2>
+                    <p>${workflowNetworkSnapshot.summary()}</p>
+                    <ul class="detail-list">
+                        @for (var bullet : workflowNetworkSnapshot.bullets())
+                            <li>${bullet}</li>
+                        @endfor
+                    </ul>
+                </article>
+
+                <article class="detail-card">
+                    <h2>Where the live backbone is already thick</h2>
+                    <div class="detail-grid">
+                        @for (var link : workflowNetworkSnapshot.featuredStateLinks())
+                            <article class="detail-card">
+                                <span class="pill">County-backed state</span>
+                                <h3>${link.title()}</h3>
+                                <p>${link.note()}</p>
+                                <a href="${link.path()}">Open county-backed state page</a>
+                            </article>
+                        @endfor
+                    </div>
+                </article>
+            </div>
+        </section>
+    @endif
+
     <section class="section section--muted">
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
-                <span class="trust-box__label">50-state rollout</span>
-                <h2>Coverage is widening now, but the wedge is county records and permit workflow, not generic estimator copy.</h2>
-                <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides and state pages should launch only when the official-source set, local office path, records workflow, and state-specific wrinkle are strong enough to change the next action.</p>
+                @if (queuedStateCount > 0)
+                    <span class="trust-box__label">50-state rollout</span>
+                    <h2>Coverage is widening now, but the wedge is county records and permit workflow, not generic estimator copy.</h2>
+                    <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides and state pages should launch only when the official-source set, local office path, records workflow, and state-specific wrinkle are strong enough to change the next action.</p>
+                @else
+                    <span class="trust-box__label">50-state base is live</span>
+                    <h2>All state guides are public. The next quality gains come from deeper records, permit, buyer, and county workflow pages.</h2>
+                    <p>The job now is not to claim broader coverage. It is to make the live footprint more trustworthy by keeping weak cost pages out of the way and making the strongest workflow pages easier to open first.</p>
+                @endif
                 <div class="hero__actions">
                     <a class="button button--primary" href="/states/">Browse state guides</a>
                     <a class="button button--secondary" href="/about/">Read the source standard</a>
@@ -184,7 +230,11 @@
             </div>
 
             <div class="hero__actions home-section-actions">
-                <a class="button button--secondary" href="/states/">Browse all live and queued states</a>
+                @if (queuedStateCount > 0)
+                    <a class="button button--secondary" href="/states/">Browse all live and queued states</a>
+                @else
+                    <a class="button button--secondary" href="/states/">Browse all live states</a>
+                @endif
             </div>
         </div>
     </section>

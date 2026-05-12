@@ -4,6 +4,8 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
 @import com.example.septic.web.StateMoneyPrimaryAction
+@import com.example.septic.web.StateCountyWorkflowSynthesisView
+@import com.example.septic.web.StateCostScopeView
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -19,11 +21,15 @@
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
+@param boolean showQuoteCta = false
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
+@param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
+@param com.example.septic.web.StateWorkflowDecisionView workflowDecision = null
+@param StateCostScopeView costScopeView = null
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -31,22 +37,103 @@
 @param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+    <div class="state-money-page">
+    <section class="section section--heroish state-money-hero-section">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
+                <div class="workflow-console" aria-label="Septic workflow triage console">
+                    <div class="workflow-console__topbar">
+                        <span class="workflow-console__status">Live triage</span>
+                        <span>${state.stateCode()} / ${stateMoneyPage.contentSlug()}</span>
+                    </div>
+                    <div class="workflow-console__body">
+                        <div class="workflow-console__readout">
+                            <span class="eyebrow">Current verdict</span>
+                            <h2>
+                                @if ("septic-permit-process".equals(stateMoneyPage.contentSlug()))
+                                    Find the permit desk before pricing the work.
+                                @elseif ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                                    Use the file trail before you trust the story.
+                                @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
+                                    Resolve the buyer file before negotiating price.
+                                @elseif ("septic-inspection-cost".equals(stateMoneyPage.contentSlug()))
+                                    Pull inspection history before pricing the visit.
+                                @elseif ("septic-pumping-cost".equals(stateMoneyPage.contentSlug()))
+                                    Check maintenance history before pricing the pump-out.
+                                @elseif ("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()))
+                                    Confirm the site-review lane before trusting a perc number.
+                                @elseif ("septic-replacement-cost".equals(stateMoneyPage.contentSlug()) || "drain-field-replacement-cost".equals(stateMoneyPage.contentSlug()) || "septic-replacement-area".equals(stateMoneyPage.contentSlug()) || "wet-yard-over-septic-drain-field".equals(stateMoneyPage.contentSlug()))
+                                    Resolve the failure branch before trusting a replacement range.
+                                @else
+                                    Use this state route to narrow the next action.
+                                @endif
+                            </h2>
+                            <div class="workflow-console__actions">
+                                <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
+                                @if (primaryAction.calculator() && showQuoteCta)
+                                    <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                                @elseif (!"county_page_directory".equals(primaryAction.targetType()))
+                                    <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="workflow-console__checks">
+                            <div class="workflow-console__row">
+                                <span class="workflow-console__index">01</span>
+                                <span class="workflow-console__label">
+                                    @if ("septic-pumping-cost".equals(stateMoneyPage.contentSlug()))
+                                        Maintenance lane
+                                    @elseif ("septic-permit-process".equals(stateMoneyPage.contentSlug()))
+                                        Permit authority
+                                    @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
+                                        Buyer file
+                                    @elseif ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                                        Record owner
+                                    @elseif ("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()))
+                                        Site review
+                                    @else
+                                        First branch
+                                    @endif
+                                </span>
+                                <strong>${primaryAction.heading()}</strong>
+                            </div>
+                            <div class="workflow-console__row">
+                                <span class="workflow-console__index">02</span>
+                                <span class="workflow-console__label">Evidence to pull</span>
+                                <strong>
+                                    @if (("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()) || "septic-replacement-cost".equals(stateMoneyPage.contentSlug()) || "drain-field-replacement-cost".equals(stateMoneyPage.contentSlug()) || "septic-replacement-area".equals(stateMoneyPage.contentSlug()) || "wet-yard-over-septic-drain-field".equals(stateMoneyPage.contentSlug())) && primaryLocalAuthoritySource != null)
+                                        ${primaryLocalAuthoritySource.title()}
+                                    @elseif (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
+                                        ${countyWorkflowSynthesis.firstArtifacts().get(0)}
+                                    @elseif (primaryRecordsLookupSource != null)
+                                        ${primaryRecordsLookupSource.title()}
+                                    @elseif (primaryLocalAuthoritySource != null)
+                                        ${primaryLocalAuthoritySource.title()}
+                                    @else
+                                        ${state.whoToCallFirst()}
+                                    @endif
+                                </strong>
+                            </div>
+                            <div class="workflow-console__row">
+                                <span class="workflow-console__index">03</span>
+                                <span class="workflow-console__label">Pricing gate</span>
+                                <strong>
+                                    @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.holdQuoteChecks().isEmpty())
+                                        ${countyWorkflowSynthesis.holdQuoteChecks().get(0)}
+                                    @else
+                                        Use the estimate after the local file path is clear.
+                                    @endif
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
-                    @if (primaryAction.calculator())
-                        <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
-                    @else
-                        <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
-                    @endif
                     <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
-                <p class="lede">${stateMoneyPage.introCopy()}</p>
-                <p>${primaryAction.note()}</p>
+                <p class="lede state-money-intro-copy">${stateMoneyPage.introCopy()}</p>
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Fast next steps</span>
@@ -92,7 +179,6 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
-                <p>This page stays narrow on purpose. Use it when this exact cost lane is already the real question and the broader state guide would slow the next decision down.</p>
             </article>
         </div>
     </section>
@@ -112,103 +198,238 @@
                 <a href="#faq">FAQ</a>
             </div>
 
-            <div class="intent-rail">
-                <article class="intent-card intent-card--primary">
-                    <span class="intent-card__label">${primaryAction.eyebrow()}</span>
-                    <h2>${primaryAction.heading()}</h2>
-                    <p>${primaryAction.note()}</p>
+            <section class="next-move-board" aria-label="Next septic workflow moves">
+                <div class="next-move-board__header">
+                    <span class="eyebrow">Next move board</span>
+                    <h2>Do these in order before the page becomes a price page.</h2>
+                </div>
+
+                <div class="next-move-board__rows">
+                <article class="next-move-row next-move-row--primary">
+                    <span class="next-move-row__index">01</span>
+                    <div class="next-move-row__body">
+                        <span class="next-move-row__label">${primaryAction.eyebrow()}</span>
+                        <h3>
+                            @if ("septic-pumping-cost".equals(stateMoneyPage.contentSlug()))
+                                Find the county maintenance record lane
+                            @elseif ("septic-permit-process".equals(stateMoneyPage.contentSlug()))
+                                Identify the county permit desk
+                            @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
+                                Match the seller story to the file
+                            @elseif ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                                Find the office that owns the file
+                            @elseif ("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()))
+                                Confirm who reviews the site
+                            @else
+                                ${primaryAction.heading()}
+                            @endif
+                        </h3>
+                        <p>${primaryAction.note()}</p>
+                        @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.structureHighlights().isEmpty())
+                            <p class="next-move-row__signal"><strong>County-backed read:</strong> ${countyWorkflowSynthesis.structureHighlights().get(0).value()}</p>
+                        @endif
+                    </div>
                     <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                 </article>
 
                 @if (primaryAction.calculator())
-                    <article class="intent-card">
-                        <span class="intent-card__label">Return to the broader state guide</span>
-                        <h2>Open the ${state.stateName()} guide</h2>
-                        <p>Use the broader guide when you still need the state-level rule style, local office path, and low-end risk before committing to this one intent lane.</p>
+                    <article class="next-move-row">
+                        <span class="next-move-row__index">02</span>
+                        <div class="next-move-row__body">
+                            <span class="next-move-row__label">Return to the broader state guide</span>
+                            <h3>Open the ${state.stateName()} guide</h3>
+                            <p>Use the broader guide when you still need the state-level rule style, local office path, and low-end risk before committing to this one intent lane.</p>
+                            @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
+                                <p class="next-move-row__signal"><strong>Pull first:</strong> ${countyWorkflowSynthesis.firstArtifacts().get(0)}</p>
+                            @endif
+                        </div>
                         <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_action_rail_guide" data-track-target-type="state_guide">Open the guide</a>
                     </article>
                 @else
-                    <article class="intent-card">
-                        <span class="intent-card__label">Run the state estimate</span>
-                        <h2>${calculatorCtaLabel}</h2>
-                        <p>${calculatorCtaNote}</p>
+                    <article class="next-move-row">
+                        <span class="next-move-row__index">02</span>
+                        <div class="next-move-row__body">
+                            <span class="next-move-row__label">Run the state estimate</span>
+                            <h3>${calculatorCtaLabel}</h3>
+                            <p>${calculatorCtaNote}</p>
+                            @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.holdQuoteChecks().isEmpty())
+                                <p class="next-move-row__signal"><strong>Hold pricing when:</strong> ${countyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
+                            @endif
+                        </div>
                         <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
                     </article>
                 @endif
 
-                <article class="intent-card">
+                <article class="next-move-row">
+                    <span class="next-move-row__index">03</span>
                     @if (primaryRecordsLookupSource != null)
-                        <span class="intent-card__label">Pull the file first</span>
-                        <h2>Open records before you trust the price story</h2>
-                        <p>Use the official records path when you still need the permit, as-built, inspection, or maintenance file before moving into quote mode.</p>
+                        <div class="next-move-row__body">
+                            <span class="next-move-row__label">Pull the file first</span>
+                            <h3>Open records before you trust the price story</h3>
+                            <p>Use the official records path when you still need the permit, as-built, inspection, or maintenance file before moving into quote mode.</p>
+                            @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
+                                <p class="next-move-row__signal"><strong>Start with:</strong> ${countyWorkflowSynthesis.firstArtifacts().get(0)}</p>
+                            @endif
+                        </div>
                         <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
                     @elseif (primaryLocalAuthoritySource != null)
-                        <span class="intent-card__label">Verify the next office</span>
-                        <h2>Confirm the local authority before you schedule work</h2>
-                        <p>Use the local office path when you still need the real permit desk, reviewing authority, or delegated county office before trusting the low end.</p>
+                        <div class="next-move-row__body">
+                            <span class="next-move-row__label">Verify the next office</span>
+                            <h3>Confirm the local authority before you schedule work</h3>
+                            <p>Use the local office path when you still need the real permit desk, reviewing authority, or delegated county office before trusting the low end.</p>
+                            @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.structureHighlights().isEmpty())
+                                <p class="next-move-row__signal"><strong>County-backed file pattern:</strong> ${countyWorkflowSynthesis.structureHighlights().get(0).value()}</p>
+                            @endif
+                        </div>
                         <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
                     @elseif (!featuredInternalLinks.isEmpty())
-                        <span class="intent-card__label">Most likely next move</span>
-                        <h2>${featuredInternalLinks.get(0).title()}</h2>
-                        <p>${featuredInternalLinks.get(0).note()}</p>
+                        <div class="next-move-row__body">
+                            <span class="next-move-row__label">Most likely next move</span>
+                            <h3>${featuredInternalLinks.get(0).title()}</h3>
+                            <p>${featuredInternalLinks.get(0).note()}</p>
+                        </div>
                         <a class="button button--secondary" href="${featuredInternalLinks.get(0).path()}" data-track-click="nav" data-track-source-context="state_money_action_rail_internal" data-track-target-type="related_internal">Open next step</a>
                     @endif
                 </article>
-            </div>
+                </div>
+            </section>
         </div>
     </section>
 
-    @if (planningSnapshot != null || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
+    @if (workflowDecision != null)
         <section class="section section--tight">
-            <div class="container detail-grid">
-                @if (planningSnapshot != null)
-                    <article class="detail-card detail-card--full">
-                        <h2>Planning cost snapshot</h2>
-                        <div class="result-grid">
-                            <article class="metric-card">
-                                <span class="metric-card__label">Install midpoint</span>
-                                <strong>${planningSnapshot.installMidpoint()}</strong>
+            <div class="container">
+                <details class="state-money-disclosure state-money-evidence-drawer">
+                    <summary>
+                        <span class="eyebrow">${workflowDecision.eyebrow()}</span>
+                        <strong>${workflowDecision.heading()}</strong>
+                        <span>${workflowDecision.intro()}</span>
+                    </summary>
+                    <div class="detail-grid">
+                        @for (var card : workflowDecision.cards())
+                            <article class="detail-card">
+                                <h3>${card.label()}</h3>
+                                <p>${card.value()}</p>
                             </article>
-                            <article class="metric-card">
-                                <span class="metric-card__label">Replacement midpoint</span>
-                                <strong>${planningSnapshot.replacementMidpoint()}</strong>
-                            </article>
-                            <article class="metric-card">
-                                <span class="metric-card__label">Perc planning range</span>
-                                <strong>${planningSnapshot.percRange()}</strong>
-                            </article>
-                            <article class="metric-card">
-                                <span class="metric-card__label">Pumping planning range</span>
-                                <strong>${planningSnapshot.pumpingRange()}</strong>
-                            </article>
-                        </div>
-                        <p>${planningSnapshot.comparisonNote()} These figures are still planning-only ranges, not an official fee schedule.</p>
-                    </article>
-                @endif
-
-                @if (primaryLocalAuthoritySource != null)
-                    <article class="detail-card">
-                        <h2>${stateMoneyPage.localAuthorityHeading()}</h2>
-                        <p>Use the local office first when you want to move from a planning page into an actual permit or records workflow.</p>
-                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
-                        <p>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
-                    </article>
-                @endif
-
-                @if (primaryRecordsLookupSource != null)
-                    <article class="detail-card">
-                        <h2>${stateMoneyPage.recordsLookupHeading()}</h2>
-                        <p>Use the existing record trail to confirm whether this property still fits the low end before you move into quote mode.</p>
-                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
-                        <p>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
-                    </article>
-                @endif
+                        @endfor
+                    </div>
+                </details>
             </div>
         </section>
     @endif
 
-    <section class="section section--tight">
-        <div class="container detail-grid">
+    @if (costScopeView != null)
+        <section class="section section--tight">
+            <div class="container">
+                <details class="state-money-disclosure state-money-evidence-drawer">
+                    <summary>
+                        <span class="eyebrow">${costScopeView.eyebrow()}</span>
+                        <strong>${costScopeView.heading()}</strong>
+                        <span>${costScopeView.intro()}</span>
+                    </summary>
+                    <div class="detail-grid">
+                        @for (var card : costScopeView.cards())
+                            <article class="detail-card">
+                                <h3>${card.label()}</h3>
+                                <p>${card.value()}</p>
+                            </article>
+                        @endfor
+
+                        @if (!costScopeView.scopeWideners().isEmpty())
+                            <article class="detail-card">
+                                <h3>${costScopeView.scopeWidenersHeading()}</h3>
+                                <ul class="detail-list">
+                                    @for (var widener : costScopeView.scopeWideners())
+                                        <li>${widener}</li>
+                                    @endfor
+                                </ul>
+                            </article>
+                        @endif
+
+                        @if (!costScopeView.readinessChecks().isEmpty())
+                            <article class="detail-card">
+                                <h3>${costScopeView.readinessHeading()}</h3>
+                                <ul class="detail-list">
+                                    @for (var check : costScopeView.readinessChecks())
+                                        <li>${check}</li>
+                                    @endfor
+                                </ul>
+                            </article>
+                        @endif
+                    </div>
+                </details>
+            </div>
+        </section>
+    @endif
+
+    @if (planningSnapshot != null || primaryLocalAuthoritySource != null || primaryRecordsLookupSource != null)
+        <section class="section section--tight">
+            <div class="container">
+                <div class="cost-gate-panel">
+                @if (planningSnapshot != null)
+                    <article class="cost-gate-panel__range">
+                        <div class="cost-gate-panel__header">
+                            <span class="eyebrow">Planning cost snapshot</span>
+                            <h2>Use these ranges only after the file path is clear.</h2>
+                            <p>${planningSnapshot.comparisonNote()} These figures are planning-only ranges, not an official fee schedule.</p>
+                        </div>
+                        <div class="cost-gate-panel__metrics">
+                            <article class="cost-gate-panel__metric">
+                                <span>Install midpoint</span>
+                                <strong>${planningSnapshot.installMidpoint()}</strong>
+                            </article>
+                            <article class="cost-gate-panel__metric">
+                                <span>Replacement midpoint</span>
+                                <strong>${planningSnapshot.replacementMidpoint()}</strong>
+                            </article>
+                            <article class="cost-gate-panel__metric">
+                                <span>Perc planning range</span>
+                                <strong>${planningSnapshot.percRange()}</strong>
+                            </article>
+                            <article class="cost-gate-panel__metric">
+                                <span>Pumping planning range</span>
+                                <strong>${planningSnapshot.pumpingRange()}</strong>
+                            </article>
+                        </div>
+                    </article>
+                @endif
+
+                <div class="cost-gate-panel__sources">
+                    @if (primaryLocalAuthoritySource != null)
+                        <article class="cost-gate-panel__source">
+                            <span class="cost-gate-panel__source-label">Authority gate</span>
+                            <h3>${stateMoneyPage.localAuthorityHeading()}</h3>
+                            <p>Use the local office first when you want to move from a planning page into an actual permit or records workflow.</p>
+                            <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
+                            <p class="cost-gate-panel__source-meta">${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</p>
+                        </article>
+                    @endif
+
+                    @if (primaryRecordsLookupSource != null)
+                        <article class="cost-gate-panel__source">
+                            <span class="cost-gate-panel__source-label">Record gate</span>
+                            <h3>${stateMoneyPage.recordsLookupHeading()}</h3>
+                            <p>Use the existing record trail to confirm whether this property still fits the low end before you move into quote mode.</p>
+                            <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
+                            <p class="cost-gate-panel__source-meta">${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
+                        </article>
+                    @endif
+                </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <section class="section section--tight state-money-disclosure-section">
+        <div class="container">
+            <details class="state-money-disclosure">
+                <summary>
+                    <span class="eyebrow">State context</span>
+                    <strong>Quick facts, fit, and workflow details</strong>
+                    <span>Open when you need the full state context behind the answer panel.</span>
+                </summary>
+
+        <div class="detail-grid">
             <article class="detail-card detail-card--full">
                 <h2>Quick facts</h2>
                 <div class="facts-table-wrap">
@@ -246,6 +467,14 @@
                             <th>Primary first call</th>
                             <td>${state.whoToCallFirst()}</td>
                         </tr>
+                        @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty() && !countyWorkflowSynthesis.holdQuoteChecks().isEmpty())
+                            <tr>
+                                <th>County-backed first pull</th>
+                                <td>${countyWorkflowSynthesis.firstArtifacts().get(0)}</td>
+                                <th>Hold pricing when</th>
+                                <td>${countyWorkflowSynthesis.holdQuoteChecks().get(0)}</td>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -327,32 +556,125 @@
                 </article>
             @endif
         </div>
+            </details>
+        </div>
     </section>
+
+    @if (countyWorkflowSynthesis != null)
+        <section class="section section--tight state-money-disclosure-section">
+            <div class="container">
+                <details class="state-money-disclosure">
+                    <summary>
+                        <span class="eyebrow">${countyWorkflowSynthesis.eyebrow()}</span>
+                        <strong>${countyWorkflowSynthesis.heading()}</strong>
+                        <span>${countyWorkflowSynthesis.intro()}</span>
+                    </summary>
+
+                    <div class="detail-grid">
+                        @for (var signal : countyWorkflowSynthesis.signals())
+                            <article class="detail-card">
+                                <h3>${signal.label()}</h3>
+                                <p>${signal.summary()}</p>
+                                <p><strong>Ask the county for:</strong> ${signal.firstAsk()}</p>
+                                <p><strong>Coverage:</strong> ${signal.coverageNote()}</p>
+                                <p><strong>Seen in:</strong> ${signal.countyExamples()}</p>
+                            </article>
+                        @endfor
+
+                        @for (var field : countyWorkflowSynthesis.structureHighlights())
+                            <article class="detail-card">
+                                <h3>${field.label()}</h3>
+                                <p>${field.value()}</p>
+                            </article>
+                        @endfor
+
+                        <article class="detail-card">
+                            <h3>${countyWorkflowSynthesis.firstArtifactsHeading()}</h3>
+                            <ul class="detail-list">
+                                @for (var artifact : countyWorkflowSynthesis.firstArtifacts())
+                                    <li>${artifact}</li>
+                                @endfor
+                            </ul>
+                        </article>
+
+                        <article class="detail-card">
+                            <h3>${countyWorkflowSynthesis.countyDropHeading()}</h3>
+                            <ul class="detail-list">
+                                @for (var trigger : countyWorkflowSynthesis.countyDropTriggers())
+                                    <li>${trigger}</li>
+                                @endfor
+                            </ul>
+                        </article>
+
+                        <article class="detail-card">
+                            <h3>${countyWorkflowSynthesis.holdQuoteHeading()}</h3>
+                            <ul class="detail-list">
+                                @for (var holdQuoteCheck : countyWorkflowSynthesis.holdQuoteChecks())
+                                    <li>${holdQuoteCheck}</li>
+                                @endfor
+                            </ul>
+                        </article>
+                    </div>
+                </details>
+            </div>
+        </section>
+    @endif
 
     @if (!countyRecordLinks.isEmpty())
         <section class="section section--tight" id="county-pages">
             <div class="container">
                 <div class="section-heading">
                     <span class="eyebrow">County Wedge</span>
-                    <h2>County record pages behind this state workflow</h2>
-                    <p class="lede">Use these when the state page is still too broad and the real blocker is a specific county file, location request, or local records form.</p>
+                    @if ("septic-permit-process".equals(stateMoneyPage.contentSlug()))
+                        <h2>County permit pages behind this state workflow</h2>
+                        <p class="lede">Use these when the state permit page is still too broad and the real blocker is a county permit desk, closeout artifact, or local repair branch.</p>
+                    @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
+                        <h2>County diligence pages behind this buyer workflow</h2>
+                        <p class="lede">Use these when the buyer page is still too broad and the real blocker is a county file, transfer artifact, or local maintenance obligation.</p>
+                    @else
+                        <h2>County record pages behind this state workflow</h2>
+                        <p class="lede">Use these when the state page is still too broad and the real blocker is a specific county file, location request, or local records form.</p>
+                    @endif
                 </div>
 
                 <div class="detail-grid">
-                    @for (var link : featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks)
+                    @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().limit(6).toList())
                         <article class="detail-card">
                             <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
                             <p>${link.note()}</p>
                             <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_county_page_cta" data-track-target-type="county_page">Open county page</a>
                         </article>
                     @endfor
+                    @if ((featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).size() > 6)
+                        <article class="detail-card detail-card--full">
+                            <h3>More county pages are available</h3>
+                            <p>This page shows the strongest six county routes first so the workflow stays scannable. Use the state records page when you need the wider county list.</p>
+                            <a class="button button--secondary" href="/septic-records-checklist/${state.slug()}/" data-track-click="nav" data-track-source-context="state_money_county_page_more" data-track-target-type="state_records_page">Open all ${state.stateName()} county routes</a>
+                            <details class="county-link-overflow">
+                                <summary>Show all county page links on this page</summary>
+                                <ul class="detail-list detail-list--split">
+                                    @for (var link : featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks)
+                                        <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_money_county_page_all" data-track-target-type="county_page">${link.title()}</a></li>
+                                    @endfor
+                                </ul>
+                            </details>
+                        </article>
+                    @endif
                 </div>
             </div>
         </section>
     @endif
 
-    <section class="section" id="sources">
-        <div class="container detail-grid">
+    <section class="section state-money-disclosure-section" id="sources">
+        <div class="container">
+            <details class="state-money-disclosure">
+                <summary>
+                    <span class="eyebrow">Verification layer</span>
+                    <strong>Prep checks and official sources</strong>
+                    <span>Open when you need the authority links, records sources, and low-end risk checks.</span>
+                </summary>
+
+        <div class="detail-grid">
             @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()))
                 <article class="detail-card">
                     <h2>${stateMoneyPage.localPrepHeading()}</h2>
@@ -515,6 +837,8 @@
                 </ul>
             </article>
         </div>
+            </details>
+        </div>
     </section>
 
     <section class="section section--muted" id="faq">
@@ -540,10 +864,25 @@
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
                 <h2>${calculatorCtaLabel}</h2>
-                <p>${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context. If you already know the project type, you can also skip straight to the short quote form.</p>
+                <p>
+                    ${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.
+                    @if (showQuoteCta)
+                        If you already know the project type, you can also skip straight to the short quote form.
+                    @else
+                        Use the file, permit, or authority path above before you move into quote mode.
+                    @endif
+                </p>
+                @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
+                    <p><strong>Pull first.</strong> ${countyWorkflowSynthesis.firstArtifacts().get(0)}</p>
+                @endif
+                @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.holdQuoteChecks().isEmpty())
+                    <p><strong>Hold quote until.</strong> ${countyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
+                @endif
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    @if (showQuoteCta)
+                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                    @endif
                 </div>
             </article>
 
@@ -563,11 +902,16 @@
 
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
     <section class="sticky-mobile-cta sticky-mobile-cta--single"
-             aria-label="Run estimate"
-             data-sticky-mobile-cta
-             data-show-after='[data-sticky-trigger="state-money-after-hero"]'>
+              aria-label="Run estimate"
+              data-sticky-mobile-cta
+              data-show-after='[data-sticky-trigger="state-money-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+            @if (primaryAction.calculator())
+                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+            @else
+                <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
+            @endif
         </div>
     </section>
+    </div>
 `)

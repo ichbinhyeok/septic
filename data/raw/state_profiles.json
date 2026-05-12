@@ -225,7 +225,7 @@
       "lastVerifiedAt": "2026-03-10",
       "officialSourceIds": ["ca_01", "ca_02", "ca_03"],
       "localAuthoritySourceIds": ["ca_03"],
-      "recordsLookupSourceIds": [],
+      "recordsLookupSourceIds": ["ca_03"],
       "localActionSteps": [
         "Open the LAMP and regional contact list first so you know which local agency owns the file.",
         "Ask whether the lot already has an OWTS permit, as-built, repair history, or water-quality restriction on record.",
@@ -281,9 +281,9 @@
       "localOverrideNote": "Texas looks statewide on paper, but the homeowner experience changes fast once you know which county or local permitting authority controls the file and whether local rules are stricter than the state minimum.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-10",
-      "officialSourceIds": ["tx_01", "tx_02", "tx_03", "tx_04", "tx_05", "tx_06"],
+      "officialSourceIds": ["tx_01", "tx_02", "tx_03", "tx_04", "tx_05", "tx_06", "tx_07"],
       "localAuthoritySourceIds": ["tx_04", "tx_06"],
-      "recordsLookupSourceIds": [],
+      "recordsLookupSourceIds": ["tx_04", "tx_07"],
       "localActionSteps": [
         "Open OARS and identify the local permitting authority by county before trusting the low end.",
         "Ask whether there is already a permit file, approved plan, site evaluation, or maintenance history on record.",
@@ -339,9 +339,9 @@
       "localOverrideNote": "New York has a real statewide standard, but the homeowner outcome can still change once county health files, site conditions, and any waiver history are surfaced.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-10",
-      "officialSourceIds": ["ny_01", "ny_02", "ny_03", "ny_04"],
+      "officialSourceIds": ["ny_01", "ny_02", "ny_03", "ny_04", "ny_05"],
       "localAuthoritySourceIds": ["ny_04"],
-      "recordsLookupSourceIds": [],
+      "recordsLookupSourceIds": ["ny_04", "ny_05"],
       "localActionSteps": [
         "Identify the county health department or district office before relying on a listing description or seller memory.",
         "Ask for the Appendix 75-A design file, any specific waiver, and any prior repair or replacement history.",
@@ -399,7 +399,7 @@
       "lastVerifiedAt": "2026-03-10",
       "officialSourceIds": ["oh_01", "oh_02"],
       "localAuthoritySourceIds": ["oh_01"],
-      "recordsLookupSourceIds": [],
+      "recordsLookupSourceIds": ["oh_01"],
       "localActionSteps": [
         "Use the Ohio EPA homeowner FAQ first so you know the local health department owns permitting and operational inspections.",
         "Ask whether the property already has an installation permit, operation permit, inspection record, or nuisance file.",

@@ -11,10 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class SitemapService {
     private final ResearchDataService researchDataService;
+    private final PublishingPolicyService publishingPolicyService;
     private final SeoService seoService;
 
-    public SitemapService(ResearchDataService researchDataService, SeoService seoService) {
+    public SitemapService(
+            ResearchDataService researchDataService,
+            PublishingPolicyService publishingPolicyService,
+            SeoService seoService
+    ) {
         this.researchDataService = researchDataService;
+        this.publishingPolicyService = publishingPolicyService;
         this.seoService = seoService;
     }
 
@@ -59,6 +65,7 @@ public class SitemapService {
 
         for (StateMoneyPage stateMoneyPage : researchDataService.getPublicStateMoneyPages()) {
             researchDataService.findStateByCode(stateMoneyPage.stateCode())
+                    .filter(state -> publishingPolicyService.isIndexableStateMoneyPage(stateMoneyPage, state))
                     .map(StateProfile::slug)
                     .map(stateMoneyPage::path)
                     .map(seoService::absoluteUrl)

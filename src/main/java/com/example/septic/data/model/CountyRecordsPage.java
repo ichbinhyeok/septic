@@ -22,6 +22,7 @@ public record CountyRecordsPage(
         List<FaqBlock> faqBlocks,
         List<String> internalLinkTargets,
         List<String> officialSourceIds,
+        CountyWorkflowStructureData workflowStructure,
         String publishStatus
 ) {
     public String key() {

@@ -2,6 +2,7 @@ package com.example.septic.web;
 
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
+import com.example.septic.data.model.CountyWorkflowStructureData;
 import com.example.septic.data.model.ProjectCostAnchor;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
@@ -26,6 +27,7 @@ import com.example.septic.service.TimelinePreference;
 import com.example.septic.service.PumpScheduleResult;
 import com.example.septic.service.PumpScheduleService;
 import com.example.septic.service.OccupancyProfile;
+import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,10 +35,12 @@ import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -92,6 +96,7 @@ public class SiteController {
     private final PumpScheduleService pumpScheduleService;
     private final StateQueuePlanService stateQueuePlanService;
     private final UsStateDirectoryService usStateDirectoryService;
+    private final PublishingPolicyService publishingPolicyService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -103,7 +108,8 @@ public class SiteController {
             TankSizeEstimatorService tankSizeEstimatorService,
             PumpScheduleService pumpScheduleService,
             StateQueuePlanService stateQueuePlanService,
-            UsStateDirectoryService usStateDirectoryService
+            UsStateDirectoryService usStateDirectoryService,
+            PublishingPolicyService publishingPolicyService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -115,12 +121,14 @@ public class SiteController {
         this.pumpScheduleService = pumpScheduleService;
         this.stateQueuePlanService = stateQueuePlanService;
         this.usStateDirectoryService = usStateDirectoryService;
+        this.publishingPolicyService = publishingPolicyService;
     }
 
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("page", seoService.homePage());
         List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
+        WorkflowNetworkSnapshotView workflowNetworkSnapshot = workflowNetworkSnapshot();
         model.addAttribute("featuredStates", publicStates.stream()
                 .filter(state -> "anchor".equalsIgnoreCase(state.launchTier()))
                 .toList());
@@ -133,6 +141,9 @@ public class SiteController {
         model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
         model.addAttribute("liveGuideCount", publicStates.size());
         model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
+        model.addAttribute("liveCountyCount", workflowNetworkSnapshot.liveCountyCount());
+        model.addAttribute("countyBackedStateCount", workflowNetworkSnapshot.countyBackedStateCount());
+        model.addAttribute("workflowNetworkSnapshot", workflowNetworkSnapshot);
         model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - publicStates.size(), 0));
         return "pages/home";
     }
@@ -140,6 +151,7 @@ public class SiteController {
     @GetMapping({"/states", "/states/"})
     public String stateCoverage(Model model) {
         List<StateCoverageCardView> coverageCards = buildStateCoverageCards();
+        WorkflowNetworkSnapshotView workflowNetworkSnapshot = workflowNetworkSnapshot();
         model.addAttribute("page", seoService.stateCoveragePage());
         model.addAttribute("liveStates", coverageCards.stream()
                 .filter(StateCoverageCardView::published)
@@ -156,6 +168,9 @@ public class SiteController {
                 .toList());
         model.addAttribute("liveGuideCount", researchDataService.getPublicStateProfiles().size());
         model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
+        model.addAttribute("liveCountyCount", workflowNetworkSnapshot.liveCountyCount());
+        model.addAttribute("countyBackedStateCount", workflowNetworkSnapshot.countyBackedStateCount());
+        model.addAttribute("workflowNetworkSnapshot", workflowNetworkSnapshot);
         model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - researchDataService.getPublicStateProfiles().size(), 0));
         return "pages/state-coverage";
     }
@@ -745,6 +760,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                         .reversed()
                         .thenComparing(StateMoneyPage::title))
                 .toList();
+        StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis = sortedStateMoneyPages.stream()
+                .filter(page -> "septic-records-checklist".equals(page.contentSlug()))
+                .findFirst()
+                .map(page -> stateCountyWorkflowSynthesis(page, state))
+                .orElse(null);
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
         model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -768,10 +788,13 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
-        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(4).toList());
+        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        model.addAttribute("guideCountyWorkflowSynthesis", guideCountyWorkflowSynthesis);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
-        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources listed below.");
+        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size()
+                + " official sources listed below and " + countyRecordLinks.size()
+                + " live county workflow pages already connected to this state.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
         return "pages/state-guide";
@@ -844,6 +867,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .limit(6)
                 .map(entry -> contentEvidenceLane(entry.getKey(), entry.getValue()))
                 .toList();
+        ContentWorkflowCoverageView contentWorkflowCoverage = contentWorkflowCoverage(contentPage, rankedStateEntries);
         List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
@@ -854,6 +878,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(10).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("featuredContentEvidenceLanes", contentEvidenceLanes.stream().limit(3).toList());
+        model.addAttribute("contentWorkflowCoverage", contentWorkflowCoverage);
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
@@ -872,8 +897,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", contentEvidenceLanes.isEmpty()
-                ? "Reviewed against the linked state-specific pages and source policy."
-                : "Reviewed against " + contentEvidenceLanes.size() + " source-backed state-specific pages and the source policy.");
+                ? "Reviewed against the linked state-specific pages, county workflow network, and source policy."
+                : "Reviewed against " + contentEvidenceLanes.size() + " source-backed state-specific pages, the county workflow network underneath them, and the source policy.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
         return "pages/content-page";
@@ -899,6 +924,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyPage", countyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
+        model.addAttribute("countyWorkflowStructure", countyWorkflowStructure(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
@@ -933,6 +959,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<SourceRecord> sources = researchDataService.getSources(stateMoneyPage.officialSourceIds());
         List<SourceRecord> localAuthoritySources = researchDataService.getSources(state.localAuthoritySourceIds());
         List<SourceRecord> recordsLookupSources = researchDataService.getSources(state.recordsLookupSourceIds());
+        SourceRecord primaryLocalAuthoritySource = localAuthoritySources.stream().findFirst().orElse(null);
+        SourceRecord primaryRecordsLookupSource = recordsLookupSources.stream().findFirst().orElse(null);
         StateActionCopy stateActionCopy = stateActionCopy(state);
         StatePlanningSnapshot planningSnapshot = statePlanningSnapshot(state.stateCode());
         List<PageLink> internalLinks = pageLinks(
@@ -940,17 +968,34 @@ The goal is to settle the permit path before we frame the project as a normal in
                 stateMoneyPage.contentSlug(),
                 state.stateCode()
         );
-        List<PageLink> countyRecordLinks = "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+        List<PageLink> countyRecordLinks = supportsCountyWorkflowSummary(stateMoneyPage.contentSlug())
                 ? countyRecordPageLinks(state.stateCode())
                 : List.of();
+        StateCountyWorkflowSynthesisView countyWorkflowSynthesis = stateCountyWorkflowSynthesis(stateMoneyPage, state);
+        StateWorkflowDecisionView workflowDecision = stateWorkflowDecisionView(
+                stateMoneyPage,
+                state,
+                countyWorkflowSynthesis,
+                primaryLocalAuthoritySource,
+                primaryRecordsLookupSource
+        );
+        StateCostScopeView costScopeView = stateCostScopeView(
+                stateMoneyPage,
+                state,
+                countyWorkflowSynthesis
+        );
         String calculatorPath = stateMoneyCalculatorPath(stateMoneyPage, state);
         StateMoneyPrimaryAction primaryAction = stateMoneyPrimaryAction(
                 stateMoneyPage,
                 state,
                 stateActionCopy,
-                countyRecordLinks
+                countyRecordLinks,
+                primaryLocalAuthoritySource,
+                primaryRecordsLookupSource,
+                countyWorkflowSynthesis
         );
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
+        boolean showQuoteCta = publishingPolicyService.allowDirectQuote(stateMoneyPage, state);
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
@@ -958,11 +1003,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
-        model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
-        model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
+        model.addAttribute("primaryLocalAuthoritySource", primaryLocalAuthoritySource);
+        model.addAttribute("primaryRecordsLookupSource", primaryRecordsLookupSource);
         model.addAttribute("primaryAction", primaryAction);
         model.addAttribute("calculatorPath", calculatorPath);
         model.addAttribute("quotePath", stateMoneyQuotePath(calculatorPath));
+        model.addAttribute("showQuoteCta", showQuoteCta);
         model.addAttribute("guidePath", "/septic-system-cost-calculator/" + state.slug() + "/");
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
@@ -971,7 +1017,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
         model.addAttribute("countyRecordLinks", countyRecordLinks);
-        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(4).toList());
+        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
+        model.addAttribute("workflowDecision", workflowDecision);
+        model.addAttribute("costScopeView", costScopeView);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
@@ -1128,6 +1177,75 @@ The goal is to settle the permit path before we frame the project as a normal in
                                         .orElse(Integer.MAX_VALUE))
                         .thenComparing(StateCoverageCardView::stateName))
                 .toList();
+    }
+
+    private WorkflowNetworkSnapshotView workflowNetworkSnapshot() {
+        List<StateCountyBackbone> backbones = researchDataService.getPublicStateProfiles().stream()
+                .map(state -> {
+                    int countyCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
+                    int workflowPageCount = researchDataService.listPublicStateMoneyPages(state.stateCode()).size();
+                    Optional<StateMoneyPage> recordsPage = researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                            .filter(page -> "septic-records-checklist".equals(page.contentSlug()))
+                            .findFirst();
+                    String path = recordsPage
+                            .map(page -> page.path(state.slug()))
+                            .orElse("/septic-system-cost-calculator/" + state.slug() + "/");
+                    String title = recordsPage
+                            .map(page -> state.stateName() + " county records workflow")
+                            .orElse(state.stateName() + " septic guide");
+                    String note = countyCount + " live county workflow pages | "
+                            + workflowPageCount + " live state workflow pages";
+                    return new StateCountyBackbone(state, countyCount, workflowPageCount, new PageLink(title, path, note));
+                })
+                .filter(backbone -> backbone.countyCount() > 0 || backbone.workflowPageCount() > 0)
+                .sorted(Comparator
+                        .comparingInt(StateCountyBackbone::countyCount)
+                        .reversed()
+                        .thenComparingInt(StateCountyBackbone::workflowPageCount)
+                        .reversed()
+                        .thenComparing(backbone -> backbone.state().stateName()))
+                .toList();
+
+        int liveCountyCount = backbones.stream()
+                .mapToInt(StateCountyBackbone::countyCount)
+                .sum();
+        int countyBackedStateCount = (int) backbones.stream()
+                .filter(backbone -> backbone.countyCount() > 0)
+                .count();
+        int countyFirstStateCount = (int) backbones.stream()
+                .filter(backbone -> backbone.countyCount() >= 2)
+                .count();
+        int liveWorkflowPageCount = backbones.stream()
+                .mapToInt(StateCountyBackbone::workflowPageCount)
+                .sum();
+        String topStates = backbones.stream()
+                .filter(backbone -> backbone.countyCount() > 0)
+                .limit(5)
+                .map(backbone -> backbone.state().stateName())
+                .collect(Collectors.joining(", "));
+
+        return new WorkflowNetworkSnapshotView(
+                "Live county workflow backbone",
+                "The public network now carries " + liveWorkflowPageCount
+                        + " source-backed state workflow pages and " + liveCountyCount
+                        + " live county workflow pages across " + countyBackedStateCount
+                        + " states.",
+                List.of(
+                        countyFirstStateCount + " states already have enough county depth to route users into county-first follow-up instead of a generic state-only answer.",
+                        topStates.isBlank()
+                                ? "The strongest live states already connect records, permit, buyer, and transfer questions back to actual local files."
+                                : "The thickest live county workflow backbones today are " + topStates + ".",
+                        "Use those county-backed state pages when file owner, permit closeout, transfer artifact, or quote-gate differences matter more than a statewide average."
+                ),
+                backbones.stream()
+                        .filter(backbone -> backbone.countyCount() > 0)
+                        .limit(5)
+                        .map(StateCountyBackbone::link)
+                        .toList(),
+                liveCountyCount,
+                countyBackedStateCount,
+                countyFirstStateCount
+        );
     }
 
     private List<PageLink> homeGrowthSpotlights() {
@@ -1885,6 +2003,49 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
     }
 
+    private ContentWorkflowCoverageView contentWorkflowCoverage(
+            ContentPage contentPage,
+            List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries
+    ) {
+        List<Map.Entry<StateMoneyPage, StateProfile>> featuredEntries = rankedStateEntries.stream()
+                .limit(6)
+                .toList();
+        if (featuredEntries.isEmpty()) {
+            return null;
+        }
+
+        List<String> stateCodes = featuredEntries.stream()
+                .map(entry -> entry.getValue().stateCode())
+                .distinct()
+                .toList();
+        long stateCount = stateCodes.size();
+        long statePagesCount = featuredEntries.size();
+        long countyCount = stateCodes.stream()
+                .mapToLong(code -> researchDataService.listPublicCountyRecordsPages(code).size())
+                .sum();
+        long countyBackedStates = stateCodes.stream()
+                .filter(code -> !researchDataService.listPublicCountyRecordsPages(code).isEmpty())
+                .count();
+
+        String heading = "What the live state pages already resolve";
+        String summary = "This national page is backed by " + statePagesCount + " source-backed state workflow pages across "
+                + stateCount + " states, with " + countyCount + " live county workflow pages already underneath those states.";
+        List<String> bullets = List.of(
+                countyBackedStates + " of those states already route users into county-first follow-up before pricing.",
+                "The linked state pages are where file owner, permit closeout, transfer artifact, and quote-gate differences stop being generic.",
+                "Use this national page to frame the problem, then move into the state page once you need a real office, file, or county branch."
+        );
+        return new ContentWorkflowCoverageView(heading, summary, bullets);
+    }
+
+    private record StateCountyBackbone(
+            StateProfile state,
+            int countyCount,
+            int workflowPageCount,
+            PageLink link
+    ) {
+    }
+
     @SafeVarargs
     private final List<SourceRecord> workflowPacketSources(List<String>... sourceIdGroups) {
         return Stream.of(sourceIdGroups)
@@ -1908,6 +2069,768 @@ The goal is to settle the permit path before we frame the project as a normal in
                         )))
                 .flatMap(Optional::stream)
                 .toList();
+    }
+
+    private CountyWorkflowStructureView countyWorkflowStructure(CountyRecordsPage countyPage, StateProfile state) {
+        String combinedText = countyCombinedText(countyPage);
+        CountyWorkflowStructureData structure = countyPage.workflowStructure();
+        List<CountyWorkflowFieldView> fields = List.of(
+                new CountyWorkflowFieldView("File owner model", firstNonBlank(
+                        structure == null ? null : structure.fileOwnerModel(),
+                        countyFileOwnerModel(countyFileOwnerCategory(countyPage, combinedText), state.stateName())
+                )),
+                new CountyWorkflowFieldView("First artifact to pull", firstNonBlank(
+                        structure == null ? null : structure.firstArtifactToPull(),
+                        countyFirstArtifact(countyPage)
+                )),
+                new CountyWorkflowFieldView("Permit closeout signal", firstNonBlank(
+                        structure == null ? null : structure.permitCloseoutSignal(),
+                        countyPermitCloseoutSignal(countyPermitCloseoutCategory(countyPage, combinedText))
+                )),
+                new CountyWorkflowFieldView("Transfer or buyer artifact", firstNonBlank(
+                        structure == null ? null : structure.transferArtifact(),
+                        countyTransferArtifact(countyTransferCategory(countyPage, combinedText))
+                )),
+                new CountyWorkflowFieldView("Special program or local exception", firstNonBlank(
+                        structure == null ? null : structure.specialProgramSignal(),
+                        countySpecialProgramSignal(countySpecialProgramCategory(countyPage, combinedText))
+                )),
+                new CountyWorkflowFieldView("Malfunction or repair trail", firstNonBlank(
+                        structure == null ? null : structure.malfunctionSignal(),
+                        countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText))
+                ))
+        );
+        return new CountyWorkflowStructureView(fields, firstNonBlank(
+                structure == null ? null : structure.quoteGate(),
+                countyQuoteGate(countyPage, combinedText)
+        ));
+    }
+
+    private String countyCombinedText(CountyRecordsPage page) {
+        return String.join(" ",
+                nullSafe(page.introCopy()),
+                nullSafe(page.uniqueAngle()),
+                nullSafe(page.targetReader()),
+                nullSafe(page.officeLabel()),
+                nullSafe(page.recordsLabel()),
+                String.join(" ", page.decisionSteps() == null ? List.of() : page.decisionSteps()),
+                String.join(" ", page.recordsToRequest() == null ? List.of() : page.recordsToRequest()),
+                String.join(" ", page.lowEndBreakers() == null ? List.of() : page.lowEndBreakers())
+        ).toLowerCase(Locale.US);
+    }
+
+    private String countyFileOwnerModel(String combinedText, StateProfile state) {
+        return countyFileOwnerModel(countyFileOwnerCategoryText(combinedText), state.stateName());
+    }
+
+    private String countyFileOwnerCategoryText(String combinedText) {
+        if (containsAny(combinedText, "board of health", "ceha", "municipal", "municipality", "incorporated town")) {
+            return "split_local";
+        }
+        if (containsAny(combinedText, "local health department", "health district", "regional office", "contract county")) {
+            return "district_health";
+        }
+        return "county_first";
+    }
+
+    private String countyFirstArtifact(CountyRecordsPage countyPage) {
+        if (countyPage.recordsToRequest() != null && !countyPage.recordsToRequest().isEmpty()) {
+            return countyPage.recordsToRequest().get(0);
+        }
+        return "The first county file or permit artifact tied to the parcel.";
+    }
+
+    private String countyPermitCloseoutSignal(String category) {
+        return countyPermitCloseoutSignalFromCategory(category);
+    }
+
+    private String countyTransferArtifact(String category) {
+        return countyTransferArtifactFromCategory(category);
+    }
+
+    private String countySpecialProgramSignal(String category) {
+        return countySpecialProgramSignalFromCategory(category);
+    }
+
+    private String countyMalfunctionSignal(String category) {
+        return countyMalfunctionSignalFromCategory(category);
+    }
+
+    private String countyQuoteGate(CountyRecordsPage countyPage, String combinedText) {
+        if (!"generic".equals(countyMalfunctionCategory(countyPage, combinedText))) {
+            return "Do not move into pricing until the county repair or malfunction trail is clear, because the job may already be wider than the visible system story.";
+        }
+        if (!"county_first".equals(countyFileOwnerCategory(countyPage, combinedText))) {
+            return "Do not move into pricing until you know which office actually owns the file, because a split authority path can make the first answer misleading.";
+        }
+        if (!"generic".equals(countyPermitCloseoutCategory(countyPage, combinedText))) {
+            return "Do not move into pricing until the county closeout artifact is visible, because the permit mention alone may not prove the system is actually cleared for use.";
+        }
+        return "Do not move into pricing until the county file is strong enough to show the right parcel, the right office, and the last real approval or inspection signal.";
+    }
+
+    private boolean supportsCountyWorkflowSummary(String contentSlug) {
+        return "septic-records-checklist".equals(contentSlug)
+                || "septic-permit-process".equals(contentSlug)
+                || "buying-a-house-with-a-septic-system".equals(contentSlug)
+                || isWorkflowCostSlug(contentSlug);
+    }
+
+    private boolean isWorkflowCostSlug(String contentSlug) {
+        return isReplacementWorkflowCostSlug(contentSlug)
+                || isInspectionWorkflowCostSlug(contentSlug)
+                || isPercWorkflowCostSlug(contentSlug)
+                || isPumpingWorkflowCostSlug(contentSlug);
+    }
+
+    private boolean isReplacementWorkflowCostSlug(String contentSlug) {
+        return "septic-replacement-cost".equals(contentSlug)
+                || "drain-field-replacement-cost".equals(contentSlug)
+                || "failed-perc-test-septic".equals(contentSlug)
+                || "septic-replacement-area".equals(contentSlug)
+                || "wet-yard-over-septic-drain-field".equals(contentSlug);
+    }
+
+    private boolean isInspectionWorkflowCostSlug(String contentSlug) {
+        return "septic-inspection-cost".equals(contentSlug);
+    }
+
+    private boolean isPercWorkflowCostSlug(String contentSlug) {
+        return "perc-test-cost".equals(contentSlug);
+    }
+
+    private boolean isPumpingWorkflowCostSlug(String contentSlug) {
+        return "septic-pumping-cost".equals(contentSlug);
+    }
+
+    private StateCountyWorkflowSynthesisView stateCountyWorkflowSynthesis(StateMoneyPage stateMoneyPage, StateProfile state) {
+        if (!supportsCountyWorkflowSummary(stateMoneyPage.contentSlug())) {
+            return null;
+        }
+        List<CountyRecordsPage> countyPages = researchDataService.listPublicCountyRecordsPages(state.stateCode());
+        if (countyPages.size() < 2) {
+            return null;
+        }
+
+        List<CountyPatternType> topPatterns = Stream.of(CountyPatternType.values())
+                .filter(pattern -> countyPages.stream().anyMatch(page -> countyMatchesPattern(page, pattern)))
+                .sorted(Comparator
+                        .comparingInt((CountyPatternType pattern) -> countyPagesMatchingPattern(countyPages, pattern).size())
+                        .reversed()
+                        .thenComparing(Comparator.comparingInt(
+                                (CountyPatternType pattern) -> countyPatternPriority(pattern, stateMoneyPage.contentSlug())
+                        ).reversed())
+                        .thenComparingInt(CountyPatternType::displayOrder))
+                .limit(3)
+                .toList();
+
+        if (topPatterns.isEmpty()) {
+            return null;
+        }
+
+        List<StateCountyWorkflowSignalView> signals = topPatterns.stream()
+                .map(pattern -> {
+                    List<CountyRecordsPage> matches = countyPagesMatchingPattern(countyPages, pattern);
+                    String exampleCounties = matches.stream()
+                            .map(CountyRecordsPage::countyName)
+                            .distinct()
+                            .limit(3)
+                            .reduce((left, right) -> left + ", " + right)
+                            .orElse(state.stateName() + " county pages");
+                    String coverageNote = "Seen across " + matches.stream()
+                            .map(CountyRecordsPage::countySlug)
+                            .distinct()
+                            .count() + " live county pages.";
+                    return new StateCountyWorkflowSignalView(
+                            pattern.label(),
+                            pattern.summary(state.stateName()),
+                            exampleCounties,
+                            coverageNote,
+                            pattern.firstArtifact()
+                    );
+                })
+                .toList();
+
+        List<CountyWorkflowFieldView> structureHighlights = List.of(
+                stateStructureHighlight(
+                        "Most common file owner pattern",
+                        countyPages,
+                        this::countyFileOwnerCategory,
+                        category -> countyFileOwnerAggregateText(category, state.stateName())
+                ),
+                stateStructureHighlight(
+                        "Most common permit closeout signal",
+                        countyPages,
+                        this::countyPermitCloseoutCategory,
+                        this::countyPermitCloseoutAggregateText
+                ),
+                stateStructureHighlight(
+                        "Most common buyer or transfer artifact",
+                        countyPages,
+                        this::countyTransferCategory,
+                        this::countyTransferAggregateText
+                ),
+                stateStructureHighlight(
+                        "Most common special program or exception",
+                        countyPages,
+                        this::countySpecialProgramCategory,
+                        this::countySpecialProgramAggregateText
+                ),
+                stateStructureHighlight(
+                        "Most common malfunction or repair trail",
+                        countyPages,
+                        this::countyMalfunctionCategory,
+                        this::countyMalfunctionAggregateText
+                ),
+                stateStructureHighlight(
+                        "Most common quote gate",
+                        countyPages,
+                        this::countyQuoteGateCategory,
+                        this::countyQuoteGateAggregateText
+                )
+        );
+
+        List<String> firstArtifacts = topPatterns.stream()
+                .map(CountyPatternType::firstArtifact)
+                .distinct()
+                .limit(4)
+                .toList();
+
+        List<String> countyDropTriggers = topPatterns.stream()
+                .map(CountyPatternType::countyDropTrigger)
+                .distinct()
+                .limit(4)
+                .toList();
+
+        List<String> holdQuoteChecks = topPatterns.stream()
+                .map(CountyPatternType::holdQuoteCheck)
+                .distinct()
+                .limit(4)
+                .toList();
+
+        return new StateCountyWorkflowSynthesisView(
+                countyWorkflowEyebrow(stateMoneyPage.contentSlug()),
+                countyWorkflowHeading(stateMoneyPage.contentSlug(), state.stateName()),
+                countyWorkflowIntro(stateMoneyPage.contentSlug(), state.stateName(), countyPages.stream()
+                        .map(CountyRecordsPage::countySlug)
+                        .distinct()
+                        .count()),
+                signals,
+                structureHighlights,
+                firstArtifacts,
+                countyDropTriggers,
+                holdQuoteChecks,
+                countyWorkflowFirstArtifactsHeading(stateMoneyPage.contentSlug()),
+                countyWorkflowDropHeading(stateMoneyPage.contentSlug()),
+                countyWorkflowHoldQuoteHeading(stateMoneyPage.contentSlug())
+        );
+    }
+
+    private CountyWorkflowFieldView stateStructureHighlight(
+            String label,
+            List<CountyRecordsPage> countyPages,
+            java.util.function.Function<CountyRecordsPage, String> categoryResolver,
+            java.util.function.Function<String, String> textResolver
+    ) {
+        java.util.Map<String, Long> counts = countyPages.stream()
+                .map(categoryResolver)
+                .collect(Collectors.groupingBy(category -> category, LinkedHashMap::new, Collectors.counting()));
+
+        String topCategory = counts.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse("generic");
+
+        long topCount = counts.getOrDefault(topCategory, 0L);
+        return new CountyWorkflowFieldView(
+                label,
+                textResolver.apply(topCategory) + " Seen in " + topCount + " county pages."
+        );
+    }
+
+    private String countyFileOwnerCategory(CountyRecordsPage countyPage) {
+        return countyFileOwnerCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countyFileOwnerCategory(CountyRecordsPage countyPage, String combinedText) {
+        String explicitCategory = countyPage.workflowStructure() == null ? null : countyPage.workflowStructure().fileOwnerCategory();
+        if (hasText(explicitCategory)) {
+            return explicitCategory;
+        }
+        return countyFileOwnerCategoryText(combinedText);
+    }
+
+    private String countyFileOwnerModel(String category, String stateName) {
+        return switch (category) {
+            case "split_local" -> "The county path is split. Confirm whether the real septic file sits with the county, a municipality, or a local board before treating one office as the full answer.";
+            case "district_health" -> "The real file likely lives with a county or district health office rather than a generic statewide desk. Confirm the exact local office before moving into pricing.";
+            case "county_engineer" -> "The real file is county-first here and usually runs through a named engineering or development-services office rather than a generic statewide desk.";
+            case "county_public_health", "county_environmental_health", "county_first" -> "The real file is county-first here once you reach the named local health or environmental office.";
+            default -> stateName + " looks county-first here. Start with the named county office and only widen out if the file points to another local authority.";
+        };
+    }
+
+    private String countyFileOwnerAggregateText(String category, String stateName) {
+        return switch (category) {
+            case "split_local" -> "Many county workflows in " + stateName + " split the real file between county health, a municipality, or a local board.";
+            case "district_health" -> "Many county workflows in " + stateName + " still turn on identifying the correct district or local health office first.";
+            case "county_engineer" -> "Many county workflows in " + stateName + " are county-first once you reach the named engineering or development-services office.";
+            case "county_public_health", "county_environmental_health", "county_first" -> "Many county workflows in " + stateName + " are county-first once you reach the named local health or environmental office.";
+            default -> "Many county workflows in " + stateName + " are county-first once you reach the named local office.";
+        };
+    }
+
+    private String countyPermitCloseoutCategory(CountyRecordsPage countyPage) {
+        return countyPermitCloseoutCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countyPermitCloseoutCategory(CountyRecordsPage countyPage, String combinedText) {
+        String explicitCategory = countyPage.workflowStructure() == null ? null : countyPage.workflowStructure().permitCloseoutCategory();
+        if (hasText(explicitCategory)) {
+            return explicitCategory;
+        }
+        if (containsAny(combinedText, "operation permit", "license-to-operate")) {
+            return "use_approval";
+        }
+        if (containsAny(combinedText, "completion certificate", "certificate of completion", "certificate of occupancy", "final inspection")) {
+            return "completion_artifact";
+        }
+        if (containsAny(combinedText, "construction authorization", "improvement permit", "sanitary construction permit")) {
+            return "permit_ladder";
+        }
+        return "generic";
+    }
+
+    private String countyPermitCloseoutSignalFromCategory(String category) {
+        return switch (category) {
+            case "use_approval" -> "Look for the operating or use approval, because the county treats that as the proof that the system can still be used as described.";
+            case "completion_artifact" -> "Look for the closeout or completion artifact, not just the application. The county workflow suggests the job is not really closed without that final signal.";
+            case "permit_ladder" -> "The permit ladder matters here. Pull the approval step that shows the county moved beyond preliminary review into an actual buildable path.";
+            default -> "Do not stop at the first permit mention. Look for the county artifact that proves the job actually cleared the last approval step.";
+        };
+    }
+
+    private String countyPermitCloseoutAggregateText(String category) {
+        return switch (category) {
+            case "use_approval" -> "The most common county closeout signal is an operating or use approval rather than a bare permit application.";
+            case "completion_artifact" -> "The most common county closeout signal is a completion or final inspection artifact.";
+            case "permit_ladder" -> "The most common county closeout signal is a permit ladder step that proves the parcel moved beyond preliminary review.";
+            default -> "County files often need a stronger closeout artifact than the first permit mention.";
+        };
+    }
+
+    private String countyTransferCategory(CountyRecordsPage countyPage) {
+        return countyTransferCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countyTransferCategory(CountyRecordsPage countyPage, String combinedText) {
+        String explicitCategory = countyPage.workflowStructure() == null ? null : countyPage.workflowStructure().transferCategory();
+        if (hasText(explicitCategory)) {
+            return explicitCategory;
+        }
+        if (containsAny(combinedText, "pti", "property status report", "real-estate evaluation", "transfer inspection", "inspection letter")) {
+            return "formal_transfer_artifact";
+        }
+        if (containsAny(combinedText, "closing", "buyer", "seller", "refinance", "loan")) {
+            return "deal_side_risk";
+        }
+        return "generic";
+    }
+
+    private String countyTransferArtifactFromCategory(String category) {
+        return switch (category) {
+            case "formal_transfer_artifact" -> "This county has a buyer-side artifact that matters more than a generic permit copy. Pull the transfer or status document before you treat the sale as routine.";
+            case "deal_side_risk" -> "The county file already hints at deal-side risk. Pull the inspection or transaction-facing document before you negotiate credits or timing.";
+            default -> "If the property is being sold, ask whether the county keeps a buyer, transfer, or status artifact that changes closing risk.";
+        };
+    }
+
+    private String countyTransferAggregateText(String category) {
+        return switch (category) {
+            case "formal_transfer_artifact" -> "The most common buyer-side county artifact is a formal transfer, status, or real-estate evaluation record.";
+            case "deal_side_risk" -> "County pages in this state often surface buyer, seller, or lender risk before the deal reaches pricing.";
+            default -> "County pages still matter for buyer diligence even when the transfer artifact is less standardized.";
+        };
+    }
+
+    private String countySpecialProgramCategory(CountyRecordsPage countyPage) {
+        return countySpecialProgramCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countySpecialProgramCategory(CountyRecordsPage countyPage, String combinedText) {
+        String explicitCategory = countyPage.workflowStructure() == null ? null : countyPage.workflowStructure().specialProgramCategory();
+        if (hasText(explicitCategory)) {
+            return explicitCategory;
+        }
+        if (containsAny(combinedText, "bay restoration fund", "brf", "bat", "critical area")) {
+            return "grant_upgrade";
+        }
+        if (containsAny(combinedText, "pinelands", "service contract", "management plan", "management program", "o&m", "maintenance permit")) {
+            return "managed_obligation";
+        }
+        if (containsAny(combinedText, "sewer", "lamp", "nitrogen", "reserve", "special-area")) {
+            return "local_exception";
+        }
+        return "generic";
+    }
+
+    private String countySpecialProgramSignalFromCategory(String category) {
+        return switch (category) {
+            case "grant_upgrade" -> "A grant or upgrade program may already control the path. Treat BRF, BAT, or Critical Area paperwork as part of the real file, not as optional context.";
+            case "managed_obligation" -> "There may be a long-tail management obligation on the property. Pull the service, management, or maintenance file before treating ownership costs as simple.";
+            case "local_exception" -> "A local exception or area rule may already be changing the septic path. Check that program file before trusting the easiest replacement or reuse story.";
+            default -> "Ask whether this parcel sits in any local program, exception area, or managed lane that changes the normal septic workflow.";
+        };
+    }
+
+    private String countySpecialProgramAggregateText(String category) {
+        return switch (category) {
+            case "grant_upgrade" -> "County pages in this state often route through BRF, BAT, Critical Area, or another upgrade-program file before replacement is straightforward.";
+            case "managed_obligation" -> "County pages in this state often surface management plans, service contracts, or long-tail O&M obligations before the file is really clean.";
+            case "local_exception" -> "County pages in this state often turn on a local exception, sewer branch, reserve-area limit, or other area rule before the normal path applies.";
+            default -> "County pages in this state still need a special-program check even when no single program dominates the workflow.";
+        };
+    }
+
+    private String countyMalfunctionCategory(CountyRecordsPage countyPage) {
+        return countyMalfunctionCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countyMalfunctionCategory(CountyRecordsPage countyPage, String combinedText) {
+        String explicitCategory = countyPage.workflowStructure() == null ? null : countyPage.workflowStructure().malfunctionCategory();
+        if (hasText(explicitCategory)) {
+            return explicitCategory;
+        }
+        if (containsAny(combinedText, "malfunction", "complaint", "violation", "failing system")) {
+            return "complaint_trail";
+        }
+        if (containsAny(combinedText, "repair permit", "repair questionnaire", "repair area", "off-lot discharge")) {
+            return "repair_branch";
+        }
+        return "generic";
+    }
+
+    private String countyMalfunctionSignalFromCategory(String category) {
+        return switch (category) {
+            case "complaint_trail" -> "There is a live failure or complaint trail in play. That history is usually more important than the first quote or seller summary.";
+            case "repair_branch" -> "The county repair branch matters here. Pull the repair or failure-side file before assuming the cheapest visible scope is still available.";
+            default -> "If there are signs of failure, ask for the repair, complaint, or malfunction trail before you trust a clean-looking system story.";
+        };
+    }
+
+    private String countyMalfunctionAggregateText(String category) {
+        return switch (category) {
+            case "complaint_trail" -> "County pages in this state often surface a complaint, violation, or failing-system trail before any clean pricing story is safe.";
+            case "repair_branch" -> "County pages in this state often move into a repair, malfunction, or off-lot-discharge branch before the low-end scope is real.";
+            default -> "County pages in this state still reward checking the repair or malfunction side before trusting the simplest system story.";
+        };
+    }
+
+    private String countyQuoteGateCategory(CountyRecordsPage countyPage) {
+        return countyQuoteGateCategory(countyPage, countyCombinedText(countyPage));
+    }
+
+    private String countyQuoteGateCategory(CountyRecordsPage countyPage, String combinedText) {
+        if (!"generic".equals(countyMalfunctionCategory(countyPage, combinedText))) {
+            return "repair_path";
+        }
+        if (countyFileOwnerNeedsOfficeResolution(countyFileOwnerCategory(countyPage, combinedText))) {
+            return "office_split";
+        }
+        if (!"generic".equals(countyPermitCloseoutCategory(countyPage, combinedText))) {
+            return "closeout_artifact";
+        }
+        if (!"generic".equals(countyTransferCategory(countyPage, combinedText))) {
+            return "buyer_artifact";
+        }
+        return "county_file";
+    }
+
+    private boolean countyFileOwnerNeedsOfficeResolution(String category) {
+        return "split_local".equals(category) || "office_split".equals(category);
+    }
+
+    private String countyQuoteGateAggregateText(String category) {
+        return switch (category) {
+            case "repair_path" -> "The most common quote gate is a repair, malfunction, or failing-system branch that has to be cleared before pricing is trustworthy.";
+            case "office_split" -> "The most common quote gate is figuring out which local office actually owns the file before a buyer or contractor trusts the first answer.";
+            case "closeout_artifact" -> "The most common quote gate is waiting for the county closeout or use artifact instead of trusting the first permit mention.";
+            case "buyer_artifact" -> "The most common quote gate is pulling the buyer-side or transfer artifact before the property story reaches pricing.";
+            default -> "The most common quote gate is making sure the county file still proves the right parcel, the right office, and the last real approval signal.";
+        };
+    }
+
+    private int countyPatternPriority(CountyPatternType pattern, String contentSlug) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> switch (pattern) {
+                case PERMIT -> 6;
+                case AUTHORITY -> 5;
+                case LOOKUP -> 4;
+                case BRF -> 3;
+                case COMPLAINT -> 2;
+                case TRANSFER -> 1;
+            };
+            case "buying-a-house-with-a-septic-system" -> switch (pattern) {
+                case TRANSFER -> 6;
+                case LOOKUP -> 5;
+                case AUTHORITY -> 4;
+                case PERMIT -> 3;
+                case BRF -> 2;
+                case COMPLAINT -> 1;
+            };
+            case "septic-inspection-cost" -> switch (pattern) {
+                case LOOKUP -> 6;
+                case COMPLAINT -> 5;
+                case TRANSFER -> 4;
+                case AUTHORITY -> 3;
+                case PERMIT -> 2;
+                case BRF -> 1;
+            };
+            case "perc-test-cost" -> switch (pattern) {
+                case PERMIT -> 6;
+                case LOOKUP -> 5;
+                case AUTHORITY -> 4;
+                case BRF -> 3;
+                case COMPLAINT -> 2;
+                case TRANSFER -> 1;
+            };
+            case "septic-pumping-cost" -> switch (pattern) {
+                case LOOKUP -> 6;
+                case TRANSFER -> 5;
+                case AUTHORITY -> 4;
+                case COMPLAINT -> 3;
+                case PERMIT -> 2;
+                case BRF -> 1;
+            };
+            default -> switch (pattern) {
+                case LOOKUP -> isReplacementWorkflowCostSlug(contentSlug) ? 4 : 6;
+                case AUTHORITY -> isReplacementWorkflowCostSlug(contentSlug) ? 3 : 5;
+                case PERMIT -> isReplacementWorkflowCostSlug(contentSlug) ? 5 : 4;
+                case TRANSFER -> isReplacementWorkflowCostSlug(contentSlug) ? 1 : 3;
+                case BRF -> isReplacementWorkflowCostSlug(contentSlug) ? 4 : 2;
+                case COMPLAINT -> isReplacementWorkflowCostSlug(contentSlug) ? 6 : 1;
+            };
+        };
+    }
+
+    private String countyWorkflowEyebrow(String contentSlug) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "County Permit Summary";
+            case "buying-a-house-with-a-septic-system" -> "County Buyer Summary";
+            case "septic-inspection-cost" -> "County Inspection Summary";
+            case "perc-test-cost" -> "County Site-Review Summary";
+            case "septic-pumping-cost" -> "County Maintenance Summary";
+            default -> isReplacementWorkflowCostSlug(contentSlug) ? "County Replacement Summary" : "State Pattern Summary";
+        };
+    }
+
+    private String countyWorkflowHeading(String contentSlug, String stateName) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "How county permit paths usually break down in " + stateName;
+            case "buying-a-house-with-a-septic-system" -> "How county due diligence usually breaks down in " + stateName;
+            case "septic-inspection-cost" -> "How county inspection files usually break down in " + stateName;
+            case "perc-test-cost" -> "How county site-review files usually break down in " + stateName;
+            case "septic-pumping-cost" -> "How county maintenance files usually break down in " + stateName;
+            default -> isReplacementWorkflowCostSlug(contentSlug)
+                    ? "How county replacement files usually break down in " + stateName
+                    : "How county files usually break down in " + stateName;
+        };
+    }
+
+    private String countyWorkflowIntro(String contentSlug, String stateName, long countyCount) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "These county pages show the local permit branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which permit desk, closeout artifact, or local file matters before you treat the permit path like routine paperwork.";
+            case "buying-a-house-with-a-septic-system" -> "These county pages show the due-diligence branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which local file, transfer artifact, or management trail matters before you treat the deal like a generic inspection question.";
+            case "septic-inspection-cost" -> "These county pages show the inspection-file branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which pumping log, transfer artifact, or failing-system trail matters before you price the inspection scope like routine fieldwork.";
+            case "perc-test-cost" -> "These county pages show the site-review branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which parcel file, permit lane, or redesign trigger matters before you price soils, perc, or site-evaluation work like a generic first step.";
+            case "septic-pumping-cost" -> "These county pages show the maintenance branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which operating history, pumping log, or maintenance obligation matters before you price this like a simple tank visit.";
+            default -> "These county pages show the local branches that keep repeating in " + stateName
+                    + ". This summary is built from " + countyCount
+                    + " live county workflows so you can decide which county file, replacement branch, or failure-side trigger matters before you treat the first cost number like the final answer.";
+        };
+    }
+
+    private String countyWorkflowFirstArtifactsHeading(String contentSlug) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "First county permit artifacts to pull";
+            case "buying-a-house-with-a-septic-system" -> "First county buyer artifacts to pull";
+            case "septic-inspection-cost" -> "First county inspection artifacts to pull";
+            case "perc-test-cost" -> "First county site-review artifacts to pull";
+            case "septic-pumping-cost" -> "First county maintenance artifacts to pull";
+            default -> isReplacementWorkflowCostSlug(contentSlug)
+                    ? "First county replacement artifacts to pull"
+                    : "First county artifacts to pull";
+        };
+    }
+
+    private String countyWorkflowDropHeading(String contentSlug) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "Drop to a county permit page when";
+            case "buying-a-house-with-a-septic-system" -> "Drop to a county page when the deal risk turns local";
+            case "septic-inspection-cost" -> "Drop to a county inspection page when";
+            case "perc-test-cost" -> "Drop to a county site-review page when";
+            case "septic-pumping-cost" -> "Drop to a county maintenance page when";
+            default -> isReplacementWorkflowCostSlug(contentSlug)
+                    ? "Drop to a county replacement page when"
+                    : "Drop to a county page when";
+        };
+    }
+
+    private String countyWorkflowHoldQuoteHeading(String contentSlug) {
+        return switch (contentSlug) {
+            case "septic-permit-process" -> "Do not schedule permit pricing yet when";
+            case "buying-a-house-with-a-septic-system" -> "Do not treat this as a routine deal yet when";
+            case "septic-inspection-cost" -> "Do not price inspection scope yet when";
+            case "perc-test-cost" -> "Do not price site-review scope yet when";
+            case "septic-pumping-cost" -> "Do not price maintenance scope yet when";
+            default -> isReplacementWorkflowCostSlug(contentSlug)
+                    ? "Do not price replacement scope yet when"
+                    : "Do not quote yet when";
+        };
+    }
+
+    private List<CountyRecordsPage> countyPagesMatchingPattern(List<CountyRecordsPage> countyPages, CountyPatternType pattern) {
+        return countyPages.stream()
+                .filter(page -> countyMatchesPattern(page, pattern))
+                .toList();
+    }
+
+    private boolean countyMatchesPattern(CountyRecordsPage page, CountyPatternType pattern) {
+        String combinedText = String.join(" ",
+                nullSafe(page.introCopy()),
+                nullSafe(page.uniqueAngle()),
+                nullSafe(page.recordsLabel()),
+                nullSafe(page.officeLabel()),
+                String.join(" ", page.decisionSteps() == null ? List.of() : page.decisionSteps()),
+                String.join(" ", page.recordsToRequest() == null ? List.of() : page.recordsToRequest()),
+                String.join(" ", page.lowEndBreakers() == null ? List.of() : page.lowEndBreakers())
+        ).toLowerCase(Locale.US);
+        return pattern.matches(combinedText);
+    }
+
+    private String nullSafe(String value) {
+        return value == null ? "" : value;
+    }
+
+    private enum CountyPatternType {
+        LOOKUP(1, "Parcel and records lookup",
+                "County files often start with parcel, GIS, permit-search, or formal document-request lookup before anyone trusts the seller summary.",
+                "Parcel identifier, address, owner name, or permit number needed to pull the county file.",
+                "You already have the parcel, address, or owner in hand and the next real move is pulling the county file.",
+                "Do not move into quote mode while the parcel, GIS, or records-request trail is still missing."),
+        AUTHORITY(2, "File owner and local office split",
+                "%s counties often split the real file owner between county health, a municipality, a board of health, or another local office. The first win is identifying the right desk.",
+                "The exact county, municipal, board-of-health, or CEHA office that actually owns the septic file.",
+                "The story mentions a town, local board, or other office that does not sound like the main county file owner.",
+                "Hold off on pricing if the caller still does not know which office actually owns the septic file."),
+        PERMIT(3, "Permit ladder and closeout file",
+                "Many county files are not one permit receipt. They usually widen into permit ladders, operation approvals, completion certificates, or reuse and addition branches.",
+                "Improvement permit, construction authorization, operation permit, sanitary construction permit, or completion certificate.",
+                "The project involves an addition, reuse, repair, or change-of-use instead of a simple existing-system lookup.",
+                "Do not trust a clean reuse story until the permit ladder and closeout artifact are both visible."),
+        TRANSFER(4, "Transfer and buyer diligence",
+                "Buyer and transfer risk often lives in inspection, property-status, PTI, or completion artifacts rather than a generic permit copy.",
+                "Transfer inspection, property status report, PTI-backed record, or buyer-side completion proof.",
+                "The real question is closing risk, lender diligence, or inspection leverage rather than basic permit history.",
+                "Do not jump to quote mode while the buyer or lender still lacks the transfer-side inspection or status artifact."),
+        BRF(5, "Grant and special-program file",
+                "Some counties add a separate BRF, BAT, Critical Area, or sewer-connection lane that can change both timing and ownership cost.",
+                "BRF or BAT application, Critical Area note, sewer-connection alternative, or upgrade-program file.",
+                "The parcel may be in a Critical Area, failing-system, or upgrade-program lane where grant and replacement rules change the next step.",
+                "Do not frame the job as a simple replacement if grant, BAT, Critical Area, or sewer-connection rules might still control the path."),
+        COMPLAINT(6, "Repair and malfunction trail",
+                "Repair questionnaires, malfunction complaints, or violation files often tell you more than a clean-looking estimate or seller note.",
+                "Repair questionnaire, malfunction complaint, violation notice, or repair-permit history.",
+                "There are failure symptoms, complaint history, or repair questions already in play and the state page is still too abstract.",
+                "Stop before quoting if there are failure symptoms, complaint history, or an unresolved repair trail in the county file.");
+
+        private final int displayOrder;
+        private final String label;
+        private final String summary;
+        private final String firstArtifact;
+        private final String countyDropTrigger;
+        private final String holdQuoteCheck;
+
+        CountyPatternType(
+                int displayOrder,
+                String label,
+                String summary,
+                String firstArtifact,
+                String countyDropTrigger,
+                String holdQuoteCheck
+        ) {
+            this.displayOrder = displayOrder;
+            this.label = label;
+            this.summary = summary;
+            this.firstArtifact = firstArtifact;
+            this.countyDropTrigger = countyDropTrigger;
+            this.holdQuoteCheck = holdQuoteCheck;
+        }
+
+        int displayOrder() {
+            return displayOrder;
+        }
+
+        String label() {
+            return label;
+        }
+
+        String summary(String stateName) {
+            return summary.formatted(stateName);
+        }
+
+        String firstArtifact() {
+            return firstArtifact;
+        }
+
+        String countyDropTrigger() {
+            return countyDropTrigger;
+        }
+
+        String holdQuoteCheck() {
+            return holdQuoteCheck;
+        }
+
+        boolean matches(String text) {
+            return switch (this) {
+                case LOOKUP -> containsAny(text,
+                        "parcel", "gis", "request for document", "records search", "file search",
+                        "property status", "tax map", "apn", "permit search", "opra");
+                case AUTHORITY -> containsAny(text,
+                        "local health department", "municipal", "board of health", "ceha",
+                        "local approving authority", "incorporated town", "municipality");
+                case PERMIT -> containsAny(text,
+                        "operation permit", "construction authorization", "completion certificate",
+                        "certificate of occupancy", "improvement permit", "existing system approval",
+                        "sanitary construction permit", "certificate of completion", "interim permit");
+                case TRANSFER -> containsAny(text,
+                        "transfer", "buyer", "property status report", "pti", "real estate", "closing");
+                case BRF -> containsAny(text,
+                        "bay restoration fund", "brf", "critical area", "bat", "nitrogen");
+                case COMPLAINT -> containsAny(text,
+                        "malfunction", "repair permit", "repair questionnaire", "complaint",
+                        "violation", "failing system");
+            };
+        }
+    }
+
+    private static boolean containsAny(String text, String... needles) {
+        for (String needle : needles) {
+            if (text.contains(needle)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private List<PageLink> pageLinks(List<String> paths, String sourceSlug, String sourceStateCode) {
@@ -2369,17 +3292,21 @@ The goal is to settle the permit path before we frame the project as a normal in
             StateMoneyPage stateMoneyPage,
             StateProfile state,
             StateActionCopy stateActionCopy,
-            List<PageLink> countyRecordLinks
+            List<PageLink> countyRecordLinks,
+            SourceRecord primaryLocalAuthoritySource,
+            SourceRecord primaryRecordsLookupSource,
+            StateCountyWorkflowSynthesisView countyWorkflowSynthesis
     ) {
         String calculatorPath = stateMoneyCalculatorPath(stateMoneyPage, state);
 
-        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
-                && List.of("AL", "GA", "IN").contains(state.stateCode())
-                && !countyRecordLinks.isEmpty()) {
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
             return new StateMoneyPrimaryAction(
                     "Narrow to the county file",
                     "Open county record pages",
-                    "Use the county page first when the state checklist is still too broad and the real blocker is a county file, site-review note, or local records form.",
+                    countyAwareNote(
+                            "Use the county page first when the state checklist is still too broad and the real blocker is a county file, site-review note, or local records form.",
+                            countyWorkflowSynthesis
+                    ),
                     "Open county pages",
                     "#county-pages",
                     "state_money_primary_county_pages",
@@ -2388,12 +3315,224 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
         }
 
-        if ("NY".equals(state.stateCode()) && "buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug())) {
+        if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to the county permit desk",
+                    "Open county permit pages",
+                    countyAwareNote(
+                            "Use the county page first when the state permit path is still too broad and the real blocker is a county permit desk, closeout file, or local repair branch.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county permit pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to county diligence",
+                    "Open county diligence pages",
+                    countyAwareNote(
+                            "Use the county page first when the buyer page is still too broad and the real blocker is a local file, transfer artifact, or maintenance obligation tied to the property.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county diligence pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if (isReplacementWorkflowCostSlug(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to the county replacement file",
+                    "Open county replacement pages",
+                    countyAwareNote(
+                            "Use the county page first when the replacement number is still broad and the real blocker is a failure-side file, reserve-area rule, sewer branch, or local replacement lane.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county replacement pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if (isInspectionWorkflowCostSlug(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to the county inspection file",
+                    "Open county inspection pages",
+                    countyAwareNote(
+                            "Use the county page first when the inspection number is still broad and the real blocker is a pumping log, operating-history file, transfer artifact, or failure trail tied to the parcel.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county inspection pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if (isPercWorkflowCostSlug(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to the county site-review file",
+                    "Open county site-review pages",
+                    countyAwareNote(
+                            "Use the county page first when the perc or site-review number is still broad and the real blocker is a parcel file, permit lane, redesign trigger, or local evaluator path.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county site-review pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if (isPumpingWorkflowCostSlug(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
+            return new StateMoneyPrimaryAction(
+                    "Narrow to the county maintenance file",
+                    "Open county maintenance pages",
+                    countyAwareNote(
+                            "Use the county page first when the pumping number is still broad and the real blocker is a maintenance log, O&M requirement, or inspection cadence tied to the parcel.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open county maintenance pages",
+                    "#county-pages",
+                    "state_money_primary_county_pages",
+                    "county_page_directory",
+                    false
+            );
+        }
+
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Pull the file first",
+                    primaryRecordsLookupSource.title(),
+                    countyAwareNote(
+                            "Open the official records path before you compress a records problem into one planning number or quote request.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && primaryLocalAuthoritySource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Verify the file owner first",
+                    primaryLocalAuthoritySource.title(),
+                    countyAwareNote(
+                            "Use the office that controls the septic file before you trust a seller summary or start chasing quotes.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open local authority source",
+                    primaryLocalAuthoritySource.url(),
+                    "state_money_primary_authority_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if (isReplacementWorkflowCostSlug(stateMoneyPage.contentSlug()) && primaryLocalAuthoritySource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Check the local replacement desk first",
+                    primaryLocalAuthoritySource.title(),
+                    countyAwareNote(
+                            state.stateName() + " replacement questions usually turn on the local authority, failure lane, or sewer branch before the planning range matters.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open local authority source",
+                    primaryLocalAuthoritySource.url(),
+                    "state_money_primary_authority_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if (isReplacementWorkflowCostSlug(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Pull the replacement file first",
+                    primaryRecordsLookupSource.title(),
+                    countyAwareNote(
+                            "Replacement pricing gets more honest once the county file shows the live failure branch, the parcel history, and the last real approval signal.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug())
+                && primaryRecordsLookupSource != null) {
             return new StateMoneyPrimaryAction(
                     "Pull the file before pricing buyer risk",
-                    "Open the New York records checklist",
-                    "In New York, buyer risk gets concrete once the Appendix 75-A file trail and local record path are in hand.",
-                    "Open New York records checklist",
+                    "Open the official records path",
+                    countyAwareNote(
+                            "Buyer risk gets concrete once the permit, as-built, inspection, and maintenance file is in hand.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if (isPercWorkflowCostSlug(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
+            if (primaryLocalAuthoritySource != null) {
+                return new StateMoneyPrimaryAction(
+                        "Check the site-review desk first",
+                        primaryLocalAuthoritySource.title(),
+                        countyAwareNote(
+                                state.stateName() + " site-review questions usually turn on the local authority, parcel lane, and approval path before a perc number means much.",
+                                countyWorkflowSynthesis
+                        ),
+                        "Open local authority source",
+                        primaryLocalAuthoritySource.url(),
+                        "state_money_primary_authority_source",
+                        "official_source",
+                        false
+                );
+            }
+            return new StateMoneyPrimaryAction(
+                    "Pull the site-review file first",
+                    primaryRecordsLookupSource.title(),
+                    countyAwareNote(
+                            "Site-review pricing gets more honest once the county file shows the parcel history, prior approval lane, and redesign trigger behind the lot.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug())
+                && researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug()).isPresent()) {
+            return new StateMoneyPrimaryAction(
+                    "Pull the file before pricing buyer risk",
+                    "Open the " + state.stateName() + " records checklist",
+                    countyAwareNote(
+                            state.stateName() + " buyer risk gets concrete once the permit file, as-built, and local record path are in hand.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open " + state.stateName() + " records checklist",
                     "/septic-records-checklist/" + state.slug() + "/",
                     "state_money_primary_records_page",
                     "state_money_page",
@@ -2401,28 +3540,50 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
         }
 
-        if ("NY".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+        if (isPumpingWorkflowCostSlug(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
             return new StateMoneyPrimaryAction(
-                    "Open official file links",
-                    "Jump to the New York record sources",
-                    "Use the official file links before you compress a New York records problem into one planning number.",
-                    "Open official file links",
-                    "#sources",
-                    "state_money_primary_sources",
-                    "official_source_directory",
+                    "Pull the maintenance file first",
+                    primaryRecordsLookupSource.title(),
+                    countyAwareNote(
+                            "Pumping pricing gets more honest once the county file shows the last pumping, inspection, and O&M signal tied to the parcel.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
                     false
             );
         }
 
-        if ("SC".equals(state.stateCode()) && "septic-permit-process".equals(stateMoneyPage.contentSlug())) {
+        if ("septic-inspection-cost".equals(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Pull the inspection file first",
+                    primaryRecordsLookupSource.title(),
+                    countyAwareNote(
+                            "Inspection pricing gets more honest once the permit, as-built, pumping, and maintenance file is in hand.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open records lookup",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
+        if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && primaryLocalAuthoritySource != null) {
             return new StateMoneyPrimaryAction(
                     "Check the permit desk first",
-                    "Jump to permit links and county routing",
-                    "South Carolina permit questions usually turn on the SCDES county or regional path before the planning range matters.",
-                    "Open permit links",
-                    "#sources",
-                    "state_money_primary_sources",
-                    "official_source_directory",
+                    primaryLocalAuthoritySource.title(),
+                    countyAwareNote(
+                            state.stateName() + " permit questions usually turn on the local authority and approval path before the planning range matters.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open permit authority",
+                    primaryLocalAuthoritySource.url(),
+                    "state_money_primary_authority_source",
+                    "official_source",
                     false
             );
         }
@@ -2430,13 +3591,246 @@ The goal is to settle the permit path before we frame the project as a normal in
         return new StateMoneyPrimaryAction(
                 "Run the state estimate",
                 stateActionCopy.buttonLabel(),
-                stateActionCopy.supportingNote(),
+                countyAwareNote(stateActionCopy.supportingNote(), countyWorkflowSynthesis),
                 "Run the estimate",
                 calculatorPath,
                 "state_money_primary_calculator",
                 "calculator",
                 true
         );
+    }
+
+    private String countyAwareNote(String baseNote, StateCountyWorkflowSynthesisView countyWorkflowSynthesis) {
+        if (countyWorkflowSynthesis == null) {
+            return baseNote;
+        }
+        String firstArtifact = countyWorkflowSynthesis.firstArtifacts().isEmpty() ? null : countyWorkflowSynthesis.firstArtifacts().get(0);
+        String holdQuote = countyWorkflowSynthesis.holdQuoteChecks().isEmpty() ? null : countyWorkflowSynthesis.holdQuoteChecks().get(0);
+        if (hasText(firstArtifact) && hasText(holdQuote)) {
+            return baseNote + " Pull first: " + firstArtifact + " Hold pricing when " + holdQuote.toLowerCase() + ".";
+        }
+        if (hasText(firstArtifact)) {
+            return baseNote + " Pull first: " + firstArtifact;
+        }
+        if (hasText(holdQuote)) {
+            return baseNote + " Hold pricing when " + holdQuote.toLowerCase() + ".";
+        }
+        return baseNote;
+    }
+
+    private StateWorkflowDecisionView stateWorkflowDecisionView(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            StateCountyWorkflowSynthesisView countyWorkflowSynthesis,
+            SourceRecord primaryLocalAuthoritySource,
+            SourceRecord primaryRecordsLookupSource
+    ) {
+        if (countyWorkflowSynthesis == null) {
+            return null;
+        }
+        String firstArtifact = countyWorkflowSynthesis.firstArtifacts().isEmpty()
+                ? "The county-side permit, file, or inspection record tied to the parcel."
+                : countyWorkflowSynthesis.firstArtifacts().get(0);
+        String countyDrop = countyWorkflowSynthesis.countyDropTriggers().isEmpty()
+                ? "The state page is still too broad and the real blocker is a county file or office."
+                : countyWorkflowSynthesis.countyDropTriggers().get(0);
+        String holdQuote = countyWorkflowSynthesis.holdQuoteChecks().isEmpty()
+                ? "the county file is strong enough to show the right parcel and last real approval signal"
+                : countyWorkflowSynthesis.holdQuoteChecks().get(0);
+        String route = stateMoneyPage.contentSlug();
+        String firstMove;
+        String heading;
+        String intro;
+
+        if ("septic-permit-process".equals(route)) {
+            heading = "Decision router for " + state.stateName() + " permit work";
+            intro = "Use this when the permit page is still broad and you need the fastest way to identify the real county branch before you price anything.";
+            firstMove = primaryLocalAuthoritySource != null
+                    ? "Confirm the county permit desk and the closeout artifact that proves the system actually cleared the last approval step."
+                    : "Identify the county permit desk and the closeout artifact before treating the permit path like routine paperwork.";
+        } else if ("buying-a-house-with-a-septic-system".equals(route)) {
+            heading = "Decision router for " + state.stateName() + " buyer diligence";
+            intro = "Use this when the buyer page is still broad and you need the fastest route to the local file, transfer artifact, and quote gate behind the deal.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Match the seller story to the county file and the buyer-side artifact before you negotiate credits, timing, or scope."
+                    : "Resolve the local file and buyer-side artifact before you treat the deal like a routine inspection question.";
+        } else if (isInspectionWorkflowCostSlug(route)) {
+            heading = "Decision router for " + state.stateName() + " inspection pricing";
+            intro = "Use this when the inspection page is still broad and you need the fastest route to the county file, operating history, and hold-pricing trigger behind the scope.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Pull the county inspection, pumping, and operating-history file before you price a routine inspection scope."
+                    : "Resolve the county inspection file and the last operating-history artifact before you trust a routine inspection number.";
+        } else if (isPercWorkflowCostSlug(route)) {
+            heading = "Decision router for " + state.stateName() + " perc and site-review pricing";
+            intro = "Use this when the perc or site-review page is still broad and you need the fastest route to the parcel file, permit lane, and redesign trigger behind the lot.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Pull the county parcel file and confirm the site-review or permit lane before you price soils, perc, or redesign work."
+                    : "Resolve the county site-review lane and the first parcel artifact before you treat the first perc number like the real scope.";
+        } else if (isPumpingWorkflowCostSlug(route)) {
+            heading = "Decision router for " + state.stateName() + " pumping and maintenance pricing";
+            intro = "Use this when the pumping page is still broad and you need the fastest route to the maintenance lane, last service artifact, and quote gate behind the parcel.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Pull the county pumping, inspection, or O&M file before you price this like a basic tank visit."
+                    : "Resolve the county maintenance lane and the last service artifact before you trust a routine pumping number.";
+        } else if (isReplacementWorkflowCostSlug(route)) {
+            heading = "Decision router for " + state.stateName() + " replacement pricing";
+            intro = "Use this when the replacement page is still broad and you need the fastest route to the county file, failure branch, and hold-pricing trigger behind the number.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Pull the county file and confirm the live repair, failure, reserve-area, or sewer branch before you trust one replacement number."
+                    : "Resolve the county file, the local replacement branch, and the last real approval artifact before you treat the first number like the real scope.";
+        } else {
+            heading = "Decision router for " + state.stateName() + " records work";
+            intro = "Use this when the records page is still broad and you need the fastest route to the county file, first artifact, and pricing gate.";
+            firstMove = primaryRecordsLookupSource != null
+                    ? "Pull the county file and match it to the parcel before you trust any seller, owner, or contractor story."
+                    : "Resolve the county file owner and first parcel artifact before you compress this into one estimate or quote.";
+        }
+
+        return new StateWorkflowDecisionView(
+                "Decision router",
+                heading,
+                intro,
+                List.of(
+                        new CountyWorkflowFieldView("Resolve first", firstMove),
+                        new CountyWorkflowFieldView("Pull first", firstArtifact),
+                        new CountyWorkflowFieldView("Escalate to county when", countyDrop),
+                        new CountyWorkflowFieldView("Hold pricing when", holdQuote)
+                )
+        );
+    }
+
+    private StateCostScopeView stateCostScopeView(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            StateCountyWorkflowSynthesisView countyWorkflowSynthesis
+    ) {
+        if (!isWorkflowCostSlug(stateMoneyPage.contentSlug())) {
+            return null;
+        }
+
+        String route = stateMoneyPage.contentSlug();
+        String clearFirst = firstNonBlank(
+                countyWorkflowSynthesis == null || countyWorkflowSynthesis.firstArtifacts().isEmpty()
+                        ? null
+                        : countyWorkflowSynthesis.firstArtifacts().get(0),
+                firstOf(state.recordsToRequest()),
+                "The county file, parcel identifier, and latest approval artifact tied to this system."
+        );
+        String lowEndBreaker = firstNonBlank(
+                firstOf(stateMoneyPage.lowEndBreakers()),
+                firstOf(state.lowEndRiskChecks()),
+                "The county file still leaves a permit, repair, or location branch unresolved."
+        );
+        String countyWidener = firstNonBlank(
+                preferredCostWidener(countyWorkflowSynthesis, route),
+                firstOf(stateMoneyPage.driverBullets()),
+                state.specialAreaNote(),
+                "A county-side permit, repair, or maintenance lane is still widening the scope."
+        );
+        String midpointGate = firstNonBlank(
+                countyWorkflowSynthesis == null || countyWorkflowSynthesis.holdQuoteChecks().isEmpty()
+                        ? null
+                        : countyWorkflowSynthesis.holdQuoteChecks().get(0),
+                "the county file still leaves the failure branch, permit lane, or maintenance obligation unresolved"
+        );
+
+        List<String> scopeWideners = Stream.concat(
+                        safeList(stateMoneyPage.driverBullets()).stream(),
+                        safeList(stateMoneyPage.lowEndBreakers()).stream()
+                )
+                .filter(this::hasText)
+                .distinct()
+                .limit(6)
+                .toList();
+
+        List<String> readinessChecks = Stream.concat(
+                        safeList(stateMoneyPage.quotePrepChecklist()).stream(),
+                        safeList(countyWorkflowSynthesis == null ? null : countyWorkflowSynthesis.holdQuoteChecks()).stream()
+                )
+                .filter(this::hasText)
+                .distinct()
+                .limit(6)
+                .toList();
+
+        return new StateCostScopeView(
+                "Cost scope router",
+                costScopeHeading(route, state.stateName()),
+                costScopeIntro(route, state.stateName()),
+                List.of(
+                        new CountyWorkflowFieldView("Clear first", clearFirst),
+                        new CountyWorkflowFieldView("Low-end breaker", lowEndBreaker),
+                        new CountyWorkflowFieldView("County widener", countyWidener),
+                        new CountyWorkflowFieldView("Stop trusting midpoint when", midpointGate)
+                ),
+                costScopeWidenersHeading(route, state.stateName()),
+                scopeWideners,
+                costReadinessHeading(route),
+                readinessChecks
+        );
+    }
+
+    private String costScopeHeading(String route, String stateName) {
+        return switch (route) {
+            case "septic-inspection-cost" -> "What actually widens " + stateName + " inspection pricing";
+            case "perc-test-cost" -> "What actually widens " + stateName + " site-review pricing";
+            case "septic-pumping-cost" -> "What actually widens " + stateName + " pumping and maintenance pricing";
+            default -> "What actually widens " + stateName + " replacement pricing";
+        };
+    }
+
+    private String costScopeIntro(String route, String stateName) {
+        return switch (route) {
+            case "septic-inspection-cost" -> "Use this router before you trust the midpoint. It separates a routine inspection visit from the county artifacts and failure trails that make the scope wider in " + stateName + ".";
+            case "perc-test-cost" -> "Use this router before you trust the first perc or site-review number. It separates a routine soils visit from the parcel, redesign, and permit branches that widen the scope in " + stateName + ".";
+            case "septic-pumping-cost" -> "Use this router before you trust a basic pumping number. It separates a routine service visit from the operating history, inspection cadence, and maintenance obligations that widen the scope in " + stateName + ".";
+            default -> "Use this router before you trust the midpoint. It separates a straightforward replacement story from the county file, failure lane, and redesign triggers that widen the real scope in " + stateName + ".";
+        };
+    }
+
+    private String costScopeWidenersHeading(String route, String stateName) {
+        return switch (route) {
+            case "septic-inspection-cost" -> "What keeps widening " + stateName + " inspection scope";
+            case "perc-test-cost" -> "What keeps widening " + stateName + " site-review scope";
+            case "septic-pumping-cost" -> "What keeps widening " + stateName + " maintenance scope";
+            default -> "What keeps widening " + stateName + " replacement scope";
+        };
+    }
+
+    private String costReadinessHeading(String route) {
+        return switch (route) {
+            case "septic-inspection-cost" -> "What to line up before you price inspection scope";
+            case "perc-test-cost" -> "What to line up before you price site-review scope";
+            case "septic-pumping-cost" -> "What to line up before you price maintenance scope";
+            default -> "What to line up before you price replacement scope";
+        };
+    }
+
+    private String preferredCostWidener(StateCountyWorkflowSynthesisView countyWorkflowSynthesis, String route) {
+        if (countyWorkflowSynthesis == null || countyWorkflowSynthesis.structureHighlights().isEmpty()) {
+            return null;
+        }
+        String preferredLabel = switch (route) {
+            case "septic-inspection-cost" -> "Most common malfunction or repair trail";
+            case "perc-test-cost" -> "Most common permit closeout signal";
+            case "septic-pumping-cost" -> "Most common special program or exception";
+            default -> "Most common malfunction or repair trail";
+        };
+        return countyWorkflowSynthesis.structureHighlights().stream()
+                .filter(field -> preferredLabel.equals(field.label()))
+                .map(CountyWorkflowFieldView::value)
+                .findFirst()
+                .orElseGet(() -> countyWorkflowSynthesis.structureHighlights().get(0).value());
+    }
+
+    private String firstOf(List<String> values) {
+        return safeList(values).stream()
+                .filter(this::hasText)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private List<String> safeList(List<String> values) {
+        return values == null ? List.of() : values;
     }
 
     private String stateMoneyCalculatorPath(StateMoneyPage stateMoneyPage, StateProfile state) {

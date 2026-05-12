@@ -22,10 +22,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SeoService {
     private final AppSiteProperties siteProperties;
+    private final PublishingPolicyService publishingPolicyService;
     private final ObjectMapper objectMapper;
 
-    public SeoService(AppSiteProperties siteProperties) {
+    public SeoService(AppSiteProperties siteProperties, PublishingPolicyService publishingPolicyService) {
         this.siteProperties = siteProperties;
+        this.publishingPolicyService = publishingPolicyService;
         this.objectMapper = JsonMapper.builder().findAndAddModules().build();
     }
 
@@ -435,6 +437,9 @@ public class SeoService {
     public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
         String seoTitle = stateMoneyPageSeoTitle(stateMoneyPage);
+        String robots = publishingPolicyService.isIndexableStateMoneyPage(stateMoneyPage, state)
+                ? "index,follow"
+                : "noindex,follow";
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
                 webPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), "Article"),
@@ -446,14 +451,16 @@ public class SeoService {
                 crumb("Home", absoluteUrl("/")),
                 crumb(stateMoneyPage.title(), canonicalUrl)
         ))));
-        if (stateMoneyPage.faqBlocks() != null && !stateMoneyPage.faqBlocks().isEmpty()) {
+        if (shouldExposeFaqStructuredData(stateMoneyPage)
+                && stateMoneyPage.faqBlocks() != null
+                && !stateMoneyPage.faqBlocks().isEmpty()) {
             jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), stateMoneyPage.faqBlocks())));
         }
         return pageMeta(
                 seoTitle,
                 stateMoneyPage.metaDescription(),
                 canonicalUrl,
-                "index,follow",
+                robots,
                 breadcrumbLinks(
                         crumb("Home", absoluteUrl("/")),
                         crumb(stateMoneyPage.title(), canonicalUrl)
@@ -758,6 +765,16 @@ public class SeoService {
             case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";
             case "drain-field-replacement-cost" -> " | Field layout and replacement risk | SepticPath";
             default -> " | SepticPath";
+        };
+    }
+
+    private boolean shouldExposeFaqStructuredData(StateMoneyPage stateMoneyPage) {
+        return switch (stateMoneyPage.contentSlug()) {
+            // These pages now behave more like workflow routers than FAQ-first articles.
+            case "septic-records-checklist",
+                 "septic-permit-process",
+                 "buying-a-house-with-a-septic-system" -> false;
+            default -> true;
         };
     }
 

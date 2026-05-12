@@ -79,10 +79,10 @@ img {
     position: sticky;
     top: 0;
     z-index: 20;
-    backdrop-filter: blur(18px);
-    background: rgba(252, 250, 245, 0.9);
+    backdrop-filter: blur(14px);
+    background: rgba(252, 250, 245, 0.94);
     border-bottom: 1px solid rgba(20, 34, 32, 0.08);
-    box-shadow: 0 14px 40px rgba(17, 31, 29, 0.05);
+    box-shadow: 0 8px 24px rgba(17, 31, 29, 0.045);
 }
 
 .site-header__inner {
@@ -90,20 +90,20 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    padding: 16px 0;
+    padding: 12px 0;
 }
 
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .brand__logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(19, 77, 68, 0.12);
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    box-shadow: 0 5px 12px rgba(19, 77, 68, 0.1);
     object-fit: cover;
     flex: 0 0 auto;
 }
@@ -135,10 +135,19 @@ h3,
     font-size: 0.87rem;
 }
 
+.site-header .brand__text {
+    gap: 0;
+    line-height: 1;
+}
+
+.site-header .brand__text span {
+    display: none;
+}
+
 .site-nav {
     display: inline-flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     color: var(--muted);
     font-weight: 600;
 }
@@ -148,15 +157,15 @@ h3,
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 46px;
-    padding: 0 16px;
+    min-height: 40px;
+    padding: 0 13px;
     border: 1px solid rgba(20, 34, 32, 0.1);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: var(--shadow-soft);
     color: var(--text);
     font-family: "Manrope", sans-serif;
-    font-size: 0.94rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
@@ -189,7 +198,8 @@ h3,
 .site-nav a {
     display: inline-flex;
     align-items: center;
-    padding: 11px 14px;
+    white-space: nowrap;
+    padding: 9px 12px;
     border-radius: 999px;
     border: 1px solid transparent;
     transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
@@ -823,6 +833,875 @@ h4 {
 
 .intent-card .button {
     justify-self: start;
+}
+
+.state-money-page,
+.county-records-page,
+.content-page,
+.state-guide-page {
+    --money-panel: rgba(255, 255, 255, 0.9);
+    --money-panel-strong: rgba(244, 248, 242, 0.94);
+}
+
+.state-money-hero-section {
+    padding-bottom: 18px;
+}
+
+.state-money-page .state-hero,
+.county-records-page .state-hero,
+.content-page .state-hero,
+.state-guide-page .state-hero {
+    grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.68fr);
+    align-items: start;
+}
+
+.state-money-page .hero-sidecard,
+.county-records-page .hero-sidecard,
+.content-page .hero-sidecard,
+.state-guide-page .hero-sidecard {
+    gap: 12px;
+    justify-content: start;
+    padding: 22px;
+}
+
+.state-money-page .hero-sidecard > strong,
+.county-records-page .hero-sidecard > strong,
+.content-page .hero-sidecard > strong,
+.state-guide-page .hero-sidecard > strong {
+    line-height: 1.18;
+}
+
+.state-money-page .hero-sidecard > p,
+.county-records-page .hero-sidecard > p,
+.content-page .hero-sidecard > p,
+.state-guide-page .hero-sidecard > p {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.state-money-page .review-meta,
+.county-records-page .review-meta,
+.content-page .review-meta,
+.state-guide-page .review-meta {
+    gap: 10px;
+}
+
+.state-money-page .review-meta div,
+.county-records-page .review-meta div,
+.content-page .review-meta div,
+.state-guide-page .review-meta div {
+    padding: 10px 0;
+    border-top: 1px solid rgba(20, 34, 32, 0.08);
+}
+
+.state-money-page .review-meta dd,
+.county-records-page .review-meta dd,
+.content-page .review-meta dd,
+.state-guide-page .review-meta dd {
+    line-height: 1.38;
+}
+
+.state-money-page .review-meta dd span + span + span,
+.county-records-page .review-meta dd span + span + span,
+.content-page .review-meta dd span + span + span,
+.state-guide-page .review-meta dd span + span + span {
+    display: none;
+}
+
+.state-money-page h1,
+.county-records-page h1,
+.content-page h1,
+.state-guide-page h1 {
+    max-width: 11ch;
+    font-size: clamp(2.6rem, 4.5vw, 4.8rem);
+}
+
+.state-money-page h2,
+.state-money-page h3,
+.county-records-page h2,
+.county-records-page h3,
+.content-page h2,
+.content-page h3,
+.state-guide-page h2,
+.state-guide-page h3 {
+    max-width: 18ch;
+}
+
+.state-money-page p,
+.county-records-page p,
+.content-page p,
+.state-guide-page p {
+    max-width: 68ch;
+}
+
+.state-money-page .lede,
+.county-records-page .lede,
+.content-page .lede,
+.state-guide-page .lede {
+    max-width: 58ch;
+    line-height: 1.58;
+}
+
+.state-money-intro-copy {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.workflow-console {
+    margin-top: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 30px;
+    background:
+        linear-gradient(135deg, rgba(18, 31, 29, 0.94), rgba(35, 72, 65, 0.9)),
+        var(--text);
+    color: #f7fbf7;
+    box-shadow: 0 24px 70px rgba(17, 31, 29, 0.18);
+}
+
+.workflow-console__topbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(247, 251, 247, 0.7);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.workflow-console__status {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #d7f3d8;
+}
+
+.workflow-console__status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #9de66f;
+    box-shadow: 0 0 0 6px rgba(157, 230, 111, 0.12);
+}
+
+.workflow-console__body {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
+    gap: 0;
+}
+
+.workflow-console__readout {
+    display: grid;
+    align-content: space-between;
+    gap: 18px;
+    padding: 24px;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.workflow-console__readout .eyebrow {
+    color: #b7e0c4;
+}
+
+.workflow-console__readout h2 {
+    max-width: 13ch;
+    color: #fff;
+    font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+    line-height: 0.98;
+}
+
+.workflow-console__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.workflow-console__actions .button--primary {
+    background: #dff46a;
+    color: #17211e;
+    box-shadow: none;
+}
+
+.workflow-console__actions .button--secondary {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.workflow-console__checks {
+    display: grid;
+}
+
+.workflow-console__row {
+    display: grid;
+    grid-template-columns: 46px minmax(94px, 0.28fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    min-height: 92px;
+    padding: 17px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.workflow-console__row:last-child {
+    border-bottom: 0;
+}
+
+.workflow-console__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #dff46a;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.workflow-console__label {
+    color: rgba(247, 251, 247, 0.62);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.workflow-console__row strong {
+    display: -webkit-box;
+    overflow: hidden;
+    color: #fff;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    line-height: 1.25;
+}
+
+.money-answer-panel {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.44fr) minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 24px;
+    padding: 20px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 0 0, rgba(225, 240, 234, 0.92), transparent 40%),
+        var(--money-panel);
+    box-shadow: 0 16px 46px rgba(17, 31, 29, 0.07);
+}
+
+.money-answer-panel__header {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+}
+
+.money-answer-panel__header h2 {
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+    line-height: 1.04;
+}
+
+.money-answer-steps {
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.money-answer-steps li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 12px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.money-answer-steps__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.money-answer-steps strong {
+    display: block;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.25;
+}
+
+.money-answer-steps p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.48;
+}
+
+.state-guide-calculator-bridge {
+    margin-top: 18px;
+}
+
+.state-guide-calculator-bridge .money-answer-steps li {
+    padding: 10px;
+}
+
+.state-money-page .intent-rail,
+.county-records-page .intent-rail,
+.content-page .intent-rail,
+.state-guide-page .intent-rail {
+    gap: 14px;
+}
+
+.state-money-route-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.state-money-route-board .intent-card {
+    position: relative;
+    overflow: hidden;
+    gap: 10px;
+    padding: 18px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 250, 246, 0.74)),
+        var(--surface);
+}
+
+.state-money-route-board .intent-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 16px 0 16px;
+    height: 3px;
+    border-radius: 999px 999px 0 0;
+    background: rgba(35, 108, 95, 0.34);
+}
+
+.state-money-route-board .intent-card__label {
+    width: fit-content;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.09);
+    letter-spacing: 0.05em;
+}
+
+.state-money-route-board .intent-card h2 {
+    font-size: clamp(1.05rem, 1.4vw, 1.24rem);
+    max-width: 16ch;
+}
+
+.state-money-route-board .intent-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    font-size: 0.94rem;
+    line-height: 1.48;
+}
+
+.state-money-route-board .intent-card p strong {
+    color: var(--text);
+}
+
+.state-money-route-board .intent-card .button {
+    margin-top: 4px;
+}
+
+.next-move-board {
+    margin-top: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 253, 248, 0.96), rgba(241, 247, 241, 0.82)),
+        var(--surface-strong);
+    box-shadow: var(--shadow-soft);
+}
+
+.next-move-board__header {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.38fr) 1fr;
+    gap: 18px;
+    align-items: end;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.1);
+    background:
+        linear-gradient(90deg, rgba(20, 34, 32, 0.06), transparent),
+        rgba(255, 255, 255, 0.42);
+}
+
+.next-move-board__header h2 {
+    margin: 0;
+    max-width: 34ch;
+    font-size: clamp(1.12rem, 1.8vw, 1.55rem);
+    line-height: 1.08;
+}
+
+.next-move-board__rows {
+    display: grid;
+}
+
+.next-move-row {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: center;
+    min-height: 116px;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.09);
+}
+
+.next-move-row:last-child {
+    border-bottom: 0;
+}
+
+.next-move-row--primary {
+    background:
+        linear-gradient(90deg, rgba(35, 108, 95, 0.12), transparent 64%),
+        rgba(255, 255, 255, 0.32);
+}
+
+.next-move-row__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(35, 108, 95, 0.22);
+    border-radius: 15px;
+    color: var(--accent-strong);
+    background: rgba(255, 255, 255, 0.72);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.next-move-row__body {
+    min-width: 0;
+}
+
+.next-move-row__label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--accent-strong);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.next-move-row h3 {
+    margin: 0;
+    max-width: 38ch;
+    font-size: clamp(1.04rem, 1.35vw, 1.24rem);
+    line-height: 1.16;
+}
+
+.next-move-row p {
+    max-width: 78ch;
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.45;
+}
+
+.next-move-row__signal {
+    display: inline-block;
+    max-width: 68ch;
+    padding: 7px 10px;
+    border-radius: 12px;
+    background: rgba(35, 108, 95, 0.08);
+}
+
+.next-move-row__signal strong {
+    color: var(--text);
+}
+
+.next-move-row .button {
+    min-width: 172px;
+    justify-content: center;
+}
+
+.cost-gate-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(247, 250, 246, 0.82)),
+        var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.cost-gate-panel__range {
+    padding: 22px;
+}
+
+.cost-gate-panel__header {
+    display: grid;
+    gap: 8px;
+    max-width: 680px;
+}
+
+.cost-gate-panel__header h2 {
+    margin: 0;
+    max-width: 30ch;
+    font-size: clamp(1.22rem, 2vw, 1.72rem);
+    line-height: 1.08;
+}
+
+.cost-gate-panel__header p {
+    max-width: 70ch;
+    margin: 0;
+    color: var(--muted);
+}
+
+.cost-gate-panel__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 20px;
+    background: rgba(20, 34, 32, 0.1);
+}
+
+.cost-gate-panel__metric {
+    display: grid;
+    align-content: space-between;
+    min-height: 112px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.cost-gate-panel__metric span,
+.cost-gate-panel__source-label {
+    color: var(--accent-strong);
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.cost-gate-panel__metric strong {
+    margin-top: 18px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(1rem, 1.45vw, 1.28rem);
+    line-height: 1.06;
+}
+
+.cost-gate-panel__sources {
+    display: grid;
+    border-left: 1px solid rgba(20, 34, 32, 0.1);
+}
+
+.cost-gate-panel__source {
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    padding: 20px;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.1);
+    background: rgba(255, 255, 255, 0.48);
+}
+
+.cost-gate-panel__source:last-child {
+    border-bottom: 0;
+}
+
+.cost-gate-panel__source h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.14;
+}
+
+.cost-gate-panel__source p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.44;
+}
+
+.cost-gate-panel__source .button {
+    width: fit-content;
+    margin-top: 2px;
+}
+
+.cost-gate-panel__source-meta {
+    padding-top: 8px;
+    border-top: 1px dashed rgba(20, 34, 32, 0.14);
+    font-size: 0.82rem !important;
+}
+
+.state-money-evidence-drawer {
+    background:
+        linear-gradient(90deg, rgba(243, 249, 244, 0.9), rgba(255, 255, 255, 0.7)),
+        rgba(250, 252, 249, 0.86);
+}
+
+.state-money-page .intent-card,
+.state-money-page .detail-card,
+.state-money-page .trust-box,
+.county-records-page .intent-card,
+.county-records-page .detail-card,
+.county-records-page .trust-box,
+.content-page .intent-card,
+.content-page .detail-card,
+.content-page .trust-box,
+.state-guide-page .intent-card,
+.state-guide-page .detail-card,
+.state-guide-page .trust-box {
+    box-shadow: 0 10px 30px rgba(17, 31, 29, 0.055);
+}
+
+.state-money-page .detail-card,
+.county-records-page .detail-card,
+.content-page .detail-card,
+.state-guide-page .detail-card {
+    padding: 22px;
+}
+
+.state-money-page .detail-card h2,
+.state-money-page .detail-card h3,
+.state-money-page .trust-box h2,
+.county-records-page .detail-card h2,
+.county-records-page .detail-card h3,
+.county-records-page .trust-box h2,
+.content-page .detail-card h2,
+.content-page .detail-card h3,
+.content-page .trust-box h2,
+.state-guide-page .detail-card h2,
+.state-guide-page .detail-card h3,
+.state-guide-page .trust-box h2 {
+    line-height: 1.12;
+}
+
+.state-money-page .detail-card p,
+.state-money-page .trust-box p,
+.county-records-page .detail-card p,
+.county-records-page .trust-box p,
+.content-page .detail-card p,
+.content-page .trust-box p,
+.state-guide-page .detail-card p,
+.state-guide-page .trust-box p {
+    line-height: 1.58;
+}
+
+.state-money-page .detail-list li,
+.state-money-page .source-list li,
+.county-records-page .detail-list li,
+.county-records-page .source-list li,
+.content-page .detail-list li,
+.content-page .source-list li,
+.state-guide-page .detail-list li,
+.state-guide-page .source-list li {
+    margin-top: 8px;
+    padding: 12px 14px;
+    border: 1px solid rgba(20, 34, 32, 0.07);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.62);
+}
+
+.state-money-page .detail-list--numbered,
+.county-records-page .detail-list--numbered,
+.content-page .detail-list--numbered,
+.state-guide-page .detail-list--numbered {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: money-step;
+}
+
+.state-money-page .detail-list--numbered li,
+.county-records-page .detail-list--numbered li,
+.content-page .detail-list--numbered li,
+.state-guide-page .detail-list--numbered li {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 12px;
+    padding-left: 12px;
+    counter-increment: money-step;
+}
+
+.state-money-page .detail-list--numbered li::before,
+.county-records-page .detail-list--numbered li::before,
+.content-page .detail-list--numbered li::before,
+.state-guide-page .detail-list--numbered li::before {
+    content: counter(money-step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.11);
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.state-money-page .source-meta span,
+.county-records-page .source-meta span,
+.content-page .source-meta span,
+.state-guide-page .source-meta span {
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.08);
+}
+
+.state-money-disclosure {
+    border: 1px solid rgba(20, 34, 32, 0.09);
+    border-radius: 26px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.64)),
+        rgba(244, 248, 242, 0.5);
+    box-shadow: 0 12px 34px rgba(17, 31, 29, 0.055);
+    overflow: hidden;
+}
+
+.state-money-disclosure > summary {
+    display: grid;
+    grid-template-columns: minmax(0, 0.32fr) minmax(0, 0.6fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 22px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.state-money-disclosure > summary::-webkit-details-marker {
+    display: none;
+}
+
+.state-money-disclosure > summary::after {
+    content: "+";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.1);
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.state-money-disclosure[open] > summary::after {
+    content: "-";
+}
+
+.state-money-disclosure > summary strong {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+    line-height: 1.12;
+}
+
+.state-money-disclosure > summary span:last-child {
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.state-money-disclosure > .detail-grid {
+    padding: 0 22px 22px;
+}
+
+.county-link-overflow {
+    margin-top: 16px;
+    border-top: 1px solid rgba(20, 34, 32, 0.08);
+    padding-top: 12px;
+}
+
+.county-link-overflow > summary {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    color: var(--accent-strong);
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+}
+
+.state-money-page .source-list a,
+.state-money-page .detail-list a,
+.state-money-page .detail-card p a,
+.county-records-page .source-list a,
+.county-records-page .detail-list a,
+.county-records-page .detail-card p a,
+.content-page .source-list a,
+.content-page .detail-list a,
+.content-page .detail-card p a,
+.state-guide-page .source-list a,
+.state-guide-page .detail-list a,
+.state-guide-page .detail-card p a,
+.state-coverage-page .detail-card a,
+.state-coverage-page .coverage-card a,
+.footer-list a,
+.breadcrumb-list a {
+    align-items: center;
+    min-height: 36px;
+    min-width: 44px;
+}
+
+.state-money-page .source-list a,
+.state-money-page .detail-list a,
+.state-money-page .detail-card p a,
+.county-records-page .source-list a,
+.county-records-page .detail-list a,
+.county-records-page .detail-card p a,
+.content-page .source-list a,
+.content-page .detail-list a,
+.content-page .detail-card p a,
+.state-guide-page .source-list a,
+.state-guide-page .detail-list a,
+.state-guide-page .detail-card p a,
+.state-coverage-page .detail-card a,
+.state-coverage-page .coverage-card a {
+    display: inline-flex;
+}
+
+.footer-list a {
+    display: inline-flex;
+}
+
+.brand {
+    min-height: 40px;
+}
+
+.site-footer .brand,
+.site-footer .footer-list a {
+    min-height: 40px;
 }
 
 .hero-card__stack,
@@ -1676,9 +2555,18 @@ input[type="checkbox"] {
         grid-template-columns: 1fr;
     }
 
+    .state-money-page .state-hero,
+    .county-records-page .state-hero,
+    .content-page .state-hero,
+    .state-guide-page .state-hero {
+        grid-template-columns: 1fr;
+    }
+
     .site-header__inner {
+        position: relative;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        gap: 10px;
     }
 
     .site-nav {
@@ -1692,11 +2580,64 @@ input[type="checkbox"] {
     .site-nav a {
         flex: 0 0 auto;
     }
+
+    .js .site-nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
+    }
+
+    .js .site-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        z-index: 50;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 16px;
+        border: 1px solid rgba(20, 34, 32, 0.1);
+        border-radius: 18px;
+        background: rgba(252, 250, 245, 0.98);
+        box-shadow: 0 24px 64px rgba(17, 31, 29, 0.16);
+        white-space: normal;
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav {
+        display: flex;
+    }
+
+    .js .site-nav a {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        min-height: 44px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(20, 34, 32, 0.08);
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .js .site-header[data-nav-open="true"] .site-nav-toggle__line:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
 }
 
 @media (max-width: 720px) {
     .container {
         width: min(100vw - 28px, 100%);
+    }
+
+    .section--breadcrumb {
+        display: none;
     }
 
     .hero,
@@ -1737,21 +2678,151 @@ input[type="checkbox"] {
         font-size: 2.25rem;
     }
 
+    .state-money-page h1,
+    .county-records-page h1,
+    .content-page h1,
+    .state-guide-page h1 {
+        max-width: 12ch;
+        font-size: 2.15rem;
+    }
+
+    .money-answer-panel {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 22px;
+    }
+
+    .money-answer-panel__header {
+        gap: 6px;
+    }
+
+    .money-answer-panel__header h2 {
+        font-size: 1.28rem;
+    }
+
+    .money-answer-steps li {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .money-answer-steps__number {
+        width: 26px;
+        height: 26px;
+    }
+
+    .workflow-console {
+        margin-top: 18px;
+        border-radius: 22px;
+    }
+
+    .workflow-console__topbar {
+        padding: 11px 13px;
+        font-size: 0.68rem;
+    }
+
+    .workflow-console__body {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-console__readout {
+        padding: 16px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .workflow-console__readout h2 {
+        max-width: 17ch;
+        font-size: 1.48rem;
+    }
+
+    .workflow-console__actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-console__row {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 8px 12px;
+        min-height: 0;
+        padding: 13px 14px;
+    }
+
+    .workflow-console__index {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+    }
+
+    .workflow-console__label {
+        align-self: center;
+    }
+
+    .workflow-console__row strong {
+        grid-column: 2;
+        font-size: 0.94rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .state-money-page .hero-sidecard,
+    .county-records-page .hero-sidecard,
+    .content-page .hero-sidecard,
+    .state-guide-page .hero-sidecard {
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .state-money-page .hero-sidecard > .pill,
+    .state-money-page .hero-sidecard > strong:nth-of-type(2),
+    .county-records-page .hero-sidecard > .pill,
+    .county-records-page .hero-sidecard > strong:nth-of-type(2),
+    .content-page .hero-sidecard > .pill,
+    .content-page .hero-sidecard > strong:nth-of-type(2),
+    .state-guide-page .hero-sidecard > .pill,
+    .state-guide-page .hero-sidecard > strong:nth-of-type(2) {
+        display: none;
+    }
+
+    .state-money-page .review-meta,
+    .county-records-page .review-meta,
+    .content-page .review-meta,
+    .state-guide-page .review-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 12px;
+    }
+
+    .state-money-page .review-meta div,
+    .county-records-page .review-meta div,
+    .content-page .review-meta div,
+    .state-guide-page .review-meta div {
+        padding: 8px 0;
+    }
+
+    .state-money-page .review-meta div:nth-child(3),
+    .county-records-page .review-meta div:nth-child(3),
+    .content-page .review-meta div:nth-child(3),
+    .state-guide-page .review-meta div:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+
     .site-header__inner {
         position: relative;
         align-items: center;
-        gap: 12px;
-        padding: 12px 0;
+        gap: 10px;
+        padding: 8px 0;
     }
 
     .brand {
-        gap: 10px;
+        gap: 8px;
+        min-height: 38px;
     }
 
     .brand__logo {
-        width: 38px;
-        height: 38px;
-        border-radius: 8px;
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
     }
 
     .brand__text span {
@@ -1759,12 +2830,224 @@ input[type="checkbox"] {
     }
 
     .brand__text strong {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
+    }
+
+    .site-nav-toggle {
+        min-height: 38px;
+        gap: 8px;
+        padding: 0 12px;
+        font-size: 0.88rem;
+        box-shadow: 0 6px 18px rgba(17, 31, 29, 0.08);
+    }
+
+    .site-nav-toggle__line {
+        width: 17px;
+        height: 2px;
     }
 
     .site-nav {
         gap: 8px;
         font-size: 0.88rem;
+    }
+
+    .state-money-page .quick-link-strip,
+    .county-records-page .quick-link-strip,
+    .content-page .quick-link-strip,
+    .state-guide-page .quick-link-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .state-money-page .quick-link-strip__label,
+    .county-records-page .quick-link-strip__label,
+    .content-page .quick-link-strip__label,
+    .state-guide-page .quick-link-strip__label {
+        margin-bottom: -2px;
+    }
+
+    .state-money-route-board {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .state-money-route-board .intent-card {
+        padding: 14px;
+    }
+
+    .state-money-route-board .intent-card h2 {
+        max-width: 22ch;
+    }
+
+    .state-money-route-board .intent-card p {
+        display: none;
+    }
+
+    .next-move-board {
+        border-radius: 22px;
+    }
+
+    .next-move-board__header {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 14px;
+    }
+
+    .next-move-board__header h2 {
+        font-size: 1.18rem;
+    }
+
+    .next-move-row {
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 0;
+        padding: 14px;
+    }
+
+    .next-move-row__index {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        font-size: 0.72rem;
+    }
+
+    .next-move-row p {
+        display: none;
+    }
+
+    .next-move-row .button {
+        grid-column: 1 / -1;
+        width: 100%;
+        min-width: 0;
+        margin-top: 2px;
+    }
+
+    .cost-gate-panel {
+        grid-template-columns: 1fr;
+        border-radius: 22px;
+    }
+
+    .cost-gate-panel__range {
+        padding: 14px;
+    }
+
+    .cost-gate-panel__header h2 {
+        font-size: 1.2rem;
+    }
+
+    .cost-gate-panel__header p {
+        display: none;
+    }
+
+    .cost-gate-panel__metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 12px;
+        border-radius: 16px;
+    }
+
+    .cost-gate-panel__metric {
+        min-height: 86px;
+        padding: 11px;
+    }
+
+    .cost-gate-panel__metric strong {
+        margin-top: 10px;
+        font-size: 0.98rem;
+    }
+
+    .cost-gate-panel__sources {
+        border-top: 1px solid rgba(20, 34, 32, 0.1);
+        border-left: 0;
+    }
+
+    .cost-gate-panel__source {
+        padding: 14px;
+    }
+
+    .cost-gate-panel__source p:not(.cost-gate-panel__source-meta) {
+        display: none;
+    }
+
+    .cost-gate-panel__source .button {
+        width: 100%;
+    }
+
+    .state-money-intro-copy {
+        -webkit-line-clamp: 2;
+    }
+
+    .state-money-page .detail-card,
+    .state-money-page .intent-card,
+    .state-money-page .trust-box,
+    .county-records-page .detail-card,
+    .county-records-page .intent-card,
+    .county-records-page .trust-box,
+    .content-page .detail-card,
+    .content-page .intent-card,
+    .content-page .trust-box,
+    .state-guide-page .detail-card,
+    .state-guide-page .intent-card,
+    .state-guide-page .trust-box {
+        border-radius: 20px;
+    }
+
+    .state-money-page .detail-list li,
+    .state-money-page .source-list li,
+    .county-records-page .detail-list li,
+    .county-records-page .source-list li,
+    .content-page .detail-list li,
+    .content-page .source-list li,
+    .state-guide-page .detail-list li,
+    .state-guide-page .source-list li {
+        padding: 10px 12px;
+    }
+
+    .content-page .hero-decision-card p,
+    .state-guide-page .hero-decision-card p,
+    .content-page .micro-tool__picker-note,
+    .content-page .hero-router-intro,
+    .state-guide-page .hero-router-intro,
+    .content-page .micro-tool__result,
+    .state-guide-page .micro-tool__result {
+        display: none;
+    }
+
+    .content-page .micro-tool,
+    .state-guide-page .micro-tool {
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .content-page .micro-tool__panel p,
+    .state-guide-page .micro-tool__panel p {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+
+    .state-money-disclosure {
+        border-radius: 20px;
+    }
+
+    .state-money-disclosure > summary {
+        grid-template-columns: 1fr auto;
+        gap: 8px 12px;
+        padding: 14px;
+    }
+
+    .state-money-disclosure > summary .eyebrow {
+        grid-column: 1 / -1;
+    }
+
+    .state-money-disclosure > summary span:last-child {
+        grid-column: 1 / -1;
+        max-width: 38ch;
+        font-size: 0.92rem;
+    }
+
+    .state-money-disclosure > .detail-grid {
+        padding: 0 14px 14px;
     }
 
     .site-nav a {

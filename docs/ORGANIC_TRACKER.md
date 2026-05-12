@@ -1250,3 +1250,82 @@ Copy this block for the next review:
   wedge work.
 - After deploy, watch whether Georgia and Alabama county pages receive more
   internal navigation from the national transfer-compliance hub.
+## 2026-05-09 (Workflow Cost Reopen Policy)
+
+- Source: internal code and data verification
+- Window: 2026-05-09
+- Fresh-data note: this is a structural indexing-policy entry, not a new
+  Search Console export
+- Site summary:
+  - published county pages: 244
+  - published state money pages: 345
+  - published workflow cost pages reopened by policy: 195
+  - published state guides: 50
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `src/main/java/com/example/septic/service/PublishingPolicyService.java`
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/main/java/com/example/septic/web/StateCostScopeView.java`
+  - `src/main/jte/pages/state-money-page.jte`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - cost pages now use a `Cost scope router` surface with `Clear first`,
+    `Low-end breaker`, `County widener`, and `Stop trusting midpoint when`
+  - replacement, inspection, perc/site-review, pumping, failed-perc,
+    replacement-area, drain-field, and wet-yard pages now receive county
+    workflow synthesis when the state has enough local workflow evidence
+  - `PublishingPolicyService` now exposes `isCostReopenCandidate(...)`
+  - indexability for workflow cost pages now uses source-backed cost decision
+    inputs plus local workflow evidence instead of only a state cost profile
+  - sitemap expectations were flipped for reopened cost URLs such as
+    California replacement, Texas replacement, Ohio inspection, Arizona perc,
+    and Colorado drain-field pages
+  - added a regression test proving every published workflow cost page is a
+    reopen candidate and appears in the sitemap
+
+### QA Check
+
+- Commands:
+  - `./gradlew test --tests com.example.septic.SepticApplicationTests`
+  - `./gradlew test`
+- Result: both passed
+- Reopened workflow cost page count by family:
+  - `septic-replacement-cost`: 50
+  - `perc-test-cost`: 50
+  - `septic-inspection-cost`: 50
+  - `drain-field-replacement-cost`: 14
+  - `failed-perc-test-septic`: 10
+  - `septic-replacement-area`: 10
+  - `wet-yard-over-septic-drain-field`: 10
+  - `septic-pumping-cost`: 1
+
+### Watchlist
+
+- Watch reopened cost cohorts separately from workflow cohorts:
+  - replacement: `/septic-replacement-cost/*`
+  - inspection: `/septic-inspection-cost/*`
+  - perc/site review: `/perc-test-cost/*`
+  - drain field and failure variants:
+    `/drain-field-replacement-cost/*`, `/failed-perc-test-septic/*`,
+    `/septic-replacement-area/*`, `/wet-yard-over-septic-drain-field/*`
+- Good 7 to 30 day signals:
+  - county-modified cost queries begin landing on reopened pages
+  - impressions grow without a simultaneous CTR collapse
+  - reopened pages send internal clicks to county record pages
+  - county and records pages keep stable impressions while cost impressions
+    widen
+- Bad 7 to 30 day signals:
+  - all cost cohorts gain broad impressions but CTR stays flat or falls
+  - records/permit/buyer pages decline at the same time cost pages expand
+  - snippets pull generic planning-range language instead of county file,
+    quote-gate, or cost-scope-router language
+
+### Next Check
+
+- Recheck Search Console after enough post-deploy data is available to compare:
+  - reopened cost pages vs county pages
+  - cost query impressions vs records/permit/buyer impressions
+  - internal navigation from reopened cost pages to county records pages
