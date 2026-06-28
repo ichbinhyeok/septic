@@ -77,7 +77,7 @@
                        href="/septic-records-checklist/${state.slug()}/"
                        data-track-click="nav"
                        data-track-source-context="county_records_back_to_state"
-                       data-track-target-type="state_money_page">Open ${state.stateName()} records checklist</a>
+                       data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                 </div>
                 <p class="lede">${countyPage.introCopy()}</p>
                 @if (!featuredInternalLinks.isEmpty())
@@ -160,13 +160,13 @@
 
                 <article class="intent-card">
                     <span class="intent-card__label">Price only after the file is clearer</span>
-                    <h2>${state.stateName()} records checklist</h2>
+                    <h2>${state.stateName()} records lookup</h2>
                     <p>Use the state page when you still need the broader ${state.stateName()} rule story, sewer-availability context, or county-first workflow before a planning range.</p>
                     <a class="button button--secondary"
                        href="/septic-records-checklist/${state.slug()}/"
                        data-track-click="nav"
                        data-track-source-context="county_records_action_rail_state"
-                       data-track-target-type="state_money_page">Open ${state.stateName()} records checklist</a>
+                       data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                 </article>
             </div>
         </div>
@@ -296,7 +296,7 @@
                        href="/septic-records-checklist/${state.slug()}/"
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_state"
-                       data-track-target-type="state_money_page">Open ${state.stateName()} records checklist</a>
+                       data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                     <a class="button button--secondary"
                        href="/septic-system-cost-calculator/${state.slug()}/"
                        data-track-click="nav"

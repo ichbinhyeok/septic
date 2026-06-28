@@ -34,7 +34,7 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic Transfer Compliance, Records Checklist & Cost Guides by State | SepticPath",
+                "Septic Transfer Compliance, Records Lookup & Cost Guides by State | SepticPath",
                 "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.",
                 canonicalUrl,
                 "index,follow",
@@ -482,8 +482,8 @@ public class SeoService {
         ), lastReviewedAt, preparedBy, reviewedBy)));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
-                crumb("Septic Records Checklist", absoluteUrl("/septic-records-checklist/")),
-                crumb(state.stateName() + " Septic Records Checklist", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
+                crumb("Septic Records Lookup", absoluteUrl("/septic-records-checklist/")),
+                crumb(state.stateName() + " Septic Records Lookup", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
                 crumb(countyPage.countyName() + " Septic Records", canonicalUrl)
         ))));
         if (countyPage.faqBlocks() != null && !countyPage.faqBlocks().isEmpty()) {
@@ -501,8 +501,8 @@ public class SeoService {
                 "index,follow",
                 breadcrumbLinks(
                         crumb("Home", absoluteUrl("/")),
-                        crumb("Septic Records Checklist", absoluteUrl("/septic-records-checklist/")),
-                        crumb(state.stateName() + " Septic Records Checklist", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
+                        crumb("Septic Records Lookup", absoluteUrl("/septic-records-checklist/")),
+                        crumb(state.stateName() + " Septic Records Lookup", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
                         crumb(countyPage.countyName() + " Septic Records", canonicalUrl)
                 ),
                 jsonLdBlocks

@@ -396,7 +396,7 @@ public class SiteController {
                 "Records packet",
                 "Public noindex handoff for Indiana file checks",
                 "This packet is meant to shorten the first buyer or seller explanation when the next real move is county records, existing permits, or local-board confirmation.",
-                "The packet should move the recipient into the Indiana records checklist first, then into the county page or official file source that matches the parcel.",
+                "The packet should move the recipient into the Indiana records lookup first, then into the county page or official file source that matches the parcel.",
                 "Indiana septic records and county file check",
                 """
 Hi,
@@ -404,14 +404,14 @@ Hi,
 Before we rely on the current septic story, start with this Indiana records packet:
 %s
 
-Open the Indiana records checklist first. If the parcel is already clearly tied to a county health office, use one of the linked county pages right after that.
+Open the Indiana records lookup first. If the parcel is already clearly tied to a county health office, use one of the linked county pages right after that.
 
 The goal is to confirm the file, the local office, and any sewer-availability note before we treat a quote or seller summary as the real answer.
 """.formatted(packetUrl),
                 new PageLink(
                         recordsPage.title(),
                         recordsPage.path(state.slug()),
-                        "Start with the Indiana records checklist before you price the downside. That page is the pinned first move because Indiana's county-first file path changes the next action faster than a broad guide."
+                        "Start with the Indiana records lookup before you price the downside. That page is the pinned first move because Indiana's county-first file path changes the next action faster than a broad guide."
                 ),
                 List.of(
                         new PageLink(
@@ -440,7 +440,7 @@ The goal is to confirm the file, the local office, and any sewer-availability no
                 state.recordsToRequest(),
                 List.of(
                         "Confirm the county before you send this packet so the recipient can move into the right county page fast.",
-                        "Send the Indiana records checklist first, and use the county page only when the parcel already has a clear county office.",
+                        "Send the Indiana records lookup first, and use the county page only when the parcel already has a clear county office.",
                         "Keep the estimator and quote links out of the first send unless the file is already strong enough to trust."
                 )
         );
@@ -471,7 +471,7 @@ The goal is to confirm the file, the local office, and any sewer-availability no
                 "Buyer diligence packet",
                 "Public noindex handoff for New York septic deals",
                 "This packet is for buyer-side teams who keep repeating the same file and waiver explanation in New York transactions.",
-                "The packet should move the recipient into the New York buyer workflow first, then into the New York records checklist and official file sources.",
+                "The packet should move the recipient into the New York buyer workflow first, then into the New York records lookup and official file sources.",
                 "New York septic due diligence before closing",
                 """
 Hi,
@@ -479,7 +479,7 @@ Hi,
 Start with this New York septic buyer diligence packet:
 %s
 
-Open the New York buyer workflow first. It then hands off into the records checklist and the official file path that matters for Appendix 75-A, waiver history, and county health review.
+Open the New York buyer workflow first. It then hands off into the records lookup and the official file path that matters for Appendix 75-A, waiver history, and county health review.
 
 The goal is to settle the file and local authority story before we treat the septic issue like a simple inspection line item.
 """.formatted(packetUrl),
@@ -492,7 +492,7 @@ The goal is to settle the file and local authority story before we treat the sep
                         new PageLink(
                                 recordsPage.title(),
                                 recordsPage.path(state.slug()),
-                                "Use the New York records checklist right after the buyer page when the next move is pulling the Appendix 75-A file, waiver history, or county health record."
+                                "Use the New York records lookup right after the buyer page when the next move is pulling the Appendix 75-A file, waiver history, or county health record."
                         ),
                         new PageLink(
                                 "New York Septic Guide",
@@ -516,7 +516,7 @@ The goal is to settle the file and local authority story before we treat the sep
                 state.recordsToRequest(),
                 List.of(
                         "Use the buyer packet first when the main problem is deal diligence, not a stand-alone records request.",
-                        "Expect the next internal click to be the New York records checklist, not the broad state guide.",
+                        "Expect the next internal click to be the New York records lookup, not the broad state guide.",
                         "Do not lead with estimate ranges until the buyer understands the file quality and waiver story."
                 )
         );
@@ -789,6 +789,17 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                .ifPresentOrElse(
+                        recordsPage -> {
+                            model.addAttribute("stateRecordsLookupPath", recordsPage.path(state.slug()));
+                            model.addAttribute("stateRecordsLookupTitle", recordsPage.title());
+                        },
+                        () -> {
+                            model.addAttribute("stateRecordsLookupPath", null);
+                            model.addAttribute("stateRecordsLookupTitle", "");
+                        }
+                );
         model.addAttribute("guideCountyWorkflowSynthesis", guideCountyWorkflowSynthesis);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
@@ -1320,7 +1331,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private String stateGuideHeroWorkflowLabel(StateMoneyPage page) {
         return switch (page.contentSlug()) {
             case "septic-permit-process" -> "Open permit workflow";
-            case "septic-records-checklist" -> "Open records checklist";
+            case "septic-records-checklist" -> "Open records lookup";
             case "buying-a-house-with-a-septic-system" -> "Open buyer workflow";
             case "perc-test-cost" -> "Open perc page";
             case "failed-perc-test-septic" -> "Open failed-perc page";
@@ -3527,12 +3538,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                 && researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug()).isPresent()) {
             return new StateMoneyPrimaryAction(
                     "Pull the file before pricing buyer risk",
-                    "Open the " + state.stateName() + " records checklist",
+                    "Open the " + state.stateName() + " records lookup",
                     countyAwareNote(
                             state.stateName() + " buyer risk gets concrete once the permit file, as-built, and local record path are in hand.",
                             countyWorkflowSynthesis
                     ),
-                    "Open " + state.stateName() + " records checklist",
+                    "Open " + state.stateName() + " records lookup",
                     "/septic-records-checklist/" + state.slug() + "/",
                     "state_money_primary_records_page",
                     "state_money_page",

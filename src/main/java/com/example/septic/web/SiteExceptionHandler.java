@@ -75,7 +75,7 @@ public class SiteExceptionHandler {
         }
 
         if (containsAny(haystack, "record", "file", "as-built")) {
-            addLink(links, new PageLink("Septic Records Checklist", "/septic-records-checklist/", "Use the records path when you need permits, as-builts, or lookup steps first."));
+            addLink(links, new PageLink("Septic Records Lookup", "/septic-records-checklist/", "Use the records path when you need permits, as-builts, or lookup steps first."));
         }
 
         if (containsAny(haystack, "permit", "approval")) {

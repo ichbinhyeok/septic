@@ -118,6 +118,14 @@ Rules:
     lookup language to Tennessee copy and FAQ
   - changed records CTA labels toward `records lookup` and county record lookup
     paths while keeping existing URLs stable
+  - expanded the same lookup-intent framing across all 50 state records pages
+    by moving titles toward `Records Checklist and Permit Lookup`, metadata
+    toward `records lookup and permit search`, and body/FAQ copy toward permit
+    search, county file, and official office routing
+  - added an explicit state-guide records shortcut such as `Open Alabama records
+    lookup` inside the state calculator bridge so high-impression state guides
+    can push searchers into the records path before the calculator or quote
+    flow
 
 ### Insights
 
@@ -139,6 +147,8 @@ Rules:
   - `http://127.0.0.1:8080/septic-records-checklist/`
   - `http://127.0.0.1:8080/septic-records-checklist/tennessee/`
   - `http://127.0.0.1:8080/`
+- Follow-up full-suite check after the 50-state records and Alabama shortcut
+  expansion also passed with `./gradlew.bat test`.
 
 ### Next Actions
 
@@ -149,6 +159,8 @@ Rules:
     variants
   - whether county record lookup CTA clicks increase from Tennessee and other
     records pages
+  - whether Alabama guide visitors use the records lookup shortcut before
+    returning to estimate or quote flow
 
 ## 2026-04-23
 

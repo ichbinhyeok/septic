@@ -17,6 +17,8 @@
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
+@param String stateRecordsLookupPath = null
+@param String stateRecordsLookupTitle = ""
 @param com.example.septic.web.StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis = null
 @param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
@@ -68,6 +70,16 @@
                             </div>
                         </li>
                     </ol>
+                    @if (stateRecordsLookupPath != null)
+                        <div class="quick-link-strip" aria-label="${state.stateName()} records lookup shortcut">
+                            <span class="quick-link-strip__label">Records lookup</span>
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="${stateRecordsLookupPath}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_calculator_bridge_records_lookup"
+                               data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
+                        </div>
+                    @endif
                 </div>
                 @if (!featuredStateWorkflowLinks.isEmpty())
                     <p class="hero-router-intro">Pick the first move that matches the blocker. Use the narrower workflow or file path first, and estimate only after the local story is clear enough to price. @if (guideCountyWorkflowSynthesis != null) ${guideCountyWorkflowSynthesis.intro()} @endif</p>
