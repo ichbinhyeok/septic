@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28",
+  "generatedAt": "2026-06-29",
   "pages": [
     {
       "slug": "septic-system-cost-calculator",
@@ -687,7 +687,12 @@
         "/septic-permit-process/",
         "/buying-a-house-with-a-septic-system/",
         "/septic-system-cost-calculator/",
-        "/septic-permit-lookup/"
+        "/septic-permit-lookup/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "publishStatus": "published"
     },
@@ -754,7 +759,12 @@
         "/septic-records-checklist/",
         "/septic-permit-process/",
         "/septic-inspection-cost/",
-        "/septic-permit-lookup/"
+        "/septic-permit-lookup/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "publishStatus": "published"
     },
@@ -881,7 +891,12 @@
         "/septic-records-checklist/texas/bastrop-county/",
         "/septic-records-checklist/indiana/tippecanoe-county/",
         "/septic-records-checklist/indiana/bartholomew-county/",
-        "/septic-records-checklist/indiana/monroe-county/"
+        "/septic-records-checklist/indiana/monroe-county/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "publishStatus": "published"
     },
@@ -1022,7 +1037,12 @@
         "/septic-inspection-cost/",
         "/septic-permit-process/",
         "/septic-replacement-cost/",
-        "/perc-test-cost/"
+        "/perc-test-cost/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "publishStatus": "published"
     },
@@ -1093,7 +1113,12 @@
         "/septic-records-checklist/alabama/madison-county/",
         "/septic-records-checklist/georgia/dekalb-county/",
         "/septic-system-cost-calculator/",
-        "/septic-permit-lookup/"
+        "/septic-permit-lookup/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "publishStatus": "published"
     },
@@ -1171,7 +1196,405 @@
         "/septic-records-checklist/north-carolina/iredell-county/",
         "/septic-records-checklist/texas/comal-county/",
         "/septic-records-checklist/indiana/grant-county/",
+        "/septic-system-cost-calculator/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-records-by-county",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic records by county",
+      "secondaryKeywords": [
+        "county septic records",
+        "county septic permit records",
+        "septic records lookup county",
+        "septic permit records by county",
+        "county health department septic records"
+      ],
+      "title": "Septic Records by County",
+      "metaDescription": "Find septic records by county with state and county lookup routes for permits, as-builts, final approvals, repair files, and inspection letters.",
+      "introCopy": "Septic records are usually county-first once the property location is known. The useful question is not whether a septic record exists somewhere online; it is which county health, environmental health, OSSF, or local permitting office owns the permit copy, as-built, final approval, repair file, or inspection letter.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, owners, agents, and contractors who know the county and need the actual local file path before trusting a seller story, repair quote, or closing timeline.",
+      "deepDiveParagraphs": [
+        "Start with the county when the county is known because many septic records are filed under local health departments, environmental health divisions, or county permitting systems rather than a clean statewide portal.",
+        "A county records page should identify the file owner, the first artifact to request, and the risk that makes the record matter. That can be a permit copy, as-built, operation permit, final approval, inspection letter, repair file, complaint trail, or bedroom-use record.",
+        "If the county page is not live yet, use the state records page to identify whether the state, contract county, local board of health, or delegated permitting authority is the right first call."
+      ],
+      "fitBullets": [
+        "You already know the county and need the septic file owner.",
+        "A broad state search did not show the permit, as-built, final approval, or repair record.",
+        "A buyer, lender, agent, or contractor needs county-backed evidence before the price conversation."
+      ],
+      "decisionSteps": [
+        "Open the state records page if you do not know whether the state or county owns the file.",
+        "Open the county lookup page when the county is known and request the first artifact named there.",
+        "If the county search shows no result, retry with parcel ID, owner name, legal description, subdivision, or lot number before treating the record as missing.",
+        "Move into estimates or contractor calls only after the county file, closeout status, and repair trail are clear enough to support the story."
+      ],
+      "lowEndBreakers": [
+        "A county search with no result can still miss older, scanned, owner-name, or legal-description files.",
+        "A visible permit without a final approval, as-built, operation permit, or inspection letter can make the low-end quote unsafe.",
+        "A county repair or complaint file can change the project from routine diligence to a replacement or redesign problem."
+      ],
+      "quotePrepChecklist": [
+        "County name, property address, parcel or PIN, owner name, subdivision, lot number, and any permit number.",
+        "The artifact needed: permit copy, as-built, final approval, operation permit, inspection letter, repair record, complaint history, or bedroom-use record.",
+        "The reason for the request: sale, repair, addition, replacement, new install, lender review, or buyer due diligence."
+      ],
+      "driverBullets": [
+        "County-first lookup turns generic septic research into a real file request.",
+        "The first artifact matters because a permit copy, as-built, final approval, and inspection letter answer different questions.",
+        "A county repair or closeout gap can change the estimate before any contractor sees the site."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Are septic records usually held by the county?",
+          "answer": "Often yes once the county is known, but some states keep central searches, regional offices, contract-county routing, or delegated local authority. Use the state page when ownership is unclear."
+        },
+        {
+          "question": "What should I ask the county for first?",
+          "answer": "Ask for the permit copy, as-built or site sketch, final approval or operation permit, and any repair or inspection letter tied to the property."
+        },
+        {
+          "question": "What if the county says no record was found?",
+          "answer": "Retry with parcel ID, owner name, legal description, subdivision, lot number, or older scanned records before assuming the system is undocumented."
+        }
+      ],
+      "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-permit-lookup/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-records-checklist/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-records-checklist/texas/",
+        "/septic-records-checklist/alabama/",
+        "/septic-records-checklist/indiana/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-records-checklist/indiana/tippecanoe-county/",
         "/septic-system-cost-calculator/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-permit-search-by-address",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic permit search by address",
+      "secondaryKeywords": [
+        "septic permit lookup by address",
+        "septic system permit search by address",
+        "septic tank permit search by address",
+        "septic records by address",
+        "septic permit records"
+      ],
+      "title": "Septic Permit Search by Address",
+      "metaDescription": "Search septic permits by address by using state portals, county health records, parcel IDs, owner names, and the right permit-copy request path.",
+      "introCopy": "A septic permit search by address is strongest when the address is only the first clue. Many county and state systems also need parcel ID, owner name, legal description, subdivision, lot number, or permit number before the septic permit, as-built, repair file, or final approval appears.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for searchers who have a street address and need to know whether the septic permit file supports a purchase, repair, addition, replacement, or quote conversation.",
+      "deepDiveParagraphs": [
+        "Start with the address, but do not stop there. A failed address search can mean the file is indexed under parcel number, owner name, legal description, a scanned document system, or an older permit archive.",
+        "The right search path depends on file ownership. Tennessee can route through TDEC or contract counties, Texas can route through OSSF local permitting authorities, North Carolina often turns on county environmental health records, Alabama often routes through county health departments, and Indiana often routes through local health departments.",
+        "A permit result without closeout is not the same as a safe record. Look for final approval, operation approval, as-built, inspection letter, repair history, and any complaint or violation trail before using the record to support a price."
+      ],
+      "fitBullets": [
+        "You have a property address but not the septic permit number.",
+        "The online search did not find a permit even though the property appears to use septic.",
+        "The address result appears incomplete and you need the next search clue."
+      ],
+      "decisionSteps": [
+        "Search by address first if the state or county portal supports it.",
+        "If the address fails, retry with parcel ID, owner name, subdivision, lot number, legal description, or permit number.",
+        "Confirm the actual artifact returned: permit, as-built, final approval, operation permit, repair file, or inspection letter.",
+        "Use the county or state workflow page before pricing if the result does not explain closeout, repair status, or bedroom use."
+      ],
+      "lowEndBreakers": [
+        "A no-result address search can hide an older record rather than prove no permit exists.",
+        "A permit without final approval or as-built can still leave the project too uncertain for a low quote.",
+        "Address changes, rural routes, subdivisions, and owner-name indexing can make the first search result misleading."
+      ],
+      "quotePrepChecklist": [
+        "Street address, county, parcel ID or PIN, current and prior owner name, subdivision, lot number, and any permit number.",
+        "Screenshots or notes from the search attempt, including the exact address format used.",
+        "The reason for the search: buyer diligence, lender request, repair, addition, replacement, new install, or sale."
+      ],
+      "driverBullets": [
+        "Address search is a starting tactic, not proof that the file exists or does not exist.",
+        "Parcel ID and owner-name searches often recover records that address-only searches miss.",
+        "The returned artifact must answer closeout and repair status before it can support pricing."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Can I search septic permits by address?",
+          "answer": "Often yes, but many offices also require parcel ID, owner name, legal description, subdivision, lot number, or permit number when the address search is incomplete."
+        },
+        {
+          "question": "What does it mean if an address search finds nothing?",
+          "answer": "It does not automatically mean no septic permit exists. The record may be older, scanned, filed under a prior owner, or indexed under parcel or legal description."
+        },
+        {
+          "question": "What should I check after finding a permit?",
+          "answer": "Look for final approval, as-built, operation permit, repair history, inspection letter, and any complaint or violation notes."
+        }
+      ],
+      "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-lookup/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-records-checklist/",
+        "/septic-records-checklist/alabama/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-system-cost-calculator/?projectType=buying_home"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-permit-records-request",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic permit records request",
+      "secondaryKeywords": [
+        "request septic records",
+        "septic permit copy request",
+        "septic records request form",
+        "septic permit records request form",
+        "request septic as built"
+      ],
+      "title": "Septic Permit Records Request",
+      "metaDescription": "Request septic permit records with the right county or state office, address clues, parcel details, and artifact list before relying on quotes or sale files.",
+      "introCopy": "A septic permit records request should be specific enough that the office can pull the right file on the first pass. The request should name the property, county, parcel clues, and exact artifact needed instead of asking generically whether a septic record exists.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, owners, agents, and contractors who need to email, submit, or call in a septic records request to a county, state, or local health office.",
+      "deepDiveParagraphs": [
+        "The best records request is artifact-led. Ask for the permit copy, as-built, final approval, operation permit, inspection letter, repair permit, complaint history, or bedroom-use record depending on the decision you need to make.",
+        "The office may need more than an address. Include parcel ID, owner name, legal description, subdivision, lot number, permit number, and the reason for the request when available.",
+        "If the first response is no record found, ask whether older scanned files, prior owner names, legal-description searches, regional offices, contract counties, or delegated local authorities need to be checked."
+      ],
+      "fitBullets": [
+        "You need to submit a records request rather than use a public search portal.",
+        "A buyer, lender, agent, or contractor needs a permit copy, as-built, final approval, or inspection letter.",
+        "The property story is too thin to price without the actual file."
+      ],
+      "decisionSteps": [
+        "Identify the state, county, and likely office owner before sending the request.",
+        "List the exact artifact needed and why it matters for the sale, repair, addition, replacement, or permit path.",
+        "Include address, parcel ID, owner name, legal description, subdivision, lot number, and any permit number.",
+        "If the office cannot find the file, ask which alternate search key or older archive path should be checked next."
+      ],
+      "lowEndBreakers": [
+        "A vague request can return a partial answer that misses the artifact actually needed.",
+        "A permit copy without final approval, as-built, or repair history may not settle the risk.",
+        "If the office cannot identify the file owner, the property is not ready for a tight quote or closing-safe story."
+      ],
+      "quotePrepChecklist": [
+        "Property identifiers: address, county, parcel ID, owner name, legal description, subdivision, lot number, permit number.",
+        "Artifact list: permit copy, as-built, final approval, operation permit, inspection letter, repair permit, complaint history, bedroom-use record.",
+        "Use case: sale, buyer diligence, lender request, repair, addition, replacement, new install, or quote validation."
+      ],
+      "driverBullets": [
+        "Specific records requests recover better files than generic septic questions.",
+        "The artifact requested should match the decision: sale, repair, addition, replacement, or lender review.",
+        "A no-record response still needs alternate search keys before it becomes a real risk conclusion."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What should I include in a septic records request?",
+          "answer": "Include address, county, parcel ID, owner name, legal description, subdivision, lot number, permit number if known, and the exact artifact you need."
+        },
+        {
+          "question": "Which septic records should I ask for?",
+          "answer": "Ask for the permit copy, as-built, final approval or operation permit, inspection letter, repair file, complaint history, and any bedroom-use record relevant to the property."
+        },
+        {
+          "question": "What if the office cannot find the record?",
+          "answer": "Ask whether older scanned records, prior owner names, legal descriptions, parcel IDs, regional offices, or delegated county offices need to be checked."
+        }
+      ],
+      "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-lookup/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-records-checklist/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-system-cost-calculator/?projectType=buying_home"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-as-built-records",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic as built records",
+      "secondaryKeywords": [
+        "septic as-built drawing",
+        "septic as built lookup",
+        "septic system as built",
+        "septic site sketch",
+        "septic layout records"
+      ],
+      "title": "Septic As-Built Records",
+      "metaDescription": "Find septic as-built records, site sketches, layouts, and final approval files before estimating repairs, additions, replacements, or buyer risk.",
+      "introCopy": "Septic as-built records matter because they show where the system was actually installed, not just what someone remembers. The as-built, site sketch, layout, final approval, or operation record can change buyer diligence, addition feasibility, drain field replacement scope, and repair pricing.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "drainfield_replacement",
+      "targetReader": "Best for buyers, owners, agents, builders, and contractors who need the system layout or installation record before trusting a repair, addition, replacement, or sale story.",
+      "deepDiveParagraphs": [
+        "An as-built can show tank location, field location, replacement area, reserve area, design flow, bedroom count, setbacks, or system type. Those details often matter more than a generic average cost.",
+        "Some offices call the artifact an as-built, site sketch, record drawing, layout, final approval, operation permit, installation certificate, or approved plan. Search and request using all plausible terms.",
+        "If the as-built is missing, the next step may be a file request, locate visit, inspection, or design review before a contractor can safely compress the project into one number."
+      ],
+      "fitBullets": [
+        "You need to know where the tank, field, or replacement area is located.",
+        "A buyer, builder, or contractor is asking whether the current layout supports an addition, repair, or sale.",
+        "The permit record exists but does not show the installed system layout."
+      ],
+      "decisionSteps": [
+        "Ask the state or county file owner for the as-built, site sketch, approved plan, final approval, or operation permit.",
+        "Check whether the file identifies tank, field, reserve area, bedroom count, and system type.",
+        "If no as-built exists, treat the estimate as wider until the system is located or the office confirms what file can replace it.",
+        "Use the drain field or replacement estimator only after layout risk is clear enough to model."
+      ],
+      "lowEndBreakers": [
+        "A missing as-built can turn a clean repair quote into a locate, design, or replacement-area problem.",
+        "A layout that conflicts with an addition, driveway, pool, or reserve area can widen the project.",
+        "A permit copy without the installed layout may not answer the question the buyer or contractor is actually asking."
+      ],
+      "quotePrepChecklist": [
+        "Permit copy, as-built, site sketch, approved plan, final approval, operation permit, installation certificate, and repair history.",
+        "Parcel ID, address, owner name, subdivision, lot number, and any planned addition, driveway, pool, or grading work.",
+        "Photos or notes showing suspected tank, field, cleanout, riser, or wet-area locations."
+      ],
+      "driverBullets": [
+        "As-built records convert a vague septic story into a physical layout.",
+        "Layout risk can matter more than age when repairs, additions, or field replacement are on the table.",
+        "The absence of an as-built is itself a pricing and due-diligence signal."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is a septic as-built?",
+          "answer": "It is a record showing how the septic system was actually installed, often including tank, field, layout, design, or approval details."
+        },
+        {
+          "question": "What if the county does not call it an as-built?",
+          "answer": "Ask for a site sketch, record drawing, approved plan, layout, final approval, operation permit, or installation certificate."
+        },
+        {
+          "question": "Why does an as-built matter for pricing?",
+          "answer": "Because tank, field, reserve area, setbacks, and system type can change repair scope, addition feasibility, and replacement cost before a contractor quotes."
+        }
+      ],
+      "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-permit-lookup/",
+        "/drain-field-replacement-cost/",
+        "/septic-replacement-area/",
+        "/septic-records-checklist/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/drain-field-estimator/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-inspection-letter",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic inspection letter",
+      "secondaryKeywords": [
+        "septic inspection letter for closing",
+        "septic letter for mortgage",
+        "septic system inspection letter",
+        "septic records letter",
+        "septic permit inspection letter"
+      ],
+      "title": "Septic Inspection Letter",
+      "metaDescription": "Understand when a septic inspection letter, permit file, or county records response is needed for closings, lender review, buyer diligence, and repairs.",
+      "introCopy": "A septic inspection letter is not the same thing as a generic records lookup. In some counties, a records pull can show what is on file, while an inspection letter, lender letter, or due-diligence response may require a separate request, inspection, or office workflow.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, sellers, agents, and lenders trying to understand whether a septic records search is enough or whether a closing-safe inspection letter is required.",
+      "deepDiveParagraphs": [
+        "The distinction matters most in sale and loan workflows. A permit copy may prove a system was permitted, but it may not say whether the system is acceptable for a current lender, bedroom count, transfer, or due-diligence file.",
+        "Some counties separate records requests from inspection-letter requests. That means a search result can be useful but still not satisfy the closing, buyer, or lender question.",
+        "Before assuming the low end, confirm whether the office can issue the letter, whether a field inspection is needed, and whether repair, bedroom-use, or missing-file issues block the clean letter."
+      ],
+      "fitBullets": [
+        "A lender, buyer, agent, or closing file asks for a septic letter.",
+        "You have a permit record but do not know whether it satisfies the sale or loan workflow.",
+        "The county separates records lookup from inspection-letter or due-diligence requests."
+      ],
+      "decisionSteps": [
+        "Pull the permit file and existing records first so the inspection-letter request starts with the best available file.",
+        "Ask the office whether the needed letter is records-only, inspection-based, lender-specific, or tied to transfer rules.",
+        "Confirm whether bedroom count, repair history, complaints, missing as-built, or lack of final approval can block the letter.",
+        "Use buyer or inspection cost estimates only after the letter path is clear."
+      ],
+      "lowEndBreakers": [
+        "A permit copy may not satisfy a closing or lender letter request.",
+        "A missing final approval, as-built, repair record, or bedroom mismatch can block a clean letter.",
+        "If the office requires a field inspection, the timeline and negotiation leverage can change."
+      ],
+      "quotePrepChecklist": [
+        "Permit copy, as-built, final approval, repair record, pump or maintenance history, and any prior inspection letter.",
+        "Closing or lender instructions showing exactly what the letter must state.",
+        "Address, parcel ID, owner name, bedroom count, and reason for the letter request."
+      ],
+      "driverBullets": [
+        "Inspection-letter intent is usually closer to a transaction than a generic records search.",
+        "Records lookup and letter issuance can be different workflows.",
+        "A letter request can expose repair, bedroom, closeout, or missing-file risk before pricing."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is a septic inspection letter the same as a permit record?",
+          "answer": "No. A permit record may show what is on file, while an inspection letter may require a separate office response, inspection, or lender-specific workflow."
+        },
+        {
+          "question": "When is a septic inspection letter needed?",
+          "answer": "It often appears in sale, mortgage, lender, buyer-diligence, or transfer workflows when a generic permit copy is not enough."
+        },
+        {
+          "question": "What can block a clean septic letter?",
+          "answer": "Missing final approval, missing as-built, repair history, bedroom mismatch, complaints, or a required field inspection can all change the letter path."
+        }
+      ],
+      "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-records-request/",
+        "/septic-permit-search-by-address/",
+        "/septic-as-built-records/",
+        "/septic-inspection-cost/",
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/tennessee/hamilton-county/",
+        "/septic-records-checklist/",
+        "/septic-system-cost-calculator/?projectType=buying_home"
       ],
       "publishStatus": "published"
     }

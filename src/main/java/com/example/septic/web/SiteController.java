@@ -62,7 +62,21 @@ public class SiteController {
     private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "AL", "IN", "GA");
     private static final String PERMIT_LOOKUP_SLUG = "septic-permit-lookup";
     private static final String RECORDS_ONLINE_SLUG = "how-to-find-septic-records-online";
+    private static final String RECORDS_BY_COUNTY_SLUG = "septic-records-by-county";
+    private static final String PERMIT_SEARCH_BY_ADDRESS_SLUG = "septic-permit-search-by-address";
+    private static final String PERMIT_RECORDS_REQUEST_SLUG = "septic-permit-records-request";
+    private static final String AS_BUILT_RECORDS_SLUG = "septic-as-built-records";
+    private static final String INSPECTION_LETTER_SLUG = "septic-inspection-letter";
     private static final String TRANSFER_COMPLIANCE_SLUG = "septic-transfer-compliance";
+    private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
+            PERMIT_LOOKUP_SLUG,
+            RECORDS_ONLINE_SLUG,
+            RECORDS_BY_COUNTY_SLUG,
+            PERMIT_SEARCH_BY_ADDRESS_SLUG,
+            PERMIT_RECORDS_REQUEST_SLUG,
+            AS_BUILT_RECORDS_SLUG,
+            INSPECTION_LETTER_SLUG
+    );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
             "septic-permit-process"
@@ -863,6 +877,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/septic-inspection-cost", "/septic-inspection-cost/",
             "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",
             "/how-to-find-septic-records-online", "/how-to-find-septic-records-online/",
+            "/septic-records-by-county", "/septic-records-by-county/",
+            "/septic-permit-search-by-address", "/septic-permit-search-by-address/",
+            "/septic-permit-records-request", "/septic-permit-records-request/",
+            "/septic-as-built-records", "/septic-as-built-records/",
+            "/septic-inspection-letter", "/septic-inspection-letter/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
             "/septic-records-checklist", "/septic-records-checklist/",
@@ -1571,6 +1590,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Use the inspection-risk estimate after you know what the file is missing.";
             case "buying-a-house-with-a-septic-system" -> "Open a state buyer page first.";
             case RECORDS_ONLINE_SLUG -> "Open the real records path before pricing the septic story.";
+            case RECORDS_BY_COUNTY_SLUG -> "Open the county records path first.";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Turn the address search into a real file path.";
+            case PERMIT_RECORDS_REQUEST_SLUG -> "Send the records request before you trust the price story.";
+            case AS_BUILT_RECORDS_SLUG -> "Find the installed layout before you estimate the field story.";
+            case INSPECTION_LETTER_SLUG -> "Separate the letter workflow from a generic permit copy.";
             case PERMIT_LOOKUP_SLUG -> "Open a state permit lookup path first.";
             case "septic-permit-process" -> "Open a state permit page first.";
             case "septic-records-checklist" -> "Open a state records lookup first.";
@@ -1592,6 +1616,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Run an inspection-scope estimate";
             case "buying-a-house-with-a-septic-system" -> "Open state buyer pages";
             case RECORDS_ONLINE_SLUG -> "Open records lookup pages";
+            case RECORDS_BY_COUNTY_SLUG -> "Open county records pages";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Open address lookup routes";
+            case PERMIT_RECORDS_REQUEST_SLUG -> "Open records request routes";
+            case AS_BUILT_RECORDS_SLUG -> "Open as-built record routes";
+            case INSPECTION_LETTER_SLUG -> "Open inspection-letter routes";
             case PERMIT_LOOKUP_SLUG -> "Open state permit lookup pages";
             case "septic-permit-process" -> "Open state permit pages";
             case "septic-records-checklist" -> "Open state records lookup pages";
@@ -1613,6 +1642,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Pull the permit file, as-built, pumping history, and O&M records first, then use the estimate to judge whether the visit is routine diligence or leverage for a bigger next step.";
             case "buying-a-house-with-a-septic-system" -> "Transfer rules, county records, inspection triggers, and bedroom-use mismatches vary enough that the state-specific page is the faster first move.";
             case RECORDS_ONLINE_SLUG -> "Start with the state or county lookup route that can name the actual file owner, then use the estimate after the permit, as-built, or repair record path is clearer.";
+            case RECORDS_BY_COUNTY_SLUG -> "The county page is the fast path when the county is already known. Use it to identify the file owner and first artifact before opening the estimate.";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Search by address first, then retry with parcel, owner, legal description, subdivision, or permit number before treating a missing result as real.";
+            case PERMIT_RECORDS_REQUEST_SLUG -> "The request should name the exact artifact needed, because permit copy, as-built, final approval, repair file, and inspection letter answer different questions.";
+            case AS_BUILT_RECORDS_SLUG -> "Use the layout record to decide whether tank, field, reserve area, or addition risk is changing the scope before you estimate.";
+            case INSPECTION_LETTER_SLUG -> "A permit copy may not satisfy a closing or lender letter, so resolve the letter path before the price conversation carries weight.";
             case PERMIT_LOOKUP_SLUG -> "The useful lookup is usually state plus county: open the state records or permit path first, then follow the county file route when the state page exposes one.";
             case "septic-permit-process" -> "The first real answer is usually which office, file, or site-review step controls this property, so start with the state-specific permit page before you model the cost.";
             case "septic-records-checklist" -> "County records lookup, permit search, and as-built availability vary enough that the state-specific records page is the faster first move.";
@@ -1645,6 +1679,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "failed-perc-test-septic" -> "Run a failed-perc estimate";
             case "buying-a-house-with-a-septic-system" -> "Run a buyer due-diligence estimate";
             case RECORDS_ONLINE_SLUG -> "Run a records-aware estimate";
+            case RECORDS_BY_COUNTY_SLUG -> "Run a county-aware estimate";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Run an address-lookup estimate";
+            case PERMIT_RECORDS_REQUEST_SLUG -> "Run a records-request estimate";
+            case AS_BUILT_RECORDS_SLUG -> "Run a layout-risk estimate";
+            case INSPECTION_LETTER_SLUG -> "Run a letter-aware estimate";
             case PERMIT_LOOKUP_SLUG -> "Run a lookup-aware estimate";
             case "septic-permit-process" -> "Run a permit-path estimate";
             case "septic-records-checklist" -> "Run a records-aware estimate";
@@ -1663,6 +1702,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "failed-perc-test-septic" -> "Use the estimate after you know whether the live issue is retesting, reserve area, permit routing, or a broader redesign path.";
             case "buying-a-house-with-a-septic-system" -> "Pull the permit file, as-built, pumping history, and bedroom-use story first, then use the estimate to judge whether the deal risk is routine diligence, a credit fight, or a wider replacement problem.";
             case RECORDS_ONLINE_SLUG -> "Use the estimate after the lookup shows whether the missing artifact is a routine request, a county routing problem, or a record gap that widens the downside.";
+            case RECORDS_BY_COUNTY_SLUG -> "Use the estimate after the county file owner, first artifact, and repair or closeout trail are clear enough to support a price story.";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Use the estimate after the address search has been checked against parcel, owner, legal-description, or permit-number search paths.";
+            case PERMIT_RECORDS_REQUEST_SLUG -> "Use the estimate after the records request shows whether the missing artifact is routine, delayed, or a real file gap.";
+            case AS_BUILT_RECORDS_SLUG -> "Use the estimate after the as-built or replacement layout risk is clear enough to separate locate work from design or replacement scope.";
+            case INSPECTION_LETTER_SLUG -> "Use the estimate after the office confirms whether the letter is records-only, inspection-based, lender-specific, or blocked by file issues.";
             case PERMIT_LOOKUP_SLUG -> "Use the estimate after the lookup tells you whether the file gap is routine, a county routing problem, or a repair-permit risk.";
             case "septic-permit-process" -> "Use the estimate after you know whether the real blocker is authority routing, project classification, or site review.";
             case "septic-records-checklist" -> "Use the estimate after you know which missing record is actually changing the downside.";
@@ -1696,7 +1740,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private boolean isPermitLookupHub(ContentPage contentPage) {
-        return PERMIT_LOOKUP_SLUG.equals(contentPage.slug()) || RECORDS_ONLINE_SLUG.equals(contentPage.slug());
+        return RECORDS_INTENT_HUB_SLUGS.contains(contentPage.slug());
     }
 
     private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {
@@ -3258,7 +3302,8 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private int observedIntentSignalBoost(String contentSlug, String stateCode, String pageContentSlug) {
         return switch (contentSlug) {
-            case PERMIT_LOOKUP_SLUG -> switch (pageContentSlug) {
+            case PERMIT_LOOKUP_SLUG, RECORDS_ONLINE_SLUG, RECORDS_BY_COUNTY_SLUG, PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG, AS_BUILT_RECORDS_SLUG, INSPECTION_LETTER_SLUG -> switch (pageContentSlug) {
                 case "septic-records-checklist" -> switch (stateCode) {
                     case "TN" -> 34;
                     case "NC", "TX" -> 20;
@@ -4135,6 +4180,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (isCountyRecordsPath(normalizedPath)) {
             score += switch (sourceSlug) {
                 case RECORDS_ONLINE_SLUG -> 48;
+                case RECORDS_BY_COUNTY_SLUG -> 50;
+                case PERMIT_SEARCH_BY_ADDRESS_SLUG, PERMIT_RECORDS_REQUEST_SLUG -> 47;
+                case AS_BUILT_RECORDS_SLUG, INSPECTION_LETTER_SLUG -> 44;
                 case PERMIT_LOOKUP_SLUG -> 46;
                 case TRANSFER_COMPLIANCE_SLUG -> 42;
                 case "septic-records-checklist" -> 18;
@@ -4200,6 +4248,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                 case "septic-inspection-cost" -> "Use this when due-diligence scope or inspection leverage matters more than a generic average.";
                 case "buying-a-house-with-a-septic-system" -> "Use this when the property deal, not just the system price, is driving risk.";
                 case RECORDS_ONLINE_SLUG -> "Use this when the searcher needs the fastest route from broad records intent to the right state or county file owner.";
+                case RECORDS_BY_COUNTY_SLUG -> "Use this when the county is already known and the next click should be a local file owner, not another broad overview.";
+                case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Use this when an address search needs to turn into a county or state permit file path.";
+                case PERMIT_RECORDS_REQUEST_SLUG -> "Use this when the user needs to request the permit copy, as-built, final approval, repair file, or inspection letter from the right office.";
+                case AS_BUILT_RECORDS_SLUG -> "Use this when the installed layout, site sketch, or final approval can change the repair, addition, or replacement scope.";
+                case INSPECTION_LETTER_SLUG -> "Use this when the user needs to distinguish a records pull from a closing, lender, or inspection-letter workflow.";
                 case PERMIT_LOOKUP_SLUG -> "Use this when the searcher needs one permit lookup doorway before choosing the state records or permit path.";
                 case "septic-permit-process" -> "Use this when the next office, permit step, or approval sequence is the real bottleneck.";
                 case "septic-records-checklist" -> "Use this when the file is thinner than the current seller, owner, or contractor story.";
@@ -4289,7 +4342,10 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
             case "septic-pumping-cost" -> List.of("septic-tank-size", "septic-system-cost-calculator", "septic-inspection-cost");
             case "septic-inspection-cost" -> List.of(
+                    INSPECTION_LETTER_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
                     PERMIT_LOOKUP_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
                     "septic-records-checklist",
                     "septic-permit-process",
                     "buying-a-house-with-a-septic-system",
@@ -4299,7 +4355,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case "buying-a-house-with-a-septic-system" -> List.of(
+                    INSPECTION_LETTER_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
                     PERMIT_LOOKUP_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
                     "septic-records-checklist",
                     "septic-inspection-cost",
                     "septic-permit-process",
@@ -4309,13 +4369,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-replacement-cost"
             );
             case "septic-permit-process" -> List.of(
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
                     PERMIT_LOOKUP_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
                     "septic-records-checklist",
                     "septic-replacement-cost",
                     "buying-a-house-with-a-septic-system",
                     "septic-system-cost-calculator"
             );
             case "septic-records-checklist" -> List.of(
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
                     PERMIT_LOOKUP_SLUG,
                     "drain-field-replacement-cost",
                     "failed-perc-test-septic",
@@ -4327,6 +4395,9 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
             case TRANSFER_COMPLIANCE_SLUG -> List.of(
                     RECORDS_ONLINE_SLUG,
+                    INSPECTION_LETTER_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
                     PERMIT_LOOKUP_SLUG,
                     "septic-records-checklist",
                     "septic-permit-process",
@@ -4336,6 +4407,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
             case PERMIT_LOOKUP_SLUG -> List.of(
                     RECORDS_ONLINE_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
                     "septic-records-checklist",
                     "septic-permit-process",
                     TRANSFER_COMPLIANCE_SLUG,
@@ -4344,6 +4420,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case RECORDS_ONLINE_SLUG -> List.of(
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
                     PERMIT_LOOKUP_SLUG,
                     "septic-records-checklist",
                     "septic-permit-process",
@@ -4351,6 +4432,64 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "buying-a-house-with-a-septic-system",
                     "septic-inspection-cost",
                     "septic-system-cost-calculator"
+            );
+            case RECORDS_BY_COUNTY_SLUG -> List.of(
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
+                    RECORDS_ONLINE_SLUG,
+                    PERMIT_LOOKUP_SLUG,
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    TRANSFER_COMPLIANCE_SLUG,
+                    "buying-a-house-with-a-septic-system",
+                    "septic-system-cost-calculator"
+            );
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> List.of(
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    RECORDS_ONLINE_SLUG,
+                    PERMIT_LOOKUP_SLUG,
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "buying-a-house-with-a-septic-system",
+                    "septic-system-cost-calculator"
+            );
+            case PERMIT_RECORDS_REQUEST_SLUG -> List.of(
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
+                    RECORDS_ONLINE_SLUG,
+                    PERMIT_LOOKUP_SLUG,
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    TRANSFER_COMPLIANCE_SLUG,
+                    "septic-system-cost-calculator"
+            );
+            case AS_BUILT_RECORDS_SLUG -> List.of(
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    INSPECTION_LETTER_SLUG,
+                    "drain-field-replacement-cost",
+                    "septic-replacement-area",
+                    PERMIT_LOOKUP_SLUG,
+                    "septic-records-checklist",
+                    "septic-system-cost-calculator"
+            );
+            case INSPECTION_LETTER_SLUG -> List.of(
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    "septic-inspection-cost",
+                    "buying-a-house-with-a-septic-system",
+                    PERMIT_LOOKUP_SLUG,
+                    "septic-records-checklist",
+                    TRANSFER_COMPLIANCE_SLUG
             );
             default -> List.of();
         };

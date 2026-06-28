@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-28",
+  "generatedAt": "2026-06-29",
   "pages": [
     {
       "contentSlug": "septic-replacement-cost",
@@ -2395,7 +2395,12 @@
         "/septic-system-cost-calculator/?state=MA&projectType=buying_home",
         "/septic-replacement-cost/massachusetts/",
         "/septic-inspection-cost/massachusetts/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ma_01",
@@ -2454,7 +2459,12 @@
         "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
         "/septic-inspection-cost/new-jersey/",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-records-checklist/new-jersey/"
+        "/septic-records-checklist/new-jersey/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nj_01",
@@ -2514,7 +2524,12 @@
         "/septic-system-cost-calculator/?state=FL&projectType=buying_home",
         "/septic-replacement-cost/florida/",
         "/septic-inspection-cost/florida/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "fl_01",
@@ -2745,7 +2760,12 @@
         "/septic-system-cost-calculator/georgia/",
         "/septic-system-cost-calculator/?state=GA&projectType=new_install",
         "/septic-records-checklist/georgia/",
-        "/septic-replacement-cost/georgia/"
+        "/septic-replacement-cost/georgia/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ga_01",
@@ -2803,7 +2823,12 @@
         "/septic-system-cost-calculator/pennsylvania/",
         "/septic-system-cost-calculator/?state=PA&projectType=new_install",
         "/septic-records-checklist/pennsylvania/",
-        "/perc-test-cost/pennsylvania/"
+        "/perc-test-cost/pennsylvania/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "pa_01",
@@ -2861,7 +2886,12 @@
         "/septic-system-cost-calculator/connecticut/",
         "/septic-system-cost-calculator/?state=CT&projectType=new_install",
         "/perc-test-cost/connecticut/",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ct_01",
@@ -2921,7 +2951,12 @@
         "/septic-system-cost-calculator/oregon/",
         "/septic-system-cost-calculator/?state=OR&projectType=new_install",
         "/perc-test-cost/oregon/",
-        "/drain-field-replacement-cost/oregon/"
+        "/drain-field-replacement-cost/oregon/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "or_01",
@@ -2980,7 +3015,12 @@
         "/septic-system-cost-calculator/massachusetts/",
         "/septic-system-cost-calculator/?state=MA&projectType=new_install",
         "/buying-a-house-with-a-septic-system/massachusetts/",
-        "/septic-records-checklist/massachusetts/"
+        "/septic-records-checklist/massachusetts/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ma_01",
@@ -3039,7 +3079,12 @@
         "/septic-system-cost-calculator/florida/",
         "/septic-system-cost-calculator/?state=FL&projectType=new_install",
         "/buying-a-house-with-a-septic-system/florida/",
-        "/septic-records-checklist/florida/"
+        "/septic-records-checklist/florida/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "fl_01",
@@ -3098,7 +3143,12 @@
         "/septic-system-cost-calculator/georgia/",
         "/buying-a-house-with-a-septic-system/",
         "/septic-permit-process/georgia/",
-        "/septic-system-cost-calculator/?state=GA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=GA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ga_01",
@@ -3156,7 +3206,12 @@
         "/septic-system-cost-calculator/pennsylvania/",
         "/buying-a-house-with-a-septic-system/",
         "/septic-permit-process/pennsylvania/",
-        "/septic-system-cost-calculator/?state=PA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=PA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "pa_01",
@@ -3215,7 +3270,12 @@
         "/septic-records-checklist/pennsylvania/",
         "/septic-permit-process/pennsylvania/",
         "/septic-inspection-cost/pennsylvania/",
-        "/septic-system-cost-calculator/?state=PA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=PA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "pa_01",
@@ -3275,7 +3335,12 @@
         "/septic-pumping-cost/washington/",
         "/septic-inspection-cost/washington/",
         "/septic-system-cost-calculator/?state=WA&projectType=buying_home",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wa_02",
@@ -3334,7 +3399,12 @@
         "/septic-system-cost-calculator/massachusetts/",
         "/buying-a-house-with-a-septic-system/massachusetts/",
         "/septic-permit-process/massachusetts/",
-        "/septic-system-cost-calculator/?state=MA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ma_01",
@@ -3519,7 +3589,12 @@
         "/septic-system-cost-calculator/florida/",
         "/buying-a-house-with-a-septic-system/florida/",
         "/septic-permit-process/florida/",
-        "/septic-system-cost-calculator/?state=FL&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=FL&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "fl_01",
@@ -3578,7 +3653,12 @@
         "/septic-system-cost-calculator/new-jersey/",
         "/buying-a-house-with-a-septic-system/new-jersey/",
         "/septic-system-cost-calculator/?state=NJ&projectType=buying_home",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nj_01",
@@ -3638,7 +3718,12 @@
         "/septic-system-cost-calculator/washington/",
         "/septic-system-cost-calculator/?state=WA&projectType=new_install",
         "/septic-records-checklist/washington/",
-        "/septic-pumping-cost/washington/"
+        "/septic-pumping-cost/washington/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wa_01",
@@ -3707,7 +3792,12 @@
         "/septic-system-cost-calculator/north-carolina/",
         "/septic-system-cost-calculator/?state=NC&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nc_01",
@@ -3767,7 +3857,12 @@
         "/septic-system-cost-calculator/new-jersey/",
         "/septic-system-cost-calculator/?state=NJ&projectType=new_install",
         "/septic-records-checklist/new-jersey/",
-        "/buying-a-house-with-a-septic-system/new-jersey/"
+        "/buying-a-house-with-a-septic-system/new-jersey/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nj_01",
@@ -3828,7 +3923,12 @@
         "/septic-system-cost-calculator/missouri/",
         "/septic-system-cost-calculator/?state=MO&projectType=new_install",
         "/septic-records-checklist/missouri/",
-        "/septic-replacement-cost/missouri/"
+        "/septic-replacement-cost/missouri/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mo_01",
@@ -3888,7 +3988,12 @@
         "/septic-system-cost-calculator/connecticut/",
         "/septic-permit-process/connecticut/",
         "/buying-a-house-with-a-septic-system/connecticut/",
-        "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=CT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ct_01",
@@ -3948,7 +4053,12 @@
         "/septic-system-cost-calculator/oregon/",
         "/septic-permit-process/oregon/",
         "/drain-field-replacement-cost/oregon/",
-        "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OR&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "or_01",
@@ -4008,7 +4118,12 @@
         "/septic-system-cost-calculator/missouri/",
         "/septic-permit-process/missouri/",
         "/septic-inspection-cost/missouri/",
-        "/septic-system-cost-calculator/?state=MO&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MO&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mo_01",
@@ -4076,7 +4191,12 @@
         "/septic-system-cost-calculator/north-carolina/",
         "/septic-permit-process/north-carolina/",
         "/septic-inspection-cost/north-carolina/",
-        "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NC&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nc_01",
@@ -4137,7 +4257,12 @@
         "/septic-records-checklist/north-carolina/",
         "/septic-permit-process/north-carolina/",
         "/septic-inspection-cost/north-carolina/",
-        "/septic-system-cost-calculator/?state=NC&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NC&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nc_01",
@@ -4198,7 +4323,12 @@
         "/septic-records-checklist/connecticut/",
         "/septic-inspection-cost/connecticut/",
         "/septic-permit-process/connecticut/",
-        "/septic-system-cost-calculator/?state=CT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=CT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ct_01",
@@ -5038,7 +5168,12 @@
         "/septic-system-cost-calculator/georgia/",
         "/septic-records-checklist/georgia/",
         "/septic-inspection-cost/georgia/",
-        "/septic-system-cost-calculator/?state=GA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=GA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ga_01",
@@ -5096,7 +5231,12 @@
         "/septic-system-cost-calculator/california/",
         "/septic-system-cost-calculator/?state=CA&projectType=buying_home",
         "/septic-permit-process/",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ca_01",
@@ -5154,7 +5294,12 @@
         "/septic-system-cost-calculator/california/",
         "/septic-system-cost-calculator/?state=CA&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ca_01",
@@ -5212,7 +5357,12 @@
         "/septic-system-cost-calculator/california/",
         "/septic-system-cost-calculator/?state=CA&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ca_01",
@@ -5523,7 +5673,12 @@
         "/septic-system-cost-calculator/texas/",
         "/septic-system-cost-calculator/?state=TX&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tx_01",
@@ -5653,7 +5808,12 @@
         "/septic-system-cost-calculator/texas/",
         "/septic-system-cost-calculator/?state=TX&projectType=buying_home",
         "/septic-permit-process/",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tx_01",
@@ -5714,7 +5874,12 @@
         "/septic-records-checklist/texas/",
         "/septic-permit-process/texas/",
         "/perc-test-cost/texas/",
-        "/septic-system-cost-calculator/?state=TX&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=TX&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tx_01",
@@ -5838,7 +6003,12 @@
         "/septic-system-cost-calculator/new-york/",
         "/septic-records-checklist/new-york/",
         "/septic-permit-process/new-york/",
-        "/septic-system-cost-calculator/?state=NY&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ny_01",
@@ -5897,7 +6067,12 @@
         "/septic-system-cost-calculator/new-york/",
         "/septic-system-cost-calculator/?state=NY&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ny_01",
@@ -5957,7 +6132,12 @@
         "/septic-system-cost-calculator/new-york/",
         "/septic-system-cost-calculator/?state=NY&projectType=buying_home",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ny_01",
@@ -6197,7 +6377,12 @@
         "/septic-system-cost-calculator/ohio/",
         "/septic-system-cost-calculator/?state=OH&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "oh_01",
@@ -6254,7 +6439,12 @@
         "/septic-system-cost-calculator/ohio/",
         "/septic-permit-process/ohio/",
         "/septic-records-checklist/",
-        "/septic-system-cost-calculator/?state=OH&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OH&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "oh_01",
@@ -6312,7 +6502,12 @@
         "/septic-system-cost-calculator/ohio/",
         "/septic-permit-process/ohio/",
         "/buying-a-house-with-a-septic-system/ohio/",
-        "/septic-system-cost-calculator/?state=OH&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OH&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "oh_01",
@@ -6544,7 +6739,12 @@
         "/septic-system-cost-calculator/illinois/",
         "/septic-system-cost-calculator/?state=IL&projectType=buying_home",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "il_01",
@@ -6603,7 +6803,12 @@
         "/septic-system-cost-calculator/illinois/",
         "/septic-records-checklist/illinois/",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-system-cost-calculator/?state=IL&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=IL&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "il_01",
@@ -6663,7 +6868,12 @@
         "/septic-system-cost-calculator/illinois/",
         "/septic-records-checklist/illinois/",
         "/buying-a-house-with-a-septic-system/illinois/",
-        "/septic-system-cost-calculator/?state=IL&projectType=new_install"
+        "/septic-system-cost-calculator/?state=IL&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "il_01",
@@ -6903,7 +7113,12 @@
         "/septic-system-cost-calculator/maryland/",
         "/septic-system-cost-calculator/?state=MD&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "md_01",
@@ -7098,7 +7313,12 @@
         "/septic-system-cost-calculator/indiana/",
         "/septic-system-cost-calculator/?state=IN&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "in_01",
@@ -7219,7 +7439,12 @@
         "/septic-system-cost-calculator/kentucky/",
         "/septic-system-cost-calculator/?state=KY&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ky_01",
@@ -7278,7 +7503,12 @@
         "/septic-system-cost-calculator/minnesota/",
         "/septic-system-cost-calculator/?state=MN&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mn_01",
@@ -7337,7 +7567,12 @@
         "/septic-system-cost-calculator/iowa/",
         "/septic-system-cost-calculator/?state=IA&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ia_01",
@@ -7454,7 +7689,12 @@
         "/septic-system-cost-calculator/nebraska/",
         "/septic-system-cost-calculator/?state=NE&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ne_01",
@@ -7514,7 +7754,12 @@
         "/septic-system-cost-calculator/new-mexico/",
         "/septic-system-cost-calculator/?state=NM&projectType=buying_home",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-records-checklist/"
+        "/septic-records-checklist/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nm_01",
@@ -7573,7 +7818,12 @@
         "/septic-system-cost-calculator/utah/",
         "/septic-system-cost-calculator/?state=UT&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ut_01",
@@ -7634,7 +7884,12 @@
         "/septic-system-cost-calculator/west-virginia/",
         "/septic-system-cost-calculator/?state=WV&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wv_01",
@@ -7693,7 +7948,12 @@
         "/septic-system-cost-calculator/south-dakota/",
         "/septic-system-cost-calculator/?state=SD&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sd_01",
@@ -7814,7 +8074,12 @@
         "/septic-system-cost-calculator/nevada/",
         "/septic-system-cost-calculator/?state=NV&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nv_01",
@@ -7875,7 +8140,12 @@
         "/septic-system-cost-calculator/delaware/",
         "/septic-system-cost-calculator/?state=DE&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "de_01",
@@ -7937,7 +8207,12 @@
         "/septic-system-cost-calculator/alaska/",
         "/septic-system-cost-calculator/?state=AK&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ak_01",
@@ -7998,7 +8273,12 @@
         "/septic-system-cost-calculator/hawaii/",
         "/septic-system-cost-calculator/?state=HI&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "hi_01",
@@ -8059,7 +8339,12 @@
         "/septic-system-cost-calculator/maine/",
         "/septic-system-cost-calculator/?state=ME&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "me_01",
@@ -8120,7 +8405,12 @@
         "/septic-system-cost-calculator/new-hampshire/",
         "/septic-system-cost-calculator/?state=NH&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nh_01",
@@ -8181,7 +8471,12 @@
         "/septic-system-cost-calculator/rhode-island/",
         "/septic-system-cost-calculator/?state=RI&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ri_01",
@@ -8242,7 +8537,12 @@
         "/septic-system-cost-calculator/vermont/",
         "/septic-system-cost-calculator/?state=VT&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "vt_01",
@@ -8365,7 +8665,12 @@
         "/septic-system-cost-calculator/north-dakota/",
         "/septic-system-cost-calculator/?state=ND&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nd_01",
@@ -8485,7 +8790,12 @@
         "/septic-system-cost-calculator/arkansas/",
         "/septic-system-cost-calculator/?state=AR&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ar_01",
@@ -8545,7 +8855,12 @@
         "/septic-system-cost-calculator/mississippi/",
         "/septic-system-cost-calculator/?state=MS&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ms_01",
@@ -8621,7 +8936,12 @@
         "/septic-system-cost-calculator/alabama/",
         "/septic-system-cost-calculator/?state=AL&projectType=new_install",
         "/septic-records-checklist/",
-        "/septic-permit-process/"
+        "/septic-permit-process/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "al_01",
@@ -8681,7 +9001,12 @@
         "/septic-system-cost-calculator/south-carolina/",
         "/septic-records-checklist/south-carolina/",
         "/buying-a-house-with-a-septic-system/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=new_install"
+        "/septic-system-cost-calculator/?state=SC&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sc_01",
@@ -8741,7 +9066,12 @@
         "/septic-system-cost-calculator/michigan/",
         "/septic-system-cost-calculator/?state=MI&projectType=buying_home",
         "/septic-records-checklist/",
-        "/buying-a-house-with-a-septic-system/"
+        "/buying-a-house-with-a-septic-system/",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mi_01",
@@ -8799,7 +9129,12 @@
         "/septic-system-cost-calculator/michigan/",
         "/septic-records-checklist/michigan/",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-system-cost-calculator/?state=MI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mi_01",
@@ -8858,7 +9193,12 @@
         "/septic-system-cost-calculator/michigan/",
         "/septic-records-checklist/michigan/",
         "/buying-a-house-with-a-septic-system/michigan/",
-        "/septic-system-cost-calculator/?state=MI&projectType=new_install"
+        "/septic-system-cost-calculator/?state=MI&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mi_01",
@@ -9210,7 +9550,12 @@
         "/septic-system-cost-calculator/arizona/",
         "/septic-records-checklist/arizona/",
         "/septic-permit-process/arizona/",
-        "/septic-system-cost-calculator/?state=AZ&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AZ&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "az_01",
@@ -9270,7 +9615,12 @@
         "/septic-system-cost-calculator/arizona/",
         "/buying-a-house-with-a-septic-system/arizona/",
         "/septic-permit-process/arizona/",
-        "/septic-system-cost-calculator/?state=AZ&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AZ&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "az_01",
@@ -9330,7 +9680,12 @@
         "/septic-system-cost-calculator/arizona/",
         "/septic-records-checklist/arizona/",
         "/buying-a-house-with-a-septic-system/arizona/",
-        "/septic-system-cost-calculator/?state=AZ&projectType=new_install"
+        "/septic-system-cost-calculator/?state=AZ&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "az_01",
@@ -9390,7 +9745,12 @@
         "/septic-system-cost-calculator/colorado/",
         "/septic-records-checklist/colorado/",
         "/septic-permit-process/colorado/",
-        "/septic-system-cost-calculator/?state=CO&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=CO&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "co_01",
@@ -9448,7 +9808,12 @@
         "/septic-system-cost-calculator/colorado/",
         "/buying-a-house-with-a-septic-system/colorado/",
         "/septic-permit-process/colorado/",
-        "/septic-system-cost-calculator/?state=CO&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=CO&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "co_01",
@@ -9506,7 +9871,12 @@
         "/septic-system-cost-calculator/colorado/",
         "/septic-records-checklist/colorado/",
         "/buying-a-house-with-a-septic-system/colorado/",
-        "/septic-system-cost-calculator/?state=CO&projectType=new_install"
+        "/septic-system-cost-calculator/?state=CO&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "co_01",
@@ -9564,7 +9934,12 @@
         "/septic-system-cost-calculator/virginia/",
         "/septic-records-checklist/virginia/",
         "/septic-permit-process/virginia/",
-        "/septic-system-cost-calculator/?state=VA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=VA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "va_01",
@@ -9624,7 +9999,12 @@
         "/septic-system-cost-calculator/virginia/",
         "/buying-a-house-with-a-septic-system/virginia/",
         "/septic-permit-process/virginia/",
-        "/septic-system-cost-calculator/?state=VA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=VA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "va_01",
@@ -9684,7 +10064,12 @@
         "/septic-system-cost-calculator/virginia/",
         "/septic-records-checklist/virginia/",
         "/buying-a-house-with-a-septic-system/virginia/",
-        "/septic-system-cost-calculator/?state=VA&projectType=new_install"
+        "/septic-system-cost-calculator/?state=VA&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "va_01",
@@ -9744,7 +10129,12 @@
         "/septic-system-cost-calculator/wisconsin/",
         "/septic-records-checklist/wisconsin/",
         "/septic-permit-process/wisconsin/",
-        "/septic-system-cost-calculator/?state=WI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wi_01",
@@ -9804,7 +10194,12 @@
         "/septic-system-cost-calculator/wisconsin/",
         "/buying-a-house-with-a-septic-system/wisconsin/",
         "/septic-permit-process/wisconsin/",
-        "/septic-system-cost-calculator/?state=WI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wi_01",
@@ -9864,7 +10259,12 @@
         "/septic-system-cost-calculator/wisconsin/",
         "/septic-records-checklist/wisconsin/",
         "/buying-a-house-with-a-septic-system/wisconsin/",
-        "/septic-system-cost-calculator/?state=WI&projectType=new_install"
+        "/septic-system-cost-calculator/?state=WI&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wi_01",
@@ -9924,7 +10324,12 @@
         "/septic-system-cost-calculator/maryland/",
         "/buying-a-house-with-a-septic-system/maryland/",
         "/septic-permit-process/maryland/",
-        "/septic-system-cost-calculator/?state=MD&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MD&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "md_01",
@@ -9984,7 +10389,12 @@
         "/septic-system-cost-calculator/maryland/",
         "/septic-records-checklist/maryland/",
         "/buying-a-house-with-a-septic-system/maryland/",
-        "/septic-system-cost-calculator/?state=MD&projectType=new_install"
+        "/septic-system-cost-calculator/?state=MD&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "md_01",
@@ -10104,7 +10514,12 @@
         "/septic-system-cost-calculator/minnesota/",
         "/buying-a-house-with-a-septic-system/minnesota/",
         "/septic-permit-process/minnesota/",
-        "/septic-system-cost-calculator/?state=MN&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MN&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mn_01",
@@ -10164,7 +10579,12 @@
         "/septic-system-cost-calculator/minnesota/",
         "/septic-records-checklist/minnesota/",
         "/buying-a-house-with-a-septic-system/minnesota/",
-        "/septic-system-cost-calculator/?state=MN&projectType=new_install"
+        "/septic-system-cost-calculator/?state=MN&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mn_01",
@@ -11065,7 +11485,12 @@
         "/septic-system-cost-calculator/louisiana/",
         "/septic-replacement-cost/louisiana/",
         "/perc-test-cost/louisiana/",
-        "/septic-system-cost-calculator/?state=LA&projectType=new_install"
+        "/septic-system-cost-calculator/?state=LA&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "la_01",
@@ -11185,7 +11610,12 @@
         "/septic-system-cost-calculator/oklahoma/",
         "/septic-replacement-cost/oklahoma/",
         "/perc-test-cost/oklahoma/",
-        "/septic-system-cost-calculator/?state=OK&projectType=new_install"
+        "/septic-system-cost-calculator/?state=OK&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ok_01",
@@ -11305,7 +11735,12 @@
         "/septic-system-cost-calculator/kansas/",
         "/septic-replacement-cost/kansas/",
         "/perc-test-cost/kansas/",
-        "/septic-system-cost-calculator/?state=KS&projectType=new_install"
+        "/septic-system-cost-calculator/?state=KS&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ks_01",
@@ -11440,7 +11875,12 @@
         "/septic-system-cost-calculator/indiana/",
         "/septic-replacement-cost/indiana/",
         "/septic-permit-process/indiana/",
-        "/septic-system-cost-calculator/?state=IN&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=IN&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "in_01",
@@ -11559,7 +11999,12 @@
         "/septic-system-cost-calculator/nebraska/",
         "/septic-replacement-cost/nebraska/",
         "/septic-permit-process/nebraska/",
-        "/septic-system-cost-calculator/?state=NE&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NE&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ne_01",
@@ -11678,7 +12123,12 @@
         "/septic-system-cost-calculator/new-mexico/",
         "/septic-replacement-cost/new-mexico/",
         "/buying-a-house-with-a-septic-system/new-mexico/",
-        "/septic-system-cost-calculator/?state=NM&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NM&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nm_01",
@@ -11798,7 +12248,12 @@
         "/septic-system-cost-calculator/utah/",
         "/septic-replacement-cost/utah/",
         "/septic-permit-process/utah/",
-        "/septic-system-cost-calculator/?state=UT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=UT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ut_01",
@@ -11918,7 +12373,12 @@
         "/septic-system-cost-calculator/kentucky/",
         "/septic-replacement-cost/kentucky/",
         "/septic-records-checklist/kentucky/",
-        "/septic-system-cost-calculator/?state=KY&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=KY&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ky_01",
@@ -12036,7 +12496,12 @@
         "/septic-system-cost-calculator/iowa/",
         "/septic-replacement-cost/iowa/",
         "/septic-records-checklist/iowa/",
-        "/septic-system-cost-calculator/?state=IA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=IA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ia_01",
@@ -12154,7 +12619,12 @@
         "/septic-system-cost-calculator/west-virginia/",
         "/septic-replacement-cost/west-virginia/",
         "/septic-records-checklist/west-virginia/",
-        "/septic-system-cost-calculator/?state=WV&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WV&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wv_01",
@@ -12214,7 +12684,12 @@
         "/septic-system-cost-calculator/louisiana/",
         "/septic-records-checklist/louisiana/",
         "/septic-inspection-cost/louisiana/",
-        "/septic-system-cost-calculator/?state=LA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=LA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "la_01",
@@ -12274,7 +12749,12 @@
         "/septic-system-cost-calculator/louisiana/",
         "/buying-a-house-with-a-septic-system/louisiana/",
         "/septic-permit-process/louisiana/",
-        "/septic-system-cost-calculator/?state=LA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=LA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "la_01",
@@ -12394,7 +12874,12 @@
         "/septic-system-cost-calculator/oklahoma/",
         "/septic-records-checklist/oklahoma/",
         "/septic-inspection-cost/oklahoma/",
-        "/septic-system-cost-calculator/?state=OK&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OK&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ok_01",
@@ -12455,7 +12940,12 @@
         "/septic-system-cost-calculator/oklahoma/",
         "/buying-a-house-with-a-septic-system/oklahoma/",
         "/septic-permit-process/oklahoma/",
-        "/septic-system-cost-calculator/?state=OK&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OK&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ok_01",
@@ -12577,7 +13067,12 @@
         "/septic-system-cost-calculator/kansas/",
         "/septic-records-checklist/kansas/",
         "/septic-inspection-cost/kansas/",
-        "/septic-system-cost-calculator/?state=KS&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=KS&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ks_01",
@@ -12637,7 +13132,12 @@
         "/septic-system-cost-calculator/kansas/",
         "/buying-a-house-with-a-septic-system/kansas/",
         "/septic-permit-process/kansas/",
-        "/septic-system-cost-calculator/?state=KS&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=KS&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ks_01",
@@ -12817,7 +13317,12 @@
         "/septic-system-cost-calculator/indiana/",
         "/septic-records-checklist/indiana/",
         "/septic-inspection-cost/indiana/",
-        "/septic-system-cost-calculator/?state=IN&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=IN&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "in_01",
@@ -12997,7 +13502,12 @@
         "/septic-system-cost-calculator/kentucky/",
         "/perc-test-cost/kentucky/",
         "/septic-records-checklist/kentucky/",
-        "/septic-system-cost-calculator/?state=KY&projectType=new_install"
+        "/septic-system-cost-calculator/?state=KY&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ky_01",
@@ -13176,7 +13686,12 @@
         "/septic-system-cost-calculator/iowa/",
         "/perc-test-cost/iowa/",
         "/septic-records-checklist/iowa/",
-        "/septic-system-cost-calculator/?state=IA&projectType=new_install"
+        "/septic-system-cost-calculator/?state=IA&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ia_01",
@@ -13354,7 +13869,12 @@
         "/septic-system-cost-calculator/nebraska/",
         "/septic-records-checklist/nebraska/",
         "/septic-inspection-cost/nebraska/",
-        "/septic-system-cost-calculator/?state=NE&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NE&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ne_01",
@@ -13534,7 +14054,12 @@
         "/septic-system-cost-calculator/new-mexico/",
         "/perc-test-cost/new-mexico/",
         "/septic-records-checklist/new-mexico/",
-        "/septic-system-cost-calculator/?state=NM&projectType=new_install"
+        "/septic-system-cost-calculator/?state=NM&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nm_01",
@@ -13715,7 +14240,12 @@
         "/septic-system-cost-calculator/utah/",
         "/septic-records-checklist/utah/",
         "/septic-inspection-cost/utah/",
-        "/septic-system-cost-calculator/?state=UT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=UT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ut_01",
@@ -13897,7 +14427,12 @@
         "/septic-system-cost-calculator/west-virginia/",
         "/perc-test-cost/west-virginia/",
         "/septic-records-checklist/west-virginia/",
-        "/septic-system-cost-calculator/?state=WV&projectType=new_install"
+        "/septic-system-cost-calculator/?state=WV&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wv_01",
@@ -14017,7 +14552,12 @@
         "/septic-system-cost-calculator/missouri/",
         "/septic-records-checklist/missouri/",
         "/septic-inspection-cost/missouri/",
-        "/septic-system-cost-calculator/?state=MO&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MO&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mo_01",
@@ -14078,7 +14618,12 @@
         "/septic-system-cost-calculator/oregon/",
         "/septic-records-checklist/oregon/",
         "/septic-inspection-cost/oregon/",
-        "/septic-system-cost-calculator/?state=OR&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=OR&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "or_01",
@@ -14139,7 +14684,12 @@
         "/septic-system-cost-calculator/washington/",
         "/septic-records-checklist/washington/",
         "/septic-inspection-cost/washington/",
-        "/septic-system-cost-calculator/?state=WA&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WA&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wa_01",
@@ -14200,7 +14750,12 @@
         "/septic-system-cost-calculator/alaska/",
         "/buying-a-house-with-a-septic-system/alaska/",
         "/septic-inspection-cost/alaska/",
-        "/septic-system-cost-calculator/?state=AK&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AK&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ak_01",
@@ -14322,7 +14877,12 @@
         "/septic-system-cost-calculator/alabama/",
         "/septic-records-checklist/alabama/",
         "/septic-permit-process/alabama/",
-        "/septic-system-cost-calculator/?state=AL&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AL&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "al_01",
@@ -14399,7 +14959,12 @@
         "/septic-system-cost-calculator/alabama/",
         "/buying-a-house-with-a-septic-system/alabama/",
         "/septic-permit-process/alabama/",
-        "/septic-system-cost-calculator/?state=AL&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AL&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "al_01",
@@ -14459,7 +15024,12 @@
         "/septic-system-cost-calculator/arkansas/",
         "/septic-records-checklist/arkansas/",
         "/septic-permit-process/arkansas/",
-        "/septic-system-cost-calculator/?state=AR&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AR&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ar_01",
@@ -14519,7 +15089,12 @@
         "/septic-system-cost-calculator/arkansas/",
         "/buying-a-house-with-a-septic-system/arkansas/",
         "/septic-permit-process/arkansas/",
-        "/septic-system-cost-calculator/?state=AR&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=AR&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ar_01",
@@ -14579,7 +15154,12 @@
         "/septic-system-cost-calculator/delaware/",
         "/septic-records-checklist/delaware/",
         "/septic-permit-process/delaware/",
-        "/septic-system-cost-calculator/?state=DE&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=DE&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "de_01",
@@ -14641,7 +15221,12 @@
         "/septic-system-cost-calculator/delaware/",
         "/buying-a-house-with-a-septic-system/delaware/",
         "/septic-permit-process/delaware/",
-        "/septic-system-cost-calculator/?state=DE&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=DE&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "de_01",
@@ -14703,7 +15288,12 @@
         "/septic-system-cost-calculator/hawaii/",
         "/septic-records-checklist/hawaii/",
         "/septic-permit-process/hawaii/",
-        "/septic-system-cost-calculator/?state=HI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=HI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "hi_01",
@@ -14764,7 +15354,12 @@
         "/septic-system-cost-calculator/hawaii/",
         "/buying-a-house-with-a-septic-system/hawaii/",
         "/septic-permit-process/hawaii/",
-        "/septic-system-cost-calculator/?state=HI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=HI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "hi_01",
@@ -14825,7 +15420,12 @@
         "/septic-system-cost-calculator/idaho/",
         "/septic-records-checklist/idaho/",
         "/perc-test-cost/idaho/",
-        "/septic-system-cost-calculator/?state=ID&projectType=new_install"
+        "/septic-system-cost-calculator/?state=ID&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "id_01",
@@ -14886,7 +15486,12 @@
         "/septic-system-cost-calculator/idaho/",
         "/septic-permit-process/idaho/",
         "/perc-test-cost/idaho/",
-        "/septic-system-cost-calculator/?state=ID&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=ID&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "id_01",
@@ -14947,7 +15552,12 @@
         "/septic-system-cost-calculator/maine/",
         "/buying-a-house-with-a-septic-system/maine/",
         "/septic-inspection-cost/maine/",
-        "/septic-system-cost-calculator/?state=ME&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=ME&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "me_01",
@@ -15069,7 +15679,12 @@
         "/septic-system-cost-calculator/mississippi/",
         "/septic-records-checklist/mississippi/",
         "/septic-inspection-cost/mississippi/",
-        "/septic-system-cost-calculator/?state=MS&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MS&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ms_01",
@@ -15189,7 +15804,12 @@
         "/septic-system-cost-calculator/montana/",
         "/septic-permit-process/montana/",
         "/perc-test-cost/montana/",
-        "/septic-system-cost-calculator/?state=MT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mt_01",
@@ -15251,7 +15871,12 @@
         "/septic-system-cost-calculator/montana/",
         "/buying-a-house-with-a-septic-system/montana/",
         "/perc-test-cost/montana/",
-        "/septic-system-cost-calculator/?state=MT&projectType=new_install"
+        "/septic-system-cost-calculator/?state=MT&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mt_01",
@@ -15313,7 +15938,12 @@
         "/septic-system-cost-calculator/north-dakota/",
         "/septic-inspection-cost/north-dakota/",
         "/septic-permit-process/north-dakota/",
-        "/septic-system-cost-calculator/?state=ND&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=ND&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nd_01",
@@ -15433,7 +16063,12 @@
         "/septic-system-cost-calculator/new-hampshire/",
         "/septic-records-checklist/new-hampshire/",
         "/septic-permit-process/new-hampshire/",
-        "/septic-system-cost-calculator/?state=NH&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NH&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nh_01",
@@ -15494,7 +16129,12 @@
         "/septic-system-cost-calculator/new-hampshire/",
         "/buying-a-house-with-a-septic-system/new-hampshire/",
         "/septic-permit-process/new-hampshire/",
-        "/septic-system-cost-calculator/?state=NH&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NH&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nh_01",
@@ -15555,7 +16195,12 @@
         "/septic-system-cost-calculator/nevada/",
         "/buying-a-house-with-a-septic-system/nevada/",
         "/septic-inspection-cost/nevada/",
-        "/septic-system-cost-calculator/?state=NV&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=NV&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nv_01",
@@ -15677,7 +16322,12 @@
         "/septic-system-cost-calculator/rhode-island/",
         "/buying-a-house-with-a-septic-system/rhode-island/",
         "/septic-inspection-cost/rhode-island/",
-        "/septic-system-cost-calculator/?state=RI&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=RI&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ri_01",
@@ -15799,7 +16449,12 @@
         "/septic-system-cost-calculator/south-carolina/",
         "/septic-records-checklist/south-carolina/",
         "/septic-permit-process/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=SC&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sc_01",
@@ -15859,7 +16514,12 @@
         "/septic-system-cost-calculator/south-carolina/",
         "/buying-a-house-with-a-septic-system/south-carolina/",
         "/septic-permit-process/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=SC&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sc_01",
@@ -15919,7 +16579,12 @@
         "/septic-system-cost-calculator/south-dakota/",
         "/septic-inspection-cost/south-dakota/",
         "/septic-permit-process/south-dakota/",
-        "/septic-system-cost-calculator/?state=SD&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=SD&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sd_01",
@@ -16050,7 +16715,12 @@
         "/septic-system-cost-calculator/tennessee/",
         "/septic-inspection-cost/tennessee/",
         "/septic-replacement-cost/tennessee/",
-        "/septic-system-cost-calculator/?state=TN&projectType=new_install"
+        "/septic-system-cost-calculator/?state=TN&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tn_01",
@@ -16170,7 +16840,12 @@
         "/septic-system-cost-calculator/vermont/",
         "/septic-records-checklist/vermont/",
         "/septic-permit-process/vermont/",
-        "/septic-system-cost-calculator/?state=VT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=VT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "vt_01",
@@ -16231,7 +16906,12 @@
         "/septic-system-cost-calculator/vermont/",
         "/buying-a-house-with-a-septic-system/vermont/",
         "/septic-permit-process/vermont/",
-        "/septic-system-cost-calculator/?state=VT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=VT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "vt_01",
@@ -16292,7 +16972,12 @@
         "/septic-system-cost-calculator/wyoming/",
         "/septic-permit-process/wyoming/",
         "/perc-test-cost/wyoming/",
-        "/septic-system-cost-calculator/?state=WY&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WY&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wy_01",
@@ -16352,7 +17037,12 @@
         "/septic-system-cost-calculator/wyoming/",
         "/buying-a-house-with-a-septic-system/wyoming/",
         "/perc-test-cost/wyoming/",
-        "/septic-system-cost-calculator/?state=WY&projectType=new_install"
+        "/septic-system-cost-calculator/?state=WY&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wy_01",
@@ -16537,7 +17227,12 @@
         "/septic-records-checklist/alaska/",
         "/buying-a-house-with-a-septic-system/alaska/",
         "/septic-inspection-cost/alaska/",
-        "/septic-system-cost-calculator/?state=AK&projectType=new_install"
+        "/septic-system-cost-calculator/?state=AK&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ak_01",
@@ -17402,7 +18097,12 @@
         "/septic-records-checklist/idaho/",
         "/septic-inspection-cost/idaho/",
         "/septic-permit-process/idaho/",
-        "/septic-system-cost-calculator/?state=ID&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=ID&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "id_01",
@@ -17650,7 +18350,12 @@
         "/septic-records-checklist/maine/",
         "/buying-a-house-with-a-septic-system/maine/",
         "/septic-inspection-cost/maine/",
-        "/septic-system-cost-calculator/?state=ME&projectType=new_install"
+        "/septic-system-cost-calculator/?state=ME&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "me_01",
@@ -17834,7 +18539,12 @@
         "/septic-records-checklist/mississippi/",
         "/buying-a-house-with-a-septic-system/mississippi/",
         "/septic-inspection-cost/mississippi/",
-        "/septic-system-cost-calculator/?state=MS&projectType=new_install"
+        "/septic-system-cost-calculator/?state=MS&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ms_01",
@@ -17958,7 +18668,12 @@
         "/buying-a-house-with-a-septic-system/montana/",
         "/septic-inspection-cost/montana/",
         "/septic-permit-process/montana/",
-        "/septic-system-cost-calculator/?state=MT&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=MT&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "mt_01",
@@ -18206,7 +18921,12 @@
         "/septic-records-checklist/north-dakota/",
         "/septic-inspection-cost/north-dakota/",
         "/septic-permit-process/north-dakota/",
-        "/septic-system-cost-calculator/?state=ND&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=ND&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nd_01",
@@ -18577,7 +19297,12 @@
         "/septic-records-checklist/nevada/",
         "/buying-a-house-with-a-septic-system/nevada/",
         "/septic-inspection-cost/nevada/",
-        "/septic-system-cost-calculator/?state=NV&projectType=new_install"
+        "/septic-system-cost-calculator/?state=NV&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "nv_01",
@@ -18763,7 +19488,12 @@
         "/septic-records-checklist/rhode-island/",
         "/buying-a-house-with-a-septic-system/rhode-island/",
         "/septic-inspection-cost/rhode-island/",
-        "/septic-system-cost-calculator/?state=RI&projectType=new_install"
+        "/septic-system-cost-calculator/?state=RI&projectType=new_install",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "ri_01",
@@ -19132,7 +19862,12 @@
         "/buying-a-house-with-a-septic-system/south-dakota/",
         "/septic-inspection-cost/south-dakota/",
         "/septic-permit-process/south-dakota/",
-        "/septic-system-cost-calculator/?state=SD&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=SD&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "sd_01",
@@ -19255,7 +19990,12 @@
         "/septic-records-checklist/tennessee/",
         "/septic-inspection-cost/tennessee/",
         "/septic-permit-process/tennessee/",
-        "/septic-system-cost-calculator/?state=TN&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=TN&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tn_01",
@@ -19325,7 +20065,12 @@
         "/buying-a-house-with-a-septic-system/tennessee/",
         "/septic-inspection-cost/tennessee/",
         "/septic-permit-process/tennessee/",
-        "/septic-system-cost-calculator/?state=TN&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=TN&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "tn_01",
@@ -19633,7 +20378,12 @@
         "/buying-a-house-with-a-septic-system/wyoming/",
         "/septic-inspection-cost/wyoming/",
         "/septic-permit-process/wyoming/",
-        "/septic-system-cost-calculator/?state=WY&projectType=buying_home"
+        "/septic-system-cost-calculator/?state=WY&projectType=buying_home",
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
         "wy_01",

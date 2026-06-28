@@ -429,10 +429,15 @@ class SepticApplicationTests {
 	void sitemapXmlIncludesCoreUrls() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-06-28</lastmod>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-06-29</lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/how-to-find-septic-records-online/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-by-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-search-by-address/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-records-request/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-as-built-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-letter/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
@@ -6651,6 +6656,62 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void septicRecordsByCountyContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-records-by-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Records by County")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records by County | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")));
+	}
+
+	@Test
+	void septicPermitSearchByAddressContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-search-by-address/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Search by Address")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open address lookup routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic permit search by address is strongest")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-by-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")));
+	}
+
+	@Test
+	void septicPermitRecordsRequestContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-records-request/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Records Request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic permit records request should be specific")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-as-built-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/durham-county/")));
+	}
+
+	@Test
+	void septicAsBuiltRecordsContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-as-built-records/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic As-Built Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open as-built record routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic as-built records matter because they show where the system was actually installed")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")));
+	}
+
+	@Test
+	void septicInspectionLetterContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-inspection-letter/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Inspection Letter")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open inspection-letter routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic inspection letter is not the same thing as a generic records lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/buying-a-house-with-a-septic-system/")));
+	}
+
+	@Test
 	void recordsChecklistContentPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/"))
 				.andExpect(status().isOk())
@@ -6675,7 +6736,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Intent Map Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State Source Review Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last reviewed")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-06-28\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-06-29\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"editor\":{\"@type\":\"Organization\",\"name\":\"State Source Review Desk\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this page is sourced")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-specific pages carry the official sources behind this national overview.")))

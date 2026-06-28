@@ -1487,3 +1487,11 @@ Copy this block for the next review:
 - Changed the permit lookup county launchpad from a hard-coded list to a ranked dynamic surface across TN, NC, TX, AL, and IN so new county pages automatically receive internal links from the lookup hub.
 - Pushed high-intent internal links from state records and permit pages into the new county cluster instead of waiting for sitemap discovery alone.
 - Quality bar: every new county page has an official local or state source, a records/permit artifact to request, a repair or closeout risk, and state-specific workflow language.
+
+## 2026-06-29 - Maximum records-intent surface expansion
+
+- Added 5 new national records-intent entry points: `/septic-records-by-county/`, `/septic-permit-search-by-address/`, `/septic-permit-records-request/`, `/septic-as-built-records/`, and `/septic-inspection-letter/`.
+- Connected each new hub to the ranked county lookup launchpad so broad records searches can move into the existing 307-page county records network instead of stopping at a generic article.
+- Routed state records, permit-process, and buyer workflow pages into the new hubs so already-impressed pages can pass internal link equity into the expanded records cluster.
+- Added priority-state county backlinks into the new records hubs across AL, IN, NC, TN, and TX to make the cluster reciprocal without touching unrelated states.
+- Strategic goal: turn one records hub into a multi-entry records cluster covering county, address, request-form, as-built, and inspection-letter query variants before the 3-week click sprint review.
