@@ -1830,8 +1830,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "Montana quote conversations get more real once you know whether the lot already has COSA or sanitary restrictions, whether the local health department still owns the drainfield permit, and whether DEQ-4 site-risk paperwork already widens the project."
             );
             case "AL" -> new StateActionCopy(
-                    "Estimate before trusting permit cost or county records",
-                    "Alabama quote conversations get more real once you know which county health department holds the file and whether a Permit to Install, soil test, or Approval for Use is already in view."
+                    "Check Alabama county records before the estimate",
+                    "Alabama quote conversations get more real once the county health file, Permit to Install, soil or perc test, and Approval for Use record are visible."
             );
             case "AR" -> new StateActionCopy(
                     "Estimate before the health-unit call",

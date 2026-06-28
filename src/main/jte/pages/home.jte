@@ -94,6 +94,41 @@
                 <a href="/septic-permit-lookup/">Open permit lookup</a>
             </article>
 
+            <article class="feature-card feature-card--primary">
+                <span class="pill">County records</span>
+                <h3>Septic records by county</h3>
+                <p>Use this when the county is known and the next click should be the local file owner, permit copy, as-built, or inspection letter path.</p>
+                <a href="/septic-records-by-county/">Open county records</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Address search</span>
+                <h3>Permit search by address</h3>
+                <p>Use this when an address search needs parcel, owner, legal-description, or county portal tactics before the record is treated as missing.</p>
+                <a href="/septic-permit-search-by-address/">Search by address</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Request form</span>
+                <h3>Permit records request</h3>
+                <p>Use this when the office needs a specific request for the permit copy, as-built, final approval, repair file, or inspection letter.</p>
+                <a href="/septic-permit-records-request/">Open records request</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Layout file</span>
+                <h3>As-built records</h3>
+                <p>Use this when tank, field, reserve-area, site sketch, or installed-layout details can change repair, addition, or replacement scope.</p>
+                <a href="/septic-as-built-records/">Open as-built records</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Closing file</span>
+                <h3>Inspection letter</h3>
+                <p>Use this when a lender, buyer, or closing file needs more than a generic permit copy or public records result.</p>
+                <a href="/septic-inspection-letter/">Open inspection letter</a>
+            </article>
+
             <article class="feature-card">
                 <span class="pill">Records</span>
                 <h3>Records lookup</h3>

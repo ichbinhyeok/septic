@@ -287,7 +287,7 @@ public class SeoService {
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
             case "WV" -> "West Virginia septic permit cost, sewage permit file, and local health guide";
-            case "AL" -> "Alabama septic permit cost, permit records, and perc test guide";
+            case "AL" -> "Alabama septic permit cost, records, and perc test by county";
             case "AR" -> "Arkansas septic cost guide and county permit path";
             case "MS" -> "Mississippi septic cost guide and public records path";
             case "IN" -> "Indiana septic cost guide and county permit path";
@@ -746,6 +746,12 @@ public class SeoService {
             case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
             case "septic-records-checklist" -> "Septic Records Lookup by State | Permit Search, As-Builts, and County Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
+            case "how-to-find-septic-records-online" -> "How to Find Septic Records Online | County, Permit, and As-Built Search | SepticPath";
+            case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
+            case "septic-permit-search-by-address" -> "Septic Permit Search by Address | County Records and Parcel Lookup | SepticPath";
+            case "septic-permit-records-request" -> "Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath";
+            case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
+            case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";
@@ -800,7 +806,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "Alabama Septic Permit Cost, Permit Records, and Perc Test Guide";
+            case "AL" -> "Alabama Septic Permit Cost, Records, and Perc Test by County";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -856,7 +862,7 @@ public class SeoService {
             case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "Alabama septic permit cost guide with county health department routing, Permit to Install and Approval for Use records, perc test questions, and official ADPH links.";
+            case "AL" -> "Alabama septic permit cost guide with county health department routing, Permit to Install, Approval for Use records, perc test questions, county records, and official ADPH links.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";

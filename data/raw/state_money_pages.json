@@ -4137,10 +4137,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "NC",
-      "title": "North Carolina Septic Records Checklist and Permit Lookup",
-      "metaDescription": "North Carolina septic records lookup and permit search and permit file checklist before trusting a quote, including county health files, permits, and authorization history.",
-      "introCopy": "North Carolina records lookup starts with the permit search, county file, or official office path. North Carolina records research is stronger when it starts with the county health department path. The most useful documents are the ones that explain whether the old site and permit history still support a simple homeowner estimate today.",
-      "uniqueAngle": "North Carolina's records lookup page is useful because it connects county health files to the permit ladder and explains why that record trail matters before the homeowner trusts the quote.",
+      "title": "North Carolina Septic Permit Lookup and County Records Search",
+      "metaDescription": "North Carolina septic permit lookup with county environmental health records, improvement permits, construction authorizations, operation permits, and as-built files.",
+      "introCopy": "North Carolina septic permit lookup should start with the county environmental health record because the useful file is often the improvement permit, construction authorization, operation permit, site sketch, repair record, or authorization history tied to the parcel.",
+      "uniqueAngle": "North Carolina is strongest when the page names the county records search, improvement permit, construction authorization, operation permit, and as-built file before the user gets pushed into a generic septic cost estimate.",
       "targetReader": "Best for North Carolina buyers and owners who need to know whether the county file still supports the current septic story or whether the permit ladder already hints at a more complex next step.",
       "fitBullets": [
         "The project looks simple, but the county health file has not been reviewed yet. You also need the right records lookup or permit search path before the file story is trustworthy.",
@@ -4165,9 +4165,9 @@
         "The next decision you need from the records: inspection, repair, replacement, or permit confirmation."
       ],
       "driverBullets": [
-        "North Carolina records lookup gets useful only after the permit search, county file owner, or official office path is clear.",
-        "Request any improvement permit, construction authorization, or operation record tied to the property.",
-        "Use the records to find out whether site history already points to a more complex replacement or permit path."
+        "County environmental health records are the practical lookup path for many North Carolina parcels.",
+        "Improvement permit, construction authorization, and operation permit history decide whether the system story is complete.",
+        "As-built and repair records can change buyer, addition, and replacement risk before a quote."
       ],
       "faqBlocks": [
         {
@@ -4180,11 +4180,17 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-as-built-records/",
+        "/septic-permit-records-request/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/north-carolina/guilford-county/",
+        "/septic-records-checklist/north-carolina/iredell-county/",
+        "/septic-records-checklist/north-carolina/alamance-county/",
+        "/septic-records-checklist/north-carolina/wake-county/",
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
-        "/septic-records-checklist/north-carolina/guilford-county/",
-        "/septic-records-checklist/north-carolina/durham-county/",
-        "/septic-records-checklist/north-carolina/iredell-county/",
         "/septic-records-checklist/north-carolina/randolph-county/",
         "/septic-records-checklist/north-carolina/davidson-county/",
         "/septic-records-checklist/north-carolina/lincoln-county/",
@@ -4192,10 +4198,6 @@
         "/septic-permit-process/north-carolina/",
         "/septic-inspection-cost/north-carolina/",
         "/septic-system-cost-calculator/?state=NC&projectType=buying_home",
-        "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
-        "/septic-permit-records-request/",
-        "/septic-as-built-records/",
         "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
@@ -8955,10 +8957,10 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "SC",
-      "title": "South Carolina Septic Permit Requirements, Site Evaluation, and Permit Copy Guide",
-      "metaDescription": "South Carolina septic permit requirements with SCDES permit copy lookup, D-1740 steps, site evaluation path, and county office routing.",
-      "introCopy": "South Carolina permit content is stronger than a generic install checklist because SCDES makes the permit path explicit. The real homeowner job often turns on whether the permit copy is already on file, whether the D-1740 and site evaluation path are complete, and which county contact handles final inspections and follow-up.",
-      "uniqueAngle": "South Carolina permit intent is strongest when the page explains the D-1740, site evaluation, Permit to Construct, final-inspection path, and permit-copy lookup instead of pretending the project starts with a clean contractor quote.",
+      "title": "South Carolina Septic Permit Requirements, D-1740, and Permit Copy Guide",
+      "metaDescription": "South Carolina septic permit requirements with SCDES D-1740, permit copy lookup, site evaluation, county office routing, and final inspection steps.",
+      "introCopy": "South Carolina septic permit requirements start with SCDES, the D-1740, permit-copy status, site evaluation, county office routing, and final inspection. The page should answer which step controls the property before a contractor treats the job like a routine install quote.",
+      "uniqueAngle": "South Carolina permit intent is strongest when the page leads with D-1740, SCDES permit copy lookup, site evaluation, county office routing, and final inspection instead of a generic permit checklist.",
       "targetReader": "Best for South Carolina owners, buyers, builders, and agents who need to know which SCDES office controls the file, whether the permit copy, D-1740, and site-evaluation history already exist, and why the county building-permit gate can move the whole schedule.",
       "fitBullets": [
         "You have an install or replacement quote, but no one has confirmed whether a permit copy is already on file for the parcel.",
@@ -8983,9 +8985,9 @@
         "A short note showing whether the job is a fresh install, replacement follow-through, or a file-cleanup question before the county building permit."
       ],
       "driverBullets": [
-        "South Carolina permit timing depends heavily on pulling the permit copy first.",
-        "The D-1740 and site-evaluation path often decide whether the homeowner is still in a planning scenario or on a real permit track.",
-        "County-specific SCDES routing can widen the schedule before the installer quote feels real."
+        "D-1740 and SCDES permit copy status are the high-intent click reason.",
+        "Site evaluation and final inspection can change whether the permit path is ready.",
+        "County office routing decides the practical next step before the quote conversation."
       ],
       "faqBlocks": [
         {
@@ -8998,15 +9000,15 @@
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/south-carolina/",
         "/septic-records-checklist/south-carolina/",
-        "/buying-a-house-with-a-septic-system/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=new_install",
-        "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
         "/septic-permit-records-request/",
+        "/septic-permit-search-by-address/",
+        "/septic-records-by-county/",
         "/septic-as-built-records/",
-        "/septic-inspection-letter/"
+        "/septic-inspection-letter/",
+        "/septic-system-cost-calculator/south-carolina/",
+        "/buying-a-house-with-a-septic-system/south-carolina/",
+        "/septic-system-cost-calculator/?state=SC&projectType=new_install"
       ],
       "officialSourceIds": [
         "sc_01",
@@ -11813,10 +11815,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IN",
-      "title": "Indiana Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Indiana septic records lookup and permit search with county permit and site file lookup, local health office routing, and sewer-availability questions.",
-      "introCopy": "Indiana records lookup starts with the permit search, county file, or official office path. Indiana records work is less about one statewide file and more about getting the right county or local health office file in hand. If the homeowner cannot surface the county permit and site file, the permit trail, and any local board of health file, the low end is still just a planning story.",
-      "uniqueAngle": "Indiana's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Indiana records intent is strongest when the page connects county or local health office routing, county permit and site file, and sewer-availability gate and local-board variation instead of pretending the state keeps one simple homeowner database.",
+      "title": "Indiana Septic Permit Lookup and County Records Search",
+      "metaDescription": "Indiana septic permit lookup with county health department records, site files, local board routing, sewer availability checks, and permit request steps.",
+      "introCopy": "Indiana septic permit lookup is usually a county records search. Start with the county or local health department file, then confirm whether the site file, permit history, local board record, or sewer-availability gate changes the property story before pricing.",
+      "uniqueAngle": "Indiana is strongest when the searcher sees county health department records, septic permit lookup, site file, local board routing, and sewer-availability friction in the title path instead of a vague statewide records promise.",
       "targetReader": "Best for Indiana buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
         "You know the parcel uses septic, but no one has confirmed which county or local health office actually controls the file. You also need the right records lookup or permit search path before the file story is trustworthy.",
@@ -11841,9 +11843,9 @@
         "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
       ],
       "driverBullets": [
-        "Indiana records lookup gets useful only after the permit search, county file owner, or official office path is clear.",
-        "A thin county permit and site file trail can hide the real approval story behind the current system.",
-        "sewer-availability gate and local-board variation can matter as much as the permit copy before the homeowner trusts the low end."
+        "Indiana septic records are county-first once the parcel location is known.",
+        "The county permit and site file matter more than a statewide average before the quote conversation.",
+        "Sewer availability and local board variation can change whether the onsite path is routine."
       ],
       "faqBlocks": [
         {
@@ -11856,19 +11858,23 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-records-by-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-records-checklist/indiana/grant-county/",
+        "/septic-records-checklist/indiana/tippecanoe-county/",
+        "/septic-records-checklist/indiana/st-joseph-county/",
+        "/septic-records-checklist/indiana/bartholomew-county/",
+        "/septic-records-checklist/indiana/monroe-county/",
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
-        "/septic-records-checklist/indiana/grant-county/",
         "/septic-records-checklist/indiana/la-porte-county/",
         "/septic-records-checklist/indiana/shelby-county/",
         "/septic-records-checklist/indiana/miami-county/",
         "/septic-records-checklist/indiana/brown-county/",
         "/septic-records-checklist/indiana/decatur-county/",
         "/septic-records-checklist/indiana/washington-county/",
-        "/septic-records-checklist/indiana/tippecanoe-county/",
-        "/septic-records-checklist/indiana/bartholomew-county/",
-        "/septic-records-checklist/indiana/monroe-county/",
-        "/septic-records-checklist/indiana/st-joseph-county/",
         "/septic-records-checklist/indiana/porter-county/",
         "/septic-records-checklist/indiana/marshall-county/",
         "/septic-records-checklist/indiana/huntington-county/",
@@ -11876,10 +11882,6 @@
         "/septic-replacement-cost/indiana/",
         "/septic-permit-process/indiana/",
         "/septic-system-cost-calculator/?state=IN&projectType=buying_home",
-        "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
-        "/septic-permit-records-request/",
-        "/septic-as-built-records/",
         "/septic-inspection-letter/"
       ],
       "officialSourceIds": [
@@ -16468,10 +16470,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "SC",
-      "title": "South Carolina Septic Records Checklist and Permit Lookup",
-      "metaDescription": "South Carolina septic records lookup and permit search with SCDES county or regional contact routing, permit copy and D-1740 history pulls, and permit-copy and county-office friction.",
-      "introCopy": "South Carolina records lookup starts with the permit search, county file, or official office path. South Carolina records work is less about one statewide file and more about getting the right SCDES county or regional contact file in hand. If the homeowner cannot surface the permit copy and D-1740 history, the low end is still just a planning story.",
-      "uniqueAngle": "South Carolina's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. South Carolina records intent is strongest when the page connects SCDES county or regional contact routing, permit copy and D-1740 history, and permit-copy and county-office friction instead of pretending the state keeps one simple homeowner database.",
+      "title": "South Carolina Septic Permit Lookup, D-1740, and Records Request",
+      "metaDescription": "South Carolina septic permit lookup with SCDES records request, D-1740 history, permit copy, county office routing, and final inspection checks.",
+      "introCopy": "South Carolina septic permit lookup should make the SCDES records path, D-1740 history, permit copy, county or regional office, and final-inspection status explicit before the user trusts a quote or sale story.",
+      "uniqueAngle": "South Carolina is the records page to click when the searcher needs SCDES permit copy language, D-1740 history, county office routing, and final-inspection risk instead of one vague state records answer.",
       "targetReader": "Best for South Carolina buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
         "You know the parcel uses septic, but no one has confirmed which SCDES county or regional contact actually controls the file. You also need the right records lookup or permit search path before the file story is trustworthy.",
@@ -16496,9 +16498,9 @@
         "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
       ],
       "driverBullets": [
-        "South Carolina records lookup gets useful only after the permit search, county file owner, or official office path is clear.",
-        "A thin permit copy and D-1740 history trail can hide the real approval story behind the current system.",
-        "permit-copy and county-office friction can matter as much as the permit copy before the homeowner trusts the low end."
+        "SCDES permit copy and D-1740 history are the click reason.",
+        "County or regional office routing can matter as much as the visible permit record.",
+        "Final inspection status decides whether the file supports a clean sale or quote story."
       ],
       "faqBlocks": [
         {
@@ -16511,15 +16513,16 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-permit-records-request/",
+        "/septic-permit-search-by-address/",
+        "/septic-records-by-county/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-permit-lookup/",
         "/septic-system-cost-calculator/south-carolina/",
         "/buying-a-house-with-a-septic-system/south-carolina/",
         "/septic-permit-process/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=buying_home",
-        "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
-        "/septic-permit-records-request/",
-        "/septic-as-built-records/",
-        "/septic-inspection-letter/"
+        "/septic-system-cost-calculator/?state=SC&projectType=buying_home"
       ],
       "officialSourceIds": [
         "sc_01",
@@ -19882,10 +19885,10 @@
     {
       "contentSlug": "perc-test-cost",
       "stateCode": "TN",
-      "title": "Tennessee Perc Test Cost",
-      "metaDescription": "Tennessee perc test cost with the TDEC regional contact or contract county office routing, soil or site limits and permit file, and regional-contact and repair-permit friction.",
-      "introCopy": "Tennessee perc-intent traffic matters because the test question is really about whether the soil or site limits and permit file keeps the parcel on a straightforward path. Start with the correct TDEC regional contact or the contract county office that handles septic assistance for the property.",
-      "uniqueAngle": "Tennessee perc pages are strongest when they connect the TDEC regional contact or contract county office, soil or site limits and permit file, and regional-contact and repair-permit friction instead of treating the test like a standalone invoice.",
+      "title": "Tennessee Perc Test Cost and TDEC Septic Permit Path",
+      "metaDescription": "Tennessee perc test cost with TDEC regional contact or contract county routing, SSDS permit records, soil limits, site review, and repair permit risk.",
+      "introCopy": "Tennessee perc test cost searches usually hide a permit-path question. Before treating the number like a standalone soil test invoice, confirm whether the parcel belongs with a TDEC regional contact, a contract county office, SSDS permit records, or a repair-permit branch.",
+      "uniqueAngle": "Tennessee perc cost is strongest when it connects the cost question to TDEC regional contacts, contract county routing, SSDS permit records, soil limits, site review, and repair-permit risk.",
       "targetReader": "Best for Tennessee owners, buyers, builders, and agents who need to know whether site work still looks straightforward before permit, design, or replacement risk widens the project.",
       "fitBullets": [
         "You want a perc or site-work number, but no one has confirmed the soil or site limits and permit file first.",
@@ -19910,9 +19913,9 @@
         "A short note showing whether the site-work question is tied to buyer diligence, new install, replacement follow-through, or lot feasibility."
       ],
       "driverBullets": [
-        "Tennessee site-testing conversations get real only after the TDEC regional contact or contract county office routing is clear.",
-        "The soil or site limits and permit file can matter more than the first quoted test fee.",
-        "regional-contact and repair-permit friction can widen the project long before a perc invoice feels final."
+        "The perc test number is weak until the TDEC or contract county routing is clear.",
+        "SSDS permit records and site-review notes can change whether the test is routine.",
+        "Repair-permit risk can turn a perc question into a broader replacement or redesign path."
       ],
       "faqBlocks": [
         {
@@ -19925,10 +19928,15 @@
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/tennessee/",
-        "/septic-permit-process/tennessee/",
-        "/septic-replacement-cost/tennessee/",
         "/septic-records-checklist/tennessee/",
+        "/septic-permit-process/tennessee/",
+        "/septic-permit-search-by-address/",
+        "/septic-records-by-county/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/tennessee/hamilton-county/",
+        "/septic-as-built-records/",
+        "/septic-system-cost-calculator/tennessee/",
+        "/septic-replacement-cost/tennessee/",
         "/septic-system-cost-calculator/?state=TN&projectType=perc_test"
       ],
       "officialSourceIds": [
@@ -20009,10 +20017,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "TN",
-      "title": "Tennessee Septic Records Checklist and Permit Lookup for TDEC",
-      "metaDescription": "Tennessee septic records lookup and permit search with TDEC SSDS record search, permit file and inspection letter, contract county routing, and repair-permit friction before quotes.",
-      "introCopy": "Tennessee records lookup starts with the permit search, county file, or official office path. Tennessee records work is less about one simple database and more about using the TDEC SSDS record search, the right regional contact, or a contract county office to get the permit file and inspection letter in hand before you trust the next quote, deal step, or repair story.",
-      "uniqueAngle": "Tennessee's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Tennessee records intent is strongest when the page connects TDEC septic records, septic permit lookup language, the regional contact or contract county office, permit file and inspection letter, and repair-permit friction instead of pretending one clean statewide search settles the story.",
+      "title": "Tennessee Septic Permit Lookup and TDEC SSDS Records Search",
+      "metaDescription": "Tennessee septic permit lookup with TDEC SSDS record search, permit file, inspection letter, contract county routing, and repair permit checks.",
+      "introCopy": "Tennessee septic permit lookup should start with the TDEC SSDS record search, the right regional contact, or a contract county office before anyone trusts a quote, deal step, or repair story. The useful click is the one that gets the permit file, inspection letter, and repair-permit trail in hand.",
+      "uniqueAngle": "Tennessee is the records page to click when the searcher needs TDEC SSDS record search, septic permit lookup, contract county routing, permit file, inspection letter, and repair-permit friction on one path instead of another generic state overview.",
       "targetReader": "Best for Tennessee buyers, owners, agents, and builders searching for septic records, permit lookup, or the right file before trusting the next quote, deal step, or repair story.",
       "fitBullets": [
         "You know the parcel uses septic, but no one has surfaced the permit file and inspection letter yet.",
@@ -20037,9 +20045,9 @@
         "A short note showing whether the file request is for buyer diligence, permit cleanup, replacement planning, or service-history review."
       ],
       "driverBullets": [
-        "Tennessee records lookup gets useful only after the permit search, county file owner, or official office path is clear.",
-        "A thin permit file and inspection letter trail can hide the real approval story behind the current system.",
-        "regional-contact and repair-permit friction can matter as much as the permit copy before the homeowner trusts the low end."
+        "TDEC SSDS record search and contract county routing are the first click, not an afterthought.",
+        "The permit file and inspection letter decide whether the property story is usable for a sale, repair, or quote.",
+        "Repair-permit friction can turn a clean-looking lookup into a broader failure or replacement path."
       ],
       "faqBlocks": [
         {
@@ -20052,25 +20060,28 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-permit-search-by-address/",
+        "/septic-records-by-county/",
+        "/septic-permit-records-request/",
+        "/septic-inspection-letter/",
+        "/septic-as-built-records/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/tennessee/hamilton-county/",
+        "/septic-records-checklist/tennessee/williamson-county/",
+        "/septic-records-checklist/tennessee/davidson-county/",
+        "/septic-records-checklist/tennessee/knox-county/",
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/tennessee/loudon-county/",
         "/septic-records-checklist/tennessee/anderson-county/",
         "/septic-records-checklist/tennessee/cumberland-county/",
-        "/septic-records-checklist/tennessee/davidson-county/",
-        "/septic-records-checklist/tennessee/knox-county/",
         "/septic-records-checklist/tennessee/shelby-county/",
         "/septic-records-checklist/tennessee/rutherford-county/",
         "/septic-system-cost-calculator/tennessee/",
         "/buying-a-house-with-a-septic-system/tennessee/",
         "/septic-inspection-cost/tennessee/",
         "/septic-permit-process/tennessee/",
-        "/septic-system-cost-calculator/?state=TN&projectType=buying_home",
-        "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
-        "/septic-permit-records-request/",
-        "/septic-as-built-records/",
-        "/septic-inspection-letter/"
+        "/septic-system-cost-calculator/?state=TN&projectType=buying_home"
       ],
       "officialSourceIds": [
         "tn_01",

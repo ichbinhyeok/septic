@@ -1495,3 +1495,11 @@ Copy this block for the next review:
 - Routed state records, permit-process, and buyer workflow pages into the new hubs so already-impressed pages can pass internal link equity into the expanded records cluster.
 - Added priority-state county backlinks into the new records hubs across AL, IN, NC, TN, and TX to make the cluster reciprocal without touching unrelated states.
 - Strategic goal: turn one records hub into a multi-entry records cluster covering county, address, request-form, as-built, and inspection-letter query variants before the 3-week click sprint review.
+
+## 2026-06-29 - CTR surgery on already-impressed records pages
+
+- Rechecked GSC top pages and prioritized pages already showing impressions: Alabama state guide, Tennessee records, Indiana records, North Carolina records, South Carolina records and permit process, and Tennessee perc.
+- Rewrote high-impression state records titles and snippets around exact click reasons: TDEC SSDS records search, county records search, permit lookup by address, SCDES D-1740, permit copy, as-built records, and inspection-letter language.
+- Reordered internal links on the target state pages so the first links point into records cluster hubs and proven county pages instead of generic calculator paths.
+- Promoted the records cluster from the home page so `/septic-records-by-county/`, `/septic-permit-search-by-address/`, `/septic-permit-records-request/`, `/septic-as-built-records/`, and `/septic-inspection-letter/` are discoverable immediately.
+- Adjusted Alabama guide title/H1/CTA from a broad permit-cost guide toward county records, Permit to Install, Approval for Use, and perc-test search intent.
