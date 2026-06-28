@@ -887,6 +887,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .toList();
         ContentWorkflowCoverageView contentWorkflowCoverage = contentWorkflowCoverage(contentPage, rankedStateEntries);
         List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
+        List<PageLink> permitLookupCountyLinks = permitLookupCountyLaunchpadLinks(contentPage);
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -900,6 +901,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
+        model.addAttribute("permitLookupCountyLinks", permitLookupCountyLinks);
+        model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(12).toList());
+        model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(12).toList());
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
                 ? null
@@ -2092,6 +2096,10 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private List<PageLink> countyRecordPageLinks(String stateCode) {
         return researchDataService.listPublicCountyRecordsPages(stateCode).stream()
+                .sorted(Comparator
+                        .comparingInt(this::countyRecordPriorityScore)
+                        .reversed()
+                        .thenComparing(CountyRecordsPage::countyName))
                 .map(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> new PageLink(
                                 page.title(),
@@ -2100,6 +2108,80 @@ The goal is to settle the permit path before we frame the project as a normal in
                         )))
                 .flatMap(Optional::stream)
                 .toList();
+    }
+
+    private List<PageLink> permitLookupCountyLaunchpadLinks(ContentPage contentPage) {
+        if (!isPermitLookupHub(contentPage)) {
+            return List.of();
+        }
+        return List.of(
+                        countyLaunchpadLink("tennessee", "davidson-county"),
+                        countyLaunchpadLink("tennessee", "knox-county"),
+                        countyLaunchpadLink("tennessee", "shelby-county"),
+                        countyLaunchpadLink("north-carolina", "wake-county"),
+                        countyLaunchpadLink("north-carolina", "alamance-county"),
+                        countyLaunchpadLink("north-carolina", "union-county"),
+                        countyLaunchpadLink("north-carolina", "johnston-county"),
+                        countyLaunchpadLink("texas", "travis-county"),
+                        countyLaunchpadLink("texas", "hays-county"),
+                        countyLaunchpadLink("texas", "montgomery-county"),
+                        countyLaunchpadLink("texas", "fort-bend-county"),
+                        countyLaunchpadLink("texas", "brazoria-county"),
+                        countyLaunchpadLink("alabama", "madison-county"),
+                        countyLaunchpadLink("alabama", "baldwin-county"),
+                        countyLaunchpadLink("alabama", "shelby-county"),
+                        countyLaunchpadLink("alabama", "tuscaloosa-county"),
+                        countyLaunchpadLink("indiana", "elkhart-county"),
+                        countyLaunchpadLink("indiana", "st-joseph-county"),
+                        countyLaunchpadLink("indiana", "porter-county"),
+                        countyLaunchpadLink("indiana", "marshall-county")
+                ).stream()
+                .flatMap(Optional::stream)
+                .toList();
+    }
+
+    private Optional<PageLink> countyLaunchpadLink(String stateSlug, String countySlug) {
+        return researchDataService.findPublicCountyRecordsPage(stateSlug, countySlug)
+                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
+                        .map(state -> new PageLink(
+                                page.countyName() + " permit lookup",
+                                page.path(state.slug()),
+                                countyLaunchpadNote(page, state)
+                        )));
+    }
+
+    private String countyLaunchpadNote(CountyRecordsPage page, StateProfile state) {
+        return page.countyName() + " routes " + state.stateName()
+                + " septic permit lookup traffic into " + page.recordsLabel()
+                + " before the user trusts a quote, sale file, repair story, or new permit path.";
+    }
+
+    private int countyRecordPriorityScore(CountyRecordsPage page) {
+        int score = switch (page.stateCode()) {
+            case "TN" -> 70;
+            case "NC" -> 64;
+            case "TX" -> 62;
+            case "AL" -> 58;
+            case "IN" -> 54;
+            default -> 20;
+        };
+        score += switch (page.countySlug()) {
+            case "davidson-county", "wake-county", "travis-county", "madison-county", "elkhart-county", "howard-county" -> 34;
+            case "knox-county", "alamance-county", "hays-county", "baldwin-county", "st-joseph-county" -> 28;
+            case "shelby-county", "union-county", "montgomery-county", "shelby-county-alabama", "porter-county" -> 24;
+            case "johnston-county", "fort-bend-county", "tuscaloosa-county", "marshall-county" -> 20;
+            case "chatham-county", "orange-county", "brazoria-county", "lee-county" -> 16;
+            case "mecklenburg-county", "williamson-county", "limestone-county", "floyd-county" -> 12;
+            default -> 0;
+        };
+        score += Math.min(size(page.officialSourceIds()), 4) * 2;
+        if (page.recordsLabel() != null && page.recordsLabel().toLowerCase(Locale.US).contains("search")) {
+            score += 5;
+        }
+        if (page.recordsLabel() != null && page.recordsLabel().toLowerCase(Locale.US).contains("lookup")) {
+            score += 5;
+        }
+        return score;
     }
 
     private CountyWorkflowStructureView countyWorkflowStructure(CountyRecordsPage countyPage, StateProfile state) {

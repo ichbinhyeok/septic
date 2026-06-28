@@ -106,6 +106,32 @@ Rules:
   - on or after 2026-07-19, compare Tennessee records CTR and total clicks
     against the 2026-06-28 baseline
 
+### 3-week 100-click sprint second expansion
+
+- Goal: turn `/septic-permit-lookup/` from a state-only doorway into a county
+  lookup launchpad so high-intent users can move directly into county records
+  pages when the county is already known.
+- What shipped:
+  - added a dedicated county lookup launchpad section to `/septic-permit-lookup/`
+    with high-opportunity county routes across TN, NC, TX, AL, and IN
+  - expanded county records coverage from 259 to 273 pages
+  - added 26 official source registry entries for TX, AL, and IN county pages
+  - added new official-source-backed county pages for:
+    - Texas: Montgomery, Fort Bend, Brazoria, Bell, El Paso
+    - Alabama: Shelby, Tuscaloosa, Lee, Limestone, Morgan
+    - Indiana: St. Joseph, Porter, Marshall, Huntington
+  - reweighted county ordering so state records pages and professional packets
+    show the highest-opportunity lookup counties first without losing existing
+    proven handoff pages
+- Quality bar:
+  - each new county page has its own first official path, first artifact to pull,
+    low-end quote breakers, FAQ, and workflow structure
+  - no new page relies only on a generic statewide source
+- Follow-up check:
+  - after deploy, confirm sitemap discovery for the new county URLs
+  - on or after 2026-07-19, compare new county URL impressions and query
+    coverage against the `/septic-permit-lookup/` launch baseline
+
 ### Data
 
 - Source: Google Search Console MCP for `sc-domain:septicpath.com`

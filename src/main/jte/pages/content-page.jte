@@ -13,6 +13,9 @@
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> permitLookupCountyLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredPermitLookupCountyLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> secondaryPermitLookupCountyLinks = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String contentQuotePath = null
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
@@ -392,6 +395,9 @@
             <div class="section-jump-strip" aria-label="Jump between sections">
                 <span class="section-jump-strip__label">Jump between sections</span>
                 <a href="#drivers">Drivers</a>
+                @if (!featuredPermitLookupCountyLinks.isEmpty())
+                    <a href="#county-lookup-launchpad">County lookup</a>
+                @endif
                 <a href="#state-pages">State pages</a>
                 @if (!contentEvidenceLanes.isEmpty())
                     <a href="#state-lanes">Sources</a>
@@ -442,6 +448,52 @@
             </div>
         </div>
     </section>
+
+    @if (!featuredPermitLookupCountyLinks.isEmpty())
+        <section class="section section--tight" id="county-lookup-launchpad">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County lookup launchpad</span>
+                    <h2>Start with the county file when the search is already specific.</h2>
+                    <p>These are the high-opportunity county routes behind the permit lookup sprint. Use them when the user already has a county name, parcel story, or seller claim and needs the actual file path before reading another broad state guide.</p>
+                </div>
+                <div class="detail-grid">
+                    @for (var link : featuredPermitLookupCountyLinks)
+                        <article class="detail-card">
+                            <h3>${link.title()}</h3>
+                            <p>${link.note()}</p>
+                            <a class="button button--secondary"
+                               href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="permit_lookup_county_launchpad"
+                               data-track-target-type="county_records_page">Open county lookup</a>
+                        </article>
+                    @endfor
+                </div>
+                @if (!secondaryPermitLookupCountyLinks.isEmpty())
+                    <details class="state-money-disclosure">
+                        <summary>
+                            <span class="eyebrow">More county routes</span>
+                            <strong>Show additional permit lookup counties</strong>
+                            <span>Use these when the county is already known and the state page would be a slower first click.</span>
+                        </summary>
+                        <div class="detail-grid">
+                            @for (var link : secondaryPermitLookupCountyLinks)
+                                <article class="detail-card">
+                                    <h3>${link.title()}</h3>
+                                    <p>${link.note()}</p>
+                                    <a href="${link.path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="permit_lookup_county_launchpad_overflow"
+                                       data-track-target-type="county_records_page">Open county lookup</a>
+                                </article>
+                            @endfor
+                        </div>
+                    </details>
+                @endif
+            </div>
+        </section>
+    @endif
 
     <section class="section section--tight">
         <div class="container detail-grid">

@@ -776,9 +776,9 @@
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers, owners, agents, and contractors who are searching for septic permit records before trusting a seller story, inspection schedule, repair quote, or new work plan.",
       "deepDiveParagraphs": [
-        "The fastest lookup path is usually state plus county. Some states expose a statewide records search, some push owners to regional offices, and many useful files still live with the county health or environmental office.",
-        "Use this page as the doorway when the search phrase is broad. Once the state is clear, move into the records page for file pulls or the permit process page for the office and approval sequence. If a county page exists, use it before calling the project routine.",
-        "For the current growth sprint, Tennessee, North Carolina, Texas, Alabama, and Indiana get priority because live Search Console data already shows records and permit lookup impressions near page-one positions."
+        "The fast lookup path is state plus county, but the county layer is where the result becomes operational. Some pages point to a public permit search, some to an environmental health records request, and some to a permit packet that reveals whether the user needs final approval, license to operate, schematic, or repair history.",
+        "Use this page as the doorway when the search phrase is broad. If the county is already known, skip directly to the county launchpad; if not, choose the state records or permit page first and let that route expose the county file owner.",
+        "For the current growth sprint, Tennessee, North Carolina, Texas, Alabama, and Indiana get priority because live Search Console data already shows records and permit lookup impressions near page-one positions, and these states have enough official county source material to support high-quality county pages."
       ],
       "fitBullets": [
         "You searched for a septic permit lookup, but do not yet know whether the file lives in a state portal, regional office, or county health department.",
@@ -830,7 +830,20 @@
         "/septic-records-checklist/tennessee/knox-county/",
         "/septic-records-checklist/north-carolina/",
         "/septic-records-checklist/texas/",
-        "/septic-system-cost-calculator/"
+        "/septic-system-cost-calculator/",
+        "/septic-records-checklist/north-carolina/wake-county/",
+        "/septic-records-checklist/north-carolina/alamance-county/",
+        "/septic-records-checklist/north-carolina/union-county/",
+        "/septic-records-checklist/texas/travis-county/",
+        "/septic-records-checklist/texas/montgomery-county/",
+        "/septic-records-checklist/texas/fort-bend-county/",
+        "/septic-records-checklist/texas/brazoria-county/",
+        "/septic-records-checklist/alabama/madison-county/",
+        "/septic-records-checklist/alabama/shelby-county/",
+        "/septic-records-checklist/alabama/tuscaloosa-county/",
+        "/septic-records-checklist/indiana/elkhart-county/",
+        "/septic-records-checklist/indiana/st-joseph-county/",
+        "/septic-records-checklist/indiana/porter-county/"
       ],
       "publishStatus": "published"
     },

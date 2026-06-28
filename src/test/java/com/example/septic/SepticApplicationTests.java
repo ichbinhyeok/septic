@@ -460,12 +460,19 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/baldwin-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/madison-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/shelby-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/tuscaloosa-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/indiana/st-joseph-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/indiana/porter-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/dekalb-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/fulton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/gwinnett-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/travis-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/bexar-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/williamson-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/montgomery-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/fort-bend-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/brazoria-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/harris-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/collin-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/tarrant-county/")))
@@ -1136,6 +1143,32 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("license-to-operate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Texas guide")));
+	}
+
+	@Test
+	void fortBendCountyRecordsPageShowsPermitAndLicenseWorkflow() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/texas/fort-bend-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Texas Septic Records Checklist and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Fort Bend County OSSF permits and packets")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit to construct from the license to operate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing-system modifications can require a new permit path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Environmental Health")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")));
+	}
+
+	@Test
+	void stJosephCountyRecordsPageShowsSchematicLookupWorkflow() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/indiana/st-joseph-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Indiana Septic Records Checklist and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request St. Joseph County septic schematic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("records from 1970 to present")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("some records are incomplete")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Department of Health")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
 	}
 
 	@Test
@@ -6536,8 +6569,14 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open state permit lookup pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a lookup-aware estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#state-pages\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with the county file when the search is already specific.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records Checklist and Permit Lookup for TDEC")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/davidson-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/montgomery-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/fort-bend-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/alabama/shelby-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/indiana/st-joseph-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-first follow-up before pricing")))
