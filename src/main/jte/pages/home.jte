@@ -22,9 +22,9 @@
                 <div class="hero-decision-grid">
                     <article class="hero-decision-card hero-decision-card--accent">
                         <span class="hero-decision-card__label">File first</span>
-                        <h3>I need the septic file before I trust the story</h3>
-                        <p>Start here when the permit copy, as-built, pumping history, or inspection notes are thinner than the current seller, buyer, or contractor story.</p>
-                        <a class="button button--primary" href="/septic-records-checklist/">Open records lookup</a>
+                        <h3>I need the septic permit or file before I trust the story</h3>
+                        <p>Start here when the permit lookup, as-built, pumping history, or inspection notes are thinner than the current seller, buyer, or contractor story.</p>
+                        <a class="button button--primary" href="/septic-permit-lookup/">Open permit lookup</a>
                     </article>
 
                     <article class="hero-decision-card">
@@ -89,6 +89,13 @@
         <div class="container card-grid card-grid--primary">
             <article class="feature-card feature-card--primary">
                 <span class="pill">Primary</span>
+                <h3>Permit lookup</h3>
+                <p>Use this doorway when you need the state record search, county permit file, or TDEC-style lookup path before choosing the next workflow.</p>
+                <a href="/septic-permit-lookup/">Open permit lookup</a>
+            </article>
+
+            <article class="feature-card">
+                <span class="pill">Records</span>
                 <h3>Records lookup</h3>
                 <p>Start here when the septic story depends on permit records, as-builts, maintenance history, or one missing file that could widen the downside fast.</p>
                 <a href="/septic-records-checklist/">Open records lookup</a>

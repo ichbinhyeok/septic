@@ -15889,10 +15889,10 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "TN",
-      "title": "Tennessee Septic Permit Process",
-      "metaDescription": "Tennessee septic permit process with TDEC regional contact or contract county office routing, construction permit and repair permit context, and regional-contact and repair-permit friction.",
-      "introCopy": "Tennessee permit content is stronger than a generic install checklist because the real homeowner path runs through the TDEC regional contact or contract county office, not one vague statewide desk. The practical question is whether the construction permit and repair permit and the local file already support a clean install or replacement story before regional-contact and repair-permit friction widens the job.",
-      "uniqueAngle": "Tennessee permit intent is strongest when the page explains TDEC regional contact or contract county office routing, construction permit and repair permit, and file quality together instead of pretending one statewide office owns the whole permit path.",
+      "title": "Tennessee Septic Permit Process and TDEC Permit Lookup",
+      "metaDescription": "Tennessee septic permit process with TDEC SSDS permit lookup, regional contact or contract county office routing, construction permit and repair permit context, and file-search friction.",
+      "introCopy": "Tennessee permit content is stronger than a generic install checklist because the real homeowner path runs through the TDEC SSDS permit hub, the TDEC regional contact, or a contract county office. Start by confirming whether the parcel needs a permit lookup, construction permit, repair permit, or inspection-letter path before regional-contact and repair-permit friction widens the job.",
+      "uniqueAngle": "Tennessee permit intent is strongest when the page connects TDEC permit lookup language, SSDS record search behavior, regional contact or contract county routing, construction permit and repair permit, and file quality instead of pretending one statewide office owns the whole path.",
       "targetReader": "Best for Tennessee owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
       "fitBullets": [
         "You have an install or replacement quote, but no one has confirmed which TDEC regional contact or contract county office actually controls the permit path.",
@@ -15924,7 +15924,7 @@
       "faqBlocks": [
         {
           "question": "What is the first Tennessee permit step a homeowner should take?",
-          "answer": "Start with the TDEC regional contact or contract county office because that office controls the practical permit path and the file you need before trusting the lowest install quote."
+          "answer": "Start with the TDEC SSDS permit hub, the permit lookup or record-search path it links, and the correct regional or contract county contact before treating the project as routine."
         },
         {
           "question": "Why does Tennessee permit content need to mention construction permit and repair permit?",
@@ -15932,6 +15932,11 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-permit-lookup/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-records-checklist/tennessee/davidson-county/",
+        "/septic-records-checklist/tennessee/knox-county/",
+        "/septic-records-checklist/tennessee/shelby-county/",
         "/septic-system-cost-calculator/tennessee/",
         "/septic-inspection-cost/tennessee/",
         "/septic-replacement-cost/tennessee/",
@@ -19154,7 +19159,7 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "TN",
-      "title": "Tennessee Septic Records Checklist and Permit Lookup",
+      "title": "Tennessee Septic Records Checklist and Permit Lookup for TDEC",
       "metaDescription": "Tennessee septic records lookup and permit search with TDEC SSDS record search, permit file and inspection letter, contract county routing, and repair-permit friction before quotes.",
       "introCopy": "Tennessee records lookup starts with the permit search, county file, or official office path. Tennessee records work is less about one simple database and more about using the TDEC SSDS record search, the right regional contact, or a contract county office to get the permit file and inspection letter in hand before you trust the next quote, deal step, or repair story.",
       "uniqueAngle": "Tennessee's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Tennessee records intent is strongest when the page connects TDEC septic records, septic permit lookup language, the regional contact or contract county office, permit file and inspection letter, and repair-permit friction instead of pretending one clean statewide search settles the story.",
@@ -19197,6 +19202,11 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-permit-lookup/",
+        "/septic-records-checklist/tennessee/davidson-county/",
+        "/septic-records-checklist/tennessee/knox-county/",
+        "/septic-records-checklist/tennessee/shelby-county/",
+        "/septic-records-checklist/tennessee/rutherford-county/",
         "/septic-system-cost-calculator/tennessee/",
         "/buying-a-house-with-a-septic-system/tennessee/",
         "/septic-inspection-cost/tennessee/",

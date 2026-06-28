@@ -73,6 +73,39 @@ Rules:
 
 ## 2026-06-28
 
+### 3-week 100-click sprint update
+
+- Goal: raise the probability of reaching 100 organic clicks/day within 3 weeks
+  by expanding the already-visible records/permit lookup surface. This is not a
+  guaranteed outcome, but it is the highest-probability site-side move from the
+  current data.
+- Search Console signal used:
+  - last complete 28-day window ending 2026-06-25: 138 clicks, 9,809
+    impressions, 1.41% CTR, average position 10.15
+  - last 7 days ending 2026-06-25: 60 clicks, 2,713 impressions, 2.21% CTR,
+    average position 10.02
+  - fastest opportunity: Tennessee records queries already near page one,
+    including `septic permit lookup`, `tennessee septic records`, `tdec septic
+    records`, and `state of tn septic records`
+- What shipped in this sprint update:
+  - added `/septic-permit-lookup/` as a national state-first doorway for permit
+    lookup, records search, county files, as-builts, and inspection-letter
+    queries
+  - wired that hub to both records and permit state pages instead of creating a
+    thin duplicate content family
+  - promoted TN, NC, TX, AL, and IN in the state-page ranking and home growth
+    spotlights because those are current lookup/records opportunity states
+  - expanded Tennessee county records coverage from 3 to 18 county pages, with
+    TDEC SSDS record search and regional/contract county routing as the shared
+    official-source backbone
+  - added the new hub to header, footer, home, state coverage, related links,
+    sitemap, and regression tests
+- Follow-up check:
+  - after deploy, inspect Google Search Console on or after 2026-07-06 for
+    index discovery and early impressions on `/septic-permit-lookup/`
+  - on or after 2026-07-19, compare Tennessee records CTR and total clicks
+    against the 2026-06-28 baseline
+
 ### Data
 
 - Source: Google Search Console MCP for `sc-domain:septicpath.com`

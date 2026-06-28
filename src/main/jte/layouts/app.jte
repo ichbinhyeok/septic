@@ -74,6 +74,7 @@
                 </button>
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
+                    <a href="/septic-permit-lookup/">Permit lookup</a>
                     <a href="/septic-records-checklist/">Records lookup</a>
                     <a href="/septic-transfer-compliance/">Transfer compliance</a>
                     <a href="/states/">State guides</a>
@@ -122,6 +123,7 @@
                 <nav class="footer-block" aria-label="Core pages">
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
+                        <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
                         <li><a href="/septic-records-checklist/">Records lookup</a></li>
                         <li><a href="/septic-permit-process/">Permit process</a></li>

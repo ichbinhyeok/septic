@@ -55,6 +55,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/septic-permit-lookup/",
         "/septic-records-checklist/",
         "/septic-transfer-compliance/",
         "/septic-permit-process/",
@@ -685,7 +686,8 @@
         "/septic-records-checklist/",
         "/septic-permit-process/",
         "/buying-a-house-with-a-septic-system/",
-        "/septic-system-cost-calculator/"
+        "/septic-system-cost-calculator/",
+        "/septic-permit-lookup/"
       ],
       "publishStatus": "published"
     },
@@ -751,7 +753,84 @@
       "internalLinkTargets": [
         "/septic-records-checklist/",
         "/septic-permit-process/",
-        "/septic-inspection-cost/"
+        "/septic-inspection-cost/",
+        "/septic-permit-lookup/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-permit-lookup",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic permit lookup",
+      "secondaryKeywords": [
+        "septic records search",
+        "septic permit records",
+        "septic tank permit lookup",
+        "county septic records",
+        "how to find septic tank records online"
+      ],
+      "title": "Septic Permit Lookup by State",
+      "metaDescription": "Find the septic permit lookup path before you trust a quote, closing story, or repair plan: state records search, county files, as-builts, and permit office routing.",
+      "introCopy": "A septic permit lookup usually fails when the searcher starts with the wrong doorway. This hub routes the question into the state records page, the permit process page, and county file pages where the real permit copy, as-built, inspection letter, or repair record is likely to live.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, owners, agents, and contractors who are searching for septic permit records before trusting a seller story, inspection schedule, repair quote, or new work plan.",
+      "deepDiveParagraphs": [
+        "The fastest lookup path is usually state plus county. Some states expose a statewide records search, some push owners to regional offices, and many useful files still live with the county health or environmental office.",
+        "Use this page as the doorway when the search phrase is broad. Once the state is clear, move into the records page for file pulls or the permit process page for the office and approval sequence. If a county page exists, use it before calling the project routine.",
+        "For the current growth sprint, Tennessee, North Carolina, Texas, Alabama, and Indiana get priority because live Search Console data already shows records and permit lookup impressions near page-one positions."
+      ],
+      "fitBullets": [
+        "You searched for a septic permit lookup, but do not yet know whether the file lives in a state portal, regional office, or county health department.",
+        "The seller, owner, or contractor mentions a permit or as-built, but nobody has produced the actual file yet.",
+        "A repair, sale, addition, or lender question depends on whether the old septic record is complete enough to trust."
+      ],
+      "decisionSteps": [
+        "Choose the state first, then open the state records page if the question is about the permit copy, as-built, inspection letter, or historical file.",
+        "Open the state permit process page when the question is which office, application, repair permit, or site-review step controls the next move.",
+        "If a county records page is available, use it before pricing because county file ownership often changes the practical lookup path.",
+        "Only after the file owner and first artifact are clear should you use the estimator or compare quotes."
+      ],
+      "lowEndBreakers": [
+        "A statewide search result can be incomplete when the county or contract office still owns the useful file.",
+        "A permit mention without an as-built, inspection letter, repair history, or closeout signal can make the low-end project story too optimistic.",
+        "Older homes, additions, bedroom-count changes, and failing-system repairs often need a file pull before the next price or closing answer is useful."
+      ],
+      "quotePrepChecklist": [
+        "The state and county for the parcel, plus any permit number, owner name, address, parcel ID, or subdivision clue already available.",
+        "The specific artifact needed: permit copy, as-built, inspection letter, repair permit, pumping history, or complaint record.",
+        "A note on whether the lookup is for a sale, repair, addition, replacement, or new installation."
+      ],
+      "driverBullets": [
+        "State records portals are useful only when they point to the actual parcel file or the office that controls it.",
+        "County health and environmental offices often decide whether the old permit story is strong enough for a sale, repair, or addition.",
+        "The lookup result changes the next move: buyer diligence, permit application, repair branch, or cautious cost estimate."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Where should I start a septic permit lookup?",
+          "answer": "Start with the state records or permit page, then move to the county health or environmental office when the state page points there or the file is still missing."
+        },
+        {
+          "question": "Is a septic permit lookup the same as a septic inspection?",
+          "answer": "No. A lookup pulls the file history, permit, as-built, or inspection letter path. An inspection evaluates current system condition and may require a different office or professional visit."
+        },
+        {
+          "question": "What if the permit search finds nothing?",
+          "answer": "Treat the missing file as a risk signal. Open the state records page, check county routing, and avoid trusting the lowest quote or clean closing story until the file owner responds."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/",
+        "/septic-permit-process/",
+        "/septic-transfer-compliance/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-permit-process/tennessee/",
+        "/septic-records-checklist/tennessee/davidson-county/",
+        "/septic-records-checklist/tennessee/knox-county/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-records-checklist/texas/",
+        "/septic-system-cost-calculator/"
       ],
       "publishStatus": "published"
     },
@@ -818,7 +897,8 @@
         "/buying-a-house-with-a-septic-system/",
         "/septic-inspection-cost/",
         "/septic-replacement-cost/",
-        "/septic-system-cost-calculator/"
+        "/septic-system-cost-calculator/",
+        "/septic-permit-lookup/"
       ],
       "publishStatus": "published"
     },
@@ -889,7 +969,8 @@
         "/septic-inspection-cost/",
         "/septic-permit-process/",
         "/septic-replacement-cost/",
-        "/perc-test-cost/"
+        "/perc-test-cost/",
+        "/septic-permit-lookup/"
       ],
       "publishStatus": "published"
     },
@@ -959,7 +1040,8 @@
         "/septic-records-checklist/indiana/floyd-county/",
         "/septic-records-checklist/alabama/madison-county/",
         "/septic-records-checklist/georgia/dekalb-county/",
-        "/septic-system-cost-calculator/"
+        "/septic-system-cost-calculator/",
+        "/septic-permit-lookup/"
       ],
       "publishStatus": "published"
     }

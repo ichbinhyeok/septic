@@ -742,6 +742,7 @@ public class SeoService {
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
+            case "septic-permit-lookup" -> "Septic Permit Lookup by State | Records Search and County Permit Files | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
             case "septic-records-checklist" -> "Septic Records Lookup by State | Permit Search, As-Builts, and County Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";

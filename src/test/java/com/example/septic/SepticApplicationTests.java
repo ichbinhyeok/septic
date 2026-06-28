@@ -304,6 +304,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"preload\" href=\"https://fonts.googleapis.com/css2?family=Manrope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-site-nav-toggle")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site-nav-menu")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-inspection-cost/")))
@@ -430,6 +431,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-04-04</lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/privacy-policy/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
@@ -469,6 +471,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/tarrant-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/denton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/hays-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/davidson-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/knox-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/shelby-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/rutherford-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/placer-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/el-dorado-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/trinity-county/")))
@@ -6519,6 +6525,23 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("quoteMode=true#quote-request"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/"))));
+	}
+
+	@Test
+	void permitLookupContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-permit-lookup/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Lookup by State")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Lookup by State | Records Search and County Permit Files | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open state permit lookup pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a lookup-aware estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#state-pages\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records Checklist and Permit Lookup for TDEC")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/davidson-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-first follow-up before pricing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_state_specific\"")));
 	}
 
 	@Test
