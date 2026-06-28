@@ -24,7 +24,7 @@
                         <span class="hero-decision-card__label">File first</span>
                         <h3>I need the septic file before I trust the story</h3>
                         <p>Start here when the permit copy, as-built, pumping history, or inspection notes are thinner than the current seller, buyer, or contractor story.</p>
-                        <a class="button button--primary" href="/septic-records-checklist/">Open records checklist</a>
+                        <a class="button button--primary" href="/septic-records-checklist/">Open records lookup</a>
                     </article>
 
                     <article class="hero-decision-card">
@@ -89,9 +89,9 @@
         <div class="container card-grid card-grid--primary">
             <article class="feature-card feature-card--primary">
                 <span class="pill">Primary</span>
-                <h3>Records checklist</h3>
+                <h3>Records lookup</h3>
                 <p>Start here when the septic story depends on permit records, as-builts, maintenance history, or one missing file that could widen the downside fast.</p>
-                <a href="/septic-records-checklist/">Open records checklist</a>
+                <a href="/septic-records-checklist/">Open records lookup</a>
             </article>
 
             <article class="feature-card">

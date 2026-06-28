@@ -1,6 +1,6 @@
 # Organic Tracker
 
-Last updated: 2026-04-23
+Last updated: 2026-06-28
 
 ## Why this file exists
 
@@ -70,6 +70,85 @@ Rules:
 - Internal editorial links should prefer clean canonical paths over calculator
   query-string URLs.
 - `drain-field-replacement-cost` needs deeper content, not just better metadata.
+
+## 2026-06-28
+
+### Data
+
+- Source: Google Search Console MCP for `sc-domain:septicpath.com`
+- Compare window:
+  - current: 2026-05-28 to 2026-06-25
+  - prior estimate from 56-day aggregate: 2026-04-30 to 2026-05-27
+- Site summary:
+  - current: 138 clicks, 9,809 impressions, 1.41% CTR, average position 10.15
+  - prior estimate: 49 clicks, 4,969 impressions, 0.99% CTR, average position 11.87
+  - change: clicks up about 182%, impressions up about 97%, CTR up about 43%
+- Short read:
+  - 2026-06-18 to 2026-06-25: 60 clicks, 2,713 impressions, 2.21% CTR,
+    average position 10.02
+- Main page signals:
+  - `/septic-system-cost-calculator/alabama/`: 35 clicks, 2,232 impressions
+  - `/septic-records-checklist/indiana/`: 17 clicks, 300 impressions, 5.67% CTR
+  - `/septic-records-checklist/tennessee/`: 6 clicks, 1,043 impressions,
+    0.58% CTR
+- Query opportunity:
+  - Tennessee records page is visible for `septic permit lookup`,
+    `tdec septic records`, and `septic record search`, but CTR is still weak.
+
+### Changes Shipped
+
+- Commit: not committed yet in this tracker entry
+- Files:
+  - `data/raw/content_pages.json`
+  - `data/raw/state_money_pages.json`
+  - `src/main/java/com/example/septic/service/SeoService.java`
+  - `src/main/java/com/example/septic/web/SiteController.java`
+  - `src/main/java/com/example/septic/data/model/StateMoneyPage.java`
+  - `src/main/jte/layouts/app.jte`
+  - `src/main/jte/pages/home.jte`
+  - `src/main/jte/pages/state-coverage.jte`
+  - `src/test/java/com/example/septic/SepticApplicationTests.java`
+- What changed:
+  - shifted the national records page from `records checklist` framing toward
+    `septic records lookup`, `septic permit lookup`, and `property record
+    search` language
+  - retitled the Tennessee records page around `Tennessee Septic Records
+    Checklist and Permit Lookup`
+  - added TDEC SSDS record search, permit-search result, and septic permit
+    lookup language to Tennessee copy and FAQ
+  - changed records CTA labels toward `records lookup` and county record lookup
+    paths while keeping existing URLs stable
+
+### Insights
+
+- Observation: records and permit lookup language is the clearest current
+  search expansion surface.
+- Interpretation: `checklist` is still useful as product language, but `lookup`
+  and `search` should carry the snippet and CTA layer where Search Console is
+  already showing those queries.
+- Observation: Tennessee has high impressions but weak CTR relative to page-one
+  and near-page-one visibility.
+- Interpretation: Tennessee is the fastest CTR test because the page already
+  earns visibility; the issue is matching the visible search promise more
+  directly.
+
+### QA Check
+
+- `./gradlew.bat test` passed.
+- Local render check passed on:
+  - `http://127.0.0.1:8080/septic-records-checklist/`
+  - `http://127.0.0.1:8080/septic-records-checklist/tennessee/`
+  - `http://127.0.0.1:8080/`
+
+### Next Actions
+
+- After deploy and indexing, recheck 2026-07-06 or later for:
+  - Tennessee records CTR on `septic permit lookup`, `tdec septic records`, and
+    `septic record search`
+  - whether national records page impressions shift toward lookup/search
+    variants
+  - whether county record lookup CTA clicks increase from Tennessee and other
+    records pages
 
 ## 2026-04-23
 

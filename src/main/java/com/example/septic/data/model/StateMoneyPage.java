@@ -74,7 +74,7 @@ public record StateMoneyPage(
     public String localAuthorityHeading() {
         return switch (contentSlug) {
             case "septic-permit-process" -> "Find the office handling this permit path";
-            case "septic-records-checklist" -> "Find the office holding the file";
+            case "septic-records-checklist" -> "Find the office or lookup holding the file";
             case "buying-a-house-with-a-septic-system" -> "Find the office tied to this deal";
             case "septic-inspection-cost" -> "Find the office behind the inspection file";
             case "perc-test-cost" -> "Find the office behind the site review";
@@ -87,7 +87,7 @@ public record StateMoneyPage(
 
     public String recordsLookupHeading() {
         return switch (contentSlug) {
-            case "septic-records-checklist" -> "Open the records trail first";
+            case "septic-records-checklist" -> "Open the records lookup first";
             case "buying-a-house-with-a-septic-system" -> "Pull the deal paperwork first";
             case "septic-inspection-cost" -> "Pull the inspection file first";
             case "septic-permit-process" -> "Pull the permit file first";
@@ -102,7 +102,7 @@ public record StateMoneyPage(
         return switch (contentSlug) {
             case "buying-a-house-with-a-septic-system" -> "Deal checklist";
             case "septic-permit-process" -> "Permit prep checklist";
-            case "septic-records-checklist" -> "File check checklist";
+            case "septic-records-checklist" -> "Records lookup checklist";
             case "septic-inspection-cost" -> "Inspection prep checklist";
             case "septic-replacement-cost", "drain-field-replacement-cost" -> "Replacement prep checklist";
             case "perc-test-cost" -> "Site review checklist";
@@ -168,7 +168,7 @@ public record StateMoneyPage(
     public String quoteChecklistHeading() {
         return switch (contentSlug) {
             case "buying-a-house-with-a-septic-system" -> "Bring this into the next agent or inspector call";
-            case "septic-records-checklist" -> "Bring this into the next records call";
+            case "septic-records-checklist" -> "Bring this into the next records lookup";
             case "septic-permit-process" -> "Bring this into the next permit call";
             case "septic-inspection-cost" -> "Bring this into the next inspection call";
             case "failed-perc-test-septic" -> "Bring this into the next site-review call";

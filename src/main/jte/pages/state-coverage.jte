@@ -27,7 +27,7 @@
                     <p class="lede">Every state guide is public, but the useful move is choosing the page that matches the blocker: records, permit desk, buyer diligence, replacement scope, or county workflow.</p>
                 @endif
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-records-checklist/">Start with records checklist</a>
+                    <a class="button button--primary" href="/septic-records-checklist/">Start with records lookup</a>
                     <a class="button button--secondary" href="/septic-permit-process/">Open permit process guide</a>
                 </div>
             </article>

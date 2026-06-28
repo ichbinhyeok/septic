@@ -56,7 +56,7 @@ public class SiteExceptionHandler {
         }
 
         addLink(links, new PageLink("Drain field estimator", "/drain-field-estimator/", "Use this when the missing page was related to reserve area, wet yard, or drain field failure."));
-        addLink(links, new PageLink("Records checklist", "/septic-records-checklist/", "Use this when you need the file path before you trust any estimate or quote."));
+        addLink(links, new PageLink("Records lookup", "/septic-records-checklist/", "Use this when you need the file path before you trust any estimate or quote."));
         return new ArrayList<>(links.values()).subList(0, Math.min(links.size(), 5));
     }
 

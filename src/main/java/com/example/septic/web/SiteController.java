@@ -1543,7 +1543,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Use the inspection-risk estimate after you know what the file is missing.";
             case "buying-a-house-with-a-septic-system" -> "Open a state buyer page first.";
             case "septic-permit-process" -> "Open a state permit page first.";
-            case "septic-records-checklist" -> "Open a state records page first.";
+            case "septic-records-checklist" -> "Open a state records lookup first.";
             case TRANSFER_COMPLIANCE_SLUG -> "Open a state transfer page first.";
             case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
             case "septic-pumping-cost" -> "Open the pump schedule estimator before you assume a maintenance cadence.";
@@ -1562,7 +1562,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Run an inspection-scope estimate";
             case "buying-a-house-with-a-septic-system" -> "Open state buyer pages";
             case "septic-permit-process" -> "Open state permit pages";
-            case "septic-records-checklist" -> "Open state records pages";
+            case "septic-records-checklist" -> "Open state records lookup pages";
             case TRANSFER_COMPLIANCE_SLUG -> "Open state transfer pages";
             case "septic-tank-size" -> "Open the tank size estimator";
             case "septic-pumping-cost" -> "Open the pump schedule estimator";
@@ -1581,7 +1581,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-inspection-cost" -> "Pull the permit file, as-built, pumping history, and O&M records first, then use the estimate to judge whether the visit is routine diligence or leverage for a bigger next step.";
             case "buying-a-house-with-a-septic-system" -> "Transfer rules, county records, inspection triggers, and bedroom-use mismatches vary enough that the state-specific page is the faster first move.";
             case "septic-permit-process" -> "The first real answer is usually which office, file, or site-review step controls this property, so start with the state-specific permit page before you model the cost.";
-            case "septic-records-checklist" -> "County record access, permit history, and as-built availability vary enough that the state-specific records page is the faster first move.";
+            case "septic-records-checklist" -> "County records lookup, permit search, and as-built availability vary enough that the state-specific records page is the faster first move.";
             case TRANSFER_COMPLIANCE_SLUG -> "Transfer problems usually resolve through records, permit path, buyer timing, and county workflow, so open the state-specific page before you try to compress everything into one quote number.";
             case "septic-tank-size" -> "Use the dedicated estimator when bedroom count, occupancy profile, or disposal load matter more than a full project quote.";
             case "septic-pumping-cost" -> "Use the dedicated estimator when cadence, use profile, and tank size matter more than a one-time pumping invoice.";
@@ -3301,13 +3301,13 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
             return new StateMoneyPrimaryAction(
-                    "Narrow to the county file",
-                    "Open county record pages",
+                    "Narrow to the county file lookup",
+                    "Open county record lookup paths",
                     countyAwareNote(
-                            "Use the county page first when the state checklist is still too broad and the real blocker is a county file, site-review note, or local records form.",
+                            "Use the county page first when the state lookup is still too broad and the real blocker is a county file, permit-search result, site-review note, or local records form.",
                             countyWorkflowSynthesis
                     ),
-                    "Open county pages",
+                    "Open county record lookup paths",
                     "#county-pages",
                     "state_money_primary_county_pages",
                     "county_page_directory",

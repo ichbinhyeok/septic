@@ -825,15 +825,19 @@
     {
       "slug": "septic-records-checklist",
       "intentType": "workflow_page",
-      "primaryKeyword": "septic records checklist",
+      "primaryKeyword": "septic records lookup",
       "secondaryKeywords": [
+        "septic permit lookup",
+        "septic record search",
+        "property septic records",
+        "septic records checklist",
         "septic records to request",
         "septic permit records",
         "buying house septic records"
       ],
-      "title": "Septic Records Checklist by State",
-      "metaDescription": "Use this septic records checklist by state to pull permit records, as-builts, inspection notes, soil or site-review files, and the county paperwork that can change the quote.",
-      "introCopy": "Septic records are one of the fastest ways to tell whether the seller story, contractor quote, or buyer assumption is real. Use this page as a state-by-state records handoff: start with the local file path, then pull the permit, as-built, inspection, and soil or site-review documents that change the downside fastest.",
+      "title": "Septic Records Lookup by State",
+      "metaDescription": "Look up septic permit records by state, including county files, as-builts, inspection notes, soil or site-review files, and the paperwork that can change the quote.",
+      "introCopy": "Septic records lookup is one of the fastest ways to tell whether the seller story, contractor quote, or buyer assumption is real. If your search started as a septic permit lookup or property record search, use this page as the state-by-state handoff: start with the local file path, then pull the permit, as-built, inspection, and soil or site-review documents that change the downside fastest.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers and owners who suspect the file is thinner than the current story and need to know which state-specific records page and missing document make the estimate or sale much riskier.",

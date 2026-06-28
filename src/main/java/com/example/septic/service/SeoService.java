@@ -743,7 +743,7 @@ public class SeoService {
             case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
-            case "septic-records-checklist" -> "Septic Records Checklist by State | Permits, As-Builts, and County Files | SepticPath";
+            case "septic-records-checklist" -> "Septic Records Lookup by State | Permit Search, As-Builts, and County Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
@@ -759,7 +759,7 @@ public class SeoService {
             case "septic-replacement-area" -> " | Reserve area, layout, and field risk | SepticPath";
             case "wet-yard-over-septic-drain-field" -> " | Seepage, failure, and field risk | SepticPath";
             case "buying-a-house-with-a-septic-system" -> " | Inspection, file checks, and closing risk | SepticPath";
-            case "septic-records-checklist" -> " | Permit files, as-builts, and lookup steps | SepticPath";
+            case "septic-records-checklist" -> " | Permit lookup, records search, and file steps | SepticPath";
             case "septic-permit-process" -> " | Office, file, and approval steps | SepticPath";
             case "septic-inspection-cost" -> " | Permit files, records, and buyer leverage | SepticPath";
             case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";

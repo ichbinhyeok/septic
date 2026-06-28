@@ -74,7 +74,7 @@
                 </button>
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
-                    <a href="/septic-records-checklist/">Records checklist</a>
+                    <a href="/septic-records-checklist/">Records lookup</a>
                     <a href="/septic-transfer-compliance/">Transfer compliance</a>
                     <a href="/states/">State guides</a>
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
@@ -123,7 +123,7 @@
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
                         <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
-                        <li><a href="/septic-records-checklist/">Records checklist</a></li>
+                        <li><a href="/septic-records-checklist/">Records lookup</a></li>
                         <li><a href="/septic-permit-process/">Permit process</a></li>
                         <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
