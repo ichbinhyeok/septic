@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-04-04",
+  "generatedAt": "2026-06-28",
   "pages": [
     {
       "slug": "septic-system-cost-calculator",
@@ -767,7 +767,10 @@
         "septic permit records",
         "septic tank permit lookup",
         "county septic records",
-        "how to find septic tank records online"
+        "how to find septic tank records online",
+        "how to find septic records online",
+        "property septic records",
+        "septic records online"
       ],
       "title": "Septic Permit Lookup by State",
       "metaDescription": "Find the septic permit lookup path before you trust a quote, closing story, or repair plan: state records search, county files, as-builts, and permit office routing.",
@@ -777,7 +780,7 @@
       "targetReader": "Best for buyers, owners, agents, and contractors who are searching for septic permit records before trusting a seller story, inspection schedule, repair quote, or new work plan.",
       "deepDiveParagraphs": [
         "The fast lookup path is state plus county, but the county layer is where the result becomes operational. Some pages point to a public permit search, some to an environmental health records request, and some to a permit packet that reveals whether the user needs final approval, license to operate, schematic, or repair history.",
-        "Use this page as the doorway when the search phrase is broad. If the county is already known, skip directly to the county launchpad; if not, choose the state records or permit page first and let that route expose the county file owner.",
+        "Use this page as the doorway when the search phrase is broad. If the county is already known, skip directly to the county launchpad; if the search phrase is 'how to find septic records online,' use the records-finding hub to collect the address, parcel, owner, and permit clues first.",
         "For the current growth sprint, Tennessee, North Carolina, Texas, Alabama, and Indiana get priority because live Search Console data already shows records and permit lookup impressions near page-one positions, and these states have enough official county source material to support high-quality county pages."
       ],
       "fitBullets": [
@@ -843,7 +846,42 @@
         "/septic-records-checklist/alabama/tuscaloosa-county/",
         "/septic-records-checklist/indiana/elkhart-county/",
         "/septic-records-checklist/indiana/st-joseph-county/",
-        "/septic-records-checklist/indiana/porter-county/"
+        "/septic-records-checklist/indiana/porter-county/",
+        "/how-to-find-septic-records-online/",
+        "/septic-records-checklist/alabama/montgomery-county/",
+        "/septic-records-checklist/alabama/autauga-county/",
+        "/septic-records-checklist/alabama/elmore-county/",
+        "/septic-records-checklist/alabama/st-clair-county/",
+        "/septic-records-checklist/alabama/cullman-county/",
+        "/septic-records-checklist/alabama/etowah-county/",
+        "/septic-records-checklist/alabama/calhoun-county/",
+        "/septic-records-checklist/alabama/blount-county/",
+        "/septic-records-checklist/alabama/marshall-county/",
+        "/septic-records-checklist/alabama/houston-county/",
+        "/septic-records-checklist/indiana/grant-county/",
+        "/septic-records-checklist/indiana/la-porte-county/",
+        "/septic-records-checklist/indiana/shelby-county/",
+        "/septic-records-checklist/indiana/miami-county/",
+        "/septic-records-checklist/indiana/brown-county/",
+        "/septic-records-checklist/indiana/decatur-county/",
+        "/septic-records-checklist/indiana/washington-county/",
+        "/septic-records-checklist/north-carolina/guilford-county/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/north-carolina/iredell-county/",
+        "/septic-records-checklist/north-carolina/randolph-county/",
+        "/septic-records-checklist/north-carolina/davidson-county/",
+        "/septic-records-checklist/north-carolina/lincoln-county/",
+        "/septic-records-checklist/tennessee/loudon-county/",
+        "/septic-records-checklist/tennessee/anderson-county/",
+        "/septic-records-checklist/tennessee/cumberland-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-records-checklist/texas/parker-county/",
+        "/septic-records-checklist/texas/ellis-county/",
+        "/septic-records-checklist/texas/guadalupe-county/",
+        "/septic-records-checklist/texas/bastrop-county/",
+        "/septic-records-checklist/indiana/tippecanoe-county/",
+        "/septic-records-checklist/indiana/bartholomew-county/",
+        "/septic-records-checklist/indiana/monroe-county/"
       ],
       "publishStatus": "published"
     },
@@ -978,12 +1016,13 @@
         }
       ],
       "internalLinkTargets": [
+        "/how-to-find-septic-records-online/",
+        "/septic-permit-lookup/",
         "/buying-a-house-with-a-septic-system/",
         "/septic-inspection-cost/",
         "/septic-permit-process/",
         "/septic-replacement-cost/",
-        "/perc-test-cost/",
-        "/septic-permit-lookup/"
+        "/perc-test-cost/"
       ],
       "publishStatus": "published"
     },
@@ -1055,6 +1094,84 @@
         "/septic-records-checklist/georgia/dekalb-county/",
         "/septic-system-cost-calculator/",
         "/septic-permit-lookup/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "how-to-find-septic-records-online",
+      "intentType": "workflow_page",
+      "primaryKeyword": "how to find septic records online",
+      "secondaryKeywords": [
+        "how to look up septic records",
+        "septic records online",
+        "property septic records",
+        "septic tank records search",
+        "county septic records"
+      ],
+      "title": "How to Find Septic Records Online",
+      "metaDescription": "Find septic records online by starting with state records, county health files, permit portals, parcel clues, and the right septic permit lookup path.",
+      "introCopy": "Finding septic records online is usually a routing problem. The record may live in a state permit search, a county health department file, a local OSSF portal, a scanned GIS attachment, or an email request queue. The fastest path is to identify the file owner before you trust a seller story, repair quote, or closing timeline.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, sellers, owners, agents, and contractors who have an address or county name and need the actual septic file before the conversation becomes about price.",
+      "deepDiveParagraphs": [
+        "Start with the county when the county is known. County health, environmental health, or OSSF offices often hold the permit copy, as-built, final approval, license to operate, inspection letter, or repair file that a broad statewide search will not explain.",
+        "Use the state page when the county is not clear or when the state has a central file search. Tennessee's SSDS file search, Texas local permitting authority routing, North Carolina improvement permit structure, Alabama county health routing, and Indiana local board of health workflow all require different first moves.",
+        "A missing record is not a neutral result. It can mean the system is old, under a different owner name, outside the visible portal, filed under a legal description, or never closed out cleanly. Treat that as a risk signal before you compare quotes."
+      ],
+      "fitBullets": [
+        "You have an address, county, parcel ID, owner name, or subdivision clue and need the septic file.",
+        "You searched online but found a broad state page instead of the actual permit, as-built, inspection letter, or repair history.",
+        "A buyer, lender, agent, or contractor is asking whether the septic story is backed by a county or state record."
+      ],
+      "decisionSteps": [
+        "Identify the state and county first; do not start with a generic septic cost number.",
+        "Open the state records page if the state has a central search or if you do not know the county file owner.",
+        "Open the county lookup page when the county is already known, then request the first artifact listed there.",
+        "Move to pricing only after the record, closeout, and repair status match the project story."
+      ],
+      "lowEndBreakers": [
+        "A permit search with no result can still miss a file if the office needs owner name, parcel ID, legal description, or a scanned attachment path.",
+        "A visible permit without final approval, operation permit, as-built, or repair history can make a low quote misleading.",
+        "Older systems and transferred properties often need a human file request before the online result is trustworthy."
+      ],
+      "quotePrepChecklist": [
+        "Property address, county, parcel or PIN, owner name, subdivision or lot number, and any permit number.",
+        "The artifact needed: permit copy, as-built, operation approval, inspection letter, license to operate, repair record, or complaint history.",
+        "The reason for the lookup: sale, repair, addition, replacement, new install, lender request, or buyer due diligence."
+      ],
+      "driverBullets": [
+        "The right file owner is more important than the first search result.",
+        "County pages convert broad lookup intent into a concrete request: permit, as-built, final approval, repair, or inspection letter.",
+        "A clean records path gives the estimator and contractor conversation a fact base."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Can I find septic records online?",
+          "answer": "Often yes, but the path depends on the state and county. Some counties publish searchable portals, some use GIS attachments, and some require an environmental health records request."
+        },
+        {
+          "question": "What information do I need to look up septic records?",
+          "answer": "Start with the address and county. Add parcel ID, owner name, permit number, legal description, subdivision, or lot number when the office or portal asks for more precise search clues."
+        },
+        {
+          "question": "What if the online septic search finds nothing?",
+          "answer": "Do not assume no system exists. Ask the county or state file owner whether older records, scanned files, owner-name searches, or legal-description searches are required."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-permit-lookup/",
+        "/septic-records-checklist/",
+        "/septic-records-checklist/indiana/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-records-checklist/texas/",
+        "/septic-records-checklist/alabama/",
+        "/septic-records-checklist/north-carolina/durham-county/",
+        "/septic-records-checklist/north-carolina/iredell-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-records-checklist/indiana/grant-county/",
+        "/septic-system-cost-calculator/"
       ],
       "publishStatus": "published"
     }

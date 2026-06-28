@@ -1479,3 +1479,11 @@ Copy this block for the next review:
   - reopened cost pages vs county pages
   - cost query impressions vs records/permit/buyer impressions
   - internal navigation from reopened cost pages to county records pages
+
+## 2026-06-28 - 3-week 100-click sprint third expansion
+
+- Added 34 official-source county lookup pages across AL, IN, NC, TN, and TX, bringing the county records surface from 273 to 307 pages.
+- Added the broad records-intent hub `/how-to-find-septic-records-online/` for live GSC queries like `how to find septic tank records online`, `how to look up septic records`, and `property septic records`.
+- Changed the permit lookup county launchpad from a hard-coded list to a ranked dynamic surface across TN, NC, TX, AL, and IN so new county pages automatically receive internal links from the lookup hub.
+- Pushed high-intent internal links from state records and permit pages into the new county cluster instead of waiting for sitemap discovery alone.
+- Quality bar: every new county page has an official local or state source, a records/permit artifact to request, a repair or closeout risk, and state-specific workflow language.
