@@ -30,6 +30,7 @@ public class SitemapService {
                 "Allow: /",
                 "Disallow: /quote-request/",
                 "Sitemap: " + seoService.absoluteUrl("/sitemap.xml"),
+                "Sitemap: " + seoService.absoluteUrl("/sitemap-county.xml"),
                 ""
         );
     }
@@ -77,19 +78,28 @@ public class SitemapService {
                     )));
         }
 
+        addCountyRecordsEntries(entries);
+
+        return renderUrlSet(entries);
+    }
+
+    public String countySitemapXml() {
+        List<SitemapEntry> entries = new ArrayList<>();
+        addCountyRecordsEntries(entries);
+        return renderUrlSet(entries);
+    }
+
+    private void addCountyRecordsEntries(List<SitemapEntry> entries) {
         for (CountyRecordsPage countyPage : researchDataService.getPublicCountyRecordsPages()) {
             researchDataService.findStateByCode(countyPage.stateCode())
-                    .map(StateProfile::slug)
-                    .map(countyPage::path)
-                    .map(seoService::absoluteUrl)
-                    .ifPresent(url -> entries.add(entry(
-                            url,
-                            researchDataService.findStateByCode(countyPage.stateCode())
-                                    .map(StateProfile::lastVerifiedAt)
-                                    .orElse(researchDataService.countyRecordsPagesGeneratedAt())
+                    .ifPresent(state -> entries.add(entry(
+                            seoService.absoluteUrl(countyPage.path(state.slug())),
+                            latestNonBlank(state.lastVerifiedAt(), researchDataService.countyRecordsPagesGeneratedAt())
                     )));
         }
+    }
 
+    private String renderUrlSet(List<SitemapEntry> entries) {
         StringBuilder xml = new StringBuilder();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
@@ -115,6 +125,13 @@ public class SitemapService {
                         researchDataService.stateMoneyPagesGeneratedAt(),
                         researchDataService.countyRecordsPagesGeneratedAt()
                 ).stream()
+                .filter(value -> value != null && !value.isBlank())
+                .max(String::compareTo)
+                .orElse("");
+    }
+
+    private String latestNonBlank(String first, String second) {
+        return List.of(first, second).stream()
                 .filter(value -> value != null && !value.isBlank())
                 .max(String::compareTo)
                 .orElse("");

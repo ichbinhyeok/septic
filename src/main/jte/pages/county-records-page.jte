@@ -3,6 +3,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.EditorialProfile
 @import com.example.septic.web.CountyWorkflowStructureView
+@import com.example.septic.web.CountyIntentRouteView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @param PageMeta page
@@ -10,6 +11,7 @@
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
 @param CountyWorkflowStructureView countyWorkflowStructure = null
+@param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
@@ -261,6 +263,60 @@
             </div>
         </div>
     </section>
+
+    @if (!countyIntentRoutes.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County intent matrix</span>
+                    <h2>Use the exact ${countyPage.countyName()} search intent before you trust the file story.</h2>
+                    <p class="lede">These are the common county-level septic searches that should resolve into a permit file, records request, address or parcel search, as-built, inspection letter, or buyer file check.</p>
+                </div>
+
+                <div class="county-intent-matrix">
+                    @for (var route : countyIntentRoutes)
+                        <article class="county-intent-card" id="${route.anchorId()}">
+                            <span class="pill">${route.eyebrow()}</span>
+                            <h2>${route.heading()}</h2>
+                            <p>${route.summary()}</p>
+                            <div class="county-intent-card__actions">
+                                @if ("official_source".equals(route.primaryTargetType()))
+                                    <a class="button button--primary"
+                                       href="${route.primaryPath()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_intent_matrix_primary"
+                                       data-track-target-type="${route.primaryTargetType()}">${route.primaryLabel()}</a>
+                                @else
+                                    <a class="button button--primary"
+                                       href="${route.primaryPath()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_intent_matrix_primary"
+                                       data-track-target-type="${route.primaryTargetType()}">${route.primaryLabel()}</a>
+                                @endif
+                                @if ("official_source".equals(route.secondaryTargetType()))
+                                    <a class="button button--secondary"
+                                       href="${route.secondaryPath()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_intent_matrix_secondary"
+                                       data-track-target-type="${route.secondaryTargetType()}">${route.secondaryLabel()}</a>
+                                @else
+                                    <a class="button button--secondary"
+                                       href="${route.secondaryPath()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_intent_matrix_secondary"
+                                       data-track-target-type="${route.secondaryTargetType()}">${route.secondaryLabel()}</a>
+                                @endif
+                            </div>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     @if (countyPage.hasActionPlaybook())
         <section class="section section--tight" id="county-action-playbook">

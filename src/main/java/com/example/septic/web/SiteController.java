@@ -636,6 +636,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         return sitemapService.sitemapXml();
     }
 
+    @GetMapping(value = {"/sitemap-county.xml"}, produces = MediaType.APPLICATION_XML_VALUE)
+    @ResponseBody
+    public String countySitemapXml() {
+        return sitemapService.countySitemapXml();
+    }
+
     @GetMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
     public String calculator(
             @RequestParam(name = "state", required = false) String stateCode,
@@ -980,6 +986,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("countyWorkflowStructure", countyWorkflowStructure(countyPage, state));
+        model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
@@ -2215,6 +2222,96 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state.stateName(),
                 page.countyName(),
                 searchText
+        );
+    }
+
+    private List<CountyIntentRouteView> countyIntentRoutes(CountyRecordsPage countyPage, StateProfile state) {
+        String countyState = countyPage.countyName() + " " + state.stateName();
+        String recordsPath = countyPage.recordsUrl();
+        String parcelPath = countyPage.hasParcelAnchor() ? countyPage.parcelAnchorUrl() : recordsPath;
+        String stateRecordsPath = "/septic-records-checklist/" + state.slug() + "/";
+        String statePermitPath = researchDataService.findPublicStateMoneyPage("septic-permit-process", state.slug())
+                .map(page -> page.path(state.slug()))
+                .orElse("/septic-system-cost-calculator/" + state.slug() + "/");
+        String buyerPath = researchDataService.findPublicStateMoneyPage("buying-a-house-with-a-septic-system", state.slug())
+                .map(page -> page.path(state.slug()))
+                .orElse(stateRecordsPath);
+
+        return List.of(
+                new CountyIntentRouteView(
+                        "county-septic-permit-lookup",
+                        "Permit lookup",
+                        countyState + " septic permit lookup",
+                        "Use this path when the search is really about finding the permit file, final approval, repair note, or county office that can verify the parcel story. Start with " + countyPage.recordsLabel() + ", then verify the owning office before pricing.",
+                        "Open county permit record path",
+                        recordsPath,
+                        "official_source",
+                        "Open " + state.stateName() + " permit process",
+                        statePermitPath,
+                        "state_money_page"
+                ),
+                new CountyIntentRouteView(
+                        "county-septic-records-request",
+                        "Records request",
+                        countyState + " septic records request",
+                        "Ask for the county septic permit copy, approval for use, repair file, inspection note, and any system diagram tied to the parcel. If the county cannot connect the request to a parcel identifier, the file story is still too weak.",
+                        "Open records request path",
+                        recordsPath,
+                        "official_source",
+                        "Open state records checklist",
+                        stateRecordsPath,
+                        "state_money_page"
+                ),
+                new CountyIntentRouteView(
+                        "county-septic-permit-search-by-address",
+                        "Address search",
+                        countyState + " septic permit search by address",
+                        countyPage.hasParcelAnchor()
+                                ? "Use the parcel, TMS, owner, or property search first, then carry that identifier into the county septic records path. Address-only searches fail when the parcel anchor is missing or the county uses a different property identifier."
+                                : "Start with the county records path and ask which parcel, owner, address, or legal-description field the office needs before treating the record as missing.",
+                        countyPage.hasParcelAnchor() ? "Open parcel or TMS search" : "Open county record path",
+                        parcelPath,
+                        "official_source",
+                        "Open address-search guide",
+                        "/septic-permit-search-by-address/",
+                        "internal_page"
+                ),
+                new CountyIntentRouteView(
+                        "county-septic-as-built-records",
+                        "As-built",
+                        countyState + " septic as-built records",
+                        "The as-built or system diagram is the record that can change where the tank, drain field, reserve area, or repair scope actually sits. Ask whether the county file includes a site sketch, installed layout, or approval package before trusting a field location.",
+                        "Open county file path",
+                        recordsPath,
+                        "official_source",
+                        "Open as-built records guide",
+                        "/septic-as-built-records/",
+                        "internal_page"
+                ),
+                new CountyIntentRouteView(
+                        "county-septic-inspection-letter",
+                        "Inspection letter",
+                        countyState + " septic inspection letter",
+                        "For a sale, lender question, repair story, or occupancy file, ask whether the county can provide an inspection letter, final approval, approval for use, or written file note tied to the parcel.",
+                        "Open county record path",
+                        recordsPath,
+                        "official_source",
+                        "Open inspection letter guide",
+                        "/septic-inspection-letter/",
+                        "internal_page"
+                ),
+                new CountyIntentRouteView(
+                        "county-buying-house-septic",
+                        "Buyer file",
+                        "Buying a house with a septic system in " + countyState,
+                        "Before negotiation, inspection credits, or seller assurances, pull the county septic file and compare it with the buyer workflow. Missing permit history, unclear location, or no inspection artifact can change the risk story fast.",
+                        "Open buyer septic workflow",
+                        buyerPath,
+                        "state_money_page",
+                        "Open county record path",
+                        recordsPath,
+                        "official_source"
+                )
         );
     }
 

@@ -477,7 +477,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/robots.txt"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("User-agent: *")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sitemap: https://example.test/sitemap.xml")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sitemap: https://example.test/sitemap.xml")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sitemap: https://example.test/sitemap-county.xml")));
 	}
 
 	@Test
@@ -515,6 +516,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/new-york/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/arizona/")));
 	}
+
+	@Test
+	void countySitemapXmlIncludesOnlyCountyWedgeUrls() throws Exception {
+		mockMvc.perform(get("/sitemap-county.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-06-29</lastmod>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/greenville-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/comal-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/</loc>"))));
+	}
+
 	@Test
 	void sitemapXmlIncludesCountyWedgeUrls() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
@@ -4487,6 +4500,14 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/south-carolina/greenville-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina Septic Records and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County intent matrix")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina septic permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina septic records request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina septic permit search by address")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina septic as-built records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina septic inspection letter")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a house with a septic system in Greenville County South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"county_intent_matrix_primary\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Capture the parcel anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Greenville County real property search for TMS and parcel identity")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use Greenville County real property search to capture the map number")))
