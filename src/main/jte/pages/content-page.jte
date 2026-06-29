@@ -50,7 +50,27 @@
                 </span>
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
-                <p class="hero-router-intro">Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif</p>
+                <p class="hero-router-intro">
+                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                        Start with the state or county that can actually hold the permit file. If the county is already known, skip the overview and open that county route.
+                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                        Pick the county route first. The job is to get to the permit copy, as-built, inspection letter, or office path before another broad explanation slows you down.
+                    @else
+                        Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif
+                    @endif
+                </p>
+                @if (!featuredPermitLookupCountyLinks.isEmpty())
+                    <div class="hero-county-launchpad" aria-label="Fast county record routes">
+                        <span class="hero-county-launchpad__label">Fast county routes</span>
+                        @for (var link : featuredPermitLookupCountyLinks.stream().limit(4).toList())
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_county_launchpad"
+                               data-track-target-type="county_records_page">${link.title()}</a>
+                        @endfor
+                        <a href="#county-lookup-launchpad">More county routes</a>
+                    </div>
+                @endif
                 <div class="micro-tool micro-tool--hero"
                      data-choice-group
                      data-state-surface-tool
@@ -63,9 +83,33 @@
                                 data-choice="first"
                                 aria-pressed="true">
                             @if (secondaryActionPath != null)
-                                <span class="hero-decision-card__label">State-first move</span>
-                                <h3>I need the state-specific workflow before I price anything</h3>
-                                <p>Choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.</p>
+                                <span class="hero-decision-card__label">
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Find my permit
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        County file path
+                                    @else
+                                        State-first move
+                                    @endif
+                                </span>
+                                <h3>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Find the state or county permit record
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        Open the county septic record route
+                                    @else
+                                        I need the state-specific workflow before I price anything
+                                    @endif
+                                </h3>
+                                <p>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Start here when the search is really about a permit copy, county office, public records doorway, or parcel-backed septic file.
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        Use this when the county is known and the next click should be the local record path, not another national overview.
+                                    @else
+                                        Choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.
+                                    @endif
+                                </p>
                             @else
                                 <span class="hero-decision-card__label">Tool-first move</span>
                                 <h3>I need the planning tool before I read around</h3>
@@ -78,9 +122,33 @@
                                 data-choice="second"
                                 aria-pressed="false">
                             @if (secondaryActionPath != null)
-                                <span class="hero-decision-card__label">Estimate after workflow</span>
-                                <h3>I need the cautious number after I narrow the lane</h3>
-                                <p>Choose this when you know the workflow well enough to use the estimate without flattening the problem too early.</p>
+                                <span class="hero-decision-card__label">
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Already know county
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        Request the file
+                                    @else
+                                        Estimate after workflow
+                                    @endif
+                                </span>
+                                <h3>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Jump to the county lookup launchpad
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        Ask for the permit copy or as-built
+                                    @else
+                                        I need the cautious number after I narrow the lane
+                                    @endif
+                                </h3>
+                                <p>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                        Use the county routes when the address, parcel, seller story, or listing already points to one local office.
+                                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                        Use this when the office needs a clear request for the permit copy, final approval, repair file, or inspection letter.
+                                    @else
+                                        Choose this when you know the workflow well enough to use the estimate without flattening the problem too early.
+                                    @endif
+                                </p>
                             @elseif (contentQuotePath != null)
                                 <span class="hero-decision-card__label">Conversion-ready</span>
                                 <h3>I already know the lane and need the short form</h3>
@@ -97,9 +165,27 @@
                                 data-choice="example"
                                 aria-pressed="false">
                             @if (!featuredStateMoneyPageLinks.isEmpty())
-                                <span class="hero-decision-card__label">Live example</span>
-                                <h3>Show me a source-backed state page first</h3>
-                                <p>Choose this when you want to see how the national problem turns into a concrete local workflow and file story.</p>
+                                <span class="hero-decision-card__label">
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()))
+                                        Live local proof
+                                    @else
+                                        Live example
+                                    @endif
+                                </span>
+                                <h3>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()))
+                                        Show me a real state or county route
+                                    @else
+                                        Show me a source-backed state page first
+                                    @endif
+                                </h3>
+                                <p>
+                                    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()))
+                                        Use a live source-backed route when you want proof that the national page turns into a concrete local next step.
+                                    @else
+                                        Choose this when you want to see how the national problem turns into a concrete local workflow and file story.
+                                    @endif
+                                </p>
                             @elseif (!featuredInternalLinks.isEmpty())
                                 <span class="hero-decision-card__label">Next internal move</span>
                                 <h3>Show me the strongest next page now</h3>

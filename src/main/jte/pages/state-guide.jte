@@ -37,7 +37,23 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
-                <p class="lede">${state.ruleSummaryPlainEnglish()}</p>
+                @if (!featuredCountyRecordLinks.isEmpty())
+                    <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="${state.stateName()} county record shortcuts">
+                        <span class="hero-county-launchpad__label">County file first</span>
+                        @for (var link : featuredCountyRecordLinks.stream().limit(3).toList())
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_hero_county_launchpad"
+                               data-track-target-type="county_records_page">${link.title()}</a>
+                        @endfor
+                        @if (stateRecordsLookupPath != null)
+                            <a href="${stateRecordsLookupPath}"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_hero_records_lookup"
+                               data-track-target-type="state_money_page">Open records lookup</a>
+                        @endif
+                    </div>
+                @endif
                 <div class="money-answer-panel state-guide-calculator-bridge" aria-label="State calculator route">
                     <div class="money-answer-panel__header">
                         <span class="eyebrow">State calculator prep</span>
@@ -81,6 +97,7 @@
                         </div>
                     @endif
                 </div>
+                <p class="lede state-guide-summary-copy">${state.ruleSummaryPlainEnglish()}</p>
                 @if (!featuredStateWorkflowLinks.isEmpty())
                     <p class="hero-router-intro">Pick the first move that matches the blocker. Use the narrower workflow or file path first, and estimate only after the local story is clear enough to price. @if (guideCountyWorkflowSynthesis != null) ${guideCountyWorkflowSynthesis.intro()} @endif</p>
                 @else

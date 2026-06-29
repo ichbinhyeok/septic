@@ -540,6 +540,70 @@ h4 {
     padding: 0 16px;
 }
 
+.hero-county-launchpad,
+.county-command-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.hero-county-launchpad {
+    padding: 12px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-county-launchpad--before-panel {
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+
+.hero-county-launchpad__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-county-launchpad a:not(.button) {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.hero-county-launchpad a:not(.button):hover {
+    transform: translateY(-1px);
+    border-color: rgba(35, 108, 95, 0.25);
+    background: rgba(225, 240, 234, 0.74);
+}
+
+.county-command-bar {
+    padding: 12px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(225, 240, 234, 0.58));
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    box-shadow: var(--shadow-soft);
+}
+
+.county-command-bar .button {
+    min-height: 44px;
+}
+
 .hero-router-intro {
     margin-top: 18px;
     color: var(--text);
@@ -995,6 +1059,13 @@ h4 {
 }
 
 .state-money-intro-copy {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.state-guide-summary-copy {
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -2933,6 +3004,31 @@ input[type="checkbox"] {
         margin-bottom: -2px;
     }
 
+    .hero-county-launchpad,
+    .county-command-bar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 14px;
+        padding: 10px;
+        border-radius: 16px;
+    }
+
+    .hero-county-launchpad__label {
+        font-size: 0.72rem;
+    }
+
+    .hero-county-launchpad a:not(.button),
+    .county-command-bar .button {
+        width: 100%;
+        min-height: 40px;
+        justify-content: center;
+        padding-right: 10px;
+        padding-left: 10px;
+        text-align: center;
+        font-size: 0.84rem;
+    }
+
     .state-money-route-board {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -3040,6 +3136,10 @@ input[type="checkbox"] {
     }
 
     .state-money-intro-copy {
+        -webkit-line-clamp: 2;
+    }
+
+    .state-guide-summary-copy {
         -webkit-line-clamp: 2;
     }
 

@@ -25,6 +25,36 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} county records page</span>
                 <h1>${countyPage.title()}</h1>
+                <div class="county-command-bar" aria-label="Immediate county records actions">
+                    @if (countyPage.hasParcelAnchor())
+                        <a class="button button--secondary"
+                           href="${countyPage.parcelAnchorUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_records_command_parcel_anchor"
+                           data-track-target-type="official_source">Find parcel/TMS</a>
+                    @endif
+                    <a class="button button--primary"
+                       href="${countyPage.recordsUrl()}"
+                       target="_blank"
+                       rel="noreferrer"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_command_records"
+                       data-track-target-type="official_source">Open county record path</a>
+                    @if (countyPage.hasActionPlaybook())
+                        <a class="button button--secondary"
+                           href="#county-action-playbook"
+                           data-track-click="nav"
+                           data-track-source-context="county_records_command_playbook"
+                           data-track-target-type="page_anchor">Copy request script</a>
+                    @endif
+                    <a class="button button--secondary"
+                       href="/septic-records-checklist/${state.slug()}/"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_command_state"
+                       data-track-target-type="state_money_page">${state.stateCode()} state route</a>
+                </div>
                 <div class="money-answer-panel" aria-label="County answer-first workflow">
                     <div class="money-answer-panel__header">
                         <span class="eyebrow">County file first</span>
@@ -173,6 +203,8 @@
         </div>
     </section>
 
+    <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
+
     <section class="section section--tight">
         <div class="container">
             <div class="intent-rail">
@@ -231,7 +263,7 @@
     </section>
 
     @if (countyPage.hasActionPlaybook())
-        <section class="section section--tight">
+        <section class="section section--tight" id="county-action-playbook">
             <div class="container">
                 <div class="section-heading">
                     <span class="eyebrow">County Action Playbook</span>
@@ -456,6 +488,21 @@
                     </ul>
                 </article>
             @endif
+        </div>
+    </section>
+    <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
+    <section class="sticky-mobile-cta sticky-mobile-cta--single"
+             aria-label="Open county septic record path"
+             data-sticky-mobile-cta
+             data-show-after='[data-sticky-trigger="county-records-after-hero"]'>
+        <div class="sticky-mobile-cta__inner">
+            <a class="button button--primary"
+               href="${countyPage.recordsUrl()}"
+               target="_blank"
+               rel="noreferrer"
+               data-track-click="nav"
+               data-track-source-context="county_records_sticky_records"
+               data-track-target-type="official_source">Open county record path</a>
         </div>
     </section>
     </div>

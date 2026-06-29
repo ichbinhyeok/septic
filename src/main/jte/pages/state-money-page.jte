@@ -132,6 +132,18 @@
                         </div>
                     </div>
                 </div>
+                @if (!featuredCountyRecordLinks.isEmpty())
+                    <div class="hero-county-launchpad" aria-label="${state.stateName()} county record shortcuts">
+                        <span class="hero-county-launchpad__label">Open county route</span>
+                        @for (var link : featuredCountyRecordLinks.stream().limit(3).toList())
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_money_hero_county_launchpad"
+                               data-track-target-type="county_records_page">${link.title()}</a>
+                        @endfor
+                        <a href="#county-pages">All county pages</a>
+                    </div>
+                @endif
                 <div class="hero__actions">
                     <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
