@@ -160,6 +160,7 @@ public class SiteController {
                 .limit(6)
                 .toList());
         model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
+        model.addAttribute("countyRouteClusters", countyRouteClusters(8, 4));
         model.addAttribute("liveGuideCount", publicStates.size());
         model.addAttribute("liveIntentCount", researchDataService.getPublicStateMoneyPages().size());
         model.addAttribute("liveCountyCount", workflowNetworkSnapshot.liveCountyCount());
@@ -184,6 +185,7 @@ public class SiteController {
                 .map(this::stateQueuePlanView)
                 .toList());
         model.addAttribute("featuredIntentPages", coverageGrowthSpotlights());
+        model.addAttribute("countyRouteClusters", countyRouteClusters(16, 4));
         model.addAttribute("queuedStates", coverageCards.stream()
                 .filter(card -> !card.published())
                 .toList());
@@ -909,6 +911,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         ContentWorkflowCoverageView contentWorkflowCoverage = contentWorkflowCoverage(contentPage, rankedStateEntries);
         List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
         List<PageLink> permitLookupCountyLinks = permitLookupCountyLaunchpadLinks(contentPage);
+        List<CountyRouteClusterView> countyRouteClusters = isPermitLookupHub(contentPage)
+                ? countyRouteClusters(10, 4)
+                : List.of();
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -925,6 +930,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("permitLookupCountyLinks", permitLookupCountyLinks);
         model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(12).toList());
         model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(12).toList());
+        model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
                 ? null
@@ -2159,6 +2165,85 @@ The goal is to settle the permit path before we frame the project as a normal in
                         )))
                 .flatMap(Optional::stream)
                 .toList();
+    }
+
+    private List<CountyRouteClusterView> countyRouteClusters(int stateLimit, int countiesPerState) {
+        return researchDataService.getPublicStateProfiles().stream()
+                .filter(state -> !researchDataService.listPublicCountyRecordsPages(state.stateCode()).isEmpty())
+                .sorted(Comparator
+                        .comparingInt(this::countyRouteStateScore)
+                        .reversed()
+                        .thenComparing(StateProfile::stateName))
+                .limit(stateLimit)
+                .map(state -> countyRouteCluster(state, countiesPerState))
+                .toList();
+    }
+
+    private CountyRouteClusterView countyRouteCluster(StateProfile state, int countiesPerState) {
+        List<PageLink> countyLinks = countyRecordPageLinks(state.stateCode()).stream()
+                .limit(countiesPerState)
+                .toList();
+        int liveCountyCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
+        PageLink stateRecordsLink = stateRecordsLink(state);
+        PageLink permitProcessLink = statePermitProcessLink(state);
+        String heading = state.stateName() + " county routes";
+        String summary = liveCountyCount + " live " + state.stateName()
+                + " county workflow page" + (liveCountyCount == 1 ? "" : "s")
+                + " already route users toward the local record owner, permit file, or buyer-risk check.";
+        String metricLabel = liveCountyCount + " county file page" + (liveCountyCount == 1 ? "" : "s");
+        return new CountyRouteClusterView(
+                state.stateCode(),
+                state.stateName(),
+                stateRecordsLink.path(),
+                heading,
+                summary,
+                metricLabel,
+                liveCountyCount,
+                stateRecordsLink,
+                permitProcessLink,
+                countyLinks
+        );
+    }
+
+    private int countyRouteStateScore(StateProfile state) {
+        int countyCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
+        int score = countyCount * 4;
+        if (ORGANIC_SPRINT_STATE_CODES.contains(state.stateCode())) {
+            score += 90;
+        }
+        if ("anchor".equalsIgnoreCase(state.launchTier())) {
+            score += 22;
+        }
+        score += researchDataService.listPublicStateMoneyPages(state.stateCode()).size();
+        return score;
+    }
+
+    private PageLink stateRecordsLink(StateProfile state) {
+        return researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                .map(page -> new PageLink(
+                        state.stateName() + " records lookup",
+                        page.path(state.slug()),
+                        "Use the state records page when the county list is still too narrow or the file owner is not obvious."
+                ))
+                .orElseGet(() -> new PageLink(
+                        state.stateName() + " septic guide",
+                        "/septic-system-cost-calculator/" + state.slug() + "/",
+                        "Use the state guide when a records-specific page is not live yet."
+                ));
+    }
+
+    private PageLink statePermitProcessLink(StateProfile state) {
+        return researchDataService.findPublicStateMoneyPage("septic-permit-process", state.slug())
+                .map(page -> new PageLink(
+                        state.stateName() + " permit process",
+                        page.path(state.slug()),
+                        "Use the permit process page when the search needs office routing, site review, or closeout context."
+                ))
+                .orElseGet(() -> new PageLink(
+                        state.stateName() + " septic guide",
+                        "/septic-system-cost-calculator/" + state.slug() + "/",
+                        "Use the state guide when the permit process page is not live yet."
+                ));
     }
 
     private List<PageLink> permitLookupCountyLaunchpadLinks(ContentPage contentPage) {

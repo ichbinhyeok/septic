@@ -4,6 +4,7 @@
 @param java.util.List<StateProfile> featuredStates
 @param java.util.List<StateProfile> spotlightStates
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param int liveGuideCount
 @param int liveIntentCount
 @param int liveCountyCount = 0
@@ -89,6 +90,53 @@
             </aside>
         </div>
     </section>
+
+    @if (!countyRouteClusters.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">Fast county routes</span>
+                    <h2>Open the exact county file path before another broad guide.</h2>
+                    <p class="lede">These are the county-backed states most likely to turn a searcher into a useful click: permit lookup, records request, parcel/TMS search, buyer file, or repair trail.</p>
+                </div>
+
+                <div class="county-route-board">
+                    @for (var cluster : countyRouteClusters)
+                        <article class="county-route-cluster">
+                            <div class="county-route-cluster__header">
+                                <div>
+                                    <span class="pill">${cluster.stateCode()}</span>
+                                    <h3>${cluster.heading()}</h3>
+                                </div>
+                                <strong>${cluster.metricLabel()}</strong>
+                            </div>
+                            <p>${cluster.summary()}</p>
+                            <div class="county-route-cluster__links" aria-label="${cluster.stateName()} county route shortcuts">
+                                @for (var link : cluster.countyLinks())
+                                    <a href="${link.path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="home_county_route_board"
+                                       data-track-target-type="county_records_page">${link.compactTitle()}</a>
+                                @endfor
+                            </div>
+                            <div class="county-route-cluster__actions">
+                                <a class="button button--secondary"
+                                   href="${cluster.stateRecordsLink().path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="home_county_route_state_records"
+                                   data-track-target-type="state_money_page">${cluster.stateRecordsLink().title()}</a>
+                                <a class="button button--secondary"
+                                   href="${cluster.permitProcessLink().path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="home_county_route_permit_process"
+                                   data-track-target-type="state_money_page">Permit process</a>
+                            </div>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--tight">
         <div class="container card-grid card-grid--primary">

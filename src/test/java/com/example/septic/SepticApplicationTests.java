@@ -95,6 +95,26 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void homeSurfacesCountyRouteBoardAboveGenericPlanningPages() throws Exception {
+		mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the exact county file path before another broad guide.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wake County records")));
+	}
+
+	@Test
+	void permitLookupHubSurfacesGroupedStateCountyRoutes() throws Exception {
+		mockMvc.perform(get("/septic-permit-lookup/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-by-state county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County, TN permit lookup")));
+	}
+
+	@Test
 	void allPublishedCountyPagesHaveExplicitWorkflowStructure() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode root = mapper.readTree(Files.readString(Path.of("data/raw/county_records_pages.json")));

@@ -1842,6 +1842,101 @@ h4 {
     gap: 18px;
 }
 
+.county-route-board {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.county-route-board--dense {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.county-route-cluster {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 22px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 251, 247, 0.74)),
+        rgba(255, 255, 255, 0.72);
+    box-shadow: 0 16px 44px rgba(17, 31, 29, 0.06);
+}
+
+.county-route-cluster__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.county-route-cluster__header h3 {
+    margin-top: 8px;
+    font-size: 1.24rem;
+    line-height: 1.12;
+}
+
+.county-route-cluster__header > strong {
+    flex: 0 0 auto;
+    max-width: 11rem;
+    padding: 8px 10px;
+    border-radius: 14px;
+    background: rgba(35, 108, 95, 0.09);
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: right;
+}
+
+.county-route-cluster p {
+    margin: 0;
+}
+
+.county-route-cluster__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.county-route-cluster__links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid rgba(20, 34, 32, 0.09);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+}
+
+.county-route-cluster__links a:hover {
+    border-color: rgba(35, 108, 95, 0.28);
+    background: rgba(227, 244, 237, 0.84);
+}
+
+.county-route-cluster__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.county-route-cluster__actions .button {
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: 0.9rem;
+}
+
 .hero-card__stack,
 .result-grid {
     margin-top: 22px;
@@ -2668,6 +2763,8 @@ input[type="checkbox"] {
     .calculator-layout,
     .content-grid,
     .card-grid,
+    .county-route-board,
+    .county-route-board--dense,
     .intent-rail,
     .coverage-grid,
     .coverage-summary__stats,
@@ -3231,6 +3328,34 @@ input[type="checkbox"] {
 
     .state-money-disclosure > .detail-grid {
         padding: 0 14px 14px;
+    }
+
+    .county-route-cluster {
+        padding: 16px;
+        border-radius: 20px;
+    }
+
+    .county-route-cluster__header {
+        align-items: flex-start;
+    }
+
+    .county-route-cluster__header h3 {
+        font-size: 1.12rem;
+    }
+
+    .county-route-cluster__header > strong {
+        max-width: 9rem;
+        font-size: 0.72rem;
+    }
+
+    .county-route-cluster__links {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .county-route-cluster__links a,
+    .county-route-cluster__actions .button {
+        width: 100%;
     }
 
     .site-nav a {

@@ -4,6 +4,7 @@
 @param PageMeta page
 @param java.util.List<StateCoverageCardView> liveStates
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param java.util.List<StateQueuePlanView> priorityQueuePlans = java.util.List.of()
 @param java.util.List<StateCoverageCardView> queuedStates
 @param int liveGuideCount
@@ -93,6 +94,47 @@
                             @endfor
                         </div>
                     </article>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if (!countyRouteClusters.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County route board</span>
+                    <h2>States where the next click can go straight to a county file.</h2>
+                    <p class="lede">Use this board when the search already includes a county name, address, parcel/TMS clue, buyer issue, or permit-copy request.</p>
+                </div>
+
+                <div class="county-route-board county-route-board--dense">
+                    @for (var cluster : countyRouteClusters)
+                        <article class="county-route-cluster">
+                            <div class="county-route-cluster__header">
+                                <div>
+                                    <span class="pill">${cluster.stateCode()}</span>
+                                    <h3>${cluster.heading()}</h3>
+                                </div>
+                                <strong>${cluster.metricLabel()}</strong>
+                            </div>
+                            <div class="county-route-cluster__links" aria-label="${cluster.stateName()} county routes">
+                                @for (var link : cluster.countyLinks())
+                                    <a href="${link.path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_coverage_county_route_board"
+                                       data-track-target-type="county_records_page">${link.compactTitle()}</a>
+                                @endfor
+                            </div>
+                            <div class="county-route-cluster__actions">
+                                <a class="button button--secondary"
+                                   href="${cluster.stateRecordsLink().path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="state_coverage_county_route_state_records"
+                                   data-track-target-type="state_money_page">${cluster.stateRecordsLink().title()}</a>
+                            </div>
+                        </article>
+                    @endfor
                 </div>
             </div>
         </section>
