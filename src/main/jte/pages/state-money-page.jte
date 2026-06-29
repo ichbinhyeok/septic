@@ -6,6 +6,7 @@
 @import com.example.septic.web.StateMoneyPrimaryAction
 @import com.example.septic.web.StateCountyWorkflowSynthesisView
 @import com.example.septic.web.StateCostScopeView
+@import com.example.septic.web.SearchIntentOpportunityView
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -27,6 +28,7 @@
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
+@param java.util.List<SearchIntentOpportunityView> searchIntentOpportunities = java.util.List.of()
 @param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
 @param com.example.septic.web.StateWorkflowDecisionView workflowDecision = null
 @param StateCostScopeView costScopeView = null
@@ -307,6 +309,40 @@
                 </article>
                 </div>
             </section>
+
+            @if (!searchIntentOpportunities.isEmpty())
+                <section class="search-intent-board" aria-label="Common search intents this page answers">
+                    <div class="search-intent-board__header">
+                        <span class="eyebrow">Common records searches</span>
+                        <h2>Use the Tennessee search phrase that matches the job.</h2>
+                        <p>Each route below resolves a different records search into the same practical next step: identify the file owner, pull the permit trail, and then decide whether the record is strong enough to trust.</p>
+                    </div>
+                    <div class="search-intent-board__grid">
+                        @for (var opportunity : searchIntentOpportunities)
+                            <article class="search-intent-card" id="${opportunity.anchorId()}">
+                                <span class="search-intent-card__label">${opportunity.eyebrow()}</span>
+                                <h3>${opportunity.heading()}</h3>
+                                <p>${opportunity.summary()}</p>
+                                @if ("official_source".equals(opportunity.targetType()))
+                                    <a class="button button--secondary"
+                                       href="${opportunity.actionPath()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="gsc_intent_patch"
+                                       data-track-target-type="${opportunity.targetType()}">${opportunity.actionLabel()}</a>
+                                @else
+                                    <a class="button button--secondary"
+                                       href="${opportunity.actionPath()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="gsc_intent_patch"
+                                       data-track-target-type="${opportunity.targetType()}">${opportunity.actionLabel()}</a>
+                                @endif
+                            </article>
+                        @endfor
+                    </div>
+                </section>
+            @endif
         </div>
     </section>
 

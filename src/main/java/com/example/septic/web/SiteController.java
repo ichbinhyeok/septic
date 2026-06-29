@@ -1081,6 +1081,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
         model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
+        model.addAttribute("searchIntentOpportunities", searchIntentOpportunities(
+                stateMoneyPage,
+                state,
+                primaryRecordsLookupSource,
+                primaryLocalAuthoritySource
+        ));
         model.addAttribute("workflowDecision", workflowDecision);
         model.addAttribute("costScopeView", costScopeView);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
@@ -3752,6 +3758,63 @@ The goal is to settle the permit path before we frame the project as a normal in
             return Optional.empty();
         }
         return Optional.empty();
+    }
+
+    private List<SearchIntentOpportunityView> searchIntentOpportunities(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            SourceRecord primaryRecordsLookupSource,
+            SourceRecord primaryLocalAuthoritySource
+    ) {
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && "TN".equals(state.stateCode())) {
+            String recordsPath = primaryRecordsLookupSource != null
+                    ? primaryRecordsLookupSource.url()
+                    : "/septic-records-checklist/tennessee/";
+            String contactPath = primaryLocalAuthoritySource != null
+                    ? primaryLocalAuthoritySource.url()
+                    : recordsPath;
+            String recordsTargetType = primaryRecordsLookupSource != null ? "official_source" : "state_money_page";
+            String contactTargetType = primaryLocalAuthoritySource != null ? "official_source" : recordsTargetType;
+            return List.of(
+                    new SearchIntentOpportunityView(
+                            "tennessee-septic-records",
+                            "Tennessee septic records",
+                            "Tennessee septic records",
+                            "Use this route when the search is about the statewide septic file trail: permit file, inspection letter, repair permit, and the office that can confirm the parcel record.",
+                            "Open Tennessee records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "tdec-septic-records",
+                            "TDEC records",
+                            "TDEC septic records",
+                            "Start with the TDEC SSDS route, then confirm whether the parcel belongs with a regional contact or a contract county before treating the record as missing.",
+                            "Open TDEC records source",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "state-of-tn-septic-records",
+                            "State of TN",
+                            "State of TN septic records",
+                            "Use the state route to identify the permit owner, then jump into the county pages when the search needs a local file owner, parcel clue, or inspection-letter path.",
+                            "Open Tennessee county routes",
+                            "/septic-records-checklist/tennessee/#county-pages",
+                            "page_anchor"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "tennessee-septic-permit-lookup",
+                            "Permit lookup",
+                            "Tennessee septic permit lookup",
+                            "For permit lookup searches, the useful answer is not a generic rule summary. It is the file path: TDEC, contract county, permit history, inspection letter, and repair-permit trail.",
+                            "Open Tennessee permit contact",
+                            contactPath,
+                            contactTargetType
+                    )
+            );
+        }
+        return List.of();
     }
 
     private StateMoneyPrimaryAction stateMoneyPrimaryAction(
