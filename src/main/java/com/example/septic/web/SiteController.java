@@ -3636,7 +3636,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && primaryRecordsLookupSource != null) {
             return new StateMoneyPrimaryAction(
                     "Pull the file first",
-                    primaryRecordsLookupSource.title(),
+                    sourceActionHeading(stateMoneyPage, state, primaryRecordsLookupSource),
                     countyAwareNote(
                             "Open the official records path before you compress a records problem into one planning number or quote request.",
                             countyWorkflowSynthesis
@@ -3652,7 +3652,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && primaryLocalAuthoritySource != null) {
             return new StateMoneyPrimaryAction(
                     "Verify the file owner first",
-                    primaryLocalAuthoritySource.title(),
+                    sourceActionHeading(stateMoneyPage, state, primaryLocalAuthoritySource),
                     countyAwareNote(
                             "Use the office that controls the septic file before you trust a seller summary or start chasing quotes.",
                             countyWorkflowSynthesis
@@ -3797,7 +3797,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && primaryLocalAuthoritySource != null) {
             return new StateMoneyPrimaryAction(
                     "Check the permit desk first",
-                    primaryLocalAuthoritySource.title(),
+                    sourceActionHeading(stateMoneyPage, state, primaryLocalAuthoritySource),
                     countyAwareNote(
                             state.stateName() + " permit questions usually turn on the local authority and approval path before the planning range matters.",
                             countyWorkflowSynthesis
@@ -3820,6 +3820,18 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "calculator",
                 true
         );
+    }
+
+    private String sourceActionHeading(StateMoneyPage stateMoneyPage, StateProfile state, SourceRecord source) {
+        if ("SC".equals(state.stateCode())) {
+            if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+                return "SCDES permit-copy request path";
+            }
+            if ("septic-permit-process".equals(stateMoneyPage.contentSlug())) {
+                return "SCDES county or regional contact";
+            }
+        }
+        return source.title();
     }
 
     private String countyAwareNote(String baseNote, StateCountyWorkflowSynthesisView countyWorkflowSynthesis) {

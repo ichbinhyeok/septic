@@ -107,6 +107,8 @@
                                         ${primaryLocalAuthoritySource.title()}
                                     @elseif (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
                                         ${countyWorkflowSynthesis.firstArtifacts().get(0)}
+                                    @elseif (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                                        ${state.recordsToRequest().get(0)}
                                     @elseif (primaryRecordsLookupSource != null)
                                         ${primaryRecordsLookupSource.title()}
                                     @elseif (primaryLocalAuthoritySource != null)

@@ -43,3 +43,4 @@ storage/events/**/*.ndjson
 storage/exports/**
 !storage/leads/README.md
 !storage/events/README.md
+.gstack/

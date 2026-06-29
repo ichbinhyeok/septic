@@ -299,6 +299,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Lookup, Permit Search &amp; Cost Guides by State | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/app.css?v=")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/app.js?v=")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"preload\" href=\"https://fonts.googleapis.com/css2?family=Manrope")))
@@ -1212,6 +1213,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Durham County NC Septic Records and Permit Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic and Well Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic and well records request page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Durham County On-Site Water Protection office")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Durham County county"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("improvement permit, construction authorization, operation permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/how-to-find-septic-records-online/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open North Carolina records lookup")));
@@ -1224,6 +1227,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tippecanoe County Indiana Septic Records and Permit Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sewage Disposal")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic records from the county health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tippecanoe County Health Department onsite sewage office")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Tippecanoe County county"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("email or print diagrams when available")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/how-to-find-septic-records-online/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
@@ -4414,6 +4419,15 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void southCarolinaRecordsChecklistUsesActionablePermitCopyLanguage() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Permit Lookup, D-1740, and Records Request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES permit-copy request path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The permit copy already on file for the parcel.")));
+	}
+
+	@Test
 	void alabamaStateGuideShowsCountyHealthPermitContext() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
@@ -4431,6 +4445,14 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check Alabama county records before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Alabama records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
+	}
+
+	@Test
+	void montgomeryAlabamaCountyRecordsPageAvoidsRepeatedCountyLabel() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/alabama/montgomery-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Montgomery County Environmental Health office")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Montgomery County county"))));
 	}
 
 	@Test
@@ -7748,6 +7770,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES county or regional contact")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The permit copy already on file for the parcel.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Tanks - Who to Call")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/")))

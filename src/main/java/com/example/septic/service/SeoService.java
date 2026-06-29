@@ -34,17 +34,17 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic Transfer Compliance, Records Lookup & Cost Guides by State | SepticPath",
-                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.",
+                "Septic Records Lookup, Permit Search & Cost Guides by State | SepticPath",
+                "State-aware septic records lookup, permit search, county file paths, buyer workflow, and planning cost guides across all 50 states.",
                 canonicalUrl,
                 "index,follow",
                 List.of(),
                 List.of(
                         toJson(editorialOrganization()),
                         toJson(webSite(canonicalUrl, "SepticPath",
-                                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.")),
+                                "State-aware septic records lookup, permit search, county file paths, buyer workflow, and planning cost guides across all 50 states.")),
                         toJson(webPage(canonicalUrl, "SepticPath",
-                                "State-aware septic transfer compliance, records, permit path, buyer workflow, and planning cost guides across all 50 states.", "CollectionPage"))
+                                "State-aware septic records lookup, permit search, county file paths, buyer workflow, and planning cost guides across all 50 states.", "CollectionPage"))
                 )
         );
     }
