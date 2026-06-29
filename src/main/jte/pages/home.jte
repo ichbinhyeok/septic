@@ -15,37 +15,42 @@
     <section class="hero">
         <div class="container hero__grid">
             <div class="hero__content">
-                <span class="eyebrow">Septic records, permits, and transfer prep</span>
-                <h1>Start with the file, permit path, or buyer workflow that actually changes the septic story.</h1>
-                <p class="lede">SepticPath is built for homeowners, buyers, and agents who need to know which county office, permit record, inspection trigger, or transfer step matters before they trust a clean-looking quote.</p>
-                <p class="hero-router-intro">Pick the first move that matches your live problem. The deeper reading and state guides can wait until the route is clear.</p>
-                <div class="hero-decision-grid">
+                <span class="eyebrow">Septic records lookup and permit search</span>
+                <h1>Find the county septic file before the quote.</h1>
+                <p class="lede">Start with the permit copy, as-built, inspection letter, or county records path that can change a buyer decision, repair scope, or planning range.</p>
+                <div class="hero-quick-actions" aria-label="Most common septic record actions">
+                    <a class="button button--primary" href="/septic-records-by-county/">Search records by county</a>
+                    <a class="button button--secondary" href="/septic-permit-search-by-address/">Search by address</a>
+                    <a class="button button--secondary" href="/septic-permit-records-request/">Request permit copy</a>
+                </div>
+                <p class="hero-router-intro">Use the fastest lane first. If the county file is still unclear, then move into permit process, transfer compliance, or cost planning.</p>
+                <div class="hero-decision-grid hero-decision-grid--compact">
                     <article class="hero-decision-card hero-decision-card--accent">
                         <span class="hero-decision-card__label">File first</span>
-                        <h3>I need the septic permit or file before I trust the story</h3>
-                        <p>Start here when the permit lookup, as-built, pumping history, or inspection notes are thinner than the current seller, buyer, or contractor story.</p>
-                        <a class="button button--primary" href="/septic-permit-lookup/">Open permit lookup</a>
+                        <h3>I know the county and need the actual septic record path</h3>
+                        <p>Start here when the permit copy, as-built, final approval, repair file, or inspection letter matters more than a broad state explainer.</p>
+                        <a class="button button--primary" href="/septic-records-by-county/">Open county records</a>
+                    </article>
+
+                    <article class="hero-decision-card">
+                        <span class="hero-decision-card__label">Lookup path</span>
+                        <h3>I need the state or county permit lookup doorway</h3>
+                        <p>Use this when the next move is a permit search, records portal, county office, or official source before any estimate.</p>
+                        <a class="button button--secondary" href="/septic-permit-lookup/">Open permit lookup</a>
                     </article>
 
                     <article class="hero-decision-card">
                         <span class="hero-decision-card__label">Permit path</span>
-                        <h3>I do not know which office or step controls this job</h3>
-                        <p>Use the permit workflow when the real blocker is county routing, site review, project classification, or the next approval step.</p>
+                        <h3>I do not know which office or approval step controls this job</h3>
+                        <p>Use the permit workflow when county routing, site review, project type, or closeout is the real blocker.</p>
                         <a class="button button--secondary" href="/septic-permit-process/">Open permit process</a>
                     </article>
 
                     <article class="hero-decision-card">
                         <span class="hero-decision-card__label">Sale or transfer</span>
                         <h3>I am trying to keep a deal or closing on track</h3>
-                        <p>Use the transfer workflow when records, permit history, inspection timing, and county file quality all need to be sorted together before the deal moves.</p>
+                        <p>Use the transfer workflow when records, permit history, inspection timing, and county file quality need one checklist.</p>
                         <a class="button button--secondary" href="/septic-transfer-compliance/">Open transfer compliance</a>
-                    </article>
-
-                    <article class="hero-decision-card">
-                        <span class="hero-decision-card__label">Planning range</span>
-                        <h3>I need one cautious number before the next call</h3>
-                        <p>Run the estimator after the workflow is clearer, or when the file is still thin and you need a conservative planning range instead of a fake low end.</p>
-                        <a class="button button--secondary" href="/septic-system-cost-calculator/">Open cost estimator</a>
                     </article>
                 </div>
                 <div class="hero__notes">
@@ -64,21 +69,21 @@
             <aside class="hero-card">
                 <div class="hero-card__top">
                     <span class="eyebrow">Use it like a tool</span>
-                    <h2>Choose first. Read deeper second.</h2>
-                    <p>The site works best when you match the live problem to one lane, get the next action, and only then open the longer explanation.</p>
+                    <h2>Most visits should start with a file, not a price.</h2>
+                    <p>Get the property record path clear first. The estimator is strongest after the county file, permit branch, or buyer workflow is known.</p>
                 </div>
                 <div class="hero-card__stack">
                     <div class="mini-card">
-                        <strong>1. Match the real blocker</strong>
-                        <p>File gap, permit bottleneck, sale timing, or cautious range. Do not start from a generic quote question.</p>
+                        <strong>1. Find the county owner</strong>
+                        <p>Use the county, address, or permit-copy path to identify who can actually search the file.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>2. Open the narrow workflow</strong>
-                        <p>Use the records, permit, buyer, or transfer lane before you let one statewide average flatten the problem.</p>
+                        <strong>2. Pull the record that changes scope</strong>
+                        <p>Permit copy, as-built, final approval, repair note, inspection letter, or maintenance history.</p>
                     </div>
                     <div class="mini-card">
-                        <strong>3. Price after the story is clearer</strong>
-                        <p>The estimator is there to sharpen the next decision, not to replace the file, county office, or inspection history.</p>
+                        <strong>3. Price after the file is clearer</strong>
+                        <p>Run the cost guide once the missing record, county office, or permit step is no longer vague.</p>
                     </div>
                 </div>
             </aside>

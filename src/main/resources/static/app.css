@@ -478,6 +478,20 @@ h4 {
     margin-top: 28px;
 }
 
+.hero-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.hero-quick-actions .button {
+    min-height: 48px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .hero__subaction {
     display: inline-flex;
     margin-top: 14px;
@@ -544,6 +558,16 @@ h4 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.hero-decision-grid--compact {
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.hero .hero-decision-grid--compact {
+    padding-top: 16px;
+    border-top: 1px solid rgba(20, 34, 32, 0.08);
+}
+
 .hero-decision-card {
     display: grid;
     align-content: start;
@@ -557,6 +581,31 @@ h4 {
 
 .hero-decision-card--accent {
     background: linear-gradient(180deg, rgba(225, 240, 234, 0.92), rgba(255, 255, 255, 0.94));
+}
+
+.hero-decision-grid--compact .hero-decision-card {
+    gap: 8px;
+    padding: 16px;
+}
+
+.hero .hero-decision-grid--compact .hero-decision-card {
+    padding: 0 0 14px;
+    border: 0;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hero .hero-decision-grid--compact .hero-decision-card--accent {
+    background: transparent;
+}
+
+.hero-decision-grid--compact .hero-decision-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .micro-tool {
@@ -2682,8 +2731,9 @@ input[type="checkbox"] {
     .county-records-page h1,
     .content-page h1,
     .state-guide-page h1 {
-        max-width: 12ch;
-        font-size: 2.15rem;
+        max-width: 17ch;
+        font-size: 1.96rem;
+        line-height: 1;
     }
 
     .money-answer-panel {
@@ -2714,12 +2764,12 @@ input[type="checkbox"] {
     }
 
     .workflow-console {
-        margin-top: 18px;
-        border-radius: 22px;
+        margin-top: 14px;
+        border-radius: 20px;
     }
 
     .workflow-console__topbar {
-        padding: 11px 13px;
+        padding: 9px 12px;
         font-size: 0.68rem;
     }
 
@@ -2728,41 +2778,58 @@ input[type="checkbox"] {
     }
 
     .workflow-console__readout {
-        padding: 16px;
+        gap: 10px;
+        padding: 13px 14px;
         border-right: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
+    .workflow-console__readout .eyebrow {
+        display: none;
+    }
+
     .workflow-console__readout h2 {
-        max-width: 17ch;
-        font-size: 1.48rem;
+        max-width: 22ch;
+        font-size: 1.22rem;
+        line-height: 1.06;
     }
 
     .workflow-console__actions {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .workflow-console__actions .button {
+        min-width: 0;
+        min-height: 42px;
+        padding: 0 10px;
+        font-size: 0.84rem;
     }
 
     .workflow-console__row {
-        grid-template-columns: 34px minmax(0, 1fr);
-        gap: 8px 12px;
+        grid-template-columns: 30px minmax(72px, 0.42fr) minmax(0, 1fr);
+        gap: 9px;
         min-height: 0;
-        padding: 13px 14px;
+        padding: 10px 12px;
     }
 
     .workflow-console__index {
-        width: 28px;
-        height: 28px;
+        width: 25px;
+        height: 25px;
         border-radius: 9px;
+        font-size: 0.68rem;
     }
 
     .workflow-console__label {
         align-self: center;
+        font-size: 0.64rem;
+        line-height: 1.12;
     }
 
     .workflow-console__row strong {
-        grid-column: 2;
-        font-size: 0.94rem;
+        grid-column: auto;
+        font-size: 0.83rem;
         -webkit-line-clamp: 2;
     }
 
@@ -3124,6 +3191,44 @@ input[type="checkbox"] {
         gap: 10px;
     }
 
+    .hero-quick-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-top: 18px;
+        gap: 10px;
+    }
+
+    .hero .hero-decision-grid--compact {
+        gap: 9px;
+        margin-top: 14px;
+    }
+
+    .hero .hero-decision-grid--compact .hero-decision-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+        padding: 13px;
+        border-radius: 16px;
+    }
+
+    .hero .hero-decision-grid--compact .hero-decision-card p {
+        display: none;
+    }
+
+    .hero .hero-decision-grid--compact .hero-decision-card h3 {
+        font-size: 0.98rem;
+        line-height: 1.25;
+    }
+
+    .hero .hero-decision-grid--compact .hero-decision-card .button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero .hero-card,
+    .hero .hero__notes {
+        display: none;
+    }
+
     .hero__notes {
         gap: 8px;
         margin-top: 16px;
@@ -3136,6 +3241,7 @@ input[type="checkbox"] {
 
     .hero__actions .button,
     .form-actions .button,
+    .hero-quick-actions .button,
     .micro-tool__actions .button,
     .micro-tool__picker-row .button,
     .result-cta-band__actions .button {
