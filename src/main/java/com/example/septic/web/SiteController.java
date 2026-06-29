@@ -159,6 +159,7 @@ public class SiteController {
                         .thenComparing(StateProfile::stateName))
                 .limit(6)
                 .toList());
+        model.addAttribute("countyFinderLinks", countyFinderLinks());
         model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
         model.addAttribute("countyRouteClusters", countyRouteClusters(8, 4));
         model.addAttribute("liveGuideCount", publicStates.size());
@@ -185,6 +186,7 @@ public class SiteController {
                 .map(this::stateQueuePlanView)
                 .toList());
         model.addAttribute("featuredIntentPages", coverageGrowthSpotlights());
+        model.addAttribute("countyFinderLinks", countyFinderLinks());
         model.addAttribute("countyRouteClusters", countyRouteClusters(16, 4));
         model.addAttribute("queuedStates", coverageCards.stream()
                 .filter(card -> !card.published())
@@ -914,6 +916,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<CountyRouteClusterView> countyRouteClusters = isPermitLookupHub(contentPage)
                 ? countyRouteClusters(10, 4)
                 : List.of();
+        List<CountyFinderLinkView> countyFinderLinks = isPermitLookupHub(contentPage)
+                ? countyFinderLinks()
+                : List.of();
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -930,6 +935,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("permitLookupCountyLinks", permitLookupCountyLinks);
         model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(12).toList());
         model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(12).toList());
+        model.addAttribute("countyFinderLinks", countyFinderLinks);
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
@@ -2165,6 +2171,51 @@ The goal is to settle the permit path before we frame the project as a normal in
                         )))
                 .flatMap(Optional::stream)
                 .toList();
+    }
+
+    private List<CountyFinderLinkView> countyFinderLinks() {
+        List<CountyRecordsPage> countyPages = researchDataService.getPublicCountyRecordsPages().stream()
+                .sorted(Comparator
+                        .comparingInt(this::countyRecordPriorityScore)
+                        .reversed()
+                        .thenComparing(CountyRecordsPage::stateCode)
+                        .thenComparing(CountyRecordsPage::countyName))
+                .toList();
+        List<CountyFinderLinkView> links = new ArrayList<>();
+        for (CountyRecordsPage page : countyPages) {
+            researchDataService.findStateByCode(page.stateCode())
+                    .map(state -> countyFinderLink(page, state))
+                    .ifPresent(links::add);
+        }
+        return links;
+    }
+
+    private CountyFinderLinkView countyFinderLink(CountyRecordsPage page, StateProfile state) {
+        String title = page.countyName() + ", " + state.stateCode() + " records";
+        String note = firstNonBlank(
+                page.recordsLabel(),
+                page.officeLabel(),
+                "Open the county septic records and permit file path."
+        );
+        String searchText = String.join(" ",
+                page.countyName(),
+                state.stateName(),
+                state.stateCode(),
+                page.title(),
+                page.recordsLabel(),
+                page.officeLabel(),
+                page.contactLine(),
+                "septic permit lookup records request as built inspection letter parcel tms"
+        ).toLowerCase(Locale.US);
+        return new CountyFinderLinkView(
+                title,
+                page.path(state.slug()),
+                note,
+                state.stateCode(),
+                state.stateName(),
+                page.countyName(),
+                searchText
+        );
     }
 
     private List<CountyRouteClusterView> countyRouteClusters(int stateLimit, int countiesPerState) {

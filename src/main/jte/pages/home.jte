@@ -4,6 +4,7 @@
 @param java.util.List<StateProfile> featuredStates
 @param java.util.List<StateProfile> spotlightStates
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param int liveGuideCount
 @param int liveIntentCount
@@ -90,6 +91,15 @@
             </aside>
         </div>
     </section>
+
+    @template.tags.countyFinder(
+        countyFinderLinks = countyFinderLinks,
+        finderId = "home-county-finder",
+        eyebrow = "County finder",
+        heading = "Search live county septic record paths before you read another overview.",
+        body = "Type the county or state and jump straight to the local permit file, records request, parcel/TMS, as-built, or inspection-letter route.",
+        sourceContext = "home_county_finder"
+    )
 
     @if (!countyRouteClusters.isEmpty())
         <section class="section section--tight">

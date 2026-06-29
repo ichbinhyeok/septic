@@ -203,6 +203,86 @@
 
     setupChoiceGroups();
 
+    function setupCountyFinders() {
+        const finders = Array.from(document.querySelectorAll("[data-county-finder]"));
+        if (!finders.length) {
+            return;
+        }
+
+        const normalize = (value) => (value || "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+        finders.forEach((finder) => {
+            const input = finder.querySelector("[data-county-finder-input]");
+            const clear = finder.querySelector("[data-county-finder-clear]");
+            const results = Array.from(finder.querySelectorAll("[data-county-finder-result]"));
+            const count = finder.querySelector("[data-county-finder-count]");
+            const empty = finder.querySelector("[data-county-finder-empty]");
+
+            if (!input || !results.length) {
+                return;
+            }
+
+            function updateResults() {
+                const query = normalize(input.value);
+                const maxVisible = query ? 18 : 10;
+                let matched = 0;
+                let shown = 0;
+
+                results.forEach((result) => {
+                    const haystack = normalize(result.dataset.search);
+                    const isMatch = !query || haystack.includes(query);
+                    if (isMatch) {
+                        matched += 1;
+                    }
+
+                    const shouldShow = isMatch && shown < maxVisible;
+                    result.hidden = !shouldShow;
+                    result.classList.toggle("is-match", shouldShow && Boolean(query));
+                    if (shouldShow) {
+                        shown += 1;
+                    }
+                });
+
+                if (count) {
+                    count.textContent = query
+                        ? `${matched} matching county route${matched === 1 ? "" : "s"}`
+                        : `${results.length} county routes indexed`;
+                }
+                if (empty) {
+                    empty.hidden = matched > 0;
+                }
+            }
+
+            input.addEventListener("input", updateResults);
+            input.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter") {
+                    return;
+                }
+
+                const firstVisible = results.find((result) => !result.hidden);
+                if (firstVisible) {
+                    event.preventDefault();
+                    firstVisible.click();
+                }
+            });
+
+            if (clear) {
+                clear.addEventListener("click", () => {
+                    input.value = "";
+                    input.focus();
+                    updateResults();
+                });
+            }
+
+            updateResults();
+        });
+    }
+
+    setupCountyFinders();
+
     function supportsStateAwareTools(pathname) {
         return pathname === "/septic-system-cost-calculator/"
             || pathname === "/septic-system-cost-calculator"

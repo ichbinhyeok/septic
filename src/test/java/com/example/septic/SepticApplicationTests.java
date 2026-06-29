@@ -98,6 +98,8 @@ class SepticApplicationTests {
 	void homeSurfacesCountyRouteBoardAboveGenericPlanningPages() throws Exception {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search live county septic record paths before you read another overview.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the exact county file path before another broad guide.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina county routes")))
@@ -108,6 +110,8 @@ class SepticApplicationTests {
 	void permitLookupHubSurfacesGroupedStateCountyRoutes() throws Exception {
 		mockMvc.perform(get("/septic-permit-lookup/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search the county route instead of staying on the national page.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-by-state county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County records")))

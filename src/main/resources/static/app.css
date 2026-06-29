@@ -1842,6 +1842,171 @@ h4 {
     gap: 18px;
 }
 
+.county-finder {
+    display: grid;
+    grid-template-columns: minmax(0, 0.84fr) minmax(360px, 1.16fr);
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 30px;
+    background:
+        linear-gradient(135deg, rgba(17, 31, 29, 0.96), rgba(34, 78, 68, 0.92)),
+        var(--text);
+    box-shadow: 0 28px 80px rgba(17, 31, 29, 0.16);
+}
+
+.county-finder__intro {
+    display: grid;
+    align-content: center;
+    gap: 16px;
+    padding: 30px;
+    color: #f7fbf7;
+}
+
+.county-finder__intro .eyebrow {
+    color: #bfe5cf;
+}
+
+.county-finder__intro h2 {
+    max-width: 13ch;
+    color: #fff;
+    font-size: clamp(2rem, 3.4vw, 4rem);
+    line-height: 0.98;
+}
+
+.county-finder__intro p {
+    max-width: 48ch;
+    color: rgba(247, 251, 247, 0.78);
+}
+
+.county-finder__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.county-finder__stats span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(247, 251, 247, 0.84);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.county-finder__stats strong {
+    margin-right: 4px;
+    color: #dff46a;
+}
+
+.county-finder__panel {
+    display: grid;
+    gap: 14px;
+    padding: 22px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 246, 0.9)),
+        #fff;
+}
+
+.county-finder__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.county-finder__search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.county-finder__search input {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 0 18px;
+    color: var(--text);
+    font: inherit;
+    font-weight: 700;
+    outline: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.county-finder__search input:focus {
+    border-color: rgba(35, 108, 95, 0.42);
+    box-shadow: 0 0 0 4px rgba(35, 108, 95, 0.12);
+}
+
+.county-finder__status {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.county-finder__status strong {
+    color: var(--text);
+}
+
+.county-finder__results {
+    display: grid;
+    gap: 8px;
+    max-height: 390px;
+    overflow: auto;
+    padding-right: 4px;
+}
+
+.county-finder__result {
+    display: grid;
+    gap: 4px;
+    padding: 13px 14px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--text);
+    transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease;
+}
+
+.county-finder__result[hidden] {
+    display: none;
+}
+
+.county-finder__result:hover,
+.county-finder__result.is-match {
+    border-color: rgba(35, 108, 95, 0.26);
+    background: rgba(227, 244, 237, 0.76);
+    transform: translateY(-1px);
+}
+
+.county-finder__result span {
+    font-family: "Manrope", sans-serif;
+    font-weight: 900;
+    line-height: 1.18;
+}
+
+.county-finder__result small {
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.35;
+}
+
+.county-finder__empty {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
 .county-route-board {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2763,6 +2928,7 @@ input[type="checkbox"] {
     .calculator-layout,
     .content-grid,
     .card-grid,
+    .county-finder,
     .county-route-board,
     .county-route-board--dense,
     .intent-rail,
@@ -3328,6 +3494,37 @@ input[type="checkbox"] {
 
     .state-money-disclosure > .detail-grid {
         padding: 0 14px 14px;
+    }
+
+    .county-finder {
+        border-radius: 22px;
+    }
+
+    .county-finder__intro {
+        padding: 20px;
+    }
+
+    .county-finder__intro h2 {
+        max-width: 18ch;
+        font-size: 1.8rem;
+        line-height: 1.02;
+    }
+
+    .county-finder__panel {
+        padding: 16px;
+    }
+
+    .county-finder__search {
+        grid-template-columns: 1fr;
+    }
+
+    .county-finder__search input,
+    .county-finder__search .button {
+        width: 100%;
+    }
+
+    .county-finder__results {
+        max-height: 360px;
     }
 
     .county-route-cluster {

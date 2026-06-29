@@ -4,6 +4,7 @@
 @param PageMeta page
 @param java.util.List<StateCoverageCardView> liveStates
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param java.util.List<StateQueuePlanView> priorityQueuePlans = java.util.List.of()
 @param java.util.List<StateCoverageCardView> queuedStates
@@ -61,6 +62,15 @@
             </article>
         </div>
     </section>
+
+    @template.tags.countyFinder(
+        countyFinderLinks = countyFinderLinks,
+        finderId = "state-coverage-county-finder",
+        eyebrow = "County finder",
+        heading = "Search the live county routes from the state directory.",
+        body = "Use this when the state is known but the useful next click is a county record owner, permit file path, parcel/TMS search, or buyer-risk trail.",
+        sourceContext = "state_coverage_county_finder"
+    )
 
     @if (workflowNetworkSnapshot != null)
         <section class="section section--tight">

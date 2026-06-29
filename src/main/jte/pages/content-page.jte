@@ -16,6 +16,7 @@
 @param java.util.List<com.example.septic.web.PageLink> permitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredPermitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryPermitLookupCountyLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String contentQuotePath = null
@@ -491,6 +492,15 @@
             </article>
         </div>
     </section>
+
+    @template.tags.countyFinder(
+        countyFinderLinks = countyFinderLinks,
+        finderId = contentPage.slug() + "-county-finder",
+        eyebrow = "County finder",
+        heading = "Search the county route instead of staying on the national page.",
+        body = "Use this when the visitor already has a state, county, parcel clue, permit-copy question, or records request in mind.",
+        sourceContext = "content_page_county_finder"
+    )
 
     @if (!countyRouteClusters.isEmpty())
         <section class="section section--tight">
