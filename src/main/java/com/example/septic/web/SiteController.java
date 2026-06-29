@@ -59,7 +59,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Controller
 public class SiteController {
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
-    private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "AL", "IN", "GA");
+    private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "SC", "AL", "IN", "GA");
     private static final String PERMIT_LOOKUP_SLUG = "septic-permit-lookup";
     private static final String RECORDS_ONLINE_SLUG = "how-to-find-septic-records-online";
     private static final String RECORDS_BY_COUNTY_SLUG = "septic-records-by-county";
@@ -2165,7 +2165,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (!isPermitLookupHub(contentPage)) {
             return List.of();
         }
-        return List.of("TN", "NC", "TX", "AL", "IN").stream()
+        return List.of("TN", "NC", "TX", "SC", "AL", "IN").stream()
                 .flatMap(stateCode -> researchDataService.listPublicCountyRecordsPages(stateCode).stream())
                 .sorted(Comparator
                         .comparingInt(this::countyRecordPriorityScore)
@@ -2193,22 +2193,26 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "TN" -> 70;
             case "NC" -> 64;
             case "TX" -> 62;
+            case "SC" -> 60;
             case "AL" -> 58;
             case "IN" -> 54;
             default -> 20;
         };
         score += switch (page.countySlug()) {
             case "davidson-county", "wake-county", "travis-county", "madison-county", "elkhart-county",
-                    "howard-county", "guilford-county", "durham-county", "comal-county", "montgomery-county" -> 34;
+                    "howard-county", "guilford-county", "durham-county", "comal-county", "montgomery-county",
+                    "greenville-county", "richland-county", "charleston-county", "horry-county" -> 34;
             case "knox-county", "alamance-county", "hays-county", "baldwin-county", "st-joseph-county",
                     "iredell-county", "grant-county", "tippecanoe-county", "parker-county", "guadalupe-county",
-                    "st-clair-county" -> 28;
+                    "st-clair-county", "spartanburg-county", "lexington-county", "york-county" -> 28;
             case "shelby-county", "union-county", "porter-county", "ellis-county", "bastrop-county",
-                    "autauga-county", "cullman-county", "miami-county", "bartholomew-county", "monroe-county" -> 24;
+                    "autauga-county", "cullman-county", "miami-county", "bartholomew-county", "monroe-county",
+                    "berkeley-county", "beaufort-county", "dorchester-county" -> 24;
             case "johnston-county", "fort-bend-county", "tuscaloosa-county", "marshall-county",
-                    "randolph-county", "lincoln-county", "loudon-county", "anderson-county" -> 20;
+                    "randolph-county", "lincoln-county", "loudon-county", "anderson-county", "aiken-county",
+                    "pickens-county" -> 20;
             case "chatham-county", "orange-county", "brazoria-county", "lee-county", "la-porte-county",
-                    "etowah-county", "elmore-county", "cumberland-county" -> 16;
+                    "etowah-county", "elmore-county", "cumberland-county", "florence-county", "sumter-county" -> 16;
             case "mecklenburg-county", "williamson-county", "limestone-county", "floyd-county",
                     "shelby-county-indiana" -> 12;
             default -> 0;
@@ -2515,6 +2519,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private String countyFileOwnerModel(String category, String stateName) {
         return switch (category) {
             case "split_local" -> "The county path is split. Confirm whether the real septic file sits with the county, a municipality, or a local board before treating one office as the full answer.";
+            case "state_or_regional" -> "The practical file owner starts with the statewide septic program, then resolves through the county or regional contact path that can confirm the parcel file.";
             case "district_health" -> "The real file likely lives with a county or district health office rather than a generic statewide desk. Confirm the exact local office before moving into pricing.";
             case "county_engineer" -> "The real file is county-first here and usually runs through a named engineering or development-services office rather than a generic statewide desk.";
             case "county_public_health", "county_environmental_health", "county_first" -> "The real file is county-first here once you reach the named local health or environmental office.";
@@ -2525,6 +2530,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private String countyFileOwnerAggregateText(String category, String stateName) {
         return switch (category) {
             case "split_local" -> "Many county workflows in " + stateName + " split the real file between county health, a municipality, or a local board.";
+            case "state_or_regional" -> "Many county workflows in " + stateName + " start with statewide septic routing, then resolve through a county or regional contact path.";
             case "district_health" -> "Many county workflows in " + stateName + " still turn on identifying the correct district or local health office first.";
             case "county_engineer" -> "Many county workflows in " + stateName + " are county-first once you reach the named engineering or development-services office.";
             case "county_public_health", "county_environmental_health", "county_first" -> "Many county workflows in " + stateName + " are county-first once you reach the named local health or environmental office.";
@@ -2566,6 +2572,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return switch (category) {
             case "use_approval" -> "The most common county closeout signal is an operating or use approval rather than a bare permit application.";
             case "completion_artifact" -> "The most common county closeout signal is a completion or final inspection artifact.";
+            case "final_approval_signal" -> "The most common county closeout signal is the final inspection, Permit to Construct, or similar closeout note rather than the first application.";
             case "permit_ladder" -> "The most common county closeout signal is a permit ladder step that proves the parcel moved beyond preliminary review.";
             default -> "County files often need a stronger closeout artifact than the first permit mention.";
         };
@@ -2631,6 +2638,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "grant_upgrade" -> "A grant or upgrade program may already control the path. Treat BRF, BAT, or Critical Area paperwork as part of the real file, not as optional context.";
             case "managed_obligation" -> "There may be a long-tail management obligation on the property. Pull the service, management, or maintenance file before treating ownership costs as simple.";
             case "local_exception" -> "A local exception or area rule may already be changing the septic path. Check that program file before trusting the easiest replacement or reuse story.";
+            case "statewide_with_county_routing" -> "A statewide program may still depend on county or regional routing before the parcel file is actually confirmed.";
             default -> "Ask whether this parcel sits in any local program, exception area, or managed lane that changes the normal septic workflow.";
         };
     }
@@ -2640,6 +2648,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "grant_upgrade" -> "County pages in this state often route through BRF, BAT, Critical Area, or another upgrade-program file before replacement is straightforward.";
             case "managed_obligation" -> "County pages in this state often surface management plans, service contracts, or long-tail O&M obligations before the file is really clean.";
             case "local_exception" -> "County pages in this state often turn on a local exception, sewer branch, reserve-area limit, or other area rule before the normal path applies.";
+            case "statewide_with_county_routing" -> "County pages in this state often start at a statewide program but still need county or regional routing before the file is actionable.";
             default -> "County pages in this state still need a special-program check even when no single program dominates the workflow.";
         };
     }
@@ -2699,7 +2708,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private boolean countyFileOwnerNeedsOfficeResolution(String category) {
-        return "split_local".equals(category) || "office_split".equals(category);
+        return "split_local".equals(category) || "office_split".equals(category) || "state_or_regional".equals(category);
     }
 
     private String countyQuoteGateAggregateText(String category) {
@@ -2960,11 +2969,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "property status", "tax map", "apn", "permit search", "opra");
                 case AUTHORITY -> containsAny(text,
                         "local health department", "municipal", "board of health", "ceha",
-                        "local approving authority", "incorporated town", "municipality");
+                        "local approving authority", "incorporated town", "municipality",
+                        "regional contact", "county or regional", "statewide septic routing");
                 case PERMIT -> containsAny(text,
                         "operation permit", "construction authorization", "completion certificate",
                         "certificate of occupancy", "improvement permit", "existing system approval",
-                        "sanitary construction permit", "certificate of completion", "interim permit");
+                        "sanitary construction permit", "certificate of completion", "interim permit",
+                        "d-1740", "permit to construct", "final inspection", "site-review");
                 case TRANSFER -> containsAny(text,
                         "transfer", "buyer", "property status report", "pti", "real estate", "closing");
                 case BRF -> containsAny(text,

@@ -492,6 +492,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/dekalb-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/fulton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/georgia/gwinnett-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/greenville-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/charleston-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/horry-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/travis-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/bexar-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/williamson-county/")))
@@ -4428,8 +4431,26 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Permit Lookup, D-1740, and Records Request")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES permit-copy request path")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("The permit copy already on file for the parcel.")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES records path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The permit copy already on file for the parcel.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina Septic Records and Permit Lookup")));
+	}
+
+	@Test
+	void greenvilleCountySouthCarolinaRecordsPageShowsScdesRoutingWorkflow() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/south-carolina/greenville-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County South Carolina Septic Records and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES county or regional septic contact for Greenville County")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Greenville County septic permit copy and records lookup path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Construct")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County workflow structure")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("statewide septic routing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open South Carolina records lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the South Carolina guide")));
 	}
 
 	@Test
@@ -6659,6 +6680,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/how-to-find-septic-records-online/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Permit Lookup and TDEC SSDS Records Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/davidson-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/durham-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/iredell-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")))
