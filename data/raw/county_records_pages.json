@@ -21039,7 +21039,26 @@
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Greenville County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "requestScriptHeading": "Send this after you capture Greenville County TMS or map number",
+      "requestScriptBody": "Please search for the septic permit copy, D-1740 application or site-review history, Permit to Construct, final inspection status, and any repair or abandonment notes for this Greenville County property. I have the address, owner, subdivision, and TMS or map number from the county real property search. If the address-only search is weak, please search by parcel/TMS and any prior owner or builder information.",
+      "buyerActions": [
+        "Do not accept a seller statement that the system is permitted until the Greenville County parcel anchor and SCDES file describe the same home.",
+        "Ask whether any addition, finished basement, bedroom count, or rebuild plan changes the file story before inspection credits are negotiated."
+      ],
+      "sellerActions": [
+        "Pull the real property search result before listing so the buyer can request the SCDES file without guessing the TMS or subdivision.",
+        "If the permit copy is missing, say that clearly instead of letting the buyer discover the gap during due diligence."
+      ],
+      "contractorActions": [
+        "Do not quote capacity or replacement from address alone; ask for the TMS, D-1740 trail, and final inspection status first.",
+        "Treat Greer, Simpsonville, and fast-growth edge parcels as parcel-identity checks before scope checks."
+      ],
+      "redFlagChecklist": [
+        "The address, subdivision, and TMS do not return the same property story.",
+        "The owner has a quote but no permit copy, D-1740, or final inspection note.",
+        "The project involves an addition or bedroom-count change before the file is found."
+      ]
     },
     {
       "stateCode": "SC",
@@ -21119,7 +21138,26 @@
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Richland County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "requestScriptHeading": "Send this after you capture Richland County parcel identity",
+      "requestScriptBody": "Please search for the SCDES septic permit copy, D-1740 or site-review history, Permit to Construct, final inspection status, and repair or abandonment notes for this Richland County property. I have the county mapping/records parcel identity, address, owner, and any subdivision or old-address clues. If the current address does not find the file, please search by parcel and prior owner details.",
+      "buyerActions": [
+        "Use the parcel identity to protect against Columbia-area old-address, annexation, or fringe-subdivision confusion.",
+        "Before negotiating credits, ask whether the file supports the existing home and any planned addition or repair."
+      ],
+      "sellerActions": [
+        "Pull the mapping/records parcel identity before diligence starts, especially when the property has an old address or acreage history.",
+        "If SCDES cannot find a permit copy, state the gap early and keep the buyer from treating the quote as file-backed."
+      ],
+      "contractorActions": [
+        "Do not rely on owner memory for older Richland parcels; ask for parcel identity and SCDES final status.",
+        "Pause any repair or replacement estimate when the file does not match the current address or owner story."
+      ],
+      "redFlagChecklist": [
+        "The current address does not match old parcel, subdivision, or owner clues.",
+        "The buyer has an inspection concern but no SCDES file or final status.",
+        "The parcel is treated as routine while an addition, repair, or closing deadline is driving the request."
+      ]
     },
     {
       "stateCode": "SC",
@@ -21199,7 +21237,26 @@
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Charleston County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "requestScriptHeading": "Send this after you capture Charleston County TMS",
+      "requestScriptBody": "Please search the SCDES septic file for this Charleston County property using the TMS, address, owner, and any property-card details. I need the septic permit copy, D-1740 or site-review history, Permit to Construct, final inspection status, and any repair, replacement, abandonment, or coastal constraint notes tied to the parcel.",
+      "buyerActions": [
+        "Treat coastal, island, and older-home deals as TMS-first searches; a street address alone can miss the useful file.",
+        "Ask whether the file supports the current structure, not just whether septic exists somewhere on the parcel."
+      ],
+      "sellerActions": [
+        "Prepare the Charleston County property card and TMS before buyer diligence starts.",
+        "If the system was repaired, replaced, or abandoned, disclose the file branch before the buyer frames it as a routine permit lookup."
+      ],
+      "contractorActions": [
+        "Do not frame a Charleston parcel as routine until the TMS, site-review history, and final inspection status agree.",
+        "Flag coastal or island parcels where access, soils, replacement area, or sewer questions could change the estimate."
+      ],
+      "redFlagChecklist": [
+        "The property card shows mobile-home, island, or coastal complexity not reflected in the quote.",
+        "The SCDES result is only a request trail with no final inspection or closeout signal.",
+        "A replacement or repair is discussed before the site-review history is visible."
+      ]
     },
     {
       "stateCode": "SC",
@@ -21279,7 +21336,26 @@
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Horry County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "requestScriptHeading": "Send this after you capture Horry County parcel and GIS clues",
+      "requestScriptBody": "Please search the SCDES septic file for this Horry County property using the address, parcel identity, owner, subdivision, and any GIS or tax clues I collected from Horry County online services. I need the permit copy, D-1740 or site-review record, Permit to Construct, final inspection status, and any repair, replacement, malfunction, or abandonment history.",
+      "buyerActions": [
+        "Do not treat a Myrtle Beach-area address as enough; capture the parcel/GIS clue before asking for the septic file.",
+        "Ask whether the system file supports the current use, rental intensity, bedroom count, and coastal or inland site conditions."
+      ],
+      "sellerActions": [
+        "Have the county parcel and GIS clue ready before showings if the home is outside sewer or has an older septic story.",
+        "Separate the tax/GIS clue from any survey claims because Horry County GIS context is not the same as a field-verified layout."
+      ],
+      "contractorActions": [
+        "Quote only after the parcel clue and SCDES closeout status are visible.",
+        "Watch for coastal development, high-water, or inland subdivision assumptions that can make the first scope too thin."
+      ],
+      "redFlagChecklist": [
+        "The GIS/tax clue is being used like a survey or septic layout.",
+        "The quote assumes a routine replacement but the SCDES file has not been pulled.",
+        "The home use, bedroom count, or rental story is stronger than the file evidence."
+      ]
     },
     {
       "stateCode": "SC",
@@ -21439,7 +21515,26 @@
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Lexington County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "requestScriptHeading": "Send this after you capture Lexington County property tax data",
+      "requestScriptBody": "Please search the SCDES septic records for this Lexington County property using the property tax data, parcel identity, owner, address, subdivision, and any lake-area or fringe-development clues. I need the septic permit copy, D-1740 or site-review history, Permit to Construct, final inspection status, and any repair, replacement, malfunction, or abandonment notes.",
+      "buyerActions": [
+        "For lake-area or suburban fringe parcels, verify the parcel identity before treating the seller's septic story as complete.",
+        "Ask whether the D-1740/site-review history supports the current structure and any planned addition."
+      ],
+      "sellerActions": [
+        "Prepare the Lexington County property tax data result and parcel identity before inspection negotiations.",
+        "If the home has lake-area, addition, or older-system history, pull the SCDES file before the buyer's contractor sets expectations."
+      ],
+      "contractorActions": [
+        "Do not quote from bedroom count alone; confirm property tax identity, SCDES permit copy, and final inspection status.",
+        "Flag lake-area or fringe parcels where site review, replacement area, or old approval history may control the scope."
+      ],
+      "redFlagChecklist": [
+        "A lake-area or fringe parcel has no visible D-1740 or site-review trail.",
+        "The seller knows the system exists but cannot connect it to the property tax parcel.",
+        "A quote is being used to settle buyer risk before the file owner confirms the parcel."
+      ]
     },
     {
       "stateCode": "SC",

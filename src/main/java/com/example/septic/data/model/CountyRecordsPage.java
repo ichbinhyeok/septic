@@ -19,6 +19,12 @@ public record CountyRecordsPage(
         String parcelAnchorLabel,
         String parcelAnchorUrl,
         String parcelAnchorNote,
+        String requestScriptHeading,
+        String requestScriptBody,
+        List<String> buyerActions,
+        List<String> sellerActions,
+        List<String> contractorActions,
+        List<String> redFlagChecklist,
         List<String> decisionSteps,
         List<String> recordsToRequest,
         List<String> lowEndBreakers,
@@ -63,6 +69,14 @@ public record CountyRecordsPage(
 
     public boolean hasParcelAnchor() {
         return hasText(parcelAnchorLabel) && hasText(parcelAnchorUrl);
+    }
+
+    public boolean hasActionPlaybook() {
+        return hasText(requestScriptBody)
+                || hasItems(buyerActions, 1)
+                || hasItems(sellerActions, 1)
+                || hasItems(contractorActions, 1)
+                || hasItems(redFlagChecklist, 1);
     }
 
     private boolean hasText(String value) {

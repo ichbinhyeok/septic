@@ -230,6 +230,67 @@
         </div>
     </section>
 
+    @if (countyPage.hasActionPlaybook())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">County Action Playbook</span>
+                    <h2>Use this before anyone talks price.</h2>
+                    <p class="lede">This is the working script and role-by-role checklist for turning the county parcel anchor into an SCDES file request, not another generic septic explainer.</p>
+                </div>
+                <div class="detail-grid">
+                    @if (countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank())
+                        <article class="trust-box trust-box--large detail-card--full">
+                            <span class="trust-box__label">Copy-ready request</span>
+                            <h3>${countyPage.requestScriptHeading() == null || countyPage.requestScriptHeading().isBlank() ? "Send this to the records contact" : countyPage.requestScriptHeading()}</h3>
+                            <p>${countyPage.requestScriptBody()}</p>
+                        </article>
+                    @endif
+                    @if (countyPage.buyerActions() != null && !countyPage.buyerActions().isEmpty())
+                        <article class="detail-card">
+                            <h3>Buyer move</h3>
+                            <ul class="detail-list">
+                                @for (var action : countyPage.buyerActions())
+                                    <li>${action}</li>
+                                @endfor
+                            </ul>
+                        </article>
+                    @endif
+                    @if (countyPage.sellerActions() != null && !countyPage.sellerActions().isEmpty())
+                        <article class="detail-card">
+                            <h3>Seller move</h3>
+                            <ul class="detail-list">
+                                @for (var action : countyPage.sellerActions())
+                                    <li>${action}</li>
+                                @endfor
+                            </ul>
+                        </article>
+                    @endif
+                    @if (countyPage.contractorActions() != null && !countyPage.contractorActions().isEmpty())
+                        <article class="detail-card">
+                            <h3>Contractor move</h3>
+                            <ul class="detail-list">
+                                @for (var action : countyPage.contractorActions())
+                                    <li>${action}</li>
+                                @endfor
+                            </ul>
+                        </article>
+                    @endif
+                    @if (countyPage.redFlagChecklist() != null && !countyPage.redFlagChecklist().isEmpty())
+                        <article class="detail-card">
+                            <h3>Stop if you see this</h3>
+                            <ul class="detail-list">
+                                @for (var flag : countyPage.redFlagChecklist())
+                                    <li>${flag}</li>
+                                @endfor
+                            </ul>
+                        </article>
+                    @endif
+                </div>
+            </div>
+        </section>
+    @endif
+
     <section class="section section--tight state-money-disclosure-section">
         <div class="container">
             <details class="state-money-disclosure">
