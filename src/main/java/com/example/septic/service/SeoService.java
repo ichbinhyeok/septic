@@ -486,14 +486,6 @@ public class SeoService {
                 crumb(state.stateName() + " Septic Records Lookup", absoluteUrl("/septic-records-checklist/" + state.slug() + "/")),
                 crumb(countyPage.countyName() + " Septic Records", canonicalUrl)
         ))));
-        if (countyPage.faqBlocks() != null && !countyPage.faqBlocks().isEmpty()) {
-            jsonLdBlocks.add(toJson(faqPage(
-                    canonicalUrl,
-                    title,
-                    description,
-                    countyPage.faqBlocks()
-            )));
-        }
         return pageMeta(
                 title,
                 description,

@@ -9,6 +9,7 @@
 @param int liveGuideCount
 @param int liveIntentCount
 @param int liveCountyCount = 0
+@param int totalCountyRouteCount = 0
 @param int countyBackedStateCount = 0
 @param int queuedStateCount
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
@@ -98,7 +99,8 @@
         eyebrow = "County finder",
         heading = "Search live county septic record paths before you read another overview.",
         body = "Type the county or state and jump straight to the local permit file, records request, parcel/TMS, as-built, or inspection-letter route.",
-        sourceContext = "home_county_finder"
+        sourceContext = "home_county_finder",
+        totalCountyRouteCount = totalCountyRouteCount
     )
 
     @if (!countyRouteClusters.isEmpty())

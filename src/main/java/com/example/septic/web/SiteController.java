@@ -160,6 +160,7 @@ public class SiteController {
                 .limit(6)
                 .toList());
         model.addAttribute("countyFinderLinks", countyFinderLinks());
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
         model.addAttribute("countyRouteClusters", countyRouteClusters(8, 4));
         model.addAttribute("liveGuideCount", publicStates.size());
@@ -187,6 +188,7 @@ public class SiteController {
                 .toList());
         model.addAttribute("featuredIntentPages", coverageGrowthSpotlights());
         model.addAttribute("countyFinderLinks", countyFinderLinks());
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters(16, 4));
         model.addAttribute("queuedStates", coverageCards.stream()
                 .filter(card -> !card.published())
@@ -918,30 +920,44 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .toList();
         ContentWorkflowCoverageView contentWorkflowCoverage = contentWorkflowCoverage(contentPage, rankedStateEntries);
         List<PageLink> internalLinks = pageLinks(contentPage.internalLinkTargets(), contentPage.slug(), null);
-        List<PageLink> permitLookupCountyLinks = permitLookupCountyLaunchpadLinks(contentPage);
-        List<CountyRouteClusterView> countyRouteClusters = isPermitLookupHub(contentPage)
-                ? countyRouteClusters(10, 4)
+        boolean permitLookupSurface = isPermitLookupHub(contentPage);
+        boolean fanoutRestrictedSurface = PERMIT_LOOKUP_SLUG.equals(contentPage.slug());
+        int stateSpecificRenderLimit = fanoutRestrictedSurface ? 18 : stateMoneyPageLinks.size();
+        List<StateMoneyPageLink> renderedStateMoneyPageLinks = stateMoneyPageLinks.stream()
+                .limit(stateSpecificRenderLimit)
+                .toList();
+        List<StateProfile> renderedStates = researchDataService.getPublicStateProfiles().stream()
+                .limit(fanoutRestrictedSurface ? 18 : Integer.MAX_VALUE)
+                .toList();
+        List<PageLink> permitLookupCountyLinks = renderedPermitLookupCountyLinks(
+                contentPage,
+                permitLookupCountyLaunchpadLinks(contentPage),
+                fanoutRestrictedSurface);
+        List<CountyRouteClusterView> countyRouteClusters = permitLookupSurface
+                ? countyRouteClusters(fanoutRestrictedSurface ? 4 : 10, fanoutRestrictedSurface ? 2 : 4)
                 : List.of();
-        List<CountyFinderLinkView> countyFinderLinks = isPermitLookupHub(contentPage)
-                ? countyFinderLinks()
+        List<CountyFinderLinkView> countyFinderLinks = permitLookupSurface
+                ? countyFinderLinks(fanoutRestrictedSurface ? 24 : 48)
                 : List.of();
+        List<PageLink> renderedInternalLinks = renderedInternalLinks(contentPage, internalLinks, fanoutRestrictedSurface);
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("contentPage", contentPage);
-        model.addAttribute("states", researchDataService.getPublicStateProfiles());
-        model.addAttribute("stateMoneyPageLinks", stateMoneyPageLinks);
-        model.addAttribute("featuredStateMoneyPageLinks", stateMoneyPageLinks.stream().limit(10).toList());
+        model.addAttribute("states", renderedStates);
+        model.addAttribute("stateMoneyPageLinks", renderedStateMoneyPageLinks);
+        model.addAttribute("featuredStateMoneyPageLinks", renderedStateMoneyPageLinks.stream().limit(8).toList());
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("featuredContentEvidenceLanes", contentEvidenceLanes.stream().limit(3).toList());
         model.addAttribute("contentWorkflowCoverage", contentWorkflowCoverage);
-        model.addAttribute("internalLinks", internalLinks);
-        model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
-        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
+        model.addAttribute("internalLinks", renderedInternalLinks);
+        model.addAttribute("featuredInternalLinks", renderedInternalLinks.stream().limit(5).toList());
+        model.addAttribute("secondaryInternalLinks", renderedInternalLinks.stream().skip(4).toList());
         model.addAttribute("permitLookupCountyLinks", permitLookupCountyLinks);
-        model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(12).toList());
-        model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(12).toList());
+        model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(6).toList());
+        model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(6).toList());
         model.addAttribute("countyFinderLinks", countyFinderLinks);
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
@@ -2187,12 +2203,17 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<CountyFinderLinkView> countyFinderLinks() {
+        return countyFinderLinks(48);
+    }
+
+    private List<CountyFinderLinkView> countyFinderLinks(int limit) {
         List<CountyRecordsPage> countyPages = researchDataService.getPublicCountyRecordsPages().stream()
                 .sorted(Comparator
                         .comparingInt(this::countyRecordPriorityScore)
                         .reversed()
                         .thenComparing(CountyRecordsPage::stateCode)
                         .thenComparing(CountyRecordsPage::countyName))
+                .limit(limit)
                 .toList();
         List<CountyFinderLinkView> links = new ArrayList<>();
         for (CountyRecordsPage page : countyPages) {
@@ -2201,6 +2222,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                     .ifPresent(links::add);
         }
         return links;
+    }
+
+    private int totalCountyRouteCount() {
+        return researchDataService.getPublicCountyRecordsPages().size();
     }
 
     private CountyFinderLinkView countyFinderLink(CountyRecordsPage page, StateProfile state) {
@@ -3247,8 +3272,66 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .sorted(Comparator
                         .comparingInt((PageLink link) -> relatedLinkScore(sourceSlug, sourceStateCode, link.path()))
                         .reversed()
-                        .thenComparing(PageLink::title))
+                .thenComparing(PageLink::title))
                 .toList();
+    }
+
+    private List<PageLink> renderedInternalLinks(ContentPage contentPage, List<PageLink> internalLinks, boolean fanoutRestrictedSurface) {
+        if (!fanoutRestrictedSurface || internalLinks.isEmpty()) {
+            return internalLinks;
+        }
+        LinkedHashMap<String, PageLink> selected = new LinkedHashMap<>();
+        internalLinks.stream()
+                .limit(10)
+                .forEach(link -> selected.putIfAbsent(link.path(), link));
+        List<String> mustKeepPaths = switch (contentPage.slug()) {
+            case PERMIT_LOOKUP_SLUG -> List.of(
+                    "/" + RECORDS_ONLINE_SLUG + "/",
+                    "/" + RECORDS_BY_COUNTY_SLUG + "/",
+                    "/" + PERMIT_SEARCH_BY_ADDRESS_SLUG + "/",
+                    "/" + PERMIT_RECORDS_REQUEST_SLUG + "/"
+            );
+            default -> List.of();
+        };
+        for (String path : mustKeepPaths) {
+            internalLinks.stream()
+                    .filter(link -> path.equals(link.path()))
+                    .findFirst()
+                    .ifPresent(link -> selected.putIfAbsent(link.path(), link));
+        }
+        return selected.values().stream().toList();
+    }
+
+    private List<PageLink> renderedPermitLookupCountyLinks(ContentPage contentPage, List<PageLink> countyLinks, boolean fanoutRestrictedSurface) {
+        if (!fanoutRestrictedSurface || countyLinks.isEmpty()) {
+            return countyLinks;
+        }
+        LinkedHashMap<String, PageLink> selected = new LinkedHashMap<>();
+        countyLinks.stream()
+                .limit(12)
+                .forEach(link -> selected.putIfAbsent(link.path(), link));
+        List<String> mustKeepPaths = switch (contentPage.slug()) {
+            case PERMIT_LOOKUP_SLUG -> List.of(
+                    "/septic-records-checklist/tennessee/davidson-county/",
+                    "/septic-records-checklist/south-carolina/greenville-county/",
+                    "/septic-records-checklist/north-carolina/durham-county/",
+                    "/septic-records-checklist/north-carolina/iredell-county/",
+                    "/septic-records-checklist/texas/comal-county/",
+                    "/septic-records-checklist/indiana/grant-county/",
+                    "/septic-records-checklist/texas/montgomery-county/",
+                    "/septic-records-checklist/texas/fort-bend-county/",
+                    "/septic-records-checklist/alabama/shelby-county/",
+                    "/septic-records-checklist/indiana/st-joseph-county/"
+            );
+            default -> List.of();
+        };
+        for (String path : mustKeepPaths) {
+            countyLinks.stream()
+                    .filter(link -> path.equals(link.path()))
+                    .findFirst()
+                    .ifPresent(link -> selected.putIfAbsent(link.path(), link));
+        }
+        return selected.values().stream().toList();
     }
 
     private PageLink pageLink(String path, String sourceSlug, String sourceStateCode) {

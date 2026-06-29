@@ -5,6 +5,7 @@
 @param String heading = "Type a county or state and open the local septic file path."
 @param String body = "Search the live county workflow pages by county name, state, permit lookup, records request, parcel/TMS, as-built, or inspection letter."
 @param String sourceContext = "county_finder"
+@param int totalCountyRouteCount = 0
 
 @if (!countyFinderLinks.isEmpty())
     <section class="section section--tight county-finder-section">
@@ -15,7 +16,8 @@
                     <h2>${heading}</h2>
                     <p>${body}</p>
                     <div class="county-finder__stats" aria-label="County finder coverage">
-                        <span><strong>${countyFinderLinks.size()}</strong> live county pages</span>
+                        <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> live county pages</span>
+                        <span>${countyFinderLinks.size()} priority routes loaded</span>
                         <span>Permit lookup</span>
                         <span>Records request</span>
                         <span>Parcel/TMS</span>
@@ -36,7 +38,7 @@
                                 data-county-finder-clear>Clear</button>
                     </div>
                     <div class="county-finder__status" aria-live="polite">
-                        <strong data-county-finder-count>${countyFinderLinks.size()} county routes indexed</strong>
+                        <strong data-county-finder-count>${countyFinderLinks.size()} priority county routes indexed</strong>
                         <span>Showing the strongest matches first.</span>
                     </div>
                     <div class="county-finder__results" data-county-finder-results>

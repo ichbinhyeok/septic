@@ -17,6 +17,7 @@
 @param java.util.List<com.example.septic.web.PageLink> featuredPermitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryPermitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param int totalCountyRouteCount = 0
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String contentQuotePath = null
@@ -499,7 +500,8 @@
         eyebrow = "County finder",
         heading = "Search the county route instead of staying on the national page.",
         body = "Use this when the visitor already has a state, county, parcel clue, permit-copy question, or records request in mind.",
-        sourceContext = "content_page_county_finder"
+        sourceContext = "content_page_county_finder",
+        totalCountyRouteCount = totalCountyRouteCount
     )
 
     @if (!countyRouteClusters.isEmpty())
@@ -633,7 +635,7 @@
                     <details class="state-money-disclosure">
                         <summary>
                             <span class="eyebrow">More county routes</span>
-                            <strong>Show additional permit lookup counties</strong>
+                            <strong>Show more permit lookup counties</strong>
                             <span>Use these when the county is already known and the state page would be a slower first click.</span>
                         </summary>
                         <div class="detail-grid">
@@ -934,7 +936,7 @@
                 </ul>
                 @if (states.size() > 12)
                     <details class="county-link-overflow">
-                        <summary>Show all state guides</summary>
+                        <summary>Show more state guides</summary>
                         <ul class="detail-list detail-list--compact detail-list--split">
                             @for (var state : states)
                                 <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides_overflow" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
@@ -987,7 +989,7 @@
                 </div>
                 @if (contentEvidenceLanes.size() > 6)
                     <details class="county-link-overflow">
-                        <summary>Show all source-backed state lanes</summary>
+                        <summary>Show more source-backed state lanes</summary>
                         <div class="detail-grid">
                             @for (var lane : contentEvidenceLanes)
                                 <article class="detail-card">
@@ -1033,7 +1035,7 @@
                     </ul>
                     @if (stateMoneyPageLinks.size() > 12)
                         <details class="county-link-overflow">
-                            <summary>Show all state-specific workflow pages</summary>
+                            <summary>Show more state-specific workflow pages</summary>
                             <ul class="detail-list">
                                 @for (var stateMoneyPageLink : stateMoneyPageLinks)
                                     <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific_overflow" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
@@ -1091,7 +1093,7 @@
                 </ul>
                 @if ((secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks).size() > 6)
                     <details class="county-link-overflow">
-                        <summary>Show all related pages</summary>
+                        <summary>Show more related pages</summary>
                         <ul class="detail-list">
                             @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
                                 <li>

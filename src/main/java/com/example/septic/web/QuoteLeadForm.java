@@ -4,6 +4,7 @@ import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class QuoteLeadForm {
     private String stateCode = "GA";
@@ -19,13 +20,16 @@ public class QuoteLeadForm {
     private String timeline = "researching";
 
     @NotBlank(message = "Name is required.")
+    @Size(max = 120, message = "Name must be 120 characters or fewer.")
     private String fullName;
 
     @NotBlank(message = "Email is required.")
     @Email(message = "Enter a valid email.")
+    @Size(max = 160, message = "Email must be 160 characters or fewer.")
     private String email;
 
     @NotBlank(message = "Phone is required.")
+    @Size(max = 40, message = "Phone must be 40 characters or fewer.")
     private String phone;
 
     @NotBlank(message = "ZIP code is required.")

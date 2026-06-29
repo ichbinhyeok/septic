@@ -251,7 +251,7 @@
 
                                     <label class="field">
                                         <span>Bedrooms</span>
-                                        <input type="number" min="1" max="10" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
+                                        <input type="number" min="1" max="10" name="bedrooms" value="${quoteLeadForm.getBedrooms()}" required>
                                     </label>
 
                                     <label class="field">
@@ -262,27 +262,27 @@
 
                                 <label class="field">
                                     <span>Full name</span>
-                                    <input type="text" name="fullName" value="${quoteLeadForm.getFullNameValue()}">
+                                    <input type="text" name="fullName" value="${quoteLeadForm.getFullNameValue()}" autocomplete="name" maxlength="120" required>
                                 </label>
 
                                 <label class="field">
                                     <span>Email</span>
-                                    <input type="email" name="email" value="${quoteLeadForm.getEmailValue()}">
+                                    <input type="email" name="email" value="${quoteLeadForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
                                 </label>
 
                                 <label class="field">
                                     <span>Phone</span>
-                                    <input type="tel" name="phone" value="${quoteLeadForm.getPhoneValue()}">
+                                    <input type="tel" name="phone" value="${quoteLeadForm.getPhoneValue()}" autocomplete="tel" maxlength="40" required>
                                 </label>
 
                                 <label class="field">
                                     <span>ZIP code</span>
-                                    <input type="text" inputmode="numeric" name="zipCode" value="${quoteLeadForm.getZipCodeValue()}">
+                                    <input type="text" inputmode="numeric" name="zipCode" value="${quoteLeadForm.getZipCodeValue()}" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" required>
                                 </label>
                             </div>
 
                             <label class="checkbox checkbox--wide">
-                                <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}">
+                                <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}" required>
                                 <span>I agree to be contacted about my septic project estimate and matching options.</span>
                             </label>
 

@@ -473,6 +473,25 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void htmlResponsesCarrySecurityHeaders() throws Exception {
+		mockMvc.perform(get("/")
+						.header("X-Forwarded-Proto", "https")
+						.with(request -> {
+							request.setScheme("http");
+							request.setServerName("example.test");
+							request.setServerPort(80);
+							return request;
+						}))
+				.andExpect(status().isOk())
+				.andExpect(header().string("X-Content-Type-Options", "nosniff"))
+				.andExpect(header().string("Referrer-Policy", "strict-origin-when-cross-origin"))
+				.andExpect(header().string("Permissions-Policy", org.hamcrest.Matchers.containsString("geolocation=()")))
+				.andExpect(header().string("X-Frame-Options", "DENY"))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-ancestors 'none'")))
+				.andExpect(header().string("Strict-Transport-Security", org.hamcrest.Matchers.containsString("max-age=31536000")));
+	}
+
+	@Test
 	void robotsTxtExposesSitemap() throws Exception {
 		mockMvc.perform(get("/robots.txt"))
 				.andExpect(status().isOk())
@@ -529,8 +548,17 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void sitemapXmlIncludesCountyWedgeUrls() throws Exception {
+	void sitemapXmlLeavesCountyWedgeUrlsToCountySitemap() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/washington/king-county/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/north-carolina/wake-county/"))));
+	}
+
+	@Test
+	void countySitemapXmlIncludesCountyWedgeUrls() throws Exception {
+		mockMvc.perform(get("/sitemap-county.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/baldwin-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/alabama/madison-county/")))
@@ -1617,6 +1645,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("record drawing, approved-use history, and any transfer or remodel review all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("record drawing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("remodel")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://kingcounty.gov/en/dept/dph/health-safety/environmental-health/on-site-sewage-systems/sales-transfers")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("wcms-stage-a-cd.kingcounty.gov"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("cd10-prod.kingcounty.gov"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Washington records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Washington guide")));
 	}
@@ -8788,6 +8819,22 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void quoteSubmissionValidationShowsErrorForMissingRequiredFields() throws Exception {
+		mockMvc.perform(post("/quote-request/")
+						.param("stateCode", "GA")
+						.param("projectType", "replacement")
+						.param("bedrooms", "4")
+						.param("soilPercStatus", "poor_drainage")
+						.param("accessDifficulty", "hard")
+						.param("timeline", "this_month")
+						.param("zipCode", "30301"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Finish the required fields")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Name, email, phone, ZIP, and consent are required before this lead can be stored.")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Request received"))));
+	}
+
+	@Test
 	void massachusettsEstimateRunsHigherThanGeorgiaForSameBaseInputs() {
 		EstimateForm georgia = new EstimateForm();
 		georgia.setStateCode("GA");
@@ -8824,6 +8871,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/states/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-estimator/")));
+	}
+
+	@Test
+	void genericNotFoundPageIsBrandedHtmlAndNoindex() throws Exception {
+		mockMvc.perform(get("/not-a-real-route-for-audit/"))
+				.andExpect(status().isNotFound())
+				.andExpect(content().contentTypeCompatibleWith(org.springframework.http.MediaType.TEXT_HTML))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Closest next pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")));
 	}
 
 	@Test

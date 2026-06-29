@@ -78,8 +78,6 @@ public class SitemapService {
                     )));
         }
 
-        addCountyRecordsEntries(entries);
-
         return renderUrlSet(entries);
     }
 

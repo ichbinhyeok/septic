@@ -12,6 +12,7 @@
 @param int queuedStateCount
 @param int liveIntentCount
 @param int liveCountyCount = 0
+@param int totalCountyRouteCount = 0
 @param int countyBackedStateCount = 0
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
@@ -69,7 +70,8 @@
         eyebrow = "County finder",
         heading = "Search the live county routes from the state directory.",
         body = "Use this when the state is known but the useful next click is a county record owner, permit file path, parcel/TMS search, or buyer-risk trail.",
-        sourceContext = "state_coverage_county_finder"
+        sourceContext = "state_coverage_county_finder",
+        totalCountyRouteCount = totalCountyRouteCount
     )
 
     @if (workflowNetworkSnapshot != null)

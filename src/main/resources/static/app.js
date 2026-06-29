@@ -108,6 +108,7 @@
         if (!stickyCtas.length || !window.matchMedia) {
             return;
         }
+        document.body.classList.add("has-sticky-mobile-cta");
 
         const mobileQuery = window.matchMedia("(max-width: 720px)");
         const updates = [];
@@ -249,7 +250,7 @@
                 if (count) {
                     count.textContent = query
                         ? `${matched} matching county route${matched === 1 ? "" : "s"}`
-                        : `${results.length} county routes indexed`;
+                        : `${results.length} priority county routes indexed`;
                 }
                 if (empty) {
                     empty.hidden = matched > 0;

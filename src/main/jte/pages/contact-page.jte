@@ -68,12 +68,12 @@
                     <div class="field-grid">
                         <label class="field">
                             <span>Full name</span>
-                            <input type="text" name="fullName" value="${contactRequestForm.getFullNameValue()}">
+                            <input type="text" name="fullName" value="${contactRequestForm.getFullNameValue()}" autocomplete="name" maxlength="120" required>
                         </label>
 
                         <label class="field">
                             <span>Email</span>
-                            <input type="email" name="email" value="${contactRequestForm.getEmailValue()}">
+                            <input type="email" name="email" value="${contactRequestForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
                         </label>
 
                         <label class="field">
@@ -98,12 +98,12 @@
 
                         <label class="field field--full">
                             <span>Message</span>
-                            <textarea name="message" maxlength="2000">${contactRequestForm.getMessageValue()}</textarea>
+                            <textarea name="message" maxlength="2000" required>${contactRequestForm.getMessageValue()}</textarea>
                         </label>
                     </div>
 
                     <label class="checkbox checkbox--wide">
-                        <input type="checkbox" name="acknowledgementAccepted" checked="${contactRequestForm.isAcknowledgementAccepted()}">
+                        <input type="checkbox" name="acknowledgementAccepted" checked="${contactRequestForm.isAcknowledgementAccepted()}" required>
                         <span>${contactRequestForm.getAcknowledgementTextSnapshot()}</span>
                     </label>
 
