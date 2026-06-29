@@ -31,6 +31,40 @@
                         <h2>Do these before you trust a quote.</h2>
                     </div>
                     <ol class="money-answer-steps">
+                        @if (countyPage.hasParcelAnchor())
+                            <li>
+                                <span class="money-answer-steps__number">1</span>
+                                <div>
+                                    <strong>Capture the parcel anchor</strong>
+                                    <p>${countyPage.parcelAnchorLabel()}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="money-answer-steps__number">2</span>
+                                <div>
+                                    <strong>Open the septic record path</strong>
+                                    <p>${countyPage.recordsLabel()}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="money-answer-steps__number">3</span>
+                                <div>
+                                    <strong>Verify the owning office</strong>
+                                    <p>${countyPage.officeLabel()}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="money-answer-steps__number">4</span>
+                                <div>
+                                    <strong>Price only after the file is clearer</strong>
+                                    @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
+                                        <p>${countyWorkflowStructure.quoteGate()}</p>
+                                    @else
+                                        <p>${countyPage.contactLine()}</p>
+                                    @endif
+                                </div>
+                            </li>
+                        @else
                         <li>
                             <span class="money-answer-steps__number">1</span>
                             <div>
@@ -56,9 +90,19 @@
                                 @endif
                             </div>
                         </li>
+                        @endif
                     </ol>
                 </div>
                 <div class="hero__actions">
+                    @if (countyPage.hasParcelAnchor())
+                        <a class="button button--secondary"
+                           href="${countyPage.parcelAnchorUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_records_primary_parcel_anchor"
+                           data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
+                    @endif
                     <a class="button button--primary"
                        href="${countyPage.recordsUrl()}"
                        target="_blank"
@@ -132,6 +176,20 @@
     <section class="section section--tight">
         <div class="container">
             <div class="intent-rail">
+                @if (countyPage.hasParcelAnchor())
+                    <article class="intent-card">
+                        <span class="intent-card__label">Capture parcel/TMS first</span>
+                        <h2>${countyPage.parcelAnchorLabel()}</h2>
+                        <p>${countyPage.parcelAnchorNote()}</p>
+                        <a class="button button--secondary"
+                           href="${countyPage.parcelAnchorUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_records_action_rail_parcel_anchor"
+                           data-track-target-type="official_source">Open parcel anchor</a>
+                    </article>
+                @endif
                 <article class="intent-card intent-card--primary">
                     <span class="intent-card__label">Open the county record path first</span>
                     <h2>${countyPage.recordsLabel()}</h2>
@@ -190,6 +248,10 @@
 
             <article class="detail-card">
                 <h2>County office and records path</h2>
+                @if (countyPage.hasParcelAnchor())
+                    <p><strong>Parcel anchor.</strong> <a href="${countyPage.parcelAnchorUrl()}" target="_blank" rel="noreferrer">${countyPage.parcelAnchorLabel()}</a></p>
+                    <p>${countyPage.parcelAnchorNote()}</p>
+                @endif
                 <p><strong>Office path.</strong> <a href="${countyPage.officeUrl()}" target="_blank" rel="noreferrer">${countyPage.officeLabel()}</a></p>
                 <p><strong>Records path.</strong> <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a></p>
                 <p>${countyPage.contactLine()}</p>

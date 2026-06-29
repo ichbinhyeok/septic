@@ -16,6 +16,9 @@ public record CountyRecordsPage(
         String recordsLabel,
         String recordsUrl,
         String contactLine,
+        String parcelAnchorLabel,
+        String parcelAnchorUrl,
+        String parcelAnchorNote,
         List<String> decisionSteps,
         List<String> recordsToRequest,
         List<String> lowEndBreakers,
@@ -56,6 +59,10 @@ public record CountyRecordsPage(
 
     public String path(String stateSlug) {
         return "/septic-records-checklist/" + stateSlug + "/" + countySlug + "/";
+    }
+
+    public boolean hasParcelAnchor() {
+        return hasText(parcelAnchorLabel) && hasText(parcelAnchorUrl);
     }
 
     private boolean hasText(String value) {

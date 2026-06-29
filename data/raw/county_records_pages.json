@@ -20968,24 +20968,30 @@
       "title": "Greenville County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Greenville County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Greenville County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. The county has fast upstate growth, older rural parcels, and addition or rebuild questions that make the permit file more useful than a broad cost range.",
-      "uniqueAngle": "Greenville is a high-intent page because buyers and contractors often need to know whether the SCDES parcel file supports the current home before they price expansion, repair, or sale risk. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Greenville is a high-intent page because buyers and contractors often need to know whether the SCDES parcel file supports the current home before they price expansion, repair, or sale risk. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Greenville County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Greenville County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Greenville County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Greenville County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Greenville County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Greenville County real property search for TMS and parcel identity",
+      "parcelAnchorUrl": "https://www.greenvillecounty.org/appsas400/RealProperty/",
+      "parcelAnchorNote": "Use Greenville County real property search to capture the map number, owner, street, subdivision, or property-card clue before asking SCDES for the septic permit copy.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Greenville County before using a statewide explainer as the final answer.",
+        "Capture the official Greenville County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Greenville County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Greenville County growth corridors, do not assume the visible house, tax record, and septic file all describe the same usable system. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Greenville growth and Greer or Simpsonville edge parcels can have mailing addresses, subdivisions, and tax-map clues that do not tell the same story until the real property search and SCDES file are reconciled. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Greenville County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Greenville County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Greenville County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Greenville County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Fast-growth subdivisions, older acreage, and addition pressure can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -20993,11 +20999,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Greenville County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Greenville County real property search for TMS and parcel identity so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Greenville County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21014,6 +21020,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_greenville_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21021,7 +21028,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Greenville County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Greenville County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21030,7 +21037,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Greenville County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Greenville County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21041,24 +21048,30 @@
       "title": "Richland County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Richland County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Richland County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Columbia-area parcels can move between older neighborhoods, suburban fringe, and acreage where the permit-copy question changes the buyer story quickly.",
-      "uniqueAngle": "Richland is a buyer-diligence page because the useful answer is whether the SCDES file actually supports the home, not whether a generic South Carolina rule exists. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Richland is a buyer-diligence page because the useful answer is whether the SCDES file actually supports the home, not whether a generic South Carolina rule exists. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Richland County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Richland County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Richland County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Richland County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Richland County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Richland County mapping and records for parcel identity",
+      "parcelAnchorUrl": "https://www.richlandcountysc.gov/Property-Business/Mapping-and-Records",
+      "parcelAnchorNote": "Use Richland County mapping and records to capture the parcel, address, owner, or map clue before the SCDES permit-copy request.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Richland County before using a statewide explainer as the final answer.",
+        "Capture the official Richland County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Richland County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Richland County transactions, treat missing file history as a closing-risk issue before it becomes a quote issue. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Richland County Columbia-area parcels can carry annexation, subdivision, or old-address friction that makes the SCDES search weaker if the parcel anchor is missing. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Richland County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Richland County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Richland County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Richland County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Columbia-area fringe parcels, old approvals, and seller file gaps can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21066,11 +21079,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Richland County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Richland County mapping and records for parcel identity so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Richland County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21087,6 +21100,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_richland_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21094,7 +21108,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Richland County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Richland County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21103,7 +21117,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Richland County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Richland County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21114,24 +21128,30 @@
       "title": "Charleston County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Charleston County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Charleston County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Charleston County mixes coastal constraints, older homes, and suburban growth, so septic records need to confirm the parcel lane before anyone trusts a routine replacement story.",
-      "uniqueAngle": "Charleston is a constraint-sensitive page because septic decisions often depend on whether the SCDES file shows a clean site-review and final-inspection path. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Charleston is a constraint-sensitive page because septic decisions often depend on whether the SCDES file shows a clean site-review and final-inspection path. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Charleston County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Charleston County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Charleston County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Charleston County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Charleston County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Charleston County property card search for TMS and address match",
+      "parcelAnchorUrl": "https://prcweb.charlestoncounty.org/",
+      "parcelAnchorNote": "Use Charleston County property record cards to capture the TMS, address, owner, and mobile-home or property-card clues before SCDES file matching.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Charleston County before using a statewide explainer as the final answer.",
+        "Capture the official Charleston County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Charleston County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Charleston County coastal or island-side parcels, confirm the SCDES file before accepting a simple repair or replacement scope. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Charleston coastal, island, and mobile-home situations can break a simple address search; the TMS and property card should lead the SCDES request. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Charleston County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Charleston County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Charleston County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Charleston County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Coastal soils, older homes, and sewer-versus-septic uncertainty can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21139,11 +21159,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Charleston County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Charleston County property card search for TMS and address match so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Charleston County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21160,6 +21180,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_charleston_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21167,7 +21188,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Charleston County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Charleston County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21176,7 +21197,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Charleston County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Charleston County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21187,24 +21208,30 @@
       "title": "Horry County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Horry County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Horry County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Horry County combines coastal development, inland acreage, and high buyer activity where a permit copy can prevent a quote from outrunning the file.",
-      "uniqueAngle": "Horry is a high-volume lookup page because buyers need a fast way to separate the county or regional SCDES contact path from a generic Myrtle Beach-area septic answer. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Horry is a high-volume lookup page because buyers need a fast way to separate the county or regional SCDES contact path from a generic Myrtle Beach-area septic answer. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Horry County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Horry County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Horry County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Horry County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Horry County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Horry County GIS and online services for parcel fabric",
+      "parcelAnchorUrl": "https://www.horrycountysc.gov/online-services/",
+      "parcelAnchorNote": "Use Horry County online services and GIS to capture the parcel fabric and tax identity, while remembering the county warns GIS parcel fabric is for taxing purposes and not a survey.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Horry County before using a statewide explainer as the final answer.",
+        "Capture the official Horry County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Horry County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Horry County coastal and inland growth areas, resolve the permit-copy trail before treating the property as routine. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Horry County coastal and inland growth parcels can look clean in GIS while the SCDES permit file still depends on parcel identity, final inspection, and constrained-site history. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Horry County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Horry County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Horry County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Horry County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Coastal development pressure, high water concerns, and inland subdivision growth can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21212,11 +21239,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Horry County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Horry County GIS and online services for parcel fabric so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Horry County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21233,6 +21260,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_horry_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21240,7 +21268,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Horry County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Horry County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21249,7 +21277,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Horry County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Horry County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21260,24 +21288,30 @@
       "title": "Spartanburg County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Spartanburg County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Spartanburg County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Spartanburg County has enough upstate growth and rural reuse that the file question often comes before the estimate question.",
-      "uniqueAngle": "Spartanburg is a file-first page because additions, rebuilds, and sales can all turn on whether SCDES can connect the parcel to a clean permit and final inspection trail. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Spartanburg is a file-first page because additions, rebuilds, and sales can all turn on whether SCDES can connect the parcel to a clean permit and final inspection trail. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Spartanburg County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Spartanburg County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Spartanburg County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Spartanburg County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Spartanburg County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Spartanburg County GIS for parcel and address context",
+      "parcelAnchorUrl": "https://www.spartanburgcounty.gov/185/Geographic-Information-Systems",
+      "parcelAnchorNote": "Use Spartanburg County GIS to anchor the digital parcel, road, address, and public mapping context before making the SCDES request.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Spartanburg County before using a statewide explainer as the final answer.",
+        "Capture the official Spartanburg County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Spartanburg County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Spartanburg County parcels, compare the owner, parcel, and permit-copy trail before pricing reuse or replacement. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Spartanburg County upstate growth and rural reuse can hide address and parcel mismatches until GIS and SCDES records are compared. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Spartanburg County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Spartanburg County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Spartanburg County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Spartanburg County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Upstate growth, additions, rural reuse, and older permit histories can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21285,11 +21319,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Spartanburg County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Spartanburg County GIS for parcel and address context so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Spartanburg County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21306,6 +21340,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_spartanburg_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21313,7 +21348,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Spartanburg County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Spartanburg County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21322,7 +21357,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Spartanburg County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Spartanburg County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21333,24 +21368,30 @@
       "title": "Lexington County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Lexington County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Lexington County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Lexington County has lake-area, suburban, and rural parcels where a missing permit copy can change the story before closing or contractor scheduling.",
-      "uniqueAngle": "Lexington is a strong county page because the useful question is whether the SCDES record supports the current home and any lake-area or fringe development assumptions. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Lexington is a strong county page because the useful question is whether the SCDES record supports the current home and any lake-area or fringe development assumptions. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Lexington County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Lexington County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Lexington County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Lexington County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Lexington County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Lexington County property tax data search for parcel identity",
+      "parcelAnchorUrl": "https://lex-co.sc.gov/services/property-tax-data-search",
+      "parcelAnchorNote": "Use Lexington County property tax data search to capture the property identity before asking SCDES for the permit copy and D-1740 trail.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Lexington County before using a statewide explainer as the final answer.",
+        "Capture the official Lexington County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Lexington County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Lexington County lake-area or fringe parcels, tie the D-1740/site-review file to the current structure before trusting a simple number. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Lexington lake-area and suburban fringe parcels can turn on parcel identity, tax district, and older file history before the SCDES record is useful. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Lexington County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Lexington County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Lexington County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Lexington County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Lake-area development, suburban expansion, and rural parcels can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21358,11 +21399,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Lexington County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Lexington County property tax data search for parcel identity so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Lexington County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21379,6 +21420,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_lexington_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21386,7 +21428,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Lexington County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Lexington County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21395,7 +21437,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Lexington County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Lexington County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21406,24 +21448,30 @@
       "title": "York County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "York County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "York County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. York County sits in the Charlotte growth orbit, so buyers often need to know whether an older or rural septic file can keep up with the current deal story.",
-      "uniqueAngle": "York is a cross-market buyer page because a fast-moving sale can hide whether the parcel file, permit copy, and final inspection status still line up. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "York is a cross-market buyer page because a fast-moving sale can hide whether the parcel file, permit copy, and final inspection status still line up. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for York County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for York County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open York County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for York County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for York County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open York County GIS and One Map for parcel reports",
+      "parcelAnchorUrl": "https://www.yorkcountysc.gov/234/GIS",
+      "parcelAnchorNote": "Use York County GIS and One Map Reports to capture parcel-based owner, jurisdiction, tax, and school-district clues before SCDES file matching.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for York County before using a statewide explainer as the final answer.",
+        "Capture the official York County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for York County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For York County Charlotte-metro fringe parcels, do not price capacity, repair, or closing risk until the SCDES file matches the current property. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "York County Charlotte-growth parcels can cross jurisdiction and address assumptions quickly, so the parcel report should lead the septic file request. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The York County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the York County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the York County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the York County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Charlotte-metro growth, rural-to-suburban conversion, and older files can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21431,11 +21479,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in York County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the York County GIS and One Map for parcel reports so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in York County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21452,6 +21500,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_york_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21459,7 +21508,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In York County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the York County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21468,7 +21517,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from York County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from York County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21479,24 +21528,30 @@
       "title": "Berkeley County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Berkeley County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Berkeley County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Berkeley County mixes Charleston-metro growth, rural parcels, and water-adjacent constraints where county or regional routing matters.",
-      "uniqueAngle": "Berkeley is a routing page because a generic Charleston-area septic answer is not enough when the parcel needs SCDES permit-copy confirmation. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Berkeley is a routing page because a generic Charleston-area septic answer is not enough when the parcel needs SCDES permit-copy confirmation. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Berkeley County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Berkeley County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Berkeley County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Berkeley County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Berkeley County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Berkeley County GIS advanced map for TMS and parcel clues",
+      "parcelAnchorUrl": "https://gis.berkeleycountysc.gov/maps/advanced_map/",
+      "parcelAnchorNote": "Use Berkeley County GIS advanced map to search TMS numbers, owner names, addresses, streets, parcel ownership, tax assessment, property lines, and coordinates before SCDES file matching.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Berkeley County before using a statewide explainer as the final answer.",
+        "Capture the official Berkeley County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Berkeley County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Berkeley County growth and water-adjacent parcels, confirm the SCDES contact path before relying on a contractor shortcut. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Berkeley County Charleston-metro and water-adjacent parcels can require a TMS-first request because the visible address may not be enough to surface the right SCDES file. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Berkeley County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Berkeley County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Berkeley County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Berkeley County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Charleston-metro growth, rural lots, and water-adjacent constraints can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21504,11 +21559,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Berkeley County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Berkeley County GIS advanced map for TMS and parcel clues so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Berkeley County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21525,6 +21580,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_berkeley_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21532,7 +21588,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Berkeley County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Berkeley County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21541,7 +21597,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Berkeley County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Berkeley County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21552,24 +21608,30 @@
       "title": "Beaufort County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Beaufort County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Beaufort County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Beaufort County has coastal, island, and lowcountry parcels where site-review and final-inspection history can matter more than the first estimate.",
-      "uniqueAngle": "Beaufort is a constraint-first page because the septic story can depend on coastal parcel limits, older files, and whether SCDES can confirm the approval trail. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Beaufort is a constraint-first page because the septic story can depend on coastal parcel limits, older files, and whether SCDES can confirm the approval trail. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Beaufort County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Beaufort County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Beaufort County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Beaufort County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Beaufort County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Beaufort County GIS hub for mapping applications",
+      "parcelAnchorUrl": "https://www.beaufortcountysc.gov/gis/index.html",
+      "parcelAnchorNote": "Use Beaufort County GIS hub to find county mapping applications and parcel context before asking SCDES to match a permit file.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Beaufort County before using a statewide explainer as the final answer.",
+        "Capture the official Beaufort County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Beaufort County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Beaufort County island or lowcountry parcels, resolve the permit copy and site-review trail before treating the system as standard. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Beaufort island and lowcountry parcels can be constrained enough that GIS context and SCDES permit history should agree before a quote is treated as routine. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Beaufort County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Beaufort County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Beaufort County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Beaufort County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Coastal parcels, island constraints, and older lowcountry approvals can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21577,11 +21639,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Beaufort County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Beaufort County GIS hub for mapping applications so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Beaufort County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21598,6 +21660,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_beaufort_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21605,7 +21668,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Beaufort County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Beaufort County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21614,7 +21677,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Beaufort County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Beaufort County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21625,24 +21688,30 @@
       "title": "Anderson County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Anderson County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Anderson County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Anderson County combines lake properties, rural acreage, and upstate growth where septic file certainty can protect both buyer and contractor decisions.",
-      "uniqueAngle": "Anderson is a practical lookup page because the lake and rural parcel mix makes the permit-copy trail more useful than a generic state cost page. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Anderson is a practical lookup page because the lake and rural parcel mix makes the permit-copy trail more useful than a generic state cost page. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Anderson County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Anderson County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Anderson County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Anderson County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Anderson County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Anderson County assessor and property viewer resources",
+      "parcelAnchorUrl": "https://www.andersoncountysc.org/departments-a-z/assessor/",
+      "parcelAnchorNote": "Use Anderson County assessor resources, property viewer, and public access system references to capture the tax-map parcel before the SCDES request.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Anderson County before using a statewide explainer as the final answer.",
+        "Capture the official Anderson County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Anderson County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Anderson County lake or acreage parcels, confirm the parcel file before trusting bedroom count, repair scope, or reuse assumptions. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Anderson lake and acreage parcels can turn on tax-map identity and old permit history, so the property viewer clue should come before pricing. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Anderson County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Anderson County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Anderson County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Anderson County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Lake properties, rural acreage, and upstate growth pressure can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21650,11 +21719,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Anderson County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Anderson County assessor and property viewer resources so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Anderson County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21671,6 +21740,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_anderson_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21678,7 +21748,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Anderson County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Anderson County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21687,7 +21757,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Anderson County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Anderson County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21698,24 +21768,30 @@
       "title": "Dorchester County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Dorchester County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Dorchester County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Dorchester County has Charleston-metro growth and older fringe parcels where the file can decide whether the next step is routine or constrained.",
-      "uniqueAngle": "Dorchester is a metro-fringe page because county or regional routing helps users avoid treating a broad Lowcountry answer as the parcel answer. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Dorchester is a metro-fringe page because county or regional routing helps users avoid treating a broad Lowcountry answer as the parcel answer. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Dorchester County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Dorchester County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Dorchester County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Dorchester County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Dorchester County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Dorchester County real estate and mobile home search",
+      "parcelAnchorUrl": "https://www.dorchestercountysc.gov/how-do-i/find/real-property-mobile-home-search",
+      "parcelAnchorNote": "Use Dorchester County real property and mobile home search to capture assessor and GIS-backed property identity before the SCDES request.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Dorchester County before using a statewide explainer as the final answer.",
+        "Capture the official Dorchester County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Dorchester County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Dorchester County fringe parcels, check whether the D-1740/site-review history supports the current structure and planned work. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Dorchester metro-fringe and mobile-home cases can make the property identity more important than the first address typed into a records request. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Dorchester County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Dorchester County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Dorchester County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Dorchester County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Metro-fringe growth, old approvals, and parcel-story mismatch can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21723,11 +21799,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Dorchester County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Dorchester County real estate and mobile home search so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Dorchester County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21744,6 +21820,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_dorchester_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21751,7 +21828,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Dorchester County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Dorchester County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21760,7 +21837,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Dorchester County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Dorchester County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21771,24 +21848,30 @@
       "title": "Aiken County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Aiken County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Aiken County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Aiken County has rural acreage, older homes, and contractor-heavy repair questions where the SCDES file should come before the quote.",
-      "uniqueAngle": "Aiken is a contractor-readiness page because owners need the permit copy and final inspection status before a routine repair story becomes expensive. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Aiken is a contractor-readiness page because owners need the permit copy and final inspection status before a routine repair story becomes expensive. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Aiken County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Aiken County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Aiken County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Aiken County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Aiken County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Aiken County maps for GIS and 911-address context",
+      "parcelAnchorUrl": "https://www.aikencountysc.gov/330/Maps-County",
+      "parcelAnchorNote": "Use Aiken County maps and GeoServices context to capture parcel, GIS, and 911-address clues before asking SCDES for the permit-copy trail.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Aiken County before using a statewide explainer as the final answer.",
+        "Capture the official Aiken County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Aiken County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Aiken County rural or older-home parcels, match the file to the current system before pricing repair or replacement. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Aiken rural acreage and older-home parcels can fail a simple lookup when the address, GIS context, and SCDES file do not line up. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Aiken County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Aiken County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Aiken County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Aiken County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Rural acreage, older homes, and repair-heavy conversations can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21796,11 +21879,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Aiken County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Aiken County maps for GIS and 911-address context so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Aiken County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21817,6 +21900,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_aiken_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21824,7 +21908,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Aiken County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Aiken County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21833,7 +21917,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Aiken County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Aiken County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21844,24 +21928,30 @@
       "title": "Pickens County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Pickens County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Pickens County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Pickens County includes foothill, lake, and rural parcels where terrain and old file history can turn a simple lookup into a permit-path question.",
-      "uniqueAngle": "Pickens is a terrain-aware page because the SCDES permit-copy trail helps users decide whether a parcel is a normal reuse story or a constrained-site story. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Pickens is a terrain-aware page because the SCDES permit-copy trail helps users decide whether a parcel is a normal reuse story or a constrained-site story. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Pickens County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Pickens County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Pickens County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Pickens County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Pickens County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Pickens County GIS for parcel and site-condition layers",
+      "parcelAnchorUrl": "https://www.co.pickens.sc.us/departments/gis/index.php",
+      "parcelAnchorNote": "Use Pickens County GIS to capture parcel boundaries, soils, flood zones, hydrography, and other site-condition clues before SCDES file matching.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Pickens County before using a statewide explainer as the final answer.",
+        "Capture the official Pickens County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Pickens County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Pickens County foothill or lake-area parcels, confirm site-review and final-inspection status before quoting reuse or replacement. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Pickens foothill and lake-area parcels can look like a routine reuse case until parcel boundaries, soils, flood layers, and SCDES permit history are compared. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Pickens County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Pickens County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Pickens County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Pickens County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Foothill terrain, lake-area parcels, and older approvals can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21869,11 +21959,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Pickens County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Pickens County GIS for parcel and site-condition layers so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Pickens County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21890,6 +21980,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_pickens_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21897,7 +21988,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Pickens County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Pickens County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21906,7 +21997,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Pickens County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Pickens County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21917,24 +22008,30 @@
       "title": "Florence County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Florence County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Florence County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Florence County has Pee Dee-area rural and suburban parcels where permit-copy history can be the fastest way to avoid a weak seller explanation.",
-      "uniqueAngle": "Florence is a records-request page because the useful next step is SCDES file confirmation, not another general explanation of South Carolina septic rules. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Florence is a records-request page because the useful next step is SCDES file confirmation, not another general explanation of South Carolina septic rules. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Florence County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Florence County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Florence County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Florence County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Florence County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Florence County online services for GIS maps",
+      "parcelAnchorUrl": "https://www.florencecountysc.gov/services/",
+      "parcelAnchorNote": "Use Florence County online services to reach GIS maps and property clues before asking SCDES for the permit-copy trail.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Florence County before using a statewide explainer as the final answer.",
+        "Capture the official Florence County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Florence County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Florence County parcels, confirm whether the permit copy and final inspection status support the current address before pricing work. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Florence Pee Dee rural and suburban parcels can have weak seller files, so the county GIS path should anchor the SCDES request. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Florence County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Florence County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Florence County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Florence County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Pee Dee rural parcels, suburban growth, and missing seller files can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -21942,11 +22039,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Florence County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Florence County online services for GIS maps so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Florence County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -21963,6 +22060,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_florence_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -21970,7 +22068,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Florence County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Florence County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -21979,7 +22077,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Florence County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Florence County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     },
@@ -21990,24 +22088,30 @@
       "title": "Sumter County South Carolina Septic Records and Permit Lookup",
       "metaDescription": "Sumter County septic records and permit lookup with SCDES county or regional contact routing, permit-copy requests, D-1740 history, and final-inspection checks before pricing or closing.",
       "introCopy": "Sumter County needs a county-first lookup because South Carolina septic records usually start with SCDES permit-copy routing, then move into the county or regional contact path that can confirm the D-1740/site-review trail tied to the parcel. Sumter County has military-area turnover, rural parcels, and older homes where the buyer often needs a file-backed answer quickly.",
-      "uniqueAngle": "Sumter is a transaction-readiness page because frequent ownership changes make the permit-copy and D-1740 trail more important than a verbal system story. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable.",
+      "uniqueAngle": "Sumter is a transaction-readiness page because frequent ownership changes make the permit-copy and D-1740 trail more important than a verbal system story. The practical move is to identify the SCDES contact path before treating a quote, seller note, or closing file as reliable. The deeper county move is to capture the official parcel or TMS anchor first, then make the SCDES request with enough property identity to avoid a weak address-only search.",
       "targetReader": "Best for Sumter County buyers, sellers, owners, agents, and contractors who already know the county and need the permit copy, D-1740 history, final inspection status, or repair branch before comparing quotes or accepting a septic story.",
       "officeLabel": "SCDES county or regional septic contact for Sumter County",
       "officeUrl": "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
       "recordsLabel": "Open Sumter County septic permit copy and records lookup path",
       "recordsUrl": "https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank",
-      "contactLine": "SCDES county or regional contact path for Sumter County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files.",
+      "contactLine": "SCDES county or regional contact path for Sumter County; have the property address, county, parcel information, owner name, permit number, subdivision, or past builder details ready before requesting files. Start with the county parcel anchor when the address, owner, subdivision, TMS, or tax-map clue is uncertain.",
+      "parcelAnchorLabel": "Open Sumter County property online services for property cards",
+      "parcelAnchorUrl": "https://www.sumtercountysc.gov/online_services/property/index.php",
+      "parcelAnchorNote": "Use Sumter County property online services to capture property cards, real property search clues, and parcel identity before the SCDES request.",
       "decisionSteps": [
-        "Open the SCDES who-to-call page first and identify the county or regional contact path for Sumter County before using a statewide explainer as the final answer.",
+        "Capture the official Sumter County parcel anchor first: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the linked county source.",
+        "Open the SCDES who-to-call page and identify the county or regional contact path for Sumter County with that parcel anchor in hand.",
         "Request the septic permit copy on file, D-1740 application or site-review history, and any final inspection or Permit to Construct status tied to the parcel.",
-        "For Sumter County transactions, do not rely on owner memory when SCDES can route the permit-copy request. Match the file to the current address, parcel, owner history, and system story before pricing a repair, replacement, addition, or closing concession."
+        "Sumter military-area turnover and older-system history make owner memory weak; property cards and SCDES files should agree before pricing. Match the county parcel anchor to the SCDES file before pricing a repair, replacement, addition, or closing concession."
       ],
       "recordsToRequest": [
+        "The Sumter County parcel anchor: TMS or parcel ID, owner, address, subdivision, property card, GIS map, or tax-map clue from the official county source.",
         "The septic permit copy on file for the Sumter County parcel.",
         "The D-1740 application, site review, plat, deed reference, soil evaluation, or Permit to Construct note tied to that address.",
         "Final inspection status plus any repair, replacement, malfunction, or abandonment note SCDES can connect to the parcel."
       ],
       "lowEndBreakers": [
+        "If the Sumter County parcel anchor and SCDES permit file do not match, the low-end quote is not ready to trust.",
         "If SCDES cannot connect the Sumter County parcel to a permit copy or D-1740 trail, the cheapest visible quote is only a planning number.",
         "If the final inspection status, Permit to Construct, or parcel match is missing, the property story is not clean enough for a low-end assumption.",
         "Military-area turnover, rural parcels, and older system history can make a routine-looking system behave like a repair, replacement, or constrained-site case before money is spent."
@@ -22015,11 +22119,11 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Sumter County?",
-          "answer": "Start with the official SCDES who-to-call and permit-copy resources linked on this page. Identify the county or regional contact path, then request the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
+          "answer": "Start with the Sumter County property online services for property cards so you have the TMS or parcel identity, then use the official SCDES who-to-call and permit-copy resources linked on this page. Ask for the permit copy, D-1740 application or site-review history, and final inspection status using the property address and parcel details."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Sumter County?",
-          "answer": "Ask for the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
+          "answer": "Ask for the county parcel anchor, the permit copy on file, the D-1740 or site-review trail, any Permit to Construct or final inspection status, and any repair, malfunction, abandonment, or replacement note. That file decides whether the next move is normal pricing or a more cautious permit conversation."
         }
       ],
       "internalLinkTargets": [
@@ -22036,6 +22140,7 @@
         "/septic-permit-lookup/"
       ],
       "officialSourceIds": [
+        "sc_sumter_parcel_01",
         "sc_03",
         "sc_02",
         "sc_01"
@@ -22043,7 +22148,7 @@
       "workflowStructure": {
         "fileOwnerCategory": "state_or_regional",
         "fileOwnerModel": "In Sumter County, the practical file owner starts with SCDES statewide septic routing, then resolves through the county or regional contact path that can confirm the parcel file.",
-        "firstArtifactToPull": "the septic permit copy on file for the parcel, plus any D-1740 application, site-review note, or final-inspection status attached to it",
+        "firstArtifactToPull": "the Sumter County parcel or TMS anchor, then the septic permit copy on file plus any D-1740 application, site-review note, or final-inspection status attached to it",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when the permit copy is tied to a Permit to Construct, final inspection status, or other SCDES closeout note rather than only a request trail.",
         "transferCategory": "deal_side_risk",
@@ -22052,7 +22157,7 @@
         "specialProgramSignal": "South Carolina looks statewide through SCDES, but county or regional routing still decides who can confirm the parcel file.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from Sumter County lookup to pricing until the SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status agree with the buyer, seller, owner, or contractor story."
+        "quoteGate": "Do not move from Sumter County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
       },
       "publishStatus": "published"
     }
