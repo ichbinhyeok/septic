@@ -139,7 +139,7 @@
                             <a href="${link.path()}"
                                data-track-click="nav"
                                data-track-source-context="state_money_hero_county_launchpad"
-                               data-track-target-type="county_records_page">${link.title()}</a>
+                               data-track-target-type="county_records_page">${link.compactTitle()}</a>
                         @endfor
                         <a href="#county-pages">All county pages</a>
                     </div>

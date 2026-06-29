@@ -571,6 +571,14 @@ h4 {
     text-transform: uppercase;
 }
 
+.hero-county-launchpad__note {
+    flex-basis: 100%;
+    margin: -2px 0 2px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
 .hero-county-launchpad a:not(.button) {
     display: inline-flex;
     align-items: center;
@@ -2070,7 +2078,7 @@ li,
     position: fixed;
     left: 14px;
     right: 14px;
-    bottom: 14px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
     z-index: 30;
 }
 
@@ -2882,7 +2890,7 @@ input[type="checkbox"] {
         grid-template-columns: 30px minmax(72px, 0.42fr) minmax(0, 1fr);
         gap: 9px;
         min-height: 0;
-        padding: 10px 12px;
+        padding: 12px;
     }
 
     .workflow-console__index {
@@ -2901,7 +2909,9 @@ input[type="checkbox"] {
     .workflow-console__row strong {
         grid-column: auto;
         font-size: 0.83rem;
-        -webkit-line-clamp: 2;
+        display: block;
+        overflow: visible;
+        -webkit-line-clamp: unset;
     }
 
     .state-money-page .hero-sidecard,
@@ -3016,6 +3026,12 @@ input[type="checkbox"] {
 
     .hero-county-launchpad__label {
         font-size: 0.72rem;
+    }
+
+    .hero-county-launchpad__note {
+        margin: -1px 0 0;
+        font-size: 0.84rem;
+        text-align: center;
     }
 
     .hero-county-launchpad a:not(.button),
@@ -3439,7 +3455,7 @@ input[type="checkbox"] {
 
     .sticky-mobile-cta-spacer {
         display: block;
-        height: 82px;
+        height: 96px;
     }
 
     .sticky-mobile-cta--dual .sticky-mobile-cta__inner {

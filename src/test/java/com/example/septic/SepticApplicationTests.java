@@ -11,6 +11,7 @@ import com.example.septic.service.EstimatorService;
 import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.web.EstimateForm;
+import com.example.septic.web.PageLink;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -72,6 +74,24 @@ class SepticApplicationTests {
 
 	@Test
 	void contextLoads() {
+	}
+
+	@Test
+	void compactPageLinkTitleShortensCountyHeroLabelsWithoutChangingSourceTitle() {
+		PageLink countyRecordsLink = new PageLink(
+				"Greenville County South Carolina Septic Records and Permit Lookup",
+				"/septic-records-checklist/south-carolina/greenville-county/",
+				"Greenville County records lookup path"
+		);
+		PageLink permitLookupLink = new PageLink(
+				"Davidson County, TN permit lookup",
+				"/septic-records-checklist/tennessee/davidson-county/",
+				"Davidson County permit lookup path"
+		);
+
+		assertEquals("Greenville County South Carolina Septic Records and Permit Lookup", countyRecordsLink.title());
+		assertEquals("Greenville County records", countyRecordsLink.compactTitle());
+		assertEquals("Davidson County, TN permit lookup", permitLookupLink.compactTitle());
 	}
 
 	@Test

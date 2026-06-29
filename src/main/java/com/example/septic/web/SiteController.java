@@ -2174,7 +2174,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .limit(72)
                 .map(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> new PageLink(
-                                page.countyName() + " permit lookup",
+                                page.countyName() + ", " + state.stateCode() + " permit lookup",
                                 page.path(state.slug()),
                                 countyLaunchpadNote(page, state)
                         )))
@@ -2183,9 +2183,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String countyLaunchpadNote(CountyRecordsPage page, StateProfile state) {
-        return page.countyName() + " routes " + state.stateName()
-                + " septic permit lookup traffic into " + page.recordsLabel()
-                + " before the user trusts a quote, sale file, repair story, or new permit path.";
+        return "Use this " + state.stateName() + " example when the user already has a county name and needs "
+                + page.recordsLabel()
+                + " before trusting a quote, sale file, repair story, or new permit path.";
     }
 
     private int countyRecordPriorityScore(CountyRecordsPage page) {

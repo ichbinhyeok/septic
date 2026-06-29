@@ -61,12 +61,21 @@
                 </p>
                 @if (!featuredPermitLookupCountyLinks.isEmpty())
                     <div class="hero-county-launchpad" aria-label="Fast county record routes">
-                        <span class="hero-county-launchpad__label">Fast county routes</span>
+                        <span class="hero-county-launchpad__label">
+                            @if ("septic-permit-lookup".equals(contentPage.slug()))
+                                High-demand permit examples
+                            @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                County record examples
+                            @else
+                                Fast county routes
+                            @endif
+                        </span>
+                        <p class="hero-county-launchpad__note">Use these as quick examples. If your property is elsewhere, open the state picker or more county routes below.</p>
                         @for (var link : featuredPermitLookupCountyLinks.stream().limit(4).toList())
                             <a href="${link.path()}"
                                data-track-click="nav"
                                data-track-source-context="content_page_hero_county_launchpad"
-                               data-track-target-type="county_records_page">${link.title()}</a>
+                               data-track-target-type="county_records_page">${link.compactTitle()}</a>
                         @endfor
                         <a href="#county-lookup-launchpad">More county routes</a>
                     </div>
@@ -425,7 +434,13 @@
 
             <article class="hero-sidecard">
                 <span class="pill">
-                    @if ("tank_size_estimator".equals(contentPage.calculatorModule()))
+                    @if ("septic-permit-lookup".equals(contentPage.slug()))
+                        Permit lookup guide
+                    @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                        County records router
+                    @elseif ("septic-records-checklist".equals(contentPage.slug()))
+                        Records workflow
+                    @elseif ("tank_size_estimator".equals(contentPage.calculatorModule()))
                         Tank size tool
                     @elseif ("drainfield_estimator".equals(contentPage.calculatorModule()))
                         Drain field tool
