@@ -1049,6 +1049,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyRequestOptions", countyRequestOptions(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
+        model.addAttribute("siblingCountyRoutes", siblingCountyRoutes(countyPage, state, 8));
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official county or state sources tied to this county workflow.");
@@ -2577,8 +2578,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state.stateCode(),
                 state.stateName(),
                 page.countyName(),
-                searchText
+                searchText,
+                seoService.absoluteUrl(page.path(state.slug()))
         );
+    }
+
+    private List<CountyFinderLinkView> siblingCountyRoutes(CountyRecordsPage currentPage, StateProfile state, int limit) {
+        return researchDataService.listPublicCountyRecordsPages(state.stateCode()).stream()
+                .filter(page -> !page.countySlug().equalsIgnoreCase(currentPage.countySlug()))
+                .sorted(Comparator
+                        .comparingInt(this::countyRecordPriorityScore)
+                        .reversed()
+                        .thenComparing(CountyRecordsPage::countyName))
+                .limit(limit)
+                .map(page -> countyFinderLink(page, state))
+                .toList();
     }
 
     private List<CountyIntentRouteView> countyIntentRoutes(CountyRecordsPage countyPage, StateProfile state) {

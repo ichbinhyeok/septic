@@ -20,6 +20,7 @@
 @param java.util.List<CountyRequestBuilderOptionView> countyRequestOptions = java.util.List.of()
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -340,6 +341,52 @@
             </div>
         </section>
     @endif
+
+    <section class="section section--tight">
+        <div class="container">
+            <div class="county-file-workflow">
+                <div class="county-file-workflow__header">
+                    <span class="eyebrow">Five-minute file workflow</span>
+                    <h2>Use this page as a work surface, not just a reference page.</h2>
+                    <p>Open the county path, capture the parcel clue, ask for the file artifacts, then move only to the state workflow or cost estimate after the record story is clearer.</p>
+                </div>
+                <ol class="county-file-workflow__steps">
+                    <li>
+                        <span>01</span>
+                        <strong>Open the county record path</strong>
+                        <p>${countyPage.recordsLabel()}</p>
+                    </li>
+                    <li>
+                        <span>02</span>
+                        <strong>Anchor the parcel or property</strong>
+                        @if (countyPage.hasParcelAnchor())
+                            <p>${countyPage.parcelAnchorLabel()}</p>
+                        @else
+                            <p>Use address, parcel identifier, owner name, or local office routing before relying on a price.</p>
+                        @endif
+                    </li>
+                    <li>
+                        <span>03</span>
+                        <strong>Request the artifacts that change the answer</strong>
+                        @if (countyPage.recordsToRequest() != null && !countyPage.recordsToRequest().isEmpty())
+                            <p>${countyPage.recordsToRequest().get(0)}</p>
+                        @else
+                            <p>Ask for permit, as-built, inspection, repair, and final approval records tied to the parcel.</p>
+                        @endif
+                    </li>
+                    <li>
+                        <span>04</span>
+                        <strong>Stop pricing if the file is not clear</strong>
+                        @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
+                            <p>${countyWorkflowStructure.quoteGate()}</p>
+                        @else
+                            <p>${countyPage.lowEndBreakers() != null && !countyPage.lowEndBreakers().isEmpty() ? countyPage.lowEndBreakers().get(0) : countyPage.contactLine()}</p>
+                        @endif
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
 
     <section class="section section--tight">
         <div class="container">
@@ -764,6 +811,25 @@
                             </li>
                         @endif
                     </ul>
+                </article>
+            @endif
+
+            @if (!siblingCountyRoutes.isEmpty())
+                <article class="detail-card detail-card--full">
+                    <h2>Other strong ${state.stateName()} county routes</h2>
+                    <p>Use these when the searcher is comparing nearby counties, checking a different parcel, or moving from a state guide into another local records path.</p>
+                    <div class="county-sibling-routes" aria-label="Related county records routes">
+                        @for (var route : siblingCountyRoutes)
+                            <a href="${route.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="county_records_sibling_route"
+                               data-track-target-type="county_records_page">
+                                <span>${route.stateCode()}</span>
+                                <strong>${route.countyName()} records</strong>
+                                <small>${route.note()}</small>
+                            </a>
+                        @endfor
+                    </div>
                 </article>
             @endif
         </div>

@@ -7,6 +7,7 @@ public record CountyFinderLinkView(
         String stateCode,
         String stateName,
         String countyName,
-        String searchText
+        String searchText,
+        String absoluteUrl
 ) {
 }

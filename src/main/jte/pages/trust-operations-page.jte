@@ -135,7 +135,11 @@
                                data-track-target-type="county_records_page">
                                 <span>${route.stateCode()}</span>
                                 <strong>${route.countyName()} records</strong>
-                                <small>${route.note()}</small>
+                                <small>
+                                    ${route.note()}
+                                    <em>${route.absoluteUrl()}</em>
+                                    <b>${route.countyName()} septic permit lookup | ${route.countyName()} septic records request</b>
+                                </small>
                             </a>
                         @endfor
                     </div>
