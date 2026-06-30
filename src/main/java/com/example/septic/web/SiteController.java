@@ -1042,6 +1042,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyPage", countyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
+        model.addAttribute("countySeoHeading", countySeoHeading(countyPage));
+        model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state));
+        model.addAttribute("countySearchQueries", countySearchQueries(countyPage, state));
         model.addAttribute("countyWorkflowStructure", countyWorkflowStructure(countyPage, state));
         model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
         model.addAttribute("countyAvailabilitySummary", countyAvailabilitySummary(countyPage, state, sources, lastReviewedAt));
@@ -1056,6 +1059,24 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
         return "pages/county-records-page";
+    }
+
+    private String countySeoHeading(CountyRecordsPage countyPage) {
+        return countyPage.countyName() + " septic permit lookup and records request";
+    }
+
+    private String countySeoIntro(CountyRecordsPage countyPage, StateProfile state) {
+        return "Use this " + countyPage.countyName() + ", " + state.stateCode()
+                + " route for septic permit lookup, records requests, address or parcel searches, as-built files, inspection letters, and county office routing before you trust a quote.";
+    }
+
+    private List<String> countySearchQueries(CountyRecordsPage countyPage, StateProfile state) {
+        return List.of(
+                countyPage.countyName() + " " + state.stateCode() + " septic permit lookup",
+                countyPage.countyName() + " septic records request",
+                countyPage.countyName() + " septic permit search by address",
+                countyPage.countyName() + " septic as-built records"
+        );
     }
 
     @GetMapping({

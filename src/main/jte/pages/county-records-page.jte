@@ -21,6 +21,9 @@
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
+@param String countySeoHeading = ""
+@param String countySeoIntro = ""
+@param java.util.List<String> countySearchQueries = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -32,8 +35,13 @@
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${state.stateCode()} county records page</span>
-                <h1>${countyPage.title()}</h1>
+                <span class="eyebrow">${state.stateCode()} septic permit lookup</span>
+                @if (countySeoHeading != null && !countySeoHeading.isBlank())
+                    <h1 class="county-records-page__search-title">${countySeoHeading}</h1>
+                @else
+                    <h1>${countyPage.title()}</h1>
+                @endif
+                <p class="county-records-page__source-title">Source-backed route: ${countyPage.title()}</p>
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyPage.hasParcelAnchor())
                         <a class="button button--secondary"
@@ -158,11 +166,25 @@
                        data-track-target-type="official_source">${countyPage.officeLabel()}</a>
                     <a class="button button--secondary"
                        href="/septic-records-checklist/${state.slug()}/"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_back_to_state"
-                       data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
+                        data-track-click="nav"
+                        data-track-source-context="county_records_back_to_state"
+                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                 </div>
-                <p class="lede">${countyPage.introCopy()}</p>
+                @if (countySeoIntro != null && !countySeoIntro.isBlank())
+                    <p class="lede">${countySeoIntro}</p>
+                    <p class="county-records-page__support-copy">${countyPage.introCopy()}</p>
+                    <p class="county-records-page__local-signal"><strong>Local signal:</strong> ${countyPage.metaDescription()}</p>
+                @else
+                    <p class="lede">${countyPage.introCopy()}</p>
+                @endif
+                @if (!countySearchQueries.isEmpty())
+                    <div class="county-search-intent-strip" aria-label="Searches answered on this page">
+                        <span class="county-search-intent-strip__label">Matches searches</span>
+                        @for (var query : countySearchQueries)
+                            <span class="county-search-intent-strip__query">${query}</span>
+                        @endfor
+                    </div>
+                @endif
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Next best state pages</span>

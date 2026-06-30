@@ -471,8 +471,8 @@ public class SeoService {
 
     public PageMeta countyRecordsPage(CountyRecordsPage countyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(countyPage.path(state.slug()));
-        String title = countyPage.title() + " | SepticPath";
-        String description = countyPage.metaDescription();
+        String title = countyRecordsTitle(countyPage, state);
+        String description = countyRecordsDescription(countyPage, state);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(webPage(
                 canonicalUrl,
@@ -499,6 +499,19 @@ public class SeoService {
                 ),
                 jsonLdBlocks
         );
+    }
+
+    private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
+        return countyPage.countyName() + " " + state.stateCode() + " Septic Permit Lookup & Records | SepticPath";
+    }
+
+    private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
+        String originalLead = countyPage.countyName() + " septic records checklist and permit lookup";
+        String searchLead = countyPage.countyName() + ", " + state.stateName() + " septic permit lookup and records request";
+        if (countyPage.metaDescription() != null && countyPage.metaDescription().startsWith(originalLead)) {
+            return searchLead + countyPage.metaDescription().substring(originalLead.length());
+        }
+        return searchLead + " path for address/parcel search, as-built files, inspection letters, and quote checks before pricing.";
     }
 
     public PageMeta basicPage(String title, String description, String path) {

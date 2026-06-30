@@ -1297,7 +1297,11 @@ class SepticApplicationTests {
 	void fortBendCountyRecordsPageShowsPermitAndLicenseWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/texas/fort-bend-county/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Fort Bend County TX Septic Permit Lookup &amp; Records | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit lookup and records request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Texas Septic Records Checklist and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County TX septic permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit search by address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Fort Bend County OSSF permits and packets")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit to construct from the license to operate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing-system modifications can require a new permit path")))
@@ -3217,7 +3221,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Cuyahoga County Board of Health owns the practical household-sewage file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("sewer jurisdiction all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("point-of-sale")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("O&M")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("O&amp;M")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Ohio records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Ohio guide")));
 	}

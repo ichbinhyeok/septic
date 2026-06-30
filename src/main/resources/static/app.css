@@ -612,6 +612,70 @@ h4 {
     min-height: 44px;
 }
 
+.county-records-page .county-records-page__search-title {
+    max-width: 13.5ch;
+}
+
+.county-records-page__source-title {
+    margin: 12px 0 0;
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.86rem;
+    font-weight: 850;
+    line-height: 1.45;
+}
+
+.county-records-page__support-copy {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.58;
+}
+
+.county-records-page__local-signal {
+    margin: 8px 0 0;
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.54;
+}
+
+.county-records-page__local-signal strong {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-weight: 900;
+}
+
+.county-search-intent-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.county-search-intent-strip__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.county-search-intent-strip__query {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 11px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
 .hero-router-intro {
     margin-top: 18px;
     color: var(--text);
@@ -4022,6 +4086,10 @@ input[type="checkbox"] {
         line-height: 1;
     }
 
+    .county-records-page .county-records-page__search-title {
+        max-width: 19ch;
+    }
+
     .money-answer-panel {
         grid-template-columns: 1fr;
         gap: 14px;
@@ -4304,6 +4372,18 @@ input[type="checkbox"] {
         padding-left: 10px;
         text-align: center;
         font-size: 0.84rem;
+    }
+
+    .county-search-intent-strip {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .county-search-intent-strip__label,
+    .county-search-intent-strip__query {
+        justify-content: center;
+        text-align: center;
     }
 
     .state-money-route-board {
