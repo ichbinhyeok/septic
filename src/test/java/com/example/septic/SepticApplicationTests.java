@@ -364,6 +364,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guides")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the county septic file before the quote.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Push first")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search records by county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search by address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request permit copy")))
@@ -395,6 +396,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Live coverage, source depth, and county workflow density.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Coverage rows to use for prioritization")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Priority county routes to push first.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("trust-ops-priority-route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Workflow pages")));
 
 		mockMvc.perform(get("/sitemap.xml"))
@@ -1298,6 +1301,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing-system modifications can require a new permit path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record availability matrix")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit file request builder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search intent answer pack")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search by address only after you have the parcel anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Parcel or property anchor")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buyer file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Environmental Health")))

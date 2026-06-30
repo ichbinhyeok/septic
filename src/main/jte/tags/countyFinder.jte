@@ -25,6 +25,17 @@
                 </div>
 
                 <div class="county-finder__panel">
+                    <div class="county-finder__priority" aria-label="Priority county routes">
+                        <span>Push first</span>
+                        <div>
+                            @for (var link : countyFinderLinks.stream().limit(12).toList())
+                                <a href="${link.path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="${sourceContext}_priority_route"
+                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()}</a>
+                            @endfor
+                        </div>
+                    </div>
                     <label class="county-finder__label" for="${finderId}-input">Find a county route</label>
                     <div class="county-finder__search">
                         <input id="${finderId}-input"

@@ -343,6 +343,82 @@
 
     <section class="section section--tight">
         <div class="container">
+            <div class="county-search-intent-pack">
+                <div class="county-search-intent-pack__intro">
+                    <span class="eyebrow">Search intent answer pack</span>
+                    <h2>${countyPage.countyName()} septic permit lookup, records request, and address search path</h2>
+                    <p>Use this block when the search is not a broad septic question. It is usually one of four file tasks: find the permit, request the records, anchor the parcel, or confirm the as-built and inspection trail.</p>
+                </div>
+                <div class="county-search-intent-grid">
+                    <article class="county-search-intent-card">
+                        <span>Permit lookup</span>
+                        <h3>${countyPage.countyName()} septic permit lookup</h3>
+                        <p>Start with ${countyPage.recordsLabel()} before you trust a quote, repair story, buyer file, or permit closeout claim.</p>
+                        <a class="button button--secondary"
+                           href="${countyPage.recordsUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_intent_permit_lookup"
+                           data-track-target-type="official_source">Open permit lookup path</a>
+                    </article>
+
+                    <article class="county-search-intent-card">
+                        <span>Records request</span>
+                        <h3>Request the septic records, not just a price</h3>
+                        <p>${countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank() ? countyPage.requestScriptBody() : countyPage.contactLine()}</p>
+                        <a class="button button--secondary"
+                           href="#county-action-playbook"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_intent_records_request"
+                           data-track-target-type="page_anchor">Open request script</a>
+                    </article>
+
+                    <article class="county-search-intent-card">
+                        <span>Address or parcel</span>
+                        <h3>Search by address only after you have the parcel anchor</h3>
+                        @if (countyPage.hasParcelAnchor())
+                            <p>${countyPage.parcelAnchorNote()}</p>
+                            <a class="button button--secondary"
+                               href="${countyPage.parcelAnchorUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="county_search_intent_parcel_anchor"
+                               data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
+                        @else
+                            <p>Use the state records path first, then confirm the parcel identifier with the local office before pricing.</p>
+                            <a class="button button--secondary"
+                               href="/septic-permit-search-by-address/"
+                               data-track-click="nav"
+                               data-track-source-context="county_search_intent_address_fallback"
+                               data-track-target-type="internal_page">Open search-by-address guide</a>
+                        @endif
+                    </article>
+
+                    <article class="county-search-intent-card">
+                        <span>As-built and inspection</span>
+                        <h3>Ask for the file artifacts that change the answer</h3>
+                        <p>
+                            @if (countyPage.recordsToRequest() != null && !countyPage.recordsToRequest().isEmpty())
+                                ${countyPage.recordsToRequest().get(0)}
+                            @else
+                                Ask for the permit file, as-built sketch, inspection letter, repair note, and any final approval record tied to the parcel.
+                            @endif
+                        </p>
+                        <a class="button button--secondary"
+                           href="/septic-as-built-records/"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_intent_as_built"
+                           data-track-target-type="internal_page">Open as-built records guide</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container">
             <div class="intent-rail">
                 @if (countyPage.hasParcelAnchor())
                     <article class="intent-card">

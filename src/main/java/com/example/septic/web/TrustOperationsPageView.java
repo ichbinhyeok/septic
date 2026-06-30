@@ -14,6 +14,7 @@ public record TrustOperationsPageView(
         String rowSectionTitle,
         String rowSectionIntro,
         List<CoverageStateRowView> coverageRows,
+        List<CountyFinderLinkView> priorityCountyRoutes,
         String ctaHeading,
         String ctaBody,
         List<PageLink> nextLinks

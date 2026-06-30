@@ -1361,6 +1361,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Strongest live workflow backbones",
                 "These states currently have the deepest blend of state workflow pages, county file paths, source count, confidence, and verification date.",
                 coverageRows(8),
+                List.of(),
                 "Methodology only matters if it changes publishing behavior.",
                 "Use these standards to decide what gets built next: add pages only when they create a better file path, stronger local routing, or a more honest planning range.",
                 List.of(
@@ -1431,6 +1432,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Source-backed states to inspect first",
                 "These rows show where the public network has the most source depth and local workflow surface today.",
                 coverageRows(8),
+                List.of(),
                 "The correction loop is deliberately public.",
                 "If a source changes, a county link moves, or a page overstates certainty, the right next action is a source correction request, then a page update tied to the affected workflow.",
                 List.of(
@@ -1494,6 +1496,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Coverage rows to use for prioritization",
                 "Sorted by county records depth, then state workflow depth. Use this table for manual indexing and next-page selection.",
                 coverageRows(18),
+                countyFinderLinks(50),
                 "The next expansion should be selective, not massive.",
                 "The network gets stronger when each new page increases source density, county specificity, or task completion. That is the pSEO standard to hold.",
                 List.of(

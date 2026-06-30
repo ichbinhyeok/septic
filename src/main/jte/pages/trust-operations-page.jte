@@ -1,5 +1,6 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.TrustOperationsPageView
+@import com.example.septic.web.CountyFinderLinkView
 @param PageMeta page
 @param TrustOperationsPageView operationsPage
 
@@ -112,6 +113,31 @@
                                 @endfor
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </section>
+        @endif
+
+        @if (!operationsPage.priorityCountyRoutes().isEmpty())
+            <section class="section">
+                <div class="container">
+                    <div class="section-heading">
+                        <span class="eyebrow">Click sprint queue</span>
+                        <h2>Priority county routes to push first.</h2>
+                        <p class="lede">These are the strongest county-level records and permit lookup URLs by state priority, source depth, and local file-path usefulness. Use this board for manual indexing, internal-link review, and the next hand-enhancement pass.</p>
+                    </div>
+                    <div class="trust-ops-priority-routes" aria-label="Priority county route sprint">
+                        @for (var route : operationsPage.priorityCountyRoutes())
+                            <a class="trust-ops-priority-route"
+                               href="${route.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="trust_operations_priority_county_route"
+                               data-track-target-type="county_records_page">
+                                <span>${route.stateCode()}</span>
+                                <strong>${route.countyName()} records</strong>
+                                <small>${route.note()}</small>
+                            </a>
+                        @endfor
                     </div>
                 </div>
             </section>
