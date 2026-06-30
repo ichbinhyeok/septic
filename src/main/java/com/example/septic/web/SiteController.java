@@ -36,10 +36,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.springframework.http.MediaType;
@@ -337,6 +339,45 @@ public class SiteController {
                 ),
                 "Trust the source trail",
                 "Use the pages as planning guidance, then confirm the local file, reviewing office, and site conditions before relying on a quote or design decision."
+        );
+    }
+
+    @GetMapping({"/methodology", "/methodology/"})
+    public String methodology(Model model) {
+        return renderTrustOperationsPage(
+                model,
+                seoService.basicPage(
+                        "SepticPath Methodology",
+                        "How SepticPath turns official septic sources, county records paths, and conservative estimate logic into homeowner planning pages.",
+                        "/methodology/"
+                ),
+                methodologyOperations()
+        );
+    }
+
+    @GetMapping({"/source-policy", "/source-policy/"})
+    public String sourcePolicy(Model model) {
+        return renderTrustOperationsPage(
+                model,
+                seoService.basicPage(
+                        "Source Policy",
+                        "How SepticPath prioritizes official septic sources, local records paths, verification dates, and correction requests.",
+                        "/source-policy/"
+                ),
+                sourcePolicyOperations()
+        );
+    }
+
+    @GetMapping({"/coverage", "/coverage/"})
+    public String coverage(Model model) {
+        return renderTrustOperationsPage(
+                model,
+                seoService.basicPage(
+                        "SepticPath Coverage",
+                        "Live coverage counts for SepticPath state guides, workflow pages, county records pages, and official-source depth.",
+                        "/coverage/"
+                ),
+                coverageOperations()
         );
     }
 
@@ -1266,6 +1307,278 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .toList();
     }
 
+    private TrustOperationsPageView methodologyOperations() {
+        WorkflowNetworkSnapshotView snapshot = workflowNetworkSnapshot();
+        int stateGuideCount = researchDataService.getPublicStateProfiles().size();
+        int stateWorkflowCount = researchDataService.getPublicStateMoneyPages().size();
+        int countyPageCount = researchDataService.getPublicCountyRecordsPages().size();
+        int sourceBackedPageCount = sourceBackedPageCount();
+        int sourceCount = publishedSourceRecords().size();
+
+        return new TrustOperationsPageView(
+                "Methodology",
+                "How pages earn the right to be public.",
+                "SepticPath is built around records, permit paths, buyer diligence, and conservative planning estimates. A page should change the next action, expose the file path, or narrow uncertainty with a visible source trail.",
+                "Public quality gate",
+                String.valueOf(sourceBackedPageCount),
+                "Live source-backed state, workflow, and county pages. Thin state-name swaps are kept out of the index path.",
+                List.of(
+                        new TrustMetricView("State guides", String.valueOf(stateGuideCount), "Published only after a state source set, local override note, and homeowner action path exist."),
+                        new TrustMetricView("State workflow pages", String.valueOf(stateWorkflowCount), "Records, permit, buyer, inspection, replacement, and cost pages tied back to state context."),
+                        new TrustMetricView("County records pages", String.valueOf(countyPageCount), "Local file paths for county-level records, request methods, and quote gates."),
+                        new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records currently backing the public research layer.")
+                ),
+                List.of(
+                        new TrustLaneView(
+                                "Gate 1",
+                                "A page needs a job beyond ranking.",
+                                "The target reader must be obvious: buyer, seller, owner, agent, or contractor. If the page cannot tell that user what to pull, ask, or verify next, it should not be a money page.",
+                                "Browse coverage",
+                                "/coverage/"
+                        ),
+                        new TrustLaneView(
+                                "Gate 2",
+                                "Official-source context comes before estimate confidence.",
+                                "State rules, county records offices, delegated authority pages, forms, and file request paths are preferred over generic cost claims. Weak source coverage widens the answer instead of pretending certainty.",
+                                "Read source policy",
+                                "/source-policy/"
+                        ),
+                        new TrustLaneView(
+                                "Gate 3",
+                                "County pages must add local workflow detail.",
+                                "A county page needs an office path, records path, request method, low-end breaker, and a next action that a real user can take from the page.",
+                                "Open county routes",
+                                "/septic-records-by-county/"
+                        ),
+                        new TrustLaneView(
+                                "Gate 4",
+                                "The estimate is downstream of the file.",
+                                "The cost calculator and state guides are used after the record, permit, buyer, or site-risk question is clearer. This keeps the site from over-selling fake precision.",
+                                "Open estimator",
+                                "/septic-system-cost-calculator/"
+                        )
+                ),
+                "Strongest live workflow backbones",
+                "These states currently have the deepest blend of state workflow pages, county file paths, source count, confidence, and verification date.",
+                coverageRows(8),
+                "Methodology only matters if it changes publishing behavior.",
+                "Use these standards to decide what gets built next: add pages only when they create a better file path, stronger local routing, or a more honest planning range.",
+                List.of(
+                        new PageLink("Open source policy", "/source-policy/", "See how evidence is prioritized."),
+                        new PageLink("Open coverage", "/coverage/", "Inspect live state, workflow, and county depth."),
+                        new PageLink("Open editorial standards", "/editorial-standards/", "Read the broader review boundaries.")
+                )
+        );
+    }
+
+    private TrustOperationsPageView sourcePolicyOperations() {
+        List<SourceRecord> sourceRecords = publishedSourceRecords();
+        long verifiedSources = sourceRecords.stream()
+                .filter(source -> hasText(source.lastVerifiedAt()))
+                .count();
+        long localSources = sourceRecords.stream()
+                .filter(source -> hasText(source.countyOrLocal()))
+                .filter(source -> !"no".equalsIgnoreCase(source.countyOrLocal()))
+                .count();
+        long finalOrOfficialSources = sourceRecords.stream()
+                .filter(source -> hasText(source.draftOrFinalStatus()))
+                .filter(source -> !"draft".equalsIgnoreCase(source.draftOrFinalStatus()))
+                .count();
+
+        return new TrustOperationsPageView(
+                "Source policy",
+                "The source trail is part of the product.",
+                "Septic pages can look correct while sending users to the wrong office, stale form, or overconfident cost number. This policy defines which sources get used, when uncertainty is preserved, and where corrections go.",
+                "Source registry",
+                String.valueOf(sourceRecords.size()),
+                "Distinct source records are currently attached to public state, workflow, and county pages.",
+                List.of(
+                        new TrustMetricView("Verified sources", String.valueOf(verifiedSources), "Source records with a stored last-verified date."),
+                        new TrustMetricView("County or local sources", String.valueOf(localSources), "Local offices, county record paths, or delegated authority sources."),
+                        new TrustMetricView("Final/official status", String.valueOf(finalOrOfficialSources), "Sources marked as final, official, or otherwise not draft-only in the registry."),
+                        new TrustMetricView("Correction route", "Public", "Source corrections are routed through the public contact form.")
+                ),
+                List.of(
+                        new TrustLaneView(
+                                "Priority 1",
+                                "Official public sources beat paraphrase.",
+                                "State agencies, county health departments, delegated local authority pages, permit forms, public record request pages, and official manuals are preferred for rules and workflow claims.",
+                                "Contact corrections",
+                                "/contact/"
+                        ),
+                        new TrustLaneView(
+                                "Priority 2",
+                                "Local workflow can override state-level comfort.",
+                                "If a county office, parcel system, or delegated authority changes the user's next step, the local path must be made visible before a broad statewide summary.",
+                                "Open county routes",
+                                "/septic-records-by-county/"
+                        ),
+                        new TrustLaneView(
+                                "Priority 3",
+                                "Cost evidence stays conservative.",
+                                "Public cost anchors are planning context. They do not outrank permit files, site evaluation, replacement-area reality, or local approval sequence.",
+                                "Open cost estimator",
+                                "/septic-system-cost-calculator/"
+                        ),
+                        new TrustLaneView(
+                                "Priority 4",
+                                "Conflicts create wider guidance, not invented certainty.",
+                                "When sources conflict, stay vague, or delegate decisions locally, the page should flag the uncertainty and route users to the office or file that can resolve it.",
+                                "Read methodology",
+                                "/methodology/"
+                        )
+                ),
+                "Source-backed states to inspect first",
+                "These rows show where the public network has the most source depth and local workflow surface today.",
+                coverageRows(8),
+                "The correction loop is deliberately public.",
+                "If a source changes, a county link moves, or a page overstates certainty, the right next action is a source correction request, then a page update tied to the affected workflow.",
+                List.of(
+                        new PageLink("Submit source correction", "/contact/", "Route a broken source, stale form, or correction note."),
+                        new PageLink("Read methodology", "/methodology/", "See the page-quality gate."),
+                        new PageLink("Open coverage", "/coverage/", "Inspect where the network is deepest.")
+                )
+        );
+    }
+
+    private TrustOperationsPageView coverageOperations() {
+        WorkflowNetworkSnapshotView snapshot = workflowNetworkSnapshot();
+        int stateGuideCount = researchDataService.getPublicStateProfiles().size();
+        int stateWorkflowCount = researchDataService.getPublicStateMoneyPages().size();
+        int countyPageCount = researchDataService.getPublicCountyRecordsPages().size();
+        int sourceCount = publishedSourceRecords().size();
+
+        return new TrustOperationsPageView(
+                "Coverage",
+                "Live coverage, source depth, and county workflow density.",
+                "This is the operational map behind the public site. It separates broad coverage from pages that are actually strong enough to route users into records, permits, buyer diligence, and local files.",
+                "County workflow routes",
+                String.valueOf(countyPageCount),
+                snapshot.summary(),
+                List.of(
+                        new TrustMetricView("Published state guides", String.valueOf(stateGuideCount), "Public state guide pages with official-source context."),
+                        new TrustMetricView("Published workflow pages", String.valueOf(stateWorkflowCount), "State-specific records, permit, buyer, inspection, replacement, and related pages."),
+                        new TrustMetricView("County-backed states", String.valueOf(snapshot.countyBackedStateCount()), "States with at least one live county records workflow route."),
+                        new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records attached to public state, workflow, and county pages.")
+                ),
+                List.of(
+                        new TrustLaneView(
+                                "Index queue",
+                                "Manual indexing should start with dense workflow states.",
+                                "Prioritize states where county records pages and state workflow pages reinforce each other. Those pages have the best chance to satisfy records and permit intent without feeling thin.",
+                                "Open records hub",
+                                "/septic-records-checklist/"
+                        ),
+                        new TrustLaneView(
+                                "Expansion rule",
+                                "More URLs are useful only after the workflow is real.",
+                                "A new page should add source depth, a county route, a request script, a file artifact, or a quote gate. Otherwise it dilutes the network.",
+                                "Read methodology",
+                                "/methodology/"
+                        ),
+                        new TrustLaneView(
+                                "Refresh rule",
+                                "Verification dates are part of the quality surface.",
+                                "Rows with older state verification dates or thin county depth should be reviewed before they become the next manual indexing targets.",
+                                "Read source policy",
+                                "/source-policy/"
+                        ),
+                        new TrustLaneView(
+                                "User route",
+                                "Coverage has to shorten the next click.",
+                                "The strongest pages push users from broad national pages into exact state/county paths, not into more explanatory copy.",
+                                "Open permit lookup",
+                                "/septic-permit-lookup/"
+                        )
+                ),
+                "Coverage rows to use for prioritization",
+                "Sorted by county records depth, then state workflow depth. Use this table for manual indexing and next-page selection.",
+                coverageRows(18),
+                "The next expansion should be selective, not massive.",
+                "The network gets stronger when each new page increases source density, county specificity, or task completion. That is the pSEO standard to hold.",
+                List.of(
+                        new PageLink("Open methodology", "/methodology/", "Use the publishing quality gate."),
+                        new PageLink("Open source policy", "/source-policy/", "Check evidence and correction rules."),
+                        new PageLink("Open state guides", "/states/", "Browse public state coverage.")
+                )
+        );
+    }
+
+    private int sourceBackedPageCount() {
+        return researchDataService.getPublicStateProfiles().size()
+                + researchDataService.getPublicStateMoneyPages().size()
+                + researchDataService.getPublicCountyRecordsPages().size();
+    }
+
+    private List<CoverageStateRowView> coverageRows(int limit) {
+        return researchDataService.getPublicStateProfiles().stream()
+                .map(state -> {
+                    int workflowPageCount = researchDataService.listPublicStateMoneyPages(state.stateCode()).size();
+                    int countyPageCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
+                    int sourceCount = sourceCountForState(state);
+                    String path = researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                            .map(page -> page.path(state.slug()))
+                            .orElse("/septic-system-cost-calculator/" + state.slug() + "/");
+                    return new CoverageStateRowView(
+                            state.stateName(),
+                            state.stateCode(),
+                            path,
+                            workflowPageCount,
+                            countyPageCount,
+                            sourceCount + " sources",
+                            confidenceLabel(state.confidenceScore()),
+                            firstNonBlank(state.lastVerifiedAt(), "Verification date queued")
+                    );
+                })
+                .sorted(Comparator
+                        .comparingInt(CoverageStateRowView::countyPageCount)
+                        .reversed()
+                        .thenComparingInt(CoverageStateRowView::workflowPageCount)
+                        .reversed()
+                        .thenComparing(CoverageStateRowView::stateName))
+                .limit(limit)
+                .toList();
+    }
+
+    private int sourceCountForState(StateProfile state) {
+        Set<String> sourceIds = new LinkedHashSet<>();
+        addSourceIds(sourceIds, state.officialSourceIds());
+        addSourceIds(sourceIds, state.localAuthoritySourceIds());
+        addSourceIds(sourceIds, state.recordsLookupSourceIds());
+        researchDataService.listPublicStateMoneyPages(state.stateCode())
+                .forEach(page -> addSourceIds(sourceIds, page.officialSourceIds()));
+        researchDataService.listPublicCountyRecordsPages(state.stateCode())
+                .forEach(page -> addSourceIds(sourceIds, page.officialSourceIds()));
+        return sourceIds.size();
+    }
+
+    private List<SourceRecord> publishedSourceRecords() {
+        return researchDataService.getSources(new ArrayList<>(publishedSourceIds()));
+    }
+
+    private Set<String> publishedSourceIds() {
+        Set<String> sourceIds = new LinkedHashSet<>();
+        for (StateProfile state : researchDataService.getPublicStateProfiles()) {
+            addSourceIds(sourceIds, state.officialSourceIds());
+            addSourceIds(sourceIds, state.localAuthoritySourceIds());
+            addSourceIds(sourceIds, state.recordsLookupSourceIds());
+        }
+        researchDataService.getPublicStateMoneyPages()
+                .forEach(page -> addSourceIds(sourceIds, page.officialSourceIds()));
+        researchDataService.getPublicCountyRecordsPages()
+                .forEach(page -> addSourceIds(sourceIds, page.officialSourceIds()));
+        return sourceIds;
+    }
+
+    private void addSourceIds(Set<String> sourceIds, List<String> values) {
+        if (values == null) {
+            return;
+        }
+        values.stream()
+                .filter(this::hasText)
+                .forEach(sourceIds::add);
+    }
+
     private WorkflowNetworkSnapshotView workflowNetworkSnapshot() {
         List<StateCountyBackbone> backbones = researchDataService.getPublicStateProfiles().stream()
                 .map(state -> {
@@ -1535,6 +1848,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("calloutTitle", calloutTitle);
         model.addAttribute("calloutBody", calloutBody);
         return "pages/site-page";
+    }
+
+    private String renderTrustOperationsPage(Model model, PageMeta page, TrustOperationsPageView operationsPage) {
+        model.addAttribute("page", page);
+        model.addAttribute("operationsPage", operationsPage);
+        return "pages/trust-operations-page";
     }
 
     private String renderWorkflowPacketPage(Model model, PageMeta page, WorkflowPacketView packet) {

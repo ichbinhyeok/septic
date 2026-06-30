@@ -295,7 +295,8 @@
                 @endif
                 <div class="hero__actions">
                     <a class="button button--primary" href="/states/">Browse state guides</a>
-                    <a class="button button--secondary" href="/about/">Read the source standard</a>
+                    <a class="button button--secondary" href="/methodology/">Read the methodology</a>
+                    <a class="button button--secondary" href="/coverage/">Open coverage board</a>
                 </div>
             </article>
 

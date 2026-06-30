@@ -624,6 +624,18 @@
                         </li>
                     @endfor
                 </ul>
+                <div class="hero__actions">
+                    <a class="button button--secondary"
+                       href="/source-policy/"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_source_policy"
+                       data-track-target-type="trust_page">Read source policy</a>
+                    <a class="button button--secondary"
+                       href="/methodology/"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_methodology"
+                       data-track-target-type="trust_page">Read methodology</a>
+                </div>
             </article>
         </div>
             </details>

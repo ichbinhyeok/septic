@@ -143,6 +143,9 @@
                     <ul class="footer-list">
                         <li><a href="/about/">About</a></li>
                         <li><a href="/editorial-standards/">Editorial Standards</a></li>
+                        <li><a href="/methodology/">Methodology</a></li>
+                        <li><a href="/source-policy/">Source Policy</a></li>
+                        <li><a href="/coverage/">Coverage</a></li>
                         <li><a href="/privacy-policy/">Privacy Policy</a></li>
                         <li><a href="/terms-of-use/">Terms of Use</a></li>
                         <li><a href="/contact/">Contact</a></li>

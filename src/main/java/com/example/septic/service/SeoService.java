@@ -548,6 +548,9 @@ public class SeoService {
                 "/states/",
                 "/about/",
                 "/editorial-standards/",
+                "/methodology/",
+                "/source-policy/",
+                "/coverage/",
                 "/privacy-policy/",
                 "/terms-of-use/",
                 "/contact/"

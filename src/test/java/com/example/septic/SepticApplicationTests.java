@@ -378,6 +378,33 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void trustOperationsPagesRenderAndEnterSitemap() throws Exception {
+		mockMvc.perform(get("/methodology/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How pages earn the right to be public.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Public quality gate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/source-policy/")));
+
+		mockMvc.perform(get("/source-policy/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The source trail is part of the product.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Source registry")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/contact/")));
+
+		mockMvc.perform(get("/coverage/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Live coverage, source depth, and county workflow density.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Coverage rows to use for prioritization")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Workflow pages")));
+
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/methodology/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/source-policy/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/coverage/")));
+	}
+
+	@Test
 	void canonicalHostRedirectsWwwHttpRequests() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/")
 						.queryParam("state", "GA")
