@@ -59,6 +59,13 @@
                        data-track-click="nav"
                        data-track-source-context="county_records_command_records"
                        data-track-target-type="official_source">Open county record path</a>
+                    <button class="button button--secondary"
+                            type="button"
+                            data-share-route
+                            data-share-url="${page.canonicalUrl()}"
+                            data-share-title="${page.title()}"
+                            data-share-text="${countySeoIntro}"
+                            data-track-source-context="county_records_share_route">Share county route</button>
                     @if (countyPage.hasActionPlaybook())
                         <a class="button button--secondary"
                            href="#county-action-playbook"

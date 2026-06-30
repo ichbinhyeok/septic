@@ -284,6 +284,98 @@
 
     setupCountyFinders();
 
+    function setupShareActions() {
+        const buttons = Array.from(document.querySelectorAll("[data-share-route]"));
+        if (!buttons.length) {
+            return;
+        }
+
+        function shareTargetPath() {
+            return window.location.pathname + window.location.search + "#share";
+        }
+
+        function fallbackCopy(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.setAttribute("readonly", "");
+            textArea.style.position = "fixed";
+            textArea.style.top = "-1000px";
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            try {
+                document.execCommand("copy");
+                return Promise.resolve();
+            } catch (error) {
+                return Promise.reject(error);
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function setTemporaryLabel(button, label, className) {
+            const originalLabel = button.dataset.originalLabel || button.textContent;
+            button.dataset.originalLabel = originalLabel;
+            button.textContent = label;
+            button.classList.add(className);
+            window.setTimeout(() => {
+                button.textContent = originalLabel;
+                button.classList.remove(className);
+            }, 1800);
+        }
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", async () => {
+                const url = button.dataset.shareUrl || window.location.href;
+                const title = button.dataset.shareTitle || document.title;
+                const text = button.dataset.shareText || "";
+                const copyText = [title, text, url].filter(Boolean).join("\n");
+                let method = "clipboard";
+
+                try {
+                    await fallbackCopy(copyText);
+                    setTemporaryLabel(button, "Link copied", "is-copied");
+
+                    if (navigator.share && window.matchMedia && window.matchMedia("(max-width: 720px)").matches) {
+                        navigator.share({ title, text, url })
+                            .then(() => {
+                                method = "native_share";
+                                setTemporaryLabel(button, "Shared", "is-copied");
+                            })
+                            .catch(() => {});
+                    }
+
+                    sendNavigationEvent({
+                        sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                        sourceContext: button.dataset.trackSourceContext || "share_route",
+                        targetPath: shareTargetPath(),
+                        targetType: method,
+                        targetLabel: title
+                    });
+                } catch (error) {
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({ title, text, url });
+                            setTemporaryLabel(button, "Shared", "is-copied");
+                            return;
+                        } catch (shareError) {
+                            if (shareError && shareError.name === "AbortError") {
+                                return;
+                            }
+                        }
+                    }
+                    setTemporaryLabel(button, "Copy failed", "is-copy-failed");
+                }
+            });
+        });
+    }
+
+    setupShareActions();
+
     function supportsStateAwareTools(pathname) {
         return pathname === "/septic-system-cost-calculator/"
             || pathname === "/septic-system-cost-calculator"

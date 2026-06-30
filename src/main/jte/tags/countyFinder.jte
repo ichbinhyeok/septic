@@ -58,6 +58,8 @@
                                href="${link.path()}"
                                data-county-finder-result
                                data-search="${link.searchText()}"
+                               data-share-url="${link.absoluteUrl()}"
+                               data-share-query="${link.countyName()} ${link.stateCode()} septic permit lookup"
                                data-track-click="nav"
                                data-track-source-context="${sourceContext}"
                                data-track-target-type="county_records_page">

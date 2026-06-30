@@ -612,6 +612,21 @@ h4 {
     min-height: 44px;
 }
 
+.button[data-share-route] {
+    border: 1px solid rgba(35, 108, 95, 0.18);
+    cursor: pointer;
+}
+
+.button[data-share-route].is-copied {
+    background: rgba(35, 108, 95, 0.92);
+    color: white;
+}
+
+.button[data-share-route].is-copy-failed {
+    border-color: rgba(129, 55, 45, 0.35);
+    color: #81372d;
+}
+
 .county-records-page .county-records-page__search-title {
     max-width: 13.5ch;
 }

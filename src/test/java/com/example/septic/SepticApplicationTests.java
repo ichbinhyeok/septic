@@ -1300,6 +1300,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Fort Bend County TX Septic Permit Lookup &amp; Records | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit lookup and records request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Texas Septic Records Checklist and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Share county route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-url=\"https://example.test/septic-records-checklist/texas/fort-bend-county/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County TX septic permit lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit search by address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Fort Bend County OSSF permits and packets")))
