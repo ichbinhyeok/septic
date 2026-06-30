@@ -24,6 +24,9 @@
 @param String countySeoHeading = ""
 @param String countySeoIntro = ""
 @param java.util.List<String> countySearchQueries = java.util.List.of()
+@param String countyLeadProjectLabel = ""
+@param String countyEstimatePath = ""
+@param String countyQuotePath = ""
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -147,6 +150,27 @@
                         @endif
                     </ol>
                 </div>
+                @if (countyEstimatePath != null && !countyEstimatePath.isBlank() && countyQuotePath != null && !countyQuotePath.isBlank())
+                    <div class="county-lead-bridge" aria-label="Quote-ready next step">
+                        <div>
+                            <span class="eyebrow">Next money step</span>
+                            <h2>Turn the county file into a quote-ready estimate.</h2>
+                            <p>Use this after the file owner, parcel clue, or missing permit artifact is clearer. The estimator keeps ${state.stateCode()}, this county route, and the likely ${countyLeadProjectLabel} lane attached.</p>
+                        </div>
+                        <div class="county-lead-bridge__actions">
+                            <a class="button button--primary"
+                               href="${countyEstimatePath}"
+                               data-track-click="nav"
+                               data-track-source-context="county_records_quote_ready_estimate"
+                               data-track-target-type="calculator">Run quote-ready estimate</a>
+                            <a class="button button--secondary"
+                               href="${countyQuotePath}"
+                               data-track-click="nav"
+                               data-track-source-context="county_records_quote_ready_form"
+                               data-track-target-type="quote_form">Open quote request</a>
+                        </div>
+                    </div>
+                @endif
                 <div class="hero__actions">
                     @if (countyPage.hasParcelAnchor())
                         <a class="button button--secondary"

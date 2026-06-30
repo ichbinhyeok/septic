@@ -1045,6 +1045,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countySeoHeading", countySeoHeading(countyPage));
         model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state));
         model.addAttribute("countySearchQueries", countySearchQueries(countyPage, state));
+        model.addAttribute("countyLeadProjectLabel", projectTypeLabel(countyLeadProjectType(countyPage)));
+        model.addAttribute("countyEstimatePath", countyEstimatePath(countyPage, state));
+        model.addAttribute("countyQuotePath", countyQuotePath(countyPage, state));
         model.addAttribute("countyWorkflowStructure", countyWorkflowStructure(countyPage, state));
         model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
         model.addAttribute("countyAvailabilitySummary", countyAvailabilitySummary(countyPage, state, sources, lastReviewedAt));
@@ -1077,6 +1080,50 @@ The goal is to settle the permit path before we frame the project as a normal in
                 countyPage.countyName() + " septic permit search by address",
                 countyPage.countyName() + " septic as-built records"
         );
+    }
+
+    private String countyLeadProjectType(CountyRecordsPage countyPage) {
+        String haystack = String.join(" ",
+                nullToEmpty(countyPage.title()),
+                nullToEmpty(countyPage.metaDescription()),
+                nullToEmpty(countyPage.introCopy()),
+                nullToEmpty(countyPage.uniqueAngle()),
+                nullToEmpty(countyPage.targetReader())
+        ).toLowerCase(Locale.US);
+        if (haystack.contains("repair")
+                || haystack.contains("replacement")
+                || haystack.contains("modification")
+                || haystack.contains("failure")
+                || haystack.contains("failed")) {
+            return ProjectType.REPLACEMENT.value();
+        }
+        if (haystack.contains("buyer")
+                || haystack.contains("seller")
+                || haystack.contains("agent")
+                || haystack.contains("transfer")
+                || haystack.contains("closing")) {
+            return ProjectType.BUYING_HOME.value();
+        }
+        if (haystack.contains("inspection") || haystack.contains("letter")) {
+            return ProjectType.INSPECTION.value();
+        }
+        return ProjectType.INSPECTION.value();
+    }
+
+    private String countyEstimatePath(CountyRecordsPage countyPage, StateProfile state) {
+        return appendSourcePageHint(
+                "/septic-system-cost-calculator/?state=" + state.stateCode() + "&projectType=" + countyLeadProjectType(countyPage),
+                countyPage.path(state.slug())
+        );
+    }
+
+    private String countyQuotePath(CountyRecordsPage countyPage, StateProfile state) {
+        String estimatePath = countyEstimatePath(countyPage, state);
+        return estimatePath + (estimatePath.contains("?") ? "&" : "?") + "quoteMode=true#quote-request";
+    }
+
+    private String nullToEmpty(String value) {
+        return value == null ? "" : value;
     }
 
     @GetMapping({

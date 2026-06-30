@@ -1370,6 +1370,47 @@ h4 {
     line-height: 1.48;
 }
 
+.county-lead-bridge {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid rgba(35, 108, 95, 0.18);
+    border-radius: 24px;
+    background:
+        linear-gradient(135deg, rgba(225, 240, 234, 0.92), rgba(255, 255, 255, 0.9)),
+        var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.county-lead-bridge h2 {
+    max-width: 20ch;
+    margin: 6px 0 8px;
+    font-size: clamp(1.25rem, 2vw, 1.72rem);
+    line-height: 1.08;
+}
+
+.county-lead-bridge p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+}
+
+.county-lead-bridge__actions {
+    display: grid;
+    gap: 10px;
+    min-width: 220px;
+}
+
+.county-lead-bridge__actions .button {
+    min-height: 42px;
+    padding: 0 16px;
+    white-space: nowrap;
+}
+
 .state-guide-calculator-bridge {
     margin-top: 18px;
 }
@@ -4119,6 +4160,29 @@ input[type="checkbox"] {
 
     .money-answer-panel__header h2 {
         font-size: 1.28rem;
+    }
+
+    .county-lead-bridge {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 20px;
+    }
+
+    .county-lead-bridge h2 {
+        max-width: 18ch;
+        font-size: 1.22rem;
+    }
+
+    .county-lead-bridge__actions {
+        min-width: 0;
+    }
+
+    .county-lead-bridge__actions .button {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
     }
 
     .money-answer-steps li {
