@@ -1003,6 +1003,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("sources", sources);
         model.addAttribute("countyWorkflowStructure", countyWorkflowStructure(countyPage, state));
         model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
+        model.addAttribute("countyAvailabilitySummary", countyAvailabilitySummary(countyPage, state, sources, lastReviewedAt));
+        model.addAttribute("countyAvailabilityRows", countyAvailabilityRows(countyPage, state));
+        model.addAttribute("countyRequestOptions", countyRequestOptions(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
@@ -2342,6 +2345,234 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "Open county record path",
                         recordsPath,
                         "official_source"
+                )
+        );
+    }
+
+    private CountyAvailabilitySummaryView countyAvailabilitySummary(
+            CountyRecordsPage countyPage,
+            StateProfile state,
+            List<SourceRecord> sources,
+            String lastReviewedAt
+    ) {
+        String combinedText = countyCombinedText(countyPage);
+        int score = 46;
+        if (countyPage.hasParcelAnchor()) {
+            score += 12;
+        }
+        if (containsAny(combinedText, "search", "lookup", "portal", "online", "gis", "parcel")) {
+            score += 10;
+        }
+        if (containsAny(combinedText, "as-built", "site plan", "schematic", "layout", "system diagram")) {
+            score += 8;
+        }
+        if (containsAny(combinedText, "inspection", "approval for use", "license to operate", "final approval", "certificate")) {
+            score += 8;
+        }
+        if (size(countyPage.officialSourceIds()) >= 2) {
+            score += 8;
+        }
+        if (size(countyPage.recordsToRequest()) >= 3) {
+            score += 5;
+        }
+        if (countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank()) {
+            score += 3;
+        }
+        score = Math.min(score, 96);
+
+        String confidenceLabel = score >= 82
+                ? "High-confidence county route"
+                : score >= 68
+                        ? "Usable county route"
+                        : "County route needs follow-up";
+        String confidenceNote = score >= 82
+                ? "This page has enough official-source depth, county-specific workflow detail, and request artifacts to start with the local file before pricing."
+                : score >= 68
+                        ? "This page has a usable county records path, but the user should still verify the exact office and artifact before relying on the file."
+                        : "This page gives a starting route, but the county may require a phone, email, or state-level fallback before the record story is reliable.";
+        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
+        String sourceDepth = sources.size() + " official source" + (sources.size() == 1 ? "" : "s");
+        return new CountyAvailabilitySummaryView(
+                confidenceLabel,
+                score,
+                confidenceNote,
+                countyPage.recordsLabel(),
+                requestMethod,
+                countyFirstArtifact(countyPage),
+                sourceDepth,
+                lastReviewedAt
+        );
+    }
+
+    private List<CountyAvailabilityRowView> countyAvailabilityRows(CountyRecordsPage countyPage, StateProfile state) {
+        String combinedText = countyCombinedText(countyPage);
+        String recordsUrl = countyPage.recordsUrl();
+        String recordsTarget = "official_source";
+        String stateRecordsPath = "/septic-records-checklist/" + state.slug() + "/";
+        List<CountyAvailabilityRowView> rows = new ArrayList<>();
+        rows.add(new CountyAvailabilityRowView(
+                "Parcel or property anchor",
+                countyPage.hasParcelAnchor() ? "Direct anchor available" : "Verify through records office",
+                countyPage.hasParcelAnchor() ? "Parcel/TMS first" : "County records fallback",
+                countyPage.hasParcelAnchor()
+                        ? countyPage.parcelAnchorNote()
+                        : "Use the county records path and ask which address, owner, APN, TMS, or legal description field the office needs.",
+                countyPage.hasParcelAnchor() ? countyPage.parcelAnchorLabel() : countyPage.recordsLabel(),
+                countyPage.hasParcelAnchor() ? countyPage.parcelAnchorUrl() : recordsUrl,
+                recordsTarget,
+                true,
+                countyPage.hasParcelAnchor() ? "strong" : "medium"
+        ));
+        rows.add(new CountyAvailabilityRowView(
+                "Permit copy or approval file",
+                containsAny(combinedText, "permit", "approval", "license to operate", "construction authorization")
+                        ? "County-specific signal found"
+                        : "Ask for permit history",
+                countyAvailabilityMethod(combinedText),
+                firstNonBlank(
+                        countyWorkflowStructure(countyPage, state).fields().stream()
+                                .filter(field -> "Permit closeout signal".equals(field.label()))
+                                .map(CountyWorkflowFieldView::value)
+                                .findFirst()
+                                .orElse(null),
+                        "Ask whether the file includes the septic permit copy, final approval, repair permit, or license-to-operate artifact."
+                ),
+                countyPage.recordsLabel(),
+                recordsUrl,
+                recordsTarget,
+                true,
+                containsAny(combinedText, "permit", "approval", "license to operate") ? "strong" : "medium"
+        ));
+        rows.add(new CountyAvailabilityRowView(
+                "As-built, site plan, or layout",
+                containsAny(combinedText, "as-built", "site plan", "schematic", "layout", "system diagram")
+                        ? "Layout signal found"
+                        : "Request explicitly",
+                "Record request",
+                "Ask whether the county file includes the installed layout, site sketch, tank location, drain field location, or approval package tied to the parcel.",
+                countyPage.recordsLabel(),
+                recordsUrl,
+                recordsTarget,
+                true,
+                containsAny(combinedText, "as-built", "site plan", "schematic", "layout", "system diagram") ? "strong" : "medium"
+        ));
+        rows.add(new CountyAvailabilityRowView(
+                "Inspection letter or transfer artifact",
+                containsAny(combinedText, "inspection", "transfer", "buyer", "sale", "closing", "certificate")
+                        ? "Buyer artifact likely relevant"
+                        : "Use buyer checklist",
+                containsAny(combinedText, "transfer", "sale", "closing") ? "Transfer check" : "Inspection check",
+                countyTransferArtifact(countyTransferCategory(countyPage, combinedText)),
+                containsAny(combinedText, "buyer", "transfer", "sale")
+                        ? "Open buyer workflow"
+                        : countyPage.recordsLabel(),
+                containsAny(combinedText, "buyer", "transfer", "sale")
+                        ? researchDataService.findPublicStateMoneyPage("buying-a-house-with-a-septic-system", state.slug())
+                                .map(page -> page.path(state.slug()))
+                                .orElse(stateRecordsPath)
+                        : recordsUrl,
+                containsAny(combinedText, "buyer", "transfer", "sale") ? "state_money_page" : recordsTarget,
+                !containsAny(combinedText, "buyer", "transfer", "sale"),
+                containsAny(combinedText, "inspection", "transfer", "buyer", "sale", "closing", "certificate") ? "strong" : "medium"
+        ));
+        rows.add(new CountyAvailabilityRowView(
+                "Repair, malfunction, or modification trail",
+                containsAny(combinedText, "repair", "malfunction", "failing", "violation", "modification", "alteration")
+                        ? "Repair trail flagged"
+                        : "Check before pricing",
+                "Risk gate",
+                countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText)),
+                countyPage.recordsLabel(),
+                recordsUrl,
+                recordsTarget,
+                true,
+                containsAny(combinedText, "repair", "malfunction", "failing", "violation", "modification", "alteration") ? "strong" : "medium"
+        ));
+        return rows;
+    }
+
+    private String countyRequestMethodLabel(CountyRecordsPage countyPage, String combinedText) {
+        if (countyPage.hasParcelAnchor() && containsAny(combinedText, "online", "portal", "search", "lookup", "gis")) {
+            return "Online search plus county file request";
+        }
+        if (containsAny(combinedText, "email", "@", "request form", "records request", "opra", "foia")) {
+            return "Records request or email";
+        }
+        if (containsAny(combinedText, "phone", "call")) {
+            return "Office verification required";
+        }
+        return "County records path first";
+    }
+
+    private String countyAvailabilityMethod(String combinedText) {
+        if (containsAny(combinedText, "online", "portal", "search", "lookup", "gis")) {
+            return "Search or portal";
+        }
+        if (containsAny(combinedText, "request form", "records request", "email", "opra", "foia")) {
+            return "Request form";
+        }
+        return "Office path";
+    }
+
+    private List<CountyRequestBuilderOptionView> countyRequestOptions(CountyRecordsPage countyPage, StateProfile state) {
+        String countyState = countyPage.countyName() + " County, " + state.stateCode();
+        String parcelPrompt = countyPage.hasParcelAnchor()
+                ? "I can provide the parcel, TMS, APN, owner, or address from " + countyPage.parcelAnchorLabel() + "."
+                : "I can provide the parcel, APN, owner, address, or legal description if your office needs a different identifier.";
+        List<String> records = countyPage.recordsToRequest() == null ? List.of() : countyPage.recordsToRequest().stream().limit(4).toList();
+        List<String> fallbackChecklist = records.isEmpty()
+                ? List.of("Parcel identifier", "Septic permit copy", "As-built or site plan", "Final approval or inspection note")
+                : records;
+        String quoteGate = countyWorkflowStructure(countyPage, state).quoteGate();
+
+        return List.of(
+                new CountyRequestBuilderOptionView(
+                        "buyer",
+                        "Buyer file",
+                        "Request a buyer-safe county file",
+                        countyState + " septic records request for buyer diligence",
+                        List.of(
+                                "Hello, I am checking the septic file for a property in " + countyState + " before relying on a seller, inspection, or quote story.",
+                                parcelPrompt,
+                                "Please let me know whether your office can provide the septic permit copy, as-built or site plan, final approval, inspection letter, repair history, and any transfer or sale-related record tied to the parcel.",
+                                "If another office owns part of the file, please tell me which office or portal should be checked next."
+                        ),
+                        fallbackChecklist,
+                        countyPage.recordsLabel(),
+                        countyPage.recordsUrl(),
+                        true
+                ),
+                new CountyRequestBuilderOptionView(
+                        "owner",
+                        "Owner repair",
+                        "Request the repair and modification trail",
+                        countyState + " septic repair or modification file check",
+                        List.of(
+                                "Hello, I am trying to verify the septic record trail for a property in " + countyState + " before discussing repair, replacement, or modification pricing.",
+                                parcelPrompt,
+                                "Please confirm whether the file shows the installed system layout, permit history, final approval or license to operate, repair permits, complaint history, or any requirement to apply before work begins.",
+                                quoteGate
+                        ),
+                        fallbackChecklist,
+                        countyPage.recordsLabel(),
+                        countyPage.recordsUrl(),
+                        true
+                ),
+                new CountyRequestBuilderOptionView(
+                        "contractor",
+                        "Contractor scope",
+                        "Request the scope-setting artifacts",
+                        countyState + " septic permit and as-built scope request",
+                        List.of(
+                                "Hello, I am preparing a septic scope for a property in " + countyState + " and need to confirm the official file before pricing or permitting assumptions are made.",
+                                parcelPrompt,
+                                "Please identify the record owner, the first artifact to pull, whether a permit closeout or final approval exists, and whether repair, alteration, bedroom-count, or site-review rules change the next step.",
+                                "The most useful response is the permit or approval file plus any as-built, layout, inspection note, or written no-record response."
+                        ),
+                        fallbackChecklist,
+                        countyPage.recordsLabel(),
+                        countyPage.recordsUrl(),
+                        true
                 )
         );
     }

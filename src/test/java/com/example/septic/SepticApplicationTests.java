@@ -1269,6 +1269,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Fort Bend County OSSF permits and packets")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit to construct from the license to operate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing-system modifications can require a new permit path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record availability matrix")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit file request builder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Parcel or property anchor")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buyer file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Environmental Health")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")));

@@ -2,16 +2,22 @@
 @import com.example.septic.data.model.SourceRecord
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.CountyAvailabilityRowView
+@import com.example.septic.web.CountyAvailabilitySummaryView
 @import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.CountyIntentRouteView
+@import com.example.septic.web.CountyRequestBuilderOptionView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param CountyRecordsPage countyPage
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
+@param CountyAvailabilitySummaryView countyAvailabilitySummary = null
+@param java.util.List<CountyAvailabilityRowView> countyAvailabilityRows = java.util.List.of()
 @param CountyWorkflowStructureView countyWorkflowStructure = null
 @param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
+@param java.util.List<CountyRequestBuilderOptionView> countyRequestOptions = java.util.List.of()
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param EditorialProfile editorialPreparedBy = null
@@ -206,6 +212,134 @@
     </section>
 
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
+
+    @if (countyAvailabilitySummary != null && !countyAvailabilityRows.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-data-console">
+                    <div class="county-data-console__header">
+                        <div>
+                            <span class="eyebrow">County record availability matrix</span>
+                            <h2>${countyPage.countyName()} file path, request method, and confidence score</h2>
+                            <p>${countyAvailabilitySummary.confidenceNote()}</p>
+                        </div>
+                        <div class="county-confidence-meter" style="--confidence-score: ${countyAvailabilitySummary.confidenceScore()}%;">
+                            <span class="county-confidence-meter__label">${countyAvailabilitySummary.confidenceLabel()}</span>
+                            <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
+                            <span class="county-confidence-meter__track"><span></span></span>
+                        </div>
+                    </div>
+
+                    <div class="county-data-strip" aria-label="County record route metrics">
+                        <div>
+                            <span>Primary route</span>
+                            <strong>${countyAvailabilitySummary.primaryRouteLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>Request method</span>
+                            <strong>${countyAvailabilitySummary.requestMethodLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>First artifact</span>
+                            <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>Evidence depth</span>
+                            <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
+                        </div>
+                    </div>
+
+                    <div class="county-availability-matrix" role="list" aria-label="County septic record availability rows">
+                        @for (var row : countyAvailabilityRows)
+                            <article class="county-availability-row county-availability-row--${row.statusTone()}" role="listitem">
+                                <div>
+                                    <span class="county-availability-row__label">${row.artifactLabel()}</span>
+                                    <strong>${row.availabilityLabel()}</strong>
+                                </div>
+                                <div>
+                                    <span>Method</span>
+                                    <strong>${row.methodLabel()}</strong>
+                                </div>
+                                <p>${row.evidenceNote()}</p>
+                                @if (row.external())
+                                    <a class="button button--secondary"
+                                       href="${row.actionUrl()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_availability_matrix"
+                                       data-track-target-type="${row.targetType()}">${row.actionLabel()}</a>
+                                @else
+                                    <a class="button button--secondary"
+                                       href="${row.actionUrl()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_availability_matrix"
+                                       data-track-target-type="${row.targetType()}">${row.actionLabel()}</a>
+                                @endif
+                            </article>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if (!countyRequestOptions.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-request-builder" data-choice-group>
+                    <div class="county-request-builder__intro">
+                        <span class="eyebrow">Permit file request builder</span>
+                        <h2>Turn the county page into the exact request you send.</h2>
+                        <p>Choose the job context, then send the county a request that asks for the artifacts that actually change pricing, buyer risk, or permit scope.</p>
+                    </div>
+                    <div class="county-request-builder__tabs" role="group" aria-label="Choose request context">
+                        @for (var option : countyRequestOptions)
+                            <button type="button"
+                                    class="county-request-builder__tab ${"buyer".equals(option.key()) ? "is-active" : ""}"
+                                    data-choice="${option.key()}"
+                                    aria-pressed="${"buyer".equals(option.key()) ? "true" : "false"}">${option.label()}</button>
+                        @endfor
+                    </div>
+                    @for (var option : countyRequestOptions)
+                        <article class="county-request-panel ${"buyer".equals(option.key()) ? "is-active" : ""}"
+                                 data-choice-panel="${option.key()}">
+                            <div class="county-request-panel__script">
+                                <span class="county-request-panel__label">Subject</span>
+                                <h3>${option.subjectLine()}</h3>
+                                @for (var line : option.scriptLines())
+                                    <p>${line}</p>
+                                @endfor
+                            </div>
+                            <div class="county-request-panel__checklist">
+                                <span class="county-request-panel__label">Attach or ask for</span>
+                                <ul class="detail-list">
+                                    @for (var item : option.checklist())
+                                        <li>${item}</li>
+                                    @endfor
+                                </ul>
+                                @if (option.external())
+                                    <a class="button button--primary"
+                                       href="${option.actionUrl()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_request_builder"
+                                       data-track-target-type="official_source">${option.actionLabel()}</a>
+                                @else
+                                    <a class="button button--primary"
+                                       href="${option.actionUrl()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_request_builder"
+                                       data-track-target-type="internal_page">${option.actionLabel()}</a>
+                                @endif
+                            </div>
+                        </article>
+                    @endfor
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--tight">
         <div class="container">
