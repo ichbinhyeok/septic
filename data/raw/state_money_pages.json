@@ -4137,10 +4137,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "NC",
-      "title": "North Carolina Septic Permit Lookup and County Records Search",
-      "metaDescription": "North Carolina septic permit lookup with county environmental health records, improvement permits, construction authorizations, operation permits, and as-built files.",
-      "introCopy": "North Carolina septic permit lookup should start with the county environmental health record because the useful file is often the improvement permit, construction authorization, operation permit, site sketch, repair record, or authorization history tied to the parcel.",
-      "uniqueAngle": "North Carolina is strongest when the page names the county records search, improvement permit, construction authorization, operation permit, and as-built file before the user gets pushed into a generic septic cost estimate.",
+      "title": "North Carolina Septic Permit Lookup & County Records",
+      "metaDescription": "Lookup North Carolina septic permits through county environmental health records: improvement permits, construction authorizations, operation permits, as-builts, and repair files.",
+      "introCopy": "North Carolina septic permit lookup should start with the county environmental health record because the useful file is often the improvement permit, construction authorization, operation permit, site sketch, repair record, or authorization history tied to the parcel. Use this page when the search is really for the county file owner, not another generic septic cost answer.",
+      "uniqueAngle": "North Carolina is strongest when the page names the county records search, improvement permit, construction authorization, operation permit, as-built file, and local health file owner before the user gets pushed into a generic septic cost estimate.",
       "targetReader": "Best for North Carolina buyers and owners who need to know whether the county file still supports the current septic story or whether the permit ladder already hints at a more complex next step.",
       "fitBullets": [
         "The project looks simple, but the county health file has not been reviewed yet. You also need the right records lookup or permit search path before the file story is trustworthy.",
@@ -11815,9 +11815,9 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "IN",
-      "title": "Indiana Septic Permit Lookup and County Records Search",
-      "metaDescription": "Indiana septic permit lookup with county health department records, site files, local board routing, sewer availability checks, and permit request steps.",
-      "introCopy": "Indiana septic permit lookup is usually a county records search. Start with the county or local health department file, then confirm whether the site file, permit history, local board record, or sewer-availability gate changes the property story before pricing.",
+      "title": "Indiana Septic Permit Lookup & County Records",
+      "metaDescription": "Lookup Indiana septic permits through county or local health records, site files, local board routing, sewer availability, and permit request steps.",
+      "introCopy": "Indiana septic permit lookup is usually a county records search. Start with the county or local health department file, then confirm whether the site file, permit history, local board record, or sewer-availability gate changes the property story before pricing. Use this page when the searcher needs the local file owner, not a broad statewide estimate.",
       "uniqueAngle": "Indiana is strongest when the searcher sees county health department records, septic permit lookup, site file, local board routing, and sewer-availability friction in the title path instead of a vague statewide records promise.",
       "targetReader": "Best for Indiana buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
@@ -14898,10 +14898,10 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "AL",
-      "title": "Alabama Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Alabama septic records lookup and permit search with county health department routing, Approval for Use and Permit to Install pulls, and county-file and soil-test friction.",
-      "introCopy": "Alabama records lookup starts with the permit search, county file, or official office path. Alabama records work is less about one statewide file and more about getting the right county health department file in hand. If the homeowner cannot surface the Approval for Use and Permit to Install, the low end is still just a planning story.",
-      "uniqueAngle": "Alabama's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Alabama records intent is strongest when the page connects county health department routing, Approval for Use and Permit to Install, and county-file and soil-test friction instead of pretending the state keeps one simple homeowner database.",
+      "title": "Alabama Septic Permit Lookup & County Records",
+      "metaDescription": "Lookup Alabama septic permits through county health records, Approval for Use files, Permit to Install history, soil tests, perc records, and county office routing.",
+      "introCopy": "Alabama septic permit lookup starts with the permit search, county file, or official office path. Alabama records work is less about one statewide file and more about getting the right county health department file in hand. If the homeowner cannot surface the Approval for Use, Permit to Install, and soil or perc test history, the low end is still just a planning story.",
+      "uniqueAngle": "Alabama's records lookup page is strongest when it makes the permit search, county file owner, Approval for Use, Permit to Install, soil test, and missing document explicit instead of pretending the state keeps one simple homeowner database.",
       "targetReader": "Best for Alabama buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
         "You know the parcel uses septic, but no one has confirmed which county health department actually controls the file. You also need the right records lookup or permit search path before the file story is trustworthy.",
@@ -16470,9 +16470,9 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "SC",
-      "title": "South Carolina Septic Permit Lookup, D-1740, and Records Request",
-      "metaDescription": "South Carolina septic permit lookup with SCDES records request, D-1740 history, permit copy, county office routing, and final inspection checks.",
-      "introCopy": "South Carolina septic permit lookup should make the SCDES records path, D-1740 history, permit copy, county or regional office, and final-inspection status explicit before the user trusts a quote or sale story.",
+      "title": "South Carolina Septic Permit Lookup & SCDES Records",
+      "metaDescription": "Lookup South Carolina septic permits with SCDES records, D-1740 history, permit copies, county or regional office routing, and final inspection checks.",
+      "introCopy": "South Carolina septic permit lookup should make the SCDES records path, D-1740 history, permit copy, county or regional office, and final-inspection status explicit before the user trusts a quote or sale story. Use this page when the searcher needs the permit copy path, not another broad septic overview.",
       "uniqueAngle": "South Carolina is the records page to click when the searcher needs SCDES permit copy language, D-1740 history, county office routing, and final-inspection risk instead of one vague state records answer.",
       "targetReader": "Best for South Carolina buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
@@ -20017,8 +20017,8 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "TN",
-      "title": "Tennessee Septic Records and TDEC Permit Lookup",
-      "metaDescription": "Tennessee septic records lookup for TDEC septic records, state of TN septic records, septic permit lookup, inspection letters, contract counties, and repair permits.",
+      "title": "Tennessee Septic Records Lookup & TDEC Permit Search",
+      "metaDescription": "Lookup Tennessee septic records, TDEC SSDS permit files, inspection letters, contract county routes, and repair-permit history before quotes.",
       "introCopy": "Tennessee septic records searches should start with the TDEC SSDS record search, the right regional contact, or a contract county office before anyone trusts a quote, deal step, or repair story. Use this page for TDEC septic records, state of TN septic records, and septic permit lookup when the useful click is the one that gets the permit file, inspection letter, and repair-permit trail in hand.",
       "uniqueAngle": "Tennessee is the records page to click when the searcher needs Tennessee septic records, TDEC septic records, state of TN septic records, septic permit lookup, contract county routing, permit file, inspection letter, and repair-permit friction on one path instead of another generic state overview.",
       "targetReader": "Best for Tennessee buyers, owners, agents, and builders searching for septic records, permit lookup, or the right file before trusting the next quote, deal step, or repair story.",

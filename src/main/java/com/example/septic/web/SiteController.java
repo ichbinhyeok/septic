@@ -4484,15 +4484,21 @@ The goal is to settle the permit path before we frame the project as a normal in
             SourceRecord primaryRecordsLookupSource,
             SourceRecord primaryLocalAuthoritySource
     ) {
+        if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return List.of();
+        }
+        String stateRecordsPath = stateMoneyPage.path(state.slug());
+        String recordsPath = primaryRecordsLookupSource != null
+                ? primaryRecordsLookupSource.url()
+                : stateRecordsPath;
+        String contactPath = primaryLocalAuthoritySource != null
+                ? primaryLocalAuthoritySource.url()
+                : recordsPath;
+        String recordsTargetType = primaryRecordsLookupSource != null ? "official_source" : "state_money_page";
+        String contactTargetType = primaryLocalAuthoritySource != null ? "official_source" : recordsTargetType;
+        String countyAnchorPath = stateRecordsPath + "#county-pages";
+
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && "TN".equals(state.stateCode())) {
-            String recordsPath = primaryRecordsLookupSource != null
-                    ? primaryRecordsLookupSource.url()
-                    : "/septic-records-checklist/tennessee/";
-            String contactPath = primaryLocalAuthoritySource != null
-                    ? primaryLocalAuthoritySource.url()
-                    : recordsPath;
-            String recordsTargetType = primaryRecordsLookupSource != null ? "official_source" : "state_money_page";
-            String contactTargetType = primaryLocalAuthoritySource != null ? "official_source" : recordsTargetType;
             return List.of(
                     new SearchIntentOpportunityView(
                             "tennessee-septic-records",
@@ -4518,7 +4524,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "State of TN septic records",
                             "Use the state route to identify the permit owner, then jump into the county pages when the search needs a local file owner, parcel clue, or inspection-letter path.",
                             "Open Tennessee county routes",
-                            "/septic-records-checklist/tennessee/#county-pages",
+                            countyAnchorPath,
                             "page_anchor"
                     ),
                     new SearchIntentOpportunityView(
@@ -4532,7 +4538,145 @@ The goal is to settle the permit path before we frame the project as a normal in
                     )
             );
         }
-        return List.of();
+
+        return switch (state.stateCode()) {
+            case "NC" -> List.of(
+                    new SearchIntentOpportunityView(
+                            "north-carolina-septic-permit-lookup",
+                            "Permit lookup",
+                            "North Carolina septic permit lookup",
+                            "Start with the county environmental health file and confirm the improvement permit, construction authorization, operation permit, site sketch, or repair record tied to the parcel.",
+                            "Open North Carolina records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "north-carolina-county-septic-records",
+                            "County records",
+                            "North Carolina county septic records",
+                            "Use this when the search is really about the local health department file owner, not a broad statewide cost page.",
+                            "Open county records routes",
+                            countyAnchorPath,
+                            "page_anchor"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "north-carolina-as-built-records",
+                            "As-built file",
+                            "North Carolina septic as-built and permit file",
+                            "Pull the as-built, authorization history, and operation record before trusting a buyer story, addition plan, repair quote, or replacement estimate.",
+                            "Open permit records request guide",
+                            "/septic-permit-records-request/",
+                            "related_internal"
+                    )
+            );
+            case "IN" -> List.of(
+                    new SearchIntentOpportunityView(
+                            "indiana-septic-permit-lookup",
+                            "Permit lookup",
+                            "Indiana septic permit lookup",
+                            "Start with the county or local health department file, then confirm the site file, local board record, and sewer-availability gate before pricing the next step.",
+                            "Open Indiana records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "indiana-county-septic-records",
+                            "County records",
+                            "Indiana county septic records",
+                            "Use this when the parcel location is known and the useful click is the local file owner, not another statewide overview.",
+                            "Open county records routes",
+                            countyAnchorPath,
+                            "page_anchor"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "indiana-septic-site-file",
+                            "Site file",
+                            "Indiana septic site file and local board record",
+                            "Look for the site file, permit history, local board path, and sewer-availability note before trusting a buyer, inspection, or replacement story.",
+                            "Open as-built records guide",
+                            "/septic-as-built-records/",
+                            "related_internal"
+                    )
+            );
+            case "SC" -> List.of(
+                    new SearchIntentOpportunityView(
+                            "south-carolina-septic-permit-lookup",
+                            "Permit lookup",
+                            "South Carolina septic permit lookup",
+                            "Start with SCDES routing, the permit copy, D-1740 history, and final-inspection status before treating the system story as complete.",
+                            "Open South Carolina records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "south-carolina-scdes-records",
+                            "SCDES records",
+                            "SCDES septic records and permit copy",
+                            "Use this when the searcher needs the county or regional contact that can confirm the permit copy and D-1740 file.",
+                            "Open SCDES contact path",
+                            contactPath,
+                            contactTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "south-carolina-d1740-file",
+                            "D-1740 file",
+                            "South Carolina D-1740 septic file",
+                            "Match the D-1740 application, permit copy, final inspection, and parcel story before trusting a sale or replacement quote.",
+                            "Open permit records request guide",
+                            "/septic-permit-records-request/",
+                            "related_internal"
+                    )
+            );
+            case "AL" -> List.of(
+                    new SearchIntentOpportunityView(
+                            "alabama-septic-permit-lookup",
+                            "Permit lookup",
+                            "Alabama septic permit lookup",
+                            "Start with the county health department file, then confirm the Permit to Install, Approval for Use, and any soil or perc test history tied to the parcel.",
+                            "Open Alabama records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "alabama-county-septic-records",
+                            "County records",
+                            "Alabama county septic records",
+                            "Use this when the useful answer is the county office holding the permit copy, Approval for Use, or old system diagram.",
+                            "Open county records routes",
+                            countyAnchorPath,
+                            "page_anchor"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "alabama-perc-test-records",
+                            "Perc test file",
+                            "Alabama perc test and soil record",
+                            "Confirm whether soil testing or a percolation test is already in the file before treating the low-end estimate as realistic.",
+                            "Open Alabama perc cost path",
+                            "/perc-test-cost/alabama/",
+                            "state_money_page"
+                    )
+            );
+            default -> List.of(
+                    new SearchIntentOpportunityView(
+                            state.slug() + "-septic-permit-lookup",
+                            "Permit lookup",
+                            state.stateName() + " septic permit lookup",
+                            "Start with the official records or local authority path, then confirm the permit file before trusting a quote, buyer story, or repair plan.",
+                            "Open records path",
+                            recordsPath,
+                            recordsTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            state.slug() + "-county-septic-records",
+                            "County records",
+                            state.stateName() + " county septic records",
+                            "Use this when the county file owner, parcel clue, or local records request is the real next step.",
+                            "Open county records routes",
+                            countyAnchorPath,
+                            "page_anchor"
+                    )
+            );
+        };
     }
 
     private StateMoneyPrimaryAction stateMoneyPrimaryAction(

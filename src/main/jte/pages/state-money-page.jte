@@ -150,6 +150,18 @@
                     <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
                 </div>
                 <p class="lede state-money-intro-copy">${stateMoneyPage.introCopy()}</p>
+                @if (!searchIntentOpportunities.isEmpty())
+                    <div class="quick-link-strip" aria-label="${state.stateName()} records search shortcuts">
+                        <span class="quick-link-strip__label">Search match</span>
+                        @for (var opportunity : searchIntentOpportunities)
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="#${opportunity.anchorId()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_money_hero_search_match"
+                               data-track-target-type="page_anchor">${opportunity.heading()}</a>
+                        @endfor
+                    </div>
+                @endif
                 @if (!featuredInternalLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Fast next steps">
                         <span class="quick-link-strip__label">Fast next steps</span>
@@ -312,11 +324,11 @@
 
             @if (!searchIntentOpportunities.isEmpty())
                 <section class="search-intent-board" aria-label="Common search intents this page answers">
-                    <div class="search-intent-board__header">
-                        <span class="eyebrow">Common records searches</span>
-                        <h2>Use the Tennessee search phrase that matches the job.</h2>
-                        <p>Each route below resolves a different records search into the same practical next step: identify the file owner, pull the permit trail, and then decide whether the record is strong enough to trust.</p>
-                    </div>
+                        <div class="search-intent-board__header">
+                            <span class="eyebrow">Common records searches</span>
+                            <h2>Use the ${state.stateName()} search phrase that matches the job.</h2>
+                            <p>Each route below resolves a different records search into the same practical next step: identify the file owner, pull the permit trail, and then decide whether the record is strong enough to trust.</p>
+                        </div>
                     <div class="search-intent-board__grid">
                         @for (var opportunity : searchIntentOpportunities)
                             <article class="search-intent-card" id="${opportunity.anchorId()}">
