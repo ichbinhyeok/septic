@@ -2126,6 +2126,198 @@ h4 {
     justify-content: center;
 }
 
+.state-records-response {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+    padding: 22px;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(235, 245, 239, 0.78)),
+        var(--surface-strong);
+    box-shadow: var(--shadow-soft);
+}
+
+.state-records-response__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
+    gap: 18px;
+    align-items: start;
+}
+
+.state-records-response__head h2 {
+    max-width: 25ch;
+    margin-top: 8px;
+    font-size: clamp(1.35rem, 2.3vw, 2.2rem);
+    line-height: 1.05;
+}
+
+.state-records-response__head p {
+    max-width: 72ch;
+    margin: 8px 0 0;
+}
+
+.state-records-response__priority {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid rgba(20, 34, 32, 0.11);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.74);
+}
+
+.state-records-response__priority span,
+.state-records-response__rows span,
+.state-records-response__route-label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.state-records-response__priority strong {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.state-records-response__queries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.state-records-response__queries span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 11px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 850;
+    line-height: 1.15;
+}
+
+.state-records-response__queries span:first-child {
+    border-color: rgba(223, 244, 106, 0.75);
+    background: #dff46a;
+}
+
+.state-records-response__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(290px, 0.82fr);
+    gap: 14px;
+}
+
+.state-records-response__rows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.state-records-response__rows article {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.state-records-response__rows p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.state-records-response__route {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    min-width: 0;
+    padding: 18px;
+    border-radius: 20px;
+    background:
+        linear-gradient(135deg, rgba(20, 34, 32, 0.96), rgba(41, 72, 67, 0.92)),
+        var(--text);
+    color: #f7fbf7;
+}
+
+.state-records-response__route-label {
+    color: #dff46a;
+}
+
+.state-records-response__route h3 {
+    color: #fff;
+    font-size: 1.15rem;
+    line-height: 1.08;
+}
+
+.state-records-response__route p {
+    margin: 0;
+    color: rgba(247, 251, 247, 0.76);
+}
+
+.state-records-response__route-list {
+    display: grid;
+    gap: 8px;
+}
+
+.state-records-response__route-list a {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.state-records-response__route-list a:hover {
+    transform: translateY(-1px);
+    border-color: rgba(223, 244, 106, 0.42);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.state-records-response__route-list strong {
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.14;
+}
+
+.state-records-response__route-list span {
+    display: -webkit-box;
+    overflow: hidden;
+    color: rgba(247, 251, 247, 0.68);
+    font-size: 0.78rem;
+    line-height: 1.34;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.state-records-response__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.state-records-response__actions .button {
+    min-height: 42px;
+}
+
 .search-intent-board {
     display: grid;
     gap: 16px;
@@ -4167,6 +4359,9 @@ input[type="checkbox"] {
     .coverage-grid,
     .coverage-summary__stats,
     .trust-ops-priority-routes,
+    .state-records-response__head,
+    .state-records-response__body,
+    .state-records-response__rows,
     .state-grid,
     .detail-grid,
     .result-grid,
@@ -4799,6 +4994,36 @@ input[type="checkbox"] {
         width: 100%;
         min-width: 0;
         margin-top: 2px;
+    }
+
+    .state-records-response {
+        padding: 14px;
+        border-radius: 22px;
+    }
+
+    .state-records-response__head h2 {
+        max-width: 22ch;
+        font-size: 1.24rem;
+    }
+
+    .state-records-response__head p {
+        font-size: 0.92rem;
+    }
+
+    .state-records-response__priority,
+    .state-records-response__rows article,
+    .state-records-response__route {
+        border-radius: 16px;
+    }
+
+    .state-records-response__queries span {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .state-records-response__actions .button {
+        width: 100%;
+        justify-content: center;
     }
 
     .search-intent-board {

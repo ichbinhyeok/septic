@@ -7,6 +7,7 @@
 @import com.example.septic.web.StateCountyWorkflowSynthesisView
 @import com.example.septic.web.StateCostScopeView
 @import com.example.septic.web.SearchIntentOpportunityView
+@import com.example.septic.web.StateRecordsSearchResponseView
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -28,6 +29,7 @@
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
+@param StateRecordsSearchResponseView stateRecordsSearchResponse = null
 @param java.util.List<SearchIntentOpportunityView> searchIntentOpportunities = java.util.List.of()
 @param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
 @param com.example.septic.web.StateWorkflowDecisionView workflowDecision = null
@@ -366,6 +368,69 @@
                                data-track-source-context="state_records_proof_county"
                                data-track-target-type="internal_page">Open county records guide</a>
                         </article>
+                    </div>
+                </section>
+            @endif
+
+            @if (stateRecordsSearchResponse != null)
+                <section class="state-records-response" aria-label="${state.stateName()} records search-response console">
+                    <div class="state-records-response__head">
+                        <div>
+                            <span class="eyebrow">${stateRecordsSearchResponse.badgeLabel()}</span>
+                            <h2>${stateRecordsSearchResponse.heading()}</h2>
+                            <p>${stateRecordsSearchResponse.summary()}</p>
+                        </div>
+                        <div class="state-records-response__priority">
+                            <span>Priority lane</span>
+                            <strong>${stateRecordsSearchResponse.priorityLabel()}</strong>
+                        </div>
+                    </div>
+
+                    <div class="state-records-response__queries" aria-label="Search phrases this page answers">
+                        @for (var query : stateRecordsSearchResponse.queryExamples())
+                            <span>${query}</span>
+                        @endfor
+                    </div>
+
+                    <div class="state-records-response__body">
+                        <div class="state-records-response__rows">
+                            @for (var row : stateRecordsSearchResponse.responseRows())
+                                <article>
+                                    <span>${row.label()}</span>
+                                    <p>${row.value()}</p>
+                                </article>
+                            @endfor
+                        </div>
+
+                        <aside class="state-records-response__route" aria-label="${state.stateName()} county route handoff">
+                            <span class="state-records-response__route-label">County route handoff</span>
+                            <h3>Do not make county-known searches restart.</h3>
+                            @if (!stateRecordsSearchResponse.countyLinks().isEmpty())
+                                <div class="state-records-response__route-list">
+                                    @for (var link : stateRecordsSearchResponse.countyLinks())
+                                        <a href="${link.path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_records_response_county_handoff"
+                                           data-track-target-type="county_records_page">
+                                            <strong>${link.compactTitle()}</strong>
+                                            <span>${link.note()}</span>
+                                        </a>
+                                    @endfor
+                                </div>
+                            @else
+                                <p>Keep the state records path tight, then send county-known searches into the county records index.</p>
+                            @endif
+                        </aside>
+                    </div>
+
+                    <div class="state-records-response__actions" aria-label="${state.stateName()} records next actions">
+                        @for (var link : stateRecordsSearchResponse.actionLinks())
+                            <a class="button button--secondary"
+                               href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_response_action"
+                               data-track-target-type="internal_page">${link.title()}</a>
+                        @endfor
                     </div>
                 </section>
             @endif
