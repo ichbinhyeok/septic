@@ -1028,13 +1028,23 @@
                         </div>
 
                         <div class="records-request-builder__output">
-                            <span>Copy-ready request</span>
+                            <div class="records-request-builder__output-head">
+                                <div>
+                                    <span>Copy-ready request</span>
+                                    <strong data-records-request-filename>septic-records-request.txt</strong>
+                                </div>
+                                <em data-records-request-status aria-live="polite">Ready to copy or download</em>
+                            </div>
                             <p data-records-request-preview></p>
                             <textarea data-records-request-output readonly rows="14"></textarea>
+                            <p class="records-request-builder__privacy">Downloads are generated in your browser as a plain-text file. Nothing is uploaded or stored by SepticPath.</p>
                             <div class="records-request-builder__actions">
                                 <button class="button button--primary"
                                         type="button"
                                         data-records-request-copy>Copy request</button>
+                                <button class="button button--secondary"
+                                        type="button"
+                                        data-records-request-download>Download .txt</button>
                                 <a class="button button--secondary"
                                    href="/septic-records-by-county/"
                                    data-track-click="nav"

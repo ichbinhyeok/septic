@@ -34,6 +34,49 @@
         sendEvent("/events/nav-click", payload);
     }
 
+    function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+        }
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.top = "-1000px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand("copy");
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
+        } finally {
+            document.body.removeChild(textarea);
+        }
+    }
+
+    function downloadText(filename, text) {
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename || "septicpath-note.txt";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    function setTemporaryStatus(element, message, resetMessage) {
+        if (!element) {
+            return;
+        }
+        element.textContent = message;
+        window.setTimeout(() => {
+            element.textContent = resetMessage;
+        }, 1800);
+    }
+
     function setupWebVitalTracking() {
         if (!("PerformanceObserver" in window) || !Array.isArray(PerformanceObserver.supportedEntryTypes)) {
             return;
@@ -620,35 +663,39 @@
             }
         }
 
-        function copyText(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                return navigator.clipboard.writeText(text);
-            }
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.setAttribute("readonly", "");
-            textarea.style.position = "fixed";
-            textarea.style.top = "-1000px";
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand("copy");
-                return Promise.resolve();
-            } catch (error) {
-                return Promise.reject(error);
-            } finally {
-                document.body.removeChild(textarea);
-            }
+        function slugifyFilePart(value) {
+            return (value || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "")
+                .slice(0, 48);
+        }
+
+        function requestFilename(builder) {
+            const county = slugifyFilePart(valueOf(builder, "[data-request-county]"));
+            const address = slugifyFilePart(valueOf(builder, "[data-request-address]"));
+            const recordSelect = builder.querySelector("[data-request-record]");
+            const record = slugifyFilePart(labelOf(recordSelect).replace(/\band\b/g, " "));
+            return [county, address, record || "septic-records-request"].filter(Boolean).join("-") + ".txt";
         }
 
         builders.forEach((builder) => {
             const inputs = Array.from(builder.querySelectorAll("input, select"));
             const copyButton = builder.querySelector("[data-records-request-copy]");
+            const downloadButton = builder.querySelector("[data-records-request-download]");
+            const filenameLabel = builder.querySelector("[data-records-request-filename]");
+            const status = builder.querySelector("[data-records-request-status]");
             const output = builder.querySelector("[data-records-request-output]");
 
             inputs.forEach((input) => {
-                input.addEventListener("input", () => updateBuilder(builder));
-                input.addEventListener("change", () => updateBuilder(builder));
+                const refresh = () => {
+                    updateBuilder(builder);
+                    if (filenameLabel) {
+                        filenameLabel.textContent = requestFilename(builder);
+                    }
+                };
+                input.addEventListener("input", refresh);
+                input.addEventListener("change", refresh);
             });
 
             if (copyButton instanceof HTMLButtonElement && output instanceof HTMLTextAreaElement) {
@@ -658,9 +705,11 @@
                         await copyText(output.value);
                         copyButton.textContent = "Request copied";
                         copyButton.classList.add("is-copied");
+                        setTemporaryStatus(status, "Copied to clipboard", "Ready to copy or download");
                     } catch (_error) {
                         copyButton.textContent = "Copy failed";
                         copyButton.classList.add("is-copy-failed");
+                        setTemporaryStatus(status, "Copy failed. Select the text manually.", "Ready to copy or download");
                     }
                     window.setTimeout(() => {
                         copyButton.textContent = original;
@@ -669,11 +718,83 @@
                 });
             }
 
+            if (downloadButton instanceof HTMLButtonElement && output instanceof HTMLTextAreaElement) {
+                downloadButton.addEventListener("click", () => {
+                    const filename = requestFilename(builder);
+                    downloadText(filename, output.value);
+                    downloadButton.textContent = "Downloaded";
+                    downloadButton.classList.add("is-copied");
+                    setTemporaryStatus(status, `Downloaded ${filename}`, "Ready to copy or download");
+                    window.setTimeout(() => {
+                        downloadButton.textContent = "Download .txt";
+                        downloadButton.classList.remove("is-copied");
+                    }, 1800);
+                });
+            }
+
             updateBuilder(builder);
+            if (filenameLabel) {
+                filenameLabel.textContent = requestFilename(builder);
+            }
         });
     }
 
     setupRecordsRequestBuilders();
+
+    function setupPacketNoteActions() {
+        const packets = Array.from(document.querySelectorAll("[data-packet-note]"));
+        if (!packets.length) {
+            return;
+        }
+
+        packets.forEach((packet) => {
+            const body = packet.querySelector("[data-packet-note-body]");
+            const copyButton = packet.querySelector("[data-packet-note-copy]");
+            const downloadButton = packet.querySelector("[data-packet-note-download]");
+            const status = packet.querySelector("[data-packet-note-status]");
+
+            function noteText() {
+                const subject = packet.querySelector(".packet-copy__subject")?.textContent?.trim() || "";
+                const message = body?.textContent?.trim() || "";
+                return [subject, "", message].filter(Boolean).join("\n");
+            }
+
+            if (copyButton instanceof HTMLButtonElement) {
+                copyButton.addEventListener("click", async () => {
+                    const original = copyButton.textContent;
+                    try {
+                        await copyText(noteText());
+                        copyButton.textContent = "Note copied";
+                        copyButton.classList.add("is-copied");
+                        setTemporaryStatus(status, "Copied to clipboard", "Ready");
+                    } catch (_error) {
+                        copyButton.textContent = "Copy failed";
+                        copyButton.classList.add("is-copy-failed");
+                        setTemporaryStatus(status, "Copy failed. Select the note manually.", "Ready");
+                    }
+                    window.setTimeout(() => {
+                        copyButton.textContent = original;
+                        copyButton.classList.remove("is-copied", "is-copy-failed");
+                    }, 1800);
+                });
+            }
+
+            if (downloadButton instanceof HTMLButtonElement) {
+                downloadButton.addEventListener("click", () => {
+                    downloadText("septicpath-workflow-packet.txt", noteText());
+                    downloadButton.textContent = "Downloaded";
+                    downloadButton.classList.add("is-copied");
+                    setTemporaryStatus(status, "Downloaded septicpath-workflow-packet.txt", "Ready");
+                    window.setTimeout(() => {
+                        downloadButton.textContent = "Download .txt";
+                        downloadButton.classList.remove("is-copied");
+                    }, 1800);
+                });
+            }
+        });
+    }
+
+    setupPacketNoteActions();
 
     function setupShareActions() {
         const buttons = Array.from(document.querySelectorAll("[data-share-route]"));

@@ -99,10 +99,20 @@
 
     <section class="section section--tight" id="send-note">
         <div class="container detail-grid">
-            <article class="detail-card detail-card--full">
-                <h2>Share-ready note</h2>
+            <article class="detail-card detail-card--full packet-copy-card" data-packet-note>
+                <div class="packet-copy-card__head">
+                    <div>
+                        <span class="eyebrow">Share-ready note</span>
+                        <h2>Copy or download this handoff note.</h2>
+                    </div>
+                    <em data-packet-note-status aria-live="polite">Ready</em>
+                </div>
                 <p class="packet-copy__subject"><strong>Subject:</strong> ${packet.shareSubject()}</p>
-                <pre class="packet-copy">${packet.shareBody()}</pre>
+                <pre class="packet-copy" data-packet-note-body>${packet.shareBody()}</pre>
+                <div class="packet-copy__actions">
+                    <button class="button button--primary" type="button" data-packet-note-copy>Copy note</button>
+                    <button class="button button--secondary" type="button" data-packet-note-download>Download .txt</button>
+                </div>
             </article>
         </div>
     </section>
