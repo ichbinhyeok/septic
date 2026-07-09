@@ -1346,6 +1346,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
         model.addAttribute("countyAvailabilitySummary", countyAvailabilitySummary(countyPage, state, sources, lastReviewedAt));
         model.addAttribute("countyAvailabilityRows", countyAvailabilityRows(countyPage, state));
+        model.addAttribute("countyOfficialFilePathRows", countyOfficialFilePathRows(countyPage, state, sources));
         model.addAttribute("countyRequestOptions", countyRequestOptions(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
@@ -1449,6 +1450,55 @@ The goal is to settle the permit path before we frame the project as a normal in
                 queryExamples,
                 dossierRows,
                 actionLinks
+        );
+    }
+
+    private List<CountyWorkflowFieldView> countyOfficialFilePathRows(
+            CountyRecordsPage countyPage,
+            StateProfile state,
+            List<SourceRecord> sources
+    ) {
+        String combinedText = countyCombinedText(countyPage);
+        SourceRecord primarySource = sources == null ? null : sources.stream().findFirst().orElse(null);
+        String sourceOwner = primarySource == null ? countyPage.officeLabel() : sourceDisplayName(primarySource);
+        String firstArtifact = countyFirstArtifact(countyPage);
+        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
+        String lookupClue = countyPage.hasParcelAnchor()
+                ? "Start by capturing " + countyPage.parcelAnchorLabel()
+                        + ", then carry that parcel, TMS, APN, owner, or address into the septic file request."
+                : "Carry the street address, parcel ID, owner name, legal description, subdivision, or prior permit clue into the county records route.";
+        String ownerNote = sourceOwner + ". Verify whether this office owns the full septic file or only the first handoff before treating the result as complete.";
+        String requestNote = requestMethod + ": open " + countyPage.recordsLabel()
+                + ", ask for " + firstArtifact
+                + ", and keep the state route nearby if the county sends part of the file to a regional or delegated office.";
+        String fallbackNote = "If the search returns no match, ask for a written no-record response and the next owning office before assuming the property has no septic history.";
+
+        return List.of(
+                new CountyWorkflowFieldView(
+                        "File owner",
+                        ownerNote
+                ),
+                new CountyWorkflowFieldView(
+                        "Lookup clue",
+                        lookupClue
+                ),
+                new CountyWorkflowFieldView(
+                        "First artifact",
+                        firstArtifact
+                ),
+                new CountyWorkflowFieldView(
+                        "Request method",
+                        requestNote
+                ),
+                new CountyWorkflowFieldView(
+                        "No-record fallback",
+                        fallbackNote
+                ),
+                new CountyWorkflowFieldView(
+                        "State handoff",
+                        "If the county route stalls, move back to the " + state.stateName()
+                                + " records page with the same parcel clues instead of restarting with a broad web search."
+                )
         );
     }
 
@@ -1606,6 +1656,13 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
         model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
         model.addAttribute("stateRecordsSearchResponse", stateRecordsSearchResponse);
+        model.addAttribute("stateOfficialFilePathRows", stateOfficialFilePathRows(
+                stateMoneyPage,
+                state,
+                primaryRecordsLookupSource,
+                primaryLocalAuthoritySource,
+                countyWorkflowSynthesis
+        ));
         model.addAttribute("searchIntentOpportunities", searchIntentOpportunities(
                 stateMoneyPage,
                 state,
@@ -5043,6 +5100,68 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
     }
 
+    private List<CountyWorkflowFieldView> stateOfficialFilePathRows(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            SourceRecord primaryRecordsLookupSource,
+            SourceRecord primaryLocalAuthoritySource,
+            StateCountyWorkflowSynthesisView countyWorkflowSynthesis
+    ) {
+        if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return List.of();
+        }
+
+        SourceRecord fileSource = primaryRecordsLookupSource != null
+                ? primaryRecordsLookupSource
+                : primaryLocalAuthoritySource;
+        String officialOwner = fileSource == null
+                ? state.agencyName()
+                : sourceDisplayName(fileSource);
+        String firstArtifact = firstNonBlank(
+                countyWorkflowSynthesis == null || countyWorkflowSynthesis.firstArtifacts().isEmpty()
+                        ? null
+                        : countyWorkflowSynthesis.firstArtifacts().get(0),
+                firstOf(state.recordsToRequest()),
+                "Permit copy, as-built, final approval, inspection letter, repair history, or written no-record response."
+        );
+        String countyDrop = firstNonBlank(
+                countyWorkflowSynthesis == null || countyWorkflowSynthesis.countyDropTriggers().isEmpty()
+                        ? null
+                        : countyWorkflowSynthesis.countyDropTriggers().get(0),
+                "When the county is known, move from the state route into the county record page before sending the visitor to another broad search."
+        );
+        String requestMethod = primaryRecordsLookupSource != null
+                ? "Start with " + primaryRecordsLookupSource.title() + ", then use county or regional contact wording if the portal does not show the parcel file."
+                : "Start with the official state or local authority route, then ask which county, regional, or delegated office owns old septic files.";
+
+        return List.of(
+                new CountyWorkflowFieldView(
+                        "File owner",
+                        officialOwner + ". Treat this as the first verification lane, not as proof that every county file is online."
+                ),
+                new CountyWorkflowFieldView(
+                        "First artifact",
+                        firstArtifact
+                ),
+                new CountyWorkflowFieldView(
+                        "Request method",
+                        requestMethod
+                ),
+                new CountyWorkflowFieldView(
+                        "County drop trigger",
+                        countyDrop
+                ),
+                new CountyWorkflowFieldView(
+                        "No-record fallback",
+                        "If the lookup has no match, ask for a written no-record response and the office that owns archived, regional, contract-county, or pre-digital septic files."
+                ),
+                new CountyWorkflowFieldView(
+                        "Address clue",
+                        "Carry address, parcel/APN/TMS, owner, legal description, subdivision, and any prior permit number into the next request."
+                )
+        );
+    }
+
     private List<String> stateRecordsQueryExamples(StateProfile state) {
         List<String> observedQueries = stateRecordsResponseQueries(state);
         if (observedQueries != null && !observedQueries.isEmpty()) {
@@ -5894,6 +6013,22 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .filter(this::hasText)
                 .findFirst()
                 .orElse(null);
+    }
+
+    private String sourceDisplayName(SourceRecord source) {
+        if (source == null) {
+            return "";
+        }
+        if (hasText(source.agencyName()) && hasText(source.title())) {
+            return source.agencyName() + " | " + source.title();
+        }
+        if (hasText(source.title())) {
+            return source.title();
+        }
+        if (hasText(source.agencyName())) {
+            return source.agencyName();
+        }
+        return "Official source";
     }
 
     private List<String> safeList(List<String> values) {

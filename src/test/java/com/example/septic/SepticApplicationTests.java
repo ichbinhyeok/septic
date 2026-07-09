@@ -1568,6 +1568,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("ETJ check plus the official-record trail and permit-packet story")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("ETJ")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("23 cities")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official county file path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official county file route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request wording")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Texas guide")));
 	}
@@ -6554,6 +6558,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records proof ladder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open address search guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official state file path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Owner, artifact, request, fallback")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official records source")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address clue")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Blount County records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Hamilton County records")))

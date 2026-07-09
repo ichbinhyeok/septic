@@ -5,6 +5,7 @@
 @import com.example.septic.web.CountyAvailabilityRowView
 @import com.example.septic.web.CountyAvailabilitySummaryView
 @import com.example.septic.web.CountyWorkflowStructureView
+@import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.CountyIntentRouteView
 @import com.example.septic.web.CountyRequestBuilderOptionView
 @import com.example.septic.web.CountySearchResponseView
@@ -20,6 +21,7 @@
 @param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
 @param java.util.List<CountyRequestBuilderOptionView> countyRequestOptions = java.util.List.of()
 @param CountySearchResponseView countySearchResponse = null
+@param java.util.List<CountyWorkflowFieldView> countyOfficialFilePathRows = java.util.List.of()
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
@@ -412,6 +414,70 @@
                                data-track-source-context="county_search_response_handoff"
                                data-track-target-type="internal_page">${link.title()}</a>
                         @endfor
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if (!countyOfficialFilePathRows.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-response-dossier" aria-label="${countyPage.countyName()} official county file path">
+                    <div class="county-response-dossier__intro">
+                        <span class="eyebrow">Official county file path</span>
+                        <h2>Use this ${countyPage.countyName()} file path before another broad search.</h2>
+                        <p>This table turns the county route into a work surface: who owns the file, what clue to carry, what artifact to request first, and what to ask for when the lookup has no result.</p>
+                        <div class="county-response-dossier__queries" aria-label="County file path signals">
+                            <span>File owner</span>
+                            <span>First artifact</span>
+                            <span>Request method</span>
+                            <span>No-record fallback</span>
+                        </div>
+                    </div>
+
+                    <div class="county-response-dossier__rows" role="list" aria-label="Official county file path rows">
+                        @for (var row : countyOfficialFilePathRows)
+                            <article role="listitem">
+                                <span>${row.label()}</span>
+                                <p>${row.value()}</p>
+                            </article>
+                        @endfor
+                    </div>
+
+                    <div class="county-response-dossier__actions" aria-label="${countyPage.countyName()} official file path actions">
+                        <a class="button button--primary"
+                           href="${countyPage.recordsUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_official_file_path_records"
+                           data-track-target-type="official_source">Open official county file route</a>
+                        @if (countyPage.hasParcelAnchor())
+                            <a class="button button--secondary"
+                               href="${countyPage.parcelAnchorUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="county_official_file_path_parcel"
+                               data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
+                        @else
+                            <a class="button button--secondary"
+                               href="/septic-permit-search-by-address/"
+                               data-track-click="nav"
+                               data-track-source-context="county_official_file_path_address"
+                               data-track-target-type="internal_page">Open address-search fallback</a>
+                        @endif
+                        <a class="button button--secondary"
+                           href="/septic-permit-records-request/"
+                           data-track-click="nav"
+                           data-track-source-context="county_official_file_path_request"
+                           data-track-target-type="internal_page">Open records request wording</a>
+                        <a class="button button--secondary"
+                           href="/septic-records-checklist/${state.slug()}/"
+                           data-track-click="nav"
+                           data-track-source-context="county_official_file_path_state"
+                           data-track-target-type="state_money_page">Open ${state.stateName()} records route</a>
                     </div>
                 </div>
             </div>

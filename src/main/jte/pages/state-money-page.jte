@@ -3,6 +3,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.StateMoneyPrimaryAction
 @import com.example.septic.web.StateCountyWorkflowSynthesisView
 @import com.example.septic.web.StateCostScopeView
@@ -30,6 +31,7 @@
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param StateRecordsSearchResponseView stateRecordsSearchResponse = null
+@param java.util.List<CountyWorkflowFieldView> stateOfficialFilePathRows = java.util.List.of()
 @param java.util.List<SearchIntentOpportunityView> searchIntentOpportunities = java.util.List.of()
 @param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
 @param com.example.septic.web.StateWorkflowDecisionView workflowDecision = null
@@ -368,6 +370,84 @@
                                data-track-source-context="state_records_proof_county"
                                data-track-target-type="internal_page">Open county records guide</a>
                         </article>
+                    </div>
+                </section>
+            @endif
+
+            @if (!stateOfficialFilePathRows.isEmpty())
+                <section class="state-records-response" aria-label="${state.stateName()} official state file path">
+                    <div class="state-records-response__head">
+                        <div>
+                            <span class="eyebrow">Official state file path</span>
+                            <h2>Use the official file route before another broad search.</h2>
+                            <p>This is the records path to follow when the visitor needs a permit copy, as-built, inspection letter, repair trail, or written no-record response tied to a parcel.</p>
+                        </div>
+                        <div class="state-records-response__priority">
+                            <span>Verification set</span>
+                            <strong>Owner, artifact, request, fallback</strong>
+                        </div>
+                    </div>
+
+                    <div class="state-records-response__body">
+                        <div class="state-records-response__rows">
+                            @for (var row : stateOfficialFilePathRows)
+                                <article>
+                                    <span>${row.label()}</span>
+                                    <p>${row.value()}</p>
+                                </article>
+                            @endfor
+                        </div>
+
+                        <aside class="state-records-response__route" aria-label="${state.stateName()} official source and fallback links">
+                            <span class="state-records-response__route-label">Action order</span>
+                            <h3>Keep the next click inside the file workflow.</h3>
+                            <div class="state-records-response__route-list">
+                                @if (primaryRecordsLookupSource != null)
+                                    <a href="${primaryRecordsLookupSource.url()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_official_file_path_source"
+                                       data-track-target-type="official_source">
+                                        <strong>Open official records source</strong>
+                                        <span>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</span>
+                                    </a>
+                                @elseif (primaryLocalAuthoritySource != null)
+                                    <a href="${primaryLocalAuthoritySource.url()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_official_file_path_source"
+                                       data-track-target-type="official_source">
+                                        <strong>Open official authority source</strong>
+                                        <span>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</span>
+                                    </a>
+                                @endif
+                                <a href="/septic-permit-search-by-address/"
+                                   data-track-click="nav"
+                                   data-track-source-context="state_official_file_path_address"
+                                   data-track-target-type="internal_page">
+                                    <strong>Search by address</strong>
+                                    <span>Use address, parcel, APN, TMS, owner, or legal-description clues.</span>
+                                </a>
+                                <a href="/septic-permit-records-request/"
+                                   data-track-click="nav"
+                                   data-track-source-context="state_official_file_path_request"
+                                   data-track-target-type="internal_page">
+                                    <strong>Records request wording</strong>
+                                    <span>Ask for permit copy, as-built, final approval, inspection letter, or no-record response.</span>
+                                </a>
+                                @if (!countyRecordLinks.isEmpty())
+                                    <a href="#county-pages"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_official_file_path_counties"
+                                       data-track-target-type="page_anchor">
+                                        <strong>Open county handoff</strong>
+                                        <span>Use county pages when the search already names the county or local office.</span>
+                                    </a>
+                                @endif
+                            </div>
+                        </aside>
                     </div>
                 </section>
             @endif
