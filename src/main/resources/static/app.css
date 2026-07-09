@@ -1484,6 +1484,121 @@ h4 {
     line-height: 1.28;
 }
 
+.county-click-board {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.45fr);
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(244, 251, 247, 0.96), rgba(255, 255, 255, 0.9)),
+        var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.county-click-board__intro {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+}
+
+.county-click-board__intro h2 {
+    max-width: 17ch;
+    margin: 0;
+    font-size: clamp(1.7rem, 2.7vw, 3rem);
+    line-height: 1.03;
+}
+
+.county-click-board__intro p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.58;
+}
+
+.county-click-board__queries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.county-click-board__queries span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border: 1px solid rgba(35, 108, 95, 0.14);
+    border-radius: 999px;
+    background: rgba(225, 240, 234, 0.72);
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+}
+
+.county-click-board__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.county-click-card {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid rgba(20, 34, 32, 0.09);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.county-click-card--primary {
+    background: linear-gradient(135deg, rgba(20, 88, 75, 0.98), rgba(27, 112, 95, 0.94));
+    color: #fff;
+}
+
+.county-click-card span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.county-click-card--primary span {
+    color: #dff46a;
+}
+
+.county-click-card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.18;
+}
+
+.county-click-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+.county-click-card--primary p {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.county-click-card .button {
+    align-self: end;
+    width: 100%;
+    min-height: 42px;
+    padding-right: 12px;
+    padding-left: 12px;
+    white-space: normal;
+}
+
 .county-response-dossier {
     display: grid;
     gap: 18px;
@@ -4747,6 +4862,8 @@ input[type="checkbox"] {
     .records-request-builder__controls,
     .county-finder__filters,
     .county-proof-strip,
+    .county-click-board,
+    .county-click-board__grid,
     .county-response-dossier__rows,
     .county-finder,
     .county-file-workflow,
@@ -5145,7 +5262,8 @@ input[type="checkbox"] {
     }
 
     .county-data-console,
-    .county-request-builder {
+    .county-request-builder,
+    .county-click-board {
         gap: 14px;
         padding: 16px;
         border-radius: 22px;
@@ -5166,6 +5284,27 @@ input[type="checkbox"] {
 
     .county-data-strip div {
         padding: 12px;
+    }
+
+    .county-click-board__intro h2 {
+        max-width: 20ch;
+        font-size: 1.7rem;
+    }
+
+    .county-click-board__queries {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .county-click-board__queries span {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .county-click-card {
+        padding: 14px;
+        border-radius: 18px;
     }
 
     .county-availability-row {

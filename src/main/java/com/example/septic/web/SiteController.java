@@ -118,6 +118,8 @@ public class SiteController {
             Map.entry("TN::hamilton-county", 106),
             Map.entry("TN::blount-county", 104),
             Map.entry("TX::travis-county", 102),
+            Map.entry("TX::comal-county", 118),
+            Map.entry("NC::buncombe-county", 112),
             Map.entry("NC::brunswick-county", 96),
             Map.entry("NC::cabarrus-county", 94),
             Map.entry("NC::forsyth-county", 92),
@@ -196,6 +198,16 @@ public class SiteController {
                     "blount county septic records",
                     "blount county septic permit lookup",
                     "blount county septic records request"
+            )),
+            Map.entry("TX::comal-county", List.of(
+                    "comal county septic permit search",
+                    "comal county septic records",
+                    "comal county ossf permit lookup"
+            )),
+            Map.entry("NC::buncombe-county", List.of(
+                    "buncombe county septic permit lookup",
+                    "buncombe county septic records",
+                    "buncombe county well and septic records"
             )),
             Map.entry("TX::travis-county", List.of(
                     "travis county septic records",

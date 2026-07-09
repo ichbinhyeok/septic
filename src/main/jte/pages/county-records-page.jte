@@ -289,6 +289,87 @@
         </div>
     </section>
 
+    @if (countySearchResponse != null)
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-click-board" aria-label="County search action board">
+                    <div class="county-click-board__intro">
+                        <span class="eyebrow">County search action board</span>
+                        <h2>Choose the ${countyPage.countyName()} route that matches the file problem.</h2>
+                        <p>If you are searching for ${countyPage.countyName()} septic records, move into the official file route, exact request wording, address or parcel fallback, or estimate only after the record story is clearer.</p>
+                        <div class="county-click-board__queries" aria-label="County searches this board answers">
+                            @for (var query : countySearchResponse.queryExamples())
+                                <span>${query}</span>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <div class="county-click-board__grid">
+                        <article class="county-click-card county-click-card--primary">
+                            <span>Official file</span>
+                            <h3>${countyPage.recordsLabel()}</h3>
+                            <p>Start here when the user needs the septic permit, approval, repair trail, layout, or written no-record answer.</p>
+                            <a class="button button--primary"
+                               href="${countyPage.recordsUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="county_click_board_records"
+                               data-track-target-type="official_source">Open official file route</a>
+                        </article>
+
+                        <article class="county-click-card">
+                            <span>Request wording</span>
+                            <h3>Ask for the exact septic artifacts</h3>
+                            <p>Use a copy-ready request when the office needs parcel, owner, address, record type, and reason before it can answer.</p>
+                            <a class="button button--secondary"
+                               href="/septic-records-request-builder/"
+                               data-track-click="nav"
+                               data-track-source-context="county_click_board_request_builder"
+                               data-track-target-type="internal_page">Build exact request</a>
+                        </article>
+
+                        <article class="county-click-card">
+                            <span>Address or parcel</span>
+                            @if (countyPage.hasParcelAnchor())
+                                <h3>Anchor the parcel before the septic search</h3>
+                                <p>${countyPage.parcelAnchorNote()}</p>
+                                <a class="button button--secondary"
+                                   href="${countyPage.parcelAnchorUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_click_board_parcel_anchor"
+                                   data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
+                            @else
+                                <h3>Use address search only as the fallback</h3>
+                                <p>Carry the address, parcel ID, owner name, legal description, or subdivision into the county records route before treating the file as missing.</p>
+                                <a class="button button--secondary"
+                                   href="/septic-permit-search-by-address/"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_click_board_address_search"
+                                   data-track-target-type="internal_page">Open address-search fallback</a>
+                            @endif
+                        </article>
+
+                        @if (countyEstimatePath != null && !countyEstimatePath.isBlank())
+                            <article class="county-click-card">
+                                <span>After the file</span>
+                                <h3>Estimate only after the route is clear</h3>
+                                <p>${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyPage.lowEndBreakers().get(0)}</p>
+                                <a class="button button--secondary"
+                                   href="${countyEstimatePath}"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_click_board_estimate"
+                                   data-track-target-type="calculator">Estimate after file check</a>
+                            </article>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
 
     @if (countySearchResponse != null)
