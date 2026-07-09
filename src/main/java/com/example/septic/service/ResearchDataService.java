@@ -9,6 +9,8 @@ import com.example.septic.data.model.CostEvidence;
 import com.example.septic.data.model.CostEvidenceDocument;
 import com.example.septic.data.model.CostProfilesDocument;
 import com.example.septic.data.model.ProjectCostAnchor;
+import com.example.septic.data.model.SearchResponseTarget;
+import com.example.septic.data.model.SearchResponseTargetsDocument;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateRuleFact;
@@ -51,12 +53,15 @@ public class ResearchDataService {
     private Map<String, ContentPage> contentPagesBySlug = Map.of();
     private Map<String, StateMoneyPage> stateMoneyPagesByKey = Map.of();
     private Map<String, CountyRecordsPage> countyRecordsPagesByKey = Map.of();
+    private Map<String, SearchResponseTarget> searchResponseTargetsByLookupKey = Map.of();
+    private List<SearchResponseTarget> searchResponseTargets = List.of();
     private Map<String, List<StateRuleFact>> stateRuleFactsByStateCode = Map.of();
     private List<CostEvidence> costEvidence = List.of();
     private String stateProfilesGeneratedAt = "";
     private String contentPagesGeneratedAt = "";
     private String stateMoneyPagesGeneratedAt = "";
     private String countyRecordsPagesGeneratedAt = "";
+    private String searchResponseTargetsGeneratedAt = "";
     private String stateRuleFactsGeneratedAt = "";
     private String costEvidenceGeneratedAt = "";
 
@@ -94,6 +99,7 @@ public class ResearchDataService {
                     root.resolve("county_records_pages.json").toFile(),
                     CountyRecordsPagesDocument.class
             );
+            SearchResponseTargetsDocument searchResponseTargetsDocument = readSearchResponseTargets(root);
             StateRuleFactsDocument stateRuleFactsDocument = objectMapper.readValue(
                     root.resolve("state_rule_facts.json").toFile(),
                     StateRuleFactsDocument.class
@@ -116,6 +122,7 @@ public class ResearchDataService {
             this.contentPagesGeneratedAt = contentPagesDocument.generatedAt();
             this.stateMoneyPagesGeneratedAt = stateMoneyPagesDocument.generatedAt();
             this.countyRecordsPagesGeneratedAt = countyRecordsPagesDocument.generatedAt();
+            this.searchResponseTargetsGeneratedAt = firstNonBlank(searchResponseTargetsDocument.generatedAt(), "");
             this.stateRuleFactsGeneratedAt = stateRuleFactsDocument.generatedAt();
             this.costEvidenceGeneratedAt = costEvidenceDocument.generatedAt();
             this.statesByCode = this.stateProfiles.stream()
@@ -132,6 +139,11 @@ public class ResearchDataService {
                     .collect(Collectors.toMap(StateMoneyPage::key, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.countyRecordsPagesByKey = countyRecordsPagesDocument.pages().stream()
                     .collect(Collectors.toMap(CountyRecordsPage::key, Function.identity(), (left, right) -> left, LinkedHashMap::new));
+            this.searchResponseTargets = safeList(searchResponseTargetsDocument.targets()).stream()
+                    .filter(target -> hasText(target.targetType()) && hasText(target.key()))
+                    .toList();
+            this.searchResponseTargetsByLookupKey = this.searchResponseTargets.stream()
+                    .collect(Collectors.toMap(SearchResponseTarget::lookupKey, Function.identity(), (left, right) -> left, LinkedHashMap::new));
             this.costEvidence = costEvidenceDocument.evidence().stream()
                     .filter(CostEvidence::isPublished)
                     .toList();
@@ -144,6 +156,14 @@ public class ResearchDataService {
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load research data from " + root, exception);
         }
+    }
+
+    private SearchResponseTargetsDocument readSearchResponseTargets(Path root) throws IOException {
+        Path path = root.resolve("search_response_targets.json");
+        if (Files.notExists(path)) {
+            return new SearchResponseTargetsDocument("", "missing", List.of());
+        }
+        return objectMapper.readValue(path.toFile(), SearchResponseTargetsDocument.class);
     }
 
     public List<StateProfile> getStateProfiles() {
@@ -194,6 +214,26 @@ public class ResearchDataService {
                 .filter(CountyRecordsPage::isPublished)
                 .filter(page -> findStateByCode(page.stateCode()).map(StateProfile::isPublished).orElse(false))
                 .toList();
+    }
+
+    public List<SearchResponseTarget> getSearchResponseTargets() {
+        return searchResponseTargets;
+    }
+
+    public List<SearchResponseTarget> listSearchResponseTargets(String targetType) {
+        if (!hasText(targetType)) {
+            return List.of();
+        }
+        return searchResponseTargets.stream()
+                .filter(target -> target.targetType().equalsIgnoreCase(targetType))
+                .toList();
+    }
+
+    public Optional<SearchResponseTarget> findSearchResponseTarget(String targetType, String key) {
+        if (!hasText(targetType) || !hasText(key)) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(searchResponseTargetsByLookupKey.get(SearchResponseTarget.lookupKey(targetType, key)));
     }
 
     public Optional<StateProfile> findStateByCode(String stateCode) {
@@ -372,11 +412,27 @@ public class ResearchDataService {
         return countyRecordsPagesGeneratedAt;
     }
 
+    public String searchResponseTargetsGeneratedAt() {
+        return searchResponseTargetsGeneratedAt;
+    }
+
     public String stateRuleFactsGeneratedAt() {
         return stateRuleFactsGeneratedAt;
     }
 
     public String costEvidenceGeneratedAt() {
         return costEvidenceGeneratedAt;
+    }
+
+    private static <T> List<T> safeList(List<T> values) {
+        return values == null ? List.of() : values;
+    }
+
+    private static boolean hasText(String value) {
+        return value != null && !value.isBlank();
+    }
+
+    private static String firstNonBlank(String first, String fallback) {
+        return hasText(first) ? first : fallback;
     }
 }

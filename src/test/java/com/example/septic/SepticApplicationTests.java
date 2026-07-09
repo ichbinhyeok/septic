@@ -616,7 +616,7 @@ class SepticApplicationTests {
 	void sitemapXmlIncludesCoreUrls() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>2026-06-29</lastmod>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/how-to-find-septic-records-online/")))
@@ -5338,6 +5338,35 @@ class SepticApplicationTests {
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"internal_navigation_click\""));
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"sourceContext\":\"state_guide_next_high_intent\""));
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"targetPath\":\"/septic-replacement-cost/georgia/\""));
+		}
+	}
+
+	@Test
+	void webVitalEventIsStored() throws Exception {
+		mockMvc.perform(post("/events/web-vital")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "metricName": "LCP",
+								  "value": 2810,
+								  "rating": "needs-improvement",
+								  "sourcePage": "/septic-records-checklist/tennessee/",
+								  "navigationType": "navigate"
+								}
+								""")
+						.header("User-Agent", "MockBrowser/1.0")
+						.header("Referer", "https://example.test/septic-records-checklist/tennessee/"))
+				.andExpect(status().isNoContent());
+
+		try (Stream<Path> eventFiles = Files.walk(Path.of("build/test-storage/events"))) {
+			Path eventFile = eventFiles
+					.filter(path -> path.toString().endsWith(".ndjson"))
+					.findFirst()
+					.orElseThrow(() -> new AssertionError("Expected at least one event NDJSON file"));
+			String eventContent = Files.readString(eventFile);
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"web_vital\""));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"metricName\":\"LCP\""));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"sourcePage\":\"/septic-records-checklist/tennessee/\""));
 		}
 	}
 

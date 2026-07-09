@@ -1,9 +1,14 @@
 package com.example.septic.service;
 
+import com.example.septic.config.AppDataProperties;
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -13,15 +18,18 @@ public class SitemapService {
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
     private final SeoService seoService;
+    private final AppDataProperties dataProperties;
 
     public SitemapService(
             ResearchDataService researchDataService,
             PublishingPolicyService publishingPolicyService,
-            SeoService seoService
+            SeoService seoService,
+            AppDataProperties dataProperties
     ) {
         this.researchDataService = researchDataService;
         this.publishingPolicyService = publishingPolicyService;
         this.seoService = seoService;
+        this.dataProperties = dataProperties;
     }
 
     public String robotsTxt() {
@@ -52,7 +60,7 @@ public class SitemapService {
             if (!"septic-system-cost-calculator".equals(contentPage.slug())) {
                 entries.add(entry(
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
-                        researchDataService.contentPagesGeneratedAt()
+                        contentPagesLastMod()
                 ));
             }
         }
@@ -73,8 +81,8 @@ public class SitemapService {
                     .ifPresent(url -> entries.add(entry(
                             url,
                             researchDataService.findStateByCode(stateMoneyPage.stateCode())
-                                    .map(StateProfile::lastVerifiedAt)
-                                    .orElse(researchDataService.stateMoneyPagesGeneratedAt())
+                                    .map(state -> stateMoneyPageLastMod(stateMoneyPage, state))
+                                    .orElse(stateMoneyPagesLastMod())
                     )));
         }
 
@@ -92,7 +100,7 @@ public class SitemapService {
             researchDataService.findStateByCode(countyPage.stateCode())
                     .ifPresent(state -> entries.add(entry(
                             seoService.absoluteUrl(countyPage.path(state.slug())),
-                            latestNonBlank(state.lastVerifiedAt(), researchDataService.countyRecordsPagesGeneratedAt())
+                            countyRecordsPageLastMod(countyPage, state)
                     )));
         }
     }
@@ -121,11 +129,72 @@ public class SitemapService {
                         researchDataService.stateProfilesGeneratedAt(),
                         researchDataService.contentPagesGeneratedAt(),
                         researchDataService.stateMoneyPagesGeneratedAt(),
-                        researchDataService.countyRecordsPagesGeneratedAt()
+                        researchDataService.countyRecordsPagesGeneratedAt(),
+                        researchDataService.searchResponseTargetsGeneratedAt(),
+                        dataFileLastModified("state_profiles.json"),
+                        contentPagesLastMod(),
+                        stateMoneyPagesLastMod(),
+                        countyRecordsPagesLastMod()
                 ).stream()
                 .filter(value -> value != null && !value.isBlank())
                 .max(String::compareTo)
                 .orElse("");
+    }
+
+    private String contentPagesLastMod() {
+        return latestNonBlank(
+                researchDataService.contentPagesGeneratedAt(),
+                dataFileLastModified("content_pages.json")
+        );
+    }
+
+    private String stateMoneyPagesLastMod() {
+        return latestNonBlank(
+                researchDataService.stateMoneyPagesGeneratedAt(),
+                dataFileLastModified("state_money_pages.json")
+        );
+    }
+
+    private String countyRecordsPagesLastMod() {
+        return latestNonBlank(
+                researchDataService.countyRecordsPagesGeneratedAt(),
+                dataFileLastModified("county_records_pages.json")
+        );
+    }
+
+    private String stateMoneyPageLastMod(StateMoneyPage stateMoneyPage, StateProfile state) {
+        String pageLastMod = latestNonBlank(state.lastVerifiedAt(), stateMoneyPagesLastMod());
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                && researchDataService.findSearchResponseTarget("state_records", state.stateCode()).isPresent()) {
+            pageLastMod = latestNonBlank(pageLastMod, researchDataService.searchResponseTargetsGeneratedAt());
+            pageLastMod = latestNonBlank(pageLastMod, dataFileLastModified("search_response_targets.json"));
+        }
+        return pageLastMod;
+    }
+
+    private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
+        String pageLastMod = latestNonBlank(state.lastVerifiedAt(), countyRecordsPagesLastMod());
+        if (researchDataService.findSearchResponseTarget("county_records", countyPage.key()).isPresent()) {
+            pageLastMod = latestNonBlank(pageLastMod, researchDataService.searchResponseTargetsGeneratedAt());
+            pageLastMod = latestNonBlank(pageLastMod, dataFileLastModified("search_response_targets.json"));
+        }
+        return pageLastMod;
+    }
+
+    private String dataFileLastModified(String fileName) {
+        try {
+            Path path = Path.of(dataProperties.root()).resolve(fileName);
+            if (Files.notExists(path)) {
+                return "";
+            }
+            return Files.getLastModifiedTime(path)
+                    .toInstant()
+                    .atZone(ZoneOffset.UTC)
+                    .toLocalDate()
+                    .toString();
+        } catch (IOException exception) {
+            return "";
+        }
     }
 
     private String latestNonBlank(String first, String second) {

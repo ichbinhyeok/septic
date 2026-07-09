@@ -162,6 +162,31 @@ public class LeadStorageService {
         }
     }
 
+    public void saveWebVital(
+            String metricName,
+            Double value,
+            String rating,
+            String sourcePage,
+            String navigationType,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        try {
+            appendEvent(orderedMap(
+                    "eventType", "web_vital",
+                    "occurredAt", now.toString(),
+                    "metricName", safeValue(metricName, 32),
+                    "value", value,
+                    "rating", safeValue(rating, 32),
+                    "sourcePage", safeValue(sourcePage, 240),
+                    "navigationType", safeValue(navigationType, 60),
+                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+            ), now);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist web vital event", exception);
+        }
+    }
+
     public String saveContactRequest(
             ContactRequestForm contactRequestForm,
             String sourcePage,

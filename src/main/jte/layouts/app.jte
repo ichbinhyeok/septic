@@ -12,7 +12,6 @@
     <title>${page.title()}</title>
     <meta name="description" content="${page.description()}">
     <meta name="robots" content="${page.robots()}">
-    <link rel="icon" type="image/png" sizes="32x32" href="${AssetPaths.versioned("/favicon.png")}" />
     <link rel="canonical" href="${page.canonicalUrl()}">
     <meta property="og:title" content="${page.title()}">
     <meta property="og:description" content="${page.description()}">
@@ -52,7 +51,7 @@
         <header class="site-header">
             <div class="container site-header__inner">
                 <a class="brand" href="/">
-                    <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
+                    <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
                         <span>septic transfer, records, permit paths, and planning ranges by state</span>
@@ -111,7 +110,7 @@
             <div class="container footer-grid">
                 <section class="footer-block footer-block--brand">
                     <a class="brand brand--footer" href="/">
-                        <img src="${AssetPaths.versioned("/favicon.png")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
+                        <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                         <span class="brand__text">
                             <strong>SepticPath</strong>
                             <span>Records-first guidance with official-source context.</span>

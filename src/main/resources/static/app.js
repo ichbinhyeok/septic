@@ -13,9 +13,8 @@
         }
     }
 
-    function sendNavigationEvent(payload) {
+    function sendEvent(endpoint, payload) {
         const body = JSON.stringify(payload);
-        const endpoint = "/events/nav-click";
 
         if (navigator.sendBeacon) {
             const blob = new Blob([body], { type: "application/json" });
@@ -29,6 +28,140 @@
             body,
             keepalive: true
         }).catch(() => {});
+    }
+
+    function sendNavigationEvent(payload) {
+        sendEvent("/events/nav-click", payload);
+    }
+
+    function setupWebVitalTracking() {
+        if (!("PerformanceObserver" in window) || !Array.isArray(PerformanceObserver.supportedEntryTypes)) {
+            return;
+        }
+
+        const supported = new Set(PerformanceObserver.supportedEntryTypes);
+        const sent = new Set();
+
+        function sourcePage() {
+            return window.location.pathname + window.location.search + window.location.hash;
+        }
+
+        function navigationType() {
+            const navigation = performance.getEntriesByType("navigation")[0];
+            return navigation && navigation.type ? navigation.type : "navigate";
+        }
+
+        function rating(metricName, value) {
+            if (metricName === "CLS") {
+                return value <= 0.1 ? "good" : value <= 0.25 ? "needs-improvement" : "poor";
+            }
+            if (metricName === "LCP") {
+                return value <= 2500 ? "good" : value <= 4000 ? "needs-improvement" : "poor";
+            }
+            if (metricName === "INP") {
+                return value <= 200 ? "good" : value <= 500 ? "needs-improvement" : "poor";
+            }
+            if (metricName === "FCP") {
+                return value <= 1800 ? "good" : value <= 3000 ? "needs-improvement" : "poor";
+            }
+            if (metricName === "TTFB") {
+                return value <= 800 ? "good" : value <= 1800 ? "needs-improvement" : "poor";
+            }
+            return "unknown";
+        }
+
+        function normalizedValue(metricName, value) {
+            if (!Number.isFinite(value) || value < 0) {
+                return null;
+            }
+            return metricName === "CLS" ? Number(value.toFixed(4)) : Math.round(value);
+        }
+
+        function report(metricName, value, onceKey = metricName) {
+            if (sent.has(onceKey)) {
+                return;
+            }
+            const normalized = normalizedValue(metricName, value);
+            if (normalized === null) {
+                return;
+            }
+            sent.add(onceKey);
+            sendEvent("/events/web-vital", {
+                metricName,
+                value: normalized,
+                rating: rating(metricName, normalized),
+                sourcePage: sourcePage(),
+                navigationType: navigationType()
+            });
+        }
+
+        function observe(type, callback, options = { buffered: true }) {
+            if (!supported.has(type)) {
+                return;
+            }
+            try {
+                const observer = new PerformanceObserver((list) => callback(list.getEntries()));
+                observer.observe({ type, ...options });
+            } catch (_error) {
+                // Older browsers may list support but reject newer observer options.
+            }
+        }
+
+        const navigation = performance.getEntriesByType("navigation")[0];
+        if (navigation && Number.isFinite(navigation.responseStart)) {
+            report("TTFB", navigation.responseStart, "TTFB");
+        }
+
+        observe("paint", (entries) => {
+            entries.forEach((entry) => {
+                if (entry.name === "first-contentful-paint") {
+                    report("FCP", entry.startTime, "FCP");
+                }
+            });
+        });
+
+        let latestLcp = 0;
+        observe("largest-contentful-paint", (entries) => {
+            const entry = entries[entries.length - 1];
+            if (entry) {
+                latestLcp = entry.startTime;
+            }
+        });
+
+        let cumulativeLayoutShift = 0;
+        observe("layout-shift", (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.hadRecentInput) {
+                    cumulativeLayoutShift += entry.value || 0;
+                }
+            });
+        });
+
+        let maxInteractionDuration = 0;
+        observe("event", (entries) => {
+            entries.forEach((entry) => {
+                if (entry.interactionId && entry.duration > maxInteractionDuration) {
+                    maxInteractionDuration = entry.duration;
+                }
+            });
+        }, { buffered: true, durationThreshold: 40 });
+
+        function flushFinalVitals() {
+            if (latestLcp > 0) {
+                report("LCP", latestLcp, "LCP");
+            }
+            report("CLS", cumulativeLayoutShift, "CLS");
+            if (maxInteractionDuration > 0) {
+                report("INP", maxInteractionDuration, "INP");
+            }
+        }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden") {
+                flushFinalVitals();
+            }
+        });
+        window.addEventListener("pagehide", flushFinalVitals);
     }
 
     function setupSiteNav() {
@@ -102,6 +235,7 @@
     }
 
     setupSiteNav();
+    setupWebVitalTracking();
 
     function setupStickyMobileCtas() {
         const stickyCtas = Array.from(document.querySelectorAll("[data-sticky-mobile-cta]"));

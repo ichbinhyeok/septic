@@ -1,0 +1,271 @@
+{
+  "generatedAt": "2026-07-09",
+  "source": "Google Search Console exports reviewed on 2026-07-09 plus current county-response backlog",
+  "targets": [
+    {
+      "targetType": "state_records",
+      "key": "TN",
+      "path": "/septic-records-checklist/tennessee/",
+      "boost": 220,
+      "queries": [
+        "tennessee septic records",
+        "tdec septic records",
+        "tennessee septic permit lookup",
+        "tennessee county septic records",
+        "tdec septic permit records"
+      ],
+      "recommendedAnchors": [
+        "Tennessee septic records",
+        "TDEC septic records",
+        "county septic permit lookup"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 5,
+      "impressions": 994,
+      "ctr": 0.0050301811,
+      "position": 11.0211267606,
+      "evidenceNote": "Highest state-records impression page with weak CTR; needs query-exact routing and county handoff."
+    },
+    {
+      "targetType": "state_records",
+      "key": "IN",
+      "path": "/septic-records-checklist/indiana/",
+      "boost": 190,
+      "queries": [
+        "indiana septic records",
+        "indiana septic system lookup",
+        "indiana septic permit records",
+        "county septic records indiana"
+      ],
+      "recommendedAnchors": [
+        "Indiana septic records",
+        "septic system lookup",
+        "county records route"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 19,
+      "impressions": 317,
+      "ctr": 0.0599369085,
+      "position": 11.8517350158,
+      "evidenceNote": "Best records page by clicks; preserve and amplify state-to-county path."
+    },
+    {
+      "targetType": "state_records",
+      "key": "NC",
+      "path": "/septic-records-checklist/north-carolina/",
+      "boost": 170,
+      "queries": [
+        "north carolina septic permit lookup",
+        "nc septic permit records",
+        "county environmental health septic records",
+        "north carolina septic records"
+      ],
+      "recommendedAnchors": [
+        "North Carolina septic permit lookup",
+        "county environmental health records"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 3,
+      "impressions": 281,
+      "ctr": 0.0106761566,
+      "position": 12.1814946619,
+      "evidenceNote": "Visible records page plus county-level queries already appearing."
+    },
+    {
+      "targetType": "state_records",
+      "key": "SC",
+      "path": "/septic-records-checklist/south-carolina/",
+      "boost": 150,
+      "queries": [
+        "south carolina septic records",
+        "dhec septic permit lookup",
+        "scdes septic records",
+        "south carolina d-1740 septic"
+      ],
+      "recommendedAnchors": [
+        "South Carolina septic records",
+        "SCDES septic permit lookup"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 2,
+      "impressions": 100,
+      "ctr": 0.02,
+      "position": 7.76,
+      "evidenceNote": "Good average position; SCDES/DHEC wording should stay prominent."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TN::blount-county",
+      "path": "/septic-records-checklist/tennessee/blount-county/",
+      "boost": 150,
+      "queries": [
+        "blount county septic records",
+        "blount county septic permit lookup",
+        "blount county septic permit records",
+        "blount county environmental health septic"
+      ],
+      "recommendedAnchors": [
+        "Blount County septic records",
+        "Blount County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 8.2,
+      "evidenceNote": "Query has meaningful impressions and first-page average position but no clicks yet."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::alamance-county",
+      "path": "/septic-records-checklist/north-carolina/alamance-county/",
+      "boost": 152,
+      "queries": [
+        "alamance county septic records",
+        "alamance county septic permit lookup",
+        "alamance county permits",
+        "alamance county permitting"
+      ],
+      "recommendedAnchors": [
+        "Alamance County septic records",
+        "Alamance County permits"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 2,
+      "impressions": 57,
+      "ctr": 0.0350877193,
+      "position": 9.5087719298,
+      "evidenceNote": "County page already has clicks; query-level septic records average position is around 5."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TX::tarrant-county",
+      "path": "/septic-records-checklist/texas/tarrant-county/",
+      "boost": 148,
+      "queries": [
+        "tarrant county septic records",
+        "tarrant county septic permit lookup",
+        "tarrant county septic inspection records",
+        "tarrant county ossf records"
+      ],
+      "recommendedAnchors": [
+        "Tarrant County septic records",
+        "Tarrant County OSSF records"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 3,
+      "impressions": 31,
+      "ctr": 0.0967741935,
+      "position": 16.5483870968,
+      "evidenceNote": "Clicks despite low average position; needs stronger internal links."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TX::denton-county",
+      "path": "/septic-records-checklist/texas/denton-county/",
+      "boost": 138,
+      "queries": [
+        "denton county septic records",
+        "denton county septic permit lookup",
+        "denton county septic permit search",
+        "denton county ossf records"
+      ],
+      "recommendedAnchors": [
+        "Denton County septic records",
+        "Denton County permit lookup"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 2,
+      "impressions": 20,
+      "ctr": 0.1,
+      "position": 7.5,
+      "evidenceNote": "Low volume but strong CTR and first-page position."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TX::comal-county",
+      "path": "/septic-records-checklist/texas/comal-county/",
+      "boost": 136,
+      "queries": [
+        "comal county septic permit search",
+        "comal county permit search",
+        "comal county septic permit",
+        "comal county septic records"
+      ],
+      "recommendedAnchors": [
+        "Comal County septic permit search",
+        "Comal County septic records"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 21.5,
+      "evidenceNote": "Early query visibility; county should remain in Texas response cluster."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::buncombe-county",
+      "path": "/septic-records-checklist/north-carolina/buncombe-county/",
+      "boost": 134,
+      "queries": [
+        "buncombe county septic permit lookup",
+        "buncombe county septic lookup",
+        "buncombe county environmental health",
+        "buncombe county septic records"
+      ],
+      "recommendedAnchors": [
+        "Buncombe County septic permit lookup",
+        "Buncombe County septic records"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 21.0,
+      "evidenceNote": "Multiple related query variants are appearing; needs exact-anchor reinforcement."
+    },
+    {
+      "targetType": "county_records",
+      "key": "MD::st-marys-county",
+      "path": "/septic-records-checklist/maryland/st-marys-county/",
+      "boost": 132,
+      "queries": [
+        "st marys county septic records",
+        "st mary's county septic records",
+        "st marys county septic permit lookup"
+      ],
+      "recommendedAnchors": [
+        "St. Mary's County septic records",
+        "St. Mary's septic permit lookup"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 2,
+      "impressions": 51,
+      "ctr": 0.0392156863,
+      "position": 5.9607843137,
+      "evidenceNote": "Strong average position; deserves more prominent related links."
+    },
+    {
+      "targetType": "county_records",
+      "key": "CA::san-bernardino-county",
+      "path": "/septic-records-checklist/california/san-bernardino-county/",
+      "boost": 124,
+      "queries": [
+        "san bernardino county septic certification",
+        "septic certification san bernardino",
+        "san bernardino county septic records"
+      ],
+      "recommendedAnchors": [
+        "San Bernardino septic certification",
+        "San Bernardino County septic records"
+      ],
+      "evidenceWindow": "2026-06-08..2026-07-06",
+      "clicks": 2,
+      "impressions": 48,
+      "ctr": 0.0416666667,
+      "position": 18.6041666667,
+      "evidenceNote": "Clicks are present despite low average position; exact certification wording matters."
+    }
+  ]
+}

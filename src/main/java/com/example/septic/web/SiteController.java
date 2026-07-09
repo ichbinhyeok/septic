@@ -4,6 +4,7 @@ import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.CountyWorkflowStructureData;
 import com.example.septic.data.model.ProjectCostAnchor;
+import com.example.septic.data.model.SearchResponseTarget;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateCostProfile;
 import com.example.septic.data.model.StateMoneyPage;
@@ -1067,6 +1068,28 @@ The goal is to settle the permit path before we frame the project as a normal in
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping(value = {"/events/web-vital", "/events/web-vital/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Void> recordWebVital(
+            @RequestBody WebVitalForm webVitalForm,
+            HttpServletRequest request
+    ) {
+        if (!isTrackableInternalPath(webVitalForm.sourcePage())
+                || !isTrackableWebVital(webVitalForm.metricName(), webVitalForm.value())) {
+            return ResponseEntity.noContent().build();
+        }
+
+        leadStorageService.saveWebVital(
+                webVitalForm.metricName(),
+                webVitalForm.value(),
+                webVitalForm.rating(),
+                webVitalForm.sourcePage(),
+                webVitalForm.navigationType(),
+                request
+        );
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping({"/septic-system-cost-calculator/{stateSlug}", "/septic-system-cost-calculator/{stateSlug}/"})
     public String stateGuide(@PathVariable String stateSlug, Model model) {
         Optional<StateProfile> stateProfile = researchDataService.findStateBySlug(stateSlug);
@@ -1344,7 +1367,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private List<String> countySearchQueries(CountyRecordsPage countyPage, StateProfile state) {
         LinkedHashSet<String> queries = new LinkedHashSet<>(
-                COUNTY_SEARCH_RESPONSE_QUERIES.getOrDefault(countyPage.key(), List.of())
+                countySearchResponseQueries(countyPage)
         );
         queries.add(countyPage.countyName() + " " + state.stateCode() + " septic permit lookup");
         queries.add(countyPage.countyName() + " septic records request");
@@ -1354,7 +1377,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private CountySearchResponseView countySearchResponse(CountyRecordsPage countyPage, StateProfile state) {
-        int boost = COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(countyPage.key(), 0);
+        int boost = countySearchResponseBoost(countyPage);
         if (boost <= 0) {
             return null;
         }
@@ -1425,6 +1448,23 @@ The goal is to settle the permit path before we frame the project as a normal in
                 dossierRows,
                 actionLinks
         );
+    }
+
+    private List<String> countySearchResponseQueries(CountyRecordsPage countyPage) {
+        LinkedHashSet<String> queries = new LinkedHashSet<>();
+        researchDataService.findSearchResponseTarget("county_records", countyPage.key())
+                .map(SearchResponseTarget::queryList)
+                .filter(items -> !items.isEmpty())
+                .ifPresent(queries::addAll);
+        queries.addAll(COUNTY_SEARCH_RESPONSE_QUERIES.getOrDefault(countyPage.key(), List.of()));
+        return queries.stream().toList();
+    }
+
+    private int countySearchResponseBoost(CountyRecordsPage countyPage) {
+        return researchDataService.findSearchResponseTarget("county_records", countyPage.key())
+                .map(SearchResponseTarget::boostValue)
+                .filter(boost -> boost > 0)
+                .orElseGet(() -> COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(countyPage.key(), 0));
     }
 
     private String countyLeadProjectType(CountyRecordsPage countyPage) {
@@ -1650,6 +1690,16 @@ The goal is to settle the permit path before we frame the project as a normal in
             return false;
         }
         return path.startsWith("/") && !path.startsWith("//") && !path.startsWith("/events/");
+    }
+
+    private boolean isTrackableWebVital(String metricName, Double value) {
+        if (metricName == null || value == null || !Double.isFinite(value) || value < 0) {
+            return false;
+        }
+        return switch (metricName) {
+            case "LCP", "CLS", "INP", "FCP", "TTFB" -> value <= 600_000;
+            default -> false;
+        };
     }
 
     private String renderTankSizeEstimator(Model model, TankSizeForm tankSizeForm, TankSizeEstimatorResult result) {
@@ -3442,7 +3492,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         int countyCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
         int score = countyCount * 4;
         score += researchDataService.listPublicCountyRecordsPages(state.stateCode()).stream()
-                .mapToInt(page -> COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(page.key(), 0))
+                .mapToInt(this::countySearchResponseBoost)
                 .sum() / 5;
         if (ORGANIC_SPRINT_STATE_CODES.contains(state.stateCode())) {
             score += 90;
@@ -3545,7 +3595,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (page.recordsLabel() != null && page.recordsLabel().toLowerCase(Locale.US).contains("lookup")) {
             score += 5;
         }
-        score += COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(page.key(), 0);
+        score += countySearchResponseBoost(page);
         return score;
     }
 
@@ -4978,7 +5028,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
 
         return new StateRecordsSearchResponseView(
-                STATE_RECORDS_RESPONSE_QUERIES.containsKey(state.stateCode())
+                hasStateRecordsSearchResponseTarget(state)
                         ? "Live search-response build"
                         : "State records response",
                 stateRecordsPriorityLabel(state.stateCode()),
@@ -4992,9 +5042,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<String> stateRecordsQueryExamples(StateProfile state) {
-        List<String> observedQueries = STATE_RECORDS_RESPONSE_QUERIES.get(state.stateCode());
+        List<String> observedQueries = stateRecordsResponseQueries(state);
         if (observedQueries != null && !observedQueries.isEmpty()) {
-            return observedQueries.stream().limit(7).toList();
+            return observedQueries.stream().limit(8).toList();
         }
         String stateName = state.stateName().toLowerCase(Locale.US);
         return List.of(
@@ -5006,14 +5056,26 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
     }
 
+    private boolean hasStateRecordsSearchResponseTarget(StateProfile state) {
+        return researchDataService.findSearchResponseTarget("state_records", state.stateCode()).isPresent()
+                || STATE_RECORDS_RESPONSE_QUERIES.containsKey(state.stateCode());
+    }
+
+    private List<String> stateRecordsResponseQueries(StateProfile state) {
+        LinkedHashSet<String> queries = new LinkedHashSet<>();
+        researchDataService.findSearchResponseTarget("state_records", state.stateCode())
+                .map(SearchResponseTarget::queryList)
+                .filter(items -> !items.isEmpty())
+                .ifPresent(queries::addAll);
+        queries.addAll(STATE_RECORDS_RESPONSE_QUERIES.getOrDefault(state.stateCode(), List.of()));
+        return queries.isEmpty() ? null : queries.stream().toList();
+    }
+
     private List<PageLink> stateRecordsCountyLinks(String stateCode, List<PageLink> countyRecordLinks) {
         if (countyRecordLinks == null || countyRecordLinks.isEmpty()) {
             return List.of();
         }
-        Set<String> boostedCountySlugs = COUNTY_SEARCH_RESPONSE_BOOSTS.keySet().stream()
-                .filter(key -> key.startsWith(stateCode + "::"))
-                .map(key -> key.substring((stateCode + "::").length()))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+        Set<String> boostedCountySlugs = countySearchResponseSlugs(stateCode);
         List<PageLink> boostedLinks = countyRecordLinks.stream()
                 .filter(link -> boostedCountySlugs.stream().anyMatch(slug -> link.path().contains("/" + slug + "/")))
                 .limit(8)
@@ -5022,6 +5084,20 @@ The goal is to settle the permit path before we frame the project as a normal in
             return boostedLinks;
         }
         return countyRecordLinks.stream().limit(6).toList();
+    }
+
+    private Set<String> countySearchResponseSlugs(String stateCode) {
+        String prefix = stateCode + "::";
+        LinkedHashSet<String> slugs = COUNTY_SEARCH_RESPONSE_BOOSTS.keySet().stream()
+                .filter(key -> key.startsWith(prefix))
+                .map(key -> key.substring(prefix.length()))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+        researchDataService.listSearchResponseTargets("county_records").stream()
+                .map(SearchResponseTarget::key)
+                .filter(key -> key.startsWith(prefix))
+                .map(key -> key.substring(prefix.length()))
+                .forEach(slugs::add);
+        return slugs;
     }
 
     private String stateRecordsPriorityLabel(String stateCode) {
