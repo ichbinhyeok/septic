@@ -7,6 +7,12 @@ public record CountyFinderLinkView(
         String stateCode,
         String stateName,
         String countyName,
+        String confidenceLabel,
+        int confidenceScore,
+        String requestMethodLabel,
+        String firstArtifactLabel,
+        String sourceDepthLabel,
+        boolean parcelAnchorAvailable,
         String searchText,
         String absoluteUrl
 ) {

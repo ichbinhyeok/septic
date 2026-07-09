@@ -2,6 +2,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.CountyFinderLinkView
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
@@ -493,6 +494,46 @@
             </article>
         </div>
     </section>
+
+    @if ("septic-records-by-county".equals(contentPage.slug()) && !countyFinderLinks.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-index-brief" aria-label="Septic records availability index">
+                    <div class="county-index-brief__copy">
+                        <span class="eyebrow">Septic records availability index</span>
+                        <h2>Start with the county routes that already show the office, first file, and request method.</h2>
+                        <p>This hub is built to answer the searches that usually get lost in county websites: septic permit lookup, permit copy request, as-built records, inspection letters, parcel or TMS search, and buyer file checks.</p>
+                    </div>
+                    <div class="county-index-brief__metrics" aria-label="County records index coverage">
+                        <div>
+                            <span>Live county pages</span>
+                            <strong>${totalCountyRouteCount}</strong>
+                        </div>
+                        <div>
+                            <span>High-confidence routes loaded</span>
+                            <strong>${countyFinderLinks.stream().filter(link -> link.confidenceScore() >= 82).count()}</strong>
+                        </div>
+                        <div>
+                            <span>Parcel anchors loaded</span>
+                            <strong>${countyFinderLinks.stream().filter(CountyFinderLinkView::parcelAnchorAvailable).count()}</strong>
+                        </div>
+                        <div>
+                            <span>Priority search set</span>
+                            <strong>${countyFinderLinks.size()}</strong>
+                        </div>
+                    </div>
+                    <div class="county-index-brief__queries" aria-label="Search intents covered">
+                        <span>permit lookup</span>
+                        <span>records request</span>
+                        <span>as-built records</span>
+                        <span>inspection letter</span>
+                        <span>parcel/TMS search</span>
+                        <span>buyer file check</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     @template.tags.countyFinder(
         countyFinderLinks = countyFinderLinks,

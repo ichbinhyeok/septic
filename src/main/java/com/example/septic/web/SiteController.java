@@ -2623,6 +2623,12 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private CountyFinderLinkView countyFinderLink(CountyRecordsPage page, StateProfile state) {
+        String combinedText = countyCombinedText(page);
+        int confidenceScore = countyAvailabilityConfidenceScore(page, combinedText);
+        String confidenceLabel = countyConfidenceLabel(confidenceScore);
+        String requestMethod = countyRequestMethodLabel(page, combinedText);
+        String firstArtifact = countyFirstArtifact(page);
+        String sourceDepth = size(page.officialSourceIds()) + " official source" + (size(page.officialSourceIds()) == 1 ? "" : "s");
         String title = page.countyName() + ", " + state.stateCode() + " records";
         String note = firstNonBlank(
                 page.recordsLabel(),
@@ -2637,6 +2643,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                 page.recordsLabel(),
                 page.officeLabel(),
                 page.contactLine(),
+                confidenceLabel,
+                requestMethod,
+                firstArtifact,
                 "septic permit lookup records request as built inspection letter parcel tms"
         ).toLowerCase(Locale.US);
         return new CountyFinderLinkView(
@@ -2646,6 +2655,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state.stateCode(),
                 state.stateName(),
                 page.countyName(),
+                confidenceLabel,
+                confidenceScore,
+                requestMethod,
+                firstArtifact,
+                sourceDepth,
+                page.hasParcelAnchor(),
                 searchText,
                 seoService.absoluteUrl(page.path(state.slug()))
         );
@@ -2760,6 +2775,24 @@ The goal is to settle the permit path before we frame the project as a normal in
             String lastReviewedAt
     ) {
         String combinedText = countyCombinedText(countyPage);
+        int score = countyAvailabilityConfidenceScore(countyPage, combinedText);
+        String confidenceLabel = countyConfidenceLabel(score);
+        String confidenceNote = countyConfidenceNote(score);
+        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
+        String sourceDepth = sources.size() + " official source" + (sources.size() == 1 ? "" : "s");
+        return new CountyAvailabilitySummaryView(
+                confidenceLabel,
+                score,
+                confidenceNote,
+                countyPage.recordsLabel(),
+                requestMethod,
+                countyFirstArtifact(countyPage),
+                sourceDepth,
+                lastReviewedAt
+        );
+    }
+
+    private int countyAvailabilityConfidenceScore(CountyRecordsPage countyPage, String combinedText) {
         int score = 46;
         if (countyPage.hasParcelAnchor()) {
             score += 12;
@@ -2782,30 +2815,27 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank()) {
             score += 3;
         }
-        score = Math.min(score, 96);
+        return Math.min(score, 96);
+    }
 
-        String confidenceLabel = score >= 82
-                ? "High-confidence county route"
-                : score >= 68
-                        ? "Usable county route"
-                        : "County route needs follow-up";
-        String confidenceNote = score >= 82
-                ? "This page has enough official-source depth, county-specific workflow detail, and request artifacts to start with the local file before pricing."
-                : score >= 68
-                        ? "This page has a usable county records path, but the user should still verify the exact office and artifact before relying on the file."
-                        : "This page gives a starting route, but the county may require a phone, email, or state-level fallback before the record story is reliable.";
-        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
-        String sourceDepth = sources.size() + " official source" + (sources.size() == 1 ? "" : "s");
-        return new CountyAvailabilitySummaryView(
-                confidenceLabel,
-                score,
-                confidenceNote,
-                countyPage.recordsLabel(),
-                requestMethod,
-                countyFirstArtifact(countyPage),
-                sourceDepth,
-                lastReviewedAt
-        );
+    private String countyConfidenceLabel(int score) {
+        if (score >= 82) {
+            return "High-confidence county route";
+        }
+        if (score >= 68) {
+            return "Usable county route";
+        }
+        return "County route needs follow-up";
+    }
+
+    private String countyConfidenceNote(int score) {
+        if (score >= 82) {
+            return "This page has enough official-source depth, county-specific workflow detail, and request artifacts to start with the local file before pricing.";
+        }
+        if (score >= 68) {
+            return "This page has a usable county records path, but the user should still verify the exact office and artifact before relying on the file.";
+        }
+        return "This page gives a starting route, but the county may require a phone, email, or state-level fallback before the record story is reliable.";
     }
 
     private List<CountyAvailabilityRowView> countyAvailabilityRows(CountyRecordsPage countyPage, StateProfile state) {

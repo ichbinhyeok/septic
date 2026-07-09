@@ -82,6 +82,28 @@
                        data-track-source-context="county_records_command_state"
                        data-track-target-type="state_money_page">${state.stateCode()} state route</a>
                 </div>
+                @if (countyAvailabilitySummary != null)
+                    <div class="county-proof-strip" aria-label="County record route proof">
+                        <div>
+                            <span>Route confidence</span>
+                            <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
+                            <small>${countyAvailabilitySummary.confidenceLabel()}</small>
+                        </div>
+                        <div>
+                            <span>Request method</span>
+                            <strong>${countyAvailabilitySummary.requestMethodLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>First file to pull</span>
+                            <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>Reviewed source depth</span>
+                            <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
+                            <small>${countyAvailabilitySummary.lastVerifiedAt()}</small>
+                        </div>
+                    </div>
+                @endif
                 <div class="money-answer-panel" aria-label="County answer-first workflow">
                     <div class="money-answer-panel__header">
                         <span class="eyebrow">County file first</span>

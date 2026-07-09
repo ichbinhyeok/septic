@@ -1439,6 +1439,51 @@ h4 {
     box-shadow: var(--shadow-soft);
 }
 
+.county-proof-strip {
+    display: grid;
+    grid-template-columns: 0.72fr 0.92fr 1.2fr 0.92fr;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.county-proof-strip div {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.county-proof-strip span,
+.county-index-brief__metrics span,
+.county-index-brief__queries span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.county-proof-strip strong {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.18;
+}
+
+.county-proof-strip small {
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.28;
+}
+
 .county-data-console__header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(220px, 0.34fr);
@@ -2427,6 +2472,80 @@ h4 {
     box-shadow: 0 28px 80px rgba(17, 31, 29, 0.16);
 }
 
+.county-index-brief {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1.2fr);
+    gap: 20px;
+    align-items: stretch;
+    padding: 24px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(238, 247, 242, 0.84)),
+        var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.county-index-brief__copy {
+    display: grid;
+    align-content: center;
+    gap: 10px;
+}
+
+.county-index-brief__copy h2 {
+    max-width: 18ch;
+    font-size: clamp(1.8rem, 3vw, 3.4rem);
+    line-height: 1.02;
+}
+
+.county-index-brief__copy p {
+    max-width: 62ch;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.58;
+}
+
+.county-index-brief__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.county-index-brief__metrics div {
+    display: grid;
+    align-content: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.68);
+}
+
+.county-index-brief__metrics strong {
+    color: var(--text);
+    font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+    line-height: 1;
+}
+
+.county-index-brief__queries {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.county-index-brief__queries span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border: 1px solid rgba(35, 108, 95, 0.13);
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.06);
+    color: var(--accent-strong);
+}
+
 .county-finder__intro {
     display: grid;
     align-content: center;
@@ -2589,7 +2708,7 @@ h4 {
 
 .county-finder__result {
     display: grid;
-    gap: 4px;
+    gap: 8px;
     padding: 13px 14px;
     border: 1px solid rgba(20, 34, 32, 0.08);
     border-radius: 18px;
@@ -2609,16 +2728,64 @@ h4 {
     transform: translateY(-1px);
 }
 
-.county-finder__result span {
+.county-finder__result-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+}
+
+.county-finder__result-top span {
     font-family: "Manrope", sans-serif;
     font-weight: 900;
     line-height: 1.18;
+}
+
+.county-finder__result-top strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 32px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.1);
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.86rem;
+    line-height: 1;
+}
+
+.county-finder__result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.county-finder__result-meta span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 4px 8px;
+    border: 1px solid rgba(20, 34, 32, 0.08);
+    border-radius: 999px;
+    background: rgba(247, 250, 246, 0.82);
+    color: var(--muted);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    line-height: 1.1;
 }
 
 .county-finder__result small {
     color: var(--muted);
     font-size: 0.86rem;
     line-height: 1.35;
+}
+
+.county-finder__result small strong {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
 }
 
 .county-finder__empty {
@@ -3875,6 +4042,9 @@ input[type="checkbox"] {
     .calculator-layout,
     .content-grid,
     .card-grid,
+    .county-index-brief,
+    .county-index-brief__metrics,
+    .county-proof-strip,
     .county-finder,
     .county-file-workflow,
     .county-route-board,

@@ -17,10 +17,12 @@
                     <p>${body}</p>
                     <div class="county-finder__stats" aria-label="County finder coverage">
                         <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> live county pages</span>
+                        <span><strong>${countyFinderLinks.stream().filter(link -> link.confidenceScore() >= 82).count()}</strong> high-confidence routes</span>
                         <span>${countyFinderLinks.size()} priority routes loaded</span>
+                        <span>${countyFinderLinks.stream().filter(CountyFinderLinkView::parcelAnchorAvailable).count()} parcel anchors</span>
                         <span>Permit lookup</span>
                         <span>Records request</span>
-                        <span>Parcel/TMS</span>
+                        <span>As-built</span>
                     </div>
                 </div>
 
@@ -32,7 +34,7 @@
                                 <a href="${link.path()}"
                                    data-track-click="nav"
                                    data-track-source-context="${sourceContext}_priority_route"
-                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()}</a>
+                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()} · ${link.confidenceScore()}%</a>
                             @endfor
                         </div>
                     </div>
@@ -63,7 +65,19 @@
                                data-track-click="nav"
                                data-track-source-context="${sourceContext}"
                                data-track-target-type="county_records_page">
-                                <span>${link.title()}</span>
+                                <div class="county-finder__result-top">
+                                    <span>${link.title()}</span>
+                                    <strong>${link.confidenceScore()}%</strong>
+                                </div>
+                                <div class="county-finder__result-meta" aria-label="${link.title()} route metadata">
+                                    <span>${link.confidenceLabel()}</span>
+                                    <span>${link.requestMethodLabel()}</span>
+                                    <span>${link.sourceDepthLabel()}</span>
+                                    @if (link.parcelAnchorAvailable())
+                                        <span>Parcel anchor</span>
+                                    @endif
+                                </div>
+                                <small><strong>First pull:</strong> ${link.firstArtifactLabel()}</small>
                                 <small>${link.note()}</small>
                             </a>
                         @endfor

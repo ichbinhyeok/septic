@@ -1313,6 +1313,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit to construct from the license to operate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing-system modifications can require a new permit path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record availability matrix")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Route confidence")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("First file to pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit file request builder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search intent answer pack")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit lookup")))
@@ -6895,6 +6897,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Records by County")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic records availability index")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("High-confidence routes loaded")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("First pull:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")));
