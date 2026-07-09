@@ -159,7 +159,7 @@
                                            data-track-click="nav"
                                            data-track-source-context="state_guide_official_file_path_source"
                                            data-track-target-type="official_source">
-                                            <strong>Open official records source</strong>
+                                            <strong>Open ${state.stateName()} official records source</strong>
                                             <span>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</span>
                                         </a>
                                     @elseif (primaryLocalAuthoritySource != null)
@@ -169,7 +169,7 @@
                                            data-track-click="nav"
                                            data-track-source-context="state_guide_official_file_path_source"
                                            data-track-target-type="official_source">
-                                            <strong>Open official authority source</strong>
+                                            <strong>Open ${state.stateName()} official authority source</strong>
                                             <span>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</span>
                                         </a>
                                     @endif

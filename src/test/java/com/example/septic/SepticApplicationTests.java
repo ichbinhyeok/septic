@@ -107,7 +107,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("2-week search response routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/tdec-septic-records/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@id\":\"https://example.test/#website\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@id\":\"https://example.test/#organization\"")));
 	}
 
 	@Test
@@ -1576,7 +1578,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("ETJ")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("23 cities")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official county file path")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official county file route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tarrant County official county file route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request wording")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")))
@@ -6576,7 +6578,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official state file path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Owner, artifact, request, fallback")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official records source")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee official records source")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address clue")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))

@@ -637,6 +637,7 @@ public class SeoService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@context", "https://schema.org");
         payload.put("@type", "WebSite");
+        payload.put("@id", absoluteUrl("/#website"));
         payload.put("name", name);
         payload.put("url", url);
         payload.put("description", description);
@@ -648,11 +649,18 @@ public class SeoService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@context", "https://schema.org");
         payload.put("@type", type);
+        payload.put("@id", url + "#webpage");
         payload.put("name", name);
         payload.put("url", url);
         payload.put("description", description);
         payload.put("inLanguage", "en-US");
-        payload.put("isPartOf", Map.of("@type", "WebSite", "url", absoluteUrl("/")));
+        Map<String, Object> webSiteReference = new LinkedHashMap<>();
+        webSiteReference.put("@type", "WebSite");
+        webSiteReference.put("@id", absoluteUrl("/#website"));
+        webSiteReference.put("name", "SepticPath");
+        webSiteReference.put("url", absoluteUrl("/"));
+        payload.put("isPartOf", webSiteReference);
+        payload.put("publisher", editorialOrganizationReference());
         return payload;
     }
 
@@ -675,6 +683,7 @@ public class SeoService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@context", "https://schema.org");
         payload.put("@type", "Organization");
+        payload.put("@id", absoluteUrl("/#organization"));
         payload.put("name", "SepticPath");
         payload.put("url", absoluteUrl("/"));
         return payload;
@@ -683,6 +692,7 @@ public class SeoService {
     private Map<String, Object> editorialOrganizationReference() {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("@type", "Organization");
+        payload.put("@id", absoluteUrl("/#organization"));
         payload.put("name", "SepticPath");
         payload.put("url", absoluteUrl("/"));
         return payload;
