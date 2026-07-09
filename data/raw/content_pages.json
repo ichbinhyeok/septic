@@ -1597,6 +1597,470 @@
         "/septic-system-cost-calculator/?projectType=buying_home"
       ],
       "publishStatus": "published"
+    },
+    {
+      "slug": "official-septic-lookup-tools",
+      "intentType": "workflow_page",
+      "primaryKeyword": "official septic lookup tools",
+      "secondaryKeywords": [
+        "official septic permit lookup",
+        "septic records search tools",
+        "county septic records lookup",
+        "state septic permit search",
+        "septic file lookup"
+      ],
+      "title": "Official Septic Lookup Tools",
+      "metaDescription": "Start with official septic lookup tools for TDEC, North Carolina records, Texas OSSF records, Florida OSTDS records, and county permit files.",
+      "introCopy": "Official septic lookup tools are scattered across state portals, county health departments, permitting systems, public-records forms, and old scanned archives. This page is the command board for deciding whether to search a public portal, open a county file, or send a targeted request for the permit, as-built, final approval, repair history, or no-record response.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, owners, agents, contractors, and transaction coordinators who need the real septic file before trusting a price, listing claim, lender request, repair quote, or closing timeline.",
+      "deepDiveParagraphs": [
+        "The strongest septic record searches start with the official owner of the file. In some states the state environmental agency owns the primary search path; in others the county health department, local environmental health office, delegated authority, or permitting portal controls the answer.",
+        "A useful lookup does not stop at a yes-or-no permit result. The user often needs the first artifact that changes risk: permit copy, as-built drawing, final approval, operation permit, inspection letter, repair permit, complaint history, bedroom count, or a written no-record response.",
+        "If an official tool does not return a record, the next move is not to guess. Search by parcel, owner, legal description, subdivision, lot number, prior owner, and permit number, then ask the office whether older scanned files or delegated county records need a separate pull."
+      ],
+      "fitBullets": [
+        "You need to decide whether to search a state portal, county portal, or public-records request path.",
+        "A buyer, contractor, lender, or agent needs the source file rather than a generic septic cost estimate.",
+        "The first search returned nothing and you need a disciplined second-pass route."
+      ],
+      "decisionSteps": [
+        "Start with the state or county route most likely to own the file.",
+        "Search by address first, then parcel ID, owner, permit number, subdivision, lot number, and legal description.",
+        "Capture the first useful artifact: permit copy, as-built, final approval, inspection letter, repair history, or no-record response.",
+        "If the public tool fails, use the records request builder before treating the property as unknown."
+      ],
+      "lowEndBreakers": [
+        "A public portal result may show a permit without proving final approval, system layout, repair history, or bedroom count.",
+        "A no-result search can be a search-key failure rather than proof that no septic record exists.",
+        "If the county and state routes disagree, the project is not ready for a tight quote or clean diligence story."
+      ],
+      "quotePrepChecklist": [
+        "Address, parcel ID, owner name, prior owner, legal description, subdivision, lot number, permit number, and county.",
+        "Permit copy, as-built, final approval, operation permit, inspection letter, repair history, complaint history, and no-record response.",
+        "Notes showing which official route was searched and which search keys were tried."
+      ],
+      "driverBullets": [
+        "Official tools shorten time-to-answer when the page routes users to the right owner of the file.",
+        "Artifact-led searches create stronger buyer, contractor, and lender outcomes than broad septic questions.",
+        "County handoff matters because many high-intent searches resolve below the state level."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What is the best official septic lookup tool?",
+          "answer": "The best tool depends on who owns the file. Some states use a state document search, while many properties require a county health department, permitting portal, or public-records request."
+        },
+        {
+          "question": "What should I do if the official lookup has no result?",
+          "answer": "Search by parcel, owner, legal description, subdivision, lot number, prior owner, and permit number, then ask whether older scanned records or delegated county files need a separate request."
+        },
+        {
+          "question": "Which septic record matters most?",
+          "answer": "The most useful record is usually the permit copy plus the as-built, final approval, operation permit, repair history, inspection letter, or written no-record response."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-request-builder/",
+        "/tdec-septic-records/",
+        "/north-carolina-septic-permit-lookup/",
+        "/texas-ossf-records-search/",
+        "/florida-ostds-permit-lookup/",
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-records-request/",
+        "/septic-permit-search-by-address/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-records-checklist/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-records-request-builder",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic records request builder",
+      "secondaryKeywords": [
+        "septic permit records request template",
+        "septic records request email",
+        "septic permit copy request",
+        "septic as-built request",
+        "septic public records request"
+      ],
+      "title": "Septic Records Request Builder",
+      "metaDescription": "Build a copy-ready septic records request for permit copies, as-builts, final approval files, repair records, inspection letters, and no-record responses.",
+      "introCopy": "A septic records request works better when it reads like a file pull, not a vague question. The request builder turns address, county, parcel, artifact, and reason into a copy-ready message that asks the office for the exact document needed and the next search key if the first pass fails.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for buyers, sellers, agents, owners, contractors, and coordinators who need to contact a county, state, health department, delegated authority, or permitting office without losing a day to unclear wording.",
+      "deepDiveParagraphs": [
+        "The request should identify the property and the artifact. Address-only requests can fail when records are indexed by parcel, owner, legal description, lot number, subdivision, permit number, or prior owner.",
+        "The strongest wording asks for the permit copy, as-built, site sketch, final approval, operation permit, repair history, complaint history, inspection letter, bedroom-use record, or written no-record response depending on the decision.",
+        "If the office cannot locate a file, the request should ask what alternate search key or archive path should be checked next. That one sentence often separates a dead-end answer from a usable diligence trail."
+      ],
+      "fitBullets": [
+        "You have enough property information to ask an office for the septic file.",
+        "A county portal is missing, broken, incomplete, or unclear.",
+        "A transaction, lender, repair, addition, or replacement decision needs a written record path."
+      ],
+      "decisionSteps": [
+        "Choose the state route and county before writing the request.",
+        "Select the exact artifact: permit copy, as-built, final approval, repair record, inspection letter, or no-record response.",
+        "Add address, parcel ID, owner, legal description, subdivision, lot number, and permit number when available.",
+        "Copy the request and send it through the official email, portal, public-records form, or phone workflow."
+      ],
+      "lowEndBreakers": [
+        "A generic request can return a generic answer and still miss the record needed for the decision.",
+        "No-record responses are weak if the office did not search parcel, owner, legal description, or old archives.",
+        "A permit copy without final approval or as-built details may not support a tight quote or closing-safe answer."
+      ],
+      "quotePrepChecklist": [
+        "Property identifiers: address, county, state, parcel ID, owner, legal description, subdivision, lot number, permit number.",
+        "Artifact request: permit copy, as-built, final approval, operation permit, repair history, inspection letter, complaint history, or no-record response.",
+        "Reason for request: sale, buyer diligence, lender review, repair, addition, replacement, owner records, or contractor quote."
+      ],
+      "driverBullets": [
+        "Copy-ready requests convert search friction into a concrete next action.",
+        "Clear artifact language improves the chance of receiving a useful file on the first response.",
+        "The builder supports state and county handoff without forcing users to understand every local naming convention first."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Can I use this as a public records request?",
+          "answer": "Yes, but you should still submit it through the official channel used by that state, county, health department, or permitting office."
+        },
+        {
+          "question": "What septic record should I request first?",
+          "answer": "For buyer diligence, start with the permit copy, as-built, final approval, operation permit, repair history, and any inspection letter or no-record response."
+        },
+        {
+          "question": "What if I do not know the parcel ID?",
+          "answer": "Send the address and owner information, but ask the office whether parcel ID, legal description, subdivision, lot number, or prior owner would improve the search."
+        }
+      ],
+      "internalLinkTargets": [
+        "/official-septic-lookup-tools/",
+        "/how-to-find-septic-records-online/",
+        "/septic-records-by-county/",
+        "/septic-permit-records-request/",
+        "/septic-permit-search-by-address/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/tdec-septic-records/",
+        "/north-carolina-septic-permit-lookup/",
+        "/texas-ossf-records-search/",
+        "/florida-ostds-permit-lookup/",
+        "/septic-system-cost-calculator/?projectType=buying_home"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "tdec-septic-records",
+      "intentType": "workflow_page",
+      "primaryKeyword": "TDEC septic records",
+      "secondaryKeywords": [
+        "TDEC septic permit search",
+        "Tennessee septic records",
+        "Tennessee septic permit lookup",
+        "TDEC document viewer septic",
+        "Tennessee SSDS permit records"
+      ],
+      "title": "TDEC Septic Records Search",
+      "metaDescription": "Use the TDEC septic records route, Tennessee county handoff, and request wording to find septic permits, SSDS records, as-builts, and approvals.",
+      "introCopy": "TDEC septic records searches should start with the state document path, then move quickly into county and request workflows when the first result is incomplete. Tennessee users usually need more than a permit hit: they need the permit copy, as-built, final approval, SSDS file, repair history, or a clear no-record response.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for Tennessee buyers, owners, agents, contractors, and closing teams who need the official septic file before trusting a quote, inspection story, addition plan, or transaction deadline.",
+      "deepDiveParagraphs": [
+        "Tennessee septic records often begin with TDEC, but the useful answer may still depend on county context, older scanned files, environmental field office routing, parcel data, and the exact document name used by the office.",
+        "Search TDEC with every identifier available: address, owner, parcel, permit number, subdivision, lot number, and legal description. A failed address search should not be treated as proof that no septic file exists.",
+        "When the state search is thin, ask for the SSDS permit, as-built or site sketch, final approval, repair file, inspection letter, complaint history, and a written explanation of the next archive or county route."
+      ],
+      "fitBullets": [
+        "The property is in Tennessee and you need a septic permit, SSDS record, as-built, or final approval.",
+        "The TDEC search returns a partial result, no result, or a result that does not answer the buyer or contractor question.",
+        "A county page or office handoff is needed after the state route."
+      ],
+      "decisionSteps": [
+        "Search the TDEC document route with address, owner, parcel, permit number, subdivision, and lot clues.",
+        "Capture whether the first artifact is a permit, as-built, final approval, repair file, inspection letter, or no-record response.",
+        "Open the Tennessee county records page when county-level routing is stronger than the generic state path.",
+        "Use the request builder if TDEC or the county needs a targeted file-pull message."
+      ],
+      "lowEndBreakers": [
+        "A TDEC result may not include final approval, as-built layout, repair history, or current bedroom-use context.",
+        "Older Tennessee files may need alternate search keys or office handoff.",
+        "If the first official search fails, the risk is unresolved until a parcel, owner, legal-description, or county route is checked."
+      ],
+      "quotePrepChecklist": [
+        "TDEC search result, county record page, parcel ID, owner name, legal description, subdivision, lot number, permit number, and address.",
+        "SSDS permit, as-built, final approval, operation record, repair history, complaint record, inspection letter, and no-record response.",
+        "Notes on whether the answer came from state search, county route, field office, or public-records request."
+      ],
+      "driverBullets": [
+        "TDEC intent is high because users are usually trying to resolve an official file, not read general septic advice.",
+        "Tennessee pages need a state-to-county workflow because state search friction often creates the next click.",
+        "Artifact language helps the page satisfy buyer, contractor, and office-user intent in one path."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Where do I start a TDEC septic records search?",
+          "answer": "Start with the official TDEC septic document route, then use county records pages or a targeted records request if the result is incomplete."
+        },
+        {
+          "question": "What should I search in Tennessee besides the address?",
+          "answer": "Try parcel ID, owner name, permit number, legal description, subdivision, lot number, and prior owner if the address search is weak."
+        },
+        {
+          "question": "What Tennessee septic documents should I ask for?",
+          "answer": "Ask for the SSDS permit, as-built or site sketch, final approval, operation record, repair history, inspection letter, and any written no-record response."
+        }
+      ],
+      "internalLinkTargets": [
+        "/official-septic-lookup-tools/",
+        "/septic-records-request-builder/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-records-checklist/tennessee/blount-county/",
+        "/septic-records-checklist/tennessee/hamilton-county/",
+        "/septic-records-checklist/tennessee/davidson-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-system-cost-calculator/tennessee/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "north-carolina-septic-permit-lookup",
+      "intentType": "workflow_page",
+      "primaryKeyword": "North Carolina septic permit lookup",
+      "secondaryKeywords": [
+        "NC septic permit lookup",
+        "North Carolina septic records",
+        "NC environmental health septic records",
+        "North Carolina septic as-built",
+        "NC septic public records"
+      ],
+      "title": "North Carolina Septic Permit Lookup",
+      "metaDescription": "Find North Carolina septic permit records through county environmental health routes, public records requests, parcel searches, and as-built file pulls.",
+      "introCopy": "A North Carolina septic permit lookup usually resolves through county environmental health, county permitting portals, or public-records workflows rather than one universal statewide lookup. The goal is to identify the right county route, then recover the permit, as-built, final approval, repair history, inspection letter, or no-record response.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for North Carolina buyers, owners, agents, builders, and contractors who need an official county septic file before a sale, repair, addition, replacement, or lender review.",
+      "deepDiveParagraphs": [
+        "North Carolina septic record searches often depend on county practice. Wake, Buncombe, Johnston, Alamance, and other counties can expose different portal, request, and environmental health workflows.",
+        "Start with the county page, then search by address, parcel, owner, permit number, subdivision, lot number, and legal description. If the county portal gives a partial record, ask for the actual permit packet and installed layout.",
+        "The most useful North Carolina answer is not just whether a permit exists. It is whether the file shows the approved system, installed system, final approval, repair history, bedroom basis, and any current inspection-letter requirement."
+      ],
+      "fitBullets": [
+        "The property is in North Carolina and you need the septic permit file or as-built.",
+        "A county portal result is unclear, incomplete, or difficult to interpret.",
+        "A sale, addition, repair, or replacement depends on county environmental health records."
+      ],
+      "decisionSteps": [
+        "Open the North Carolina state page to choose the county route.",
+        "Search the county portal or request path with address, parcel, owner, permit number, subdivision, and lot clues.",
+        "Ask for permit, as-built, final approval, operation record, repair file, inspection letter, and bedroom-use context.",
+        "Use a written request when the county search does not produce the artifact needed for the decision."
+      ],
+      "lowEndBreakers": [
+        "North Carolina county portals can show a case without exposing the as-built or final approval needed for diligence.",
+        "A no-result county search may need parcel, prior owner, legal description, or older archive review.",
+        "Bedroom count, repair history, missing layout, or incomplete final approval can change buyer and contractor risk."
+      ],
+      "quotePrepChecklist": [
+        "County name, address, parcel ID, owner name, legal description, subdivision, lot number, and permit number.",
+        "Permit copy, as-built, final approval, operation permit, repair history, inspection letter, bedroom basis, and no-record response.",
+        "Screenshot or notes from the county portal plus any public-records request confirmation."
+      ],
+      "driverBullets": [
+        "North Carolina searches have strong county-level intent because users need the specific local owner of the file.",
+        "County examples make the page feel like a product route instead of a generic state overview.",
+        "Parcel and artifact filters help users self-select the right next click."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Is there one statewide North Carolina septic permit lookup?",
+          "answer": "Many North Carolina septic records resolve through county environmental health offices, county portals, or local public-records request paths rather than one universal statewide search."
+        },
+        {
+          "question": "What should I ask a North Carolina county for?",
+          "answer": "Ask for the septic permit, as-built or site sketch, final approval, operation record, repair history, inspection letter, bedroom basis, and written no-record response if nothing is found."
+        },
+        {
+          "question": "Why does parcel ID matter for NC septic records?",
+          "answer": "County records may be indexed by parcel, owner, permit number, subdivision, lot number, or legal description, so address-only searches can miss older files."
+        }
+      ],
+      "internalLinkTargets": [
+        "/official-septic-lookup-tools/",
+        "/septic-records-request-builder/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-records-checklist/north-carolina/wake-county/",
+        "/septic-records-checklist/north-carolina/buncombe-county/",
+        "/septic-records-checklist/north-carolina/johnston-county/",
+        "/septic-records-checklist/north-carolina/alamance-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-system-cost-calculator/north-carolina/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "texas-ossf-records-search",
+      "intentType": "workflow_page",
+      "primaryKeyword": "Texas OSSF records search",
+      "secondaryKeywords": [
+        "Texas septic permit lookup",
+        "OSSF permit records",
+        "Texas onsite sewage facility records",
+        "Texas county septic records",
+        "Texas septic as-built"
+      ],
+      "title": "Texas OSSF Records Search",
+      "metaDescription": "Search Texas OSSF records through county routes, permitting authorities, TCEQ context, parcel clues, and targeted records requests.",
+      "introCopy": "Texas OSSF records searches need county and local-authority routing. TCEQ defines the onsite sewage facility framework, but many useful records live with counties, permitting authorities, designated representatives, or local portals. The search should recover the OSSF permit, approved plan, as-built, final approval, repair history, or no-record response.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for Texas buyers, owners, agents, builders, and septic contractors who need the official OSSF record before a sale, repair, addition, replacement, or quote.",
+      "deepDiveParagraphs": [
+        "Texas septic terminology often uses OSSF instead of generic septic. Search and request using both terms, especially when county sites, permitting authorities, or local documents use different labels.",
+        "Start with the county or permitting-authority route, then search by address, parcel, owner, permit number, subdivision, legal description, and lot number. If the first portal result is thin, ask for the underlying OSSF packet.",
+        "The useful answer should identify the permitted system, approved plan or as-built, final approval, repair history, and whether a county or local authority has a written no-record response."
+      ],
+      "fitBullets": [
+        "The property is in Texas and the record may be labeled OSSF, onsite sewage facility, septic, or county health record.",
+        "A county portal returns a case but not the installed layout or final approval.",
+        "A buyer, contractor, or addition plan needs the official OSSF packet before pricing."
+      ],
+      "decisionSteps": [
+        "Identify the county or authorized local OSSF route before searching broadly.",
+        "Search by address, parcel, owner, legal description, subdivision, lot number, and permit number.",
+        "Ask for the OSSF permit, approved plan, as-built, final approval, repair record, inspection letter, and no-record response.",
+        "Use the Texas county pages and request builder when the first authority route is incomplete."
+      ],
+      "lowEndBreakers": [
+        "A Texas case result can be less useful than the actual approved plan, as-built, or final approval.",
+        "OSSF records may be split across county, local authority, and older archive paths.",
+        "Address-only searches can miss rural or subdivision files indexed by parcel, lot, legal description, or owner."
+      ],
+      "quotePrepChecklist": [
+        "County, address, parcel ID, owner, legal description, subdivision, lot number, permit number, and local permitting authority.",
+        "OSSF permit, approved plan, as-built, final approval, repair history, inspection letter, and no-record response.",
+        "Notes from TCEQ context, county portal, public-records request, or local OSSF authority."
+      ],
+      "driverBullets": [
+        "Texas OSSF intent is high because users often know the acronym and need a practical route, not general education.",
+        "County examples create a better next click for users who cannot resolve records from a state-only page.",
+        "The page bridges TCEQ terminology with county execution, which is where many searches finish."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What does OSSF mean in Texas septic records?",
+          "answer": "OSSF means onsite sewage facility. Texas records may use OSSF, septic, onsite sewage, county health, or permitting-authority language."
+        },
+        {
+          "question": "Where are Texas OSSF records kept?",
+          "answer": "Many useful records are held by counties, authorized local authorities, permitting offices, or older archives, with TCEQ providing statewide framework context."
+        },
+        {
+          "question": "What Texas OSSF documents should I request?",
+          "answer": "Ask for the OSSF permit, approved plan, as-built, final approval, repair record, inspection letter, and written no-record response if the search fails."
+        }
+      ],
+      "internalLinkTargets": [
+        "/official-septic-lookup-tools/",
+        "/septic-records-request-builder/",
+        "/septic-records-checklist/texas/",
+        "/septic-records-checklist/texas/tarrant-county/",
+        "/septic-records-checklist/texas/denton-county/",
+        "/septic-records-checklist/texas/travis-county/",
+        "/septic-records-checklist/texas/comal-county/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-system-cost-calculator/texas/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "florida-ostds-permit-lookup",
+      "intentType": "workflow_page",
+      "primaryKeyword": "Florida OSTDS permit lookup",
+      "secondaryKeywords": [
+        "Florida septic permit lookup",
+        "Florida OSTDS records",
+        "Florida onsite sewage permit search",
+        "Florida septic records",
+        "Florida septic as-built"
+      ],
+      "title": "Florida OSTDS Permit Lookup",
+      "metaDescription": "Use Florida OSTDS permit lookup routes, county health workflows, DEP context, parcel clues, and request wording to find septic records.",
+      "introCopy": "Florida OSTDS permit lookup searches should combine state terminology with county health and local records workflows. Florida users may see OSTDS, onsite sewage, septic, permit, construction approval, repair, abandonment, or inspection terms depending on the office and record system.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "Best for Florida buyers, owners, agents, contractors, and coordinators who need septic or OSTDS records before a sale, repair, replacement, lender request, or renovation decision.",
+      "deepDiveParagraphs": [
+        "Florida records can be state-contextual but county-executed. Start with the Florida OSTDS terminology, then move to the county health department, local permitting route, or records request that owns the actual file.",
+        "Search with address, parcel, owner, permit number, subdivision, lot number, and legal description. If a county page gives a permit stub, ask for the underlying permit packet, approved plan, final approval, repair file, and no-record response.",
+        "The Florida answer should separate a public lookup result from a closing-safe or contractor-ready document set. A permit hit alone may not show installed layout, approval status, repair history, or whether the record is missing."
+      ],
+      "fitBullets": [
+        "The property is in Florida and the record may use OSTDS, onsite sewage, septic, or county health wording.",
+        "A county or state route returns partial information but not the artifact needed for the decision.",
+        "A buyer, lender, contractor, or owner needs a written file path before pricing or closing."
+      ],
+      "decisionSteps": [
+        "Start with the Florida OSTDS route and identify the county health or permitting owner.",
+        "Search by address, parcel, owner, permit number, legal description, subdivision, and lot number.",
+        "Ask for the OSTDS permit, approved plan, as-built or site sketch, final approval, repair history, abandonment record, inspection letter, and no-record response.",
+        "Use the request builder if the lookup path is not public, is incomplete, or requires a written file pull."
+      ],
+      "lowEndBreakers": [
+        "Florida septic records may sit behind county health or local records workflows rather than one obvious public search.",
+        "A permit hit without final approval, layout, repair, or abandonment context can leave the buyer or contractor risk unresolved.",
+        "A no-result search needs alternate keys before it becomes meaningful evidence that no OSTDS record exists."
+      ],
+      "quotePrepChecklist": [
+        "County, address, parcel ID, owner, legal description, subdivision, lot number, permit number, and county health office route.",
+        "OSTDS permit, approved plan, as-built or site sketch, final approval, repair history, abandonment record, inspection letter, and no-record response.",
+        "Notes showing whether the search used Florida DEP context, county health records, local permitting, or public-records request."
+      ],
+      "driverBullets": [
+        "Florida OSTDS searches pull in users who know the official term and are closer to action.",
+        "County handoff keeps the page useful when a statewide explanation does not produce the file.",
+        "Artifact-led language helps convert lookup intent into records, pricing, and transaction outcomes."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What does OSTDS mean in Florida septic records?",
+          "answer": "OSTDS means onsite sewage treatment and disposal system. Florida records may also use septic, onsite sewage, county health, permit, construction, repair, or abandonment wording."
+        },
+        {
+          "question": "Where should I search for Florida septic permits?",
+          "answer": "Start with Florida OSTDS context, then use the county health department, local permitting route, or public-records request that owns the property file."
+        },
+        {
+          "question": "What Florida OSTDS documents should I request?",
+          "answer": "Ask for the OSTDS permit, approved plan, as-built or site sketch, final approval, repair history, abandonment record, inspection letter, and written no-record response."
+        }
+      ],
+      "internalLinkTargets": [
+        "/official-septic-lookup-tools/",
+        "/septic-records-request-builder/",
+        "/septic-records-checklist/florida/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-inspection-letter/",
+        "/septic-system-cost-calculator/florida/",
+        "/septic-inspection-cost/florida/",
+        "/drain-field-replacement-cost/florida/",
+        "/buying-a-house-with-a-septic-system/florida/"
+      ],
+      "publishStatus": "published"
     }
   ]
 }

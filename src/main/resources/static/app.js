@@ -221,20 +221,81 @@
             const results = Array.from(finder.querySelectorAll("[data-county-finder-result]"));
             const count = finder.querySelector("[data-county-finder-count]");
             const empty = finder.querySelector("[data-county-finder-empty]");
+            const methodFilter = finder.querySelector("[data-county-finder-method]");
+            const artifactFilter = finder.querySelector("[data-county-finder-artifact]");
+            const confidenceFilter = finder.querySelector("[data-county-finder-confidence]");
+            const parcelFilter = finder.querySelector("[data-county-finder-parcel]");
 
             if (!input || !results.length) {
                 return;
             }
 
+            function matchesMethod(result, selectedMethod) {
+                if (!selectedMethod) {
+                    return true;
+                }
+
+                const method = normalize(result.dataset.method);
+                if (selectedMethod === "online") {
+                    return /\b(online|portal|search|lookup|gis)\b/.test(method);
+                }
+                if (selectedMethod === "request") {
+                    return /\b(request|form|email|written|copy)\b/.test(method);
+                }
+                if (selectedMethod === "office") {
+                    return /\b(office|phone|contact|department|county)\b/.test(method);
+                }
+                return true;
+            }
+
+            function matchesArtifact(result, selectedArtifact) {
+                if (!selectedArtifact) {
+                    return true;
+                }
+
+                const artifact = normalize(result.dataset.artifact);
+                if (selectedArtifact === "as-built") {
+                    return artifact.includes("as built") || artifact.includes("layout") || artifact.includes("site sketch");
+                }
+                if (selectedArtifact === "no-record") {
+                    return artifact.includes("no record") || artifact.includes("missing") || artifact.includes("written response");
+                }
+                return artifact.includes(normalize(selectedArtifact));
+            }
+
+            function matchesConfidence(result, selectedConfidence) {
+                if (!selectedConfidence) {
+                    return true;
+                }
+
+                const score = Number(result.dataset.confidenceScore || 0);
+                if (selectedConfidence === "high") {
+                    return score >= 82;
+                }
+                if (selectedConfidence === "solid") {
+                    return score >= 70;
+                }
+                return true;
+            }
+
             function updateResults() {
                 const query = normalize(input.value);
+                const selectedMethod = methodFilter instanceof HTMLSelectElement ? methodFilter.value : "";
+                const selectedArtifact = artifactFilter instanceof HTMLSelectElement ? artifactFilter.value : "";
+                const selectedConfidence = confidenceFilter instanceof HTMLSelectElement ? confidenceFilter.value : "";
+                const parcelOnly = parcelFilter instanceof HTMLInputElement && parcelFilter.checked;
                 const maxVisible = query ? 18 : 10;
                 let matched = 0;
                 let shown = 0;
 
                 results.forEach((result) => {
                     const haystack = normalize(result.dataset.search);
-                    const isMatch = !query || haystack.includes(query);
+                    const isTextMatch = !query || haystack.includes(query);
+                    const isMatch = isTextMatch
+                        && matchesMethod(result, selectedMethod)
+                        && matchesArtifact(result, selectedArtifact)
+                        && matchesConfidence(result, selectedConfidence)
+                        && (!parcelOnly || result.dataset.parcelAnchor === "true");
                     if (isMatch) {
                         matched += 1;
                     }
@@ -251,6 +312,9 @@
                     count.textContent = query
                         ? `${matched} matching county route${matched === 1 ? "" : "s"}`
                         : `${results.length} priority county routes indexed`;
+                    if (!query && (selectedMethod || selectedArtifact || selectedConfidence || parcelOnly)) {
+                        count.textContent = `${matched} filtered county route${matched === 1 ? "" : "s"}`;
+                    }
                 }
                 if (empty) {
                     empty.hidden = matched > 0;
@@ -258,6 +322,14 @@
             }
 
             input.addEventListener("input", updateResults);
+            [methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
+                if (select instanceof HTMLSelectElement) {
+                    select.addEventListener("change", updateResults);
+                }
+            });
+            if (parcelFilter instanceof HTMLInputElement) {
+                parcelFilter.addEventListener("change", updateResults);
+            }
             input.addEventListener("keydown", (event) => {
                 if (event.key !== "Enter") {
                     return;
@@ -273,6 +345,14 @@
             if (clear) {
                 clear.addEventListener("click", () => {
                     input.value = "";
+                    [methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
+                        if (select instanceof HTMLSelectElement) {
+                            select.value = "";
+                        }
+                    });
+                    if (parcelFilter instanceof HTMLInputElement) {
+                        parcelFilter.checked = false;
+                    }
                     input.focus();
                     updateResults();
                 });
@@ -283,6 +363,163 @@
     }
 
     setupCountyFinders();
+
+    function setupRecordsRequestBuilders() {
+        const builders = Array.from(document.querySelectorAll("[data-records-request-builder]"));
+        if (!builders.length) {
+            return;
+        }
+
+        const stateRouteNotes = {
+            TN: "Start with the TDEC septic permit search, then use the regional or contract-county route if the parcel is not visible.",
+            NC: "Route the request to the county environmental health office; North Carolina septic files are usually county-held.",
+            TX: "Ask for the OSSF permit file, approved plan, inspection record, and local authorized-agent route.",
+            FL: "Ask the county health department or eBridge-style records path for OSTDS permit, final approval, and archive details.",
+            DEFAULT: "Route the request to the county health, environmental health, or onsite wastewater office that holds septic permit files."
+        };
+
+        const artifactCopy = {
+            permit_copy: "the septic permit copy and permit history",
+            as_built: "the septic as-built, site sketch, approved plan, or installed layout",
+            final_approval: "the final approval, operation permit, installation certificate, or closeout record",
+            repair_record: "any repair permit, malfunction file, complaint record, or corrective-action history",
+            inspection_letter: "the inspection letter, lender letter, buyer due-diligence response, or records letter",
+            no_record: "a written no-record response if no septic file is available"
+        };
+
+        const reasonCopy = {
+            buying: "buyer due diligence or a property transaction",
+            repair: "repair planning or a suspected system problem",
+            addition: "an addition, bedroom-count question, pool, driveway, grading, or site-change review",
+            replacement: "replacement planning or drain-field risk review",
+            lender: "a lender, closing, or inspection-letter request",
+            owner_records: "owner records and file verification"
+        };
+
+        function valueOf(builder, selector) {
+            const element = builder.querySelector(selector);
+            return element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement
+                ? element.value.trim()
+                : "";
+        }
+
+        function labelOf(select) {
+            if (!(select instanceof HTMLSelectElement)) {
+                return "";
+            }
+            return select.options[select.selectedIndex]?.text?.trim() || "";
+        }
+
+        function buildRequest(builder) {
+            const stateSelect = builder.querySelector("[data-request-state]");
+            const recordSelect = builder.querySelector("[data-request-record]");
+            const reasonSelect = builder.querySelector("[data-request-reason]");
+            const stateCode = stateSelect instanceof HTMLSelectElement ? stateSelect.value : "DEFAULT";
+            const stateLabel = labelOf(stateSelect) || "the property state";
+            const recordKey = recordSelect instanceof HTMLSelectElement ? recordSelect.value : "permit_copy";
+            const reasonKey = reasonSelect instanceof HTMLSelectElement ? reasonSelect.value : "owner_records";
+            const county = valueOf(builder, "[data-request-county]");
+            const address = valueOf(builder, "[data-request-address]");
+            const parcel = valueOf(builder, "[data-request-parcel]");
+            const owner = valueOf(builder, "[data-request-owner]");
+            const routeNote = stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT;
+            const artifact = artifactCopy[recordKey] || artifactCopy.permit_copy;
+            const reason = reasonCopy[reasonKey] || reasonCopy.owner_records;
+            const countyLine = county ? `${county} County` : "the property county";
+            const routeLabel = stateCode === "DEFAULT"
+                ? "the local county health, environmental health, or onsite wastewater office"
+                : stateLabel;
+            const addressLine = address || "[property address]";
+            const parcelLine = parcel || "[parcel ID / APN / tax ID if known]";
+            const ownerLine = owner || "[current or prior owner name if known]";
+
+            return [
+                `Subject: Septic records request for ${addressLine}`,
+                "",
+                `Hello, I am requesting septic system records for a property in ${countyLine}. Please route this through ${routeLabel}.`,
+                "",
+                `Property: ${addressLine}`,
+                `Parcel / APN / tax ID: ${parcelLine}`,
+                `Owner name: ${ownerLine}`,
+                `Reason for request: ${reason}.`,
+                "",
+                `Please search for ${artifact}. If those records are held by another office, please tell me the correct office or public records route.`,
+                "",
+                "If no septic record is available, please provide a written no-record response or the best next step for confirming whether a file exists.",
+                "",
+                `Routing note: ${routeNote}`,
+                "",
+                "Thank you."
+            ].join("\n");
+        }
+
+        function updateBuilder(builder) {
+            const output = builder.querySelector("[data-records-request-output]");
+            const preview = builder.querySelector("[data-records-request-preview]");
+            const script = buildRequest(builder);
+
+            if (output instanceof HTMLTextAreaElement) {
+                output.value = script;
+            }
+            if (preview) {
+                preview.textContent = script.split("\n").filter(Boolean).slice(0, 3).join(" ");
+            }
+        }
+
+        function copyText(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.setAttribute("readonly", "");
+            textarea.style.position = "fixed";
+            textarea.style.top = "-1000px";
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                return Promise.resolve();
+            } catch (error) {
+                return Promise.reject(error);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        builders.forEach((builder) => {
+            const inputs = Array.from(builder.querySelectorAll("input, select"));
+            const copyButton = builder.querySelector("[data-records-request-copy]");
+            const output = builder.querySelector("[data-records-request-output]");
+
+            inputs.forEach((input) => {
+                input.addEventListener("input", () => updateBuilder(builder));
+                input.addEventListener("change", () => updateBuilder(builder));
+            });
+
+            if (copyButton instanceof HTMLButtonElement && output instanceof HTMLTextAreaElement) {
+                copyButton.addEventListener("click", async () => {
+                    const original = copyButton.textContent;
+                    try {
+                        await copyText(output.value);
+                        copyButton.textContent = "Request copied";
+                        copyButton.classList.add("is-copied");
+                    } catch (_error) {
+                        copyButton.textContent = "Copy failed";
+                        copyButton.classList.add("is-copy-failed");
+                    }
+                    window.setTimeout(() => {
+                        copyButton.textContent = original;
+                        copyButton.classList.remove("is-copied", "is-copy-failed");
+                    }, 1800);
+                });
+            }
+
+            updateBuilder(builder);
+        });
+    }
+
+    setupRecordsRequestBuilders();
 
     function setupShareActions() {
         const buttons = Array.from(document.querySelectorAll("[data-share-route]"));

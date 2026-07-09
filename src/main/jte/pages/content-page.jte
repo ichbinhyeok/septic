@@ -535,6 +535,200 @@
         </section>
     @endif
 
+    @if ("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()))
+        <section class="section section--tight">
+            <div class="container">
+                <div class="official-tool-console" aria-label="Official septic lookup tools command board">
+                    <div class="official-tool-console__intro">
+                        <span class="eyebrow">Official lookup command board</span>
+                        <h2>
+                            @if ("tdec-septic-records".equals(contentPage.slug()))
+                                TDEC records searches need the state search, then a county fallback.
+                            @elseif ("north-carolina-septic-permit-lookup".equals(contentPage.slug()))
+                                North Carolina searches usually resolve at county environmental health.
+                            @elseif ("texas-ossf-records-search".equals(contentPage.slug()))
+                                Texas OSSF searches need the state context and the local authorized agent.
+                            @elseif ("florida-ostds-permit-lookup".equals(contentPage.slug()))
+                                Florida OSTDS searches start with the county health record path.
+                            @else
+                                Start with the official source, then use the county request path.
+                            @endif
+                        </h2>
+                        <p>These routes are built for searchers who need a permit copy, as-built, final approval, repair file, inspection letter, or written no-record response before they trust a quote or property story.</p>
+                    </div>
+
+                    <div class="official-tool-console__grid">
+                        <article class="official-tool-route">
+                            <span>TN / TDEC</span>
+                            <h3>TDEC septic records search</h3>
+                            <p>Use the TDEC septic permit search first. If the parcel is not visible, fall back to the Tennessee county route or a records request.</p>
+                            <div class="official-tool-route__actions">
+                                <a class="button button--primary"
+                                   href="https://tdec.tn.gov/document-viewer/search/stp"
+                                   target="_blank"
+                                   rel="noreferrer">Open TDEC search</a>
+                                <a class="button button--secondary"
+                                   href="/tdec-septic-records/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="internal_page">Use TDEC guide</a>
+                            </div>
+                        </article>
+
+                        <article class="official-tool-route">
+                            <span>NC / county EH</span>
+                            <h3>North Carolina septic permit lookup</h3>
+                            <p>Use county environmental health, permit portals, and records request paths; statewide public records pages are usually a backstop, not the final file owner.</p>
+                            <div class="official-tool-route__actions">
+                                <a class="button button--primary"
+                                   href="https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records"
+                                   target="_blank"
+                                   rel="noreferrer">Open NC records</a>
+                                <a class="button button--secondary"
+                                   href="/north-carolina-septic-permit-lookup/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="internal_page">Use NC guide</a>
+                                <a class="button button--secondary"
+                                   href="/septic-records-checklist/north-carolina/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="state_money_page">NC records page</a>
+                            </div>
+                        </article>
+
+                        <article class="official-tool-route">
+                            <span>TX / OSSF</span>
+                            <h3>Texas OSSF records search</h3>
+                            <p>Use TCEQ OSSF context to identify the program, then resolve the permit file through the county, authorized agent, or local permitting authority.</p>
+                            <div class="official-tool-route__actions">
+                                <a class="button button--primary"
+                                   href="https://www.tceq.texas.gov/permitting/ossf"
+                                   target="_blank"
+                                   rel="noreferrer">Open TCEQ OSSF</a>
+                                <a class="button button--secondary"
+                                   href="/texas-ossf-records-search/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="internal_page">Use Texas guide</a>
+                            </div>
+                        </article>
+
+                        <article class="official-tool-route">
+                            <span>FL / OSTDS</span>
+                            <h3>Florida OSTDS permit lookup</h3>
+                            <p>Use the county health department, local archive, or eBridge-style records path when the search is about a septic permit, final approval, or old OSTDS file.</p>
+                            <div class="official-tool-route__actions">
+                                <a class="button button--primary"
+                                   href="https://floridadep.gov/water/onsite-sewage"
+                                   target="_blank"
+                                   rel="noreferrer">Open Florida OSTDS</a>
+                                <a class="button button--secondary"
+                                   href="/florida-ostds-permit-lookup/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="internal_page">Use Florida guide</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="official-tool-console__handoff">
+                        <strong>When the search tool does not find the file</strong>
+                        <p>Retry with parcel ID, owner name, street name, subdivision, permit number, or legal description. If the record still does not appear, send a precise request instead of assuming the septic file does not exist.</p>
+                        <a class="button button--secondary"
+                           href="/septic-records-request-builder/"
+                           data-track-click="nav"
+                           data-track-source-context="official_tool_console_builder"
+                           data-track-target-type="internal_page">Build records request</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ("septic-records-request-builder".equals(contentPage.slug()))
+        <section class="section section--tight" id="records-request-builder">
+            <div class="container">
+                <div class="records-request-builder" data-records-request-builder>
+                    <div class="records-request-builder__intro">
+                        <span class="eyebrow">Records request builder</span>
+                        <h2>Generate the exact septic records request before you call the office.</h2>
+                        <p>Pick the state route, record type, and reason. The script updates into a copy-ready request for permit copies, as-builts, final approvals, repair records, inspection letters, or no-record responses.</p>
+                    </div>
+
+                    <div class="records-request-builder__workspace">
+                        <div class="records-request-builder__controls">
+                            <label>
+                                <span>State route</span>
+                                <select data-request-state>
+                                    <option value="DEFAULT">General county health office</option>
+                                    <option value="TN">Tennessee / TDEC</option>
+                                    <option value="NC">North Carolina / county environmental health</option>
+                                    <option value="TX">Texas / OSSF county or authorized agent</option>
+                                    <option value="FL">Florida / OSTDS county health department</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Record needed</span>
+                                <select data-request-record>
+                                    <option value="permit_copy">Permit copy and permit history</option>
+                                    <option value="as_built">As-built, site sketch, or layout</option>
+                                    <option value="final_approval">Final approval or operation permit</option>
+                                    <option value="repair_record">Repair, malfunction, or complaint file</option>
+                                    <option value="inspection_letter">Inspection or lender letter</option>
+                                    <option value="no_record">Written no-record response</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Reason</span>
+                                <select data-request-reason>
+                                    <option value="buying">Buying or selling a house</option>
+                                    <option value="repair">Repair or suspected issue</option>
+                                    <option value="addition">Addition, pool, driveway, or grading</option>
+                                    <option value="replacement">Replacement or drain-field planning</option>
+                                    <option value="lender">Lender or closing file</option>
+                                    <option value="owner_records">Owner records</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>County</span>
+                                <input type="text" data-request-county placeholder="Wake, Blount, Tarrant">
+                            </label>
+                            <label>
+                                <span>Property address</span>
+                                <input type="text" data-request-address placeholder="Street address">
+                            </label>
+                            <label>
+                                <span>Parcel / APN / tax ID</span>
+                                <input type="text" data-request-parcel placeholder="Parcel ID if known">
+                            </label>
+                            <label>
+                                <span>Owner name</span>
+                                <input type="text" data-request-owner placeholder="Current or prior owner">
+                            </label>
+                        </div>
+
+                        <div class="records-request-builder__output">
+                            <span>Copy-ready request</span>
+                            <p data-records-request-preview></p>
+                            <textarea data-records-request-output readonly rows="14"></textarea>
+                            <div class="records-request-builder__actions">
+                                <button class="button button--primary"
+                                        type="button"
+                                        data-records-request-copy>Copy request</button>
+                                <a class="button button--secondary"
+                                   href="/septic-records-by-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_request_builder_county_index"
+                                   data-track-target-type="internal_page">Find county route</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @template.tags.countyFinder(
         countyFinderLinks = countyFinderLinks,
         finderId = contentPage.slug() + "-county-finder",

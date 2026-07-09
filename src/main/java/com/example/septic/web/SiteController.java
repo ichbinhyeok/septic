@@ -70,6 +70,12 @@ public class SiteController {
     private static final String AS_BUILT_RECORDS_SLUG = "septic-as-built-records";
     private static final String INSPECTION_LETTER_SLUG = "septic-inspection-letter";
     private static final String TRANSFER_COMPLIANCE_SLUG = "septic-transfer-compliance";
+    private static final String OFFICIAL_LOOKUP_TOOLS_SLUG = "official-septic-lookup-tools";
+    private static final String RECORDS_REQUEST_BUILDER_SLUG = "septic-records-request-builder";
+    private static final String TDEC_RECORDS_SLUG = "tdec-septic-records";
+    private static final String NC_PERMIT_LOOKUP_SLUG = "north-carolina-septic-permit-lookup";
+    private static final String TX_OSSF_RECORDS_SLUG = "texas-ossf-records-search";
+    private static final String FL_OSTDS_LOOKUP_SLUG = "florida-ostds-permit-lookup";
     private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
             PERMIT_LOOKUP_SLUG,
             RECORDS_ONLINE_SLUG,
@@ -77,7 +83,13 @@ public class SiteController {
             PERMIT_SEARCH_BY_ADDRESS_SLUG,
             PERMIT_RECORDS_REQUEST_SLUG,
             AS_BUILT_RECORDS_SLUG,
-            INSPECTION_LETTER_SLUG
+            INSPECTION_LETTER_SLUG,
+            OFFICIAL_LOOKUP_TOOLS_SLUG,
+            RECORDS_REQUEST_BUILDER_SLUG,
+            TDEC_RECORDS_SLUG,
+            NC_PERMIT_LOOKUP_SLUG,
+            TX_OSSF_RECORDS_SLUG,
+            FL_OSTDS_LOOKUP_SLUG
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
@@ -1168,8 +1180,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/septic-records-by-county", "/septic-records-by-county/",
             "/septic-permit-search-by-address", "/septic-permit-search-by-address/",
             "/septic-permit-records-request", "/septic-permit-records-request/",
+            "/septic-records-request-builder", "/septic-records-request-builder/",
             "/septic-as-built-records", "/septic-as-built-records/",
             "/septic-inspection-letter", "/septic-inspection-letter/",
+            "/official-septic-lookup-tools", "/official-septic-lookup-tools/",
+            "/tdec-septic-records", "/tdec-septic-records/",
+            "/north-carolina-septic-permit-lookup", "/north-carolina-septic-permit-lookup/",
+            "/texas-ossf-records-search", "/texas-ossf-records-search/",
+            "/florida-ostds-permit-lookup", "/florida-ostds-permit-lookup/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
             "/septic-records-checklist", "/septic-records-checklist/",
@@ -2349,8 +2367,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "Open the county records path first.";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Turn the address search into a real file path.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Send the records request before you trust the price story.";
+            case RECORDS_REQUEST_BUILDER_SLUG -> "Build the records request before another search.";
             case AS_BUILT_RECORDS_SLUG -> "Find the installed layout before you estimate the field story.";
             case INSPECTION_LETTER_SLUG -> "Separate the letter workflow from a generic permit copy.";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Open the official lookup tool before another overview.";
+            case TDEC_RECORDS_SLUG -> "Search TDEC records before you treat the file as missing.";
+            case NC_PERMIT_LOOKUP_SLUG -> "Find the county health file before broad North Carolina research.";
+            case TX_OSSF_RECORDS_SLUG -> "Route Texas OSSF records through the county or TCEQ lane.";
+            case FL_OSTDS_LOOKUP_SLUG -> "Start Florida OSTDS lookup with the county DOH path.";
             case PERMIT_LOOKUP_SLUG -> "Open a state permit lookup path first.";
             case "septic-permit-process" -> "Open a state permit page first.";
             case "septic-records-checklist" -> "Open a state records lookup first.";
@@ -2375,8 +2399,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "Open county records pages";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Open address lookup routes";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Open records request routes";
+            case RECORDS_REQUEST_BUILDER_SLUG -> "Build a request script";
             case AS_BUILT_RECORDS_SLUG -> "Open as-built record routes";
             case INSPECTION_LETTER_SLUG -> "Open inspection-letter routes";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Open official lookup tools";
+            case TDEC_RECORDS_SLUG -> "Open Tennessee records routes";
+            case NC_PERMIT_LOOKUP_SLUG -> "Open North Carolina records routes";
+            case TX_OSSF_RECORDS_SLUG -> "Open Texas OSSF records routes";
+            case FL_OSTDS_LOOKUP_SLUG -> "Open Florida OSTDS records routes";
             case PERMIT_LOOKUP_SLUG -> "Open state permit lookup pages";
             case "septic-permit-process" -> "Open state permit pages";
             case "septic-records-checklist" -> "Open state records lookup pages";
@@ -2401,8 +2431,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "The county page is the fast path when the county is already known. Use it to identify the file owner and first artifact before opening the estimate.";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Search by address first, then retry with parcel, owner, legal description, subdivision, or permit number before treating a missing result as real.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "The request should name the exact artifact needed, because permit copy, as-built, final approval, repair file, and inspection letter answer different questions.";
+            case RECORDS_REQUEST_BUILDER_SLUG -> "Choose the record type, reason, state, and parcel clues once so the request language is precise enough for the office to act on.";
             case AS_BUILT_RECORDS_SLUG -> "Use the layout record to decide whether tank, field, reserve area, or addition risk is changing the scope before you estimate.";
             case INSPECTION_LETTER_SLUG -> "A permit copy may not satisfy a closing or lender letter, so resolve the letter path before the price conversation carries weight.";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Start with the official source when one exists, then fall back to county request language when the search tool does not expose the file.";
+            case TDEC_RECORDS_SLUG -> "Use the TDEC septic permit search first, then fall back to the Tennessee county route or request builder when the parcel does not show up.";
+            case NC_PERMIT_LOOKUP_SLUG -> "North Carolina records usually resolve through county environmental health, so use the county route or request script when a statewide page is too broad.";
+            case TX_OSSF_RECORDS_SLUG -> "Texas OSSF records often depend on the authorized agent or county, so use the state OSSF context and county handoff together.";
+            case FL_OSTDS_LOOKUP_SLUG -> "Florida OSTDS records are handled through county health workflows, eBridge-style archives, or county-specific public records paths.";
             case PERMIT_LOOKUP_SLUG -> "The useful lookup is usually state plus county: open the state records or permit path first, then follow the county file route when the state page exposes one.";
             case "septic-permit-process" -> "The first real answer is usually which office, file, or site-review step controls this property, so start with the state-specific permit page before you model the cost.";
             case "septic-records-checklist" -> "County records lookup, permit search, and as-built availability vary enough that the state-specific records page is the faster first move.";
@@ -2438,8 +2474,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "Run a county-aware estimate";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Run an address-lookup estimate";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Run a records-request estimate";
+            case RECORDS_REQUEST_BUILDER_SLUG -> "Run a records-aware estimate";
             case AS_BUILT_RECORDS_SLUG -> "Run a layout-risk estimate";
             case INSPECTION_LETTER_SLUG -> "Run a letter-aware estimate";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Run a lookup-aware estimate";
+            case TDEC_RECORDS_SLUG -> "Run a Tennessee records-aware estimate";
+            case NC_PERMIT_LOOKUP_SLUG -> "Run a North Carolina records-aware estimate";
+            case TX_OSSF_RECORDS_SLUG -> "Run a Texas OSSF-aware estimate";
+            case FL_OSTDS_LOOKUP_SLUG -> "Run a Florida OSTDS-aware estimate";
             case PERMIT_LOOKUP_SLUG -> "Run a lookup-aware estimate";
             case "septic-permit-process" -> "Run a permit-path estimate";
             case "septic-records-checklist" -> "Run a records-aware estimate";
@@ -2461,8 +2503,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "Use the estimate after the county file owner, first artifact, and repair or closeout trail are clear enough to support a price story.";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Use the estimate after the address search has been checked against parcel, owner, legal-description, or permit-number search paths.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Use the estimate after the records request shows whether the missing artifact is routine, delayed, or a real file gap.";
+            case RECORDS_REQUEST_BUILDER_SLUG -> "Use the estimate after the generated request clarifies whether the missing file is a permit copy, as-built, final approval, repair record, or letter workflow.";
             case AS_BUILT_RECORDS_SLUG -> "Use the estimate after the as-built or replacement layout risk is clear enough to separate locate work from design or replacement scope.";
             case INSPECTION_LETTER_SLUG -> "Use the estimate after the office confirms whether the letter is records-only, inspection-based, lender-specific, or blocked by file issues.";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Use the estimate after the official lookup or county fallback shows whether the missing record changes the downside.";
+            case TDEC_RECORDS_SLUG -> "Use the estimate after TDEC or the county route confirms whether the Tennessee parcel file is routine, missing, or repair-linked.";
+            case NC_PERMIT_LOOKUP_SLUG -> "Use the estimate after the county environmental health file or request route clarifies what North Carolina artifact is missing.";
+            case TX_OSSF_RECORDS_SLUG -> "Use the estimate after the Texas OSSF county route clarifies whether the issue is permit history, approved plan, maintenance, or repair.";
+            case FL_OSTDS_LOOKUP_SLUG -> "Use the estimate after the county DOH or archive route clarifies whether the Florida OSTDS record is available or needs a formal request.";
             case PERMIT_LOOKUP_SLUG -> "Use the estimate after the lookup tells you whether the file gap is routine, a county routing problem, or a repair-permit risk.";
             case "septic-permit-process" -> "Use the estimate after you know whether the real blocker is authority routing, project classification, or site review.";
             case "septic-records-checklist" -> "Use the estimate after you know which missing record is actually changing the downside.";

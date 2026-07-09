@@ -758,8 +758,14 @@ public class SeoService {
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
             case "septic-permit-search-by-address" -> "Septic Permit Search by Address | County Records and Parcel Lookup | SepticPath";
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath";
+            case "septic-records-request-builder" -> "Septic Records Request Builder | Permit Copy, As-Built, and Inspection Letter Script | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
+            case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, County Records, OSSF, and OSTDS Search | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Records Search | Tennessee Permit Lookup and County File Path | SepticPath";
+            case "north-carolina-septic-permit-lookup" -> "North Carolina Septic Permit Lookup | County Environmental Health Records | SepticPath";
+            case "texas-ossf-records-search" -> "Texas OSSF Records Search | Septic Permit Lookup and County File Path | SepticPath";
+            case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";

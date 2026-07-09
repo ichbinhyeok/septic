@@ -24,6 +24,41 @@
                         <span>Records request</span>
                         <span>As-built</span>
                     </div>
+                    <div class="county-finder__filters" aria-label="County route filters">
+                        <label>
+                            <span>Route type</span>
+                            <select data-county-finder-method>
+                                <option value="">Any route</option>
+                                <option value="online">Online search or portal</option>
+                                <option value="request">Written records request</option>
+                                <option value="office">Office or phone handoff</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>First artifact</span>
+                            <select data-county-finder-artifact>
+                                <option value="">Any artifact</option>
+                                <option value="permit">Permit copy</option>
+                                <option value="as-built">As-built or layout</option>
+                                <option value="inspection">Inspection letter</option>
+                                <option value="final">Final approval</option>
+                                <option value="repair">Repair file</option>
+                                <option value="no-record">No-record response</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Confidence</span>
+                            <select data-county-finder-confidence>
+                                <option value="">Any confidence</option>
+                                <option value="high">82%+ high-confidence</option>
+                                <option value="solid">70%+ solid route</option>
+                            </select>
+                        </label>
+                        <label class="county-finder__toggle">
+                            <input type="checkbox" data-county-finder-parcel>
+                            <span>Parcel anchor only</span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="county-finder__panel">
@@ -34,7 +69,7 @@
                                 <a href="${link.path()}"
                                    data-track-click="nav"
                                    data-track-source-context="${sourceContext}_priority_route"
-                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()} · ${link.confidenceScore()}%</a>
+                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()} - ${link.confidenceScore()}%</a>
                             @endfor
                         </div>
                     </div>
@@ -60,6 +95,10 @@
                                href="${link.path()}"
                                data-county-finder-result
                                data-search="${link.searchText()}"
+                               data-method="${link.requestMethodLabel()}"
+                               data-artifact="${link.firstArtifactLabel()}"
+                               data-confidence-score="${link.confidenceScore()}"
+                               data-parcel-anchor="${link.parcelAnchorAvailable()}"
                                data-share-url="${link.absoluteUrl()}"
                                data-share-query="${link.countyName()} ${link.stateCode()} septic permit lookup"
                                data-track-click="nav"
