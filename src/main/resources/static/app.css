@@ -23,6 +23,7 @@
 }
 
 html {
+    scroll-padding-top: 96px;
     scroll-behavior: smooth;
 }
 
@@ -2008,6 +2009,50 @@ h4 {
     color: rgba(247, 251, 247, 0.76);
 }
 
+.records-request-builder__packet-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    list-style: none;
+}
+
+.records-request-builder__packet-strip li {
+    display: grid;
+    align-content: start;
+    gap: 5px;
+    min-width: 0;
+    padding-left: 12px;
+    border-left: 2px solid rgba(223, 244, 106, 0.44);
+}
+
+.records-request-builder__packet-strip span {
+    color: #dff46a;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.records-request-builder__packet-strip strong {
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.records-request-builder__packet-strip p {
+    margin: 0;
+    color: rgba(247, 251, 247, 0.7);
+    font-size: 0.84rem;
+    line-height: 1.45;
+}
+
 .records-request-builder__workspace {
     display: grid;
     grid-template-columns: minmax(0, 0.88fr) minmax(330px, 1.12fr);
@@ -2017,7 +2062,7 @@ h4 {
 
 .records-request-builder__controls {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(180px, 0.92fr) minmax(220px, 1.08fr);
     gap: 10px;
 }
 
@@ -2119,6 +2164,10 @@ h4 {
     border-radius: 12px;
     background: rgba(223, 244, 106, 0.08);
     color: rgba(247, 251, 247, 0.78) !important;
+}
+
+.records-request-builder__privacy strong {
+    color: #fff;
 }
 
 .records-request-builder__actions .button--secondary {
@@ -5089,6 +5138,7 @@ input[type="checkbox"] {
     .records-escalation-board__grid,
     .official-tool-console__grid,
     .official-tool-console__handoff,
+    .records-request-builder__packet-strip,
     .records-request-builder__workspace,
     .records-request-builder__controls,
     .county-finder__filters,

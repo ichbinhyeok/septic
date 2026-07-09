@@ -974,12 +974,30 @@
                         <p>Pick the state route, record type, and reason. The script updates into a copy-ready request for permit copies, as-builts, final approvals, repair records, inspection letters, or no-record responses.</p>
                     </div>
 
+                    <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
+                        <li>
+                            <span>Download includes</span>
+                            <strong>Clean office message</strong>
+                            <p>A ready-to-send subject line and request body, without burying the office in generic septic wording.</p>
+                        </li>
+                        <li>
+                            <span>File context</span>
+                            <strong>Identifiers and search keys</strong>
+                            <p>Address, county, parcel, owner, legal-description, subdivision, and permit-number prompts for retrying a weak lookup.</p>
+                        </li>
+                        <li>
+                            <span>Fallback proof</span>
+                            <strong>No-record response wording</strong>
+                            <p>Language that asks for a written no-record response and the next archive or delegated-office route.</p>
+                        </li>
+                    </ul>
+
                     <div class="records-request-builder__workspace">
                         <div class="records-request-builder__controls">
                             <label>
                                 <span>State route</span>
                                 <select data-request-state>
-                                    <option value="DEFAULT">General county health office</option>
+                                    <option value="DEFAULT">County health office</option>
                                     <option value="TN">Tennessee / TDEC</option>
                                     <option value="NC">North Carolina / county environmental health</option>
                                     <option value="TX">Texas / OSSF county or authorized agent</option>
@@ -1030,21 +1048,21 @@
                         <div class="records-request-builder__output">
                             <div class="records-request-builder__output-head">
                                 <div>
-                                    <span>Copy-ready request</span>
+                                    <span>Office-ready message</span>
                                     <strong data-records-request-filename>septic-records-request.txt</strong>
                                 </div>
                                 <em data-records-request-status aria-live="polite">Ready to copy or download</em>
                             </div>
                             <p data-records-request-preview></p>
                             <textarea data-records-request-output readonly rows="14"></textarea>
-                            <p class="records-request-builder__privacy">Downloads are generated in your browser as a plain-text file. Nothing is uploaded or stored by SepticPath.</p>
+                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet with identifiers, fallback search keys, and submission notes. Nothing is uploaded or stored by SepticPath.</p>
                             <div class="records-request-builder__actions">
                                 <button class="button button--primary"
                                         type="button"
                                         data-records-request-copy>Copy request</button>
                                 <button class="button button--secondary"
                                         type="button"
-                                        data-records-request-download>Download .txt</button>
+                                        data-records-request-download>Download packet .txt</button>
                                 <a class="button button--secondary"
                                    href="/septic-records-by-county/"
                                    data-track-click="nav"

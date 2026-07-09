@@ -1699,14 +1699,16 @@
       "primaryKeyword": "septic records request builder",
       "secondaryKeywords": [
         "septic permit records request template",
+        "downloadable septic records request template",
+        "septic permit copy request download",
         "septic records request email",
         "septic permit copy request",
         "septic as-built request",
         "septic public records request"
       ],
       "title": "Septic Records Request Builder",
-      "metaDescription": "Build a copy-ready septic records request for permit copies, as-builts, final approval files, repair records, inspection letters, and no-record responses.",
-      "introCopy": "A septic records request works better when it reads like a file pull, not a vague question. The request builder turns address, county, parcel, artifact, and reason into a copy-ready message that asks the office for the exact document needed and the next search key if the first pass fails.",
+      "metaDescription": "Build and download a septic records request packet for permit copies, as-builts, final approval files, repair records, inspection letters, and no-record responses.",
+      "introCopy": "A septic records request works better when it reads like a file pull, not a vague question. The request builder turns address, county, parcel, artifact, and reason into a copy-ready message plus a downloadable request packet with identifiers, fallback search keys, and no-record wording.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for buyers, sellers, agents, owners, contractors, and coordinators who need to contact a county, state, health department, delegated authority, or permitting office without losing a day to unclear wording.",
@@ -1724,7 +1726,7 @@
         "Choose the state route and county before writing the request.",
         "Select the exact artifact: permit copy, as-built, final approval, repair record, inspection letter, or no-record response.",
         "Add address, parcel ID, owner, legal description, subdivision, lot number, and permit number when available.",
-        "Copy the request and send it through the official email, portal, public-records form, or phone workflow."
+        "Copy the message or download the packet, then send it through the official email, portal, public-records form, or phone workflow."
       ],
       "lowEndBreakers": [
         "A generic request can return a generic answer and still miss the record needed for the decision.",
@@ -1737,7 +1739,7 @@
         "Reason for request: sale, buyer diligence, lender review, repair, addition, replacement, owner records, or contractor quote."
       ],
       "driverBullets": [
-        "Copy-ready requests convert search friction into a concrete next action.",
+        "Downloadable request packets convert search friction into a concrete next action.",
         "Clear artifact language improves the chance of receiving a useful file on the first response.",
         "The builder supports state and county handoff without forcing users to understand every local naming convention first."
       ],

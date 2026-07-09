@@ -775,7 +775,7 @@ public class SeoService {
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
             case "septic-permit-search-by-address" -> "Septic Permit Search by Address | County Records and Parcel Lookup | SepticPath";
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath";
-            case "septic-records-request-builder" -> "Septic Records Request Builder | Permit Copy, As-Built, and Inspection Letter Script | SepticPath";
+            case "septic-records-request-builder" -> "Septic Records Request Builder | Download Permit Copy Request Packet | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
