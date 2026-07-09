@@ -174,7 +174,7 @@
                     <div class="result-grid">
                         <article class="metric-card">
                             <span class="metric-card__label">Rule style</span>
-                            <strong>${selectedState.ruleType()}</strong>
+                            <strong>${selectedState.ruleTypeLabel()}</strong>
                             <p>${selectedState.agencyName()}</p>
                         </article>
                         <article class="metric-card">
@@ -289,7 +289,7 @@
                                 </div>
                                 <p>${state.pageAngle()}</p>
                                 <ul class="state-card__meta">
-                                    <li>${state.ruleType()}</li>
+                                    <li>${state.ruleTypeLabel()}</li>
                                     <li>
                                         @if (state.minTankSizeGallons() != null)
                                             ${state.minTankSizeGallons()} gal minimum anchor

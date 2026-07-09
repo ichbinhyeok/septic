@@ -97,6 +97,7 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 12px;
+    min-height: 44px;
 }
 
 .brand__logo {
@@ -582,7 +583,7 @@ h4 {
 .hero-county-launchpad a:not(.button) {
     display: inline-flex;
     align-items: center;
-    min-height: 38px;
+    min-height: 44px;
     padding: 0 12px;
     border-radius: 999px;
     border: 1px solid rgba(20, 34, 32, 0.08);
@@ -1780,6 +1781,15 @@ h4 {
     line-height: 1.5;
 }
 
+.official-tool-route__fallback {
+    padding: 10px 12px;
+    border: 1px solid rgba(170, 119, 49, 0.22);
+    border-radius: 8px;
+    background: rgba(255, 247, 229, 0.72);
+    color: #6f4d1f;
+    font-size: 0.9rem;
+}
+
 .official-tool-route__actions,
 .records-request-builder__actions {
     display: flex;
@@ -1790,7 +1800,7 @@ h4 {
 
 .official-tool-route__actions .button,
 .records-request-builder__actions .button {
-    min-height: 40px;
+    min-height: 44px;
     padding: 0 12px;
     font-size: 0.86rem;
 }
@@ -2132,10 +2142,8 @@ h4 {
 }
 
 .county-data-strip strong {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    display: block;
+    overflow: visible;
     font-size: 0.94rem;
     line-height: 1.25;
 }
@@ -2730,6 +2738,16 @@ h4 {
     color: rgba(247, 251, 247, 0.76);
 }
 
+.state-records-response__route-note {
+    padding: 10px 12px;
+    border: 1px solid rgba(245, 197, 112, 0.28);
+    border-radius: 8px;
+    background: rgba(245, 197, 112, 0.12);
+    color: #ffe6ad;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
 .state-records-response__route-list {
     display: grid;
     gap: 8px;
@@ -3154,7 +3172,7 @@ h4 {
 .county-link-overflow > summary {
     display: flex;
     align-items: center;
-    min-height: 40px;
+    min-height: 44px;
     color: var(--accent-strong);
     cursor: pointer;
     font-family: "Manrope", sans-serif;
@@ -3178,7 +3196,7 @@ h4 {
 .footer-list a,
 .breadcrumb-list a {
     align-items: center;
-    min-height: 36px;
+    min-height: 44px;
     min-width: 44px;
 }
 
@@ -3204,12 +3222,12 @@ h4 {
 }
 
 .brand {
-    min-height: 40px;
+    min-height: 44px;
 }
 
 .site-footer .brand,
 .site-footer .footer-list a {
-    min-height: 40px;
+    min-height: 44px;
 }
 
 .hero-card__stack,
@@ -3826,6 +3844,8 @@ li,
 .state-card a:not(.button),
 .trust-box a:not(.button) {
     display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     margin-top: 18px;
     color: var(--accent-strong);
     font-weight: 700;
@@ -3907,6 +3927,7 @@ li,
 }
 
 .calculator-form,
+.calculator-hero-form,
 .result-panel,
 .placeholder-panel,
 .quote-panel {
@@ -3914,8 +3935,29 @@ li,
     padding: 28px;
 }
 
-.calculator-intro-card {
+.calculator-intro-card,
+.calculator-hero-form {
     align-self: center;
+}
+
+.calculator-hero-form {
+    display: grid;
+    gap: 16px;
+}
+
+.calculator-hero-form h2 {
+    font-size: clamp(1.45rem, 2.3vw, 2.15rem);
+}
+
+.calculator-hero-form p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.calculator-hero-form__grid {
+    display: grid;
+    gap: 12px;
 }
 
 .calculator-form__intro {
@@ -3969,6 +4011,10 @@ li,
     background: linear-gradient(180deg, rgba(255, 253, 248, 0.95), rgba(255, 255, 255, 0.86));
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
+    scroll-margin-top: 120px;
+}
+
+.result-panel {
     scroll-margin-top: 120px;
 }
 
@@ -5387,7 +5433,7 @@ input[type="checkbox"] {
 
     .brand {
         gap: 8px;
-        min-height: 38px;
+        min-height: 44px;
     }
 
     .brand__logo {
@@ -5405,7 +5451,7 @@ input[type="checkbox"] {
     }
 
     .site-nav-toggle {
-        min-height: 38px;
+        min-height: 44px;
         gap: 8px;
         padding: 0 12px;
         font-size: 0.88rem;
@@ -6075,7 +6121,7 @@ input[type="checkbox"] {
     }
 
     .has-sticky-mobile-cta main {
-        padding-bottom: calc(92px + env(safe-area-inset-bottom));
+        padding-bottom: calc(132px + env(safe-area-inset-bottom));
     }
 
     .has-sticky-mobile-cta .site-footer {

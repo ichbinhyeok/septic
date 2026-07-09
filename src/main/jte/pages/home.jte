@@ -402,7 +402,7 @@
                         </div>
                         <p>${state.pageAngle()}</p>
                         <ul class="state-card__meta">
-                            <li>${state.ruleType()}</li>
+                            <li>${state.ruleTypeLabel()}</li>
                             <li>${state.officialSourceIds().size()} official sources</li>
                             <li>Updated ${state.lastVerifiedAt()}</li>
                         </ul>

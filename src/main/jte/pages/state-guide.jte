@@ -424,7 +424,7 @@
             <div class="hero-sidecard">
                 <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
-                <strong>${state.ruleType()}</strong>
+                <strong>${state.ruleTypeLabel()}</strong>
                 <dl class="review-meta">
                     <div>
                         <dt>Prepared by</dt>
@@ -721,7 +721,7 @@
                                 <tbody>
                                 <tr>
                                     <th>Rule style</th>
-                                    <td>${state.ruleType()}</td>
+                                    <td>${state.ruleTypeLabel()}</td>
                                     <th>Override risk</th>
                                     <td>${state.countyOverrideRisk()}</td>
                                 </tr>

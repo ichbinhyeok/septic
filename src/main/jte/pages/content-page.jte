@@ -566,6 +566,9 @@
                                         <span>Use TDEC, SCDES, OSSF, OSTDS, and county records routes from one board.</span>
                                     </a>
                                 @endif
+                                <p class="state-records-response__route-note">
+                                    If the official site blocks the new tab, stay in this workflow and use address search, county routing, or copy-ready request wording next.
+                                </p>
                                 <a href="/septic-permit-search-by-address/"
                                    data-track-click="nav"
                                    data-track-source-context="content_official_file_path_address"
@@ -774,6 +777,7 @@
                                    data-track-source-context="official_tool_console"
                                    data-track-target-type="internal_page">Use TDEC guide</a>
                             </div>
+                            <p class="official-tool-route__fallback">If the official tab returns 403 or blocks your region, use the guide and request builder so the search does not restart on Google.</p>
                         </article>
 
                         <article class="official-tool-route">
@@ -830,6 +834,7 @@
                                    data-track-source-context="official_tool_console"
                                    data-track-target-type="internal_page">Use DHEC guide</a>
                             </div>
+                            <p class="official-tool-route__fallback">If SCDES blocks the tab, use the DHEC/SCDES guide to carry county, parcel/TMS, address, owner, and D-1740 wording into the next request.</p>
                         </article>
 
                         <article class="official-tool-route">

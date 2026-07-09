@@ -42,16 +42,44 @@
                 @endif
             </div>
 
-            <article class="detail-card calculator-intro-card">
-                <h2>Best use case</h2>
-                <p>Use this when you need one practical planning range after you identify the likely lane, or when records, permits, and inspection evidence are still incomplete and you need a cautious number before the next move.</p>
-            </article>
+            <form class="detail-card calculator-hero-form" method="post" action="/septic-system-cost-calculator/#result-top" aria-label="Quick septic cost estimate">
+                <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
+                <input type="hidden" name="soilPercStatus" value="${estimateForm.getSoilPercStatus()}">
+                <input type="hidden" name="accessDifficulty" value="${estimateForm.getAccessDifficulty()}">
+                <input type="hidden" name="timeline" value="${estimateForm.getTimeline()}">
+                <span class="pill">Calculator start</span>
+                <h2>Get a planning range now.</h2>
+                <p>Pick the state, job type, and bedrooms. Refine the full form below only if the range needs tightening.</p>
+                <div class="calculator-hero-form__grid">
+                    <label class="field">
+                        <span>State</span>
+                        <select name="stateCode">
+                            @for (var state : states)
+                                <option value="${state.stateCode()}" selected="${state.stateCode().equals(estimateForm.getStateCode())}">${state.stateName()}</option>
+                            @endfor
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Project type</span>
+                        <select name="projectType">
+                            @for (var projectType : projectTypes)
+                                <option value="${projectType.value()}" selected="${projectType.value().equals(estimateForm.getProjectType())}">${projectType.label()}</option>
+                            @endfor
+                        </select>
+                    </label>
+                    <label class="field">
+                        <span>Bedrooms</span>
+                        <input type="number" min="1" max="10" name="bedrooms" value="${estimateForm.getBedrooms()}">
+                    </label>
+                </div>
+                <button class="button button--primary" type="submit">Show planning estimate</button>
+            </form>
         </div>
     </section>
 
     <section class="section section--tight">
         <div class="container calculator-layout">
-            <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/">
+            <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/#result-top">
                 <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
                 <div class="calculator-form__intro">
                     <span class="pill">Fast start</span>

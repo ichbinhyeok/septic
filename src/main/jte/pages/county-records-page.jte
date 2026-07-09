@@ -452,7 +452,7 @@
                            rel="noreferrer"
                            data-track-click="nav"
                            data-track-source-context="county_official_file_path_records"
-                           data-track-target-type="official_source">Open ${countyPage.countyName()} official county file route</a>
+                           data-track-target-type="official_source">Open ${countyPage.countyName()} file route</a>
                         @if (countyPage.hasParcelAnchor())
                             <a class="button button--secondary"
                                href="${countyPage.parcelAnchorUrl()}"

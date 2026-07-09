@@ -358,17 +358,17 @@ public class SiteController {
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
     private static final EditorialProfile STATE_PAGE_PREPARER = new EditorialProfile(
-            "Homeowner Planning Desk",
+            "SepticPath Editorial Team",
             "Planning editor",
             "Turns state rules, permit friction, and buyer-risk signals into estimate-first homeowner guidance."
     );
     private static final EditorialProfile CONTENT_PAGE_PREPARER = new EditorialProfile(
-            "Intent Map Desk",
+            "SepticPath Editorial Team",
             "Content editor",
             "Keeps national pages aligned with the estimator, state guides, and the highest-intent next steps."
     );
     private static final EditorialProfile SOURCE_REVIEWER = new EditorialProfile(
-            "State Source Review Desk",
+            "SepticPath Source Review",
             "Source reviewer",
             "Checks official links, verification dates, and local workflow notes before a page stays public."
     );
@@ -3767,7 +3767,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<CountyRequestBuilderOptionView> countyRequestOptions(CountyRecordsPage countyPage, StateProfile state) {
-        String countyState = countyPage.countyName() + " County, " + state.stateCode();
+        String countyState = countyPage.countyName() + ", " + state.stateCode();
         String parcelPrompt = countyPage.hasParcelAnchor()
                 ? "I can provide the parcel, TMS, APN, owner, or address from " + countyPage.parcelAnchorLabel() + "."
                 : "I can provide the parcel, APN, owner, address, or legal description if your office needs a different identifier.";

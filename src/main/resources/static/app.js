@@ -296,6 +296,25 @@
 
     setupStickyMobileCtas();
 
+    function setupCalculatorResultScroll() {
+        const result = document.getElementById("result-top");
+        if (!result) {
+            return;
+        }
+
+        if (window.location.hash && window.location.hash !== "#result-top") {
+            return;
+        }
+
+        result.setAttribute("tabindex", "-1");
+        window.requestAnimationFrame(() => {
+            result.scrollIntoView({ block: "start" });
+            result.focus({ preventScroll: true });
+        });
+    }
+
+    setupCalculatorResultScroll();
+
     function setupChoiceGroups() {
         const groups = Array.from(document.querySelectorAll("[data-choice-group]"));
         if (!groups.length) {
@@ -666,9 +685,14 @@
             return window.location.pathname + window.location.search + "#share";
         }
 
-        function fallbackCopy(text) {
+        async function fallbackCopy(text) {
             if (navigator.clipboard && window.isSecureContext) {
-                return navigator.clipboard.writeText(text);
+                try {
+                    await navigator.clipboard.writeText(text);
+                    return;
+                } catch (_error) {
+                    // Fall back to a selected textarea when clipboard permissions are denied.
+                }
             }
 
             const textArea = document.createElement("textarea");
@@ -677,13 +701,16 @@
             textArea.style.position = "fixed";
             textArea.style.top = "-1000px";
             document.body.appendChild(textArea);
+            textArea.focus();
             textArea.select();
+            textArea.setSelectionRange(0, textArea.value.length);
 
             try {
-                document.execCommand("copy");
-                return Promise.resolve();
+                if (!document.execCommand("copy")) {
+                    throw new Error("copy command rejected");
+                }
             } catch (error) {
-                return Promise.reject(error);
+                throw error;
             } finally {
                 document.body.removeChild(textArea);
             }
@@ -706,33 +733,19 @@
                 const title = button.dataset.shareTitle || document.title;
                 const text = button.dataset.shareText || "";
                 const copyText = [title, text, url].filter(Boolean).join("\n");
-                let method = "clipboard";
 
                 try {
-                    await fallbackCopy(copyText);
-                    setTemporaryLabel(button, "Link copied", "is-copied");
-
                     if (navigator.share && window.matchMedia && window.matchMedia("(max-width: 720px)").matches) {
-                        navigator.share({ title, text, url })
-                            .then(() => {
-                                method = "native_share";
-                                setTemporaryLabel(button, "Shared", "is-copied");
-                            })
-                            .catch(() => {});
-                    }
-
-                    sendNavigationEvent({
-                        sourcePage: window.location.pathname + window.location.search + window.location.hash,
-                        sourceContext: button.dataset.trackSourceContext || "share_route",
-                        targetPath: shareTargetPath(),
-                        targetType: method,
-                        targetLabel: title
-                    });
-                } catch (error) {
-                    if (navigator.share) {
                         try {
                             await navigator.share({ title, text, url });
                             setTemporaryLabel(button, "Shared", "is-copied");
+                            sendNavigationEvent({
+                                sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                                sourceContext: button.dataset.trackSourceContext || "share_route",
+                                targetPath: shareTargetPath(),
+                                targetType: "native_share",
+                                targetLabel: title
+                            });
                             return;
                         } catch (shareError) {
                             if (shareError && shareError.name === "AbortError") {
@@ -740,7 +753,20 @@
                             }
                         }
                     }
-                    setTemporaryLabel(button, "Copy failed", "is-copy-failed");
+
+                    await fallbackCopy(copyText);
+                    setTemporaryLabel(button, "Link copied", "is-copied");
+
+                    sendNavigationEvent({
+                        sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                        sourceContext: button.dataset.trackSourceContext || "share_route",
+                        targetPath: shareTargetPath(),
+                        targetType: "clipboard",
+                        targetLabel: title
+                    });
+                } catch (error) {
+                    button.setAttribute("title", url);
+                    setTemporaryLabel(button, "Copy URL manually", "is-copy-failed");
                 }
             });
         });

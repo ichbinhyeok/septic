@@ -25,7 +25,7 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
             "style-src-attr 'unsafe-inline'",
             "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
             "script-src-attr 'unsafe-inline'",
-            "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com"
+            "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com"
     );
 
     @Override

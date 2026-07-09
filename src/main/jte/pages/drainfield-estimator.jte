@@ -293,7 +293,7 @@
                     <div class="result-grid">
                         <article class="metric-card">
                             <span class="metric-card__label">Site-evaluation angle</span>
-                            <strong>${selectedState.ruleType()}</strong>
+                            <strong>${selectedState.ruleTypeLabel()}</strong>
                             <p>${selectedState.siteEvalSummary()}</p>
                         </article>
                         <article class="metric-card">
