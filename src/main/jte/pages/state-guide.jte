@@ -2,6 +2,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
+@import com.example.septic.web.CountyWorkflowFieldView
 @param PageMeta page
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
@@ -20,6 +21,7 @@
 @param String stateRecordsLookupPath = null
 @param String stateRecordsLookupTitle = ""
 @param com.example.septic.web.StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis = null
+@param java.util.List<CountyWorkflowFieldView> guideOfficialFilePathRows = java.util.List.of()
 @param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
@@ -120,6 +122,83 @@
                         </div>
                     @endif
                 </div>
+                @if (!guideOfficialFilePathRows.isEmpty())
+                    <div class="state-records-response" aria-label="${state.stateName()} official estimate file path">
+                        <div class="state-records-response__head">
+                            <div>
+                                <span class="eyebrow">Official state estimate file path</span>
+                                <h2>Check the file owner and first artifact before the estimate becomes the answer.</h2>
+                                <p>This guide is strongest when it routes the visitor into the local septic file, county office, or missing-record fallback before the calculator compresses the problem into one number.</p>
+                            </div>
+                            <div class="state-records-response__priority">
+                                <span>Estimate gate</span>
+                                <strong>Owner, artifact, request, fallback</strong>
+                            </div>
+                        </div>
+
+                        <div class="state-records-response__body">
+                            <div class="state-records-response__rows">
+                                @for (var row : guideOfficialFilePathRows)
+                                    <article>
+                                        <span>${row.label()}</span>
+                                        <p>${row.value()}</p>
+                                    </article>
+                                @endfor
+                            </div>
+
+                            <aside class="state-records-response__route" aria-label="${state.stateName()} estimate file path actions">
+                                <span class="state-records-response__route-label">Action order</span>
+                                <h3>Resolve the file path before a cheap number.</h3>
+                                <div class="state-records-response__route-list">
+                                    @if (primaryRecordsLookupSource != null)
+                                        <a href="${primaryRecordsLookupSource.url()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_official_file_path_source"
+                                           data-track-target-type="official_source">
+                                            <strong>Open official records source</strong>
+                                            <span>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</span>
+                                        </a>
+                                    @elseif (primaryLocalAuthoritySource != null)
+                                        <a href="${primaryLocalAuthoritySource.url()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_official_file_path_source"
+                                           data-track-target-type="official_source">
+                                            <strong>Open official authority source</strong>
+                                            <span>${primaryLocalAuthoritySource.agencyName()} | ${primaryLocalAuthoritySource.title()}</span>
+                                        </a>
+                                    @endif
+                                    @if (stateRecordsLookupPath != null)
+                                        <a href="${stateRecordsLookupPath}"
+                                           data-track-click="nav"
+                                           data-track-source-context="state_guide_official_file_path_records"
+                                           data-track-target-type="state_money_page">
+                                            <strong>Open ${state.stateName()} records lookup</strong>
+                                            <span>${stateRecordsLookupTitle}</span>
+                                        </a>
+                                    @endif
+                                    <a href="/septic-permit-search-by-address/"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_official_file_path_address"
+                                       data-track-target-type="internal_page">
+                                        <strong>Search by address</strong>
+                                        <span>Use address, parcel, owner, APN/TMS, legal description, or prior permit clues.</span>
+                                    </a>
+                                    <a href="/septic-permit-records-request/"
+                                       data-track-click="nav"
+                                       data-track-source-context="state_guide_official_file_path_request"
+                                       data-track-target-type="internal_page">
+                                        <strong>Records request wording</strong>
+                                        <span>Ask for the permit copy, as-built, final approval, repair trail, or no-record response.</span>
+                                    </a>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                @endif
                 @if ("AL".equals(state.stateCode()))
                     <div class="quick-link-strip" aria-label="Alabama perc test and records shortcuts">
                         <span class="quick-link-strip__label">Alabama search path</span>

@@ -1149,6 +1149,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        model.addAttribute("guideOfficialFilePathRows", guideOfficialFilePathRows(
+                state,
+                localAuthoritySources.stream().findFirst().orElse(null),
+                recordsLookupSources.stream().findFirst().orElse(null),
+                guideCountyWorkflowSynthesis
+        ));
         researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
                 .ifPresentOrElse(
                         recordsPage -> {
@@ -1274,6 +1280,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ? countyFinderLinks(fanoutRestrictedSurface ? 24 : 48)
                 : List.of();
         List<PageLink> renderedInternalLinks = renderedInternalLinks(contentPage, internalLinks, fanoutRestrictedSurface);
+        List<CountyWorkflowFieldView> contentOfficialFilePathRows = contentOfficialFilePathRows(
+                contentPage,
+                rankedStateEntries,
+                countyFinderLinks
+        );
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -1284,6 +1295,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("contentEvidenceLanes", contentEvidenceLanes);
         model.addAttribute("featuredContentEvidenceLanes", contentEvidenceLanes.stream().limit(3).toList());
         model.addAttribute("contentWorkflowCoverage", contentWorkflowCoverage);
+        model.addAttribute("contentOfficialFilePathRows", contentOfficialFilePathRows);
         model.addAttribute("internalLinks", renderedInternalLinks);
         model.addAttribute("featuredInternalLinks", renderedInternalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", renderedInternalLinks.stream().skip(4).toList());
@@ -2674,6 +2686,185 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private boolean isPermitLookupHub(ContentPage contentPage) {
         return RECORDS_INTENT_HUB_SLUGS.contains(contentPage.slug());
+    }
+
+    private List<CountyWorkflowFieldView> contentOfficialFilePathRows(
+            ContentPage contentPage,
+            List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries,
+            List<CountyFinderLinkView> countyFinderLinks
+    ) {
+        if (!isPermitLookupHub(contentPage)) {
+            return List.of();
+        }
+        return List.of(
+                new CountyWorkflowFieldView(
+                        "File owner",
+                        contentFileOwner(contentPage)
+                ),
+                new CountyWorkflowFieldView(
+                        "Lookup clue",
+                        contentLookupClue(contentPage)
+                ),
+                new CountyWorkflowFieldView(
+                        "First artifact",
+                        contentFirstArtifact(contentPage)
+                ),
+                new CountyWorkflowFieldView(
+                        "Request method",
+                        contentRequestMethod(contentPage)
+                ),
+                new CountyWorkflowFieldView(
+                        "No-record fallback",
+                        contentNoRecordFallback(contentPage)
+                ),
+                new CountyWorkflowFieldView(
+                        "Fast handoff",
+                        contentFastHandoff(contentPage, rankedStateEntries, countyFinderLinks)
+                )
+        );
+    }
+
+    private String contentFileOwner(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case TDEC_RECORDS_SLUG -> "Tennessee Department of Environment and Conservation for the SSDS search, then the county or regional office that can confirm the parcel file.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Current South Carolina septic routing starts with SCDES, then resolves through ePermitting, county contacts, or the office holding the D-1740 and permit-copy trail.";
+            case TX_OSSF_RECORDS_SLUG -> "Texas OSSF records usually resolve through the county, authorized agent, or local permitting authority after the TCEQ program context is clear.";
+            case NC_PERMIT_LOOKUP_SLUG -> "North Carolina septic records usually resolve through county environmental health rather than one statewide public lookup.";
+            case FL_OSTDS_LOOKUP_SLUG -> "Florida OSTDS records usually resolve through county health, county archives, or a county-specific public records path.";
+            case RECORDS_BY_COUNTY_SLUG -> "The file owner is usually the named county health, environmental health, development services, or delegated local office.";
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "The real owner is the office that can match the address to the parcel, permit history, and septic file owner.";
+            case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "The file owner is whichever state, county, regional, or delegated office can provide a written response tied to the parcel.";
+            case AS_BUILT_RECORDS_SLUG -> "The file owner is the office that stores the installed layout, site sketch, final approval, or scanned permit package.";
+            case INSPECTION_LETTER_SLUG -> "The file owner may be different from the letter issuer, so separate permit-copy records from closing, lender, or inspection-letter workflows.";
+            default -> "Start with the official state or county source, then verify the local office that actually owns the septic file.";
+        };
+    }
+
+    private String contentLookupClue(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Start with street address, then retry with parcel ID, APN/TMS, owner name, legal description, subdivision, street-only search, or prior permit number.";
+            case RECORDS_BY_COUNTY_SLUG -> "Start with state and county, then carry address, parcel, owner, and permit clues into the county route.";
+            case AS_BUILT_RECORDS_SLUG -> "Carry parcel ID, owner, permit number, installation year, subdivision, and any prior repair or addition clue into the layout request.";
+            case TDEC_RECORDS_SLUG -> "Use parcel, address, owner, county, permit number, and regional-office clues before treating a missing TDEC result as a missing file.";
+            case TX_OSSF_RECORDS_SLUG -> "Use county, city-limit or ETJ status, parcel, legal description, subdivision, and owner clues before assuming TCEQ itself holds the file.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Use county, parcel/TMS, address, owner, D-1740 wording, and ePermitting clues because many searches still say DHEC while the route is now SCDES.";
+            default -> "Carry address, parcel/APN/TMS, owner, legal description, subdivision, county, and any prior permit number into the next official route.";
+        };
+    }
+
+    private String contentFirstArtifact(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case AS_BUILT_RECORDS_SLUG -> "As-built, site sketch, installed layout, tank and drain-field location, reserve-area note, or scanned approval package.";
+            case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "Permit copy, as-built, final approval, repair file, inspection letter, or written no-record response.";
+            case INSPECTION_LETTER_SLUG -> "Inspection letter, final approval, permit copy, lender letter, or written explanation of why the office cannot issue one.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "D-1740 application trail, septic permit copy, final inspection, county contact note, or written no-record response.";
+            case TDEC_RECORDS_SLUG -> "TDEC SSDS permit record, inspection note, repair-permit trail, county fallback, or written no-record response.";
+            case TX_OSSF_RECORDS_SLUG -> "OSSF permit history, approved plan, site evaluation, license-to-operate or final approval, maintenance note, or repair file.";
+            case FL_OSTDS_LOOKUP_SLUG -> "OSTDS permit, final approval, site plan, county health archive record, repair file, or written no-record response.";
+            default -> "Permit copy, as-built, final approval, inspection letter, repair history, or written no-record response tied to the parcel.";
+        };
+    }
+
+    private String contentRequestMethod(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Search the official route first, then convert the same address and parcel clues into a request if the lookup does not expose the file.";
+            case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "Send a precise request that names the parcel, record type, reason, and fallback question instead of asking vaguely for septic records.";
+            case RECORDS_BY_COUNTY_SLUG -> "Open the county page first, then use the request wording when the portal, clerk, or health office does not expose the artifact directly.";
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Use the official tool first when it exists, then fall back to county route, records request, or written no-record wording.";
+            case TDEC_RECORDS_SLUG -> "Search TDEC first, then use the Tennessee records page, county route, or request builder when the parcel result is unclear.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Translate DHEC intent into current SCDES/ePermitting/county contact steps, then request the permit copy or D-1740 trail.";
+            default -> "Start with the official source, carry property identifiers into the route, then request the exact artifact if the record is not visible.";
+        };
+    }
+
+    private String contentNoRecordFallback(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case AS_BUILT_RECORDS_SLUG -> "If no layout is found, ask for a written no-record response plus the office that may hold archived, scanned, repair, or pre-digital layout files.";
+            case INSPECTION_LETTER_SLUG -> "If no letter can be issued, ask whether a permit copy, final approval, inspection note, or written file status can substitute.";
+            default -> "If the lookup has no match, ask for a written no-record response and the next office that owns archived, regional, delegated, or pre-digital septic files.";
+        };
+    }
+
+    private String contentFastHandoff(
+            ContentPage contentPage,
+            List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries,
+            List<CountyFinderLinkView> countyFinderLinks
+    ) {
+        String stateRoute = rankedStateEntries == null ? null : rankedStateEntries.stream()
+                .findFirst()
+                .map(entry -> stateSurfaceRouteTitle(entry.getKey(), entry.getValue()))
+                .orElse(null);
+        String countyRoute = countyFinderLinks == null ? null : countyFinderLinks.stream()
+                .findFirst()
+                .map(link -> link.countyName() + ", " + link.stateCode() + " county route")
+                .orElse(null);
+        if (RECORDS_BY_COUNTY_SLUG.equals(contentPage.slug()) && hasText(countyRoute)) {
+            return "Start with " + countyRoute + " when the county is known; use the state page only when the county route is not clear.";
+        }
+        if (hasText(stateRoute) && hasText(countyRoute)) {
+            return "Use " + stateRoute + " for the state lane, then drop into " + countyRoute + " when the search already names a local office.";
+        }
+        if (hasText(stateRoute)) {
+            return "Use " + stateRoute + " as the first live state route, then move to county or request wording when the file is still not visible.";
+        }
+        return "Use official tools, county records pages, and request wording in that order so the searcher does not restart on Google.";
+    }
+
+    private List<CountyWorkflowFieldView> guideOfficialFilePathRows(
+            StateProfile state,
+            SourceRecord primaryLocalAuthoritySource,
+            SourceRecord primaryRecordsLookupSource,
+            StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis
+    ) {
+        SourceRecord fileSource = primaryRecordsLookupSource != null
+                ? primaryRecordsLookupSource
+                : primaryLocalAuthoritySource;
+        String officialOwner = fileSource == null
+                ? state.agencyName()
+                : sourceDisplayName(fileSource);
+        String firstArtifact = firstNonBlank(
+                guideCountyWorkflowSynthesis == null || guideCountyWorkflowSynthesis.firstArtifacts().isEmpty()
+                        ? null
+                        : guideCountyWorkflowSynthesis.firstArtifacts().get(0),
+                firstOf(state.recordsToRequest()),
+                "Permit copy, as-built, final approval, inspection note, repair history, or written no-record response."
+        );
+        String countyPattern = firstNonBlank(
+                guideCountyWorkflowSynthesis == null || guideCountyWorkflowSynthesis.structureHighlights().isEmpty()
+                        ? null
+                        : guideCountyWorkflowSynthesis.structureHighlights().get(0).value(),
+                state.whoToCallFirst()
+        );
+        String requestMethod = primaryRecordsLookupSource != null
+                ? "Open " + primaryRecordsLookupSource.title() + " first, then use county or regional request wording if the parcel file is not visible."
+                : "Start with " + state.whoToCallFirst() + ", then ask which local office owns the old septic file before pricing.";
+
+        return List.of(
+                new CountyWorkflowFieldView(
+                        "File owner",
+                        officialOwner + ". Use this owner check before treating the state guide as a price page."
+                ),
+                new CountyWorkflowFieldView(
+                        "First artifact",
+                        firstArtifact
+                ),
+                new CountyWorkflowFieldView(
+                        "Request method",
+                        requestMethod
+                ),
+                new CountyWorkflowFieldView(
+                        "County pattern",
+                        countyPattern
+                ),
+                new CountyWorkflowFieldView(
+                        "No-record fallback",
+                        "If the file is not visible, ask for a written no-record response and the office that owns archived, delegated, county, or pre-digital septic records."
+                ),
+                new CountyWorkflowFieldView(
+                        "Estimate gate",
+                        "Run the calculator after the file owner, parcel clue, or missing artifact is clear enough that the number is not flattening a records problem."
+                )
+        );
     }
 
     private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {

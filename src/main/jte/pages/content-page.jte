@@ -3,6 +3,7 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EditorialProfile
 @import com.example.septic.web.CountyFinderLinkView
+@import com.example.septic.web.CountyWorkflowFieldView
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<StateProfile> states
@@ -11,6 +12,7 @@
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> contentEvidenceLanes = java.util.List.of()
 @param java.util.List<com.example.septic.web.ContentEvidenceLaneView> featuredContentEvidenceLanes = java.util.List.of()
 @param com.example.septic.web.ContentWorkflowCoverageView contentWorkflowCoverage = null
+@param java.util.List<CountyWorkflowFieldView> contentOfficialFilePathRows = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryInternalLinks = java.util.List.of()
@@ -494,6 +496,104 @@
             </article>
         </div>
     </section>
+
+    @if (!contentOfficialFilePathRows.isEmpty())
+        <section class="section section--tight">
+            <div class="container">
+                <div class="state-records-response" aria-label="${contentPage.title()} official content file path">
+                    <div class="state-records-response__head">
+                        <div>
+                            <span class="eyebrow">Official content file path</span>
+                            <h2>Turn this search into a file owner, first artifact, request method, and fallback.</h2>
+                            <p>This block applies the records-page pattern to the national hub so a high-intent searcher can move from broad lookup intent into an official file pull without restarting on Google.</p>
+                        </div>
+                        <div class="state-records-response__priority">
+                            <span>Winning pattern</span>
+                            <strong>Owner, artifact, request, fallback</strong>
+                        </div>
+                    </div>
+
+                    <div class="state-records-response__body">
+                        <div class="state-records-response__rows">
+                            @for (var row : contentOfficialFilePathRows)
+                                <article>
+                                    <span>${row.label()}</span>
+                                    <p>${row.value()}</p>
+                                </article>
+                            @endfor
+                        </div>
+
+                        <aside class="state-records-response__route" aria-label="Official content file path action order">
+                            <span class="state-records-response__route-label">Action order</span>
+                            <h3>Keep the next click in the records workflow.</h3>
+                            <div class="state-records-response__route-list">
+                                @if ("tdec-septic-records".equals(contentPage.slug()))
+                                    <a href="https://tdec.tn.gov/document-viewer/search/stp"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_official_file_path_external"
+                                       data-track-target-type="official_source">
+                                        <strong>Open TDEC SSDS search</strong>
+                                        <span>Use the official Tennessee septic records search before the county fallback.</span>
+                                    </a>
+                                @elseif ("dhec-septic-permit-lookup".equals(contentPage.slug()))
+                                    <a href="https://des.sc.gov/permits-regulations/septic-tanks"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_official_file_path_external"
+                                       data-track-target-type="official_source">
+                                        <strong>Open SCDES septic route</strong>
+                                        <span>Translate DHEC searches into the current South Carolina septic path.</span>
+                                    </a>
+                                @elseif ("texas-ossf-records-search".equals(contentPage.slug()))
+                                    <a href="https://www.tceq.texas.gov/permitting/ossf"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_official_file_path_external"
+                                       data-track-target-type="official_source">
+                                        <strong>Open TCEQ OSSF context</strong>
+                                        <span>Use this before resolving the local authorized-agent or county route.</span>
+                                    </a>
+                                @else
+                                    <a href="/official-septic-lookup-tools/"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_official_file_path_tools"
+                                       data-track-target-type="internal_page">
+                                        <strong>Open official tools</strong>
+                                        <span>Use TDEC, SCDES, OSSF, OSTDS, and county records routes from one board.</span>
+                                    </a>
+                                @endif
+                                <a href="/septic-permit-search-by-address/"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_official_file_path_address"
+                                   data-track-target-type="internal_page">
+                                    <strong>Search by address</strong>
+                                    <span>Carry address, parcel, APN/TMS, owner, and legal-description clues.</span>
+                                </a>
+                                <a href="/septic-permit-records-request/"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_official_file_path_request"
+                                   data-track-target-type="internal_page">
+                                    <strong>Records request wording</strong>
+                                    <span>Ask for the permit copy, as-built, final approval, repair file, or no-record response.</span>
+                                </a>
+                                <a href="/septic-records-by-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="content_official_file_path_county"
+                                   data-track-target-type="internal_page">
+                                    <strong>Open county routes</strong>
+                                    <span>Use county pages when the search already names the local office or county.</span>
+                                </a>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
         <section class="section section--tight">
