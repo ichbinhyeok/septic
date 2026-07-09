@@ -502,10 +502,16 @@ public class SeoService {
     }
 
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
+        if ("TX::tarrant-county".equals(countyPage.key())) {
+            return "Tarrant County Septic Records & OSSF Permit Lookup | Official File Path | SepticPath";
+        }
         return countyPage.countyName() + " " + state.stateCode() + " Septic Permit Lookup & Records | SepticPath";
     }
 
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
+        if ("TX::tarrant-county".equals(countyPage.key())) {
+            return "Tarrant County septic records and OSSF permit lookup path for official records search, county file routing, permit packets, and parcel-backed quote checks.";
+        }
         String originalLead = countyPage.countyName() + " septic records checklist and permit lookup";
         String searchLead = countyPage.countyName() + ", " + state.stateName() + " septic permit lookup and records request";
         if (countyPage.metaDescription() != null && countyPage.metaDescription().startsWith(originalLead)) {
@@ -750,7 +756,7 @@ public class SeoService {
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
-            case "septic-permit-lookup" -> "Septic Permit Lookup by State | Records Search and County Permit Files | SepticPath";
+            case "septic-permit-lookup" -> "Septic Permit Lookup | Official Records Search, County Files, and Address Route | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
             case "septic-records-checklist" -> "Septic Records Lookup by State | Permit Search, As-Builts, and County Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
@@ -761,12 +767,12 @@ public class SeoService {
             case "septic-records-request-builder" -> "Septic Records Request Builder | Permit Copy, As-Built, and Inspection Letter Script | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
-            case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, County Records, OSSF, and OSTDS Search | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Records Search | Tennessee Permit Lookup and County File Path | SepticPath";
+            case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Records Search | Official SSDS Permit Lookup and County File Path | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "North Carolina Septic Permit Lookup | County Environmental Health Records | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search | Septic Permit Lookup and County File Path | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
-            case "dhec-septic-permit-lookup" -> "DHEC Septic Permit Lookup | South Carolina SCDES Records and D-1740 Files | SepticPath";
+            case "dhec-septic-permit-lookup" -> "DHEC Septic Permit Lookup | SCDES Records, D-1740 Files, and Permit Copy | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";

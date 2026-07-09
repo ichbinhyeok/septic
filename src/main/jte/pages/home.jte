@@ -22,9 +22,31 @@
                 <h1>Find the county septic file before the quote.</h1>
                 <p class="lede">Start with the permit copy, as-built, inspection letter, or county records path that can change a buyer decision, repair scope, or planning range.</p>
                 <div class="hero-quick-actions" aria-label="Most common septic record actions">
-                    <a class="button button--primary" href="/septic-records-by-county/">Search records by county</a>
-                    <a class="button button--secondary" href="/septic-permit-search-by-address/">Search by address</a>
-                    <a class="button button--secondary" href="/septic-permit-records-request/">Request permit copy</a>
+                    <a class="button button--primary"
+                       href="/septic-records-by-county/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_primary_records"
+                       data-track-target-type="internal_page">Search records by county</a>
+                    <a class="button button--secondary"
+                       href="/tdec-septic-records/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_tdec"
+                       data-track-target-type="internal_page">TDEC records</a>
+                    <a class="button button--secondary"
+                       href="/dhec-septic-permit-lookup/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_dhec"
+                       data-track-target-type="internal_page">DHEC/SCDES lookup</a>
+                    <a class="button button--secondary"
+                       href="/septic-records-checklist/texas/tarrant-county/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_tarrant"
+                       data-track-target-type="county_records_page">Tarrant records</a>
+                    <a class="button button--secondary"
+                       href="/septic-permit-search-by-address/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_address_search"
+                       data-track-target-type="internal_page">Search by address</a>
                 </div>
                 <p class="hero-router-intro">Use the fastest lane first. If the county file is still unclear, then move into permit process, transfer compliance, or cost planning.</p>
                 <div class="hero-decision-grid hero-decision-grid--compact">
@@ -102,6 +124,58 @@
         sourceContext = "home_county_finder",
         totalCountyRouteCount = totalCountyRouteCount
     )
+
+    <section class="section section--tight">
+        <div class="container">
+            <div class="section-heading">
+                <span class="eyebrow">2-week search response routes</span>
+                <h2>Push the queries already close enough to win clicks.</h2>
+                <p class="lede">These routes match searches already showing impressions or index gaps: TDEC records, DHEC/SCDES lookup, Tarrant County records, and septic permit lookup.</p>
+            </div>
+
+            <div class="card-grid card-grid--primary">
+                <article class="feature-card feature-card--primary">
+                    <span class="pill">TN / TDEC</span>
+                    <h3>TDEC septic records</h3>
+                    <p>Use this for TDEC septic records, state of TN septic records, SSDS permit files, and Tennessee county fallback searches.</p>
+                    <a href="/tdec-septic-records/"
+                       data-track-click="nav"
+                       data-track-source-context="home_search_response_tdec"
+                       data-track-target-type="internal_page">Open TDEC records</a>
+                </article>
+
+                <article class="feature-card feature-card--primary">
+                    <span class="pill">SC / SCDES</span>
+                    <h3>DHEC septic permit lookup</h3>
+                    <p>Use this for DHEC searches that need the current SCDES septic tank route, D-1740 file, permit copy, or county contact.</p>
+                    <a href="/dhec-septic-permit-lookup/"
+                       data-track-click="nav"
+                       data-track-source-context="home_search_response_dhec"
+                       data-track-target-type="internal_page">Open DHEC/SCDES lookup</a>
+                </article>
+
+                <article class="feature-card">
+                    <span class="pill">TX / county</span>
+                    <h3>Tarrant County septic records</h3>
+                    <p>Use this when the query is county-specific and the answer needs Tarrant OSSF records, official records search, or permit file routing.</p>
+                    <a href="/septic-records-checklist/texas/tarrant-county/"
+                       data-track-click="nav"
+                       data-track-source-context="home_search_response_tarrant"
+                       data-track-target-type="county_records_page">Open Tarrant records</a>
+                </article>
+
+                <article class="feature-card">
+                    <span class="pill">Permit lookup</span>
+                    <h3>Official septic permit lookup</h3>
+                    <p>Use this broad route for state records search, county files, address search, as-built records, and permit-copy request paths.</p>
+                    <a href="/septic-permit-lookup/"
+                       data-track-click="nav"
+                       data-track-source-context="home_search_response_permit_lookup"
+                       data-track-target-type="internal_page">Open permit lookup</a>
+                </article>
+            </div>
+        </div>
+    </section>
 
     @if (!countyRouteClusters.isEmpty())
         <section class="section section--tight">

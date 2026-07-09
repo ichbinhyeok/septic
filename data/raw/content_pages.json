@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29",
+  "generatedAt": "2026-07-09",
   "pages": [
     {
       "slug": "septic-system-cost-calculator",
@@ -783,7 +783,7 @@
         "septic records online"
       ],
       "title": "Septic Permit Lookup by State",
-      "metaDescription": "Find the septic permit lookup path before you trust a quote, closing story, or repair plan: state records search, county files, as-builts, and permit office routing.",
+      "metaDescription": "Find the official septic permit lookup path: TDEC, DHEC/SCDES, county records, address search, as-builts, and permit-copy request routes before pricing or closing.",
       "introCopy": "A septic permit lookup usually fails when the searcher starts with the wrong doorway. This hub routes the question into the state records page, the permit process page, and county file pages where the real permit copy, as-built, inspection letter, or repair record is likely to live.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -835,6 +835,9 @@
       ],
       "internalLinkTargets": [
         "/septic-records-checklist/",
+        "/tdec-septic-records/",
+        "/dhec-septic-permit-lookup/",
+        "/septic-records-checklist/texas/tarrant-county/",
         "/septic-permit-process/",
         "/septic-transfer-compliance/",
         "/septic-records-checklist/tennessee/",
@@ -1622,7 +1625,7 @@
         "septic file lookup"
       ],
       "title": "Official Septic Lookup Tools",
-      "metaDescription": "Start with official septic lookup tools for TDEC, North Carolina records, Texas OSSF records, Florida OSTDS records, and county permit files.",
+      "metaDescription": "Open official septic lookup tools for TDEC records, DHEC/SCDES permit lookup, Texas OSSF records, Florida OSTDS, county files, and permit-copy requests.",
       "introCopy": "Official septic lookup tools are scattered across state portals, county health departments, permitting systems, public-records forms, and old scanned archives. This page is the command board for deciding whether to search a public portal, open a county file, or send a targeted request for the permit, as-built, final approval, repair history, or no-record response.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -1675,10 +1678,11 @@
       "internalLinkTargets": [
         "/septic-records-request-builder/",
         "/tdec-septic-records/",
+        "/dhec-septic-permit-lookup/",
+        "/septic-records-checklist/texas/tarrant-county/",
         "/north-carolina-septic-permit-lookup/",
         "/texas-ossf-records-search/",
         "/florida-ostds-permit-lookup/",
-        "/dhec-septic-permit-lookup/",
         "/how-to-find-septic-records-online/",
         "/septic-records-by-county/",
         "/septic-permit-records-request/",
@@ -1779,8 +1783,8 @@
         "TDEC document viewer septic",
         "Tennessee SSDS permit records"
       ],
-      "title": "TDEC Septic Records Search",
-      "metaDescription": "Use the TDEC septic records route, Tennessee county handoff, and request wording to find septic permits, SSDS records, as-builts, and approvals.",
+      "title": "TDEC Septic Records Search and Permit Lookup",
+      "metaDescription": "Search TDEC septic records, Tennessee SSDS permits, as-built files, final approvals, repair history, and county fallback routes before treating a file as missing.",
       "introCopy": "TDEC septic records searches should start with the state document path, then move quickly into county and request workflows when the first result is incomplete. Tennessee users usually need more than a permit hit: they need the permit copy, as-built, final approval, SSDS file, repair history, or a clear no-record response.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -1832,6 +1836,7 @@
       ],
       "internalLinkTargets": [
         "/official-septic-lookup-tools/",
+        "/septic-permit-lookup/",
         "/septic-records-request-builder/",
         "/septic-records-checklist/tennessee/",
         "/septic-records-checklist/tennessee/blount-county/",
@@ -2087,8 +2092,8 @@
         "South Carolina D-1740 septic file",
         "DHEC septic tank records"
       ],
-      "title": "DHEC Septic Permit Lookup",
-      "metaDescription": "Use the current SCDES route for DHEC septic permit lookup searches, South Carolina D-1740 files, permit copies, county contacts, and septic records.",
+      "title": "DHEC Septic Permit Lookup and SCDES Records",
+      "metaDescription": "Use DHEC septic permit lookup language to reach current SCDES septic records, D-1740 files, permit copies, county contacts, and final-inspection status.",
       "introCopy": "Many South Carolina searchers still type DHEC septic permit lookup, but the current records route should point into SCDES septic tank, ePermitting, county or regional contact, D-1740, permit-copy, and final-inspection workflows. Use this page to translate the old search language into the current file path before trusting a quote, sale story, or repair plan.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -2140,6 +2145,7 @@
       ],
       "internalLinkTargets": [
         "/official-septic-lookup-tools/",
+        "/septic-permit-lookup/",
         "/septic-records-request-builder/",
         "/septic-records-checklist/south-carolina/",
         "/septic-permit-process/south-carolina/",

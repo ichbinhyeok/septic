@@ -103,7 +103,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the exact county file path before another broad guide.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina county routes")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wake County records")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wake County records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("2-week search response routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/tdec-septic-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")));
 	}
 
 	@Test
@@ -115,14 +119,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-by-state county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County, TN permit lookup")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Davidson County, TN permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Answer TDEC septic records searches directly")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/tdec-septic-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")));
 	}
 
 	@Test
 	void officialLookupToolsPagesRenderSourceBackedConsole() throws Exception {
 		mockMvc.perform(get("/official-septic-lookup-tools/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Official Septic Lookup Tools | TDEC, County Records, OSSF, and OSTDS Search | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official lookup command board")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tdec.tn.gov/document-viewer/search/stp")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records")))
@@ -162,7 +170,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/dhec-septic-permit-lookup/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Permit Lookup | South Carolina SCDES Records and D-1740 Files | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Permit Lookup | SCDES Records, D-1740 Files, and Permit Copy | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("DHEC searches should land on the current SCDES septic route.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open SCDES septic")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740 application trail")))
@@ -447,7 +455,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Push first")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search records by county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search by address")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request permit copy")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("DHEC/SCDES lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tarrant records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most visits should start with a file, not a price.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Live county workflow backbone")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-backed network")))
@@ -7002,7 +7012,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-permit-lookup/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Lookup by State")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Lookup by State | Records Search and County Permit Files | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Lookup | Official Records Search, County Files, and Address Route | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open state permit lookup pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a lookup-aware estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#state-pages\"")))
@@ -7145,7 +7155,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Intent Map Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State Source Review Desk")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last reviewed")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-06-29\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-09\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"editor\":{\"@type\":\"Organization\",\"name\":\"State Source Review Desk\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this page is sourced")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-specific pages carry the official sources behind this national overview.")))

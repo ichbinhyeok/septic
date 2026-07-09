@@ -495,7 +495,7 @@
         </div>
     </section>
 
-    @if ("septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
         <section class="section section--tight">
             <div class="container">
                 <div class="records-escalation-board" aria-label="Records lookup next-click accelerator">
@@ -527,6 +527,17 @@
                                data-track-click="nav"
                                data-track-source-context="records_escalation_official_tools"
                                data-track-target-type="internal_page">Open official tools</a>
+                        </article>
+
+                        <article class="records-escalation-card records-escalation-card--primary">
+                            <span>TN / TDEC</span>
+                            <h3>Answer TDEC septic records searches directly</h3>
+                            <p>Push Tennessee records searches into the TDEC SSDS route, permit lookup, county fallback, and request wording before the user bounces back to Google.</p>
+                            <a class="button button--primary"
+                               href="/tdec-septic-records/"
+                               data-track-click="nav"
+                               data-track-source-context="records_escalation_tdec"
+                               data-track-target-type="internal_page">Open TDEC records guide</a>
                         </article>
 
                         <article class="records-escalation-card">
@@ -567,6 +578,10 @@
                                    data-track-click="nav"
                                    data-track-source-context="records_escalation_county_query"
                                    data-track-target-type="county_records_page">Alamance County septic records</a>
+                                <a href="/septic-records-checklist/texas/tarrant-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_escalation_county_query"
+                                   data-track-target-type="county_records_page">Tarrant County septic records</a>
                                 <a href="/septic-records-checklist/texas/comal-county/"
                                    data-track-click="nav"
                                    data-track-source-context="records_escalation_county_query"
