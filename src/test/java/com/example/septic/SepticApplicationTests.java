@@ -1337,6 +1337,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("some records are incomplete")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Department of Health")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records by county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
 	}
 
@@ -4563,6 +4565,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record proof path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -4572,6 +4576,9 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Permit Lookup &amp; SCDES Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records proof ladder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic permit records request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-as-built-records/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SCDES records path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The permit copy already on file for the parcel.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
@@ -4611,6 +4618,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Real Property Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("statewide septic routing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open South Carolina records lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records by county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the South Carolina guide")));
 	}
 
@@ -4629,6 +4638,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Inspection Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record proof path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-records-request/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check Alabama county records before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Alabama records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
@@ -6370,6 +6381,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit file and inspection letter")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("regional-contact and repair-permit friction")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"gsc_intent_patch\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records proof ladder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open address search guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/hamilton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/williamson-county/")))
@@ -8269,6 +8283,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county or local health office")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county permit and site file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records proof ladder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-records-request/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/indiana/elkhart-county/")))

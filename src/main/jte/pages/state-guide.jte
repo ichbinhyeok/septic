@@ -95,6 +95,29 @@
                                data-track-source-context="state_guide_calculator_bridge_records_lookup"
                                data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                         </div>
+                        <div class="quick-link-strip" aria-label="${state.stateName()} permit file proof path">
+                            <span class="quick-link-strip__label">Record proof path</span>
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="/septic-permit-search-by-address/"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_record_proof_address"
+                               data-track-target-type="internal_page">Permit search by address</a>
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="/septic-permit-records-request/"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_record_proof_request"
+                               data-track-target-type="internal_page">Permit records request</a>
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="/septic-as-built-records/"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_record_proof_as_built"
+                               data-track-target-type="internal_page">As-built records</a>
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="/septic-records-by-county/"
+                               data-track-click="nav"
+                               data-track-source-context="state_guide_record_proof_county"
+                               data-track-target-type="internal_page">Records by county</a>
+                        </div>
                     @endif
                 </div>
                 <p class="lede state-guide-summary-copy">${state.ruleSummaryPlainEnglish()}</p>

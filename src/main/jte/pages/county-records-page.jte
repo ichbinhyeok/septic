@@ -472,6 +472,11 @@
                            data-track-click="nav"
                            data-track-source-context="county_search_intent_records_request"
                            data-track-target-type="page_anchor">Open request script</a>
+                        <a class="button button--secondary"
+                           href="/septic-permit-records-request/"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_intent_records_request_guide"
+                           data-track-target-type="internal_page">Open records request guide</a>
                     </article>
 
                     <article class="county-search-intent-card">
@@ -511,6 +516,17 @@
                            data-track-click="nav"
                            data-track-source-context="county_search_intent_as_built"
                            data-track-target-type="internal_page">Open as-built records guide</a>
+                    </article>
+
+                    <article class="county-search-intent-card">
+                        <span>County comparison</span>
+                        <h3>Compare septic records by county</h3>
+                        <p>Use the county directory when a nearby parcel, different local office, or broader records search needs another local permit file path before the estimate.</p>
+                        <a class="button button--secondary"
+                           href="/septic-records-by-county/"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_intent_records_by_county"
+                           data-track-target-type="internal_page">Open records by county</a>
                     </article>
                 </div>
             </div>

@@ -322,6 +322,54 @@
                 </div>
             </section>
 
+            @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                <section class="records-proof-ladder" aria-label="${state.stateName()} records proof ladder">
+                    <div class="section-heading">
+                        <span class="eyebrow">Records proof ladder</span>
+                        <h2>Turn the lookup into the exact file task before pricing.</h2>
+                        <p class="lede">Use these routes when the search needs a parcel lookup, written records request, as-built file, or county page instead of another broad state summary.</p>
+                    </div>
+                    <div class="detail-grid">
+                        <article class="detail-card">
+                            <h3>Septic permit search by address</h3>
+                            <p>Use this when the user has an address, parcel, owner, APN, TMS, or legal-description clue and needs the right file owner before the record is treated as missing.</p>
+                            <a class="button button--secondary"
+                               href="/septic-permit-search-by-address/"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_proof_address"
+                               data-track-target-type="internal_page">Open address search guide</a>
+                        </article>
+                        <article class="detail-card">
+                            <h3>Septic permit records request</h3>
+                            <p>Use this when the next move is asking for a permit copy, as-built, final approval, repair file, inspection letter, or written no-record response.</p>
+                            <a class="button button--secondary"
+                               href="/septic-permit-records-request/"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_proof_request"
+                               data-track-target-type="internal_page">Open records request guide</a>
+                        </article>
+                        <article class="detail-card">
+                            <h3>Septic as-built records</h3>
+                            <p>Use this when the installed layout, site sketch, tank location, drain field, reserve area, or repair scope can change the next quote or deal decision.</p>
+                            <a class="button button--secondary"
+                               href="/septic-as-built-records/"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_proof_as_built"
+                               data-track-target-type="internal_page">Open as-built records guide</a>
+                        </article>
+                        <article class="detail-card">
+                            <h3>Septic records by county</h3>
+                            <p>Use this when the county is known and the next useful click is the local permit file, records request, parcel lookup, or office path.</p>
+                            <a class="button button--secondary"
+                               href="/septic-records-by-county/"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_proof_county"
+                               data-track-target-type="internal_page">Open county records guide</a>
+                        </article>
+                    </div>
+                </section>
+            @endif
+
             @if (!searchIntentOpportunities.isEmpty())
                 <section class="search-intent-board" aria-label="Common search intents this page answers">
                         <div class="search-intent-board__header">
