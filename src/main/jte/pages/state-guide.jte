@@ -120,6 +120,47 @@
                         </div>
                     @endif
                 </div>
+                @if ("AL".equals(state.stateCode()))
+                    <div class="quick-link-strip" aria-label="Alabama perc test and records shortcuts">
+                        <span class="quick-link-strip__label">Alabama search path</span>
+                        <a class="button button--secondary quick-link-strip__button"
+                           href="/perc-test-cost/alabama/"
+                           data-track-click="nav"
+                           data-track-source-context="alabama_gsc_perc_shortcut"
+                           data-track-target-type="state_money_page">Perc test cost path</a>
+                        @if (stateRecordsLookupPath != null)
+                            <a class="button button--secondary quick-link-strip__button"
+                               href="${stateRecordsLookupPath}"
+                               data-track-click="nav"
+                               data-track-source-context="alabama_gsc_records_shortcut"
+                               data-track-target-type="state_money_page">Alabama permit records</a>
+                        @endif
+                        <a class="button button--secondary quick-link-strip__button"
+                           href="/septic-permit-search-by-address/"
+                           data-track-click="nav"
+                           data-track-source-context="alabama_gsc_address_shortcut"
+                           data-track-target-type="internal_page">Search by address</a>
+                        <a class="button button--secondary quick-link-strip__button"
+                           href="/septic-records-checklist/alabama/madison-county/"
+                           data-track-click="nav"
+                           data-track-source-context="alabama_gsc_county_shortcut"
+                           data-track-target-type="county_records_page">Madison records</a>
+                    </div>
+                    <div class="detail-grid" aria-label="Alabama perc test search answer">
+                        <article class="mini-card">
+                            <strong>Answer the cost search first</strong>
+                            <p>How much is a perc test in Alabama depends on the county health file, prior soil review, Permit to Install status, and whether an Approval for Use already exists.</p>
+                        </article>
+                        <article class="mini-card">
+                            <strong>Alabama county health file before the estimate</strong>
+                            <p>Pull the county record path before treating a low perc-test or septic permit number as usable for a buyer, repair, or replacement decision.</p>
+                        </article>
+                        <article class="mini-card">
+                            <strong>Do not lose address-search users</strong>
+                            <p>If the searcher has an address, parcel clue, owner name, or legal description, send them into the permit-search-by-address route before they restart in Google.</p>
+                        </article>
+                    </div>
+                @endif
                 <p class="lede state-guide-summary-copy">${state.ruleSummaryPlainEnglish()}</p>
                 @if (!featuredStateWorkflowLinks.isEmpty())
                     <p class="hero-router-intro">Pick the first move that matches the blocker. Use the narrower workflow or file path first, and estimate only after the local story is clear enough to price. @if (guideCountyWorkflowSynthesis != null) ${guideCountyWorkflowSynthesis.intro()} @endif</p>

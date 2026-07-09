@@ -255,10 +255,12 @@ public class SiteController {
             Map.entry("TN", List.of(
                     "tennessee septic records",
                     "tdec septic records",
+                    "tdec septic permit lookup",
                     "septic permit lookup",
                     "state of tn septic records",
                     "state of tennessee septic records",
                     "blount county septic records",
+                    "hamilton county septic inspection records",
                     "hamilton county septic records"
             )),
             Map.entry("IN", List.of(
@@ -5179,6 +5181,24 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "Open Tennessee permit contact",
                             contactPath,
                             contactTargetType
+                    ),
+                    new SearchIntentOpportunityView(
+                            "blount-county-septic-records",
+                            "Blount County",
+                            "Blount County septic records",
+                            "Use this route when the search has already named Blount County and the user needs the county file path, permit copy, inspection letter, or written no-record response.",
+                            "Open Blount County records",
+                            "/septic-records-checklist/tennessee/blount-county/",
+                            "county_records_page"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "hamilton-county-septic-inspection-records",
+                            "Hamilton County",
+                            "Hamilton County septic inspection records",
+                            "Use this route when the searcher needs Hamilton County inspection records, permit history, address clues, or the file trail behind a buyer or repair decision.",
+                            "Open Hamilton County records",
+                            "/septic-records-checklist/tennessee/hamilton-county/",
+                            "county_records_page"
                     )
             );
         }
