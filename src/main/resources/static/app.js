@@ -374,6 +374,7 @@
             TN: "Start with the TDEC septic permit search, then use the regional or contract-county route if the parcel is not visible.",
             NC: "Route the request to the county environmental health office; North Carolina septic files are usually county-held.",
             TX: "Ask for the OSSF permit file, approved plan, inspection record, and local authorized-agent route.",
+            SC: "Ask SCDES or the county/regional contact for the septic permit copy, D-1740 application trail, final inspection status, and ePermitting route.",
             FL: "Ask the county health department or eBridge-style records path for OSTDS permit, final approval, and archive details.",
             DEFAULT: "Route the request to the county health, environmental health, or onsite wastewater office that holds septic permit files."
         };

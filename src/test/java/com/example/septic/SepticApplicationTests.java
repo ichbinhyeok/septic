@@ -128,6 +128,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.tceq.texas.gov/permitting/ossf")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://floridadep.gov/water/onsite-sewage")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://des.sc.gov/permits-regulations/septic-tanks")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-request-builder/")));
 
 		mockMvc.perform(get("/tdec-septic-records/"))
@@ -157,6 +159,14 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Florida OSTDS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/florida/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/florida/")));
+
+		mockMvc.perform(get("/dhec-septic-permit-lookup/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Permit Lookup | South Carolina SCDES Records and D-1740 Files | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("DHEC searches should land on the current SCDES septic route.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open SCDES septic")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740 application trail")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")));
 	}
 
 	@Test
@@ -169,6 +179,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy-ready request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas / OSSF county or authorized agent")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina / SCDES septic records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/official-septic-lookup-tools/")));
 	}
 
@@ -616,6 +627,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-letter/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/official-septic-lookup-tools/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-request-builder/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/dhec-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/tdec-septic-records/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/north-carolina-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/texas-ossf-records-search/")))
@@ -6978,6 +6990,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>How to Find Septic Records Online | County, Permit, and As-Built Search | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Finding septic records online is usually a routing problem.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Next-click accelerator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/official-septic-lookup-tools/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-request-builder/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What if the online septic search finds nothing?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/durham-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")))
@@ -6992,6 +7008,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic records availability index")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Next-click accelerator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buncombe County septic permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Comal County septic permit search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("High-confidence routes loaded")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First pull:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
@@ -7009,6 +7029,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Search by Address | County Records and Parcel Lookup | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open address lookup routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic permit search by address is strongest")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("If the address search stalls, move to parcel, official tools, or a copy-ready request.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/official-septic-lookup-tools/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-request-builder/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-by-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")));
 	}
@@ -7021,6 +7044,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic permit records request should be specific")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Turn the records request into a precise file pull before the office answers vaguely.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-request-builder/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-as-built-records/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/durham-county/")));
 	}
@@ -7033,6 +7058,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open as-built record routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic as-built records matter because they show where the system was actually installed")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("If the layout is missing, request the exact as-built, final approval, or no-record response.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")));
 	}

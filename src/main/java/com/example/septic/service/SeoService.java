@@ -766,6 +766,7 @@ public class SeoService {
             case "north-carolina-septic-permit-lookup" -> "North Carolina Septic Permit Lookup | County Environmental Health Records | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search | Septic Permit Lookup and County File Path | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
+            case "dhec-septic-permit-lookup" -> "DHEC Septic Permit Lookup | South Carolina SCDES Records and D-1740 Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";

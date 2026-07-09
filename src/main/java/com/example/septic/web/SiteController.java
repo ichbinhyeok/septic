@@ -76,6 +76,7 @@ public class SiteController {
     private static final String NC_PERMIT_LOOKUP_SLUG = "north-carolina-septic-permit-lookup";
     private static final String TX_OSSF_RECORDS_SLUG = "texas-ossf-records-search";
     private static final String FL_OSTDS_LOOKUP_SLUG = "florida-ostds-permit-lookup";
+    private static final String DHEC_PERMIT_LOOKUP_SLUG = "dhec-septic-permit-lookup";
     private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
             PERMIT_LOOKUP_SLUG,
             RECORDS_ONLINE_SLUG,
@@ -89,7 +90,8 @@ public class SiteController {
             TDEC_RECORDS_SLUG,
             NC_PERMIT_LOOKUP_SLUG,
             TX_OSSF_RECORDS_SLUG,
-            FL_OSTDS_LOOKUP_SLUG
+            FL_OSTDS_LOOKUP_SLUG,
+            DHEC_PERMIT_LOOKUP_SLUG
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
@@ -1188,6 +1190,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/north-carolina-septic-permit-lookup", "/north-carolina-septic-permit-lookup/",
             "/texas-ossf-records-search", "/texas-ossf-records-search/",
             "/florida-ostds-permit-lookup", "/florida-ostds-permit-lookup/",
+            "/dhec-septic-permit-lookup", "/dhec-septic-permit-lookup/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
             "/septic-records-checklist", "/septic-records-checklist/",
@@ -2375,6 +2378,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case NC_PERMIT_LOOKUP_SLUG -> "Find the county health file before broad North Carolina research.";
             case TX_OSSF_RECORDS_SLUG -> "Route Texas OSSF records through the county or TCEQ lane.";
             case FL_OSTDS_LOOKUP_SLUG -> "Start Florida OSTDS lookup with the county DOH path.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Translate DHEC searches into the current SCDES septic route.";
             case PERMIT_LOOKUP_SLUG -> "Open a state permit lookup path first.";
             case "septic-permit-process" -> "Open a state permit page first.";
             case "septic-records-checklist" -> "Open a state records lookup first.";
@@ -2407,6 +2411,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case NC_PERMIT_LOOKUP_SLUG -> "Open North Carolina records routes";
             case TX_OSSF_RECORDS_SLUG -> "Open Texas OSSF records routes";
             case FL_OSTDS_LOOKUP_SLUG -> "Open Florida OSTDS records routes";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Open South Carolina DHEC/SCDES routes";
             case PERMIT_LOOKUP_SLUG -> "Open state permit lookup pages";
             case "septic-permit-process" -> "Open state permit pages";
             case "septic-records-checklist" -> "Open state records lookup pages";
@@ -2439,6 +2444,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case NC_PERMIT_LOOKUP_SLUG -> "North Carolina records usually resolve through county environmental health, so use the county route or request script when a statewide page is too broad.";
             case TX_OSSF_RECORDS_SLUG -> "Texas OSSF records often depend on the authorized agent or county, so use the state OSSF context and county handoff together.";
             case FL_OSTDS_LOOKUP_SLUG -> "Florida OSTDS records are handled through county health workflows, eBridge-style archives, or county-specific public records paths.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Many searchers still type DHEC, but the current South Carolina path should point them into SCDES septic tank, ePermitting, county contact, D-1740, and permit-copy workflows.";
             case PERMIT_LOOKUP_SLUG -> "The useful lookup is usually state plus county: open the state records or permit path first, then follow the county file route when the state page exposes one.";
             case "septic-permit-process" -> "The first real answer is usually which office, file, or site-review step controls this property, so start with the state-specific permit page before you model the cost.";
             case "septic-records-checklist" -> "County records lookup, permit search, and as-built availability vary enough that the state-specific records page is the faster first move.";
@@ -2482,6 +2488,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case NC_PERMIT_LOOKUP_SLUG -> "Run a North Carolina records-aware estimate";
             case TX_OSSF_RECORDS_SLUG -> "Run a Texas OSSF-aware estimate";
             case FL_OSTDS_LOOKUP_SLUG -> "Run a Florida OSTDS-aware estimate";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Run a South Carolina records-aware estimate";
             case PERMIT_LOOKUP_SLUG -> "Run a lookup-aware estimate";
             case "septic-permit-process" -> "Run a permit-path estimate";
             case "septic-records-checklist" -> "Run a records-aware estimate";
@@ -2511,6 +2518,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case NC_PERMIT_LOOKUP_SLUG -> "Use the estimate after the county environmental health file or request route clarifies what North Carolina artifact is missing.";
             case TX_OSSF_RECORDS_SLUG -> "Use the estimate after the Texas OSSF county route clarifies whether the issue is permit history, approved plan, maintenance, or repair.";
             case FL_OSTDS_LOOKUP_SLUG -> "Use the estimate after the county DOH or archive route clarifies whether the Florida OSTDS record is available or needs a formal request.";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Use the estimate after SCDES or the county route clarifies whether the issue is D-1740, permit copy, final inspection, or a missing file.";
             case PERMIT_LOOKUP_SLUG -> "Use the estimate after the lookup tells you whether the file gap is routine, a county routing problem, or a repair-permit risk.";
             case "septic-permit-process" -> "Use the estimate after you know whether the real blocker is authority routing, project classification, or site review.";
             case "septic-records-checklist" -> "Use the estimate after you know which missing record is actually changing the downside.";
@@ -6113,6 +6121,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                     PERMIT_RECORDS_REQUEST_SLUG,
                     AS_BUILT_RECORDS_SLUG,
                     INSPECTION_LETTER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     PERMIT_LOOKUP_SLUG,
                     "drain-field-replacement-cost",
                     "failed-perc-test-septic",
@@ -6136,6 +6145,9 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
             case PERMIT_LOOKUP_SLUG -> List.of(
                     RECORDS_ONLINE_SLUG,
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
                     PERMIT_SEARCH_BY_ADDRESS_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
@@ -6149,6 +6161,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case RECORDS_ONLINE_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
                     PERMIT_SEARCH_BY_ADDRESS_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
@@ -6163,6 +6178,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case RECORDS_BY_COUNTY_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     PERMIT_SEARCH_BY_ADDRESS_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
                     AS_BUILT_RECORDS_SLUG,
@@ -6176,6 +6194,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
                     AS_BUILT_RECORDS_SLUG,
@@ -6187,6 +6208,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case PERMIT_RECORDS_REQUEST_SLUG -> List.of(
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     PERMIT_SEARCH_BY_ADDRESS_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
                     AS_BUILT_RECORDS_SLUG,
@@ -6199,6 +6223,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case AS_BUILT_RECORDS_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
                     PERMIT_SEARCH_BY_ADDRESS_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
@@ -6210,6 +6237,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "septic-system-cost-calculator"
             );
             case INSPECTION_LETTER_SLUG -> List.of(
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
                     PERMIT_RECORDS_REQUEST_SLUG,
                     AS_BUILT_RECORDS_SLUG,
                     RECORDS_BY_COUNTY_SLUG,
@@ -6219,6 +6248,44 @@ The goal is to settle the permit path before we frame the project as a normal in
                     PERMIT_LOOKUP_SLUG,
                     "septic-records-checklist",
                     TRANSFER_COMPLIANCE_SLUG
+            );
+            case OFFICIAL_LOOKUP_TOOLS_SLUG -> List.of(
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
+                    TDEC_RECORDS_SLUG,
+                    NC_PERMIT_LOOKUP_SLUG,
+                    TX_OSSF_RECORDS_SLUG,
+                    FL_OSTDS_LOOKUP_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    "septic-records-checklist"
+            );
+            case RECORDS_REQUEST_BUILDER_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    DHEC_PERMIT_LOOKUP_SLUG,
+                    TDEC_RECORDS_SLUG,
+                    NC_PERMIT_LOOKUP_SLUG,
+                    TX_OSSF_RECORDS_SLUG,
+                    FL_OSTDS_LOOKUP_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG
+            );
+            case DHEC_PERMIT_LOOKUP_SLUG -> List.of(
+                    OFFICIAL_LOOKUP_TOOLS_SLUG,
+                    RECORDS_REQUEST_BUILDER_SLUG,
+                    RECORDS_BY_COUNTY_SLUG,
+                    PERMIT_SEARCH_BY_ADDRESS_SLUG,
+                    PERMIT_RECORDS_REQUEST_SLUG,
+                    AS_BUILT_RECORDS_SLUG,
+                    INSPECTION_LETTER_SLUG,
+                    "septic-records-checklist",
+                    "septic-permit-process",
+                    "septic-system-cost-calculator"
             );
             default -> List.of();
         };

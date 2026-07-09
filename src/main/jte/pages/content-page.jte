@@ -495,6 +495,90 @@
         </div>
     </section>
 
+    @if ("septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+        <section class="section section--tight">
+            <div class="container">
+                <div class="records-escalation-board" aria-label="Records lookup next-click accelerator">
+                    <div class="records-escalation-board__intro">
+                        <span class="eyebrow">Next-click accelerator</span>
+                        <h2>
+                            @if ("septic-permit-search-by-address".equals(contentPage.slug()))
+                                If the address search stalls, move to parcel, official tools, or a copy-ready request.
+                            @elseif ("septic-permit-records-request".equals(contentPage.slug()))
+                                Turn the records request into a precise file pull before the office answers vaguely.
+                            @elseif ("septic-as-built-records".equals(contentPage.slug()))
+                                If the layout is missing, request the exact as-built, final approval, or no-record response.
+                            @elseif ("septic-records-by-county".equals(contentPage.slug()))
+                                Open the county route, then escalate to official tools or a written request when the file is thin.
+                            @else
+                                Move from broad septic-records search intent into an official route or county file pull.
+                            @endif
+                        </h2>
+                        <p>These are the high-intent exits for searchers who already need a permit copy, as-built, D-1740 file, parcel anchor, or county office response.</p>
+                    </div>
+
+                    <div class="records-escalation-board__grid">
+                        <article class="records-escalation-card records-escalation-card--primary">
+                            <span>Official source</span>
+                            <h3>Open the official lookup board</h3>
+                            <p>Use this when the visitor needs TDEC, SCDES, OSSF, OSTDS, county health, or public-records routing before another article.</p>
+                            <a class="button button--primary"
+                               href="/official-septic-lookup-tools/"
+                               data-track-click="nav"
+                               data-track-source-context="records_escalation_official_tools"
+                               data-track-target-type="internal_page">Open official tools</a>
+                        </article>
+
+                        <article class="records-escalation-card">
+                            <span>Request builder</span>
+                            <h3>Generate the email before the user leaves</h3>
+                            <p>Convert address, county, parcel, record type, and reason into a copy-ready request for the office.</p>
+                            <a class="button button--secondary"
+                               href="/septic-records-request-builder/"
+                               data-track-click="nav"
+                               data-track-source-context="records_escalation_request_builder"
+                               data-track-target-type="internal_page">Build records request</a>
+                        </article>
+
+                        <article class="records-escalation-card">
+                            <span>SC / DHEC</span>
+                            <h3>DHEC searchers need the SCDES route</h3>
+                            <p>Route South Carolina DHEC-style searches into current SCDES septic, ePermitting, D-1740, permit-copy, and county contact paths.</p>
+                            <a class="button button--secondary"
+                               href="/dhec-septic-permit-lookup/"
+                               data-track-click="nav"
+                               data-track-source-context="records_escalation_dhec"
+                               data-track-target-type="internal_page">Open DHEC/SCDES guide</a>
+                        </article>
+
+                        <article class="records-escalation-card records-escalation-card--queries">
+                            <span>County routes getting signals</span>
+                            <h3>Push the county paths already showing demand</h3>
+                            <div>
+                                <a href="/septic-records-checklist/tennessee/blount-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_escalation_county_query"
+                                   data-track-target-type="county_records_page">Blount County septic records</a>
+                                <a href="/septic-records-checklist/north-carolina/buncombe-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_escalation_county_query"
+                                   data-track-target-type="county_records_page">Buncombe County septic permit lookup</a>
+                                <a href="/septic-records-checklist/north-carolina/alamance-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_escalation_county_query"
+                                   data-track-target-type="county_records_page">Alamance County septic records</a>
+                                <a href="/septic-records-checklist/texas/comal-county/"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_escalation_county_query"
+                                   data-track-target-type="county_records_page">Comal County septic permit search</a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if ("septic-records-by-county".equals(contentPage.slug()) && !countyFinderLinks.isEmpty())
         <section class="section section--tight">
             <div class="container">
@@ -535,7 +619,7 @@
         </section>
     @endif
 
-    @if ("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()))
+    @if ("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug()))
         <section class="section section--tight">
             <div class="container">
                 <div class="official-tool-console" aria-label="Official septic lookup tools command board">
@@ -550,6 +634,8 @@
                                 Texas OSSF searches need the state context and the local authorized agent.
                             @elseif ("florida-ostds-permit-lookup".equals(contentPage.slug()))
                                 Florida OSTDS searches start with the county health record path.
+                            @elseif ("dhec-septic-permit-lookup".equals(contentPage.slug()))
+                                DHEC searches should land on the current SCDES septic route.
                             @else
                                 Start with the official source, then use the county request path.
                             @endif
@@ -615,6 +701,23 @@
                         </article>
 
                         <article class="official-tool-route">
+                            <span>SC / DHEC -> SCDES</span>
+                            <h3>DHEC septic permit lookup</h3>
+                            <p>Many South Carolina searches still say DHEC. Use current SCDES septic tank, ePermitting, D-1740, permit-copy, and county contact paths.</p>
+                            <div class="official-tool-route__actions">
+                                <a class="button button--primary"
+                                   href="https://des.sc.gov/permits-regulations/septic-tanks"
+                                   target="_blank"
+                                   rel="noreferrer">Open SCDES septic</a>
+                                <a class="button button--secondary"
+                                   href="/dhec-septic-permit-lookup/"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_console"
+                                   data-track-target-type="internal_page">Use DHEC guide</a>
+                            </div>
+                        </article>
+
+                        <article class="official-tool-route">
                             <span>FL / OSTDS</span>
                             <h3>Florida OSTDS permit lookup</h3>
                             <p>Use the county health department, local archive, or eBridge-style records path when the search is about a septic permit, final approval, or old OSTDS file.</p>
@@ -665,6 +768,7 @@
                                     <option value="TN">Tennessee / TDEC</option>
                                     <option value="NC">North Carolina / county environmental health</option>
                                     <option value="TX">Texas / OSSF county or authorized agent</option>
+                                    <option value="SC">South Carolina / SCDES septic records</option>
                                     <option value="FL">Florida / OSTDS county health department</option>
                                 </select>
                             </label>

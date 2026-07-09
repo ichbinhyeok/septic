@@ -1623,7 +1623,7 @@ h4 {
 
 .official-tool-console__grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 12px;
 }
 
@@ -1820,6 +1820,123 @@ h4 {
 .records-request-builder__actions .is-copied {
     border-color: rgba(223, 244, 106, 0.62);
     background: rgba(223, 244, 106, 0.18);
+}
+
+.records-escalation-board {
+    display: grid;
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(248, 250, 244, 0.98), rgba(232, 242, 236, 0.86)),
+        var(--surface-strong);
+    box-shadow: var(--shadow-soft);
+}
+
+.records-escalation-board__intro {
+    display: grid;
+    gap: 8px;
+    max-width: 900px;
+}
+
+.records-escalation-board__intro h2 {
+    max-width: 34ch;
+    font-size: clamp(1.35rem, 2.2vw, 2.2rem);
+    line-height: 1.08;
+}
+
+.records-escalation-board__intro p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.58;
+}
+
+.records-escalation-board__grid {
+    display: grid;
+    grid-template-columns: minmax(230px, 1.08fr) repeat(2, minmax(210px, 0.88fr)) minmax(250px, 1.12fr);
+    gap: 12px;
+    align-items: stretch;
+}
+
+.records-escalation-card {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.78);
+}
+
+.records-escalation-card--primary {
+    background:
+        linear-gradient(135deg, rgba(27, 77, 68, 0.96), rgba(37, 95, 82, 0.92)),
+        var(--text);
+    color: #f7fbf7;
+}
+
+.records-escalation-card span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.records-escalation-card--primary span {
+    color: #dff46a;
+}
+
+.records-escalation-card h3 {
+    max-width: 22ch;
+    font-size: 1.08rem;
+    line-height: 1.12;
+}
+
+.records-escalation-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.records-escalation-card--primary p {
+    color: rgba(247, 251, 247, 0.74);
+}
+
+.records-escalation-card .button {
+    justify-self: start;
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.86rem;
+}
+
+.records-escalation-card--queries div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.records-escalation-card--queries a {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 999px;
+    background: rgba(248, 250, 244, 0.82);
+    color: var(--text);
+    font-size: 0.84rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.records-escalation-card--queries a:hover {
+    border-color: rgba(35, 108, 95, 0.32);
+    background: rgba(225, 240, 234, 0.9);
 }
 
 .county-data-console__header {
@@ -4623,6 +4740,7 @@ input[type="checkbox"] {
     .card-grid,
     .county-index-brief,
     .county-index-brief__metrics,
+    .records-escalation-board__grid,
     .official-tool-console__grid,
     .official-tool-console__handoff,
     .records-request-builder__workspace,
@@ -5309,16 +5427,38 @@ input[type="checkbox"] {
         justify-content: center;
     }
 
+    .records-escalation-board,
     .official-tool-console,
     .records-request-builder {
         padding: 14px;
         border-radius: 22px;
     }
 
+    .records-escalation-board__intro h2,
     .official-tool-console__intro h2,
     .records-request-builder__intro h2 {
         max-width: 22ch;
         font-size: 1.24rem;
+    }
+
+    .records-escalation-card {
+        padding: 14px;
+        border-radius: 16px;
+    }
+
+    .records-escalation-card .button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .records-escalation-card--queries div {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .records-escalation-card--queries a {
+        justify-content: center;
+        text-align: center;
     }
 
     .official-tool-console__handoff .button {
