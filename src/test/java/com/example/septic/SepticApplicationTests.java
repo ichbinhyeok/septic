@@ -202,12 +202,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download packet contents")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Office-ready message")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fallback proof")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("PDF-ready cover packet")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Submission route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Before sending checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download packet .txt")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Print / save PDF")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-download")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-print")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-filename")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas / OSSF county or authorized agent")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina / SCDES septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas / OSSF agent")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina / SCDES")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/official-septic-lookup-tools/")));
 	}
 

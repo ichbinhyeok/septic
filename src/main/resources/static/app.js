@@ -608,6 +608,45 @@
             DEFAULT: "Route the request to the county health, environmental health, or onsite wastewater office that holds septic permit files."
         };
 
+        const stateRouteDetails = {
+            TN: {
+                title: "TDEC search, then county or regional fallback",
+                body: "Search the Tennessee SSDS/TDEC route first. If the parcel is unclear, carry the same request into the county, regional office, or contract-county records path.",
+                channel: "TDEC search result, regional environmental office, contract county, or county health records desk",
+                fallback: "Ask which regional or contract-county office owns old, scanned, repair, or pre-digital septic files."
+            },
+            NC: {
+                title: "County environmental health file desk",
+                body: "North Carolina septic records usually resolve through county environmental health. Treat the county office as the primary file owner unless an official county page says otherwise.",
+                channel: "county environmental health records email, permit portal, public-records form, or phone handoff",
+                fallback: "Ask whether improvement permits, construction authorizations, operation permits, and scanned layout files sit in a separate county archive."
+            },
+            TX: {
+                title: "County or authorized OSSF agent",
+                body: "Texas OSSF records often sit with the county, authorized agent, local permitting authority, or city/ETJ route rather than one statewide file desk.",
+                channel: "county OSSF office, authorized agent, local permitting authority, or public-records channel",
+                fallback: "Ask whether city-limit, ETJ, subdivision, or local-authority status changes the correct OSSF file owner."
+            },
+            SC: {
+                title: "SCDES septic records and county/regional route",
+                body: "South Carolina searches should translate old DHEC wording into the current SCDES route, then confirm whether ePermitting, county contact, or regional staff owns the D-1740 and permit-copy trail.",
+                channel: "SCDES septic tank route, ePermitting path, county contact, regional office, or records request",
+                fallback: "Ask for the D-1740 trail, final inspection status, county contact, and written no-record response if the permit copy is not visible."
+            },
+            FL: {
+                title: "County health OSTDS records path",
+                body: "Florida OSTDS records usually resolve through county health workflows, county-specific archives, or eBridge-style paths tied to the property county.",
+                channel: "county health department OSTDS route, archive desk, eBridge-style portal, or public-records request",
+                fallback: "Ask whether old OSTDS permits, final approvals, site plans, and repair files sit in a county archive or separate DEP-era records path."
+            },
+            DEFAULT: {
+                title: "County health office or onsite wastewater records desk",
+                body: "Send through the official county health, environmental health, onsite wastewater, permitting, or public-records channel that owns parcel-level septic files.",
+                channel: "county health, environmental health, onsite wastewater, permitting, or public-records channel",
+                fallback: "Ask which office owns archived, scanned, delegated, regional, or pre-digital septic files if the first desk has no match."
+            }
+        };
+
         const artifactCopy = {
             permit_copy: "the septic permit copy and permit history",
             as_built: "the septic as-built, site sketch, approved plan, or installed layout",
@@ -626,6 +665,24 @@
             owner_records: "owner records and file verification"
         };
 
+        const artifactChecklist = {
+            permit_copy: "Ask for permit copy, permit history, permit number, issue date, closeout status, and any related repair permit.",
+            as_built: "Ask for the as-built, site sketch, approved plan, installed layout, tank location, drain-field location, and reserve-area note.",
+            final_approval: "Ask for final approval, operation permit, installation certificate, inspection signoff, and any closeout condition.",
+            repair_record: "Ask for repair permits, malfunction files, complaint history, corrective-action records, and the latest resolved status.",
+            inspection_letter: "Ask whether the office can issue an inspection, lender, records, or file-status letter and what artifact supports it.",
+            no_record: "Ask for a written no-record response that names the identifiers searched and the next archive or delegated-office route."
+        };
+
+        const reasonChecklist = {
+            buying: "Keep the response with the buyer diligence file before negotiating credits, closing timing, or inspection scope.",
+            repair: "Keep the response with repair photos, symptoms, contractor notes, and any emergency or malfunction timeline.",
+            addition: "Keep the response with bedroom-count, pool, driveway, grading, or site-change plans before assuming the parcel can absorb the change.",
+            replacement: "Keep the response with failure, reserve-area, redesign, and replacement-route notes before treating a quote as final scope.",
+            lender: "Keep the response with lender, closing, title, and inspection-letter requirements so the office knows what will satisfy the file.",
+            owner_records: "Keep the response with the owner file so future buyers, agents, contractors, or county staff can retrace the search."
+        };
+
         function valueOf(builder, selector) {
             const element = builder.querySelector(selector);
             return element instanceof HTMLInputElement || element instanceof HTMLSelectElement || element instanceof HTMLTextAreaElement
@@ -640,44 +697,85 @@
             return select.options[select.selectedIndex]?.text?.trim() || "";
         }
 
-        function buildRequest(builder) {
+        function currentBuilderState(builder) {
             const stateSelect = builder.querySelector("[data-request-state]");
             const recordSelect = builder.querySelector("[data-request-record]");
             const reasonSelect = builder.querySelector("[data-request-reason]");
             const stateCode = stateSelect instanceof HTMLSelectElement ? stateSelect.value : "DEFAULT";
-            const stateLabel = labelOf(stateSelect) || "the property state";
             const recordKey = recordSelect instanceof HTMLSelectElement ? recordSelect.value : "permit_copy";
             const reasonKey = reasonSelect instanceof HTMLSelectElement ? reasonSelect.value : "owner_records";
             const county = valueOf(builder, "[data-request-county]");
             const address = valueOf(builder, "[data-request-address]");
             const parcel = valueOf(builder, "[data-request-parcel]");
             const owner = valueOf(builder, "[data-request-owner]");
-            const routeNote = stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT;
-            const artifact = artifactCopy[recordKey] || artifactCopy.permit_copy;
-            const reason = reasonCopy[reasonKey] || reasonCopy.owner_records;
-            const countyLine = county ? `${county} County` : "the property county";
+            const routeDetail = stateRouteDetails[stateCode] || stateRouteDetails.DEFAULT;
+            const stateLabel = labelOf(stateSelect) || "County health office";
             const routeLabel = stateCode === "DEFAULT"
                 ? "the local county health, environmental health, or onsite wastewater office"
-                : stateLabel;
-            const addressLine = address || "[property address]";
-            const parcelLine = parcel || "[parcel ID / APN / tax ID if known]";
-            const ownerLine = owner || "[current or prior owner name if known]";
+                : routeDetail.channel;
+
+            return {
+                stateCode,
+                stateLabel,
+                recordKey,
+                recordLabel: labelOf(recordSelect) || "Permit copy and permit history",
+                reasonKey,
+                reasonLabel: labelOf(reasonSelect) || "Owner records",
+                county,
+                address,
+                parcel,
+                owner,
+                routeDetail,
+                routeNote: stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT,
+                artifact: artifactCopy[recordKey] || artifactCopy.permit_copy,
+                artifactCheck: artifactChecklist[recordKey] || artifactChecklist.permit_copy,
+                reason: reasonCopy[reasonKey] || reasonCopy.owner_records,
+                reasonCheck: reasonChecklist[reasonKey] || reasonChecklist.owner_records,
+                countyLine: county ? `${county} County` : "the property county",
+                routeLabel,
+                addressLine: address || "[property address]",
+                parcelLine: parcel || "[parcel ID / APN / tax ID if known]",
+                ownerLine: owner || "[current or prior owner name if known]"
+            };
+        }
+
+        function submissionChecklist(current) {
+            return [
+                `Submit through the official ${current.routeDetail.channel}.`,
+                `Include address, county, parcel/APN/TMS, owner, legal description, subdivision, lot number, and prior permit number when available.`,
+                current.artifactCheck,
+                current.reasonCheck,
+                current.routeDetail.fallback
+            ];
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function buildRequest(builder) {
+            const current = currentBuilderState(builder);
 
             return [
-                `Subject: Septic records request for ${addressLine}`,
+                `Subject: Septic records request for ${current.addressLine}`,
                 "",
-                `Hello, I am requesting septic system records for a property in ${countyLine}. Please route this through ${routeLabel}.`,
+                `Hello, I am requesting septic system records for a property in ${current.countyLine}. Please route this through ${current.routeLabel}.`,
                 "",
-                `Property: ${addressLine}`,
-                `Parcel / APN / tax ID: ${parcelLine}`,
-                `Owner name: ${ownerLine}`,
-                `Reason for request: ${reason}.`,
+                `Property: ${current.addressLine}`,
+                `Parcel / APN / tax ID: ${current.parcelLine}`,
+                `Owner name: ${current.ownerLine}`,
+                `Reason for request: ${current.reason}.`,
                 "",
-                `Please search for ${artifact}. If those records are held by another office, please tell me the correct office or public records route.`,
+                `Please search for ${current.artifact}. If those records are held by another office, please tell me the correct office or public records route.`,
                 "",
                 "If no septic record is available, please provide a written no-record response or the best next step for confirming whether a file exists.",
                 "",
-                `Routing note: ${routeNote}`,
+                `Routing note: ${current.routeNote}`,
                 "",
                 "Thank you."
             ].join("\n");
@@ -692,18 +790,8 @@
         }
 
         function buildDownloadPacket(builder, script) {
-            const stateSelect = builder.querySelector("[data-request-state]");
-            const recordSelect = builder.querySelector("[data-request-record]");
-            const reasonSelect = builder.querySelector("[data-request-reason]");
-            const stateCode = stateSelect instanceof HTMLSelectElement ? stateSelect.value : "DEFAULT";
-            const stateLabel = labelOf(stateSelect) || "General county health office";
-            const recordLabel = labelOf(recordSelect) || "Permit copy and permit history";
-            const reasonLabel = labelOf(reasonSelect) || "Owner records";
-            const county = valueOf(builder, "[data-request-county]");
-            const address = valueOf(builder, "[data-request-address]");
-            const parcel = valueOf(builder, "[data-request-parcel]");
-            const owner = valueOf(builder, "[data-request-owner]");
-            const routeNote = stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT;
+            const current = currentBuilderState(builder);
+            const checklist = submissionChecklist(current);
 
             return [
                 "Septic Records Request Packet",
@@ -716,18 +804,23 @@
                 "- Keep the identifier checklist with the response so a missing result does not get mistaken for a missing septic file.",
                 "",
                 "Request target",
-                `- State route: ${stateLabel}`,
-                `- County: ${county ? `${county} County` : "[property county]"}`,
-                `- Record needed: ${recordLabel}`,
-                `- Reason: ${reasonLabel}`,
+                `- State route: ${current.stateLabel}`,
+                `- Submission route: ${current.routeDetail.title}`,
+                `- Channel: ${current.routeDetail.channel}`,
+                `- County: ${current.county ? `${current.county} County` : "[property county]"}`,
+                `- Record needed: ${current.recordLabel}`,
+                `- Reason: ${current.reasonLabel}`,
                 "",
                 "Property identifiers",
-                `- Address: ${address || "[property address]"}`,
-                `- Parcel / APN / tax ID: ${parcel || "[parcel ID / APN / tax ID if known]"}`,
-                `- Owner name: ${owner || "[current or prior owner name if known]"}`,
+                `- Address: ${current.address || "[property address]"}`,
+                `- Parcel / APN / tax ID: ${current.parcel || "[parcel ID / APN / tax ID if known]"}`,
+                `- Owner name: ${current.owner || "[current or prior owner name if known]"}`,
                 "- Legal description: [add if known]",
                 "- Subdivision / lot number: [add if known]",
                 "- Prior permit number: [add if known]",
+                "",
+                "Before sending checklist",
+                ...checklist.map((item) => `- ${item}`),
                 "",
                 "Fallback search keys",
                 "- Retry by parcel/APN/TMS, owner, prior owner, legal description, subdivision, lot number, permit number, and street-only search.",
@@ -735,7 +828,13 @@
                 "- If no septic record is available, ask for a written no-record response tied to the property identifiers searched.",
                 "",
                 "Routing note",
-                `- ${routeNote}`,
+                `- ${current.routeNote}`,
+                "",
+                "Response log",
+                "- Date sent: [fill in]",
+                "- Office / staff contact: [fill in]",
+                "- Response received: [fill in]",
+                "- Next office or archive route: [fill in]",
                 "",
                 "Copy-ready message",
                 "------------------",
@@ -743,16 +842,143 @@
             ].join("\n");
         }
 
+        function buildPrintablePacket(builder, script) {
+            const current = currentBuilderState(builder);
+            const checklistItems = submissionChecklist(current)
+                .map((item) => `<li>${escapeHtml(item)}</li>`)
+                .join("");
+            const identifierRows = [
+                ["State route", current.stateLabel],
+                ["Submission route", current.routeDetail.title],
+                ["County", current.county ? `${current.county} County` : "[property county]"],
+                ["Address", current.address || "[property address]"],
+                ["Parcel / APN / tax ID", current.parcel || "[parcel ID / APN / tax ID if known]"],
+                ["Owner", current.owner || "[current or prior owner name if known]"],
+                ["Record needed", current.recordLabel],
+                ["Reason", current.reasonLabel]
+            ]
+                .map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`)
+                .join("");
+
+            return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>${escapeHtml(requestFilename(builder).replace(/\.txt$/, ""))}</title>
+<style>
+    @page { margin: 0.55in; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #142220; font-family: Arial, sans-serif; line-height: 1.45; }
+    .packet { max-width: 7.6in; margin: 0 auto; }
+    .kicker { color: #236c5f; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    h1 { margin: 8px 0 8px; font-size: 30px; line-height: 1.05; }
+    h2 { margin: 24px 0 8px; font-size: 15px; letter-spacing: 0.03em; text-transform: uppercase; }
+    p { margin: 0 0 10px; }
+    .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0; }
+    .meta div, .route, .message, .log { border: 1px solid #cfd8d1; border-radius: 8px; padding: 10px; }
+    .meta span { display: block; color: #586965; font-size: 11px; text-transform: uppercase; }
+    .meta strong { display: block; margin-top: 4px; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid #d8e0da; padding: 8px; text-align: left; vertical-align: top; }
+    th { width: 31%; background: #f3f7f4; font-size: 12px; text-transform: uppercase; }
+    ul { margin: 8px 0 0; padding-left: 20px; }
+    li { margin: 5px 0; }
+    pre { white-space: pre-wrap; margin: 0; font-family: Consolas, Menlo, monospace; font-size: 12px; line-height: 1.5; }
+    .route { background: #f7faf7; }
+    .message { page-break-inside: avoid; }
+    .log { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+    .line { border-bottom: 1px solid #bac7c0; min-height: 26px; }
+</style>
+</head>
+<body>
+<main class="packet">
+    <div class="kicker">SepticPath printable records request packet</div>
+    <h1>Septic records request packet</h1>
+    <p>Use this packet to submit a precise septic records request and keep a clean response trail for a property file.</p>
+    <section class="meta" aria-label="Packet summary">
+        <div><span>Generated</span><strong>${escapeHtml(currentDateLabel())}</strong></div>
+        <div><span>Record needed</span><strong>${escapeHtml(current.recordLabel)}</strong></div>
+        <div><span>Reason</span><strong>${escapeHtml(current.reasonLabel)}</strong></div>
+    </section>
+    <section class="route">
+        <h2>Submission route</h2>
+        <p><strong>${escapeHtml(current.routeDetail.title)}</strong></p>
+        <p>${escapeHtml(current.routeDetail.body)}</p>
+        <p><strong>Channel:</strong> ${escapeHtml(current.routeDetail.channel)}</p>
+    </section>
+    <section>
+        <h2>Property and request identifiers</h2>
+        <table>${identifierRows}</table>
+    </section>
+    <section>
+        <h2>Before sending checklist</h2>
+        <ul>${checklistItems}</ul>
+    </section>
+    <section class="message">
+        <h2>Copy-ready message</h2>
+        <pre>${escapeHtml(script)}</pre>
+    </section>
+    <section>
+        <h2>Response log</h2>
+        <div class="log">
+            <div>Date sent<div class="line"></div></div>
+            <div>Office / staff contact<div class="line"></div></div>
+            <div>Response received<div class="line"></div></div>
+            <div>Next office or archive route<div class="line"></div></div>
+        </div>
+    </section>
+</main>
+</body>
+</html>`;
+        }
+
+        function openPrintablePacket(builder, script) {
+            const printWindow = window.open("", "_blank", "width=900,height=1100");
+            if (!printWindow) {
+                return false;
+            }
+            printWindow.opener = null;
+            printWindow.document.open();
+            printWindow.document.write(buildPrintablePacket(builder, script));
+            printWindow.document.close();
+            printWindow.focus();
+            window.setTimeout(() => {
+                try {
+                    printWindow.print();
+                } catch (_error) {
+                    // The printable packet remains open even if the print dialog is blocked.
+                }
+            }, 350);
+            return true;
+        }
+
         function updateBuilder(builder) {
             const output = builder.querySelector("[data-records-request-output]");
             const preview = builder.querySelector("[data-records-request-preview]");
+            const routeTitle = builder.querySelector("[data-records-request-route-title]");
+            const routeBody = builder.querySelector("[data-records-request-route-body]");
+            const checklist = builder.querySelector("[data-records-request-checklist]");
             const script = buildRequest(builder);
+            const current = currentBuilderState(builder);
 
             if (output instanceof HTMLTextAreaElement) {
                 output.value = script;
             }
             if (preview) {
                 preview.textContent = script.split("\n").filter(Boolean).slice(0, 3).join(" ");
+            }
+            if (routeTitle) {
+                routeTitle.textContent = current.routeDetail.title;
+            }
+            if (routeBody) {
+                routeBody.textContent = current.routeDetail.body;
+            }
+            if (checklist) {
+                checklist.replaceChildren(...submissionChecklist(current).slice(0, 4).map((item) => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = item;
+                    return listItem;
+                }));
             }
         }
 
@@ -777,6 +1003,7 @@
             const inputs = Array.from(builder.querySelectorAll("input, select"));
             const copyButton = builder.querySelector("[data-records-request-copy]");
             const downloadButton = builder.querySelector("[data-records-request-download]");
+            const printButton = builder.querySelector("[data-records-request-print]");
             const filenameLabel = builder.querySelector("[data-records-request-filename]");
             const status = builder.querySelector("[data-records-request-status]");
             const output = builder.querySelector("[data-records-request-output]");
@@ -822,6 +1049,25 @@
                     window.setTimeout(() => {
                         downloadButton.textContent = "Download packet .txt";
                         downloadButton.classList.remove("is-copied");
+                    }, 1800);
+                });
+            }
+
+            if (printButton instanceof HTMLButtonElement && output instanceof HTMLTextAreaElement) {
+                printButton.addEventListener("click", () => {
+                    const original = printButton.textContent;
+                    if (openPrintablePacket(builder, output.value)) {
+                        printButton.textContent = "PDF view opened";
+                        printButton.classList.add("is-copied");
+                        setTemporaryStatus(status, "Printable packet opened", "Ready to copy or download");
+                    } else {
+                        printButton.textContent = "Print blocked";
+                        printButton.classList.add("is-copy-failed");
+                        setTemporaryStatus(status, "Pop-up blocked. Allow pop-ups to print the packet.", "Ready to copy or download");
+                    }
+                    window.setTimeout(() => {
+                        printButton.textContent = original;
+                        printButton.classList.remove("is-copied", "is-copy-failed");
                     }, 1800);
                 });
             }

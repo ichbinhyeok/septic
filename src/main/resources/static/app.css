@@ -1993,6 +1993,7 @@ h4 {
 
 .records-request-builder__intro .eyebrow,
 .records-request-builder__output-head span,
+.records-request-builder__submission span,
 .records-request-builder__controls span {
     color: #dff46a;
 }
@@ -2011,7 +2012,7 @@ h4 {
 
 .records-request-builder__packet-strip {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
     margin: 0;
     padding: 12px;
@@ -2143,6 +2144,65 @@ h4 {
     line-height: 1.45;
 }
 
+.records-request-builder__submission {
+    display: grid;
+    grid-template-columns: minmax(0, 0.96fr) minmax(220px, 1.04fr);
+    gap: 12px;
+    padding: 13px;
+    border: 1px solid rgba(223, 244, 106, 0.16);
+    border-radius: 16px;
+    background:
+        linear-gradient(135deg, rgba(20, 34, 32, 0.36), rgba(255, 255, 255, 0.07)),
+        rgba(255, 255, 255, 0.06);
+}
+
+.records-request-builder__submission div {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+}
+
+.records-request-builder__submission span {
+    font-family: "Manrope", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.records-request-builder__submission strong {
+    color: #fff;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.2;
+}
+
+.records-request-builder__submission p {
+    color: rgba(247, 251, 247, 0.72);
+}
+
+.records-request-builder__submission ul {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 10px 12px 10px 26px;
+    border: 1px solid rgba(223, 244, 106, 0.22);
+    border-radius: 12px;
+    background: rgba(12, 25, 23, 0.62);
+    color: #f7fbf7;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.38;
+}
+
+.records-request-builder__submission li {
+    color: #f7fbf7;
+}
+
+.records-request-builder__submission li::marker {
+    color: #dff46a;
+}
+
 .records-request-builder__output textarea {
     min-height: 280px;
     padding: 16px;
@@ -2179,6 +2239,11 @@ h4 {
 .records-request-builder__actions .is-copied {
     border-color: rgba(223, 244, 106, 0.62);
     background: rgba(223, 244, 106, 0.18);
+}
+
+.records-request-builder__actions .is-copy-failed {
+    border-color: rgba(255, 199, 176, 0.5);
+    color: #ffe2d6;
 }
 
 .records-escalation-board {
@@ -5141,6 +5206,7 @@ input[type="checkbox"] {
     .records-request-builder__packet-strip,
     .records-request-builder__workspace,
     .records-request-builder__controls,
+    .records-request-builder__submission,
     .county-finder__filters,
     .county-proof-strip,
     .county-click-board,

@@ -976,7 +976,7 @@
 
                     <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
                         <li>
-                            <span>Download includes</span>
+                            <span>Send</span>
                             <strong>Clean office message</strong>
                             <p>A ready-to-send subject line and request body, without burying the office in generic septic wording.</p>
                         </li>
@@ -990,6 +990,11 @@
                             <strong>No-record response wording</strong>
                             <p>Language that asks for a written no-record response and the next archive or delegated-office route.</p>
                         </li>
+                        <li>
+                            <span>Print</span>
+                            <strong>PDF-ready cover packet</strong>
+                            <p>Open a clean printable version for saving as PDF or attaching to a transaction, lender, or contractor file.</p>
+                        </li>
                     </ul>
 
                     <div class="records-request-builder__workspace">
@@ -999,10 +1004,10 @@
                                 <select data-request-state>
                                     <option value="DEFAULT">County health office</option>
                                     <option value="TN">Tennessee / TDEC</option>
-                                    <option value="NC">North Carolina / county environmental health</option>
-                                    <option value="TX">Texas / OSSF county or authorized agent</option>
-                                    <option value="SC">South Carolina / SCDES septic records</option>
-                                    <option value="FL">Florida / OSTDS county health department</option>
+                                    <option value="NC">North Carolina / county EH</option>
+                                    <option value="TX">Texas / OSSF agent</option>
+                                    <option value="SC">South Carolina / SCDES</option>
+                                    <option value="FL">Florida / OSTDS health</option>
                                 </select>
                             </label>
                             <label>
@@ -1054,8 +1059,16 @@
                                 <em data-records-request-status aria-live="polite">Ready to copy or download</em>
                             </div>
                             <p data-records-request-preview></p>
+                            <div class="records-request-builder__submission" data-records-request-submission>
+                                <div>
+                                    <span>Submission route</span>
+                                    <strong data-records-request-route-title>County health office</strong>
+                                    <p data-records-request-route-body>Send through the official county health, environmental health, onsite wastewater, permitting, or public-records channel.</p>
+                                </div>
+                                <ul data-records-request-checklist aria-label="Before sending checklist"></ul>
+                            </div>
                             <textarea data-records-request-output readonly rows="14"></textarea>
-                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet with identifiers, fallback search keys, and submission notes. Nothing is uploaded or stored by SepticPath.</p>
+                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet. <strong>Print</strong> opens a PDF-ready version you can save from the browser. Nothing is uploaded or stored by SepticPath.</p>
                             <div class="records-request-builder__actions">
                                 <button class="button button--primary"
                                         type="button"
@@ -1063,6 +1076,9 @@
                                 <button class="button button--secondary"
                                         type="button"
                                         data-records-request-download>Download packet .txt</button>
+                                <button class="button button--secondary"
+                                        type="button"
+                                        data-records-request-print>Print / save PDF</button>
                                 <a class="button button--secondary"
                                    href="/septic-records-by-county/"
                                    data-track-click="nav"
