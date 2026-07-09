@@ -7,6 +7,7 @@
 @import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.CountyIntentRouteView
 @import com.example.septic.web.CountyRequestBuilderOptionView
+@import com.example.septic.web.CountySearchResponseView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @param PageMeta page
@@ -18,6 +19,7 @@
 @param CountyWorkflowStructureView countyWorkflowStructure = null
 @param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
 @param java.util.List<CountyRequestBuilderOptionView> countyRequestOptions = java.util.List.of()
+@param CountySearchResponseView countySearchResponse = null
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
@@ -288,6 +290,52 @@
     </section>
 
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
+
+    @if (countySearchResponse != null)
+        <section class="section section--tight">
+            <div class="container">
+                <div class="county-response-dossier" aria-label="Search response county records dossier">
+                    <div class="county-response-dossier__intro">
+                        <span class="eyebrow">${countySearchResponse.badgeLabel()}</span>
+                        <h2>${countySearchResponse.heading()}</h2>
+                        <p>${countySearchResponse.summary()}</p>
+                        <div class="county-response-dossier__queries" aria-label="Search queries this county page is tuned to answer">
+                            <span>${countySearchResponse.priorityLabel()}</span>
+                            @for (var query : countySearchResponse.queryExamples())
+                                <span>${query}</span>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <div class="county-response-dossier__rows" role="list" aria-label="County search response checklist">
+                        @for (var row : countySearchResponse.dossierRows())
+                            <article role="listitem">
+                                <span>${row.label()}</span>
+                                <p>${row.value()}</p>
+                            </article>
+                        @endfor
+                    </div>
+
+                    <div class="county-response-dossier__actions" aria-label="Response county handoff links">
+                        <a class="button button--primary"
+                           href="${countyPage.recordsUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-track-source-context="county_search_response_official"
+                           data-track-target-type="official_source">Open official county route</a>
+                        @for (var link : countySearchResponse.actionLinks())
+                            <a class="button button--secondary"
+                               href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="county_search_response_handoff"
+                               data-track-target-type="internal_page">${link.title()}</a>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     @if (countyAvailabilitySummary != null && !countyAvailabilityRows.isEmpty())
         <section class="section section--tight">

@@ -1330,6 +1330,20 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void searchResponseCountyPageShowsDossierForReactiveCounty() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-carolina/alamance-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alamance County search-response dossier")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tier 1 search-response county")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("alamance county septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SERP job")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official county route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-records-request/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-as-built-records/")));
+	}
+
+	@Test
 	void stJosephCountyRecordsPageShowsSchematicLookupWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/indiana/st-joseph-county/"))
 				.andExpect(status().isOk())
@@ -6902,6 +6916,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First pull:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/california/san-bernardino-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/new-jersey/cape-may-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")));
 	}
 

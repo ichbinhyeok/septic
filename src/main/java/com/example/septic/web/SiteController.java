@@ -88,6 +88,142 @@ public class SiteController {
             "septic-permit-process",
             "buying-a-house-with-a-septic-system"
     );
+    private static final Map<String, Integer> COUNTY_SEARCH_RESPONSE_BOOSTS = Map.ofEntries(
+            Map.entry("NC::wake-county", 150),
+            Map.entry("TN::davidson-county", 146),
+            Map.entry("NC::alamance-county", 140),
+            Map.entry("TX::tarrant-county", 132),
+            Map.entry("TX::denton-county", 124),
+            Map.entry("CA::san-bernardino-county", 120),
+            Map.entry("MD::st-marys-county", 118),
+            Map.entry("NJ::cape-may-county", 118),
+            Map.entry("NJ::gloucester-county", 116),
+            Map.entry("OH::hamilton-county", 114),
+            Map.entry("AZ::pima-county", 110),
+            Map.entry("GA::jackson-county", 108),
+            Map.entry("TN::hamilton-county", 106),
+            Map.entry("TN::blount-county", 104),
+            Map.entry("TX::travis-county", 102),
+            Map.entry("NC::brunswick-county", 96),
+            Map.entry("NC::cabarrus-county", 94),
+            Map.entry("NC::forsyth-county", 92),
+            Map.entry("MD::harford-county", 90),
+            Map.entry("MD::cecil-county", 88),
+            Map.entry("MD::prince-georges-county", 86),
+            Map.entry("VA::prince-william-county", 84)
+    );
+    private static final Map<String, List<String>> COUNTY_SEARCH_RESPONSE_QUERIES = Map.ofEntries(
+            Map.entry("NC::wake-county", List.of(
+                    "wake county septic records",
+                    "wake county septic permit lookup",
+                    "wake county septic permit search"
+            )),
+            Map.entry("TN::davidson-county", List.of(
+                    "davidson county septic records",
+                    "davidson county septic permit lookup",
+                    "davidson county septic records request"
+            )),
+            Map.entry("NC::alamance-county", List.of(
+                    "alamance county septic records",
+                    "alamance county permits",
+                    "alamance county septic permit lookup"
+            )),
+            Map.entry("TX::tarrant-county", List.of(
+                    "tarrant county septic records",
+                    "tarrant county septic permit lookup",
+                    "tarrant county septic inspection records"
+            )),
+            Map.entry("TX::denton-county", List.of(
+                    "denton county septic records",
+                    "denton county septic permit lookup",
+                    "denton county septic permit search"
+            )),
+            Map.entry("CA::san-bernardino-county", List.of(
+                    "san bernardino county septic certification",
+                    "septic certification san bernardino",
+                    "san bernardino county septic records"
+            )),
+            Map.entry("MD::st-marys-county", List.of(
+                    "st marys county septic records",
+                    "st marys county septic permit lookup",
+                    "st marys county perc records"
+            )),
+            Map.entry("NJ::cape-may-county", List.of(
+                    "cape may county septic records",
+                    "cape may county septic permit lookup",
+                    "cape may county septic as-built records"
+            )),
+            Map.entry("NJ::gloucester-county", List.of(
+                    "gloucester county septic records",
+                    "gloucester county septic permit lookup",
+                    "gloucester county septic records request"
+            )),
+            Map.entry("OH::hamilton-county", List.of(
+                    "hamilton county septic inspection records",
+                    "hamilton county septic records",
+                    "hamilton county septic permit lookup"
+            )),
+            Map.entry("AZ::pima-county", List.of(
+                    "pima county septic records",
+                    "pima county septic records search",
+                    "pima county septic permit lookup"
+            )),
+            Map.entry("GA::jackson-county", List.of(
+                    "jackson county septic records",
+                    "jackson county permits",
+                    "jackson county septic permit search by address"
+            )),
+            Map.entry("TN::hamilton-county", List.of(
+                    "hamilton county septic records",
+                    "hamilton county septic inspection records",
+                    "hamilton county septic permit lookup"
+            )),
+            Map.entry("TN::blount-county", List.of(
+                    "blount county septic records",
+                    "blount county septic permit lookup",
+                    "blount county septic records request"
+            )),
+            Map.entry("TX::travis-county", List.of(
+                    "travis county septic records",
+                    "travis county septic permit lookup",
+                    "travis county septic services"
+            )),
+            Map.entry("NC::brunswick-county", List.of(
+                    "brunswick county septic records",
+                    "brunswick county septic permit lookup",
+                    "brunswick county septic permit search"
+            )),
+            Map.entry("NC::cabarrus-county", List.of(
+                    "cabarrus county septic records",
+                    "cabarrus county septic permit lookup",
+                    "cabarrus county septic records request"
+            )),
+            Map.entry("NC::forsyth-county", List.of(
+                    "forsyth county septic records",
+                    "forsyth county septic permit lookup",
+                    "forsyth county septic records request"
+            )),
+            Map.entry("MD::harford-county", List.of(
+                    "harford county septic records",
+                    "harford county septic permit lookup",
+                    "harford county perc records"
+            )),
+            Map.entry("MD::cecil-county", List.of(
+                    "cecil county septic records",
+                    "cecil county septic permit lookup",
+                    "cecil county septic records request"
+            )),
+            Map.entry("MD::prince-georges-county", List.of(
+                    "prince george's county septic records",
+                    "prince george's county septic permit lookup",
+                    "prince george's county momentum septic permit"
+            )),
+            Map.entry("VA::prince-william-county", List.of(
+                    "prince william county septic records",
+                    "prince william county septic permit lookup",
+                    "prince william county septic inspection records"
+            ))
+    );
     private static final String INDIANA_RECORDS_PACKET_PATH = "/for-professionals/records-packet/indiana/";
     private static final String NEW_YORK_BUYER_PACKET_PATH = "/for-professionals/buyer-diligence-packet/new-york/";
     private static final String SOUTH_CAROLINA_PERMIT_PACKET_PATH = "/for-professionals/permit-prep-packet/south-carolina/";
@@ -1045,6 +1181,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countySeoHeading", countySeoHeading(countyPage));
         model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state));
         model.addAttribute("countySearchQueries", countySearchQueries(countyPage, state));
+        model.addAttribute("countySearchResponse", countySearchResponse(countyPage, state));
         model.addAttribute("countyLeadProjectLabel", projectTypeLabel(countyLeadProjectType(countyPage)));
         model.addAttribute("countyEstimatePath", countyEstimatePath(countyPage, state));
         model.addAttribute("countyQuotePath", countyQuotePath(countyPage, state));
@@ -1074,11 +1211,87 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<String> countySearchQueries(CountyRecordsPage countyPage, StateProfile state) {
-        return List.of(
-                countyPage.countyName() + " " + state.stateCode() + " septic permit lookup",
-                countyPage.countyName() + " septic records request",
-                countyPage.countyName() + " septic permit search by address",
-                countyPage.countyName() + " septic as-built records"
+        LinkedHashSet<String> queries = new LinkedHashSet<>(
+                COUNTY_SEARCH_RESPONSE_QUERIES.getOrDefault(countyPage.key(), List.of())
+        );
+        queries.add(countyPage.countyName() + " " + state.stateCode() + " septic permit lookup");
+        queries.add(countyPage.countyName() + " septic records request");
+        queries.add(countyPage.countyName() + " septic permit search by address");
+        queries.add(countyPage.countyName() + " septic as-built records");
+        return queries.stream().limit(7).toList();
+    }
+
+    private CountySearchResponseView countySearchResponse(CountyRecordsPage countyPage, StateProfile state) {
+        int boost = COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(countyPage.key(), 0);
+        if (boost <= 0) {
+            return null;
+        }
+
+        List<String> queryExamples = countySearchQueries(countyPage, state).stream()
+                .limit(5)
+                .toList();
+        String firstQuery = queryExamples.stream().findFirst()
+                .orElse(countyPage.countyName() + " septic records");
+        String firstArtifact = countyFirstArtifact(countyPage);
+        String combinedText = countyCombinedText(countyPage);
+        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
+        String responseTier = boost >= 116
+                ? "Tier 1 search-response county"
+                : boost >= 100
+                        ? "Tier 2 search-response county"
+                        : "Watchlist search-response county";
+        String priorityLabel = boost >= 116
+                ? "Clicks already showing"
+                : boost >= 100
+                        ? "Position and query fit showing"
+                        : "Early impression pattern showing";
+        String heading = countyPage.countyName() + " search-response dossier";
+        String summary = "This county is being treated as a live response target because the search pattern is already around county septic records, permit lookup, inspection records, parcel search, or the first official file to pull.";
+        List<CountyWorkflowFieldView> dossierRows = List.of(
+                new CountyWorkflowFieldView(
+                        "SERP job",
+                        "Answer " + firstQuery + " with the county office, the official route, and the first artifact before sending the user into a broad state page."
+                ),
+                new CountyWorkflowFieldView(
+                        "First artifact",
+                        firstArtifact
+                ),
+                new CountyWorkflowFieldView(
+                        "Request method",
+                        requestMethod + ". The page should make the official record path, request wording, and fallback office visible without another search."
+                ),
+                new CountyWorkflowFieldView(
+                        "Do not lose this click",
+                        countyPage.hasParcelAnchor()
+                                ? "Lead with the parcel or TMS anchor, then move into the septic file request so address-only searchers do not bounce."
+                                : "Lead with the county record path and ask for the parcel identifier, permit copy, as-built, final approval, inspection letter, or written no-record response."
+                )
+        );
+        List<PageLink> actionLinks = List.of(
+                new PageLink(
+                        "Search by address guide",
+                        "/septic-permit-search-by-address/",
+                        "Use when the visitor has an address, APN, TMS, owner name, or parcel clue but not the official septic file yet."
+                ),
+                new PageLink(
+                        "Permit records request",
+                        "/septic-permit-records-request/",
+                        "Use when the county needs exact request language for permit copies, as-builts, inspection letters, or no-record responses."
+                ),
+                new PageLink(
+                        "As-built records guide",
+                        "/septic-as-built-records/",
+                        "Use when the searcher needs tank, field, reserve-area, site sketch, or installed-layout proof."
+                )
+        );
+        return new CountySearchResponseView(
+                responseTier,
+                priorityLabel,
+                heading,
+                summary,
+                queryExamples,
+                dossierRows,
+                actionLinks
         );
     }
 
@@ -3052,6 +3265,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     private int countyRouteStateScore(StateProfile state) {
         int countyCount = researchDataService.listPublicCountyRecordsPages(state.stateCode()).size();
         int score = countyCount * 4;
+        score += researchDataService.listPublicCountyRecordsPages(state.stateCode()).stream()
+                .mapToInt(page -> COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(page.key(), 0))
+                .sum() / 5;
         if (ORGANIC_SPRINT_STATE_CODES.contains(state.stateCode())) {
             score += 90;
         }
@@ -3153,6 +3369,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (page.recordsLabel() != null && page.recordsLabel().toLowerCase(Locale.US).contains("lookup")) {
             score += 5;
         }
+        score += COUNTY_SEARCH_RESPONSE_BOOSTS.getOrDefault(page.key(), 0);
         return score;
     }
 
