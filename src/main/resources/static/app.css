@@ -537,7 +537,7 @@ h4 {
 }
 
 .quick-link-strip__button {
-    min-height: 42px;
+    min-height: 44px;
     padding: 0 16px;
 }
 
@@ -697,6 +697,83 @@ h4 {
     color: var(--text);
     font-weight: 600;
     line-height: 1.6;
+}
+
+.hero-command-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+    padding: 10px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 22px;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(229, 241, 235, 0.72)),
+        rgba(255, 255, 255, 0.72);
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-command {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    min-width: 0;
+    min-height: 112px;
+    padding: 14px;
+    border: 1px solid rgba(20, 34, 32, 0.09);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.84);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.hero-command:hover {
+    transform: translateY(-1px);
+    border-color: rgba(35, 108, 95, 0.26);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 16px 38px rgba(17, 31, 29, 0.08);
+}
+
+.hero-command span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-command strong {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.16;
+}
+
+.hero-command small {
+    display: -webkit-box;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.38;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.hero-command--primary {
+    border-color: rgba(21, 74, 65, 0.28);
+    background:
+        linear-gradient(135deg, rgba(22, 71, 63, 0.96), rgba(39, 103, 87, 0.94)),
+        var(--accent-strong);
+    color: #f7fbf7;
+}
+
+.hero-command--primary span {
+    color: #dff46a;
+}
+
+.hero-command--primary small {
+    color: rgba(247, 251, 247, 0.76);
 }
 
 .hero-decision-grid {
@@ -971,7 +1048,7 @@ h4 {
 .section-jump-strip a {
     display: inline-flex;
     align-items: center;
-    min-height: 38px;
+    min-height: 44px;
     padding: 0 14px;
     border-radius: 999px;
     border: 1px solid rgba(20, 34, 32, 0.08);
@@ -2034,7 +2111,7 @@ h4 {
 
 .records-escalation-card .button {
     justify-self: start;
-    min-height: 40px;
+    min-height: 44px;
     padding: 0 12px;
     font-size: 0.86rem;
 }
@@ -2047,7 +2124,7 @@ h4 {
 
 .records-escalation-card--queries a {
     display: inline-flex;
-    min-height: 34px;
+    min-height: 44px;
     align-items: center;
     padding: 0 10px;
     border: 1px solid rgba(20, 34, 32, 0.12);
@@ -3463,7 +3540,7 @@ h4 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 34px;
+    min-height: 44px;
     padding: 7px 10px;
     border: 1px solid rgba(20, 34, 32, 0.08);
     border-radius: 999px;
@@ -3688,7 +3765,7 @@ h4 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 40px;
+    min-height: 44px;
     padding: 8px 12px;
     border: 1px solid rgba(20, 34, 32, 0.09);
     border-radius: 999px;
@@ -3713,7 +3790,7 @@ h4 {
 }
 
 .county-route-cluster__actions .button {
-    min-height: 42px;
+    min-height: 44px;
     padding: 0 14px;
     font-size: 0.9rem;
 }
@@ -4945,6 +5022,10 @@ input[type="checkbox"] {
         grid-template-columns: 1fr;
     }
 
+    .hero-command-board {
+        grid-template-columns: 1fr;
+    }
+
     .site-header__inner {
         position: relative;
         align-items: center;
@@ -5065,7 +5146,7 @@ input[type="checkbox"] {
     }
 
     .section-jump-strip a {
-        min-height: 36px;
+        min-height: 44px;
         padding: 0 12px;
         font-size: 0.85rem;
     }
@@ -5476,6 +5557,15 @@ input[type="checkbox"] {
         grid-template-columns: 1fr;
     }
 
+    .state-money-page .quick-link-strip__button,
+    .county-records-page .quick-link-strip__button,
+    .content-page .quick-link-strip__button,
+    .state-guide-page .quick-link-strip__button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
     .state-money-page .quick-link-strip__label,
     .county-records-page .quick-link-strip__label,
     .content-page .quick-link-strip__label,
@@ -5506,7 +5596,7 @@ input[type="checkbox"] {
     .hero-county-launchpad a:not(.button),
     .county-command-bar .button {
         width: 100%;
-        min-height: 40px;
+        min-height: 44px;
         justify-content: center;
         padding-right: 10px;
         padding-left: 10px;
@@ -5522,6 +5612,7 @@ input[type="checkbox"] {
 
     .county-search-intent-strip__label,
     .county-search-intent-strip__query {
+        min-height: 44px;
         justify-content: center;
         text-align: center;
     }
@@ -5642,6 +5733,7 @@ input[type="checkbox"] {
     }
 
     .records-escalation-card--queries a {
+        width: 100%;
         justify-content: center;
         text-align: center;
     }
@@ -5848,6 +5940,17 @@ input[type="checkbox"] {
         width: 100%;
     }
 
+    .county-finder__priority > div {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .county-finder__priority a {
+        width: 100%;
+        min-height: 44px;
+        text-align: center;
+    }
+
     .county-finder__results {
         max-height: 360px;
     }
@@ -5878,6 +5981,7 @@ input[type="checkbox"] {
     .county-route-cluster__links a,
     .county-route-cluster__actions .button {
         width: 100%;
+        min-height: 44px;
     }
 
     .county-intent-card {

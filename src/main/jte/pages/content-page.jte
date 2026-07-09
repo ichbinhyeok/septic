@@ -65,6 +65,101 @@
                         Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif
                     @endif
                 </p>
+                @if (secondaryActionPath != null || contentQuotePath != null || !featuredStateMoneyPageLinks.isEmpty() || !featuredInternalLinks.isEmpty() || !featuredPermitLookupCountyLinks.isEmpty() || !contentOfficialFilePathRows.isEmpty())
+                    <div class="hero-command-board" aria-label="Fast search intent routes">
+                        <a class="hero-command hero-command--primary"
+                           href="${("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath}"
+                           data-track-click="nav"
+                           data-track-source-context="content_page_hero_command_primary"
+                           data-track-target-type="${calculatorCtaTargetType}">
+                            <span>Start here</span>
+                            <strong>${calculatorCtaLabel}</strong>
+                            <small>${calculatorCtaHeading}</small>
+                        </a>
+                        @if (secondaryActionPath != null)
+                            <a class="hero-command"
+                               href="${secondaryActionPath}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_secondary"
+                               data-track-target-type="${secondaryActionTargetType}">
+                                <span>Then validate</span>
+                                <strong>${secondaryActionLabel}</strong>
+                                <small>${secondaryActionNote}</small>
+                            </a>
+                        @elseif (contentQuotePath != null)
+                            <a class="hero-command"
+                               href="${contentQuotePath}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_quote"
+                               data-track-target-type="quote_form">
+                                <span>Already decided</span>
+                                <strong>Open the short quote form</strong>
+                                <small>Use this only when the page already matches the live project and no local file path is blocking the decision.</small>
+                            </a>
+                        @elseif (!featuredInternalLinks.isEmpty())
+                            <a class="hero-command"
+                               href="${featuredInternalLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_internal"
+                               data-track-target-type="internal_page">
+                                <span>Next best page</span>
+                                <strong>${featuredInternalLinks.get(0).title()}</strong>
+                                <small>${featuredInternalLinks.get(0).note()}</small>
+                            </a>
+                        @endif
+                        @if (!contentOfficialFilePathRows.isEmpty() && ("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())))
+                            <a class="hero-command"
+                               href="#official-file-path"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_file_path"
+                               data-track-target-type="internal_section">
+                                <span>Need the file?</span>
+                                <strong>Open the official file path</strong>
+                                <small>Use the owner, first artifact, request method, and fallback before trusting a generic septic answer.</small>
+                            </a>
+                        @elseif (!featuredPermitLookupCountyLinks.isEmpty())
+                            <a class="hero-command"
+                               href="${featuredPermitLookupCountyLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_county"
+                               data-track-target-type="county_records_page">
+                                <span>Known county?</span>
+                                <strong>${featuredPermitLookupCountyLinks.get(0).compactTitle()}</strong>
+                                <small>Skip the national overview when the address, parcel, seller story, or search result already names a county.</small>
+                            </a>
+                        @elseif ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+                            <a class="hero-command"
+                               href="#records-next-click"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_records"
+                               data-track-target-type="internal_section">
+                                <span>Search stalled?</span>
+                                <strong>Use the records next-click board</strong>
+                                <small>Move from broad search intent into an official tool, county file pull, or copy-ready request.</small>
+                            </a>
+                        @elseif (!featuredStateMoneyPageLinks.isEmpty())
+                            <a class="hero-command"
+                               href="${featuredStateMoneyPageLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_state"
+                               data-track-target-type="state_money_page">
+                                <span>Local proof</span>
+                                <strong>${featuredStateMoneyPageLinks.get(0).title()}</strong>
+                                <small>Open a source-backed state workflow when the broad page is not specific enough.</small>
+                            </a>
+                        @elseif (!featuredInternalLinks.isEmpty())
+                            <a class="hero-command"
+                               href="${featuredInternalLinks.get(0).path()}"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_command_next"
+                               data-track-target-type="internal_page">
+                                <span>Next move</span>
+                                <strong>${featuredInternalLinks.get(0).title()}</strong>
+                                <small>${featuredInternalLinks.get(0).note()}</small>
+                            </a>
+                        @endif
+                    </div>
+                @endif
                 @if (!featuredPermitLookupCountyLinks.isEmpty())
                     <div class="hero-county-launchpad" aria-label="Fast county record routes">
                         <span class="hero-county-launchpad__label">
@@ -498,7 +593,7 @@
     </section>
 
     @if (!contentOfficialFilePathRows.isEmpty())
-        <section class="section section--tight">
+        <section class="section section--tight" id="official-file-path">
             <div class="container">
                 <div class="state-records-response" aria-label="${contentPage.title()} official content file path">
                     <div class="state-records-response__head">
@@ -599,7 +694,7 @@
     @endif
 
     @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
-        <section class="section section--tight">
+        <section class="section section--tight" id="records-next-click">
             <div class="container">
                 <div class="records-escalation-board" aria-label="Records lookup next-click accelerator">
                     <div class="records-escalation-board__intro">
@@ -738,7 +833,7 @@
     @endif
 
     @if ("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug()))
-        <section class="section section--tight">
+        <section class="section section--tight" id="official-lookup-command-board">
             <div class="container">
                 <div class="official-tool-console" aria-label="Official septic lookup tools command board">
                     <div class="official-tool-console__intro">
