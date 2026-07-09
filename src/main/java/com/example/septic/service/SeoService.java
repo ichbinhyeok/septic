@@ -436,13 +436,14 @@ public class SeoService {
 
     public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
-        String seoTitle = stateMoneyPageSeoTitle(stateMoneyPage);
+        String seoTitle = stateMoneyPageSeoTitle(stateMoneyPage, state);
+        String seoDescription = stateMoneyPageDescription(stateMoneyPage, state);
         String robots = publishingPolicyService.isIndexableStateMoneyPage(stateMoneyPage, state)
                 ? "index,follow"
                 : "noindex,follow";
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
-                webPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), "Article"),
+                webPage(canonicalUrl, seoTitle, seoDescription, "Article"),
                 lastReviewedAt,
                 preparedBy,
                 reviewedBy
@@ -454,11 +455,11 @@ public class SeoService {
         if (shouldExposeFaqStructuredData(stateMoneyPage)
                 && stateMoneyPage.faqBlocks() != null
                 && !stateMoneyPage.faqBlocks().isEmpty()) {
-            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, stateMoneyPage.metaDescription(), stateMoneyPage.faqBlocks())));
+            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, seoDescription, stateMoneyPage.faqBlocks())));
         }
         return pageMeta(
                 seoTitle,
-                stateMoneyPage.metaDescription(),
+                seoDescription,
                 canonicalUrl,
                 robots,
                 breadcrumbLinks(
@@ -779,7 +780,18 @@ public class SeoService {
         };
     }
 
-    private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage) {
+    private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return switch (state.stateCode()) {
+                case "TN" -> "Tennessee Septic Records Lookup | TDEC Permit Search, County Files, and Address Route | SepticPath";
+                case "NC" -> "North Carolina Septic Permit Lookup | County Environmental Health Records and Address Search | SepticPath";
+                case "IN" -> "Indiana Septic Records Lookup | County Permit Search, As-Builts, and File Path | SepticPath";
+                case "SC" -> "South Carolina Septic Records Lookup | SCDES, DHEC Search, D-1740, and County Files | SepticPath";
+                case "TX" -> "Texas OSSF Records Search | Septic Permit Lookup, County Files, and Address Route | SepticPath";
+                case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
+                default -> stateMoneyPage.title() + " | SepticPath";
+            };
+        }
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
             case "septic-replacement-cost" -> " | Quotes, file risk, and replacement scope | SepticPath";
             case "perc-test-cost" -> " | Soil, site, and permit risk | SepticPath";
@@ -793,6 +805,21 @@ public class SeoService {
             case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";
             case "drain-field-replacement-cost" -> " | Field layout and replacement risk | SepticPath";
             default -> " | SepticPath";
+        };
+    }
+
+    private String stateMoneyPageDescription(StateMoneyPage stateMoneyPage, StateProfile state) {
+        if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return stateMoneyPage.metaDescription();
+        }
+        return switch (state.stateCode()) {
+            case "TN" -> "Find Tennessee septic records through TDEC SSDS search, county files, permit copies, inspection letters, repair-permit trail, address lookup, and no-record fallback.";
+            case "NC" -> "Find North Carolina septic permit records through county environmental health, improvement permits, construction authorizations, operations permits, address search, and records request wording.";
+            case "IN" -> "Find Indiana septic records through county health permit files, as-builts, soil reports, sewer-availability checks, address search, and no-record fallback.";
+            case "SC" -> "Find South Carolina septic records through SCDES, DHEC-style searches, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
+            case "TX" -> "Find Texas OSSF records through county or authorized-agent routes, permit lookup, approved plans, address or parcel search, ETJ checks, and records request wording.";
+            case "AL" -> "Find Alabama septic permit records through county health departments, perc or soil files, Permit to Install, Approval for Use, address search, and records request wording.";
+            default -> stateMoneyPage.metaDescription();
         };
     }
 

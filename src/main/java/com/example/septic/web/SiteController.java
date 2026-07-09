@@ -1155,6 +1155,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                 recordsLookupSources.stream().findFirst().orElse(null),
                 guideCountyWorkflowSynthesis
         ));
+        model.addAttribute("guideGrowthSearchLinks", guideGrowthSearchLinks(state, countyRecordLinks));
+        model.addAttribute("guideGrowthAnswerRows", guideGrowthAnswerRows(state, guideCountyWorkflowSynthesis));
         researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
                 .ifPresentOrElse(
                         recordsPage -> {
@@ -2865,6 +2867,133 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "Run the calculator after the file owner, parcel clue, or missing artifact is clear enough that the number is not flattening a records problem."
                 )
         );
+    }
+
+    private List<PageLink> guideGrowthSearchLinks(StateProfile state, List<PageLink> countyRecordLinks) {
+        if (!isGuideGrowthState(state.stateCode())) {
+            return List.of();
+        }
+
+        List<PageLink> links = new ArrayList<>();
+        researchDataService.findPublicStateMoneyPage("perc-test-cost", state.slug())
+                .ifPresent(page -> links.add(new PageLink(
+                        state.stateName() + " perc test cost",
+                        page.path(state.slug()),
+                        "Use this when the search is really about perc cost, soil review, site evaluation, or the county file behind the number."
+                )));
+        researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                .ifPresent(page -> links.add(new PageLink(
+                        state.stateName() + " permit records",
+                        page.path(state.slug()),
+                        "Use this when the searcher needs the permit copy, as-built, final approval, inspection letter, or no-record fallback."
+                )));
+        links.add(new PageLink(
+                "Search by address",
+                "/septic-permit-search-by-address/",
+                "Use address, parcel, owner, legal description, APN, TMS, or prior permit clues before the user restarts on Google."
+        ));
+        growthCountyRecordLink(state, countyRecordLinks)
+                .ifPresent(links::add);
+        links.add(new PageLink(
+                "Records request wording",
+                "/septic-permit-records-request/",
+                "Use this when the office needs exact request language for permit copies, as-builts, final approvals, repair files, or no-record responses."
+        ));
+        return links.stream().limit(5).toList();
+    }
+
+    private Optional<PageLink> growthCountyRecordLink(StateProfile state, List<PageLink> countyRecordLinks) {
+        if (countyRecordLinks == null || countyRecordLinks.isEmpty()) {
+            return Optional.empty();
+        }
+        String preferredCountySlug = switch (state.stateCode()) {
+            case "AL" -> "madison-county";
+            case "TN" -> "blount-county";
+            case "NC" -> "alamance-county";
+            case "IN" -> "elkhart-county";
+            case "SC" -> "greenville-county";
+            case "TX" -> "tarrant-county";
+            case "GA" -> "fulton-county";
+            case "WV" -> "kanawha-county";
+            case "MO" -> "st-louis-county";
+            default -> "";
+        };
+        Optional<PageLink> preferred = countyRecordLinks.stream()
+                .filter(link -> hasText(preferredCountySlug) && link.path().contains("/" + preferredCountySlug + "/"))
+                .findFirst();
+        PageLink baseLink = preferred.orElseGet(() -> countyRecordLinks.get(0));
+        return Optional.of(new PageLink(
+                baseLink.compactTitle(),
+                baseLink.path(),
+                "Use this county record example when the search already has a local office, county name, address, or parcel clue."
+        ));
+    }
+
+    private List<CountyWorkflowFieldView> guideGrowthAnswerRows(
+            StateProfile state,
+            StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis
+    ) {
+        if (!isGuideGrowthState(state.stateCode())) {
+            return List.of();
+        }
+
+        String firstArtifact = firstNonBlank(
+                guideCountyWorkflowSynthesis == null || guideCountyWorkflowSynthesis.firstArtifacts().isEmpty()
+                        ? null
+                        : guideCountyWorkflowSynthesis.firstArtifacts().get(0),
+                firstOf(state.recordsToRequest()),
+                "permit copy, as-built, final approval, inspection letter, or no-record response"
+        );
+        String holdQuote = firstNonBlank(
+                guideCountyWorkflowSynthesis == null || guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty()
+                        ? null
+                        : guideCountyWorkflowSynthesis.holdQuoteChecks().get(0),
+                "the local file owner, parcel clue, or missing artifact is still unclear"
+        );
+        String fileBeforeEstimateLabel = "AL".equals(state.stateCode())
+                ? "Alabama county health file before the estimate"
+                : state.stateName() + " county file before the estimate";
+
+        return List.of(
+                new CountyWorkflowFieldView(
+                        "Answer the cost search first",
+                        growthCostSearchAnswer(state)
+                ),
+                new CountyWorkflowFieldView(
+                        fileBeforeEstimateLabel,
+                        "Pull the county or state records path before treating a low septic, permit, perc, or inspection number as usable. Start with " + firstArtifact + "."
+                ),
+                new CountyWorkflowFieldView(
+                        "Do not lose address-search users",
+                        "If the searcher has an address, parcel clue, owner name, legal description, APN, or TMS, send them into the permit-search-by-address route before they restart in Google."
+                ),
+                new CountyWorkflowFieldView(
+                        "Hold pricing until",
+                        holdQuote
+                )
+        );
+    }
+
+    private String growthCostSearchAnswer(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "AL" -> "How much is a perc test in Alabama depends on the county health file, prior soil review, Permit to Install status, and whether an Approval for Use already exists.";
+            case "TN" -> "Tennessee septic and perc cost searches depend on whether the TDEC SSDS record, repair permit, inspection note, or county fallback already explains the parcel.";
+            case "NC" -> "North Carolina septic permit and perc searches depend on the county environmental health file, improvement permit, construction authorization, and operations permit path.";
+            case "IN" -> "Indiana septic cost searches depend on the county health permit file, soil report, sewer-availability issue, and whether the record can prove the existing system.";
+            case "SC" -> "South Carolina septic cost searches depend on the SCDES/D-1740 path, permit copy, final inspection, and county contact that can verify the file.";
+            case "TX" -> "Texas OSSF cost searches depend on the county or authorized agent file, ETJ or city-limit status, approved plan, and license-to-operate trail.";
+            case "GA" -> "Georgia septic cost searches depend on county office routing, soil analysis, permit records, and whether the parcel file already shows the last approved system.";
+            case "WV" -> "West Virginia septic cost searches depend on the local health file, sewage permit application, sanitarian record, and whether the property has a written file trail.";
+            case "MO" -> "Missouri septic cost searches depend on the local authority, soil morphology or permit path, county file, and whether old records need a request.";
+            default -> state.stateName() + " septic cost searches depend on the local file owner, first artifact, and whether the missing record changes the downside.";
+        };
+    }
+
+    private boolean isGuideGrowthState(String stateCode) {
+        return switch (stateCode) {
+            case "AL", "TN", "NC", "IN", "SC", "TX", "GA", "WV", "MO" -> true;
+            default -> false;
+        };
     }
 
     private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {

@@ -1337,6 +1337,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-backed reality")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County records pages now live in Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia search path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia county file before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/georgia/dekalb-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/georgia/fulton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/georgia/gwinnett-county/")));
@@ -4684,6 +4686,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Perc Test Cost and TDEC Septic Permit Path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Tennessee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee search path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee county file before the estimate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the permit-file pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")));
 	}
@@ -4704,6 +4709,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record proof path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina search path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina county file before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")));
 	}
@@ -6545,6 +6552,7 @@ class SepticApplicationTests {
 	void tennesseeRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Tennessee Septic Records Lookup | TDEC Permit Search, County Files, and Address Route | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records Lookup &amp; TDEC Permit Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC SSDS record search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee septic records")))
@@ -8334,6 +8342,7 @@ class SepticApplicationTests {
 	void northCarolinaRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>North Carolina Septic Permit Lookup | County Environmental Health Records and Address Search | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Bring this into the next")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county files usually break down in North Carolina")))
@@ -8501,6 +8510,7 @@ class SepticApplicationTests {
 	void indianaRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/indiana/"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Indiana Septic Records Lookup | County Permit Search, As-Builts, and File Path | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county or local health office")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county permit and site file")))

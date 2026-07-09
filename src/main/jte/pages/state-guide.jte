@@ -18,10 +18,12 @@
 @param java.util.List<com.example.septic.web.CoreStateComparisonRow> coreStateComparisonRows = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> guideGrowthSearchLinks = java.util.List.of()
 @param String stateRecordsLookupPath = null
 @param String stateRecordsLookupTitle = ""
 @param com.example.septic.web.StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis = null
 @param java.util.List<CountyWorkflowFieldView> guideOfficialFilePathRows = java.util.List.of()
+@param java.util.List<CountyWorkflowFieldView> guideGrowthAnswerRows = java.util.List.of()
 @param String guideHeading = "State septic cost guide"
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
@@ -199,45 +201,24 @@
                         </div>
                     </div>
                 @endif
-                @if ("AL".equals(state.stateCode()))
-                    <div class="quick-link-strip" aria-label="Alabama perc test and records shortcuts">
-                        <span class="quick-link-strip__label">Alabama search path</span>
-                        <a class="button button--secondary quick-link-strip__button"
-                           href="/perc-test-cost/alabama/"
-                           data-track-click="nav"
-                           data-track-source-context="alabama_gsc_perc_shortcut"
-                           data-track-target-type="state_money_page">Perc test cost path</a>
-                        @if (stateRecordsLookupPath != null)
+                @if (!guideGrowthSearchLinks.isEmpty())
+                    <div class="quick-link-strip" aria-label="${state.stateName()} growth search shortcuts">
+                        <span class="quick-link-strip__label">${state.stateName()} search path</span>
+                        @for (var link : guideGrowthSearchLinks)
                             <a class="button button--secondary quick-link-strip__button"
-                               href="${stateRecordsLookupPath}"
+                               href="${link.path()}"
                                data-track-click="nav"
-                               data-track-source-context="alabama_gsc_records_shortcut"
-                               data-track-target-type="state_money_page">Alabama permit records</a>
-                        @endif
-                        <a class="button button--secondary quick-link-strip__button"
-                           href="/septic-permit-search-by-address/"
-                           data-track-click="nav"
-                           data-track-source-context="alabama_gsc_address_shortcut"
-                           data-track-target-type="internal_page">Search by address</a>
-                        <a class="button button--secondary quick-link-strip__button"
-                           href="/septic-records-checklist/alabama/madison-county/"
-                           data-track-click="nav"
-                           data-track-source-context="alabama_gsc_county_shortcut"
-                           data-track-target-type="county_records_page">Madison records</a>
+                               data-track-source-context="state_guide_growth_search_shortcut"
+                               data-track-target-type="${link.path().contains("/septic-records-checklist/") && link.path().split("/").length > 3 ? "county_records_page" : link.path().startsWith("/septic-") && !link.path().contains("/" + state.slug() + "/") ? "internal_page" : "state_money_page"}">${link.title()}</a>
+                        @endfor
                     </div>
-                    <div class="detail-grid" aria-label="Alabama perc test search answer">
-                        <article class="mini-card">
-                            <strong>Answer the cost search first</strong>
-                            <p>How much is a perc test in Alabama depends on the county health file, prior soil review, Permit to Install status, and whether an Approval for Use already exists.</p>
-                        </article>
-                        <article class="mini-card">
-                            <strong>Alabama county health file before the estimate</strong>
-                            <p>Pull the county record path before treating a low perc-test or septic permit number as usable for a buyer, repair, or replacement decision.</p>
-                        </article>
-                        <article class="mini-card">
-                            <strong>Do not lose address-search users</strong>
-                            <p>If the searcher has an address, parcel clue, owner name, or legal description, send them into the permit-search-by-address route before they restart in Google.</p>
-                        </article>
+                    <div class="detail-grid" aria-label="${state.stateName()} growth search answer">
+                        @for (var row : guideGrowthAnswerRows)
+                            <article class="mini-card">
+                                <strong>${row.label()}</strong>
+                                <p>${row.value()}</p>
+                            </article>
+                        @endfor
                     </div>
                 @endif
                 <p class="lede state-guide-summary-copy">${state.ruleSummaryPlainEnglish()}</p>
