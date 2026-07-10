@@ -76,6 +76,17 @@
                             <strong>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel}</strong>
                             <small>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading}</small>
                         </a>
+                        @if ("buying-a-house-with-a-septic-system".equals(contentPage.slug()) || "septic-transfer-compliance".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()))
+                            <a class="hero-command"
+                               href="/septic-bedroom-permit-checker/"
+                               data-track-click="nav"
+                               data-track-source-context="content_page_hero_bedroom_checker"
+                               data-track-target-type="internal_tool">
+                                <span>Listing file check</span>
+                                <strong>Compare bedrooms to the septic permit</strong>
+                                <small>Flag a permit-count gap before the listing, offer, lender, or inspection conversation relies on the wrong number.</small>
+                            </a>
+                        @endif
                         @if (secondaryActionPath != null)
                             <a class="hero-command"
                                href="${secondaryActionPath}"

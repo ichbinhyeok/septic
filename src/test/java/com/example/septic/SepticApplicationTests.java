@@ -511,6 +511,20 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void bedroomPermitCheckerRendersAndEntersSitemap() throws Exception {
+		mockMvc.perform(get("/septic-bedroom-permit-checker/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Bedroom Permit Checker")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-bedroom-permit-checker")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Does the listing bedroom count match the septic permit?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing saved")));
+
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-bedroom-permit-checker/")));
+	}
+
+	@Test
 	void trustOperationsPagesRenderAndEnterSitemap() throws Exception {
 		mockMvc.perform(get("/methodology/"))
 				.andExpect(status().isOk())
@@ -7161,6 +7175,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Permit Search by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Permit Search by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find my county records route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Compare bedrooms to the septic permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("A septic permit search by address is strongest")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address-to-record relay")))

@@ -825,6 +825,216 @@
 
     setupAddressRecordFinders();
 
+    function setupBedroomPermitCheckers() {
+        const checkers = Array.from(document.querySelectorAll("[data-bedroom-permit-checker]"));
+        if (!checkers.length) {
+            return;
+        }
+
+        const stateRoutes = {
+            TN: "/septic-records-checklist/tennessee/",
+            NC: "/septic-records-checklist/north-carolina/",
+            IN: "/septic-records-checklist/indiana/",
+            SC: "/septic-records-checklist/south-carolina/"
+        };
+
+        function countLabel(value) {
+            return value ? `${value} bedroom${value === 1 ? "" : "s"}` : "not confirmed";
+        }
+
+        function recordRoute(stateCode) {
+            return stateRoutes[stateCode] || "/septic-records-by-county/";
+        }
+
+        checkers.forEach((checker) => {
+            const form = checker.querySelector("[data-bedroom-permit-form]");
+            const state = checker.querySelector("[data-bedroom-state]");
+            const listingCount = checker.querySelector("[data-bedroom-listing-count]");
+            const permitCount = checker.querySelector("[data-bedroom-permit-count]");
+            const fileStatus = checker.querySelector("[data-bedroom-file-status]");
+            const address = checker.querySelector("[data-bedroom-address]");
+            const result = checker.querySelector("[data-bedroom-result]");
+            const label = checker.querySelector("[data-bedroom-result-label]");
+            const heading = checker.querySelector("[data-bedroom-result-heading]");
+            const body = checker.querySelector("[data-bedroom-result-body]");
+            const facts = checker.querySelector("[data-bedroom-result-facts]");
+            const steps = checker.querySelector("[data-bedroom-result-steps]");
+            const note = checker.querySelector("[data-bedroom-result-note]");
+            const copyButton = checker.querySelector("[data-bedroom-copy]");
+            const downloadButton = checker.querySelector("[data-bedroom-download]");
+            const routeLink = checker.querySelector("[data-track-source-context='bedroom_checker_result_address']");
+
+            if (!(form instanceof HTMLFormElement)
+                || !(state instanceof HTMLSelectElement)
+                || !(listingCount instanceof HTMLInputElement)
+                || !(permitCount instanceof HTMLSelectElement)
+                || !(fileStatus instanceof HTMLSelectElement)
+                || !(result instanceof HTMLElement)) {
+                return;
+            }
+
+            function current() {
+                const listing = Math.max(1, Math.min(12, Number.parseInt(listingCount.value, 10) || 0));
+                const permit = Number.parseInt(permitCount.value, 10) || 0;
+                const status = fileStatus.value;
+                const stateLabel = state.options[state.selectedIndex]?.textContent?.trim() || "this state";
+                const property = address instanceof HTMLInputElement ? address.value.trim() : "";
+                const official = status === "official";
+                const hasConflict = status === "conflicting";
+                const missing = status === "missing" || !permit || !official;
+                let kind = "unverified";
+                let nextHeading = "The septic bedroom count is not verified yet";
+                let nextBody = "Do not treat the listing count as a septic-capacity answer until an official permit, approval, or county response identifies the number supported by the file.";
+                let nextSteps = [
+                    "Open the official records path and search by address, parcel, owner, subdivision, or permit number.",
+                    "Ask for the permit or approval that states the supported bedroom count or design flow.",
+                    "Keep the written response with the buyer, listing, inspection, or lender file before changing the transaction story."
+                ];
+
+                if (official && permit && listing > permit) {
+                    kind = "mismatch";
+                    nextHeading = "The listing count is higher than the reviewed septic permit count";
+                    nextBody = "This is a transaction-critical file mismatch. It does not decide legal compliance by itself, but the listing, buyer, lender, and inspection conversation should not treat the extra room capacity as cleared until the responsible local source explains the file.";
+                    nextSteps = [
+                        "Keep the official permit or approval copy that shows the lower bedroom count.",
+                        "Request the as-built, final approval, repair or expansion history, and written local guidance for this parcel.",
+                        "Have the responsible broker, county office, inspector, lender, or qualified local professional determine the required transaction response."
+                    ];
+                } else if (official && permit && listing === permit && !hasConflict) {
+                    kind = "aligned";
+                    nextHeading = "The reviewed permit count matches the listing count";
+                    nextBody = "The two counts align, which is a useful file signal. Keep the permit copy and still check final approval, layout, repair history, and current inspection needs before relying on the record for a closing or project decision.";
+                    nextSteps = [
+                        "Save the permit or approval copy with the transaction file.",
+                        "Check for final approval, operation record, layout, repair history, or inspection requirements.",
+                        "Use the county or state records route again if the address, owner, or permit number does not match cleanly."
+                    ];
+                } else if (official && permit && listing < permit && !hasConflict) {
+                    kind = "under_listed";
+                    nextHeading = "The reviewed permit count is higher than the listing count";
+                    nextBody = "The listing is below the reviewed permit count. That does not prove every room, improvement, or current condition is settled, so preserve the permit and verify the rest of the septic file before treating the property story as complete.";
+                    nextSteps = [
+                        "Keep the reviewed permit or approval in the transaction file.",
+                        "Check final approval, layout, repair history, and any later additions or conversions.",
+                        "Ask the file owner for written guidance if the tax, seller, or listing record conflicts with the permit."
+                    ];
+                } else if (hasConflict) {
+                    kind = "conflict";
+                    nextHeading = "The property records conflict, so the septic file needs a written resolution";
+                    nextBody = "A seller statement, tax card, listing, or permit may be using different bedroom information. Keep each source, then ask the record owner which approval governs the parcel and whether another permit, amendment, or archive file exists.";
+                    nextSteps = [
+                        "Save the conflicting listing, tax, seller, and permit information together.",
+                        "Ask the official file owner for the controlling permit, approval, amendment, or written no-record response.",
+                        "Do not resolve the conflict by selecting the most convenient number for a transaction."
+                    ];
+                }
+
+                const subject = `${stateLabel} septic bedroom-capacity file check${property ? `: ${property}` : ""}`;
+                const noteLines = [
+                    `Subject: ${subject}`,
+                    "",
+                    `Property: ${property || "[property address / parcel]"}`,
+                    `State: ${stateLabel}`,
+                    `Listing bedrooms: ${countLabel(listing)}`,
+                    `Reviewed septic permit bedrooms: ${countLabel(permit)}`,
+                    `File status: ${fileStatus.options[fileStatus.selectedIndex]?.textContent?.trim() || "Not stated"}`,
+                    "",
+                    `File check: ${nextHeading}`,
+                    nextBody,
+                    "",
+                    "Requested next records:",
+                    ...nextSteps.map((item, index) => `${index + 1}. ${item}`),
+                    "",
+                    "Please provide the septic permit or approval, approved bedroom or design-flow count, final approval or operation record, as-built or layout, repair/expansion history, and written direction if another office owns the file.",
+                    "",
+                    "This note flags a records question only. It is not an engineering, permit, MLS, lender, or legal compliance determination."
+                ];
+
+                return { listing, permit, stateLabel, property, kind, nextHeading, nextBody, nextSteps, noteText: noteLines.join("\n"), route: recordRoute(state.value) };
+            }
+
+            function render() {
+                const value = current();
+                result.hidden = false;
+                result.dataset.bedroomCheckKind = value.kind;
+                if (label) {
+                    label.textContent = value.kind === "aligned" ? "Counts align" : value.kind === "mismatch" || value.kind === "conflict" ? "File gap flagged" : "Official file needed";
+                }
+                if (heading) {
+                    heading.textContent = value.nextHeading;
+                }
+                if (body) {
+                    body.textContent = value.nextBody;
+                }
+                if (facts) {
+                    const items = [
+                        `Listing: ${countLabel(value.listing)}`,
+                        `Permit: ${countLabel(value.permit)}`,
+                        value.stateLabel
+                    ];
+                    facts.replaceChildren(...items.map((item) => {
+                        const fact = document.createElement("span");
+                        fact.textContent = item;
+                        return fact;
+                    }));
+                }
+                if (steps) {
+                    steps.replaceChildren(...value.nextSteps.map((step) => {
+                        const item = document.createElement("li");
+                        item.textContent = step;
+                        return item;
+                    }));
+                }
+                if (note instanceof HTMLTextAreaElement) {
+                    note.value = value.noteText;
+                }
+                if (routeLink instanceof HTMLAnchorElement) {
+                    routeLink.href = value.route;
+                }
+                result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                render();
+            });
+
+            if (copyButton instanceof HTMLButtonElement && note instanceof HTMLTextAreaElement) {
+                copyButton.addEventListener("click", async () => {
+                    const original = copyButton.textContent;
+                    try {
+                        await copyText(note.value);
+                        copyButton.textContent = "Transaction note copied";
+                        copyButton.classList.add("is-copied");
+                    } catch (_) {
+                        copyButton.textContent = "Copy failed";
+                        copyButton.classList.add("is-copy-failed");
+                    }
+                    window.setTimeout(() => {
+                        copyButton.textContent = original;
+                        copyButton.classList.remove("is-copied", "is-copy-failed");
+                    }, 1800);
+                });
+            }
+
+            if (downloadButton instanceof HTMLButtonElement && note instanceof HTMLTextAreaElement) {
+                downloadButton.addEventListener("click", () => {
+                    const statePart = state.value ? state.value.toLowerCase() : "state";
+                    downloadText(`septic-bedroom-file-check-${statePart}.txt`, note.value);
+                    const original = downloadButton.textContent;
+                    downloadButton.textContent = "Downloaded";
+                    downloadButton.classList.add("is-copied");
+                    window.setTimeout(() => {
+                        downloadButton.textContent = original;
+                        downloadButton.classList.remove("is-copied");
+                    }, 1800);
+                });
+            }
+        });
+    }
+
+    setupBedroomPermitCheckers();
+
     function setupRecordsRequestBuilders() {
         const builders = Array.from(document.querySelectorAll("[data-records-request-builder]"));
         if (!builders.length) {

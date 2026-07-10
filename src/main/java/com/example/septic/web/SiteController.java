@@ -457,6 +457,13 @@ public class SiteController {
         return "pages/record-finder";
     }
 
+    @GetMapping({"/septic-bedroom-permit-checker", "/septic-bedroom-permit-checker/"})
+    public String bedroomPermitChecker(Model model) {
+        model.addAttribute("page", seoService.bedroomPermitCheckerPage());
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        return "pages/bedroom-permit-checker";
+    }
+
     @PostMapping(value = "/api/address-record-finder", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<AddressRecordFinderResult> addressRecordFinder(@RequestBody AddressRecordFinderForm form) {
@@ -3589,6 +3596,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         ));
         actions.add(new AddressRecordFinderAction(
                 "Search TDEC SSDS records", TENNESSEE_SSDS_SEARCH_URL, "official_source", true, false
+        ));
+        actions.add(new AddressRecordFinderAction(
+                "Check listing bedrooms", "/septic-bedroom-permit-checker/", "internal_tool", false, false
         ));
         if (!contractCounty) {
             actions.add(new AddressRecordFinderAction(

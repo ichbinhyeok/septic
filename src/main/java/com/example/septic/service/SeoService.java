@@ -527,6 +527,29 @@ public class SeoService {
         );
     }
 
+    public PageMeta bedroomPermitCheckerPage() {
+        String canonicalUrl = absoluteUrl("/septic-bedroom-permit-checker/");
+        String title = "Septic Bedroom Permit Checker | Listing vs Permit Capacity | SepticPath";
+        String description = "Compare a property's advertised bedroom count with the septic permit count, then create a records-first next-step note for buyers, sellers, and agents.";
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Bedroom Permit Checker", canonicalUrl)
+                ),
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "WebApplication")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Septic Bedroom Permit Checker", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         if ("TX::tarrant-county".equals(countyPage.key())) {
             return "Tarrant County Septic Records & OSSF Permit Lookup | Official File Path | SepticPath";
@@ -599,7 +622,8 @@ public class SeoService {
                 "/privacy-policy/",
                 "/terms-of-use/",
                 "/contact/",
-                "/septic-record-finder/"
+                "/septic-record-finder/",
+                "/septic-bedroom-permit-checker/"
         );
     }
 
