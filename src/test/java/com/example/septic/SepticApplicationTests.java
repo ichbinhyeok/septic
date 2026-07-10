@@ -5466,6 +5466,54 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void officialSourceClickEventIsStoredWithoutQueryParameters() throws Exception {
+		mockMvc.perform(post("/events/nav-click")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "sourcePage": "/septic-records-by-county/",
+								  "sourceContext": "county_direct_official_search",
+								  "targetPath": "https://tdec.tn.gov/filenetsearch",
+								  "targetType": "official_source",
+								  "targetLabel": "Open official search"
+								}
+								"""))
+				.andExpect(status().isNoContent());
+
+		try (Stream<Path> eventFiles = Files.walk(Path.of("build/test-storage/events"))) {
+			Path eventFile = eventFiles.filter(path -> path.toString().endsWith(".ndjson"))
+					.findFirst().orElseThrow(() -> new AssertionError("Expected an event file"));
+			String eventContent = Files.readString(eventFile);
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"official_source_click\""));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"targetPath\":\"https://tdec.tn.gov/filenetsearch\""));
+		}
+	}
+
+	@Test
+	void artifactActionEventIsStoredWithoutFormInputs() throws Exception {
+		mockMvc.perform(post("/events/artifact-action")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "sourcePage": "/septic-records-request-builder/",
+								  "sourceContext": "records_request_builder",
+								  "action": "downloaded",
+								  "artifactType": "records_request_packet"
+								}
+								"""))
+				.andExpect(status().isNoContent());
+
+		try (Stream<Path> eventFiles = Files.walk(Path.of("build/test-storage/events"))) {
+			Path eventFile = eventFiles.filter(path -> path.toString().endsWith(".ndjson"))
+					.findFirst().orElseThrow(() -> new AssertionError("Expected an event file"));
+			String eventContent = Files.readString(eventFile);
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"artifact_action\""));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"artifactType\":\"records_request_packet\""));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("Property address"));
+		}
+	}
+
+	@Test
 	void webVitalEventIsStored() throws Exception {
 		mockMvc.perform(post("/events/web-vital")
 						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
@@ -7188,6 +7236,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records by County")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county records pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic records availability index")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Direct official searches")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tdec.tn.gov/filenetsearch")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://public.cdpehs.com/NCENVPBLo/OSW_PROPERTY/ShowOSW_PROPERTYTablePage.aspx?ESTTST_CTY=C35")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Next-click accelerator")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official content file path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("File owner")))

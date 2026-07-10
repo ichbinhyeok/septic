@@ -20,6 +20,7 @@
 @param java.util.List<com.example.septic.web.PageLink> featuredPermitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> secondaryPermitLookupCountyLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> directOnlineCountyFinderLinks = java.util.List.of()
 @param int totalCountyRouteCount = 0
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
@@ -852,6 +853,43 @@
                         <span>inspection letter</span>
                         <span>parcel/TMS search</span>
                         <span>buyer file check</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ("septic-records-by-county".equals(contentPage.slug()) && !directOnlineCountyFinderLinks.isEmpty())
+        <section class="section section--tight" id="direct-online-septic-searches">
+            <div class="container">
+                <div class="direct-search-lane" aria-label="Direct official septic record searches">
+                    <div class="direct-search-lane__intro">
+                        <span class="eyebrow">Direct official searches</span>
+                        <h2>Search a public permit database now, then validate the actual septic file.</h2>
+                        <p>These routes have a live public search rather than only a contact page or request form. A property result is a starting point: match the address, parcel, permit status, and completed file before relying on it for a sale, repair, or quote.</p>
+                    </div>
+                    <div class="direct-search-lane__grid">
+                        @for (var link : directOnlineCountyFinderLinks)
+                            <article class="direct-search-route">
+                                <span>${link.stateCode()} / public search</span>
+                                <h3>${link.countyName()}</h3>
+                                <p>${link.note()}</p>
+                                <div class="direct-search-route__actions">
+                                    <a class="button button--primary"
+                                       href="${link.recordsUrl()}"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_direct_official_search"
+                                       data-track-target-type="official_source">Open official search</a>
+                                    <a class="text-link"
+                                       href="${link.path()}"
+                                       data-track-click="nav"
+                                       data-track-source-context="county_direct_search_guide"
+                                       data-track-target-type="county_records_page">Use county guide</a>
+                                </div>
+                            </article>
+                        @endfor
                     </div>
                 </div>
             </div>

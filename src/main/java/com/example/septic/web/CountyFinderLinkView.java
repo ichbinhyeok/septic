@@ -14,6 +14,7 @@ public record CountyFinderLinkView(
         String sourceDepthLabel,
         boolean parcelAnchorAvailable,
         String searchText,
+        String recordsUrl,
         String absoluteUrl
 ) {
 }

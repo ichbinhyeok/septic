@@ -1,13 +1,16 @@
 (() => {
     document.documentElement.classList.add("js");
 
-    function sameOriginPath(anchor) {
+    function navigationTarget(anchor) {
         try {
             const url = new URL(anchor.href, window.location.origin);
-            if (url.origin !== window.location.origin) {
+            if (url.origin === window.location.origin) {
+                return url.pathname + url.search + url.hash;
+            }
+            if (url.protocol !== "https:") {
                 return null;
             }
-            return url.pathname + url.search + url.hash;
+            return url.origin + url.pathname;
         } catch (_error) {
             return null;
         }
@@ -32,6 +35,15 @@
 
     function sendNavigationEvent(payload) {
         sendEvent("/events/nav-click", payload);
+    }
+
+    function sendArtifactAction(sourceContext, action, artifactType) {
+        sendEvent("/events/artifact-action", {
+            sourcePage: window.location.pathname + window.location.search + window.location.hash,
+            sourceContext,
+            action,
+            artifactType
+        });
     }
 
     function copyText(text) {
@@ -1011,6 +1023,7 @@
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
                 render();
+                sendArtifactAction("bedroom_permit_checker", "generated", "bedroom_permit_note");
             });
 
             if (copyButton instanceof HTMLButtonElement && note instanceof HTMLTextAreaElement) {
@@ -1018,6 +1031,7 @@
                     const original = copyButton.textContent;
                     try {
                         await copyText(note.value);
+                        sendArtifactAction("bedroom_permit_checker", "copied", "bedroom_permit_note");
                         copyButton.textContent = "Transaction note copied";
                         copyButton.classList.add("is-copied");
                     } catch (_) {
@@ -1035,6 +1049,7 @@
                 downloadButton.addEventListener("click", () => {
                     const statePart = state.value ? state.value.toLowerCase() : "state";
                     downloadText(`septic-bedroom-file-check-${statePart}.txt`, note.value);
+                    sendArtifactAction("bedroom_permit_checker", "downloaded", "bedroom_permit_note");
                     const original = downloadButton.textContent;
                     downloadButton.textContent = "Downloaded";
                     downloadButton.classList.add("is-copied");
@@ -1178,6 +1193,7 @@
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
                 render();
+                sendArtifactAction("alabama_perc_scope", "generated", "alabama_perc_quote_scope");
             });
 
             if (copy instanceof HTMLButtonElement) {
@@ -1185,6 +1201,7 @@
                     const original = copy.textContent;
                     try {
                         await copyText(note.value);
+                        sendArtifactAction("alabama_perc_scope", "copied", "alabama_perc_quote_scope");
                         copy.textContent = "Request copied";
                         copy.classList.add("is-copied");
                     } catch (_error) {
@@ -1660,6 +1677,7 @@
                     const original = copyButton.textContent;
                     try {
                         await copyText(output.value);
+                        sendArtifactAction("records_request_builder", "copied", "records_request_packet");
                         copyButton.textContent = "Request copied";
                         copyButton.classList.add("is-copied");
                         setTemporaryStatus(status, "Copied to clipboard", "Ready to copy or download");
@@ -1679,6 +1697,7 @@
                 downloadButton.addEventListener("click", () => {
                     const filename = requestFilename(builder);
                     downloadText(filename, buildDownloadPacket(builder, output.value));
+                    sendArtifactAction("records_request_builder", "downloaded", "records_request_packet");
                     downloadButton.textContent = "Downloaded";
                     downloadButton.classList.add("is-copied");
                     setTemporaryStatus(status, `Downloaded packet ${filename}`, "Ready to copy or download");
@@ -1693,6 +1712,7 @@
                 printButton.addEventListener("click", () => {
                     const original = printButton.textContent;
                     if (openPrintablePacket(builder, output.value)) {
+                        sendArtifactAction("records_request_builder", "pdf_opened", "records_request_packet");
                         printButton.textContent = "PDF view opened";
                         printButton.classList.add("is-copied");
                         setTemporaryStatus(status, "Printable packet opened", "Ready to copy or download");
@@ -1740,6 +1760,7 @@
                     const original = copyButton.textContent;
                     try {
                         await copyText(noteText());
+                        sendArtifactAction("workflow_packet", "copied", "workflow_packet");
                         copyButton.textContent = "Note copied";
                         copyButton.classList.add("is-copied");
                         setTemporaryStatus(status, "Copied to clipboard", "Ready");
@@ -1758,6 +1779,7 @@
             if (downloadButton instanceof HTMLButtonElement) {
                 downloadButton.addEventListener("click", () => {
                     downloadText("septicpath-workflow-packet.txt", noteText());
+                    sendArtifactAction("workflow_packet", "downloaded", "workflow_packet");
                     downloadButton.textContent = "Downloaded";
                     downloadButton.classList.add("is-copied");
                     setTemporaryStatus(status, "Downloaded septicpath-workflow-packet.txt", "Ready");
@@ -2170,8 +2192,8 @@
             return;
         }
 
-        const targetPath = sameOriginPath(anchor);
-        if (!targetPath || !targetPath.startsWith("/") || targetPath.startsWith("/events/")) {
+        const targetPath = navigationTarget(anchor);
+        if (!targetPath || (targetPath.startsWith("/") && targetPath.startsWith("/events/"))) {
             return;
         }
 

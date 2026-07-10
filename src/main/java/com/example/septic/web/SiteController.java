@@ -34,6 +34,7 @@ import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.net.URI;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -86,6 +87,10 @@ public class SiteController {
     private static final String TENNESSEE_ONLINE_SERVICE_URL = "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
     private static final Set<String> TENNESSEE_CONTRACT_COUNTIES = Set.of(
             "blount", "davidson", "hamilton", "jefferson", "knox", "madison", "sevier", "shelby", "williamson"
+    );
+    private static final Set<String> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES = Set.of(
+            "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston",
+            "TN:anderson", "TN:cumberland", "TN:loudon"
     );
     private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
             PERMIT_LOOKUP_SLUG,
@@ -1275,7 +1280,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             HttpServletRequest request
     ) {
         if (!isTrackableInternalPath(navigationClickForm.sourcePage())
-                || !isTrackableInternalPath(navigationClickForm.targetPath())) {
+                || !isTrackableNavigationTarget(navigationClickForm.targetPath())) {
             return ResponseEntity.noContent().build();
         }
 
@@ -1285,6 +1290,29 @@ The goal is to settle the permit path before we frame the project as a normal in
                 navigationClickForm.targetPath(),
                 navigationClickForm.targetType(),
                 navigationClickForm.targetLabel(),
+                request
+        );
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping(value = {"/events/artifact-action", "/events/artifact-action/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Void> recordArtifactAction(
+            @RequestBody ArtifactActionForm artifactActionForm,
+            HttpServletRequest request
+    ) {
+        if (!isTrackableInternalPath(artifactActionForm.sourcePage())
+                || !isTrackableArtifactAction(artifactActionForm.sourceContext())
+                || !isTrackableArtifactAction(artifactActionForm.action())
+                || !isTrackableArtifactAction(artifactActionForm.artifactType())) {
+            return ResponseEntity.noContent().build();
+        }
+
+        leadStorageService.saveArtifactAction(
+                artifactActionForm.sourcePage(),
+                artifactActionForm.sourceContext(),
+                artifactActionForm.action(),
+                artifactActionForm.artifactType(),
                 request
         );
         return ResponseEntity.noContent().build();
@@ -1501,6 +1529,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<CountyFinderLinkView> countyFinderLinks = permitLookupSurface
                 ? countyFinderLinks(fanoutRestrictedSurface ? 24 : 48)
                 : List.of();
+        List<CountyFinderLinkView> directOnlineCountyFinderLinks = RECORDS_BY_COUNTY_SLUG.equals(contentPage.slug())
+                ? directOnlineCountyFinderLinks()
+                : List.of();
         List<PageLink> renderedInternalLinks = renderedInternalLinks(contentPage, internalLinks, fanoutRestrictedSurface);
         List<CountyWorkflowFieldView> contentOfficialFilePathRows = contentOfficialFilePathRows(
                 contentPage,
@@ -1525,6 +1556,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(6).toList());
         model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(6).toList());
         model.addAttribute("countyFinderLinks", countyFinderLinks);
+        model.addAttribute("directOnlineCountyFinderLinks", directOnlineCountyFinderLinks);
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
@@ -1979,6 +2011,30 @@ The goal is to settle the permit path before we frame the project as a normal in
             return false;
         }
         return path.startsWith("/") && !path.startsWith("//") && !path.startsWith("/events/");
+    }
+
+    private boolean isTrackableNavigationTarget(String target) {
+        if (isTrackableInternalPath(target)) {
+            return true;
+        }
+        if (target == null || target.isBlank()) {
+            return false;
+        }
+        try {
+            URI uri = URI.create(target);
+            return "https".equalsIgnoreCase(uri.getScheme())
+                    && uri.getHost() != null
+                    && uri.getUserInfo() == null
+                    && uri.getPort() == -1
+                    && uri.getRawQuery() == null
+                    && uri.getRawFragment() == null;
+        } catch (IllegalArgumentException exception) {
+            return false;
+        }
+    }
+
+    private boolean isTrackableArtifactAction(String value) {
+        return value != null && value.matches("[a-z][a-z0-9_]{1,63}");
     }
 
     private boolean isTrackableWebVital(String metricName, Double value) {
@@ -3652,6 +3708,14 @@ The goal is to settle the permit path before we frame the project as a normal in
         return countyFinderLinks(totalCountyRouteCount());
     }
 
+    private List<CountyFinderLinkView> directOnlineCountyFinderLinks() {
+        return countyFinderLinks(totalCountyRouteCount()).stream()
+                .filter(link -> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES.contains(
+                        link.stateCode() + ":" + normalizeCountyFinderText(link.countyName()).replace(" county", "")
+                ))
+                .toList();
+    }
+
     private List<CountyFinderLinkView> countyFinderLinks(int limit) {
         List<CountyRecordsPage> countyPages = researchDataService.getPublicCountyRecordsPages().stream()
                 .sorted(Comparator
@@ -3879,6 +3943,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 sourceDepth,
                 page.hasParcelAnchor(),
                 searchText,
+                page.recordsUrl(),
                 seoService.absoluteUrl(page.path(state.slug()))
         );
     }

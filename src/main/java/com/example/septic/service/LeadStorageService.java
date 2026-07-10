@@ -148,7 +148,9 @@ public class LeadStorageService {
         Instant now = Instant.now();
         try {
             appendEvent(orderedMap(
-                    "eventType", "internal_navigation_click",
+                    "eventType", targetPath != null && targetPath.startsWith("https://")
+                            ? "official_source_click"
+                            : "internal_navigation_click",
                     "occurredAt", now.toString(),
                     "sourcePage", safeValue(sourcePage, 240),
                     "sourceContext", safeValue(sourceContext, 120),
@@ -159,6 +161,29 @@ public class LeadStorageService {
             ), now);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist navigation click event", exception);
+        }
+    }
+
+    public void saveArtifactAction(
+            String sourcePage,
+            String sourceContext,
+            String action,
+            String artifactType,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        try {
+            appendEvent(orderedMap(
+                    "eventType", "artifact_action",
+                    "occurredAt", now.toString(),
+                    "sourcePage", safeValue(sourcePage, 240),
+                    "sourceContext", safeValue(sourceContext, 120),
+                    "action", safeValue(action, 64),
+                    "artifactType", safeValue(artifactType, 64),
+                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+            ), now);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist artifact action event", exception);
         }
     }
 
