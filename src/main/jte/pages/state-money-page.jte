@@ -138,7 +138,19 @@
                         </div>
                     </div>
                 </div>
-                @if (!featuredCountyRecordLinks.isEmpty())
+                @if (stateRecordsSearchResponse != null && !stateRecordsSearchResponse.countyLinks().isEmpty())
+                    <div class="hero-county-launchpad" aria-label="${state.stateName()} priority county record shortcuts">
+                        <span class="hero-county-launchpad__label">County records</span>
+                        <p class="hero-county-launchpad__note">Already know the county? Go straight to its official record route.</p>
+                        @for (var link : stateRecordsSearchResponse.countyLinks().stream().limit(4).toList())
+                            <a href="${link.path()}"
+                               data-track-click="nav"
+                               data-track-source-context="state_records_hero_county_handoff"
+                               data-track-target-type="county_records_page">${link.compactTitle()}</a>
+                        @endfor
+                        <a href="#county-pages">All ${state.stateName()} county pages</a>
+                    </div>
+                @elseif (!featuredCountyRecordLinks.isEmpty())
                     <div class="hero-county-launchpad" aria-label="${state.stateName()} county record shortcuts">
                         <span class="hero-county-launchpad__label">Open county route</span>
                         @for (var link : featuredCountyRecordLinks.stream().limit(3).toList())
