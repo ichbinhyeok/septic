@@ -676,6 +676,133 @@
 
     setupCountyFinders();
 
+    function setupAddressRecordFinders() {
+        const finders = Array.from(document.querySelectorAll("[data-address-record-finder]"));
+        if (!finders.length) {
+            return;
+        }
+
+        const statusLabels = {
+            county_route: "County route found",
+            state_route: "State route found",
+            unsupported: "County resolved",
+            not_found: "Try a fuller address",
+            unavailable: "Use the county finder",
+            invalid: "Address needed"
+        };
+
+        finders.forEach((finder) => {
+            const form = finder.querySelector("[data-address-record-finder-form]");
+            const input = finder.querySelector("[data-address-record-finder-input]");
+            const submit = finder.querySelector("[data-address-record-finder-submit]");
+            const result = finder.querySelector("[data-address-record-finder-result]");
+            const status = finder.querySelector("[data-address-record-finder-status]");
+            const heading = finder.querySelector("[data-address-record-finder-heading]");
+            const message = finder.querySelector("[data-address-record-finder-message]");
+            const meta = finder.querySelector("[data-address-record-finder-meta]");
+            const actions = finder.querySelector("[data-address-record-finder-actions]");
+            const apiPath = finder.dataset.addressRecordFinderApi;
+
+            if (!(form instanceof HTMLFormElement)
+                || !(input instanceof HTMLInputElement)
+                || !(submit instanceof HTMLButtonElement)
+                || !(result instanceof HTMLElement)
+                || !apiPath) {
+                return;
+            }
+
+            function button(label, href, primary, targetType) {
+                const link = document.createElement("a");
+                link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
+                link.href = href;
+                link.textContent = label;
+                link.dataset.trackClick = "nav";
+                link.dataset.trackSourceContext = "address_record_finder_result";
+                link.dataset.trackTargetType = targetType;
+                return link;
+            }
+
+            function render(payload) {
+                result.hidden = false;
+                if (status) {
+                    status.textContent = statusLabels[payload.status] || "Record route";
+                }
+                if (heading) {
+                    heading.textContent = payload.heading || "Open the county records route";
+                }
+                if (message) {
+                    message.textContent = payload.message || "Use the county route to pull the official file before pricing.";
+                }
+                if (meta) {
+                    const values = [payload.countyName, payload.stateName].filter(Boolean);
+                    meta.replaceChildren(...values.map((value) => {
+                        const item = document.createElement("span");
+                        item.textContent = value;
+                        return item;
+                    }));
+                    meta.hidden = values.length === 0;
+                }
+                if (actions) {
+                    const nextActions = [];
+                    if (payload.routePath) {
+                        nextActions.push(button(payload.routeTitle || "Open records route", payload.routePath, true,
+                            payload.status === "county_route" ? "county_records_page" : "internal_page"));
+                    }
+                    if (payload.officialRouteUrl) {
+                        const official = button("Open official file route", payload.officialRouteUrl, false, "official_source");
+                        official.target = "_blank";
+                        official.rel = "noreferrer";
+                        nextActions.push(official);
+                    }
+                    actions.replaceChildren(...nextActions);
+                }
+            }
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const address = input.value.trim();
+                if (address.length < 8) {
+                    render({
+                        status: "invalid",
+                        heading: "Enter a full U.S. property address",
+                        message: "Include street, city, state, and ZIP so the county can be resolved reliably."
+                    });
+                    input.focus();
+                    return;
+                }
+
+                const defaultLabel = "Find record route";
+                submit.disabled = true;
+                submit.textContent = "Finding county...";
+                try {
+                    const response = await fetch(apiPath, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json"
+                        },
+                        body: JSON.stringify({ address })
+                    });
+                    const payload = await response.json();
+                    render(payload);
+                } catch (_) {
+                    render({
+                        status: "unavailable",
+                        heading: "Use the county finder while address lookup reconnects",
+                        message: "No address was saved. Search by county to open a verified local records route.",
+                        routeTitle: "Search county records",
+                        routePath: "/septic-records-by-county/"
+                    });
+                } finally {
+                    submit.disabled = false;
+                    submit.textContent = defaultLabel;
+                }
+            });
+        });
+    }
+
+    setupAddressRecordFinders();
+
     function setupRecordsRequestBuilders() {
         const builders = Array.from(document.querySelectorAll("[data-records-request-builder]"));
         if (!builders.length) {

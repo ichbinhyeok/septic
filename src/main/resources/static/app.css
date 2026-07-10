@@ -3555,6 +3555,224 @@ h4 {
     gap: 18px;
 }
 
+.record-finder-hero {
+    padding: 44px 0 18px;
+}
+
+.record-finder {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+    overflow: hidden;
+    border: 1px solid rgba(20, 34, 32, 0.12);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 22px 58px rgba(17, 31, 29, 0.11);
+}
+
+.record-finder__intro {
+    display: grid;
+    align-content: center;
+    gap: 16px;
+    padding: 36px;
+    background: linear-gradient(145deg, #143e35, #216654);
+    color: #f7fbf7;
+}
+
+.record-finder__intro .eyebrow {
+    color: #cdebd9;
+}
+
+.record-finder__intro h1 {
+    max-width: 13ch;
+    color: #fff;
+    font-size: clamp(2.2rem, 4vw, 4.4rem);
+    line-height: 0.98;
+}
+
+.record-finder__intro p {
+    max-width: 47ch;
+    margin: 0;
+    color: rgba(247, 251, 247, 0.82);
+    line-height: 1.58;
+}
+
+.record-finder__signals,
+.record-finder__result-meta,
+.record-finder__result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.record-finder__signals span,
+.record-finder__result-meta span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.record-finder__signals span {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.09);
+    color: rgba(247, 251, 247, 0.92);
+}
+
+.record-finder__signals strong {
+    margin-right: 4px;
+    color: #dff46a;
+}
+
+.record-finder__workspace {
+    display: grid;
+    align-content: center;
+    gap: 18px;
+    padding: 34px;
+    background: #fff;
+}
+
+.record-finder__form {
+    display: grid;
+    gap: 9px;
+}
+
+.record-finder__form > label {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.86rem;
+    font-weight: 900;
+}
+
+.record-finder__form > p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.record-finder__input-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+}
+
+.record-finder__input-row input {
+    width: 100%;
+    min-height: 54px;
+    border: 1px solid rgba(20, 34, 32, 0.16);
+    border-radius: 8px;
+    padding: 0 14px;
+    color: var(--text);
+    font: inherit;
+    font-weight: 700;
+    outline: none;
+}
+
+.record-finder__input-row input:focus {
+    border-color: rgba(35, 108, 95, 0.58);
+    box-shadow: 0 0 0 4px rgba(35, 108, 95, 0.12);
+}
+
+.record-finder__input-row .button {
+    min-height: 54px;
+    white-space: nowrap;
+}
+
+.record-finder__privacy {
+    font-size: 0.8rem !important;
+}
+
+.record-finder__result {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid rgba(35, 108, 95, 0.16);
+    border-radius: 8px;
+    background: rgba(227, 244, 237, 0.54);
+}
+
+.record-finder__result[hidden] {
+    display: none;
+}
+
+.record-finder__result h2 {
+    max-width: 25ch;
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    line-height: 1.08;
+}
+
+.record-finder__result p {
+    max-width: 62ch;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.52;
+}
+
+.record-finder__result-meta span {
+    border: 1px solid rgba(35, 108, 95, 0.16);
+    background: rgba(255, 255, 255, 0.76);
+    color: var(--accent-strong);
+}
+
+.record-finder-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.record-finder-steps article {
+    display: grid;
+    align-content: start;
+    gap: 9px;
+    padding: 18px 0;
+    border-top: 2px solid rgba(35, 108, 95, 0.24);
+}
+
+.record-finder-steps span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 900;
+}
+
+.record-finder-steps h2 {
+    font-size: 1.1rem;
+    line-height: 1.16;
+}
+
+.record-finder-steps p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.county-research-disclosure-section {
+    padding-top: 0;
+}
+
+.county-research-disclosure__content {
+    padding: 0 2px 2px;
+}
+
+.county-research-disclosure__content > .section {
+    padding: 18px 0 0;
+}
+
+.county-research-disclosure__content > .section:last-child {
+    padding-bottom: 2px;
+}
+
+.county-research-disclosure__content .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+}
+
 .county-finder {
     display: grid;
     grid-template-columns: minmax(0, 0.84fr) minmax(360px, 1.16fr);
@@ -5224,6 +5442,8 @@ input[type="checkbox"] {
     .records-request-builder__controls,
     .records-request-builder__submission,
     .county-finder__filters,
+    .record-finder,
+    .record-finder-steps,
     .county-proof-strip,
     .county-click-board,
     .county-click-board__grid,
@@ -6197,6 +6417,29 @@ input[type="checkbox"] {
 
     .county-finder__search {
         grid-template-columns: 1fr;
+    }
+
+    .record-finder-hero {
+        padding-top: 24px;
+    }
+
+    .record-finder__intro,
+    .record-finder__workspace {
+        padding: 22px;
+    }
+
+    .record-finder__intro h1 {
+        max-width: 16ch;
+        font-size: 2.15rem;
+        line-height: 1.02;
+    }
+
+    .record-finder__input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .record-finder__input-row .button {
+        width: 100%;
     }
 
     .county-finder__search input,

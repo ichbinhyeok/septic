@@ -11,6 +11,7 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
+import com.example.septic.service.CensusAddressLookupService;
 import com.example.septic.service.DrainfieldEstimatorResult;
 import com.example.septic.service.DrainfieldEstimatorService;
 import com.example.septic.service.EstimatorResult;
@@ -386,6 +387,7 @@ public class SiteController {
     private final StateQueuePlanService stateQueuePlanService;
     private final UsStateDirectoryService usStateDirectoryService;
     private final PublishingPolicyService publishingPolicyService;
+    private final CensusAddressLookupService censusAddressLookupService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -398,7 +400,8 @@ public class SiteController {
             PumpScheduleService pumpScheduleService,
             StateQueuePlanService stateQueuePlanService,
             UsStateDirectoryService usStateDirectoryService,
-            PublishingPolicyService publishingPolicyService
+            PublishingPolicyService publishingPolicyService,
+            CensusAddressLookupService censusAddressLookupService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -411,6 +414,7 @@ public class SiteController {
         this.stateQueuePlanService = stateQueuePlanService;
         this.usStateDirectoryService = usStateDirectoryService;
         this.publishingPolicyService = publishingPolicyService;
+        this.censusAddressLookupService = censusAddressLookupService;
     }
 
     @GetMapping("/")
@@ -438,6 +442,46 @@ public class SiteController {
         model.addAttribute("workflowNetworkSnapshot", workflowNetworkSnapshot);
         model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - publicStates.size(), 0));
         return "pages/home";
+    }
+
+    @GetMapping({"/septic-record-finder", "/septic-record-finder/"})
+    public String recordFinder(Model model) {
+        model.addAttribute("page", seoService.recordFinderPage());
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
+        return "pages/record-finder";
+    }
+
+    @PostMapping(value = "/api/address-record-finder", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<AddressRecordFinderResult> addressRecordFinder(@RequestBody AddressRecordFinderForm form) {
+        if (form == null || !form.isUsable()) {
+            return ResponseEntity.badRequest().body(new AddressRecordFinderResult(
+                    "invalid",
+                    "Enter a full U.S. property address",
+                    "Include street, city, state, and ZIP so the county can be resolved reliably.",
+                    "", "", "", "", "", "", ""
+            ));
+        }
+
+        CensusAddressLookupService.CensusAddressLookupResult lookup = censusAddressLookupService.lookup(form.normalizedAddress());
+        if (lookup.status() == CensusAddressLookupService.CensusAddressLookupResult.Status.NOT_FOUND) {
+            return ResponseEntity.ok(new AddressRecordFinderResult(
+                    "not_found",
+                    "We could not resolve that county",
+                    "Check the street number, city, state, and ZIP. You can still search the county route manually.",
+                    "", "", "", "", "County records by county", "/septic-records-by-county/", ""
+            ));
+        }
+        if (lookup.status() == CensusAddressLookupService.CensusAddressLookupResult.Status.UNAVAILABLE) {
+            return ResponseEntity.ok(new AddressRecordFinderResult(
+                    "unavailable",
+                    "County lookup is temporarily unavailable",
+                    "Use the county finder while the address resolver reconnects. No address was saved.",
+                    "", "", "", "", "Search county records", "/septic-records-by-county/", ""
+            ));
+        }
+
+        return ResponseEntity.ok(addressRecordFinderRoute(lookup));
     }
 
     @GetMapping({"/states", "/states/"})
@@ -3467,6 +3511,62 @@ The goal is to settle the permit path before we frame the project as a normal in
         return ResponseEntity.ok()
                 .header("X-County-Finder-Match-Count", Integer.toString(matches.size()))
                 .body(matches.stream().limit(18).toList());
+    }
+
+    private AddressRecordFinderResult addressRecordFinderRoute(
+            CensusAddressLookupService.CensusAddressLookupResult lookup
+    ) {
+        Optional<StateProfile> state = researchDataService.findStateByCode(lookup.stateCode())
+                .filter(StateProfile::isPublished);
+        if (state.isEmpty()) {
+            return new AddressRecordFinderResult(
+                    "unsupported",
+                    "We found " + lookup.countyName() + " County, but its records route is not published yet",
+                    "Open the national county finder and carry the same address into the local health or permitting office.",
+                    lookup.stateCode(), "", lookup.countyName(), lookup.matchedAddress(),
+                    "Search county records", "/septic-records-by-county/", ""
+            );
+        }
+
+        Optional<CountyRecordsPage> countyPage = researchDataService.listPublicCountyRecordsPages(lookup.stateCode()).stream()
+                .filter(page -> countyNamesMatch(page.countyName(), lookup.countyName()))
+                .findFirst();
+        if (countyPage.isPresent()) {
+            CountyRecordsPage page = countyPage.get();
+            return new AddressRecordFinderResult(
+                    "county_route",
+                    page.countyName() + ", " + state.get().stateName() + " records route",
+                    "This is the verified county route for the permit file, records request, parcel clue, or official office handoff.",
+                    state.get().stateCode(), state.get().stateName(), page.countyName(), lookup.matchedAddress(),
+                    "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl()
+            );
+        }
+
+        Optional<StateMoneyPage> stateRecordsPage = researchDataService
+                .findPublicStateMoneyPage("septic-records-checklist", state.get().slug());
+        if (stateRecordsPage.isPresent()) {
+            StateMoneyPage page = stateRecordsPage.get();
+            return new AddressRecordFinderResult(
+                    "state_route",
+                    lookup.countyName() + " County, " + state.get().stateName() + " records route",
+                    "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
+                    state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
+                    "Open " + state.get().stateName() + " records", page.path(state.get().slug()), ""
+            );
+        }
+
+        return new AddressRecordFinderResult(
+                "unsupported",
+                "We found " + lookup.countyName() + " County, " + state.get().stateName(),
+                "Use the county finder to choose the best available public records path for this address.",
+                state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
+                "Search county records", "/septic-records-by-county/", ""
+        );
+    }
+
+    private boolean countyNamesMatch(String left, String right) {
+        return normalizeCountyFinderText(left).replace(" county", "")
+                .equals(normalizeCountyFinderText(right).replace(" county", ""));
     }
 
     private boolean countyFinderMatches(

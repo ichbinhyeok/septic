@@ -347,10 +347,10 @@
                                 <h3>Use address search only as the fallback</h3>
                                 <p>Carry the address, parcel ID, owner name, legal description, or subdivision into the county records route before treating the file as missing.</p>
                                 <a class="button button--secondary"
-                                   href="/septic-permit-search-by-address/"
+                                   href="/septic-record-finder/"
                                    data-track-click="nav"
-                                   data-track-source-context="county_click_board_address_search"
-                                   data-track-target-type="internal_page">Open address-search fallback</a>
+                                   data-track-source-context="county_click_board_address_record_finder"
+                                   data-track-target-type="internal_page">Find county from address</a>
                             @endif
                         </article>
 
@@ -373,6 +373,16 @@
     @endif
 
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
+
+    <section class="section section--tight county-research-disclosure-section">
+        <div class="container">
+            <details class="state-money-disclosure county-research-disclosure">
+                <summary>
+                    <span class="eyebrow">County evidence</span>
+                    <strong>File details, route confidence, and search proof</strong>
+                    <span>Open only when you need the full local evidence behind the official route above.</span>
+                </summary>
+                <div class="county-research-disclosure__content">
 
     @if (countySearchResponse != null)
         <section class="section section--tight">
@@ -463,10 +473,10 @@
                                data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
                         @else
                             <a class="button button--secondary"
-                               href="/septic-permit-search-by-address/"
+                               href="/septic-record-finder/"
                                data-track-click="nav"
-                               data-track-source-context="county_official_file_path_address"
-                               data-track-target-type="internal_page">Open address-search fallback</a>
+                               data-track-source-context="county_official_file_path_address_record_finder"
+                               data-track-target-type="internal_page">Find county from address</a>
                         @endif
                         <a class="button button--secondary"
                            href="/septic-permit-records-request/"
@@ -554,6 +564,11 @@
             </div>
         </section>
     @endif
+
+                </div>
+            </details>
+        </div>
+    </section>
 
     @if (!countyRequestOptions.isEmpty())
         <section class="section section--tight">
@@ -719,10 +734,10 @@
                         @else
                             <p>Use the state records path first, then confirm the parcel identifier with the local office before pricing.</p>
                             <a class="button button--secondary"
-                               href="/septic-permit-search-by-address/"
+                               href="/septic-record-finder/"
                                data-track-click="nav"
-                               data-track-source-context="county_search_intent_address_fallback"
-                               data-track-target-type="internal_page">Open search-by-address guide</a>
+                               data-track-source-context="county_search_intent_address_record_finder"
+                               data-track-target-type="internal_page">Find county from address</a>
                         @endif
                     </article>
 

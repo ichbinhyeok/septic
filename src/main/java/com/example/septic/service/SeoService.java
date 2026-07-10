@@ -504,6 +504,29 @@ public class SeoService {
         );
     }
 
+    public PageMeta recordFinderPage() {
+        String canonicalUrl = absoluteUrl("/septic-record-finder/");
+        String title = "Septic Records Finder by Address | County Permit and File Route | SepticPath";
+        String description = "Enter a U.S. property address to identify its county and open the best available septic permit, records, as-built, or file-request route.";
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Records Finder by Address", canonicalUrl)
+                ),
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "WebApplication")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Septic Records Finder by Address", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         if ("TX::tarrant-county".equals(countyPage.key())) {
             return "Tarrant County Septic Records & OSSF Permit Lookup | Official File Path | SepticPath";
@@ -575,7 +598,8 @@ public class SeoService {
                 "/coverage/",
                 "/privacy-policy/",
                 "/terms-of-use/",
-                "/contact/"
+                "/contact/",
+                "/septic-record-finder/"
         );
     }
 

@@ -23,9 +23,14 @@
                 <p class="lede">Start with the permit copy, as-built, inspection letter, or county records path that can change a buyer decision, repair scope, or planning range.</p>
                 <div class="hero-quick-actions" aria-label="Most common septic record actions">
                     <a class="button button--primary"
+                       href="/septic-record-finder/"
+                       data-track-click="nav"
+                       data-track-source-context="home_hero_address_record_finder"
+                       data-track-target-type="internal_page">Find records by address</a>
+                    <a class="button button--secondary"
                        href="/septic-records-by-county/"
                        data-track-click="nav"
-                       data-track-source-context="home_hero_primary_records"
+                       data-track-source-context="home_hero_county_records"
                        data-track-target-type="internal_page">Search records by county</a>
                     <a class="button button--secondary"
                        href="/septic-records-checklist/tennessee/"
@@ -47,19 +52,14 @@
                        data-track-click="nav"
                        data-track-source-context="home_hero_indiana"
                        data-track-target-type="state_money_page">Indiana records</a>
-                    <a class="button button--secondary"
-                       href="/septic-permit-search-by-address/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_address_search"
-                       data-track-target-type="internal_page">Search by address</a>
                 </div>
                 <p class="hero-router-intro">Use the fastest lane first. If the county file is still unclear, then move into permit process, transfer compliance, or cost planning.</p>
                 <div class="hero-decision-grid hero-decision-grid--compact">
                     <article class="hero-decision-card hero-decision-card--accent">
                         <span class="hero-decision-card__label">File first</span>
-                        <h3>I know the county and need the actual septic record path</h3>
-                        <p>Start here when the permit copy, as-built, final approval, repair file, or inspection letter matters more than a broad state explainer.</p>
-                        <a class="button button--primary" href="/septic-records-by-county/">Open county records</a>
+                        <h3>I have an address and need the actual septic record path</h3>
+                        <p>Resolve the county first, then open the verified permit, as-built, final approval, repair-file, or inspection-letter route.</p>
+                        <a class="button button--primary" href="/septic-record-finder/">Find the county route</a>
                     </article>
 
                     <article class="hero-decision-card">
@@ -247,9 +247,9 @@
 
             <article class="feature-card">
                 <span class="pill">Address search</span>
-                <h3>Permit search by address</h3>
-                <p>Use this when an address search needs parcel, owner, legal-description, or county portal tactics before the record is treated as missing.</p>
-                <a href="/septic-permit-search-by-address/">Search by address</a>
+                <h3>Septic records finder by address</h3>
+                <p>Paste a property address to resolve the county and open the best available permit, records, as-built, or official-file route.</p>
+                <a href="/septic-record-finder/">Find record route</a>
             </article>
 
             <article class="feature-card">
