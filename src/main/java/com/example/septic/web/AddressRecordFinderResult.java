@@ -1,5 +1,7 @@
 package com.example.septic.web;
 
+import java.util.List;
+
 public record AddressRecordFinderResult(
         String status,
         String heading,
@@ -10,6 +12,8 @@ public record AddressRecordFinderResult(
         String matchedAddress,
         String routeTitle,
         String routePath,
-        String officialRouteUrl
+        String officialRouteUrl,
+        List<AddressRecordFinderAction> relayActions,
+        List<String> relaySteps
 ) {
 }

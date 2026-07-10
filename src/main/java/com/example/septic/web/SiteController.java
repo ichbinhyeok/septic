@@ -81,6 +81,12 @@ public class SiteController {
     private static final String TX_OSSF_RECORDS_SLUG = "texas-ossf-records-search";
     private static final String FL_OSTDS_LOOKUP_SLUG = "florida-ostds-permit-lookup";
     private static final String DHEC_PERMIT_LOOKUP_SLUG = "dhec-septic-permit-lookup";
+    private static final String TENNESSEE_PROPERTY_ASSESSMENT_URL = "https://assessment.cot.tn.gov/TPAD";
+    private static final String TENNESSEE_SSDS_SEARCH_URL = "https://tdec.tn.gov/filenetsearch";
+    private static final String TENNESSEE_ONLINE_SERVICE_URL = "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
+    private static final Set<String> TENNESSEE_CONTRACT_COUNTIES = Set.of(
+            "blount", "davidson", "hamilton", "jefferson", "knox", "madison", "sevier", "shelby", "williamson"
+    );
     private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
             PERMIT_LOOKUP_SLUG,
             RECORDS_ONLINE_SLUG,
@@ -459,7 +465,7 @@ public class SiteController {
                     "invalid",
                     "Enter a full U.S. property address",
                     "Include street, city, state, and ZIP so the county can be resolved reliably.",
-                    "", "", "", "", "", "", ""
+                    "", "", "", "", "", "", "", List.of(), List.of()
             ));
         }
 
@@ -469,7 +475,7 @@ public class SiteController {
                     "not_found",
                     "We could not resolve that county",
                     "Check the street number, city, state, and ZIP. You can still search the county route manually.",
-                    "", "", "", "", "County records by county", "/septic-records-by-county/", ""
+                    "", "", "", "", "County records by county", "/septic-records-by-county/", "", List.of(), List.of()
             ));
         }
         if (lookup.status() == CensusAddressLookupService.CensusAddressLookupResult.Status.UNAVAILABLE) {
@@ -477,7 +483,7 @@ public class SiteController {
                     "unavailable",
                     "County lookup is temporarily unavailable",
                     "Use the county finder while the address resolver reconnects. No address was saved.",
-                    "", "", "", "", "Search county records", "/septic-records-by-county/", ""
+                    "", "", "", "", "Search county records", "/septic-records-by-county/", "", List.of(), List.of()
             ));
         }
 
@@ -3524,7 +3530,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "We found " + lookup.countyName() + " County, but its records route is not published yet",
                     "Open the national county finder and carry the same address into the local health or permitting office.",
                     lookup.stateCode(), "", lookup.countyName(), lookup.matchedAddress(),
-                    "Search county records", "/septic-records-by-county/", ""
+                    "Search county records", "/septic-records-by-county/", "", List.of(), List.of()
             );
         }
 
@@ -3533,12 +3539,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .findFirst();
         if (countyPage.isPresent()) {
             CountyRecordsPage page = countyPage.get();
+            if ("TN".equals(state.get().stateCode())) {
+                return tennesseeRecordRelay(lookup, state.get(), page);
+            }
             return new AddressRecordFinderResult(
                     "county_route",
                     page.countyName() + ", " + state.get().stateName() + " records route",
                     "This is the verified county route for the permit file, records request, parcel clue, or official office handoff.",
                     state.get().stateCode(), state.get().stateName(), page.countyName(), lookup.matchedAddress(),
-                    "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl()
+                    "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl(), List.of(), List.of()
             );
         }
 
@@ -3551,7 +3560,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                     lookup.countyName() + " County, " + state.get().stateName() + " records route",
                     "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
                     state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
-                    "Open " + state.get().stateName() + " records", page.path(state.get().slug()), ""
+                    "Open " + state.get().stateName() + " records", page.path(state.get().slug()), "", List.of(), List.of()
             );
         }
 
@@ -3560,7 +3569,49 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "We found " + lookup.countyName() + " County, " + state.get().stateName(),
                 "Use the county finder to choose the best available public records path for this address.",
                 state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
-                "Search county records", "/septic-records-by-county/", ""
+                "Search county records", "/septic-records-by-county/", "", List.of(), List.of()
+        );
+    }
+
+    private AddressRecordFinderResult tennesseeRecordRelay(
+            CensusAddressLookupService.CensusAddressLookupResult lookup,
+            StateProfile state,
+            CountyRecordsPage countyPage
+    ) {
+        String countyKey = normalizeCountyFinderText(countyPage.countyName()).replace(" county", "");
+        boolean contractCounty = TENNESSEE_CONTRACT_COUNTIES.contains(countyKey);
+        List<AddressRecordFinderAction> actions = new ArrayList<>();
+        actions.add(new AddressRecordFinderAction(
+                "Open " + countyPage.countyName() + " records", countyPage.path(state.slug()), "county_records_page", false, true
+        ));
+        actions.add(new AddressRecordFinderAction(
+                "Find parcel or prior owner", TENNESSEE_PROPERTY_ASSESSMENT_URL, "official_property_lookup", true, false
+        ));
+        actions.add(new AddressRecordFinderAction(
+                "Search TDEC SSDS records", TENNESSEE_SSDS_SEARCH_URL, "official_source", true, false
+        ));
+        if (!contractCounty) {
+            actions.add(new AddressRecordFinderAction(
+                    "Request inspection letter", TENNESSEE_ONLINE_SERVICE_URL, "official_request", true, false
+            ));
+        }
+
+        String serviceNote = contractCounty
+                ? "This is one of Tennessee's contract or metropolitan counties, so open the county route first before relying on the state online-service lane."
+                : "For a sale, mortgage, or buyer diligence file, the Tennessee online service includes the inspection-letter route."
+                ;
+        return new AddressRecordFinderResult(
+                "county_route",
+                countyPage.countyName() + ", Tennessee public records relay",
+                "Start with the local route, then carry the parcel ID and owner clues into the state record search. " + serviceNote,
+                state.stateCode(), state.stateName(), countyPage.countyName(), lookup.matchedAddress(),
+                "Open " + countyPage.countyName() + " records", countyPage.path(state.slug()), countyPage.recordsUrl(),
+                actions,
+                List.of(
+                        "Use Tennessee Property Assessment Data to collect the parcel ID and current or prior owner when available.",
+                        "Search the official SSDS file route with the address, parcel ID, subdivision, and owner clues.",
+                        "Pull the permit, layout, final approval, repair history, or written no-record response before pricing or closing."
+                )
         );
     }
 

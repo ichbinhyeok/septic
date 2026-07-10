@@ -700,6 +700,7 @@
             const heading = finder.querySelector("[data-address-record-finder-heading]");
             const message = finder.querySelector("[data-address-record-finder-message]");
             const meta = finder.querySelector("[data-address-record-finder-meta]");
+            const steps = finder.querySelector("[data-address-record-finder-steps]");
             const actions = finder.querySelector("[data-address-record-finder-actions]");
             const apiPath = finder.dataset.addressRecordFinderApi;
 
@@ -742,13 +743,34 @@
                     }));
                     meta.hidden = values.length === 0;
                 }
+                if (steps) {
+                    const relaySteps = Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
+                    steps.replaceChildren(...relaySteps.map((value) => {
+                        const item = document.createElement("li");
+                        item.textContent = value;
+                        return item;
+                    }));
+                    steps.hidden = relaySteps.length === 0;
+                }
                 if (actions) {
                     const nextActions = [];
-                    if (payload.routePath) {
+                    const relayActions = Array.isArray(payload.relayActions) ? payload.relayActions : [];
+                    relayActions.forEach((action) => {
+                        if (!action || !action.path) {
+                            return;
+                        }
+                        const link = button(action.label || "Open records route", action.path, Boolean(action.primary), action.targetType || "internal_page");
+                        if (action.external) {
+                            link.target = "_blank";
+                            link.rel = "noreferrer";
+                        }
+                        nextActions.push(link);
+                    });
+                    if (!nextActions.length && payload.routePath) {
                         nextActions.push(button(payload.routeTitle || "Open records route", payload.routePath, true,
                             payload.status === "county_route" ? "county_records_page" : "internal_page"));
                     }
-                    if (payload.officialRouteUrl) {
+                    if (!relayActions.length && payload.officialRouteUrl) {
                         const official = button("Open official file route", payload.officialRouteUrl, false, "official_source");
                         official.target = "_blank";
                         official.rel = "noreferrer";

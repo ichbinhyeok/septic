@@ -68,13 +68,13 @@
                 @if (secondaryActionPath != null || contentQuotePath != null || !featuredStateMoneyPageLinks.isEmpty() || !featuredInternalLinks.isEmpty() || !featuredPermitLookupCountyLinks.isEmpty() || !contentOfficialFilePathRows.isEmpty())
                     <div class="hero-command-board" aria-label="Fast search intent routes">
                         <a class="hero-command hero-command--primary"
-                           href="${("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath}"
+                           href="${"septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath)}"
                            data-track-click="nav"
                            data-track-source-context="content_page_hero_command_primary"
-                           data-track-target-type="${calculatorCtaTargetType}">
+                           data-track-target-type="${"septic-permit-search-by-address".equals(contentPage.slug()) ? "internal_section" : calculatorCtaTargetType}">
                             <span>Start here</span>
-                            <strong>${calculatorCtaLabel}</strong>
-                            <small>${calculatorCtaHeading}</small>
+                            <strong>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel}</strong>
+                            <small>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading}</small>
                         </a>
                         @if (secondaryActionPath != null)
                             <a class="hero-command"
@@ -689,6 +689,21 @@
                         </aside>
                     </div>
                 </div>
+            </div>
+        </section>
+    @endif
+
+    @if ("septic-permit-search-by-address".equals(contentPage.slug()))
+        <section class="section section--tight" id="address-record-finder" aria-label="Address-to-record route finder">
+            <div class="container">
+                @template.tags.addressRecordFinder(
+                    finderId = "permit-search-by-address",
+                    eyebrow = "Address-to-record relay",
+                    heading = "Turn one address into the right public-record route.",
+                    intro = "Resolve the county first. Tennessee addresses also open the parcel, TDEC SSDS, and inspection-letter relay without storing the address.",
+                    totalCountyRouteCount = totalCountyRouteCount,
+                    compact = true
+                )
             </div>
         </section>
     @endif

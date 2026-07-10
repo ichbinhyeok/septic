@@ -3589,6 +3589,14 @@ h4 {
     line-height: 0.98;
 }
 
+.record-finder__intro h2 {
+    max-width: 13ch;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.2rem, 4vw, 4.4rem);
+    line-height: 0.98;
+}
+
 .record-finder__intro p {
     max-width: 47ch;
     margin: 0;
@@ -3614,6 +3622,30 @@ h4 {
     font-family: "Manrope", sans-serif;
     font-size: 0.78rem;
     font-weight: 800;
+}
+
+.record-finder__relay-steps {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text);
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.record-finder__relay-steps::marker {
+    color: var(--accent-strong);
+    font-weight: 900;
+}
+
+.record-finder--embedded {
+    margin-top: 20px;
+}
+
+.record-finder--embedded .record-finder__intro h2 {
+    max-width: 18ch;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
 }
 
 .record-finder__signals span {
