@@ -8,6 +8,7 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
+import com.example.septic.service.OpsReportCredentialsService;
 import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.web.EstimateForm;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
@@ -36,9 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(properties = {
 		"app.storage.root=./build/test-storage",
-		"app.site.base-url=https://example.test",
-		"app.ops.report-username=test-ops",
-		"app.ops.report-password=test-password"
+		"app.site.base-url=https://example.test"
 })
 @AutoConfigureMockMvc
 class SepticApplicationTests {
@@ -55,6 +55,9 @@ class SepticApplicationTests {
 
 	@Autowired
 	private ResearchDataService researchDataService;
+
+	@Autowired
+	private OpsReportCredentialsService opsReportCredentialsService;
 
 	@BeforeEach
 	void resetTestStorage() throws IOException {
@@ -5546,7 +5549,7 @@ class SepticApplicationTests {
 				.andExpect(header().string("WWW-Authenticate", org.hamcrest.Matchers.containsString("Basic")));
 
 		mockMvc.perform(get("/ops/event-report/")
-						.header("Authorization", "Basic dGVzdC1vcHM6dGVzdC1wYXNzd29yZA=="))
+						.header("Authorization", opsReportAuthorization()))
 				.andExpect(status().isOk())
 				.andExpect(header().string("X-Robots-Tag", "noindex, nofollow, noarchive"))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Behavior signals, not vanity totals.")))
@@ -5563,9 +5566,15 @@ class SepticApplicationTests {
 		Files.write(malformedEventFile, new byte[] {(byte) 0xC3, (byte) 0x28});
 
 		mockMvc.perform(get("/ops/event-report/")
-						.header("Authorization", "Basic dGVzdC1vcHM6dGVzdC1wYXNzd29yZA=="))
+						.header("Authorization", opsReportAuthorization()))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Some event files could not be read.")));
+	}
+
+	private String opsReportAuthorization() {
+		OpsReportCredentialsService.OpsReportCredentials credentials = opsReportCredentialsService.credentials();
+		String value = credentials.username() + ":" + credentials.password();
+		return "Basic " + Base64.getEncoder().encodeToString(value.getBytes(java.nio.charset.StandardCharsets.UTF_8));
 	}
 
 	@Test

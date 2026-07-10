@@ -41,6 +41,7 @@ output/
 storage/leads/**
 storage/events/**/*.ndjson
 storage/exports/**
+storage/ops-report-credentials.properties
 !storage/leads/README.md
 !storage/events/README.md
 .gstack/

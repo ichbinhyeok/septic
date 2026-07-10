@@ -34,6 +34,7 @@ import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
@@ -462,7 +463,9 @@ public class SiteController {
     }
 
     @GetMapping({"/ops/event-report", "/ops/event-report/"})
-    public String eventReport(Model model) {
+    public String eventReport(Model model, HttpServletResponse response) {
+        response.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+        response.setHeader("Cache-Control", "no-store");
         model.addAttribute("page", new PageMeta(
                 "SepticPath Event Report",
                 "Internal operations report for click and artifact behavior signals.",
