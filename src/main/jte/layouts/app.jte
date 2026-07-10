@@ -47,6 +47,7 @@
     @endfor
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="shell">
         <header class="site-header">
             <div class="container site-header__inner">
@@ -83,7 +84,7 @@
             </div>
         </header>
 
-        <main>
+        <main id="main-content">
             @if (page.breadcrumbs() != null && page.breadcrumbs().size() > 1)
                 <section class="section section--breadcrumb">
                     <div class="container">

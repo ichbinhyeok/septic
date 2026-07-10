@@ -49,7 +49,7 @@ public class SiteErrorController implements ErrorController {
                     "/{first:[^.]+}/{second:[^.]+}/{third:[^.]+}/{fourth:[^.]+}",
                     "/{first:[^.]+}/{second:[^.]+}/{third:[^.]+}/{fourth:[^.]+}/"
             },
-            method = {RequestMethod.GET, RequestMethod.HEAD}
+            method = RequestMethod.GET
     )
     public String handleMissingHtmlPath(HttpServletRequest request, HttpServletResponse response, Model model) {
         response.setStatus(HttpStatus.NOT_FOUND.value());

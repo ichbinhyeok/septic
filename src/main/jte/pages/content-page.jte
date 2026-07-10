@@ -1214,7 +1214,7 @@
                 <div class="section-heading">
                     <span class="eyebrow">County lookup launchpad</span>
                     <h2>Start with the county file when the search is already specific.</h2>
-                    <p>These are the high-opportunity county routes behind the permit lookup sprint. Use them when the user already has a county name, parcel story, or seller claim and needs the actual file path before reading another broad state guide.</p>
+                    <p>Use these county routes when you already have a county name, parcel detail, or seller claim and need the actual file path before reading another broad state guide.</p>
                 </div>
                 <div class="detail-grid">
                     @for (var link : featuredPermitLookupCountyLinks)
@@ -1534,12 +1534,8 @@
                 </ul>
                 @if (states.size() > 12)
                     <details class="county-link-overflow">
-                        <summary>Show more state guides</summary>
-                        <ul class="detail-list detail-list--compact detail-list--split">
-                            @for (var state : states)
-                                <li><a href="/septic-system-cost-calculator/${state.slug()}/" data-track-click="nav" data-track-source-context="content_page_state_guides_overflow" data-track-target-type="state_guide">${state.stateName()} septic guide</a></li>
-                            @endfor
-                        </ul>
+                        <summary>Browse all state guides</summary>
+                        <p><a href="/states/" data-track-click="nav" data-track-source-context="content_page_state_guides_directory" data-track-target-type="state_directory">Open the full state guide directory</a></p>
                     </details>
                 @endif
             </article>
@@ -1633,12 +1629,8 @@
                     </ul>
                     @if (stateMoneyPageLinks.size() > 12)
                         <details class="county-link-overflow">
-                            <summary>Show more state-specific workflow pages</summary>
-                            <ul class="detail-list">
-                                @for (var stateMoneyPageLink : stateMoneyPageLinks)
-                                    <li><a href="${stateMoneyPageLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific_overflow" data-track-target-type="state_money_page">${stateMoneyPageLink.title()}</a></li>
-                                @endfor
-                            </ul>
+                            <summary>Browse state-specific workflow pages</summary>
+                            <p><a href="/states/" data-track-click="nav" data-track-source-context="content_page_state_specific_directory" data-track-target-type="state_directory">Open the full state guide directory</a></p>
                         </details>
                     @endif
                 </article>

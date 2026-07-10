@@ -943,7 +943,7 @@
     @endif
 
     @if (state.whoToCallFirst() != null || (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty()) || (state.lowEndRiskChecks() != null && !state.lowEndRiskChecks().isEmpty()))
-        <section class="section section--tight" id="prep">
+        <section class="section section--tight" id="state-prep">
             <div class="container detail-grid">
                 @if (state.whoToCallFirst() != null)
                     <article class="detail-card">

@@ -684,11 +684,19 @@
                         <span>Records request</span>
                         <h3>Request the septic records, not just a price</h3>
                         <p>${countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank() ? countyPage.requestScriptBody() : countyPage.contactLine()}</p>
-                        <a class="button button--secondary"
-                           href="#county-action-playbook"
-                           data-track-click="nav"
-                           data-track-source-context="county_search_intent_records_request"
-                           data-track-target-type="page_anchor">Open request script</a>
+                        @if (countyPage.hasActionPlaybook())
+                            <a class="button button--secondary"
+                               href="#county-action-playbook"
+                               data-track-click="nav"
+                               data-track-source-context="county_search_intent_records_request"
+                               data-track-target-type="page_anchor">Open request script</a>
+                        @else
+                            <a class="button button--secondary"
+                               href="/septic-records-request-builder/"
+                               data-track-click="nav"
+                               data-track-source-context="county_search_intent_records_request_builder"
+                               data-track-target-type="internal_page">Build a request script</a>
+                        @endif
                         <a class="button button--secondary"
                            href="/septic-permit-records-request/"
                            data-track-click="nav"

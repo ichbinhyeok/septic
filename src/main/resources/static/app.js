@@ -447,7 +447,10 @@
         finders.forEach((finder) => {
             const input = finder.querySelector("[data-county-finder-input]");
             const clear = finder.querySelector("[data-county-finder-clear]");
-            const results = Array.from(finder.querySelectorAll("[data-county-finder-result]"));
+            let results = Array.from(finder.querySelectorAll("[data-county-finder-result]"));
+            const resultsContainer = finder.querySelector("[data-county-finder-results]");
+            const apiPath = finder.dataset.countyFinderApi;
+            const totalRoutes = Number(finder.dataset.countyFinderTotal || results.length);
             const count = finder.querySelector("[data-county-finder-count]");
             const empty = finder.querySelector("[data-county-finder-empty]");
             const methodFilter = finder.querySelector("[data-county-finder-method]");
@@ -507,13 +510,90 @@
                 return true;
             }
 
-            function updateResults() {
+            function renderRemoteResults(items) {
+                if (!resultsContainer) {
+                    return;
+                }
+                const nodes = items.map((item) => {
+                    const result = document.createElement("a");
+                    result.className = "county-finder__result";
+                    result.href = item.path;
+                    result.dataset.countyFinderResult = "";
+                    result.dataset.search = item.searchText;
+                    result.dataset.method = item.requestMethodLabel;
+                    result.dataset.artifact = item.firstArtifactLabel;
+                    result.dataset.confidenceScore = item.confidenceScore;
+                    result.dataset.parcelAnchor = item.parcelAnchorAvailable;
+                    result.dataset.shareUrl = item.absoluteUrl;
+                    result.dataset.shareQuery = `${item.countyName} ${item.stateCode} septic permit lookup`;
+                    result.dataset.trackClick = "nav";
+                    result.dataset.trackSourceContext = "county_finder_search";
+                    result.dataset.trackTargetType = "county_records_page";
+
+                    const top = document.createElement("div");
+                    top.className = "county-finder__result-top";
+                    const title = document.createElement("span");
+                    title.textContent = item.title;
+                    const score = document.createElement("strong");
+                    score.textContent = `${item.confidenceScore}%`;
+                    top.append(title, score);
+
+                    const meta = document.createElement("div");
+                    meta.className = "county-finder__result-meta";
+                    meta.setAttribute("aria-label", `${item.title} route metadata`);
+                    [item.confidenceLabel, item.requestMethodLabel, item.sourceDepthLabel]
+                        .concat(item.parcelAnchorAvailable ? ["Parcel anchor"] : [])
+                        .forEach((value) => {
+                            const badge = document.createElement("span");
+                            badge.textContent = value;
+                            meta.append(badge);
+                        });
+
+                    const firstPull = document.createElement("small");
+                    const firstPullLabel = document.createElement("strong");
+                    firstPullLabel.textContent = "First pull: ";
+                    firstPull.append(firstPullLabel, item.firstArtifactLabel);
+                    const note = document.createElement("small");
+                    note.textContent = item.note;
+                    result.append(top, meta, firstPull, note);
+                    return result;
+                });
+                resultsContainer.replaceChildren(...nodes);
+                results = nodes;
+            }
+
+            let searchRequest = 0;
+
+            async function updateResults() {
                 const query = normalize(input.value);
                 const selectedMethod = methodFilter instanceof HTMLSelectElement ? methodFilter.value : "";
                 const selectedArtifact = artifactFilter instanceof HTMLSelectElement ? artifactFilter.value : "";
                 const selectedConfidence = confidenceFilter instanceof HTMLSelectElement ? confidenceFilter.value : "";
                 const parcelOnly = parcelFilter instanceof HTMLInputElement && parcelFilter.checked;
-                const maxVisible = query ? 18 : 10;
+                let remoteMatchCount = null;
+
+                if (apiPath) {
+                    const requestId = ++searchRequest;
+                    const params = new URLSearchParams({
+                        q: input.value,
+                        method: selectedMethod,
+                        artifact: selectedArtifact,
+                        confidence: selectedConfidence,
+                        parcelOnly: String(parcelOnly)
+                    });
+                    try {
+                        const response = await fetch(`${apiPath}?${params.toString()}`, { headers: { Accept: "application/json" } });
+                        if (!response.ok || requestId !== searchRequest) {
+                            return;
+                        }
+                        renderRemoteResults(await response.json());
+                        remoteMatchCount = Number(response.headers.get("X-County-Finder-Match-Count"));
+                    } catch (_) {
+                        // The server-rendered priority routes remain usable if search enhancement is unavailable.
+                    }
+                }
+
+                const maxVisible = 18;
                 let matched = 0;
                 let shown = 0;
 
@@ -538,11 +618,14 @@
                 });
 
                 if (count) {
+                    const matchingCount = Number.isFinite(remoteMatchCount) ? remoteMatchCount : matched;
                     count.textContent = query
-                        ? `${matched} matching county route${matched === 1 ? "" : "s"}`
-                        : `${results.length} priority county routes indexed`;
+                        ? `${matchingCount} matching county route${matchingCount === 1 ? "" : "s"}`
+                        : `${selectedMethod || selectedArtifact || selectedConfidence || parcelOnly
+                            ? `${matchingCount} filtered county route${matchingCount === 1 ? "" : "s"}`
+                            : `${totalRoutes} county routes searchable`}`;
                     if (!query && (selectedMethod || selectedArtifact || selectedConfidence || parcelOnly)) {
-                        count.textContent = `${matched} filtered county route${matched === 1 ? "" : "s"}`;
+                        count.textContent = `${matchingCount} filtered county route${matchingCount === 1 ? "" : "s"}`;
                     }
                 }
                 if (empty) {

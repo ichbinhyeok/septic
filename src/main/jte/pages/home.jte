@@ -129,7 +129,7 @@
         <div class="container">
             <div class="section-heading">
                 <span class="eyebrow">2-week search response routes</span>
-                <h2>Push the queries already close enough to win clicks.</h2>
+                <h2>Start with the records paths most useful for homeowners.</h2>
                 <p class="lede">These routes match searches already showing impressions or index gaps: TDEC records, DHEC/SCDES lookup, Tarrant County records, and septic permit lookup.</p>
             </div>
 

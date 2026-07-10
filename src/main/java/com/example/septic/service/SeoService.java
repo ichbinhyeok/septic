@@ -12,6 +12,8 @@ import com.example.septic.web.PageLink;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -605,8 +607,8 @@ public class SeoService {
 
     private PageMeta pageMeta(String title, String description, String canonicalUrl, String robots, List<PageLink> breadcrumbs, List<String> jsonLdBlocks) {
         return new PageMeta(
-                title,
-                description,
+                compactSeoTitle(title),
+                compactSeoDescription(description),
                 canonicalUrl,
                 robots,
                 absoluteUrl("/social-card.svg"),
@@ -650,9 +652,9 @@ public class SeoService {
         payload.put("@context", "https://schema.org");
         payload.put("@type", type);
         payload.put("@id", url + "#webpage");
-        payload.put("name", name);
+        payload.put("name", compactSeoTitle(name));
         payload.put("url", url);
-        payload.put("description", description);
+        payload.put("description", compactSeoDescription(description));
         payload.put("inLanguage", "en-US");
         Map<String, Object> webSiteReference = new LinkedHashMap<>();
         webSiteReference.put("@type", "WebSite");
@@ -673,7 +675,7 @@ public class SeoService {
         payload.put("author", editorialContributorReference(preparedBy));
         payload.put("editor", editorialContributorReference(reviewedBy));
         payload.put("publisher", editorialOrganizationReference());
-        if (lastReviewedAt != null && !lastReviewedAt.isBlank()) {
+        if (isIsoDate(lastReviewedAt)) {
             payload.put("dateModified", lastReviewedAt);
         }
         return payload;
@@ -750,6 +752,44 @@ public class SeoService {
 
     private boolean hasText(String value) {
         return value != null && !value.isBlank();
+    }
+
+    private String compactSeoTitle(String value) {
+        final String brandSuffix = " | SepticPath";
+        final int maxLength = 68;
+        if (value == null || value.length() <= maxLength) {
+            return value;
+        }
+        if (value.endsWith(brandSuffix)) {
+            int available = maxLength - brandSuffix.length() - 3;
+            return trimAtWordBoundary(value.substring(0, Math.max(available, 1))) + "..." + brandSuffix;
+        }
+        return trimAtWordBoundary(value.substring(0, maxLength - 3)) + "...";
+    }
+
+    private String compactSeoDescription(String value) {
+        final int maxLength = 160;
+        if (value == null || value.length() <= maxLength) {
+            return value;
+        }
+        return trimAtWordBoundary(value.substring(0, maxLength - 3)) + "...";
+    }
+
+    private String trimAtWordBoundary(String value) {
+        int boundary = value.lastIndexOf(' ');
+        return boundary > value.length() / 2 ? value.substring(0, boundary).trim() : value.trim();
+    }
+
+    private boolean isIsoDate(String value) {
+        if (value == null || value.isBlank()) {
+            return false;
+        }
+        try {
+            LocalDate.parse(value);
+            return true;
+        } catch (DateTimeParseException exception) {
+            return false;
+        }
     }
 
     private String stateGuideSeoTitle(StateProfile state) {

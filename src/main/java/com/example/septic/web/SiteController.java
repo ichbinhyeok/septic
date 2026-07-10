@@ -33,6 +33,8 @@ import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -2439,6 +2441,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String primaryActionPathForContentPage(ContentPage contentPage, String sourcePage) {
+        if (RECORDS_REQUEST_BUILDER_SLUG.equals(contentPage.slug())) {
+            return "#records-request-builder";
+        }
         if (shouldLeadWithStateWorkflow(contentPage)) {
             return "#state-pages";
         }
@@ -2591,6 +2596,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String contentActionTargetType(ContentPage contentPage) {
+        if (RECORDS_REQUEST_BUILDER_SLUG.equals(contentPage.slug())) {
+            return "internal_section";
+        }
         if (shouldLeadWithStateWorkflow(contentPage)) {
             return "state_money_page_directory";
         }
@@ -2999,9 +3007,21 @@ The goal is to settle the permit path before we frame the project as a normal in
     private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {
         return sources.stream()
                 .map(SourceRecord::lastVerifiedAt)
-                .filter(value -> value != null && !value.isBlank())
+                .filter(this::isIsoDate)
                 .max(String::compareTo)
-                .orElse(fallback == null ? "" : fallback);
+                .orElseGet(() -> isIsoDate(fallback) ? fallback : "");
+    }
+
+    private boolean isIsoDate(String value) {
+        if (value == null || value.isBlank()) {
+            return false;
+        }
+        try {
+            LocalDate.parse(value);
+            return true;
+        } catch (DateTimeParseException exception) {
+            return false;
+        }
     }
 
     private StateActionCopy stateActionCopy(StateProfile state) {
@@ -3415,7 +3435,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<CountyFinderLinkView> countyFinderLinks() {
-        return countyFinderLinks(48);
+        return countyFinderLinks(totalCountyRouteCount());
     }
 
     private List<CountyFinderLinkView> countyFinderLinks(int limit) {
@@ -3434,6 +3454,67 @@ The goal is to settle the permit path before we frame the project as a normal in
                     .ifPresent(links::add);
         }
         return links;
+    }
+
+    @GetMapping("/api/county-finder")
+    @ResponseBody
+    public ResponseEntity<List<CountyFinderLinkView>> countyFinderSearch(
+            @RequestParam(name = "q", defaultValue = "") String query,
+            @RequestParam(name = "method", defaultValue = "") String method,
+            @RequestParam(name = "artifact", defaultValue = "") String artifact,
+            @RequestParam(name = "confidence", defaultValue = "") String confidence,
+            @RequestParam(name = "parcelOnly", defaultValue = "false") boolean parcelOnly
+    ) {
+        List<CountyFinderLinkView> matches = countyFinderLinks(totalCountyRouteCount()).stream()
+                .filter(link -> countyFinderMatches(link, query, method, artifact, confidence, parcelOnly))
+                .toList();
+        return ResponseEntity.ok()
+                .header("X-County-Finder-Match-Count", Integer.toString(matches.size()))
+                .body(matches.stream().limit(18).toList());
+    }
+
+    private boolean countyFinderMatches(
+            CountyFinderLinkView link,
+            String query,
+            String method,
+            String artifact,
+            String confidence,
+            boolean parcelOnly
+    ) {
+        String normalizedQuery = normalizeCountyFinderText(query);
+        String normalizedMethod = normalizeCountyFinderText(method);
+        String normalizedArtifact = normalizeCountyFinderText(artifact);
+        String normalizedRequestMethod = normalizeCountyFinderText(link.requestMethodLabel());
+        String normalizedFirstArtifact = normalizeCountyFinderText(link.firstArtifactLabel());
+
+        boolean matchesQuery = normalizedQuery.isBlank() || normalizeCountyFinderText(link.searchText()).contains(normalizedQuery);
+        boolean matchesMethod = switch (normalizedMethod) {
+            case "online" -> normalizedRequestMethod.matches(".*\\b(online|portal|search|lookup|gis)\\b.*");
+            case "request" -> normalizedRequestMethod.matches(".*\\b(request|form|email|written|copy)\\b.*");
+            case "office" -> normalizedRequestMethod.matches(".*\\b(office|phone|contact|department|county)\\b.*");
+            default -> true;
+        };
+        boolean matchesArtifact = switch (normalizedArtifact) {
+            case "as built" -> normalizedFirstArtifact.contains("as built")
+                    || normalizedFirstArtifact.contains("layout")
+                    || normalizedFirstArtifact.contains("site sketch");
+            case "no record" -> normalizedFirstArtifact.contains("no record")
+                    || normalizedFirstArtifact.contains("missing")
+                    || normalizedFirstArtifact.contains("written response");
+            case "" -> true;
+            default -> normalizedFirstArtifact.contains(normalizedArtifact);
+        };
+        boolean matchesConfidence = switch (confidence) {
+            case "high" -> link.confidenceScore() >= 82;
+            case "solid" -> link.confidenceScore() >= 70;
+            default -> true;
+        };
+        return matchesQuery && matchesMethod && matchesArtifact && matchesConfidence
+                && (!parcelOnly || link.parcelAnchorAvailable());
+    }
+
+    private String normalizeCountyFinderText(String value) {
+        return value == null ? "" : value.toLowerCase(Locale.US).replaceAll("[^a-z0-9]+", " ").trim();
     }
 
     private int totalCountyRouteCount() {

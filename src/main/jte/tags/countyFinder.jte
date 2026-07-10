@@ -10,7 +10,7 @@
 @if (!countyFinderLinks.isEmpty())
     <section class="section section--tight county-finder-section">
         <div class="container">
-            <div class="county-finder" data-county-finder>
+            <div class="county-finder" data-county-finder data-county-finder-api="/api/county-finder" data-county-finder-total="${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}">
                 <div class="county-finder__intro">
                     <span class="eyebrow">${eyebrow}</span>
                     <h2>${heading}</h2>
@@ -18,7 +18,7 @@
                     <div class="county-finder__stats" aria-label="County finder coverage">
                         <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> live county pages</span>
                         <span><strong>${countyFinderLinks.stream().filter(link -> link.confidenceScore() >= 82).count()}</strong> high-confidence routes</span>
-                        <span>${countyFinderLinks.size()} priority routes loaded</span>
+                        <span>${countyFinderLinks.size()} searchable routes loaded</span>
                         <span>${countyFinderLinks.stream().filter(CountyFinderLinkView::parcelAnchorAvailable).count()} parcel anchors</span>
                         <span>Permit lookup</span>
                         <span>Records request</span>
@@ -63,7 +63,7 @@
 
                 <div class="county-finder__panel">
                     <div class="county-finder__priority" aria-label="Priority county routes">
-                        <span>Push first</span>
+                        <span>Popular routes</span>
                         <div>
                             @for (var link : countyFinderLinks.stream().limit(12).toList())
                                 <a href="${link.path()}"
@@ -86,7 +86,7 @@
                                 data-county-finder-clear>Clear</button>
                     </div>
                     <div class="county-finder__status" aria-live="polite">
-                        <strong data-county-finder-count>${countyFinderLinks.size()} priority county routes indexed</strong>
+                        <strong data-county-finder-count>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()} county routes searchable</strong>
                         <span>Showing the strongest matches first.</span>
                     </div>
                     <div class="county-finder__results" data-county-finder-results>
