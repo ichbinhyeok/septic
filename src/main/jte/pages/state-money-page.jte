@@ -453,7 +453,7 @@
             @endif
 
             @if (stateRecordsSearchResponse != null)
-                <section class="state-records-response" aria-label="${state.stateName()} records search-response console">
+                <section class="state-records-response" aria-label="${state.stateName()} records lookup guide">
                     <div class="state-records-response__head">
                         <div>
                             <span class="eyebrow">${stateRecordsSearchResponse.badgeLabel()}</span>

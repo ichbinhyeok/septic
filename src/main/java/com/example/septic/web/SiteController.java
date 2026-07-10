@@ -1410,21 +1410,17 @@ The goal is to settle the permit path before we frame the project as a normal in
         String combinedText = countyCombinedText(countyPage);
         String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
         String responseTier = boost >= 116
-                ? "Tier 1 search-response county"
+                ? "Priority county route"
                 : boost >= 100
-                        ? "Tier 2 search-response county"
-                        : "Watchlist search-response county";
-        String priorityLabel = boost >= 116
-                ? "Clicks already showing"
-                : boost >= 100
-                        ? "Position and query fit showing"
-                        : "Early impression pattern showing";
-        String heading = countyPage.countyName() + " search-response dossier";
-        String summary = "This county is being treated as a live response target because the search pattern is already around county septic records, permit lookup, inspection records, parcel search, or the first official file to pull.";
+                        ? "Established county route"
+                        : "County route guide";
+        String priorityLabel = "Official records route";
+        String heading = countyPage.countyName() + " records and permit guide";
+        String summary = "Use this county route to find the office, official lookup, first file, and fallback needed for septic records, permit questions, inspections, or a parcel-specific request.";
         List<CountyWorkflowFieldView> dossierRows = List.of(
                 new CountyWorkflowFieldView(
-                        "SERP job",
-                        "Answer " + firstQuery + " with the county office, the official route, and the first artifact before sending the user into a broad state page."
+                        "Start here",
+                        "For " + firstQuery + ", start with the county office, official route, and first artifact before opening a broad state guide."
                 ),
                 new CountyWorkflowFieldView(
                         "First artifact",
@@ -1435,7 +1431,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         requestMethod + ". The page should make the official record path, request wording, and fallback office visible without another search."
                 ),
                 new CountyWorkflowFieldView(
-                        "Do not lose this click",
+                        "When the lookup stalls",
                         countyPage.hasParcelAnchor()
                                 ? "Lead with the parcel or TMS anchor, then move into the septic file request so address-only searchers do not bounce."
                                 : "Lead with the county record path and ask for the parcel identifier, permit copy, as-built, final approval, inspection letter, or written no-record response."
@@ -5488,12 +5484,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
 
         return new StateRecordsSearchResponseView(
-                hasStateRecordsSearchResponseTarget(state)
-                        ? "Live search-response build"
-                        : "State records response",
+                "Official records route",
                 stateRecordsPriorityLabel(state.stateCode()),
-                state.stateName() + " records search-response console",
-                "This panel turns high-intent records searches into a specific task: pick the right office, pull the first file, and jump to a county route when the search already names one.",
+                state.stateName() + " records lookup guide",
+                "Use this guide to pick the right office, pull the first file, and jump to a county route when the property location is already known.",
                 queryExamples,
                 responseRows,
                 countyLinks,

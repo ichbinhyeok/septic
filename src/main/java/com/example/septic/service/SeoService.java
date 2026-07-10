@@ -833,10 +833,10 @@ public class SeoService {
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
-                case "TN" -> "Tennessee Septic Records Lookup | TDEC Permit Search, County Files, and Address Route | SepticPath";
-                case "NC" -> "North Carolina Septic Permit Lookup | County Environmental Health Records and Address Search | SepticPath";
-                case "IN" -> "Indiana Septic Records Lookup | County Permit Search, As-Builts, and File Path | SepticPath";
-                case "SC" -> "South Carolina Septic Records Lookup | SCDES, DHEC Search, D-1740, and County Files | SepticPath";
+                case "TN" -> "TDEC Septic Records Search & Tennessee Permit Lookup | SepticPath";
+                case "NC" -> "North Carolina Septic Permit Lookup & County Records | SepticPath";
+                case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
+                case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
                 case "TX" -> "Texas OSSF Records Search | Septic Permit Lookup, County Files, and Address Route | SepticPath";
                 case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
                 default -> stateMoneyPage.title() + " | SepticPath";
@@ -863,10 +863,10 @@ public class SeoService {
             return stateMoneyPage.metaDescription();
         }
         return switch (state.stateCode()) {
-            case "TN" -> "Find Tennessee septic records through TDEC SSDS search, county files, permit copies, inspection letters, repair-permit trail, address lookup, and no-record fallback.";
-            case "NC" -> "Find North Carolina septic permit records through county environmental health, improvement permits, construction authorizations, operations permits, address search, and records request wording.";
-            case "IN" -> "Find Indiana septic records through county health permit files, as-builts, soil reports, sewer-availability checks, address search, and no-record fallback.";
-            case "SC" -> "Find South Carolina septic records through SCDES, DHEC-style searches, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
+            case "TN" -> "Search TDEC septic records, SSDS permits, county files, permit copies, inspection letters, and the right no-record fallback for a Tennessee property.";
+            case "NC" -> "Find North Carolina septic permit records through county environmental health, address or parcel search, permit copies, as-builts, and request wording.";
+            case "IN" -> "Find Indiana septic records through county permit search, local health files, as-builts, soil reports, and the right next office when a record is missing.";
+            case "SC" -> "Find South Carolina septic records through SCDES permit lookup, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
             case "TX" -> "Find Texas OSSF records through county or authorized-agent routes, permit lookup, approved plans, address or parcel search, ETJ checks, and records request wording.";
             case "AL" -> "Find Alabama septic permit records through county health departments, perc or soil files, Permit to Install, Approval for Use, address search, and records request wording.";
             default -> stateMoneyPage.metaDescription();
