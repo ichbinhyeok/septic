@@ -6190,6 +6190,24 @@ The goal is to settle the permit path before we frame the project as a normal in
     ) {
         String calculatorPath = stateMoneyCalculatorPath(stateMoneyPage, state);
 
+        if ("TN".equals(state.stateCode())
+                && "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                && primaryRecordsLookupSource != null) {
+            return new StateMoneyPrimaryAction(
+                    "Search the official Tennessee records route first",
+                    sourceActionHeading(stateMoneyPage, state, primaryRecordsLookupSource),
+                    countyAwareNote(
+                            "Start with the TDEC SSDS route for a Tennessee-wide search, then use the county cards below when the property county is already known or the state route needs a local handoff.",
+                            countyWorkflowSynthesis
+                    ),
+                    "Open Tennessee official records source",
+                    primaryRecordsLookupSource.url(),
+                    "state_money_primary_tennessee_records_source",
+                    "official_source",
+                    false
+            );
+        }
+
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
             return new StateMoneyPrimaryAction(
                     "Narrow to the county file lookup",

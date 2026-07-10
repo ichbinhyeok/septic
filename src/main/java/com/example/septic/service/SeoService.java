@@ -881,7 +881,7 @@ public class SeoService {
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
-                case "TN" -> "TDEC Septic Records Search & Tennessee Permit Lookup | SepticPath";
+                case "TN" -> "Tennessee Septic Records | TDEC Lookup by Address | SepticPath";
                 case "NC" -> "North Carolina Septic Permit Lookup & County Records | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
@@ -911,7 +911,7 @@ public class SeoService {
             return stateMoneyPage.metaDescription();
         }
         return switch (state.stateCode()) {
-            case "TN" -> "Search TDEC septic records, SSDS permits, county files, permit copies, inspection letters, and the right no-record fallback for a Tennessee property.";
+            case "TN" -> "Search Tennessee septic records by address, permit number, or county. Use TDEC SSDS and contract-county routes to find permit copies and inspection letters.";
             case "NC" -> "Find North Carolina septic permit records through county environmental health, address or parcel search, permit copies, as-builts, and request wording.";
             case "IN" -> "Find Indiana septic records through county permit search, local health files, as-builts, soil reports, and the right next office when a record is missing.";
             case "SC" -> "Find South Carolina septic records through SCDES permit lookup, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
@@ -952,7 +952,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "How Much Is a Perc Test in Alabama? Septic Permit Cost and Records";
+            case "AL" -> "Alabama Perc Test Cost: Quote Scope and Permit Steps";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -1008,7 +1008,7 @@ public class SeoService {
             case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "Alabama perc test cost guide with a quote-scope checker for soil testing, plot plans, county Permit to Install steps, Approval for Use records, and ADPH routing.";
+            case "AL" -> "How much is a perc test in Alabama? Build a county-usable quote scope for soil testing, plot plans, permit steps, and site work before you pay.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";
