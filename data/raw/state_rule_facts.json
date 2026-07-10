@@ -3137,6 +3137,19 @@
       "confidence": 0.78,
       "note": "North Carolina homeowner pages are strongest when they explain the permit ladder and county path together."
     },
+    {
+      "stateCode": "NC",
+      "factType": "listing_permit_capacity",
+      "label": "Listing bedroom limit",
+      "value": "Do not advertise more bedrooms than the septic permit allows",
+      "unit": "",
+      "sourceId": "nc_05",
+      "sourceSection": "On-site septic systems and advertising",
+      "effectiveDate": "",
+      "lastVerifiedAt": "2026-07-10",
+      "confidence": 0.96,
+      "note": "The North Carolina Real Estate Commission says brokers should verify the county septic permit information and should not advertise more bedrooms than the septic permit allows."
+    },
 
     {
       "stateCode": "MO",

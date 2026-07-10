@@ -874,6 +874,11 @@
                 return;
             }
 
+            const requestedState = new URLSearchParams(window.location.search).get("state")?.trim().toUpperCase();
+            if (requestedState && Array.from(state.options).some((option) => option.value === requestedState)) {
+                state.value = requestedState;
+            }
+
             function current() {
                 const listing = Math.max(1, Math.min(12, Number.parseInt(listingCount.value, 10) || 0));
                 const permit = Number.parseInt(permitCount.value, 10) || 0;

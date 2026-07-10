@@ -9300,11 +9300,35 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void tennesseeInspectionLetterPacketIsNoindexAndPinsTransactionFileChain() throws Exception {
+		mockMvc.perform(get("/for-professionals/inspection-letter-packet/tennessee/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee septic inspection-letter packet for buyer agents and lenders")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,follow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("contract-county route")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Inspection Letter")));
+	}
+
+	@Test
+	void northCarolinaListingPermitPacketIsNoindexAndPinsBedroomCheckToCountyFile() throws Exception {
+		mockMvc.perform(get("/for-professionals/listing-permit-packet/north-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina septic listing-permit packet for brokers and coordinators")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,follow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-bedroom-permit-checker/?state=NC")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina Real Estate Commission")));
+	}
+
+	@Test
 	void workflowPacketsDoNotAppearInSitemap() throws Exception {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("for-professionals/records-packet/indiana"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("for-professionals/buyer-diligence-packet/new-york"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("for-professionals/inspection-letter-packet/tennessee"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("for-professionals/listing-permit-packet/north-carolina"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("for-professionals/permit-prep-packet/south-carolina"))));
 	}
 

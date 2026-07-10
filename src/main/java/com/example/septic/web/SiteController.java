@@ -363,6 +363,8 @@ public class SiteController {
     );
     private static final String INDIANA_RECORDS_PACKET_PATH = "/for-professionals/records-packet/indiana/";
     private static final String NEW_YORK_BUYER_PACKET_PATH = "/for-professionals/buyer-diligence-packet/new-york/";
+    private static final String TENNESSEE_INSPECTION_PACKET_PATH = "/for-professionals/inspection-letter-packet/tennessee/";
+    private static final String NORTH_CAROLINA_LISTING_PACKET_PATH = "/for-professionals/listing-permit-packet/north-carolina/";
     private static final String SOUTH_CAROLINA_PERMIT_PACKET_PATH = "/for-professionals/permit-prep-packet/south-carolina/";
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
@@ -924,6 +926,158 @@ The goal is to settle the file and local authority story before we treat the sep
                         "New York Septic Buyer Diligence Packet for Professionals | SepticPath",
                         "Public noindex New York septic buyer diligence packet for agents and coordinators who need an Appendix 75-A and county-file-first handoff.",
                         NEW_YORK_BUYER_PACKET_PATH
+                ),
+                packet
+        );
+    }
+
+    @GetMapping({"/for-professionals/inspection-letter-packet/tennessee", "/for-professionals/inspection-letter-packet/tennessee/"})
+    public String tennesseeInspectionLetterPacket(Model model) {
+        StateProfile state = researchDataService.findPublicStateBySlug("tennessee")
+                .orElseThrow(() -> new StateNotFoundException("tennessee"));
+        StateMoneyPage recordsPage = researchDataService.findPublicStateMoneyPage("septic-records-checklist", "tennessee")
+                .orElseThrow(() -> new StateNotFoundException("septic-records-checklist/tennessee"));
+        String packetUrl = seoService.absoluteUrl(TENNESSEE_INSPECTION_PACKET_PATH);
+        List<PageLink> countyLinks = countyRecordPageLinks(state.stateCode()).stream().limit(4).toList();
+        WorkflowPacketView packet = new WorkflowPacketView(
+                "Professional workflow packet",
+                "Tennessee septic inspection-letter packet for buyer agents and lenders",
+                "Use this share page when a Tennessee sale, mortgage, or subdivision file needs the status of an existing septic system documented before the team treats the listing or a contractor quote as the answer. TDEC identifies inspection letters as a routine transaction service, but contract counties use their own route.",
+                "Inspection-letter packet",
+                "Public noindex handoff for Tennessee transaction files",
+                "This packet gives a buyer agent, listing coordinator, lender, or owner one clean first send: identify whether the parcel uses the TDEC route or a contract-county route, then pull the inspection-letter and permit-file story together.",
+                "The packet should move the recipient into the Tennessee records route first, then into the named county path when the parcel belongs to a contract county or already has a local file owner.",
+                "Tennessee septic inspection letter and permit file check",
+                """
+Hi,
+
+Before we rely on the current septic story for this Tennessee transaction, use this inspection-letter packet:
+%s
+
+Start with the Tennessee records route. It will identify whether the parcel belongs to a TDEC route or a contract-county route, then help us request the construction permit, repair history, and inspection-letter status.
+
+The goal is to document the existing-system file for the sale or mortgage before the conversation turns into a generic inspection or replacement quote.
+""".formatted(packetUrl),
+                new PageLink(
+                        recordsPage.title(),
+                        recordsPage.path(state.slug()),
+                        "Start with the Tennessee records route because the first real decision is whether the property uses a contract-county office or the TDEC service lane for the inspection-letter and permit file."
+                ),
+                List.of(
+                        new PageLink(
+                                "Septic Inspection Letter",
+                                "/septic-inspection-letter/",
+                                "Use this after the Tennessee route when the team needs to separate an inspection-letter request from the broader permit-copy and records workflow."
+                        ),
+                        new PageLink(
+                                "Tennessee Septic Guide",
+                                "/septic-system-cost-calculator/tennessee/",
+                                "Use the statewide guide only after the transaction team understands the file owner, inspection-letter path, and repair-versus-replacement question."
+                        )
+                ),
+                countyLinks,
+                workflowPacketSources(
+                        recordsPage.officialSourceIds(),
+                        state.recordsLookupSourceIds(),
+                        state.localAuthoritySourceIds(),
+                        state.officialSourceIds()
+                ),
+                List.of(
+                        "A sale, mortgage, or subdivision file needs written status for an existing septic system.",
+                        "The listing, lender, or buyer file has not established whether a permit, repair history, or inspection letter exists.",
+                        "The parcel may belong to a Tennessee contract county, so the state online-service route may not be the right first submission."
+                ),
+                state.recordsToRequest(),
+                List.of(
+                        "Confirm the county before sending this packet because Tennessee contract counties use their own septic-service routes.",
+                        "Send the Tennessee records route first, then use a linked county page only when the parcel has a clear local office path.",
+                        "Keep replacement pricing out of the first send until the permit, repair, and inspection-letter story is documented."
+                )
+        );
+        return renderWorkflowPacketPage(
+                model,
+                seoService.workflowPacketPage(
+                        "Tennessee Septic Inspection Letter Packet for Professionals | SepticPath",
+                        "Public noindex Tennessee transaction packet for buyer agents, lenders, and coordinators who need an inspection-letter and permit-file-first handoff.",
+                        TENNESSEE_INSPECTION_PACKET_PATH
+                ),
+                packet
+        );
+    }
+
+    @GetMapping({"/for-professionals/listing-permit-packet/north-carolina", "/for-professionals/listing-permit-packet/north-carolina/"})
+    public String northCarolinaListingPermitPacket(Model model) {
+        StateProfile state = researchDataService.findPublicStateBySlug("north-carolina")
+                .orElseThrow(() -> new StateNotFoundException("north-carolina"));
+        StateMoneyPage recordsPage = researchDataService.findPublicStateMoneyPage("septic-records-checklist", "north-carolina")
+                .orElseThrow(() -> new StateNotFoundException("septic-records-checklist/north-carolina"));
+        String packetUrl = seoService.absoluteUrl(NORTH_CAROLINA_LISTING_PACKET_PATH);
+        List<PageLink> countyLinks = countyRecordPageLinks(state.stateCode()).stream().limit(4).toList();
+        WorkflowPacketView packet = new WorkflowPacketView(
+                "Professional workflow packet",
+                "North Carolina septic listing-permit packet for brokers and coordinators",
+                "Use this before a North Carolina listing launch, price change, showing, or buyer reply when a bedroom count and the septic permit file may not match. The North Carolina Real Estate Commission says a broker should not advertise more bedrooms than the septic permit allows, so the first send has to confirm the county file rather than normalize an unsupported bedroom number.",
+                "Listing-permit packet",
+                "Public noindex handoff for North Carolina bedroom-capacity checks",
+                "This packet turns a possible listing-capacity mismatch into a narrow records task: compare the listing and official permit, ask the county health department for the controlling file, and preserve the written response before marketing or negotiating around bedroom count.",
+                "The packet should open the bedroom permit checker with North Carolina selected, then move the recipient into the North Carolina county-records route that owns the actual permit file.",
+                "North Carolina septic bedroom permit and listing file check",
+                """
+Hi,
+
+Before we rely on the advertised bedroom count for this North Carolina property, use this listing-permit packet:
+%s
+
+Start with the North Carolina bedroom permit checker. Then use the North Carolina records route to ask the county health department for the controlling septic permit, approved bedroom count, approval history, and any written clarification.
+
+The goal is to keep the listing and transaction file tied to the permit record before we market, negotiate, or describe the property capacity.
+""".formatted(packetUrl),
+                new PageLink(
+                        "North Carolina Septic Bedroom Permit Checker",
+                        "/septic-bedroom-permit-checker/?state=NC",
+                        "Start by comparing the advertised bedrooms with the official septic permit count. The checker flags a records question only, then hands the user into the county file route for the controlling answer."
+                ),
+                List.of(
+                        new PageLink(
+                                recordsPage.title(),
+                                recordsPage.path(state.slug()),
+                                "Use the North Carolina records page right after the checker to find the county environmental-health file owner and request the permit, authorization, and operation record."
+                        ),
+                        new PageLink(
+                                "North Carolina Septic Guide",
+                                "/septic-system-cost-calculator/north-carolina/",
+                                "Use the broader North Carolina guide only when the permit ladder or site-approval story still needs context after the bedroom question is clear."
+                        )
+                ),
+                countyLinks,
+                workflowPacketSources(
+                        recordsPage.officialSourceIds(),
+                        state.recordsLookupSourceIds(),
+                        state.localAuthoritySourceIds(),
+                        state.officialSourceIds()
+                ),
+                List.of(
+                        "A listing, seller, tax, or inspection source does not clearly match the septic permit bedroom count.",
+                        "A buyer, broker, coordinator, or lender needs the county health file before relying on the marketed capacity.",
+                        "The permit may be under the original builder or owner, so the current address alone may not resolve the file."
+                ),
+                List.of(
+                        "The septic permit or approval showing the supported bedroom count or design capacity.",
+                        "Any improvement permit, construction authorization, operation permit, certificate of completion, amendment, or prior site record tied to the property.",
+                        "A written county response when the permit is missing, conflicts with another record, or is filed under an original owner or builder."
+                ),
+                List.of(
+                        "Send the preselected North Carolina checker first, then preserve the result as a records question rather than a compliance conclusion.",
+                        "Send the county records route when the checker flags a mismatch, missing permit, or conflicting source.",
+                        "Do not use a tax card, seller statement, or room count alone as a septic-capacity conclusion."
+                )
+        );
+        return renderWorkflowPacketPage(
+                model,
+                seoService.workflowPacketPage(
+                        "North Carolina Septic Listing Permit Packet for Professionals | SepticPath",
+                        "Public noindex North Carolina handoff for brokers and coordinators who need to compare listing bedrooms with the county septic permit file.",
+                        NORTH_CAROLINA_LISTING_PACKET_PATH
                 ),
                 packet
         );
