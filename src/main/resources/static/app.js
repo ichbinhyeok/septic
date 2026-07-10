@@ -1044,6 +1044,159 @@
 
     setupBedroomPermitCheckers();
 
+    function setupAlabamaPercScopeCheckers() {
+        const checkers = Array.from(document.querySelectorAll("[data-alabama-perc-scope]"));
+        if (!checkers.length) {
+            return;
+        }
+
+        checkers.forEach((checker) => {
+            const form = checker.querySelector("[data-alabama-perc-scope-form]");
+            const project = checker.querySelector("[data-alabama-perc-project]");
+            const evidence = checker.querySelector("[data-alabama-perc-evidence]");
+            const sewer = checker.querySelector("[data-alabama-perc-sewer]");
+            const result = checker.querySelector("[data-alabama-perc-result]");
+            const label = checker.querySelector("[data-alabama-perc-label]");
+            const heading = checker.querySelector("[data-alabama-perc-heading]");
+            const body = checker.querySelector("[data-alabama-perc-body]");
+            const steps = checker.querySelector("[data-alabama-perc-steps]");
+            const note = checker.querySelector("[data-alabama-perc-note]");
+            const copy = checker.querySelector("[data-alabama-perc-copy]");
+
+            if (!(form instanceof HTMLFormElement)
+                || !(project instanceof HTMLSelectElement)
+                || !(evidence instanceof HTMLSelectElement)
+                || !(sewer instanceof HTMLSelectElement)
+                || !(result instanceof HTMLElement)
+                || !(note instanceof HTMLTextAreaElement)) {
+                return;
+            }
+
+            function optionText(select) {
+                return select.options[select.selectedIndex]?.textContent?.trim() || "Not provided";
+            }
+
+            function scope() {
+                const projectText = optionText(project);
+                const evidenceText = optionText(evidence);
+                const sewerText = optionText(sewer);
+                let resultLabel = "Quote the usable scope";
+                let resultHeading = "Request a professional soil and site evaluation with the usable deliverables";
+                let resultBody = "For Alabama land without a usable prior file, ask for the evaluation, test result, and plot plan together. That is the package that can support the county Permit to Install path, not merely a standalone test number.";
+                let nextSteps = [
+                    "Confirm public sewer availability with the local sewer authority or county health department.",
+                    "Ask a qualified Alabama professional to price the soil and site evaluation, required testing, and plot plan as one scope.",
+                    "Submit the resulting application and attachments to the county health department for Permit to Install review."
+                ];
+
+                if (sewer.value === "yes") {
+                    resultLabel = "Sewer check comes first";
+                    resultHeading = "Confirm the sewer decision before paying for an onsite evaluation";
+                    resultBody = "ADPH directs buyers and builders to check sewer availability first. Do not treat an onsite test quote as the default path until the local sewer answer is documented.";
+                    nextSteps = [
+                        "Ask the sewer authority whether service is available to this parcel and what connection constraints apply.",
+                        "Ask the county health department whether onsite evaluation is still required for the property.",
+                        "Only then request a soil and site evaluation if the onsite path remains active."
+                    ];
+                } else if (evidence.value === "report") {
+                    resultLabel = "Existing report needs review";
+                    resultHeading = "Price a report review and county-ready application, not a duplicate test by default";
+                    resultBody = "A prior soil or perc report may reduce repeat field work, but it is useful only if the county accepts it for this project. Send the report and plot plan with your request before assuming the lowest quote applies.";
+                    nextSteps = [
+                        "Send the prior report and plot plan to the county health department or qualified professional for an acceptance check.",
+                        "Ask what must be refreshed, re-staked, redesigned, or added before a Permit to Install can be reviewed.",
+                        "Request a quote that separates report review, any field update, design, and county application work."
+                    ];
+                } else if (evidence.value === "file") {
+                    resultLabel = "Permit file must be matched";
+                    resultHeading = "Verify that the existing permit file fits the new project before you price anything";
+                    resultBody = "An older Permit to Install or Approval for Use can be valuable evidence, but it does not automatically authorize a replacement, addition, or different building. Match the file to the current project before ordering new work.";
+                    nextSteps = [
+                        "Request the permit, Approval for Use, system diagram, and any soil-test history from the county file owner.",
+                        "Compare the recorded building, bedroom count, system layout, and current project scope.",
+                        "Ask the county or qualified professional whether the existing file can be used, amended, or must be re-evaluated."
+                    ];
+                } else if (evidence.value === "unknown" || project.value === "purchase") {
+                    resultLabel = "File search and quote in parallel";
+                    resultHeading = "Ask for the county file before paying for a new test";
+                    resultBody = "For a purchase or an unknown file, the fastest defensible route is to request the existing permit and soil history while asking what a new evaluation would include if the record is missing or unusable.";
+                    nextSteps = [
+                        "Request the Permit to Install, Approval for Use, diagram, and soil-test history from the county health department.",
+                        "Ask a professional for a conditional quote that states what happens if no usable record exists.",
+                        "Use the written county response before making a price, contract, or closing decision."
+                    ];
+                }
+
+                const noteLines = [
+                    "Subject: Alabama onsite sewage evaluation and Permit to Install quote request",
+                    "",
+                    `Project: ${projectText}`,
+                    `Existing evidence: ${evidenceText}`,
+                    `Public sewer: ${sewerText}`,
+                    "",
+                    "Please quote the scope needed to produce a county-usable Alabama onsite sewage package. Please state separately:",
+                    "1. Soil and site evaluation or percolation testing required for this parcel.",
+                    "2. Plot plan, design, or other deliverables included with the evaluation.",
+                    "3. Whether you will identify what the county health department needs for a Permit to Install.",
+                    "4. What prior permit, Approval for Use, soil report, or survey you need before field work.",
+                    "5. Any exclusions, re-staking, redesign, county fees, or follow-up work not included in the quoted price.",
+                    "",
+                    "I understand this request is for a scope and price estimate, not a guarantee that the parcel or a particular system will be approved."
+                ];
+
+                return { resultLabel, resultHeading, resultBody, nextSteps, noteText: noteLines.join("\n") };
+            }
+
+            function render() {
+                const value = scope();
+                result.hidden = false;
+                if (label) {
+                    label.textContent = value.resultLabel;
+                }
+                if (heading) {
+                    heading.textContent = value.resultHeading;
+                }
+                if (body) {
+                    body.textContent = value.resultBody;
+                }
+                if (steps) {
+                    steps.replaceChildren(...value.nextSteps.map((step) => {
+                        const item = document.createElement("li");
+                        item.textContent = step;
+                        return item;
+                    }));
+                }
+                note.value = value.noteText;
+                result.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                render();
+            });
+
+            if (copy instanceof HTMLButtonElement) {
+                copy.addEventListener("click", async () => {
+                    const original = copy.textContent;
+                    try {
+                        await copyText(note.value);
+                        copy.textContent = "Request copied";
+                        copy.classList.add("is-copied");
+                    } catch (_error) {
+                        copy.textContent = "Copy failed";
+                        copy.classList.add("is-copy-failed");
+                    }
+                    window.setTimeout(() => {
+                        copy.textContent = original;
+                        copy.classList.remove("is-copied", "is-copy-failed");
+                    }, 1800);
+                });
+            }
+        });
+    }
+
+    setupAlabamaPercScopeCheckers();
+
     function setupBedroomEmbedCopies() {
         const copies = Array.from(document.querySelectorAll("[data-bedroom-embed-copy]"));
         copies.forEach((button) => {

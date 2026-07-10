@@ -4839,6 +4839,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Septic permit cost and county records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Is a Perc Test in Alabama? Septic Permit Cost and Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Build the right quote request before you ask for a price.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-alabama-perc-scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use")))

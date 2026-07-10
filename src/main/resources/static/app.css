@@ -1575,6 +1575,143 @@ h4 {
     padding: 10px;
 }
 
+.alabama-perc-scope {
+    display: grid;
+    gap: 18px;
+    margin-top: 20px;
+    padding: 22px;
+    border: 1px solid rgba(35, 108, 95, 0.28);
+    border-radius: 8px;
+    background: #f4fbf6;
+    box-shadow: 0 18px 42px rgba(17, 31, 29, 0.08);
+}
+
+.alabama-perc-scope__intro {
+    display: grid;
+    gap: 8px;
+}
+
+.alabama-perc-scope__intro h2 {
+    max-width: 24ch;
+    margin: 0;
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    line-height: 1.06;
+}
+
+.alabama-perc-scope__intro p,
+.alabama-perc-scope__source-note {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.58;
+}
+
+.alabama-perc-scope__form {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    align-items: end;
+}
+
+.alabama-perc-scope__form label {
+    display: grid;
+    gap: 6px;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.alabama-perc-scope__form select {
+    width: 100%;
+    min-height: 46px;
+    border: 1px solid rgba(20, 34, 32, 0.16);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+    font-weight: 600;
+}
+
+.alabama-perc-scope__form .button {
+    min-height: 46px;
+}
+
+.alabama-perc-scope__result {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(35, 108, 95, 0.22);
+    scroll-margin-top: 82px;
+}
+
+.alabama-perc-scope__result h3 {
+    max-width: 30ch;
+    margin: 6px 0 8px;
+    font-size: 1.25rem;
+    line-height: 1.15;
+}
+
+.alabama-perc-scope__result p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.alabama-perc-scope__steps {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.alabama-perc-scope__steps li {
+    padding-left: 4px;
+    color: var(--text);
+    line-height: 1.45;
+}
+
+.alabama-perc-scope__note {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid rgba(20, 34, 32, 0.11);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.alabama-perc-scope__note > span {
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.alabama-perc-scope__note textarea {
+    width: 100%;
+    min-height: 170px;
+    resize: vertical;
+    border: 1px solid rgba(20, 34, 32, 0.14);
+    border-radius: 6px;
+    padding: 12px;
+    background: #fbfdfb;
+    color: var(--text);
+    font: 0.86rem/1.48 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.alabama-perc-scope__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.alabama-perc-scope__source-note {
+    padding-top: 2px;
+    font-size: 0.9rem;
+}
+
 .state-money-page .intent-rail,
 .county-records-page .intent-rail,
 .content-page .intent-rail,
@@ -6097,6 +6234,21 @@ input[type="checkbox"] {
     .money-answer-steps__number {
         width: 26px;
         height: 26px;
+    }
+
+    .alabama-perc-scope {
+        margin-top: 16px;
+        padding: 16px;
+    }
+
+    .alabama-perc-scope__form,
+    .alabama-perc-scope__result {
+        grid-template-columns: 1fr;
+    }
+
+    .alabama-perc-scope__form .button,
+    .alabama-perc-scope__actions .button {
+        width: 100%;
     }
 
     .workflow-console {

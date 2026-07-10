@@ -41,6 +41,70 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
+                @if ("AL".equals(state.stateCode()))
+                    <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
+                        <div class="alabama-perc-scope__intro">
+                            <span class="eyebrow">Alabama perc test cost, made usable</span>
+                            <h2>Build the right quote request before you ask for a price.</h2>
+                            <p>ADPH says soil testing may need a registered professional and a Permit to Install must go to the county health department before construction. A bare "perc test" price can omit the soil and site evaluation, plot plan, or permit work that determines whether the result is usable.</p>
+                        </div>
+                        <form class="alabama-perc-scope__form" data-alabama-perc-scope-form>
+                            <label>
+                                <span>What are you pricing?</span>
+                                <select data-alabama-perc-project>
+                                    <option value="new">New home, mobile home, or modular home</option>
+                                    <option value="replacement">Replacement or repair of an existing septic system</option>
+                                    <option value="purchase">Land or a home purchase decision</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>What site evidence do you already have?</span>
+                                <select data-alabama-perc-evidence>
+                                    <option value="none">No soil test, perc test, or plot plan</option>
+                                    <option value="report">A prior soil or perc report and plot plan</option>
+                                    <option value="file">An existing Permit to Install or Approval for Use</option>
+                                    <option value="unknown">I do not know what the county file contains</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Is public sewer available?</span>
+                                <select data-alabama-perc-sewer>
+                                    <option value="no">No or not expected</option>
+                                    <option value="unknown">I need to confirm</option>
+                                    <option value="yes">Yes or likely available</option>
+                                </select>
+                            </label>
+                            <button class="button button--primary" type="submit">Build my Alabama quote scope</button>
+                        </form>
+
+                        <div class="alabama-perc-scope__result" data-alabama-perc-result hidden aria-live="polite">
+                            <div>
+                                <span class="trust-box__label" data-alabama-perc-label>Right next scope</span>
+                                <h3 data-alabama-perc-heading></h3>
+                                <p data-alabama-perc-body></p>
+                            </div>
+                            <ol class="alabama-perc-scope__steps" data-alabama-perc-steps></ol>
+                            <div class="alabama-perc-scope__note">
+                                <span>Copy-ready request</span>
+                                <textarea data-alabama-perc-note readonly aria-label="Alabama professional quote request"></textarea>
+                                <div class="alabama-perc-scope__actions">
+                                    <button class="button button--secondary" type="button" data-alabama-perc-copy>Copy request</button>
+                                    <a class="button button--secondary"
+                                       href="/septic-system-cost-calculator/?state=AL&projectType=perc_test"
+                                       data-track-click="nav"
+                                       data-track-source-context="alabama_perc_scope_result_estimate"
+                                       data-track-target-type="calculator">Run planning range</a>
+                                    <a class="button button--secondary"
+                                       href="/septic-records-checklist/alabama/"
+                                       data-track-click="nav"
+                                       data-track-source-context="alabama_perc_scope_result_records"
+                                       data-track-target-type="state_money_page">Check county file</a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="alabama-perc-scope__source-note">This produces a quote scope, not an engineering conclusion or an official fee. Verify sewer availability and the county health file before accepting a low quote. <a href="#sources">Read the official ADPH sources below</a>.</p>
+                    </section>
+                @endif
                 @if (!featuredCountyRecordLinks.isEmpty())
                     <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="${state.stateName()} county record shortcuts">
                         <span class="hero-county-launchpad__label">County file first</span>
