@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-29",
+  "generatedAt": "2026-07-10",
   "pages": [
     {
       "stateCode": "IN",
@@ -22253,6 +22253,147 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Sumter County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
+      },
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "NC",
+      "countyName": "Henderson County",
+      "countySlug": "henderson-county",
+      "title": "Henderson County North Carolina Septic Records and Permit Lookup",
+      "metaDescription": "Henderson County septic records and permit lookup with a 1968-2004 legacy archive, 2004-present address and parcel search, and file-gap checks before you trust a sale, repair, or addition story.",
+      "introCopy": "Henderson County is a genuine online-records county, not a generic county contact page. Environmental Health separates historic permits from 1968 through early 2004 from the 2004-present public portal, so a missing recent result does not automatically mean the parcel has no septic history.",
+      "uniqueAngle": "The useful Henderson move is an era split. Search the legacy archive with a former owner, subdivision, road, or permit clue for older files; use the current public portal with an address or parcel number for 2004-present permits. The county also tells users that many 1979-1983 septic permits were destroyed, which makes a no-result answer meaningful rather than ambiguous.",
+      "targetReader": "Best for Henderson County buyers, owners, agents, and contractors who need to distinguish a true no-record result from an older-file search problem before accepting a septic layout, bedroom count, repair scope, or closing representation.",
+      "officeLabel": "Henderson County Environmental Health permit-search hub",
+      "officeUrl": "https://www.hendersoncountync.gov/health/page/search-septic-well-permits",
+      "recordsLabel": "Search Henderson County 2004-present septic permits",
+      "recordsUrl": "https://co-henderson-nc.smartgovcommunity.com/ApplicationPublic/ApplicationSearchAdvanced",
+      "contactLine": "Henderson County Environmental Health | 828-694-6060 | Search the 2004-present portal by permit number, address, or parcel number, then use the county legacy archive for permits from 1968 through early 2004.",
+      "parcelAnchorLabel": "Open Henderson County GISWeb for parcel and prior-owner clues",
+      "parcelAnchorUrl": "https://gisweb.hendersoncountync.gov/",
+      "parcelAnchorNote": "Use the parcel record, deed history, owner at installation, subdivision name, and prior road names to make the legacy search less dependent on one current address.",
+      "decisionSteps": [
+        "Start with the address or parcel number in Henderson County's 2004-present public portal and select the relevant septic permit type before relying on a seller file or contractor summary.",
+        "If the property predates 2004 or the current search is thin, search the county legacy archive by former owner, subdivision and lot, road name, or permit number rather than stopping at one address search.",
+        "If neither search resolves the story, distinguish a true no-file result from the county's known 1979-1983 destroyed-record gap before treating the parcel as file-backed or routine."
+      ],
+      "recordsToRequest": [
+        "The 2004-present public-portal permit record, including the address, parcel number, septic permit type, status, and available attachments.",
+        "The legacy permit record for 1968 through early 2004, searched with prior owner, directions, subdivision, lot, or permit-number clues when applicable.",
+        "Any improvement permit, construction authorization, operation approval, layout, final inspection, repair, existing-system approval, or written no-record answer tied to the parcel."
+      ],
+      "lowEndBreakers": [
+        "A current-portal no-result does not settle an older property; Henderson keeps the historic file path in a separate archive.",
+        "A missing attachment for a 1979-1983 permit can reflect the county's documented destroyed-record gap, so do not turn that absence into a clean layout or bedroom-capacity claim.",
+        "If the legacy owner, subdivision, parcel, and current address do not agree, the cheapest repair or purchase assumption is not ready to trust."
+      ],
+      "faqBlocks": [
+        {
+          "question": "How do I search Henderson County septic permits?",
+          "answer": "Use the county public portal for 2004-present permits with a permit number, address, or parcel number. For permits from 1968 through early 2004, use the separate Environmental Health Legacy Permits Archive and try former-owner, subdivision, road, or permit-number clues."
+        },
+        {
+          "question": "What if no Henderson County septic permit appears online?",
+          "answer": "First search both county systems when the property age calls for it. Henderson County says many septic permits from 1979 through 1983 were destroyed, so a missing attachment in that period cannot substitute for a usable layout, approval, or capacity record."
+        }
+      ],
+      "internalLinkTargets": [
+        "/north-carolina-septic-permit-lookup/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-permit-search-by-address/",
+        "/how-to-find-septic-records-online/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-bedroom-permit-checker/?state=NC"
+      ],
+      "officialSourceIds": [
+        "nc_henderson_01",
+        "nc_henderson_02",
+        "nc_henderson_03"
+      ],
+      "workflowStructure": {
+        "fileOwnerCategory": "county_health",
+        "fileOwnerModel": "Henderson County Environmental Health is the practical file owner, but the search route changes by permit era instead of living in one all-years database.",
+        "firstArtifactToPull": "the 2004-present portal result or the 1968-early-2004 legacy record, matched to the parcel and owner history",
+        "permitCloseoutCategory": "final_approval_signal",
+        "permitCloseoutSignal": "The record is materially stronger when the permit search produces a usable attachment, status, layout, approval, or final-inspection evidence instead of only a matching address.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "the era-appropriate permit record plus any layout, operation approval, final inspection, or written file-gap answer that supports the current property story.",
+        "specialProgramCategory": "historic_record_gap",
+        "specialProgramSignal": "The 1979-1983 destroyed-record gap and the split legacy/current search systems are local exception signals that require a careful no-record conclusion.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Any repair, existing-system approval, tank abandonment, or permit revision result in the portal must be resolved before the system is treated as routine.",
+        "quoteGate": "Do not price or clear a Henderson County septic story until the property age, legacy/current search route, parcel and former-owner match, and any usable approval or layout record all support the same conclusion."
+      },
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "NC",
+      "countyName": "Franklin County",
+      "countySlug": "franklin-county",
+      "title": "Franklin County North Carolina Septic Records and Permit Lookup",
+      "metaDescription": "Franklin County septic records and permit lookup with a 2004-present searchable OSW database, attached completed forms, PIN and owner search, and an online older-record request path.",
+      "introCopy": "Franklin County has a direct septic data route: its Environmental Health page links a searchable on-site water protection database for 2004-present entries and a separate online request for older or missing files. That lets a buyer, owner, or agent move from an address or PIN to the actual county file path instead of guessing from a general septic page.",
+      "uniqueAngle": "Franklin's search is unusually useful because the county explains what should be in it: recent permitting activities should have completed forms attached, and the PIN can be used through the Block search field. The product is not just a link; it is a two-lane search protocol for current records and older-file escalation.",
+      "targetReader": "Best for Franklin County buyers, owners, agents, and contractors who need the permit number, PIN, owner, address, completed forms, or a documented older-file request before relying on a septic capacity, repair, sale, or quote story.",
+      "officeLabel": "Franklin County Environmental Health septic and well search hub",
+      "officeUrl": "https://www.franklincountync.gov/QuickLinks.aspx?CID=39",
+      "recordsLabel": "Search Franklin County septic and well permits",
+      "recordsUrl": "https://public.cdpehs.com/NCENVPBLo/OSW_PROPERTY/ShowOSW_PROPERTYTablePage.aspx?ESTTST_CTY=C35",
+      "contactLine": "Franklin County Environmental Health | Search the on-site water protection database by permit number, PIN, street address, owner, subdivision, or application criteria. County guidance says entries start in 2004 and directs missing or older-file requests to its online request form.",
+      "decisionSteps": [
+        "Search the Franklin County on-site water protection database first by permit number, PIN, address, owner, subdivision, or a combination of those fields.",
+        "For a 2004-present file, open the completed forms attached to the matching property and compare the permit type and status with the current property story.",
+        "When the database does not resolve an older or missing file, use Franklin County's online older-record request path instead of treating a database no-result as proof that the system has no history."
+      ],
+      "recordsToRequest": [
+        "The Franklin County OSW database result tied to the property, including permit number, PIN, address, owner, type, status, and any completed forms.",
+        "The applicable completed permit forms, approval, layout, repair, existing-system, or operation record available through the matching property entry.",
+        "The county's online older-record response when the property predates the database or no matching file appears."
+      ],
+      "lowEndBreakers": [
+        "A missing database entry can mean the file is older than the county's 2004 start date, so it is not a clean no-record conclusion.",
+        "A property match without the attached completed forms does not establish bedroom capacity, layout, final status, or repair history.",
+        "If the PIN, owner, address, and permit status do not resolve to the same property, a low-end repair, purchase, or addition assumption is still only provisional."
+      ],
+      "faqBlocks": [
+        {
+          "question": "How do I look up Franklin County septic permits?",
+          "answer": "Start in Franklin County's on-site water protection database. It supports permit number, PIN, street address, owner, subdivision, and application searches; the county notes that the OSW entries begin in 2004 and recent completed activities should have forms attached."
+        },
+        {
+          "question": "What if Franklin County's septic database has no result?",
+          "answer": "Do not treat that as proof of no septic history. Franklin County provides a separate online request route for older records or records that do not appear in the well and septic database."
+        }
+      ],
+      "internalLinkTargets": [
+        "/north-carolina-septic-permit-lookup/",
+        "/septic-records-checklist/north-carolina/",
+        "/septic-permit-search-by-address/",
+        "/how-to-find-septic-records-online/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-bedroom-permit-checker/?state=NC"
+      ],
+      "officialSourceIds": [
+        "nc_franklin_01",
+        "nc_franklin_02",
+        "nc_franklin_03"
+      ],
+      "workflowStructure": {
+        "fileOwnerCategory": "county_health",
+        "fileOwnerModel": "Franklin County Environmental Health owns the practical septic file and exposes both the current searchable database and a separate route for older or missing records.",
+        "firstArtifactToPull": "the OSW database property result with its completed forms, or the county's older-record request when the database cannot resolve the parcel",
+        "permitCloseoutCategory": "final_approval_signal",
+        "permitCloseoutSignal": "A usable result includes the matching completed forms and a permit status that supports more than a bare property match.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "the property-specific database result, completed forms, and any county older-file response that supports the present address and PIN.",
+        "specialProgramCategory": "historic_record_gap",
+        "specialProgramSignal": "The 2004 database start date is a local record boundary; older properties require the county's distinct older-record request path.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Repair, expansion, existing-system, or other application types shown in the property history need resolution before the system is treated as routine.",
+        "quoteGate": "Do not move from a Franklin County lookup to pricing until the PIN, property match, permit type and status, attached completed forms, and any older-file response all support the same septic story."
       },
       "publishStatus": "published"
     }

@@ -4782,6 +4782,28 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void hendersonCountyRecordsPageSeparatesLegacyAndCurrentPermitSearches() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-carolina/henderson-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Henderson County North Carolina Septic Records and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Henderson County 2004-present septic permits")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("1968 through early 2004")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("1979-1983 destroyed-record gap")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open North Carolina records lookup")));
+	}
+
+	@Test
+	void franklinCountyRecordsPageShowsDatabaseAndOlderFileEscalation() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-carolina/franklin-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Franklin County North Carolina Septic Records and Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Franklin County septic and well permits")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("entries begin in 2004")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("online older-record request path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open North Carolina records lookup")));
+	}
+
+	@Test
 	void southCarolinaRecordsChecklistUsesActionablePermitCopyLanguage() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
 				.andExpect(status().isOk())
