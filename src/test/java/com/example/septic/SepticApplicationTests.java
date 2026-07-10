@@ -36,7 +36,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(properties = {
 		"app.storage.root=./build/test-storage",
-		"app.site.base-url=https://example.test"
+		"app.site.base-url=https://example.test",
+		"app.ops.report-username=test-ops",
+		"app.ops.report-password=test-password"
 })
 @AutoConfigureMockMvc
 class SepticApplicationTests {
@@ -5511,6 +5513,59 @@ class SepticApplicationTests {
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"artifactType\":\"records_request_packet\""));
 			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("Property address"));
 		}
+	}
+
+	@Test
+	void authenticatedEventReportAggregatesActionSignals() throws Exception {
+		mockMvc.perform(post("/events/nav-click")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "sourcePage": "/septic-records-by-county/",
+								  "sourceContext": "county_direct_official_search",
+								  "targetPath": "https://tdec.tn.gov/filenetsearch",
+								  "targetType": "official_source",
+								  "targetLabel": "Open official search"
+								}
+								"""))
+				.andExpect(status().isNoContent());
+		mockMvc.perform(post("/events/artifact-action")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "sourcePage": "/septic-records-request-builder/",
+								  "sourceContext": "records_request_builder",
+								  "action": "downloaded",
+								  "artifactType": "records_request_packet"
+								}
+								"""))
+				.andExpect(status().isNoContent());
+
+		mockMvc.perform(get("/ops/event-report/"))
+				.andExpect(status().isUnauthorized())
+				.andExpect(header().string("WWW-Authenticate", org.hamcrest.Matchers.containsString("Basic")));
+
+		mockMvc.perform(get("/ops/event-report/")
+						.header("Authorization", "Basic dGVzdC1vcHM6dGVzdC1wYXNzd29yZA=="))
+				.andExpect(status().isOk())
+				.andExpect(header().string("X-Robots-Tag", "noindex, nofollow, noarchive"))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Behavior signals, not vanity totals.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official source clicks")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Artifact actions")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("downloaded - records request packet")));
+	}
+
+	@Test
+	void eventReportSkipsUnreadableHistoricalFiles() throws Exception {
+		Path malformedEventFile = TEST_STORAGE_ROOT.resolve("events").resolve("2026").resolve("07").resolve("10.ndjson");
+		Files.createDirectories(malformedEventFile.getParent());
+		Files.write(malformedEventFile, new byte[] {(byte) 0xC3, (byte) 0x28});
+
+		mockMvc.perform(get("/ops/event-report/")
+						.header("Authorization", "Basic dGVzdC1vcHM6dGVzdC1wYXNzd29yZA=="))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Some event files could not be read.")));
 	}
 
 	@Test

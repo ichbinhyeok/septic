@@ -14,6 +14,7 @@ import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.CensusAddressLookupService;
 import com.example.septic.service.DrainfieldEstimatorResult;
 import com.example.septic.service.DrainfieldEstimatorService;
+import com.example.septic.service.EventAnalyticsService;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
 import com.example.septic.service.LeadStorageService;
@@ -401,6 +402,7 @@ public class SiteController {
     private final UsStateDirectoryService usStateDirectoryService;
     private final PublishingPolicyService publishingPolicyService;
     private final CensusAddressLookupService censusAddressLookupService;
+    private final EventAnalyticsService eventAnalyticsService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -414,7 +416,8 @@ public class SiteController {
             StateQueuePlanService stateQueuePlanService,
             UsStateDirectoryService usStateDirectoryService,
             PublishingPolicyService publishingPolicyService,
-            CensusAddressLookupService censusAddressLookupService
+            CensusAddressLookupService censusAddressLookupService,
+            EventAnalyticsService eventAnalyticsService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -428,6 +431,7 @@ public class SiteController {
         this.usStateDirectoryService = usStateDirectoryService;
         this.publishingPolicyService = publishingPolicyService;
         this.censusAddressLookupService = censusAddressLookupService;
+        this.eventAnalyticsService = eventAnalyticsService;
     }
 
     @GetMapping("/")
@@ -455,6 +459,19 @@ public class SiteController {
         model.addAttribute("workflowNetworkSnapshot", workflowNetworkSnapshot);
         model.addAttribute("queuedStateCount", Math.max(usStateDirectoryService.allStates().size() - publicStates.size(), 0));
         return "pages/home";
+    }
+
+    @GetMapping({"/ops/event-report", "/ops/event-report/"})
+    public String eventReport(Model model) {
+        model.addAttribute("page", new PageMeta(
+                "SepticPath Event Report",
+                "Internal operations report for click and artifact behavior signals.",
+                seoService.absoluteUrl("/ops/event-report/"),
+                "noindex,nofollow,noarchive",
+                List.of()
+        ));
+        model.addAttribute("report", eventAnalyticsService.report());
+        return "pages/event-report";
     }
 
     @GetMapping({"/septic-record-finder", "/septic-record-finder/"})

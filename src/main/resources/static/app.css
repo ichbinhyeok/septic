@@ -5382,6 +5382,160 @@ input[type="checkbox"] {
     align-items: center;
 }
 
+.ops-report-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.38fr);
+    gap: 28px;
+    align-items: center;
+}
+
+.ops-report-hero h1 {
+    max-width: 16ch;
+}
+
+.ops-report-sidecard strong {
+    font-size: 1.08rem;
+    line-height: 1.3;
+}
+
+.ops-report-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.ops-report-metrics article {
+    display: grid;
+    gap: 9px;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.ops-report-metrics span {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.73rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.ops-report-metrics strong {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    line-height: 1;
+}
+
+.ops-report-metrics p,
+.ops-event-table-section__head p,
+.ops-event-table-section__empty {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.ops-report-alert,
+.ops-report-empty {
+    margin: 0;
+    padding: 20px;
+    border: 1px solid rgba(170, 119, 49, 0.28);
+    border-radius: 8px;
+    background: rgba(255, 247, 229, 0.78);
+    color: var(--text);
+}
+
+.ops-report-empty {
+    display: grid;
+    gap: 10px;
+    border-color: rgba(35, 108, 95, 0.18);
+    background: rgba(225, 240, 234, 0.58);
+}
+
+.ops-report-empty h2 {
+    max-width: 28ch;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    line-height: 1.08;
+}
+
+.ops-report-empty p {
+    max-width: 75ch;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.ops-report-stack {
+    display: grid;
+    gap: 24px;
+}
+
+.ops-event-table-section {
+    display: grid;
+    gap: 12px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.ops-event-table-section__head h3 {
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+}
+
+.ops-event-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(20, 34, 32, 0.1);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.ops-event-table {
+    width: 100%;
+    min-width: 920px;
+    border-collapse: collapse;
+}
+
+.ops-event-table th,
+.ops-event-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.08);
+    text-align: left;
+    vertical-align: top;
+}
+
+.ops-event-table th {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.73rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+}
+
+.ops-event-table td {
+    color: var(--muted);
+    line-height: 1.42;
+}
+
+.ops-event-table td:nth-last-child(-n + 3) {
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.ops-event-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ops-event-table code {
+    overflow-wrap: anywhere;
+    color: var(--text);
+    font-family: "Public Sans", sans-serif;
+    font-size: 0.84rem;
+}
+
 .trust-ops-sidecard strong {
     font-size: clamp(2.4rem, 5vw, 4.7rem);
     line-height: 0.92;
@@ -6002,6 +6156,8 @@ input[type="checkbox"] {
     .intent-rail,
     .coverage-grid,
     .coverage-summary__stats,
+    .ops-report-hero,
+    .ops-report-metrics,
     .trust-ops-priority-routes,
     .state-records-response__head,
     .state-records-response__body,
