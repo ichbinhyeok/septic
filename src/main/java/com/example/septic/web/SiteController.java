@@ -461,7 +461,14 @@ public class SiteController {
     public String bedroomPermitChecker(Model model) {
         model.addAttribute("page", seoService.bedroomPermitCheckerPage());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        model.addAttribute("bedroomCheckerEmbedUrl", seoService.absoluteUrl("/embed/septic-bedroom-permit-checker/"));
         return "pages/bedroom-permit-checker";
+    }
+
+    @GetMapping({"/embed/septic-bedroom-permit-checker", "/embed/septic-bedroom-permit-checker/"})
+    public String bedroomPermitCheckerEmbed(Model model) {
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        return "pages/bedroom-permit-checker-embed";
     }
 
     @PostMapping(value = "/api/address-record-finder", produces = MediaType.APPLICATION_JSON_VALUE)

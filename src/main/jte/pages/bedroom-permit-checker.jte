@@ -2,6 +2,7 @@
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param java.util.List<StateProfile> states = java.util.List.of()
+@param String bedroomCheckerEmbedUrl = ""
 
 @template.layouts.app(page = page, content = @`
     <section class="section section--heroish bedroom-checker-hero">
@@ -93,6 +94,17 @@
                     </div>
                 </section>
             </div>
+        </div>
+    </section>
+
+    <section class="section section--tight bedroom-checker-embed-section">
+        <div class="container">
+            <details class="bedroom-checker-embed">
+                <summary>Add this checker to a listing-team or inspection site</summary>
+                <p>Use the embedded version when a team wants visitors to flag a bedroom-permit gap before a showing, offer, listing launch, or inspection handoff. The embedded checker does not store visitor inputs.</p>
+                <textarea rows="4" readonly data-bedroom-embed-code><iframe src="${bedroomCheckerEmbedUrl}" title="Septic bedroom permit checker" loading="lazy" style="width:100%;min-height:760px;border:0"></iframe></textarea>
+                <button class="button button--secondary" type="button" data-bedroom-embed-copy>Copy embed code</button>
+            </details>
         </div>
     </section>
 

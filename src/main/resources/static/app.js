@@ -863,6 +863,7 @@
             const copyButton = checker.querySelector("[data-bedroom-copy]");
             const downloadButton = checker.querySelector("[data-bedroom-download]");
             const routeLink = checker.querySelector("[data-track-source-context='bedroom_checker_result_address']");
+            const requestLink = checker.querySelector("[data-track-source-context='bedroom_checker_result_request']");
 
             if (!(form instanceof HTMLFormElement)
                 || !(state instanceof HTMLSelectElement)
@@ -990,6 +991,14 @@
                 }
                 if (routeLink instanceof HTMLAnchorElement) {
                     routeLink.href = value.route;
+                    if (window.self !== window.top) {
+                        routeLink.target = "_blank";
+                        routeLink.rel = "noreferrer";
+                    }
+                }
+                if (requestLink instanceof HTMLAnchorElement && window.self !== window.top) {
+                    requestLink.target = "_blank";
+                    requestLink.rel = "noreferrer";
                 }
                 result.scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
@@ -1034,6 +1043,33 @@
     }
 
     setupBedroomPermitCheckers();
+
+    function setupBedroomEmbedCopies() {
+        const copies = Array.from(document.querySelectorAll("[data-bedroom-embed-copy]"));
+        copies.forEach((button) => {
+            const code = button.parentElement?.querySelector("[data-bedroom-embed-code]");
+            if (!(button instanceof HTMLButtonElement) || !(code instanceof HTMLTextAreaElement)) {
+                return;
+            }
+            button.addEventListener("click", async () => {
+                const original = button.textContent;
+                try {
+                    await copyText(code.value);
+                    button.textContent = "Embed code copied";
+                    button.classList.add("is-copied");
+                } catch (_) {
+                    button.textContent = "Copy failed";
+                    button.classList.add("is-copy-failed");
+                }
+                window.setTimeout(() => {
+                    button.textContent = original;
+                    button.classList.remove("is-copied", "is-copy-failed");
+                }, 1800);
+            });
+        });
+    }
+
+    setupBedroomEmbedCopies();
 
     function setupRecordsRequestBuilders() {
         const builders = Array.from(document.querySelectorAll("[data-records-request-builder]"));

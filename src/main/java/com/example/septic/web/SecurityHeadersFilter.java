@@ -27,6 +27,9 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
             "script-src-attr 'unsafe-inline'",
             "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com"
     );
+    private static final String EMBED_CONTENT_SECURITY_POLICY = CONTENT_SECURITY_POLICY.replace(
+            "frame-ancestors 'none'", "frame-ancestors *"
+    );
 
     @Override
     protected void doFilterInternal(
@@ -37,8 +40,12 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
         response.setHeader("X-Content-Type-Options", "nosniff");
         response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
         response.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
-        response.setHeader("X-Frame-Options", "DENY");
-        response.setHeader("Content-Security-Policy", CONTENT_SECURITY_POLICY);
+        if (isEmbeddableChecker(request)) {
+            response.setHeader("Content-Security-Policy", EMBED_CONTENT_SECURITY_POLICY);
+        } else {
+            response.setHeader("X-Frame-Options", "DENY");
+            response.setHeader("Content-Security-Policy", CONTENT_SECURITY_POLICY);
+        }
         if ("https".equals(originalScheme(request))) {
             response.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
         }
@@ -71,6 +78,12 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
                 || accept.isBlank()
                 || accept.contains("text/html")
                 || accept.contains("*/*");
+    }
+
+    private boolean isEmbeddableChecker(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return "/embed/septic-bedroom-permit-checker".equals(path)
+                || "/embed/septic-bedroom-permit-checker/".equals(path);
     }
 
     private String originalScheme(HttpServletRequest request) {

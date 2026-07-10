@@ -3994,6 +3994,86 @@ h4 {
     line-height: 1.52;
 }
 
+.bedroom-checker-embed-section {
+    padding-top: 0;
+}
+
+.bedroom-checker-embed {
+    display: grid;
+    gap: 13px;
+    border: 1px solid rgba(20, 34, 32, 0.13);
+    border-radius: 8px;
+    padding: 20px;
+    background: #fff;
+}
+
+.bedroom-checker-embed summary {
+    color: var(--text);
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    font-weight: 900;
+}
+
+.bedroom-checker-embed p {
+    max-width: 70ch;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.52;
+}
+
+.bedroom-checker-embed textarea {
+    min-height: 94px;
+    width: 100%;
+    border: 1px solid rgba(20, 34, 32, 0.16);
+    border-radius: 7px;
+    padding: 11px;
+    color: var(--text);
+    background: #fbfbfa;
+    font: 0.8rem/1.45 "Manrope", sans-serif;
+    resize: vertical;
+}
+
+.bedroom-checker-embed-page {
+    min-width: 0;
+    margin: 0;
+    background: #f7f6f2;
+}
+
+.bedroom-checker-embed-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.bedroom-checker--embed {
+    grid-template-columns: minmax(230px, 0.7fr) minmax(0, 1.3fr);
+    box-shadow: none;
+}
+
+.bedroom-checker--embed .bedroom-checker__intro,
+.bedroom-checker--embed .bedroom-checker__form {
+    padding: 24px;
+}
+
+.bedroom-checker--embed .bedroom-checker__intro h1 {
+    max-width: 14ch;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.7rem, 3vw, 2.65rem);
+    line-height: 1.02;
+}
+
+.bedroom-checker-embed-shell__footer {
+    margin: 10px 0 0;
+    text-align: right;
+    font-size: 0.78rem;
+}
+
+.bedroom-checker-embed-shell__footer a {
+    color: var(--accent-strong);
+    font-weight: 800;
+}
+
 .county-research-disclosure-section {
     padding-top: 0;
 }
@@ -7020,5 +7100,13 @@ input[type="checkbox"] {
 
     .bedroom-checker__result h2 {
         font-size: 1.42rem;
+    }
+
+    .bedroom-checker--embed {
+        grid-template-columns: 1fr;
+    }
+
+    .bedroom-checker-embed-shell {
+        padding: 0;
     }
 }

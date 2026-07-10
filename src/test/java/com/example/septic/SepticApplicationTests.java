@@ -517,11 +517,19 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Bedroom Permit Checker")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-bedroom-permit-checker")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Does the listing bedroom count match the septic permit?")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing saved")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing saved")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/embed/septic-bedroom-permit-checker/")));
 
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-bedroom-permit-checker/")));
+
+		mockMvc.perform(get("/embed/septic-bedroom-permit-checker/"))
+				.andExpect(status().isOk())
+				.andExpect(header().doesNotExist("X-Frame-Options"))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-ancestors *")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-bedroom-permit-checker")));
 	}
 
 	@Test
