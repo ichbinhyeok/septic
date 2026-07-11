@@ -3858,7 +3858,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return links;
     }
 
-    @GetMapping("/api/county-finder")
+    @GetMapping({"/api/county-finder", "/api/county-finder/"})
     @ResponseBody
     public ResponseEntity<List<CountyFinderLinkView>> countyFinderSearch(
             @RequestParam(name = "q", defaultValue = "") String query,

@@ -557,6 +557,11 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/offer-prep-septic-file-check/")));
+
+		mockMvc.perform(get("/api/county-finder/?q=Blount"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"stateCode\":\"TN\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County")));
 	}
 
 	@Test

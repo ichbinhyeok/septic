@@ -1030,6 +1030,9 @@
                     body: JSON.stringify({ address: value })
                 });
                 const payload = await response.json();
+                if (payload.status === "unavailable") {
+                    throw new Error("address_unavailable");
+                }
                 if (!supportedStates.has(payload.stateCode)) {
                     throw new Error("unsupported_state");
                 }
@@ -1075,12 +1078,16 @@
                 if (heading) {
                     heading.textContent = error.message === "county_required"
                         ? "Enter a full address or choose both state and county"
+                        : error.message === "address_unavailable"
+                            ? "Address lookup is temporarily unavailable"
                         : error.message === "unsupported_state"
                             ? "This offer tool currently supports TN, IN, NC, and SC"
                             : "We could not confirm that county route";
                 }
                 if (message) {
-                    message.textContent = "Try the address again or use the county route with the state selected. No address was saved.";
+                    message.textContent = error.message === "address_unavailable"
+                        ? "Use the state and county fields above while the address resolver reconnects. The county route works without sending an address."
+                        : "Try the address again or use the county route with the state selected. No address was saved.";
                 }
                 if (facts) {
                     facts.replaceChildren();
