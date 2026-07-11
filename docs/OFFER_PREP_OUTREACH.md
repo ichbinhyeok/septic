@@ -1,34 +1,127 @@
-# Offer Prep External Distribution Kit
+# First-Case Deal Desk Outreach Kit
 
-## Destination
+## Operating position
 
-Use a normal link, never an iframe or widget:
+SepticPath does not ask a new partner to learn a tool in the first email.
+Offer one free, manual result for that partner's first active septic listing or
+offer. The only promise is a response by the end of the next business day.
 
-`https://septicpath.com/offer-prep-septic-file-check/?src=<partner-slug>&utm_medium=resource&utm_campaign=offer-prep-tn-nc`
+The manual result proves the workflow. Every later case must move to the
+partner's unique self-serve Offer Prep URL.
 
-`<partner-slug>` must be lowercase letters, numbers, and hyphens. Give every prospect a unique slug. The tool records the visit, file-check generation, request copy/download, and official-route click without recording the property address or request text.
+Do not accept Deal Desk cases through the public contact form. It is a stored
+site-contact intake. Receive the case only as a reply in the original Gmail
+thread, then process it in Offer Prep without retaining the address or drafted
+request outside that thread.
 
-## Resource-Page Insertion Copy
+## Partner link
 
-### Tennessee
+Create one lowercase, hyphenated slug per partner:
 
-Before relying on a listing's septic details, buyers can use this free septic file check to identify the county records route and create a precise request for the permit, layout, final approval, or written no-record response. It does not store the property address or make a permit decision.
+`https://septicpath.com/offer-prep-septic-file-check/?src=<partner-slug>&utm_medium=partner&utm_campaign=deal-desk`
 
-### North Carolina
+Example:
 
-For homes served by septic, this free buyer-side file check helps identify the county path for the improvement permit, construction authorization, operation permit, and related records. Buyers can also create a factual request for the listing agent before an offer relies on the advertised bedroom count or septic history.
+`https://septicpath.com/offer-prep-septic-file-check/?src=tn-smoky-mountain-realty&utm_medium=partner&utm_campaign=deal-desk`
 
-## Outreach Note
+The site records the visit, file-check generation, request copy/download, and
+official-route click. It does not record the property address or request text.
 
-Subject: Free septic file-check resource for your buyer guide
+## First message: TN or NC listing / buyer team
 
-I noticed your guide already tells rural or septic-home buyers to verify the property details before closing. We built a free, no-login tool that turns an address or county into the public septic records route and a copy-ready request for the listing agent; there is no widget, tracking pixel, or address storage required for your readers.
+Subject: One active septic file check for your next offer
 
-Would this two-sentence buyer resource fit naturally in your existing guide? Here is the partner-specific link: `<partner-link>`.
+Hi <first-name>,
 
-## First 21 Days
+I saw that <personalized observation about their rural, land, or septic-home
+work>. I can do one active septic listing or offer case for your team: reply in
+this thread with the address, or just state + county and the listing bedroom
+count. By the end of the next business day, I will send the official file
+route, the first three records to request, and a copy-ready note for the
+listing agent.
 
-1. Build a 40-prospect sheet: 20 Tennessee and 20 North Carolina pages that already discuss rural buyers, land due diligence, septic inspection, or buyer resources.
-2. Send personalized notes only where the linked page is an editorial fit. Do not automate DMs, buy links, or post generic community promotions.
-3. Review each source after 7 and 21 days: referral visits, file-check generation, copied/downloaded request, and official-route click.
-4. Expand the exact source type and insertion copy that creates real file checks into Indiana and South Carolina. Retire sources that send visits but no tool use.
+This is not a permit decision, legal opinion, or septic design review. It is a
+fast way to put the county-file question in the correct place before an offer
+relies on septic details.
+
+## First message: septic specialist or inspector
+
+Subject: One active listing file route, prepared for your client
+
+Hi <first-name>,
+
+I noticed <personalized observation about their inspection or septic work>. I
+am offering one free file-route prep for an active septic listing or offer you
+are already touching. Reply in this thread with the address, or state + county
+and the advertised bedroom count. By the end of the next business day, I will
+return the official records path, the three documents to request first, and a
+clean listing-agent request the client can send.
+
+It does not replace your inspection, permit authority, or engineering judgment.
+
+## One follow-up only
+
+Send this five business days after the first message only when there was no
+reply. Keep it in the same Gmail thread.
+
+Hi <first-name>,
+
+Closing the loop on this. If an active septic listing comes across your desk,
+reply here with the address or state + county and listing bedrooms. I will turn
+the first one into the official file route and buyer-facing request by the end
+of the next business day.
+
+## First-case response
+
+Subject: Re: <original subject>
+
+Hi <first-name>,
+
+Here is the file-prep result for this active case.
+
+1. Official route: <official route label and URL>
+2. Request these first: <document 1>; <document 2>; <document 3>.
+3. Bedroom/file check: <one factual question or mismatch to confirm>.
+4. Copy-ready request: <paste the Offer Prep request text>.
+5. Next professional step: <inspection / county / permitting / design step,
+without deciding the permit or transaction>.
+
+For the next case, send this exact link to the client or use it yourself:
+<partner-link>
+
+The link finds the county route and creates the same request without storing
+the property address. Please use that link for later cases; this manual Desk
+result is the one complimentary first case for your team.
+
+## Resource-page insertion, only after use
+
+Ask only a partner who sent a first case or used the unique link. Do not ask
+for an iframe, widget, tracking pixel, or a broad backlink.
+
+### Tennessee insertion
+
+Before relying on a listing's septic details, buyers can use this free septic
+file check to identify the county records route and create a precise request
+for the permit, layout, final approval, or written no-record response. It does
+not store the property address or make a permit decision.
+
+### North Carolina insertion
+
+For homes served by septic, this free buyer-side file check identifies the
+county path for the improvement permit, construction authorization, operation
+permit, and related records. Buyers can create a factual listing-agent request
+before relying on an advertised bedroom count or septic history.
+
+## Hard rules
+
+- Send one-to-one Gmail messages only. No BCC, mail merge, bulk DMs, link
+  buying, or generic community promotion.
+- Reply only in the sender's original Gmail thread.
+- Process at most five first cases per day and only one complimentary manual
+  case for each partner.
+- Do not put property addresses, listing links, or request text in the tracker
+  or site analytics.
+- Do not promise a ten-minute response. Promise the end of the next business
+  day.
+- Do not give a permit approval, legal conclusion, engineering conclusion, or
+  inspection conclusion.
