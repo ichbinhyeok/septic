@@ -33,6 +33,7 @@
 @param String editorialReviewedAgainst = ""
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
+@param String alabamaPercPlanningRange = "Under review"
 
 @template.layouts.app(page = page, content = @`
     <div class="state-guide-page">
@@ -44,9 +45,10 @@
                 @if ("AL".equals(state.stateCode()))
                     <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">
-                            <span class="eyebrow">Alabama perc test cost, made usable</span>
-                            <h2>Build the right quote request before you ask for a price.</h2>
-                            <p>ADPH says soil testing may need a registered professional and a Permit to Install must go to the county health department before construction. A bare "perc test" price can omit the soil and site evaluation, plot plan, or permit work that determines whether the result is usable.</p>
+                            <span class="eyebrow">Direct Alabama perc test answer</span>
+                            <h2>Alabama perc-test planning range: ${alabamaPercPlanningRange}</h2>
+                            <p class="alabama-perc-scope__answer">This uses the current national public planning anchor, not a statewide county fee. The number can expand when the parcel has no usable soil file, needs a plot plan, has a prior permit that does not fit the project, or may have public sewer.</p>
+                            <p>ADPH says soil testing may need a registered professional and a Permit to Install must go to the county health department before construction. Use the three answers below to turn the generic range into a quote scope that the county can actually use.</p>
                         </div>
                         <form class="alabama-perc-scope__form" data-alabama-perc-scope-form>
                             <label>
@@ -74,7 +76,7 @@
                                     <option value="yes">Yes or likely available</option>
                                 </select>
                             </label>
-                            <button class="button button--primary" type="submit">Build my Alabama quote scope</button>
+                            <button class="button button--primary" type="submit">Narrow my Alabama quote scope</button>
                         </form>
 
                         <div class="alabama-perc-scope__result" data-alabama-perc-result hidden aria-live="polite">

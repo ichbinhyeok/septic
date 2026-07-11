@@ -83,7 +83,9 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
     private boolean isEmbeddableChecker(HttpServletRequest request) {
         String path = request.getRequestURI();
         return "/embed/septic-bedroom-permit-checker".equals(path)
-                || "/embed/septic-bedroom-permit-checker/".equals(path);
+                || "/embed/septic-bedroom-permit-checker/".equals(path)
+                || "/embed/septic-record-finder".equals(path)
+                || "/embed/septic-record-finder/".equals(path);
     }
 
     private String originalScheme(HttpServletRequest request) {

@@ -69,6 +69,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class SiteController {
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
     private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "SC", "AL", "IN", "GA");
+    private static final List<String> RECORDS_ACCESS_INDEX_STATE_CODES = List.of("TN", "IN", "NC", "SC");
     private static final String PERMIT_LOOKUP_SLUG = "septic-permit-lookup";
     private static final String RECORDS_ONLINE_SLUG = "how-to-find-septic-records-online";
     private static final String RECORDS_BY_COUNTY_SLUG = "septic-records-by-county";
@@ -274,10 +275,7 @@ public class SiteController {
                     "tdec septic permit lookup",
                     "septic permit lookup",
                     "state of tn septic records",
-                    "state of tennessee septic records",
-                    "blount county septic records",
-                    "hamilton county septic inspection records",
-                    "hamilton county septic records"
+                    "state of tennessee septic records"
             )),
             Map.entry("IN", List.of(
                     "how to find septic tank records online free",
@@ -482,6 +480,35 @@ public class SiteController {
         model.addAttribute("page", seoService.recordFinderPage());
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         return "pages/record-finder";
+    }
+
+    @GetMapping({"/septic-records-access-index", "/septic-records-access-index/"})
+    public String recordsAccessIndex(Model model) {
+        model.addAttribute("page", seoService.recordsAccessIndexPage());
+        List<RecordsAccessIndexStateView> indexStates = recordsAccessIndexStates();
+        model.addAttribute("indexStates", indexStates);
+        model.addAttribute("priorityCountyRouteCount", indexStates.stream()
+                .mapToInt(RecordsAccessIndexStateView::countyRouteCount)
+                .sum());
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
+        return "pages/records-access-index";
+    }
+
+    @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
+    public String offerPrepSepticFileCheck(Model model) {
+        model.addAttribute("page", seoService.offerPrepFileCheckPage());
+        model.addAttribute("offerPrepStates", offerPrepStates());
+        model.addAttribute("priorityCountyRouteCount", offerPrepStates().stream()
+                .map(StateProfile::stateCode)
+                .mapToInt(stateCode -> researchDataService.listPublicCountyRecordsPages(stateCode).size())
+                .sum());
+        return "pages/offer-prep-septic-file-check";
+    }
+
+    @GetMapping({"/embed/septic-record-finder", "/embed/septic-record-finder/"})
+    public String recordFinderEmbed(Model model) {
+        model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
+        return "pages/record-finder-embed";
     }
 
     @GetMapping({"/septic-bedroom-permit-checker", "/septic-bedroom-permit-checker/"})
@@ -1414,6 +1441,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
+        model.addAttribute("alabamaPercPlanningRange", nationalPlanningRange("perc_test"));
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
@@ -3724,15 +3752,91 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .toList();
     }
 
+    private String nationalPlanningRange(String projectType) {
+        return researchDataService.findNationalAnchor(projectType)
+                .map(anchor -> range(anchor.low(), anchor.high()))
+                .orElse("Under review");
+    }
+
+    private List<RecordsAccessIndexStateView> recordsAccessIndexStates() {
+        return RECORDS_ACCESS_INDEX_STATE_CODES.stream()
+                .map(researchDataService::findStateByCode)
+                .flatMap(Optional::stream)
+                .filter(StateProfile::isPublished)
+                .map(state -> {
+                    List<CountyFinderLinkView> countyLinks = researchDataService
+                            .listPublicCountyRecordsPages(state.stateCode()).stream()
+                            .map(page -> countyFinderLink(page, state))
+                            .toList();
+                    String packetPath = recordsPacketPath(state.stateCode());
+                    return researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                            .map(recordsPage -> new RecordsAccessIndexStateView(
+                                    state.stateCode(),
+                                    state.stateName(),
+                                    recordsPage.path(state.slug()),
+                                    packetPath,
+                                    recordsPacketLabel(state.stateCode()),
+                                    recordsAccessFirstStep(state.stateCode()),
+                                    countyLinks.size(),
+                                    (int) countyLinks.stream().filter(this::isDirectOnlineRecordRoute).count(),
+                                    (int) countyLinks.stream().filter(link -> link.confidenceScore() >= 82).count()
+                            ));
+                })
+                .flatMap(Optional::stream)
+                .toList();
+    }
+
+    private boolean isDirectOnlineRecordRoute(CountyFinderLinkView link) {
+        return DIRECT_ONLINE_RECORD_SEARCH_COUNTIES.contains(
+                link.stateCode() + ":" + normalizeCountyFinderText(link.countyName()).replace(" county", "")
+        );
+    }
+
+    private String recordsPacketPath(String stateCode) {
+        return switch (stateCode) {
+            case "TN" -> TENNESSEE_INSPECTION_PACKET_PATH;
+            case "IN" -> INDIANA_RECORDS_PACKET_PATH;
+            case "NC" -> NORTH_CAROLINA_LISTING_PACKET_PATH;
+            case "SC" -> SOUTH_CAROLINA_PERMIT_PACKET_PATH;
+            default -> "/septic-records-request-builder/";
+        };
+    }
+
+    private String recordsPacketLabel(String stateCode) {
+        return switch (stateCode) {
+            case "TN" -> "Inspection-letter handoff";
+            case "IN" -> "Records request packet";
+            case "NC" -> "Listing permit packet";
+            case "SC" -> "Permit-prep packet";
+            default -> "Records request packet";
+        };
+    }
+
+    private String recordsAccessFirstStep(String stateCode) {
+        return switch (stateCode) {
+            case "TN" -> "Resolve the parcel and owner, then use the TDEC SSDS route or the county file owner.";
+            case "IN" -> "Open the local health or county records route before treating a statewide answer as the file.";
+            case "NC" -> "Start with county Environmental Health and carry the address or parcel into its permit-file path.";
+            case "SC" -> "Use the SCDES permit path, then request the D-1740 or county-held file when the search is incomplete.";
+            default -> "Open the state records path, then use the county route that owns the parcel file.";
+        };
+    }
+
     private List<CountyFinderLinkView> countyFinderLinks() {
         return countyFinderLinks(totalCountyRouteCount());
     }
 
+    private List<StateProfile> offerPrepStates() {
+        return RECORDS_ACCESS_INDEX_STATE_CODES.stream()
+                .map(researchDataService::findStateByCode)
+                .flatMap(Optional::stream)
+                .filter(StateProfile::isPublished)
+                .toList();
+    }
+
     private List<CountyFinderLinkView> directOnlineCountyFinderLinks() {
         return countyFinderLinks(totalCountyRouteCount()).stream()
-                .filter(link -> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES.contains(
-                        link.stateCode() + ":" + normalizeCountyFinderText(link.countyName()).replace(" county", "")
-                ))
+                .filter(this::isDirectOnlineRecordRoute)
                 .toList();
     }
 

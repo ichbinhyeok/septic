@@ -10,7 +10,7 @@
 @if (!countyFinderLinks.isEmpty())
     <section class="section section--tight county-finder-section">
         <div class="container">
-            <div class="county-finder" data-county-finder data-county-finder-api="/api/county-finder" data-county-finder-total="${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}">
+            <div id="${finderId}" class="county-finder" data-county-finder data-county-finder-api="/api/county-finder" data-county-finder-total="${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}">
                 <div class="county-finder__intro">
                     <span class="eyebrow">${eyebrow}</span>
                     <h2>${heading}</h2>
@@ -90,7 +90,7 @@
                         <span>Showing the strongest matches first.</span>
                     </div>
                     <div class="county-finder__results" data-county-finder-results>
-                        @for (var link : countyFinderLinks)
+                        @for (var link : countyFinderLinks.stream().limit(18).toList())
                             <a class="county-finder__result"
                                href="${link.path()}"
                                data-county-finder-result

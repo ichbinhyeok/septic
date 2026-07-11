@@ -527,6 +527,52 @@ public class SeoService {
         );
     }
 
+    public PageMeta recordsAccessIndexPage() {
+        String canonicalUrl = absoluteUrl("/septic-records-access-index/");
+        String title = "Septic Records Access Index | TN, IN, NC, and SC Official File Routes | SepticPath";
+        String description = "Compare verified septic records routes across Tennessee, Indiana, North Carolina, and South Carolina. Start by address, county, official permit search, or a ready-to-send records packet.";
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Septic Records Access Index", canonicalUrl)
+                ),
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "CollectionPage")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Septic Records Access Index", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
+    public PageMeta offerPrepFileCheckPage() {
+        String canonicalUrl = absoluteUrl("/offer-prep-septic-file-check/");
+        String title = "Offer Prep Septic File Check | Records Route and Seller Request | SepticPath";
+        String description = "Before an offer, resolve the septic records route by address or county, flag the bedroom-file question, and create a ready-to-send seller or listing-agent request.";
+        return pageMeta(
+                title,
+                description,
+                canonicalUrl,
+                "index,follow",
+                breadcrumbLinks(
+                        crumb("Home", absoluteUrl("/")),
+                        crumb("Offer Prep Septic File Check", canonicalUrl)
+                ),
+                List.of(
+                        toJson(webPage(canonicalUrl, title, description, "WebApplication")),
+                        toJson(breadcrumb(List.of(
+                                crumb("Home", absoluteUrl("/")),
+                                crumb("Offer Prep Septic File Check", canonicalUrl)
+                        )))
+                )
+        );
+    }
+
     public PageMeta bedroomPermitCheckerPage() {
         String canonicalUrl = absoluteUrl("/septic-bedroom-permit-checker/");
         String title = "Septic Bedroom Permit Checker | Listing vs Permit Capacity | SepticPath";
@@ -623,6 +669,8 @@ public class SeoService {
                 "/terms-of-use/",
                 "/contact/",
                 "/septic-record-finder/",
+                "/septic-records-access-index/",
+                "/offer-prep-septic-file-check/",
                 "/septic-bedroom-permit-checker/"
         );
     }

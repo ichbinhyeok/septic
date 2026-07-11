@@ -474,6 +474,10 @@
                 return;
             }
 
+            if (window.location.hash === `#${finder.id}`) {
+                window.setTimeout(() => input.focus(), 0);
+            }
+
             function matchesMethod(result, selectedMethod) {
                 if (!selectedMethod) {
                     return true;
@@ -836,6 +840,346 @@
     }
 
     setupAddressRecordFinders();
+
+    function setupOfferPrepFileChecks() {
+        const tools = Array.from(document.querySelectorAll("[data-offer-prep-file-check]"));
+        if (!tools.length) {
+            return;
+        }
+
+        const supportedStates = new Set(["TN", "IN", "NC", "SC"]);
+        const stateArtifacts = {
+            TN: ["septic permit or construction approval", "system layout or site plan", "final approval, repair history, and inspection-letter response if available"],
+            IN: ["onsite sewage permit", "soil evaluation and site plan", "final inspection, as-built, and repair history if available"],
+            NC: ["improvement permit and construction authorization", "operation permit or final record", "site plan, bedroom capacity, and repair history if available"],
+            SC: ["septic permit or D-1740-related file", "site plan or system layout", "final approval, inspection, and repair history if available"]
+        };
+
+        function normalized(value) {
+            return (value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+        }
+
+        function textOf(select) {
+            return select.options[select.selectedIndex]?.textContent?.trim() || "Not confirmed";
+        }
+
+        function escapeHtml(value) {
+            return (value || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        tools.forEach((tool) => {
+            const form = tool.querySelector("[data-offer-prep-form]");
+            const address = tool.querySelector("[data-offer-prep-address]");
+            const state = tool.querySelector("[data-offer-prep-state]");
+            const county = tool.querySelector("[data-offer-prep-county]");
+            const listingBedrooms = tool.querySelector("[data-offer-prep-listing-bedrooms]");
+            const permitBedrooms = tool.querySelector("[data-offer-prep-permit-bedrooms]");
+            const fileStatus = tool.querySelector("[data-offer-prep-file-status]");
+            const recipient = tool.querySelector("[data-offer-prep-recipient]");
+            const submit = tool.querySelector("[data-offer-prep-submit]");
+            const result = tool.querySelector("[data-offer-prep-result]");
+            const status = tool.querySelector("[data-offer-prep-status]");
+            const heading = tool.querySelector("[data-offer-prep-heading]");
+            const message = tool.querySelector("[data-offer-prep-message]");
+            const facts = tool.querySelector("[data-offer-prep-facts]");
+            const routeTitle = tool.querySelector("[data-offer-prep-route-title]");
+            const routeNote = tool.querySelector("[data-offer-prep-route-note]");
+            const routeActions = tool.querySelector("[data-offer-prep-route-actions]");
+            const note = tool.querySelector("[data-offer-prep-note]");
+            const copy = tool.querySelector("[data-offer-prep-copy]");
+            const download = tool.querySelector("[data-offer-prep-download]");
+            const print = tool.querySelector("[data-offer-prep-print]");
+
+            if (!(form instanceof HTMLFormElement)
+                || !(address instanceof HTMLInputElement)
+                || !(state instanceof HTMLSelectElement)
+                || !(county instanceof HTMLInputElement)
+                || !(listingBedrooms instanceof HTMLSelectElement)
+                || !(permitBedrooms instanceof HTMLSelectElement)
+                || !(fileStatus instanceof HTMLSelectElement)
+                || !(recipient instanceof HTMLSelectElement)
+                || !(submit instanceof HTMLButtonElement)
+                || !(result instanceof HTMLElement)
+                || !(note instanceof HTMLTextAreaElement)) {
+                return;
+            }
+
+            let currentRoute = null;
+            sendArtifactAction("offer_prep_file_check", "opened", "offer_prep_tool");
+
+            function routeAction(label, href, primary, targetType, external) {
+                const link = document.createElement("a");
+                link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
+                link.href = href;
+                link.textContent = label;
+                link.dataset.trackClick = "nav";
+                link.dataset.trackSourceContext = "offer_prep_file_check_route";
+                link.dataset.trackTargetType = targetType;
+                if (external) {
+                    link.target = "_blank";
+                    link.rel = "noreferrer";
+                    link.addEventListener("click", () => {
+                        sendArtifactAction("offer_prep_file_check", "official_route_opened", "offer_prep_tool");
+                    });
+                }
+                return link;
+            }
+
+            function selectedArtifacts(route) {
+                return stateArtifacts[route.stateCode] || ["septic permit", "system layout", "final approval or written no-record response"];
+            }
+
+            function countyLabel(route) {
+                const countyName = route.countyName || "Property county";
+                return /county$/i.test(countyName) ? countyName : `${countyName} County`;
+            }
+
+            function mismatchText() {
+                if (listingBedrooms.value !== "unknown"
+                    && permitBedrooms.value !== "unknown"
+                    && listingBedrooms.value !== permitBedrooms.value) {
+                    return "The listing bedroom count does not match the permit bedroom count provided. Please confirm the official file before relying on either number.";
+                }
+                if (listingBedrooms.value !== "unknown" && permitBedrooms.value === "unknown") {
+                    return "Please confirm the bedroom capacity shown in the official septic file before relying on the listing count.";
+                }
+                return "Please confirm the permit bedroom capacity and system record in the official file.";
+            }
+
+            function buildNote(route) {
+                const property = address.value.trim() || `${countyLabel(route)}, ${route.stateName} property`;
+                const recipientLabel = recipient.value === "seller" ? "Seller" : "Listing Agent";
+                const statusLabel = textOf(fileStatus).toLowerCase();
+                const artifacts = selectedArtifacts(route);
+                const lines = [
+                    `Subject: Septic file request before offer - ${property}`,
+                    "",
+                    `Hello ${recipientLabel},`,
+                    "",
+                    `Before we rely on the septic information for ${property}, please share the current official septic file or confirm the route used to obtain it. The file status currently appears to be: ${statusLabel}.`,
+                    "",
+                    "Please provide, if available:",
+                    ...artifacts.map((artifact, index) => `${index + 1}. ${artifact}.`),
+                    `\nListing bedrooms: ${textOf(listingBedrooms)}.`,
+                    `Permit bedrooms: ${textOf(permitBedrooms)}.`,
+                    "",
+                    mismatchText(),
+                    "",
+                    `The public starting route for this property is ${route.routeTitle || `${countyLabel(route)} records`}. Please let us know if there is a more current county file, repair file, or written no-record response.`,
+                    "",
+                    "Thank you."
+                ];
+                return lines.join("\n");
+            }
+
+            function renderRoute(route, resolvedBy) {
+                currentRoute = route;
+                result.hidden = false;
+                if (status) {
+                    status.textContent = resolvedBy === "address" ? "County route resolved" : "County route selected";
+                }
+                if (heading) {
+                    heading.textContent = route.heading || `${countyLabel(route)}, ${route.stateName} septic file route`;
+                }
+                if (message) {
+                    message.textContent = route.message || "Open the records path first, then use the request below to obtain the file needed for the transaction.";
+                }
+                if (facts) {
+                    const values = [route.stateName, route.countyName ? countyLabel(route) : "", textOf(fileStatus)];
+                    facts.replaceChildren(...values.filter(Boolean).map((value) => {
+                        const item = document.createElement("span");
+                        item.textContent = value;
+                        return item;
+                    }));
+                }
+                if (routeTitle) {
+                    routeTitle.textContent = route.routeTitle || `${countyLabel(route)} septic records`;
+                }
+                if (routeNote) {
+                    routeNote.textContent = "Open the public route before treating a listing detail, old report, or verbal statement as the current septic file.";
+                }
+                if (routeActions) {
+                    const actions = [];
+                    const relayActions = Array.isArray(route.relayActions) ? route.relayActions : [];
+                    relayActions.forEach((action) => {
+                        if (action && action.path) {
+                            actions.push(routeAction(action.label || "Open records route", action.path, Boolean(action.primary), action.targetType || "internal_page", Boolean(action.external)));
+                        }
+                    });
+                    if (!actions.length && route.routePath) {
+                        actions.push(routeAction(route.routeTitle || "Open records route", route.routePath, true, "county_records_page", false));
+                    }
+                    if (route.officialRouteUrl) {
+                        actions.push(routeAction("Open official file route", route.officialRouteUrl, actions.length === 0, "official_source", true));
+                    }
+                    routeActions.replaceChildren(...actions);
+                }
+                note.value = buildNote(route);
+                result.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+
+            async function resolveByAddress(value) {
+                const response = await fetch("/api/address-record-finder", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Accept: "application/json" },
+                    body: JSON.stringify({ address: value })
+                });
+                const payload = await response.json();
+                if (!supportedStates.has(payload.stateCode)) {
+                    throw new Error("unsupported_state");
+                }
+                if (!["county_route", "state_route"].includes(payload.status)) {
+                    throw new Error("route_not_found");
+                }
+                return payload;
+            }
+
+            async function resolveByCounty() {
+                if (!state.value || !county.value.trim()) {
+                    throw new Error("county_required");
+                }
+                const response = await fetch(`/api/county-finder?q=${encodeURIComponent(county.value.trim())}`, {
+                    headers: { Accept: "application/json" }
+                });
+                const matches = await response.json();
+                const countyKey = normalized(county.value.replace(/county/i, ""));
+                const match = Array.isArray(matches) && matches.find((candidate) => candidate.stateCode === state.value
+                    && normalized(candidate.countyName).replace(/county$/, "") === countyKey);
+                if (!match) {
+                    throw new Error("county_not_found");
+                }
+                return {
+                    status: "county_route",
+                    heading: `${match.countyName}, ${match.stateName} septic file route`,
+                    message: match.note || "This county route is the public starting point for the permit file and records request.",
+                    stateCode: match.stateCode,
+                    stateName: match.stateName,
+                    countyName: match.countyName,
+                    routeTitle: match.title || `Open ${match.countyName} records`,
+                    routePath: match.path,
+                    officialRouteUrl: match.recordsUrl || "",
+                    relayActions: []
+                };
+            }
+
+            function renderError(error) {
+                result.hidden = false;
+                if (status) {
+                    status.textContent = "Choose a file route";
+                }
+                if (heading) {
+                    heading.textContent = error.message === "county_required"
+                        ? "Enter a full address or choose both state and county"
+                        : error.message === "unsupported_state"
+                            ? "This offer tool currently supports TN, IN, NC, and SC"
+                            : "We could not confirm that county route";
+                }
+                if (message) {
+                    message.textContent = "Try the address again or use the county route with the state selected. No address was saved.";
+                }
+                if (facts) {
+                    facts.replaceChildren();
+                }
+                if (routeActions) {
+                    routeActions.replaceChildren(routeAction("Open county records finder", "/septic-records-by-county/", true, "internal_page", false));
+                }
+                if (routeTitle) {
+                    routeTitle.textContent = "Need a different route?";
+                }
+                if (routeNote) {
+                    routeNote.textContent = "Use the county finder to search the broader records network.";
+                }
+                if (note) {
+                    note.value = "";
+                }
+            }
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const original = submit.textContent;
+                submit.disabled = true;
+                submit.textContent = "Finding file route...";
+                try {
+                    const route = address.value.trim().length >= 8
+                        ? await resolveByAddress(address.value.trim())
+                        : await resolveByCounty();
+                    renderRoute(route, address.value.trim().length >= 8 ? "address" : "county");
+                    sendArtifactAction("offer_prep_file_check", "generated", "offer_prep_tool");
+                } catch (error) {
+                    renderError(error instanceof Error ? error : new Error("route_not_found"));
+                } finally {
+                    submit.disabled = false;
+                    submit.textContent = original;
+                }
+            });
+
+            if (copy instanceof HTMLButtonElement) {
+                copy.addEventListener("click", async () => {
+                    if (!note.value) {
+                        return;
+                    }
+                    const original = copy.textContent;
+                    try {
+                        await copyText(note.value);
+                        sendArtifactAction("offer_prep_file_check", "copied", "offer_prep_request");
+                        copy.textContent = "Request copied";
+                        copy.classList.add("is-copied");
+                    } catch (_error) {
+                        copy.textContent = "Copy failed";
+                        copy.classList.add("is-copy-failed");
+                    }
+                    window.setTimeout(() => {
+                        copy.textContent = original;
+                        copy.classList.remove("is-copied", "is-copy-failed");
+                    }, 1800);
+                });
+            }
+
+            if (download instanceof HTMLButtonElement) {
+                download.addEventListener("click", () => {
+                    if (!note.value || !currentRoute) {
+                        return;
+                    }
+                    downloadText(`${currentRoute.stateCode.toLowerCase()}-${normalized(currentRoute.countyName)}-offer-prep-septic-file-request.txt`, note.value);
+                    sendArtifactAction("offer_prep_file_check", "downloaded", "offer_prep_request");
+                    const original = download.textContent;
+                    download.textContent = "Downloaded";
+                    download.classList.add("is-copied");
+                    window.setTimeout(() => {
+                        download.textContent = original;
+                        download.classList.remove("is-copied");
+                    }, 1800);
+                });
+            }
+
+            if (print instanceof HTMLButtonElement) {
+                print.addEventListener("click", () => {
+                    if (!note.value || !currentRoute) {
+                        return;
+                    }
+                    const popup = window.open("", "_blank", "width=900,height=1000");
+                    if (!popup) {
+                        print.textContent = "Print blocked";
+                        window.setTimeout(() => { print.textContent = "Print request"; }, 1800);
+                        return;
+                    }
+                    popup.opener = null;
+                    popup.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Septic file request</title><style>@page{margin:.6in}body{font-family:Arial,sans-serif;color:#142220;line-height:1.5}main{max-width:7in;margin:auto}.kicker{color:#236c5f;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}h1{font-size:25px;margin:8px 0}pre{white-space:pre-wrap;font:13px/1.55 Consolas,monospace;border:1px solid #cfd8d1;padding:16px}</style></head><body><main><div class="kicker">SepticPath offer prep</div><h1>Septic file request</h1><p>${escapeHtml(countyLabel(currentRoute))}, ${escapeHtml(currentRoute.stateName)} public records path</p><pre>${escapeHtml(note.value)}</pre></main></body></html>`);
+                    popup.document.close();
+                    popup.focus();
+                    sendArtifactAction("offer_prep_file_check", "downloaded", "offer_prep_printable_request");
+                    window.setTimeout(() => popup.print(), 300);
+                });
+            }
+        });
+    }
+
+    setupOfferPrepFileChecks();
 
     function setupBedroomPermitCheckers() {
         const checkers = Array.from(document.querySelectorAll("[data-bedroom-permit-checker]"));

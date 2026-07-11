@@ -233,7 +233,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("82%+ high-confidence")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-parcel")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-confidence-score")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-parcel-anchor")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-results")));
 	}
 
 	@Test
@@ -506,13 +506,57 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Finder by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address not saved")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/api/address-record-finder")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/api/address-record-finder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the record route by county name")));
 
 		mockMvc.perform(post("/api/address-record-finder")
 					.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
 					.content("{\"address\":\"short\"}"))
 				.andExpect(status().isBadRequest())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"status\":\"invalid\"")));
+	}
+
+	@Test
+	void recordsAccessIndexAndEmbedRenderAndEnterSitemap() throws Exception {
+		mockMvc.perform(get("/septic-records-access-index/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Access Index")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No address? Use county search instead.")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-record-finder-embed-copy"))));
+
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-access-index/")));
+
+		mockMvc.perform(get("/embed/septic-record-finder/"))
+				.andExpect(status().isOk())
+				.andExpect(header().doesNotExist("X-Frame-Options"))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-ancestors *")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")));
+	}
+
+	@Test
+	void offerPrepFileCheckRendersForFourStatesAndEntersSitemap() throws Exception {
+		mockMvc.perform(get("/offer-prep-septic-file-check/?src=tn-rural-buyer-guide"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Offer Prep Septic File Check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-file-check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address not saved")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-download")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("embed code"))));
+
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/offer-prep-septic-file-check/")));
 	}
 
 	@Test
@@ -4867,7 +4911,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Septic permit cost and county records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost: Quote Scope and Permit Steps | SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Build a county-usable quote scope")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Build the right quote request before you ask for a price.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama perc-test planning range: $300 to $3,000")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Narrow my Alabama quote scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-alabama-perc-scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
@@ -5515,6 +5560,31 @@ class SepticApplicationTests {
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"artifact_action\""));
 			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"artifactType\":\"records_request_packet\""));
 			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("Property address"));
+		}
+	}
+
+	@Test
+	void offerPrepArtifactActionPreservesSourceKeyWithoutAddressOrRequestText() throws Exception {
+		mockMvc.perform(post("/events/artifact-action")
+					.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+					.content("""
+							{
+							  "sourcePage": "/offer-prep-septic-file-check/?src=tn-rural-buyer-guide&utm_medium=resource",
+							  "sourceContext": "offer_prep_file_check",
+							  "action": "generated",
+							  "artifactType": "offer_prep_tool"
+							}
+							"""))
+				.andExpect(status().isNoContent());
+
+		try (Stream<Path> eventFiles = Files.walk(Path.of("build/test-storage/events"))) {
+			Path eventFile = eventFiles.filter(path -> path.toString().endsWith(".ndjson"))
+					.findFirst().orElseThrow(() -> new AssertionError("Expected an event file"));
+			String eventContent = Files.readString(eventFile);
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("src=tn-rural-buyer-guide"));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"artifactType\":\"offer_prep_tool\""));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("123 Main"));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("Septic file request before offer"));
 		}
 	}
 

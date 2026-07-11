@@ -77,6 +77,7 @@
                     <a href="/septic-permit-lookup/">Permit lookup</a>
                     <a href="/septic-records-checklist/">Records lookup</a>
                     <a href="/septic-transfer-compliance/">Transfer compliance</a>
+                    <a href="/offer-prep-septic-file-check/">Offer prep</a>
                     <a href="/states/">State guides</a>
                     <a href="/septic-system-cost-calculator/">Cost estimator</a>
                     <a href="/about/">About</a>
@@ -126,6 +127,8 @@
                         <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
                         <li><a href="/septic-records-checklist/">Records lookup</a></li>
+                        <li><a href="/septic-records-access-index/">Records access index</a></li>
+                        <li><a href="/offer-prep-septic-file-check/">Offer prep file check</a></li>
                         <li><a href="/septic-permit-process/">Permit process</a></li>
                         <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>

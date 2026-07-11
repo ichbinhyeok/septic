@@ -40,7 +40,7 @@
 @param String editorialNote = ""
 
 @template.layouts.app(page = page, content = @`
-    <div class="content-page">
+    <div class="content-page content-page--${contentPage.slug()}">
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
@@ -69,13 +69,13 @@
                 @if (secondaryActionPath != null || contentQuotePath != null || !featuredStateMoneyPageLinks.isEmpty() || !featuredInternalLinks.isEmpty() || !featuredPermitLookupCountyLinks.isEmpty() || !contentOfficialFilePathRows.isEmpty())
                     <div class="hero-command-board" aria-label="Fast search intent routes">
                         <a class="hero-command hero-command--primary"
-                           href="${"septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath)}"
+                           href="${"septic-records-by-county".equals(contentPage.slug()) ? "#septic-records-by-county-county-finder" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath))}"
                            data-track-click="nav"
                            data-track-source-context="content_page_hero_command_primary"
                            data-track-target-type="${"septic-permit-search-by-address".equals(contentPage.slug()) ? "internal_section" : calculatorCtaTargetType}">
                             <span>Start here</span>
-                            <strong>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel}</strong>
-                            <small>${"septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading}</small>
+                            <strong>${"septic-records-by-county".equals(contentPage.slug()) ? "Search a county record route" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel)}</strong>
+                            <small>${"septic-records-by-county".equals(contentPage.slug()) ? "Type the county you already know and open its local septic file path." : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading)}</small>
                         </a>
                         @if ("buying-a-house-with-a-septic-system".equals(contentPage.slug()) || "septic-transfer-compliance".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()))
                             <a class="hero-command"
@@ -827,6 +827,7 @@
                         <span class="eyebrow">Septic records availability index</span>
                         <h2>Start with the county routes that already show the office, first file, and request method.</h2>
                         <p>This hub is built to answer the searches that usually get lost in county websites: septic permit lookup, permit copy request, as-built records, inspection letters, parcel or TMS search, and buyer file checks.</p>
+                        <a href="/septic-records-access-index/" data-track-click="nav" data-track-source-context="county_records_index_access_index" data-track-target-type="internal_page">Open the TN, IN, NC, and SC access index</a>
                     </div>
                     <div class="county-index-brief__metrics" aria-label="County records index coverage">
                         <div>

@@ -53,6 +53,7 @@
                        data-track-source-context="home_hero_indiana"
                        data-track-target-type="state_money_page">Indiana records</a>
                 </div>
+                <p class="hero-router-intro"><a href="/septic-records-access-index/" data-track-click="nav" data-track-source-context="home_records_access_index" data-track-target-type="internal_page">Open the TN, IN, NC, and SC records access index</a></p>
                 <p class="hero-router-intro">Use the fastest lane first. If the county file is still unclear, then move into permit process, transfer compliance, or cost planning.</p>
                 <div class="hero-decision-grid hero-decision-grid--compact">
                     <article class="hero-decision-card hero-decision-card--accent">

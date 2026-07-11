@@ -197,36 +197,6 @@
                         </div>
                     </div>
                 @endif
-                <div class="hero__actions">
-                    @if (countyPage.hasParcelAnchor())
-                        <a class="button button--secondary"
-                           href="${countyPage.parcelAnchorUrl()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-track-source-context="county_records_primary_parcel_anchor"
-                           data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
-                    @endif
-                    <a class="button button--primary"
-                       href="${countyPage.recordsUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_primary_records"
-                       data-track-target-type="official_source">${countyPage.recordsLabel()}</a>
-                    <a class="button button--secondary"
-                       href="${countyPage.officeUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_primary_office"
-                       data-track-target-type="official_source">${countyPage.officeLabel()}</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/${state.slug()}/"
-                        data-track-click="nav"
-                        data-track-source-context="county_records_back_to_state"
-                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
-                </div>
                 @if (countySeoIntro != null && !countySeoIntro.isBlank())
                     <p class="lede">${countySeoIntro}</p>
                     <p class="county-records-page__support-copy">${countyPage.introCopy()}</p>
