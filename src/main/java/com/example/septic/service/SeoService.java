@@ -504,6 +504,45 @@ public class SeoService {
         );
     }
 
+    /**
+     * A short, query-aligned answer shown above the long workflow content.
+     * Keep this factual and route-oriented: the page should answer the search
+     * question first, then explain the official path and edge cases below.
+     */
+    public String contentQuickAnswer(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case "tdec-septic-records" -> "Start with the official TDEC SSDS search. If the address is missing, retry with the parcel, owner, permit number, subdivision, or legal description, then use the Tennessee county route for older or incomplete files.";
+            case "septic-records-checklist" -> "Start with the state records route, then open the county file path for the permit, as-built, final approval, inspection letter, or repair record that actually answers the property question.";
+            case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
+            case "how-to-find-septic-records-online" -> "You can often find septic records online, but the file may live in a state portal, county health office, GIS attachment, or records-request queue. The fastest move is identifying the office that owns the parcel file.";
+            case "septic-records-by-county" -> "Choose the county first. County pages route you to the official permit copy, as-built, inspection letter, repair file, or records office instead of leaving you on a generic septic overview.";
+            case "septic-permit-search-by-address" -> "An address search is a starting point, not proof that a record exists. Resolve the county, then retry with parcel, owner, legal-description, subdivision, or permit-number clues when the first search is incomplete.";
+            case "septic-permit-records-request", "septic-records-request-builder" -> "Ask for the exact artifact you need: permit copy, as-built, final approval, inspection letter, repair history, or no-record response. Precise wording gets a more useful answer than a general septic-record request.";
+            case "septic-as-built-records" -> "An as-built or site sketch shows the installed tank, field, and layout story that a permit title alone may not answer. Start with the official file owner and request the drawing or scanned attachment.";
+            case "septic-inspection-letter" -> "A septic inspection letter is a separate workflow from a permit lookup. Confirm who issues the letter, what records support it, and whether the buyer, lender, or county requires a current professional inspection.";
+            case "official-septic-lookup-tools" -> "Use the official state or county lookup first. SepticPath helps identify the correct source, expected document, and fallback request route when the government search is incomplete or difficult to navigate.";
+            case "septic-system-cost-calculator" -> "A septic cost estimate is more useful after the permit file, site limits, bedroom count, and local approval path are clear. Use the state guide to identify what can widen the quote before comparing prices.";
+            case "septic-replacement-cost", "drain-field-replacement-cost" -> "Replacement cost depends on the existing file, soil and site constraints, reserve area, system class, access, and restoration—not just the tank or field component named in the first quote.";
+            case "perc-test-cost" -> "Perc-test cost is a planning range, not a universal fee. The county, soil evidence, plot plan, professional scope, sewer availability, and permit stage determine what the real quote needs to include.";
+            case "failed-perc-test-septic" -> "A failed perc test does not automatically mean the property is unusable. The next path depends on redesign options, reserve area, soil evidence, local rules, and whether the county will accept another site evaluation.";
+            case "buying-a-house-with-a-septic-system" -> "Before buying, match the bedroom count, permit file, as-built, final approval, inspection scope, and repair history. A clean-looking property story is not the same as a complete septic file.";
+            case "septic-inspection-cost" -> "Septic inspection cost depends on the requested scope and the records available before the visit. Pull the permit, as-built, pumping, and repair clues first so the inspection answers the real risk.";
+            default -> contentPage.introCopy();
+        };
+    }
+
+    public String stateGuideQuickAnswer(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "AL" -> "For Alabama, start with the county health file and confirm whether the parcel already has soil or perc evidence, a Permit to Install, or an Approval for Use before treating a generic perc-test range as a quote.";
+            case "TN" -> "For Tennessee, start with the TDEC SSDS or county file route and confirm the permit, as-built, final approval, and repair history before relying on a cost or inspection assumption.";
+            case "NC" -> "For North Carolina, start with the county environmental health file and identify the improvement permit, construction authorization, operation permit, as-built, or repair record tied to the property.";
+            case "IN" -> "For Indiana, start with the county or local health office and confirm the permit, site file, soil report, sewer-availability record, and any transfer paperwork before comparing project quotes.";
+            case "SC" -> "For South Carolina, start with the SCDES or county route and confirm the D-1740, permit copy, final inspection, and local office path before treating the project as routine.";
+            case "TX" -> "For Texas, start with the county or authorized-agent OSSF route and confirm the permit, approved plan, address or parcel file, and ETJ context before pricing work.";
+            default -> "Start with the official state and local health route for " + state.stateName() + ", confirm the file owner and first record, then use the estimate with the local permit and site assumptions in view.";
+        };
+    }
+
     public PageMeta recordFinderPage() {
         String canonicalUrl = absoluteUrl("/septic-record-finder/");
         String title = "Septic Records Finder by Address | County Permit and File Route | SepticPath";
@@ -909,13 +948,13 @@ public class SeoService {
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
             case "how-to-find-septic-records-online" -> "How to Find Septic Records Online | County, Permit, and As-Built Search | SepticPath";
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
-            case "septic-permit-search-by-address" -> "Septic Permit Search by Address | County Records and Parcel Lookup | SepticPath";
+            case "septic-permit-search-by-address" -> "Septic Permit Search by Address | SepticPath";
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath";
             case "septic-records-request-builder" -> "Septic Records Request Builder | Download Permit Copy Request Packet | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Records Search | Official SSDS Permit Lookup and County File Path | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Records | Tennessee Permit Search | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "North Carolina Septic Permit Lookup | County Environmental Health Records | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search | Septic Permit Lookup and County File Path | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
@@ -929,7 +968,7 @@ public class SeoService {
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
-                case "TN" -> "Tennessee Septic Records | TDEC Lookup by Address | SepticPath";
+                case "TN" -> "Tennessee Septic Records | TDEC Search by Address | SepticPath";
                 case "NC" -> "North Carolina Septic Permit Lookup & County Records | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
@@ -1000,7 +1039,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "Alabama Perc Test Cost: Quote Scope and Permit Steps";
+            case "AL" -> "How Much Is a Perc Test in Alabama?";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";

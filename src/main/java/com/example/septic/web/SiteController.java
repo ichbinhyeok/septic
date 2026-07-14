@@ -1438,6 +1438,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("stateRuleFacts", stateRuleFacts);
         model.addAttribute("guideFaqs", seoService.stateGuideFaqs(state));
         model.addAttribute("guideHeading", seoService.stateGuideHeading(state));
+        model.addAttribute("stateQuickAnswer", seoService.stateGuideQuickAnswer(state));
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
@@ -1589,6 +1590,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("contentQuickAnswer", seoService.contentQuickAnswer(contentPage));
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", renderedStates);
         model.addAttribute("stateMoneyPageLinks", renderedStateMoneyPageLinks);

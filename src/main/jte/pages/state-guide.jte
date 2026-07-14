@@ -25,6 +25,7 @@
 @param java.util.List<CountyWorkflowFieldView> guideOfficialFilePathRows = java.util.List.of()
 @param java.util.List<CountyWorkflowFieldView> guideGrowthAnswerRows = java.util.List.of()
 @param String guideHeading = "State septic cost guide"
+@param String stateQuickAnswer = ""
 @param String calculatorCtaLabel = "Open the main calculator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
 @param com.example.septic.web.StatePlanningSnapshot planningSnapshot = null
@@ -42,6 +43,12 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
+                @if (stateQuickAnswer != null && !stateQuickAnswer.isBlank())
+                    <div class="content-quick-answer" aria-label="Quick answer">
+                        <span class="content-quick-answer__label">Quick answer</span>
+                        <p>${stateQuickAnswer}</p>
+                    </div>
+                @endif
                 @if ("AL".equals(state.stateCode()))
                     <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">

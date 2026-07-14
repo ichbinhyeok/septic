@@ -777,6 +777,35 @@ h4 {
     line-height: 1.6;
 }
 
+.content-quick-answer {
+    display: grid;
+    gap: 6px;
+    max-width: 860px;
+    margin-top: 18px;
+    padding: 15px 17px;
+    border: 1px solid rgba(35, 101, 77, 0.22);
+    border-left: 4px solid var(--accent-strong);
+    border-radius: 14px;
+    background: rgba(236, 247, 239, 0.78);
+}
+
+.content-quick-answer__label {
+    color: var(--accent-strong);
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.content-quick-answer p {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.98rem;
+    font-weight: 650;
+    line-height: 1.62;
+}
+
 .hero-command-board {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

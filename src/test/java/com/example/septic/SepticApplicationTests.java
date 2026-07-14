@@ -4914,7 +4914,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Septic permit cost and county records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost: Quote Scope and Permit Steps | SepticPath")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Is a Perc Test in Alabama? | SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Build a county-usable quote scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama perc-test planning range: $300 to $3,000")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Narrow my Alabama quote scope")))
@@ -6830,7 +6830,7 @@ class SepticApplicationTests {
 	void tennesseeRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Tennessee Septic Records | TDEC Lookup by Address | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Tennessee Septic Records | TDEC Search by Address | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records &amp; TDEC Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Tennessee septic records by address, permit number, or county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee official records source")))

@@ -24,6 +24,7 @@
 @param int totalCountyRouteCount = 0
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
+@param String contentQuickAnswer = ""
 @param String contentQuotePath = null
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
 @param String calculatorCtaLabel = "Open the estimator"
@@ -57,6 +58,12 @@
                 </span>
                 <h1>${contentPage.title()}</h1>
                 <p class="lede">${contentPage.introCopy()}</p>
+                @if (contentQuickAnswer != null && !contentQuickAnswer.isBlank())
+                    <div class="content-quick-answer" aria-label="Quick answer">
+                        <span class="content-quick-answer__label">Quick answer</span>
+                        <p>${contentQuickAnswer}</p>
+                    </div>
+                @endif
                 <p class="hero-router-intro">
                     @if ("septic-permit-lookup".equals(contentPage.slug()))
                         Start with the state or county that can actually hold the permit file. If the county is already known, skip the overview and open that county route.
