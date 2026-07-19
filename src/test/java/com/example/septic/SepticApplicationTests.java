@@ -2145,7 +2145,9 @@ class SepticApplicationTests {
 	void stMarysCountyRecordsPageShowsGisAndRepairPercWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/maryland/st-marys-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Mary's County Maryland Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>St. Mary's County Septic Records &amp; GIS Lookup | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Mary's County septic records and GIS lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search St. Mary's County environmental health records in the official GIS by address or Tax ID.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search St. Mary's County environmental health records by GIS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("GIS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("repair perc")))
@@ -3003,7 +3005,9 @@ class SepticApplicationTests {
 	void blountCountyRecordsPageShowsInspectionLetterWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/blount-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County Tennessee Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Blount County TN Septic Records &amp; SSDS Request | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County TN septic records and SSDS request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use Blount County Environmental Health's SSDS request to pull the septic file.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County search action board")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County records and permit guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("blount county septic records")))
@@ -4545,7 +4549,9 @@ class SepticApplicationTests {
 	void alamanceCountyRecordsPageShowsRepairPermitAndInspectionWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/alamance-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alamance County North Carolina Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Alamance County NC Septic Permit Lookup &amp; Records | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alamance County NC septic permit lookup and records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Alamance County septic application packet")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alamance County Environmental Health owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county permit lane, existing-system inspection, and any repair history all support the same path")))

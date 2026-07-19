@@ -643,6 +643,15 @@ public class SeoService {
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Hamilton County TN Septic Inspection Records | SepticPath";
         }
+        if ("TN::blount-county".equals(countyPage.key())) {
+            return "Blount County TN Septic Records & SSDS Request | SepticPath";
+        }
+        if ("NC::alamance-county".equals(countyPage.key())) {
+            return "Alamance County NC Septic Permit Lookup & Records | SepticPath";
+        }
+        if ("MD::st-marys-county".equals(countyPage.key())) {
+            return "St. Mary's County Septic Records & GIS Lookup | SepticPath";
+        }
         return countyPage.countyName() + " " + state.stateCode() + " Septic Permit Lookup & Records | SepticPath";
     }
 
@@ -652,6 +661,15 @@ public class SeoService {
         }
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Find Hamilton County, TN septic inspection records, permits, and completion certificates using the official county search and Groundwater Department route.";
+        }
+        if ("TN::blount-county".equals(countyPage.key())) {
+            return "Find Blount County, TN septic records through the SSDS request, then use the separate inspection-letter route for loan closings and due diligence.";
+        }
+        if ("NC::alamance-county".equals(countyPage.key())) {
+            return "Find Alamance County, NC septic permits and records through Environmental Health, including improvement permits, system inspections, and repair files.";
+        }
+        if ("MD::st-marys-county".equals(countyPage.key())) {
+            return "Find St. Mary's County septic records in the official GIS by address or Tax ID, then use the Environmental Health repair-perc route when needed.";
         }
         String originalLead = countyPage.countyName() + " septic records checklist and permit lookup";
         String searchLead = countyPage.countyName() + ", " + state.stateName() + " septic permit lookup and records request";

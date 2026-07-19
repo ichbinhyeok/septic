@@ -27,6 +27,7 @@
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
 @param String countySeoHeading = ""
 @param String countySeoIntro = ""
+@param String countyQuickAnswer = ""
 @param java.util.List<String> countySearchQueries = java.util.List.of()
 @param String countyLeadProjectLabel = ""
 @param String countyEstimatePath = ""
@@ -49,6 +50,12 @@
                     <h1>${countyPage.title()}</h1>
                 @endif
                 <p class="county-records-page__source-title">Source-backed route: ${countyPage.title()}</p>
+                @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
+                    <div class="content-quick-answer" aria-label="Quick answer">
+                        <span class="content-quick-answer__label">Quick answer</span>
+                        <p>${countyQuickAnswer}</p>
+                    </div>
+                @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyPage.hasParcelAnchor())
                         <a class="button button--secondary"

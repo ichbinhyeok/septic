@@ -1542,3 +1542,35 @@ Copy this block for the next review:
   - Hamilton County clicks from its existing inspection-record impressions
 - Do not create another overlapping Tennessee or North Carolina records page
   during this measurement window.
+
+## 2026-07-20 - County snippet treatment cohort
+
+- Goal: test whether exact county artifact language improves CTR without
+  changing the page's canonical, indexability, or core workflow.
+- Treatment pages and pre-change 28-day baseline:
+  - Blount County, TN: 0 clicks / 15 impressions / average position 8.2
+  - Alamance County, NC: 2 clicks / 57 impressions / 3.51% CTR /
+    average position 9.5
+  - St. Mary's County, MD: 2 clicks / 51 impressions / 3.92% CTR /
+    average position 6.0
+- Treatment:
+  - align SEO title, H1, source title, description, and immediate quick answer
+    with the county's distinctive artifact: SSDS request, county permit and
+    inspection file, or GIS lookup
+  - leave canonical URLs, official-source routes, and page body workflows
+    unchanged
+- Directional controls left unchanged:
+  - `/septic-records-checklist/tennessee/knox-county/`
+  - `/septic-records-checklist/north-carolina/guilford-county/`
+  - `/septic-records-checklist/maryland/charles-county/`
+- First check: after 14 complete post-deploy days.
+- Final check: after 28 complete post-deploy days.
+- Primary decision metric: treatment-cohort CTR versus its own prior 28-day
+  baseline, with control pages used to flag a broad ranking or seasonality
+  shift rather than as a statistically powered experiment.
+- Guardrails:
+  - treatment-cohort impressions should not fall more than 30%
+  - average position should not decline by more than 2 positions
+  - Google should adopt the new title or a close artifact-focused rewrite
+- Do not expand the title treatment to additional counties before the first
+  14-day check.

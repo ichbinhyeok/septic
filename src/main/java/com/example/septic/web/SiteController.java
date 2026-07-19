@@ -1664,6 +1664,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("sources", sources);
         model.addAttribute("countySeoHeading", countySeoHeading(countyPage));
         model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state));
+        model.addAttribute("countyQuickAnswer", countyQuickAnswer(countyPage));
         model.addAttribute("countySearchQueries", countySearchQueries(countyPage, state));
         model.addAttribute("countySearchResponse", countySearchResponse(countyPage, state));
         model.addAttribute("countyLeadProjectLabel", projectTypeLabel(countyLeadProjectType(countyPage)));
@@ -1690,7 +1691,28 @@ The goal is to settle the permit path before we frame the project as a normal in
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Hamilton County septic inspection records and permit lookup";
         }
+        if ("TN::blount-county".equals(countyPage.key())) {
+            return "Blount County TN septic records and SSDS request";
+        }
+        if ("NC::alamance-county".equals(countyPage.key())) {
+            return "Alamance County NC septic permit lookup and records";
+        }
+        if ("MD::st-marys-county".equals(countyPage.key())) {
+            return "St. Mary's County septic records and GIS lookup";
+        }
         return countyPage.countyName() + " septic permit lookup and records request";
+    }
+
+    private String countyQuickAnswer(CountyRecordsPage countyPage) {
+        return switch (countyPage.key()) {
+            case "TN::blount-county" ->
+                    "Use Blount County Environmental Health's SSDS request to pull the septic file. For a loan closing, use the separate inspection-letter request because the county says the SSDS form is not a closing letter.";
+            case "NC::alamance-county" ->
+                    "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
+            case "MD::st-marys-county" ->
+                    "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
+            default -> "";
+        };
     }
 
     private String countySeoIntro(CountyRecordsPage countyPage, StateProfile state) {
