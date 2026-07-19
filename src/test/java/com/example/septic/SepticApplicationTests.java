@@ -166,7 +166,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open TDEC search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("If the official tab returns 403 or blocks your region")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/"))));
 
 		mockMvc.perform(get("/north-carolina-septic-permit-lookup/"))
 				.andExpect(status().isOk())
@@ -175,21 +177,26 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina searches usually resolve at county environmental health.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open NC records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/johnston-county/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/johnston-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/"))));
 
 		mockMvc.perform(get("/texas-ossf-records-search/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas OSSF searches need the state context")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open TCEQ OSSF")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/denton-county/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/denton-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/"))));
 
 		mockMvc.perform(get("/florida-ostds-permit-lookup/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Florida OSTDS searches start with the county health record path.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Florida OSTDS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/florida/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/florida/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/florida/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/"))));
 
 		mockMvc.perform(get("/dhec-septic-permit-lookup/"))
 				.andExpect(status().isOk())
@@ -198,7 +205,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open SCDES septic")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("If SCDES blocks the tab")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("D-1740 application trail")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/"))));
 	}
 
 	@Test

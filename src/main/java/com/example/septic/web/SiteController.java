@@ -111,6 +111,17 @@ public class SiteController {
             FL_OSTDS_LOOKUP_SLUG,
             DHEC_PERMIT_LOOKUP_SLUG
     );
+    private static final Map<String, String> RECORDS_AUTHORITY_STATE_CODES = Map.of(
+            TDEC_RECORDS_SLUG, "TN",
+            NC_PERMIT_LOOKUP_SLUG, "NC",
+            TX_OSSF_RECORDS_SLUG, "TX",
+            FL_OSTDS_LOOKUP_SLUG, "FL",
+            DHEC_PERMIT_LOOKUP_SLUG, "SC"
+    );
+    private static final Map<String, String> PRIORITY_COUNTY_INTERNAL_LINK_SLUGS = Map.of(
+            "TX", "tarrant-county",
+            "CA", "san-bernardino-county"
+    );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
             "septic-permit-process"
@@ -1565,18 +1576,18 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<StateMoneyPageLink> renderedStateMoneyPageLinks = stateMoneyPageLinks.stream()
                 .limit(stateSpecificRenderLimit)
                 .toList();
-        List<StateProfile> renderedStates = researchDataService.getPublicStateProfiles().stream()
-                .limit(fanoutRestrictedSurface ? 18 : Integer.MAX_VALUE)
-                .toList();
+        List<StateProfile> renderedStates = renderedStatesForContentPage(
+                contentPage,
+                fanoutRestrictedSurface ? 18 : Integer.MAX_VALUE);
         List<PageLink> permitLookupCountyLinks = renderedPermitLookupCountyLinks(
                 contentPage,
                 permitLookupCountyLaunchpadLinks(contentPage),
                 fanoutRestrictedSurface);
         List<CountyRouteClusterView> countyRouteClusters = permitLookupSurface
-                ? countyRouteClusters(fanoutRestrictedSurface ? 4 : 10, fanoutRestrictedSurface ? 2 : 4)
+                ? countyRouteClusters(contentPage, fanoutRestrictedSurface ? 4 : 10, fanoutRestrictedSurface ? 2 : 4)
                 : List.of();
         List<CountyFinderLinkView> countyFinderLinks = permitLookupSurface
-                ? countyFinderLinks(fanoutRestrictedSurface ? 24 : 48)
+                ? countyFinderLinksForContentPage(contentPage, fanoutRestrictedSurface ? 24 : 48)
                 : List.of();
         List<CountyFinderLinkView> directOnlineCountyFinderLinks = RECORDS_BY_COUNTY_SLUG.equals(contentPage.slug())
                 ? directOnlineCountyFinderLinks()
@@ -3848,8 +3859,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .toList();
     }
 
+    private List<CountyFinderLinkView> countyFinderLinksForContentPage(ContentPage contentPage, int limit) {
+        Optional<String> authorityStateCode = recordsAuthorityStateCode(contentPage);
+        if (authorityStateCode.isPresent()) {
+            return countyFinderLinks(authorityStateCode.orElseThrow(), limit);
+        }
+        return countyFinderLinks(limit);
+    }
+
     private List<CountyFinderLinkView> countyFinderLinks(int limit) {
+        return countyFinderLinks(null, limit);
+    }
+
+    private List<CountyFinderLinkView> countyFinderLinks(String stateCode, int limit) {
         List<CountyRecordsPage> countyPages = researchDataService.getPublicCountyRecordsPages().stream()
+                .filter(page -> stateCode == null || stateCode.equals(page.stateCode()))
                 .sorted(Comparator
                         .comparingInt(this::countyRecordPriorityScore)
                         .reversed()
@@ -4426,8 +4450,16 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<CountyRouteClusterView> countyRouteClusters(int stateLimit, int countiesPerState) {
+        return countyRouteClusters(null, stateLimit, countiesPerState);
+    }
+
+    private List<CountyRouteClusterView> countyRouteClusters(ContentPage contentPage, int stateLimit, int countiesPerState) {
+        Optional<String> authorityStateCode = recordsAuthorityStateCode(contentPage);
         return researchDataService.getPublicStateProfiles().stream()
                 .filter(state -> !researchDataService.listPublicCountyRecordsPages(state.stateCode()).isEmpty())
+                .filter(state -> authorityStateCode
+                        .map(stateCode -> stateCode.equals(state.stateCode()))
+                        .orElse(true))
                 .sorted(Comparator
                         .comparingInt(this::countyRouteStateScore)
                         .reversed()
@@ -4511,7 +4543,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (!isPermitLookupHub(contentPage)) {
             return List.of();
         }
-        return List.of("TN", "NC", "TX", "SC", "AL", "IN").stream()
+        List<String> stateCodes = recordsAuthorityStateCode(contentPage)
+                .map(List::of)
+                .orElseGet(() -> List.of("TN", "NC", "TX", "SC", "AL", "IN"));
+        return stateCodes.stream()
                 .flatMap(stateCode -> researchDataService.listPublicCountyRecordsPages(stateCode).stream())
                 .sorted(Comparator
                         .comparingInt(this::countyRecordPriorityScore)
@@ -5574,11 +5609,15 @@ The goal is to settle the permit path before we frame the project as a normal in
         Stream<StateMoneyPage> stateMoneyPages = stateMoneyPageSlugsForContentPage(contentPage)
                         .flatMap(slug -> researchDataService.listPublicStateMoneyPagesForContent(slug).stream())
                 .distinct();
+        Optional<String> authorityStateCode = recordsAuthorityStateCode(contentPage);
 
         return stateMoneyPages
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> Map.entry(page, state))
                         .stream())
+                .filter(entry -> authorityStateCode
+                        .map(stateCode -> stateCode.equals(entry.getValue().stateCode()))
+                        .orElse(true))
                 .sorted(Comparator
                         .comparingInt((Map.Entry<StateMoneyPage, StateProfile> entry) -> contentStateLinkScore(contentPage, entry.getKey(), entry.getValue()))
                         .reversed()
@@ -5779,6 +5818,22 @@ The goal is to settle the permit path before we frame the project as a normal in
             return TRANSFER_COMPLIANCE_STATE_SLUGS.stream();
         }
         return Stream.of(contentPage.slug());
+    }
+
+    private Optional<String> recordsAuthorityStateCode(ContentPage contentPage) {
+        return contentPage == null
+                ? Optional.empty()
+                : Optional.ofNullable(RECORDS_AUTHORITY_STATE_CODES.get(contentPage.slug()));
+    }
+
+    private List<StateProfile> renderedStatesForContentPage(ContentPage contentPage, int limit) {
+        Optional<String> authorityStateCode = recordsAuthorityStateCode(contentPage);
+        return researchDataService.getPublicStateProfiles().stream()
+                .filter(state -> authorityStateCode
+                        .map(stateCode -> stateCode.equals(state.stateCode()))
+                        .orElse(true))
+                .limit(limit)
+                .toList();
     }
 
     private int permitLookupStateLinkScore(StateMoneyPage page, StateProfile state) {
@@ -6110,13 +6165,20 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (countyRecordLinks == null || countyRecordLinks.isEmpty()) {
             return List.of();
         }
+        LinkedHashMap<String, PageLink> selectedLinks = new LinkedHashMap<>();
+        Optional.ofNullable(PRIORITY_COUNTY_INTERNAL_LINK_SLUGS.get(stateCode))
+                .flatMap(preferredSlug -> countyRecordLinks.stream()
+                        .filter(link -> link.path().contains("/" + preferredSlug + "/"))
+                        .findFirst())
+                .ifPresent(link -> selectedLinks.put(link.path(), link));
+
         Set<String> boostedCountySlugs = countySearchResponseSlugs(stateCode);
-        List<PageLink> boostedLinks = countyRecordLinks.stream()
+        countyRecordLinks.stream()
                 .filter(link -> boostedCountySlugs.stream().anyMatch(slug -> link.path().contains("/" + slug + "/")))
                 .limit(8)
-                .toList();
-        if (!boostedLinks.isEmpty()) {
-            return boostedLinks;
+                .forEach(link -> selectedLinks.putIfAbsent(link.path(), link));
+        if (!selectedLinks.isEmpty()) {
+            return selectedLinks.values().stream().limit(8).toList();
         }
         return countyRecordLinks.stream().limit(6).toList();
     }
