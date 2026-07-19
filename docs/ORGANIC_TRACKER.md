@@ -1503,3 +1503,42 @@ Copy this block for the next review:
 - Reordered internal links on the target state pages so the first links point into records cluster hubs and proven county pages instead of generic calculator paths.
 - Promoted the records cluster from the home page so `/septic-records-by-county/`, `/septic-permit-search-by-address/`, `/septic-permit-records-request/`, `/septic-as-built-records/`, and `/septic-inspection-letter/` are discoverable immediately.
 - Adjusted Alabama guide title/H1/CTA from a broad permit-cost guide toward county records, Permit to Install, Approval for Use, and perc-test search intent.
+
+## 2026-07-20 - Records CTR intent split
+
+- Source: Google Search Console plus repository verification
+- Baseline window: 2026-06-20 through 2026-07-17
+- Baseline:
+  - 311 clicks and 12,542 impressions
+  - 217 clicks, or 69.8%, from records and official-lookup intent
+  - recent complete week: 123 clicks from 4,615 impressions
+
+### Changes
+
+- Retargeted `/tdec-septic-records/` to the official TDEC septic permit search
+  and SSDS record task instead of the broader Tennessee records phrase.
+- Retargeted `/septic-records-checklist/tennessee/` to the county and file
+  handoff: permit copies, inspection letters, repair history, and no-record
+  responses.
+- Kept `/septic-records-checklist/north-carolina/` as the primary North
+  Carolina permit-lookup-by-county route.
+- Retargeted `/north-carolina-septic-permit-lookup/` to the informational
+  "how to find NC septic permits by county" task so it supports rather than
+  duplicates the state records router.
+- Matched the Hamilton County, Tennessee title, H1, quick intro, and snippet
+  to the live query `Hamilton County septic inspection records`.
+- Left the Alabama state guide unchanged because its exact perc-test title,
+  H1, quick answer, quote-scope tool, and county-file context were already
+  live before this patch.
+
+### Decision window
+
+- First check: compare page-level impressions and CTR after 14 complete days.
+- Final check: compare the same URLs after 4 to 8 weeks.
+- Primary measures:
+  - TDEC page CTR for `tdec septic permit search` and related SSDS queries
+  - Tennessee records CTR for state and county records queries
+  - North Carolina state-page CTR for county permit lookup queries
+  - Hamilton County clicks from its existing inspection-record impressions
+- Do not create another overlapping Tennessee or North Carolina records page
+  during this measurement window.

@@ -1779,17 +1779,17 @@
     {
       "slug": "tdec-septic-records",
       "intentType": "workflow_page",
-      "primaryKeyword": "TDEC septic records",
+      "primaryKeyword": "TDEC septic permit search",
       "secondaryKeywords": [
-        "TDEC septic permit search",
-        "Tennessee septic records",
-        "Tennessee septic permit lookup",
+        "TDEC septic records",
+        "TDEC SSDS search",
         "TDEC document viewer septic",
-        "Tennessee SSDS permit records"
+        "Tennessee SSDS permit records",
+        "TDEC septic search by address"
       ],
-      "title": "TDEC Septic Records Search and Permit Lookup",
-      "metaDescription": "Search TDEC septic records, Tennessee SSDS permits, as-built files, final approvals, repair history, and county fallback routes before treating a file as missing.",
-      "introCopy": "TDEC septic records searches should start with the state document path, then move quickly into county and request workflows when the first result is incomplete. Tennessee users usually need more than a permit hit: they need the permit copy, as-built, final approval, SSDS file, repair history, or a clear no-record response.",
+      "title": "TDEC Septic Permit Search and SSDS Records",
+      "metaDescription": "Search TDEC septic permits and SSDS records by address, parcel, owner, permit number, subdivision, or legal description, then use the county fallback.",
+      "introCopy": "Use this page for the official TDEC septic permit search and SSDS document route. Search by address first, then retry with parcel, owner, permit number, subdivision, lot, or legal description before moving to a Tennessee county office or targeted records request.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for Tennessee buyers, owners, agents, contractors, and closing teams who need the official septic file before trusting a quote, inspection story, addition plan, or transaction deadline.",
@@ -1857,17 +1857,17 @@
     {
       "slug": "north-carolina-septic-permit-lookup",
       "intentType": "workflow_page",
-      "primaryKeyword": "North Carolina septic permit lookup",
+      "primaryKeyword": "how to find NC septic permits by county",
       "secondaryKeywords": [
-        "NC septic permit lookup",
-        "North Carolina septic records",
+        "how to search NC septic permits",
         "NC environmental health septic records",
         "North Carolina septic as-built",
-        "NC septic public records"
+        "NC septic public records request",
+        "NC septic permit search by parcel"
       ],
-      "title": "North Carolina Septic Permit Lookup",
-      "metaDescription": "Find North Carolina septic permit records through county environmental health routes, public records requests, parcel searches, and as-built file pulls.",
-      "introCopy": "A North Carolina septic permit lookup usually resolves through county environmental health, county permitting portals, or public-records workflows rather than one universal statewide lookup. The goal is to identify the right county route, then recover the permit, as-built, final approval, repair history, inspection letter, or no-record response.",
+      "title": "How to Find NC Septic Permits by County",
+      "metaDescription": "Learn how to search NC county environmental health records by address, parcel, owner, or permit number and request the permit, as-built, and final approval.",
+      "introCopy": "Use this guide when you need to understand how North Carolina septic permit searches work. The practical route is county environmental health: identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for North Carolina buyers, owners, agents, builders, and contractors who need an official county septic file before a sale, repair, addition, replacement, or lender review.",

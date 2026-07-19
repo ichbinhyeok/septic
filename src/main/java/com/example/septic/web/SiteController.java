@@ -1676,10 +1676,16 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String countySeoHeading(CountyRecordsPage countyPage) {
+        if ("TN::hamilton-county".equals(countyPage.key())) {
+            return "Hamilton County septic inspection records and permit lookup";
+        }
         return countyPage.countyName() + " septic permit lookup and records request";
     }
 
     private String countySeoIntro(CountyRecordsPage countyPage, StateProfile state) {
+        if ("TN::hamilton-county".equals(countyPage.key())) {
+            return "Search Hamilton County, TN septic inspection records, permits, and completion certificates through the official county route. Use the address-search tips and Groundwater Department fallback before treating the file as missing.";
+        }
         return "Use this " + countyPage.countyName() + ", " + state.stateCode()
                 + " route for septic permit lookup, records requests, address or parcel searches, as-built files, inspection letters, and county office routing before you trust a quote.";
     }
