@@ -19,6 +19,7 @@ public record StateMoneyPage(
         List<String> internalLinkTargets,
         List<String> officialSourceIds,
         String calculatorProjectType,
+        String updatedAt,
         String publishStatus
 ) {
     public String key() {

@@ -391,6 +391,7 @@ class SepticApplicationTests {
 						new FaqBlock("Question two?", "Answer two.")
 				),
 				List.of("/septic-replacement-cost/"),
+				null,
 				null
 		);
 
@@ -413,6 +414,7 @@ class SepticApplicationTests {
 				unpublished.driverBullets(),
 				unpublished.faqBlocks(),
 				unpublished.internalLinkTargets(),
+				unpublished.updatedAt(),
 				"published"
 		);
 
@@ -442,6 +444,7 @@ class SepticApplicationTests {
 				List.of("/septic-system-cost-calculator/georgia/"),
 				List.of("ga_01"),
 				"replacement",
+				null,
 				null
 		);
 
@@ -462,6 +465,7 @@ class SepticApplicationTests {
 				unpublished.internalLinkTargets(),
 				unpublished.officialSourceIds(),
 				unpublished.calculatorProjectType(),
+				unpublished.updatedAt(),
 				"published"
 		);
 
@@ -759,6 +763,10 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-07-20</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-07-20</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/how-to-find-septic-records-online/")))
@@ -803,6 +811,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/sitemap-county.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-07-20</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/texas/tarrant-county/</loc><lastmod>2026-05-07</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/greenville-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/comal-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/"))))

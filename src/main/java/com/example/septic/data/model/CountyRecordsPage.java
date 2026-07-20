@@ -32,6 +32,7 @@ public record CountyRecordsPage(
         List<String> internalLinkTargets,
         List<String> officialSourceIds,
         CountyWorkflowStructureData workflowStructure,
+        String updatedAt,
         String publishStatus
 ) {
     public String key() {

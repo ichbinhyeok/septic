@@ -1,16 +1,14 @@
 package com.example.septic.service;
 
-import com.example.septic.config.AppDataProperties;
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
+import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,18 +16,15 @@ public class SitemapService {
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
     private final SeoService seoService;
-    private final AppDataProperties dataProperties;
 
     public SitemapService(
             ResearchDataService researchDataService,
             PublishingPolicyService publishingPolicyService,
-            SeoService seoService,
-            AppDataProperties dataProperties
+            SeoService seoService
     ) {
         this.researchDataService = researchDataService;
         this.publishingPolicyService = publishingPolicyService;
         this.seoService = seoService;
-        this.dataProperties = dataProperties;
     }
 
     public String robotsTxt() {
@@ -45,22 +40,21 @@ public class SitemapService {
 
     public String sitemapXml() {
         List<SitemapEntry> entries = new ArrayList<>();
-        String defaultLastMod = latestPublishedUpdate();
-        entries.add(entry(seoService.absoluteUrl("/"), defaultLastMod));
-        entries.add(entry(seoService.absoluteUrl("/septic-system-cost-calculator/"), defaultLastMod));
-        entries.add(entry(seoService.absoluteUrl("/septic-tank-size-estimator/"), defaultLastMod));
-        entries.add(entry(seoService.absoluteUrl("/septic-pump-schedule-estimator/"), defaultLastMod));
-        entries.add(entry(seoService.absoluteUrl("/drain-field-estimator/"), defaultLastMod));
+        entries.add(entry(seoService.absoluteUrl("/"), ""));
+        entries.add(entry(seoService.absoluteUrl("/septic-system-cost-calculator/"), ""));
+        entries.add(entry(seoService.absoluteUrl("/septic-tank-size-estimator/"), ""));
+        entries.add(entry(seoService.absoluteUrl("/septic-pump-schedule-estimator/"), ""));
+        entries.add(entry(seoService.absoluteUrl("/drain-field-estimator/"), ""));
         seoService.staticPagePaths().stream()
                 .map(seoService::absoluteUrl)
-                .map(url -> entry(url, defaultLastMod))
+                .map(url -> entry(url, ""))
                 .forEach(entries::add);
 
         for (ContentPage contentPage : researchDataService.getPublicContentPages()) {
             if (!"septic-system-cost-calculator".equals(contentPage.slug())) {
                 entries.add(entry(
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
-                        contentPagesLastMod()
+                        validDateOrBlank(contentPage.updatedAt())
                 ));
             }
         }
@@ -68,7 +62,7 @@ public class SitemapService {
         for (StateProfile state : researchDataService.getPublicStateProfiles()) {
             entries.add(entry(
                     seoService.absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/"),
-                    state.lastVerifiedAt()
+                    statePageLastMod(state)
             ));
         }
 
@@ -82,7 +76,7 @@ public class SitemapService {
                             url,
                             researchDataService.findStateByCode(stateMoneyPage.stateCode())
                                     .map(state -> stateMoneyPageLastMod(stateMoneyPage, state))
-                                    .orElse(stateMoneyPagesLastMod())
+                                    .orElse("")
                     )));
         }
 
@@ -124,84 +118,60 @@ public class SitemapService {
         return new SitemapEntry(url, lastMod);
     }
 
-    private String latestPublishedUpdate() {
-        return List.of(
-                        researchDataService.stateProfilesGeneratedAt(),
-                        researchDataService.contentPagesGeneratedAt(),
-                        researchDataService.stateMoneyPagesGeneratedAt(),
-                        researchDataService.countyRecordsPagesGeneratedAt(),
-                        researchDataService.searchResponseTargetsGeneratedAt(),
-                        dataFileLastModified("state_profiles.json"),
-                        contentPagesLastMod(),
-                        stateMoneyPagesLastMod(),
-                        countyRecordsPagesLastMod()
-                ).stream()
-                .filter(value -> value != null && !value.isBlank())
-                .max(String::compareTo)
-                .orElse("");
-    }
-
-    private String contentPagesLastMod() {
-        return latestNonBlank(
-                researchDataService.contentPagesGeneratedAt(),
-                dataFileLastModified("content_pages.json")
-        );
-    }
-
-    private String stateMoneyPagesLastMod() {
-        return latestNonBlank(
-                researchDataService.stateMoneyPagesGeneratedAt(),
-                dataFileLastModified("state_money_pages.json")
-        );
-    }
-
-    private String countyRecordsPagesLastMod() {
-        return latestNonBlank(
-                researchDataService.countyRecordsPagesGeneratedAt(),
-                dataFileLastModified("county_records_pages.json")
-        );
-    }
-
     private String stateMoneyPageLastMod(StateMoneyPage stateMoneyPage, StateProfile state) {
-        String pageLastMod = latestNonBlank(state.lastVerifiedAt(), stateMoneyPagesLastMod());
-        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
-                && researchDataService.findSearchResponseTarget("state_records", state.stateCode()).isPresent()) {
-            pageLastMod = latestNonBlank(pageLastMod, researchDataService.searchResponseTargetsGeneratedAt());
-            pageLastMod = latestNonBlank(pageLastMod, dataFileLastModified("search_response_targets.json"));
-        }
-        return pageLastMod;
+        return latestVerifiedDate(
+                stateMoneyPage.updatedAt(),
+                state.lastVerifiedAt(),
+                stateMoneyPage.officialSourceIds()
+        );
     }
 
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
-        String pageLastMod = latestNonBlank(state.lastVerifiedAt(), countyRecordsPagesLastMod());
-        if (researchDataService.findSearchResponseTarget("county_records", countyPage.key()).isPresent()) {
-            pageLastMod = latestNonBlank(pageLastMod, researchDataService.searchResponseTargetsGeneratedAt());
-            pageLastMod = latestNonBlank(pageLastMod, dataFileLastModified("search_response_targets.json"));
-        }
-        return pageLastMod;
+        return latestVerifiedDate(
+                countyPage.updatedAt(),
+                state.lastVerifiedAt(),
+                countyPage.officialSourceIds()
+        );
     }
 
-    private String dataFileLastModified(String fileName) {
-        try {
-            Path path = Path.of(dataProperties.root()).resolve(fileName);
-            if (Files.notExists(path)) {
-                return "";
-            }
-            return Files.getLastModifiedTime(path)
-                    .toInstant()
-                    .atZone(ZoneOffset.UTC)
-                    .toLocalDate()
-                    .toString();
-        } catch (IOException exception) {
-            return "";
-        }
+    private String statePageLastMod(StateProfile state) {
+        return latestVerifiedDate(
+                null,
+                state.lastVerifiedAt(),
+                state.officialSourceIds(),
+                state.localAuthoritySourceIds(),
+                state.recordsLookupSourceIds()
+        );
     }
 
-    private String latestNonBlank(String first, String second) {
-        return List.of(first, second).stream()
-                .filter(value -> value != null && !value.isBlank())
+    @SafeVarargs
+    private final String latestVerifiedDate(String updatedAt, String fallback, List<String>... sourceIdGroups) {
+        Stream<String> sourceDates = Stream.of(sourceIdGroups)
+                .filter(java.util.Objects::nonNull)
+                .flatMap(group -> group == null ? Stream.empty() : group.stream())
+                .map(researchDataService::findSource)
+                .flatMap(java.util.Optional::stream)
+                .map(SourceRecord::lastVerifiedAt);
+        return Stream.concat(Stream.of(updatedAt, fallback), sourceDates)
+                .filter(this::isIsoDate)
                 .max(String::compareTo)
                 .orElse("");
+    }
+
+    private String validDateOrBlank(String value) {
+        return isIsoDate(value) ? value : "";
+    }
+
+    private boolean isIsoDate(String value) {
+        if (value == null || value.isBlank()) {
+            return false;
+        }
+        try {
+            LocalDate.parse(value);
+            return true;
+        } catch (java.time.format.DateTimeParseException exception) {
+            return false;
+        }
     }
 
     private record SitemapEntry(String url, String lastMod) {

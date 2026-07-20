@@ -1574,3 +1574,21 @@ Copy this block for the next review:
   - Google should adopt the new title or a close artifact-focused rewrite
 - Do not expand the title treatment to additional counties before the first
   14-day check.
+
+## 2026-07-20 - Sitemap lastmod trust cleanup
+
+- Removed JSON file modification time and collection-level `generatedAt` as
+  blanket `lastmod` values for unrelated URLs.
+- Static and broad content URLs now omit `lastmod` unless the individual
+  content record has a valid `updatedAt` date.
+- State workflow and county URLs use the latest valid date from:
+  - the page's explicit `updatedAt`
+  - the state profile verification date
+  - official sources attached to that individual page
+- Added `updatedAt: 2026-07-20` only to the content, state records, and county
+  records pages materially changed in this search-intent sprint.
+- Expected result: editing one county or content JSON file no longer makes
+  hundreds of untouched URLs appear freshly modified in the sitemap.
+- QA guardrail: sitemap tests pin a recently edited URL to 2026-07-20, an
+  untouched source-backed county URL to its 2026-05-07 verification date, and
+  undated static/broad URLs to entries with no `lastmod` element.

@@ -21,6 +21,7 @@ public record ContentPage(
         List<String> driverBullets,
         List<FaqBlock> faqBlocks,
         List<String> internalLinkTargets,
+        String updatedAt,
         String publishStatus
 ) {
     public boolean isPublished() {
