@@ -1704,3 +1704,37 @@ Copy this block for the next review:
     county-route clicks against the pre-launch baseline
   - after 28 complete days, inspect backlinks/referrals to the access index and
     decide whether a state-specific downloadable subset is justified
+
+## 2026-07-20 - Records index quality gate and distribution readiness
+
+- Audited the intended row grain: one published state-and-county records route.
+- Structural profile:
+  - 324 rows across 27 states
+  - 0 duplicate state-and-county keys
+  - 0 missing required index fields
+  - 0 unresolved official source IDs
+  - 0 non-HTTPS official records URLs after remediation
+- Live-link audit of 288 unique official destinations:
+  - 14 confirmed 404 or 410 routes found and replaced
+  - 206 returned a 2xx or 3xx response in the post-fix audit
+  - 0 confirmed 404 or 410 routes remained
+  - 55 bot-blocked 4xx responses, 26 network/timeouts, and one 521 remain
+    manual-review candidates rather than being labeled broken
+- Trust and reuse changes:
+  - replaced blanket `verified` language with `official-source` language
+  - added confidence label, official-source count, and last-reviewed date to
+    the CSV
+  - exposed the last review date on each visible route card
+  - clarified that confidence measures route specificity, not permit status
+  - added an automated data guardrail for unique county keys, HTTPS routes,
+    resolvable sources, row count, and dataset date
+- Product-quality review:
+  - fixed a raw JTE placeholder rendered in the main filter heading
+  - corrected partial-list metrics so they represent all 324 routes
+  - reduced mobile priority-link height from 12 stacked rows to one horizontal
+    strip and raised filter controls to 44px touch targets
+- Distribution:
+  - added `docs/RECORDS_INDEX_DISTRIBUTION.md`
+  - cold distribution leads with `confidence=high`; routes below 70 remain
+    discoverable but are not used as outreach lead examples
+  - outreach asks for route correction before requesting a citation or link
