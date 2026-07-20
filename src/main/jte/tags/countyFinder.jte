@@ -21,7 +21,7 @@
                     <div class="county-finder__stats" aria-label="County finder coverage">
                         <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> live county pages</span>
                         <span><strong>${countyFinderLinks.stream().filter(link -> link.confidenceScore() >= 82).count()}</strong> high-confidence routes</span>
-                        <span>${countyFinderLinks.size()} searchable routes loaded</span>
+                        <span>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()} indexed routes</span>
                         <span>${countyFinderLinks.stream().filter(CountyFinderLinkView::parcelAnchorAvailable).count()} parcel anchors</span>
                         <span>Permit lookup</span>
                         <span>Records request</span>

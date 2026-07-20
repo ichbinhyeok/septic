@@ -54,7 +54,7 @@
         stateOptions = countyRouteStates,
         finderId = "records-access-county-search",
         eyebrow = "Search the public index",
-        heading = "Filter ${totalCountyRouteCount} county records routes.",
+        heading = "Filter " + totalCountyRouteCount + " county records routes.",
         body = "Choose a state or search a county, then narrow by route type, first artifact, confidence, or parcel access. The filtered URL can be copied and shared.",
         sourceContext = "records_access_index_county_search",
         totalCountyRouteCount = totalCountyRouteCount,

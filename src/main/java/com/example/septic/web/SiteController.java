@@ -499,7 +499,7 @@ public class SiteController {
         List<RecordsAccessIndexStateView> indexStates = recordsAccessIndexStates();
         List<StateProfile> countyRouteStates = countyRouteStates();
         model.addAttribute("indexStates", indexStates);
-        model.addAttribute("countyFinderLinks", countyFinderLinks(48));
+        model.addAttribute("countyFinderLinks", countyFinderLinks(totalCountyRouteCount()));
         model.addAttribute("countyRouteStates", countyRouteStates);
         model.addAttribute("countyRouteStateCount", countyRouteStates.size());
         model.addAttribute("dataLastUpdated", researchDataService.countyRecordsPagesGeneratedAt());
