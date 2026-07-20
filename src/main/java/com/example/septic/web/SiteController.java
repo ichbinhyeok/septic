@@ -1598,10 +1598,16 @@ The goal is to settle the permit path before we frame the project as a normal in
                 rankedStateEntries,
                 countyFinderLinks
         );
-        String lastReviewedAt = researchDataService.contentPagesGeneratedAt();
+        String lastReviewedAt = Stream.of(contentPage.updatedAt(), researchDataService.contentPagesGeneratedAt())
+                .filter(this::isIsoDate)
+                .max(String::compareTo)
+                .orElse("");
 
         model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("contentQuickAnswer", seoService.contentQuickAnswer(contentPage));
+        model.addAttribute("percPlanningRange", "perc-test-cost".equals(contentPage.slug())
+                ? nationalPlanningRange("perc_test")
+                : "");
         model.addAttribute("contentPage", contentPage);
         model.addAttribute("states", renderedStates);
         model.addAttribute("stateMoneyPageLinks", renderedStateMoneyPageLinks);
@@ -5637,6 +5643,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> Map.entry(page, state))
                         .stream())
+                .filter(entry -> publishingPolicyService.isIndexableStateMoneyPage(
+                        entry.getKey(),
+                        entry.getValue()
+                ))
                 .filter(entry -> authorityStateCode
                         .map(stateCode -> stateCode.equals(entry.getValue().stateCode()))
                         .orElse(true))

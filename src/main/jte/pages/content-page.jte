@@ -25,6 +25,7 @@
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param String calculatorPath = "/septic-system-cost-calculator/"
 @param String contentQuickAnswer = ""
+@param String percPlanningRange = ""
 @param String contentQuotePath = null
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
 @param String calculatorCtaLabel = "Open the estimator"
@@ -610,6 +611,31 @@
             </article>
         </div>
     </section>
+
+    @if ("perc-test-cost".equals(contentPage.slug()))
+        <section class="section section--tight" aria-labelledby="perc-cost-answer">
+            <div class="container detail-grid">
+                <article class="detail-card detail-card--full">
+                    <span class="eyebrow">National planning range</span>
+                    <h2 id="perc-cost-answer">${percPlanningRange} is the starting range, not the finished quote.</h2>
+                    <p>A routine visit can stay near the low end. Multiple test locations, engineered soil work, a plot plan, difficult access, retesting, or a county-required site evaluation can move the scope toward the high end before any septic installation cost begins.</p>
+                </article>
+                <article class="detail-card">
+                    <h3>Ask what the quote includes</h3>
+                    <ul class="detail-list">
+                        <li>Field visit, soil or percolation work, and the number of test locations.</li>
+                        <li>Professional report, plot-plan work, filing, and local permit fees.</li>
+                        <li>Retesting, seasonal timing, travel, excavation, or difficult-access charges.</li>
+                    </ul>
+                </article>
+                <article class="detail-card">
+                    <h3>Use a state route only where evidence exists</h3>
+                    <p>The state links on this page are deliberately limited to routes with observed search demand or stronger supporting evidence. Other state URLs remain available for users who already have them, but they are not promoted as separate search results yet.</p>
+                    <a class="button button--secondary" href="#state-pages" data-track-click="nav" data-track-source-context="perc_cost_answer_state_routes" data-track-target-type="state_money_page_directory">Browse supported state routes</a>
+                </article>
+            </div>
+        </section>
+    @endif
 
     @if (!contentOfficialFilePathRows.isEmpty())
         <section class="section section--tight" id="official-file-path">

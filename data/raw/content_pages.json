@@ -197,15 +197,15 @@
         "soil test for septic",
         "perc test for septic system"
       ],
-      "title": "Perc Test Cost by State",
-      "metaDescription": "Perc test cost by state, percolation test and soil-review pricing, and the permit or drainfield risk that can change the whole septic budget.",
-      "introCopy": "Most homeowners search perc test cost when the real question is which state or county rule turns a small test fee into a bigger septic decision. Use this page as a state-by-state sorting page: start with the state-specific perc path, then decide whether the result stays conventional or pushes the project into a wider permit, drainfield, or redesign lane.",
+      "title": "Perc Test Cost: National Range and State Routes",
+      "metaDescription": "Perc tests typically cost $300-$3,000. See what changes the quote, what should be included, and which state or county site-review path to check next.",
+      "introCopy": "A perc test typically falls in a $300-$3,000 national planning range. A routine visit may stay near the low end, while multiple test locations, engineered soil work, plot plans, retesting, difficult access, or county-required site evaluation can push the scope higher. Use the supported state routes below only when local evidence changes the answer.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
-      "targetReader": "Best for homeowners, buyers, and land shoppers who want a quick perc number but really need to know which state-specific page explains whether the result could push the project into a different cost lane.",
+      "targetReader": "Best for homeowners, buyers, and land shoppers who need a usable perc-test budget, a checklist for comparing quotes, and a supported local route when state or county rules change the scope.",
       "deepDiveParagraphs": [
-        "Most owners search for a perc fee when the bigger risk is what the result will do to the whole project. A cheap perc or percolation test can still be the event that moves the job from a conventional assumption into redesign or alternative-system territory.",
-        "This page is most useful when you need to keep site uncertainty visible in the budget. If the lot story is still vague, the testing question is really a system-class question and should be treated that way early."
+        "The $300-$3,000 range covers planning, not a universal fee schedule. Ask whether the quote includes the field visit, number of test locations, excavation, professional report, plot plan, filing, travel, and retesting so two prices can be compared at the same scope.",
+        "The testing invoice may be small relative to the design consequence. A weak result can move the project from a conventional assumption into redesign or alternative-system territory, so the result and the quote scope both matter."
       ],
       "fitBullets": [
         "The testing invoice looks small, but the real concern is what the result will do to the system choice.",
@@ -213,10 +213,10 @@
         "The project is early enough that one weak perc result could change everything behind the estimate."
       ],
       "decisionSteps": [
-        "Start by treating perc and site evaluation as a state-specific permit and system-risk question, not just a small line-item fee.",
-        "Ask whether the property already has records, prior testing, or local notes that make the result more predictable.",
-        "Open the matching state perc page first so the local authority path and likely soil-review lane are clearer before you run the estimate.",
-        "Then move into the replacement or permit page only after the state-specific site story is clearer."
+        "Use $300-$3,000 as the initial planning band, then ask every provider for the same included-scope list.",
+        "Check whether the property already has a prior perc result, soil report, plot plan, or site-evaluation record before paying to recreate it.",
+        "Open a supported state perc route only when it appears below; those routes have observed demand or stronger evidence behind them.",
+        "Use the permit or failed-perc path only after the current test scope and local decision-maker are clear."
       ],
       "lowEndBreakers": [
         "Unknown or weak perc status can widen the entire project far more than the testing invoice itself.",
@@ -237,13 +237,14 @@
       "faqBlocks": [
         {
           "question": "How much does a perc test cost?",
-          "answer": "The test fee is usually much smaller than the total septic budget, but the real cost story is whether the result keeps the job conventional or pushes it into redesign, permit delay, or alternative-system pricing."
+          "answer": "Use $300-$3,000 as a national planning range. The number of test locations, excavation, soil professional, plot plan, report, travel, filing, and retesting determine where a real quote lands."
         },
         {
           "question": "Is a perc test the same as a percolation test or a perk test?",
           "answer": "Yes. Homeowners, agents, and contractors often use perc, perk, and percolation test to describe the same soil-absorption question, even if the local process also includes a broader site evaluation."
         }
       ],
+      "updatedAt": "2026-07-20",
       "internalLinkTargets": [
         "/failed-perc-test-septic/",
         "/septic-replacement-area/",

@@ -1628,3 +1628,48 @@ Copy this block for the next review:
   89% smaller before compression on pages that do not need feature code.
 - Guardrails: keep asset versioning, navigation telemetry, Web Vitals payloads,
   mobile navigation, sticky CTAs, and no-JavaScript content behavior intact.
+
+## 2026-07-20 - State money-page index selection reset
+
+- Source: Google Search Console for `sc-domain:septicpath.com`
+- Baseline window: 2026-06-19 through 2026-07-17
+- Baseline:
+  - 315 clicks, 12,832 impressions, 2.45% CTR, average position 9.79
+  - 410 URLs earned at least one impression while 764 URLs were submitted
+    across the main and county sitemaps
+  - `/perc-test-cost/` and sampled weak state-money URLs were crawled but not
+    indexed, while records pages and selected calculator pages were indexed
+- Diagnosis:
+  - the prior publishing rule treated a generic state workflow note as enough
+    evidence to index nearly every state cost template
+  - that created index-selection dilution; it was not another title-copy
+    bottleneck
+- Changes:
+  - kept all state-money routes accessible, but changed weak routes to
+    `noindex,follow` and removed them from the main sitemap
+  - reduced the 150 replacement, inspection, and perc state URLs to 31
+    evidence-backed index candidates: 10 replacement, 10 inspection, and 11
+    observed-demand perc routes
+  - limited buyer pages to states with a county-record backbone or a state cost
+    profile
+  - filtered national hub state links through the same publishing policy
+  - rebuilt `/perc-test-cost/` around the direct $300-$3,000 planning answer,
+    included-scope checklist, and 11 supported state routes
+- Post-change local verification:
+  - main sitemap: 302 URLs
+  - Alabama perc route: `noindex,follow` and absent from the sitemap
+  - Tennessee perc route: `index,follow` and present in the sitemap
+  - `/perc-test-cost/`: exactly 11 state perc routes
+  - 629 tests passed, 1 skipped; desktop and 390px browser checks passed
+- Measurement guardrail:
+  - do not re-enable a state cohort because a page merely exists or has unique
+    prose
+  - require observed query/page impressions, a state cost profile, or a
+    county-backed workflow depending on the intent family
+- Next check:
+  - inspect sitemap processing and `/perc-test-cost/` index status after 14
+    complete post-deploy days
+  - compare nonzero-impression URL count, excluded-by-`noindex` count, and perc
+    hub impressions after 28 complete days
+  - only promote a new state route when GSC or direct local cost evidence
+    justifies it

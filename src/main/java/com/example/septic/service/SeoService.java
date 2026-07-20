@@ -564,7 +564,7 @@ public class SeoService {
             case "official-septic-lookup-tools" -> "Use the official state or county lookup first. SepticPath helps identify the correct source, expected document, and fallback request route when the government search is incomplete or difficult to navigate.";
             case "septic-system-cost-calculator" -> "A septic cost estimate is more useful after the permit file, site limits, bedroom count, and local approval path are clear. Use the state guide to identify what can widen the quote before comparing prices.";
             case "septic-replacement-cost", "drain-field-replacement-cost" -> "Replacement cost depends on the existing file, soil and site constraints, reserve area, system class, access, and restoration—not just the tank or field component named in the first quote.";
-            case "perc-test-cost" -> "Perc-test cost is a planning range, not a universal fee. The county, soil evidence, plot plan, professional scope, sewer availability, and permit stage determine what the real quote needs to include.";
+            case "perc-test-cost" -> "A perc test typically falls in a $300-$3,000 national planning range. The county, soil evidence, number of test locations, plot plan, professional scope, and permit stage determine where the real quote lands.";
             case "failed-perc-test-septic" -> "A failed perc test does not automatically mean the property is unusable. The next path depends on redesign options, reserve area, soil evidence, local rules, and whether the county will accept another site evaluation.";
             case "buying-a-house-with-a-septic-system" -> "Before buying, match the bedroom count, permit file, as-built, final approval, inspection scope, and repair history. A clean-looking property story is not the same as a complete septic file.";
             case "septic-inspection-cost" -> "Septic inspection cost depends on the requested scope and the records available before the visit. Pull the permit, as-built, pumping, and repair clues first so the inspection answers the real risk.";
@@ -1005,7 +1005,7 @@ public class SeoService {
     private String contentPageSeoTitle(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
-            case "perc-test-cost" -> "Perc Test Cost by State | Percolation Test, Soil Review, and Permit Risk | SepticPath";
+            case "perc-test-cost" -> "Perc Test Cost: $300-$3,000 Range and State Guide | SepticPath";
             case "drain-field-replacement-cost" -> "Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath";
             case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil, field, and redesign risk | SepticPath";
             case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve area, layout, and field risk | SepticPath";

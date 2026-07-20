@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,15 @@ public class PublishingPolicyService {
             "failed-perc-test-septic",
             "septic-replacement-area",
             "wet-yard-over-septic-drain-field"
+    );
+    /*
+     * Reviewed against GSC on 2026-07-20. These states had observed perc-cost
+     * demand or a live state perc page already earning impressions. Keep the
+     * remaining routes useful and crawlable, but do not ask Google to index
+     * fifty near-parallel pages before demand or direct cost evidence exists.
+     */
+    private static final Set<String> PERC_COST_DEMAND_STATES = Set.of(
+            "AR", "GA", "MD", "MO", "NJ", "OH", "OK", "OR", "TN", "WI", "WV"
     );
 
     private final ResearchDataService researchDataService;
@@ -35,9 +45,13 @@ public class PublishingPolicyService {
             case "septic-permit-process" -> hasLocalAuthoritySource(state)
                     && hasItems(state.permitPathSteps(), 3);
             case "buying-a-house-with-a-septic-system" -> hasText(state.buyerInspectionTrigger())
-                    && (hasRecordsSource(state)
-                    || hasCountyRecordsPages(state.stateCode())
-                    || hasLocalAuthoritySource(state));
+                    && (hasCountyRecordsPages(state.stateCode())
+                    || hasStateCostProfile(state.stateCode()));
+            case "perc-test-cost" -> isCostReopenCandidate(stateMoneyPage, state)
+                    && PERC_COST_DEMAND_STATES.contains(state.stateCode());
+            case "septic-replacement-cost", "septic-inspection-cost" ->
+                    isCostReopenCandidate(stateMoneyPage, state)
+                            && hasStateCostProfile(state.stateCode());
             default -> {
                 if (WORKFLOW_COST_SLUGS.contains(stateMoneyPage.contentSlug())) {
                     yield isCostReopenCandidate(stateMoneyPage, state);
@@ -95,6 +109,10 @@ public class PublishingPolicyService {
 
     private boolean hasCountyRecordsPages(String stateCode) {
         return !researchDataService.listPublicCountyRecordsPages(stateCode).isEmpty();
+    }
+
+    private boolean hasStateCostProfile(String stateCode) {
+        return researchDataService.findStateCostProfile(stateCode).isPresent();
     }
 
     private boolean hasItems(List<?> values, int minimumSize) {

@@ -302,7 +302,7 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void publishedWorkflowCostPagesAreReopenCandidates() {
+	void workflowCostPagesUseEvidenceBasedIndexingCohorts() {
 		List<String> workflowCostSlugs = List.of(
 				"septic-replacement-cost",
 				"perc-test-cost",
@@ -313,26 +313,36 @@ class SepticApplicationTests {
 				"septic-replacement-area",
 				"wet-yard-over-septic-drain-field"
 		);
-		List<String> blocked = new ArrayList<>();
+		List<String> incomplete = new ArrayList<>();
+		int indexableCount = 0;
 
 		for (String workflowCostSlug : workflowCostSlugs) {
 			for (StateMoneyPage page : researchDataService.listPublicStateMoneyPagesForContent(workflowCostSlug)) {
 				StateProfile state = researchDataService.findStateByCode(page.stateCode()).orElseThrow();
-				if (!publishingPolicyService.isCostReopenCandidate(page, state)
-						|| !publishingPolicyService.isIndexableStateMoneyPage(page, state)) {
-					blocked.add(page.contentSlug() + "/" + state.slug());
+				if (!publishingPolicyService.isCostReopenCandidate(page, state)) {
+					incomplete.add(page.contentSlug() + "/" + state.slug());
+				}
+				if (publishingPolicyService.isIndexableStateMoneyPage(page, state)) {
+					indexableCount++;
 				}
 			}
 		}
 
 		org.junit.jupiter.api.Assertions.assertTrue(
-				blocked.isEmpty(),
-				"Blocked workflow cost pages: " + blocked
+				incomplete.isEmpty(),
+				"Workflow cost pages missing baseline content: " + incomplete
 		);
+		org.junit.jupiter.api.Assertions.assertEquals(76, indexableCount);
+		org.junit.jupiter.api.Assertions.assertTrue(indexable("perc-test-cost", "tennessee"));
+		org.junit.jupiter.api.Assertions.assertFalse(indexable("perc-test-cost", "alabama"));
+		org.junit.jupiter.api.Assertions.assertTrue(indexable("septic-replacement-cost", "georgia"));
+		org.junit.jupiter.api.Assertions.assertFalse(indexable("septic-replacement-cost", "idaho"));
+		org.junit.jupiter.api.Assertions.assertTrue(indexable("septic-inspection-cost", "massachusetts"));
+		org.junit.jupiter.api.Assertions.assertFalse(indexable("septic-inspection-cost", "hawaii"));
 	}
 
 	@Test
-	void sitemapIncludesAllReopenedWorkflowCostPages() throws Exception {
+	void sitemapIncludesOnlyEvidenceBackedWorkflowCostPages() throws Exception {
 		List<String> workflowCostSlugs = List.of(
 				"septic-replacement-cost",
 				"perc-test-cost",
@@ -348,24 +358,27 @@ class SepticApplicationTests {
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
-		List<String> missing = new ArrayList<>();
-		int expectedCount = 0;
+		List<String> mismatches = new ArrayList<>();
+		int indexableCount = 0;
 
 		for (String workflowCostSlug : workflowCostSlugs) {
 			for (StateMoneyPage page : researchDataService.listPublicStateMoneyPagesForContent(workflowCostSlug)) {
 				StateProfile state = researchDataService.findStateByCode(page.stateCode()).orElseThrow();
-				expectedCount++;
 				String url = "https://example.test" + page.path(state.slug());
-				if (!sitemap.contains(url)) {
-					missing.add(url);
+				boolean indexable = publishingPolicyService.isIndexableStateMoneyPage(page, state);
+				if (indexable) {
+					indexableCount++;
+				}
+				if (sitemap.contains(url) != indexable) {
+					mismatches.add(url + " expectedInSitemap=" + indexable);
 				}
 			}
 		}
 
-		org.junit.jupiter.api.Assertions.assertEquals(195, expectedCount);
+		org.junit.jupiter.api.Assertions.assertEquals(76, indexableCount);
 		org.junit.jupiter.api.Assertions.assertTrue(
-				missing.isEmpty(),
-				"Reopened workflow cost pages missing from sitemap: " + missing
+				mismatches.isEmpty(),
+				"Workflow cost sitemap policy mismatches: " + mismatches
 		);
 	}
 
@@ -793,21 +806,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-pump-schedule-estimator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/drain-field-estimator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/georgia/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/north-carolina/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/tennessee/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/drain-field-replacement-cost/washington/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/failed-perc-test-septic/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-area/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-process/texas/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/buying-a-house-with-a-septic-system/new-york/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/california/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/california/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/california/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/drain-field-replacement-cost/colorado/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/texas/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/ohio/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/new-york/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/arizona/")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/massachusetts/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/idaho/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/alabama/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/hawaii/"))));
 	}
 
 	@Test
@@ -7341,17 +7351,19 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/perc-test-cost/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Perc Test Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Perc Test Cost by State")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("the real cost story is whether the result keeps the job conventional")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("A cheap perc or percolation test can still be the event")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Perc Test Cost: $300-$3,000 Range and State Guide")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$300 to $3,000 is the starting range")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask what the quote includes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<dd>2026-07-20</dd>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Is a perc test the same as a percolation test or a perk test?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open state perc pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a site-risk estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#state-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=perc_test")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/georgia/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/tennessee/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/failed-perc-test-septic/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
@@ -9595,6 +9607,12 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(anchorText)))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(calculatorPath)));
+	}
+
+	private boolean indexable(String contentSlug, String stateSlug) {
+		StateMoneyPage page = researchDataService.findPublicStateMoneyPage(contentSlug, stateSlug).orElseThrow();
+		StateProfile state = researchDataService.findStateByCode(page.stateCode()).orElseThrow();
+		return publishingPolicyService.isIndexableStateMoneyPage(page, state);
 	}
 
 }
