@@ -31,7 +31,7 @@
                        data-track-source-context="records_access_index_hero_search"
                        data-track-target-type="internal_section">Search county routes</a>
                     <a class="button button--secondary"
-                       href="/septic-records-access-index.csv"
+                       href="/septic-records-access-index.csv?v=${dataLastUpdated}"
                        data-records-index-download
                        data-track-click="nav"
                        data-track-source-context="records_access_index_hero_csv"
@@ -70,7 +70,7 @@
                 <p><strong>Quality note:</strong> Confidence describes route specificity and workflow depth, not the status of any property's permit. Review dates record the latest linked-source check; always confirm the government page before a transaction decision.</p>
                 <div class="records-access-card__actions">
                     <a class="button button--primary"
-                       href="/septic-records-access-index.csv"
+                       href="/septic-records-access-index.csv?v=${dataLastUpdated}"
                        data-records-index-download
                        data-track-click="nav"
                        data-track-source-context="records_access_index_distribution_csv"

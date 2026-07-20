@@ -562,6 +562,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-07-20\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Filter 324 county records routes.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-07-20")))
