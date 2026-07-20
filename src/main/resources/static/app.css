@@ -5054,7 +5054,7 @@ h4 {
 
 .county-finder__filters select {
     width: 100%;
-    min-height: 40px;
+    min-height: 44px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.1);
@@ -5073,8 +5073,8 @@ h4 {
 }
 
 .county-finder__toggle input {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     accent-color: #dff46a;
 }
 
@@ -7832,14 +7832,23 @@ input[type="checkbox"] {
     }
 
     .county-finder__priority > div {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: thin;
     }
 
     .county-finder__priority a {
-        width: 100%;
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 82vw;
         min-height: 44px;
+        padding-inline: 14px;
+        scroll-snap-align: start;
         text-align: center;
+        white-space: nowrap;
     }
 
     .county-finder__results {
