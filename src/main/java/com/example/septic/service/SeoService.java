@@ -409,6 +409,7 @@ public class SeoService {
     public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         String seoTitle = contentPageSeoTitle(contentPage);
+        List<Map<String, Object>> breadcrumbs = contentPageBreadcrumbs(contentPage, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
                 webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), "CollectionPage"),
@@ -416,10 +417,7 @@ public class SeoService {
                 preparedBy,
                 reviewedBy
         )));
-        jsonLdBlocks.add(toJson(breadcrumb(List.of(
-                crumb("Home", absoluteUrl("/")),
-                crumb(contentPage.title(), canonicalUrl)
-        ))));
+        jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
         if (contentPage.faqBlocks() != null && !contentPage.faqBlocks().isEmpty()) {
             jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, contentPage.metaDescription(), contentPage.faqBlocks())));
         }
@@ -428,10 +426,7 @@ public class SeoService {
                 contentPage.metaDescription(),
                 canonicalUrl,
                 "index,follow",
-                breadcrumbLinks(
-                        crumb("Home", absoluteUrl("/")),
-                        crumb(contentPage.title(), canonicalUrl)
-                ),
+                breadcrumbLinks(breadcrumbs),
                 jsonLdBlocks
         );
     }
@@ -443,6 +438,7 @@ public class SeoService {
         String robots = publishingPolicyService.isIndexableStateMoneyPage(stateMoneyPage, state)
                 ? "index,follow"
                 : "noindex,follow";
+        List<Map<String, Object>> breadcrumbs = stateMoneyPageBreadcrumbs(stateMoneyPage, state, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
         jsonLdBlocks.add(toJson(withEditorialMeta(
                 webPage(canonicalUrl, seoTitle, seoDescription, "Article"),
@@ -450,10 +446,7 @@ public class SeoService {
                 preparedBy,
                 reviewedBy
         )));
-        jsonLdBlocks.add(toJson(breadcrumb(List.of(
-                crumb("Home", absoluteUrl("/")),
-                crumb(stateMoneyPage.title(), canonicalUrl)
-        ))));
+        jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
         if (shouldExposeFaqStructuredData(stateMoneyPage)
                 && stateMoneyPage.faqBlocks() != null
                 && !stateMoneyPage.faqBlocks().isEmpty()) {
@@ -464,11 +457,58 @@ public class SeoService {
                 seoDescription,
                 canonicalUrl,
                 robots,
-                breadcrumbLinks(
-                        crumb("Home", absoluteUrl("/")),
-                        crumb(stateMoneyPage.title(), canonicalUrl)
-                ),
+                breadcrumbLinks(breadcrumbs),
                 jsonLdBlocks
+        );
+    }
+
+    private List<Map<String, Object>> contentPageBreadcrumbs(ContentPage contentPage, String canonicalUrl) {
+        List<Map<String, Object>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(crumb("Home", absoluteUrl("/")));
+        switch (contentPage.slug()) {
+            case "official-septic-lookup-tools" ->
+                    breadcrumbs.add(crumb("Septic Permit Lookup", absoluteUrl("/septic-permit-lookup/")));
+            case "tdec-septic-records",
+                 "north-carolina-septic-permit-lookup",
+                 "texas-ossf-records-search",
+                 "florida-ostds-permit-lookup",
+                 "dhec-septic-permit-lookup" ->
+                    breadcrumbs.add(crumb("Official Septic Lookup Tools", absoluteUrl("/official-septic-lookup-tools/")));
+            case "septic-records-checklist",
+                 "septic-permit-process",
+                 "how-to-find-septic-records-online",
+                 "septic-records-by-county",
+                 "septic-permit-search-by-address",
+                 "septic-permit-records-request",
+                 "septic-records-request-builder",
+                 "septic-as-built-records",
+                 "septic-inspection-letter",
+                 "septic-transfer-compliance" ->
+                    breadcrumbs.add(crumb("Septic Permit Lookup", absoluteUrl("/septic-permit-lookup/")));
+            default -> {
+            }
+        }
+        breadcrumbs.add(crumb(contentPage.title(), canonicalUrl));
+        return breadcrumbs;
+    }
+
+    private List<Map<String, Object>> stateMoneyPageBreadcrumbs(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            String canonicalUrl
+    ) {
+        Map<String, Object> parent = switch (stateMoneyPage.contentSlug()) {
+            case "septic-records-checklist" ->
+                    crumb("Septic Records Lookup", absoluteUrl("/septic-records-checklist/"));
+            case "septic-permit-process" ->
+                    crumb("Septic Permit Lookup", absoluteUrl("/septic-permit-lookup/"));
+            default ->
+                    crumb(state.stateName() + " Septic Guide", absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/"));
+        };
+        return List.of(
+                crumb("Home", absoluteUrl("/")),
+                parent,
+                crumb(stateMoneyPage.title(), canonicalUrl)
         );
     }
 
@@ -779,6 +819,12 @@ public class SeoService {
 
     private List<PageLink> breadcrumbLinks(Map<String, Object>... crumbs) {
         return Arrays.stream(crumbs)
+                .map(crumb -> new PageLink((String) crumb.get("name"), relativePath((String) crumb.get("item")), ""))
+                .toList();
+    }
+
+    private List<PageLink> breadcrumbLinks(List<Map<String, Object>> crumbs) {
+        return crumbs.stream()
                 .map(crumb -> new PageLink((String) crumb.get("name"), relativePath((String) crumb.get("item")), ""))
                 .toList();
     }

@@ -1592,3 +1592,23 @@ Copy this block for the next review:
 - QA guardrail: sitemap tests pin a recently edited URL to 2026-07-20, an
   untouched source-backed county URL to its 2026-05-07 verification date, and
   undated static/broad URLs to entries with no `lastmod` element.
+
+## 2026-07-20 - Records hierarchy and breadcrumb alignment
+
+- Replaced two-level breadcrumbs on content and state workflow pages with a
+  shared HTML and JSON-LD hierarchy.
+- Authority leaves now use:
+  `Home -> Official Septic Lookup Tools -> authority page`.
+- State records pages now use:
+  `Home -> Septic Records Lookup -> state records page`.
+- State permit pages now use:
+  `Home -> Septic Permit Lookup -> state permit page`.
+- Other state workflow pages now use:
+  `Home -> state septic guide -> state workflow page`.
+- Generic records tasks route through `Septic Permit Lookup`, while the
+  national permit lookup remains the top-level owner rather than linking to
+  itself as a parent.
+- Goal: make records, permit, authority, state, and county ownership legible
+  to users and crawlers without changing canonical URLs.
+- QA guardrail: rendering tests require the same parent URL and position-two
+  label in both the visible breadcrumb and `BreadcrumbList` JSON-LD.
