@@ -1673,3 +1673,34 @@ Copy this block for the next review:
     hub impressions after 28 complete days
   - only promote a new state route when GSC or direct local cost evidence
     justifies it
+
+## 2026-07-20 - Records access index distribution asset
+
+- Goal: grow records traffic through sharing, citation, downloads, and repeat
+  professional use without creating another overlapping SEO page family.
+- Reused `/septic-records-access-index/` as the single canonical asset.
+- Changes:
+  - expanded the visible scope from four priority-state cards to a searchable
+    national index of 324 published county routes across 27 states
+  - added state, route-type, first-artifact, confidence, and parcel-anchor
+    filters backed by the existing county finder API
+  - preserved selected filters and county search terms in the page URL so an
+    agent, inspector, buyer, or researcher can share the exact view
+  - added `/septic-records-access-index.csv` with state, county, route type,
+    first artifact, confidence, parcel availability, official records URL, and
+    SepticPath guide URL
+  - added a copy-ready citation, filtered-view share action, CSV download
+    events, and citation-copy events
+  - retained the four transaction handoff packets as a secondary professional
+    workflow rather than presenting them as the full coverage set
+- Verification:
+  - CSV response: 200, `text/csv`, 324 data rows
+  - `state=TN&q=Blount`: one matching Blount County route and a shareable URL
+  - full test suite passed; desktop and 390px mobile browser checks passed
+- Measurement:
+  - track CSV downloads, citation copies, filtered-view shares, county result
+    clicks, and official-source exits
+  - after 14 complete days, compare non-search landing sessions and internal
+    county-route clicks against the pre-launch baseline
+  - after 28 complete days, inspect backlinks/referrals to the access index and
+    decide whether a state-specific downloadable subset is justified

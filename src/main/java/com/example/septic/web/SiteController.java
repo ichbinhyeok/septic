@@ -497,12 +497,55 @@ public class SiteController {
     public String recordsAccessIndex(Model model) {
         model.addAttribute("page", seoService.recordsAccessIndexPage());
         List<RecordsAccessIndexStateView> indexStates = recordsAccessIndexStates();
+        List<StateProfile> countyRouteStates = countyRouteStates();
         model.addAttribute("indexStates", indexStates);
+        model.addAttribute("countyFinderLinks", countyFinderLinks(48));
+        model.addAttribute("countyRouteStates", countyRouteStates);
+        model.addAttribute("countyRouteStateCount", countyRouteStates.size());
+        model.addAttribute("dataLastUpdated", researchDataService.countyRecordsPagesGeneratedAt());
         model.addAttribute("priorityCountyRouteCount", indexStates.stream()
                 .mapToInt(RecordsAccessIndexStateView::countyRouteCount)
                 .sum());
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         return "pages/records-access-index";
+    }
+
+    @GetMapping(value = {"/septic-records-access-index.csv", "/septic-records-access-index.csv/"}, produces = "text/csv")
+    @ResponseBody
+    public ResponseEntity<String> recordsAccessIndexCsv() {
+        List<String> rows = new ArrayList<>();
+        rows.add(csvRow(
+                "state_code",
+                "state",
+                "county",
+                "route_type",
+                "first_artifact",
+                "confidence_score",
+                "parcel_anchor",
+                "official_records_url",
+                "septicpath_guide_url"
+        ));
+        countyFinderLinks(totalCountyRouteCount()).stream()
+                .sorted(Comparator
+                        .comparing(CountyFinderLinkView::stateName)
+                        .thenComparing(CountyFinderLinkView::countyName))
+                .map(link -> csvRow(
+                        link.stateCode(),
+                        link.stateName(),
+                        link.countyName(),
+                        link.requestMethodLabel(),
+                        link.firstArtifactLabel(),
+                        Integer.toString(link.confidenceScore()),
+                        Boolean.toString(link.parcelAnchorAvailable()),
+                        link.recordsUrl(),
+                        link.absoluteUrl()
+                ))
+                .forEach(rows::add);
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=\"septicpath-records-access-index.csv\"")
+                .header("Cache-Control", "public, max-age=3600")
+                .contentType(MediaType.parseMediaType("text/csv;charset=UTF-8"))
+                .body(String.join("\r\n", rows) + "\r\n");
     }
 
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
@@ -3873,6 +3916,16 @@ The goal is to settle the permit path before we frame the project as a normal in
         return countyFinderLinks(totalCountyRouteCount());
     }
 
+    private List<StateProfile> countyRouteStates() {
+        Set<String> stateCodes = researchDataService.getPublicCountyRecordsPages().stream()
+                .map(CountyRecordsPage::stateCode)
+                .collect(Collectors.toSet());
+        return researchDataService.getPublicStateProfiles().stream()
+                .filter(state -> stateCodes.contains(state.stateCode()))
+                .sorted(Comparator.comparing(StateProfile::stateName))
+                .toList();
+    }
+
     private List<StateProfile> offerPrepStates() {
         return RECORDS_ACCESS_INDEX_STATE_CODES.stream()
                 .map(researchDataService::findStateByCode)
@@ -3925,10 +3978,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "method", defaultValue = "") String method,
             @RequestParam(name = "artifact", defaultValue = "") String artifact,
             @RequestParam(name = "confidence", defaultValue = "") String confidence,
+            @RequestParam(name = "state", defaultValue = "") String stateCode,
             @RequestParam(name = "parcelOnly", defaultValue = "false") boolean parcelOnly
     ) {
         List<CountyFinderLinkView> matches = countyFinderLinks(totalCountyRouteCount()).stream()
-                .filter(link -> countyFinderMatches(link, query, method, artifact, confidence, parcelOnly))
+                .filter(link -> countyFinderMatches(link, query, method, artifact, confidence, stateCode, parcelOnly))
                 .toList();
         return ResponseEntity.ok()
                 .header("X-County-Finder-Match-Count", Integer.toString(matches.size()))
@@ -4045,6 +4099,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             String method,
             String artifact,
             String confidence,
+            String stateCode,
             boolean parcelOnly
     ) {
         String normalizedQuery = normalizeCountyFinderText(query);
@@ -4075,8 +4130,25 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "solid" -> link.confidenceScore() >= 70;
             default -> true;
         };
-        return matchesQuery && matchesMethod && matchesArtifact && matchesConfidence
+        boolean matchesState = stateCode == null
+                || stateCode.isBlank()
+                || stateCode.equalsIgnoreCase(link.stateCode());
+        return matchesQuery && matchesMethod && matchesArtifact && matchesConfidence && matchesState
                 && (!parcelOnly || link.parcelAnchorAvailable());
+    }
+
+    private String csvRow(String... values) {
+        return Arrays.stream(values)
+                .map(this::csvEscape)
+                .collect(Collectors.joining(","));
+    }
+
+    private String csvEscape(String value) {
+        String safe = value == null ? "" : value;
+        if (!safe.isEmpty() && "=+@-\t\r".indexOf(safe.charAt(0)) >= 0) {
+            safe = "'" + safe;
+        }
+        return "\"" + safe.replace("\"", "\"\"") + "\"";
     }
 
     private String normalizeCountyFinderText(String value) {

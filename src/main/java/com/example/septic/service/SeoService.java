@@ -609,8 +609,8 @@ public class SeoService {
 
     public PageMeta recordsAccessIndexPage() {
         String canonicalUrl = absoluteUrl("/septic-records-access-index/");
-        String title = "Septic Records Access Index | TN, IN, NC, and SC Official File Routes | SepticPath";
-        String description = "Compare verified septic records routes across Tennessee, Indiana, North Carolina, and South Carolina. Start by address, county, official permit search, or a ready-to-send records packet.";
+        String title = "Septic Records Access Index | Official County Permit and File Routes | SepticPath";
+        String description = "Search and download verified county septic records routes. Filter by state, route type, first artifact, confidence, or parcel access, then open the official file path.";
         return pageMeta(
                 title,
                 description,

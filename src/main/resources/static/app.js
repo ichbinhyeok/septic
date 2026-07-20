@@ -475,7 +475,9 @@
             const methodFilter = finder.querySelector("[data-county-finder-method]");
             const artifactFilter = finder.querySelector("[data-county-finder-artifact]");
             const confidenceFilter = finder.querySelector("[data-county-finder-confidence]");
+            const stateFilter = finder.querySelector("[data-county-finder-state]");
             const parcelFilter = finder.querySelector("[data-county-finder-parcel]");
+            const syncUrl = finder.dataset.countyFinderSyncUrl === "true";
 
             if (!input || !results.length) {
                 return;
@@ -483,6 +485,26 @@
 
             if (window.location.hash === `#${finder.id}`) {
                 window.setTimeout(() => input.focus(), 0);
+            }
+
+            if (syncUrl) {
+                const initialParams = new URLSearchParams(window.location.search);
+                input.value = initialParams.get("q") || "";
+                if (stateFilter instanceof HTMLSelectElement) {
+                    stateFilter.value = initialParams.get("state") || "";
+                }
+                if (methodFilter instanceof HTMLSelectElement) {
+                    methodFilter.value = initialParams.get("method") || "";
+                }
+                if (artifactFilter instanceof HTMLSelectElement) {
+                    artifactFilter.value = initialParams.get("artifact") || "";
+                }
+                if (confidenceFilter instanceof HTMLSelectElement) {
+                    confidenceFilter.value = initialParams.get("confidence") || "";
+                }
+                if (parcelFilter instanceof HTMLInputElement) {
+                    parcelFilter.checked = initialParams.get("parcelOnly") === "true";
+                }
             }
 
             function matchesMethod(result, selectedMethod) {
@@ -546,6 +568,7 @@
                     result.dataset.method = item.requestMethodLabel;
                     result.dataset.artifact = item.firstArtifactLabel;
                     result.dataset.confidenceScore = item.confidenceScore;
+                    result.dataset.stateCode = item.stateCode;
                     result.dataset.parcelAnchor = item.parcelAnchorAvailable;
                     result.dataset.shareUrl = item.absoluteUrl;
                     result.dataset.shareQuery = `${item.countyName} ${item.stateCode} septic permit lookup`;
@@ -592,8 +615,27 @@
                 const selectedMethod = methodFilter instanceof HTMLSelectElement ? methodFilter.value : "";
                 const selectedArtifact = artifactFilter instanceof HTMLSelectElement ? artifactFilter.value : "";
                 const selectedConfidence = confidenceFilter instanceof HTMLSelectElement ? confidenceFilter.value : "";
+                const selectedState = stateFilter instanceof HTMLSelectElement ? stateFilter.value : "";
                 const parcelOnly = parcelFilter instanceof HTMLInputElement && parcelFilter.checked;
                 let remoteMatchCount = null;
+
+                if (syncUrl) {
+                    const params = new URLSearchParams(window.location.search);
+                    [
+                        ["q", input.value.trim()],
+                        ["state", selectedState],
+                        ["method", selectedMethod],
+                        ["artifact", selectedArtifact],
+                        ["confidence", selectedConfidence],
+                        ["parcelOnly", parcelOnly ? "true" : ""]
+                    ].forEach(([key, value]) => value ? params.set(key, value) : params.delete(key));
+                    const nextSearch = params.toString();
+                    window.history.replaceState(
+                        null,
+                        "",
+                        window.location.pathname + (nextSearch ? `?${nextSearch}` : "") + window.location.hash
+                    );
+                }
 
                 if (apiPath) {
                     const requestId = ++searchRequest;
@@ -602,6 +644,7 @@
                         method: selectedMethod,
                         artifact: selectedArtifact,
                         confidence: selectedConfidence,
+                        state: selectedState,
                         parcelOnly: String(parcelOnly)
                     });
                     try {
@@ -624,6 +667,7 @@
                     const haystack = normalize(result.dataset.search);
                     const isTextMatch = !query || haystack.includes(query);
                     const isMatch = isTextMatch
+                        && (!selectedState || result.dataset.stateCode === selectedState)
                         && matchesMethod(result, selectedMethod)
                         && matchesArtifact(result, selectedArtifact)
                         && matchesConfidence(result, selectedConfidence)
@@ -644,10 +688,10 @@
                     const matchingCount = Number.isFinite(remoteMatchCount) ? remoteMatchCount : matched;
                     count.textContent = query
                         ? `${matchingCount} matching county route${matchingCount === 1 ? "" : "s"}`
-                        : `${selectedMethod || selectedArtifact || selectedConfidence || parcelOnly
+                        : `${selectedState || selectedMethod || selectedArtifact || selectedConfidence || parcelOnly
                             ? `${matchingCount} filtered county route${matchingCount === 1 ? "" : "s"}`
                             : `${totalRoutes} county routes searchable`}`;
-                    if (!query && (selectedMethod || selectedArtifact || selectedConfidence || parcelOnly)) {
+                    if (!query && (selectedState || selectedMethod || selectedArtifact || selectedConfidence || parcelOnly)) {
                         count.textContent = `${matchingCount} filtered county route${matchingCount === 1 ? "" : "s"}`;
                     }
                 }
@@ -657,7 +701,7 @@
             }
 
             input.addEventListener("input", updateResults);
-            [methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
+            [stateFilter, methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
                 if (select instanceof HTMLSelectElement) {
                     select.addEventListener("change", updateResults);
                 }
@@ -680,7 +724,7 @@
             if (clear) {
                 clear.addEventListener("click", () => {
                     input.value = "";
-                    [methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
+                    [stateFilter, methodFilter, artifactFilter, confidenceFilter].forEach((select) => {
                         if (select instanceof HTMLSelectElement) {
                             select.value = "";
                         }
@@ -698,6 +742,46 @@
     }
 
     setupCountyFinders();
+
+    function setupRecordsAccessIndex() {
+        const root = document.querySelector("[data-records-access-index]");
+        if (!root) {
+            return;
+        }
+
+        const citation = document.querySelector("[data-records-index-citation]");
+        const copyButton = document.querySelector("[data-records-index-copy-citation]");
+        const status = document.querySelector("[data-records-index-status]");
+        const downloadLinks = Array.from(document.querySelectorAll("[data-records-index-download]"));
+
+        downloadLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                sendArtifactAction("records_access_index", "downloaded", "county_records_csv");
+            });
+        });
+
+        if (citation instanceof HTMLTextAreaElement && copyButton instanceof HTMLButtonElement) {
+            copyButton.addEventListener("click", async () => {
+                try {
+                    await copyText(citation.value.trim());
+                    copyButton.textContent = "Citation copied";
+                    copyButton.classList.add("is-copied");
+                    setTemporaryStatus(status, "Citation copied to clipboard.", "Ready to copy. Verify the linked government source before relying on a file-status conclusion.");
+                    sendArtifactAction("records_access_index", "copied", "dataset_citation");
+                    window.setTimeout(() => {
+                        copyButton.textContent = "Copy citation";
+                        copyButton.classList.remove("is-copied");
+                    }, 1800);
+                } catch (_error) {
+                    citation.focus();
+                    citation.select();
+                    setTemporaryStatus(status, "Select the citation and copy it manually.", "Ready to copy. Verify the linked government source before relying on a file-status conclusion.");
+                }
+            });
+        }
+    }
+
+    setupRecordsAccessIndex();
 
     function setupAddressRecordFinders() {
         const finders = Array.from(document.querySelectorAll("[data-address-record-finder]"));

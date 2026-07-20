@@ -555,12 +555,32 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-access-index/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Access Index")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download CSV")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-state")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No address? Use county search instead.")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-record-finder-embed-copy"))));
+
+		mockMvc.perform(get("/api/county-finder/?state=TN"))
+				.andExpect(status().isOk())
+				.andExpect(header().string("X-County-Finder-Match-Count", "21"))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"stateCode\":\"TN\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("\"stateCode\":\"NC\""))));
+
+		mockMvc.perform(get("/septic-records-access-index.csv"))
+				.andExpect(status().isOk())
+				.andExpect(header().string("Content-Disposition", "attachment; filename=\"septicpath-records-access-index.csv\""))
+				.andExpect(content().contentTypeCompatibleWith("text/csv"))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"state_code\",\"state\",\"county\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"TN\",\"Tennessee\",\"Blount County\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/blount-county/")));
 
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())

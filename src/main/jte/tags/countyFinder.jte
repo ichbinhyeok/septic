@@ -1,16 +1,19 @@
 @import com.example.septic.web.CountyFinderLinkView
+@import com.example.septic.data.model.StateProfile
 @param java.util.List<CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param java.util.List<StateProfile> stateOptions = java.util.List.of()
 @param String finderId = "county-finder"
 @param String eyebrow = "County finder"
 @param String heading = "Type a county or state and open the local septic file path."
 @param String body = "Search the live county workflow pages by county name, state, permit lookup, records request, parcel/TMS, as-built, or inspection letter."
 @param String sourceContext = "county_finder"
 @param int totalCountyRouteCount = 0
+@param boolean syncUrl = false
 
 @if (!countyFinderLinks.isEmpty())
     <section class="section section--tight county-finder-section">
         <div class="container">
-            <div id="${finderId}" class="county-finder" data-county-finder data-county-finder-api="/api/county-finder" data-county-finder-total="${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}">
+            <div id="${finderId}" class="county-finder" data-county-finder data-county-finder-api="/api/county-finder" data-county-finder-total="${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}" data-county-finder-sync-url="${syncUrl}">
                 <div class="county-finder__intro">
                     <span class="eyebrow">${eyebrow}</span>
                     <h2>${heading}</h2>
@@ -25,6 +28,17 @@
                         <span>As-built</span>
                     </div>
                     <div class="county-finder__filters" aria-label="County route filters">
+                        @if (!stateOptions.isEmpty())
+                            <label>
+                                <span>State</span>
+                                <select data-county-finder-state>
+                                    <option value="">All states</option>
+                                    @for (var state : stateOptions)
+                                        <option value="${state.stateCode()}">${state.stateName()}</option>
+                                    @endfor
+                                </select>
+                            </label>
+                        @endif
                         <label>
                             <span>Route type</span>
                             <select data-county-finder-method>
@@ -98,6 +112,7 @@
                                data-method="${link.requestMethodLabel()}"
                                data-artifact="${link.firstArtifactLabel()}"
                                data-confidence-score="${link.confidenceScore()}"
+                               data-state-code="${link.stateCode()}"
                                data-parcel-anchor="${link.parcelAnchorAvailable()}"
                                data-share-url="${link.absoluteUrl()}"
                                data-share-query="${link.countyName()} ${link.stateCode()} septic permit lookup"
