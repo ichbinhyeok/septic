@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-10",
+  "generatedAt": "2026-07-20",
   "pages": [
     {
       "stateCode": "IN",
@@ -498,8 +498,8 @@
       "targetReader": "Best for Fulton County owners, buyers, sellers, and builders who need to know whether the next blocker is county plan review, county septic permitting, or a thinner existing-system file than expected.",
       "officeLabel": "Fulton County Board of Health",
       "officeUrl": "https://fultoncountyga.gov/boardofhealth",
-      "recordsLabel": "Open Fulton well and septic inspection",
-      "recordsUrl": "https://fultoncountyga.gov/inside-fulton-county/fulton-county-departments/board-of-health/environmental-health/well-and-septic-inspection",
+      "recordsLabel": "Open the Fulton County Board of Health",
+      "recordsUrl": "https://fultoncountyga.gov/boardofhealth",
       "contactLine": "Fulton County Board of Health | 404-612-4000 | customerservice@fultoncountyga.gov",
       "decisionSteps": [
         "Start with the Fulton well-and-septic inspection page so you can tell whether the property is on a normal onsite sewage path or already in a county plan-review conversation.",
@@ -5977,8 +5977,8 @@
       "targetReader": "Best for Seneca County buyers, sellers, owners, and agents who need to know whether the transfer file is complete and whether the county law widens the next septic step.",
       "officeLabel": "Seneca County septic inspection program",
       "officeUrl": "https://senecacountyhealthdepartment.com/wp-content/uploads/2022/03/SepticSystemInstructions.pdf",
-      "recordsLabel": "Open Seneca County septic inspection and transfer rules",
-      "recordsUrl": "https://www.senecacountyny.gov/wp-content/uploads/2021/10/LOCAL-LAW-7-2021-Establishing-Seneca-County-Watershed-Protection-Law-ADA.pdf",
+      "recordsLabel": "Open Seneca County septic system instructions",
+      "recordsUrl": "https://senecacountyhealthdepartment.com/wp-content/uploads/2022/03/SepticSystemInstructions.pdf",
       "contactLine": "Seneca County Health Department | 315-539-1920 | 2465 Bonadent Drive, Suite 3, Waterloo, NY 13165",
       "decisionSteps": [
         "Start with the county septic instructions and confirm whether the property-transfer inspection requirement already applies.",
@@ -6013,8 +6013,7 @@
       ],
       "officialSourceIds": [
         "ny_seneca_01",
-        "ny_seneca_02",
-        "ny_seneca_03"
+        "ny_seneca_02"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -7099,8 +7098,8 @@
       "targetReader": "Best for Utah County owners, buyers, lenders, and remodel applicants who need to know whether a county septic file exists and whether the health approval lane still controls the next permit step.",
       "officeLabel": "Utah County onsite wastewater office",
       "officeUrl": "https://health.utahcounty.gov/environmental-health/annual-permits-and-certifications/",
-      "recordsLabel": "Open the Utah County septic system lookup application",
-      "recordsUrl": "https://health.utahcounty.gov/wp-content/uploads/sites/49/2022/05/2022-Septic-Tank-Lookup-Application-2.pdf",
+      "recordsLabel": "Open Utah County Environmental Health permits and certifications",
+      "recordsUrl": "https://health.utahcounty.gov/environmental-health/annual-permits-and-certifications/",
       "contactLine": "Utah County Health Department Environmental Health | (801) 851-7525 | eh@utahcounty.gov",
       "decisionSteps": [
         "Start with the septic system lookup application if the first problem is simply proving what the county has on file for the parcel.",
@@ -7135,7 +7134,6 @@
       ],
       "officialSourceIds": [
         "ut_utah_01",
-        "ut_utah_02",
         "ut_utah_03"
       ],
       "publishStatus": "published",
@@ -8250,7 +8248,7 @@
       "officeLabel": "Lane County on-site wastewater program",
       "officeUrl": "https://www.lanecounty.org/government/county_departments/public_works/land_management_division/on-_site_wastewater",
       "recordsLabel": "Lane County LMD-PRO property records search",
-      "recordsUrl": "http://apps.lanecounty.org/LMDPro/",
+      "recordsUrl": "https://apps.lanecounty.org/LMDPro/",
       "contactLine": "Lane County Land Management Division | 3050 N. Delta Hwy Eugene OR 97408 | 541-682-4651",
       "decisionSteps": [
         "Open the county On-Site Wastewater page first and confirm whether the parcel is on a permit, repair, alteration, or authorization-notice branch.",
@@ -10005,8 +10003,8 @@
       "targetReader": "Best for Burlington County buyers, owners, agents, lenders, and contractors who need to know whether the next move is a records pull, a compliance certificate, or a repair-or-replace application.",
       "officeLabel": "Burlington County environmental health",
       "officeUrl": "https://co.burlington.nj.us/384/Environmental-Health",
-      "recordsLabel": "Open Burlington County public-records route for septic files",
-      "recordsUrl": "https://www.co.burlington.nj.us/1445/Accessing-Public-Records",
+      "recordsLabel": "Open Burlington County Environmental Health",
+      "recordsUrl": "https://co.burlington.nj.us/384/Environmental-Health",
       "contactLine": "Burlington County Health Department | 609-265-5548 | 15 Pioneer Boulevard, Westampton, NJ 08060",
       "decisionSteps": [
         "Pull the county record first instead of assuming the existing septic system is already documented and compliant.",
@@ -10041,7 +10039,6 @@
       ],
       "officialSourceIds": [
         "nj_burlington_01",
-        "nj_burlington_02",
         "nj_burlington_03",
         "nj_burlington_04"
       ],
@@ -10072,8 +10069,8 @@
       "targetReader": "Best for Carroll County buyers, owners, lenders, and agents who need to know whether the county file is strong enough to support a repair, replacement, or transfer story.",
       "officeLabel": "Carroll County health department sewage disposal program",
       "officeUrl": "https://health.maryland.gov/carroll/Pages/Sewage-Disposal.aspx",
-      "recordsLabel": "Submit Carroll County records research request",
-      "recordsUrl": "https://health.maryland.gov/carroll/Documents/Records-Research-Request-Form-2018%20%281%29.pdf",
+      "recordsLabel": "Open Carroll County sewage disposal records guidance",
+      "recordsUrl": "https://health.maryland.gov/carroll/Pages/Sewage-Disposal.aspx",
       "contactLine": "Carroll County Health Department Environmental records | 410-876-1884 | carrollcounty.environmental@maryland.gov",
       "decisionSteps": [
         "Start with the county records-research request and include parcel data plus the owner name at the time of installation if the home is older.",
@@ -10108,7 +10105,6 @@
       ],
       "officialSourceIds": [
         "md_carroll_01",
-        "md_carroll_02",
         "md_carroll_03",
         "md_carroll_04"
       ],
@@ -10407,8 +10403,8 @@
       "targetReader": "Best for Atlantic County buyers, owners, sellers, and contractors who need to know whether the next move is a county records request, a permit application, or a deeper environmental-health review.",
       "officeLabel": "Atlantic County sewage disposal septic system program",
       "officeUrl": "https://www.atlanticcountynj.gov/government/county-departments/department-of-human-services/division-of-public-health/environmental-health/sewage-disposal-septic-system-program",
-      "recordsLabel": "Open Atlantic County septic records request path",
-      "recordsUrl": "https://www.atlanticcountynj.gov/government/county-departments/department-of-human-services/division-of-public-health/environmental-health/online-request-form",
+      "recordsLabel": "Open Atlantic County septic system program",
+      "recordsUrl": "https://www.atlanticcountynj.gov/government/county-departments/department-of-human-services/division-of-public-health/environmental-health/sewage-disposal-septic-system-program",
       "contactLine": "Atlantic County Environmental Health Unit | 609-645-5971",
       "decisionSteps": [
         "Start on the county septic-program page and determine whether the current issue is permit, alteration, or records-related.",
@@ -10443,7 +10439,6 @@
       ],
       "officialSourceIds": [
         "nj_atlantic_01",
-        "nj_atlantic_02",
         "nj_atlantic_03",
         "nj_atlantic_04"
       ],
@@ -10814,8 +10809,8 @@
       "targetReader": "Best for York County buyers, owners, builders, and agents who need to know whether the next move is sewer verification, septic permit approval, or health-office routing.",
       "officeLabel": "York County development guide for private utilities",
       "officeUrl": "https://www.yorkcounty.gov/2560/York-County-Development-Guide",
-      "recordsLabel": "Open York County building permit septic approval requirements",
-      "recordsUrl": "https://www.yorkcounty.gov/DocumentCenter/View/252/Building-Permit-Requirements",
+      "recordsLabel": "Open York County Environmental Health",
+      "recordsUrl": "https://www.vdh.virginia.gov/environmental-health/york-county/",
       "contactLine": "York County Building Safety | 757-890-3522",
       "decisionSteps": [
         "Start by confirming whether the parcel is on sewer or a state health septic path using the county development guide and FAQ routing.",
@@ -10850,7 +10845,6 @@
       ],
       "officialSourceIds": [
         "va_york_01",
-        "va_york_02",
         "va_york_03",
         "va_york_04"
       ],
@@ -11015,8 +11009,8 @@
       "targetReader": "Best for Weld County buyers, owners, lenders, and agents who need to know whether the next move is a file review, a loan-approval inspection, or a residential repair path.",
       "officeLabel": "Weld County septic systems",
       "officeUrl": "https://www.weld.gov/Government/Departments/Health-and-Environment/Environmental-Health-Services/Septic-Systems",
-      "recordsLabel": "Open Weld County residential septic path",
-      "recordsUrl": "https://www.weld.gov/wayfinder/Permits/Select-Permit/Septic-biosolids/Septic-System/Residential-Septic",
+      "recordsLabel": "Open Weld County septic systems guidance",
+      "recordsUrl": "https://www.weld.gov/Government/Departments/Health-and-Environment/Environmental-Health-Services/Septic-Systems",
       "contactLine": "Weld County Department of Public Health and Environment | 970-400-6415",
       "decisionSteps": [
         "Start with the county septic systems page and decide whether the issue is loan approval inspection, change of use, abandonment, or a repair and replacement permit.",
@@ -11051,7 +11045,6 @@
       ],
       "officialSourceIds": [
         "co_weld_01",
-        "co_weld_02",
         "co_weld_03",
         "co_weld_04"
       ],
@@ -11819,8 +11812,8 @@
       "targetReader": "Best for Chesterfield County buyers, owners, agents, and coordinators who need to know whether the next move is a certification letter, a repair permit, or a FOIA-backed records request.",
       "officeLabel": "Chesterfield Health District onsite sewage program",
       "officeUrl": "https://www.vdh.virginia.gov/chesterfield/environmental-health/onsite-sewage-septic-well-water-program/",
-      "recordsLabel": "Open Chesterfield Health District FOIA records path",
-      "recordsUrl": "https://www.vdh.virginia.gov/content/uploads/sites/83/2022/07/FOIA-Request-form-2022-1.pdf",
+      "recordsLabel": "Open Chesterfield Health District FOIA guidance",
+      "recordsUrl": "https://www.vdh.virginia.gov/chesterfield/environmental-health/freedom-of-information-act-foia/",
       "contactLine": "Chesterfield Health District Environmental Health | chesterfield_eh@vdh.virginia.gov | 804-748-1691",
       "decisionSteps": [
         "Start with the health-district onsite sewage page and decide whether the property really needs a certification letter, a repair permit, or only a basic records confirmation.",
@@ -11856,7 +11849,6 @@
       "officialSourceIds": [
         "va_chesterfield_01",
         "va_chesterfield_02",
-        "va_chesterfield_03",
         "va_chesterfield_04"
       ],
       "publishStatus": "published",
@@ -12617,9 +12609,9 @@
       "uniqueAngle": "Sublette County is a pre-construction permit county. The real branch is whether the parcel already has county design approval or still needs a full perc-and-permit path before any work starts.",
       "targetReader": "Best for Sublette County owners, buyers, and builders who need to know whether the next move is a county permit file, a perc test, or a design-approval conversation.",
       "officeLabel": "Sublette County septic systems office",
-      "officeUrl": "https://www.sublettecountywy.gov/201/Septic-Systems",
-      "recordsLabel": "Open Sublette County septic systems path",
-      "recordsUrl": "https://www.sublettecountywy.gov/201/Septic-Systems",
+      "officeUrl": "https://sublettecountywy.gov/571/Septic-System-Info",
+      "recordsLabel": "Open Sublette County septic system information",
+      "recordsUrl": "https://sublettecountywy.gov/571/Septic-System-Info",
       "contactLine": "Sublette County Wyoming | county-delegated septic systems program",
       "decisionSteps": [
         "Start with the county septic systems page and confirm whether the parcel already has county approval before construction.",
@@ -13889,8 +13881,8 @@
       "targetReader": "Best for Cole County buyers, owners, and builders who need to know whether the next move is a health-department file pull, a soil morphology review, or a registered-installer check before they trust a wastewater estimate.",
       "officeLabel": "Cole County Health Department onsite wastewater program",
       "officeUrl": "https://colecounty.org/886/Onsite-Wastewater-Permit-Sewage",
-      "recordsLabel": "Open Cole County onsite wastewater permit application",
-      "recordsUrl": "https://www.colecounty.org/DocumentCenter/View/8215/updated-Sept-7-2022-OWTS-Permit-Application-2022---Fillable?bidId=",
+      "recordsLabel": "Open Cole County onsite wastewater permits",
+      "recordsUrl": "https://colecounty.org/886/Onsite-Wastewater-Permit-Sewage",
       "contactLine": "Cole County Health Department Environmental Public Health Program | 573-636-2181 | 3400 W Truman Blvd Jefferson City MO",
       "decisionSteps": [
         "Start with the county onsite wastewater permit page and verify whether the parcel already has a county-ready wastewater file instead of assuming a septic story can be improvised later.",
@@ -13926,7 +13918,6 @@
       "officialSourceIds": [
         "mo_cole_01",
         "mo_cole_02",
-        "mo_cole_03",
         "mo_cole_04"
       ],
       "publishStatus": "published",
@@ -14224,8 +14215,8 @@
       "targetReader": "Best for Sanpete County buyers, owners, and rural builders who need to know whether the next move is a Central Utah permit pull, a recorder search, or a state-code septic compliance check before pricing anything.",
       "officeLabel": "Sanpete County Building Department",
       "officeUrl": "https://www.sanpetecountyutah.gov/building-dept.html",
-      "recordsLabel": "Open Sanpete County recorder records search",
-      "recordsUrl": "https://www.sanpetecountyutah.gov/recorder",
+      "recordsLabel": "Open Sanpete County Building Department",
+      "recordsUrl": "https://www.sanpetecountyutah.gov/building-dept.html",
       "contactLine": "Sanpete County Building Department | Central Utah Public Health Manti office 435-835-2231 for septic permits",
       "decisionSteps": [
         "Start with the county building department and verify whether the parcel already has the Central Utah Public Health septic permit that Sanpete expects before real building movement.",
@@ -14260,7 +14251,6 @@
       ],
       "officialSourceIds": [
         "ut_sanpete_01",
-        "ut_sanpete_02",
         "ut_sanpete_03",
         "ut_sanpete_04"
       ],
@@ -15651,8 +15641,8 @@
       "targetReader": "Best for Pitt County buyers, owners, and new-build applicants who need to know whether the next move is an Authorization to Construct review, an improvement permit pull, or a repair-area check before trusting the septic story.",
       "officeLabel": "Pitt County onsite wastewater and septic systems",
       "officeUrl": "https://www.pittcountync.gov/378/On-Site-Wastewater-Septic-Systems",
-      "recordsLabel": "Open Pitt County onsite sewage disposal workflow",
-      "recordsUrl": "https://www.pittcountync.gov/236/On-Site-Sewage-Disposal",
+      "recordsLabel": "Open Pitt County onsite wastewater and septic systems",
+      "recordsUrl": "https://www.pittcountync.gov/378/On-Site-Wastewater-Septic-Systems",
       "contactLine": "Pitt County Environmental Health | Greenville NC",
       "decisionSteps": [
         "Start with the onsite wastewater page and decide whether the project already needs an Authorization to Construct permit before any work begins.",
@@ -15692,7 +15682,6 @@
       ],
       "officialSourceIds": [
         "nc_pitt_01",
-        "nc_pitt_02",
         "nc_pitt_03",
         "nc_pitt_04"
       ],
@@ -15723,8 +15712,8 @@
       "targetReader": "Best for Moore County buyers, owners, and addition applicants who need to know whether the next move is septic-record lookup, existing-system approval, or recertification review before trusting the system story.",
       "officeLabel": "Moore County septic wells and record locator",
       "officeUrl": "https://www.moorecountync.gov/256/Septic-Wells",
-      "recordsLabel": "Open Moore County sewage disposal recertification form",
-      "recordsUrl": "https://www.moorecountync.gov/DocumentCenter/View/528",
+      "recordsLabel": "Open Moore County septic and wells guidance",
+      "recordsUrl": "https://www.moorecountync.gov/256/Septic-Wells",
       "contactLine": "Moore County Environmental Health | Carthage NC",
       "decisionSteps": [
         "Start with the county septic page and use the record-location video or GIS maps to confirm that the parcel has a real septic file before trusting any seller summary.",
@@ -15765,7 +15754,6 @@
       "officialSourceIds": [
         "nc_moore_01",
         "nc_moore_02",
-        "nc_moore_03",
         "nc_moore_04"
       ],
       "workflowStructure": {

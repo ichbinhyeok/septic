@@ -127,6 +127,9 @@
                                     <span>${link.confidenceLabel()}</span>
                                     <span>${link.requestMethodLabel()}</span>
                                     <span>${link.sourceDepthLabel()}</span>
+                                    @if (!link.lastReviewedAt().isBlank())
+                                        <span>Reviewed ${link.lastReviewedAt()}</span>
+                                    @endif
                                     @if (link.parcelAnchorAvailable())
                                         <span>Parcel anchor</span>
                                     @endif

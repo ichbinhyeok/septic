@@ -521,7 +521,10 @@ public class SiteController {
                 "route_type",
                 "first_artifact",
                 "confidence_score",
+                "confidence_label",
+                "official_source_count",
                 "parcel_anchor",
+                "last_reviewed",
                 "official_records_url",
                 "septicpath_guide_url"
         ));
@@ -536,7 +539,10 @@ public class SiteController {
                         link.requestMethodLabel(),
                         link.firstArtifactLabel(),
                         Integer.toString(link.confidenceScore()),
+                        link.confidenceLabel(),
+                        Integer.toString(link.officialSourceCount()),
                         Boolean.toString(link.parcelAnchorAvailable()),
+                        link.lastReviewedAt(),
                         link.recordsUrl(),
                         link.absoluteUrl()
                 ))
@@ -4165,7 +4171,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         String confidenceLabel = countyConfidenceLabel(confidenceScore);
         String requestMethod = countyRequestMethodLabel(page, combinedText);
         String firstArtifact = countyFirstArtifact(page);
-        String sourceDepth = size(page.officialSourceIds()) + " official source" + (size(page.officialSourceIds()) == 1 ? "" : "s");
+        int officialSourceCount = size(page.officialSourceIds());
+        String sourceDepth = officialSourceCount + " official source" + (officialSourceCount == 1 ? "" : "s");
+        String lastReviewedAt = latestVerifiedAt(
+                researchDataService.getSources(page.officialSourceIds()),
+                firstNonBlank(page.updatedAt(), researchDataService.countyRecordsPagesGeneratedAt())
+        );
         String title = page.countyName() + ", " + state.stateCode() + " records";
         String note = firstNonBlank(
                 page.recordsLabel(),
@@ -4197,7 +4208,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                 requestMethod,
                 firstArtifact,
                 sourceDepth,
+                officialSourceCount,
                 page.hasParcelAnchor(),
+                lastReviewedAt,
                 searchText,
                 page.recordsUrl(),
                 seoService.absoluteUrl(page.path(state.slug()))

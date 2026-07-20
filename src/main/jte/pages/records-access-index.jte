@@ -17,7 +17,7 @@
             <div class="records-access-index-hero__intro">
                 <span class="eyebrow">Public records infrastructure</span>
                 <h1>Search the county septic file path, then take the data with you.</h1>
-                <p>A public index of verified county and state records routes. Search by address or county, filter the dataset, download the CSV, and open the office that owns the permit, as-built, approval, repair file, or written no-record response.</p>
+                <p>A public index of county and state records routes backed by listed government sources. Search by address or county, compare confidence and review dates, download the CSV, and open the office that owns the permit, as-built, approval, repair file, or written no-record response.</p>
                 <div class="records-access-index-hero__signals" aria-label="Records access index coverage">
                     <span><strong>${totalCountyRouteCount}</strong> county routes</span>
                     <span><strong>${countyRouteStateCount}</strong> states represented</span>
@@ -42,7 +42,7 @@
                 finderId = "records-access-index",
                 eyebrow = "Address-to-record route",
                 heading = "Search by property address.",
-                intro = "Have the address? We will resolve the county and open the closest verified record route. No address? Use county search instead.",
+                intro = "Have the address? We will resolve the county and open the closest reviewed record route. No address? Use county search instead.",
                 totalCountyRouteCount = totalCountyRouteCount,
                 minimal = true
             )
@@ -66,7 +66,8 @@
             <div>
                 <span class="eyebrow">Download, cite, or share</span>
                 <h2 id="records-access-distribution">Use the index as a working dataset.</h2>
-                <p>The CSV includes state, county, route type, first artifact, confidence, parcel availability, official records URL, and the SepticPath guide URL. Filtered page URLs preserve the selected state and search terms.</p>
+                <p>The CSV includes state, county, route type, first artifact, confidence, official-source count, last review date, parcel availability, official records URL, and the SepticPath guide URL. Filtered page URLs preserve the selected state and search terms.</p>
+                <p><strong>Quality note:</strong> Confidence describes route specificity and workflow depth, not the status of any property's permit. Review dates record the latest linked-source check; always confirm the government page before a transaction decision.</p>
                 <div class="records-access-card__actions">
                     <a class="button button--primary"
                        href="/septic-records-access-index.csv"
@@ -78,13 +79,13 @@
                             type="button"
                             data-share-route
                             data-share-title="Septic Records Access Index"
-                            data-share-text="${totalCountyRouteCount} verified county septic records routes across ${countyRouteStateCount} states."
+                            data-share-text="${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states."
                             data-track-source-context="records_access_index_filtered_share">Share filtered view</button>
                 </div>
             </div>
             <details class="records-access-embed" open>
                 <summary>Citation and reuse note</summary>
-                <textarea readonly data-records-index-citation>SepticPath. "Septic Records Access Index." ${totalCountyRouteCount} verified county septic records routes across ${countyRouteStateCount} states. Updated ${dataLastUpdated}. https://septicpath.com/septic-records-access-index/</textarea>
+                <textarea readonly data-records-index-citation>SepticPath. "Septic Records Access Index." ${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states. Updated ${dataLastUpdated}. https://septicpath.com/septic-records-access-index/</textarea>
                 <button class="button button--secondary" type="button" data-records-index-copy-citation>Copy citation</button>
                 <p data-records-index-status aria-live="polite">Ready to copy. Verify the linked government source before relying on a file-status conclusion.</p>
             </details>

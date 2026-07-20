@@ -12,7 +12,9 @@ public record CountyFinderLinkView(
         String requestMethodLabel,
         String firstArtifactLabel,
         String sourceDepthLabel,
+        int officialSourceCount,
         boolean parcelAnchorAvailable,
+        String lastReviewedAt,
         String searchText,
         String recordsUrl,
         String absoluteUrl

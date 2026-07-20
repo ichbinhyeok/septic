@@ -3,6 +3,7 @@ package com.example.septic;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.septic.data.model.ContentPage;
+import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.FaqBlock;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -563,8 +565,12 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Filter 324 county records routes.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 indexed routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-07-20")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed 2026-")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("${totalCountyRouteCount}"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("48 searchable routes loaded"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("verified county septic records routes"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
@@ -583,6 +589,7 @@ class SepticApplicationTests {
 				.andExpect(header().string("Content-Disposition", "attachment; filename=\"septicpath-records-access-index.csv\""))
 				.andExpect(content().contentTypeCompatibleWith("text/csv"))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"state_code\",\"state\",\"county\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"confidence_score\",\"confidence_label\",\"official_source_count\",\"parcel_anchor\",\"last_reviewed\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"TN\",\"Tennessee\",\"Blount County\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/tennessee/blount-county/")));
 
@@ -9631,6 +9638,25 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(anchorText)))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(calculatorPath)));
+	}
+
+	@Test
+	void countyRecordsIndexDataUsesUniqueHttpsRoutesAndResolvableSources() {
+		List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
+
+		assertEquals(324, pages.size());
+		assertEquals(
+				pages.size(),
+				pages.stream()
+						.map(page -> page.stateCode() + "|" + page.countyName().toLowerCase())
+						.distinct()
+						.count()
+		);
+		assertTrue(pages.stream().allMatch(page -> page.recordsUrl().startsWith("https://")));
+		assertTrue(pages.stream()
+				.flatMap(page -> page.officialSourceIds().stream())
+				.allMatch(sourceId -> researchDataService.findSource(sourceId).isPresent()));
+		assertEquals("2026-07-20", researchDataService.countyRecordsPagesGeneratedAt());
 	}
 
 	private boolean indexable(String contentSlug, String stateSlug) {

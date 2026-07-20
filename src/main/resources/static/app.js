@@ -588,6 +588,7 @@
                     meta.className = "county-finder__result-meta";
                     meta.setAttribute("aria-label", `${item.title} route metadata`);
                     [item.confidenceLabel, item.requestMethodLabel, item.sourceDepthLabel]
+                        .concat(item.lastReviewedAt ? [`Reviewed ${item.lastReviewedAt}`] : [])
                         .concat(item.parcelAnchorAvailable ? ["Parcel anchor"] : [])
                         .forEach((value) => {
                             const badge = document.createElement("span");
