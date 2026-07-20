@@ -41,7 +41,34 @@
         gtag('js', new Date());
         gtag('config', 'G-S1SY1NS71P');
     </script>
-    <script src="${AssetPaths.versioned("/app.js")}" defer></script>
+    <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const featureSelector = [
+                "#result-top",
+                "[data-choice-group]",
+                "[data-county-finder]",
+                "[data-address-record-finder]",
+                "[data-offer-prep-file-check]",
+                "[data-bedroom-permit-checker]",
+                "[data-alabama-perc-scope]",
+                "[data-bedroom-embed-copy]",
+                "[data-records-request-builder]",
+                "[data-packet-note]",
+                "[data-share-route]",
+                "[data-state-surface-tool]"
+            ].join(",");
+
+            if (!document.querySelector(featureSelector)) {
+                return;
+            }
+
+            const featureScript = document.createElement("script");
+            featureScript.src = "${AssetPaths.versioned("/app.js")}";
+            featureScript.defer = true;
+            document.head.appendChild(featureScript);
+        });
+    </script>
     @for (var jsonLd : page.jsonLdBlocks())
         <script type="application/ld+json">$unsafe{jsonLd}</script>
     @endfor

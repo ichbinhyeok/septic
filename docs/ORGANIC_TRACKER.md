@@ -1612,3 +1612,19 @@ Copy this block for the next review:
   to users and crawlers without changing canonical URLs.
 - QA guardrail: rendering tests require the same parent URL and position-two
   label in both the visible breadcrumb and `BreadcrumbList` JSON-LD.
+
+## 2026-07-20 - Conditional JavaScript delivery
+
+- Split the always-needed navigation, mobile CTA, click analytics, and Web
+  Vitals logic into a small `app-core.js` bundle.
+- Pages without calculators, finders, request builders, share controls, or
+  state-aware tools no longer download and parse the full `app.js` feature
+  bundle.
+- Interactive pages load `app.js` after the DOM is ready and retain the same
+  feature behavior without installing duplicate core listeners.
+- Pre-change baseline: `app.js` was 128,200 uncompressed bytes and loaded on
+  every HTML page.
+- Post-change core path: 13,590 uncompressed bytes / 3,238 gzip bytes, about
+  89% smaller before compression on pages that do not need feature code.
+- Guardrails: keep asset versioning, navigation telemetry, Web Vitals payloads,
+  mobile navigation, sticky CTAs, and no-JavaScript content behavior intact.

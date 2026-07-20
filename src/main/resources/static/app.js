@@ -1,5 +1,6 @@
 (() => {
     document.documentElement.classList.add("js");
+    const coreAlreadyLoaded = Boolean(window.SepticPathCoreLoaded);
 
     function navigationTarget(anchor) {
         try {
@@ -120,7 +121,9 @@
         });
     }
 
-    setupHashAnchorOffset();
+    if (!coreAlreadyLoaded) {
+        setupHashAnchorOffset();
+    }
 
     function setupWebVitalTracking() {
         if (!("PerformanceObserver" in window) || !Array.isArray(PerformanceObserver.supportedEntryTypes)) {
@@ -322,8 +325,10 @@
         setExpanded(false);
     }
 
-    setupSiteNav();
-    setupWebVitalTracking();
+    if (!coreAlreadyLoaded) {
+        setupSiteNav();
+        setupWebVitalTracking();
+    }
 
     function setupStickyMobileCtas() {
         const stickyCtas = Array.from(document.querySelectorAll("[data-sticky-mobile-cta]"));
@@ -382,7 +387,9 @@
         handleViewportChange(mobileQuery);
     }
 
-    setupStickyMobileCtas();
+    if (!coreAlreadyLoaded) {
+        setupStickyMobileCtas();
+    }
 
     function setupCalculatorResultScroll() {
         const result = document.getElementById("result-top");
@@ -2535,25 +2542,27 @@
         });
     }
 
-    trackGaEvents();
+    if (!coreAlreadyLoaded) {
+        trackGaEvents();
 
-    document.addEventListener("click", (event) => {
-        const anchor = event.target.closest("a[data-track-click]");
-        if (!anchor) {
-            return;
-        }
+        document.addEventListener("click", (event) => {
+            const anchor = event.target.closest("a[data-track-click]");
+            if (!anchor) {
+                return;
+            }
 
-        const targetPath = navigationTarget(anchor);
-        if (!targetPath || (targetPath.startsWith("/") && targetPath.startsWith("/events/"))) {
-            return;
-        }
+            const targetPath = navigationTarget(anchor);
+            if (!targetPath || (targetPath.startsWith("/") && targetPath.startsWith("/events/"))) {
+                return;
+            }
 
-        sendNavigationEvent({
-            sourcePage: window.location.pathname + window.location.search + window.location.hash,
-            sourceContext: anchor.dataset.trackSourceContext || "",
-            targetPath,
-            targetType: anchor.dataset.trackTargetType || "",
-            targetLabel: (anchor.dataset.trackLabel || anchor.textContent || "").trim().replace(/\s+/g, " ")
+            sendNavigationEvent({
+                sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                sourceContext: anchor.dataset.trackSourceContext || "",
+                targetPath,
+                targetType: anchor.dataset.trackTargetType || "",
+                targetLabel: (anchor.dataset.trackLabel || anchor.textContent || "").trim().replace(/\s+/g, " ")
+            });
         });
-    });
+    }
 })();
