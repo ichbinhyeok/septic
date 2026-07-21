@@ -642,10 +642,19 @@ public class SeoService {
         );
     }
 
-    public PageMeta recordsAccessIndexPage() {
+    public PageMeta recordsAccessIndexPage(String dataLastUpdated, int countyRouteCount, int stateCount) {
         String canonicalUrl = absoluteUrl("/septic-records-access-index/");
+        String csvUrl = absoluteUrl("/septic-records-access-index.csv");
         String title = "Septic Records Access Index | Official County Permit and File Routes | SepticPath";
         String description = "Search and download official-source county septic records routes. Filter by state, route type, first artifact, confidence, review date, or parcel access, then open the government file path.";
+        Map<String, Object> collectionPage = webPage(canonicalUrl, title, description, "CollectionPage");
+        if (isIsoDate(dataLastUpdated)) {
+            collectionPage.put("dateModified", dataLastUpdated);
+        }
+        collectionPage.put("mainEntity", Map.of(
+                "@type", "Dataset",
+                "@id", canonicalUrl + "#dataset"
+        ));
         return pageMeta(
                 title,
                 description,
@@ -656,13 +665,21 @@ public class SeoService {
                         crumb("Septic Records Access Index", canonicalUrl)
                 ),
                 List.of(
-                        toJson(webPage(canonicalUrl, title, description, "CollectionPage")),
+                        toJson(collectionPage),
+                        toJson(recordsAccessDataset(
+                                canonicalUrl,
+                                csvUrl,
+                                description,
+                                dataLastUpdated,
+                                countyRouteCount,
+                                stateCount
+                        )),
                         toJson(breadcrumb(List.of(
                                 crumb("Home", absoluteUrl("/")),
                                 crumb("Septic Records Access Index", canonicalUrl)
                         )))
                 )
-        );
+        ).withDataDownloadUrl(csvUrl);
     }
 
     public PageMeta offerPrepFileCheckPage() {
@@ -915,6 +932,62 @@ public class SeoService {
         defaultMainEntity.put("description", compactSeoDescription(description));
         payload.put("mainEntity", defaultMainEntity);
         return payload;
+    }
+
+    private Map<String, Object> recordsAccessDataset(
+            String canonicalUrl,
+            String csvUrl,
+            String description,
+            String dataLastUpdated,
+            int countyRouteCount,
+            int stateCount
+    ) {
+        Map<String, Object> dataset = new LinkedHashMap<>();
+        dataset.put("@context", "https://schema.org");
+        dataset.put("@type", "Dataset");
+        dataset.put("@id", canonicalUrl + "#dataset");
+        dataset.put("name", "Septic Records Access Index");
+        dataset.put("description", description);
+        dataset.put("url", canonicalUrl);
+        dataset.put("inLanguage", "en-US");
+        dataset.put("isAccessibleForFree", true);
+        dataset.put("creator", editorialOrganizationReference());
+        dataset.put("publisher", editorialOrganizationReference());
+        if (isIsoDate(dataLastUpdated)) {
+            dataset.put("dateModified", dataLastUpdated);
+            dataset.put("version", dataLastUpdated);
+        }
+        dataset.put("spatialCoverage", Map.of(
+                "@type", "Country",
+                "name", "United States"
+        ));
+        dataset.put("keywords", List.of(
+                "septic records",
+                "septic permit lookup",
+                "county environmental health",
+                "septic as-built records",
+                "onsite wastewater records"
+        ));
+        dataset.put("variableMeasured", List.of(
+                "State",
+                "County",
+                "Records route type",
+                "First artifact to request",
+                "Route confidence score",
+                "Official source count",
+                "Last reviewed date",
+                "Official records URL"
+        ));
+        dataset.put("measurementTechnique", "Editorial review of listed official government sources");
+        dataset.put("abstract", "Includes " + countyRouteCount + " county routes across " + stateCount
+                + " states, with official destination URLs and route-level review metadata.");
+        dataset.put("distribution", List.of(Map.of(
+                "@type", "DataDownload",
+                "name", "Septic Records Access Index CSV",
+                "contentUrl", csvUrl,
+                "encodingFormat", "text/csv"
+        )));
+        return dataset;
     }
 
     private Map<String, Object> withEditorialMeta(

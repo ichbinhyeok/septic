@@ -1,11 +1,13 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.RecordsAccessIndexStateView
 @import com.example.septic.web.CountyFinderLinkView
+@import com.example.septic.web.CountyRouteClusterView
 @import com.example.septic.data.model.StateProfile
 @param PageMeta page
 @param java.util.List<RecordsAccessIndexStateView> indexStates = java.util.List.of()
 @param java.util.List<CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param java.util.List<StateProfile> countyRouteStates = java.util.List.of()
+@param java.util.List<CountyRouteClusterView> stateDirectory = java.util.List.of()
 @param int countyRouteStateCount = 0
 @param int priorityCountyRouteCount = 0
 @param int totalCountyRouteCount = 0
@@ -60,6 +62,35 @@
         totalCountyRouteCount = totalCountyRouteCount,
         syncUrl = true
     )
+
+    <section class="section section--tight records-access-state-section"
+             aria-labelledby="records-access-state-directory"
+             data-records-state-directory
+             data-state-count="${stateDirectory.size()}">
+        <div class="container records-access-state-directory">
+            <div class="records-access-state-directory__intro">
+                <span class="eyebrow">Browse without search</span>
+                <h2 id="records-access-state-directory">Open every state with published county coverage.</h2>
+                <p>These are crawlable state records hubs, not new duplicate pages. Each one leads into the published county routes and the official file-owner workflow already reviewed for that state.</p>
+            </div>
+            <nav aria-label="State septic records directories">
+                <ul class="records-access-state-list">
+                    @for (var state : stateDirectory)
+                        <li>
+                            <a href="${state.stateRecordsLink().path()}"
+                               data-track-click="nav"
+                               data-track-source-context="records_access_index_all_states"
+                               data-track-target-type="state_records_page">
+                                <span>${state.stateCode()}</span>
+                                <strong>${state.stateName()} records</strong>
+                                <small>${state.liveCountyCount()} county route${state.liveCountyCount() == 1 ? "" : "s"}</small>
+                            </a>
+                        </li>
+                    @endfor
+                </ul>
+            </nav>
+        </div>
+    </section>
 
     <section class="section section--tight records-access-embed-section" aria-labelledby="records-access-distribution">
         <div class="container records-access-distribution">

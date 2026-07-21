@@ -13,6 +13,9 @@
     <meta name="description" content="${page.description()}">
     <meta name="robots" content="${page.robots()}">
     <link rel="canonical" href="${page.canonicalUrl()}">
+    @if (page.dataDownloadUrl() != null && !page.dataDownloadUrl().isBlank())
+        <link rel="alternate" type="text/csv" title="Septic Records Access Index CSV" href="${page.dataDownloadUrl()}">
+    @endif
     <meta property="og:title" content="${page.title()}">
     <meta property="og:description" content="${page.description()}">
     <meta property="og:type" content="website">

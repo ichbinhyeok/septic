@@ -1738,3 +1738,39 @@ Copy this block for the next review:
   - cold distribution leads with `confidence=high`; routes below 70 remain
     discoverable but are not used as outreach lead examples
   - outreach asks for route correction before requesting a citation or link
+
+## 2026-07-22 - Records dataset and state-directory strengthening
+
+- Goal: strengthen the existing records asset as a crawlable, reusable dataset
+  without changing the July 20 title and snippet treatment cohorts.
+- Live pre-change crawl:
+  - fetched all 692 URLs from the main and county sitemaps with 0 failures
+  - found 0 sitemap URLs without an internal HTML link
+  - found 0 status, canonical, robots, title, description, H1, JSON-LD, or
+    duplicate-metadata defects
+  - confirmed all 324 county pages had at least 6 internal links
+- Changes:
+  - added `Dataset` and `DataDownload` JSON-LD to
+    `/septic-records-access-index/`, with the canonical CSV distribution URL,
+    route dimensions, national coverage, and publisher identity
+  - exposed the CSV as a typed alternate resource in the HTML head
+  - added canonical and alternate `Link` headers, `Last-Modified`, and `ETag`
+    metadata to the CSV response
+  - replaced the collection-level generated date with the latest valid review
+    date across all published county rows and their official sources
+  - added a server-rendered directory linking all 27 states with published
+    county coverage to their existing state records hubs
+- Guardrails:
+  - no July 20 CTR-treatment title, description, H1, or canonical changed
+  - no new state or county URL family was created
+  - the four transaction handoff packets remain visually separate from the
+    national state directory
+- Verification:
+  - full Gradle test suite passed
+  - desktop and 390px browser checks showed 27 state links, no horizontal
+    overflow, a valid Dataset JSON-LD block, and the CSV alternate link
+- Next check:
+  - after 14 complete days, inspect Records Access Index impressions, landing
+    clicks, CSV downloads, citation copies, and state-hub clickthrough
+  - treat Dataset discovery or citation growth as an observed outcome, not a
+    guaranteed ranking effect

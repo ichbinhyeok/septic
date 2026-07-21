@@ -38,6 +38,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -495,14 +496,23 @@ public class SiteController {
 
     @GetMapping({"/septic-records-access-index", "/septic-records-access-index/"})
     public String recordsAccessIndex(Model model) {
-        model.addAttribute("page", seoService.recordsAccessIndexPage());
         List<RecordsAccessIndexStateView> indexStates = recordsAccessIndexStates();
         List<StateProfile> countyRouteStates = countyRouteStates();
+        List<CountyFinderLinkView> countyFinderLinks = countyFinderLinks(totalCountyRouteCount());
+        String dataLastUpdated = recordsAccessIndexDataLastUpdated(countyFinderLinks);
+        model.addAttribute("page", seoService.recordsAccessIndexPage(
+                dataLastUpdated,
+                countyFinderLinks.size(),
+                countyRouteStates.size()
+        ));
         model.addAttribute("indexStates", indexStates);
-        model.addAttribute("countyFinderLinks", countyFinderLinks(totalCountyRouteCount()));
+        model.addAttribute("countyFinderLinks", countyFinderLinks);
         model.addAttribute("countyRouteStates", countyRouteStates);
+        model.addAttribute("stateDirectory", countyRouteStates.stream()
+                .map(state -> countyRouteCluster(state, 0))
+                .toList());
         model.addAttribute("countyRouteStateCount", countyRouteStates.size());
-        model.addAttribute("dataLastUpdated", researchDataService.countyRecordsPagesGeneratedAt());
+        model.addAttribute("dataLastUpdated", dataLastUpdated);
         model.addAttribute("priorityCountyRouteCount", indexStates.stream()
                 .mapToInt(RecordsAccessIndexStateView::countyRouteCount)
                 .sum());
@@ -513,6 +523,7 @@ public class SiteController {
     @GetMapping(value = {"/septic-records-access-index.csv", "/septic-records-access-index.csv/"}, produces = "text/csv")
     @ResponseBody
     public ResponseEntity<String> recordsAccessIndexCsv() {
+        List<CountyFinderLinkView> countyFinderLinks = countyFinderLinks(totalCountyRouteCount());
         List<String> rows = new ArrayList<>();
         rows.add(csvRow(
                 "state_code",
@@ -528,7 +539,7 @@ public class SiteController {
                 "official_records_url",
                 "septicpath_guide_url"
         ));
-        countyFinderLinks(totalCountyRouteCount()).stream()
+        countyFinderLinks.stream()
                 .sorted(Comparator
                         .comparing(CountyFinderLinkView::stateName)
                         .thenComparing(CountyFinderLinkView::countyName))
@@ -547,11 +558,22 @@ public class SiteController {
                         link.absoluteUrl()
                 ))
                 .forEach(rows::add);
+        String body = String.join("\r\n", rows) + "\r\n";
+        String dataLastUpdated = recordsAccessIndexDataLastUpdated(countyFinderLinks);
+        long lastModified = LocalDate.parse(dataLastUpdated)
+                .atStartOfDay()
+                .toInstant(ZoneOffset.UTC)
+                .toEpochMilli();
         return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=\"septicpath-records-access-index.csv\"")
+                .header("Link", "<" + seoService.absoluteUrl("/septic-records-access-index/")
+                        + ">; rel=\"canonical\", <" + seoService.absoluteUrl("/septic-records-access-index.csv")
+                        + ">; rel=\"alternate\"; type=\"text/csv\"")
                 .header("Cache-Control", "public, max-age=3600")
+                .lastModified(lastModified)
+                .eTag("\"" + Integer.toHexString(body.hashCode()) + "\"")
                 .contentType(MediaType.parseMediaType("text/csv;charset=UTF-8"))
-                .body(String.join("\r\n", rows) + "\r\n");
+                .body(body);
     }
 
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
@@ -3961,6 +3983,19 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .filter(state -> stateCodes.contains(state.stateCode()))
                 .sorted(Comparator.comparing(StateProfile::stateName))
                 .toList();
+    }
+
+    private String recordsAccessIndexDataLastUpdated(List<CountyFinderLinkView> countyLinks) {
+        Stream<String> reviewedDates = countyLinks == null
+                ? Stream.empty()
+                : countyLinks.stream().map(CountyFinderLinkView::lastReviewedAt);
+        return Stream.concat(
+                        Stream.of(researchDataService.countyRecordsPagesGeneratedAt()),
+                        reviewedDates
+                )
+                .filter(this::isIsoDate)
+                .max(String::compareTo)
+                .orElseThrow(() -> new IllegalStateException("Records access index requires a valid review date"));
     }
 
     private List<StateProfile> offerPrepStates() {
