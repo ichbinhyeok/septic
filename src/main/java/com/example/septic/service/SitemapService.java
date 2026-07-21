@@ -2,13 +2,11 @@ package com.example.septic.service;
 
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
-import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -119,43 +117,15 @@ public class SitemapService {
     }
 
     private String stateMoneyPageLastMod(StateMoneyPage stateMoneyPage, StateProfile state) {
-        return latestVerifiedDate(
-                stateMoneyPage.updatedAt(),
-                state.lastVerifiedAt(),
-                stateMoneyPage.officialSourceIds()
-        );
+        return validDateOrBlank(stateMoneyPage.updatedAt());
     }
 
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
-        return latestVerifiedDate(
-                countyPage.updatedAt(),
-                state.lastVerifiedAt(),
-                countyPage.officialSourceIds()
-        );
+        return validDateOrBlank(countyPage.updatedAt());
     }
 
     private String statePageLastMod(StateProfile state) {
-        return latestVerifiedDate(
-                null,
-                state.lastVerifiedAt(),
-                state.officialSourceIds(),
-                state.localAuthoritySourceIds(),
-                state.recordsLookupSourceIds()
-        );
-    }
-
-    @SafeVarargs
-    private final String latestVerifiedDate(String updatedAt, String fallback, List<String>... sourceIdGroups) {
-        Stream<String> sourceDates = Stream.of(sourceIdGroups)
-                .filter(java.util.Objects::nonNull)
-                .flatMap(group -> group == null ? Stream.empty() : group.stream())
-                .map(researchDataService::findSource)
-                .flatMap(java.util.Optional::stream)
-                .map(SourceRecord::lastVerifiedAt);
-        return Stream.concat(Stream.of(updatedAt, fallback), sourceDates)
-                .filter(this::isIsoDate)
-                .max(String::compareTo)
-                .orElse("");
+        return validDateOrBlank(state.lastVerifiedAt());
     }
 
     private String validDateOrBlank(String value) {

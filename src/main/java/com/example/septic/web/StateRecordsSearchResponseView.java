@@ -12,4 +12,10 @@ public record StateRecordsSearchResponseView(
         List<PageLink> countyLinks,
         List<PageLink> actionLinks
 ) {
+    public List<String> questions() {
+        return queryExamples == null ? List.of() : queryExamples.stream()
+                .filter(query -> query != null && !query.isBlank())
+                .map(query -> query.endsWith("?") ? query : "How do I find " + query + "?")
+                .toList();
+    }
 }

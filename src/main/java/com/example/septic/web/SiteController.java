@@ -1475,6 +1475,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                         .reversed()
                         .thenComparing(StateMoneyPage::title))
                 .toList();
+        List<StateMoneyPage> indexableStateMoneyPages = sortedStateMoneyPages.stream()
+                .filter(page -> publishingPolicyService.isIndexableStateMoneyPage(page, state))
+                .toList();
         StateCountyWorkflowSynthesisView guideCountyWorkflowSynthesis = sortedStateMoneyPages.stream()
                 .filter(page -> "septic-records-checklist".equals(page.contentSlug()))
                 .findFirst()
@@ -1482,16 +1485,19 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .orElse(null);
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
 
-        model.addAttribute("page", seoService.stateGuide(state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("page", seoService.stateGuide(state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
         model.addAttribute("recordsLookupSources", recordsLookupSources);
         model.addAttribute("primaryLocalAuthoritySource", localAuthoritySources.stream().findFirst().orElse(null));
         model.addAttribute("primaryRecordsLookupSource", recordsLookupSources.stream().findFirst().orElse(null));
-        model.addAttribute("stateMoneyPages", sortedStateMoneyPages);
-        model.addAttribute("featuredStateMoneyPages", sortedStateMoneyPages.stream().limit(5).toList());
-        model.addAttribute("featuredStateWorkflowLinks", sortedStateMoneyPages.stream()
+        model.addAttribute("stateMoneyPages", indexableStateMoneyPages);
+        model.addAttribute("featuredStateMoneyPages", indexableStateMoneyPages.stream().limit(5).toList());
+        model.addAttribute("plannedStateMoneyPages", sortedStateMoneyPages.stream()
+                .filter(page -> !publishingPolicyService.isIndexableStateMoneyPage(page, state))
+                .toList());
+        model.addAttribute("featuredStateWorkflowLinks", indexableStateMoneyPages.stream()
                 .limit(5)
                 .map(page -> stateGuideHeroWorkflowLink(page, state))
                 .toList());
@@ -1528,11 +1534,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("guideCountyWorkflowSynthesis", guideCountyWorkflowSynthesis);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
-        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size()
-                + " official sources listed below and " + countyRecordLinks.size()
-                + " live county workflow pages already connected to this state.");
+        model.addAttribute("editorialReviewedAgainst", "Cites " + sources.size()
+                + " official sources and " + countyRecordLinks.size()
+                + " live county workflow pages. The date below is the latest page or source review activity.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
-        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
+        model.addAttribute("editorialNote", "This " + state.stateName()
+                + " guide is maintained as conservative homeowner guidance and changes when its linked sources or local workflow notes change.");
         return "pages/state-guide";
     }
 
@@ -1633,10 +1640,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                 permitLookupCountyLaunchpadLinks(contentPage),
                 fanoutRestrictedSurface);
         List<CountyRouteClusterView> countyRouteClusters = permitLookupSurface
-                ? countyRouteClusters(contentPage, fanoutRestrictedSurface ? 4 : 10, fanoutRestrictedSurface ? 2 : 4)
+                ? countyRouteClusters(contentPage, fanoutRestrictedSurface ? 4 : 5, fanoutRestrictedSurface ? 2 : 3)
                 : List.of();
         List<CountyFinderLinkView> countyFinderLinks = permitLookupSurface
-                ? countyFinderLinksForContentPage(contentPage, fanoutRestrictedSurface ? 24 : 48)
+                ? countyFinderLinksForContentPage(contentPage, fanoutRestrictedSurface ? 18 : 12)
                 : List.of();
         List<CountyFinderLinkView> directOnlineCountyFinderLinks = RECORDS_BY_COUNTY_SLUG.equals(contentPage.slug())
                 ? directOnlineCountyFinderLinks()
@@ -1647,12 +1654,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                 rankedStateEntries,
                 countyFinderLinks
         );
-        String lastReviewedAt = Stream.of(contentPage.updatedAt(), researchDataService.contentPagesGeneratedAt())
-                .filter(this::isIsoDate)
-                .max(String::compareTo)
-                .orElse("");
+        String lastReviewedAt = latestVerifiedAt(List.of(), contentPage.reviewedAt(), contentPage.updatedAt());
 
-        model.addAttribute("page", seoService.contentPage(contentPage, lastReviewedAt, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("contentQuickAnswer", seoService.contentQuickAnswer(contentPage));
         model.addAttribute("percPlanningRange", "perc-test-cost".equals(contentPage.slug())
                 ? nationalPlanningRange("perc_test")
@@ -1667,7 +1671,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("contentOfficialFilePathRows", contentOfficialFilePathRows);
         model.addAttribute("internalLinks", renderedInternalLinks);
         model.addAttribute("featuredInternalLinks", renderedInternalLinks.stream().limit(5).toList());
-        model.addAttribute("secondaryInternalLinks", renderedInternalLinks.stream().skip(4).toList());
+        model.addAttribute("secondaryInternalLinks", renderedInternalLinks.stream().skip(5).toList());
         model.addAttribute("permitLookupCountyLinks", permitLookupCountyLinks);
         model.addAttribute("featuredPermitLookupCountyLinks", permitLookupCountyLinks.stream().limit(6).toList());
         model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(6).toList());
@@ -1690,10 +1694,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", contentEvidenceLanes.isEmpty()
-                ? "Reviewed against the linked state-specific pages, county workflow network, and source policy."
-                : "Reviewed against " + contentEvidenceLanes.size() + " source-backed state-specific pages, the county workflow network underneath them, and the source policy.");
+                ? "Cites the linked state pages, county workflow network, and source policy. The date below is the latest page or source review activity."
+                : "Cites " + contentEvidenceLanes.size() + " source-backed state pages plus their county workflow network. The date below is the latest page or source review activity.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
-        model.addAttribute("editorialNote", CONTENT_EDITORIAL_NOTE);
+        model.addAttribute("editorialNote", "The " + contentPage.title()
+                + " page is maintained as conservative homeowner guidance and changes when its evidence or workflow changes.");
         return "pages/content-page";
     }
 
@@ -1711,9 +1716,14 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "septic-records-checklist",
                 state.stateCode()
         );
-        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
+        String lastReviewedAt = latestVerifiedAt(
+                sources,
+                countyPage.reviewedAt(),
+                countyPage.updatedAt(),
+                state.lastVerifiedAt()
+        );
 
-        model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -1736,9 +1746,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("siblingCountyRoutes", siblingCountyRoutes(countyPage, state, 8));
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
-        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official county or state sources tied to this county workflow.");
+        model.addAttribute("editorialReviewedAgainst", "Cites " + sources.size()
+                + " official county or state sources. The date below is the latest page or source review activity.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
-        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
+        model.addAttribute("editorialNote", "This " + countyPage.countyName() + ", " + state.stateName()
+                + " route is maintained as conservative homeowner guidance and changes when its official file path changes.");
         return "pages/county-records-page";
     }
 
@@ -1766,7 +1778,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
             case "MD::st-marys-county" ->
                     "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
-            default -> "";
+            default -> "Start with " + countyPage.recordsLabel()
+                    + ". Search by address or parcel when available, request the permit and approval trail, and verify the owning office before treating a missing online result as proof that no file exists.";
         };
     }
 
@@ -1872,12 +1885,15 @@ The goal is to settle the permit path before we frame the project as a normal in
         String lookupClue = countyPage.hasParcelAnchor()
                 ? "Start by capturing " + countyPage.parcelAnchorLabel()
                         + ", then carry that parcel, TMS, APN, owner, or address into the septic file request."
-                : "Carry the street address, parcel ID, owner name, legal description, subdivision, or prior permit clue into the county records route.";
+                : "For " + countyPage.countyName()
+                        + ", carry the street address, parcel ID, owner name, legal description, subdivision, or prior permit clue into the county records route.";
         String ownerNote = sourceOwner + ". Verify whether this office owns the full septic file or only the first handoff before treating the result as complete.";
         String requestNote = requestMethod + ": open " + countyPage.recordsLabel()
                 + ", ask for " + firstArtifact
                 + ", and keep the state route nearby if the county sends part of the file to a regional or delegated office.";
-        String fallbackNote = "If the search returns no match, ask for a written no-record response and the next owning office before assuming the property has no septic history.";
+        String fallbackNote = "If the " + countyPage.countyName()
+                + " search returns no match, ask " + countyPage.officeLabel()
+                + " for a written no-record response and the next owning office before assuming the property has no septic history.";
 
         return List.of(
                 new CountyWorkflowFieldView(
@@ -2036,10 +2052,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                 primaryRecordsLookupSource,
                 countyWorkflowSynthesis
         );
-        String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
+        String lastReviewedAt = latestVerifiedAt(
+                sources,
+                stateMoneyPage.reviewedAt(),
+                stateMoneyPage.updatedAt(),
+                state.lastVerifiedAt()
+        );
         boolean showQuoteCta = publishingPolicyService.allowDirectQuote(stateMoneyPage, state);
 
-        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, lastReviewedAt, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
+        model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -2057,7 +2078,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("planningSnapshot", planningSnapshot);
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
-        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(4).toList());
+        model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(5).toList());
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
         model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
@@ -2074,14 +2095,19 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state,
                 primaryRecordsLookupSource,
                 primaryLocalAuthoritySource
-        ));
+        ).stream()
+                .filter(opportunity -> !"state_money_page".equals(opportunity.targetType())
+                        || isIndexableEditorialPath(opportunity.actionPath()))
+                .toList());
         model.addAttribute("workflowDecision", workflowDecision);
         model.addAttribute("costScopeView", costScopeView);
         model.addAttribute("editorialPreparedBy", STATE_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
-        model.addAttribute("editorialReviewedAgainst", "Reviewed against " + sources.size() + " official sources tied to this page and state workflow.");
+        model.addAttribute("editorialReviewedAgainst", "Cites " + sources.size()
+                + " official sources tied to this state workflow. The date below is the latest page or source review activity.");
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
-        model.addAttribute("editorialNote", STATE_EDITORIAL_NOTE);
+        model.addAttribute("editorialNote", "This " + stateMoneyPage.title()
+                + " page is maintained as conservative homeowner guidance and changes when its state evidence or workflow changes.");
         return "pages/state-money-page";
     }
 
@@ -2337,7 +2363,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private TrustOperationsPageView sourcePolicyOperations() {
         List<SourceRecord> sourceRecords = publishedSourceRecords();
         long verifiedSources = sourceRecords.stream()
-                .filter(source -> hasText(source.lastVerifiedAt()))
+                .filter(source -> hasText(source.contentVerifiedAt()))
                 .count();
         long localSources = sourceRecords.stream()
                 .filter(source -> hasText(source.countyOrLocal()))
@@ -3282,11 +3308,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ),
                 new CountyWorkflowFieldView(
                         "No-record fallback",
-                        "If the file is not visible, ask for a written no-record response and the office that owns archived, delegated, county, or pre-digital septic records."
+                        "If the " + state.stateName() + " file is not visible, ask for a written no-record response and the office that owns archived, delegated, county, or pre-digital septic records."
                 ),
                 new CountyWorkflowFieldView(
                         "Estimate gate",
-                        "Run the calculator after the file owner, parcel clue, or missing artifact is clear enough that the number is not flattening a records problem."
+                        "Run the " + state.stateName() + " calculator path after the file owner, parcel clue, or missing artifact is clear enough that the number is not flattening a records problem."
                 )
         );
     }
@@ -3298,12 +3324,14 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         List<PageLink> links = new ArrayList<>();
         researchDataService.findPublicStateMoneyPage("perc-test-cost", state.slug())
+                .filter(page -> publishingPolicyService.isIndexableStateMoneyPage(page, state))
                 .ifPresent(page -> links.add(new PageLink(
                         state.stateName() + " perc test cost",
                         page.path(state.slug()),
                         "Use this when the search is really about perc cost, soil review, site evaluation, or the county file behind the number."
                 )));
         researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug())
+                .filter(page -> publishingPolicyService.isIndexableStateMoneyPage(page, state))
                 .ifPresent(page -> links.add(new PageLink(
                         state.stateName() + " permit records",
                         page.path(state.slug()),
@@ -3418,12 +3446,15 @@ The goal is to settle the permit path before we frame the project as a normal in
         };
     }
 
-    private String latestVerifiedAt(List<SourceRecord> sources, String fallback) {
-        return sources.stream()
-                .map(SourceRecord::lastVerifiedAt)
+    private String latestVerifiedAt(List<SourceRecord> sources, String... pageDates) {
+        Stream<String> sourceDates = sources == null
+                ? Stream.empty()
+                : sources.stream().map(SourceRecord::contentVerifiedAt);
+        Stream<String> explicitDates = pageDates == null ? Stream.empty() : Arrays.stream(pageDates);
+        return Stream.concat(sourceDates, explicitDates)
                 .filter(this::isIsoDate)
                 .max(String::compareTo)
-                .orElseGet(() -> isIsoDate(fallback) ? fallback : "");
+                .orElse("");
     }
 
     private boolean isIsoDate(String value) {
@@ -3763,8 +3794,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .limit(3)
                 .toList();
         String lastReviewedAt = latestVerifiedAt(sources, state.lastVerifiedAt());
-        String reviewedAgainst = "Reviewed against " + sources.size() + " official source" + (sources.size() == 1 ? "" : "s")
-                + " tied to the " + state.stateName() + " workflow.";
+        String reviewedAgainst = "Cites " + sources.size() + " official source" + (sources.size() == 1 ? "" : "s")
+                + " tied to the " + state.stateName() + " workflow; the date is the latest review activity.";
         return new ContentEvidenceLaneView(
                 page.title(),
                 state.stateName(),
@@ -4258,7 +4289,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "county-septic-records-request",
                         "Records request",
                         countyState + " septic records request",
-                        "Ask for the county septic permit copy, approval for use, repair file, inspection note, and any system diagram tied to the parcel. If the county cannot connect the request to a parcel identifier, the file story is still too weak.",
+                        "Ask " + countyPage.officeLabel() + " for the " + countyPage.countyName()
+                                + " septic permit copy, approval for use, repair file, inspection note, and any system diagram tied to the parcel. If the office cannot connect the request to a parcel identifier, the file story is still too weak.",
                         "Open records request path",
                         recordsPath,
                         "official_source",
@@ -4272,7 +4304,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         countyState + " septic permit search by address",
                         countyPage.hasParcelAnchor()
                                 ? "Use the parcel, TMS, owner, or property search first, then carry that identifier into the county septic records path. Address-only searches fail when the parcel anchor is missing or the county uses a different property identifier."
-                                : "Start with the county records path and ask which parcel, owner, address, or legal-description field the office needs before treating the record as missing.",
+                                : "Start with " + countyPage.recordsLabel() + " and ask which parcel, owner, address, or legal-description field "
+                                        + countyPage.officeLabel() + " needs before treating the record as missing.",
                         countyPage.hasParcelAnchor() ? "Open parcel or TMS search" : "Open county record path",
                         parcelPath,
                         "official_source",
@@ -4284,7 +4317,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "county-septic-as-built-records",
                         "As-built",
                         countyState + " septic as-built records",
-                        "The as-built or system diagram is the record that can change where the tank, drain field, reserve area, or repair scope actually sits. Ask whether the county file includes a site sketch, installed layout, or approval package before trusting a field location.",
+                        "For " + countyPage.countyName() + ", the as-built or system diagram can change where the tank, drain field, reserve area, or repair scope actually sits. Ask whether the county file includes a site sketch, installed layout, or approval package before trusting a field location.",
                         "Open county file path",
                         recordsPath,
                         "official_source",
@@ -4296,7 +4329,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "county-septic-inspection-letter",
                         "Inspection letter",
                         countyState + " septic inspection letter",
-                        "For a sale, lender question, repair story, or occupancy file, ask whether the county can provide an inspection letter, final approval, approval for use, or written file note tied to the parcel.",
+                        "For a " + countyPage.countyName() + " sale, lender question, repair story, or occupancy file, ask whether "
+                                + countyPage.officeLabel() + " can provide an inspection letter, final approval, approval for use, or written file note tied to the parcel.",
                         "Open county record path",
                         recordsPath,
                         "official_source",
@@ -4308,7 +4342,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "county-buying-house-septic",
                         "Buyer file",
                         "Buying a house with a septic system in " + countyState,
-                        "Before negotiation, inspection credits, or seller assurances, pull the county septic file and compare it with the buyer workflow. Missing permit history, unclear location, or no inspection artifact can change the risk story fast.",
+                        "Before negotiation, inspection credits, or seller assurances in " + countyPage.countyName()
+                                + ", pull the county septic file and compare it with the buyer workflow. Missing permit history, unclear location, or no inspection artifact can change the risk story fast.",
                         "Open buyer septic workflow",
                         buyerPath,
                         "state_money_page",
@@ -4328,7 +4363,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         String combinedText = countyCombinedText(countyPage);
         int score = countyAvailabilityConfidenceScore(countyPage, combinedText);
         String confidenceLabel = countyConfidenceLabel(score);
-        String confidenceNote = countyConfidenceNote(score);
+        String confidenceNote = countyConfidenceNote(countyPage, score);
         String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
         String sourceDepth = sources.size() + " official source" + (sources.size() == 1 ? "" : "s");
         return new CountyAvailabilitySummaryView(
@@ -4379,14 +4414,14 @@ The goal is to settle the permit path before we frame the project as a normal in
         return "County route needs follow-up";
     }
 
-    private String countyConfidenceNote(int score) {
+    private String countyConfidenceNote(CountyRecordsPage countyPage, int score) {
         if (score >= 82) {
-            return "This page has enough official-source depth, county-specific workflow detail, and request artifacts to start with the local file before pricing.";
+            return countyPage.countyName() + " has enough official-source depth, county-specific workflow detail, and request artifacts to start with the local file before pricing.";
         }
         if (score >= 68) {
-            return "This page has a usable county records path, but the user should still verify the exact office and artifact before relying on the file.";
+            return countyPage.countyName() + " has a usable county records path, but the user should still verify the exact office and artifact before relying on the file.";
         }
-        return "This page gives a starting route, but the county may require a phone, email, or state-level fallback before the record story is reliable.";
+        return countyPage.countyName() + " has a starting route, but the county may require a phone, email, or state-level fallback before the record story is reliable.";
     }
 
     private List<CountyAvailabilityRowView> countyAvailabilityRows(CountyRecordsPage countyPage, StateProfile state) {
@@ -4401,7 +4436,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 countyPage.hasParcelAnchor() ? "Parcel/TMS first" : "County records fallback",
                 countyPage.hasParcelAnchor()
                         ? countyPage.parcelAnchorNote()
-                        : "Use the county records path and ask which address, owner, APN, TMS, or legal description field the office needs.",
+                        : "Use the " + countyPage.countyName() + " records path and ask which address, owner, APN, TMS, or legal description field " + countyPage.officeLabel() + " needs.",
                 countyPage.hasParcelAnchor() ? countyPage.parcelAnchorLabel() : countyPage.recordsLabel(),
                 countyPage.hasParcelAnchor() ? countyPage.parcelAnchorUrl() : recordsUrl,
                 recordsTarget,
@@ -4434,7 +4469,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         ? "Layout signal found"
                         : "Request explicitly",
                 "Record request",
-                "Ask whether the county file includes the installed layout, site sketch, tank location, drain field location, or approval package tied to the parcel.",
+                "Ask whether the " + countyPage.countyName()
+                        + " file includes the installed layout, site sketch, tank location, drain field location, or approval package tied to the parcel.",
                 countyPage.recordsLabel(),
                 recordsUrl,
                 recordsTarget,
@@ -4447,7 +4483,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         ? "Buyer artifact likely relevant"
                         : "Use buyer checklist",
                 containsAny(combinedText, "transfer", "sale", "closing") ? "Transfer check" : "Inspection check",
-                countyTransferArtifact(countyTransferCategory(countyPage, combinedText)),
+                countyPage.countyName() + ": " + countyTransferArtifact(countyTransferCategory(countyPage, combinedText)),
                 containsAny(combinedText, "buyer", "transfer", "sale")
                         ? "Open buyer workflow"
                         : countyPage.recordsLabel(),
@@ -4466,7 +4502,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         ? "Repair trail flagged"
                         : "Check before pricing",
                 "Risk gate",
-                countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText)),
+                countyPage.countyName() + ": " + countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText)),
                 countyPage.recordsLabel(),
                 recordsUrl,
                 recordsTarget,
@@ -4503,7 +4539,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         String countyState = countyPage.countyName() + ", " + state.stateCode();
         String parcelPrompt = countyPage.hasParcelAnchor()
                 ? "I can provide the parcel, TMS, APN, owner, or address from " + countyPage.parcelAnchorLabel() + "."
-                : "I can provide the parcel, APN, owner, address, or legal description if your office needs a different identifier.";
+                : "For the " + countyPage.countyName() + " request, I can provide the parcel, APN, owner, address, or legal description if your office needs a different identifier.";
         List<String> records = countyPage.recordsToRequest() == null ? List.of() : countyPage.recordsToRequest().stream().limit(4).toList();
         List<String> fallbackChecklist = records.isEmpty()
                 ? List.of("Parcel identifier", "Septic permit copy", "As-built or site plan", "Final approval or inspection note")
@@ -4519,8 +4555,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         List.of(
                                 "Hello, I am checking the septic file for a property in " + countyState + " before relying on a seller, inspection, or quote story.",
                                 parcelPrompt,
-                                "Please let me know whether your office can provide the septic permit copy, as-built or site plan, final approval, inspection letter, repair history, and any transfer or sale-related record tied to the parcel.",
-                                "If another office owns part of the file, please tell me which office or portal should be checked next."
+                                "Please let me know whether " + countyPage.officeLabel() + " can provide the septic permit copy, as-built or site plan, final approval, inspection letter, repair history, and any transfer or sale-related record tied to this " + countyPage.countyName() + " parcel.",
+                                "If another office owns part of the " + countyPage.countyName() + " file, please tell me which office or portal should be checked next."
                         ),
                         fallbackChecklist,
                         countyPage.recordsLabel(),
@@ -4535,7 +4571,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         List.of(
                                 "Hello, I am trying to verify the septic record trail for a property in " + countyState + " before discussing repair, replacement, or modification pricing.",
                                 parcelPrompt,
-                                "Please confirm whether the file shows the installed system layout, permit history, final approval or license to operate, repair permits, complaint history, or any requirement to apply before work begins.",
+                                "Please confirm whether the " + countyPage.countyName() + " file shows the installed system layout, permit history, final approval or license to operate, repair permits, complaint history, or any requirement to apply before work begins.",
                                 quoteGate
                         ),
                         fallbackChecklist,
@@ -4551,8 +4587,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                         List.of(
                                 "Hello, I am preparing a septic scope for a property in " + countyState + " and need to confirm the official file before pricing or permitting assumptions are made.",
                                 parcelPrompt,
-                                "Please identify the record owner, the first artifact to pull, whether a permit closeout or final approval exists, and whether repair, alteration, bedroom-count, or site-review rules change the next step.",
-                                "The most useful response is the permit or approval file plus any as-built, layout, inspection note, or written no-record response."
+                                "Please identify the " + countyPage.countyName() + " record owner, the first artifact to pull, whether a permit closeout or final approval exists, and whether repair, alteration, bedroom-count, or site-review rules change the next step.",
+                                "The most useful response from " + countyPage.officeLabel() + " is the permit or approval file plus any as-built, layout, inspection note, or written no-record response."
                         ),
                         fallbackChecklist,
                         countyPage.recordsLabel(),
@@ -4726,35 +4762,45 @@ The goal is to settle the permit path before we frame the project as a normal in
         String combinedText = countyCombinedText(countyPage);
         CountyWorkflowStructureData structure = countyPage.workflowStructure();
         List<CountyWorkflowFieldView> fields = List.of(
-                new CountyWorkflowFieldView("File owner model", firstNonBlank(
+                new CountyWorkflowFieldView("File owner model", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.fileOwnerModel(),
                         countyFileOwnerModel(countyFileOwnerCategory(countyPage, combinedText), state.stateName())
-                )),
-                new CountyWorkflowFieldView("First artifact to pull", firstNonBlank(
+                ))),
+                new CountyWorkflowFieldView("First artifact to pull", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.firstArtifactToPull(),
                         countyFirstArtifact(countyPage)
-                )),
-                new CountyWorkflowFieldView("Permit closeout signal", firstNonBlank(
+                ))),
+                new CountyWorkflowFieldView("Permit closeout signal", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.permitCloseoutSignal(),
-                        countyPermitCloseoutSignal(countyPermitCloseoutCategory(countyPage, combinedText))
-                )),
-                new CountyWorkflowFieldView("Transfer or buyer artifact", firstNonBlank(
+                        countyPage.countyName() + ": " + countyPermitCloseoutSignal(countyPermitCloseoutCategory(countyPage, combinedText))
+                ))),
+                new CountyWorkflowFieldView("Transfer or buyer artifact", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.transferArtifact(),
-                        countyTransferArtifact(countyTransferCategory(countyPage, combinedText))
-                )),
-                new CountyWorkflowFieldView("Special program or local exception", firstNonBlank(
+                        countyPage.countyName() + ": " + countyTransferArtifact(countyTransferCategory(countyPage, combinedText))
+                ))),
+                new CountyWorkflowFieldView("Special program or local exception", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.specialProgramSignal(),
-                        countySpecialProgramSignal(countySpecialProgramCategory(countyPage, combinedText))
-                )),
-                new CountyWorkflowFieldView("Malfunction or repair trail", firstNonBlank(
+                        countyPage.countyName() + ": " + countySpecialProgramSignal(countySpecialProgramCategory(countyPage, combinedText))
+                ))),
+                new CountyWorkflowFieldView("Malfunction or repair trail", countyEvidenceText(countyPage, firstNonBlank(
                         structure == null ? null : structure.malfunctionSignal(),
-                        countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText))
-                ))
+                        countyPage.countyName() + ": " + countyMalfunctionSignal(countyMalfunctionCategory(countyPage, combinedText))
+                )))
         );
-        return new CountyWorkflowStructureView(fields, firstNonBlank(
+        return new CountyWorkflowStructureView(fields, countyEvidenceText(countyPage, firstNonBlank(
                 structure == null ? null : structure.quoteGate(),
                 countyQuoteGate(countyPage, combinedText)
-        ));
+        )));
+    }
+
+    private String countyEvidenceText(CountyRecordsPage countyPage, String value) {
+        if (!hasText(value)) {
+            return countyPage.countyName() + " evidence is still under review.";
+        }
+        if (value.toLowerCase(Locale.US).contains(countyPage.countyName().toLowerCase(Locale.US))) {
+            return value;
+        }
+        return countyPage.countyName() + " evidence: " + value;
     }
 
     private String countyCombinedText(CountyRecordsPage page) {
@@ -4897,7 +4943,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             pattern.summary(state.stateName()),
                             exampleCounties,
                             coverageNote,
-                            pattern.firstArtifact()
+                            "For " + stateMoneyPage.title() + ", first ask for " + lowerCaseFirst(pattern.firstArtifact())
                     );
                 })
                 .toList();
@@ -4913,48 +4959,48 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "Most common permit closeout signal",
                         countyPages,
                         this::countyPermitCloseoutCategory,
-                        this::countyPermitCloseoutAggregateText
+                        category -> state.stateName() + " county evidence: " + countyPermitCloseoutAggregateText(category)
                 ),
                 stateStructureHighlight(
                         "Most common buyer or transfer artifact",
                         countyPages,
                         this::countyTransferCategory,
-                        this::countyTransferAggregateText
+                        category -> state.stateName() + " county evidence: " + countyTransferAggregateText(category)
                 ),
                 stateStructureHighlight(
                         "Most common special program or exception",
                         countyPages,
                         this::countySpecialProgramCategory,
-                        this::countySpecialProgramAggregateText
+                        category -> state.stateName() + " county evidence: " + countySpecialProgramAggregateText(category)
                 ),
                 stateStructureHighlight(
                         "Most common malfunction or repair trail",
                         countyPages,
                         this::countyMalfunctionCategory,
-                        this::countyMalfunctionAggregateText
+                        category -> state.stateName() + " county evidence: " + countyMalfunctionAggregateText(category)
                 ),
                 stateStructureHighlight(
                         "Most common quote gate",
                         countyPages,
                         this::countyQuoteGateCategory,
-                        this::countyQuoteGateAggregateText
+                        category -> countyQuoteGateAggregateText(category, state.stateName())
                 )
         );
 
         List<String> firstArtifacts = topPatterns.stream()
-                .map(CountyPatternType::firstArtifact)
+                .map(pattern -> stateMoneyPage.title() + " file check: " + pattern.firstArtifact())
                 .distinct()
                 .limit(4)
                 .toList();
 
         List<String> countyDropTriggers = topPatterns.stream()
-                .map(CountyPatternType::countyDropTrigger)
+                .map(pattern -> stateMoneyPage.title() + " county trigger: " + pattern.countyDropTrigger())
                 .distinct()
                 .limit(4)
                 .toList();
 
         List<String> holdQuoteChecks = topPatterns.stream()
-                .map(CountyPatternType::holdQuoteCheck)
+                .map(pattern -> stateMoneyPage.title() + " quote hold: " + pattern.holdQuoteCheck())
                 .distinct()
                 .limit(4)
                 .toList();
@@ -4975,6 +5021,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                 countyWorkflowDropHeading(stateMoneyPage.contentSlug()),
                 countyWorkflowHoldQuoteHeading(stateMoneyPage.contentSlug())
         );
+    }
+
+    private String lowerCaseFirst(String value) {
+        if (value == null || value.isBlank()) {
+            return "the first official county artifact";
+        }
+        return Character.toLowerCase(value.charAt(0)) + value.substring(1);
     }
 
     private CountyWorkflowFieldView stateStructureHighlight(
@@ -5206,8 +5259,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         return "split_local".equals(category) || "office_split".equals(category) || "state_or_regional".equals(category);
     }
 
-    private String countyQuoteGateAggregateText(String category) {
-        return switch (category) {
+    private String countyQuoteGateAggregateText(String category, String stateName) {
+        return stateName + " county evidence: " + switch (category) {
             case "repair_path" -> "The most common quote gate is a repair, malfunction, or failing-system branch that has to be cleared before pricing is trustworthy.";
             case "office_split" -> "The most common quote gate is figuring out which local office actually owns the file before a buyer or contractor trusts the first answer.";
             case "closeout_artifact" -> "The most common quote gate is waiting for the county closeout or use artifact instead of trusting the first permit mention.";
@@ -5498,6 +5551,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return paths.stream()
                 .map(this::canonicalEditorialPath)
                 .filter(path -> path != null && !path.isBlank())
+                .filter(this::isIndexableEditorialPath)
                 .distinct()
                 .map(path -> pageLink(path, sourceSlug, sourceStateCode))
                 .sorted(Comparator
@@ -5505,6 +5559,24 @@ The goal is to settle the permit path before we frame the project as a normal in
                         .reversed()
                 .thenComparing(PageLink::title))
                 .toList();
+    }
+
+    private boolean isIndexableEditorialPath(String path) {
+        String normalizedPath = normalizePath(path);
+        if (normalizedPath == null) {
+            return true;
+        }
+        String[] parts = normalizedPath.replaceFirst("^/", "").replaceFirst("/$", "").split("/");
+        if (parts.length != 2) {
+            return true;
+        }
+        Optional<StateMoneyPage> candidate = researchDataService.findStateMoneyPage(parts[0], parts[1]);
+        if (candidate.isEmpty()) {
+            return true;
+        }
+        return researchDataService.findPublicStateBySlug(parts[1])
+                .map(state -> publishingPolicyService.isIndexableStateMoneyPage(candidate.get(), state))
+                .orElse(false);
     }
 
     private List<PageLink> renderedInternalLinks(ContentPage contentPage, List<PageLink> internalLinks, boolean fanoutRestrictedSurface) {
@@ -5534,12 +5606,12 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private List<PageLink> renderedPermitLookupCountyLinks(ContentPage contentPage, List<PageLink> countyLinks, boolean fanoutRestrictedSurface) {
-        if (!fanoutRestrictedSurface || countyLinks.isEmpty()) {
-            return countyLinks;
+        if (countyLinks.isEmpty()) {
+            return List.of();
         }
         LinkedHashMap<String, PageLink> selected = new LinkedHashMap<>();
         countyLinks.stream()
-                .limit(12)
+                .limit(fanoutRestrictedSurface ? 12 : 8)
                 .forEach(link -> selected.putIfAbsent(link.path(), link));
         List<String> mustKeepPaths = switch (contentPage.slug()) {
             case PERMIT_LOOKUP_SLUG -> List.of(
@@ -5642,6 +5714,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return targetSlugs.stream()
                 .map(targetSlug -> researchDataService.findPublicStateMoneyPage(targetSlug, state.slug()))
                 .flatMap(Optional::stream)
+                .filter(page -> publishingPolicyService.isIndexableStateMoneyPage(page, state))
                 .map(page -> page.path(state.slug()))
                 .toList();
     }
@@ -5724,7 +5797,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .distinct();
         Optional<String> authorityStateCode = recordsAuthorityStateCode(contentPage);
 
-        return stateMoneyPages
+        Map<String, Map.Entry<StateMoneyPage, StateProfile>> bestRouteByState = stateMoneyPages
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> Map.entry(page, state))
                         .stream())
@@ -5740,7 +5813,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                         .reversed()
                         .thenComparing(entry -> entry.getValue().stateName())
                         .thenComparing(entry -> entry.getKey().title()))
-                .toList();
+                .collect(Collectors.toMap(
+                        entry -> entry.getValue().stateCode(),
+                        entry -> entry,
+                        (first, ignored) -> first,
+                        LinkedHashMap::new
+                ));
+        return List.copyOf(bestRouteByState.values());
     }
 
     private StateSurfaceSignalView stateSurfaceSignalView(ContentPage contentPage, StateMoneyPage page, StateProfile state) {
@@ -6178,7 +6257,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Official records route",
                 stateRecordsPriorityLabel(state.stateCode()),
                 state.stateName() + " records lookup guide",
-                "Use this guide to pick the right office, pull the first file, and jump to a county route when the property location is already known.",
+                "Use this " + state.stateName() + " guide to pick the right office, pull the first file, and jump to a county route when the property location is already known.",
                 queryExamples,
                 responseRows,
                 countyLinks,
@@ -6239,11 +6318,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ),
                 new CountyWorkflowFieldView(
                         "No-record fallback",
-                        "If the lookup has no match, ask for a written no-record response and the office that owns archived, regional, contract-county, or pre-digital septic files."
+                        "If the " + state.stateName() + " lookup has no match, ask for a written no-record response and the office that owns archived, regional, contract-county, or pre-digital septic files."
                 ),
                 new CountyWorkflowFieldView(
                         "Address clue",
-                        "Carry address, parcel/APN/TMS, owner, legal description, subdivision, and any prior permit number into the next request."
+                        "Carry the " + state.stateName() + " address, parcel/APN/TMS, owner, legal description, subdivision, and any prior permit number into the next request."
                 )
         );
     }
@@ -6537,7 +6616,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             state.slug() + "-septic-permit-lookup",
                             "Permit lookup",
                             state.stateName() + " septic permit lookup",
-                            "Start with the official records or local authority path, then confirm the permit file before trusting a quote, buyer story, or repair plan.",
+                            "Start with the official " + state.stateName() + " records or local authority path, then confirm the permit file before trusting a quote, buyer story, or repair plan.",
                             "Open records path",
                             recordsPath,
                             recordsTargetType
@@ -6546,7 +6625,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             state.slug() + "-county-septic-records",
                             "County records",
                             state.stateName() + " county septic records",
-                            "Use this when the county file owner, parcel clue, or local records request is the real next step.",
+                            "Use this in " + state.stateName() + " when the county file owner, parcel clue, or local records request is the real next step.",
                             "Open county records routes",
                             countyAnchorPath,
                             "page_anchor"
@@ -6973,7 +7052,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             heading = "Decision router for " + state.stateName() + " replacement pricing";
             intro = "Use this when the replacement page is still broad and you need the fastest route to the county file, failure branch, and hold-pricing trigger behind the number.";
             firstMove = primaryRecordsLookupSource != null
-                    ? "Pull the county file and confirm the live repair, failure, reserve-area, or sewer branch before you trust one replacement number."
+                    ? "For " + stateMoneyPage.title() + ", pull the county file and confirm the live repair, failure, reserve-area, or sewer branch before you trust one replacement number."
                     : "Resolve the county file, the local replacement branch, and the last real approval artifact before you treat the first number like the real scope.";
         } else {
             heading = "Decision router for " + state.stateName() + " records work";
@@ -7321,9 +7400,11 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         if (isCountyRecordsPath(normalizedPath)) {
             if (TRANSFER_COMPLIANCE_SLUG.equals(sourceSlug)) {
-                return "Use this when closing risk turns on a county file, certification letter, or local health-office workflow instead of one statewide summary.";
+                return relatedLinkContext(sourceSlug, sourceStateCode)
+                        + "Use this when closing risk turns on a county file, certification letter, or local health-office workflow instead of one statewide summary.";
             }
-            return "Use this when the next step is a county file, certification letter, or local health-office workflow rather than a broader state page.";
+            return relatedLinkContext(sourceSlug, sourceStateCode)
+                    + "Use this when the next step is a county file, certification letter, or local health-office workflow rather than a broader state page.";
         }
 
         String contentSlug = targetContentSlug(normalizedPath);
@@ -7351,13 +7432,16 @@ The goal is to settle the permit path before we frame the project as a normal in
                 case "septic-tank-size" -> "Use this when bedroom sizing and minimum gallon band matter more than a full project quote.";
                 default -> "Use this page for the next layer of detail after the current overview.";
             };
-            if (sourceStateCode != null && guideStateSlug.isPresent()) {
-                return intentNote;
-            }
-            return intentNote;
+            return relatedLinkContext(sourceSlug, sourceStateCode) + intentNote;
         }
 
         return "Use this page when you need the next step to be more specific than the current overview.";
+    }
+
+    private String relatedLinkContext(String sourceSlug, String sourceStateCode) {
+        String statePrefix = hasText(sourceStateCode) ? sourceStateCode + " " : "";
+        String sourceLabel = hasText(sourceSlug) ? sourceSlug.replace('-', ' ') : "current";
+        return "For the " + statePrefix + sourceLabel + " page: ";
     }
 
     private List<String> preferredTargetSlugs(String sourceSlug) {
@@ -7709,7 +7793,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             fact.renderedValue(),
                             fact.note(),
                             firstNonBlank(fact.effectiveDate(), source != null ? source.effectiveDate() : null),
-                            firstNonBlank(fact.lastVerifiedAt(), source != null ? source.lastVerifiedAt() : null),
+                            firstNonBlank(fact.lastVerifiedAt(), source != null ? source.contentVerifiedAt() : null),
                             confidenceLabel(fact.confidence()),
                             source != null ? source.agencyName() : "",
                             source != null ? source.title() : "",

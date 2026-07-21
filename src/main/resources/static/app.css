@@ -806,6 +806,43 @@ h4 {
     line-height: 1.62;
 }
 
+.content-quick-answer .content-quick-answer__source {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 650;
+}
+
+.content-quick-answer__source a {
+    color: var(--accent-strong);
+    font-weight: 800;
+}
+
+.aeo-answer-capsule {
+    max-width: 900px;
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid rgba(35, 101, 77, 0.2);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-soft);
+}
+
+.aeo-answer-capsule h2 {
+    margin: 6px 0 8px;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.aeo-answer-capsule > p {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.62;
+}
+
+.aeo-answer-capsule .facts-table-wrap {
+    margin-top: 12px;
+    border-radius: 12px;
+}
+
 .hero-command-board {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -191,7 +191,7 @@
                     @for (var source : packet.officialSources())
                         <div>
                             <strong><a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a></strong>
-                            <p>${source.agencyName()} | Last verified ${source.lastVerifiedAt()}</p>
+                            <p>${source.agencyName()} | Content reviewed ${source.contentVerifiedAt()} | ${source.httpCheckLabel()} ${source.lastHttpCheckedAt()}</p>
                         </div>
                     @endfor
                 </div>

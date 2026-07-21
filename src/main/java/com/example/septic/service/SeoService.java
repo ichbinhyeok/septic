@@ -6,6 +6,7 @@ import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.FaqBlock;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
+import com.example.septic.data.model.SourceRecord;
 import com.example.septic.web.EditorialProfile;
 import com.example.septic.web.PageMeta;
 import com.example.septic.web.PageLink;
@@ -25,11 +26,17 @@ import org.springframework.stereotype.Service;
 public class SeoService {
     private final AppSiteProperties siteProperties;
     private final PublishingPolicyService publishingPolicyService;
+    private final ResearchDataService researchDataService;
     private final ObjectMapper objectMapper;
 
-    public SeoService(AppSiteProperties siteProperties, PublishingPolicyService publishingPolicyService) {
+    public SeoService(
+            AppSiteProperties siteProperties,
+            PublishingPolicyService publishingPolicyService,
+            ResearchDataService researchDataService
+    ) {
         this.siteProperties = siteProperties;
         this.publishingPolicyService = publishingPolicyService;
+        this.researchDataService = researchDataService;
         this.objectMapper = JsonMapper.builder().findAndAddModules().build();
     }
 
@@ -54,7 +61,7 @@ public class SeoService {
     public PageMeta calculatorPage() {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/");
         return pageMeta(
-                "Septic Cost Calculator by State | Use after records, permits, and site checks | SepticPath",
+                "Septic Cost Calculator by State | Records & Permit Checks | SepticPath",
                 "Estimate septic cost, tank size, system class, and quote risk by state after you clarify the file, permit path, or buyer workflow.",
                 canonicalUrl,
                 "index,follow",
@@ -219,16 +226,21 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateGuide(StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
+    public PageMeta stateGuide(StateProfile state, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/");
         String title = stateGuideSeoTitle(state);
         String description = stateGuideDescription(state);
         List<FaqBlock> faqBlocks = stateGuideFaqs(state);
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(withEditorialMeta(webPage(canonicalUrl,
-                title,
-                description,
-                "Article"), lastReviewedAt, preparedBy, reviewedBy)));
+        jsonLdBlocks.add(toJson(withSemanticEvidence(
+                withEditorialMeta(webPage(canonicalUrl,
+                        title,
+                        description,
+                        "WebPage"), state.lastVerifiedAt(), preparedBy, reviewedBy),
+                resolveSources(state.officialSourceIds()),
+                List.of(state.stateName() + " septic systems", "septic permits", "septic records", "septic costs"),
+                state.stateName() + " septic permit, records, and cost workflow"
+        )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
@@ -406,16 +418,21 @@ public class SeoService {
         return faqBlocks;
     }
 
-    public PageMeta contentPage(ContentPage contentPage, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
+    public PageMeta contentPage(ContentPage contentPage, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         String seoTitle = contentPageSeoTitle(contentPage);
         List<Map<String, Object>> breadcrumbs = contentPageBreadcrumbs(contentPage, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(withEditorialMeta(
-                webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), "CollectionPage"),
-                lastReviewedAt,
-                preparedBy,
-                reviewedBy
+        jsonLdBlocks.add(toJson(withSemanticEvidence(
+                withEditorialMeta(
+                        webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), "CollectionPage"),
+                        contentPage.updatedAt(),
+                        preparedBy,
+                        reviewedBy
+                ),
+                List.of(),
+                contentTopics(contentPage),
+                contentPage.title()
         )));
         jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
         if (contentPage.faqBlocks() != null && !contentPage.faqBlocks().isEmpty()) {
@@ -431,7 +448,7 @@ public class SeoService {
         );
     }
 
-    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
+    public PageMeta stateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(stateMoneyPage.path(state.slug()));
         String seoTitle = stateMoneyPageSeoTitle(stateMoneyPage, state);
         String seoDescription = stateMoneyPageDescription(stateMoneyPage, state);
@@ -440,11 +457,20 @@ public class SeoService {
                 : "noindex,follow";
         List<Map<String, Object>> breadcrumbs = stateMoneyPageBreadcrumbs(stateMoneyPage, state, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(withEditorialMeta(
-                webPage(canonicalUrl, seoTitle, seoDescription, "Article"),
-                lastReviewedAt,
-                preparedBy,
-                reviewedBy
+        jsonLdBlocks.add(toJson(withSemanticEvidence(
+                withEditorialMeta(
+                        webPage(canonicalUrl, seoTitle, seoDescription, "WebPage"),
+                        stateMoneyPage.updatedAt(),
+                        preparedBy,
+                        reviewedBy
+                ),
+                resolveSources(stateMoneyPage.officialSourceIds()),
+                List.of(
+                        state.stateName() + " septic systems",
+                        stateMoneyPage.title(),
+                        stateMoneyPage.contentSlug().replace('-', ' ')
+                ),
+                stateMoneyPage.title()
         )));
         jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
         if (shouldExposeFaqStructuredData(stateMoneyPage)
@@ -512,17 +538,26 @@ public class SeoService {
         );
     }
 
-    public PageMeta countyRecordsPage(CountyRecordsPage countyPage, StateProfile state, String lastReviewedAt, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
+    public PageMeta countyRecordsPage(CountyRecordsPage countyPage, StateProfile state, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl(countyPage.path(state.slug()));
         String title = countyRecordsTitle(countyPage, state);
         String description = countyRecordsDescription(countyPage, state);
         List<String> jsonLdBlocks = new ArrayList<>();
-        jsonLdBlocks.add(toJson(withEditorialMeta(webPage(
-                canonicalUrl,
-                title,
-                description,
-                "Article"
-        ), lastReviewedAt, preparedBy, reviewedBy)));
+        jsonLdBlocks.add(toJson(withSemanticEvidence(
+                withEditorialMeta(webPage(
+                        canonicalUrl,
+                        title,
+                        description,
+                        "WebPage"
+                ), countyPage.updatedAt(), preparedBy, reviewedBy),
+                resolveSources(countyPage.officialSourceIds()),
+                List.of(
+                        countyPage.countyName() + " septic records",
+                        countyPage.countyName() + " septic permit lookup",
+                        state.stateName() + " septic systems"
+                ),
+                countyPage.countyName() + " official septic records workflow"
+        )));
         jsonLdBlocks.add(toJson(breadcrumb(List.of(
                 crumb("Home", absoluteUrl("/")),
                 crumb("Septic Records Lookup", absoluteUrl("/septic-records-checklist/")),
@@ -869,6 +904,16 @@ public class SeoService {
         webSiteReference.put("url", absoluteUrl("/"));
         payload.put("isPartOf", webSiteReference);
         payload.put("publisher", editorialOrganizationReference());
+        Map<String, Object> defaultSubject = new LinkedHashMap<>();
+        defaultSubject.put("@type", "Thing");
+        defaultSubject.put("name", compactSeoTitle(name));
+        payload.put("about", List.of(defaultSubject));
+        Map<String, Object> defaultMainEntity = new LinkedHashMap<>();
+        defaultMainEntity.put("@type", "Thing");
+        defaultMainEntity.put("@id", url + "#main-entity");
+        defaultMainEntity.put("name", compactSeoTitle(name));
+        defaultMainEntity.put("description", compactSeoDescription(description));
+        payload.put("mainEntity", defaultMainEntity);
         return payload;
     }
 
@@ -885,6 +930,81 @@ public class SeoService {
             payload.put("dateModified", lastReviewedAt);
         }
         return payload;
+    }
+
+    private Map<String, Object> withSemanticEvidence(
+            Map<String, Object> payload,
+            List<SourceRecord> sources,
+            List<String> topics,
+            String mainEntityName
+    ) {
+        List<Map<String, Object>> about = topics == null ? List.of() : topics.stream()
+                .filter(this::hasText)
+                .distinct()
+                .map(topic -> {
+                    Map<String, Object> subject = new LinkedHashMap<>();
+                    subject.put("@type", "Thing");
+                    subject.put("name", topic);
+                    return subject;
+                })
+                .toList();
+        if (!about.isEmpty()) {
+            payload.put("about", about);
+        }
+
+        if (hasText(mainEntityName)) {
+            Map<String, Object> mainEntity = new LinkedHashMap<>();
+            mainEntity.put("@type", "Thing");
+            mainEntity.put("@id", payload.get("url") + "#main-entity");
+            mainEntity.put("name", mainEntityName);
+            mainEntity.put("description", payload.get("description"));
+            payload.put("mainEntity", mainEntity);
+        }
+
+        List<Map<String, Object>> citations = sources == null ? List.of() : sources.stream()
+                .filter(source -> source != null && hasText(source.url()))
+                .limit(8)
+                .map(this::sourceCitation)
+                .toList();
+        if (!citations.isEmpty()) {
+            payload.put("citation", citations);
+        }
+        return payload;
+    }
+
+    private Map<String, Object> sourceCitation(SourceRecord source) {
+        Map<String, Object> citation = new LinkedHashMap<>();
+        citation.put("@type", "CreativeWork");
+        citation.put("name", firstNonBlank(source.title(), source.agencyName(), source.url()));
+        citation.put("url", source.url());
+        if (hasText(source.agencyName())) {
+            Map<String, Object> publisher = new LinkedHashMap<>();
+            publisher.put("@type", "Organization");
+            publisher.put("name", source.agencyName());
+            citation.put("publisher", publisher);
+        }
+        return citation;
+    }
+
+    private List<SourceRecord> resolveSources(List<String> sourceIds) {
+        if (sourceIds == null) {
+            return List.of();
+        }
+        return sourceIds.stream()
+                .map(researchDataService::findSource)
+                .flatMap(java.util.Optional::stream)
+                .distinct()
+                .toList();
+    }
+
+    private List<String> contentTopics(ContentPage contentPage) {
+        List<String> topics = new ArrayList<>();
+        topics.add(contentPage.primaryKeyword());
+        if (contentPage.secondaryKeywords() != null) {
+            topics.addAll(contentPage.secondaryKeywords().stream().limit(4).toList());
+        }
+        topics.add(contentPage.title());
+        return topics;
     }
 
     private Map<String, Object> editorialOrganization() {
@@ -963,14 +1083,37 @@ public class SeoService {
     private String compactSeoTitle(String value) {
         final String brandSuffix = " | SepticPath";
         final int maxLength = 68;
-        if (value == null || value.length() <= maxLength) {
+        if (value == null) {
             return value;
         }
         if (value.endsWith(brandSuffix)) {
-            int available = maxLength - brandSuffix.length() - 3;
-            return trimAtWordBoundary(value.substring(0, Math.max(available, 1))) + "..." + brandSuffix;
+            String unbrandedTitle = stripDanglingTitleEnding(
+                    value.substring(0, value.length() - brandSuffix.length()).trim()
+            );
+            String brandedTitle = unbrandedTitle + brandSuffix;
+            if (brandedTitle.length() <= maxLength) {
+                return brandedTitle;
+            }
+            if (unbrandedTitle.length() <= maxLength) {
+                return unbrandedTitle;
+            }
+            return cleanSeoTitleFragment(unbrandedTitle.substring(0, maxLength));
         }
-        return trimAtWordBoundary(value.substring(0, maxLength - 3)) + "...";
+        String cleanedTitle = stripDanglingTitleEnding(value);
+        if (cleanedTitle.length() <= maxLength) {
+            return cleanedTitle;
+        }
+        return cleanSeoTitleFragment(cleanedTitle.substring(0, maxLength));
+    }
+
+    private String cleanSeoTitleFragment(String value) {
+        return stripDanglingTitleEnding(trimAtWordBoundary(value));
+    }
+
+    private String stripDanglingTitleEnding(String value) {
+        return value
+                .replaceFirst("[\\s,;:|/\\-]+$", "")
+                .replaceFirst("(?i)\\s+(?:and|or|for|with|in|of|to|by|at|from|the)$", "");
     }
 
     private String compactSeoDescription(String value) {
@@ -1004,30 +1147,30 @@ public class SeoService {
 
     private String contentPageSeoTitle(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case "septic-replacement-cost" -> "Septic Replacement Cost | Quotes, file risk, and replacement scope | SepticPath";
+            case "septic-replacement-cost" -> "Septic Replacement Cost | Quote Scope | SepticPath";
             case "perc-test-cost" -> "Perc Test Cost: $300-$3,000 Range and State Guide | SepticPath";
             case "drain-field-replacement-cost" -> "Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath";
-            case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil, field, and redesign risk | SepticPath";
-            case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve area, layout, and field risk | SepticPath";
-            case "wet-yard-over-septic-drain-field" -> "Wet Yard Over Septic Drain Field | Failure signals and field risk | SepticPath";
+            case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil & Redesign Risk | SepticPath";
+            case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve & Field Risk | SepticPath";
+            case "wet-yard-over-septic-drain-field" -> "Wet Yard Over Septic Drain Field | Failure Risk | SepticPath";
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
-            case "septic-inspection-cost" -> "Septic Inspection Cost | Permit files, records, and buyer leverage | SepticPath";
-            case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Inspection, file checks, and closing risk | SepticPath";
-            case "septic-permit-lookup" -> "Septic Permit Lookup | Official Records Search, County Files, and Address Route | SepticPath";
-            case "septic-permit-process" -> "Septic Permit Process by State | County Offices, Site Review, and Next Steps | SepticPath";
-            case "septic-records-checklist" -> "Septic Records Lookup by State | Permit Search, As-Builts, and County Files | SepticPath";
+            case "septic-inspection-cost" -> "Septic Inspection Cost | Buyer File Leverage | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Closing Risk | SepticPath";
+            case "septic-permit-lookup" -> "Septic Permit Lookup | County & Address Search | SepticPath";
+            case "septic-permit-process" -> "Septic Permit Process by State | Office & Site Review | SepticPath";
+            case "septic-records-checklist" -> "Septic Records Lookup by State | Permits & As-Builts | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
             case "how-to-find-septic-records-online" -> "How to Find Septic Records Online | County, Permit, and As-Built Search | SepticPath";
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
             case "septic-permit-search-by-address" -> "Septic Permit Search by Address | SepticPath";
-            case "septic-permit-records-request" -> "Septic Permit Records Request | Copies, As-Builts, and Inspection Letters | SepticPath";
+            case "septic-permit-records-request" -> "Septic Permit Records Request | Copies & As-Builts | SepticPath";
             case "septic-records-request-builder" -> "Septic Records Request Builder | Download Permit Copy Request Packet | SepticPath";
-            case "septic-as-built-records" -> "Septic As-Built Records | Site Sketch, Layout, and Permit Files | SepticPath";
-            case "septic-inspection-letter" -> "Septic Inspection Letter | Closing, Lender, and Permit File Checks | SepticPath";
+            case "septic-as-built-records" -> "Septic As-Built Records | Layout & Permit Files | SepticPath";
+            case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
             case "tdec-septic-records" -> "TDEC Septic Permit Search & SSDS Records | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits by County | SepticPath";
-            case "texas-ossf-records-search" -> "Texas OSSF Records Search | Septic Permit Lookup and County File Path | SepticPath";
+            case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
             case "dhec-septic-permit-lookup" -> "DHEC Septic Permit Lookup | SCDES Records, D-1740 Files, and Permit Copy | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
@@ -1043,22 +1186,22 @@ public class SeoService {
                 case "NC" -> "North Carolina Septic Permit Lookup by County | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
-                case "TX" -> "Texas OSSF Records Search | Septic Permit Lookup, County Files, and Address Route | SepticPath";
+                case "TX" -> "Texas OSSF Records & County Address Search | SepticPath";
                 case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
                 default -> stateMoneyPage.title() + " | SepticPath";
             };
         }
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
-            case "septic-replacement-cost" -> " | Quotes, file risk, and replacement scope | SepticPath";
-            case "perc-test-cost" -> " | Soil, site, and permit risk | SepticPath";
-            case "failed-perc-test-septic" -> " | Soil, field, and redesign risk | SepticPath";
-            case "septic-replacement-area" -> " | Reserve area, layout, and field risk | SepticPath";
-            case "wet-yard-over-septic-drain-field" -> " | Seepage, failure, and field risk | SepticPath";
-            case "buying-a-house-with-a-septic-system" -> " | Inspection, file checks, and closing risk | SepticPath";
+            case "septic-replacement-cost" -> " | Quote Scope | SepticPath";
+            case "perc-test-cost" -> " | Soil & Permit Risk | SepticPath";
+            case "failed-perc-test-septic" -> " | Soil & Redesign Risk | SepticPath";
+            case "septic-replacement-area" -> " | Reserve & Field Risk | SepticPath";
+            case "wet-yard-over-septic-drain-field" -> " | Failure Risk | SepticPath";
+            case "buying-a-house-with-a-septic-system" -> " | Closing Risk | SepticPath";
             case "septic-records-checklist" -> " | SepticPath";
-            case "septic-permit-process" -> " | Office, file, and approval steps | SepticPath";
-            case "septic-inspection-cost" -> " | Permit files, records, and buyer leverage | SepticPath";
-            case "septic-pumping-cost" -> " | Pumping cadence and maintenance risk | SepticPath";
+            case "septic-permit-process" -> " | Approval Steps | SepticPath";
+            case "septic-inspection-cost" -> " | Buyer File Leverage | SepticPath";
+            case "septic-pumping-cost" -> " | Maintenance Cadence | SepticPath";
             case "drain-field-replacement-cost" -> " | Field layout and replacement risk | SepticPath";
             default -> " | SepticPath";
         };

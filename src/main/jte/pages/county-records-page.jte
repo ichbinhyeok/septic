@@ -54,6 +54,27 @@
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Quick answer</span>
                         <p>${countyQuickAnswer}</p>
+                        <p class="content-quick-answer__source">
+                            Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
+                            @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
+                                · reviewed ${editorialLastReviewedAt}
+                            @endif
+                        </p>
+                    </div>
+                @endif
+                @if (!countyOfficialFilePathRows.isEmpty())
+                    <div class="aeo-answer-capsule" aria-label="County answer summary and route comparison">
+                        <span class="eyebrow">Answer at a glance</span>
+                        <h2>How do I find the ${countyPage.countyName()} septic file?</h2>
+                        <div class="facts-table-wrap">
+                            <table class="facts-table">
+                                <tbody>
+                                @for (var row : countyOfficialFilePathRows.stream().limit(4).toList())
+                                    <tr><th scope="row">${row.label()}</th><td>${row.value()}</td></tr>
+                                @endfor
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
@@ -188,7 +209,6 @@
                         <div>
                             <span class="eyebrow">Next money step</span>
                             <h2>Turn the county file into a quote-ready estimate.</h2>
-                            <p>Use this after the file owner, parcel clue, or missing permit artifact is clearer. The estimator keeps ${state.stateCode()}, this county route, and the likely ${countyLeadProjectLabel} lane attached.</p>
                         </div>
                         <div class="county-lead-bridge__actions">
                             <a class="button button--primary"
@@ -213,9 +233,9 @@
                 @endif
                 @if (!countySearchQueries.isEmpty())
                     <div class="county-search-intent-strip" aria-label="Searches answered on this page">
-                        <span class="county-search-intent-strip__label">Matches searches</span>
+                        <span class="county-search-intent-strip__label">Questions answered</span>
                         @for (var query : countySearchQueries)
-                            <span class="county-search-intent-strip__query">${query}</span>
+                            <span class="county-search-intent-strip__query">How do I find ${query}?</span>
                         @endfor
                     </div>
                 @endif
@@ -259,7 +279,7 @@
                         <dd>${editorialReviewedAgainst}</dd>
                     </div>
                     <div>
-                        <dt>Last reviewed</dt>
+                        <dt>Latest review activity</dt>
                         <dd>${editorialLastReviewedAt}</dd>
                     </div>
                 </dl>
@@ -277,8 +297,8 @@
                         <h2>Choose the ${countyPage.countyName()} route that matches the file problem.</h2>
                         <p>If you are searching for ${countyPage.countyName()} septic records, move into the official file route, exact request wording, address or parcel fallback, or estimate only after the record story is clearer.</p>
                         <div class="county-click-board__queries" aria-label="County searches this board answers">
-                            @for (var query : countySearchResponse.queryExamples())
-                                <span>${query}</span>
+                            @for (var question : countySearchResponse.questions())
+                                <span>${question}</span>
                             @endfor
                         </div>
                     </div>
@@ -335,7 +355,7 @@
                             <article class="county-click-card">
                                 <span>After the file</span>
                                 <h3>Estimate only after the route is clear</h3>
-                                <p>${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyPage.lowEndBreakers().get(0)}</p>
+                                <p>${countyPage.countyName()} pricing gate: ${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyPage.lowEndBreakers().get(0)}</p>
                                 <a class="button button--secondary"
                                    href="${countyEstimatePath}"
                                    data-track-click="nav"
@@ -368,11 +388,11 @@
                     <div class="county-response-dossier__intro">
                         <span class="eyebrow">${countySearchResponse.badgeLabel()}</span>
                         <h2>${countySearchResponse.heading()}</h2>
-                        <p>${countySearchResponse.summary()}</p>
+                        <p>For the ${countyPage.countyName()} search path: ${countySearchResponse.summary()}</p>
                         <div class="county-response-dossier__queries" aria-label="Search queries this county page is tuned to answer">
                             <span>${countySearchResponse.priorityLabel()}</span>
-                            @for (var query : countySearchResponse.queryExamples())
-                                <span>${query}</span>
+                            @for (var question : countySearchResponse.questions())
+                                <span>${question}</span>
                             @endfor
                         </div>
                     </div>
@@ -414,7 +434,7 @@
                     <div class="county-response-dossier__intro">
                         <span class="eyebrow">Official county file path</span>
                         <h2>Use this ${countyPage.countyName()} file path before another broad search.</h2>
-                        <p>This table turns the county route into a work surface: who owns the file, what clue to carry, what artifact to request first, and what to ask for when the lookup has no result.</p>
+                        <p>${countyPage.countyName()} uses this table as a work surface: identify the file owner, carry the right property clue, request the first useful artifact, and preserve a written fallback when the lookup has no result.</p>
                         <div class="county-response-dossier__queries" aria-label="County file path signals">
                             <span>File owner</span>
                             <span>First artifact</span>
@@ -479,7 +499,7 @@
                         <div>
                             <span class="eyebrow">County record availability matrix</span>
                             <h2>${countyPage.countyName()} file path, request method, and confidence score</h2>
-                            <p>${countyAvailabilitySummary.confidenceNote()}</p>
+                            <p>${countyPage.countyName()} availability confidence: ${countyAvailabilitySummary.confidenceNote()}</p>
                         </div>
                         <div class="county-confidence-meter" style="--confidence-score: ${countyAvailabilitySummary.confidenceScore()}%;">
                             <span class="county-confidence-meter__label">${countyAvailabilitySummary.confidenceLabel()}</span>
@@ -554,7 +574,8 @@
                     <div class="county-request-builder__intro">
                         <span class="eyebrow">Permit file request builder</span>
                         <h2>Turn the county page into the exact request you send.</h2>
-                        <p>Choose the job context, then send the county a request that asks for the artifacts that actually change pricing, buyer risk, or permit scope.</p>
+                        <p>Choose the ${countyPage.countyName()} job context, then send ${countyPage.officeLabel()} a request for the artifacts that can change pricing, buyer risk, or permit scope.</p>
+                        <p>Keep the ${countyPage.countyName()} parcel, APN, owner, address, or legal description ready for every request mode below.</p>
                     </div>
                     <div class="county-request-builder__tabs" role="group" aria-label="Choose request context">
                         @for (var option : countyRequestOptions)
@@ -571,7 +592,9 @@
                                 <span class="county-request-panel__label">Subject</span>
                                 <h3>${option.subjectLine()}</h3>
                                 @for (var line : option.scriptLines())
-                                    <p>${line}</p>
+                                    @if (!line.contains("I can provide the parcel, APN, owner, address, or legal description"))
+                                        <p>${line}</p>
+                                    @endif
                                 @endfor
                             </div>
                             <div class="county-request-panel__checklist">
@@ -610,7 +633,7 @@
                 <div class="county-file-workflow__header">
                     <span class="eyebrow">Five-minute file workflow</span>
                     <h2>Use this page as a work surface, not just a reference page.</h2>
-                    <p>Open the county path, capture the parcel clue, ask for the file artifacts, then move only to the state workflow or cost estimate after the record story is clearer.</p>
+                    <p>Open the ${countyPage.countyName()} path, capture the parcel clue, ask for the local file artifacts, then move to the ${state.stateName()} workflow or cost estimate after this record story is clearer.</p>
                 </div>
                 <ol class="county-file-workflow__steps">
                     <li>
@@ -624,23 +647,18 @@
                         @if (countyPage.hasParcelAnchor())
                             <p>${countyPage.parcelAnchorLabel()}</p>
                         @else
-                            <p>Use address, parcel identifier, owner name, or local office routing before relying on a price.</p>
+                            <p>For ${countyPage.countyName()}, use the address, parcel identifier, owner name, or local office routing before relying on a price.</p>
                         @endif
                     </li>
                     <li>
                         <span>03</span>
                         <strong>Request the artifacts that change the answer</strong>
-                        @if (countyPage.recordsToRequest() != null && !countyPage.recordsToRequest().isEmpty())
-                            <p>${countyPage.recordsToRequest().get(0)}</p>
-                        @else
-                            <p>Ask for permit, as-built, inspection, repair, and final approval records tied to the parcel.</p>
-                        @endif
                     </li>
                     <li>
                         <span>04</span>
                         <strong>Stop pricing if the file is not clear</strong>
                         @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
-                            <p>${countyWorkflowStructure.quoteGate()}</p>
+                            <p>At step four for ${countyPage.countyName()}: ${countyWorkflowStructure.quoteGate()}</p>
                         @else
                             <p>${countyPage.lowEndBreakers() != null && !countyPage.lowEndBreakers().isEmpty() ? countyPage.lowEndBreakers().get(0) : countyPage.contactLine()}</p>
                         @endif
@@ -656,13 +674,13 @@
                 <div class="county-search-intent-pack__intro">
                     <span class="eyebrow">Search intent answer pack</span>
                     <h2>${countyPage.countyName()} septic permit lookup, records request, and address search path</h2>
-                    <p>Use this block when the search is not a broad septic question. It is usually one of four file tasks: find the permit, request the records, anchor the parcel, or confirm the as-built and inspection trail.</p>
+                    <p>Use this ${countyPage.countyName()} block when the search is not a broad septic question. It usually resolves one of four local file tasks: find the permit, request the records, anchor the parcel, or confirm the as-built and inspection trail.</p>
                 </div>
                 <div class="county-search-intent-grid">
                     <article class="county-search-intent-card">
                         <span>Permit lookup</span>
                         <h3>${countyPage.countyName()} septic permit lookup</h3>
-                        <p>Start with ${countyPage.recordsLabel()} before you trust a quote, repair story, buyer file, or permit closeout claim.</p>
+                        <p>For ${countyPage.countyName()}, start with ${countyPage.recordsLabel()} before you trust a quote, repair story, buyer file, or permit closeout claim.</p>
                         <a class="button button--secondary"
                            href="${countyPage.recordsUrl()}"
                            target="_blank"
@@ -675,7 +693,7 @@
                     <article class="county-search-intent-card">
                         <span>Records request</span>
                         <h3>Request the septic records, not just a price</h3>
-                        <p>${countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank() ? countyPage.requestScriptBody() : countyPage.contactLine()}</p>
+                        <p>${countyPage.countyName()} request script: ${countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank() ? countyPage.requestScriptBody() : countyPage.contactLine()}</p>
                         @if (countyPage.hasActionPlaybook())
                             <a class="button button--secondary"
                                href="#county-action-playbook"
@@ -709,7 +727,7 @@
                                data-track-source-context="county_search_intent_parcel_anchor"
                                data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
                         @else
-                            <p>Use the state records path first, then confirm the parcel identifier with the local office before pricing.</p>
+                            <p>Use the ${state.stateName()} records path first, then confirm the ${countyPage.countyName()} parcel identifier with the local office before pricing.</p>
                             <a class="button button--secondary"
                                href="/septic-record-finder/"
                                data-track-click="nav"
@@ -721,13 +739,6 @@
                     <article class="county-search-intent-card">
                         <span>As-built and inspection</span>
                         <h3>Ask for the file artifacts that change the answer</h3>
-                        <p>
-                            @if (countyPage.recordsToRequest() != null && !countyPage.recordsToRequest().isEmpty())
-                                ${countyPage.recordsToRequest().get(0)}
-                            @else
-                                Ask for the permit file, as-built sketch, inspection letter, repair note, and any final approval record tied to the parcel.
-                            @endif
-                        </p>
                         <a class="button button--secondary"
                            href="/septic-as-built-records/"
                            data-track-click="nav"
@@ -738,7 +749,6 @@
                     <article class="county-search-intent-card">
                         <span>County comparison</span>
                         <h3>Compare septic records by county</h3>
-                        <p>Use the county directory when a nearby parcel, different local office, or broader records search needs another local permit file path before the estimate.</p>
                         <a class="button button--secondary"
                            href="/septic-records-by-county/"
                            data-track-click="nav"
@@ -770,7 +780,7 @@
                 <article class="intent-card intent-card--primary">
                     <span class="intent-card__label">Open the county record path first</span>
                     <h2>${countyPage.recordsLabel()}</h2>
-                    <p>${countyPage.uniqueAngle()}</p>
+                    <p>${countyPage.countyName()} workflow angle: ${countyPage.uniqueAngle()}</p>
                     <a class="button button--primary"
                        href="${countyPage.recordsUrl()}"
                        target="_blank"
@@ -783,7 +793,7 @@
                 <article class="intent-card">
                     <span class="intent-card__label">Verify the county office</span>
                     <h2>${countyPage.officeLabel()}</h2>
-                    <p>${countyPage.contactLine()}</p>
+                    <p>${countyPage.countyName()} contact detail: ${countyPage.contactLine()}</p>
                     <a class="button button--secondary"
                        href="${countyPage.officeUrl()}"
                        target="_blank"
@@ -796,7 +806,6 @@
                 <article class="intent-card">
                     <span class="intent-card__label">Price only after the file is clearer</span>
                     <h2>${state.stateName()} records lookup</h2>
-                    <p>Use the state page when you still need the broader ${state.stateName()} rule story, sewer-availability context, or county-first workflow before a planning range.</p>
                     <a class="button button--secondary"
                        href="/septic-records-checklist/${state.slug()}/"
                        data-track-click="nav"
@@ -813,7 +822,7 @@
                 <div class="section-heading">
                     <span class="eyebrow">County intent matrix</span>
                     <h2>Use the exact ${countyPage.countyName()} search intent before you trust the file story.</h2>
-                    <p class="lede">These are the common county-level septic searches that should resolve into a permit file, records request, address or parcel search, as-built, inspection letter, or buyer file check.</p>
+                    <p class="lede">These are the common ${countyPage.countyName()} septic searches that should resolve into a permit file, records request, address or parcel search, as-built, inspection letter, or buyer file check.</p>
                 </div>
 
                 <div class="county-intent-matrix">
@@ -946,7 +955,7 @@
                 @endif
                 <p><strong>Office path.</strong> <a href="${countyPage.officeUrl()}" target="_blank" rel="noreferrer">${countyPage.officeLabel()}</a></p>
                 <p><strong>Records path.</strong> <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a></p>
-                <p>${countyPage.contactLine()}</p>
+                <p>${countyPage.countyName()} office routing detail: ${countyPage.contactLine()}</p>
             </article>
 
             @if (countyWorkflowStructure != null)
@@ -961,7 +970,7 @@
                         @endfor
                         <article class="detail-card">
                             <h3>Do not price yet when</h3>
-                            <p>${countyWorkflowStructure.quoteGate()}</p>
+                            <p>Final ${countyPage.countyName()} workflow gate: ${countyWorkflowStructure.quoteGate()}</p>
                         </article>
                     </div>
                 </article>
@@ -1026,9 +1035,7 @@
                                 @if (source.trustLevel() != null && !source.trustLevel().isBlank())
                                     <span>Trust: ${source.trustLevel()}</span>
                                 @endif
-                                @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
-                                    <span>Last verified: ${source.lastVerifiedAt()}</span>
-                                @endif
+                                @template.tags.sourceVerification(source = source)
                             </div>
                         </li>
                     @endfor
@@ -1056,7 +1063,6 @@
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
                 <h2>Use the state workflow after the county file is clearer</h2>
-                <p>Once the county form, location, or record history is in hand, move back into the ${state.stateName()} records or permit page before you rely on a planning range.</p>
                 <div class="hero__actions">
                     <a class="button button--primary"
                        href="/septic-records-checklist/${state.slug()}/"
@@ -1081,7 +1087,7 @@
                                    data-track-click="nav"
                                    data-track-source-context="county_records_related_link"
                                    data-track-target-type="related_internal">${link.title()}</a>
-                                <p class="detail-list__note">${link.note()}</p>
+                                <p class="detail-list__note">${countyPage.countyName()}: ${link.note()}</p>
                             </li>
                         @endfor
                         @if (internalLinks.size() > 6)
@@ -1089,7 +1095,7 @@
                                 <details class="county-link-overflow">
                                     <summary>Show more related pages</summary>
                                     <ul class="detail-list">
-                                        @for (var link : internalLinks)
+                                        @for (var link : internalLinks.stream().skip(6).toList())
                                             <li><a href="${link.path()}" data-track-click="nav" data-track-source-context="county_records_related_link_all" data-track-target-type="related_internal">${link.title()}</a></li>
                                         @endfor
                                     </ul>
@@ -1103,7 +1109,6 @@
             @if (!siblingCountyRoutes.isEmpty())
                 <article class="detail-card detail-card--full">
                     <h2>Other strong ${state.stateName()} county routes</h2>
-                    <p>Use these when the searcher is comparing nearby counties, checking a different parcel, or moving from a state guide into another local records path.</p>
                     <div class="county-sibling-routes" aria-label="Related county records routes">
                         @for (var route : siblingCountyRoutes)
                             <a href="${route.path()}"

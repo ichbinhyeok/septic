@@ -12,6 +12,7 @@
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> stateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.StateMoneyPage> featuredStateMoneyPages = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.StateMoneyPage> plannedStateMoneyPages = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredStateWorkflowLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.FaqBlock> guideFaqs = java.util.List.of()
@@ -47,6 +48,22 @@
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Quick answer</span>
                         <p>${stateQuickAnswer}</p>
+                        @if (primaryRecordsLookupSource != null)
+                            <p class="content-quick-answer__source">
+                                Official source: <a href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">${primaryRecordsLookupSource.agencyName()}</a>
+                                · content reviewed ${primaryRecordsLookupSource.contentVerifiedAt()}
+                            </p>
+                        @elseif (primaryLocalAuthoritySource != null)
+                            <p class="content-quick-answer__source">
+                                Official source: <a href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">${primaryLocalAuthoritySource.agencyName()}</a>
+                                · content reviewed ${primaryLocalAuthoritySource.contentVerifiedAt()}
+                            </p>
+                        @elseif (!sources.isEmpty())
+                            <p class="content-quick-answer__source">
+                                Official source: <a href="${sources.get(0).url()}" target="_blank" rel="noreferrer">${sources.get(0).agencyName()}</a>
+                                · content reviewed ${sources.get(0).contentVerifiedAt()}
+                            </p>
+                        @endif
                     </div>
                 @endif
                 @if ("AL".equals(state.stateCode()))
@@ -151,7 +168,7 @@
                                 @if (!featuredStateWorkflowLinks.isEmpty())
                                     <p>${featuredStateWorkflowLinks.get(0).title()}</p>
                                 @else
-                                    <p>Review the source and permit sections below before treating the number as reliable.</p>
+                    <p>Review the ${state.stateName()} source and permit sections below before treating the number as reliable.</p>
                                 @endif
                             </div>
                         </li>
@@ -203,7 +220,7 @@
                             <div>
                                 <span class="eyebrow">Official state estimate file path</span>
                                 <h2>Check the file owner and first artifact before the estimate becomes the answer.</h2>
-                                <p>This guide is strongest when it routes the visitor into the local septic file, county office, or missing-record fallback before the calculator compresses the problem into one number.</p>
+                        <p>This ${state.stateName()} guide is strongest when it routes the visitor into the local septic file, county office, or missing-record fallback before the calculator compresses the problem into one number.</p>
                             </div>
                             <div class="state-records-response__priority">
                                 <span>Estimate gate</span>
@@ -300,25 +317,6 @@
                 @else
                     <p class="hero-router-intro">${calculatorCtaNote}</p>
                 @endif
-                @if (guideCountyWorkflowSynthesis != null
-                        && !guideCountyWorkflowSynthesis.structureHighlights().isEmpty()
-                        && !guideCountyWorkflowSynthesis.firstArtifacts().isEmpty()
-                        && !guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty())
-                    <div class="detail-grid" aria-label="County-backed routing snapshot">
-                        <article class="mini-card">
-                            <strong>County-backed file pattern</strong>
-                            <p>${guideCountyWorkflowSynthesis.structureHighlights().get(0).value()}</p>
-                        </article>
-                        <article class="mini-card">
-                            <strong>Pull first county artifact</strong>
-                            <p>${guideCountyWorkflowSynthesis.firstArtifacts().get(0)}</p>
-                        </article>
-                        <article class="mini-card">
-                            <strong>Hold quote until</strong>
-                            <p>${guideCountyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
-                        </article>
-                    </div>
-                @endif
                 <div class="micro-tool micro-tool--hero" data-choice-group>
                     <div class="hero-decision-grid hero-decision-grid--three micro-tool__choices">
                         <button class="hero-decision-card hero-decision-card--accent micro-tool__choice is-active"
@@ -327,7 +325,7 @@
                                 aria-pressed="true">
                             <span class="hero-decision-card__label">File or office first</span>
                             <h3>I need the local file or county office before I trust the story</h3>
-                            <p>Choose this when the main blocker is the permit file, parcel record, county page, or the official office that owns the next step.</p>
+                            <p>Choose the ${state.stateName()} records route when the main blocker is the permit file, parcel record, county page, or the official office that owns the next step.</p>
                         </button>
 
                         <button class="hero-decision-card micro-tool__choice"
@@ -336,7 +334,7 @@
                                 aria-pressed="false">
                             <span class="hero-decision-card__label">Workflow first</span>
                             <h3>I need the narrow state workflow before I price anything</h3>
-                            <p>Choose this when the broad state guide is not enough and the real question is records, permit path, buyer diligence, or one narrower lane.</p>
+                            <p>Choose a narrower ${state.stateName()} workflow when the broad guide is not enough and the real question is records, permit path, buyer diligence, or one intent lane.</p>
                         </button>
 
                         <button class="hero-decision-card micro-tool__choice"
@@ -345,7 +343,7 @@
                                 aria-pressed="false">
                             <span class="hero-decision-card__label">Planning range</span>
                             <h3>I need a cautious number after the path is clearer</h3>
-                            <p>Choose this when you already understand the workflow well enough to use a planning estimate without flattening the local story.</p>
+                            <p>Choose the ${state.stateName()} planning estimate when you understand the workflow well enough to avoid flattening the local story.</p>
                         </button>
                     </div>
 
@@ -354,10 +352,7 @@
                             <span class="micro-tool__kicker">Recommended next best action</span>
                             @if (primaryRecordsLookupSource != null)
                                 <h2>Pull the local septic file first</h2>
-                                <p>Open the records path before you trust a quote, because the permit copy, as-built sketch, inspection trail, or parcel file can change the whole downside faster than another broad guide.</p>
-                                @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.firstArtifacts().isEmpty())
-                                    <p><strong>Pull first.</strong> ${guideCountyWorkflowSynthesis.firstArtifacts().get(0)}</p>
-                                @endif
+                                <p>Open the ${state.stateName()} records path before you trust a quote, because the permit copy, as-built sketch, inspection trail, or parcel file can change the downside faster than another broad guide.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${primaryRecordsLookupSource.url()}"
@@ -376,10 +371,7 @@
                                 </div>
                             @elseif (!featuredCountyRecordLinks.isEmpty())
                                 <h2>Open the county records page first</h2>
-                                <p>The state guide has done enough to narrow the problem. The next move is the county page, where the actual parcel file and office path become concrete enough to trust.</p>
-                                @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.structureHighlights().isEmpty())
-                                    <p><strong>County-backed read.</strong> ${guideCountyWorkflowSynthesis.structureHighlights().get(0).value()}</p>
-                                @endif
+                                <p>The ${state.stateName()} guide has narrowed the problem. The next move is the county page, where the actual parcel file and office path become concrete enough to trust.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${featuredCountyRecordLinks.get(0).path()}"
@@ -398,7 +390,7 @@
                                 </div>
                             @elseif (primaryLocalAuthoritySource != null)
                                 <h2>Verify the right county office first</h2>
-                                <p>When the file path is still fuzzy, the safest first move is confirming which local authority actually owns the next permit, review, or inspection step.</p>
+                                <p>When the ${state.stateName()} file path is still fuzzy, first confirm which local authority owns the next permit, review, or inspection step.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${primaryLocalAuthoritySource.url()}"
@@ -411,7 +403,7 @@
                                 </div>
                             @else
                                 <h2>Use the official source block first</h2>
-                                <p>This state still needs the verified agency trail before the next move becomes specific. Start with the source list, then move into the narrower workflow only after the rule path is clearer.</p>
+                                <p>${state.stateName()} still needs a verified agency trail before the next move becomes specific. Start with the source list, then enter a narrower workflow after the rule path is clearer.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary" href="#sources">Jump to sources</a>
                                     @if (!featuredStateWorkflowLinks.isEmpty())
@@ -430,9 +422,6 @@
                             @if (!featuredStateMoneyPages.isEmpty())
                                 <h2>Open the narrow state workflow now</h2>
                                 <p>${featuredStateMoneyPages.get(0).uniqueAngle()} Use the narrower workflow page once the broad state story is clear enough and the live blocker is no longer "what kind of state is this?" but "what do I do next?"</p>
-                                @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty())
-                                    <p><strong>Hold pricing when.</strong> ${guideCountyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
-                                @endif
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${featuredStateWorkflowLinks.get(0).path()}"
@@ -449,7 +438,7 @@
                                 </div>
                             @else
                                 <h2>Stay in the guide just long enough to narrow the workflow</h2>
-                                <p>No stronger state-specific lane is published yet, so use the workflow overview, permit-risk section, and sources to decide whether the next move is records, local office verification, or a cautious estimate.</p>
+                                <p>No stronger ${state.stateName()} lane is published yet, so use the workflow overview, permit-risk section, and sources to choose records, local office verification, or a cautious estimate.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary" href="#workflow-overview">Review workflow overview</a>
                                     <a class="button button--secondary" href="#permit-risk">Review permit and buyer risk</a>
@@ -461,9 +450,6 @@
                             <span class="micro-tool__kicker">Recommended next best action</span>
                             <h2>Run the planning estimate after the local story is clear enough</h2>
                             <p>${calculatorCtaNote} The estimate is strongest after you confirm the file, county office, or narrow workflow that actually governs this property.</p>
-                            @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty())
-                                <p><strong>Hold quote until.</strong> ${guideCountyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
-                            @endif
                             <div class="micro-tool__actions">
                                 <a class="button button--primary"
                                    href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/"
@@ -520,32 +506,18 @@
                         <dd>${editorialReviewedAgainst}</dd>
                     </div>
                     <div>
-                        <dt>Last reviewed</dt>
+                        <dt>Latest review activity</dt>
                         <dd>${editorialLastReviewedAt}</dd>
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
-                @if (guideCountyWorkflowSynthesis != null)
-                    <div class="mini-card">
-                        <strong>County-backed reality</strong>
-                        @if (!guideCountyWorkflowSynthesis.structureHighlights().isEmpty())
-                            <p>${guideCountyWorkflowSynthesis.structureHighlights().get(0).value()}</p>
-                        @endif
-                        @if (!guideCountyWorkflowSynthesis.firstArtifacts().isEmpty())
-                            <p>Pull first: ${guideCountyWorkflowSynthesis.firstArtifacts().get(0)}</p>
-                        @endif
-                        @if (!guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty())
-                            <p>Hold pricing when: ${guideCountyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
-                        @endif
-                    </div>
-                @endif
                 @if (!featuredStateMoneyPages.isEmpty())
                     <a class="button button--secondary"
                        href="${featuredStateMoneyPages.get(0).path(state.slug())}"
                        data-track-click="nav"
                        data-track-source-context="state_guide_side_workflow"
                        data-track-target-type="state_money_page">Open the next workflow page</a>
-                    <p>This guide is the overview. The next move should usually be the narrower workflow page, not a quote form.</p>
+                                <p>This ${state.stateName()} guide is the overview. The next move should usually be the narrower workflow page, not a quote form.</p>
                 @else
                     <a class="button button--secondary" href="#sources">Jump to official sources</a>
                     <p>${calculatorCtaNote}</p>
@@ -605,12 +577,12 @@
                     @elseif (primaryLocalAuthoritySource != null)
                         <span class="intent-card__label">Verify the right office</span>
                         <h2>Confirm the local authority before you schedule work</h2>
-                        <p>Use the official local authority path when the homeowner still has not confirmed which office actually controls the next permit or review step.</p>
+                    <p>Use the official ${state.stateName()} local-authority path when the homeowner has not confirmed which office controls the next permit or review step.</p>
                         <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer">Open local authority source</a>
                     @else
                         <span class="intent-card__label">Use the official source section</span>
                         <h2>Jump to the verified source list</h2>
-                        <p>Use the source block when you still need the official local workflow, file path, or policy context before you move deeper.</p>
+                    <p>Use the ${state.stateName()} source block when you still need the official local workflow, file path, or policy context before moving deeper.</p>
                         <a class="button button--secondary" href="#sources">Jump to sources</a>
                     @endif
                 </article>
@@ -665,7 +637,7 @@
                 @if (primaryRecordsLookupSource != null)
                     <article class="detail-card">
                         <h2>Look up septic records first</h2>
-                        <p>Before trusting the low end, pull the existing permit, as-built, inspection, or management records tied to the property.</p>
+                    <p>Before trusting the ${state.stateName()} low end, pull the existing permit, as-built, inspection, or management records tied to the property.</p>
                         <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">Open records lookup</a>
                         <p>${primaryRecordsLookupSource.agencyName()} | ${primaryRecordsLookupSource.title()}</p>
                     </article>
@@ -682,7 +654,7 @@
                     <p><strong>Who to call first.</strong> ${state.whoToCallFirst()}</p>
                 @endif
                 @if (state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
-                    <p><strong>Pull these records before you trust the low end.</strong></p>
+                    <p><strong>Pull these ${state.stateName()} records before you trust the low end.</strong></p>
                     <ul class="detail-list">
                         @for (var record : state.recordsToRequest())
                             <li>${record}</li>
@@ -748,14 +720,13 @@
                 <div class="section-heading">
                     <span class="eyebrow">County Wedge</span>
                     <h2>County records pages now live in ${state.stateName()}</h2>
-                    <p class="lede">Use these when the state guide is still too broad and the real question is which county file, search form, or local office controls the next step.</p>
+                    <p class="lede">Use these ${state.stateName()} routes when the state guide is too broad and the real question is which county file, search form, or local office controls the next step.</p>
                 </div>
 
                 <div class="detail-grid">
                     @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().limit(6).toList())
                         <article class="detail-card">
                             <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
-                            <p>${link.note()}</p>
                             <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta" data-track-target-type="county_page">Open county page</a>
                         </article>
                     @endfor
@@ -764,10 +735,9 @@
                     <details class="county-link-overflow">
                         <summary>Show all ${state.stateName()} county records pages</summary>
                         <div class="detail-grid">
-                            @for (var link : featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks)
+                            @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().skip(6).toList())
                                 <article class="detail-card">
                                     <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_overflow" data-track-target-type="county_page">${link.title()}</a></h3>
-                                    <p>${link.note()}</p>
                                     <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta_overflow" data-track-target-type="county_page">Open county page</a>
                                 </article>
                             @endfor
@@ -1105,9 +1075,7 @@
                                         @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
                                             <span>Effective: ${source.effectiveDate()}</span>
                                         @endif
-                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
-                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
-                                        @endif
+                                        @template.tags.sourceVerification(source = source)
                                     </div>
                                 </li>
                             @endfor
@@ -1116,7 +1084,7 @@
                             <details class="county-link-overflow">
                                 <summary>Show all local authority sources</summary>
                                 <ul class="source-list source-list--compact">
-                                    @for (var source : localAuthoritySources)
+                                    @for (var source : localAuthoritySources.stream().skip(4).toList())
                                         <li>
                                             <strong>${source.agencyName()}</strong>
                                             <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
@@ -1146,9 +1114,7 @@
                                         @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
                                             <span>Effective: ${source.effectiveDate()}</span>
                                         @endif
-                                        @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
-                                            <span>Last verified: ${source.lastVerifiedAt()}</span>
-                                        @endif
+                                        @template.tags.sourceVerification(source = source)
                                     </div>
                                 </li>
                             @endfor
@@ -1157,7 +1123,7 @@
                             <details class="county-link-overflow">
                                 <summary>Show all records lookup sources</summary>
                                 <ul class="source-list source-list--compact">
-                                    @for (var source : recordsLookupSources)
+                                    @for (var source : recordsLookupSources.stream().skip(4).toList())
                                         <li>
                                             <strong>${source.agencyName()}</strong>
                                             <a href="${source.url()}" target="_blank" rel="noreferrer">${source.title()}</a>
@@ -1267,12 +1233,6 @@
                 <span class="trust-box__label">Need a planning range after the county check?</span>
                 <h2>Use the estimate after the file, permit path, and buyer story are clear enough.</h2>
                 <p>${calculatorCtaNote} If the local file is still thin, go back to the narrower workflow page instead of jumping into quote mode too early.</p>
-                @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.firstArtifacts().isEmpty())
-                    <p><strong>Pull first.</strong> ${guideCountyWorkflowSynthesis.firstArtifacts().get(0)}</p>
-                @endif
-                @if (guideCountyWorkflowSynthesis != null && !guideCountyWorkflowSynthesis.holdQuoteChecks().isEmpty())
-                    <p><strong>Hold quote until.</strong> ${guideCountyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
-                @endif
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_ready_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
                     @if (!featuredStateMoneyPages.isEmpty())
@@ -1306,9 +1266,7 @@
                                 @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
                                     <span>Effective: ${source.effectiveDate()}</span>
                                 @endif
-                                @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
-                                    <span>Last verified: ${source.lastVerifiedAt()}</span>
-                                @endif
+                                @template.tags.sourceVerification(source = source)
                             </div>
                         </li>
                     @endfor
@@ -1318,7 +1276,7 @@
             @if (!stateMoneyPages.isEmpty())
                 <article class="detail-card detail-card--full" id="intents">
                     <h2>High-intent next steps in ${state.stateName()}</h2>
-                    <p>Use these pages when the guide is not specific enough and the real bottleneck is replacement scope, the file, permit path, buyer risk, inspection history, or the site-review story.</p>
+                    <p>Use these ${state.stateName()} pages when the guide is not specific enough and the real bottleneck is replacement scope, the file, permit path, buyer risk, inspection history, or the site-review story.</p>
                     <div class="detail-grid">
                         @for (var stateMoneyPage : stateMoneyPages.stream().limit(6).toList())
                             <article class="detail-card">
@@ -1329,7 +1287,7 @@
                         @endfor
                         <article class="detail-card">
                             <h3>Main septic cost calculator</h3>
-                            <p>Use the calculator when you still need a state-specific planning range before you choose one file, permit, or buyer narrative.</p>
+                    <p>Use the calculator when you still need a ${state.stateName()} planning range before choosing one file, permit, or buyer narrative.</p>
                             <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Open the calculator</a>
                         </article>
                     </div>
@@ -1337,7 +1295,7 @@
                         <details class="county-link-overflow">
                             <summary>Show all ${state.stateName()} workflow pages</summary>
                             <div class="detail-grid">
-                                @for (var stateMoneyPage : stateMoneyPages)
+                                @for (var stateMoneyPage : stateMoneyPages.stream().skip(6).toList())
                                     <article class="detail-card">
                                         <h3><a href="${stateMoneyPage.path(state.slug())}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_overflow" data-track-target-type="state_money_page">${stateMoneyPage.title()}</a></h3>
                                         <p>${stateMoneyPage.uniqueAngle()}</p>
@@ -1348,6 +1306,21 @@
                         </details>
                     @endif
                 </article>
+            @endif
+
+            @if (!plannedStateMoneyPages.isEmpty())
+                <details class="county-link-overflow">
+                    <summary>Planned ${state.stateName()} workflow coverage</summary>
+                    <p>These topics remain visible as coverage notes, but they are not linked until their source and local-workflow depth meets the publication threshold.</p>
+                    <div class="detail-grid">
+                        @for (var plannedPage : plannedStateMoneyPages)
+                            <article class="detail-card">
+                                <h3>${plannedPage.title()}</h3>
+                                <p>${plannedPage.uniqueAngle()}</p>
+                            </article>
+                        @endfor
+                    </div>
+                </details>
             @endif
 
         </div>

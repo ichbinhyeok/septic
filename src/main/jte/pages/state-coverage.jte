@@ -220,8 +220,6 @@
                             </div>
                             <strong>${state.stateCode()}</strong>
                         </div>
-                        <p>${state.summary()}</p>
-                        <p class="coverage-card__meta">${state.metaLine()}</p>
                         <a class="button button--secondary" href="${state.actionPath()}">${state.actionLabel()}</a>
                     </article>
                 @endfor
@@ -248,8 +246,6 @@
                                 </div>
                                 <strong>${state.stateCode()}</strong>
                             </div>
-                            <p>${state.summary()}</p>
-                            <p class="coverage-card__meta">${state.metaLine()}</p>
                             <a class="button button--secondary" href="${state.actionPath()}">${state.actionLabel()}</a>
                         </article>
                     @endfor

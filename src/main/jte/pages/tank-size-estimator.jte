@@ -287,7 +287,6 @@
                                     <span class="pill">Tank size</span>
                                     <strong>${state.stateName()}</strong>
                                 </div>
-                                <p>${state.pageAngle()}</p>
                                 <ul class="state-card__meta">
                                     <li>${state.ruleTypeLabel()}</li>
                                     <li>

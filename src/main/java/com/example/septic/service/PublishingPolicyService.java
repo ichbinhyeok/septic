@@ -27,6 +27,9 @@ public class PublishingPolicyService {
     private static final Set<String> PERC_COST_DEMAND_STATES = Set.of(
             "AR", "GA", "MD", "MO", "NJ", "OH", "OK", "OR", "TN", "WI", "WV"
     );
+    private static final int STRONG_COUNTY_COVERAGE = 10;
+    private static final int SUPPORTING_COUNTY_COVERAGE = 5;
+    private static final int BUYER_COUNTY_COVERAGE = 3;
 
     private final ResearchDataService researchDataService;
 
@@ -45,13 +48,20 @@ public class PublishingPolicyService {
             case "septic-permit-process" -> hasLocalAuthoritySource(state)
                     && hasItems(state.permitPathSteps(), 3);
             case "buying-a-house-with-a-septic-system" -> hasText(state.buyerInspectionTrigger())
-                    && (hasCountyRecordsPages(state.stateCode())
-                    || hasStateCostProfile(state.stateCode()));
+                    && hasDeepPageEvidence(stateMoneyPage)
+                    && (countyRecordsCount(state.stateCode()) >= BUYER_COUNTY_COVERAGE
+                    || hasStateCostProfile(state.stateCode())
+                    || (hasRecordsSource(state) && hasLocalAuthoritySource(state)));
             case "perc-test-cost" -> isCostReopenCandidate(stateMoneyPage, state)
-                    && PERC_COST_DEMAND_STATES.contains(state.stateCode());
+                    && hasDeepPageEvidence(stateMoneyPage)
+                    && (PERC_COST_DEMAND_STATES.contains(state.stateCode())
+                    || (countyRecordsCount(state.stateCode()) >= STRONG_COUNTY_COVERAGE
+                    && hasText(state.siteEvalSummary())));
             case "septic-replacement-cost", "septic-inspection-cost" ->
                     isCostReopenCandidate(stateMoneyPage, state)
-                            && hasStateCostProfile(state.stateCode());
+                            && hasDeepPageEvidence(stateMoneyPage)
+                            && (hasStateCostProfile(state.stateCode())
+                            || countyRecordsCount(state.stateCode()) >= SUPPORTING_COUNTY_COVERAGE);
             default -> {
                 if (WORKFLOW_COST_SLUGS.contains(stateMoneyPage.contentSlug())) {
                     yield isCostReopenCandidate(stateMoneyPage, state);
@@ -87,6 +97,12 @@ public class PublishingPolicyService {
                 && hasItems(stateMoneyPage.officialSourceIds(), 1);
     }
 
+    private boolean hasDeepPageEvidence(StateMoneyPage stateMoneyPage) {
+        return hasItems(stateMoneyPage.officialSourceIds(), 2)
+                && wordCount(stateMoneyPage.introCopy()) >= 30
+                && wordCount(stateMoneyPage.uniqueAngle()) >= 20;
+    }
+
     private boolean hasCostWorkflowEvidence(StateProfile state) {
         return researchDataService.findStateCostProfile(state.stateCode()).isPresent()
                 || hasCountyRecordsPages(state.stateCode())
@@ -108,7 +124,11 @@ public class PublishingPolicyService {
     }
 
     private boolean hasCountyRecordsPages(String stateCode) {
-        return !researchDataService.listPublicCountyRecordsPages(stateCode).isEmpty();
+        return countyRecordsCount(stateCode) > 0;
+    }
+
+    private int countyRecordsCount(String stateCode) {
+        return researchDataService.listPublicCountyRecordsPages(stateCode).size();
     }
 
     private boolean hasStateCostProfile(String stateCode) {
@@ -121,5 +141,12 @@ public class PublishingPolicyService {
 
     private boolean hasText(String value) {
         return value != null && !value.isBlank();
+    }
+
+    private int wordCount(String value) {
+        if (!hasText(value)) {
+            return 0;
+        }
+        return value.trim().split("\\s+").length;
     }
 }

@@ -22,6 +22,7 @@ public record ContentPage(
         List<FaqBlock> faqBlocks,
         List<String> internalLinkTargets,
         String updatedAt,
+        String reviewedAt,
         String publishStatus
 ) {
     public boolean isPublished() {

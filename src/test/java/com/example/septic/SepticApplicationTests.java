@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
 import com.example.septic.data.model.FaqBlock;
+import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.EstimatorResult;
@@ -24,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Comparator;
@@ -81,6 +83,50 @@ class SepticApplicationTests {
 
 	@Test
 	void contextLoads() {
+	}
+
+	@Test
+	void publishedAeoPagesKeepReviewedAndReachableOfficialEvidence() {
+		LocalDate currentReviewCutoff = LocalDate.now().minusDays(180);
+		LocalDate healthyReviewCutoff = LocalDate.now().minusDays(365);
+		List<String> stalePages = new ArrayList<>();
+
+		researchDataService.getPublicStateProfiles().stream()
+				.filter(page -> !hasPublicationReadySource(page.officialSourceIds(), currentReviewCutoff, healthyReviewCutoff))
+				.map(page -> "state-guide:" + page.stateCode())
+				.forEach(stalePages::add);
+		researchDataService.getPublicStateMoneyPages().stream()
+				.filter(page -> !hasPublicationReadySource(page.officialSourceIds(), currentReviewCutoff, healthyReviewCutoff))
+				.map(page -> "state-workflow:" + page.contentSlug() + ":" + page.stateCode())
+				.forEach(stalePages::add);
+		researchDataService.getPublicCountyRecordsPages().stream()
+				.filter(page -> !hasPublicationReadySource(page.officialSourceIds(), currentReviewCutoff, healthyReviewCutoff))
+				.map(page -> "county:" + page.stateCode() + ":" + page.countySlug())
+				.forEach(stalePages::add);
+
+		assertTrue(
+				stalePages.isEmpty(),
+				"Published AEO pages need editorial review within 180 days or a reachable source reviewed within 365 days: " + String.join(", ", stalePages)
+		);
+	}
+
+	private boolean hasPublicationReadySource(
+			List<String> sourceIds,
+			LocalDate currentReviewCutoff,
+			LocalDate healthyReviewCutoff
+	) {
+		return researchDataService.getSources(sourceIds).stream()
+				.anyMatch(source -> {
+					if (source.contentVerifiedAt() == null || source.contentVerifiedAt().isBlank()) {
+						return false;
+					}
+					LocalDate reviewedAt = LocalDate.parse(source.contentVerifiedAt());
+					if (!reviewedAt.isBefore(currentReviewCutoff)) {
+						return true;
+					}
+					return "healthy".equalsIgnoreCase(source.httpCheckStatus())
+							&& !reviewedAt.isBefore(healthyReviewCutoff);
+				});
 	}
 
 	@Test
@@ -233,6 +279,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-download")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-print")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-filename")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-10\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Latest review activity")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("2026-07-10")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Texas / OSSF agent")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina / SCDES")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/official-septic-lookup-tools/")));
@@ -334,13 +383,27 @@ class SepticApplicationTests {
 				incomplete.isEmpty(),
 				"Workflow cost pages missing baseline content: " + incomplete
 		);
-		org.junit.jupiter.api.Assertions.assertEquals(76, indexableCount);
+		org.junit.jupiter.api.Assertions.assertEquals(123, indexableCount);
 		org.junit.jupiter.api.Assertions.assertTrue(indexable("perc-test-cost", "tennessee"));
-		org.junit.jupiter.api.Assertions.assertFalse(indexable("perc-test-cost", "alabama"));
+		org.junit.jupiter.api.Assertions.assertTrue(indexable("perc-test-cost", "alabama"));
+		org.junit.jupiter.api.Assertions.assertFalse(indexable("perc-test-cost", "idaho"));
 		org.junit.jupiter.api.Assertions.assertTrue(indexable("septic-replacement-cost", "georgia"));
 		org.junit.jupiter.api.Assertions.assertFalse(indexable("septic-replacement-cost", "idaho"));
 		org.junit.jupiter.api.Assertions.assertTrue(indexable("septic-inspection-cost", "massachusetts"));
 		org.junit.jupiter.api.Assertions.assertFalse(indexable("septic-inspection-cost", "hawaii"));
+	}
+
+	@Test
+	void stateAwareContentPickerKeepsOneBestRoutePerState() throws Exception {
+		String html = mockMvc.perform(get("/official-septic-lookup-tools/"))
+				.andExpect(status().isOk())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
+
+		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"TN\"").matcher(html).results().count());
+		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"NC\"").matcher(html).results().count());
+		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"TX\"").matcher(html).results().count());
 	}
 
 	@Test
@@ -377,7 +440,7 @@ class SepticApplicationTests {
 			}
 		}
 
-		org.junit.jupiter.api.Assertions.assertEquals(76, indexableCount);
+		org.junit.jupiter.api.Assertions.assertEquals(123, indexableCount);
 		org.junit.jupiter.api.Assertions.assertTrue(
 				mismatches.isEmpty(),
 				"Workflow cost sitemap policy mismatches: " + mismatches
@@ -409,6 +472,7 @@ class SepticApplicationTests {
 				),
 				List.of("/septic-replacement-cost/"),
 				null,
+				null,
 				null
 		);
 
@@ -432,6 +496,7 @@ class SepticApplicationTests {
 				unpublished.faqBlocks(),
 				unpublished.internalLinkTargets(),
 				unpublished.updatedAt(),
+				unpublished.reviewedAt(),
 				"published"
 		);
 
@@ -462,6 +527,7 @@ class SepticApplicationTests {
 				List.of("ga_01"),
 				"replacement",
 				null,
+				null,
 				null
 		);
 
@@ -483,6 +549,7 @@ class SepticApplicationTests {
 				unpublished.officialSourceIds(),
 				unpublished.calculatorProjectType(),
 				unpublished.updatedAt(),
+				unpublished.reviewedAt(),
 				"published"
 		);
 
@@ -847,7 +914,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/drain-field-replacement-cost/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/massachusetts/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/idaho/"))))
-				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/alabama/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/alabama/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/hawaii/"))));
 	}
 
@@ -857,7 +924,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-07-20</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/texas/tarrant-county/</loc><lastmod>2026-05-07</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/texas/tarrant-county/</loc></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/greenville-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/comal-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/"))))
@@ -1478,8 +1545,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Editorial Team")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed by")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Source Review")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed against 4 official sources listed below and 6 live county workflow pages already connected to this state.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-04-04\"")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Cites 4 official sources and 6 live county workflow pages. The date below is the latest page or source review activity.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-03-09\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"editor\":{\"@type\":\"Organization\",\"name\":\"SepticPath Source Review\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Bedroom table sizing rule")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString(">permit_path<"))))
@@ -1522,7 +1589,7 @@ class SepticApplicationTests {
 	void georgiaStateGuideShowsCountyWedgeLinks() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-backed reality")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Workflow Snapshot")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County records pages now live in Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia search path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia county file before the estimate")))
@@ -1598,7 +1665,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open quote request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("projectType=replacement")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("sourcePageHint=/septic-records-checklist/texas/fort-bend-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County TX septic permit lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County Texas septic permit lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fort Bend County septic permit search by address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Fort Bend County OSSF permits and packets")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit to construct from the license to operate")))
@@ -2884,6 +2951,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hamilton County septic inspection records and permit lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hamilton County TN Septic Inspection Records and Permit Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hamilton County Septic Information and Forms")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Answer at a glance")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-20\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("reviewed 2026-07-20")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("certificate of completion")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("existing septic use")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee records lookup")))
@@ -5010,7 +5080,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve the file path before a cheap number.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate gate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama search path")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/perc-test-cost/alabama/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/alabama/madison-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama county health file before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check Alabama county records before the estimate")))
@@ -5534,11 +5604,11 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-replacement-cost/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Septic Replacement Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed against 2 official sources tied to this page and state workflow.")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Cites 2 official sources tied to this state workflow. The date below is the latest page or source review activity.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Editorial Team")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Source Review")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last reviewed")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-03-09\"")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Latest review activity")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("\"dateModified\""))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county environmental health office and pull the latest permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Planning cost snapshot")))
@@ -5563,7 +5633,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_money_secondary_calculator\""))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_money_featured_link\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_money_related_link\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county replacement files usually break down in Georgia")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=replacement")));
 	}
 
@@ -6365,11 +6435,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county diligence pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county due diligence usually breaks down in New Jersey")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most common buyer or transfer artifact")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most common special program or exception")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county buyer artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not treat this as a routine deal yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County diligence pages behind this buyer workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/new-jersey/sussex-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Any service contract, maintenance agreement, or board-of-health notice tied to advanced treatment or special-area oversight.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/new-jersey/")))
@@ -6918,6 +6984,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC septic records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("tdec septic permit lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State of TN septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Questions answered")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Answer at a glance")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-20\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("content reviewed 2026-07-21")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official records route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee records lookup guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("tennessee county septic records")))
@@ -7032,11 +7102,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county replacement pages")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Replacement Summary")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county replacement files usually break down in North Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county replacement artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not price replacement scope yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for North Carolina replacement pricing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The county health department file reference and contact for the property.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NC&projectType=replacement")));
 	}
@@ -7297,11 +7363,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Washington")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county maintenance pages")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Maintenance Summary")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county maintenance files usually break down in Washington")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county maintenance artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not price maintenance scope yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Washington pumping and maintenance pricing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What actually widens Washington pumping and maintenance pricing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What keeps widening Washington maintenance scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to line up before you price maintenance scope")))
@@ -7323,9 +7385,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Homeowners usually get anchored to one replacement number too early.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("A strong replacement page should help you name what is actually widening the spread")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Representative state examples behind this national page")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this national page can answer before you touch a quote")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("When this page stops being enough")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_inline_internal_link\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_related_links\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_inline_state_link\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_inline_evidence_link\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_state_example_link\"")))
@@ -7394,7 +7454,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=perc_test")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/tennessee/")))
-				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/"))))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/failed-perc-test-septic/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
@@ -7471,8 +7531,6 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First pull:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County lookup launchpad")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/california/san-bernardino-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/new-jersey/cape-may-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-search-by-address/")));
 	}
 
@@ -7551,8 +7609,6 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records change the estimate because they change what you can safely assume.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("one missing as-built or permit can matter more than several contractor opinions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Representative state examples behind this national page")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What this national page can answer before you touch a quote")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("When this page stops being enough")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What usually kills the low end")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast next steps")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jump between sections")))
@@ -7560,16 +7616,16 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run a records-aware estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#state-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=buying_home")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed against 6 source-backed state-specific pages, the county workflow network underneath them, and the source policy.")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Cites 6 source-backed state pages plus their county workflow network. The date below is the latest page or source review activity.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-backed coverage")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Editorial Team")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Source Review")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Last reviewed")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-09\"")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Latest review activity")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("\"dateModified\""))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"editor\":{\"@type\":\"Organization\",\"name\":\"SepticPath Source Review\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this page is sourced")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State-specific pages carry the official sources behind this national overview.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed against 3 official sources tied to the Connecticut workflow.")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Content reviewed:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Trust: high")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_link\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"content_page_featured_state_specific\"")))
@@ -7690,9 +7746,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Jersey Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in New Jersey")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county permit paths usually break down in New Jersey")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county permit artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not schedule permit pricing yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County permit pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/new-jersey/hunterdon-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Any service contract, management notice, or recurring reporting document already connected to the property.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=NJ&projectType=new_install")));
@@ -7903,12 +7957,7 @@ class SepticApplicationTests {
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Record owner")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Evidence to pull")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Pricing gate")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Maryland records work")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve first")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Escalate to county when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hold pricing when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Coverage:")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Examples:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("PTI-backed transfer report")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
@@ -7950,7 +7999,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/washington/thurston-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/washington/snohomish-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-inspection-cost/washington/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Local Health Jurisdictions")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("On-site Sewage Systems and Local Health Routing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=WA&projectType=buying_home")));
 	}
 
@@ -8056,7 +8105,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county artifacts to pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Drop to a county page when")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not quote yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Coverage:")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Examples:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("service agreement")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record lookup paths")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
@@ -8336,22 +8385,12 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county permit pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Texas")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county permit paths usually break down in Texas")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most common permit closeout signal")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most common malfunction or repair trail")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Most common quote gate")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county permit artifacts to pull")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not schedule permit pricing yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County permit pages behind this state workflow")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Live triage")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the permit desk before pricing the work.")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit authority")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Evidence to pull")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Pricing gate")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Texas permit work")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve first")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Escalate to county when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hold pricing when")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/travis-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("OARS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("licensed site evaluator or professional engineer")))
@@ -8478,19 +8517,12 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county diligence pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Ohio")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county due diligence usually breaks down in Ohio")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county buyer artifacts to pull")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not treat this as a routine deal yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County diligence pages behind this buyer workflow")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Live triage")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve the buyer file before negotiating price.")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Buyer file")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Evidence to pull")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Pricing gate")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Ohio buyer diligence")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve first")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Escalate to county when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hold pricing when")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/ohio/hamilton-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operation permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("off-lot discharge")))
@@ -8505,11 +8537,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Ohio")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county inspection pages")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Inspection Summary")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county inspection files usually break down in Ohio")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county inspection artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not price inspection scope yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Ohio inspection pricing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What actually widens Ohio inspection pricing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What keeps widening Ohio inspection scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to line up before you price inspection scope")))
@@ -8714,7 +8742,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county artifacts to pull")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Drop to a county page when")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not quote yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Coverage:")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Examples:")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health department")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The county health department file reference for the property.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina records lookup guide")))
@@ -8753,11 +8781,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Texas")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county site-review pages")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("County Site-Review Summary")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county site-review files usually break down in Texas")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county site-review artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not price site-review scope yet when")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Decision router for Texas perc and site-review pricing")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County record pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What actually widens Texas site-review pricing")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What keeps widening Texas site-review scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What to line up before you price site-review scope")))
@@ -8834,9 +8858,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Bring this into the next")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county permit pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county permit paths usually break down in North Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county permit artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not schedule permit pricing yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County permit pages behind this state workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("construction authorization already exists or needs to be updated")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("improvement permit")))
@@ -8852,9 +8874,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county diligence pages")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#county-pages\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in North Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How county due diligence usually breaks down in North Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("First county buyer artifacts to pull")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not treat this as a routine deal yet when")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County diligence pages behind this buyer workflow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/carteret-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("improvement permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operation permit")))
@@ -9168,7 +9188,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("online septic-record lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Bring this into the next")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Locating Septic System Records Online")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Residential Septic Systems")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/oregon/clackamas-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/oregon/deschutes-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/oregon/washington-county/")))

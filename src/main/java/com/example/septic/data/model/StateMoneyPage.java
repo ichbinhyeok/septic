@@ -20,6 +20,7 @@ public record StateMoneyPage(
         List<String> officialSourceIds,
         String calculatorProjectType,
         String updatedAt,
+        String reviewedAt,
         String publishStatus
 ) {
     public String key() {

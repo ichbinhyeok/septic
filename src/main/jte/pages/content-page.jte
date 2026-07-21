@@ -63,6 +63,29 @@
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Quick answer</span>
                         <p>${contentQuickAnswer}</p>
+                        @if (!contentEvidenceLanes.isEmpty() && !contentEvidenceLanes.get(0).sources().isEmpty())
+                            <p class="content-quick-answer__source">
+                                Source: <a href="${contentEvidenceLanes.get(0).sources().get(0).url()}" target="_blank" rel="noreferrer">${contentEvidenceLanes.get(0).sources().get(0).agencyName()}</a>
+                                · content reviewed ${contentEvidenceLanes.get(0).sources().get(0).contentVerifiedAt()}
+                            </p>
+                        @elseif (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
+                            <p class="content-quick-answer__source">Page reviewed ${editorialLastReviewedAt}</p>
+                        @endif
+                    </div>
+                @endif
+                @if (!contentOfficialFilePathRows.isEmpty())
+                    <div class="aeo-answer-capsule" aria-label="Answer summary and comparison">
+                        <span class="eyebrow">Answer at a glance</span>
+                        <h2>Which route should I use first?</h2>
+                        <div class="facts-table-wrap">
+                            <table class="facts-table">
+                                <tbody>
+                                @for (var row : contentOfficialFilePathRows.stream().limit(4).toList())
+                                    <tr><th scope="row">${row.label()}</th><td>${row.value()}</td></tr>
+                                @endfor
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 @endif
                 <p class="hero-router-intro">
@@ -71,7 +94,7 @@
                     @elseif ("septic-records-by-county".equals(contentPage.slug()))
                         Pick the county route first. The job is to get to the permit copy, as-built, inspection letter, or office path before another broad explanation slows you down.
                     @else
-                        Pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif
+                        For ${contentPage.primaryKeyword()}, pick the first move that matches your situation. The longer explanation below should justify the move, not replace it. @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif
                     @endif
                 </p>
                 @if (secondaryActionPath != null || contentQuotePath != null || !featuredStateMoneyPageLinks.isEmpty() || !featuredInternalLinks.isEmpty() || !featuredPermitLookupCountyLinks.isEmpty() || !contentOfficialFilePathRows.isEmpty())
@@ -191,7 +214,7 @@
                                 Fast county routes
                             @endif
                         </span>
-                        <p class="hero-county-launchpad__note">Use these as quick examples. If your property is elsewhere, open the state picker or more county routes below.</p>
+                        <p class="hero-county-launchpad__note">Use these as ${contentPage.title()} examples. If your property is elsewhere, open the state picker or the compact county directory below.</p>
                         @for (var link : featuredPermitLookupCountyLinks.stream().limit(4).toList())
                             <a href="${link.path()}"
                                data-track-click="nav"
@@ -237,13 +260,13 @@
                                     @elseif ("septic-records-by-county".equals(contentPage.slug()))
                                         Use this when the county is known and the next click should be the local record path, not another national overview.
                                     @else
-                                        Choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.
+                                        For ${contentPage.primaryKeyword()}, choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.
                                     @endif
                                 </p>
                             @else
                                 <span class="hero-decision-card__label">Tool-first move</span>
                                 <h3>I need the planning tool before I read around</h3>
-                                <p>Choose this when the main value of this page is getting you into the right calculator or planning tool quickly, then using the article as support.</p>
+                                <p>For ${contentPage.primaryKeyword()}, choose this when the main value is getting into the right calculator or planning tool quickly, then using this page as support.</p>
                             @endif
                         </button>
 
@@ -276,17 +299,17 @@
                                     @elseif ("septic-records-by-county".equals(contentPage.slug()))
                                         Use this when the office needs a clear request for the permit copy, final approval, repair file, or inspection letter.
                                     @else
-                                        Choose this when you know the workflow well enough to use the estimate without flattening the problem too early.
+                                        For ${contentPage.primaryKeyword()}, choose this when you know the workflow well enough to use the estimate without flattening the problem too early.
                                     @endif
                                 </p>
                             @elseif (contentQuotePath != null)
                                 <span class="hero-decision-card__label">Conversion-ready</span>
                                 <h3>I already know the lane and need the short form</h3>
-                                <p>Choose this when the page already matches the live problem and you do not need another broad explainer first.</p>
+                                <p>For ${contentPage.primaryKeyword()}, choose this when the page already matches the live problem and you do not need another broad explainer first.</p>
                             @else
                                 <span class="hero-decision-card__label">Fast clarification</span>
                                 <h3>I need one short clarification before I click deeper</h3>
-                                <p>Choose this when the page is close but you still need the shortest possible answer before the next move.</p>
+                                <p>For ${contentPage.primaryKeyword()}, choose this when the page is close but you still need the shortest possible answer before the next move.</p>
                             @endif
                         </button>
 
@@ -313,17 +336,17 @@
                                     @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()))
                                         Use a live source-backed route when you want proof that the national page turns into a concrete local next step.
                                     @else
-                                        Choose this when you want to see how the national problem turns into a concrete local workflow and file story.
+                                        For ${contentPage.primaryKeyword()}, choose this when you want to see how the national problem turns into a concrete local workflow and file story.
                                     @endif
                                 </p>
                             @elseif (!featuredInternalLinks.isEmpty())
                                 <span class="hero-decision-card__label">Next internal move</span>
                                 <h3>Show me the strongest next page now</h3>
-                                <p>Choose this when the broad page already did enough and the main question is where to go next inside the site.</p>
+                                <p>For ${contentPage.primaryKeyword()}, choose this when the broad page already did enough and the main question is where to go next inside the site.</p>
                             @else
                                 <span class="hero-decision-card__label">Read the evidence</span>
                                 <h3>Use the page itself to narrow the question</h3>
-                                <p>Choose this when no stronger live example exists yet and the fastest move is using the page structure below.</p>
+                                <p>For ${contentPage.primaryKeyword()}, choose this when no stronger live example exists yet and the fastest move is using the page structure below.</p>
                             @endif
                         </button>
                     </div>
@@ -357,40 +380,40 @@
                                    data-track-source-context="content_page_surface_picker"
                                    data-track-target-type="state_money_page_directory">Browse state pages</a>
                             </div>
-                            <p class="micro-tool__picker-note">This makes the national page act more like a routing tool than a long article. Choose the state once, then use the lane below that matches the blocker.</p>
+                            <p class="micro-tool__picker-note">The ${contentPage.title()} state picker replaces a long fifty-state list: choose once, then use the local lane that matches the blocker.</p>
                         </div>
 
                         <article class="micro-tool__result" data-state-surface-result aria-live="polite">
                             <span class="micro-tool__kicker">Current route</span>
                             <h2 data-state-surface-result-heading>Choose a state to turn this broad page into a sharper next-step route.</h2>
-                            <p data-state-surface-result-body>This page should help you decide the next move fast. Once you choose a state, the route below will tell you whether to open the local workflow first or move straight into the tool.</p>
+                            <p data-state-surface-result-body>Choose a state to turn ${contentPage.title()} into a local workflow or a tool-ready next step.</p>
                             <div class="micro-tool__signal-grid">
                                 <article class="mini-card mini-card--signal">
                                     <span class="intent-card__label">Workflow fit</span>
                                     <strong data-state-surface-result-fit>Choose a state</strong>
-                                    <p data-state-surface-result-fit-note>See how strong the selected state is as the local wedge for this broad surface.</p>
+                                    <p data-state-surface-result-fit-note>Check how strongly the selected state supports ${contentPage.primaryKeyword()}.</p>
                                 </article>
                                 <article class="mini-card mini-card--signal">
                                     <span class="intent-card__label">Evidence depth</span>
                                     <strong data-state-surface-result-evidence>Waiting for state</strong>
-                                    <p data-state-surface-result-evidence-note>We will show whether the state page is lightly directional or strongly source-backed.</p>
+                                    <p data-state-surface-result-evidence-note>See whether the selected ${contentPage.title()} route is directional or source-backed.</p>
                                 </article>
                                 <article class="mini-card mini-card--signal">
                                     <span class="intent-card__label">Tool handoff</span>
                                     <strong data-state-surface-result-handoff>Waiting for state</strong>
-                                    <p data-state-surface-result-handoff-note>We will show if the tool should be used now, after one local check, or only as a backstop.</p>
+                                    <p data-state-surface-result-handoff-note>See when the ${contentPage.title()} tool should be used.</p>
                                 </article>
                             </div>
                             <div class="micro-tool__result-grid">
                                 <article class="mini-card">
                                     <span class="intent-card__label">Start here</span>
                                     <strong data-state-surface-result-primary>Open a selected state page</strong>
-                                    <p data-state-surface-result-primary-note>Use the matching state page when the main blocker is local workflow, records, permits, or buyer timing.</p>
+                                    <p data-state-surface-result-primary-note>Use the matching state page when ${contentPage.primaryKeyword()} depends on local records or permits.</p>
                                 </article>
                                 <article class="mini-card">
                                     <span class="intent-card__label">Then do this</span>
                                     <strong data-state-surface-result-secondary>${secondaryActionPath != null ? secondaryActionLabel : calculatorCtaLabel}</strong>
-                                    <p data-state-surface-result-secondary-note>Use the tool only after the route is narrow enough that the number means something.</p>
+                                    <p data-state-surface-result-secondary-note>Use the ${contentPage.title()} tool after the local route is narrow enough.</p>
                                 </article>
                             </div>
                         </article>
@@ -506,7 +529,6 @@
                             <span class="micro-tool__kicker">Recommended next best action</span>
                             @if (!featuredStateMoneyPageLinks.isEmpty())
                                 <h2>Open one live state-specific example</h2>
-                                <p>Use a live state-specific page when you want to see how this national overview turns into a local file path, permit sequence, or buyer-risk workflow.</p>
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${featuredStateMoneyPageLinks.get(0).path()}"
@@ -594,7 +616,7 @@
                         <dd>${editorialReviewedAgainst}</dd>
                     </div>
                     <div>
-                        <dt>Last reviewed</dt>
+                        <dt>Latest review activity</dt>
                         <dd>${editorialLastReviewedAt}</dd>
                     </div>
                 </dl>
@@ -602,10 +624,6 @@
                 @if (contentWorkflowCoverage != null)
                     <div class="mini-card">
                         <strong>County-backed coverage</strong>
-                        <p>${contentWorkflowCoverage.summary()}</p>
-                        @if (!contentWorkflowCoverage.bullets().isEmpty())
-                            <p>${contentWorkflowCoverage.bullets().get(0)}</p>
-                        @endif
                     </div>
                 @endif
             </article>
@@ -645,7 +663,6 @@
                         <div>
                             <span class="eyebrow">Official content file path</span>
                             <h2>Turn this search into a file owner, first artifact, request method, and fallback.</h2>
-                            <p>This block applies the records-page pattern to the national hub so a high-intent searcher can move from broad lookup intent into an official file pull without restarting on Google.</p>
                         </div>
                         <div class="state-records-response__priority">
                             <span>Winning pattern</span>
@@ -772,14 +789,12 @@
                                 Move from broad septic-records search intent into an official route or county file pull.
                             @endif
                         </h2>
-                        <p>These are the high-intent exits for searchers who already need a permit copy, as-built, D-1740 file, parcel anchor, or county office response.</p>
                     </div>
 
                     <div class="records-escalation-board__grid">
                         <article class="records-escalation-card records-escalation-card--primary">
                             <span>Official source</span>
                             <h3>Open the official lookup board</h3>
-                            <p>Use this when the visitor needs TDEC, SCDES, OSSF, OSTDS, county health, or public-records routing before another article.</p>
                             <a class="button button--primary"
                                href="/official-septic-lookup-tools/"
                                data-track-click="nav"
@@ -790,7 +805,6 @@
                         <article class="records-escalation-card records-escalation-card--primary">
                             <span>TN / TDEC</span>
                             <h3>Answer TDEC septic records searches directly</h3>
-                            <p>Push Tennessee records searches into the TDEC SSDS route, permit lookup, county fallback, and request wording before the user bounces back to Google.</p>
                             <a class="button button--primary"
                                href="/tdec-septic-records/"
                                data-track-click="nav"
@@ -801,7 +815,6 @@
                         <article class="records-escalation-card">
                             <span>Request builder</span>
                             <h3>Generate the email before the user leaves</h3>
-                            <p>Convert address, county, parcel, record type, and reason into a copy-ready request for the office.</p>
                             <a class="button button--secondary"
                                href="/septic-records-request-builder/"
                                data-track-click="nav"
@@ -812,7 +825,6 @@
                         <article class="records-escalation-card">
                             <span>SC / DHEC</span>
                             <h3>DHEC searchers need the SCDES route</h3>
-                            <p>Route South Carolina DHEC-style searches into current SCDES septic, ePermitting, D-1740, permit-copy, and county contact paths.</p>
                             <a class="button button--secondary"
                                href="/dhec-septic-permit-lookup/"
                                data-track-click="nav"
@@ -958,7 +970,9 @@
                         <article class="official-tool-route">
                             <span>TN / TDEC</span>
                             <h3>TDEC septic records search</h3>
-                            <p>Use the TDEC septic permit search first. If the parcel is not visible, fall back to the Tennessee county route or a records request.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p>Use the TDEC septic permit search first. If the parcel is not visible, fall back to the Tennessee county route or a records request.</p>
+                            @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
                                    href="https://tdec.tn.gov/document-viewer/search/stp"
@@ -970,13 +984,17 @@
                                    data-track-source-context="official_tool_console"
                                    data-track-target-type="internal_page">Use TDEC guide</a>
                             </div>
-                            <p class="official-tool-route__fallback">If the official tab returns 403 or blocks your region, use the guide and request builder so the search does not restart on Google.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p class="official-tool-route__fallback">If the official tab returns 403 or blocks your region, use the guide and request builder so the search does not restart on Google.</p>
+                            @endif
                         </article>
 
                         <article class="official-tool-route">
                             <span>NC / county EH</span>
                             <h3>North Carolina septic permit lookup</h3>
-                            <p>Use county environmental health, permit portals, and records request paths; statewide public records pages are usually a backstop, not the final file owner.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p>Use county environmental health, permit portals, and records request paths; statewide public records pages are usually a backstop, not the final file owner.</p>
+                            @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
                                    href="https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records"
@@ -998,7 +1016,9 @@
                         <article class="official-tool-route">
                             <span>TX / OSSF</span>
                             <h3>Texas OSSF records search</h3>
-                            <p>Use TCEQ OSSF context to identify the program, then resolve the permit file through the county, authorized agent, or local permitting authority.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p>Use TCEQ OSSF context to identify the program, then resolve the permit file through the county, authorized agent, or local permitting authority.</p>
+                            @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
                                    href="https://www.tceq.texas.gov/permitting/ossf"
@@ -1015,7 +1035,9 @@
                         <article class="official-tool-route">
                             <span>SC / DHEC -> SCDES</span>
                             <h3>DHEC septic permit lookup</h3>
-                            <p>Many South Carolina searches still say DHEC. Use current SCDES septic tank, ePermitting, D-1740, permit-copy, and county contact paths.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p>Many South Carolina searches still say DHEC. Use current SCDES septic tank, ePermitting, D-1740, permit-copy, and county contact paths.</p>
+                            @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
                                    href="https://des.sc.gov/permits-regulations/septic-tanks"
@@ -1027,13 +1049,17 @@
                                    data-track-source-context="official_tool_console"
                                    data-track-target-type="internal_page">Use DHEC guide</a>
                             </div>
-                            <p class="official-tool-route__fallback">If SCDES blocks the tab, use the DHEC/SCDES guide to carry county, parcel/TMS, address, owner, and D-1740 wording into the next request.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p class="official-tool-route__fallback">If SCDES blocks the tab, use the DHEC/SCDES guide to carry county, parcel/TMS, address, owner, and D-1740 wording into the next request.</p>
+                            @endif
                         </article>
 
                         <article class="official-tool-route">
                             <span>FL / OSTDS</span>
                             <h3>Florida OSTDS permit lookup</h3>
-                            <p>Use the county health department, local archive, or eBridge-style records path when the search is about a septic permit, final approval, or old OSTDS file.</p>
+                            @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
+                                <p>Use the county health department, local archive, or eBridge-style records path when the search is about a septic permit, final approval, or old OSTDS file.</p>
+                            @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
                                    href="https://floridadep.gov/water/onsite-sewage"
@@ -1206,7 +1232,6 @@
                 <div class="section-heading">
                     <span class="eyebrow">State-by-state county routes</span>
                     <h2>When the searcher already knows the state or county, skip directly to the local file path.</h2>
-                    <p class="lede">This board turns the national records page into a routing surface for county permit lookup, records request, parcel/TMS search, and buyer-file questions.</p>
                 </div>
 
                 <div class="county-route-board county-route-board--dense">
@@ -1219,7 +1244,6 @@
                                 </div>
                                 <strong>${cluster.metricLabel()}</strong>
                             </div>
-                            <p>${cluster.summary()}</p>
                             <div class="county-route-cluster__links" aria-label="${cluster.stateName()} county route shortcuts">
                                 @for (var link : cluster.countyLinks())
                                     <a href="${link.path()}"
@@ -1293,7 +1317,6 @@
                     @if (!featuredStateMoneyPageLinks.isEmpty())
                         <span class="intent-card__label">Best state-specific example</span>
                         <h2>${featuredStateMoneyPageLinks.get(0).title()}</h2>
-                        <p>Open the strongest live state-specific page first when you want to see the official-source workflow behind this national overview. @if (contentWorkflowCoverage != null && contentWorkflowCoverage.bullets().size() > 1) ${contentWorkflowCoverage.bullets().get(1)} @endif</p>
                         <a class="button button--secondary" href="${featuredStateMoneyPageLinks.get(0).path()}" data-track-click="nav" data-track-source-context="content_page_action_rail_featured_state" data-track-target-type="state_money_page">Open this state page</a>
                     @elseif (!featuredInternalLinks.isEmpty())
                         <span class="intent-card__label">Most likely next move</span>
@@ -1312,13 +1335,11 @@
                 <div class="section-heading">
                     <span class="eyebrow">County lookup launchpad</span>
                     <h2>Start with the county file when the search is already specific.</h2>
-                    <p>Use these county routes when you already have a county name, parcel detail, or seller claim and need the actual file path before reading another broad state guide.</p>
                 </div>
                 <div class="detail-grid">
                     @for (var link : featuredPermitLookupCountyLinks)
                         <article class="detail-card">
                             <h3>${link.title()}</h3>
-                            <p>${link.note()}</p>
                             <a class="button button--secondary"
                                href="${link.path()}"
                                data-track-click="nav"
@@ -1338,7 +1359,6 @@
                             @for (var link : secondaryPermitLookupCountyLinks)
                                 <article class="detail-card">
                                     <h3>${link.title()}</h3>
-                                    <p>${link.note()}</p>
                                     <a href="${link.path()}"
                                        data-track-click="nav"
                                        data-track-source-context="permit_lookup_county_launchpad_overflow"
@@ -1441,33 +1461,6 @@
         </section>
     @endif
 
-    <section class="section section--tight">
-        <div class="container detail-grid">
-            <article class="detail-card detail-card--full">
-                <h2>What this national page can answer before you touch a quote</h2>
-                <p>${contentPage.targetReader()} This national page is strongest when you still need to frame the problem correctly before you call a contractor, ask for transfer records, or push into a permit conversation.</p>
-                <p>${contentPage.introCopy()} Use this page to separate the broad cost story from the real bottleneck. In practice, that usually means deciding whether the next move is the estimator, a state-specific page, or a records and inspection workflow instead of another generic explainer.</p>
-                @if (!featuredStateMoneyPageLinks.isEmpty())
-                    <p>
-                        If the shape of your situation already feels state-specific, move next into
-                        <a href="${featuredStateMoneyPageLinks.get(0).path()}"
-                           data-track-click="nav"
-                           data-track-source-context="content_page_inline_state_link"
-                           data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(0).title()}</a>
-                        @if (featuredStateMoneyPageLinks.size() > 1)
-                            or
-                            <a href="${featuredStateMoneyPageLinks.get(1).path()}"
-                               data-track-click="nav"
-                               data-track-source-context="content_page_inline_state_link"
-                               data-track-target-type="state_money_page">${featuredStateMoneyPageLinks.get(1).title()}</a>
-                        @endif
-                        before you trust any low-end national range.
-                    </p>
-                @endif
-            </article>
-        </div>
-    </section>
-
     @if (contentWorkflowCoverage != null)
         <section class="section section--tight">
             <div class="container detail-grid">
@@ -1561,7 +1554,6 @@
             <div class="container detail-grid">
                 <article class="detail-card detail-card--full">
                     <h2>When this page stops being enough</h2>
-                    <p>The national page should get you to the right lane, not keep you here forever. Once you need the real file path, local office, reserve-area risk, transfer rule, or state review wrinkle, move into the narrower page that matches the blocker instead of rereading the same overview.</p>
                     @if (!featuredInternalLinks.isEmpty())
                         <p>
                             If the blocker is workflow rather than geography, go next to
@@ -1646,14 +1638,11 @@
                 <article class="trust-box trust-box--large">
                     <span class="trust-box__label">How this page is sourced</span>
                     <h2>State-specific pages carry the official sources behind this national overview.</h2>
-                    <p>This page stays generic on purpose. The linked state lanes below carry direct official sources, state-specific workflow context, and the last-reviewed dates that support the broader national guidance.</p>
                 </article>
                 <div class="detail-grid">
                     @for (var lane : contentEvidenceLanes.stream().limit(6).toList())
                         <article class="detail-card">
                             <h3><a href="${lane.path()}" data-track-click="nav" data-track-source-context="content_page_source_lane" data-track-target-type="state_money_page">${lane.title()}</a></h3>
-                            <p><strong>${lane.stateName()}</strong></p>
-                            <p>${lane.reviewedAgainst()} Last reviewed ${lane.lastReviewedAt()}.</p>
                             <ul class="source-list source-list--compact">
                                 @for (var source : lane.sources())
                                     <li>
@@ -1669,9 +1658,7 @@
                                             @if (source.effectiveDate() != null && !source.effectiveDate().isBlank())
                                                 <span>Effective: ${source.effectiveDate()}</span>
                                             @endif
-                                            @if (source.lastVerifiedAt() != null && !source.lastVerifiedAt().isBlank())
-                                                <span>Last verified: ${source.lastVerifiedAt()}</span>
-                                            @endif
+                                            @template.tags.sourceVerification(source = source)
                                         </div>
                                     </li>
                                 @endfor
@@ -1683,11 +1670,9 @@
                     <details class="county-link-overflow">
                         <summary>Show more source-backed state lanes</summary>
                         <div class="detail-grid">
-                            @for (var lane : contentEvidenceLanes)
+                            @for (var lane : contentEvidenceLanes.stream().skip(6).toList())
                                 <article class="detail-card">
                                     <h3><a href="${lane.path()}" data-track-click="nav" data-track-source-context="content_page_source_lane_overflow" data-track-target-type="state_money_page">${lane.title()}</a></h3>
-                                    <p><strong>${lane.stateName()}</strong></p>
-                                    <p>${lane.reviewedAgainst()} Last reviewed ${lane.lastReviewedAt()}.</p>
                                 </article>
                             @endfor
                         </div>
@@ -1755,7 +1740,7 @@
                 <details class="county-link-overflow">
                     <summary>Show all FAQ answers</summary>
                     <div class="detail-grid">
-                        @for (var faq : contentPage.faqBlocks())
+                        @for (var faq : contentPage.faqBlocks().stream().skip(4).toList())
                             <article class="detail-card">
                                 <h3>${faq.question()}</h3>
                                 <p>${faq.answer()}</p>
@@ -1775,7 +1760,6 @@
                     @for (var link : (secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks).stream().limit(6).toList())
                         <li>
                             <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links" data-track-target-type="internal_page">${link.title()}</a>
-                            <p class="detail-list__note">${link.note()}</p>
                         </li>
                     @endfor
                 </ul>
@@ -1783,10 +1767,9 @@
                     <details class="county-link-overflow">
                         <summary>Show more related pages</summary>
                         <ul class="detail-list">
-                            @for (var link : secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks)
+                            @for (var link : (secondaryInternalLinks.isEmpty() ? internalLinks : secondaryInternalLinks).stream().skip(6).toList())
                                 <li>
                                     <a href="${link.path()}" data-track-click="nav" data-track-source-context="content_page_related_links_overflow" data-track-target-type="internal_page">${link.title()}</a>
-                                    <p class="detail-list__note">${link.note()}</p>
                                 </li>
                             @endfor
                         </ul>
