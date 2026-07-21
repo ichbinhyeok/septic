@@ -10,10 +10,12 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
+import com.example.septic.service.CountyContentQualityService;
 import com.example.septic.service.OpsReportCredentialsService;
 import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.web.EstimateForm;
+import com.example.septic.web.CountyLocalContentView;
 import com.example.septic.web.PageLink;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,6 +61,9 @@ class SepticApplicationTests {
 
 	@Autowired
 	private ResearchDataService researchDataService;
+
+	@Autowired
+	private CountyContentQualityService countyContentQualityService;
 
 	@Autowired
 	private OpsReportCredentialsService opsReportCredentialsService;
@@ -108,6 +113,74 @@ class SepticApplicationTests {
 				stalePages.isEmpty(),
 				"Published AEO pages need editorial review within 180 days or a reachable source reviewed within 365 days: " + String.join(", ", stalePages)
 		);
+	}
+
+	@Test
+	void priorityCountyPagesReplaceRepeatedNarrativeWithVerifiedEvidence() throws Exception {
+		assertEquals(75, countyContentQualityService.priorityPageKeys().size());
+
+		java.util.Map<String, Integer> renderedUnitCounts = new java.util.HashMap<>();
+		int renderedUnitCount = 0;
+		int locallyGroundedPageCount = 0;
+		List<String> missingEvidence = new ArrayList<>();
+		List<String> unchangedPriorityPages = new ArrayList<>();
+		List<String> legacyTennesseeRoutes = new ArrayList<>();
+
+		for (CountyRecordsPage page : researchDataService.getPublicCountyRecordsPages()) {
+			if (!countyContentQualityService.priorityPageKeys().contains(page.key())) {
+				continue;
+			}
+			CountyLocalContentView contentView = countyContentQualityService.build(
+					page,
+					researchDataService.getSources(page.officialSourceIds())
+			);
+			if (!contentView.hasEvidenceFacts()) {
+				missingEvidence.add(page.key());
+			}
+			if (contentView.replacedRepeatedUnitCount() == 0) {
+				unchangedPriorityPages.add(page.key());
+			}
+			if (contentView.countyLocalFactCount() > 0) {
+				locallyGroundedPageCount++;
+			}
+			if ("TN".equals(page.stateCode()) && (page.recordsUrl().contains("/permit-permits/")
+					|| page.officeUrl().contains("/permit-permits/"))) {
+				legacyTennesseeRoutes.add(page.key());
+			}
+			for (String unit : countyQualityUnits(contentView)) {
+				String normalized = normalizeCountyQualityUnit(page, unit);
+				if (!normalized.isBlank()) {
+					renderedUnitCounts.merge(normalized, 1, Integer::sum);
+					renderedUnitCount++;
+				}
+			}
+		}
+
+		int repeatedRenderedUnits = renderedUnitCounts.values().stream()
+				.filter(count -> count > 1)
+				.mapToInt(Integer::intValue)
+				.sum();
+		double repeatedRatio = renderedUnitCount == 0 ? 1 : repeatedRenderedUnits / (double) renderedUnitCount;
+		List<String> topRepeatedUnits = renderedUnitCounts.entrySet().stream()
+				.filter(entry -> entry.getValue() > 1)
+				.sorted(java.util.Map.Entry.<String, Integer>comparingByValue().reversed())
+				.limit(12)
+				.map(entry -> entry.getValue() + "x " + entry.getKey())
+				.toList();
+
+		assertTrue(missingEvidence.isEmpty(), "Priority county pages missing source facts: " + missingEvidence);
+		assertTrue(unchangedPriorityPages.isEmpty(), "Priority county pages did not replace repeated units: " + unchangedPriorityPages);
+		assertEquals(75, locallyGroundedPageCount, "Every priority page must have county-scoped evidence");
+		assertTrue(legacyTennesseeRoutes.isEmpty(), "Priority Tennessee pages still use retired TDEC paths: " + legacyTennesseeRoutes);
+		assertTrue(repeatedRatio <= 0.20, "Priority county narrative repeated-unit ratio must stay at or below 20%, got "
+				+ repeatedRatio + ". Top repeats: " + topRepeatedUnits);
+
+		mockMvc.perform(get("/septic-records-checklist/alabama/autauga-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-local-evidence")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-replaced-unit-count=\"11\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County services page listing onsite sewage applications and permits")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Content checked 2026-06-28")));
 	}
 
 	private boolean hasPublicationReadySource(
@@ -629,16 +702,16 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-07-21\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-07-22\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"alternate\" type=\"text/csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"Dataset\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-21\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-22\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Filter 324 county records routes.")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-07-21")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-07-22")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed 2026-")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
@@ -9692,6 +9765,32 @@ class SepticApplicationTests {
 				.flatMap(page -> page.officialSourceIds().stream())
 				.allMatch(sourceId -> researchDataService.findSource(sourceId).isPresent()));
 		assertEquals("2026-07-20", researchDataService.countyRecordsPagesGeneratedAt());
+	}
+
+	private List<String> countyQualityUnits(CountyLocalContentView contentView) {
+		return Stream.of(
+				Stream.of(contentView.introCopy(), contentView.uniqueAngle(), contentView.targetReader()),
+				contentView.decisionSteps().stream(),
+				contentView.recordsToRequest().stream(),
+				contentView.lowEndBreakers().stream(),
+				contentView.evidenceFacts().stream().map(fact -> fact.summary())
+		)
+				.flatMap(stream -> stream)
+				.filter(value -> value != null && !value.isBlank())
+				.toList();
+	}
+
+	private String normalizeCountyQualityUnit(CountyRecordsPage page, String value) {
+		String normalized = value.toLowerCase(java.util.Locale.US)
+				.replace(page.countyName().toLowerCase(java.util.Locale.US), " <place> ");
+		normalized = normalized.replaceAll(
+				"\\b" + java.util.regex.Pattern.quote(page.stateCode().toLowerCase(java.util.Locale.US)) + "\\b",
+				" <state> "
+		);
+		return normalized
+				.replaceAll("[^a-z0-9<>]+", " ")
+				.trim()
+				.replaceAll("\\s+", " ");
 	}
 
 	private boolean indexable(String contentSlug, String stateSlug) {

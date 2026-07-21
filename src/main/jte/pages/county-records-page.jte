@@ -7,12 +7,14 @@
 @import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.CountyIntentRouteView
+@import com.example.septic.web.CountyLocalContentView
 @import com.example.septic.web.CountyRequestBuilderOptionView
 @import com.example.septic.web.CountySearchResponseView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param CountyRecordsPage countyPage
+@param CountyLocalContentView countyLocalContent
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
 @param CountyAvailabilitySummaryView countyAvailabilitySummary = null
@@ -226,10 +228,12 @@
                 @endif
                 @if (countySeoIntro != null && !countySeoIntro.isBlank())
                     <p class="lede">${countySeoIntro}</p>
-                    <p class="county-records-page__support-copy">${countyPage.introCopy()}</p>
+                    @if (!countyLocalContent.priorityPage())
+                        <p class="county-records-page__support-copy">${countyLocalContent.introCopy()}</p>
+                    @endif
                     <p class="county-records-page__local-signal"><strong>Local signal:</strong> ${countyPage.metaDescription()}</p>
                 @else
-                    <p class="lede">${countyPage.introCopy()}</p>
+                    <p class="lede">${countyLocalContent.introCopy()}</p>
                 @endif
                 @if (!countySearchQueries.isEmpty())
                     <div class="county-search-intent-strip" aria-label="Searches answered on this page">
@@ -355,7 +359,7 @@
                             <article class="county-click-card">
                                 <span>After the file</span>
                                 <h3>Estimate only after the route is clear</h3>
-                                <p>${countyPage.countyName()} pricing gate: ${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyPage.lowEndBreakers().get(0)}</p>
+                                <p>${countyPage.countyName()} pricing gate: ${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyLocalContent.lowEndBreakers().get(0)}</p>
                                 <a class="button button--secondary"
                                    href="${countyEstimatePath}"
                                    data-track-click="nav"
@@ -370,6 +374,38 @@
     @endif
 
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
+
+    @if (countyLocalContent.priorityPage() && countyLocalContent.hasEvidenceFacts())
+        <section class="section section--tight county-local-evidence"
+                 data-county-local-evidence
+                 data-replaced-unit-count="${countyLocalContent.replacedRepeatedUnitCount()}"
+                 data-local-fact-count="${countyLocalContent.countyLocalFactCount()}">
+            <div class="container">
+                <div class="county-local-evidence__heading">
+                    <span class="eyebrow">Verified local evidence</span>
+                    <h2>What the official sources actually document for ${countyPage.countyName()}</h2>
+                    <p>These source notes replace repeated county-template copy. They describe the real lookup, permit, map, inspection, or request path found in the cited government material.</p>
+                </div>
+                <ol class="county-local-evidence__list">
+                    @for (var fact : countyLocalContent.evidenceFacts())
+                        <li>
+                            <div class="county-local-evidence__meta">
+                                <span>${fact.scopeLabel()}</span>
+                                @if (fact.verifiedAt() != null && !fact.verifiedAt().isBlank())
+                                    <time datetime="${fact.verifiedAt()}">Content checked ${fact.verifiedAt()}</time>
+                                @endif
+                            </div>
+                            <div>
+                                <h3><a href="${fact.sourceUrl()}" target="_blank" rel="noreferrer">${fact.sourceTitle()}</a></h3>
+                                <p>${fact.summary()}</p>
+                                <small>${fact.agencyName()}</small>
+                            </div>
+                        </li>
+                    @endfor
+                </ol>
+            </div>
+        </section>
+    @endif
 
     <section class="section section--tight county-research-disclosure-section">
         <div class="container">
@@ -660,7 +696,7 @@
                         @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
                             <p>At step four for ${countyPage.countyName()}: ${countyWorkflowStructure.quoteGate()}</p>
                         @else
-                            <p>${countyPage.lowEndBreakers() != null && !countyPage.lowEndBreakers().isEmpty() ? countyPage.lowEndBreakers().get(0) : countyPage.contactLine()}</p>
+                            <p>${!countyLocalContent.lowEndBreakers().isEmpty() ? countyLocalContent.lowEndBreakers().get(0) : countyPage.contactLine()}</p>
                         @endif
                     </li>
                 </ol>
@@ -780,7 +816,11 @@
                 <article class="intent-card intent-card--primary">
                     <span class="intent-card__label">Open the county record path first</span>
                     <h2>${countyPage.recordsLabel()}</h2>
-                    <p>${countyPage.countyName()} workflow angle: ${countyPage.uniqueAngle()}</p>
+                    @if (countyLocalContent.priorityPage() && countyLocalContent.hasEvidenceFacts())
+                        <p>Use ${countyLocalContent.evidenceFacts().get(0).sourceTitle()} to confirm the owning route before a quote or repair decision.</p>
+                    @else
+                        <p>${countyPage.countyName()} workflow angle: ${countyLocalContent.uniqueAngle()}</p>
+                    @endif
                     <a class="button button--primary"
                        href="${countyPage.recordsUrl()}"
                        target="_blank"
@@ -943,8 +983,8 @@
         <div class="detail-grid">
             <article class="detail-card">
                 <h2>Why ${countyPage.countyName()} is worth its own page</h2>
-                <p>${countyPage.uniqueAngle()}</p>
-                <p>${countyPage.targetReader()}</p>
+                <p>${countyLocalContent.uniqueAngle()}</p>
+                <p>${countyLocalContent.targetReader()}</p>
             </article>
 
             <article class="detail-card">
@@ -979,7 +1019,7 @@
             <article class="detail-card detail-card--full">
                 <h2>How this county workflow usually unfolds</h2>
                 <ol class="detail-list detail-list--numbered">
-                    @for (var step : countyPage.decisionSteps())
+                    @for (var step : countyLocalContent.decisionSteps())
                         <li>${step}</li>
                     @endfor
                 </ol>
@@ -988,7 +1028,7 @@
             <article class="detail-card">
                 <h2>What to ask the county for</h2>
                 <ul class="detail-list">
-                    @for (var record : countyPage.recordsToRequest())
+                    @for (var record : countyLocalContent.recordsToRequest())
                         <li>${record}</li>
                     @endfor
                 </ul>
@@ -997,7 +1037,7 @@
             <article class="detail-card">
                 <h2>What breaks the low-end story</h2>
                 <ul class="detail-list">
-                    @for (var breaker : countyPage.lowEndBreakers())
+                    @for (var breaker : countyLocalContent.lowEndBreakers())
                         <li>${breaker}</li>
                     @endfor
                 </ul>

@@ -12,6 +12,7 @@ import com.example.septic.data.model.StateProfile;
 import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.CensusAddressLookupService;
+import com.example.septic.service.CountyContentQualityService;
 import com.example.septic.service.DrainfieldEstimatorResult;
 import com.example.septic.service.DrainfieldEstimatorService;
 import com.example.septic.service.EventAnalyticsService;
@@ -414,6 +415,7 @@ public class SiteController {
     private final PublishingPolicyService publishingPolicyService;
     private final CensusAddressLookupService censusAddressLookupService;
     private final EventAnalyticsService eventAnalyticsService;
+    private final CountyContentQualityService countyContentQualityService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -428,7 +430,8 @@ public class SiteController {
             UsStateDirectoryService usStateDirectoryService,
             PublishingPolicyService publishingPolicyService,
             CensusAddressLookupService censusAddressLookupService,
-            EventAnalyticsService eventAnalyticsService
+            EventAnalyticsService eventAnalyticsService,
+            CountyContentQualityService countyContentQualityService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -443,6 +446,7 @@ public class SiteController {
         this.publishingPolicyService = publishingPolicyService;
         this.censusAddressLookupService = censusAddressLookupService;
         this.eventAnalyticsService = eventAnalyticsService;
+        this.countyContentQualityService = countyContentQualityService;
     }
 
     @GetMapping("/")
@@ -1744,14 +1748,16 @@ The goal is to settle the permit path before we frame the project as a normal in
                 countyPage.updatedAt(),
                 state.lastVerifiedAt()
         );
+        CountyLocalContentView countyLocalContent = countyContentQualityService.build(countyPage, sources);
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);
+        model.addAttribute("countyLocalContent", countyLocalContent);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("countySeoHeading", countySeoHeading(countyPage));
-        model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state));
-        model.addAttribute("countyQuickAnswer", countyQuickAnswer(countyPage));
+        model.addAttribute("countySeoIntro", countySeoIntro(countyPage, state, countyLocalContent));
+        model.addAttribute("countyQuickAnswer", countyQuickAnswer(countyPage, countyLocalContent));
         model.addAttribute("countySearchQueries", countySearchQueries(countyPage, state));
         model.addAttribute("countySearchResponse", countySearchResponse(countyPage, state));
         model.addAttribute("countyLeadProjectLabel", projectTypeLabel(countyLeadProjectType(countyPage)));
@@ -1792,7 +1798,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return countyPage.countyName() + " septic permit lookup and records request";
     }
 
-    private String countyQuickAnswer(CountyRecordsPage countyPage) {
+    private String countyQuickAnswer(CountyRecordsPage countyPage, CountyLocalContentView localContent) {
         return switch (countyPage.key()) {
             case "TN::blount-county" ->
                     "Use Blount County Environmental Health's SSDS request to pull the septic file. For a loan closing, use the separate inspection-letter request because the county says the SSDS form is not a closing letter.";
@@ -1800,14 +1806,31 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
             case "MD::st-marys-county" ->
                     "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
-            default -> "Start with " + countyPage.recordsLabel()
-                    + ". Search by address or parcel when available, request the permit and approval trail, and verify the owning office before treating a missing online result as proof that no file exists.";
+            default -> localContent.priorityPage() && localContent.hasEvidenceFacts()
+                    ? "Start with " + countyPage.recordsLabel() + ". "
+                            + completeSentence(localContent.recordsToRequest().get(0)) + " Then use "
+                            + localContent.evidenceFacts().get(0).agencyName()
+                            + " to confirm the owning route before a quote, repair, or closing decision."
+                    : "Start with " + countyPage.recordsLabel()
+                            + ". Search by address or parcel when available, request the permit and approval trail, and verify the owning office before treating a missing online result as proof that no file exists.";
         };
     }
 
-    private String countySeoIntro(CountyRecordsPage countyPage, StateProfile state) {
+    private String completeSentence(String value) {
+        String trimmed = value == null ? "" : value.trim();
+        return trimmed.matches(".*[.!?]$") ? trimmed : trimmed + ".";
+    }
+
+    private String countySeoIntro(
+            CountyRecordsPage countyPage,
+            StateProfile state,
+            CountyLocalContentView localContent
+    ) {
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Search Hamilton County, TN septic inspection records, permits, and completion certificates through the official county route. Use the address-search tips and Groundwater Department fallback before treating the file as missing.";
+        }
+        if (localContent.priorityPage()) {
+            return localContent.introCopy();
         }
         return "Use this " + countyPage.countyName() + ", " + state.stateCode()
                 + " route for septic permit lookup, records requests, address or parcel searches, as-built files, inspection letters, and county office routing before you trust a quote.";

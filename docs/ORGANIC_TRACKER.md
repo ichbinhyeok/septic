@@ -1774,3 +1774,47 @@ Copy this block for the next review:
     clicks, CSV downloads, citation copies, and state-hub clickthrough
   - treat Dataset discovery or citation growth as an observed outcome, not a
     guaranteed ranking effect
+
+## 2026-07-22 - 75 priority county pages: local evidence density
+
+- Goal: reduce templated county narrative while preserving the existing URL,
+  title, description, H1, and canonical treatment.
+- Selection:
+  - audited all 324 published county routes across the intro, workflow angle,
+    target reader, decision steps, requested records, and pricing breakers
+  - normalized county and state names before comparison so place-name swaps did
+    not hide repeated prose
+  - selected the 75 pages with the most repeated narrative units
+- Changes:
+  - replaced repeated units on those pages with source-backed county workflow
+    facts, file targets, decision steps, and unresolved-risk checks
+  - added a flat, crawlable official-evidence section with agency, source link,
+    county scope, editorial review date, and reviewed source note
+  - added 15 county-scoped Tennessee records for priority pages that previously
+    had only statewide sources
+  - replaced the same 15 pages' retired statewide primary buttons with the
+    current county agency or serving TDEC field-office route
+  - corrected six migrated TDEC URLs to the current `/environment/contacts/`
+    and `/environment/permits/` paths before publication
+- Quality gates:
+  - exactly 75 priority pages
+  - all 75 replace at least one repeated narrative unit
+  - all 75 expose at least one source scoped exactly to that county
+  - normalized repeated-unit ratio across the priority cohort must remain at or
+    below 20%; the pre-change audit measured 55.98%
+- Source verification:
+  - full registry audit checked 1,088 unique URLs
+  - 717 healthy, 269 bot-blocked, 5 transient, 97 inconclusive, and 0 dead
+  - Davidson and Shelby remain published as editorially reviewed with HTTP bot
+    blocks recorded separately; they are not mislabeled as HTTP healthy
+- Browser verification:
+  - Autauga County rendered 11 narrative replacements and two county-scoped
+    official evidence rows
+  - desktop and 390px mobile checks had no horizontal overflow
+  - a non-priority DeKalb County page retained the prior treatment and did not
+    receive the new evidence block
+- Measurement:
+  - compare the 75-page cohort with the remaining county pages after 14 and 28
+    complete days for impressions, clicks, query diversity, and official-source
+    exits
+  - treat traffic movement as an observed result, not a ranking guarantee

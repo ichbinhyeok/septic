@@ -16409,11 +16409,11 @@
       "introCopy": "Davidson County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Nashville-area searches often need to separate the TDEC SSDS path from contract-county routing before a buyer or builder trusts the file. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Davidson County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Davidson County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Metro Nashville Public Health Department Environmental Health",
+      "officeUrl": "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems",
+      "recordsLabel": "Search Metro Nashville septic property files",
+      "recordsUrl": "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems",
+      "contactLine": "Metro Nashville property information, bedroom approval, inspection-date, and scanned property-file search route",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Davidson County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16453,7 +16453,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_davidson_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16480,11 +16481,11 @@
       "introCopy": "Knox County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Knox County matters because TDEC lists it as a contract county and Knoxville-area parcels often need a local septic file answer before pricing. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Knox County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Knox County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Knox County Groundwater Protection",
+      "officeUrl": "https://www.knoxcounty.org/health/groundwater_protection.php",
+      "recordsLabel": "Request a Knox County SSDS file search",
+      "recordsUrl": "https://www.knoxcounty.org/health/groundwater_protection.php",
+      "contactLine": "Knox County Groundwater Protection SSDS file search for system records, soil mapping, and completed repairs",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Knox County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16524,7 +16525,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_knox_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16551,11 +16553,11 @@
       "introCopy": "Shelby County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Shelby County matters because TDEC lists it as a contract county, so the practical lookup can differ from a regional-office-only Tennessee search. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Shelby County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Shelby County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Shelby County Health Department Water Quality Branch",
+      "officeUrl": "https://www.shelbycountytn.gov/m/faq?cat=50#question-323",
+      "recordsLabel": "Open Shelby County SSDS permit guidance",
+      "recordsUrl": "https://www.shelbycountytn.gov/m/faq?cat=50#question-323",
+      "contactLine": "Shelby County Water Quality Branch septic application, review, inspection, and repair-permit route",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Shelby County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16595,7 +16597,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_shelby_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16622,11 +16625,11 @@
       "introCopy": "Rutherford County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Rutherford County is a fast-growth county where additions, new builds, and sale files make the first SSDS record pull important. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Rutherford County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Nashville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open Rutherford County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Rutherford County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16666,7 +16669,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_rutherford_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16693,11 +16697,11 @@
       "introCopy": "Montgomery County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Montgomery County searches often start broad, but the useful answer is still the parcel file, permit history, and correct TDEC contact path. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Montgomery County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Nashville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open Montgomery County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Montgomery County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16737,7 +16741,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_montgomery_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16764,11 +16769,11 @@
       "introCopy": "Sumner County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Sumner County buyers and owners need the TDEC SSDS lookup path before assuming the old system story supports a sale or improvement. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Sumner County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Nashville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open Sumner County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Sumner County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16808,7 +16813,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_sumner_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16835,11 +16841,11 @@
       "introCopy": "Wilson County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Wilson County growth makes permit lookup and file quality more useful than a generic Tennessee septic overview. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Wilson County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Nashville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open Wilson County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Wilson County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16879,7 +16885,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_wilson_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16906,11 +16913,11 @@
       "introCopy": "Sevier County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Sevier County matters because TDEC lists it as a contract county and mountain or rental-property work can depend on the right local septic file. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Sevier County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Sevier County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Sevier County Environmental Health",
+      "officeUrl": "https://www.seviercountytn.gov/government/departments/services/environmental_health.php",
+      "recordsLabel": "Open Sevier County Environmental Health septic services",
+      "recordsUrl": "https://www.seviercountytn.gov/government/departments/services/environmental_health.php",
+      "contactLine": "Sevier County Environmental Health, the county-specific jurisdiction route listed by TDEC",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Sevier County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -16950,7 +16957,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_sevier_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16977,11 +16985,11 @@
       "introCopy": "Madison County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Madison County matters because TDEC lists it as a contract county, so homeowners should confirm the local assistance route before treating a statewide search as final. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Madison County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Madison County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Madison County Health Department",
+      "officeUrl": "https://madisoncountytn.gov/FormCenter/Health-Department-11/Septic-System-Records-Request-89",
+      "recordsLabel": "Submit a Madison County septic records request",
+      "recordsUrl": "https://madisoncountytn.gov/FormCenter/Health-Department-11/Septic-System-Records-Request-89",
+      "contactLine": "Madison County septic drawing request by owner, property address, and optional tax map or parcel ID",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Madison County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17021,7 +17029,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_madison_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17048,11 +17057,11 @@
       "introCopy": "Jefferson County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Jefferson County matters because TDEC lists it as a contract county and lake-area or rural parcels can turn on the first SSDS record found. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Jefferson County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Jefferson County septic assistance route via TDEC contacts",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "Jefferson County Environmental Health",
+      "officeUrl": "https://jeffersoncountytn.gov/environmental-health/",
+      "recordsLabel": "Open Jefferson County septic permit guidance",
+      "recordsUrl": "https://jeffersoncountytn.gov/environmental-health/",
+      "contactLine": "Jefferson County Environmental Health septic permit, plat, soil map, inspection, and final approval route",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Jefferson County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17092,7 +17101,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_jefferson_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17119,11 +17129,11 @@
       "introCopy": "Sullivan County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Sullivan County searches are strongest when they start with the TDEC SSDS hub and then confirm which regional file path controls the parcel. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Sullivan County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Johnson City Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/johnson.html",
+      "recordsLabel": "Request a Sullivan County septic layout or public record",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/johnson.html",
+      "contactLine": "TDEC Johnson City septic layouts and public records | 423-854-5392 | TDEC.Johnsoncity.EFO@tn.gov",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Sullivan County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17163,7 +17173,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_sullivan_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17190,11 +17201,11 @@
       "introCopy": "Washington County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Washington County buyers and owners need a permit lookup path that can distinguish a usable file from a thin seller story. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Washington County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Johnson City Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/johnson.html",
+      "recordsLabel": "Request a Washington County septic layout or public record",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/johnson.html",
+      "contactLine": "TDEC Johnson City septic layouts and public records | 423-854-5392 | TDEC.Johnsoncity.EFO@tn.gov",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Washington County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17234,7 +17245,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_washington_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17261,11 +17273,11 @@
       "introCopy": "Maury County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Maury County growth makes the permit file, repair history, and office routing more useful than one statewide septic explanation. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Maury County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Columbia Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/columbia.html",
+      "recordsLabel": "Open Maury County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/columbia.html",
+      "contactLine": "TDEC Columbia Environmental Field Office | 931-380-3371",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Maury County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17305,7 +17317,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_maury_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17332,11 +17345,11 @@
       "introCopy": "Bradley County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Bradley County searches should start with TDEC SSDS records and contact routing before pricing a repair, sale, or addition as routine. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Bradley County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Chattanooga Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/chattanooga.html",
+      "recordsLabel": "Open Bradley County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/chattanooga.html",
+      "contactLine": "TDEC Chattanooga Environmental Field Office | 423-634-5745",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Bradley County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17376,7 +17389,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_bradley_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -17403,11 +17417,11 @@
       "introCopy": "Putnam County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the TDEC regional contact path unless a local office confirms a different file owner. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Putnam County searches need the permit lookup and records path before a buyer, owner, or contractor trusts the next project step. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Putnam County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "TDEC Division of Water Resources regional septic contact",
-      "officeUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-contacts-by-region.html",
-      "recordsLabel": "TDEC SSDS permits and record search hub",
-      "recordsUrl": "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits.html",
-      "contactLine": "TDEC Division of Water Resources regional or contract county septic contact",
+      "officeLabel": "TDEC Cookeville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/cookeville.html",
+      "recordsLabel": "Open Putnam County's TDEC field-office route",
+      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/cookeville.html",
+      "contactLine": "TDEC Cookeville septic-related inquiries | 931-206-6329",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Putnam County should route through the TDEC regional contact path unless a local office confirms a different file owner, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -17447,7 +17461,8 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
-        "tn_04"
+        "tn_04",
+        "tn_putnam_local_01"
       ],
       "publishStatus": "published",
       "workflowStructure": {
