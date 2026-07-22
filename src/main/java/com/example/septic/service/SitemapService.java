@@ -14,15 +14,18 @@ public class SitemapService {
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
     private final SeoService seoService;
+    private final CountyContentQualityService countyContentQualityService;
 
     public SitemapService(
             ResearchDataService researchDataService,
             PublishingPolicyService publishingPolicyService,
-            SeoService seoService
+            SeoService seoService,
+            CountyContentQualityService countyContentQualityService
     ) {
         this.researchDataService = researchDataService;
         this.publishingPolicyService = publishingPolicyService;
         this.seoService = seoService;
+        this.countyContentQualityService = countyContentQualityService;
     }
 
     public String robotsTxt() {
@@ -121,7 +124,7 @@ public class SitemapService {
     }
 
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
-        return validDateOrBlank(countyPage.updatedAt());
+        return validDateOrBlank(countyContentQualityService.effectiveUpdatedAt(countyPage));
     }
 
     private String statePageLastMod(StateProfile state) {

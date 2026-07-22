@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CountyContentQualityService {
     public static final int PRIORITY_PAGE_COUNT = 75;
+    public static final String PRIORITY_CONTENT_UPDATED_AT = "2026-07-22";
 
     private final Set<String> repeatedUnits;
     private final Set<String> priorityPageKeys;
@@ -128,6 +129,16 @@ public class CountyContentQualityService {
 
     public Set<String> priorityPageKeys() {
         return priorityPageKeys;
+    }
+
+    public String effectiveUpdatedAt(CountyRecordsPage page) {
+        if (!priorityPageKeys.contains(page.key())) {
+            return page.updatedAt();
+        }
+        if (!hasText(page.updatedAt()) || PRIORITY_CONTENT_UPDATED_AT.compareTo(page.updatedAt()) > 0) {
+            return PRIORITY_CONTENT_UPDATED_AT;
+        }
+        return page.updatedAt();
     }
 
     private List<CountyEvidenceFactView> evidenceFacts(CountyRecordsPage page, List<SourceRecord> sources) {

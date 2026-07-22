@@ -1012,6 +1012,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-07-20</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/alabama/autauga-county/</loc><lastmod>2026-07-22</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/texas/tarrant-county/</loc></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/south-carolina/greenville-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/texas/comal-county/")))
@@ -1805,6 +1806,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request guide")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records by county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
+	}
+
+	@Test
+	void howardCountyIndianaRecordsPageSeparatesRecordRequestsFromExistingSystemApproval() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/indiana/howard-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Email Howard County Environmental Health for septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("environmental@howardcountyin.gov")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The existing-system approval form is a separate construction and connection path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic permit, approved-system record, and any system drawing")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Request existing-system approval from Howard County"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Existing-system-request-application.pdf"))));
 	}
 
 	@Test

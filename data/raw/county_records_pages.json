@@ -7,38 +7,38 @@
       "countyName": "Howard County",
       "countySlug": "howard-county",
       "title": "Howard County Indiana Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Howard County septic records checklist and permit lookup with existing-system approval forms, county permit routing, and on-site sewage file pulls before you trust a quote or closing story.",
-      "introCopy": "Howard County is a strong county-level wedge because the health department publishes a real on-site sewage page with a live septic permit application, an existing-system approval request form, and homeowner checklist material. This is closer to how people actually solve the problem than another broad Indiana septic explainer.",
-      "uniqueAngle": "Howard County is different because owners can move directly from the county sewage page into either a new permit workflow or an existing-system approval request. That makes the file quality question visible much earlier than on counties that only list one phone number.",
+      "metaDescription": "Howard County septic records checklist and permit lookup with direct Environmental Health contact, county permit guidance, and file pulls before you trust a quote or closing story.",
+      "introCopy": "Howard County is a useful county-level records route because Environmental Health publishes its direct email alongside the official on-site sewage page. Ask the office for the parcel's septic permit and approved-system record first; use the separate existing-system approval process only when a project involves connecting a new residence, adding bedrooms, or changing the approved use.",
+      "uniqueAngle": "Howard County separates two jobs that are easy to confuse: Environmental Health handles general septic-record requests by email, while the existing-system approval materials govern construction and connection decisions involving an already installed system.",
       "targetReader": "Best for Howard County buyers, sellers, owners, and agents who need to know whether the system already has enough county paperwork behind it to support a sale, an addition, or a cautious contractor conversation.",
       "officeLabel": "Howard County on-site sewage office",
       "officeUrl": "https://www.in.gov/localhealth/howardcounty/environmental-health/on-site-sewage-systems/",
-      "recordsLabel": "Request existing-system approval from Howard County",
-      "recordsUrl": "https://www.in.gov/localhealth/howardcounty/files/Existing-system-request-application.pdf",
+      "recordsLabel": "Email Howard County Environmental Health for septic records",
+      "recordsUrl": "https://www.in.gov/localhealth/howardcounty/environmental-health/on-site-sewage-systems/",
       "contactLine": "Howard County Environmental Health | environmental@howardcountyin.gov",
       "decisionSteps": [
-        "Open the Howard County on-site sewage page first and confirm whether you are really on a new permit path or an existing-system approval path.",
-        "If the property is existing construction, use the county's existing-system approval request form instead of assuming the old septic story is already file-backed.",
-        "Pull any prior inspection form, plan-review material, or homeowner OSS checklist item that shows what the county still needs before you compare quotes or promise a clean closing."
+        "Open the Howard County on-site sewage page and email Environmental Health with the property address plus any parcel, owner, or permit clue that can identify the file.",
+        "The existing-system approval form is a separate construction and connection path for a new residence, added bedrooms, or another proposed change; it is not the general septic-record request form.",
+        "Ask for the septic permit, approved-system record, system drawing or dimensions, and any inspection, repair, or failure material before you compare quotes or promise a clean closing."
       ],
       "recordsToRequest": [
-        "The existing-system approval request and any county response tied to the parcel.",
-        "Any septic tank inspection form, plan-review checklist, or prior permit note already held by Howard County.",
-        "Any soil or field information the county used to size or review the onsite system."
+        "The septic permit, approved-system record, and any system drawing or dimensions tied to the parcel.",
+        "Any final inspection, tank inspection, repair, complaint, or malfunction record held by Howard County.",
+        "A written no-record response or the next search key the office recommends when it cannot match the initial address or parcel information."
       ],
       "lowEndBreakers": [
-        "If the property still needs existing-system approval, the low-end quote is only a planning number.",
+        "If the county cannot produce a permitted and approved system record, the low-end quote is only a planning number.",
         "If Howard County cannot tie the parcel to a usable onsite file, the buyer or contractor may be pricing the wrong system story.",
         "Any missing field or inspection paperwork can turn a simple reuse assumption into a wider repair or redesign conversation."
       ],
       "faqBlocks": [
         {
           "question": "What is the first Howard County septic record to ask for?",
-          "answer": "Start with the existing-system approval path when the property already has septic, because Howard County makes that request form explicit on its onsite sewage page."
+          "answer": "Email Howard County Environmental Health for the septic permit, approved-system record, and any drawing or dimensions tied to the parcel. Do not use the existing-system approval form as a general records request."
         },
         {
           "question": "Why is Howard County a records page before it is a price page?",
-          "answer": "Because the county publishes both a permit route and an existing-system approval route, so the file question usually comes before a trustworthy cost number."
+          "answer": "Because the county file must establish what was permitted and approved before a buyer or contractor can decide whether the property only needs record confirmation or a separate construction, connection, repair, or replacement path."
         }
       ],
       "internalLinkTargets": [
@@ -54,22 +54,23 @@
       ],
       "officialSourceIds": [
         "in_howard_01",
+        "in_howard_02",
         "in_03"
       ],
       "publishStatus": "published",
       "workflowStructure": {
-        "fileOwnerCategory": "district_health",
-        "fileOwnerModel": "Howard County Environmental Health or the local health district is the practical file owner, and the real county story starts there rather than at a generic statewide desk.",
-        "firstArtifactToPull": "The existing-system approval request and any county response tied to the parcel.",
-        "permitCloseoutCategory": "generic",
-        "permitCloseoutSignal": "Howard County still needs a stronger closeout signal than the first permit mention before the file is safe to price against.",
+        "fileOwnerCategory": "county_health",
+        "fileOwnerModel": "Howard County Environmental Health is the practical file owner. General septic-record requests go to the office by email; the existing-system approval materials serve a separate construction and connection workflow.",
+        "firstArtifactToPull": "The septic permit, approved-system record, and any system drawing or dimensions tied to the parcel.",
+        "permitCloseoutCategory": "final_approval_signal",
+        "permitCloseoutSignal": "The file is stronger when it shows both the permitted design and the county's approval or final inspection rather than only an application or an unverified system description.",
         "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "Any septic tank inspection form, plan-review checklist, or prior permit note already held by Howard County.",
-        "specialProgramCategory": "generic",
-        "specialProgramSignal": "Howard County still rewards checking for local program, area-rule, or file-resolution friction before the parcel is treated as routine.",
+        "transferArtifact": "The county permit and approved-system record, plus any drawing, final inspection, repair history, or written no-record response that supports the current property story.",
+        "specialProgramCategory": "local_exception",
+        "specialProgramSignal": "Connecting a new residence, adding bedrooms, or changing the approved use can trigger Howard County's separate existing-system approval path; that form is not a substitute for a general record request.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Howard County has a real repair-side branch, so the repair or failure file matters before anyone assumes the cheapest visible scope is still available.",
-        "quoteGate": "Do not move into pricing until the file owner is fully resolved, the buyer or transfer artifact supports the same story, and the repair or complaint trail is resolved, because Howard County can look simpler on the surface than the real county workflow."
+        "quoteGate": "Do not move into pricing until Environmental Health's parcel record, the approved design and closeout evidence, and any repair or complaint trail support the same story; only then decide whether a separate existing-system approval path is relevant."
       }
     },
     {
