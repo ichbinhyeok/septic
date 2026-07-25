@@ -51,8 +51,8 @@
                 <h1>${stateMoneyPage.title()}</h1>
                 <div class="workflow-console" aria-label="Septic workflow triage console">
                     <div class="workflow-console__topbar">
-                        <span class="workflow-console__status">Live triage</span>
-                        <span>${state.stateCode()} / ${stateMoneyPage.contentSlug()}</span>
+                        <span class="workflow-console__status">Start with the property</span>
+                        <span>${state.stateCode()} records lookup</span>
                     </div>
                     <div class="workflow-console__body">
                         <div class="workflow-console__readout">
@@ -61,7 +61,7 @@
                                 @if ("septic-permit-process".equals(stateMoneyPage.contentSlug()))
                                     Find the permit desk before pricing the work.
                                 @elseif ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
-                                    Use the file trail before you trust the story.
+                                    Find the county file before you trust the story.
                                 @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
                                     Resolve the buyer file before negotiating price.
                                 @elseif ("septic-inspection-cost".equals(stateMoneyPage.contentSlug()))
@@ -77,13 +77,17 @@
                                 @endif
                             </h2>
                             <div class="workflow-console__actions">
-                                <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                                 @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
-                                    <a class="button button--secondary" href="/septic-record-finder/" data-track-click="nav" data-track-source-context="state_records_hero_address_finder" data-track-target-type="record_finder">Find the county records route by address</a>
+                                    <a class="button button--primary" href="/septic-record-finder/" data-track-click="nav" data-track-source-context="state_records_hero_address_finder" data-track-target-type="record_finder">Find records by address</a>
+                                    <a class="button button--secondary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">I already know the county</a>
                                 @elseif (primaryAction.calculator() && showQuoteCta)
+                                    <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                                     <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
-                                @elseif (!"county_page_directory".equals(primaryAction.targetType()))
+                                @else
+                                    <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
+                                    @if (!"county_page_directory".equals(primaryAction.targetType()))
                                     <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -164,9 +168,11 @@
                         <a href="#county-pages">All county pages</a>
                     </div>
                 @endif
-                <div class="hero__actions">
-                    <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
-                </div>
+                @if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                    <div class="hero__actions">
+                        <a class="button button--secondary" href="${guidePath}" data-track-click="nav" data-track-source-context="state_money_back_to_guide" data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
+                    </div>
+                @endif
                 <p class="lede state-money-intro-copy">${stateMoneyPage.introCopy()}</p>
                 @if (stateRecordsSearchResponse != null)
                     <div class="aeo-answer-capsule" aria-label="State answer summary and route comparison">

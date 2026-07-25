@@ -15,109 +15,15 @@
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
 @template.layouts.app(page = page, content = @`
-    <section class="hero">
-        <div class="container hero__grid">
-            <div class="hero__content">
-                <span class="eyebrow">Septic records lookup and permit search</span>
-                <h1>Find the county septic file before the quote.</h1>
-                <p class="lede">Start with the permit copy, as-built, inspection letter, or county records path that can change a buyer decision, repair scope, or planning range.</p>
-                <div class="hero-quick-actions" aria-label="Most common septic record actions">
-                    <a class="button button--primary"
-                       href="/septic-record-finder/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_address_record_finder"
-                       data-track-target-type="internal_page">Find records by address</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-by-county/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_county_records"
-                       data-track-target-type="internal_page">Search records by county</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/tennessee/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_tdec"
-                       data-track-target-type="state_money_page">TDEC records</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/south-carolina/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_dhec"
-                       data-track-target-type="state_money_page">SCDES records</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/north-carolina/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_north_carolina"
-                       data-track-target-type="state_money_page">NC permit lookup</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/indiana/"
-                       data-track-click="nav"
-                       data-track-source-context="home_hero_indiana"
-                       data-track-target-type="state_money_page">Indiana records</a>
-                </div>
-                <p class="hero-router-intro"><a href="/septic-records-access-index/" data-track-click="nav" data-track-source-context="home_records_access_index" data-track-target-type="internal_page">Open the TN, IN, NC, and SC records access index</a></p>
-                <p class="hero-router-intro">Use the fastest lane first. If the county file is still unclear, then move into permit process, transfer compliance, or cost planning.</p>
-                <div class="hero-decision-grid hero-decision-grid--compact">
-                    <article class="hero-decision-card hero-decision-card--accent">
-                        <span class="hero-decision-card__label">File first</span>
-                        <h3>I have an address and need the actual septic record path</h3>
-                        <p>Resolve the county first, then open the verified permit, as-built, final approval, repair-file, or inspection-letter route.</p>
-                        <a class="button button--primary" href="/septic-record-finder/">Find the county route</a>
-                    </article>
-
-                    <article class="hero-decision-card">
-                        <span class="hero-decision-card__label">Lookup path</span>
-                        <h3>I need the state or county permit lookup doorway</h3>
-                        <p>Use this when the next move is a permit search, records portal, county office, or official source before any estimate.</p>
-                        <a class="button button--secondary" href="/septic-permit-lookup/">Open permit lookup</a>
-                    </article>
-
-                    <article class="hero-decision-card">
-                        <span class="hero-decision-card__label">Permit path</span>
-                        <h3>I do not know which office or approval step controls this job</h3>
-                        <p>Use the permit workflow when county routing, site review, project type, or closeout is the real blocker.</p>
-                        <a class="button button--secondary" href="/septic-permit-process/">Open permit process</a>
-                    </article>
-
-                    <article class="hero-decision-card">
-                        <span class="hero-decision-card__label">Sale or transfer</span>
-                        <h3>I am trying to keep a deal or closing on track</h3>
-                        <p>Use the transfer workflow when records, permit history, inspection timing, and county file quality need one checklist.</p>
-                        <a class="button button--secondary" href="/septic-transfer-compliance/">Open transfer compliance</a>
-                    </article>
-                </div>
-                <div class="hero__notes">
-                    <span>${liveGuideCount} live guides</span>
-                    <span>${liveIntentCount} live state pages</span>
-                    <span>${liveCountyCount} live county workflow pages</span>
-                    <span>${countyBackedStateCount} county-backed states</span>
-                    @if (queuedStateCount > 0)
-                        <span>${queuedStateCount} states in research queue</span>
-                    @else
-                        <span>All 50 state guides live</span>
-                    @endif
-                </div>
-            </div>
-
-            <aside class="hero-card">
-                <div class="hero-card__top">
-                    <span class="eyebrow">Use it like a tool</span>
-                    <h2>Most visits should start with a file, not a price.</h2>
-                    <p>Get the property record path clear first. The estimator is strongest after the county file, permit branch, or buyer workflow is known.</p>
-                </div>
-                <div class="hero-card__stack">
-                    <div class="mini-card">
-                        <strong>1. Find the county owner</strong>
-                        <p>Use the county, address, or permit-copy path to identify who can actually search the file.</p>
-                    </div>
-                    <div class="mini-card">
-                        <strong>2. Pull the record that changes scope</strong>
-                        <p>Permit copy, as-built, final approval, repair note, inspection letter, or maintenance history.</p>
-                    </div>
-                    <div class="mini-card">
-                        <strong>3. Price after the file is clearer</strong>
-                        <p>Run the cost guide once the missing record, county office, or permit step is no longer vague.</p>
-                    </div>
-                </div>
-            </aside>
+    <section class="record-finder-hero">
+        <div class="container">
+            @template.tags.addressRecordFinder(
+                finderId = "home-address-record-finder",
+                eyebrow = "Septic records lookup",
+                heading = "Find the right septic records route by address.",
+                intro = "Enter the property address. We identify the county and send you to the most useful verified records path.",
+                totalCountyRouteCount = totalCountyRouteCount
+            )
         </div>
     </section>
 
