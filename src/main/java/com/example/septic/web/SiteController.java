@@ -78,6 +78,7 @@ public class SiteController {
     private static final String PERMIT_SEARCH_BY_ADDRESS_SLUG = "septic-permit-search-by-address";
     private static final String PERMIT_RECORDS_REQUEST_SLUG = "septic-permit-records-request";
     private static final String AS_BUILT_RECORDS_SLUG = "septic-as-built-records";
+    private static final String TANK_LOCATION_RECORDS_SLUG = "septic-tank-location-records";
     private static final String INSPECTION_LETTER_SLUG = "septic-inspection-letter";
     private static final String TRANSFER_COMPLIANCE_SLUG = "septic-transfer-compliance";
     private static final String OFFICIAL_LOOKUP_TOOLS_SLUG = "official-septic-lookup-tools";
@@ -104,6 +105,7 @@ public class SiteController {
             PERMIT_SEARCH_BY_ADDRESS_SLUG,
             PERMIT_RECORDS_REQUEST_SLUG,
             AS_BUILT_RECORDS_SLUG,
+            TANK_LOCATION_RECORDS_SLUG,
             INSPECTION_LETTER_SLUG,
             OFFICIAL_LOOKUP_TOOLS_SLUG,
             RECORDS_REQUEST_BUILDER_SLUG,
@@ -1623,6 +1625,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/septic-permit-records-request", "/septic-permit-records-request/",
             "/septic-records-request-builder", "/septic-records-request-builder/",
             "/septic-as-built-records", "/septic-as-built-records/",
+            "/septic-tank-location-records", "/septic-tank-location-records/",
             "/septic-inspection-letter", "/septic-inspection-letter/",
             "/official-septic-lookup-tools", "/official-septic-lookup-tools/",
             "/tdec-septic-records", "/tdec-septic-records/",
@@ -3024,7 +3027,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Turn the address search into a real file path.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Send the records request before you trust the price story.";
             case RECORDS_REQUEST_BUILDER_SLUG -> "Build the records request before another search.";
-            case AS_BUILT_RECORDS_SLUG -> "Find the installed layout before you estimate the field story.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Find the installed layout before you estimate the field story.";
             case INSPECTION_LETTER_SLUG -> "Separate the letter workflow from a generic permit copy.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Open the official lookup tool before another overview.";
             case TDEC_RECORDS_SLUG -> "Search TDEC records before you treat the file as missing.";
@@ -3057,7 +3060,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Open address lookup routes";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Open records request routes";
             case RECORDS_REQUEST_BUILDER_SLUG -> "Build a request script";
-            case AS_BUILT_RECORDS_SLUG -> "Open as-built record routes";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Open as-built record routes";
             case INSPECTION_LETTER_SLUG -> "Open inspection-letter routes";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Open official lookup tools";
             case TDEC_RECORDS_SLUG -> "Open Tennessee records routes";
@@ -3090,7 +3093,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Search by address first, then retry with parcel, owner, legal description, subdivision, or permit number before treating a missing result as real.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "The request should name the exact artifact needed, because permit copy, as-built, final approval, repair file, and inspection letter answer different questions.";
             case RECORDS_REQUEST_BUILDER_SLUG -> "Choose the record type, reason, state, and parcel clues once so the request language is precise enough for the office to act on.";
-            case AS_BUILT_RECORDS_SLUG -> "Use the layout record to decide whether tank, field, reserve area, or addition risk is changing the scope before you estimate.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Use the layout record to decide whether tank, field, reserve area, or addition risk is changing the scope before you estimate.";
             case INSPECTION_LETTER_SLUG -> "A permit copy may not satisfy a closing or lender letter, so resolve the letter path before the price conversation carries weight.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Start with the official source when one exists, then fall back to county request language when the search tool does not expose the file.";
             case TDEC_RECORDS_SLUG -> "Use the TDEC septic permit search first, then fall back to the Tennessee county route or request builder when the parcel does not show up.";
@@ -3137,7 +3140,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Run an address-lookup estimate";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Run a records-request estimate";
             case RECORDS_REQUEST_BUILDER_SLUG -> "Run a records-aware estimate";
-            case AS_BUILT_RECORDS_SLUG -> "Run a layout-risk estimate";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Run a layout-risk estimate";
             case INSPECTION_LETTER_SLUG -> "Run a letter-aware estimate";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Run a lookup-aware estimate";
             case TDEC_RECORDS_SLUG -> "Run a Tennessee records-aware estimate";
@@ -3167,7 +3170,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Use the estimate after the address search has been checked against parcel, owner, legal-description, or permit-number search paths.";
             case PERMIT_RECORDS_REQUEST_SLUG -> "Use the estimate after the records request shows whether the missing artifact is routine, delayed, or a real file gap.";
             case RECORDS_REQUEST_BUILDER_SLUG -> "Use the estimate after the generated request clarifies whether the missing file is a permit copy, as-built, final approval, repair record, or letter workflow.";
-            case AS_BUILT_RECORDS_SLUG -> "Use the estimate after the as-built or replacement layout risk is clear enough to separate locate work from design or replacement scope.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Use the estimate after the as-built or replacement layout risk is clear enough to separate locate work from design or replacement scope.";
             case INSPECTION_LETTER_SLUG -> "Use the estimate after the office confirms whether the letter is records-only, inspection-based, lender-specific, or blocked by file issues.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Use the estimate after the official lookup or county fallback shows whether the missing record changes the downside.";
             case TDEC_RECORDS_SLUG -> "Use the estimate after TDEC or the county route confirms whether the Tennessee parcel file is routine, missing, or repair-linked.";
@@ -3257,7 +3260,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case RECORDS_BY_COUNTY_SLUG -> "The file owner is usually the named county health, environmental health, development services, or delegated local office.";
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "The real owner is the office that can match the address to the parcel, permit history, and septic file owner.";
             case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "The file owner is whichever state, county, regional, or delegated office can provide a written response tied to the parcel.";
-            case AS_BUILT_RECORDS_SLUG -> "The file owner is the office that stores the installed layout, site sketch, final approval, or scanned permit package.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "The file owner is the office that stores the installed layout, site sketch, final approval, or scanned permit package.";
             case INSPECTION_LETTER_SLUG -> "The file owner may be different from the letter issuer, so separate permit-copy records from closing, lender, or inspection-letter workflows.";
             default -> "Start with the official state or county source, then verify the local office that actually owns the septic file.";
         };
@@ -3267,7 +3270,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return switch (contentPage.slug()) {
             case PERMIT_SEARCH_BY_ADDRESS_SLUG -> "Start with street address, then retry with parcel ID, APN/TMS, owner name, legal description, subdivision, street-only search, or prior permit number.";
             case RECORDS_BY_COUNTY_SLUG -> "Start with state and county, then carry address, parcel, owner, and permit clues into the county route.";
-            case AS_BUILT_RECORDS_SLUG -> "Carry parcel ID, owner, permit number, installation year, subdivision, and any prior repair or addition clue into the layout request.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Carry parcel ID, owner, permit number, installation year, subdivision, and any prior repair or addition clue into the layout request.";
             case TDEC_RECORDS_SLUG -> "Use parcel, address, owner, county, permit number, and regional-office clues before treating a missing TDEC result as a missing file.";
             case TX_OSSF_RECORDS_SLUG -> "Use county, city-limit or ETJ status, parcel, legal description, subdivision, and owner clues before assuming TCEQ itself holds the file.";
             case DHEC_PERMIT_LOOKUP_SLUG -> "Use county, parcel/TMS, address, owner, D-1740 wording, and ePermitting clues because many searches still say DHEC while the route is now SCDES.";
@@ -3277,7 +3280,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String contentFirstArtifact(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case AS_BUILT_RECORDS_SLUG -> "As-built, site sketch, installed layout, tank and drain-field location, reserve-area note, or scanned approval package.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "As-built, site sketch, installed layout, tank and drain-field location, reserve-area note, or scanned approval package.";
             case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "Permit copy, as-built, final approval, repair file, inspection letter, or written no-record response.";
             case INSPECTION_LETTER_SLUG -> "Inspection letter, final approval, permit copy, lender letter, or written explanation of why the office cannot issue one.";
             case DHEC_PERMIT_LOOKUP_SLUG -> "D-1740 application trail, septic permit copy, final inspection, county contact note, or written no-record response.";
@@ -3302,7 +3305,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String contentNoRecordFallback(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case AS_BUILT_RECORDS_SLUG -> "If no layout is found, ask for a written no-record response plus the office that may hold archived, scanned, repair, or pre-digital layout files.";
+            case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "If no layout is found, ask for a written no-record response plus the office that may hold archived, scanned, repair, or pre-digital layout files.";
             case INSPECTION_LETTER_SLUG -> "If no letter can be issued, ask whether a permit copy, final approval, inspection note, or written file status can substitute.";
             default -> "If the lookup has no match, ask for a written no-record response and the next office that owns archived, regional, delegated, or pre-digital septic files.";
         };
@@ -6040,7 +6043,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private int observedIntentSignalBoost(String contentSlug, String stateCode, String pageContentSlug) {
         return switch (contentSlug) {
             case PERMIT_LOOKUP_SLUG, RECORDS_ONLINE_SLUG, RECORDS_BY_COUNTY_SLUG, PERMIT_SEARCH_BY_ADDRESS_SLUG,
-                    PERMIT_RECORDS_REQUEST_SLUG, AS_BUILT_RECORDS_SLUG, INSPECTION_LETTER_SLUG -> switch (pageContentSlug) {
+                    PERMIT_RECORDS_REQUEST_SLUG, AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG, INSPECTION_LETTER_SLUG -> switch (pageContentSlug) {
                 case "septic-records-checklist" -> switch (stateCode) {
                     case "TN" -> 34;
                     case "NC", "TX" -> 20;

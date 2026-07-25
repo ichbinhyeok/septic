@@ -1275,6 +1275,7 @@
       "internalLinkTargets": [
         "/official-septic-lookup-tools/",
         "/septic-records-request-builder/",
+        "/septic-tank-location-records/",
         "/dhec-septic-permit-lookup/",
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
@@ -1361,6 +1362,7 @@
       "internalLinkTargets": [
         "/official-septic-lookup-tools/",
         "/septic-records-request-builder/",
+        "/septic-tank-location-records/",
         "/dhec-septic-permit-lookup/",
         "/how-to-find-septic-records-online/",
         "/septic-records-by-county/",
@@ -1789,13 +1791,15 @@
         "TDEC SSDS search",
         "TDEC document viewer septic",
         "Tennessee SSDS permit records",
-        "TDEC septic search by address"
+        "TDEC septic search by address",
+        "TN septic permit search",
+        "TN septic records by address"
       ],
-      "title": "TDEC Septic Permit Search and SSDS Records",
-      "metaDescription": "Search TDEC septic permits and SSDS records by address, parcel, owner, permit number, subdivision, or legal description, then use the county fallback.",
-      "updatedAt": "2026-07-20",
-      "reviewedAt": "2026-07-20",
-      "introCopy": "Use this page for the official TDEC septic permit search and SSDS document route. Search by address first, then retry with parcel, owner, permit number, subdivision, lot, or legal description before moving to a Tennessee county office or targeted records request.",
+      "title": "TDEC Septic Permit Search by Address and SSDS Records",
+      "metaDescription": "Search TDEC septic permits and SSDS records by address, then retry with parcel, owner, permit number, subdivision, or legal description before using the Tennessee county fallback.",
+      "updatedAt": "2026-07-26",
+      "reviewedAt": "2026-07-26",
+      "introCopy": "Use this page for the official TDEC septic permit search by address and SSDS document route. If the address does not return the file, retry with parcel, owner, permit number, subdivision, lot, or legal description before moving to a Tennessee county office or targeted records request.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for Tennessee buyers, owners, agents, contractors, and closing teams who need the official septic file before trusting a quote, inspection story, addition plan, or transaction deadline.",
@@ -2104,9 +2108,11 @@
         "South Carolina D-1740 septic file",
         "DHEC septic tank records"
       ],
-      "title": "DHEC Septic Permit Lookup and SCDES Records",
-      "metaDescription": "Use DHEC septic permit lookup language to reach current SCDES septic records, D-1740 files, permit copies, county contacts, and final-inspection status.",
-      "introCopy": "Many South Carolina searchers still type DHEC septic permit lookup, but the current records route should point into SCDES septic tank, ePermitting, county or regional contact, D-1740, permit-copy, and final-inspection workflows. Use this page to translate the old search language into the current file path before trusting a quote, sale story, or repair plan.",
+      "title": "DHEC Septic Tank Records, Permit Lookup, and SCDES Files",
+      "metaDescription": "Find DHEC septic tank records through the current SCDES route: permit copies, D-1740 files, county contacts, and final-inspection status.",
+      "updatedAt": "2026-07-26",
+      "reviewedAt": "2026-07-26",
+      "introCopy": "Many South Carolina searchers still type DHEC septic tank records or DHEC septic permit lookup, but the current records route should point into SCDES septic tank, ePermitting, county or regional contact, D-1740, permit-copy, and final-inspection workflows. Use this page to translate the old search language into the current file path before trusting a quote, sale story, or repair plan.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for South Carolina buyers, owners, agents, builders, and contractors who are searching for DHEC septic permits but need the current SCDES route, county contact, D-1740 file, permit copy, or final inspection status.",
@@ -2170,6 +2176,84 @@
         "/septic-as-built-records/",
         "/septic-inspection-letter/",
         "/septic-system-cost-calculator/south-carolina/"
+      ],
+      "publishStatus": "published"
+    },
+    {
+      "slug": "septic-tank-location-records",
+      "intentType": "workflow_page",
+      "primaryKeyword": "septic tank location records",
+      "secondaryKeywords": [
+        "find septic tank location by address",
+        "septic tank location map",
+        "septic drain field location records",
+        "septic tank as built drawing",
+        "septic site sketch"
+      ],
+      "title": "Septic Tank Location Records",
+      "metaDescription": "Find septic tank and drain field location records by address, parcel, permit file, as-built, site sketch, or approved plan before you dig, build, buy, or price work.",
+      "updatedAt": "2026-07-26",
+      "reviewedAt": "2026-07-26",
+      "introCopy": "The fastest way to find a septic tank location is usually the property permit file, as-built, site sketch, approved plan, or final approval. Start with the county or state record owner; if those documents do not locate the system, use a qualified septic professional instead of guessing.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "drainfield_replacement",
+      "targetReader": "Best for owners, buyers, agents, builders, and contractors who need to locate a septic tank or drain field before digging, adding a structure, repairing the system, or relying on a property disclosure.",
+      "deepDiveParagraphs": [
+        "A septic tank location record may be called an as-built, site sketch, record drawing, approved plan, final approval, installation certificate, permit attachment, or GIS scan. Ask for each name because the document label changes by office and age of the file.",
+        "The useful record should show more than a permit number. Look for the tank, drain field, reserve area, cleanout, setbacks, design flow, bedroom count, and any repair or replacement notes tied to the parcel.",
+        "If the record is missing or too vague, do not infer a location from grass color, a vent, a cleanout, or a neighbor's memory. A qualified septic professional can locate and verify the system before excavation, construction, or a repair quote depends on it."
+      ],
+      "fitBullets": [
+        "You need to find the tank or drain field before digging, building, adding a driveway, pool, or addition.",
+        "A buyer, contractor, or inspector needs a location record rather than a generic permit confirmation.",
+        "The property file exists but you need the drawing, sketch, or attachment that shows the installed layout."
+      ],
+      "decisionSteps": [
+        "Resolve the county, then request the permit file, as-built, site sketch, approved plan, final approval, and any scanned attachment by address, parcel, or owner.",
+        "Check whether the drawing identifies the tank, drain field, reserve area, access points, setbacks, and the date or system type.",
+        "If the public record is incomplete, request the archived or pre-digital file and ask for a written no-record response if the office cannot locate it.",
+        "If no reliable drawing exists, arrange a qualified locate before excavation, construction, or a scope-sensitive quote."
+      ],
+      "lowEndBreakers": [
+        "A permit number without its plan attachment may not identify the physical tank or field location.",
+        "An unverified guessed location can create excavation, driveway, pool, addition, or repair risk.",
+        "A missing record may require a locate, inspection, or design work before a contractor can price the job narrowly."
+      ],
+      "quotePrepChecklist": [
+        "Property address, parcel ID, owner name, subdivision, lot number, installation year, permit number, and any prior repair clues.",
+        "Permit copy, as-built, site sketch, approved plan, final approval, installation certificate, repair file, and written no-record response.",
+        "A short note describing the decision that depends on the location: excavation, addition, driveway, pool, sale, inspection, repair, or replacement."
+      ],
+      "driverBullets": [
+        "A location record turns a guess about the yard into a documented tank and drain-field layout.",
+        "The right artifact is usually an as-built or plan attachment, not a generic permit search result.",
+        "When the drawing is unavailable, a professional locate is safer than treating a visual clue as proof."
+      ],
+      "faqBlocks": [
+        {
+          "question": "How can I find my septic tank location by address?",
+          "answer": "Start with the county or state permit file and ask for the as-built, site sketch, approved plan, final approval, or scanned attachment by address, parcel, or owner name. If the file does not locate the system, use a qualified professional locate."
+        },
+        {
+          "question": "Will a septic permit show the tank and drain field location?",
+          "answer": "Sometimes, but the permit title alone may not. The useful attachment is usually the as-built, site sketch, record drawing, approved plan, or final approval showing the installed layout."
+        },
+        {
+          "question": "What if there are no septic tank location records?",
+          "answer": "Ask the office for archived or pre-digital files and a written no-record response. If no reliable drawing exists, arrange a qualified locate before digging, building, repairing, or relying on an assumed location."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-as-built-records/",
+        "/septic-permit-search-by-address/",
+        "/septic-records-by-county/",
+        "/septic-records-request-builder/",
+        "/official-septic-lookup-tools/",
+        "/how-to-find-septic-records-online/",
+        "/septic-permit-lookup/",
+        "/septic-records-checklist/",
+        "/drain-field-estimator/",
+        "/drain-field-replacement-cost/"
       ],
       "publishStatus": "published"
     }

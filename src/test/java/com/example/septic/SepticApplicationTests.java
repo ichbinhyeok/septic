@@ -302,7 +302,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Permit Search by Address &amp; SSDS Records | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/official-septic-lookup-tools/\">Official Septic Lookup Tools</a>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"name\":\"Official Septic Lookup Tools\",\"item\":\"https://example.test/official-septic-lookup-tools/\",\"position\":2")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC Septic Permit Search and SSDS Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC Septic Permit Search by Address and SSDS Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC records searches need the state search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://tdec.tn.gov/document-viewer/search/stp\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official TDEC search")))
@@ -344,7 +344,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/dhec-septic-permit-lookup/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Tank Records &amp; Permit Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("DHEC searches should land on the current SCDES septic route.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open SCDES septic")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("If SCDES blocks the tab")))
@@ -988,7 +988,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-07-20</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-07-26</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-07-20</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
@@ -998,6 +998,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-search-by-address/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-records-request/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-as-built-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-location-records/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-letter/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/official-septic-lookup-tools/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-request-builder/")))
@@ -7709,6 +7710,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/drain-field-replacement-cost/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/comal-county/")));
+	}
+
+	@Test
+	void septicTankLocationRecordsContentPageRenders() throws Exception {
+		mockMvc.perform(get("/septic-tank-location-records/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic Tank Location Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Tank Location Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the record drawing first; if it is missing, use a professional locate instead of guessing where the tank or field is.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Will a septic permit show the tank and drain field location?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-as-built-records/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-request-builder/")));
 	}
 
 	@Test

@@ -174,7 +174,7 @@
                                 <strong>${featuredPermitLookupCountyLinks.get(0).compactTitle()}</strong>
                                 <small>Skip the national overview when the address, parcel, seller story, or search result already names a county.</small>
                             </a>
-                        @elseif ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+                        @elseif ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "septic-tank-location-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
                             <a class="hero-command"
                                href="#records-next-click"
                                data-track-click="nav"
@@ -774,7 +774,7 @@
         </section>
     @endif
 
-    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "septic-tank-location-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
         <section class="section section--tight" id="records-next-click">
             <div class="container">
                 <div class="records-escalation-board" aria-label="Records lookup next-click accelerator">
@@ -787,6 +787,8 @@
                                 Turn the records request into a precise file pull before the office answers vaguely.
                             @elseif ("septic-as-built-records".equals(contentPage.slug()))
                                 If the layout is missing, request the exact as-built, final approval, or no-record response.
+                            @elseif ("septic-tank-location-records".equals(contentPage.slug()))
+                                Find the record drawing first; if it is missing, use a professional locate instead of guessing where the tank or field is.
                             @elseif ("septic-records-by-county".equals(contentPage.slug()))
                                 Open the county route, then escalate to official tools or a written request when the file is thin.
                             @else

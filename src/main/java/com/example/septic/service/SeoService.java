@@ -508,6 +508,7 @@ public class SeoService {
                  "septic-permit-records-request",
                  "septic-records-request-builder",
                  "septic-as-built-records",
+                 "septic-tank-location-records",
                  "septic-inspection-letter",
                  "septic-transfer-compliance" ->
                     breadcrumbs.add(crumb("Septic Permit Lookup", absoluteUrl("/septic-permit-lookup/")));
@@ -595,6 +596,7 @@ public class SeoService {
             case "septic-permit-search-by-address" -> "An address search is a starting point, not proof that a record exists. Resolve the county, then retry with parcel, owner, legal-description, subdivision, or permit-number clues when the first search is incomplete.";
             case "septic-permit-records-request", "septic-records-request-builder" -> "Ask for the exact artifact you need: permit copy, as-built, final approval, inspection letter, repair history, or no-record response. Precise wording gets a more useful answer than a general septic-record request.";
             case "septic-as-built-records" -> "An as-built or site sketch shows the installed tank, field, and layout story that a permit title alone may not answer. Start with the official file owner and request the drawing or scanned attachment.";
+            case "septic-tank-location-records" -> "Start with the permit file, as-built, site sketch, or approved plan. Those records can show the tank, drain field, reserve area, and access notes; if they do not, arrange a professional locate instead of guessing.";
             case "septic-inspection-letter" -> "A septic inspection letter is a separate workflow from a permit lookup. Confirm who issues the letter, what records support it, and whether the buyer, lender, or county requires a current professional inspection.";
             case "official-septic-lookup-tools" -> "Use the official state or county lookup first. SepticPath helps identify the correct source, expected document, and fallback request route when the government search is incomplete or difficult to navigate.";
             case "septic-system-cost-calculator" -> "A septic cost estimate is more useful after the permit file, site limits, bedroom count, and local approval path are clear. Use the state guide to identify what can widen the quote before comparing prices.";
@@ -1239,13 +1241,14 @@ public class SeoService {
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies & As-Builts | SepticPath";
             case "septic-records-request-builder" -> "Septic Records Request Builder | Download Permit Copy Request Packet | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Layout & Permit Files | SepticPath";
+            case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
             case "tdec-septic-records" -> "TDEC Septic Permit Search by Address & SSDS Records | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits by County | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
-            case "dhec-septic-permit-lookup" -> "DHEC Septic Permit Lookup | SCDES Records, D-1740 Files, and Permit Copy | SepticPath";
+            case "dhec-septic-permit-lookup" -> "DHEC Septic Tank Records & Permit Lookup | SCDES Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";
