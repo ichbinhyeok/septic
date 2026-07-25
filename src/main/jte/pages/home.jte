@@ -136,7 +136,7 @@
             <div class="section-heading">
                 <span class="eyebrow">2-week search response routes</span>
                 <h2>Start with the records paths most useful for homeowners.</h2>
-                <p class="lede">These routes match searches already showing impressions or index gaps: TDEC records, DHEC/SCDES lookup, Tarrant County records, and septic permit lookup.</p>
+                <p class="lede">These routes match searches already bringing in clicks or showing clear demand: TDEC records, Wake County permits, St. Joseph County records, and Greenville County SCDES files.</p>
             </div>
 
             <div class="card-grid card-grid--primary">
@@ -151,33 +151,33 @@
                 </article>
 
                 <article class="feature-card feature-card--primary">
-                    <span class="pill">SC / SCDES</span>
-                    <h3>DHEC septic permit lookup</h3>
-                    <p>Use this for DHEC searches that need the current SCDES septic tank route, D-1740 file, permit copy, or county contact.</p>
-                    <a href="/dhec-septic-permit-lookup/"
+                    <span class="pill">NC / Wake County</span>
+                    <h3>Wake County septic permit records</h3>
+                    <p>Use iMAPS and the county Permit Portal path when the search already names Wake County and needs a septic permit or parcel file.</p>
+                    <a href="/septic-records-checklist/north-carolina/wake-county/"
                        data-track-click="nav"
-                       data-track-source-context="home_search_response_dhec"
-                       data-track-target-type="internal_page">Open DHEC/SCDES lookup</a>
+                       data-track-source-context="home_search_response_wake"
+                       data-track-target-type="county_records_page">Open Wake County records</a>
                 </article>
 
                 <article class="feature-card">
-                    <span class="pill">TX / county</span>
-                    <h3>Tarrant County septic records</h3>
-                    <p>Use this when the query is county-specific and the answer needs Tarrant OSSF records, official records search, or permit file routing.</p>
-                    <a href="/septic-records-checklist/texas/tarrant-county/"
+                    <span class="pill">IN / St. Joseph County</span>
+                    <h3>St. Joseph County septic records</h3>
+                    <p>Use the county health-file route for septic schematic records, permit history, soil reports, and local records requests.</p>
+                    <a href="/septic-records-checklist/indiana/st-joseph-county/"
                        data-track-click="nav"
-                       data-track-source-context="home_search_response_tarrant"
-                       data-track-target-type="county_records_page">Open Tarrant records</a>
+                       data-track-source-context="home_search_response_st_joseph"
+                       data-track-target-type="county_records_page">Open St. Joseph County records</a>
                 </article>
 
                 <article class="feature-card">
-                    <span class="pill">Permit lookup</span>
-                    <h3>Official septic permit lookup</h3>
-                    <p>Use this broad route for state records search, county files, address search, as-built records, and permit-copy request paths.</p>
-                    <a href="/septic-permit-lookup/"
+                    <span class="pill">SC / Greenville County</span>
+                    <h3>Greenville County septic records</h3>
+                    <p>Use the county parcel or TMS trail before opening the SCDES permit-copy and D-1740 file path.</p>
+                    <a href="/septic-records-checklist/south-carolina/greenville-county/"
                        data-track-click="nav"
-                       data-track-source-context="home_search_response_permit_lookup"
-                       data-track-target-type="internal_page">Open permit lookup</a>
+                       data-track-source-context="home_search_response_greenville"
+                       data-track-target-type="county_records_page">Open Greenville County records</a>
                 </article>
             </div>
         </div>

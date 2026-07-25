@@ -232,10 +232,29 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wake County records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("2-week search response routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/tdec-septic-records/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/dhec-septic-permit-lookup/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/indiana/st-joseph-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@id\":\"https://example.test/#website\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@id\":\"https://example.test/#organization\"")));
+	}
+
+	@Test
+	void priorityStateRecordHubsSurfaceTheirHighestIntentCountyRoutes() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wake County septic permit records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/")));
+
+		mockMvc.perform(get("/septic-records-checklist/indiana/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/indiana/st-joseph-county/")));
+
+		mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Greenville County septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/south-carolina/greenville-county/")));
 	}
 
 	@Test

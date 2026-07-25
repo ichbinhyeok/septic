@@ -6584,6 +6584,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "Open permit records request guide",
                             "/septic-permit-records-request/",
                             "related_internal"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "wake-county-septic-records",
+                            "Wake County",
+                            "Wake County septic permit records",
+                            "Go straight to Wake County when the search already names the county. Use iMAPS and the Permit Portal trail to match the parcel, permit, and septic-file history.",
+                            "Open Wake County records",
+                            "/septic-records-checklist/north-carolina/wake-county/",
+                            "county_records_page"
                     )
             );
             case "IN" -> List.of(
@@ -6613,6 +6622,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "Open as-built records guide",
                             "/septic-as-built-records/",
                             "related_internal"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "st-joseph-county-septic-records",
+                            "St. Joseph County",
+                            "St. Joseph County septic records",
+                            "Use the St. Joseph County health-file route when the county is known and the search needs septic schematic records, permit history, soil reports, or a local records request.",
+                            "Open St. Joseph County records",
+                            "/septic-records-checklist/indiana/st-joseph-county/",
+                            "county_records_page"
                     )
             );
             case "SC" -> List.of(
@@ -6642,6 +6660,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "Open permit records request guide",
                             "/septic-permit-records-request/",
                             "related_internal"
+                    ),
+                    new SearchIntentOpportunityView(
+                            "greenville-county-septic-records",
+                            "Greenville County",
+                            "Greenville County septic records",
+                            "Use the Greenville County route when the search needs a parcel or TMS anchor, SCDES permit copy, D-1740 history, or final-inspection trail for that property.",
+                            "Open Greenville County records",
+                            "/septic-records-checklist/south-carolina/greenville-county/",
+                            "county_records_page"
                     )
             );
             case "AL" -> List.of(
