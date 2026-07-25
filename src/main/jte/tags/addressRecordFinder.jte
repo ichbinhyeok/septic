@@ -33,7 +33,10 @@
                 <p>${intro}</p>
             </div>
         @endif
-        <form class="record-finder__form" data-address-record-finder-form>
+        <form class="record-finder__form"
+              id="${finderId}-form"
+              name="address-record-finder"
+              data-address-record-finder-form>
             <label for="${finderId}-address">Property address</label>
             <p>Street, city, state, and ZIP produce the most reliable county match.</p>
             <div class="record-finder__input-row">

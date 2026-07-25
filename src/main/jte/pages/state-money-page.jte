@@ -78,7 +78,9 @@
                             </h2>
                             <div class="workflow-console__actions">
                                 <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
-                                @if (primaryAction.calculator() && showQuoteCta)
+                                @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                                    <a class="button button--secondary" href="/septic-record-finder/" data-track-click="nav" data-track-source-context="state_records_hero_address_finder" data-track-target-type="record_finder">Find the county records route by address</a>
+                                @elseif (primaryAction.calculator() && showQuoteCta)
                                     <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
                                 @elseif (!"county_page_directory".equals(primaryAction.targetType()))
                                     <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>

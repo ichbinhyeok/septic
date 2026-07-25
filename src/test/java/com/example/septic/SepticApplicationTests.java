@@ -280,7 +280,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Permit Search &amp; SSDS Records | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Permit Search by Address &amp; SSDS Records | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/official-septic-lookup-tools/\">Official Septic Lookup Tools</a>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"name\":\"Official Septic Lookup Tools\",\"item\":\"https://example.test/official-septic-lookup-tools/\",\"position\":2")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC Septic Permit Search and SSDS Records")))
@@ -681,6 +681,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Finder by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"record-finder-form\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"address-record-finder\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address not saved")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/api/address-record-finder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the record route by county name")));
@@ -7107,6 +7109,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official state file path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Owner, artifact, request, fallback")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee official records source")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the county records route by address")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_records_hero_address_finder\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address clue")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Blount County records")))

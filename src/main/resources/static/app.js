@@ -915,6 +915,12 @@
                     });
                     const payload = await response.json();
                     render(payload);
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", "record_finder_submit", {
+                            finder_status: payload.status || "unknown",
+                            finder_route_type: payload.status === "county_route" ? "county" : "state"
+                        });
+                    }
                 } catch (_) {
                     render({
                         status: "unavailable",

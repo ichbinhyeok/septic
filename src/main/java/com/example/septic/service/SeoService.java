@@ -1241,7 +1241,7 @@ public class SeoService {
             case "septic-as-built-records" -> "Septic As-Built Records | Layout & Permit Files | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Permit Search & SSDS Records | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Permit Search by Address & SSDS Records | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits by County | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";

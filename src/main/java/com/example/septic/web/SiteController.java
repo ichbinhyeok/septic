@@ -122,7 +122,11 @@ public class SiteController {
     );
     private static final Map<String, String> PRIORITY_COUNTY_INTERNAL_LINK_SLUGS = Map.of(
             "TX", "tarrant-county",
-            "CA", "san-bernardino-county"
+            "CA", "san-bernardino-county",
+            "TN", "hamilton-county",
+            "NC", "wake-county",
+            "IN", "st-joseph-county",
+            "SC", "greenville-county"
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
