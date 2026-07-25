@@ -52,4 +52,17 @@ public record PageMeta(
                 url
         );
     }
+
+    public PageMeta withRobots(String value) {
+        return new PageMeta(
+                title,
+                description,
+                canonicalUrl,
+                value,
+                socialImageUrl,
+                breadcrumbs,
+                jsonLdBlocks,
+                dataDownloadUrl
+        );
+    }
 }

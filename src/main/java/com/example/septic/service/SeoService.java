@@ -1231,13 +1231,13 @@ public class SeoService {
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Buyer File Leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Closing Risk | SepticPath";
-            case "septic-permit-lookup" -> "Septic Permit Lookup | County & Address Search | SepticPath";
+            case "septic-permit-lookup" -> "Septic Permit Lookup by Address & County | Official Records | SepticPath";
             case "septic-permit-process" -> "Septic Permit Process by State | Office & Site Review | SepticPath";
-            case "septic-records-checklist" -> "Septic Records Lookup by State | Permits & As-Builts | SepticPath";
+            case "septic-records-checklist" -> "Septic Records Lookup by State & County | Permits & Official Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
             case "how-to-find-septic-records-online" -> "How to Find Septic Records Online | County, Permit, and As-Built Search | SepticPath";
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
-            case "septic-permit-search-by-address" -> "Septic Permit Search by Address | SepticPath";
+            case "septic-permit-search-by-address" -> "Septic Permit Search by Address | Find County Records | SepticPath";
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies & As-Builts | SepticPath";
             case "septic-records-request-builder" -> "Septic Records Request Builder | Download Permit Copy Request Packet | SepticPath";
             case "septic-as-built-records" -> "Septic As-Built Records | Layout & Permit Files | SepticPath";

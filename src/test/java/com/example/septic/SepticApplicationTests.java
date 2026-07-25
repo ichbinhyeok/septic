@@ -1488,6 +1488,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Already know the job type?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Full name")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Project type")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<meta name=\"robots\" content=\"noindex,follow\">")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"sourcePageHint\" value=\"/septic-replacement-cost/\"")));
 	}
 
