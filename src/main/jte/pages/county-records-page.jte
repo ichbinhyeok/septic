@@ -95,7 +95,7 @@
                        rel="noreferrer"
                        data-track-click="nav"
                        data-track-source-context="county_records_command_records"
-                       data-track-target-type="official_source">Open county record path</a>
+                       data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                     <button class="button button--secondary"
                             type="button"
                             data-share-route
@@ -318,7 +318,7 @@
                                rel="noreferrer"
                                data-track-click="nav"
                                data-track-source-context="county_click_board_records"
-                               data-track-target-type="official_source">Open official file route</a>
+                               data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                         </article>
 
                         <article class="county-click-card">
@@ -495,7 +495,7 @@
                            rel="noreferrer"
                            data-track-click="nav"
                            data-track-source-context="county_official_file_path_records"
-                           data-track-target-type="official_source">Open ${countyPage.countyName()} file route</a>
+                           data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                         @if (countyPage.hasParcelAnchor())
                             <a class="button button--secondary"
                                href="${countyPage.parcelAnchorUrl()}"
@@ -1177,7 +1177,7 @@
                rel="noreferrer"
                data-track-click="nav"
                data-track-source-context="county_records_sticky_records"
-               data-track-target-type="official_source">Open county record path</a>
+               data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
         </div>
     </section>
     </div>

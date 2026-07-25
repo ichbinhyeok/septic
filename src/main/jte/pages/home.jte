@@ -22,6 +22,7 @@
                 eyebrow = "Septic records lookup",
                 heading = "Find the right septic records route by address.",
                 intro = "Enter the property address. We identify the county and send you to the most useful verified records path.",
+                pageHeading = true,
                 totalCountyRouteCount = totalCountyRouteCount
             )
         </div>

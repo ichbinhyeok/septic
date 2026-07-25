@@ -1721,6 +1721,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("secondaryActionLabel", secondaryActionLabel(contentPage));
         model.addAttribute("secondaryActionNote", secondaryActionNote(contentPage));
         model.addAttribute("secondaryActionTargetType", secondaryActionTargetType(contentPage));
+        model.addAttribute("officialLookupPrimaryUrl", officialLookupPrimaryUrl(contentPage));
+        model.addAttribute("officialLookupPrimaryLabel", officialLookupPrimaryLabel(contentPage));
         model.addAttribute("editorialPreparedBy", CONTENT_PAGE_PREPARER);
         model.addAttribute("editorialReviewedBy", SOURCE_REVIEWER);
         model.addAttribute("editorialReviewedAgainst", contentEvidenceLanes.isEmpty()
@@ -2937,6 +2939,28 @@ The goal is to settle the permit path before we frame the project as a normal in
             return "#state-pages";
         }
         return calculatorPathForContentPage(contentPage, sourcePage);
+    }
+
+    private String officialLookupPrimaryUrl(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case TDEC_RECORDS_SLUG -> "https://tdec.tn.gov/document-viewer/search/stp";
+            case NC_PERMIT_LOOKUP_SLUG -> "https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records";
+            case TX_OSSF_RECORDS_SLUG -> "https://www.tceq.texas.gov/permitting/ossf";
+            case FL_OSTDS_LOOKUP_SLUG -> "https://floridadep.gov/water/onsite-sewage";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "https://des.sc.gov/permits-regulations/septic-tanks";
+            default -> null;
+        };
+    }
+
+    private String officialLookupPrimaryLabel(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case TDEC_RECORDS_SLUG -> "Open official TDEC search";
+            case NC_PERMIT_LOOKUP_SLUG -> "Open North Carolina public records";
+            case TX_OSSF_RECORDS_SLUG -> "Open TCEQ OSSF information";
+            case FL_OSTDS_LOOKUP_SLUG -> "Open Florida OSTDS information";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "Open SCDES septic records";
+            default -> "";
+        };
     }
 
     private String secondaryActionPathForContentPage(ContentPage contentPage, String sourcePage) {

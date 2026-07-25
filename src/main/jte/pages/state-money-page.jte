@@ -102,7 +102,7 @@
                                     @elseif ("buying-a-house-with-a-septic-system".equals(stateMoneyPage.contentSlug()))
                                         Buyer file
                                     @elseif ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
-                                        Record owner
+                                        Who holds the file
                                     @elseif ("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()))
                                         Site review
                                     @else
@@ -113,7 +113,7 @@
                             </div>
                             <div class="workflow-console__row">
                                 <span class="workflow-console__index">02</span>
-                                <span class="workflow-console__label">Evidence to pull</span>
+                                <span class="workflow-console__label">What to bring</span>
                                 <strong>
                                     @if (("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()) || "septic-replacement-cost".equals(stateMoneyPage.contentSlug()) || "drain-field-replacement-cost".equals(stateMoneyPage.contentSlug()) || "septic-replacement-area".equals(stateMoneyPage.contentSlug()) || "wet-yard-over-septic-drain-field".equals(stateMoneyPage.contentSlug())) && primaryLocalAuthoritySource != null)
                                         ${primaryLocalAuthoritySource.title()}
@@ -132,7 +132,7 @@
                             </div>
                             <div class="workflow-console__row">
                                 <span class="workflow-console__index">03</span>
-                                <span class="workflow-console__label">Pricing gate</span>
+                                <span class="workflow-console__label">Before you price</span>
                                 <strong>
                                     @if (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.holdQuoteChecks().isEmpty())
                                         ${countyWorkflowSynthesis.holdQuoteChecks().get(0)}

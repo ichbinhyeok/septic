@@ -1,6 +1,7 @@
 package com.example.septic.data.model;
 
 import java.util.List;
+import java.util.Locale;
 
 public record CountyRecordsPage(
         String stateCode,
@@ -79,6 +80,16 @@ public record CountyRecordsPage(
                 || hasItems(sellerActions, 1)
                 || hasItems(contractorActions, 1)
                 || hasItems(redFlagChecklist, 1);
+    }
+
+    public boolean recordsUrlIsPdf() {
+        return recordsUrl != null && recordsUrl.toLowerCase(Locale.ROOT).contains(".pdf");
+    }
+
+    public String recordsActionLabel() {
+        return recordsUrlIsPdf()
+                ? "Open county search instructions (PDF)"
+                : "Open county record path";
     }
 
     private boolean hasText(String value) {

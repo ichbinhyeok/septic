@@ -35,6 +35,8 @@
 @param String secondaryActionLabel = "Run the estimate"
 @param String secondaryActionNote = ""
 @param String secondaryActionTargetType = "calculator"
+@param String officialLookupPrimaryUrl = null
+@param String officialLookupPrimaryLabel = ""
 @param EditorialProfile editorialPreparedBy = null
 @param EditorialProfile editorialReviewedBy = null
 @param String editorialReviewedAgainst = ""
@@ -100,13 +102,15 @@
                 @if (secondaryActionPath != null || contentQuotePath != null || !featuredStateMoneyPageLinks.isEmpty() || !featuredInternalLinks.isEmpty() || !featuredPermitLookupCountyLinks.isEmpty() || !contentOfficialFilePathRows.isEmpty())
                     <div class="hero-command-board" aria-label="Fast search intent routes">
                         <a class="hero-command hero-command--primary"
-                           href="${"septic-records-by-county".equals(contentPage.slug()) ? "#septic-records-by-county-county-finder" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath))}"
+                           href="${officialLookupPrimaryUrl != null ? officialLookupPrimaryUrl : ("septic-records-by-county".equals(contentPage.slug()) ? "#septic-records-by-county-county-finder" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath)))}"
+                           target="${officialLookupPrimaryUrl != null ? "_blank" : null}"
+                           rel="${officialLookupPrimaryUrl != null ? "noreferrer" : null}"
                            data-track-click="nav"
                            data-track-source-context="content_page_hero_command_primary"
-                           data-track-target-type="${"septic-permit-search-by-address".equals(contentPage.slug()) ? "internal_section" : calculatorCtaTargetType}">
-                            <span>Start here</span>
-                            <strong>${"septic-records-by-county".equals(contentPage.slug()) ? "Search a county record route" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel)}</strong>
-                            <small>${"septic-records-by-county".equals(contentPage.slug()) ? "Type the county you already know and open its local septic file path." : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading)}</small>
+                           data-track-target-type="${officialLookupPrimaryUrl != null ? "official_source" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "internal_section" : calculatorCtaTargetType)}">
+                            <span>${officialLookupPrimaryUrl != null ? "Official source" : "Start here"}</span>
+                            <strong>${officialLookupPrimaryUrl != null ? officialLookupPrimaryLabel : ("septic-records-by-county".equals(contentPage.slug()) ? "Search a county record route" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Find my county records route" : calculatorCtaLabel))}</strong>
+                            <small>${officialLookupPrimaryUrl != null ? "Open the official source first. If it does not expose the file, use the county fallback below." : ("septic-records-by-county".equals(contentPage.slug()) ? "Type the county you already know and open its local septic file path." : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "Paste the property address to resolve the county, then open the right public records path." : calculatorCtaHeading))}</small>
                         </a>
                         @if ("buying-a-house-with-a-septic-system".equals(contentPage.slug()) || "septic-transfer-compliance".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()))
                             <a class="hero-command"

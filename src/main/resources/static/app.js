@@ -17,6 +17,12 @@
         }
     }
 
+    function officialRouteLabel(url) {
+        return typeof url === "string" && /\.pdf(?:[?#]|$)/i.test(url)
+            ? "Open county search instructions (PDF)"
+            : "Open official file route";
+    }
+
     function sendEvent(endpoint, payload) {
         const body = JSON.stringify(payload);
 
@@ -879,7 +885,7 @@
                             payload.status === "county_route" ? "county_records_page" : "internal_page"));
                     }
                     if (!relayActions.length && payload.officialRouteUrl) {
-                        const official = button("Open official file route", payload.officialRouteUrl, false, "official_source");
+                        const official = button(officialRouteLabel(payload.officialRouteUrl), payload.officialRouteUrl, false, "official_source");
                         official.target = "_blank";
                         official.rel = "noreferrer";
                         nextActions.push(official);
@@ -1113,7 +1119,7 @@
                         actions.push(routeAction(route.routeTitle || "Open records route", route.routePath, true, "county_records_page", false));
                     }
                     if (route.officialRouteUrl) {
-                        actions.push(routeAction("Open official file route", route.officialRouteUrl, actions.length === 0, "official_source", true));
+                        actions.push(routeAction(officialRouteLabel(route.officialRouteUrl), route.officialRouteUrl, actions.length === 0, "official_source", true));
                     }
                     routeActions.replaceChildren(...actions);
                 }
