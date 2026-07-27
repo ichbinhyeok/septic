@@ -2,8 +2,8 @@
 
 ## 0.0.1.0 - 2026-07-27
 
-- Reworked the homepage around a clear records-first journey and plain-language next steps.
-- Added in-site septic document analysis with searchable-PDF extraction and bounded OCR fallback.
-- Added decision-oriented findings so homeowners can verify a system, estimate work, or prepare a records request without re-entering document details.
-- Improved calculator result clarity, assumptions, and confidence guidance.
-- Added official-document corpus tests, degraded-image OCR benchmarks, and deployment support for Tesseract OCR.
+- Homeowners can start with the record they need and follow plain-language next steps from the homepage.
+- Documents found on official sites can now be analyzed on SepticPath, including searchable PDFs and typed scans.
+- Extracted facts now lead to purpose-specific decisions for verifying a system, estimating work, or preparing a records request without re-entering details.
+- Calculator results now explain their assumptions, confidence, and practical limits more clearly.
+- Document analysis is backed by an official-form corpus, degraded-scan benchmarks, and production OCR support.
