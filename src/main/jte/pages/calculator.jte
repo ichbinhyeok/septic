@@ -26,54 +26,21 @@
 @param TimelinePreference[] timelines
 
 @template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
-        <div class="container content-grid">
+    <section class="section section--heroish calculator-intro">
+        <div class="container">
             <div class="section-heading">
-                <span class="eyebrow">Planning range</span>
-                <h1>Use the estimate after the workflow is clearer, or when the file is still too thin to trust the low end.</h1>
-                <p class="lede">Start with state and job type, but keep the permit path, record gaps, and buyer timing in view. The estimate is strongest when it sharpens the next file, county, or inspection decision.</p>
+                <span class="eyebrow">Septic cost calculator</span>
+                <h1>Estimate the cost of a septic project.</h1>
+                <p class="lede">Choose the state, job type, and property details. We will show a broad planning range, what moved it, and what to verify before trusting the low end.</p>
                 @if (!calculatorLandingLinks.isEmpty())
                     <div class="quick-link-strip" aria-label="Workflow shortcuts">
-                        <span class="quick-link-strip__label">Start with workflow instead</span>
+                        <span class="quick-link-strip__label">Need records first?</span>
                         @for (var link : calculatorLandingLinks.stream().limit(4).toList())
                             <a class="button button--secondary quick-link-strip__button" href="${link.path()}">${link.title()}</a>
                         @endfor
                     </div>
                 @endif
             </div>
-
-            <form class="detail-card calculator-hero-form" method="post" action="/septic-system-cost-calculator/#result-top" aria-label="Quick septic cost estimate">
-                <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
-                <input type="hidden" name="soilPercStatus" value="${estimateForm.getSoilPercStatus()}">
-                <input type="hidden" name="accessDifficulty" value="${estimateForm.getAccessDifficulty()}">
-                <input type="hidden" name="timeline" value="${estimateForm.getTimeline()}">
-                <span class="pill">Calculator start</span>
-                <h2>Get a planning range now.</h2>
-                <p>Pick the state, job type, and bedrooms. Refine the full form below only if the range needs tightening.</p>
-                <div class="calculator-hero-form__grid">
-                    <label class="field">
-                        <span>State</span>
-                        <select name="stateCode">
-                            @for (var state : states)
-                                <option value="${state.stateCode()}" selected="${state.stateCode().equals(estimateForm.getStateCode())}">${state.stateName()}</option>
-                            @endfor
-                        </select>
-                    </label>
-                    <label class="field">
-                        <span>Project type</span>
-                        <select name="projectType">
-                            @for (var projectType : projectTypes)
-                                <option value="${projectType.value()}" selected="${projectType.value().equals(estimateForm.getProjectType())}">${projectType.label()}</option>
-                            @endfor
-                        </select>
-                    </label>
-                    <label class="field">
-                        <span>Bedrooms</span>
-                        <input type="number" min="1" max="10" name="bedrooms" value="${estimateForm.getBedrooms()}">
-                    </label>
-                </div>
-                <button class="button button--primary" type="submit">Show planning estimate</button>
-            </form>
         </div>
     </section>
 
@@ -206,8 +173,8 @@
                     <section class="quote-panel" id="quote-request">
                         <div class="quote-panel__header">
                             <div>
-                                <span class="eyebrow">Primary CTA</span>
-                                <h2>Get matched with local septic pros</h2>
+                                <span class="eyebrow">Optional next step</span>
+                                <h2>Check local quote availability</h2>
                             </div>
                             <span class="pill">Short form</span>
                         </div>
@@ -215,7 +182,7 @@
                         @if (result == null)
                             <article class="status-box">
                                 <strong>Already know the job type?</strong>
-                                <p>You can request local quotes now. Run the estimate first only if you want a tighter planning range before sending the lead.</p>
+                                <p>You can submit the project basics now. Availability depends on your location and project; a contractor match is not guaranteed.</p>
                             </article>
                         @endif
 
@@ -227,8 +194,8 @@
                                      data-ga-param-form-id="quote_request_form"
                                      data-ga-param-state-code="${estimateForm.getStateCode()}"
                                      data-ga-param-project-type="${estimateForm.getProjectType()}">
-                                <strong>Request received</strong>
-                                <p>Your project details are in. Use lead ID ${leadId} if you need to reference this request while you compare local septic quotes.</p>
+                                <strong>Project details received</strong>
+                                <p>We saved your request under ID ${leadId}. This confirms submission, not contractor availability or a quote.</p>
                             </article>
                         @endif
 
@@ -311,12 +278,12 @@
 
                             <label class="checkbox checkbox--wide">
                                 <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}" required>
-                                <span>I agree to be contacted about my septic project estimate and matching options.</span>
+                                <span>I agree to be contacted about this project and possible local matching options.</span>
                             </label>
 
                             <div class="form-actions">
-                                <button class="button button--primary" type="submit">Request local quotes</button>
-                                <p>Short form only. The estimate stays visible above while you request local pricing.</p>
+                                <button class="button button--primary" type="submit">Submit availability check</button>
+                                <p>Submitting does not guarantee a match, price, or response time.</p>
                             </div>
                         </form>
                     </section>
@@ -330,7 +297,7 @@
                              data-show-after=".result-panel">
                         <div class="sticky-mobile-cta__inner">
                             <a class="button button--secondary" href="#result-top">Back to result</a>
-                            <a class="button button--primary" href="#quote-request">Jump to quote form</a>
+                            <a class="button button--primary" href="#quote-request">Check availability</a>
                         </div>
                     </section>
                 @endif

@@ -8,7 +8,29 @@
             <span class="eyebrow">Planning estimate</span>
             <h2>${result.stateName()} ${result.projectTypeLabel()}</h2>
         </div>
-        <span class="pill">${result.confidenceLabel()} confidence</span>
+    </div>
+
+    <div class="estimate-trust-grid" aria-label="Estimate confidence">
+        <article>
+            <span>Rule basis</span>
+            <strong>${result.confidenceLabel()}</strong>
+            <small>State rules and published sources</small>
+        </article>
+        <article>
+            <span>Local price detail</span>
+            <strong>Planning only</strong>
+            <small>Not a live local contractor bid</small>
+        </article>
+        <article>
+            <span>Property detail</span>
+            <strong>Limited</strong>
+            <small>Site evaluation can change the range</small>
+        </article>
+        <article>
+            <span>Source freshness</span>
+            <strong>${result.lastVerifiedAt()}</strong>
+            <small>${result.agencyName()} profile</small>
+        </article>
     </div>
 
     <div class="result-grid">
@@ -25,9 +47,9 @@
         </article>
 
         <article class="metric-card metric-card--accent">
-            <span class="metric-card__label">Likely total cost range</span>
+            <span class="metric-card__label">Planning cost range</span>
             <strong>${result.formattedTotalCostRange()}</strong>
-            <p>Mid-point planning anchor: about ${result.formattedTotalCostMid()}.</p>
+            <p>Midpoint: about ${result.formattedTotalCostMid()}. This is not a local bid.</p>
         </article>
 
         <article class="metric-card">
@@ -37,18 +59,27 @@
         </article>
     </div>
 
+    <article class="estimate-basis-strip">
+        <div>
+            <span class="eyebrow">How the cost range was built</span>
+            <strong>${result.stateName()} planning profile + the inputs above</strong>
+        </div>
+        <p>${result.costAnchorNote()}</p>
+        <p><strong>${costEvidence.size()} published cost evidence item${costEvidence.size() == 1 ? "" : "s"}</strong> available below. Local labor, soil, access, engineered design, and permit requirements can move the final bid outside this range.</p>
+    </article>
+
     <article class="result-cta-band">
         <div class="result-cta-band__copy">
             <span class="eyebrow">Next step</span>
-            <h3>Ready to compare local quotes?</h3>
-            <p>Use this planning range as your talking point, then jump straight to the short quote form.</p>
+            <h3>Want to check local quote availability?</h3>
+            <p>Send the project basics to see whether a local matching option is available. A match is not guaranteed.</p>
         </div>
         <div class="result-cta-band__actions">
-            <a class="button button--primary" href="#quote-request">Jump to quote form</a>
+            <a class="button button--primary" href="#quote-request">Check availability</a>
             <div class="result-cta-band__meta">
                 <span>Short form</span>
                 <span>State context stays visible</span>
-                <span>Estimate-first, not permit-ready</span>
+                <span>No guaranteed match</span>
             </div>
         </div>
     </article>

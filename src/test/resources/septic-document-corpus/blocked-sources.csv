@@ -1,0 +1,14 @@
+id,state,issuer,document_type,url,reason
+ma-title5-inspection,MA,Massachusetts DEP,inspection,https://www.mass.gov/doc/title-5-official-inspection-form-0/download,Automated download returned HTTP 403 on 2026-07-27
+ma-soil-suitability,MA,Massachusetts DEP,soil_assessment,https://www.mass.gov/doc/form-11-soil-suitability-assessment-for-on-site-sewage-disposal-0/download,Automated download returned HTTP 403 on 2026-07-27
+ma-percolation-test,MA,Massachusetts DEP,perc_test,https://www.mass.gov/doc/form-12-percolation-test-0/download,Automated download returned HTTP 403 on 2026-07-27
+ma-certificate-compliance,MA,Massachusetts DEP,final_compliance,https://www.mass.gov/doc/certificate-of-compliance-title-5-0/download,Automated download returned HTTP 403 on 2026-07-27
+wa-clark-installer-checklist,WA,Clark County Public Health,installation_checklist,https://clark.wa.gov/media/document/57716,Local DNS resolution failed on 2026-07-27
+wa-clark-locate-drawing,WA,Clark County Public Health,record_drawing,https://clark.wa.gov/media/document/57717,Local DNS resolution failed on 2026-07-27
+wa-clark-onsite-application,WA,Clark County Public Health,permit_application,https://clark.wa.gov/media/document/57718,Local DNS resolution failed on 2026-07-27
+ny-monroe-repair,NY,Monroe County Public Health,repair_permit,https://www.monroecounty.gov/files/health/eh/OnsiteSewage/WWT%20Repair%20Permit%202021.pdf,Automated download returned HTTP 525 on 2026-07-27
+ne-title124,NE,Nebraska DEQ,regulatory_registration_fields,https://govdocs.nebraska.gov/epubs/E6500/R015.0124-2012.pdf,Local DNS resolution failed on 2026-07-27
+ca-rialto-certification,CA,City of Rialto,existing_system_certification,https://rialtoca.gov/DocumentCenter/View/6658/Onsite-Wastewater-Treatment-System-OWTS-Requirements,Automated download returned HTTP 404 on 2026-07-27
+ca-yolo-as-built,CA,Yolo County Environmental Health,as_built,https://www.yolocounty.gov/home/showpublisheddocument/56759/636858156324970000,Automated download returned HTTP 403 on 2026-07-27
+ca-butte-site-evaluation,CA,Butte County Public Health,site_evaluation,https://www.buttecounty.ca.gov/DocumentCenter/View/4104/Site-Evaluation-Application-New-Development-PDF,Automated download returned HTTP 403 on 2026-07-27
+ca-butte-as-built,CA,Butte County Public Health,as_built,https://www.buttecounty.ca.gov/DocumentCenter/View/4097/As-Built-Report-New-Repair-Replacement-and-Expansion-PDF,Automated download returned HTTP 403 on 2026-07-27

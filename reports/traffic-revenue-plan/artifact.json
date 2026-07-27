@@ -1,0 +1,672 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "SepticPath 트래픽 성장·수익 전환 실행안",
+    "description": "Google Search Console의 최근 검색 성과와 현재 제품 구조를 바탕으로 만든 30일 실행안입니다.",
+    "generatedAt": "2026-07-20T15:00:00+09:00",
+    "sources": [
+      {
+        "id": "gsc",
+        "label": "Google Search Console",
+        "href": "https://search.google.com/search-console",
+        "path": "gsc-search-performance-2026-07-20.csv"
+      },
+      {
+        "id": "product",
+        "label": "SepticPath 제품 구조",
+        "href": "https://septicpath.com",
+        "path": "product-structure-review.md"
+      },
+      {
+        "id": "playbook",
+        "label": "Deal Desk 운영 문서",
+        "href": "https://septicpath.com/offer-prep-septic-file-check/",
+        "path": "deal-desk-review.md"
+      }
+    ],
+    "cards": [
+      {
+        "id": "current_clicks",
+        "dataset": "summary",
+        "source": {
+          "id": "gsc-current-summary",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "최근 28일 검색 클릭, 증감률 및 노출을 요약합니다.",
+            "sql": "SELECT * FROM summary LIMIT 1",
+            "tables_used": [
+              "summary"
+            ],
+            "metric_definitions": [
+              "click_growth = (current_clicks - previous_clicks) / previous_clicks"
+            ]
+          }
+        },
+        "description": "2026년 6월 20일~7월 17일, 직전 28일 대비",
+        "metrics": [
+          {
+            "field": "current_clicks",
+            "label": "최근 28일 클릭",
+            "format": "number"
+          },
+          {
+            "field": "click_growth",
+            "label": "증가율",
+            "format": "percent",
+            "signed": true
+          },
+          {
+            "field": "current_impressions",
+            "label": "노출",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "records_share",
+        "dataset": "summary",
+        "source": {
+          "id": "gsc-records-share",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "기록 의도 페이지의 클릭 수와 전체 클릭 비중을 요약합니다.",
+            "sql": "SELECT * FROM summary LIMIT 1",
+            "tables_used": [
+              "summary"
+            ],
+            "metric_definitions": [
+              "records_click_share = records_clicks / current_clicks"
+            ]
+          }
+        },
+        "description": "기록·공식 조회·파일 확보 의도 페이지",
+        "metrics": [
+          {
+            "field": "records_click_share",
+            "label": "기록 의도 클릭 비중",
+            "format": "percent"
+          },
+          {
+            "field": "records_clicks",
+            "label": "클릭",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "recent_week",
+        "dataset": "summary",
+        "source": {
+          "id": "gsc-recent-week",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "최근 완결 7일의 검색 클릭, 증감률 및 노출을 요약합니다.",
+            "sql": "SELECT * FROM summary LIMIT 1",
+            "tables_used": [
+              "summary"
+            ],
+            "metric_definitions": [
+              "last_7d_growth = (last_7d_clicks - previous_7d_clicks) / previous_7d_clicks"
+            ]
+          }
+        },
+        "description": "2026년 7월 11일~17일, 직전 완결 7일 대비",
+        "metrics": [
+          {
+            "field": "last_7d_clicks",
+            "label": "최근 7일 클릭",
+            "format": "number"
+          },
+          {
+            "field": "last_7d_growth",
+            "label": "증가율",
+            "format": "percent",
+            "signed": true
+          },
+          {
+            "field": "last_7d_impressions",
+            "label": "노출",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "weekly_clicks_chart",
+        "title": "주간 Google 검색 클릭",
+        "subtitle": "최근 4주는 노출 확대와 CTR 개선이 함께 누적됐습니다.",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "weekly_search",
+        "source": {
+          "id": "gsc-weekly-search",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "8개 완결 주의 클릭, 노출, CTR을 시간순으로 반환합니다.",
+            "sql": "SELECT * FROM weekly_search ORDER BY rowid",
+            "tables_used": [
+              "weekly_search"
+            ],
+            "metric_definitions": [
+              "ctr = clicks / impressions"
+            ]
+          }
+        },
+        "encodings": {
+          "x": {
+            "field": "week",
+            "label": "주간 시작일"
+          },
+          "y": {
+            "field": "clicks",
+            "label": "클릭",
+            "format": "number"
+          },
+          "tooltip": [
+            {
+              "field": "impressions",
+              "label": "노출",
+              "format": "number"
+            },
+            {
+              "field": "ctr",
+              "label": "CTR",
+              "format": "percent"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "page_family_table",
+        "title": "현재 클릭의 검색 의도 구성",
+        "description": "최근 28일 클릭을 페이지 의도별로 분류했습니다.",
+        "dataset": "page_families",
+        "source": {
+          "id": "gsc-page-families",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "최근 28일 클릭을 페이지 의도별로 집계합니다.",
+            "sql": "SELECT * FROM page_families ORDER BY clicks DESC",
+            "tables_used": [
+              "page_families"
+            ],
+            "metric_definitions": [
+              "click_share = family clicks / 311 total clicks"
+            ]
+          }
+        },
+        "columns": [
+          {
+            "field": "family",
+            "label": "페이지군",
+            "type": "text"
+          },
+          {
+            "field": "clicks",
+            "label": "클릭",
+            "type": "number"
+          },
+          {
+            "field": "click_share",
+            "label": "클릭 비중",
+            "type": "percent"
+          },
+          {
+            "field": "role",
+            "label": "사업 역할",
+            "type": "text"
+          }
+        ],
+        "defaultSort": {
+          "field": "clicks",
+          "direction": "desc"
+        }
+      },
+      {
+        "id": "opportunity_table",
+        "title": "같은 노출에서 CTR 3%를 가정한 페이지 기회",
+        "description": "예측이 아니라 우선순위 결정을 위한 단순 시나리오입니다.",
+        "dataset": "page_opportunities",
+        "source": {
+          "id": "gsc-page-opportunities",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "현재 노출에서 CTR 3%를 달성했을 때의 추가 클릭을 페이지별로 계산합니다.",
+            "sql": "SELECT * FROM page_opportunities ORDER BY modeled_extra_clicks DESC",
+            "tables_used": [
+              "page_opportunities"
+            ],
+            "metric_definitions": [
+              "modeled_extra_clicks = max(round(impressions * 3%) - current clicks, 0)"
+            ]
+          }
+        },
+        "columns": [
+          {
+            "field": "page",
+            "label": "페이지",
+            "type": "text"
+          },
+          {
+            "field": "impressions",
+            "label": "노출",
+            "type": "number"
+          },
+          {
+            "field": "ctr",
+            "label": "현재 CTR",
+            "type": "percent"
+          },
+          {
+            "field": "position",
+            "label": "평균 순위",
+            "type": "number"
+          },
+          {
+            "field": "modeled_extra_clicks",
+            "label": "추가 클릭 시나리오",
+            "type": "number"
+          }
+        ],
+        "defaultSort": {
+          "field": "modeled_extra_clicks",
+          "direction": "desc"
+        }
+      },
+      {
+        "id": "monetization_table",
+        "title": "수익화 경로 우선순위",
+        "description": "현재 유입 의도와 기존 기능을 기준으로 평가했습니다.",
+        "dataset": "monetization_paths",
+        "source": {
+          "id": "product-monetization-paths",
+          "label": "SepticPath product structure review",
+          "path": "product-structure-review.md",
+          "query": {
+            "engine": "sqlite",
+            "description": "현재 유입 지점과 기존 기능에 맞춘 수익화 경로를 우선순위 순으로 반환합니다.",
+            "sql": "SELECT * FROM monetization_paths ORDER BY priority ASC",
+            "tables_used": [
+              "monetization_paths"
+            ]
+          }
+        },
+        "columns": [
+          {
+            "field": "priority",
+            "label": "순위",
+            "type": "number"
+          },
+          {
+            "field": "model",
+            "label": "모델",
+            "type": "text"
+          },
+          {
+            "field": "entry",
+            "label": "유입 지점",
+            "type": "text"
+          },
+          {
+            "field": "decision",
+            "label": "결론",
+            "type": "text"
+          }
+        ],
+        "defaultSort": {
+          "field": "priority",
+          "direction": "asc"
+        }
+      },
+      {
+        "id": "revenue_scenario_table",
+        "title": "기록 유입 217건 기준 유료 파일 체크 시나리오",
+        "description": "건당 49달러, 환불·결제수수료·인건비 차감 전 월 매출 가정입니다.",
+        "dataset": "revenue_scenarios",
+        "source": {
+          "id": "gsc-revenue-scenarios",
+          "label": "Google Search Console normalized export",
+          "path": "gsc-search-performance-2026-07-20.csv",
+          "query": {
+            "engine": "sqlite",
+            "description": "기록 의도 클릭 217건과 49달러 단건 가격을 사용한 전환율 민감도입니다.",
+            "sql": "SELECT * FROM revenue_scenarios ORDER BY conversion_rate ASC",
+            "tables_used": [
+              "revenue_scenarios"
+            ],
+            "metric_definitions": [
+              "expected_orders = 217 record-intent clicks * conversion_rate",
+              "gross_revenue = expected_orders * 49 USD; fees, refunds, and labor excluded"
+            ]
+          }
+        },
+        "columns": [
+          {
+            "field": "conversion_rate",
+            "label": "결제 전환율",
+            "type": "percent"
+          },
+          {
+            "field": "expected_orders",
+            "label": "예상 주문",
+            "type": "number"
+          },
+          {
+            "field": "gross_revenue",
+            "label": "월 총매출",
+            "type": "currency"
+          },
+          {
+            "field": "interpretation",
+            "label": "해석",
+            "type": "text"
+          }
+        ],
+        "defaultSort": {
+          "field": "conversion_rate",
+          "direction": "asc"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# SepticPath 트래픽 성장·수익 전환 실행안"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "sourceId": "gsc",
+        "body": "## Executive Summary\n\n**지금은 수익화를 미룰 단계가 아니라, 기록 검색 흐름에 작은 유료 실험을 붙일 단계다.** 최근 28일 Google 검색 클릭은 311건으로 직전 28일보다 199% 늘었고, 최근 완결 7일은 123건으로 직전 주보다 39.8% 늘었다. 클릭의 69.8%가 기록·공식 조회·파일 확보 의도에서 나왔다.\n\n따라서 첫 수익 상품은 광고나 구독이 아니라 **무료 공식 경로와 요청 패킷 뒤에 배치하는 49달러 단건 ‘사람이 확인하는 파일 체크’**가 가장 적합하다. 트래픽 성장은 새 주제를 넓히기보다 이미 노출되는 TDEC·North Carolina·Tennessee·Alabama 페이지의 검색결과 클릭률을 먼저 높이고, 실제 노출이 확인된 카운티만 확장하는 편이 빠르다."
+      },
+      {
+        "id": "kpis",
+        "type": "metric-strip",
+        "cardIds": [
+          "current_clicks",
+          "records_share",
+          "recent_week"
+        ]
+      },
+      {
+        "id": "traffic_diagnosis",
+        "type": "markdown",
+        "sourceId": "gsc",
+        "body": "## 트래픽 진단\n\n**검색 성과는 초기 검증을 통과하고 있다.** 최근 28일은 노출이 40.5% 늘었는데 클릭은 199% 늘어 CTR이 1.17%에서 2.48%로 개선됐다. 다만 최근 한 주는 클릭과 노출이 각각 39.8%, 43.6% 늘고 CTR은 2.74%에서 2.67%로 소폭 내려갔다. 즉, 지금의 주간 성장은 주로 더 많이 보인 결과이며 다음 레버는 검색결과 문구와 페이지별 의도 일치다."
+      },
+      {
+        "id": "weekly_clicks",
+        "type": "chart",
+        "chartId": "weekly_clicks_chart"
+      },
+      {
+        "id": "page_families",
+        "type": "table",
+        "tableId": "page_family_table"
+      },
+      {
+        "id": "traffic_growth",
+        "type": "markdown",
+        "body": "## 트래픽을 더 늘리는 법\n\n1. **상위 네 페이지부터 CTR 수술:** TDEC, North Carolina 기록, Tennessee 기록, Alabama 계산기의 제목·설명·첫 답변을 실제 검색어 문장에 맞춘다. 같은 노출에서 CTR 3%만 달성해도 다섯 페이지 합계 약 64클릭이 추가되는 단순 시나리오다.\n2. **Tennessee 페이지 역할 분리:** TDEC 페이지는 ‘공식 검색 도구/바로가기’, Tennessee 기록 페이지는 ‘준비물·요청 절차·못 찾았을 때의 다음 단계’로 분리해 서로 같은 검색어를 잡아먹지 않게 한다.\n3. **노출 기반 카운티 확장:** 모든 카운티를 대량 생성하지 말고 최근 28일 노출이 이미 확인되고 공식 출처를 연결할 수 있는 곳만 만든다. Hamilton County, TN은 평균 7.43위에서 120회 노출·0클릭이라 첫 후보이고, Prince William County, VA의 9.78% CTR 구조는 복제할 만한 기준이다.\n4. **정보 페이지에서 도구로 내부 이동:** 검색 유입 페이지에는 무료 공식 링크 → 요청 패킷 빌더 → 유료 도움 순서의 CTA를 둔다. 요청 빌더 자체는 검색 유입 페이지가 아니라 전환 도구로 본다.\n5. **‘못 찾았다’ 문제군 강화:** 주소로 조회, 온라인에서 기록 찾기, 파일 없음, as-built 없음 같은 검색어를 기존 기록 허브의 강한 섹션으로 흡수하고 요청 빌더로 연결한다."
+      },
+      {
+        "id": "opportunities",
+        "type": "table",
+        "tableId": "opportunity_table"
+      },
+      {
+        "id": "monetization",
+        "type": "markdown",
+        "body": "## 수익 전환 구조\n\n**무료의 신뢰를 보존하면서 막힌 지점만 유료화한다.** 사용자는 먼저 공식 조회 경로와 셀프서비스 요청 패킷을 무료로 받는다. 그 뒤 ‘관할 기관 확인, 필요한 문서 점검, 요청 패킷 검토, 침실 수 불일치 한 가지 표시’를 사람이 확인해 주는 단건 서비스를 49달러에 제안한다. 공식 기록의 존재나 승인 여부를 보증하는 표현은 피한다.\n\n초기에는 복잡한 결제·CRM을 만들지 말고 결제 링크와 수동 처리로 5~10건을 검증한다. 주소와 이메일은 결제 단계에서만 명시적으로 받고 보관 기간을 고지한다. 비용·퍼크 테스트 유입에는 Alabama 한 지역에서만 견적 리드를 시험하되, 실제로 리드를 받을 파트너가 준비되기 전에는 더 많은 개인정보를 수집하지 않는다."
+      },
+      {
+        "id": "monetization_paths",
+        "type": "table",
+        "tableId": "monetization_table"
+      },
+      {
+        "id": "revenue_scenarios",
+        "type": "table",
+        "tableId": "revenue_scenario_table"
+      },
+      {
+        "id": "thirty_day_plan",
+        "type": "markdown",
+        "body": "## 30일 실행안\n\n- **1주차 — 측정과 검색결과 개선:** `official_source_click`, `packet_generated`, `paid_help_cta_click`, `checkout_start`, `paid_order`를 운영 환경에서 구분해 기록한다. TDEC·NC·TN·Alabama 네 페이지와 Hamilton County 페이지의 제목·첫 답변·내부 링크를 수정한다.\n- **2주차 — 49달러 파일 체크 출시:** 결과를 본 뒤나 공식 조회에서 막힌 뒤에만 CTA를 노출한다. 결제 링크와 수동 전달로 시작하고, 전달 범위와 개인정보 보관 기간을 명확히 적는다.\n- **3주차 — 이긴 구조 확장:** 노출이 있는 카운티 중 공식 링크와 고유 절차를 확인할 수 있는 3~5곳만 추가한다. 동시에 기존 Deal Desk 방식으로 실제 에이전트·검사자에게 첫 케이스 무료 제안을 보내 반복 사용 여부를 본다.\n- **4주차 — 퍼널 판정:** 페이지별 CTR, 무료 도구 완료, 유료 CTA 클릭, 결제 시작, 실제 주문을 한 줄 퍼널로 보고 문구·가격·위치를 조정한다."
+      },
+      {
+        "id": "decision_gates",
+        "type": "markdown",
+        "body": "## 의사결정 기준\n\n- 기록 의도 방문 150건 후 유료 CTA 클릭이 3% 미만이면 가격보다 **배치와 문구**를 먼저 바꾼다.\n- 결제 시작은 생기지만 주문이 없으면 **신뢰 요소·제공 범위·가격**을 바꾼다.\n- 기록 의도 방문 300건 안에 유료 주문 3건 또는 동일 전문가의 두 번째 사용 1건이 나오면 수동 서비스를 유지하고 자동화를 검토한다.\n- 300건 이후에도 주문이 0건이면 결제 기능을 더 만들지 말고, 무료 결과 직후 10명 인터뷰로 실제 막힘과 지불 의사를 다시 확인한다.\n- SEO 수정은 최소 2주 단위로 보되, 최종 유지·폐기 판단은 4~8주 후 같은 페이지의 노출·CTR·순위를 함께 비교한다."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## 데이터 한계\n\n이 판단은 Google Search Console의 2026년 7월 17일까지 완결된 데이터와 저장소 구조를 기반으로 한다. 운영 환경의 도구 완료율, CTA 클릭, 결제 시작, 실제 매출 데이터는 아직 확인되지 않았다. 수익 표는 실제 예측이 아니라 49달러 단건 가격과 현재 기록 의도 클릭 217건을 사용한 민감도 시나리오다."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generatedAt": "2026-07-20T15:00:00+09:00",
+    "datasets": {
+      "summary": [
+        {
+          "current_clicks": 311,
+          "previous_clicks": 104,
+          "click_growth": 1.9904,
+          "current_impressions": 12542,
+          "previous_impressions": 8927,
+          "impression_growth": 0.4049,
+          "current_ctr": 0.024797,
+          "previous_ctr": 0.01165,
+          "current_position": 9.7893,
+          "previous_position": 10.4756,
+          "records_clicks": 217,
+          "records_click_share": 0.6977,
+          "last_7d_clicks": 123,
+          "previous_7d_clicks": 88,
+          "last_7d_growth": 0.3977,
+          "last_7d_impressions": 4615,
+          "previous_7d_impressions": 3213
+        }
+      ],
+      "weekly_search": [
+        {
+          "week": "Jun 20",
+          "period": "current 28 days",
+          "clicks": 49,
+          "impressions": 2354,
+          "ctr": 0.02081
+        },
+        {
+          "week": "Jun 27",
+          "period": "current 28 days",
+          "clicks": 51,
+          "impressions": 2360,
+          "ctr": 0.02161
+        },
+        {
+          "week": "Jul 4",
+          "period": "current 28 days",
+          "clicks": 88,
+          "impressions": 3213,
+          "ctr": 0.02739
+        },
+        {
+          "week": "Jul 11",
+          "period": "current 28 days",
+          "clicks": 123,
+          "impressions": 4615,
+          "ctr": 0.02665
+        }
+      ],
+      "page_families": [
+        {
+          "family": "기록·공식 조회",
+          "clicks": 217,
+          "click_share": 0.6977,
+          "role": "핵심 획득·첫 유료 상품"
+        },
+        {
+          "family": "비용·퍼크 테스트",
+          "clicks": 75,
+          "click_share": 0.2412,
+          "role": "보조 리드 생성"
+        },
+        {
+          "family": "허가 절차",
+          "clicks": 16,
+          "click_share": 0.0514,
+          "role": "기록 흐름 보조"
+        },
+        {
+          "family": "기타",
+          "clicks": 3,
+          "click_share": 0.0096,
+          "role": "우선순위 낮음"
+        }
+      ],
+      "page_opportunities": [
+        {
+          "page": "Alabama 비용 계산기",
+          "impressions": 2459,
+          "clicks": 53,
+          "ctr": 0.0216,
+          "position": 8.51,
+          "modeled_extra_clicks": 21,
+          "first_change": "퍼크 테스트 비용 답변을 제목·첫 문단에 명시"
+        },
+        {
+          "page": "Tennessee 기록",
+          "impressions": 678,
+          "clicks": 5,
+          "ctr": 0.00737,
+          "position": 12.33,
+          "modeled_extra_clicks": 15,
+          "first_change": "TDEC와 역할 분리, 요청 절차 중심"
+        },
+        {
+          "page": "TDEC 기록",
+          "impressions": 1120,
+          "clicks": 20,
+          "ctr": 0.0179,
+          "position": 7.76,
+          "modeled_extra_clicks": 14,
+          "first_change": "공식 검색 도구·주소 조회 문구 강화"
+        },
+        {
+          "page": "North Carolina 기록",
+          "impressions": 900,
+          "clicks": 17,
+          "ctr": 0.0189,
+          "position": 9.75,
+          "modeled_extra_clicks": 10,
+          "first_change": "온라인 조회·카운티 요청 경로를 제목에 반영"
+        },
+        {
+          "page": "Hamilton County, TN",
+          "impressions": 120,
+          "clicks": 0,
+          "ctr": 0,
+          "position": 7.43,
+          "modeled_extra_clicks": 4,
+          "first_change": "고유 공식 출처와 요청 행동을 검색결과에 명시"
+        }
+      ],
+      "monetization_paths": [
+        {
+          "priority": 1,
+          "model": "사람이 확인하는 파일 체크",
+          "entry": "기록 페이지·요청 빌더 결과 뒤",
+          "offer": "관할·필요 문서·요청 패킷·불일치 1건 점검",
+          "pricing": "$49 / 건",
+          "decision": "지금 수동 파일럿"
+        },
+        {
+          "priority": 2,
+          "model": "퍼크·검사 견적 리드",
+          "entry": "Alabama 비용·퍼크 페이지",
+          "offer": "지역 파트너에게 동의 기반 견적 요청 전달",
+          "pricing": "파트너 합의 후",
+          "decision": "수요처 확보 뒤 제한 시험"
+        },
+        {
+          "priority": 3,
+          "model": "Agent Deal Desk",
+          "entry": "아웃바운드·소개·리소스 배치",
+          "offer": "첫 케이스 무료, 반복 사용 시 케이스·월 요금",
+          "pricing": "$49 / 건 또는 $99 / 월 가설",
+          "decision": "별도 GTM 검증"
+        },
+        {
+          "priority": 4,
+          "model": "디스플레이 광고",
+          "entry": "전체 정보 페이지",
+          "offer": "페이지뷰 기반 광고",
+          "pricing": "RPM 기반",
+          "decision": "현재는 보류"
+        }
+      ],
+      "revenue_scenarios": [
+        {
+          "conversion_rate": 0.005,
+          "expected_orders": 1.09,
+          "gross_revenue": 53.17,
+          "interpretation": "신호 탐색 단계"
+        },
+        {
+          "conversion_rate": 0.01,
+          "expected_orders": 2.17,
+          "gross_revenue": 106.33,
+          "interpretation": "초기 적합성 신호"
+        },
+        {
+          "conversion_rate": 0.02,
+          "expected_orders": 4.34,
+          "gross_revenue": 212.66,
+          "interpretation": "반복 운영 검토"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "gsc",
+      "label": "Google Search Console",
+      "href": "https://search.google.com/search-console",
+      "path": "gsc-search-performance-2026-07-20.csv"
+    },
+    {
+      "id": "product",
+      "label": "SepticPath 제품 구조",
+      "href": "https://septicpath.com",
+      "path": "product-structure-review.md"
+    },
+    {
+      "id": "playbook",
+      "label": "Deal Desk 운영 문서",
+      "href": "https://septicpath.com/offer-prep-septic-file-check/",
+      "path": "deal-desk-review.md"
+    }
+  ]
+}

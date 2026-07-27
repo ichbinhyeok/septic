@@ -2,6 +2,8 @@ FROM bellsoft/liberica-openjre-alpine:21
 
 WORKDIR /app
 
+RUN apk add --no-cache tesseract-ocr tesseract-ocr-data-eng
+
 COPY build/libs/*.jar /app/
 COPY data/raw /app/data/raw
 
@@ -11,7 +13,8 @@ RUN find /app -maxdepth 1 -name "*-plain.jar" -delete \
 
 ENV APP_DATA_ROOT=/app/data/raw \
     APP_STORAGE_ROOT=/app/storage \
-    APP_SITE_BASE_URL=https://septicpath.com
+    APP_SITE_BASE_URL=https://septicpath.com \
+    APP_DOCUMENT_OCR_ENABLED=true
 
 EXPOSE 8080
 
