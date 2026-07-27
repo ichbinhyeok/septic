@@ -27,16 +27,15 @@
                 </div>
                 <div class="records-access-index-hero__actions">
                     <a class="button button--primary"
+                       href="#records-access-index"
+                       data-track-click="nav"
+                       data-track-source-context="records_access_index_hero_address"
+                       data-track-target-type="internal_tool">Search by address</a>
+                    <a class="button button--secondary"
                        href="#records-access-county-search"
                        data-track-click="nav"
                        data-track-source-context="records_access_index_hero_search"
                        data-track-target-type="internal_section">Search by county</a>
-                    <a class="button button--secondary"
-                       href="/septic-records-access-index.csv?v=${dataLastUpdated}"
-                       data-records-index-download
-                       data-track-click="nav"
-                       data-track-source-context="records_access_index_hero_csv"
-                       data-track-target-type="data_export">Download route data</a>
                 </div>
             </div>
             @template.tags.addressRecordFinder(
@@ -107,7 +106,7 @@
                                data-records-index-download
                                data-track-click="nav"
                                data-track-source-context="records_access_index_distribution_csv"
-                               data-track-target-type="data_export">Download all ${totalCountyRouteCount} routes</a>
+                               data-track-target-type="data_export">Download route data</a>
                             <button class="button button--secondary"
                                     type="button"
                                     data-share-route
