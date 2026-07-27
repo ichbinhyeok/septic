@@ -2747,6 +2747,11 @@ body.records-task-mode .records-request-builder {
     max-width: 820px;
 }
 
+.content-page--septic-records-request-builder .records-request-builder__intro h2,
+.content-page--septic-records-request-builder .records-request-builder__intro p {
+    display: none;
+}
+
 .records-request-builder__intro .eyebrow,
 .records-request-builder__output-head span,
 .records-request-builder__submission span,
