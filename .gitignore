@@ -45,3 +45,7 @@ storage/ops-report-credentials.properties
 !storage/leads/README.md
 !storage/events/README.md
 .gstack/
+
+### Python ###
+__pycache__/
+*.py[cod]

@@ -11,15 +11,40 @@ import hashlib
 import io
 import json
 import pathlib
+import re
 import ssl
 import subprocess
 import sys
+import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections import Counter
 
 
 USER_AGENT = "SepticPath-SourceMonitor/2.0 (+https://septicpath.com/about/)"
+ACTIONABLE_CLASSIFICATIONS = {
+    "dead",
+    "dns_error",
+    "certificate_hostname_error",
+    "nonproduction_host",
+    "persistent_server_error",
+}
+SUMMARY_CLASSIFICATIONS = [
+    "healthy",
+    "blocked",
+    "rate_limited",
+    "transient",
+    "persistent_server_error",
+    "dns_error",
+    "certificate_hostname_error",
+    "tls_error",
+    "nonproduction_host",
+    "inconclusive",
+    "review",
+    "dead",
+]
+NONPRODUCTION_LABELS = {"old", "temp", "uat", "test", "testing", "stage", "staging", "qa", "dev"}
 HEALTH_COLUMNS = [
     "last_http_checked_at",
     "http_check_status",
@@ -35,9 +60,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", default="reports/source-health.json")
     parser.add_argument("--timeout", type=int, default=20)
     parser.add_argument("--workers", type=int, default=20)
+    parser.add_argument("--retries", type=int, default=2)
+    parser.add_argument("--retry-delay", type=float, default=0.5)
     parser.add_argument("--update-registry", action="store_true")
     parser.add_argument("--baseline-ref", help="Git ref used to identify date-only migrations")
     parser.add_argument("--fail-on-dead", action="store_true")
+    parser.add_argument("--fail-on-actionable", action="store_true")
     return parser.parse_args()
 
 
@@ -61,7 +89,67 @@ def header(headers, name: str) -> str:
     return headers.get(name, "") if headers is not None else ""
 
 
-def audit_url(item: dict[str, object], timeout: int) -> dict[str, object]:
+def nonproduction_host_marker(url: str) -> str:
+    hostname = (urllib.parse.urlsplit(url).hostname or "").lower()
+    for label in hostname.split("."):
+        if label in NONPRODUCTION_LABELS:
+            return label
+        if len(label) > 3 and re.search(r"(?:uat|staging|testing)$", label):
+            return re.search(r"(?:uat|staging|testing)$", label).group(0)
+    return ""
+
+
+def classify_network_error(error: str) -> str:
+    lowered = error.lower()
+    if any(token in lowered for token in [
+        "name or service not known",
+        "nodename nor servname",
+        "getaddrinfo failed",
+        "no address associated with hostname",
+        "errno 11001",
+    ]):
+        return "dns_error"
+    if "hostname mismatch" in lowered or "certificate is not valid for" in lowered:
+        return "certificate_hostname_error"
+    if "certificate_verify_failed" in lowered:
+        return "tls_error"
+    return "inconclusive"
+
+
+def should_retry(result: dict[str, object]) -> bool:
+    status = int(result.get("statusCode", 0))
+    classification = str(result.get("classification", ""))
+    return status >= 500 or classification in {
+        "dns_error",
+        "certificate_hostname_error",
+        "tls_error",
+        "inconclusive",
+    }
+
+
+def confirm_dns_nxdomain(url: str, timeout: int) -> bool | None:
+    hostname = urllib.parse.urlsplit(url).hostname or ""
+    if not hostname:
+        return True
+    query = urllib.parse.urlencode({"name": hostname, "type": "A"})
+    request = urllib.request.Request(
+        f"https://dns.google/resolve?{query}",
+        headers={"Accept": "application/dns-json", "User-Agent": USER_AGENT},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=min(timeout, 10)) as response:
+            payload = json.loads(response.read(65536).decode("utf-8"))
+        status = int(payload.get("Status", -1))
+        if status == 3:
+            return True
+        if status == 0:
+            return False
+    except Exception:
+        return None
+    return None
+
+
+def audit_url_once(item: dict[str, object], timeout: int) -> dict[str, object]:
     url = str(item["url"])
     request = urllib.request.Request(
         url,
@@ -98,13 +186,14 @@ def audit_url(item: dict[str, object], timeout: int) -> dict[str, object]:
         error = f"{type(exception).__name__}: {exception}"
 
     elapsed = dt.datetime.now(dt.timezone.utc) - started
+    classification = classify(status) if status else classify_network_error(error)
     return {
         "url": url,
         "finalUrl": final_url,
         "sourceIds": item["sourceIds"],
         "agencies": item["agencies"],
         "statusCode": status,
-        "classification": classify(status),
+        "classification": classification,
         "contentType": header(headers, "Content-Type"),
         "contentLength": header(headers, "Content-Length"),
         "etag": header(headers, "ETag"),
@@ -113,6 +202,57 @@ def audit_url(item: dict[str, object], timeout: int) -> dict[str, object]:
         "durationMs": round(elapsed.total_seconds() * 1000),
         "error": error,
     }
+
+
+def audit_url(
+    item: dict[str, object],
+    timeout: int,
+    retries: int = 2,
+    retry_delay: float = 0.5,
+) -> dict[str, object]:
+    url = str(item["url"])
+    marker = nonproduction_host_marker(url)
+    if marker:
+        return {
+            "url": url,
+            "finalUrl": url,
+            "sourceIds": item["sourceIds"],
+            "agencies": item["agencies"],
+            "statusCode": 0,
+            "classification": "nonproduction_host",
+            "contentType": "",
+            "contentLength": "",
+            "etag": "",
+            "lastModified": "",
+            "sampleSha256": "",
+            "durationMs": 0,
+            "attempts": 0,
+            "error": f"Non-production hostname marker detected: {marker}",
+        }
+
+    result: dict[str, object] = {}
+    attempts = max(1, retries + 1)
+    for attempt in range(1, attempts + 1):
+        result = audit_url_once(item, timeout)
+        result["attempts"] = attempt
+        if not should_retry(result) or attempt == attempts:
+            break
+        if retry_delay > 0:
+            time.sleep(retry_delay)
+
+    if int(result.get("statusCode", 0)) >= 500 and int(result.get("attempts", 1)) >= attempts:
+        result["classification"] = "persistent_server_error"
+    if result.get("classification") == "dns_error":
+        confirmed = confirm_dns_nxdomain(url, timeout)
+        if confirmed is not True:
+            result["classification"] = "inconclusive"
+            suffix = (
+                "Public DNS still resolves this hostname."
+                if confirmed is False
+                else "Public DNS confirmation was unavailable."
+            )
+            result["error"] = f"{result.get('error', '')} {suffix}".strip()
+    return result
 
 
 def read_registry(path: pathlib.Path) -> tuple[list[dict[str, str]], list[str]]:
@@ -134,9 +274,9 @@ def read_baseline(ref: str, registry_path: pathlib.Path) -> dict[str, dict[str, 
 def review_status_for(health: str, content_date: str) -> str:
     if health == "healthy":
         return "content_reviewed_http_healthy" if content_date else "content_review_due"
-    if health == "dead":
+    if health in ACTIONABLE_CLASSIFICATIONS:
         return "replacement_required"
-    if health in {"blocked", "rate_limited", "transient", "inconclusive"}:
+    if health in {"blocked", "rate_limited", "transient", "tls_error", "inconclusive"}:
         return "manual_http_review"
     return "review_required"
 
@@ -209,7 +349,10 @@ def main() -> int:
             item["agencies"].append(agency)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
-        results = list(executor.map(lambda item: audit_url(item, args.timeout), grouped.values()))
+        results = list(executor.map(
+            lambda item: audit_url(item, args.timeout, args.retries, args.retry_delay),
+            grouped.values(),
+        ))
 
     results.sort(key=lambda item: (str(item["classification"]), str(item["url"])))
     counts = Counter(str(item["classification"]) for item in results)
@@ -232,11 +375,10 @@ def main() -> int:
         "uniqueUrlCount": len(results),
         "policy": (
             "HTTP reachability is recorded separately from editorial content verification. "
-            "Only confirmed HTTP 404 and 410 responses are classified as dead."
+            "Confirmed 404/410 responses, DNS failures, hostname-certificate mismatches, "
+            "non-production hosts, and server errors that persist through retries are actionable."
         ),
-        "summary": {name: counts.get(name, 0) for name in [
-            "healthy", "blocked", "rate_limited", "transient", "inconclusive", "review", "dead"
-        ]},
+        "summary": {name: counts.get(name, 0) for name in SUMMARY_CLASSIFICATIONS},
         "migration": migration,
         "results": results,
     }
@@ -245,6 +387,8 @@ def main() -> int:
     print(json.dumps(report["summary"], separators=(",", ":")))
     print(f"Source health report: {output_path}")
     if args.fail_on_dead and counts.get("dead", 0):
+        return 1
+    if args.fail_on_actionable and any(counts.get(name, 0) for name in ACTIONABLE_CLASSIFICATIONS):
         return 1
     return 0
 

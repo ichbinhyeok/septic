@@ -7,7 +7,9 @@ on:
   push:
     paths:
       - "data/raw/source_registry.csv"
+      - "tools/check_source_health.py"
       - "tools/check-source-health.ps1"
+      - "tools/test_check_source_health.py"
       - ".github/workflows/source-health.yml"
 
 permissions:
@@ -26,8 +28,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Test source health policy
+        run: python -m unittest tools/test_check_source_health.py
+
       - name: Check official source URLs
-        run: python tools/check_source_health.py --fail-on-dead
+        run: python tools/check_source_health.py --fail-on-actionable
 
       - name: Upload source health report
         if: always()

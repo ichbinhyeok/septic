@@ -11,5 +11,5 @@ python tools/check_source_health.py `
     --output $OutputPath `
     --timeout $TimeoutSeconds `
     --workers $ThrottleLimit `
-    --fail-on-dead
+    --fail-on-actionable
 exit $LASTEXITCODE
