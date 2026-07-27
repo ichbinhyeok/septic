@@ -10,8 +10,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.Semaphore;
+import java.util.stream.Collectors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.pdfbox.Loader;
@@ -109,7 +111,10 @@ public class SepticDocumentAnalysisService {
             );
         }
 
-        List<DocumentFinding> findings = extractFindings(text, extracted.ocrUsed());
+        List<DocumentFinding> findings = attachPageNumbers(
+                extractFindings(text, extracted.ocrUsed()),
+                extracted.pages()
+        );
         List<String> missingItems = missingItems(normalizedPurpose, findings);
         List<String> nextSteps = nextSteps(
                 normalizedPurpose, findings, missingItems, stateCode, countyName, extracted.ocrUsed()
@@ -166,21 +171,109 @@ public class SepticDocumentAnalysisService {
                 if (document.getNumberOfPages() > MAX_PDF_PAGES) {
                     throw new IllegalArgumentException("The PDF must contain 100 pages or fewer.");
                 }
-                PDFTextStripper stripper = new PDFTextStripper();
-                stripper.setSortByPosition(true);
-                String searchableText = limitText(stripper.getText(document));
+                List<String> searchablePages = new ArrayList<>();
+                int extractedCharacters = 0;
+                for (int pageNumber = 1; pageNumber <= document.getNumberOfPages()
+                        && extractedCharacters < MAX_EXTRACTED_CHARACTERS; pageNumber++) {
+                    PDFTextStripper stripper = new PDFTextStripper();
+                    stripper.setSortByPosition(true);
+                    stripper.setStartPage(pageNumber);
+                    stripper.setEndPage(pageNumber);
+                    String pageText = stripper.getText(document);
+                    int remaining = MAX_EXTRACTED_CHARACTERS - extractedCharacters;
+                    String boundedPageText = pageText.length() > remaining
+                            ? pageText.substring(0, remaining)
+                            : pageText;
+                    searchablePages.add(boundedPageText);
+                    extractedCharacters += boundedPageText.length();
+                }
+                String searchableText = String.join("\n", searchablePages);
                 if (hasReadableText(searchableText)) {
-                    return new ExtractedDocument(searchableText, false, "Searchable PDF text was read in memory.");
+                    return new ExtractedDocument(
+                            searchableText,
+                            false,
+                            "Searchable PDF text was read in memory.",
+                            searchablePages
+                    );
                 }
                 DocumentOcrService.OcrResult ocrResult = documentOcrService.read(document);
-                return new ExtractedDocument(limitText(ocrResult.text()), true, ocrResult.message());
+                return new ExtractedDocument(limitText(ocrResult.text()), true, ocrResult.message(), List.of());
             }
         }
         return new ExtractedDocument(
                 limitText(new String(bytes, StandardCharsets.UTF_8)),
                 false,
-                "Plain text was read in memory."
+                "Plain text was read in memory.",
+                List.of()
         );
+    }
+
+    private List<DocumentFinding> attachPageNumbers(
+            List<DocumentFinding> findings,
+            List<String> pages
+    ) {
+        if (pages == null || pages.isEmpty()) {
+            return findings;
+        }
+        List<String> normalizedPages = pages.stream()
+                .map(this::normalizeEvidenceText)
+                .toList();
+        return findings.stream()
+                .map(finding -> new DocumentFinding(
+                        finding.key(),
+                        finding.label(),
+                        finding.value(),
+                        finding.confidence(),
+                        finding.evidence(),
+                        locateEvidencePage(finding.evidence(), finding.value(), normalizedPages)
+                ))
+                .toList();
+    }
+
+    private Integer locateEvidencePage(String evidence, String value, List<String> normalizedPages) {
+        String normalizedEvidence = normalizeEvidenceText(evidence);
+        if (!normalizedEvidence.isBlank()) {
+            for (int index = 0; index < normalizedPages.size(); index++) {
+                if (normalizedPages.get(index).contains(normalizedEvidence)) {
+                    return index + 1;
+                }
+            }
+        }
+        String normalizedValue = normalizeEvidenceText(value);
+        if (normalizedValue.length() >= 4) {
+            for (int index = 0; index < normalizedPages.size(); index++) {
+                if (normalizedPages.get(index).contains(normalizedValue)) {
+                    return index + 1;
+                }
+            }
+        }
+        Set<String> evidenceTokens = Pattern.compile("[^a-z0-9-]+")
+                .splitAsStream(normalizedEvidence)
+                .filter(token -> token.length() >= 4)
+                .collect(Collectors.toSet());
+        int bestPage = -1;
+        int bestScore = 0;
+        for (int index = 0; index < normalizedPages.size(); index++) {
+            Set<String> pageTokens = Pattern.compile("[^a-z0-9-]+")
+                    .splitAsStream(normalizedPages.get(index))
+                    .collect(Collectors.toSet());
+            int score = evidenceTokens.stream()
+                    .filter(pageTokens::contains)
+                    .mapToInt(String::length)
+                    .sum();
+            if (score > bestScore) {
+                bestScore = score;
+                bestPage = index;
+            }
+        }
+        if (bestScore >= 12) {
+            return bestPage + 1;
+        }
+        return null;
+    }
+
+    private String normalizeEvidenceText(String value) {
+        return value == null ? "" : value.replaceAll("\\s+", " ").trim().toLowerCase(Locale.US);
     }
 
     private List<DocumentFinding> extractFindings(String text, boolean ocrUsed) {
@@ -565,6 +658,11 @@ public class SepticDocumentAnalysisService {
         return text.substring(0, MAX_EXTRACTED_CHARACTERS);
     }
 
-    private record ExtractedDocument(String text, boolean ocrUsed, String message) {
+    private record ExtractedDocument(
+            String text,
+            boolean ocrUsed,
+            String message,
+            List<String> pages
+    ) {
     }
 }

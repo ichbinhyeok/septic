@@ -96,6 +96,26 @@ class DocumentOcrTests {
     }
 
     @Test
+    void searchablePdfFindingsNameTheSourcePage() throws Exception {
+        SepticDocumentAnalysisService analyzer = new SepticDocumentAnalysisService(
+                document -> DocumentOcrService.OcrResult.unavailable("should not run")
+        );
+
+        SepticDocumentAnalysisResult result = analyzer.analyze(
+                pdfFile("two-page-permit.pdf", searchableTwoPagePdf()),
+                "bedrooms",
+                "TN",
+                ""
+        );
+
+        assertThat(result.findings())
+                .filteredOn(finding -> finding.key().equals("permit_number")
+                        || finding.key().equals("approved_bedrooms"))
+                .isNotEmpty()
+                .allMatch(finding -> Integer.valueOf(2).equals(finding.pageNumber()));
+    }
+
+    @Test
     void repairPermitIssueDateIsRepairHistoryNotFinalApproval() throws Exception {
         SepticDocumentAnalysisService analyzer = new SepticDocumentAnalysisService(
                 document -> DocumentOcrService.OcrResult.unavailable("should not run")
@@ -213,6 +233,32 @@ class DocumentOcrTests {
             PDPage page = new PDPage(PDRectangle.LETTER);
             document.addPage(page);
             try (PDPageContentStream content = new PDPageContentStream(document, page)) {
+                content.beginText();
+                content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+                content.newLineAtOffset(72, 700);
+                content.showText("Permit Number: PDF-2026-1842. Approved for 4 bedrooms.");
+                content.endText();
+            }
+            ByteArrayOutputStream pdf = new ByteArrayOutputStream();
+            document.save(pdf);
+            return pdf.toByteArray();
+        }
+    }
+
+    private byte[] searchableTwoPagePdf() throws Exception {
+        try (PDDocument document = new PDDocument()) {
+            PDPage firstPage = new PDPage(PDRectangle.LETTER);
+            document.addPage(firstPage);
+            try (PDPageContentStream content = new PDPageContentStream(document, firstPage)) {
+                content.beginText();
+                content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+                content.newLineAtOffset(72, 700);
+                content.showText("Property file cover sheet for a 4 acre parcel. Continue to the permit details.");
+                content.endText();
+            }
+            PDPage secondPage = new PDPage(PDRectangle.LETTER);
+            document.addPage(secondPage);
+            try (PDPageContentStream content = new PDPageContentStream(document, secondPage)) {
                 content.beginText();
                 content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
                 content.newLineAtOffset(72, 700);

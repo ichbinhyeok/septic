@@ -68,6 +68,8 @@ This was an overconfidence failure, not merely a formatting issue.
 - Final approval requires a parsed approval/inspection date.
 - Layout, repair history, and reserve-area findings require affirmative property-specific
   phrases rather than raw keyword presence.
+- Searchable PDFs preserve per-page text so each extracted fact can name its source page
+  and show the exact supporting excerpt. Short values are not used alone to choose a page.
 
 ## Automated gates
 

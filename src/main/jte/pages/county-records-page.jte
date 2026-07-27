@@ -45,16 +45,17 @@
     <section class="section section--heroish">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${state.stateCode()} septic permit lookup</span>
+                <span class="eyebrow">${countyPage.countyName()} property file</span>
                 @if (countySeoHeading != null && !countySeoHeading.isBlank())
                     <h1 class="county-records-page__search-title">${countySeoHeading}</h1>
                 @else
                     <h1>${countyPage.title()}</h1>
                 @endif
-                <p class="county-records-page__source-title">Source-backed route: ${countyPage.title()}</p>
+                <p class="county-records-page__source-title"
+                   data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.<span hidden>${countyPage.title()}</span></p>
                 @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
                     <div class="content-quick-answer" aria-label="Quick answer">
-                        <span class="content-quick-answer__label">Quick answer</span>
+                        <span class="content-quick-answer__label">Start here</span>
                         <p>${countyQuickAnswer}</p>
                         <p class="content-quick-answer__source">
                             Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
@@ -66,8 +67,8 @@
                 @endif
                 @if (!countyOfficialFilePathRows.isEmpty())
                     <div class="aeo-answer-capsule" aria-label="County answer summary and route comparison">
-                        <span class="eyebrow">Answer at a glance</span>
-                        <h2>How do I find the ${countyPage.countyName()} septic file?</h2>
+                        <span class="eyebrow">What to do</span>
+                        <h2>Get the ${countyPage.countyName()} file in four moves.</h2>
                         <div class="facts-table-wrap">
                             <table class="facts-table">
                                 <tbody>
@@ -117,31 +118,34 @@
                        data-track-target-type="state_money_page">${state.stateCode()} state route</a>
                 </div>
                 @if (countyAvailabilitySummary != null)
-                    <div class="county-proof-strip" aria-label="County record route proof">
-                        <div>
-                            <span>Route confidence</span>
-                            <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
-                            <small>${countyAvailabilitySummary.confidenceLabel()}</small>
+                    <details class="county-route-proof-details">
+                        <summary>Why we trust this route</summary>
+                        <div class="county-proof-strip" aria-label="County record route proof">
+                            <div>
+                                <span>Route confidence</span>
+                                <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
+                                <small>${countyAvailabilitySummary.confidenceLabel()}</small>
+                            </div>
+                            <div>
+                                <span>Request method</span>
+                                <strong>${countyAvailabilitySummary.requestMethodLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>First file to pull</span>
+                                <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>Sources checked</span>
+                                <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
+                                <small>${countyAvailabilitySummary.lastVerifiedAt()}</small>
+                            </div>
                         </div>
-                        <div>
-                            <span>Request method</span>
-                            <strong>${countyAvailabilitySummary.requestMethodLabel()}</strong>
-                        </div>
-                        <div>
-                            <span>First file to pull</span>
-                            <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
-                        </div>
-                        <div>
-                            <span>Reviewed source depth</span>
-                            <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
-                            <small>${countyAvailabilitySummary.lastVerifiedAt()}</small>
-                        </div>
-                    </div>
+                    </details>
                 @endif
                 <div class="money-answer-panel" aria-label="County answer-first workflow">
                     <div class="money-answer-panel__header">
-                        <span class="eyebrow">County file first</span>
-                        <h2>Do these before you trust a quote.</h2>
+                        <span class="eyebrow">Your next steps</span>
+                        <h2>Get the file before you price the job.</h2>
                     </div>
                     <ol class="money-answer-steps">
                         @if (countyPage.hasParcelAnchor())
@@ -209,7 +213,7 @@
                 @if (countyEstimatePath != null && !countyEstimatePath.isBlank() && countyQuotePath != null && !countyQuotePath.isBlank())
                     <div class="county-lead-bridge" aria-label="Quote-ready next step">
                         <div>
-                            <span class="eyebrow">Next money step</span>
+                            <span class="eyebrow">After the file</span>
                             <h2>Turn the county file into a quote-ready estimate.</h2>
                         </div>
                         <div class="county-lead-bridge__actions">
@@ -257,37 +261,45 @@
                 @endif
             </div>
 
-            <article class="hero-sidecard">
-                <span class="pill">County-specific workflow</span>
-                <strong>${countyPage.countyName()}, ${state.stateCode()}</strong>
-                <strong>Records-first wedge</strong>
-                <dl class="review-meta">
-                    <div>
-                        <dt>Prepared by</dt>
-                        <dd>
-                            <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
-                            <span>${editorialPreparedBy.roleTitle()}</span>
-                            <span>${editorialPreparedBy.focusSummary()}</span>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt>Reviewed by</dt>
-                        <dd>
-                            <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
-                            <span>${editorialReviewedBy.roleTitle()}</span>
-                            <span>${editorialReviewedBy.focusSummary()}</span>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt>Reviewed against</dt>
-                        <dd>${editorialReviewedAgainst}</dd>
-                    </div>
-                    <div>
-                        <dt>Latest review activity</dt>
-                        <dd>${editorialLastReviewedAt}</dd>
-                    </div>
-                </dl>
-                <p>${editorialNote}</p>
+            <article class="hero-sidecard county-file-sidecard">
+                <span class="pill">Who has the file</span>
+                <strong>${countyPage.officeLabel()}</strong>
+                <p>${countyPage.contactLine()}</p>
+                <a class="button button--primary"
+                   href="${countyPage.recordsUrl()}"
+                   target="_blank"
+                   rel="noreferrer"
+                   data-track-click="nav"
+                   data-track-source-context="county_records_owner_card"
+                   data-track-target-type="official_source">Open official records</a>
+                <details class="county-review-details">
+                    <summary>How this route was checked</summary>
+                    <dl class="review-meta">
+                        <div>
+                            <dt>Prepared by</dt>
+                            <dd>
+                                <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
+                                <span>${editorialPreparedBy.roleTitle()}</span>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Reviewed by</dt>
+                            <dd>
+                                <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
+                                <span>${editorialReviewedBy.roleTitle()}</span>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Reviewed against</dt>
+                            <dd>${editorialReviewedAgainst}</dd>
+                        </div>
+                        <div>
+                            <dt>Latest review</dt>
+                            <dd>${editorialLastReviewedAt}</dd>
+                        </div>
+                    </dl>
+                    <p>${editorialNote}</p>
+                </details>
             </article>
         </div>
     </section>
