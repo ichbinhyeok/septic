@@ -17,34 +17,33 @@
     <section class="records-access-index-hero" data-records-access-index>
         <div class="container">
             <div class="records-access-index-hero__intro">
-                <span class="eyebrow">Public records infrastructure</span>
-                <h1>Search the county septic file path, then take the data with you.</h1>
-                <p>A public index of county and state records routes backed by listed government sources. Search by address or county, compare confidence and review dates, download the CSV, and open the office that owns the permit, as-built, approval, repair file, or written no-record response.</p>
+                <span class="eyebrow">Find the file owner</span>
+                <h1>Find the county office that has the septic file.</h1>
+                <p>Start with an address or county. We will show the reviewed public route, the first file to request, and the fallback when an online search comes up empty.</p>
                 <div class="records-access-index-hero__signals" aria-label="Records access index coverage">
                     <span><strong>${totalCountyRouteCount}</strong> county routes</span>
                     <span><strong>${countyRouteStateCount}</strong> states represented</span>
                     <span>Updated ${dataLastUpdated}</span>
-                    <span>Addresses are not saved</span>
                 </div>
                 <div class="records-access-index-hero__actions">
                     <a class="button button--primary"
                        href="#records-access-county-search"
                        data-track-click="nav"
                        data-track-source-context="records_access_index_hero_search"
-                       data-track-target-type="internal_section">Search county routes</a>
+                       data-track-target-type="internal_section">Search by county</a>
                     <a class="button button--secondary"
                        href="/septic-records-access-index.csv?v=${dataLastUpdated}"
                        data-records-index-download
                        data-track-click="nav"
                        data-track-source-context="records_access_index_hero_csv"
-                       data-track-target-type="data_export">Download CSV</a>
+                       data-track-target-type="data_export">Download route data</a>
                 </div>
             </div>
             @template.tags.addressRecordFinder(
                 finderId = "records-access-index",
-                eyebrow = "Address-to-record route",
-                heading = "Search by property address.",
-                intro = "Have the address? We will resolve the county and open the closest reviewed record route. No address? Use county search instead.",
+                eyebrow = "Start with the property",
+                heading = "Enter the address to find its records office.",
+                intro = "We identify the county and show the closest reviewed public route. SepticPath does not save the address.",
                 totalCountyRouteCount = totalCountyRouteCount,
                 minimal = true
             )
@@ -55,9 +54,9 @@
         countyFinderLinks = countyFinderLinks,
         stateOptions = countyRouteStates,
         finderId = "records-access-county-search",
-        eyebrow = "Search the public index",
-        heading = "Filter " + totalCountyRouteCount + " county records routes.",
-        body = "Choose a state or search a county, then narrow by route type, first artifact, confidence, or parcel access. The filtered URL can be copied and shared.",
+        eyebrow = "No full address?",
+        heading = "Find the records route by county.",
+        body = "Type the county or state. Open More filters only when you need a specific file, online route, or parcel-search clue.",
         sourceContext = "records_access_index_county_search",
         totalCountyRouteCount = totalCountyRouteCount,
         syncUrl = true
@@ -69,9 +68,9 @@
              data-state-count="${stateDirectory.size()}">
         <div class="container records-access-state-directory">
             <div class="records-access-state-directory__intro">
-                <span class="eyebrow">Browse without search</span>
-                <h2 id="records-access-state-directory">Open every state with published county coverage.</h2>
-                <p>These are crawlable state records hubs, not new duplicate pages. Each one leads into the published county routes and the official file-owner workflow already reviewed for that state.</p>
+                <span class="eyebrow">Browse by state</span>
+                <h2 id="records-access-state-directory">See the states with reviewed county routes.</h2>
+                <p>Choose a state when the county is not yet known or the local search needs a broader fallback.</p>
             </div>
             <nav aria-label="State septic records directories">
                 <ul class="records-access-state-list">
@@ -93,32 +92,37 @@
     </section>
 
     <section class="section section--tight records-access-embed-section" aria-labelledby="records-access-distribution">
-        <div class="container records-access-distribution">
-            <div>
-                <span class="eyebrow">Download, cite, or share</span>
-                <h2 id="records-access-distribution">Use the index as a working dataset.</h2>
-                <p>The CSV includes state, county, route type, first artifact, confidence, official-source count, last review date, parcel availability, official records URL, and the SepticPath guide URL. Filtered page URLs preserve the selected state and search terms.</p>
-                <p><strong>Quality note:</strong> Confidence describes route specificity and workflow depth, not the status of any property's permit. Review dates record the latest linked-source check; always confirm the government page before a transaction decision.</p>
-                <div class="records-access-card__actions">
-                    <a class="button button--primary"
-                       href="/septic-records-access-index.csv?v=${dataLastUpdated}"
-                       data-records-index-download
-                       data-track-click="nav"
-                       data-track-source-context="records_access_index_distribution_csv"
-                       data-track-target-type="data_export">Download all ${totalCountyRouteCount} routes</a>
-                    <button class="button button--secondary"
-                            type="button"
-                            data-share-route
-                            data-share-title="Septic Records Access Index"
-                            data-share-text="${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states."
-                            data-track-source-context="records_access_index_filtered_share">Share filtered view</button>
+        <div class="container">
+            <details class="records-access-data-details">
+                <summary>Download, share, or cite the full route dataset</summary>
+                <div class="records-access-distribution">
+                    <div>
+                        <span class="eyebrow">For research and professional reuse</span>
+                        <h2 id="records-access-distribution">Use all ${totalCountyRouteCount} routes as a working dataset.</h2>
+                        <p>The CSV includes the county, route type, first file, route confidence, review date, parcel availability, official URL, and SepticPath guide URL.</p>
+                        <p><strong>Important:</strong> Route confidence describes how clearly the file path is documented. It does not prove a property's permit status.</p>
+                        <div class="records-access-card__actions">
+                            <a class="button button--primary"
+                               href="/septic-records-access-index.csv?v=${dataLastUpdated}"
+                               data-records-index-download
+                               data-track-click="nav"
+                               data-track-source-context="records_access_index_distribution_csv"
+                               data-track-target-type="data_export">Download all ${totalCountyRouteCount} routes</a>
+                            <button class="button button--secondary"
+                                    type="button"
+                                    data-share-route
+                                    data-share-title="Septic Records Access Index"
+                                    data-share-text="${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states."
+                                    data-track-source-context="records_access_index_filtered_share">Share filtered view</button>
+                        </div>
+                    </div>
+                    <details class="records-access-embed">
+                        <summary>Citation and reuse note</summary>
+                        <textarea readonly data-records-index-citation>SepticPath. "Septic Records Access Index." ${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states. Updated ${dataLastUpdated}. https://septicpath.com/septic-records-access-index/</textarea>
+                        <button class="button button--secondary" type="button" data-records-index-copy-citation>Copy citation</button>
+                        <p data-records-index-status aria-live="polite">Ready to copy. Verify the linked government source before relying on a file-status conclusion.</p>
+                    </details>
                 </div>
-            </div>
-            <details class="records-access-embed" open>
-                <summary>Citation and reuse note</summary>
-                <textarea readonly data-records-index-citation>SepticPath. "Septic Records Access Index." ${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states. Updated ${dataLastUpdated}. https://septicpath.com/septic-records-access-index/</textarea>
-                <button class="button button--secondary" type="button" data-records-index-copy-citation>Copy citation</button>
-                <p data-records-index-status aria-live="polite">Ready to copy. Verify the linked government source before relying on a file-status conclusion.</p>
             </details>
         </div>
     </section>
@@ -126,9 +130,9 @@
     <section class="section records-access-index-section" aria-labelledby="records-access-states">
         <div class="container">
             <div class="section-heading">
-                <span class="eyebrow">Ready-made handoffs</span>
-                <h2 id="records-access-states">Four priority-state packets for transaction work.</h2>
-                <p>The national dataset covers every published county route. These four states also have a copy-ready handoff packet for agents, buyers, and coordinators.</p>
+                <span class="eyebrow">For agents and professionals</span>
+                <h2 id="records-access-states">Reusable packets for four priority states.</h2>
+                <p>These optional packets turn the route into a message that can be forwarded to a buyer, seller, or coordinator.</p>
             </div>
             <div class="records-access-index-grid">
                 @for (var state : indexStates)

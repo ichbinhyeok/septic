@@ -107,72 +107,80 @@
         </article>
     @endif
 
-    <div class="detail-grid">
-        <article class="detail-card">
-            <h3>Official rule and state anchor</h3>
-            <ul class="detail-list">
-                @for (var item : result.officialBasis())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
+    <details class="estimate-detail-disclosure">
+        <summary>
+            <span>Need the calculation details?</span>
+            <strong>See cost drivers, assumptions, limits, and local checks</strong>
+        </summary>
+        <div class="estimate-detail-disclosure__body">
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>Official rule and state anchor</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.officialBasis())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
 
-        <article class="detail-card">
-            <h3>Heuristic adjustments applied</h3>
-            <ul class="detail-list">
-                @for (var item : result.heuristicAdjustments())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
+                <article class="detail-card">
+                    <h3>Heuristic adjustments applied</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.heuristicAdjustments())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
 
-        <article class="detail-card">
-            <h3>Methodology limits</h3>
-            <ul class="detail-list">
-                @for (var item : result.methodologyLimits())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
-    </div>
+                <article class="detail-card">
+                    <h3>Methodology limits</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.methodologyLimits())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
+            </div>
 
-    <div class="detail-grid">
-        <article class="detail-card">
-            <h3>What pushed the estimate</h3>
-            <ul class="detail-list">
-                @for (var driver : result.costDrivers())
-                    <li>${driver}</li>
-                @endfor
-            </ul>
-        </article>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>What pushed the estimate</h3>
+                    <ul class="detail-list">
+                        @for (var driver : result.costDrivers())
+                            <li>${driver}</li>
+                        @endfor
+                    </ul>
+                </article>
 
-        <article class="detail-card">
-            <h3>What to verify next</h3>
-            <ul class="detail-list">
-                @for (var item : result.checklist())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
+                <article class="detail-card">
+                    <h3>What to verify next</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.checklist())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
 
-        <article class="detail-card">
-            <h3>State rule context</h3>
-            <ul class="detail-list">
-                @for (var item : result.ruleHighlights())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
+                <article class="detail-card">
+                    <h3>State rule context</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.ruleHighlights())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
 
-        <article class="detail-card detail-card--full">
-            <h3>Likely permit path</h3>
-            <ul class="detail-list">
-                @for (var item : result.permitPathSteps())
-                    <li>${item}</li>
-                @endfor
-            </ul>
-        </article>
-    </div>
+                <article class="detail-card detail-card--full">
+                    <h3>Likely permit path</h3>
+                    <ul class="detail-list">
+                        @for (var item : result.permitPathSteps())
+                            <li>${item}</li>
+                        @endfor
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </details>
 
     <article class="trust-box">
         <span class="trust-box__label">Official-source context</span>

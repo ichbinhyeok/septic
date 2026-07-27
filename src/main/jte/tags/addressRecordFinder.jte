@@ -28,11 +28,11 @@
                     <strong>3 of 5 confirmed</strong>
                 </div>
                 <ul>
-                    <li data-preview-status="complete"><span>✓</span><strong>Permit number</strong><small>OWTS-26-4408</small></li>
-                    <li data-preview-status="complete"><span>✓</span><strong>Approved bedrooms</strong><small>4 bedrooms</small></li>
-                    <li data-preview-status="complete"><span>✓</span><strong>Final approval</strong><small>Dated record found</small></li>
-                    <li data-preview-status="missing"><span>○</span><strong>Installed layout</strong><small>Still missing</small></li>
-                    <li data-preview-status="missing"><span>○</span><strong>Repair history</strong><small>Still missing</small></li>
+                    <li data-preview-status="complete"><span aria-hidden="true">✓</span><strong>Permit number</strong><small>OWTS-26-4408</small></li>
+                    <li data-preview-status="complete"><span aria-hidden="true">✓</span><strong>Approved bedrooms</strong><small>4 bedrooms</small></li>
+                    <li data-preview-status="complete"><span aria-hidden="true">✓</span><strong>Final approval</strong><small>Dated record found</small></li>
+                    <li data-preview-status="missing"><span aria-hidden="true">—</span><strong>Installed layout</strong><small>Still missing</small></li>
+                    <li data-preview-status="missing"><span aria-hidden="true">—</span><strong>Repair history</strong><small>Still missing</small></li>
                 </ul>
                 <p>The real result names the source file and shows the exact text behind each fact.</p>
             </div>
@@ -74,7 +74,7 @@
                        data-address-record-finder-input>
                 <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
             </div>
-            <p class="record-finder__privacy">The address is sent only to the U.S. Census geocoder to identify the county. SepticPath does not save it.</p>
+            <p class="record-finder__privacy">The address is sent only to the U.S. Census geocoder to identify the county. SepticPath does not save it on a server. If you open an official route, a 30-day progress marker stays on this device so you can continue.</p>
             <p class="record-finder__form-outcome"><strong>What you get:</strong> the exact file owner, the first record to request, and a reusable property-file checklist.</p>
             <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
@@ -91,12 +91,13 @@
                 <small data-address-record-finder-reviewed></small>
             </div>
             <ol class="record-finder__relay-steps" data-address-record-finder-steps hidden></ol>
+            <p class="record-finder__official-note"><strong>What happens next:</strong> SepticPath prepares the office and search path. The original record still opens on the government or county site. Opening it saves a 30-day progress marker on this device.</p>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
             <div class="record-finder__return" data-address-record-finder-return hidden>
                 <div>
                     <span class="eyebrow">Back from the official site?</span>
                     <h4>What happened?</h4>
-                    <p>Your answer stays in this browser and helps us show the right next step.</p>
+                    <p>Your answer stays on this device for 30 days so the next visit can continue from here.</p>
                 </div>
                 <div class="record-finder__outcomes" data-address-record-finder-outcomes>
                     <button type="button" data-record-outcome="found">I found the record</button>
@@ -104,6 +105,7 @@
                     <button type="button" data-record-outcome="blocked">Site blocked me</button>
                     <button type="button" data-record-outcome="request">I need to request it</button>
                 </div>
+                <button class="record-finder__clear-progress" type="button" data-record-progress-clear>Delete this saved task</button>
                 <div class="record-finder__next" data-address-record-finder-next hidden></div>
                 <section class="record-document" data-record-document-workspace hidden>
                     <div class="record-document__intro">

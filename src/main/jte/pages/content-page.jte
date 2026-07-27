@@ -59,8 +59,55 @@
                         Septic planning guide
                     @endif
                 </span>
-                <h1>${contentPage.title()}</h1>
-                <p class="lede">${contentPage.introCopy()}</p>
+                @if ("septic-permit-lookup".equals(contentPage.slug()))
+                    <h1>Find the septic permit for a property.</h1>
+                    <p class="lede">Enter the address to identify the county office, the likely file, and the next request to make.</p>
+                @elseif ("septic-records-request-builder".equals(contentPage.slug()))
+                    <h1>Create a septic records request.</h1>
+                    <p class="lede">Turn the property details you know into a clear request you can copy, download, or print.</p>
+                @else
+                    <h1>${contentPage.title()}</h1>
+                    <p class="lede">${contentPage.introCopy()}</p>
+                @endif
+                @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-request-builder".equals(contentPage.slug()))
+                    <div class="utility-hero-actions" aria-label="Start this records task">
+                        @if ("septic-permit-lookup".equals(contentPage.slug()))
+                            <div>
+                                <strong>Have the property address?</strong>
+                                <p>Start there. We will identify the county, name the office that holds the file, and tell you what to request first.</p>
+                            </div>
+                            <div class="utility-hero-actions__buttons">
+                                <a class="button button--primary"
+                                   href="#permit-address-search"
+                                   data-track-click="nav"
+                                   data-track-source-context="permit_lookup_simple_hero"
+                                   data-track-target-type="internal_tool">Find the permit route</a>
+                                <a class="button button--secondary"
+                                   href="#county-lookup-launchpad"
+                                   data-track-click="nav"
+                                   data-track-source-context="permit_lookup_simple_hero"
+                                   data-track-target-type="internal_section">I already know the county</a>
+                            </div>
+                        @else
+                            <div>
+                                <strong>Create a request the records office can answer.</strong>
+                                <p>Choose the missing file, add the property clues you know, and copy or download the finished request.</p>
+                            </div>
+                            <div class="utility-hero-actions__buttons">
+                                <a class="button button--primary"
+                                   href="#records-request-builder"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_request_simple_hero"
+                                   data-track-target-type="internal_tool">Create the request</a>
+                                <a class="button button--secondary"
+                                   href="/#home-address-record-finder"
+                                   data-track-click="nav"
+                                   data-track-source-context="records_request_simple_hero"
+                                   data-track-target-type="internal_tool">Find the office first</a>
+                            </div>
+                        @endif
+                    </div>
+                @else
                 @if (contentQuickAnswer != null && !contentQuickAnswer.isBlank())
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Quick answer</span>
@@ -577,9 +624,29 @@
                         @endfor
                     </div>
                 @endif
+                @endif
             </div>
 
-            <article class="hero-sidecard">
+            <article class="hero-sidecard ${"septic-permit-lookup".equals(contentPage.slug()) || "septic-records-request-builder".equals(contentPage.slug()) ? "utility-hero-sidecard" : ""}">
+                @if ("septic-permit-lookup".equals(contentPage.slug()))
+                    <span class="pill">What you get</span>
+                    <strong>A local permit-file route</strong>
+                    <ol class="utility-hero-sidecard__list">
+                        <li>The county and exact file-owning office</li>
+                        <li>The first permit, drawing, or approval to pull</li>
+                        <li>A fallback when the online search is empty or blocked</li>
+                    </ol>
+                    <small>The route identifies where to look. It does not decide whether a property is approved.</small>
+                @elseif ("septic-records-request-builder".equals(contentPage.slug()))
+                    <span class="pill">What you leave with</span>
+                    <strong>One office-ready request</strong>
+                    <ol class="utility-hero-sidecard__list">
+                        <li>A clear subject and message</li>
+                        <li>The identifiers the office can search</li>
+                        <li>Written no-record and archive fallback wording</li>
+                    </ol>
+                    <small>Your entries stay in the browser and are not submitted to SepticPath.</small>
+                @else
                 <span class="pill">
                     @if ("septic-permit-lookup".equals(contentPage.slug()))
                         Permit lookup guide
@@ -630,9 +697,25 @@
                         <strong>County-backed coverage</strong>
                     </div>
                 @endif
+                @endif
             </article>
         </div>
     </section>
+
+    @if ("septic-permit-lookup".equals(contentPage.slug()))
+        <section class="section section--tight" id="permit-address-search" aria-label="Permit route finder">
+            <div class="container">
+                @template.tags.addressRecordFinder(
+                    finderId = "permit-lookup-address",
+                    eyebrow = "Start with the property",
+                    heading = "Enter the address to find the permit-file owner.",
+                    intro = "We identify the county and show the closest reviewed public-record route. Your address is not saved by SepticPath.",
+                    totalCountyRouteCount = totalCountyRouteCount,
+                    minimal = true
+                )
+            </div>
+        </section>
+    @endif
 
     @if ("perc-test-cost".equals(contentPage.slug()))
         <section class="section section--tight" aria-labelledby="perc-cost-answer">
@@ -659,7 +742,7 @@
         </section>
     @endif
 
-    @if (!contentOfficialFilePathRows.isEmpty())
+    @if (!contentOfficialFilePathRows.isEmpty() && !"septic-permit-lookup".equals(contentPage.slug()) && !"septic-records-request-builder".equals(contentPage.slug()))
         <section class="section section--tight" id="official-file-path">
             <div class="container">
                 <div class="state-records-response" aria-label="${contentPage.title()} official content file path">
@@ -774,7 +857,7 @@
         </section>
     @endif
 
-    @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "septic-tank-location-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
+    @if ("septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "septic-tank-location-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
         <section class="section section--tight" id="records-next-click">
             <div class="container">
                 <div class="records-escalation-board" aria-label="Records lookup next-click accelerator">
@@ -1105,33 +1188,36 @@
                         <a href="/#home-address-record-finder" data-records-task-back>Back to property file</a>
                     </div>
                     <div class="records-request-builder__intro">
-                        <span class="eyebrow">Records request builder</span>
-                        <h2>Generate the exact septic records request before you call the office.</h2>
-                        <p>Pick the state route, record type, and reason. The script updates into a copy-ready request for permit copies, as-builts, final approvals, repair records, inspection letters, or no-record responses.</p>
+                        <span class="eyebrow">Build the message</span>
+                        <h2>Create a request the records office can act on.</h2>
+                        <p>Choose the file you need and add any property details you know. The request updates as you type.</p>
                     </div>
 
-                    <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
-                        <li>
-                            <span>Send</span>
-                            <strong>Clean office message</strong>
-                            <p>A ready-to-send subject line and request body, without burying the office in generic septic wording.</p>
-                        </li>
-                        <li>
-                            <span>File context</span>
-                            <strong>Identifiers and search keys</strong>
-                            <p>Address, county, parcel, owner, legal-description, subdivision, and permit-number prompts for retrying a weak lookup.</p>
-                        </li>
-                        <li>
-                            <span>Fallback proof</span>
-                            <strong>No-record response wording</strong>
-                            <p>Language that asks for a written no-record response and the next archive or delegated-office route.</p>
-                        </li>
-                        <li>
-                            <span>Print</span>
-                            <strong>PDF-ready cover packet</strong>
-                            <p>Open a clean printable version for saving as PDF or attaching to a transaction, lender, or contractor file.</p>
-                        </li>
-                    </ul>
+                    <details class="records-request-builder__packet-details">
+                        <summary>What the finished packet includes</summary>
+                        <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
+                            <li>
+                                <span>Message</span>
+                                <strong>Office-ready wording</strong>
+                                <p>A clear subject and request body for the missing file.</p>
+                            </li>
+                            <li>
+                                <span>Search clues</span>
+                                <strong>Property identifiers</strong>
+                                <p>Address, county, parcel, owner, subdivision, and permit-number prompts.</p>
+                            </li>
+                            <li>
+                                <span>Fallback</span>
+                                <strong>No-record response</strong>
+                                <p>Ask for a written response and the next archive or delegated office.</p>
+                            </li>
+                            <li>
+                                <span>Save</span>
+                                <strong>Text or printable packet</strong>
+                                <p>Copy, download, print, or save the result as a PDF.</p>
+                            </li>
+                        </ul>
+                    </details>
 
                     <div class="records-request-builder__workspace">
                         <div class="records-request-builder__controls">
@@ -1211,6 +1297,9 @@
                                         data-records-request-copy>Copy request</button>
                                 <button class="button button--secondary"
                                         type="button"
+                                        data-records-request-mark-sent>Mark sent</button>
+                                <button class="button button--secondary"
+                                        type="button"
                                         data-records-request-download>Download packet .txt</button>
                                 <button class="button button--secondary"
                                         type="button"
@@ -1221,6 +1310,56 @@
                                    data-track-source-context="records_request_builder_county_index"
                                    data-track-target-type="internal_page">Find county route</a>
                             </div>
+                            <details class="records-request-tracker" data-records-request-tracker>
+                                <summary>
+                                    <span>Sent or waiting?</span>
+                                    <strong>Track the response on this device</strong>
+                                </summary>
+                                <div class="records-request-tracker__body">
+                                <div class="records-request-tracker__intro">
+                                    <span class="eyebrow">Keep the request moving</span>
+                                    <h3>Save the sent date and the next follow-up.</h3>
+                                    <p>This progress stays only on this device. The reminder is personal planning, not a legal response deadline.</p>
+                                </div>
+                                <div class="records-request-tracker__fields">
+                                    <label>
+                                        <span>Status</span>
+                                        <select data-records-request-progress-status>
+                                            <option value="draft">Draft</option>
+                                            <option value="sent">Sent — waiting for a response</option>
+                                            <option value="received">Response received</option>
+                                            <option value="no_record">Written no-record response received</option>
+                                            <option value="closed">Finished</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span>Date sent</span>
+                                        <input type="date" data-records-request-sent-date>
+                                    </label>
+                                    <label>
+                                        <span>Follow-up plan</span>
+                                        <select data-records-request-followup-window>
+                                            <option value="7">Check again in 7 days</option>
+                                            <option value="14">Check again in 14 days</option>
+                                            <option value="custom">Choose a date</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <span>Personal follow-up date</span>
+                                        <input type="date" data-records-request-followup-date>
+                                    </label>
+                                    <label class="records-request-tracker__note">
+                                        <span>Office or response note</span>
+                                        <input type="text" maxlength="240" placeholder="Staff name, confirmation number, or next office" data-records-request-progress-note>
+                                    </label>
+                                </div>
+                                <div class="records-request-tracker__actions">
+                                    <button class="button button--secondary" type="button" data-records-request-save-progress>Save progress</button>
+                                    <button class="button button--quiet" type="button" data-records-request-clear-progress>Clear saved progress</button>
+                                </div>
+                                <p class="records-request-tracker__status" data-records-request-progress-message aria-live="polite">No progress saved on this device.</p>
+                                </div>
+                            </details>
                         </div>
                     </div>
                 </div>

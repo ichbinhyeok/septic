@@ -586,16 +586,13 @@
                     top.className = "county-finder__result-top";
                     const title = document.createElement("span");
                     title.textContent = item.title;
-                    const score = document.createElement("strong");
-                    score.textContent = `${item.confidenceScore}%`;
-                    top.append(title, score);
+                    top.append(title);
 
                     const meta = document.createElement("div");
                     meta.className = "county-finder__result-meta";
-                    meta.setAttribute("aria-label", `${item.title} route metadata`);
-                    [item.confidenceLabel, item.requestMethodLabel, item.sourceDepthLabel]
-                        .concat(item.lastReviewedAt ? [`Reviewed ${item.lastReviewedAt}`] : [])
-                        .concat(item.parcelAnchorAvailable ? ["Parcel anchor"] : [])
+                    meta.setAttribute("aria-label", `${item.title} route summary`);
+                    [item.requestMethodLabel]
+                        .concat(item.parcelAnchorAvailable ? ["Parcel search available"] : [])
                         .forEach((value) => {
                             const badge = document.createElement("span");
                             badge.textContent = value;
@@ -604,7 +601,7 @@
 
                     const firstPull = document.createElement("small");
                     const firstPullLabel = document.createElement("strong");
-                    firstPullLabel.textContent = "First pull: ";
+                    firstPullLabel.textContent = "Start with: ";
                     firstPull.append(firstPullLabel, item.firstArtifactLabel);
                     const note = document.createElement("small");
                     note.textContent = item.note;
@@ -823,6 +820,7 @@
             const actions = finder.querySelector("[data-address-record-finder-actions]");
             const returnPanel = finder.querySelector("[data-address-record-finder-return]");
             const outcomes = finder.querySelector("[data-address-record-finder-outcomes]");
+            const clearProgressButton = finder.querySelector("[data-record-progress-clear]");
             const next = finder.querySelector("[data-address-record-finder-next]");
             const documentWorkspace = finder.querySelector("[data-record-document-workspace]");
             const documentForm = finder.querySelector("[data-record-document-form]");
@@ -835,9 +833,12 @@
             const workspaceStorageKey = "septicpath-document-workspace-v2";
             const legacyWorkspaceStorageKey = "septicpath-document-workspace-v1";
             const pendingReturnStorageKey = "septicpath-official-return-v1";
+            const taskProgressStorageKey = "septicpath-record-task-progress-v1";
+            const progressLifetime = 30 * 24 * 60 * 60 * 1000;
             let routeContext = null;
             let awaitingOfficialReturn = false;
             let workspaceState = { documents: [] };
+            const confirmedFindingKeys = new Set();
 
             const purposeRequirements = {
                 buying: [
@@ -959,23 +960,33 @@
             }
 
             function saveRequestContext(extra = {}) {
+                const value = JSON.stringify({
+                    ...routeContext,
+                    savedAt: Date.now(),
+                    ...extra
+                });
                 try {
-                    sessionStorage.setItem("septic-records-request-context", JSON.stringify({
-                        ...routeContext,
-                        savedAt: Date.now(),
-                        ...extra
-                    }));
+                    sessionStorage.setItem("septic-records-request-context", value);
+                    localStorage.setItem("septic-records-request-context", value);
                 } catch (_) {
-                    // The builder remains usable without browser session storage.
+                    // The builder remains usable without browser storage.
                 }
             }
 
-            function savePendingReturn() {
+            function saveTaskProgress(stage, outcome = "") {
+                if (!routeContext) {
+                    return;
+                }
+                const value = JSON.stringify({
+                    savedAt: Date.now(),
+                    expiresAt: Date.now() + progressLifetime,
+                    stage,
+                    outcome,
+                    context: routeContext
+                });
                 try {
-                    sessionStorage.setItem(pendingReturnStorageKey, JSON.stringify({
-                        savedAt: Date.now(),
-                        context: routeContext
-                    }));
+                    sessionStorage.setItem(pendingReturnStorageKey, value);
+                    localStorage.setItem(taskProgressStorageKey, value);
                 } catch (_) {
                     // The focus-based return prompt still works without browser storage.
                 }
@@ -1208,6 +1219,7 @@
                     sessionStorage.removeItem(workspaceStorageKey);
                     sessionStorage.removeItem(legacyWorkspaceStorageKey);
                     sessionStorage.removeItem(pendingReturnStorageKey);
+                    localStorage.removeItem(taskProgressStorageKey);
                 } catch (_) {
                     // Nothing else needs clearing if browser storage is unavailable.
                 }
@@ -1222,6 +1234,7 @@
                     documentFile.value = "";
                 }
                 workspaceState = { documents: [] };
+                confirmedFindingKeys.clear();
             }
 
             function downloadWorkspaceSummary(summary) {
@@ -1415,7 +1428,7 @@
                     return;
                 }
                 awaitingOfficialReturn = true;
-                savePendingReturn();
+                saveTaskProgress("official_opened");
                 window.setTimeout(showReturnPrompt, 350);
             });
 
@@ -1428,7 +1441,27 @@
                 }
                 outcomes.querySelectorAll("button").forEach((item) => item.removeAttribute("aria-pressed"));
                 outcomeButton.setAttribute("aria-pressed", "true");
-                renderNextStep(outcomeButton.dataset.recordOutcome || "missing");
+                const outcome = outcomeButton.dataset.recordOutcome || "missing";
+                saveTaskProgress("outcome_selected", outcome);
+                renderNextStep(outcome);
+            });
+
+            clearProgressButton?.addEventListener("click", () => {
+                try {
+                    localStorage.removeItem(taskProgressStorageKey);
+                    localStorage.removeItem("septic-records-request-context");
+                    sessionStorage.removeItem(pendingReturnStorageKey);
+                    sessionStorage.removeItem("septic-records-request-context");
+                } catch (_) {
+                    // The visible task can still be cleared when storage is unavailable.
+                }
+                routeContext = null;
+                awaitingOfficialReturn = false;
+                workspaceState = { documents: [] };
+                confirmedFindingKeys.clear();
+                form.reset();
+                result.hidden = true;
+                input.focus();
             });
 
             next?.addEventListener("click", (event) => {
@@ -1574,7 +1607,9 @@
                     owner: "inspection"
                 };
                 params.set("projectType", projectTypes[routeContext?.purpose] || "inspection");
-                const bedrooms = summary.grouped.get("approved_bedrooms") || [];
+                const bedrooms = confirmedFindingKeys.has("approved_bedrooms")
+                    ? summary.grouped.get("approved_bedrooms") || []
+                    : [];
                 const bedroomValues = [...new Set(bedrooms.map((entry) => entry.value))];
                 if (bedroomValues.length === 1 && /^\d{1,2}$/.test(bedroomValues[0])) {
                     params.set("bedrooms", bedroomValues[0]);
@@ -1584,6 +1619,9 @@
                     ["tank_capacity", "recordTankCapacity"],
                     ["design_flow", "recordDesignFlow"]
                 ].forEach(([findingKey, parameter]) => {
+                    if (!confirmedFindingKeys.has(findingKey)) {
+                        return;
+                    }
                     const entries = summary.grouped.get(findingKey) || [];
                     const values = [...new Set(entries.map((entry) => entry.value))];
                     if (values.length === 1) {
@@ -1638,6 +1676,33 @@
                 overview.append(progressCopy, documentCount);
                 wrapper.append(overview);
 
+                if (!summary.conflicts.length && summary.completeCount === summary.totalCount) {
+                    const completion = document.createElement("section");
+                    const completionCopy = document.createElement("div");
+                    const completionHeading = document.createElement("strong");
+                    const completionBody = document.createElement("p");
+                    const finishButton = document.createElement("button");
+                    completion.className = "record-workspace__completion";
+                    completionHeading.textContent = "The core file checklist is complete";
+                    completionBody.textContent = "You can stop here. Keep the originals with the property file, or continue only if your lender, buyer, contractor, or local office needs another document.";
+                    finishButton.type = "button";
+                    finishButton.className = "button button--secondary";
+                    finishButton.textContent = "Finish this task";
+                    finishButton.addEventListener("click", () => {
+                        try {
+                            localStorage.removeItem(taskProgressStorageKey);
+                            localStorage.removeItem("septic-records-request-context");
+                        } catch (_) {
+                            // The completion message remains useful without browser storage.
+                        }
+                        finishButton.textContent = "Task finished";
+                        finishButton.disabled = true;
+                    });
+                    completionCopy.append(completionHeading, completionBody);
+                    completion.append(completionCopy, finishButton);
+                    wrapper.append(completion);
+                }
+
                 const saveReminder = document.createElement("section");
                 const saveCopy = document.createElement("div");
                 const saveHeading = document.createElement("strong");
@@ -1680,6 +1745,38 @@
                 });
                 checklistSection.append(checklistHeading, checklist);
                 wrapper.append(checklistSection);
+
+                const confirmableChecks = summary.checklist.filter((check) => check.status === "complete");
+                if (confirmableChecks.length) {
+                    const verificationSection = document.createElement("section");
+                    const verificationHeading = document.createElement("h5");
+                    const verificationCopy = document.createElement("p");
+                    const verificationList = document.createElement("div");
+                    verificationSection.className = "record-workspace__section record-workspace__verification-section";
+                    verificationHeading.textContent = "Confirm values before using them";
+                    verificationCopy.textContent = "Check each value against the original page. Only checked values can prefill the cost calculator.";
+                    verificationList.className = "record-workspace__verification-list";
+                    confirmableChecks.forEach((check) => {
+                        const verification = document.createElement("label");
+                        const verificationInput = document.createElement("input");
+                        const verificationText = document.createElement("span");
+                        verificationInput.type = "checkbox";
+                        verificationInput.checked = confirmedFindingKeys.has(check.key);
+                        verificationText.textContent = `${check.label}: ${check.values.join(" / ")}`;
+                        verificationInput.addEventListener("change", () => {
+                            if (verificationInput.checked) {
+                                confirmedFindingKeys.add(check.key);
+                            } else {
+                                confirmedFindingKeys.delete(check.key);
+                            }
+                            renderPropertyWorkspace(summary);
+                        });
+                        verification.append(verificationInput, verificationText);
+                        verificationList.append(verification);
+                    });
+                    verificationSection.append(verificationHeading, verificationCopy, verificationList);
+                    wrapper.append(verificationSection);
+                }
 
                 if (summary.conflicts.length) {
                     const conflictSection = document.createElement("section");
@@ -1755,6 +1852,7 @@
                 const actions = document.createElement("div");
                 const hasMissing = summary.checklist.some((item) => item.status === "missing");
                 const hasConflict = summary.conflicts.length > 0;
+                const confirmedCount = confirmedFindingKeys.size;
                 const request = button(
                     hasConflict
                         ? "Request the controlling record"
@@ -1764,7 +1862,11 @@
                     "internal_tool"
                 );
                 const estimate = button(
-                    hasConflict ? "Plan cost without disputed values" : "Use confirmed facts in cost planning",
+                    hasConflict
+                        ? "Plan cost without disputed values"
+                        : confirmedCount
+                            ? `Use ${confirmedCount} checked ${confirmedCount === 1 ? "value" : "values"} in cost planning`
+                            : "Open cost planning without extracted values",
                     calculatorPath(summary),
                     false,
                     "calculator"
@@ -1808,7 +1910,8 @@
                 try {
                     stored = JSON.parse(sessionStorage.getItem(workspaceStorageKey) || "null")
                         || JSON.parse(sessionStorage.getItem(legacyWorkspaceStorageKey) || "null");
-                    pending = JSON.parse(sessionStorage.getItem(pendingReturnStorageKey) || "null");
+                    pending = JSON.parse(sessionStorage.getItem(pendingReturnStorageKey) || "null")
+                        || JSON.parse(localStorage.getItem(taskProgressStorageKey) || "null");
                 } catch (_) {
                     return;
                 }
@@ -1816,7 +1919,16 @@
                     ? stored.documents
                     : stored?.analysis ? [stored.analysis] : [];
                 const active = storedDocuments.length ? stored : pending;
-                if (!active?.context || Date.now() - Number(active.savedAt || 0) > 8 * 60 * 60 * 1000) {
+                const activeLifetime = storedDocuments.length ? 8 * 60 * 60 * 1000 : progressLifetime;
+                const expired = active?.expiresAt
+                    ? Date.now() > Number(active.expiresAt)
+                    : Date.now() - Number(active?.savedAt || 0) > activeLifetime;
+                if (!active?.context || expired) {
+                    try {
+                        localStorage.removeItem(taskProgressStorageKey);
+                    } catch (_) {
+                        // There is no persistent progress to clear when storage is unavailable.
+                    }
                     return;
                 }
                 routeContext = active.context;
@@ -1836,10 +1948,19 @@
                         : "Continue the property record check";
                 }
                 if (message) {
-                    message.textContent = "The address context and extracted summary stayed only in this browser tab. The original document was not stored.";
+                    message.textContent = storedDocuments.length
+                        ? "The address context and extracted summary stayed only in this browser tab. The original document was not stored."
+                        : "Your last official-route step was restored from this device. Choose what happened to continue.";
                 }
                 renderOffice(routeContext);
                 showReturnPrompt();
+                if (pending?.outcome && outcomes instanceof HTMLElement) {
+                    const savedButton = outcomes.querySelector(`[data-record-outcome="${pending.outcome}"]`);
+                    if (savedButton instanceof HTMLButtonElement) {
+                        savedButton.setAttribute("aria-pressed", "true");
+                    }
+                    renderNextStep(pending.outcome);
+                }
                 if (storedDocuments.length) {
                     workspaceState = { documents: storedDocuments.slice(-8) };
                     if (documentWorkspace instanceof HTMLElement) {
@@ -2759,6 +2880,8 @@
             return;
         }
         const requestedTaskMode = new URLSearchParams(window.location.search).get("mode") === "task";
+        const requestProgressStorageKey = "septicpath-records-request-progress-v1";
+        const requestProgressLifetime = 30 * 24 * 60 * 60 * 1000;
         if (requestedTaskMode) {
             document.body.classList.add("records-task-mode");
         }
@@ -3208,12 +3331,13 @@
         function consumeFinderRequestContext(builder) {
             let context = null;
             try {
-                context = JSON.parse(sessionStorage.getItem("septic-records-request-context") || "null");
+                context = JSON.parse(sessionStorage.getItem("septic-records-request-context") || "null")
+                    || JSON.parse(localStorage.getItem("septic-records-request-context") || "null");
             } catch (_) {
                 context = null;
             }
             if (!context || typeof context !== "object"
-                || (context.savedAt && Date.now() - Number(context.savedAt) > 8 * 60 * 60 * 1000)) {
+                || (context.savedAt && Date.now() - Number(context.savedAt) > 30 * 24 * 60 * 60 * 1000)) {
                 return;
             }
 
@@ -3291,12 +3415,142 @@
             const filenameLabel = builder.querySelector("[data-records-request-filename]");
             const status = builder.querySelector("[data-records-request-status]");
             const output = builder.querySelector("[data-records-request-output]");
+            const progressStatus = builder.querySelector("[data-records-request-progress-status]");
+            const sentDate = builder.querySelector("[data-records-request-sent-date]");
+            const followupWindow = builder.querySelector("[data-records-request-followup-window]");
+            const followupDate = builder.querySelector("[data-records-request-followup-date]");
+            const progressNote = builder.querySelector("[data-records-request-progress-note]");
+            const markSentButton = builder.querySelector("[data-records-request-mark-sent]");
+            const saveProgressButton = builder.querySelector("[data-records-request-save-progress]");
+            const clearProgressButton = builder.querySelector("[data-records-request-clear-progress]");
+            const progressMessage = builder.querySelector("[data-records-request-progress-message]");
 
             const taskContext = builder.querySelector("[data-records-task-context]");
             if (requestedTaskMode && taskContext instanceof HTMLElement) {
                 taskContext.hidden = false;
             }
             consumeFinderRequestContext(builder);
+
+            function dateInputValue(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const day = String(date.getDate()).padStart(2, "0");
+                return `${year}-${month}-${day}`;
+            }
+
+            function requestDraft() {
+                return {
+                    state: valueOf(builder, "[data-request-state]"),
+                    record: valueOf(builder, "[data-request-record]"),
+                    reason: valueOf(builder, "[data-request-reason]"),
+                    county: valueOf(builder, "[data-request-county]"),
+                    address: valueOf(builder, "[data-request-address]"),
+                    parcel: valueOf(builder, "[data-request-parcel]"),
+                    owner: valueOf(builder, "[data-request-owner]")
+                };
+            }
+
+            function saveRequestProgress(message = "") {
+                const selectedStatus = progressStatus instanceof HTMLSelectElement ? progressStatus.value : "draft";
+                const payload = {
+                    version: 1,
+                    updatedAt: Date.now(),
+                    expiresAt: Date.now() + requestProgressLifetime,
+                    status: selectedStatus,
+                    sentDate: sentDate instanceof HTMLInputElement ? sentDate.value : "",
+                    followupWindow: followupWindow instanceof HTMLSelectElement ? followupWindow.value : "7",
+                    followupDate: followupDate instanceof HTMLInputElement ? followupDate.value : "",
+                    note: progressNote instanceof HTMLInputElement ? progressNote.value.trim().slice(0, 240) : "",
+                    draft: requestDraft()
+                };
+                try {
+                    localStorage.setItem(requestProgressStorageKey, JSON.stringify(payload));
+                    if (progressMessage) {
+                        progressMessage.textContent = message || (selectedStatus === "closed"
+                            ? "This task is complete. You can clear it now or keep the response note on this device."
+                            : "Progress saved on this device.");
+                    }
+                } catch (_) {
+                    if (progressMessage) {
+                        progressMessage.textContent = "This browser could not save progress. Download the packet instead.";
+                    }
+                }
+            }
+
+            function restoreRequestProgress() {
+                let saved = null;
+                try {
+                    saved = JSON.parse(localStorage.getItem(requestProgressStorageKey) || "null");
+                } catch (_) {
+                    return;
+                }
+                if (!saved || saved.version !== 1 || Date.now() > Number(saved.expiresAt || 0)) {
+                    try {
+                        localStorage.removeItem(requestProgressStorageKey);
+                    } catch (_) {
+                        // Nothing needs clearing when storage is unavailable.
+                    }
+                    return;
+                }
+                const incomingAddress = valueOf(builder, "[data-request-address]");
+                const savedAddress = String(saved.draft?.address || "");
+                if (incomingAddress && savedAddress
+                    && incomingAddress.toLowerCase() !== savedAddress.toLowerCase()) {
+                    if (progressMessage) {
+                        progressMessage.textContent = "A new property was carried in. Older saved progress was not applied.";
+                    }
+                    return;
+                }
+                const draftSelectors = {
+                    state: "[data-request-state]",
+                    record: "[data-request-record]",
+                    reason: "[data-request-reason]",
+                    county: "[data-request-county]",
+                    address: "[data-request-address]",
+                    parcel: "[data-request-parcel]",
+                    owner: "[data-request-owner]"
+                };
+                Object.entries(draftSelectors).forEach(([key, selector]) => {
+                    const field = builder.querySelector(selector);
+                    const value = String(saved.draft?.[key] || "");
+                    if (field instanceof HTMLSelectElement) {
+                        if (Array.from(field.options).some((option) => option.value === value)) {
+                            field.value = value;
+                        }
+                    } else if (field instanceof HTMLInputElement && value) {
+                        field.value = value;
+                    }
+                });
+                if (progressStatus instanceof HTMLSelectElement
+                    && Array.from(progressStatus.options).some((option) => option.value === saved.status)) {
+                    progressStatus.value = saved.status;
+                }
+                if (sentDate instanceof HTMLInputElement) {
+                    sentDate.value = String(saved.sentDate || "");
+                }
+                if (followupWindow instanceof HTMLSelectElement
+                    && Array.from(followupWindow.options).some((option) => option.value === saved.followupWindow)) {
+                    followupWindow.value = saved.followupWindow;
+                }
+                if (followupDate instanceof HTMLInputElement) {
+                    followupDate.value = String(saved.followupDate || "");
+                }
+                if (progressNote instanceof HTMLInputElement) {
+                    progressNote.value = String(saved.note || "").slice(0, 240);
+                }
+                if (progressMessage) {
+                    const statusLabel = progressStatus instanceof HTMLSelectElement
+                        ? progressStatus.options[progressStatus.selectedIndex]?.text
+                        : "Saved";
+                    progressMessage.textContent = `${statusLabel || "Saved"} · restored from this device.`;
+                }
+                const tracker = builder.querySelector("[data-records-request-tracker]");
+                if (tracker instanceof HTMLDetailsElement && saved.status !== "draft") {
+                    tracker.open = true;
+                }
+            }
+
+            restoreRequestProgress();
 
             inputs.forEach((input) => {
                 const refresh = () => {
@@ -3364,6 +3618,77 @@
                     }, 1800);
                 });
             }
+
+            markSentButton?.addEventListener("click", () => {
+                const today = new Date();
+                const followup = new Date(today);
+                const followupDays = followupWindow instanceof HTMLSelectElement
+                    && followupWindow.value === "14" ? 14 : 7;
+                followup.setDate(followup.getDate() + followupDays);
+                if (progressStatus instanceof HTMLSelectElement) {
+                    progressStatus.value = "sent";
+                }
+                if (sentDate instanceof HTMLInputElement) {
+                    sentDate.value = dateInputValue(today);
+                }
+                if (followupDate instanceof HTMLInputElement
+                    && followupWindow instanceof HTMLSelectElement
+                    && followupWindow.value !== "custom") {
+                    followupDate.value = dateInputValue(followup);
+                }
+                saveRequestProgress("Marked sent. Your personal follow-up is saved on this device.");
+                const tracker = builder.querySelector("[data-records-request-tracker]");
+                if (tracker instanceof HTMLDetailsElement) {
+                    tracker.open = true;
+                    tracker.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }
+                sendArtifactAction("records_request_builder", "request_marked_sent", "records_request_progress");
+            });
+
+            followupWindow?.addEventListener("change", () => {
+                if (!(followupWindow instanceof HTMLSelectElement)
+                    || !(followupDate instanceof HTMLInputElement)
+                    || followupWindow.value === "custom") {
+                    followupDate?.focus();
+                    return;
+                }
+                const base = sentDate instanceof HTMLInputElement && sentDate.value
+                    ? new Date(`${sentDate.value}T12:00:00`)
+                    : new Date();
+                base.setDate(base.getDate() + Number(followupWindow.value));
+                followupDate.value = dateInputValue(base);
+            });
+
+            saveProgressButton?.addEventListener("click", () => {
+                saveRequestProgress();
+                sendArtifactAction("records_request_builder", "progress_saved", "records_request_progress");
+            });
+
+            clearProgressButton?.addEventListener("click", () => {
+                try {
+                    localStorage.removeItem(requestProgressStorageKey);
+                } catch (_) {
+                    // Reset the visible fields even when storage is unavailable.
+                }
+                if (progressStatus instanceof HTMLSelectElement) {
+                    progressStatus.value = "draft";
+                }
+                if (sentDate instanceof HTMLInputElement) {
+                    sentDate.value = "";
+                }
+                if (followupDate instanceof HTMLInputElement) {
+                    followupDate.value = "";
+                }
+                if (followupWindow instanceof HTMLSelectElement) {
+                    followupWindow.value = "7";
+                }
+                if (progressNote instanceof HTMLInputElement) {
+                    progressNote.value = "";
+                }
+                if (progressMessage) {
+                    progressMessage.textContent = "Saved progress cleared from this device.";
+                }
+            });
 
             updateBuilder(builder);
             if (filenameLabel) {

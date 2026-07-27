@@ -19,70 +19,62 @@
                     <h2>${heading}</h2>
                     <p>${body}</p>
                     <div class="county-finder__stats" aria-label="County finder coverage">
-                        <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> live county pages</span>
-                        <span><strong>${countyFinderLinks.stream().filter(link -> link.confidenceScore() >= 82).count()}</strong> high-confidence routes</span>
-                        <span>${countyFinderLinks.stream().filter(CountyFinderLinkView::parcelAnchorAvailable).count()} parcel anchors</span>
+                        <span><strong>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()}</strong> counties</span>
+                        <span><strong>${stateOptions.size()}</strong> states</span>
+                        <span>Online searches and request routes</span>
                     </div>
-                    <div class="county-finder__filters" aria-label="County route filters">
-                        @if (!stateOptions.isEmpty())
+                    <details class="county-finder__advanced">
+                        <summary>More filters</summary>
+                        <div class="county-finder__filters" aria-label="County route filters">
+                            @if (!stateOptions.isEmpty())
+                                <label>
+                                    <span>State</span>
+                                    <select data-county-finder-state>
+                                        <option value="">All states</option>
+                                        @for (var state : stateOptions)
+                                            <option value="${state.stateCode()}">${state.stateName()}</option>
+                                        @endfor
+                                    </select>
+                                </label>
+                            @endif
                             <label>
-                                <span>State</span>
-                                <select data-county-finder-state>
-                                    <option value="">All states</option>
-                                    @for (var state : stateOptions)
-                                        <option value="${state.stateCode()}">${state.stateName()}</option>
-                                    @endfor
+                                <span>Route type</span>
+                                <select data-county-finder-method>
+                                    <option value="">Any route</option>
+                                    <option value="online">Online search or portal</option>
+                                    <option value="request">Written records request</option>
+                                    <option value="office">Office or phone handoff</option>
                                 </select>
                             </label>
-                        @endif
-                        <label>
-                            <span>Route type</span>
-                            <select data-county-finder-method>
-                                <option value="">Any route</option>
-                                <option value="online">Online search or portal</option>
-                                <option value="request">Written records request</option>
-                                <option value="office">Office or phone handoff</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>First artifact</span>
-                            <select data-county-finder-artifact>
-                                <option value="">Any artifact</option>
-                                <option value="permit">Permit copy</option>
-                                <option value="as-built">As-built or layout</option>
-                                <option value="inspection">Inspection letter</option>
-                                <option value="final">Final approval</option>
-                                <option value="repair">Repair file</option>
-                                <option value="no-record">No-record response</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Confidence</span>
-                            <select data-county-finder-confidence>
-                                <option value="">Any confidence</option>
-                                <option value="high">82%+ high-confidence</option>
-                                <option value="solid">70%+ solid route</option>
-                            </select>
-                        </label>
-                        <label class="county-finder__toggle">
-                            <input type="checkbox" data-county-finder-parcel>
-                            <span>Parcel anchor only</span>
-                        </label>
-                    </div>
+                            <label>
+                                <span>First file</span>
+                                <select data-county-finder-artifact>
+                                    <option value="">Any file</option>
+                                    <option value="permit">Permit copy</option>
+                                    <option value="as-built">As-built or layout</option>
+                                    <option value="inspection">Inspection letter</option>
+                                    <option value="final">Final approval</option>
+                                    <option value="repair">Repair file</option>
+                                    <option value="no-record">No-record response</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Guide detail</span>
+                                <select data-county-finder-confidence>
+                                    <option value="">Any reviewed guide</option>
+                                    <option value="high">Most complete guides</option>
+                                    <option value="solid">Guides with a clear next step</option>
+                                </select>
+                            </label>
+                            <label class="county-finder__toggle">
+                                <input type="checkbox" data-county-finder-parcel>
+                                <span>Has a parcel-search clue</span>
+                            </label>
+                        </div>
+                    </details>
                 </div>
 
                 <div class="county-finder__panel">
-                    <div class="county-finder__priority" aria-label="Priority county routes">
-                        <span>Popular routes</span>
-                        <div>
-                            @for (var link : countyFinderLinks.stream().limit(12).toList())
-                                <a href="${link.path()}"
-                                   data-track-click="nav"
-                                   data-track-source-context="${sourceContext}_priority_route"
-                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()} - ${link.confidenceScore()}%</a>
-                            @endfor
-                        </div>
-                    </div>
                     <label class="county-finder__label" for="${finderId}-input">Find a county route</label>
                     <div class="county-finder__search">
                         <input id="${finderId}-input"
@@ -99,6 +91,17 @@
                         <strong data-county-finder-count>${totalCountyRouteCount > 0 ? totalCountyRouteCount : countyFinderLinks.size()} county routes searchable</strong>
                         <span>Showing the strongest matches first.</span>
                     </div>
+                    <details class="county-finder__priority">
+                        <summary>Popular county routes</summary>
+                        <div>
+                            @for (var link : countyFinderLinks.stream().limit(12).toList())
+                                <a href="${link.path()}"
+                                   data-track-click="nav"
+                                   data-track-source-context="${sourceContext}_priority_route"
+                                   data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()}</a>
+                            @endfor
+                        </div>
+                    </details>
                     <div class="county-finder__results" data-county-finder-results>
                         @for (var link : countyFinderLinks.stream().limit(18).toList())
                             <a class="county-finder__result"
@@ -114,23 +117,17 @@
                                data-share-query="${link.countyName()} ${link.stateCode()} septic permit lookup"
                                data-track-click="nav"
                                data-track-source-context="${sourceContext}"
-                               data-track-target-type="county_records_page">
+                                data-track-target-type="county_records_page">
                                 <div class="county-finder__result-top">
                                     <span>${link.title()}</span>
-                                    <strong>${link.confidenceScore()}%</strong>
                                 </div>
-                                <div class="county-finder__result-meta" aria-label="${link.title()} route metadata">
-                                    <span>${link.confidenceLabel()}</span>
+                                <div class="county-finder__result-meta" aria-label="${link.title()} route summary">
                                     <span>${link.requestMethodLabel()}</span>
-                                    <span>${link.sourceDepthLabel()}</span>
-                                    @if (!link.lastReviewedAt().isBlank())
-                                        <span>Reviewed ${link.lastReviewedAt()}</span>
-                                    @endif
                                     @if (link.parcelAnchorAvailable())
-                                        <span>Parcel anchor</span>
+                                        <span>Parcel search available</span>
                                     @endif
                                 </div>
-                                <small><strong>First pull:</strong> ${link.firstArtifactLabel()}</small>
+                                <small><strong>Start with:</strong> ${link.firstArtifactLabel()}</small>
                                 <small>${link.note()}</small>
                             </a>
                         @endfor
