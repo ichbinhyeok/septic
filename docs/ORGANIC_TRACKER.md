@@ -71,6 +71,30 @@ Rules:
   query-string URLs.
 - `drain-field-replacement-cost` needs deeper content, not just better metadata.
 
+## 2026-07-28
+
+### Property-file conversion strengthening
+
+- Goal: improve the probability that high-intent records traffic completes a useful
+  property-file task instead of leaving at the first government-site handoff.
+- What shipped:
+  - made the homepage show the resulting property file and the four main homeowner intents;
+  - named the exact file-owning office and contact before opening an official route;
+  - preserved the address workflow in a separate tab and added four explicit return outcomes;
+  - added resumable, browser-local document summaries with filename, page, and evidence excerpts;
+  - carried non-conflicting record facts into the calculator while separating priced inputs
+    from reference-only facts and unknown site conditions;
+  - rewrote county entry sections around the first file, owner, and next action while keeping
+    confidence and editorial details available on demand.
+- Quality gates:
+  - 666 automated tests passed with no failures;
+  - desktop and mobile browser checks found no horizontal overflow, console errors, or failed
+    requests in the tested property-file, return, resume, calculator, and county-page flows.
+- Next measurement:
+  - compare address-finder completion, official-route exits, return-outcome selection,
+    document additions, calculator handoffs, and county-page official exits after deployment;
+  - treat traffic and conversion movement as observed outcomes, not a guaranteed ranking gain.
+
 ## 2026-06-28
 
 ### 3-week 100-click sprint update
