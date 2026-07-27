@@ -99,6 +99,11 @@ jobs:
 
           cd "\$DEPLOY_DIR"
 
+          printf 'client_max_body_size 11m;\n' \
+            | sudo tee /etc/nginx/conf.d/septicpath-upload.conf >/dev/null
+          sudo nginx -t
+          sudo systemctl reload nginx
+
           cat <<EOF_COMPOSE > docker-compose.yml
           services:
             septic:
@@ -165,6 +170,21 @@ jobs:
             docker logs --tail 200 septic || true
             exit 1
           fi
+
+          UPLOAD_PROBE="\$(mktemp --suffix=.txt)"
+          UPLOAD_RESPONSE="\$(mktemp)"
+          trap 'rm -f "\$UPLOAD_PROBE" "\$UPLOAD_RESPONSE"' EXIT
+          head -c 1572864 /dev/zero | tr '\0' 'A' > "\$UPLOAD_PROBE"
+          UPLOAD_STATUS="\$(curl -sS -o "\$UPLOAD_RESPONSE" -w '%{http_code}' \
+            -F "file=@\$UPLOAD_PROBE;type=text/plain" \
+            https://septicpath.com/api/septic-document-analyzer)"
+          if [ "\$UPLOAD_STATUS" != "200" ]; then
+            echo "public document upload probe failed with HTTP \$UPLOAD_STATUS"
+            cat "\$UPLOAD_RESPONSE"
+            exit 1
+          fi
+          rm -f "\$UPLOAD_PROBE" "\$UPLOAD_RESPONSE"
+          trap - EXIT
 
           docker image prune -f
           EOF
