@@ -360,6 +360,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Request Builder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-request-builder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-task-context")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request the missing record without starting over.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Records request builder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download packet contents")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Office-ready message")))
@@ -672,6 +674,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guides")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1>Find septic records for an address.</h1>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"home-address-record-finder\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("From an address to a useful answer.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Popular record searches")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the record route by county name")))
@@ -1492,6 +1495,21 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("value=\"CA\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(">California</option>")));
+	}
+
+	@Test
+	void calculatorAcceptsConfirmedRecordContext() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/")
+						.param("state", "MD")
+						.param("projectType", "replacement")
+						.param("bedrooms", "4")
+						.param("recordsMode", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Carried from your property file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Confirmed record values are already filled in.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<option value=\"MD\" selected")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<option value=\"replacement\" selected")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"bedrooms\" value=\"4\"")));
 	}
 
 	@Test

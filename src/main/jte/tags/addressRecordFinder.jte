@@ -7,7 +7,7 @@
 @param boolean pageHeading = false
 @param boolean minimal = false
 
-<div class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
+<div id="${finderId}" class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
     @if (!minimal)
         <div class="record-finder__intro">
             <span class="eyebrow">${eyebrow}</span>
@@ -86,18 +86,18 @@
                 <div class="record-finder__next" data-address-record-finder-next hidden></div>
                 <section class="record-document" data-record-document-workspace hidden>
                     <div class="record-document__intro">
-                        <span class="eyebrow">Use the record without retyping it</span>
-                        <h4>Upload the document you found.</h4>
-                        <p>We read searchable PDFs, typed scans, or text files, extract common permit fields, and show what is still missing for your purpose.</p>
+                        <span class="eyebrow">Your septic property file</span>
+                        <h4>Add the records you found.</h4>
+                        <p>Each document updates one shared checklist. We keep the extracted summary in this browser tab, show conflicts between files, and carry confirmed facts into the next tool.</p>
                     </div>
                     <form data-record-document-form enctype="multipart/form-data">
                         <label>
-                            <span>Official record file</span>
+                            <span>Add a permit, as-built, approval, repair file, or letter</span>
                             <input type="file" name="file" accept="application/pdf,text/plain,.pdf,.txt" required data-record-document-file>
                         </label>
-                        <button class="button button--primary" type="submit" data-record-document-submit>Analyze document</button>
+                        <button class="button button--primary" type="submit" data-record-document-submit>Add to property file</button>
                     </form>
-                    <p class="record-document__privacy">Maximum 10 MB. The file and OCR page images are processed in memory and are not saved. OCR checks up to 8 pages of typed text; handwriting and faint stamps may still need manual review. The extracted summary can stay in this browser tab until you clear it or close the tab.</p>
+                    <p class="record-document__privacy">Maximum 10 MB per file. Original files and OCR page images are processed in memory and are not saved. Only the extracted summary stays in this browser tab until you clear it or close the tab.</p>
                     <div class="record-document__status" data-record-document-status aria-live="polite"></div>
                     <div class="record-document__analysis" data-record-document-analysis hidden></div>
                 </section>

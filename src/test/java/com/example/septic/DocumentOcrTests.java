@@ -96,6 +96,29 @@ class DocumentOcrTests {
     }
 
     @Test
+    void repairPermitIssueDateIsRepairHistoryNotFinalApproval() throws Exception {
+        SepticDocumentAnalysisService analyzer = new SepticDocumentAnalysisService(
+                document -> DocumentOcrService.OcrResult.unavailable("should not run")
+        );
+        MockMultipartFile file = new MockMultipartFile(
+                "file",
+                "repair-record.txt",
+                "text/plain",
+                """
+                        ONSITE WASTEWATER REPAIR RECORD
+                        Permit Number: OWTS-R-10442
+                        Repair permit issued 05/03/2018 for outlet baffle replacement.
+                        """.getBytes(java.nio.charset.StandardCharsets.UTF_8)
+        );
+
+        SepticDocumentAnalysisResult result = analyzer.analyze(file, "buying", "MD", "Prince George's County");
+
+        assertThat(result.findings()).extracting(finding -> finding.key())
+                .contains("repair_history")
+                .doesNotContain("approval_date", "final_approval");
+    }
+
+    @Test
     void missingOcrExecutableFailsClosedWithoutSavingTheDocument() throws Exception {
         TesseractDocumentOcrService ocr = new TesseractDocumentOcrService(
                 true,
