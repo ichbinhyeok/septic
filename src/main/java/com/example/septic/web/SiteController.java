@@ -1365,6 +1365,8 @@ The goal is to settle the permit path before we frame the project as a normal in
     public String calculator(
             @RequestParam(name = "state", required = false) String stateCode,
             @RequestParam(name = "projectType", required = false) String projectType,
+            @RequestParam(name = "bedrooms", required = false) Integer bedrooms,
+            @RequestParam(name = "recordsMode", defaultValue = "false") boolean recordsMode,
             @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
@@ -1376,9 +1378,13 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (projectType != null) {
             estimateForm.setProjectType(ProjectType.fromValue(projectType).value());
         }
+        if (bedrooms != null && bedrooms >= 1 && bedrooms <= 10) {
+            estimateForm.setBedrooms(bedrooms);
+        }
         if (isValidSourcePageHint(sourcePageHint)) {
             estimateForm.setSourcePageHint(sourcePageHint);
         }
+        model.addAttribute("recordsMode", recordsMode);
         return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, quoteMode);
     }
 

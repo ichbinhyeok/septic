@@ -53,7 +53,7 @@ public class SepticDocumentAnalysisService {
                     + "(aerobic(?:\\s+treatment\\s+unit)?|mound|drip(?:\\s+dispersal)?|"
                     + "low[- ]pressure(?:\\s+pipe)?|conventional(?:\\s+gravity)?|gravity)\\s+system\\b");
     private static final Pattern DATE = Pattern.compile(
-            "(?i)\\b(?:approved|issued|final(?:\\s+approval)?|inspection|installed)\\s*(?:date)?\\s*[:#-]?\\s*"
+            "(?i)\\b(?:approved|approval|final\\s+(?:approval|inspection)|inspection)\\s*(?:date)?\\s*[:#-]?\\s*"
                     + "((?:0?[1-9]|1[0-2])[/-](?:0?[1-9]|[12]\\d|3[01])[/-](?:19|20)\\d{2}|"
                     + "(?:19|20)\\d{2}-\\d{2}-\\d{2})");
 
@@ -213,7 +213,8 @@ public class SepticDocumentAnalysisService {
         ));
         addContextFinding(findings, lower, text, "repair_history", "Repair history", List.of(
                 "repair history attached", "repair records attached", "previous repair dated",
-                "repair permit number", "no repair history"
+                "repair permit number", "repair permit issued", "repair permit was issued",
+                "repair approval issued", "repair completed", "no repair history"
         ));
         addContextFinding(findings, lower, text, "reserve_area", "Reserve area", List.of(
                 "reserve area shown", "shows the reserve area", "reserve area designated",

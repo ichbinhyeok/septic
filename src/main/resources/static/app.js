@@ -97,7 +97,7 @@
     }
 
     function setupHashAnchorOffset() {
-        const offsetTargets = new Set(["records-request-builder", "send-note"]);
+        const offsetTargets = new Set(["home-address-record-finder", "records-request-builder", "send-note"]);
 
         function alignHashTarget() {
             const id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : "";
@@ -827,10 +827,56 @@
             const documentStatus = finder.querySelector("[data-record-document-status]");
             const documentAnalysis = finder.querySelector("[data-record-document-analysis]");
             const apiPath = finder.dataset.addressRecordFinderApi;
-            const workspaceStorageKey = "septicpath-document-workspace-v1";
+            const workspaceStorageKey = "septicpath-document-workspace-v2";
+            const legacyWorkspaceStorageKey = "septicpath-document-workspace-v1";
             const pendingReturnStorageKey = "septicpath-official-return-v1";
             let routeContext = null;
             let awaitingOfficialReturn = false;
+            let workspaceState = { documents: [] };
+
+            const purposeRequirements = {
+                buying: [
+                    ["permit_number", "Permit or record number"],
+                    ["approved_bedrooms", "Approved bedroom count"],
+                    ["final_approval", "Final approval"],
+                    ["layout", "As-built or site plan"],
+                    ["repair_history", "Repair history"]
+                ],
+                bedrooms: [
+                    ["permit_number", "Permit or record number"],
+                    ["approved_bedrooms", "Approved bedroom count"],
+                    ["design_flow", "Approved design flow"],
+                    ["final_approval", "Final approval"]
+                ],
+                location: [
+                    ["permit_number", "Permit or record number"],
+                    ["layout", "As-built or site plan"]
+                ],
+                repair: [
+                    ["permit_number", "Permit or record number"],
+                    ["layout", "As-built or site plan"],
+                    ["repair_history", "Repair history"],
+                    ["system_type", "Existing system type"]
+                ],
+                replacement: [
+                    ["permit_number", "Permit or record number"],
+                    ["layout", "As-built or site plan"],
+                    ["system_type", "Existing system type"],
+                    ["tank_capacity", "Tank capacity"],
+                    ["design_flow", "Approved design flow"]
+                ],
+                lender: [
+                    ["permit_number", "Permit or record number"],
+                    ["approved_bedrooms", "Approved bedroom count"],
+                    ["final_approval", "Final approval"]
+                ],
+                owner: [
+                    ["permit_number", "Permit or record number"],
+                    ["final_approval", "Final approval"],
+                    ["layout", "As-built or site plan"],
+                    ["repair_history", "Repair history"]
+                ]
+            };
 
             if (!(form instanceof HTMLFormElement)
                 || !(input instanceof HTMLInputElement)
@@ -907,9 +953,13 @@
                 return purposeSelect instanceof HTMLSelectElement ? purposeSelect.value : "buying";
             }
 
-            function saveRequestContext() {
+            function saveRequestContext(extra = {}) {
                 try {
-                    sessionStorage.setItem("septic-records-request-context", JSON.stringify(routeContext));
+                    sessionStorage.setItem("septic-records-request-context", JSON.stringify({
+                        ...routeContext,
+                        savedAt: Date.now(),
+                        ...extra
+                    }));
                 } catch (_) {
                     // The builder remains usable without browser session storage.
                 }
@@ -926,13 +976,93 @@
                 }
             }
 
-            function saveWorkspace(payload) {
+            function findingsByKey(documents) {
+                const grouped = new Map();
+                documents.forEach((documentResult) => {
+                    const sourceFile = documentResult.fileName || "Document";
+                    const findings = Array.isArray(documentResult.findings) ? documentResult.findings : [];
+                    findings.forEach((finding) => {
+                        if (!finding?.key || !finding?.value) {
+                            return;
+                        }
+                        const entries = grouped.get(finding.key) || [];
+                        entries.push({ ...finding, sourceFile });
+                        grouped.set(finding.key, entries);
+                    });
+                });
+                return grouped;
+            }
+
+            function workspaceSummary(documents) {
+                const grouped = findingsByKey(documents);
+                const conflictKeys = new Set([
+                    "permit_number",
+                    "approved_bedrooms",
+                    "tank_capacity",
+                    "design_flow",
+                    "system_type"
+                ]);
+                const requirements = purposeRequirements[routeContext?.purpose || currentPurpose()]
+                    || purposeRequirements.buying;
+                const checklist = requirements.map(([key, label]) => {
+                    const entries = grouped.get(key) || [];
+                    const values = [...new Set(entries.map((entry) => entry.value))];
+                    return {
+                        key,
+                        label,
+                        status: conflictKeys.has(key) && values.length > 1
+                            ? "conflict"
+                            : values.length >= 1 ? "complete" : "missing",
+                        values,
+                        sources: [...new Set(entries.map((entry) => entry.sourceFile))]
+                    };
+                });
+                const conflicts = [];
+                grouped.forEach((entries, key) => {
+                    const values = [...new Set(entries.map((entry) => entry.value))];
+                    if (conflictKeys.has(key) && values.length > 1) {
+                        conflicts.push({ key, label: entries[0]?.label || key, entries });
+                    }
+                });
+                return {
+                    documents,
+                    grouped,
+                    checklist,
+                    conflicts,
+                    completeCount: checklist.filter((item) => item.status === "complete").length,
+                    totalCount: checklist.length
+                };
+            }
+
+            function addDocumentToWorkspace(payload) {
+                const documents = Array.isArray(workspaceState.documents)
+                    ? [...workspaceState.documents]
+                    : [];
+                const normalized = {
+                    ...payload,
+                    addedAt: Date.now(),
+                    findings: Array.isArray(payload?.findings) ? payload.findings : [],
+                    missingItems: Array.isArray(payload?.missingItems) ? payload.missingItems : [],
+                    nextSteps: Array.isArray(payload?.nextSteps) ? payload.nextSteps : []
+                };
+                const existingIndex = documents.findIndex((item) => item.fileName === normalized.fileName);
+                if (existingIndex >= 0) {
+                    documents.splice(existingIndex, 1, normalized);
+                } else {
+                    documents.push(normalized);
+                }
+                workspaceState = { documents: documents.slice(-8) };
+                return workspaceSummary(workspaceState.documents);
+            }
+
+            function saveWorkspace() {
                 try {
                     sessionStorage.setItem(workspaceStorageKey, JSON.stringify({
                         savedAt: Date.now(),
                         context: routeContext,
-                        analysis: payload
+                        documents: workspaceState.documents
                     }));
+                    sessionStorage.removeItem(legacyWorkspaceStorageKey);
                 } catch (_) {
                     // The on-screen result remains available without browser storage.
                 }
@@ -941,6 +1071,7 @@
             function clearWorkspace() {
                 try {
                     sessionStorage.removeItem(workspaceStorageKey);
+                    sessionStorage.removeItem(legacyWorkspaceStorageKey);
                     sessionStorage.removeItem(pendingReturnStorageKey);
                 } catch (_) {
                     // Nothing else needs clearing if browser storage is unavailable.
@@ -955,49 +1086,60 @@
                 if (documentFile instanceof HTMLInputElement) {
                     documentFile.value = "";
                 }
+                workspaceState = { documents: [] };
             }
 
-            function downloadWorkspaceSummary(payload) {
-                const decision = payload?.decision || {};
+            function downloadWorkspaceSummary(summary) {
                 const contextLines = [
                     routeContext?.matchedAddress ? `Property: ${routeContext.matchedAddress}` : "",
                     routeContext?.countyName ? `File owner context: ${routeContext.countyName}` : "",
                     routeContext?.stateName || routeContext?.stateCode
                         ? `State: ${routeContext.stateName || routeContext.stateCode}`
                         : "",
-                    `Purpose: ${payload?.purpose || routeContext?.purpose || currentPurpose()}`,
-                    `Source file: ${payload?.fileName || "Not recorded"}`
+                    `Purpose: ${routeContext?.purpose || currentPurpose()}`,
+                    `Documents reviewed: ${summary.documents.length}`
                 ].filter(Boolean);
-                const findings = Array.isArray(payload?.findings)
-                    ? payload.findings.map((finding) => `- ${finding.label}: ${finding.value}`)
-                    : [];
-                const missing = Array.isArray(payload?.missingItems)
-                    ? payload.missingItems.map((item) => `- ${item}`)
-                    : [];
-                const nextSteps = Array.isArray(payload?.nextSteps)
-                    ? payload.nextSteps.map((item, index) => `${index + 1}. ${item}`)
-                    : [];
+                const checklist = summary.checklist.map((item) => {
+                    const status = item.status === "complete"
+                        ? "CONFIRMED"
+                        : item.status === "conflict" ? "CONFLICT" : "MISSING";
+                    const value = item.values.length ? `: ${item.values.join(" / ")}` : "";
+                    const sources = item.sources.length ? ` (${item.sources.join(", ")})` : "";
+                    return `- [${status}] ${item.label}${value}${sources}`;
+                });
+                const conflicts = summary.conflicts.flatMap((conflict) => [
+                    `- ${conflict.label}`,
+                    ...conflict.entries.map((entry) => `  - ${entry.value} — ${entry.sourceFile}`)
+                ]);
+                const findings = [];
+                summary.grouped.forEach((entries) => {
+                    entries.forEach((entry) => {
+                        findings.push(`- ${entry.label}: ${entry.value} — ${entry.sourceFile}`);
+                    });
+                });
+                const fileNames = summary.documents.map((documentResult) => `- ${documentResult.fileName || "Document"}`);
                 const body = [
-                    "SEPTICPATH DOCUMENT REVIEW",
-                    "Analysis aid — confirm every field against the original official document.",
+                    "SEPTICPATH PROPERTY FILE",
+                    "Browser-session summary — confirm every field against the original official document.",
                     "",
                     ...contextLines,
                     "",
-                    "PURPOSE-SPECIFIC DECISION",
-                    decision.title || payload?.heading || "Document review",
-                    decision.answer || payload?.summary || "",
-                    decision.notProven ? `Not proven: ${decision.notProven}` : "",
+                    `CHECKLIST PROGRESS: ${summary.completeCount} OF ${summary.totalCount}`,
+                    ...checklist,
                     "",
-                    "EXTRACTED FIELDS",
+                    "CONFLICTS TO RESOLVE",
+                    ...(conflicts.length ? conflicts : ["- None detected"]),
+                    "",
+                    "ALL EXTRACTED FACTS",
                     ...(findings.length ? findings : ["- No common fields extracted"]),
                     "",
-                    "STILL MISSING",
-                    ...(missing.length ? missing : ["- No main purpose fields flagged as missing"]),
+                    "SOURCE FILES",
+                    ...fileNames,
                     "",
-                    "NEXT STEPS",
-                    ...nextSteps
+                    "LIMIT",
+                    "This file review is not a property inspection, title opinion, code determination, or guarantee of system condition."
                 ].filter((line) => line !== null && line !== undefined);
-                downloadText("septicpath-document-review.txt", body.join("\n"));
+                downloadText("septicpath-property-file.txt", body.join("\n"));
             }
 
             function renderNextStep(outcome) {
@@ -1026,13 +1168,13 @@
                     title.textContent = "Use the local file owner instead of repeating the search.";
                     copy.textContent = "Open the county-specific guide for the responsible office, or carry this property context into a copy-ready request.";
                     const localGuide = button("Open county-specific route", countyPath, true, "county_records_page");
-                    const request = button("Build a prefilled records request", "/septic-records-request-builder/#records-request-builder", false, "internal_tool");
+                    const request = button("Build a prefilled records request", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool");
                     request.dataset.recordRequestBuilder = "true";
                     links.append(localGuide, request);
                 } else {
                     title.textContent = "Ask the file owner for the document your purpose requires.";
                     copy.textContent = "The request builder will carry the address, county, state, and purpose from this search into an office-ready message.";
-                    const request = button("Build a prefilled records request", "/septic-records-request-builder/#records-request-builder", true, "internal_tool");
+                    const request = button("Build a prefilled records request", "/septic-records-request-builder/?mode=task#records-request-builder", true, "internal_tool");
                     request.dataset.recordRequestBuilder = "true";
                     links.append(request, button("Review the county route", countyPath, false, "county_records_page"));
                 }
@@ -1253,7 +1395,7 @@
                 downloadButton.type = "button";
                 downloadButton.className = "button button--secondary";
                 downloadButton.textContent = "Download review";
-                downloadButton.addEventListener("click", () => downloadWorkspaceSummary(payload));
+                downloadButton.addEventListener("click", () => downloadWorkspaceSummary(workspaceSummary([payload])));
                 clearButton.type = "button";
                 clearButton.className = "button button--quiet";
                 clearButton.textContent = "Clear session result";
@@ -1264,16 +1406,237 @@
                 documentAnalysis.hidden = false;
             }
 
+            function recordRequestKey(checklist) {
+                const firstOpen = checklist.find((item) => item.status !== "complete");
+                return {
+                    permit_number: "permit_copy",
+                    approved_bedrooms: "permit_copy",
+                    final_approval: "final_approval",
+                    layout: "as_built",
+                    repair_history: "repair_record",
+                    system_type: "permit_copy",
+                    tank_capacity: "permit_copy",
+                    design_flow: "permit_copy"
+                }[firstOpen?.key] || "permit_copy";
+            }
+
+            function calculatorPath(summary) {
+                const params = new URLSearchParams();
+                if (routeContext?.stateCode) {
+                    params.set("state", routeContext.stateCode);
+                }
+                const projectTypes = {
+                    buying: "buying_home",
+                    bedrooms: "new_install",
+                    location: "inspection",
+                    repair: "inspection",
+                    replacement: "replacement",
+                    lender: "inspection",
+                    owner: "inspection"
+                };
+                params.set("projectType", projectTypes[routeContext?.purpose] || "inspection");
+                const bedrooms = summary.grouped.get("approved_bedrooms") || [];
+                const bedroomValues = [...new Set(bedrooms.map((entry) => entry.value))];
+                if (bedroomValues.length === 1 && /^\d{1,2}$/.test(bedroomValues[0])) {
+                    params.set("bedrooms", bedroomValues[0]);
+                }
+                params.set("recordsMode", "true");
+                return `/septic-system-cost-calculator/?${params.toString()}`;
+            }
+
+            function renderPropertyWorkspace(summary) {
+                if (!(documentAnalysis instanceof HTMLElement)) {
+                    return;
+                }
+                const wrapper = document.createElement("div");
+                wrapper.className = "record-workspace";
+
+                const overview = document.createElement("section");
+                overview.className = "record-workspace__overview";
+                const progressCopy = document.createElement("div");
+                const progressLabel = document.createElement("span");
+                const progressTitle = document.createElement("h5");
+                const progressBody = document.createElement("p");
+                const progress = document.createElement("div");
+                const progressBar = document.createElement("span");
+                progressLabel.className = "record-decision__label";
+                progressLabel.textContent = "Property file progress";
+                progressTitle.textContent = summary.conflicts.length
+                    ? "Resolve conflicting records before using the file"
+                    : `${summary.completeCount} of ${summary.totalCount} checks complete`;
+                progressBody.textContent = summary.conflicts.length
+                    ? "Two documents report different values. Compare both originals or ask the file owner which record controls."
+                    : summary.completeCount === summary.totalCount
+                        ? "The core records for this purpose are present. This still does not prove current system condition."
+                        : "Add another official record or request the missing items below. You will not need to re-enter confirmed facts.";
+                progress.className = "record-workspace__progress";
+                progress.setAttribute("role", "progressbar");
+                progress.setAttribute("aria-valuemin", "0");
+                progress.setAttribute("aria-valuemax", String(summary.totalCount));
+                progress.setAttribute("aria-valuenow", String(summary.completeCount));
+                progressBar.style.width = `${Math.round((summary.completeCount / Math.max(1, summary.totalCount)) * 100)}%`;
+                progress.append(progressBar);
+                progressCopy.append(progressLabel, progressTitle, progressBody, progress);
+
+                const documentCount = document.createElement("div");
+                const documentNumber = document.createElement("strong");
+                const documentLabel = document.createElement("span");
+                documentCount.className = "record-workspace__count";
+                documentNumber.textContent = String(summary.documents.length);
+                documentLabel.textContent = summary.documents.length === 1 ? "document reviewed" : "documents reviewed";
+                documentCount.append(documentNumber, documentLabel);
+                overview.append(progressCopy, documentCount);
+                wrapper.append(overview);
+
+                const checklistSection = document.createElement("section");
+                const checklistHeading = document.createElement("h5");
+                const checklist = document.createElement("ul");
+                checklistSection.className = "record-workspace__section";
+                checklistHeading.textContent = "What the property file confirms";
+                checklist.className = "record-workspace__checklist";
+                summary.checklist.forEach((check) => {
+                    const item = document.createElement("li");
+                    const marker = document.createElement("span");
+                    const copy = document.createElement("div");
+                    const label = document.createElement("strong");
+                    const detail = document.createElement("small");
+                    item.dataset.status = check.status;
+                    marker.textContent = check.status === "complete" ? "✓" : check.status === "conflict" ? "!" : "○";
+                    label.textContent = check.label;
+                    detail.textContent = check.status === "complete"
+                        ? `${check.values.join(" / ")} - ${check.sources.join(", ")}`
+                        : check.status === "conflict"
+                            ? `${check.values.join(" versus ")} - compare the originals`
+                            : "Not found in the documents added so far";
+                    copy.append(label, detail);
+                    item.append(marker, copy);
+                    checklist.append(item);
+                });
+                checklistSection.append(checklistHeading, checklist);
+                wrapper.append(checklistSection);
+
+                if (summary.conflicts.length) {
+                    const conflictSection = document.createElement("section");
+                    const conflictHeading = document.createElement("h5");
+                    const conflictList = document.createElement("ul");
+                    conflictSection.className = "record-workspace__section record-workspace__conflicts";
+                    conflictHeading.textContent = "Values that need resolution";
+                    summary.conflicts.forEach((conflict) => {
+                        const item = document.createElement("li");
+                        const label = document.createElement("strong");
+                        const values = document.createElement("span");
+                        label.textContent = conflict.label;
+                        values.textContent = conflict.entries
+                            .map((entry) => `${entry.value} (${entry.sourceFile})`)
+                            .join(" vs. ");
+                        item.append(label, values);
+                        conflictList.append(item);
+                    });
+                    conflictSection.append(conflictHeading, conflictList);
+                    wrapper.append(conflictSection);
+                }
+
+                if (summary.grouped.size) {
+                    const factsSection = document.createElement("details");
+                    const factsSummary = document.createElement("summary");
+                    const facts = document.createElement("dl");
+                    factsSection.className = "record-workspace__facts";
+                    factsSummary.textContent = `Review all extracted facts (${summary.grouped.size})`;
+                    facts.className = "record-document__findings";
+                    summary.grouped.forEach((entries) => {
+                        const item = document.createElement("div");
+                        const term = document.createElement("dt");
+                        const value = document.createElement("dd");
+                        const evidence = document.createElement("small");
+                        const values = [...new Set(entries.map((entry) => entry.value))];
+                        term.textContent = entries[0]?.label || entries[0]?.key;
+                        value.textContent = values.join(" / ");
+                        evidence.textContent = `From: ${[...new Set(entries.map((entry) => entry.sourceFile))].join(", ")}`;
+                        item.append(term, value, evidence);
+                        facts.append(item);
+                    });
+                    factsSection.append(factsSummary, facts);
+                    wrapper.append(factsSection);
+                }
+
+                const files = document.createElement("p");
+                files.className = "record-workspace__files";
+                files.textContent = `Files in this browser session: ${summary.documents.map((item) => item.fileName || "Document").join(", ")}`;
+                wrapper.append(files);
+
+                const ocrUsed = summary.documents.some((item) =>
+                    String(item.summary || "").startsWith("OCR read typed text from this scan."));
+                if (ocrUsed) {
+                    const warning = document.createElement("p");
+                    warning.className = "record-workspace__warning";
+                    warning.textContent = "OCR was used for at least one document. Compare permit numbers, dates, bedroom counts, tank size, and flow with the original scan.";
+                    wrapper.append(warning);
+                }
+
+                const actions = document.createElement("div");
+                const hasMissing = summary.checklist.some((item) => item.status === "missing");
+                const hasConflict = summary.conflicts.length > 0;
+                const request = button(
+                    hasConflict
+                        ? "Request the controlling record"
+                        : hasMissing ? "Request the missing record" : "Ask the file owner a follow-up",
+                    "/septic-records-request-builder/?mode=task#records-request-builder",
+                    hasMissing || hasConflict,
+                    "internal_tool"
+                );
+                const estimate = button(
+                    hasConflict ? "Plan cost without disputed values" : "Use confirmed facts in cost planning",
+                    calculatorPath(summary),
+                    false,
+                    "calculator"
+                );
+                const download = document.createElement("button");
+                const clear = document.createElement("button");
+                actions.className = "record-document__analysis-actions";
+                request.addEventListener("click", () => saveRequestContext({
+                    requestedRecord: recordRequestKey(summary.checklist),
+                    taskMode: true,
+                    conflictNote: summary.conflicts.map((conflict) => {
+                        const values = conflict.entries
+                            .map((entry) => `${entry.value} in ${entry.sourceFile}`)
+                            .join(" versus ");
+                        return `${conflict.label}: ${values}`;
+                    }).join("; ")
+                }));
+                download.type = "button";
+                download.className = "button button--secondary";
+                download.textContent = "Download property file";
+                download.addEventListener("click", () => downloadWorkspaceSummary(summary));
+                clear.type = "button";
+                clear.className = "button button--quiet";
+                clear.textContent = "Clear browser file";
+                clear.addEventListener("click", clearWorkspace);
+                actions.append(request, estimate, download, clear);
+                wrapper.append(actions);
+
+                const limit = document.createElement("p");
+                limit.className = "record-decision__limit";
+                limit.textContent = "This file review is not a property inspection, title opinion, code determination, or guarantee of system condition.";
+                wrapper.append(limit);
+
+                documentAnalysis.replaceChildren(wrapper);
+                documentAnalysis.hidden = false;
+            }
+
             function restoreSessionWorkspace() {
                 let stored = null;
                 let pending = null;
                 try {
-                    stored = JSON.parse(sessionStorage.getItem(workspaceStorageKey) || "null");
+                    stored = JSON.parse(sessionStorage.getItem(workspaceStorageKey) || "null")
+                        || JSON.parse(sessionStorage.getItem(legacyWorkspaceStorageKey) || "null");
                     pending = JSON.parse(sessionStorage.getItem(pendingReturnStorageKey) || "null");
                 } catch (_) {
                     return;
                 }
-                const active = stored?.analysis ? stored : pending;
+                const storedDocuments = Array.isArray(stored?.documents)
+                    ? stored.documents
+                    : stored?.analysis ? [stored.analysis] : [];
+                const active = storedDocuments.length ? stored : pending;
                 if (!active?.context || Date.now() - Number(active.savedAt || 0) > 8 * 60 * 60 * 1000) {
                     return;
                 }
@@ -1297,13 +1660,14 @@
                     message.textContent = "The address context and extracted summary stayed only in this browser tab. The original document was not stored.";
                 }
                 showReturnPrompt();
-                if (stored?.analysis) {
+                if (storedDocuments.length) {
+                    workspaceState = { documents: storedDocuments.slice(-8) };
                     if (documentWorkspace instanceof HTMLElement) {
                         documentWorkspace.hidden = false;
                     }
-                    renderDocumentAnalysis(stored.analysis);
+                    renderPropertyWorkspace(workspaceSummary(workspaceState.documents));
                     if (documentStatus) {
-                        documentStatus.textContent = "Restored from this browser session. Confirm fields against the original file.";
+                        documentStatus.textContent = `Restored ${workspaceState.documents.length} document ${workspaceState.documents.length === 1 ? "summary" : "summaries"} from this browser session.`;
                     }
                 }
             }
@@ -1338,13 +1702,16 @@
                         body: data
                     });
                     const payload = await response.json();
-                    renderDocumentAnalysis(payload);
                     if (response.ok) {
-                        saveWorkspace(payload);
+                        const summary = addDocumentToWorkspace(payload);
+                        saveWorkspace();
+                        renderPropertyWorkspace(summary);
+                    } else {
+                        renderDocumentAnalysis(payload);
                     }
                     if (documentStatus) {
                         documentStatus.textContent = response.ok
-                            ? "Analysis complete. Confirm every field against the original."
+                            ? `${payload.fileName || "Document"} added. Add another record to fill the remaining gaps.`
                             : (payload.summary || "The file could not be analyzed.");
                     }
                 } catch (_) {
@@ -1353,7 +1720,7 @@
                     }
                 } finally {
                     documentSubmit.disabled = false;
-                    documentSubmit.textContent = "Analyze document";
+                    documentSubmit.textContent = "Add to property file";
                 }
             });
 
@@ -2182,6 +2549,10 @@
         if (!builders.length) {
             return;
         }
+        const requestedTaskMode = new URLSearchParams(window.location.search).get("mode") === "task";
+        if (requestedTaskMode) {
+            document.body.classList.add("records-task-mode");
+        }
 
         const stateRouteNotes = {
             TN: "Start with the TDEC septic permit search, then use the regional or contract-county route if the parcel is not visible.",
@@ -2292,10 +2663,27 @@
             const address = valueOf(builder, "[data-request-address]");
             const parcel = valueOf(builder, "[data-request-parcel]");
             const owner = valueOf(builder, "[data-request-owner]");
-            const routeDetail = stateRouteDetails[stateCode] || stateRouteDetails.DEFAULT;
-            const stateLabel = labelOf(stateSelect) || "County health office";
+            const contextStateName = builder.dataset.requestContextStateName || "";
+            const contextCountyName = builder.dataset.requestContextCountyName || county;
+            const conflictNote = builder.dataset.requestConflictNote || "";
+            const defaultRoute = stateRouteDetails.DEFAULT;
+            const routeDetail = stateCode === "DEFAULT" && (contextStateName || contextCountyName)
+                ? {
+                    ...defaultRoute,
+                    title: contextCountyName
+                        ? `${contextCountyName} septic records office`
+                        : `${contextStateName} local septic records office`,
+                    body: `Start with the verified ${contextCountyName || contextStateName} records route. Send the request to the county health, environmental health, onsite wastewater, permitting, or public-records desk that owns parcel-level septic files.`,
+                    channel: contextCountyName
+                        ? `${contextCountyName} health, environmental health, onsite wastewater, permitting, or public-records desk`
+                        : defaultRoute.channel
+                }
+                : stateRouteDetails[stateCode] || defaultRoute;
+            const stateLabel = stateCode === "DEFAULT" && contextStateName
+                ? `${contextStateName} / county file owner`
+                : labelOf(stateSelect) || "County health office";
             const routeLabel = stateCode === "DEFAULT"
-                ? "the local county health, environmental health, or onsite wastewater office"
+                ? `the ${routeDetail.channel}`
                 : routeDetail.channel;
 
             return {
@@ -2309,8 +2697,11 @@
                 address,
                 parcel,
                 owner,
+                conflictNote,
                 routeDetail,
-                routeNote: stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT,
+                routeNote: stateCode === "DEFAULT" && contextCountyName
+                    ? `Use the verified ${contextCountyName} county route first. If the first desk does not own septic files, ask it to name the delegated, regional, archived, or pre-digital file owner.`
+                    : stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT,
                 artifact: artifactCopy[recordKey] || artifactCopy.permit_copy,
                 artifactCheck: artifactChecklist[recordKey] || artifactChecklist.permit_copy,
                 reason: reasonCopy[reasonKey] || reasonCopy.owner_records,
@@ -2324,13 +2715,17 @@
         }
 
         function submissionChecklist(current) {
-            return [
+            const items = [
                 `Submit through the official ${current.routeDetail.channel}.`,
                 `Include address, county, parcel/APN/TMS, owner, legal description, subdivision, lot number, and prior permit number when available.`,
                 current.artifactCheck,
                 current.reasonCheck,
                 current.routeDetail.fallback
             ];
+            if (current.conflictNote) {
+                items.splice(2, 0, "Attach or identify both conflicting source files and ask which record is current and controlling.");
+            }
+            return items;
         }
 
         function escapeHtml(value) {
@@ -2344,6 +2739,13 @@
 
         function buildRequest(builder) {
             const current = currentBuilderState(builder);
+            const conflictLines = current.conflictNote
+                ? [
+                    "",
+                    `The documents already collected disagree: ${current.conflictNote}.`,
+                    "Please confirm which record is current and controlling, and return the document or written explanation that resolves the difference."
+                ]
+                : [];
 
             return [
                 `Subject: Septic records request for ${current.addressLine}`,
@@ -2354,6 +2756,7 @@
                 `Parcel / APN / tax ID: ${current.parcelLine}`,
                 `Owner name: ${current.ownerLine}`,
                 `Reason for request: ${current.reason}.`,
+                ...conflictLines,
                 "",
                 `Please search for ${current.artifact}. If those records are held by another office, please tell me the correct office or public records route.`,
                 "",
@@ -2394,6 +2797,7 @@
                 `- County: ${current.county ? `${current.county} County` : "[property county]"}`,
                 `- Record needed: ${current.recordLabel}`,
                 `- Reason: ${current.reasonLabel}`,
+                ...(current.conflictNote ? [`- Known conflict: ${current.conflictNote}`] : []),
                 "",
                 "Property identifiers",
                 `- Address: ${current.address || "[property address]"}`,
@@ -2439,7 +2843,8 @@
                 ["Parcel / APN / tax ID", current.parcel || "[parcel ID / APN / tax ID if known]"],
                 ["Owner", current.owner || "[current or prior owner name if known]"],
                 ["Record needed", current.recordLabel],
-                ["Reason", current.reasonLabel]
+                ["Reason", current.reasonLabel],
+                ...(current.conflictNote ? [["Known conflict", current.conflictNote]] : [])
             ]
                 .map(([label, value]) => `<tr><th>${escapeHtml(label)}</th><td>${escapeHtml(value)}</td></tr>`)
                 .join("");
@@ -2587,18 +2992,22 @@
             let context = null;
             try {
                 context = JSON.parse(sessionStorage.getItem("septic-records-request-context") || "null");
-                sessionStorage.removeItem("septic-records-request-context");
             } catch (_) {
                 context = null;
             }
-            if (!context || typeof context !== "object") {
+            if (!context || typeof context !== "object"
+                || (context.savedAt && Date.now() - Number(context.savedAt) > 8 * 60 * 60 * 1000)) {
                 return;
             }
 
             const state = builder.querySelector("[data-request-state]");
+            const record = builder.querySelector("[data-request-record]");
             const reason = builder.querySelector("[data-request-reason]");
             const county = builder.querySelector("[data-request-county]");
             const address = builder.querySelector("[data-request-address]");
+            const taskContext = builder.querySelector("[data-records-task-context]");
+            const taskHeading = builder.querySelector("[data-records-task-heading]");
+            const taskCopy = builder.querySelector("[data-records-task-copy]");
             const purposeReasons = {
                 buying: "buying",
                 bedrooms: "addition",
@@ -2616,11 +3025,42 @@
             if (reason instanceof HTMLSelectElement && purposeReasons[context.purpose]) {
                 reason.value = purposeReasons[context.purpose];
             }
+            if (record instanceof HTMLSelectElement
+                && Array.from(record.options).some((option) => option.value === context.requestedRecord)) {
+                record.value = context.requestedRecord;
+            }
             if (county instanceof HTMLInputElement) {
                 county.value = String(context.countyName || "").replace(/\s+County$/i, "");
             }
             if (address instanceof HTMLInputElement) {
                 address.value = context.matchedAddress || "";
+            }
+            builder.dataset.requestContextStateName = context.stateName || context.stateCode || "";
+            builder.dataset.requestContextCountyName = context.countyName || "";
+            builder.dataset.requestConflictNote = String(context.conflictNote || "").slice(0, 800);
+
+            const taskMode = context.taskMode
+                || new URLSearchParams(window.location.search).get("mode") === "task";
+            if (taskMode) {
+                document.body.classList.add("records-task-mode");
+                if (taskContext instanceof HTMLElement) {
+                    taskContext.hidden = false;
+                }
+                if (taskHeading) {
+                    taskHeading.textContent = context.conflictNote
+                        ? `Resolve the conflicting ${context.countyName || "property"} records.`
+                        : context.countyName
+                            ? `Request the missing ${context.countyName} record.`
+                        : "Request the missing property record.";
+                }
+                if (taskCopy) {
+                    const recordLabel = record instanceof HTMLSelectElement
+                        ? record.options[record.selectedIndex]?.text
+                        : "record";
+                    taskCopy.textContent = context.conflictNote
+                        ? `${context.matchedAddress || "This property"} is already filled in. The request names the conflicting values and asks the file owner which record controls.`
+                        : `${context.matchedAddress || "This property"} is already filled in. The request is set to ${String(recordLabel || "the missing record").toLowerCase()}.`;
+                }
             }
         }
 
@@ -2633,6 +3073,10 @@
             const status = builder.querySelector("[data-records-request-status]");
             const output = builder.querySelector("[data-records-request-output]");
 
+            const taskContext = builder.querySelector("[data-records-task-context]");
+            if (requestedTaskMode && taskContext instanceof HTMLElement) {
+                taskContext.hidden = false;
+            }
             consumeFinderRequestContext(builder);
 
             inputs.forEach((input) => {

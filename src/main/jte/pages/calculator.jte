@@ -20,6 +20,7 @@
 @param String leadId = null
 @param boolean quoteHasErrors = false
 @param boolean showQuotePanel = false
+@param boolean recordsMode = false
 @param ProjectType[] projectTypes
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
@@ -48,6 +49,14 @@
         <div class="container calculator-layout">
             <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/#result-top">
                 <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
+                @if (recordsMode)
+                    <div class="calculator-record-context">
+                        <span class="eyebrow">Carried from your property file</span>
+                        <strong>Confirmed record values are already filled in.</strong>
+                        <p>State, purpose, and any unconflicted record value were carried from the documents you reviewed. Unknown or disputed conditions still stay unknown.</p>
+                        <a href="/#home-address-record-finder">Back to the property file</a>
+                    </div>
+                @endif
                 <div class="calculator-form__intro">
                     <span class="pill">Fast start</span>
                     <p>Choose the basics first. The secondary fields only help tighten the range.</p>

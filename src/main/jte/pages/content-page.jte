@@ -1098,6 +1098,12 @@
         <section class="section section--tight" id="records-request-builder">
             <div class="container">
                 <div class="records-request-builder" data-records-request-builder>
+                    <div class="records-request-builder__task-context" data-records-task-context hidden>
+                        <span class="eyebrow">Continue this property file</span>
+                        <h1 data-records-task-heading>Request the missing record without starting over.</h1>
+                        <p data-records-task-copy>The address, county, purpose, and missing document were carried here from the records workspace.</p>
+                        <a href="/#home-address-record-finder" data-records-task-back>Back to property file</a>
+                    </div>
                     <div class="records-request-builder__intro">
                         <span class="eyebrow">Records request builder</span>
                         <h2>Generate the exact septic records request before you call the office.</h2>
