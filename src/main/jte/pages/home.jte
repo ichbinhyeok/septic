@@ -15,321 +15,132 @@
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
 @template.layouts.app(page = page, content = @`
-    <section class="record-finder-hero">
+    <section class="record-finder-hero home-hero">
         <div class="container">
             @template.tags.addressRecordFinder(
                 finderId = "home-address-record-finder",
-                eyebrow = "Septic records lookup",
-                heading = "Find the right septic records route by address.",
-                intro = "Enter the property address. We identify the county and send you to the most useful verified records path.",
+                eyebrow = "Start with the property",
+                heading = "Find septic records for an address.",
+                intro = "We identify the county, show what to look for, and open the best available official records site. Your address is not saved.",
                 pageHeading = true,
                 totalCountyRouteCount = totalCountyRouteCount
             )
         </div>
     </section>
 
-    @template.tags.countyFinder(
-        countyFinderLinks = countyFinderLinks,
-        finderId = "home-county-finder",
-        eyebrow = "County finder",
-        heading = "Search live county septic record paths before you read another overview.",
-        body = "Type the county or state and jump straight to the local permit file, records request, parcel/TMS, as-built, or inspection-letter route.",
-        sourceContext = "home_county_finder",
-        totalCountyRouteCount = totalCountyRouteCount
-    )
-
-    <section class="section section--tight">
+    <section class="section section--tight home-workflow" aria-labelledby="home-workflow-title">
         <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">2-week search response routes</span>
-                <h2>Start with the records paths most useful for homeowners.</h2>
-                <p class="lede">These routes match searches already bringing in clicks or showing clear demand: TDEC records, Wake County permits, St. Joseph County records, and Greenville County SCDES files.</p>
+            <div class="section-heading home-section-heading">
+                <span class="eyebrow">What happens next</span>
+                <h2 id="home-workflow-title">From an address to a useful answer.</h2>
             </div>
-
-            <div class="card-grid card-grid--primary">
-                <article class="feature-card feature-card--primary">
-                    <span class="pill">TN / TDEC</span>
-                    <h3>TDEC septic records</h3>
-                    <p>Use this for TDEC septic records, state of TN septic records, SSDS permit files, and Tennessee county fallback searches.</p>
-                    <a href="/tdec-septic-records/"
-                       data-track-click="nav"
-                       data-track-source-context="home_search_response_tdec"
-                       data-track-target-type="internal_page">Open TDEC records</a>
-                </article>
-
-                <article class="feature-card feature-card--primary">
-                    <span class="pill">NC / Wake County</span>
-                    <h3>Wake County septic permit records</h3>
-                    <p>Use iMAPS and the county Permit Portal path when the search already names Wake County and needs a septic permit or parcel file.</p>
-                    <a href="/septic-records-checklist/north-carolina/wake-county/"
-                       data-track-click="nav"
-                       data-track-source-context="home_search_response_wake"
-                       data-track-target-type="county_records_page">Open Wake County records</a>
-                </article>
-
-                <article class="feature-card">
-                    <span class="pill">IN / St. Joseph County</span>
-                    <h3>St. Joseph County septic records</h3>
-                    <p>Use the county health-file route for septic schematic records, permit history, soil reports, and local records requests.</p>
-                    <a href="/septic-records-checklist/indiana/st-joseph-county/"
-                       data-track-click="nav"
-                       data-track-source-context="home_search_response_st_joseph"
-                       data-track-target-type="county_records_page">Open St. Joseph County records</a>
-                </article>
-
-                <article class="feature-card">
-                    <span class="pill">SC / Greenville County</span>
-                    <h3>Greenville County septic records</h3>
-                    <p>Use the county parcel or TMS trail before opening the SCDES permit-copy and D-1740 file path.</p>
-                    <a href="/septic-records-checklist/south-carolina/greenville-county/"
-                       data-track-click="nav"
-                       data-track-source-context="home_search_response_greenville"
-                       data-track-target-type="county_records_page">Open Greenville County records</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    @if (!countyRouteClusters.isEmpty())
-        <section class="section section--tight">
-            <div class="container">
-                <div class="section-heading">
-                    <span class="eyebrow">Fast county routes</span>
-                    <h2>Open the exact county file path before another broad guide.</h2>
-                    <p class="lede">These are the county-backed states most likely to turn a searcher into a useful click: permit lookup, records request, parcel/TMS search, buyer file, or repair trail.</p>
-                </div>
-
-                <div class="county-route-board">
-                    @for (var cluster : countyRouteClusters)
-                        <article class="county-route-cluster">
-                            <div class="county-route-cluster__header">
-                                <div>
-                                    <span class="pill">${cluster.stateCode()}</span>
-                                    <h3>${cluster.heading()}</h3>
-                                </div>
-                                <strong>${cluster.metricLabel()}</strong>
-                            </div>
-                            <p>${cluster.summary()}</p>
-                            <div class="county-route-cluster__links" aria-label="${cluster.stateName()} county route shortcuts">
-                                @for (var link : cluster.countyLinks())
-                                    <a href="${link.path()}"
-                                       data-track-click="nav"
-                                       data-track-source-context="home_county_route_board"
-                                       data-track-target-type="county_records_page">${link.compactTitle()}</a>
-                                @endfor
-                            </div>
-                            <div class="county-route-cluster__actions">
-                                <a class="button button--secondary"
-                                   href="${cluster.stateRecordsLink().path()}"
-                                   data-track-click="nav"
-                                   data-track-source-context="home_county_route_state_records"
-                                   data-track-target-type="state_money_page">${cluster.stateRecordsLink().title()}</a>
-                                <a class="button button--secondary"
-                                   href="${cluster.permitProcessLink().path()}"
-                                   data-track-click="nav"
-                                   data-track-source-context="home_county_route_permit_process"
-                                   data-track-target-type="state_money_page">Permit process</a>
-                            </div>
-                        </article>
-                    @endfor
-                </div>
-            </div>
-        </section>
-    @endif
-
-    <section class="section section--tight">
-        <div class="container card-grid card-grid--primary">
-            <article class="feature-card feature-card--primary">
-                <span class="pill">Primary</span>
-                <h3>Permit lookup</h3>
-                <p>Use this doorway when you need the state record search, county permit file, or TDEC-style lookup path before choosing the next workflow.</p>
-                <a href="/septic-permit-lookup/">Open permit lookup</a>
-            </article>
-
-            <article class="feature-card feature-card--primary">
-                <span class="pill">County records</span>
-                <h3>Septic records by county</h3>
-                <p>Use this when the county is known and the next click should be the local file owner, permit copy, as-built, or inspection letter path.</p>
-                <a href="/septic-records-by-county/">Open county records</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Address search</span>
-                <h3>Septic records finder by address</h3>
-                <p>Paste a property address to resolve the county and open the best available permit, records, as-built, or official-file route.</p>
-                <a href="/septic-record-finder/">Find record route</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Request form</span>
-                <h3>Permit records request</h3>
-                <p>Use this when the office needs a specific request for the permit copy, as-built, final approval, repair file, or inspection letter.</p>
-                <a href="/septic-permit-records-request/">Open records request</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Layout file</span>
-                <h3>As-built records</h3>
-                <p>Use this when tank, field, reserve-area, site sketch, or installed-layout details can change repair, addition, or replacement scope.</p>
-                <a href="/septic-as-built-records/">Open as-built records</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Closing file</span>
-                <h3>Inspection letter</h3>
-                <p>Use this when a lender, buyer, or closing file needs more than a generic permit copy or public records result.</p>
-                <a href="/septic-inspection-letter/">Open inspection letter</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Records</span>
-                <h3>Records lookup</h3>
-                <p>Start here when the septic story depends on permit records, as-builts, maintenance history, or one missing file that could widen the downside fast.</p>
-                <a href="/septic-records-checklist/">Open records lookup</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Transfer</span>
-                <h3>Transfer compliance</h3>
-                <p>Use this when records, permit routing, inspection timing, and buyer-seller workflow need to be resolved together before closing.</p>
-                <a href="/septic-transfer-compliance/">Open transfer compliance</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Workflow</span>
-                <h3>Permit process</h3>
-                <p>Use this when the next office, permit step, site review, or approval sequence is the actual blocker behind the budget question.</p>
-                <a href="/septic-permit-process/">Open permit process</a>
-            </article>
-
-            <article class="feature-card">
-                <span class="pill">Planning tool</span>
-                <h3>Cost estimator</h3>
-                <p>Use the estimator after the workflow is clearer, or when you still need one practical range before the next county, file, or inspection step.</p>
-                <a href="/septic-system-cost-calculator/">Open cost estimator</a>
-            </article>
-        </div>
-    </section>
-
-    @if (!featuredIntentPages.isEmpty())
-        <section class="section section--tight">
-            <div class="container">
-                <div class="section-heading">
-                    <span class="eyebrow">Live workflow pages</span>
-                    <h2>Open the state-specific permit, records, and buyer pages already proving demand.</h2>
-                    <p class="lede">These pages are the clearest proof that users want county file paths, permit routing, and transfer diligence before they want another broad septic explainer.</p>
-                </div>
-
-                <div class="card-grid">
-                    @for (var link : featuredIntentPages)
-                        <article class="detail-card">
-                            <span class="pill">State-specific page</span>
-                            <h3>${link.title()}</h3>
-                            <p>${link.note()}</p>
-                            <a href="${link.path()}"
-                               data-track-click="nav"
-                               data-track-source-context="home_featured_intent"
-                               data-track-target-type="state_money_page">Open page</a>
-                        </article>
-                    @endfor
-                </div>
-            </div>
-        </section>
-    @endif
-
-    @if (workflowNetworkSnapshot != null)
-        <section class="section section--tight">
-            <div class="container content-grid">
-                <article class="trust-box trust-box--large">
-                    <span class="trust-box__label">County-backed network</span>
-                    <h2>${workflowNetworkSnapshot.heading()}</h2>
-                    <p>${workflowNetworkSnapshot.summary()}</p>
-                    <ul class="detail-list">
-                        @for (var bullet : workflowNetworkSnapshot.bullets())
-                            <li>${bullet}</li>
-                        @endfor
-                    </ul>
-                </article>
-
-                <article class="detail-card">
-                    <h2>Where the live backbone is already thick</h2>
-                    <div class="detail-grid">
-                        @for (var link : workflowNetworkSnapshot.featuredStateLinks())
-                            <article class="detail-card">
-                                <span class="pill">County-backed state</span>
-                                <h3>${link.title()}</h3>
-                                <p>${link.note()}</p>
-                                <a href="${link.path()}">Open county-backed state page</a>
-                            </article>
-                        @endfor
+            <ol class="home-workflow__steps">
+                <li>
+                    <span>1</span>
+                    <div>
+                        <h3>Find the right office</h3>
+                        <p>We match the property to its county and the best records source we know.</p>
                     </div>
-                </article>
-            </div>
-        </section>
-    @endif
-
-    <section class="section section--muted">
-        <div class="container content-grid">
-            <article class="trust-box trust-box--large">
-                @if (queuedStateCount > 0)
-                    <span class="trust-box__label">50-state rollout</span>
-                    <h2>Coverage is widening now, but the wedge is county records and permit workflow, not generic estimator copy.</h2>
-                    <p>The target is to match 50-state breadth without publishing thin state-name swaps. Live guides and state pages should launch only when the official-source set, local office path, records workflow, and state-specific wrinkle are strong enough to change the next action.</p>
-                @else
-                    <span class="trust-box__label">50-state base is live</span>
-                    <h2>All state guides are public. The next quality gains come from deeper records, permit, buyer, and county workflow pages.</h2>
-                    <p>The job now is not to claim broader coverage. It is to make the live footprint more trustworthy by keeping weak cost pages out of the way and making the strongest workflow pages easier to open first.</p>
-                @endif
-                <div class="hero__actions">
-                    <a class="button button--primary" href="/states/">Browse state guides</a>
-                    <a class="button button--secondary" href="/methodology/">Read the methodology</a>
-                    <a class="button button--secondary" href="/coverage/">Open coverage board</a>
-                </div>
-            </article>
-
-            <article class="detail-card">
-                <h2>Why the live pages are heavier</h2>
-                <ul class="detail-list">
-                    <li>Each live guide keeps a visible official-source module and last reviewed date.</li>
-                    <li>Permit, records, buyer, and transfer pages are published only where the state or local workflow is actually distinct.</li>
-                    <li>Unknown rule details widen the estimate instead of being invented to fill the page.</li>
-                </ul>
-            </article>
+                </li>
+                <li>
+                    <span>2</span>
+                    <div>
+                        <h3>Check the official file</h3>
+                        <p>Open the government site in a new tab with a short checklist of what to search for.</p>
+                    </div>
+                </li>
+                <li>
+                    <span>3</span>
+                    <div>
+                        <h3>Use the result without retyping it</h3>
+                        <p>Upload a document for purpose-specific checks, or carry the property details into a records request.</p>
+                    </div>
+                </li>
+            </ol>
         </div>
     </section>
 
-    <section class="section" id="states">
+    <section class="section section--tight">
         <div class="container">
-            <div class="section-heading">
-                <span class="eyebrow">Live guide spotlight</span>
-                <h2>Current live states with the clearest homeowner workflow angles.</h2>
-                <p class="lede">These are the states where the published guide is already doing real work beyond a generic calculator result.</p>
+            <div class="section-heading home-section-heading">
+                <span class="eyebrow">Popular record searches</span>
+                <h2>Go straight to a proven local path.</h2>
+                <p class="lede">These pages already help homeowners reach the correct state or county records system.</p>
             </div>
-
-            <div class="state-grid">
-                @for (var state : spotlightStates)
-                    <article class="state-card">
-                        <div class="state-card__header">
-                            <span class="pill">${"anchor".equalsIgnoreCase(state.launchTier()) ? "Featured" : "Live"}</span>
-                            <strong>${state.stateName()}</strong>
-                        </div>
-                        <p>${state.pageAngle()}</p>
-                        <ul class="state-card__meta">
-                            <li>${state.ruleTypeLabel()}</li>
-                            <li>${state.officialSourceIds().size()} official sources</li>
-                            <li>Updated ${state.lastVerifiedAt()}</li>
-                        </ul>
-                        <a href="/septic-system-cost-calculator/${state.slug()}/">Open guide</a>
-                    </article>
-                @endfor
+            <div class="home-route-list">
+                <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="internal_page">
+                    <span><strong>Tennessee</strong><small>TDEC septic records and county fallback</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                    <span><strong>Wake County, North Carolina</strong><small>Permit Portal and parcel records</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                    <span><strong>St. Joseph County, Indiana</strong><small>Health files, permits, and soil reports</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                    <span><strong>Greenville County, South Carolina</strong><small>Parcel/TMS and SCDES permit copies</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
             </div>
+        </div>
+    </section>
 
-            <div class="hero__actions home-section-actions">
-                @if (queuedStateCount > 0)
-                    <a class="button button--secondary" href="/states/">Browse all live and queued states</a>
-                @else
-                    <a class="button button--secondary" href="/states/">Browse all live states</a>
-                @endif
+    <section class="section section--tight section--muted">
+        <div class="container">
+            <div class="section-heading home-section-heading">
+                <span class="eyebrow">If the record is missing</span>
+                <h2>Finish the job without starting over.</h2>
+            </div>
+            <div class="home-tool-grid">
+                <article>
+                    <span class="home-tool-grid__number">01</span>
+                    <h3>Ask for the right file</h3>
+                    <p>Build a clear request for the permit, as-built, final approval, or repair history.</p>
+                    <a href="/septic-records-request-builder/#records-request-builder">Create a records request</a>
+                </article>
+                <article>
+                    <span class="home-tool-grid__number">02</span>
+                    <h3>Check approved bedrooms</h3>
+                    <p>Use the permit details to understand whether the septic approval may limit bedroom count.</p>
+                    <a href="/septic-bedroom-permit-checker/">Check bedroom capacity</a>
+                </article>
+                <article>
+                    <span class="home-tool-grid__number">03</span>
+                    <h3>Plan the likely cost</h3>
+                    <p>Get a broad planning range and see exactly which unknowns can move the price.</p>
+                    <a href="/septic-system-cost-calculator/">Estimate septic cost</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--tight">
+        <div class="container">
+            <details class="home-directory">
+                <summary>
+                    <span>
+                        <strong>Search by county instead</strong>
+                        <small>Use this if you do not have the full property address.</small>
+                    </span>
+                    <span aria-hidden="true">Browse ${totalCountyRouteCount} county paths</span>
+                </summary>
+                @template.tags.countyFinder(
+                    countyFinderLinks = countyFinderLinks,
+                    finderId = "home-county-finder",
+                    eyebrow = "County search",
+                    heading = "Search by county or state.",
+                    body = "Choose a result to open the local permit, records request, parcel, as-built, or inspection-letter page.",
+                    sourceContext = "home_county_finder",
+                    totalCountyRouteCount = totalCountyRouteCount
+                )
+            </details>
+            <div class="home-coverage-links">
+                <a href="/states/">Browse all state guides</a>
+                <a href="/coverage/">See records coverage</a>
+                <a href="/methodology/">How we verify sources</a>
             </div>
         </div>
     </section>

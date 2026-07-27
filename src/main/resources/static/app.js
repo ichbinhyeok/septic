@@ -808,6 +808,7 @@
         finders.forEach((finder) => {
             const form = finder.querySelector("[data-address-record-finder-form]");
             const input = finder.querySelector("[data-address-record-finder-input]");
+            const purposeSelect = finder.querySelector("[data-address-record-finder-purpose]");
             const submit = finder.querySelector("[data-address-record-finder-submit]");
             const result = finder.querySelector("[data-address-record-finder-result]");
             const status = finder.querySelector("[data-address-record-finder-status]");
@@ -816,7 +817,20 @@
             const meta = finder.querySelector("[data-address-record-finder-meta]");
             const steps = finder.querySelector("[data-address-record-finder-steps]");
             const actions = finder.querySelector("[data-address-record-finder-actions]");
+            const returnPanel = finder.querySelector("[data-address-record-finder-return]");
+            const outcomes = finder.querySelector("[data-address-record-finder-outcomes]");
+            const next = finder.querySelector("[data-address-record-finder-next]");
+            const documentWorkspace = finder.querySelector("[data-record-document-workspace]");
+            const documentForm = finder.querySelector("[data-record-document-form]");
+            const documentFile = finder.querySelector("[data-record-document-file]");
+            const documentSubmit = finder.querySelector("[data-record-document-submit]");
+            const documentStatus = finder.querySelector("[data-record-document-status]");
+            const documentAnalysis = finder.querySelector("[data-record-document-analysis]");
             const apiPath = finder.dataset.addressRecordFinderApi;
+            const workspaceStorageKey = "septicpath-document-workspace-v1";
+            const pendingReturnStorageKey = "septicpath-official-return-v1";
+            let routeContext = null;
+            let awaitingOfficialReturn = false;
 
             if (!(form instanceof HTMLFormElement)
                 || !(input instanceof HTMLInputElement)
@@ -837,8 +851,224 @@
                 return link;
             }
 
+            function showReturnPrompt() {
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = false;
+                    returnPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }
+            }
+
+            const purposeContent = {
+                buying: {
+                    title: "Check whether the property file is complete.",
+                    copy: "Upload the permit or approval file. We will pull out common fields and flag missing final approval, layout, or repair history.",
+                    linkLabel: "Open buyer records checklist",
+                    linkPath: "/buying-a-house-with-a-septic-system/"
+                },
+                bedrooms: {
+                    title: "Check the approval before relying on bedroom count.",
+                    copy: "Upload the permit or operation record so approved bedrooms, design flow, and final approval can be checked together.",
+                    linkLabel: "Open bedroom permit checker",
+                    linkPath: "/septic-bedroom-permit-checker/"
+                },
+                location: {
+                    title: "Look for the drawing, not just the permit number.",
+                    copy: "Upload the as-built or site plan. The original drawing should remain the source of truth before anyone digs.",
+                    linkLabel: "Review tank location records",
+                    linkPath: "/septic-tank-location-records/"
+                },
+                repair: {
+                    title: "Build a repair-ready file.",
+                    copy: "Upload the layout, permit, or repair record before a contractor defines the problem or scope.",
+                    linkLabel: "Review repair and records steps",
+                    linkPath: "/septic-records-checklist/"
+                },
+                replacement: {
+                    title: "Define the existing system before pricing replacement.",
+                    copy: "Upload the permit or layout. Cost planning comes after system type, tank size, and reserve-area clues are visible.",
+                    linkLabel: "Open replacement planning",
+                    linkPath: "/septic-replacement-cost/"
+                },
+                lender: {
+                    title: "Check what the closing file actually proves.",
+                    copy: "Upload the approval, inspection, or lender letter and check whether the permit trail is still incomplete.",
+                    linkLabel: "Review inspection letter requirements",
+                    linkPath: "/septic-inspection-letter/"
+                },
+                owner: {
+                    title: "Turn the document into a reusable owner file.",
+                    copy: "Upload the record to extract common identifiers and see which supporting files are still missing.",
+                    linkLabel: "Open the records checklist",
+                    linkPath: "/septic-records-checklist/"
+                }
+            };
+
+            function currentPurpose() {
+                return purposeSelect instanceof HTMLSelectElement ? purposeSelect.value : "buying";
+            }
+
+            function saveRequestContext() {
+                try {
+                    sessionStorage.setItem("septic-records-request-context", JSON.stringify(routeContext));
+                } catch (_) {
+                    // The builder remains usable without browser session storage.
+                }
+            }
+
+            function savePendingReturn() {
+                try {
+                    sessionStorage.setItem(pendingReturnStorageKey, JSON.stringify({
+                        savedAt: Date.now(),
+                        context: routeContext
+                    }));
+                } catch (_) {
+                    // The focus-based return prompt still works without browser storage.
+                }
+            }
+
+            function saveWorkspace(payload) {
+                try {
+                    sessionStorage.setItem(workspaceStorageKey, JSON.stringify({
+                        savedAt: Date.now(),
+                        context: routeContext,
+                        analysis: payload
+                    }));
+                } catch (_) {
+                    // The on-screen result remains available without browser storage.
+                }
+            }
+
+            function clearWorkspace() {
+                try {
+                    sessionStorage.removeItem(workspaceStorageKey);
+                    sessionStorage.removeItem(pendingReturnStorageKey);
+                } catch (_) {
+                    // Nothing else needs clearing if browser storage is unavailable.
+                }
+                if (documentAnalysis instanceof HTMLElement) {
+                    documentAnalysis.replaceChildren();
+                    documentAnalysis.hidden = true;
+                }
+                if (documentStatus) {
+                    documentStatus.textContent = "Session summary cleared. The original file was never stored.";
+                }
+                if (documentFile instanceof HTMLInputElement) {
+                    documentFile.value = "";
+                }
+            }
+
+            function downloadWorkspaceSummary(payload) {
+                const decision = payload?.decision || {};
+                const contextLines = [
+                    routeContext?.matchedAddress ? `Property: ${routeContext.matchedAddress}` : "",
+                    routeContext?.countyName ? `File owner context: ${routeContext.countyName}` : "",
+                    routeContext?.stateName || routeContext?.stateCode
+                        ? `State: ${routeContext.stateName || routeContext.stateCode}`
+                        : "",
+                    `Purpose: ${payload?.purpose || routeContext?.purpose || currentPurpose()}`,
+                    `Source file: ${payload?.fileName || "Not recorded"}`
+                ].filter(Boolean);
+                const findings = Array.isArray(payload?.findings)
+                    ? payload.findings.map((finding) => `- ${finding.label}: ${finding.value}`)
+                    : [];
+                const missing = Array.isArray(payload?.missingItems)
+                    ? payload.missingItems.map((item) => `- ${item}`)
+                    : [];
+                const nextSteps = Array.isArray(payload?.nextSteps)
+                    ? payload.nextSteps.map((item, index) => `${index + 1}. ${item}`)
+                    : [];
+                const body = [
+                    "SEPTICPATH DOCUMENT REVIEW",
+                    "Analysis aid — confirm every field against the original official document.",
+                    "",
+                    ...contextLines,
+                    "",
+                    "PURPOSE-SPECIFIC DECISION",
+                    decision.title || payload?.heading || "Document review",
+                    decision.answer || payload?.summary || "",
+                    decision.notProven ? `Not proven: ${decision.notProven}` : "",
+                    "",
+                    "EXTRACTED FIELDS",
+                    ...(findings.length ? findings : ["- No common fields extracted"]),
+                    "",
+                    "STILL MISSING",
+                    ...(missing.length ? missing : ["- No main purpose fields flagged as missing"]),
+                    "",
+                    "NEXT STEPS",
+                    ...nextSteps
+                ].filter((line) => line !== null && line !== undefined);
+                downloadText("septicpath-document-review.txt", body.join("\n"));
+            }
+
+            function renderNextStep(outcome) {
+                if (!(next instanceof HTMLElement)) {
+                    return;
+                }
+                if (documentWorkspace instanceof HTMLElement) {
+                    documentWorkspace.hidden = true;
+                }
+                const countyPath = routeContext?.routePath || "/septic-records-by-county/";
+                const content = document.createElement("div");
+                const title = document.createElement("strong");
+                const copy = document.createElement("p");
+                const links = document.createElement("div");
+                links.className = "record-finder__result-actions";
+
+                if (outcome === "found") {
+                    const purpose = purposeContent[routeContext?.purpose] || purposeContent.buying;
+                    title.textContent = purpose.title;
+                    copy.textContent = purpose.copy;
+                    links.append(button(purpose.linkLabel, purpose.linkPath, false, "internal_tool"));
+                    if (documentWorkspace instanceof HTMLElement) {
+                        documentWorkspace.hidden = false;
+                    }
+                } else if (outcome === "blocked") {
+                    title.textContent = "Use the local file owner instead of repeating the search.";
+                    copy.textContent = "Open the county-specific guide for the responsible office, or carry this property context into a copy-ready request.";
+                    const localGuide = button("Open county-specific route", countyPath, true, "county_records_page");
+                    const request = button("Build a prefilled records request", "/septic-records-request-builder/#records-request-builder", false, "internal_tool");
+                    request.dataset.recordRequestBuilder = "true";
+                    links.append(localGuide, request);
+                } else {
+                    title.textContent = "Ask the file owner for the document your purpose requires.";
+                    copy.textContent = "The request builder will carry the address, county, state, and purpose from this search into an office-ready message.";
+                    const request = button("Build a prefilled records request", "/septic-records-request-builder/#records-request-builder", true, "internal_tool");
+                    request.dataset.recordRequestBuilder = "true";
+                    links.append(request, button("Review the county route", countyPath, false, "county_records_page"));
+                }
+
+                content.append(title, copy, links);
+                next.replaceChildren(content);
+                next.hidden = false;
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "record_finder_outcome", {
+                        outcome,
+                        state_code: routeContext?.stateCode || "unknown",
+                        county_name: routeContext?.countyName || "unknown"
+                    });
+                }
+            }
+
             function render(payload) {
                 result.hidden = false;
+                routeContext = {
+                    stateCode: payload.stateCode || "",
+                    stateName: payload.stateName || "",
+                    countyName: payload.countyName || "",
+                    matchedAddress: payload.matchedAddress || input.value.trim(),
+                    routePath: payload.routePath || "",
+                    purpose: currentPurpose()
+                };
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = true;
+                }
+                if (next instanceof HTMLElement) {
+                    next.hidden = true;
+                    next.replaceChildren();
+                }
+                if (documentWorkspace instanceof HTMLElement) {
+                    documentWorkspace.hidden = true;
+                }
                 if (status) {
                     status.textContent = statusLabels[payload.status] || "Record route";
                 }
@@ -877,6 +1107,7 @@
                         if (action.external) {
                             link.target = "_blank";
                             link.rel = "noreferrer";
+                            link.dataset.recordOfficialLink = "true";
                         }
                         nextActions.push(link);
                     });
@@ -888,11 +1119,256 @@
                         const official = button(officialRouteLabel(payload.officialRouteUrl), payload.officialRouteUrl, false, "official_source");
                         official.target = "_blank";
                         official.rel = "noreferrer";
+                        official.dataset.recordOfficialLink = "true";
                         nextActions.push(official);
                     }
                     actions.replaceChildren(...nextActions);
                 }
             }
+
+            actions?.addEventListener("click", (event) => {
+                const officialLink = event.target instanceof Element
+                    ? event.target.closest("[data-record-official-link]")
+                    : null;
+                if (!officialLink) {
+                    return;
+                }
+                awaitingOfficialReturn = true;
+                savePendingReturn();
+                window.setTimeout(showReturnPrompt, 350);
+            });
+
+            outcomes?.addEventListener("click", (event) => {
+                const outcomeButton = event.target instanceof Element
+                    ? event.target.closest("[data-record-outcome]")
+                    : null;
+                if (!(outcomeButton instanceof HTMLButtonElement)) {
+                    return;
+                }
+                outcomes.querySelectorAll("button").forEach((item) => item.removeAttribute("aria-pressed"));
+                outcomeButton.setAttribute("aria-pressed", "true");
+                renderNextStep(outcomeButton.dataset.recordOutcome || "missing");
+            });
+
+            next?.addEventListener("click", (event) => {
+                const builderLink = event.target instanceof Element
+                    ? event.target.closest("[data-record-request-builder]")
+                    : null;
+                if (builderLink) {
+                    saveRequestContext();
+                }
+            });
+
+            function renderDocumentAnalysis(payload) {
+                if (!(documentAnalysis instanceof HTMLElement)) {
+                    return;
+                }
+                const wrapper = document.createElement("div");
+                const headingElement = document.createElement("h5");
+                const summary = document.createElement("p");
+                const decision = payload.decision;
+
+                if (decision && typeof decision === "object") {
+                    const decisionPanel = document.createElement("section");
+                    const decisionLabel = document.createElement("span");
+                    const decisionTitle = document.createElement("h5");
+                    const decisionAnswer = document.createElement("p");
+                    const decisionLimit = document.createElement("p");
+                    decisionPanel.className = `record-decision record-decision--${decision.level || "incomplete"}`;
+                    decisionLabel.className = "record-decision__label";
+                    decisionLabel.textContent = decision.label || "Document decision";
+                    decisionTitle.textContent = decision.title || "More review is needed";
+                    decisionAnswer.textContent = decision.answer || "";
+                    decisionLimit.className = "record-decision__limit";
+                    decisionLimit.textContent = decision.notProven ? `What this does not prove: ${decision.notProven}` : "";
+                    decisionPanel.append(decisionLabel, decisionTitle, decisionAnswer);
+                    if (Array.isArray(decision.supportedBy) && decision.supportedBy.length) {
+                        const support = document.createElement("ul");
+                        support.className = "record-decision__support";
+                        decision.supportedBy.forEach((item) => {
+                            const listItem = document.createElement("li");
+                            listItem.textContent = item;
+                            support.append(listItem);
+                        });
+                        decisionPanel.append(support);
+                    }
+                    if (decisionLimit.textContent) {
+                        decisionPanel.append(decisionLimit);
+                    }
+                    wrapper.append(decisionPanel);
+                }
+
+                headingElement.textContent = payload.heading || "Extracted document facts";
+                summary.textContent = payload.summary || "Review the extracted fields against the original document.";
+                wrapper.append(headingElement, summary);
+
+                if (Array.isArray(payload.findings) && payload.findings.length) {
+                    const findings = document.createElement("dl");
+                    findings.className = "record-document__findings";
+                    payload.findings.forEach((finding) => {
+                        const item = document.createElement("div");
+                        const term = document.createElement("dt");
+                        const value = document.createElement("dd");
+                        const evidence = document.createElement("small");
+                        term.textContent = finding.label || finding.key;
+                        value.textContent = finding.value || "Mentioned";
+                        evidence.textContent = finding.evidence ? `Source text: ${finding.evidence}` : "";
+                        item.append(term, value);
+                        if (evidence.textContent) {
+                            item.append(evidence);
+                        }
+                        findings.append(item);
+                    });
+                    wrapper.append(findings);
+                }
+
+                if (Array.isArray(payload.missingItems) && payload.missingItems.length) {
+                    const missingHeading = document.createElement("strong");
+                    const missingList = document.createElement("ul");
+                    missingHeading.textContent = "Still missing for this purpose";
+                    payload.missingItems.forEach((item) => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = item;
+                        missingList.append(listItem);
+                    });
+                    wrapper.append(missingHeading, missingList);
+                }
+
+                if (Array.isArray(payload.nextSteps) && payload.nextSteps.length) {
+                    const nextHeading = document.createElement("strong");
+                    const nextList = document.createElement("ol");
+                    nextHeading.textContent = "Next steps";
+                    payload.nextSteps.forEach((item) => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = item;
+                        nextList.append(listItem);
+                    });
+                    wrapper.append(nextHeading, nextList);
+                }
+
+                const analysisActions = document.createElement("div");
+                const downloadButton = document.createElement("button");
+                const clearButton = document.createElement("button");
+                analysisActions.className = "record-document__analysis-actions";
+                downloadButton.type = "button";
+                downloadButton.className = "button button--secondary";
+                downloadButton.textContent = "Download review";
+                downloadButton.addEventListener("click", () => downloadWorkspaceSummary(payload));
+                clearButton.type = "button";
+                clearButton.className = "button button--quiet";
+                clearButton.textContent = "Clear session result";
+                clearButton.addEventListener("click", clearWorkspace);
+                analysisActions.append(downloadButton, clearButton);
+                wrapper.append(analysisActions);
+                documentAnalysis.replaceChildren(wrapper);
+                documentAnalysis.hidden = false;
+            }
+
+            function restoreSessionWorkspace() {
+                let stored = null;
+                let pending = null;
+                try {
+                    stored = JSON.parse(sessionStorage.getItem(workspaceStorageKey) || "null");
+                    pending = JSON.parse(sessionStorage.getItem(pendingReturnStorageKey) || "null");
+                } catch (_) {
+                    return;
+                }
+                const active = stored?.analysis ? stored : pending;
+                if (!active?.context || Date.now() - Number(active.savedAt || 0) > 8 * 60 * 60 * 1000) {
+                    return;
+                }
+                routeContext = active.context;
+                if (purposeSelect instanceof HTMLSelectElement && routeContext.purpose) {
+                    purposeSelect.value = routeContext.purpose;
+                }
+                if (routeContext.matchedAddress) {
+                    input.value = routeContext.matchedAddress;
+                }
+                result.hidden = false;
+                if (status) {
+                    status.textContent = "Browser session restored";
+                }
+                if (heading) {
+                    heading.textContent = routeContext.countyName
+                        ? `Continue the ${routeContext.countyName} record check`
+                        : "Continue the property record check";
+                }
+                if (message) {
+                    message.textContent = "The address context and extracted summary stayed only in this browser tab. The original document was not stored.";
+                }
+                showReturnPrompt();
+                if (stored?.analysis) {
+                    if (documentWorkspace instanceof HTMLElement) {
+                        documentWorkspace.hidden = false;
+                    }
+                    renderDocumentAnalysis(stored.analysis);
+                    if (documentStatus) {
+                        documentStatus.textContent = "Restored from this browser session. Confirm fields against the original file.";
+                    }
+                }
+            }
+
+            restoreSessionWorkspace();
+
+            documentForm?.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (!(documentFile instanceof HTMLInputElement)
+                    || !(documentSubmit instanceof HTMLButtonElement)
+                    || !documentFile.files?.length) {
+                    if (documentStatus) {
+                        documentStatus.textContent = "Choose a PDF or text file.";
+                    }
+                    return;
+                }
+
+                const data = new FormData();
+                data.append("file", documentFile.files[0]);
+                data.append("purpose", routeContext?.purpose || currentPurpose());
+                data.append("stateCode", routeContext?.stateCode || "");
+                data.append("countyName", routeContext?.countyName || "");
+                documentSubmit.disabled = true;
+                documentSubmit.textContent = "Analyzing...";
+                if (documentStatus) {
+                    documentStatus.textContent = "Reading the document in memory. Typed scans may take longer while OCR runs. Nothing is being saved.";
+                }
+                try {
+                    const response = await fetch("/api/septic-document-analyzer", {
+                        method: "POST",
+                        headers: { Accept: "application/json" },
+                        body: data
+                    });
+                    const payload = await response.json();
+                    renderDocumentAnalysis(payload);
+                    if (response.ok) {
+                        saveWorkspace(payload);
+                    }
+                    if (documentStatus) {
+                        documentStatus.textContent = response.ok
+                            ? "Analysis complete. Confirm every field against the original."
+                            : (payload.summary || "The file could not be analyzed.");
+                    }
+                } catch (_) {
+                    if (documentStatus) {
+                        documentStatus.textContent = "Analysis could not connect. The file was not saved.";
+                    }
+                } finally {
+                    documentSubmit.disabled = false;
+                    documentSubmit.textContent = "Analyze document";
+                }
+            });
+
+            window.addEventListener("focus", () => {
+                if (!awaitingOfficialReturn) {
+                    return;
+                }
+                awaitingOfficialReturn = false;
+                try {
+                    sessionStorage.removeItem(pendingReturnStorageKey);
+                } catch (_) {
+                    // The prompt is already visible.
+                }
+                showReturnPrompt();
+            });
 
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
@@ -907,7 +1383,7 @@
                     return;
                 }
 
-                const defaultLabel = "Find record route";
+                const defaultLabel = "Find septic records";
                 submit.disabled = true;
                 submit.textContent = "Finding county...";
                 try {
@@ -2107,6 +2583,47 @@
             return filename + ".txt";
         }
 
+        function consumeFinderRequestContext(builder) {
+            let context = null;
+            try {
+                context = JSON.parse(sessionStorage.getItem("septic-records-request-context") || "null");
+                sessionStorage.removeItem("septic-records-request-context");
+            } catch (_) {
+                context = null;
+            }
+            if (!context || typeof context !== "object") {
+                return;
+            }
+
+            const state = builder.querySelector("[data-request-state]");
+            const reason = builder.querySelector("[data-request-reason]");
+            const county = builder.querySelector("[data-request-county]");
+            const address = builder.querySelector("[data-request-address]");
+            const purposeReasons = {
+                buying: "buying",
+                bedrooms: "addition",
+                location: "owner_records",
+                repair: "repair",
+                replacement: "replacement",
+                lender: "lender",
+                owner: "owner_records"
+            };
+
+            if (state instanceof HTMLSelectElement
+                && Array.from(state.options).some((option) => option.value === context.stateCode)) {
+                state.value = context.stateCode;
+            }
+            if (reason instanceof HTMLSelectElement && purposeReasons[context.purpose]) {
+                reason.value = purposeReasons[context.purpose];
+            }
+            if (county instanceof HTMLInputElement) {
+                county.value = String(context.countyName || "").replace(/\s+County$/i, "");
+            }
+            if (address instanceof HTMLInputElement) {
+                address.value = context.matchedAddress || "";
+            }
+        }
+
         builders.forEach((builder) => {
             const inputs = Array.from(builder.querySelectorAll("input, select"));
             const copyButton = builder.querySelector("[data-records-request-copy]");
@@ -2115,6 +2632,8 @@
             const filenameLabel = builder.querySelector("[data-records-request-filename]");
             const status = builder.querySelector("[data-records-request-status]");
             const output = builder.querySelector("[data-records-request-output]");
+
+            consumeFinderRequestContext(builder);
 
             inputs.forEach((input) => {
                 const refresh = () => {

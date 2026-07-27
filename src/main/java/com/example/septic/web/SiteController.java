@@ -22,6 +22,7 @@ import com.example.septic.service.LeadStorageService;
 import com.example.septic.service.ProjectType;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SeoService;
+import com.example.septic.service.SepticDocumentAnalysisService;
 import com.example.septic.service.SitemapService;
 import com.example.septic.service.SoilPercStatus;
 import com.example.septic.service.StateQueuePlanService;
@@ -50,10 +51,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -65,10 +70,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class SiteController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SiteController.class);
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
     private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "SC", "AL", "IN", "GA");
     private static final List<String> RECORDS_ACCESS_INDEX_STATE_CODES = List.of("TN", "IN", "NC", "SC");
@@ -422,6 +429,7 @@ public class SiteController {
     private final CensusAddressLookupService censusAddressLookupService;
     private final EventAnalyticsService eventAnalyticsService;
     private final CountyContentQualityService countyContentQualityService;
+    private final SepticDocumentAnalysisService septicDocumentAnalysisService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -437,7 +445,8 @@ public class SiteController {
             PublishingPolicyService publishingPolicyService,
             CensusAddressLookupService censusAddressLookupService,
             EventAnalyticsService eventAnalyticsService,
-            CountyContentQualityService countyContentQualityService
+            CountyContentQualityService countyContentQualityService,
+            SepticDocumentAnalysisService septicDocumentAnalysisService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -453,6 +462,7 @@ public class SiteController {
         this.censusAddressLookupService = censusAddressLookupService;
         this.eventAnalyticsService = eventAnalyticsService;
         this.countyContentQualityService = countyContentQualityService;
+        this.septicDocumentAnalysisService = septicDocumentAnalysisService;
     }
 
     @GetMapping("/")
@@ -648,6 +658,44 @@ public class SiteController {
         }
 
         return ResponseEntity.ok(addressRecordFinderRoute(lookup));
+    }
+
+    @PostMapping(
+            value = "/api/septic-document-analyzer",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public ResponseEntity<?> septicDocumentAnalyzer(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(name = "purpose", required = false) String purpose,
+            @RequestParam(name = "stateCode", required = false) String stateCode,
+            @RequestParam(name = "countyName", required = false) String countyName
+    ) {
+        try {
+            return ResponseEntity.ok(septicDocumentAnalysisService.analyze(file, purpose, stateCode, countyName));
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.badRequest().body(Map.of(
+                    "status", "invalid",
+                    "heading", "We could not analyze that file",
+                    "summary", exception.getMessage()
+            ));
+        } catch (RejectedExecutionException exception) {
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
+                    .header("Retry-After", "3")
+                    .body(Map.of(
+                            "status", "busy",
+                            "heading", "Document analysis is busy",
+                            "summary", "Wait a few seconds and try the same file again. The file was not saved."
+                    ));
+        } catch (Exception exception) {
+            LOGGER.warn("Document analysis failed", exception);
+            return ResponseEntity.internalServerError().body(Map.of(
+                    "status", "unavailable",
+                    "heading", "Document analysis is temporarily unavailable",
+                    "summary", "The file was not saved. Try a searchable PDF or plain-text export."
+            ));
+        }
     }
 
     @GetMapping({"/states", "/states/"})

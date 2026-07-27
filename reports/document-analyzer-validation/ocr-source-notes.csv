@@ -1,0 +1,5 @@
+source_id,jurisdiction,source_type,url,use_in_validation,privacy_handling
+placer-as-built-example,"Placer County, CA",official example PDF,https://www.placer.ca.gov/DocumentCenter/View/8944/Septic-System-As-Built-Example-PDF,field layout and terminology,"Blank example; no property record retained"
+bfhd-as-built-example,"Benton-Franklin Health District, WA",official completed example image,https://www.bfhd.wa.gov/programs_services/on-site_sewage/sewage_system_records,visual scan characteristics,"Remote image blocked automated retrieval; no bypass and no local copy"
+clallam-as-built-guide,"Clallam County, WA",official records guidance,https://clallamcountywa.gov/484/Septic-System-As-Built-Record-Drawings,record purpose and age range,"No individual property record collected"
+igh-capacity-examples,"Inver Grove Heights, MN",official inspection form with completed examples,https://www.ighmn.gov/DocumentCenter/View/1369/SSTS-Capacity-Compliance-Insp-Form-and-Inst14-No?bidId=,field relationships and realistic values,"Only agency-authored examples used"

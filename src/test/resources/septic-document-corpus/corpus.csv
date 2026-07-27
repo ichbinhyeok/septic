@@ -1,0 +1,27 @@
+id,state,issuer,document_type,url
+or-site-evaluation,OR,Oregon DEQ,site_evaluation,https://www.oregon.gov/deq/Residential/Documents/osSiteEvalPacket.pdf
+or-test-pit-preparation,OR,Oregon DEQ,site_evaluation_guide,https://www.oregon.gov/deq/FilterDocs/os-testpitprep.pdf
+or-onsite-application,OR,Oregon DEQ,permit_application,https://www.oregon.gov/deq/FilterDocs/os-applOWS.pdf
+or-construction-installation,OR,Oregon DEQ,construction_permit_guide,https://www.oregon.gov/deq/FilterDocs/os-constructInstall.pdf
+or-alteration-permit,OR,Oregon DEQ,alteration_permit_guide,https://www.oregon.gov/deq/FilterDocs/os-altPermit.pdf
+or-repair-permit,OR,Oregon DEQ,repair_permit_guide,https://www.oregon.gov/deq/FilterDocs/os-RepairPermit.pdf
+or-site-plan,OR,Oregon DEQ,site_plan,https://www.oregon.gov/deq/Residential/Documents/OnsiteWTSitePlan.pdf
+or-land-use-compatibility,OR,Oregon DEQ,land_use_form,https://www.oregon.gov/deq/FilterDocs/onsitelucs.pdf
+or-existing-system-evaluation,OR,Oregon DEQ,existing_system_evaluation,https://www.oregon.gov/deq/FilterDocs/ESERform.pdf
+or-authorization-notice,OR,Oregon DEQ,authorization_guide,https://www.oregon.gov/deq/FilterDocs/os-authorizationNotice.pdf
+nc-aowe-notice,NC,North Carolina DPH,aowe_notice,https://www.dph.ncdhhs.gov/media/2585/open
+nc-engineer-option,NC,North Carolina DPH,engineer_option_permit,https://www.dph.ncdhhs.gov/media/2582/open
+nc-common-application,NC,North Carolina DPH,permit_application,https://www.dph.ncdhhs.gov/environmental-health/common-form-application-12024pdf/download?attachment=
+nc-common-application-fillable,NC,North Carolina DPH,permit_application_fillable,https://www.dph.ncdhhs.gov/environmental-health/common-form-application-12024-fillablepdf/download?attachment=
+nc-best-professional-judgment,NC,North Carolina DPH,repair_form,https://www.dph.ncdhhs.gov/environmental-health/bpj-form-finalpdf/download?attachment=
+mn-washington-as-built,MN,Washington County Public Health,as_built,https://www.washingtoncountymn.gov/DocumentCenter/View/12818/As-Built-Form
+co-cheyenne-permit,CO,Kit Carson County Public Health,permit_packet,https://www.co.cheyenne.co.us/assets/pdfs/PH_Onsite_Wastewater_KCC%282023%29.pdf
+mn-north-oaks-as-built,MN,City of North Oaks,as_built,https://www.northoaksmn.gov/DocumentCenter/View/705/Septic-As-Built-Form-PDF
+wa-king-record-drawing,WA,King County Public Health,record_drawing,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/oss-record-drawing-certification-of-completion.pdf
+wa-king-performance,WA,King County Public Health,performance_report,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/oss-performance-demonstration-report.pdf
+wa-king-bedroom-restriction,WA,King County Public Health,bedroom_restriction,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/wastewater/declaration-of-covenant-bedroom-restriction.pdf
+wa-king-repair,WA,King County Public Health,repair_proposal,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/repair-proposal-form.pdf
+wa-king-preinstallation,WA,King County Public Health,preinstallation_inspection,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/wastewater/designer-oss-pre-installation-inspection-report-stub-out-release.pdf
+wa-king-final-inspection,WA,King County Public Health,final_inspection_request,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/schools/k12-school-building-plan-review-application-checklist.pdf
+wa-king-records-request,WA,King County Public Health,records_request,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/wastewater/request-public-info-by-osm-to-complete-report.pdf
+wa-king-maintenance-notice,WA,King County Public Health,maintenance_notice,https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/oss/oss-forms-permits/notice-on-title-generic-form-ossm.pdf
