@@ -12,19 +12,19 @@
 
     <div class="estimate-trust-grid" aria-label="Estimate confidence">
         <article>
-            <span>Rule basis</span>
+            <span>What is grounded</span>
             <strong>${result.confidenceLabel()}</strong>
             <small>State rules and published sources</small>
         </article>
         <article>
-            <span>Local price detail</span>
+            <span>What is not known</span>
             <strong>Planning only</strong>
-            <small>Not a live local contractor bid</small>
+            <small>Local labor and contractor availability</small>
         </article>
         <article>
-            <span>Property detail</span>
+            <span>Confidence ceiling</span>
             <strong>Limited</strong>
-            <small>Site evaluation can change the range</small>
+            <small>Soil, access, layout, and failure scope can change it</small>
         </article>
         <article>
             <span>Source freshness</span>
@@ -49,7 +49,7 @@
         <article class="metric-card metric-card--accent">
             <span class="metric-card__label">Planning cost range</span>
             <strong>${result.formattedTotalCostRange()}</strong>
-            <p>Midpoint: about ${result.formattedTotalCostMid()}. This is not a local bid.</p>
+            <p>The arithmetic midpoint is about ${result.formattedTotalCostMid()}, but it is not the expected bid.</p>
         </article>
 
         <article class="metric-card">
@@ -57,6 +57,21 @@
             <strong>${result.likelySystemClass()}</strong>
             <p>System type becomes less certain when site conditions are unknown.</p>
         </article>
+    </div>
+
+    <div class="estimate-use-map" aria-label="How to use this estimate">
+        <div>
+            <span>Use this result for</span>
+            <strong>Budgeting and spotting the variables that can widen the job.</strong>
+        </div>
+        <div>
+            <span>Do not use it for</span>
+            <strong>Choosing a contractor, setting a contract price, or proving permit eligibility.</strong>
+        </div>
+        <div>
+            <span>Tighten the range with</span>
+            <strong>The permit and layout, site or soil evaluation, and a local written scope.</strong>
+        </div>
     </div>
 
     <article class="estimate-basis-strip">

@@ -19,9 +19,9 @@
         <div class="container">
             @template.tags.addressRecordFinder(
                 finderId = "home-address-record-finder",
-                eyebrow = "Start with the property",
-                heading = "Find septic records for an address.",
-                intro = "We identify the county, show what to look for, and open the best available official records site. Your address is not saved.",
+                eyebrow = "One property. One usable file.",
+                heading = "Find the septic records for a property.",
+                intro = "Open the right county route, then turn permits and drawings into one checklist of what is confirmed, missing, or conflicting.",
                 pageHeading = true,
                 totalCountyRouteCount = totalCountyRouteCount
             )
@@ -46,7 +46,7 @@
                     <span>2</span>
                     <div>
                         <h3>Check the official file</h3>
-                        <p>Open the government site in a new tab with a short checklist of what to search for.</p>
+                        <p>If the county requires its own portal, it opens in a new tab. Your property context stays here.</p>
                     </div>
                 </li>
                 <li>
@@ -57,6 +57,33 @@
                     </div>
                 </li>
             </ol>
+        </div>
+    </section>
+
+    <section class="section section--tight home-intents" aria-labelledby="home-intents-title">
+        <div class="container">
+            <div class="section-heading home-section-heading">
+                <span class="eyebrow">Start with your question</span>
+                <h2 id="home-intents-title">What are you trying to learn about the property?</h2>
+            </div>
+            <nav class="home-intent-list" aria-label="Common septic record questions">
+                <a href="/septic-permit-search-by-address/">
+                    <span><strong>Does this address have a septic permit?</strong><small>Find the county route and the identifiers that make the search work.</small></span>
+                    <span>Find the permit →</span>
+                </a>
+                <a href="/septic-as-built-records/">
+                    <span><strong>Where are the tank and drain field?</strong><small>Ask for the as-built, site sketch, or installed layout instead of a generic permit copy.</small></span>
+                    <span>Find the drawing →</span>
+                </a>
+                <a href="/septic-bedroom-permit-checker/">
+                    <span><strong>How many bedrooms were approved?</strong><small>Separate the listing count from the bedroom capacity supported by the official file.</small></span>
+                    <span>Check bedrooms →</span>
+                </a>
+                <a href="/septic-system-cost-calculator/">
+                    <span><strong>What could repair or replacement cost?</strong><small>Use a planning range and see which missing facts can still move it.</small></span>
+                    <span>Plan the cost →</span>
+                </a>
+            </nav>
         </div>
     </section>
 

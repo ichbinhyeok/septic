@@ -20,7 +20,21 @@
             <div class="record-finder__signals" aria-label="Record finder coverage">
                 <span><strong>${totalCountyRouteCount}</strong> county routes</span>
                 <span>Official-source backed</span>
-                <span>Address not saved</span>
+                <span>No account required</span>
+            </div>
+            <div class="record-finder__result-preview" aria-label="Example property file result">
+                <div class="record-finder__result-preview-head">
+                    <span>Example property file</span>
+                    <strong>3 of 5 confirmed</strong>
+                </div>
+                <ul>
+                    <li data-preview-status="complete"><span>✓</span><strong>Permit number</strong><small>OWTS-26-4408</small></li>
+                    <li data-preview-status="complete"><span>✓</span><strong>Approved bedrooms</strong><small>4 bedrooms</small></li>
+                    <li data-preview-status="complete"><span>✓</span><strong>Final approval</strong><small>Dated record found</small></li>
+                    <li data-preview-status="missing"><span>○</span><strong>Installed layout</strong><small>Still missing</small></li>
+                    <li data-preview-status="missing"><span>○</span><strong>Repair history</strong><small>Still missing</small></li>
+                </ul>
+                <p>The real result names the source file and shows the exact text behind each fact.</p>
             </div>
         </div>
     @endif
@@ -61,6 +75,7 @@
                 <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
             </div>
             <p class="record-finder__privacy">The address is sent only to the U.S. Census geocoder to identify the county. SepticPath does not save it.</p>
+            <p class="record-finder__form-outcome"><strong>What you get:</strong> the exact file owner, the first record to request, and a reusable property-file checklist.</p>
             <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
 
@@ -69,6 +84,12 @@
             <h3 data-address-record-finder-heading></h3>
             <p data-address-record-finder-message></p>
             <div class="record-finder__result-meta" data-address-record-finder-meta hidden></div>
+            <div class="record-finder__office" data-address-record-finder-office hidden>
+                <span>Exact file owner</span>
+                <strong data-address-record-finder-office-label></strong>
+                <p data-address-record-finder-contact></p>
+                <small data-address-record-finder-reviewed></small>
+            </div>
             <ol class="record-finder__relay-steps" data-address-record-finder-steps hidden></ol>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
             <div class="record-finder__return" data-address-record-finder-return hidden>
@@ -97,7 +118,14 @@
                         </label>
                         <button class="button button--primary" type="submit" data-record-document-submit>Add to property file</button>
                     </form>
-                    <p class="record-document__privacy">Maximum 10 MB per file. Original files and OCR page images are processed in memory and are not saved. Only the extracted summary stays in this browser tab until you clear it or close the tab.</p>
+                    <div class="record-document__resume">
+                        <span>Continuing a saved session?</span>
+                        <label class="button button--quiet">
+                            Resume a property file
+                            <input type="file" accept="application/json,.json" data-record-workspace-import>
+                        </label>
+                    </div>
+                    <p class="record-document__privacy">Maximum 10 MB per source file. Originals and OCR images are never saved. The extracted summary stays only in this tab unless you choose “Save session for later.”</p>
                     <div class="record-document__status" data-record-document-status aria-live="polite"></div>
                     <div class="record-document__analysis" data-record-document-analysis hidden></div>
                 </section>

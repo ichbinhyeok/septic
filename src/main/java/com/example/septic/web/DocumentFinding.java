@@ -5,6 +5,16 @@ public record DocumentFinding(
         String label,
         String value,
         String confidence,
-        String evidence
+        String evidence,
+        Integer pageNumber
 ) {
+    public DocumentFinding(
+            String key,
+            String label,
+            String value,
+            String confidence,
+            String evidence
+    ) {
+        this(key, label, value, confidence, evidence, null);
+    }
 }

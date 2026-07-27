@@ -1450,6 +1450,46 @@ h4 {
     display: none;
 }
 
+.county-file-sidecard > strong {
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.county-file-sidecard > .button {
+    width: 100%;
+    margin-top: 0.35rem;
+}
+
+.county-review-details,
+.county-route-proof-details {
+    border-top: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.county-review-details {
+    margin-top: 0.45rem;
+}
+
+.county-review-details > summary,
+.county-route-proof-details > summary {
+    padding: 0.9rem 0;
+    color: var(--accent-strong);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.county-review-details > p {
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.county-route-proof-details {
+    margin: 1rem 0;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.county-route-proof-details .county-proof-strip {
+    margin-top: 0;
+}
+
 .state-money-page h1,
 .county-records-page h1,
 .content-page h1,
@@ -4251,6 +4291,79 @@ body.records-task-mode .records-request-builder {
     line-height: 1.58;
 }
 
+.record-finder__result-preview {
+    display: grid;
+    gap: 0;
+    margin-top: 0.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.record-finder__result-preview-head,
+.record-finder__result-preview li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.record-finder__result-preview-head {
+    padding: 0.75rem 0;
+    color: rgba(247, 251, 247, 0.72);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.record-finder__result-preview-head strong {
+    color: #dff46a;
+}
+
+.record-finder__result-preview ul {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.record-finder__result-preview li {
+    grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+    padding: 0.52rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.record-finder__result-preview li > span {
+    color: #dff46a;
+    font-weight: 900;
+}
+
+.record-finder__result-preview li[data-preview-status="missing"] > span,
+.record-finder__result-preview li[data-preview-status="missing"] small {
+    color: rgba(247, 251, 247, 0.55);
+}
+
+.record-finder__result-preview li strong {
+    color: #fff;
+    font-size: 0.88rem;
+}
+
+.record-finder__result-preview li[data-preview-status="missing"] strong {
+    color: rgba(247, 251, 247, 0.62);
+}
+
+.record-finder__result-preview li small {
+    color: rgba(247, 251, 247, 0.78);
+    text-align: right;
+}
+
+.record-finder__result-preview > p {
+    padding: 0.72rem 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
 .record-finder__signals,
 .record-finder__result-meta,
 .record-finder__result-actions {
@@ -4456,6 +4569,50 @@ body.records-task-mode .records-request-builder {
 
 .home-route-list {
     border-top: 1px solid var(--line);
+}
+
+.home-intent-list {
+    display: grid;
+    margin-top: 1.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.home-intent-list > a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: center;
+    min-height: 5.5rem;
+    padding: 1rem 0.25rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+}
+
+.home-intent-list > a:hover,
+.home-intent-list > a:focus-visible {
+    color: var(--accent-strong);
+    background: rgba(35, 108, 95, 0.04);
+}
+
+.home-intent-list > a > span:first-child {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.home-intent-list strong {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+}
+
+.home-intent-list small {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.home-intent-list > a > span:last-child {
+    color: var(--accent-strong);
+    font-weight: 800;
 }
 
 .home-route-list > a {
@@ -4898,6 +5055,53 @@ body.records-task-mode .records-request-builder {
     cursor: pointer;
 }
 
+.record-workspace__save {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: #eef7f2;
+    border-left: 4px solid #28715a;
+}
+
+.record-workspace__save > div {
+    display: grid;
+    gap: 0.25rem;
+}
+
+.record-workspace__save p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.record-workspace__evidence {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.record-workspace__evidence li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.record-workspace__evidence small {
+    color: var(--muted);
+}
+
+.record-workspace__evidence blockquote {
+    margin: 0;
+    padding-left: 0.85rem;
+    color: var(--text);
+    border-left: 3px solid rgba(35, 108, 95, 0.35);
+    line-height: 1.5;
+}
+
 .record-workspace__warning {
     margin: 0;
     padding: 0.85rem 1rem;
@@ -4977,6 +5181,33 @@ body.records-task-mode .records-request-builder {
     font-weight: 800;
 }
 
+.calculator-record-context__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 0.7rem 0 0;
+    border-top: 1px solid rgba(40, 113, 90, 0.2);
+}
+
+.calculator-record-context__facts > div {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.7rem 0.8rem 0 0;
+}
+
+.calculator-record-context__facts dt {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.calculator-record-context__facts dd {
+    margin: 0;
+    font-weight: 800;
+}
+
 .estimate-trust-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -5030,6 +5261,36 @@ body.records-task-mode .records-request-builder {
     gap: 0.3rem;
 }
 
+.estimate-use-map {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 1.25rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.estimate-use-map > div {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem;
+}
+
+.estimate-use-map > div + div {
+    border-left: 1px solid var(--line);
+}
+
+.estimate-use-map span {
+    color: var(--accent-strong);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.estimate-use-map strong {
+    line-height: 1.45;
+}
+
 .estimate-basis-strip p {
     margin: 0;
     color: var(--muted);
@@ -5040,7 +5301,9 @@ body.records-task-mode .records-request-builder {
     .home-workflow__steps,
     .home-tool-grid,
     .estimate-trust-grid,
-    .estimate-basis-strip {
+    .estimate-basis-strip,
+    .estimate-use-map,
+    .calculator-record-context__facts {
         grid-template-columns: 1fr;
     }
 
@@ -5049,9 +5312,28 @@ body.records-task-mode .records-request-builder {
     }
 
     .home-workflow__steps li + li,
-    .estimate-trust-grid article + article {
+    .estimate-trust-grid article + article,
+    .estimate-use-map > div + div {
         border-left: 0;
         border-top: 1px solid var(--line);
+    }
+
+    .home-intent-list > a {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .record-workspace__save {
+        grid-template-columns: 1fr;
+    }
+
+    .record-finder__result-preview ul,
+    .record-finder__result-preview > p {
+        display: none;
+    }
+
+    .record-finder__intro .record-finder__signals {
+        display: none;
     }
 
     .home-route-list > a {
@@ -5372,6 +5654,12 @@ body.records-task-mode .records-request-builder {
     line-height: 1.45;
 }
 
+.record-finder__form-outcome {
+    padding: 0.75rem 0.85rem;
+    background: #eef7f2;
+    border-left: 3px solid #28715a;
+}
+
 .record-finder__input-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -5439,6 +5727,69 @@ body.records-task-mode .records-request-builder {
     margin: 0;
     color: var(--muted);
     line-height: 1.52;
+}
+
+.record-finder__office {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.9rem 1rem;
+    background: #fff;
+    border-left: 4px solid #28715a;
+}
+
+.record-finder__office[hidden] {
+    display: none;
+}
+
+.record-finder__office > span {
+    color: var(--accent-strong);
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.record-finder__office > strong {
+    font-size: 1.05rem;
+}
+
+.record-finder__office > p,
+.record-finder__office > small {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.record-finder__office > small {
+    color: var(--muted);
+}
+
+.record-document__resume {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.record-document__resume label {
+    cursor: pointer;
+}
+
+.record-document__resume label:focus-within {
+    outline: 3px solid rgba(35, 108, 95, 0.42);
+    outline-offset: 3px;
+}
+
+.record-document__resume input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 .record-finder__result-meta span {

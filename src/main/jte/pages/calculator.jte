@@ -21,6 +21,9 @@
 @param boolean quoteHasErrors = false
 @param boolean showQuotePanel = false
 @param boolean recordsMode = false
+@param String recordSystemType = ""
+@param String recordTankCapacity = ""
+@param String recordDesignFlow = ""
 @param ProjectType[] projectTypes
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
@@ -49,11 +52,29 @@
         <div class="container calculator-layout">
             <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/#result-top">
                 <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
+                <input type="hidden" name="recordsMode" value="${recordsMode}">
+                <input type="hidden" name="recordSystemType" value="${recordSystemType}">
+                <input type="hidden" name="recordTankCapacity" value="${recordTankCapacity}">
+                <input type="hidden" name="recordDesignFlow" value="${recordDesignFlow}">
                 @if (recordsMode)
                     <div class="calculator-record-context">
                         <span class="eyebrow">Carried from your property file</span>
-                        <strong>Confirmed record values are already filled in.</strong>
-                        <p>State, purpose, and any unconflicted record value were carried from the documents you reviewed. Unknown or disputed conditions still stay unknown.</p>
+                        <strong>The calculator uses only the record values it can price safely.</strong>
+                        <p>State, project purpose, and an unconflicted bedroom count prefill the estimate. The other confirmed facts stay visible as reference; they do not secretly narrow the price range.</p>
+                        @if (!recordSystemType.isBlank() || !recordTankCapacity.isBlank() || !recordDesignFlow.isBlank())
+                            <dl class="calculator-record-context__facts">
+                                @if (!recordSystemType.isBlank())
+                                    <div><dt>System type</dt><dd>${recordSystemType}</dd></div>
+                                @endif
+                                @if (!recordTankCapacity.isBlank())
+                                    <div><dt>Tank capacity</dt><dd>${recordTankCapacity}</dd></div>
+                                @endif
+                                @if (!recordDesignFlow.isBlank())
+                                    <div><dt>Design flow</dt><dd>${recordDesignFlow}</dd></div>
+                                @endif
+                            </dl>
+                            <small>Reference only — confirm these values with the original record and a local professional before using them to define scope.</small>
+                        @endif
                         <a href="/#home-address-record-finder">Back to the property file</a>
                     </div>
                 @endif

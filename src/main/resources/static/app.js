@@ -815,6 +815,10 @@
             const heading = finder.querySelector("[data-address-record-finder-heading]");
             const message = finder.querySelector("[data-address-record-finder-message]");
             const meta = finder.querySelector("[data-address-record-finder-meta]");
+            const office = finder.querySelector("[data-address-record-finder-office]");
+            const officeLabel = finder.querySelector("[data-address-record-finder-office-label]");
+            const contact = finder.querySelector("[data-address-record-finder-contact]");
+            const reviewed = finder.querySelector("[data-address-record-finder-reviewed]");
             const steps = finder.querySelector("[data-address-record-finder-steps]");
             const actions = finder.querySelector("[data-address-record-finder-actions]");
             const returnPanel = finder.querySelector("[data-address-record-finder-return]");
@@ -824,6 +828,7 @@
             const documentForm = finder.querySelector("[data-record-document-form]");
             const documentFile = finder.querySelector("[data-record-document-file]");
             const documentSubmit = finder.querySelector("[data-record-document-submit]");
+            const workspaceImport = finder.querySelector("[data-record-workspace-import]");
             const documentStatus = finder.querySelector("[data-record-document-status]");
             const documentAnalysis = finder.querySelector("[data-record-document-analysis]");
             const apiPath = finder.dataset.addressRecordFinderApi;
@@ -976,6 +981,28 @@
                 }
             }
 
+            function renderOffice(context) {
+                if (!(office instanceof HTMLElement)) {
+                    return;
+                }
+                const hasOffice = Boolean(context?.officeLabel || context?.contactLine);
+                office.hidden = !hasOffice;
+                if (!hasOffice) {
+                    return;
+                }
+                if (officeLabel) {
+                    officeLabel.textContent = context.officeLabel || `${context.countyName || "Local"} septic records office`;
+                }
+                if (contact) {
+                    contact.textContent = context.contactLine || "Use the verified county route below for the current submission method.";
+                }
+                if (reviewed) {
+                    reviewed.textContent = context.routeReviewedAt
+                        ? `Official route reviewed ${context.routeReviewedAt}`
+                        : "Official route linked; confirm current submission details on the destination site.";
+                }
+            }
+
             function findingsByKey(documents) {
                 const grouped = new Map();
                 documents.forEach((documentResult) => {
@@ -1066,6 +1093,114 @@
                 } catch (_) {
                     // The on-screen result remains available without browser storage.
                 }
+            }
+
+            function safeImportedText(value, maximum = 240) {
+                return typeof value === "string" ? value.trim().slice(0, maximum) : "";
+            }
+
+            function normalizeImportedWorkspace(value) {
+                if (!value || typeof value !== "object"
+                    || value.format !== "septicpath-property-file"
+                    || value.version !== 1
+                    || !Array.isArray(value.documents)) {
+                    throw new Error("This is not a SepticPath property-file session.");
+                }
+                const documents = value.documents.slice(0, 8).map((item, documentIndex) => {
+                    if (!item || typeof item !== "object") {
+                        throw new Error(`Document ${documentIndex + 1} is not valid.`);
+                    }
+                    const findings = Array.isArray(item.findings)
+                        ? item.findings.slice(0, 60).map((finding) => ({
+                            key: safeImportedText(finding?.key, 60),
+                            label: safeImportedText(finding?.label, 120),
+                            value: safeImportedText(finding?.value, 240),
+                            confidence: safeImportedText(finding?.confidence, 20),
+                            evidence: safeImportedText(finding?.evidence, 500),
+                            pageNumber: Number.isInteger(finding?.pageNumber)
+                                && finding.pageNumber > 0 && finding.pageNumber <= 100
+                                ? finding.pageNumber
+                                : null
+                        })).filter((finding) => finding.key && finding.label && finding.value)
+                        : [];
+                    return {
+                        fileName: safeImportedText(item.fileName, 180) || `Saved document ${documentIndex + 1}`,
+                        summary: safeImportedText(item.summary, 500),
+                        purpose: safeImportedText(item.purpose, 30),
+                        findings,
+                        missingItems: Array.isArray(item.missingItems)
+                            ? item.missingItems.slice(0, 30).map((entry) => safeImportedText(entry, 200)).filter(Boolean)
+                            : [],
+                        nextSteps: Array.isArray(item.nextSteps)
+                            ? item.nextSteps.slice(0, 20).map((entry) => safeImportedText(entry, 300)).filter(Boolean)
+                            : [],
+                        addedAt: Number.isFinite(Number(item.addedAt)) ? Number(item.addedAt) : Date.now()
+                    };
+                });
+                if (!documents.length) {
+                    throw new Error("The saved session does not contain any reviewed documents.");
+                }
+                const context = value.context && typeof value.context === "object"
+                    ? {
+                        stateCode: safeImportedText(value.context.stateCode, 3),
+                        stateName: safeImportedText(value.context.stateName, 80),
+                        countyName: safeImportedText(value.context.countyName, 120),
+                        matchedAddress: safeImportedText(value.context.matchedAddress, 180),
+                        routePath: safeImportedText(value.context.routePath, 240),
+                        officeLabel: safeImportedText(value.context.officeLabel, 180),
+                        contactLine: safeImportedText(value.context.contactLine, 400),
+                        routeReviewedAt: safeImportedText(value.context.routeReviewedAt, 30),
+                        purpose: safeImportedText(value.context.purpose, 30) || "buying"
+                    }
+                    : { purpose: "buying" };
+                if (context.routePath && (!context.routePath.startsWith("/") || context.routePath.startsWith("//"))) {
+                    context.routePath = "";
+                }
+                return { context, documents };
+            }
+
+            function downloadWorkspaceSession() {
+                const payload = {
+                    format: "septicpath-property-file",
+                    version: 1,
+                    savedAt: new Date().toISOString(),
+                    context: routeContext,
+                    documents: workspaceState.documents
+                };
+                downloadText("septicpath-property-file-session.json", JSON.stringify(payload, null, 2));
+            }
+
+            function applyImportedWorkspace(imported) {
+                routeContext = imported.context;
+                workspaceState = { documents: imported.documents };
+                if (purposeSelect instanceof HTMLSelectElement && routeContext.purpose) {
+                    purposeSelect.value = routeContext.purpose;
+                }
+                if (routeContext.matchedAddress) {
+                    input.value = routeContext.matchedAddress;
+                }
+                result.hidden = false;
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = false;
+                }
+                if (documentWorkspace instanceof HTMLElement) {
+                    documentWorkspace.hidden = false;
+                }
+                if (status) {
+                    status.textContent = "Saved property file resumed";
+                }
+                if (heading) {
+                    heading.textContent = routeContext.countyName
+                        ? `Continue the ${routeContext.countyName} property file`
+                        : "Continue the saved property file";
+                }
+                if (message) {
+                    message.textContent = "Only the extracted summary was restored. Add the original documents again if you need to re-check them.";
+                }
+                renderOffice(routeContext);
+                saveWorkspace();
+                renderPropertyWorkspace(workspaceSummary(workspaceState.documents));
+                documentAnalysis?.scrollIntoView({ behavior: "smooth", block: "nearest" });
             }
 
             function clearWorkspace() {
@@ -1199,6 +1334,9 @@
                     countyName: payload.countyName || "",
                     matchedAddress: payload.matchedAddress || input.value.trim(),
                     routePath: payload.routePath || "",
+                    officeLabel: payload.officeLabel || "",
+                    contactLine: payload.contactLine || "",
+                    routeReviewedAt: payload.routeReviewedAt || "",
                     purpose: currentPurpose()
                 };
                 if (returnPanel instanceof HTMLElement) {
@@ -1229,6 +1367,7 @@
                     }));
                     meta.hidden = values.length === 0;
                 }
+                renderOffice(routeContext);
                 if (steps) {
                     const relaySteps = Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
                     steps.replaceChildren(...relaySteps.map((value) => {
@@ -1440,6 +1579,17 @@
                 if (bedroomValues.length === 1 && /^\d{1,2}$/.test(bedroomValues[0])) {
                     params.set("bedrooms", bedroomValues[0]);
                 }
+                [
+                    ["system_type", "recordSystemType"],
+                    ["tank_capacity", "recordTankCapacity"],
+                    ["design_flow", "recordDesignFlow"]
+                ].forEach(([findingKey, parameter]) => {
+                    const entries = summary.grouped.get(findingKey) || [];
+                    const values = [...new Set(entries.map((entry) => entry.value))];
+                    if (values.length === 1) {
+                        params.set(parameter, values[0]);
+                    }
+                });
                 params.set("recordsMode", "true");
                 return `/septic-system-cost-calculator/?${params.toString()}`;
             }
@@ -1487,6 +1637,22 @@
                 documentCount.append(documentNumber, documentLabel);
                 overview.append(progressCopy, documentCount);
                 wrapper.append(overview);
+
+                const saveReminder = document.createElement("section");
+                const saveCopy = document.createElement("div");
+                const saveHeading = document.createElement("strong");
+                const saveBody = document.createElement("p");
+                const saveSession = document.createElement("button");
+                saveReminder.className = "record-workspace__save";
+                saveHeading.textContent = "Keep this work before you close the tab";
+                saveBody.textContent = "Save a small session file containing the extracted facts and sources. It does not contain the original PDFs or scans.";
+                saveSession.type = "button";
+                saveSession.className = "button button--secondary";
+                saveSession.textContent = "Save session for later";
+                saveSession.addEventListener("click", downloadWorkspaceSession);
+                saveCopy.append(saveHeading, saveBody);
+                saveReminder.append(saveCopy, saveSession);
+                wrapper.append(saveReminder);
 
                 const checklistSection = document.createElement("section");
                 const checklistHeading = document.createElement("h5");
@@ -1547,12 +1713,25 @@
                         const item = document.createElement("div");
                         const term = document.createElement("dt");
                         const value = document.createElement("dd");
-                        const evidence = document.createElement("small");
+                        const evidenceList = document.createElement("ul");
                         const values = [...new Set(entries.map((entry) => entry.value))];
                         term.textContent = entries[0]?.label || entries[0]?.key;
                         value.textContent = values.join(" / ");
-                        evidence.textContent = `From: ${[...new Set(entries.map((entry) => entry.sourceFile))].join(", ")}`;
-                        item.append(term, value, evidence);
+                        evidenceList.className = "record-workspace__evidence";
+                        entries.forEach((entry) => {
+                            const evidenceItem = document.createElement("li");
+                            const source = document.createElement("strong");
+                            const quote = document.createElement("blockquote");
+                            source.textContent = entry.pageNumber
+                                ? `${entry.sourceFile} · page ${entry.pageNumber}`
+                                : entry.sourceFile;
+                            quote.textContent = entry.evidence
+                                ? `“${entry.evidence}”`
+                                : "No source excerpt was captured. Check the original document.";
+                            evidenceItem.append(source, quote);
+                            evidenceList.append(evidenceItem);
+                        });
+                        item.append(term, value, evidenceList);
                         facts.append(item);
                     });
                     factsSection.append(factsSummary, facts);
@@ -1561,7 +1740,7 @@
 
                 const files = document.createElement("p");
                 files.className = "record-workspace__files";
-                files.textContent = `Files in this browser session: ${summary.documents.map((item) => item.fileName || "Document").join(", ")}`;
+                files.textContent = `Source names in this tab: ${summary.documents.map((item) => item.fileName || "Document").join(", ")}. Closing the tab clears the browser copy.`;
                 wrapper.append(files);
 
                 const ocrUsed = summary.documents.some((item) =>
@@ -1605,7 +1784,7 @@
                 }));
                 download.type = "button";
                 download.className = "button button--secondary";
-                download.textContent = "Download property file";
+                download.textContent = "Download readable summary";
                 download.addEventListener("click", () => downloadWorkspaceSummary(summary));
                 clear.type = "button";
                 clear.className = "button button--quiet";
@@ -1659,6 +1838,7 @@
                 if (message) {
                     message.textContent = "The address context and extracted summary stayed only in this browser tab. The original document was not stored.";
                 }
+                renderOffice(routeContext);
                 showReturnPrompt();
                 if (storedDocuments.length) {
                     workspaceState = { documents: storedDocuments.slice(-8) };
@@ -1673,6 +1853,35 @@
             }
 
             restoreSessionWorkspace();
+
+            workspaceImport?.addEventListener("change", async () => {
+                if (!(workspaceImport instanceof HTMLInputElement) || !workspaceImport.files?.length) {
+                    return;
+                }
+                const file = workspaceImport.files[0];
+                if (file.size > 1024 * 1024) {
+                    if (documentStatus) {
+                        documentStatus.textContent = "The saved session file must be 1 MB or smaller.";
+                    }
+                    workspaceImport.value = "";
+                    return;
+                }
+                try {
+                    const imported = normalizeImportedWorkspace(JSON.parse(await file.text()));
+                    applyImportedWorkspace(imported);
+                    if (documentStatus) {
+                        documentStatus.textContent = `Resumed ${imported.documents.length} reviewed document ${imported.documents.length === 1 ? "summary" : "summaries"}.`;
+                    }
+                } catch (error) {
+                    if (documentStatus) {
+                        documentStatus.textContent = error instanceof Error
+                            ? error.message
+                            : "This saved session could not be resumed.";
+                    }
+                } finally {
+                    workspaceImport.value = "";
+                }
+            });
 
             documentForm?.addEventListener("submit", async (event) => {
                 event.preventDefault();
@@ -2665,18 +2874,24 @@
             const owner = valueOf(builder, "[data-request-owner]");
             const contextStateName = builder.dataset.requestContextStateName || "";
             const contextCountyName = builder.dataset.requestContextCountyName || county;
+            const contextOfficeLabel = builder.dataset.requestContextOfficeLabel || "";
+            const contextContactLine = builder.dataset.requestContextContactLine || "";
             const conflictNote = builder.dataset.requestConflictNote || "";
             const defaultRoute = stateRouteDetails.DEFAULT;
-            const routeDetail = stateCode === "DEFAULT" && (contextStateName || contextCountyName)
+            const hasExactOfficeContext = Boolean(contextOfficeLabel || contextContactLine);
+            const routeDetail = hasExactOfficeContext || (stateCode === "DEFAULT" && (contextStateName || contextCountyName))
                 ? {
                     ...defaultRoute,
-                    title: contextCountyName
+                    title: contextOfficeLabel || (contextCountyName
                         ? `${contextCountyName} septic records office`
-                        : `${contextStateName} local septic records office`,
-                    body: `Start with the verified ${contextCountyName || contextStateName} records route. Send the request to the county health, environmental health, onsite wastewater, permitting, or public-records desk that owns parcel-level septic files.`,
-                    channel: contextCountyName
-                        ? `${contextCountyName} health, environmental health, onsite wastewater, permitting, or public-records desk`
-                        : defaultRoute.channel
+                        : `${contextStateName} local septic records office`),
+                    body: contextContactLine
+                        ? `Start with ${contextOfficeLabel || contextCountyName || contextStateName}. ${contextContactLine}`
+                        : `Start with the verified ${contextCountyName || contextStateName} records route. Send the request to the county health, environmental health, onsite wastewater, permitting, or public-records desk that owns parcel-level septic files.`,
+                    channel: contextOfficeLabel
+                        || (contextCountyName
+                            ? `${contextCountyName} health, environmental health, onsite wastewater, permitting, or public-records desk`
+                            : defaultRoute.channel)
                 }
                 : stateRouteDetails[stateCode] || defaultRoute;
             const stateLabel = stateCode === "DEFAULT" && contextStateName
@@ -2699,8 +2914,10 @@
                 owner,
                 conflictNote,
                 routeDetail,
-                routeNote: stateCode === "DEFAULT" && contextCountyName
-                    ? `Use the verified ${contextCountyName} county route first. If the first desk does not own septic files, ask it to name the delegated, regional, archived, or pre-digital file owner.`
+                routeNote: contextCountyName
+                    ? contextContactLine
+                        ? `Use ${contextOfficeLabel || contextCountyName} first. ${contextContactLine} If it does not own the requested file, ask it to name the delegated or archived file owner.`
+                        : `Use the verified ${contextCountyName} county route first. If the first desk does not own septic files, ask it to name the delegated, regional, archived, or pre-digital file owner.`
                     : stateRouteNotes[stateCode] || stateRouteNotes.DEFAULT,
                 artifact: artifactCopy[recordKey] || artifactCopy.permit_copy,
                 artifactCheck: artifactChecklist[recordKey] || artifactChecklist.permit_copy,
@@ -3037,6 +3254,8 @@
             }
             builder.dataset.requestContextStateName = context.stateName || context.stateCode || "";
             builder.dataset.requestContextCountyName = context.countyName || "";
+            builder.dataset.requestContextOfficeLabel = context.officeLabel || "";
+            builder.dataset.requestContextContactLine = context.contactLine || "";
             builder.dataset.requestConflictNote = String(context.conflictNote || "").slice(0, 800);
 
             const taskMode = context.taskMode

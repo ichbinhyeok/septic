@@ -1367,6 +1367,9 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "projectType", required = false) String projectType,
             @RequestParam(name = "bedrooms", required = false) Integer bedrooms,
             @RequestParam(name = "recordsMode", defaultValue = "false") boolean recordsMode,
+            @RequestParam(name = "recordSystemType", defaultValue = "") String recordSystemType,
+            @RequestParam(name = "recordTankCapacity", defaultValue = "") String recordTankCapacity,
+            @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
             @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
@@ -1385,6 +1388,9 @@ The goal is to settle the permit path before we frame the project as a normal in
             estimateForm.setSourcePageHint(sourcePageHint);
         }
         model.addAttribute("recordsMode", recordsMode);
+        model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
+        model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
+        model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
         return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, quoteMode);
     }
 
@@ -1436,9 +1442,27 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
-    public String calculate(@ModelAttribute EstimateForm estimateForm, Model model) {
+    public String calculate(
+            @ModelAttribute EstimateForm estimateForm,
+            @RequestParam(name = "recordsMode", defaultValue = "false") boolean recordsMode,
+            @RequestParam(name = "recordSystemType", defaultValue = "") String recordSystemType,
+            @RequestParam(name = "recordTankCapacity", defaultValue = "") String recordTankCapacity,
+            @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
+            Model model
+    ) {
         EstimatorResult result = estimatorService.estimate(estimateForm);
+        model.addAttribute("recordsMode", recordsMode);
+        model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
+        model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
+        model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
         return renderCalculator(model, estimateForm, result, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, true);
+    }
+
+    private String boundedRecordContext(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value.trim().substring(0, Math.min(value.trim().length(), 120));
     }
 
     @PostMapping({"/quote-request", "/quote-request/"})
@@ -1869,13 +1893,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
             case "MD::st-marys-county" ->
                     "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
-            default -> localContent.priorityPage() && localContent.hasEvidenceFacts()
-                    ? "Start with " + countyPage.recordsLabel() + ". "
-                            + completeSentence(localContent.recordsToRequest().get(0)) + " Then use "
-                            + localContent.evidenceFacts().get(0).agencyName()
-                            + " to confirm the owning route before a quote, repair, or closing decision."
-                    : "Start with " + countyPage.recordsLabel()
-                            + ". Search by address or parcel when available, request the permit and approval trail, and verify the owning office before treating a missing online result as proof that no file exists.";
+            default -> "Open " + countyPage.recordsLabel()
+                    + ". Search with the property address or parcel ID when available. Ask the office for: "
+                    + completeSentence(countyFirstArtifact(countyPage))
+                    + " The file owner is " + countyPage.officeLabel()
+                    + "; contact it before treating an empty online search as proof that no record exists.";
         };
     }
 
@@ -1987,7 +2009,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     ) {
         String combinedText = countyCombinedText(countyPage);
         SourceRecord primarySource = sources == null ? null : sources.stream().findFirst().orElse(null);
-        String sourceOwner = primarySource == null ? countyPage.officeLabel() : sourceDisplayName(primarySource);
+        String sourceOwner = countyPage.officeLabel();
         String firstArtifact = countyFirstArtifact(countyPage);
         String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
         String lookupClue = countyPage.hasParcelAnchor()
@@ -4197,7 +4219,14 @@ The goal is to settle the permit path before we frame the project as a normal in
                     page.countyName() + ", " + state.get().stateName() + " records route",
                     "This is the verified county route for the permit file, records request, parcel clue, or official office handoff.",
                     state.get().stateCode(), state.get().stateName(), page.countyName(), lookup.matchedAddress(),
-                    "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl(), List.of(), List.of()
+                    "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl(),
+                    page.officeLabel(), page.contactLine(), latestVerifiedAt(
+                            researchDataService.getSources(page.officialSourceIds()),
+                            page.reviewedAt(),
+                            page.updatedAt(),
+                            researchDataService.countyRecordsPagesGeneratedAt()
+                    ),
+                    List.of(), List.of()
             );
         }
 
@@ -4259,6 +4288,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Start with the local route, then carry the parcel ID and owner clues into the state record search. " + serviceNote,
                 state.stateCode(), state.stateName(), countyPage.countyName(), lookup.matchedAddress(),
                 "Open " + countyPage.countyName() + " records", countyPage.path(state.slug()), countyPage.recordsUrl(),
+                countyPage.officeLabel(), countyPage.contactLine(), latestVerifiedAt(
+                        researchDataService.getSources(countyPage.officialSourceIds()),
+                        countyPage.reviewedAt(),
+                        countyPage.updatedAt(),
+                        researchDataService.countyRecordsPagesGeneratedAt()
+                ),
                 actions,
                 List.of(
                         "Use Tennessee Property Assessment Data to collect the parcel ID and current or prior owner when available.",
