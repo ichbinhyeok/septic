@@ -101,7 +101,7 @@
                 </div>
                 <button class="button button--secondary" type="button" data-record-search-packet-copy>Copy details</button>
             </div>
-            <p class="record-finder__official-note">The official route opens on the government or county site. The record may still require a search, form, call, login, or request there; this page keeps your place for 30 days.</p>
+            <p class="record-finder__official-note"><strong>When a direct file exists:</strong> The original record still opens on the government or county site. Otherwise the official route may require a search, form, call, login, or request there; this page keeps your place for 30 days.</p>
             <details class="record-finder__route-details">
                 <summary>Office contact and search steps</summary>
                 <div class="record-finder__office" data-address-record-finder-office hidden>

@@ -937,7 +937,7 @@
                         <span class="eyebrow">Next-click accelerator</span>
                         <h2>
                             @if ("septic-permit-search-by-address".equals(contentPage.slug()))
-                                If the address search stalls, move to parcel, official tools, or a route-aware request draft.
+                                If the address search stalls, move to parcel, official tools, or a copy-ready request. Treat that request as a routing draft until the official intake accepts free text or you transfer it into the required form.
                             @elseif ("septic-permit-records-request".equals(contentPage.slug()))
                                 Turn the records request into a precise file pull before the office answers vaguely.
                             @elseif ("septic-as-built-records".equals(contentPage.slug()))
@@ -1278,7 +1278,7 @@
                     </div>
                     <div class="records-request-builder__intro">
                         <span class="eyebrow">Build the message</span>
-                        <h2>Prepare a request without replacing the official form.</h2>
+                        <h2>Create a request the records office can act on.</h2>
                         <p>Choose the file you need and add the property details you know. Use the result as a free-text draft only when the official route accepts one.</p>
                     </div>
 
@@ -1287,7 +1287,7 @@
                         <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
                             <li>
                                 <span>Message</span>
-                                <strong>Route-aware draft</strong>
+                                <strong>Office-ready wording only after intake confirmation</strong>
                                 <p>A clear subject and factual request body—not a recreated government form.</p>
                             </li>
                             <li>

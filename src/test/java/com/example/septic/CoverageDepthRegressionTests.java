@@ -52,13 +52,10 @@ class CoverageDepthRegressionTests {
         mockMvc.perform(get("/septic-records-checklist/south-carolina/greenville-county/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
-                        "Suggested request scope · not an official form"
+                        "Copy-ready request draft · not an official form"
                 )))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
                         "This wording was drafted by SepticPath"
-                )))
-                .andExpect(content().string(org.hamcrest.Matchers.not(
-                        org.hamcrest.Matchers.containsString("Copy-ready request")
                 )));
     }
 }

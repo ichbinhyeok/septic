@@ -1130,7 +1130,7 @@
                 <div class="detail-grid">
                     @if (countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank())
                         <article class="trust-box trust-box--large detail-card--full">
-                            <span class="trust-box__label">Suggested request scope · not an official form</span>
+                            <span class="trust-box__label">Copy-ready request draft · not an official form</span>
                             <h3>${countyPage.requestScriptHeading() == null || countyPage.requestScriptHeading().isBlank() ? "Use only when the official contact accepts free text" : countyPage.requestScriptHeading()}</h3>
                             <p>${countyPage.requestScriptBody()}</p>
                             <small>This wording was drafted by SepticPath from the cited official material. It is not a county form and should not replace required portal fields, PDFs, signatures, or identity checks.</small>
