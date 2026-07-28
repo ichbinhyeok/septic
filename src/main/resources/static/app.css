@@ -5178,6 +5178,15 @@ body.records-task-mode .records-request-builder {
     grid-template-columns: minmax(0, 1.14fr) minmax(330px, 0.86fr);
 }
 
+.county-acquisition-workspace__body:has(.county-acquisition-optional--fallback:not([open])) {
+    grid-template-columns: 1fr;
+}
+
+.county-acquisition-workspace__body:has(.county-acquisition-optional--fallback:not([open])) .county-acquisition-request {
+    border-top: 1px solid rgba(20, 34, 32, 0.08);
+    border-left: 0;
+}
+
 .county-acquisition-fields,
 .county-acquisition-request {
     min-width: 0;
