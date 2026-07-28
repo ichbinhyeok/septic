@@ -973,14 +973,15 @@
                 <details class="county-request-builder county-request-builder--disclosure" data-choice-group>
                     <summary>
                         <span class="eyebrow">Need to contact the office?</span>
-                        <strong>Build a copy-ready records request</strong>
-                        <span>Choose buyer, repair, or contractor wording only if the online search does not finish the job.</span>
+                        <strong>Prepare a records-request draft</strong>
+                        <span>Use it only after checking whether the official source requires its own form.</span>
                     </summary>
                     <div class="county-request-builder__intro">
-                        <span class="eyebrow">Permit file request builder</span>
-                        <h2>Turn the county page into the exact request you send.</h2>
+                        <span class="eyebrow">Plain-language draft · not an official form</span>
+                        <h2>Prepare the details before you contact the office.</h2>
                         <p>Choose the ${countyPage.countyName()} job context, then send ${countyPage.officeLabel()} a request for the artifacts that can change pricing, buyer risk, or permit scope.</p>
                         <p>Keep the ${countyPage.countyName()} parcel, APN, owner, address, or legal description ready for every request mode below.</p>
+                        <p><strong>Before sending:</strong> if the official source publishes a required PDF, portal, signature, attachment, or payment step, use that official route. This draft does not prove that email or free-form text is accepted.</p>
                     </div>
                     <div class="county-request-builder__tabs" role="group" aria-label="Choose request context">
                         @for (var option : countyRequestOptions)

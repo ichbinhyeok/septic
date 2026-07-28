@@ -48,4 +48,19 @@ class CountyAcquisitionProfileRegressionTest {
         assertFalse(profile.officialUsesPropertyAddress());
         assertFalse(profile.requiresAddressOrParcel());
     }
+
+    @Test
+    void secondWaveRoutesUseRecordAcquisitionDoorsInsteadOfGenericGuides() {
+        CountyAccessProfileView thurston = CountyAccessProfileCatalog.find("WA::thurston-county");
+        CountyAccessProfileView harford = CountyAccessProfileCatalog.find("MD::harford-county");
+        CountyAccessProfileView sanBernardino = CountyAccessProfileCatalog.find("CA::san-bernardino-county");
+        CountyAccessProfileView cumberland = CountyAccessProfileCatalog.find("NC::cumberland-county");
+
+        assertTrue(thurston.primaryUrl().contains("customsearch.aspx"));
+        assertTrue(thurston.secondaryUrl().contains("/media/13802"));
+        assertTrue(harford.primaryUrl().contains("PIA-Request-Form"));
+        assertTrue(harford.limitation().contains("30-day"));
+        assertEquals("https://ehs.sbcounty.gov/", sanBernardino.primaryUrl());
+        assertTrue(cumberland.summary().contains("septic-layout request"));
+    }
 }

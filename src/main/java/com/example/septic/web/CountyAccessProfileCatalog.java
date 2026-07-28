@@ -1,5 +1,7 @@
 package com.example.septic.web;
 
+import com.example.septic.data.model.CountyRecordsPage;
+
 import java.util.List;
 import java.util.Map;
 
@@ -305,6 +307,90 @@ public final class CountyAccessProfileCatalog {
                             "Ask that authority to confirm permit status and return the existing file.",
                             "If no permit is confirmed, preserve the written outcome before discussing repair or sale actions."
                     )
+            )),
+            Map.entry("WA::thurston-county", profile(
+                    "WA::thurston-county",
+                    "portal_with_fallback",
+                    "Historic permit search with form fallback",
+                    "Search Thurston septic records by parcel, permit, or project number",
+                    "The county's Laserfiche search exposes historic septic system records, record drawings, and permit documents. Use the county record-drawing form when the online archive does not finish the job.",
+                    "Search Thurston historic septic permits",
+                    "https://weblink.co.thurston.wa.us/dspublic/customsearch.aspx?searchname=search",
+                    "Open the official record drawing request",
+                    "https://www.thurstoncountywa.gov/media/13802",
+                    "A parcel-matched permit, historic septic record, record drawing, or county response",
+                    "The archive requires at least one permit, project, or parcel value and does not accept wildcards. The request form asks for the tax parcel number and site address and states up to five working days.",
+                    List.of("Eleven-digit tax parcel number", "Site address", "Permit or project number when known"),
+                    List.of("Historic septic system record", "Record drawing or as-built", "Permit or project document"),
+                    List.of(
+                            "Find the parcel number from the address when it is not already known.",
+                            "Search the county archive by parcel, permit, or project number and choose the septic record or record-drawing document type.",
+                            "If the archive is incomplete, use the official record-drawing request and provide the parcel number and site address.",
+                            "Return with the downloaded document or the county response."
+                    )
+            )),
+            Map.entry("MD::harford-county", profile(
+                    "MD::harford-county",
+                    "official_request",
+                    "Official well and septic records form",
+                    "Complete Harford County's public-information form for the property file",
+                    "Harford County Health Department publishes a PIA form specifically listing septic permits, inspections, enforcement complaints, site plans, perc tests, and well reports.",
+                    "Open the Harford well and septic records form",
+                    "https://harfordcountyhealth.com/wp-content/uploads/2019/10/PIA-Request-Form-Rev-2-9-19-Online-Version.pdf",
+                    "Check the current Environmental Health instructions",
+                    "https://harfordcountyhealth.com/wp-content/uploads/2025/11/SFD-Booklet-Enclosures-v.11-2025-Jodi-Higgs-HCHD-.pdf",
+                    "The requested property records or a written Harford County response",
+                    "The form states a 30-day PIA fulfillment window. Complete and send the county PDF itself; SepticPath does not replace, sign, or submit it.",
+                    List.of("Applicant contact details", "Property address and 8-digit Tax ID", "Map, parcel, subdivision, and lot when available"),
+                    List.of("Septic permits and inspections", "Perc tests and site plans", "Enforcement complaints or other selected records"),
+                    List.of(
+                            "Open the official PIA PDF and complete the applicant and property sections.",
+                            "Select the exact well, septic, perc, inspection, complaint, or site-plan records needed.",
+                            "Send the completed county form to the recipient printed on the form and retain the submission copy.",
+                            "Return with the records or written response."
+                    )
+            )),
+            Map.entry("CA::san-bernardino-county", profile(
+                    "CA::san-bernardino-county",
+                    "official_request",
+                    "Environmental Health records request",
+                    "Request the San Bernardino Environmental Health property record",
+                    "The Environmental Health Services site provides the current records-request entry point. The OWTS ownership-change form is a separate operational-permit action, not the historical-record search.",
+                    "Open San Bernardino Environmental Health records request",
+                    "https://ehs.sbcounty.gov/",
+                    "Open the current OWTS ownership-change form",
+                    "https://ehs.sbcounty.gov/wp-content/uploads/sites/97/Programs/WaterAndWaste/owts-permit-application-transfer-of-ownership.pdf",
+                    "An Environmental Health record response, request reference, or OWTS operational-permit outcome",
+                    "Use the records-request action for old documents. Use the ownership-change form only when the property and system type actually require that operational-permit action.",
+                    List.of("Property site address", "APN", "Specific OWTS records or ownership-change purpose"),
+                    List.of("OWTS permit or plan record", "Environmental Health response", "Operational permit only when separately required"),
+                    List.of(
+                            "Start with Environmental Health's Records Request action for existing documents.",
+                            "Describe the property by site address and APN and request the specific OWTS file needed.",
+                            "Do not substitute the ownership-change application for a historical-record request.",
+                            "Return with the record, request reference, or written department response."
+                    )
+            )),
+            Map.entry("NC::cumberland-county", profile(
+                    "NC::cumberland-county",
+                    "portal_with_fallback",
+                    "County record and layout options",
+                    "Use Cumberland County's Water and Sewage record options",
+                    "The official Water and Sewage page exposes Citizen Connect, a septic-layout request, the onsite office phone, and current service fees. New-permit and paid inspection fees are not historical copy fees.",
+                    "Open Cumberland Water and Sewage record options",
+                    "https://www.cumberlandcountync.gov/departments/public-health-group/public-health/environmental/water-sewage",
+                    "Open Cumberland Citizen Connect",
+                    "https://cumberlandcounty-nc-cc.connect.socrata.com/",
+                    "A septic layout, permit record, portal result, or written onsite-office response",
+                    "Citizen Connect may be slow or unavailable. Use the Water and Sewage page and its onsite phone when the portal or layout link does not resolve the property.",
+                    List.of("Property address", "Tax parcel number when available", "Existing layout, permit, or other record needed"),
+                    List.of("Septic layout or plot plan", "Existing permit or inspection record", "Portal result or office response"),
+                    List.of(
+                            "Open the Water and Sewage page and choose Citizen Connect or Request for Septic Layout.",
+                            "Carry the address and parcel number into the official route.",
+                            "If the online option fails, use the published onsite office phone and preserve the response.",
+                            "Return with the layout, permit file, portal result, or request reference."
+                    )
             ))
     );
 
@@ -313,6 +399,52 @@ public final class CountyAccessProfileCatalog {
 
     public static CountyAccessProfileView find(String countyKey) {
         return PROFILES.get(countyKey);
+    }
+
+    public static CountyAccessProfileView findOrBaseline(CountyRecordsPage countyPage) {
+        CountyAccessProfileView verifiedProfile = find(countyPage.key());
+        if (verifiedProfile != null) {
+            return verifiedProfile;
+        }
+
+        String secondaryLabel = "";
+        String secondaryUrl = "";
+        if (countyPage.officeUrl() != null
+                && !countyPage.officeUrl().isBlank()
+                && !countyPage.officeUrl().equals(countyPage.recordsUrl())) {
+            secondaryLabel = "Open the responsible office page";
+            secondaryUrl = countyPage.officeUrl();
+        }
+
+        return profile(
+                countyPage.key(),
+                "official_route",
+                "Official route with return tracking",
+                "Prepare the property clues, then use the official " + countyPage.countyName() + " route",
+                "SepticPath has not verified a county-specific intake form for this route. Prepare reusable property clues here, follow only the fields published by the official source, and return with the document or response.",
+                countyPage.recordsLabel(),
+                countyPage.recordsUrl(),
+                secondaryLabel,
+                secondaryUrl,
+                "A property-matched file, request reference, written referral, or documented no-record response",
+                "The official source may require different identifiers, CAPTCHA, login, signature, payment, or direct contact. SepticPath does not replace or submit that government step.",
+                List.of(
+                        "Property address",
+                        "Parcel, PIN, tax ID, or legal description when available",
+                        "Owner, permit number, subdivision, or other clue only when the official source asks"
+                ),
+                List.of(
+                        "The permit, approval, layout, or record returned by the official source",
+                        "A request or confirmation number when the source provides one",
+                        "A written no-record response, referral, or access-block note"
+                ),
+                List.of(
+                        "Prepare the address and any known property identifier before leaving SepticPath.",
+                        "Open the official route and complete only the fields and documents it currently publishes.",
+                        "Handle CAPTCHA, login, signature, payment consent, and final submission on the official site.",
+                        "Return here and record whether you received a document, partial file, no result, access block, or request reference."
+                )
+        );
     }
 
     private static CountyAccessProfileView profile(
