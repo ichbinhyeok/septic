@@ -30,7 +30,7 @@ class TruthBoundaryRegressionTests {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
-                        "Go straight to a reviewed local starting point."
+                        "Start with the routes that already do more than explain."
                 )))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
                         "starting-point route"

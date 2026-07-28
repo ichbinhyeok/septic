@@ -90,24 +90,48 @@
     <section class="section section--tight">
         <div class="container">
             <div class="section-heading home-section-heading">
-                <span class="eyebrow">Popular record searches</span>
-                <h2>Go straight to a reviewed local starting point.</h2>
-                <p class="lede">Each route shows its real depth before you leave: county-specific preparation, a direct search, or an official starting point only.</p>
+                <span class="eyebrow">High-demand record workflows</span>
+                <h2>Start with the routes that already do more than explain.</h2>
+                <p class="lede">Search demand is strongest on these paths, and the county routes below include a reviewed handoff or prepared official field pack. Starting-point-only examples remain visible after them.</p>
             </div>
             <div class="home-route-list">
-                <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="internal_page">
-                    <span><strong>Tennessee</strong><small>TDEC program, field-office, and public-records fallbacks</small></span>
+                <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="internal_page">
+                    <span><strong>Tennessee TDEC records</strong><small>Program, field-office, and public-records fallbacks · direct search may block</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
-                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                <a href="/septic-records-checklist/virginia/prince-william-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Prince William County, Virginia</strong><small>Historical address/GPIN search · county-specific workflow</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/texas/tarrant-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Tarrant County, Texas</strong><small>OSSF authority check and request handoff · county-specific workflow</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/tennessee/hamilton-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Hamilton County, Tennessee</strong><small>Free document retrieval and email fallback · county-specific workflow</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/north-carolina/alamance-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Alamance County, North Carolina</strong><small>Official request PDF and verified fields · prepared field pack</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/tennessee/knox-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Knox County, Tennessee</strong><small>Live file-search form and verified fields · prepared field pack</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/north-carolina/lincoln-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Lincoln County, North Carolina</strong><small>Phone-first intake and portal fallback · county-specific workflow</small></span>
+                    <span aria-hidden="true">Open →</span>
+                </a>
+                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
                     <span><strong>Wake County, North Carolina</strong><small>Official iMAPS search guide · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
-                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
                     <span><strong>St. Joseph County, Indiana</strong><small>Official schematic request page · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
-                <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
+                <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
                     <span><strong>Greenville County, South Carolina</strong><small>SCDES guidance and TMS clues · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>

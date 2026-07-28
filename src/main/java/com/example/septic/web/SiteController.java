@@ -5039,8 +5039,34 @@ The goal is to settle the permit path before we frame the project as a normal in
         if (page.recordsLabel() != null && page.recordsLabel().toLowerCase(Locale.US).contains("lookup")) {
             score += 5;
         }
+        CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.find(page.key());
+        CountyAcquisitionProfileView acquisitionProfile = CountyAcquisitionProfileCatalog.find(page.key());
+        if (accessProfile != null) {
+            score += 50;
+        }
+        if (acquisitionProfile != null) {
+            score += acquisitionProfile.hasPreparedFieldPack() ? 35 : 15;
+        }
+        score += countySearchDemandBoost(page.key());
         score += countySearchResponseBoost(page);
         return score;
+    }
+
+    private int countySearchDemandBoost(String countyKey) {
+        return switch (countyKey) {
+            case "VA::prince-william-county" -> 70;
+            case "TX::tarrant-county" -> 45;
+            case "TN::hamilton-county" -> 40;
+            case "NC::alamance-county", "NC::lincoln-county", "TN::knox-county" -> 35;
+            case "GA::dekalb-county" -> 30;
+            case "AZ::maricopa-county", "MD::st-marys-county", "NY::suffolk-county",
+                    "NC::brunswick-county", "NC::forsyth-county", "TN::blount-county",
+                    "TX::brazoria-county", "TX::denton-county" -> 24;
+            case "CA::san-bernardino-county", "MD::prince-georges-county",
+                    "NJ::gloucester-county", "NC::guilford-county", "OH::mahoning-county",
+                    "TN::montgomery-county", "TN::sevier-county", "TN::wilson-county" -> 18;
+            default -> 0;
+        };
     }
 
     private CountyWorkflowStructureView countyWorkflowStructure(CountyRecordsPage countyPage, StateProfile state) {
