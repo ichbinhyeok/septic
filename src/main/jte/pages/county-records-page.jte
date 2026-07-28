@@ -4,6 +4,8 @@
 @import com.example.septic.web.EditorialProfile
 @import com.example.septic.web.CountyAvailabilityRowView
 @import com.example.septic.web.CountyAvailabilitySummaryView
+@import com.example.septic.web.CountyAccessProfileView
+@import com.example.septic.web.CountyAcquisitionProfileView
 @import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.CountyIntentRouteView
@@ -18,6 +20,8 @@
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
 @param CountyAvailabilitySummaryView countyAvailabilitySummary = null
+@param CountyAccessProfileView countyAccessProfile = null
+@param CountyAcquisitionProfileView countyAcquisitionProfile = null
 @param java.util.List<CountyAvailabilityRowView> countyAvailabilityRows = java.util.List.of()
 @param CountyWorkflowStructureView countyWorkflowStructure = null
 @param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
@@ -52,51 +56,94 @@
                     <h1>${countyPage.title()}</h1>
                 @endif
                 <p class="county-records-page__source-title"
-                   data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.<span hidden>${countyPage.title()}</span></p>
+                   data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
                 @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Start here</span>
-                        <p>${countyQuickAnswer}</p>
+                        @if (countyAccessProfile != null)
+                            <p>${countyAccessProfile.summary()}</p>
+                        @else
+                            <p>Start with the official county record path. Search with the property address${countyPage.hasParcelAnchor() ? " and parcel ID" : ""}, then contact ${countyPage.officeLabel()} before treating an empty result as proof that no file exists.</p>
+                        @endif
                         <p class="content-quick-answer__source">
-                            Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
+                            @if (countyAccessProfile != null)
+                                Current route: <a href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer">${countyAccessProfile.primaryLabel()}</a>
+                            @else
+                                Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
+                            @endif
                             @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
                                 · reviewed ${editorialLastReviewedAt}
                             @endif
                         </p>
-                    </div>
-                @endif
-                @if (!countyOfficialFilePathRows.isEmpty())
-                    <div class="aeo-answer-capsule" aria-label="County answer summary and route comparison">
-                        <span class="eyebrow">What to do</span>
-                        <h2>Get the ${countyPage.countyName()} file in four moves.</h2>
-                        <div class="facts-table-wrap">
-                            <table class="facts-table">
-                                <tbody>
-                                @for (var row : countyOfficialFilePathRows.stream().limit(4).toList())
-                                    <tr><th scope="row">${row.label()}</th><td>${row.value()}</td></tr>
-                                @endfor
-                                </tbody>
-                            </table>
-                        </div>
+                        <details class="content-quick-answer__detail">
+                            <summary>Local route note</summary>
+                            <p>${countyQuickAnswer}</p>
+                        </details>
                     </div>
                 @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
-                    @if (countyPage.hasParcelAnchor())
-                        <a class="button button--secondary"
-                           href="${countyPage.parcelAnchorUrl()}"
+                    @if (countyAccessProfile != null)
+                        @if (countyAcquisitionProfile != null && countyAcquisitionProfile.officialFieldPackVerified())
+                            <a class="button button--primary"
+                               href="#county-acquisition-workspace"
+                               data-track-click="nav"
+                               data-track-source-context="county_acquisition_prepare"
+                               data-track-target-type="internal_tool">Prepare for the official county route</a>
+                            <a class="button button--secondary"
+                               href="${countyAccessProfile.primaryUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-county-access-official
+                               data-track-click="nav"
+                               data-track-source-context="county_access_primary"
+                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                        @else
+                            <a class="button button--primary"
+                               href="${countyAccessProfile.primaryUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-county-access-official
+                               data-track-click="nav"
+                               data-track-source-context="county_access_primary"
+                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                        @endif
+                        @if (countyAccessProfile.hasSecondaryAction() && (countyAcquisitionProfile == null || countyAccessProfile.secondaryUrl().startsWith("http") || countyAccessProfile.secondaryUrl().startsWith("mailto:")))
+                            @if (countyAccessProfile.secondaryUrl().startsWith("http"))
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.secondaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_secondary"
+                                   data-track-target-type="official_source">${countyAccessProfile.secondaryLabel()}</a>
+                            @else
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.secondaryUrl()}"
+                                   data-county-access-official="${countyAccessProfile.secondaryUrl().startsWith("mailto:")}"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_secondary"
+                                   data-track-target-type="internal_tool">${countyAccessProfile.secondaryLabel()}</a>
+                            @endif
+                        @endif
+                    @else
+                        @if (countyPage.hasParcelAnchor())
+                            <a class="button button--secondary"
+                               href="${countyPage.parcelAnchorUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="county_records_command_parcel_anchor"
+                               data-track-target-type="official_source">Find parcel/TMS</a>
+                        @endif
+                        <a class="button button--primary"
+                           href="${countyPage.recordsUrl()}"
                            target="_blank"
                            rel="noreferrer"
                            data-track-click="nav"
-                           data-track-source-context="county_records_command_parcel_anchor"
-                           data-track-target-type="official_source">Find parcel/TMS</a>
+                           data-track-source-context="county_records_command_records"
+                           data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                     @endif
-                    <a class="button button--primary"
-                       href="${countyPage.recordsUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_command_records"
-                       data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                     <button class="button button--secondary"
                             type="button"
                             data-share-route
@@ -104,31 +151,18 @@
                             data-share-title="${page.title()}"
                             data-share-text="${countySeoIntro}"
                             data-track-source-context="county_records_share_route">Share county route</button>
-                    @if (countyPage.hasActionPlaybook())
-                        <a class="button button--secondary"
-                           href="#county-action-playbook"
-                           data-track-click="nav"
-                           data-track-source-context="county_records_command_playbook"
-                           data-track-target-type="page_anchor">Copy request script</a>
-                    @endif
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/${state.slug()}/"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_command_state"
-                       data-track-target-type="state_money_page">${state.stateCode()} state route</a>
                 </div>
                 @if (countyAvailabilitySummary != null)
                     <details class="county-route-proof-details">
                         <summary>Why we trust this route</summary>
                         <div class="county-proof-strip" aria-label="County record route proof">
                             <div>
-                                <span>Route confidence</span>
-                                <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
-                                <small>${countyAvailabilitySummary.confidenceLabel()}</small>
+                                <span>Access type</span>
+                                <strong>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : countyAvailabilitySummary.requestMethodLabel()}</strong>
                             </div>
                             <div>
-                                <span>Request method</span>
-                                <strong>${countyAvailabilitySummary.requestMethodLabel()}</strong>
+                                <span>Completion</span>
+                                <strong>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "The county file or a written office response"}</strong>
                             </div>
                             <div>
                                 <span>First file to pull</span>
@@ -142,94 +176,6 @@
                         </div>
                     </details>
                 @endif
-                <div class="money-answer-panel" aria-label="County answer-first workflow">
-                    <div class="money-answer-panel__header">
-                        <span class="eyebrow">Your next steps</span>
-                        <h2>Get the file before you price the job.</h2>
-                    </div>
-                    <ol class="money-answer-steps">
-                        @if (countyPage.hasParcelAnchor())
-                            <li>
-                                <span class="money-answer-steps__number">1</span>
-                                <div>
-                                    <strong>Capture the parcel anchor</strong>
-                                    <p>${countyPage.parcelAnchorLabel()}</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="money-answer-steps__number">2</span>
-                                <div>
-                                    <strong>Open the septic record path</strong>
-                                    <p>${countyPage.recordsLabel()}</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="money-answer-steps__number">3</span>
-                                <div>
-                                    <strong>Verify the owning office</strong>
-                                    <p>${countyPage.officeLabel()}</p>
-                                </div>
-                            </li>
-                            <li>
-                                <span class="money-answer-steps__number">4</span>
-                                <div>
-                                    <strong>Price only after the file is clearer</strong>
-                                    @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
-                                        <p>${countyWorkflowStructure.quoteGate()}</p>
-                                    @else
-                                        <p>${countyPage.contactLine()}</p>
-                                    @endif
-                                </div>
-                            </li>
-                        @else
-                        <li>
-                            <span class="money-answer-steps__number">1</span>
-                            <div>
-                                <strong>Open the county record path</strong>
-                                <p>${countyPage.recordsLabel()}</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="money-answer-steps__number">2</span>
-                            <div>
-                                <strong>Verify the owning office</strong>
-                                <p>${countyPage.officeLabel()}</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="money-answer-steps__number">3</span>
-                            <div>
-                                <strong>Price only after the file is clearer</strong>
-                                @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
-                                    <p>${countyWorkflowStructure.quoteGate()}</p>
-                                @else
-                                    <p>${countyPage.contactLine()}</p>
-                                @endif
-                            </div>
-                        </li>
-                        @endif
-                    </ol>
-                </div>
-                @if (countyEstimatePath != null && !countyEstimatePath.isBlank() && countyQuotePath != null && !countyQuotePath.isBlank())
-                    <div class="county-lead-bridge" aria-label="Quote-ready next step">
-                        <div>
-                            <span class="eyebrow">After the file</span>
-                            <h2>Turn the county file into a quote-ready estimate.</h2>
-                        </div>
-                        <div class="county-lead-bridge__actions">
-                            <a class="button button--primary"
-                               href="${countyEstimatePath}"
-                               data-track-click="nav"
-                               data-track-source-context="county_records_quote_ready_estimate"
-                               data-track-target-type="calculator">Run quote-ready estimate</a>
-                            <a class="button button--secondary"
-                               href="${countyQuotePath}"
-                               data-track-click="nav"
-                               data-track-source-context="county_records_quote_ready_form"
-                               data-track-target-type="quote_form">Open quote request</a>
-                        </div>
-                    </div>
-                @endif
                 @if (countySeoIntro != null && !countySeoIntro.isBlank())
                     <p class="lede">${countySeoIntro}</p>
                     @if (!countyLocalContent.priorityPage())
@@ -239,39 +185,20 @@
                 @else
                     <p class="lede">${countyLocalContent.introCopy()}</p>
                 @endif
-                @if (!countySearchQueries.isEmpty())
-                    <div class="county-search-intent-strip" aria-label="Searches answered on this page">
-                        <span class="county-search-intent-strip__label">Questions answered</span>
-                        @for (var query : countySearchQueries)
-                            <span class="county-search-intent-strip__query">How do I find ${query}?</span>
-                        @endfor
-                    </div>
-                @endif
-                @if (!featuredInternalLinks.isEmpty())
-                    <div class="quick-link-strip" aria-label="Fast next steps">
-                        <span class="quick-link-strip__label">Next best state pages</span>
-                        @for (var link : featuredInternalLinks)
-                            <a class="button button--secondary quick-link-strip__button"
-                               href="${link.path()}"
-                               data-track-click="nav"
-                               data-track-source-context="county_records_featured_link"
-                               data-track-target-type="related_internal">${link.title()}</a>
-                        @endfor
-                    </div>
-                @endif
             </div>
 
             <article class="hero-sidecard county-file-sidecard">
-                <span class="pill">Who has the file</span>
+                <span class="pill">${countyAccessProfile != null ? countyAccessProfile.modeLabel() : "Who has the file"}</span>
                 <strong>${countyPage.officeLabel()}</strong>
-                <p>${countyPage.contactLine()}</p>
+                <p>${countyAccessProfile != null ? countyAccessProfile.limitation() : countyPage.contactLine()}</p>
                 <a class="button button--primary"
-                   href="${countyPage.recordsUrl()}"
-                   target="_blank"
-                   rel="noreferrer"
+                   href="${countyAcquisitionProfile != null ? "#county-acquisition-workspace" : (countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl())}"
+                   target="${countyAcquisitionProfile != null ? null : "_blank"}"
+                   rel="${countyAcquisitionProfile != null ? null : "noreferrer"}"
+                   data-county-access-official="${countyAcquisitionProfile == null}"
                    data-track-click="nav"
                    data-track-source-context="county_records_owner_card"
-                   data-track-target-type="official_source">Open official records</a>
+                   data-track-target-type="${countyAcquisitionProfile != null ? "internal_tool" : "official_source"}">${countyAcquisitionProfile != null ? (countyAcquisitionProfile.officialFieldPackVerified() ? "Prepare with the official fields" : "Prepare the routing facts") : (countyAccessProfile != null ? countyAccessProfile.primaryLabel() : "Open official records")}</a>
                 <details class="county-review-details">
                     <summary>How this route was checked</summary>
                     <dl class="review-meta">
@@ -304,82 +231,508 @@
         </div>
     </section>
 
-    @if (countySearchResponse != null)
-        <section class="section section--tight">
+    @if (countyAccessProfile != null)
+        <section class="section section--tight county-access-workflow-section">
             <div class="container">
-                <div class="county-click-board" aria-label="County search action board">
-                    <div class="county-click-board__intro">
-                        <span class="eyebrow">County search action board</span>
-                        <h2>Choose the ${countyPage.countyName()} route that matches the file problem.</h2>
-                        <p>If you are searching for ${countyPage.countyName()} septic records, move into the official file route, exact request wording, address or parcel fallback, or estimate only after the record story is clearer.</p>
-                        <div class="county-click-board__queries" aria-label="County searches this board answers">
-                            @for (var question : countySearchResponse.questions())
-                                <span>${question}</span>
-                            @endfor
+                <div class="county-access-workflow county-access-workflow--${countyAccessProfile.tone()}"
+                     data-county-access-workflow
+                     data-county-key="${countyAccessProfile.countyKey()}"
+                     data-county-mode="${countyAccessProfile.mode()}"
+                     data-county-acquisition-method="${countyAcquisitionProfile != null ? countyAcquisitionProfile.acquisitionMethod() : ""}"
+                     data-county-address-or-parcel="${countyAcquisitionProfile != null && countyAcquisitionProfile.requiresAddressOrParcel()}"
+                     data-county-document-selection-required="${countyAcquisitionProfile != null && countyAcquisitionProfile.requiresOfficialDocumentSelection()}"
+                     data-county-primary-url="${countyAccessProfile.primaryUrl()}"
+                     data-county-secondary-url="${countyAccessProfile.secondaryUrl()}"
+                     data-county-primary-label="${countyAccessProfile.primaryLabel()}"
+                     data-county-agency="${countyAcquisitionProfile != null ? countyAcquisitionProfile.agency() : ""}"
+                     data-county-fee="${countyAcquisitionProfile != null ? countyAcquisitionProfile.feeLabel() : ""}"
+                     data-county-timing="${countyAcquisitionProfile != null ? countyAcquisitionProfile.timingLabel() : ""}"
+                     data-county-manual-boundary="${countyAcquisitionProfile != null ? countyAcquisitionProfile.manualCompletionBoundary() : ""}"
+                     data-county-recipient="${countyAcquisitionProfile != null && countyAcquisitionProfile.officialRecipientVerified() ? countyAcquisitionProfile.recipientEmail() : ""}"
+                     data-county-email-subject="${countyAcquisitionProfile != null && countyAcquisitionProfile.officialRecipientVerified() ? countyAcquisitionProfile.emailSubject() : ""}">
+                    <header class="county-access-workflow__header">
+                        <div>
+                            <span class="eyebrow">Property record task</span>
+                            <h2>${countyAcquisitionProfile != null ? countyAcquisitionProfile.methodHeading() : "Leave with the search details. Return with the official outcome."}</h2>
                         </div>
-                    </div>
+                        <span class="county-access-workflow__badge">${countyAccessProfile.modeLabel()}</span>
+                    </header>
 
-                    <div class="county-click-board__grid">
-                        <article class="county-click-card county-click-card--primary">
-                            <span>Official file</span>
-                            <h3>${countyPage.recordsLabel()}</h3>
-                            <p>Start here when the user needs the septic permit, approval, repair trail, layout, or written no-record answer.</p>
-                            <a class="button button--primary"
-                               href="${countyPage.recordsUrl()}"
-                               target="_blank"
-                               rel="noreferrer"
-                               data-track-click="nav"
-                               data-track-source-context="county_click_board_records"
-                               data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
-                        </article>
+                    @if (countyAcquisitionProfile == null)
+                    <div class="county-access-workflow__layout">
+                        <form class="county-access-workflow__case" data-county-access-case>
+                            <div>
+                                <span class="county-access-workflow__step">01 · Prepare</span>
+                                <h3>Keep the property clues together</h3>
+                                <p>These details stay on this device and are not submitted until you choose an official route.</p>
+                            </div>
+                            <label>
+                                <span>Property address</span>
+                                <input type="text"
+                                       maxlength="180"
+                                       autocomplete="street-address"
+                                       placeholder="Street, city, state, ZIP"
+                                       data-county-access-address>
+                            </label>
+                            <label>
+                                <span>Parcel, GPIN, PIN, or Tax ID <small>optional</small></span>
+                                <input type="text"
+                                       maxlength="100"
+                                       autocomplete="off"
+                                       placeholder="Use the local property identifier"
+                                       data-county-access-parcel>
+                            </label>
+                            <button class="button button--secondary" type="button" data-county-access-copy>Copy search details</button>
+                            <p class="county-access-workflow__status" data-county-access-status aria-live="polite"></p>
+                        </form>
 
-                        <article class="county-click-card">
-                            <span>Request wording</span>
-                            <h3>Ask for the exact septic artifacts</h3>
-                            <p>Use a copy-ready request when the office needs parcel, owner, address, record type, and reason before it can answer.</p>
-                            <a class="button button--secondary"
-                               href="/septic-records-request-builder/"
-                               data-track-click="nav"
-                               data-track-source-context="county_click_board_request_builder"
-                               data-track-target-type="internal_page">Build exact request</a>
-                        </article>
-
-                        <article class="county-click-card">
-                            <span>Address or parcel</span>
-                            @if (countyPage.hasParcelAnchor())
-                                <h3>Anchor the parcel before the septic search</h3>
-                                <p>${countyPage.parcelAnchorNote()}</p>
-                                <a class="button button--secondary"
-                                   href="${countyPage.parcelAnchorUrl()}"
+                        <div class="county-access-workflow__plan">
+                            <div>
+                                <span class="county-access-workflow__step">02 · Complete the official action</span>
+                                <ol>
+                                    @for (var step : countyAccessProfile.steps())
+                                        <li>${step}</li>
+                                    @endfor
+                                </ol>
+                            </div>
+                            <div class="county-access-workflow__actions">
+                                <a class="button button--primary"
+                                   href="${countyAccessProfile.primaryUrl()}"
                                    target="_blank"
                                    rel="noreferrer"
+                                   data-county-access-official
                                    data-track-click="nav"
-                                   data-track-source-context="county_click_board_parcel_anchor"
-                                   data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
-                            @else
-                                <h3>Use address search only as the fallback</h3>
-                                <p>Carry the address, parcel ID, owner name, legal description, or subdivision into the county records route before treating the file as missing.</p>
-                                <a class="button button--secondary"
-                                   href="/septic-record-finder/"
-                                   data-track-click="nav"
-                                   data-track-source-context="county_click_board_address_record_finder"
-                                   data-track-target-type="internal_page">Find county from address</a>
-                            @endif
-                        </article>
+                                   data-track-source-context="county_access_workflow_primary"
+                                   data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                                @if (countyAccessProfile.hasSecondaryAction())
+                                    @if (countyAccessProfile.secondaryUrl().startsWith("http"))
+                                        <a class="button button--secondary"
+                                           href="${countyAccessProfile.secondaryUrl()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-county-access-official
+                                           data-track-click="nav"
+                                           data-track-source-context="county_access_workflow_secondary"
+                                           data-track-target-type="official_source">${countyAccessProfile.secondaryLabel()}</a>
+                                    @else
+                                        <a class="button button--secondary"
+                                           href="${countyAccessProfile.secondaryUrl()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="county_access_workflow_secondary"
+                                           data-track-target-type="internal_tool">${countyAccessProfile.secondaryLabel()}</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
 
-                        @if (countyEstimatePath != null && !countyEstimatePath.isBlank())
-                            <article class="county-click-card">
-                                <span>After the file</span>
-                                <h3>Estimate only after the route is clear</h3>
-                                <p>${countyPage.countyName()} pricing gate: ${countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank() ? countyWorkflowStructure.quoteGate() : countyLocalContent.lowEndBreakers().get(0)}</p>
-                                <a class="button button--secondary"
-                                   href="${countyEstimatePath}"
-                                   data-track-click="nav"
-                                   data-track-source-context="county_click_board_estimate"
-                                   data-track-target-type="calculator">Estimate after file check</a>
-                            </article>
-                        @endif
+                        <aside class="county-access-workflow__evidence">
+                            <span class="county-access-workflow__step">03 · Know what counts</span>
+                            <h3>Expected property evidence</h3>
+                            <ul>
+                                @for (var artifact : countyAccessProfile.expectedArtifacts())
+                                    <li>${artifact}</li>
+                                @endfor
+                            </ul>
+                            <p><strong>Completion:</strong> ${countyAccessProfile.completionLabel()}</p>
+                            <p class="county-access-workflow__limit">${countyAccessProfile.limitation()}</p>
+                        </aside>
                     </div>
+                    @endif
+
+                    @if (countyAcquisitionProfile != null)
+                        <section class="county-acquisition-workspace"
+                                 id="county-acquisition-workspace"
+                                 data-county-acquisition-workspace>
+                            <header class="county-acquisition-workspace__header">
+                                <div>
+                                    <span class="eyebrow">County-specific preparation</span>
+                                    <h3>${countyAcquisitionProfile.methodHeading()}</h3>
+                                    <p>${countyAcquisitionProfile.methodInstruction()}</p>
+                                </div>
+                                <dl class="county-acquisition-facts" aria-label="Request facts">
+                                    <div>
+                                        <dt>File owner</dt>
+                                        <dd>${countyAcquisitionProfile.agency()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Fee</dt>
+                                        <dd>${countyAcquisitionProfile.feeLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Timing</dt>
+                                        <dd>${countyAcquisitionProfile.timingLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>You still do</dt>
+                                        <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
+                                    </div>
+                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
+                                    </div>
+                                    @endif
+                                </dl>
+                            </header>
+
+                            <div class="county-acquisition-handoff">
+                                <div>
+                                    <span>SepticPath prepares</span>
+                                    <strong>${countyAcquisitionProfile.preparationSummary()}</strong>
+                                </div>
+                                <div>
+                                    <span>You finish at the county</span>
+                                    <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
+                                </div>
+                            </div>
+
+                            <div class="county-acquisition-workspace__body">
+                                @if (countyAcquisitionProfile.officialFieldPackVerified())
+                                <form class="county-acquisition-fields" data-county-acquisition-fields>
+                                    <div class="county-acquisition-fields__heading">
+                                        <span class="county-access-workflow__step">Verified route inputs</span>
+                                        <strong>Prepare the required details here, then copy them into the county form</strong>
+                                        <p data-county-acquisition-readiness aria-live="polite">Start filling the confirmed inputs below.</p>
+                                    </div>
+                                    @if (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier())
+                                        <fieldset class="county-acquisition-fieldset">
+                                            <legend>Property to identify</legend>
+                                            <p>Use the same property clues you will carry into the official route.</p>
+                                            <div class="county-acquisition-fieldset__grid">
+                                                @if (countyAcquisitionProfile.officialUsesPropertyAddress())
+                                                <div class="county-acquisition-field">
+                                                    <label for="county-acquisition-address">
+                                                        <span>Property address@if (!countyAcquisitionProfile.officialPropertyAddressRequired()) <small>${countyAcquisitionProfile.officialUsesParcelIdentifier() ? "optional if using the parcel ID" : "optional on the official form"}</small>@endif</span>
+                                                        <input id="county-acquisition-address"
+                                                               type="text"
+                                                               maxlength="180"
+                                                               autocomplete="street-address"
+                                                               placeholder="Street, city, state, ZIP"
+                                                               data-county-access-address
+                                                               required="${countyAcquisitionProfile.officialPropertyAddressRequired()}">
+                                                    </label>
+                                                    <button class="county-acquisition-field__copy"
+                                                            type="button"
+                                                            data-county-acquisition-field-copy
+                                                            aria-label="Copy property address">Copy</button>
+                                                </div>
+                                                @endif
+                                                @if (countyAcquisitionProfile.officialUsesParcelIdentifier())
+                                                <div class="county-acquisition-field">
+                                                    <label for="county-acquisition-parcel">
+                                                        <span>Parcel, GPIN, PIN, or Tax ID@if (!countyAcquisitionProfile.officialParcelIdentifierRequired()) <small>optional unless used instead of address</small>@endif</span>
+                                                        <input id="county-acquisition-parcel"
+                                                               type="text"
+                                                               maxlength="100"
+                                                               autocomplete="off"
+                                                               placeholder="Use the local property identifier"
+                                                               data-county-access-parcel
+                                                               required="${countyAcquisitionProfile.officialParcelIdentifierRequired()}">
+                                                    </label>
+                                                    <button class="county-acquisition-field__copy"
+                                                            type="button"
+                                                            data-county-acquisition-field-copy
+                                                            aria-label="Copy parcel or local ID">Copy</button>
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </fieldset>
+                                    @endif
+
+                                    @if (countyAcquisitionProfile.fallbackFieldPack())
+                                        <details class="county-acquisition-optional county-acquisition-optional--fallback"
+                                                 data-county-acquisition-fallback>
+                                            <summary>
+                                                <span>
+                                                    <strong>${countyAcquisitionProfile.fallbackFieldPackHeading()}</strong>
+                                                    <small>${countyAcquisitionProfile.fallbackFieldPackInstruction()}</small>
+                                                </span>
+                                                <span>${countyAcquisitionProfile.fields().size()} fields</span>
+                                            </summary>
+                                            @if (!countyAcquisitionProfile.requiredFields().isEmpty())
+                                            <fieldset class="county-acquisition-fieldset county-acquisition-fieldset--required">
+                                                <legend>Required by the fallback form</legend>
+                                                <p>These do not block the free search. They become required only while this fallback is open.</p>
+                                                <div class="county-acquisition-fieldset__grid">
+                                                    @for (var field : countyAcquisitionProfile.requiredFields())
+                                                        @template.tags.countyAcquisitionField(field = field)
+                                                    @endfor
+                                                </div>
+                                            </fieldset>
+                                            @endif
+                                            @if (!countyAcquisitionProfile.optionalFields().isEmpty())
+                                            <fieldset class="county-acquisition-fieldset">
+                                                <legend>Optional fallback details</legend>
+                                                <div class="county-acquisition-fieldset__grid">
+                                                    @for (var field : countyAcquisitionProfile.optionalFields())
+                                                        @template.tags.countyAcquisitionField(field = field)
+                                                    @endfor
+                                                </div>
+                                            </fieldset>
+                                            @endif
+                                        </details>
+                                    @else
+                                    @if (!countyAcquisitionProfile.requiredFields().isEmpty())
+                                        <fieldset class="county-acquisition-fieldset county-acquisition-fieldset--required">
+                                            <legend>Required by the county</legend>
+                                            <p>Complete these before opening the official form.</p>
+                                            <div class="county-acquisition-fieldset__grid">
+                                                @for (var field : countyAcquisitionProfile.requiredFields())
+                                                    @template.tags.countyAcquisitionField(field = field)
+                                                @endfor
+                                            </div>
+                                        </fieldset>
+                                    @endif
+
+                                    @if (!countyAcquisitionProfile.optionalFields().isEmpty())
+                                        <details class="county-acquisition-optional">
+                                            <summary>
+                                                <span>
+                                                    <strong>Optional details</strong>
+                                                    <small>Add only if they help identify the record.</small>
+                                                </span>
+                                                <span>${countyAcquisitionProfile.optionalFields().size()} fields</span>
+                                            </summary>
+                                            <div class="county-acquisition-fieldset__grid">
+                                                @for (var field : countyAcquisitionProfile.optionalFields())
+                                                    @template.tags.countyAcquisitionField(field = field)
+                                                @endfor
+                                            </div>
+                                        </details>
+                                    @endif
+                                    @endif
+                                </form>
+                                @else
+                                    <form class="county-acquisition-fields county-acquisition-fields--unverified"
+                                          data-county-acquisition-fields>
+                                        <div class="county-acquisition-fields__heading">
+                                            <span class="county-access-workflow__step">Property facts to carry</span>
+                                            <strong>Keep the address and parcel clue ready without pretending these are county form fields</strong>
+                                        </div>
+                                        <p>${countyAcquisitionProfile.methodInstruction()} These are routing facts for your own handoff, not claimed county submission fields.</p>
+                                        <label>
+                                            <span>Property address <small>your reference</small></span>
+                                            <input type="text"
+                                                   maxlength="180"
+                                                   autocomplete="street-address"
+                                                   placeholder="Street, city, state, ZIP"
+                                                   data-county-access-address>
+                                        </label>
+                                        <label>
+                                            <span>Parcel, GPIN, PIN, or Tax ID <small>if known</small></span>
+                                            <input type="text"
+                                                   maxlength="100"
+                                                   autocomplete="off"
+                                                   placeholder="Keep the local property identifier with the task"
+                                                   data-county-access-parcel>
+                                        </label>
+                                        @if (!countyAcquisitionProfile.fields().isEmpty())
+                                        <fieldset class="county-acquisition-fieldset">
+                                            <legend>Routing facts to confirm</legend>
+                                            <p>Use these to identify the responsible office before asking for the file.</p>
+                                            <div class="county-acquisition-fieldset__grid">
+                                                @for (var field : countyAcquisitionProfile.fields())
+                                                    @template.tags.countyAcquisitionField(field = field)
+                                                @endfor
+                                            </div>
+                                        </fieldset>
+                                        @endif
+                                    </form>
+                                @endif
+
+                                <div class="county-acquisition-request">
+                                    @if (countyAcquisitionProfile.generatedRequestEnabled())
+                                    <div class="county-acquisition-request__heading">
+                                        <span class="county-access-workflow__step">Prepared output</span>
+                                        <strong>Ready to paste, email, or carry into the official form</strong>
+                                    </div>
+                                    <template data-county-acquisition-template>${countyAcquisitionProfile.requestTemplate()}</template>
+                                    <textarea readonly
+                                              rows="18"
+                                              aria-label="Prepared county request"
+                                              data-county-acquisition-preview></textarea>
+                                    <div class="county-acquisition-request__actions">
+                                        <button class="button button--primary"
+                                                type="button"
+                                                data-county-acquisition-copy>Copy prepared request</button>
+                                        <a class="button button--secondary"
+                                           href="${countyAccessProfile.primaryUrl()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-county-access-official
+                                           data-track-click="nav"
+                                           data-track-source-context="county_acquisition_official"
+                                           data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                                        @if (countyAcquisitionProfile.hasEmail())
+                                            <button class="button button--secondary"
+                                                    type="button"
+                                                    data-county-acquisition-email>Open email draft</button>
+                                        @endif
+                                        <button class="button button--secondary"
+                                                type="button"
+                                                data-county-acquisition-download>Download request text</button>
+                                        <button class="button button--secondary"
+                                                type="button"
+                                                data-county-acquisition-print>Print or save PDF</button>
+                                        @if (countyAcquisitionProfile.hasPhone())
+                                            <a class="button button--secondary"
+                                               href="tel:${countyAcquisitionProfile.phone()}">Call ${countyAcquisitionProfile.phone()}</a>
+                                        @endif
+                                    </div>
+                                    <p class="county-acquisition-request__status"
+                                       data-county-acquisition-status
+                                       aria-live="polite"></p>
+                                    @else
+                                        <div class="county-acquisition-request__heading">
+                                            <span class="county-access-workflow__step">Next official action</span>
+                                            <strong>${countyAcquisitionProfile.methodHeading()}</strong>
+                                        </div>
+                                        <p class="county-acquisition-request__guardrail">${countyAcquisitionProfile.methodInstruction()}</p>
+                                        <div class="county-acquisition-manual-boundary">
+                                            <span>Your final manual step</span>
+                                            <strong>${countyAcquisitionProfile.manualCompletionBoundary()}</strong>
+                                            <small>SepticPath does not sign in, accept charges, sign, or press the county's final submit button for you.</small>
+                                        </div>
+                                        <section class="county-preparation-sheet" data-county-preparation-sheet>
+                                            <div class="county-preparation-sheet__heading">
+                                                <span class="county-access-workflow__step">Carry everything to the counter</span>
+                                                <strong>${countyAcquisitionProfile.preparationSheetLabel()}</strong>
+                                                <p>${countyAcquisitionProfile.preparationSheetInstruction()}</p>
+                                            </div>
+                                            <div class="county-preparation-sheet__notice">
+                                                <strong>Preparation aid — not an official county form</strong>
+                                                <span>It organizes confirmed values, official links, and your task scope. The county PDF, portal, search, contact form, or call remains the official route.</span>
+                                            </div>
+                                            <div class="county-preparation-sheet__actions">
+                                                @if (countyAcquisitionProfile.supportsPreparedOfficialPdf())
+                                                <button class="button button--primary"
+                                                        type="button"
+                                                        data-county-official-pdf-prepare>Fill the county's original PDF</button>
+                                                @if (!countyAcquisitionProfile.preparedPdfRemainder().isBlank())
+                                                    <p class="county-preparation-sheet__remainder">${countyAcquisitionProfile.preparedPdfRemainder()}</p>
+                                                @endif
+                                                @endif
+                                                @if (countyAcquisitionProfile.officialFieldPackVerified())
+                                                <button class="button button--secondary"
+                                                        type="button"
+                                                        data-county-acquisition-next-copy>Copy next prepared field</button>
+                                                @endif
+                                                <button class="button button--quiet"
+                                                        type="button"
+                                                        data-county-preparation-download>Download preparation sheet</button>
+                                                <button class="button button--quiet"
+                                                        type="button"
+                                                        data-county-preparation-print>Print or save preparation sheet</button>
+                                            </div>
+                                        </section>
+                                        <div class="county-acquisition-request__actions">
+                                            <a class="button button--primary"
+                                               href="${countyAccessProfile.primaryUrl()}"
+                                               target="${countyAccessProfile.primaryOpensNewWindow() ? "_blank" : null}"
+                                               rel="${countyAccessProfile.primaryOpensNewWindow() ? "noreferrer" : null}"
+                                               data-county-access-official
+                                               data-track-click="nav"
+                                               data-track-source-context="county_acquisition_official_only"
+                                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                                            @if (!countyAccessProfile.primaryAccessNote().isBlank())
+                                                <p class="county-route-access-note">${countyAccessProfile.primaryAccessNote()}</p>
+                                            @endif
+                                            @if (countyAccessProfile.hasSecondaryAction() && (countyAccessProfile.secondaryUrl().startsWith("http") || countyAccessProfile.secondaryUrl().startsWith("mailto:")))
+                                                <a class="button button--quiet"
+                                                   href="${countyAccessProfile.secondaryUrl()}"
+                                                   target="${countyAccessProfile.secondaryUrl().startsWith("http") ? "_blank" : null}"
+                                                   rel="${countyAccessProfile.secondaryUrl().startsWith("http") ? "noreferrer" : null}"
+                                                   data-county-access-official>${countyAccessProfile.secondaryLabel()}</a>
+                                                @if (!countyAccessProfile.secondaryAccessNote().isBlank())
+                                                    <p class="county-route-access-note county-route-access-note--warning">${countyAccessProfile.secondaryAccessNote()}</p>
+                                                @endif
+                                            @endif
+                                            @if (countyAcquisitionProfile.hasEmail()
+                                                    && countyAcquisitionProfile.officialRecipientVerified()
+                                                    && !countyAccessProfile.secondaryUrl().equals("mailto:" + countyAcquisitionProfile.recipientEmail()))
+                                                <a class="button button--quiet"
+                                                   href="mailto:${countyAcquisitionProfile.recipientEmail()}"
+                                                   data-county-access-official>Open official email recipient</a>
+                                            @endif
+                                            @if (countyAcquisitionProfile.hasPhone() && (countyAcquisitionProfile.officialFieldPackVerified() || countyAcquisitionProfile.officialRecipientVerified()))
+                                                <a class="button button--quiet"
+                                                   href="tel:${countyAcquisitionProfile.phone()}">Call ${countyAcquisitionProfile.phone()}</a>
+                                            @endif
+                                            <button class="button button--quiet"
+                                                    type="button"
+                                                    data-county-acquisition-input-copy>${countyAcquisitionProfile.officialFieldPackVerified() ? "Copy all filled inputs" : "Copy property facts"}</button>
+                                        </div>
+                                        <div class="county-acquisition-route-steps">
+                                            <strong>County-specific steps</strong>
+                                            <ol>
+                                                @for (var step : countyAccessProfile.steps())
+                                                    <li>${step}</li>
+                                                @endfor
+                                            </ol>
+                                        </div>
+                                        <p class="county-acquisition-request__status"
+                                           data-county-acquisition-status
+                                           aria-live="polite"></p>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <footer class="county-acquisition-documents">
+                                <div>
+                                    <strong>Task scope to review</strong>
+                                    <small>This is your saved job scope, not county-authored request wording.</small>
+                                </div>
+                                @if (!countyAcquisitionProfile.requestedDocuments().isEmpty())
+                                <ul>
+                                    @for (var document : countyAcquisitionProfile.requestedDocuments())
+                                        <li>${document}</li>
+                                    @endfor
+                                </ul>
+                                @else
+                                <p>No detailed document checklist is published for this route. SepticPath does not invent one.</p>
+                                @endif
+                            </footer>
+                        </section>
+                    @endif
+
+                    @if ("NC::brunswick-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup" id="brunswick-permit-search" data-brunswick-permit-lookup>
+                            <div>
+                                <span class="eyebrow">Official public query</span>
+                                <h3>Search Brunswick permit metadata here</h3>
+                                <p>Uses the address or parcel ID above to query Brunswick County's public ArcGIS permit index. A matching row is a lead to the source file, not the septic document itself.</p>
+                            </div>
+                            <button class="button button--primary" type="button" data-brunswick-permit-search>
+                                Search official permit metadata
+                            </button>
+                            <div class="brunswick-permit-lookup__results" data-brunswick-permit-results aria-live="polite"></div>
+                        </section>
+                    @endif
+
+                    <section class="county-access-return" data-county-access-return hidden>
+                        <div>
+                            <span class="eyebrow">Back from the official route?</span>
+                            <h3>Record the real outcome</h3>
+                            <p>An empty online search is not an official no-record response.</p>
+                        </div>
+                        <div class="county-access-return__outcomes">
+                            <button type="button" data-county-access-outcome="artifact">I downloaded a document</button>
+                            <button type="button" data-county-access-outcome="partial">I found only part of the file</button>
+                            <button type="button" data-county-access-outcome="not_found_online">Nothing appeared online</button>
+                            <button type="button" data-county-access-outcome="blocked">The route was blocked</button>
+                            <button type="button" data-county-access-outcome="request_submitted">I submitted a request</button>
+                        </div>
+                        <label class="county-access-return__reference">
+                            <span>Confirmation, case, or request number <small>if the county issued one</small></span>
+                            <input type="text"
+                                   maxlength="120"
+                                   autocomplete="off"
+                                   placeholder="Save it here on this device"
+                                   data-county-access-reference>
+                        </label>
+                        <div class="county-access-return__next" data-county-access-next></div>
+                        <button class="county-access-return__clear" type="button" data-county-access-clear>Clear this task</button>
+                    </section>
                 </div>
             </div>
         </section>
@@ -424,7 +777,7 @@
             <details class="state-money-disclosure county-research-disclosure">
                 <summary>
                     <span class="eyebrow">County evidence</span>
-                    <strong>File details, route confidence, and search proof</strong>
+                    <strong>File details, access method, and source checks</strong>
                     <span>Open only when you need the full local evidence behind the official route above.</span>
                 </summary>
                 <div class="county-research-disclosure__content">
@@ -546,13 +899,12 @@
                     <div class="county-data-console__header">
                         <div>
                             <span class="eyebrow">County record availability matrix</span>
-                            <h2>${countyPage.countyName()} file path, request method, and confidence score</h2>
-                            <p>${countyPage.countyName()} availability confidence: ${countyAvailabilitySummary.confidenceNote()}</p>
+                            <h2>${countyPage.countyName()} file path, request method, and expected evidence</h2>
+                            <p>Availability describes the documented official route. It does not predict whether a property-specific file exists.</p>
                         </div>
-                        <div class="county-confidence-meter" style="--confidence-score: ${countyAvailabilitySummary.confidenceScore()}%;">
-                            <span class="county-confidence-meter__label">${countyAvailabilitySummary.confidenceLabel()}</span>
-                            <strong>${countyAvailabilitySummary.confidenceScore()}%</strong>
-                            <span class="county-confidence-meter__track"><span></span></span>
+                        <div class="county-confidence-meter">
+                            <span class="county-confidence-meter__label">Documented access type</span>
+                            <strong>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : countyAvailabilitySummary.requestMethodLabel()}</strong>
                         </div>
                     </div>
 
@@ -615,10 +967,15 @@
         </div>
     </section>
 
-    @if (!countyRequestOptions.isEmpty())
+    @if (countyAcquisitionProfile == null && !countyRequestOptions.isEmpty())
         <section class="section section--tight">
             <div class="container">
-                <div class="county-request-builder" data-choice-group>
+                <details class="county-request-builder county-request-builder--disclosure" data-choice-group>
+                    <summary>
+                        <span class="eyebrow">Need to contact the office?</span>
+                        <strong>Build a copy-ready records request</strong>
+                        <span>Choose buyer, repair, or contractor wording only if the online search does not finish the job.</span>
+                    </summary>
                     <div class="county-request-builder__intro">
                         <span class="eyebrow">Permit file request builder</span>
                         <h2>Turn the county page into the exact request you send.</h2>
@@ -670,254 +1027,7 @@
                             </div>
                         </article>
                     @endfor
-                </div>
-            </div>
-        </section>
-    @endif
-
-    <section class="section section--tight">
-        <div class="container">
-            <div class="county-file-workflow">
-                <div class="county-file-workflow__header">
-                    <span class="eyebrow">Five-minute file workflow</span>
-                    <h2>Use this page as a work surface, not just a reference page.</h2>
-                    <p>Open the ${countyPage.countyName()} path, capture the parcel clue, ask for the local file artifacts, then move to the ${state.stateName()} workflow or cost estimate after this record story is clearer.</p>
-                </div>
-                <ol class="county-file-workflow__steps">
-                    <li>
-                        <span>01</span>
-                        <strong>Open the county record path</strong>
-                        <p>${countyPage.recordsLabel()}</p>
-                    </li>
-                    <li>
-                        <span>02</span>
-                        <strong>Anchor the parcel or property</strong>
-                        @if (countyPage.hasParcelAnchor())
-                            <p>${countyPage.parcelAnchorLabel()}</p>
-                        @else
-                            <p>For ${countyPage.countyName()}, use the address, parcel identifier, owner name, or local office routing before relying on a price.</p>
-                        @endif
-                    </li>
-                    <li>
-                        <span>03</span>
-                        <strong>Request the artifacts that change the answer</strong>
-                    </li>
-                    <li>
-                        <span>04</span>
-                        <strong>Stop pricing if the file is not clear</strong>
-                        @if (countyWorkflowStructure != null && countyWorkflowStructure.quoteGate() != null && !countyWorkflowStructure.quoteGate().isBlank())
-                            <p>At step four for ${countyPage.countyName()}: ${countyWorkflowStructure.quoteGate()}</p>
-                        @else
-                            <p>${!countyLocalContent.lowEndBreakers().isEmpty() ? countyLocalContent.lowEndBreakers().get(0) : countyPage.contactLine()}</p>
-                        @endif
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--tight">
-        <div class="container">
-            <div class="county-search-intent-pack">
-                <div class="county-search-intent-pack__intro">
-                    <span class="eyebrow">Search intent answer pack</span>
-                    <h2>${countyPage.countyName()} septic permit lookup, records request, and address search path</h2>
-                    <p>Use this ${countyPage.countyName()} block when the search is not a broad septic question. It usually resolves one of four local file tasks: find the permit, request the records, anchor the parcel, or confirm the as-built and inspection trail.</p>
-                </div>
-                <div class="county-search-intent-grid">
-                    <article class="county-search-intent-card">
-                        <span>Permit lookup</span>
-                        <h3>${countyPage.countyName()} septic permit lookup</h3>
-                        <p>For ${countyPage.countyName()}, start with ${countyPage.recordsLabel()} before you trust a quote, repair story, buyer file, or permit closeout claim.</p>
-                        <a class="button button--secondary"
-                           href="${countyPage.recordsUrl()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-track-source-context="county_search_intent_permit_lookup"
-                           data-track-target-type="official_source">Open permit lookup path</a>
-                    </article>
-
-                    <article class="county-search-intent-card">
-                        <span>Records request</span>
-                        <h3>Request the septic records, not just a price</h3>
-                        <p>${countyPage.countyName()} request script: ${countyPage.requestScriptBody() != null && !countyPage.requestScriptBody().isBlank() ? countyPage.requestScriptBody() : countyPage.contactLine()}</p>
-                        @if (countyPage.hasActionPlaybook())
-                            <a class="button button--secondary"
-                               href="#county-action-playbook"
-                               data-track-click="nav"
-                               data-track-source-context="county_search_intent_records_request"
-                               data-track-target-type="page_anchor">Open request script</a>
-                        @else
-                            <a class="button button--secondary"
-                               href="/septic-records-request-builder/"
-                               data-track-click="nav"
-                               data-track-source-context="county_search_intent_records_request_builder"
-                               data-track-target-type="internal_page">Build a request script</a>
-                        @endif
-                        <a class="button button--secondary"
-                           href="/septic-permit-records-request/"
-                           data-track-click="nav"
-                           data-track-source-context="county_search_intent_records_request_guide"
-                           data-track-target-type="internal_page">Open records request guide</a>
-                    </article>
-
-                    <article class="county-search-intent-card">
-                        <span>Address or parcel</span>
-                        <h3>Search by address only after you have the parcel anchor</h3>
-                        @if (countyPage.hasParcelAnchor())
-                            <p>${countyPage.parcelAnchorNote()}</p>
-                            <a class="button button--secondary"
-                               href="${countyPage.parcelAnchorUrl()}"
-                               target="_blank"
-                               rel="noreferrer"
-                               data-track-click="nav"
-                               data-track-source-context="county_search_intent_parcel_anchor"
-                               data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
-                        @else
-                            <p>Use the ${state.stateName()} records path first, then confirm the ${countyPage.countyName()} parcel identifier with the local office before pricing.</p>
-                            <a class="button button--secondary"
-                               href="/septic-record-finder/"
-                               data-track-click="nav"
-                               data-track-source-context="county_search_intent_address_record_finder"
-                               data-track-target-type="internal_page">Find county from address</a>
-                        @endif
-                    </article>
-
-                    <article class="county-search-intent-card">
-                        <span>As-built and inspection</span>
-                        <h3>Ask for the file artifacts that change the answer</h3>
-                        <a class="button button--secondary"
-                           href="/septic-as-built-records/"
-                           data-track-click="nav"
-                           data-track-source-context="county_search_intent_as_built"
-                           data-track-target-type="internal_page">Open as-built records guide</a>
-                    </article>
-
-                    <article class="county-search-intent-card">
-                        <span>County comparison</span>
-                        <h3>Compare septic records by county</h3>
-                        <a class="button button--secondary"
-                           href="/septic-records-by-county/"
-                           data-track-click="nav"
-                           data-track-source-context="county_search_intent_records_by_county"
-                           data-track-target-type="internal_page">Open records by county</a>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--tight">
-        <div class="container">
-            <div class="intent-rail">
-                @if (countyPage.hasParcelAnchor())
-                    <article class="intent-card">
-                        <span class="intent-card__label">Capture parcel/TMS first</span>
-                        <h2>${countyPage.parcelAnchorLabel()}</h2>
-                        <p>${countyPage.parcelAnchorNote()}</p>
-                        <a class="button button--secondary"
-                           href="${countyPage.parcelAnchorUrl()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-track-source-context="county_records_action_rail_parcel_anchor"
-                           data-track-target-type="official_source">Open parcel anchor</a>
-                    </article>
-                @endif
-                <article class="intent-card intent-card--primary">
-                    <span class="intent-card__label">Open the county record path first</span>
-                    <h2>${countyPage.recordsLabel()}</h2>
-                    @if (countyLocalContent.priorityPage() && countyLocalContent.hasEvidenceFacts())
-                        <p>Use ${countyLocalContent.evidenceFacts().get(0).sourceTitle()} to confirm the owning route before a quote or repair decision.</p>
-                    @else
-                        <p>${countyPage.countyName()} workflow angle: ${countyLocalContent.uniqueAngle()}</p>
-                    @endif
-                    <a class="button button--primary"
-                       href="${countyPage.recordsUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_action_rail_records"
-                       data-track-target-type="official_source">Open county records</a>
-                </article>
-
-                <article class="intent-card">
-                    <span class="intent-card__label">Verify the county office</span>
-                    <h2>${countyPage.officeLabel()}</h2>
-                    <p>${countyPage.countyName()} contact detail: ${countyPage.contactLine()}</p>
-                    <a class="button button--secondary"
-                       href="${countyPage.officeUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_action_rail_office"
-                       data-track-target-type="official_source">Open county office page</a>
-                </article>
-
-                <article class="intent-card">
-                    <span class="intent-card__label">Price only after the file is clearer</span>
-                    <h2>${state.stateName()} records lookup</h2>
-                    <a class="button button--secondary"
-                       href="/septic-records-checklist/${state.slug()}/"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_action_rail_state"
-                       data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    @if (!countyIntentRoutes.isEmpty())
-        <section class="section section--tight">
-            <div class="container">
-                <div class="section-heading">
-                    <span class="eyebrow">County intent matrix</span>
-                    <h2>Use the exact ${countyPage.countyName()} search intent before you trust the file story.</h2>
-                    <p class="lede">These are the common ${countyPage.countyName()} septic searches that should resolve into a permit file, records request, address or parcel search, as-built, inspection letter, or buyer file check.</p>
-                </div>
-
-                <div class="county-intent-matrix">
-                    @for (var route : countyIntentRoutes)
-                        <article class="county-intent-card" id="${route.anchorId()}">
-                            <span class="pill">${route.eyebrow()}</span>
-                            <h2>${route.heading()}</h2>
-                            <p>${route.summary()}</p>
-                            <div class="county-intent-card__actions">
-                                @if ("official_source".equals(route.primaryTargetType()))
-                                    <a class="button button--primary"
-                                       href="${route.primaryPath()}"
-                                       target="_blank"
-                                       rel="noreferrer"
-                                       data-track-click="nav"
-                                       data-track-source-context="county_intent_matrix_primary"
-                                       data-track-target-type="${route.primaryTargetType()}">${route.primaryLabel()}</a>
-                                @else
-                                    <a class="button button--primary"
-                                       href="${route.primaryPath()}"
-                                       data-track-click="nav"
-                                       data-track-source-context="county_intent_matrix_primary"
-                                       data-track-target-type="${route.primaryTargetType()}">${route.primaryLabel()}</a>
-                                @endif
-                                @if ("official_source".equals(route.secondaryTargetType()))
-                                    <a class="button button--secondary"
-                                       href="${route.secondaryPath()}"
-                                       target="_blank"
-                                       rel="noreferrer"
-                                       data-track-click="nav"
-                                       data-track-source-context="county_intent_matrix_secondary"
-                                       data-track-target-type="${route.secondaryTargetType()}">${route.secondaryLabel()}</a>
-                                @else
-                                    <a class="button button--secondary"
-                                       href="${route.secondaryPath()}"
-                                       data-track-click="nav"
-                                       data-track-source-context="county_intent_matrix_secondary"
-                                       data-track-target-type="${route.secondaryTargetType()}">${route.secondaryLabel()}</a>
-                                @endif
-                            </div>
-                        </article>
-                    @endfor
-                </div>
+                </details>
             </div>
         </section>
     @endif
@@ -1183,13 +1293,21 @@
              data-sticky-mobile-cta
              data-show-after='[data-sticky-trigger="county-records-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
-            <a class="button button--primary"
-               href="${countyPage.recordsUrl()}"
-               target="_blank"
-               rel="noreferrer"
-               data-track-click="nav"
-               data-track-source-context="county_records_sticky_records"
-               data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
+            @if(countyAcquisitionProfile != null)
+                <a class="button button--primary"
+                   href="#county-acquisition-workspace"
+                   data-track-click="nav"
+                   data-track-source-context="county_records_sticky_prepare"
+                   data-track-target-type="internal_tool">Prepare for the county step</a>
+            @else
+                <a class="button button--primary"
+                   href="${countyPage.recordsUrl()}"
+                   target="_blank"
+                   rel="noreferrer"
+                   data-track-click="nav"
+                   data-track-source-context="county_records_sticky_records"
+                   data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
+            @endif
         </div>
     </section>
     </div>

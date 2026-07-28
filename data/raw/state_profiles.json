@@ -687,9 +687,9 @@
       "localOverrideNote": "Tennessee looks statewide through TDEC, but the practical homeowner path changes quickly once you know whether the parcel is handled by a contract county or a TDEC regional contact and whether the permit file is complete.",
       "countyOverrideRisk": "high",
       "lastVerifiedAt": "2026-03-10",
-      "officialSourceIds": ["tn_01", "tn_02", "tn_03", "tn_04"],
-      "localAuthoritySourceIds": ["tn_04"],
-      "recordsLookupSourceIds": ["tn_01"],
+      "officialSourceIds": ["tn_01", "tn_02", "tn_03", "tn_04", "tn_05", "tn_06", "tn_07", "tn_08", "tn_09"],
+      "localAuthoritySourceIds": ["tn_07", "tn_03"],
+      "recordsLookupSourceIds": ["tn_03", "tn_07", "tn_08"],
       "localActionSteps": [
         "Open the regional contacts page first and confirm whether the parcel is handled by a contract county or a TDEC contact.",
         "Ask for the construction permit, any repair permit, and any inspection letter or prior file tied to the property.",

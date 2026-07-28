@@ -3,9 +3,12 @@ package com.example.septic.service;
 import com.example.septic.web.DocumentFinding;
 import com.example.septic.web.DocumentDecision;
 import com.example.septic.web.SepticDocumentAnalysisResult;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -18,7 +21,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +37,7 @@ public class SepticDocumentAnalysisService {
     public static final long MAX_FILE_BYTES = 10L * 1024L * 1024L;
     private static final int MAX_PDF_PAGES = 100;
     private static final int MAX_EXTRACTED_CHARACTERS = 250_000;
+    private static final long MAX_IMAGE_PIXELS = 20_000_000L;
     private static final Semaphore ANALYSIS_SLOTS = new Semaphore(4);
 
     private static final Pattern PERMIT_NUMBER = Pattern.compile(
@@ -146,7 +157,7 @@ public class SepticDocumentAnalysisService {
 
     private void validate(MultipartFile file) {
         if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("Choose a PDF or text file.");
+            throw new IllegalArgumentException("Choose a PDF, photo, or text file.");
         }
         if (file.getSize() > MAX_FILE_BYTES) {
             throw new IllegalArgumentException("The file must be 10 MB or smaller.");
@@ -155,8 +166,13 @@ public class SepticDocumentAnalysisService {
         String contentType = file.getContentType() == null ? "" : file.getContentType().toLowerCase(Locale.US);
         boolean pdf = name.endsWith(".pdf") || "application/pdf".equals(contentType);
         boolean text = name.endsWith(".txt") || contentType.startsWith("text/");
-        if (!pdf && !text) {
-            throw new IllegalArgumentException("Use a searchable PDF or plain-text file.");
+        boolean image = name.endsWith(".png")
+                || name.endsWith(".jpg")
+                || name.endsWith(".jpeg")
+                || "image/png".equals(contentType)
+                || "image/jpeg".equals(contentType);
+        if (!pdf && !text && !image) {
+            throw new IllegalArgumentException("Use a PDF, TXT, PNG, or JPG file.");
         }
     }
 
@@ -200,12 +216,71 @@ public class SepticDocumentAnalysisService {
                 return new ExtractedDocument(limitText(ocrResult.text()), true, ocrResult.message(), List.of());
             }
         }
+        if (isSupportedImage(name, file.getContentType())) {
+            return extractImageText(bytes, name);
+        }
         return new ExtractedDocument(
                 limitText(new String(bytes, StandardCharsets.UTF_8)),
                 false,
                 "Plain text was read in memory.",
                 List.of()
         );
+    }
+
+    private boolean isSupportedImage(String name, String contentType) {
+        return name.endsWith(".png")
+                || name.endsWith(".jpg")
+                || name.endsWith(".jpeg")
+                || "image/png".equalsIgnoreCase(contentType)
+                || "image/jpeg".equalsIgnoreCase(contentType);
+    }
+
+    private ExtractedDocument extractImageText(byte[] bytes, String fileName) throws IOException {
+        BufferedImage image;
+        try (ImageInputStream input = ImageIO.createImageInputStream(new ByteArrayInputStream(bytes))) {
+            Iterator<ImageReader> readers = input == null ? null : ImageIO.getImageReaders(input);
+            if (readers == null || !readers.hasNext()) {
+                throw new IllegalArgumentException("The photo could not be read. Use a valid PNG or JPG.");
+            }
+            ImageReader reader = readers.next();
+            try {
+                reader.setInput(input, true, true);
+                int width = reader.getWidth(0);
+                int height = reader.getHeight(0);
+                if ((long) width * height > MAX_IMAGE_PIXELS) {
+                    throw new IllegalArgumentException(
+                            "The photo is too large to read safely. Use an image under 20 megapixels."
+                    );
+                }
+                image = reader.read(0);
+            } finally {
+                reader.dispose();
+            }
+        }
+
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage(PDRectangle.LETTER);
+            document.addPage(page);
+            PDImageXObject pdfImage = PDImageXObject.createFromByteArray(document, bytes, fileName);
+            float margin = 24f;
+            float availableWidth = page.getMediaBox().getWidth() - (margin * 2);
+            float availableHeight = page.getMediaBox().getHeight() - (margin * 2);
+            float scale = Math.min(availableWidth / image.getWidth(), availableHeight / image.getHeight());
+            float width = image.getWidth() * scale;
+            float height = image.getHeight() * scale;
+            float x = (page.getMediaBox().getWidth() - width) / 2;
+            float y = (page.getMediaBox().getHeight() - height) / 2;
+            try (PDPageContentStream stream = new PDPageContentStream(document, page)) {
+                stream.drawImage(pdfImage, x, y, width, height);
+            }
+            DocumentOcrService.OcrResult ocrResult = documentOcrService.read(document);
+            return new ExtractedDocument(
+                    limitText(ocrResult.text()),
+                    true,
+                    "OCR read the uploaded photo in memory. " + ocrResult.message(),
+                    List.of()
+            );
+        }
     }
 
     private List<DocumentFinding> attachPageNumbers(

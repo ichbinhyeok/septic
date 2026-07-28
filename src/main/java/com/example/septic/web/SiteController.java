@@ -11,6 +11,7 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
+import com.example.septic.service.BrunswickPermitLookupService;
 import com.example.septic.service.CensusAddressLookupService;
 import com.example.septic.service.CountyContentQualityService;
 import com.example.septic.service.DrainfieldEstimatorResult;
@@ -32,6 +33,7 @@ import com.example.septic.service.TimelinePreference;
 import com.example.septic.service.PumpScheduleResult;
 import com.example.septic.service.PumpScheduleService;
 import com.example.septic.service.OccupancyProfile;
+import com.example.septic.service.OfficialCountyPdfService;
 import com.example.septic.service.PublishingPolicyService;
 import com.example.septic.service.UsStateDirectoryService;
 import com.example.septic.service.UsageProfile;
@@ -96,14 +98,21 @@ public class SiteController {
     private static final String FL_OSTDS_LOOKUP_SLUG = "florida-ostds-permit-lookup";
     private static final String DHEC_PERMIT_LOOKUP_SLUG = "dhec-septic-permit-lookup";
     private static final String TENNESSEE_PROPERTY_ASSESSMENT_URL = "https://assessment.cot.tn.gov/TPAD";
-    private static final String TENNESSEE_SSDS_SEARCH_URL = "https://tdec.tn.gov/filenetsearch";
-    private static final String TENNESSEE_ONLINE_SERVICE_URL = "https://www.tn.gov/environment/permit-permits/water-permits1/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
+    private static final String TENNESSEE_SSDS_PROGRAM_URL =
+            "https://www.tn.gov/environment/permits/water/septic-systems-permits.html";
+    private static final String TENNESSEE_SSDS_RECORD_SEARCH_URL =
+            "https://tdec.tn.gov/document-viewer/search/stp";
+    private static final String TENNESSEE_PUBLIC_RECORDS_URL =
+            "https://www.tn.gov/environment/contacts/public-records-request.html";
+    private static final String TENNESSEE_FIELD_OFFICES_URL =
+            "https://www.tn.gov/environment/contacts/field-offices.html";
+    private static final String TENNESSEE_ONLINE_SERVICE_URL =
+            "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
     private static final Set<String> TENNESSEE_CONTRACT_COUNTIES = Set.of(
             "blount", "davidson", "hamilton", "jefferson", "knox", "madison", "sevier", "shelby", "williamson"
     );
     private static final Set<String> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES = Set.of(
-            "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston",
-            "TN:anderson", "TN:cumberland", "TN:loudon"
+            "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston"
     );
     private static final List<String> RECORDS_INTENT_HUB_SLUGS = List.of(
             PERMIT_LOOKUP_SLUG,
@@ -427,9 +436,11 @@ public class SiteController {
     private final UsStateDirectoryService usStateDirectoryService;
     private final PublishingPolicyService publishingPolicyService;
     private final CensusAddressLookupService censusAddressLookupService;
+    private final BrunswickPermitLookupService brunswickPermitLookupService;
     private final EventAnalyticsService eventAnalyticsService;
     private final CountyContentQualityService countyContentQualityService;
     private final SepticDocumentAnalysisService septicDocumentAnalysisService;
+    private final OfficialCountyPdfService officialCountyPdfService;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -444,9 +455,11 @@ public class SiteController {
             UsStateDirectoryService usStateDirectoryService,
             PublishingPolicyService publishingPolicyService,
             CensusAddressLookupService censusAddressLookupService,
+            BrunswickPermitLookupService brunswickPermitLookupService,
             EventAnalyticsService eventAnalyticsService,
             CountyContentQualityService countyContentQualityService,
-            SepticDocumentAnalysisService septicDocumentAnalysisService
+            SepticDocumentAnalysisService septicDocumentAnalysisService,
+            OfficialCountyPdfService officialCountyPdfService
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -460,9 +473,11 @@ public class SiteController {
         this.usStateDirectoryService = usStateDirectoryService;
         this.publishingPolicyService = publishingPolicyService;
         this.censusAddressLookupService = censusAddressLookupService;
+        this.brunswickPermitLookupService = brunswickPermitLookupService;
         this.eventAnalyticsService = eventAnalyticsService;
         this.countyContentQualityService = countyContentQualityService;
         this.septicDocumentAnalysisService = septicDocumentAnalysisService;
+        this.officialCountyPdfService = officialCountyPdfService;
     }
 
     @GetMapping("/")
@@ -658,6 +673,49 @@ public class SiteController {
         }
 
         return ResponseEntity.ok(addressRecordFinderRoute(lookup));
+    }
+
+    @PostMapping(value = "/api/brunswick-permit-lookup", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<BrunswickPermitLookupService.LookupResult> brunswickPermitLookup(
+            @RequestBody BrunswickPermitLookupForm form
+    ) {
+        String address = form == null ? "" : form.address();
+        String parcelId = form == null ? "" : form.parcelId();
+        BrunswickPermitLookupService.LookupResult result = brunswickPermitLookupService.lookup(address, parcelId);
+        return "invalid".equals(result.status())
+                ? ResponseEntity.badRequest().body(result)
+                : ResponseEntity.ok(result);
+    }
+
+    @PostMapping(
+            value = "/api/county-records/prepare-official-pdf",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_PDF_VALUE
+    )
+    @ResponseBody
+    public ResponseEntity<?> prepareOfficialCountyPdf(@RequestBody OfficialCountyPdfForm form) {
+        try {
+            OfficialCountyPdfService.PreparedPdf prepared = officialCountyPdfService.prepare(form);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .header("Content-Disposition", "attachment; filename=\"" + prepared.fileName() + "\"")
+                    .body(prepared.bytes());
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(Map.of(
+                    "status", "invalid",
+                    "message", exception.getMessage()
+            ));
+        } catch (InterruptedException exception) {
+            Thread.currentThread().interrupt();
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Map.of("status", "unavailable", "message", "The official county PDF could not be retrieved."));
+        } catch (java.io.IOException exception) {
+            return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(Map.of("status", "unavailable", "message", exception.getMessage()));
+        }
     }
 
     @PostMapping(
@@ -1836,9 +1894,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state.lastVerifiedAt()
         );
         CountyLocalContentView countyLocalContent = countyContentQualityService.build(countyPage, sources);
+        CountyAccessProfileView countyAccessProfile = CountyAccessProfileCatalog.find(countyPage.key());
+        CountyAcquisitionProfileView countyAcquisitionProfile = CountyAcquisitionProfileCatalog.find(countyPage.key());
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);
+        model.addAttribute("countyAccessProfile", countyAccessProfile);
+        model.addAttribute("countyAcquisitionProfile", countyAcquisitionProfile);
         model.addAttribute("countyLocalContent", countyLocalContent);
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -1870,6 +1932,10 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String countySeoHeading(CountyRecordsPage countyPage) {
+        CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.find(countyPage.key());
+        if (accessProfile != null) {
+            return accessProfile.heading();
+        }
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Hamilton County septic inspection records and permit lookup";
         }
@@ -1886,6 +1952,10 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String countyQuickAnswer(CountyRecordsPage countyPage, CountyLocalContentView localContent) {
+        CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.find(countyPage.key());
+        if (accessProfile != null) {
+            return accessProfile.summary();
+        }
         return switch (countyPage.key()) {
             case "TN::blount-county" ->
                     "Use Blount County Environmental Health's SSDS request to pull the septic file. For a loan closing, use the separate inspection-letter request because the county says the SSDS form is not a closing letter.";
@@ -1911,6 +1981,10 @@ The goal is to settle the permit path before we frame the project as a normal in
             StateProfile state,
             CountyLocalContentView localContent
     ) {
+        CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.find(countyPage.key());
+        if (accessProfile != null) {
+            return accessProfile.summary() + " Completion means " + accessProfile.completionLabel() + ".";
+        }
         if ("TN::hamilton-county".equals(countyPage.key())) {
             return "Search Hamilton County, TN septic inspection records, permits, and completion certificates through the official county route. Use the address-search tips and Groundwater Department fallback before treating the file as missing.";
         }
@@ -3022,7 +3096,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String officialLookupPrimaryUrl(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case TDEC_RECORDS_SLUG -> "https://tdec.tn.gov/document-viewer/search/stp";
+            case TDEC_RECORDS_SLUG -> TENNESSEE_SSDS_PROGRAM_URL;
             case NC_PERMIT_LOOKUP_SLUG -> "https://www.deq.nc.gov/about/divisions/water-resources/water-resources-public-information/public-records";
             case TX_OSSF_RECORDS_SLUG -> "https://www.tceq.texas.gov/permitting/ossf";
             case FL_OSTDS_LOOKUP_SLUG -> "https://floridadep.gov/water/onsite-sewage";
@@ -3033,7 +3107,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String officialLookupPrimaryLabel(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case TDEC_RECORDS_SLUG -> "Open official TDEC search";
+            case TDEC_RECORDS_SLUG -> "Open official Tennessee SSDS page";
             case NC_PERMIT_LOOKUP_SLUG -> "Open North Carolina public records";
             case TX_OSSF_RECORDS_SLUG -> "Open TCEQ OSSF information";
             case FL_OSTDS_LOOKUP_SLUG -> "Open Florida OSTDS information";
@@ -3106,7 +3180,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Find the installed layout before you estimate the field story.";
             case INSPECTION_LETTER_SLUG -> "Separate the letter workflow from a generic permit copy.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Open the official lookup tool before another overview.";
-            case TDEC_RECORDS_SLUG -> "Search TDEC records before you treat the file as missing.";
+            case TDEC_RECORDS_SLUG -> "Route the parcel to the office before you treat the file as missing.";
             case NC_PERMIT_LOOKUP_SLUG -> "Find the county health file before broad North Carolina research.";
             case TX_OSSF_RECORDS_SLUG -> "Route Texas OSSF records through the county or TCEQ lane.";
             case FL_OSTDS_LOOKUP_SLUG -> "Start Florida OSTDS lookup with the county DOH path.";
@@ -3172,7 +3246,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case AS_BUILT_RECORDS_SLUG, TANK_LOCATION_RECORDS_SLUG -> "Use the layout record to decide whether tank, field, reserve area, or addition risk is changing the scope before you estimate.";
             case INSPECTION_LETTER_SLUG -> "A permit copy may not satisfy a closing or lender letter, so resolve the letter path before the price conversation carries weight.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Start with the official source when one exists, then fall back to county request language when the search tool does not expose the file.";
-            case TDEC_RECORDS_SLUG -> "Use the TDEC septic permit search first, then fall back to the Tennessee county route or request builder when the parcel does not show up.";
+            case TDEC_RECORDS_SLUG -> "Start on the working Tennessee SSDS program page, then use the field-office or public-records route that owns the parcel file. Treat the TDEC record search as optional while it returns 403 for some users.";
             case NC_PERMIT_LOOKUP_SLUG -> "North Carolina records usually resolve through county environmental health, so use the county route or request script when a statewide page is too broad.";
             case TX_OSSF_RECORDS_SLUG -> "Texas OSSF records often depend on the authorized agent or county, so use the state OSSF context and county handoff together.";
             case FL_OSTDS_LOOKUP_SLUG -> "Florida OSTDS records are handled through county health workflows, eBridge-style archives, or county-specific public records paths.";
@@ -3328,7 +3402,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String contentFileOwner(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case TDEC_RECORDS_SLUG -> "Tennessee Department of Environment and Conservation for the SSDS search, then the county or regional office that can confirm the parcel file.";
+            case TDEC_RECORDS_SLUG -> "The Tennessee Environmental Field Office or contract county that can locate the parcel's SSDS permit, layout, final approval, repair history, or archived file.";
             case DHEC_PERMIT_LOOKUP_SLUG -> "Current South Carolina septic routing starts with SCDES, then resolves through ePermitting, county contacts, or the office holding the D-1740 and permit-copy trail.";
             case TX_OSSF_RECORDS_SLUG -> "Texas OSSF records usually resolve through the county, authorized agent, or local permitting authority after the TCEQ program context is clear.";
             case NC_PERMIT_LOOKUP_SLUG -> "North Carolina septic records usually resolve through county environmental health rather than one statewide public lookup.";
@@ -3373,7 +3447,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case PERMIT_RECORDS_REQUEST_SLUG, RECORDS_REQUEST_BUILDER_SLUG -> "Send a precise request that names the parcel, record type, reason, and fallback question instead of asking vaguely for septic records.";
             case RECORDS_BY_COUNTY_SLUG -> "Open the county page first, then use the request wording when the portal, clerk, or health office does not expose the artifact directly.";
             case OFFICIAL_LOOKUP_TOOLS_SLUG -> "Use the official tool first when it exists, then fall back to county route, records request, or written no-record wording.";
-            case TDEC_RECORDS_SLUG -> "Search TDEC first, then use the Tennessee records page, county route, or request builder when the parcel result is unclear.";
+            case TDEC_RECORDS_SLUG -> "Confirm the SSDS program on TN.gov, then contact the field office or submit a public-records request with the parcel clues. Use the restricted direct search only as an optional attempt.";
             case DHEC_PERMIT_LOOKUP_SLUG -> "Translate DHEC intent into current SCDES/ePermitting/county contact steps, then request the permit copy or D-1740 trail.";
             default -> "Start with the official source, carry property identifiers into the route, then request the exact artifact if the record is not visible.";
         };
@@ -4267,7 +4341,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "Find parcel or prior owner", TENNESSEE_PROPERTY_ASSESSMENT_URL, "official_property_lookup", true, false
         ));
         actions.add(new AddressRecordFinderAction(
-                "Search TDEC SSDS records", TENNESSEE_SSDS_SEARCH_URL, "official_source", true, false
+                "Find your TDEC field office", TENNESSEE_FIELD_OFFICES_URL, "official_contact", true, false
+        ));
+        actions.add(new AddressRecordFinderAction(
+                "Open TDEC public records request", TENNESSEE_PUBLIC_RECORDS_URL, "official_request", true, false
+        ));
+        actions.add(new AddressRecordFinderAction(
+                "Open Tennessee SSDS program", TENNESSEE_SSDS_PROGRAM_URL, "official_source", true, false
         ));
         actions.add(new AddressRecordFinderAction(
                 "Check listing bedrooms", "/septic-bedroom-permit-checker/", "internal_tool", false, false
@@ -4285,7 +4365,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         return new AddressRecordFinderResult(
                 "county_route",
                 countyPage.countyName() + ", Tennessee public records relay",
-                "Start with the local route, then carry the parcel ID and owner clues into the state record search. " + serviceNote,
+                "Start with the local route, then carry the parcel ID and owner clues into the field-office or public-records request. " + serviceNote,
                 state.stateCode(), state.stateName(), countyPage.countyName(), lookup.matchedAddress(),
                 "Open " + countyPage.countyName() + " records", countyPage.path(state.slug()), countyPage.recordsUrl(),
                 countyPage.officeLabel(), countyPage.contactLine(), latestVerifiedAt(
@@ -4297,7 +4377,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 actions,
                 List.of(
                         "Use Tennessee Property Assessment Data to collect the parcel ID and current or prior owner when available.",
-                        "Search the official SSDS file route with the address, parcel ID, subdivision, and owner clues.",
+                        "Use the working Tennessee SSDS page to confirm the program, then send the parcel clues to the field office or public-records route for the county.",
                         "Pull the permit, layout, final approval, repair history, or written no-record response before pricing or closing."
                 )
         );

@@ -51,6 +51,7 @@
                 "#result-top",
                 "[data-choice-group]",
                 "[data-county-finder]",
+                "[data-county-access-workflow]",
                 "[data-address-record-finder]",
                 "[data-offer-prep-file-check]",
                 "[data-bedroom-permit-checker]",
@@ -155,19 +156,11 @@
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
                         <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
-                        <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
                         <li><a href="/septic-records-checklist/">Records lookup</a></li>
-                        <li><a href="/septic-records-access-index/">Records access index</a></li>
+                        <li><a href="/septic-records-by-county/">County record paths</a></li>
                         <li><a href="/offer-prep-septic-file-check/">Offer prep file check</a></li>
-                        <li><a href="/septic-permit-process/">Permit process</a></li>
-                        <li><a href="/buying-a-house-with-a-septic-system/">Buying with septic</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/states/">State guides</a></li>
-                        <li><a href="/septic-tank-size-estimator/">Tank size estimator</a></li>
-                        <li><a href="/septic-pump-schedule-estimator/">Pump schedule estimator</a></li>
-                        <li><a href="/drain-field-estimator/">Drain field estimator</a></li>
-                        <li><a href="/septic-replacement-cost/">Replacement cost</a></li>
-                        <li><a href="/septic-inspection-cost/">Inspection cost</a></li>
                     </ul>
                 </nav>
 
@@ -175,13 +168,11 @@
                     <h2 class="footer-heading">Trust</h2>
                     <ul class="footer-list">
                         <li><a href="/about/">About</a></li>
-                        <li><a href="/editorial-standards/">Editorial Standards</a></li>
+                        <li><a href="/editorial-standards/">Editorial standards</a></li>
                         <li><a href="/methodology/">Methodology</a></li>
-                        <li><a href="/source-policy/">Source Policy</a></li>
                         <li><a href="/coverage/">Coverage</a></li>
-                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="/terms-of-use/">Terms of Use</a></li>
                         <li><a href="/contact/">Contact</a></li>
+                        <li><a href="/privacy-policy/">Privacy</a> · <a href="/terms-of-use/">Terms</a></li>
                     </ul>
                 </nav>
             </div>

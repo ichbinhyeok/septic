@@ -587,7 +587,7 @@ public class SeoService {
      */
     public String contentQuickAnswer(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case "tdec-septic-records" -> "Open the official TDEC SSDS search and try the address first. If it is missing, retry with the parcel, owner, permit number, subdivision, lot, or legal description before using the Tennessee county fallback.";
+            case "tdec-septic-records" -> "Open the working Tennessee SSDS program page, identify the field office or contract county, and request the permit, layout, or written no-record response with the parcel, owner, subdivision, lot, or legal description. The direct TDEC record search may return 403.";
             case "north-carolina-septic-permit-lookup" -> "North Carolina septic permits are usually held by county environmental health. Identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.";
             case "septic-records-checklist" -> "Start with the state records route, then open the county file path for the permit, as-built, final approval, inspection letter, or repair record that actually answers the property question.";
             case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
@@ -731,39 +731,51 @@ public class SeoService {
     }
 
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
-        if ("TX::tarrant-county".equals(countyPage.key())) {
-            return "Tarrant County Septic Records & OSSF Permit Lookup | Official File Path | SepticPath";
-        }
-        if ("TN::hamilton-county".equals(countyPage.key())) {
-            return "Hamilton County TN Septic Inspection Records | SepticPath";
-        }
-        if ("TN::blount-county".equals(countyPage.key())) {
-            return "Blount County TN Septic Records & SSDS Request | SepticPath";
-        }
-        if ("NC::alamance-county".equals(countyPage.key())) {
-            return "Alamance County NC Septic Permit Lookup & Records | SepticPath";
-        }
-        if ("MD::st-marys-county".equals(countyPage.key())) {
-            return "St. Mary's County Septic Records & GIS Lookup | SepticPath";
+        String priorityTitle = switch (countyPage.key()) {
+            case "VA::prince-william-county" -> "Prince William County Septic Records by Address or GPIN";
+            case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
+            case "TN::hamilton-county" -> "Hamilton County TN Septic Permit and Completion Certificate";
+            case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
+            case "TN::knox-county" -> "Knox County TN SSDS File Search and Records Request";
+            case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
+            case "GA::dekalb-county" -> "DeKalb County GA Septic Records or Certification Letter";
+            case "TN::blount-county" -> "Blount County TN SSDS Records or Inspection Letter";
+            case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
+            case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
+            case "AZ::maricopa-county" -> "Maricopa County Septic Records Search and Research Request";
+            case "NC::brunswick-county" -> "Brunswick County Permit Search and Septic File Request";
+            case "NC::forsyth-county" -> "Request Forsyth County NC Septic Permit and Soil Evaluation";
+            case "TX::denton-county" -> "Denton County OSSF Records and Jurisdiction Check";
+            case "TX::brazoria-county" -> "Brazoria County OSSF Permit Status and Records Request";
+            default -> "";
+        };
+        if (!priorityTitle.isBlank()) {
+            return priorityTitle + " | SepticPath";
         }
         return countyPage.countyName() + " " + state.stateCode() + " Septic Permit Lookup & Records | SepticPath";
     }
 
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
-        if ("TX::tarrant-county".equals(countyPage.key())) {
-            return "Tarrant County septic records and OSSF permit lookup path for official records search, county file routing, permit packets, and parcel-backed quote checks.";
-        }
-        if ("TN::hamilton-county".equals(countyPage.key())) {
-            return "Find Hamilton County, TN septic inspection records, permits, and completion certificates using the official county search and Groundwater Department route.";
-        }
-        if ("TN::blount-county".equals(countyPage.key())) {
-            return "Find Blount County, TN septic records through the SSDS request, then use the separate inspection-letter route for loan closings and due diligence.";
-        }
-        if ("NC::alamance-county".equals(countyPage.key())) {
-            return "Find Alamance County, NC septic permits and records through Environmental Health, including improvement permits, system inspections, and repair files.";
-        }
-        if ("MD::st-marys-county".equals(countyPage.key())) {
-            return "Find St. Mary's County septic records in the official GIS by address or Tax ID, then use the Environmental Health repair-perc route when needed.";
+        String priorityDescription = switch (countyPage.key()) {
+            case "VA::prince-william-county" -> "Search the official Prince William Health District document portal by address or GPIN, then use the office fallback when the portal is blocked or incomplete.";
+            case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
+            case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";
+            case "NC::alamance-county" -> "Request an existing Alamance County septic property file without confusing a historical record copy with a new application or paid field inspection.";
+            case "TN::knox-county" -> "Prepare, send, and track the Knox County SSDS file-search request for the permit, soil mapping, layout, and completed repair records.";
+            case "NC::lincoln-county" -> "Request Lincoln County septic records by address or parcel PIN and keep the request reference until the permit, approval, layout, or written response arrives.";
+            case "GA::dekalb-county" -> "Choose the DeKalb historical septic file route or the separate certification-letter evaluation based on the property task.";
+            case "TN::blount-county" -> "Request Blount County SSDS approval and bedroom records, or use the separate inspection-letter path when a closing document is required.";
+            case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
+            case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
+            case "AZ::maricopa-county" -> "Run Maricopa County's free septic search first, then use the standard or expedited official research request when the online result is empty.";
+            case "NC::brunswick-county" -> "Search Brunswick public permit metadata to identify the parcel and permit candidate, then request the original septic IP, CA, OP, or related file.";
+            case "NC::forsyth-county" -> "Request the Forsyth County septic permit and soil evaluation, with separate release and repair routes for new property work.";
+            case "TX::denton-county" -> "Confirm Denton County OSSF jurisdiction before requesting the existing license to operate, final approval, site plan, or maintenance record.";
+            case "TX::brazoria-county" -> "Confirm the city, ETJ, or county OSSF authority before requesting Brazoria permit status, final approval, maintenance, or repair records.";
+            default -> "";
+        };
+        if (!priorityDescription.isBlank()) {
+            return priorityDescription;
         }
         String originalLead = countyPage.countyName() + " septic records checklist and permit lookup";
         String searchLead = countyPage.countyName() + ", " + state.stateName() + " septic permit lookup and records request";

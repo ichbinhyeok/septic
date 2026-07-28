@@ -772,14 +772,41 @@
                             <h3>Keep the next click in the records workflow.</h3>
                             <div class="state-records-response__route-list">
                                 @if ("tdec-septic-records".equals(contentPage.slug()))
+                                    <a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_tdec_ssds_program"
+                                       data-track-target-type="official_source">
+                                        <strong>1. Open the official Tennessee SSDS page</strong>
+                                        <span>Confirm the current state program and choose the correct service or records route.</span>
+                                    </a>
+                                    <a href="https://www.tn.gov/environment/contacts/field-offices.html"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_tdec_field_office"
+                                       data-track-target-type="official_contact">
+                                        <strong>2. Find the field office for the county</strong>
+                                        <span>Use the office that can locate layouts, archived files, and septic records.</span>
+                                    </a>
+                                    <a href="https://www.tn.gov/environment/contacts/public-records-request.html"
+                                       target="_blank"
+                                       rel="noreferrer"
+                                       data-track-click="nav"
+                                       data-track-source-context="content_tdec_public_records"
+                                       data-track-target-type="official_request">
+                                        <strong>3. Submit a public-records request</strong>
+                                        <span>Ask for the permit, layout, final approval, repair history, or written no-record response.</span>
+                                    </a>
                                     <a href="https://tdec.tn.gov/document-viewer/search/stp"
                                        target="_blank"
                                        rel="noreferrer"
                                        data-track-click="nav"
-                                       data-track-source-context="content_official_file_path_external"
-                                       data-track-target-type="official_source">
-                                        <strong>Open TDEC SSDS search</strong>
-                                        <span>Use the official Tennessee septic records search before the county fallback.</span>
+                                       data-track-source-context="content_tdec_restricted_search"
+                                       data-track-target-type="official_source_restricted">
+                                        <strong>Optional: try the TDEC SSDS record search</strong>
+                                        <span>Officially linked by Tennessee, but currently returns 403 for some users. Do not retry if blocked.</span>
                                     </a>
                                 @elseif ("dhec-septic-permit-lookup".equals(contentPage.slug()))
                                     <a href="https://des.sc.gov/permits-regulations/septic-tanks"
@@ -1039,7 +1066,7 @@
                         <span class="eyebrow">Official lookup command board</span>
                         <h2>
                             @if ("tdec-septic-records".equals(contentPage.slug()))
-                                TDEC records searches need the state search, then a county fallback.
+                                TDEC records need a working office or request path, not repeated 403 pages.
                             @elseif ("north-carolina-septic-permit-lookup".equals(contentPage.slug()))
                                 North Carolina searches usually resolve at county environmental health.
                             @elseif ("texas-ossf-records-search".equals(contentPage.slug()))
@@ -1058,15 +1085,32 @@
                     <div class="official-tool-console__grid">
                         <article class="official-tool-route">
                             <span>TN / TDEC</span>
-                            <h3>TDEC septic records search</h3>
+                            <h3>Tennessee SSDS records and office routing</h3>
                             @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
-                                <p>Use the TDEC septic permit search first. If the parcel is not visible, fall back to the Tennessee county route or a records request.</p>
+                                <p>Use the working SSDS program page, field-office directory, or public-records request. The direct record search is optional while TDEC returns 403 for some users.</p>
                             @endif
                             <div class="official-tool-route__actions">
                                 <a class="button button--primary"
-                                   href="https://tdec.tn.gov/document-viewer/search/stp"
+                                   href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html"
                                    target="_blank"
-                                   rel="noreferrer">Open TDEC search</a>
+                                   rel="noreferrer"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_tdec_ssds_program"
+                                   data-track-target-type="official_source">Open official SSDS page</a>
+                                <a class="button button--secondary"
+                                   href="https://www.tn.gov/environment/contacts/field-offices.html"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_tdec_field_office"
+                                   data-track-target-type="official_contact">Find field office</a>
+                                <a class="button button--secondary"
+                                   href="https://www.tn.gov/environment/contacts/public-records-request.html"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_tool_tdec_public_records"
+                                   data-track-target-type="official_request">Request public records</a>
                                 <a class="button button--secondary"
                                    href="/tdec-septic-records/"
                                    data-track-click="nav"
@@ -1074,7 +1118,7 @@
                                    data-track-target-type="internal_page">Use TDEC guide</a>
                             </div>
                             @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
-                                <p class="official-tool-route__fallback">If the official tab returns 403 or blocks your region, use the guide and request builder so the search does not restart on Google.</p>
+                                <p class="official-tool-route__fallback">TDEC's direct SSDS record search is officially listed but currently returns 403 for some users. Use the field office or records request with the same parcel and owner clues.</p>
                             @endif
                         </article>
 

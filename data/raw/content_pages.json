@@ -1796,48 +1796,49 @@
         "TN septic records by address"
       ],
       "title": "TDEC Septic Permit Search by Address and SSDS Records",
-      "metaDescription": "Search TDEC septic permits and SSDS records by address, then retry with parcel, owner, permit number, subdivision, or legal description before using the Tennessee county fallback.",
-      "updatedAt": "2026-07-26",
-      "reviewedAt": "2026-07-26",
-      "introCopy": "Use this page for the official TDEC septic permit search by address and SSDS document route. If the address does not return the file, retry with parcel, owner, permit number, subdivision, lot, or legal description before moving to a Tennessee county office or targeted records request.",
+      "metaDescription": "Find Tennessee septic permits through the working SSDS program page, field office, county route, or public-records request when the direct TDEC search returns 403.",
+      "updatedAt": "2026-07-28",
+      "reviewedAt": "2026-07-28",
+      "introCopy": "TDEC's direct SSDS record search currently returns 403 for some users, including through a VPN. Start with Tennessee's working SSDS program page, then identify the Environmental Field Office or contract-county route and request the permit, layout, final approval, repair history, or written no-record response with the same address, parcel, owner, subdivision, and permit clues.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
       "targetReader": "Best for Tennessee buyers, owners, agents, contractors, and closing teams who need the official septic file before trusting a quote, inspection story, addition plan, or transaction deadline.",
       "deepDiveParagraphs": [
-        "Tennessee septic records often begin with TDEC, but the useful answer may still depend on county context, older scanned files, environmental field office routing, parcel data, and the exact document name used by the office.",
+        "Tennessee septic records often begin with TDEC, but the viewer can be blocked by network or region and the useful answer may still depend on county context, older scanned files, environmental field office routing, parcel data, and the exact document name used by the office.",
         "Search TDEC with every identifier available: address, owner, parcel, permit number, subdivision, lot number, and legal description. A failed address search should not be treated as proof that no septic file exists.",
         "When the state search is thin, ask for the SSDS permit, as-built or site sketch, final approval, repair file, inspection letter, complaint history, and a written explanation of the next archive or county route."
       ],
       "fitBullets": [
         "The property is in Tennessee and you need a septic permit, SSDS record, as-built, or final approval.",
-        "The TDEC search returns a partial result, no result, or a result that does not answer the buyer or contractor question.",
+        "The direct TDEC search returns 403, a partial result, or no result, so an office or written request is needed.",
         "A county page or office handoff is needed after the state route."
       ],
       "decisionSteps": [
-        "Search the TDEC document route with address, owner, parcel, permit number, subdivision, and lot clues.",
+        "Open Tennessee's official SSDS program page and confirm whether the parcel belongs to TDEC or one of the contract counties.",
+        "Use the county's Environmental Field Office or public-records request with the address, owner, parcel, permit number, subdivision, and lot clues; do not keep retrying a 403 search.",
         "Capture whether the first artifact is a permit, as-built, final approval, repair file, inspection letter, or no-record response.",
         "Open the Tennessee county records page when county-level routing is stronger than the generic state path.",
         "Use the request builder if TDEC or the county needs a targeted file-pull message."
       ],
       "lowEndBreakers": [
-        "A TDEC result may not include final approval, as-built layout, repair history, or current bedroom-use context.",
+        "A direct TDEC result, when accessible, may still omit final approval, as-built layout, repair history, or current bedroom-use context.",
         "Older Tennessee files may need alternate search keys or office handoff.",
-        "If the first official search fails, the risk is unresolved until a parcel, owner, legal-description, or county route is checked."
+        "If the direct search is blocked, the risk is unresolved until the field office or contract county checks the parcel, owner, and legal description."
       ],
       "quotePrepChecklist": [
-        "TDEC search result, county record page, parcel ID, owner name, legal description, subdivision, lot number, permit number, and address.",
+        "County or field-office response, parcel ID, owner name, legal description, subdivision, lot number, permit number, and address.",
         "SSDS permit, as-built, final approval, operation record, repair history, complaint record, inspection letter, and no-record response.",
         "Notes on whether the answer came from state search, county route, field office, or public-records request."
       ],
       "driverBullets": [
         "TDEC intent is high because users are usually trying to resolve an official file, not read general septic advice.",
-        "Tennessee pages need a state-to-county workflow because state search friction often creates the next click.",
+        "Tennessee pages need a state-to-office workflow because the direct TDEC record search can return 403.",
         "Artifact language helps the page satisfy buyer, contractor, and office-user intent in one path."
       ],
       "faqBlocks": [
         {
           "question": "Where do I start a TDEC septic records search?",
-          "answer": "Start with the official TDEC septic document route, then use county records pages or a targeted records request if the result is incomplete."
+          "answer": "Start with Tennessee's working SSDS program page, then identify the Environmental Field Office or contract county and submit a targeted request. Treat the direct TDEC record search as optional while it returns 403."
         },
         {
           "question": "What should I search in Tennessee besides the address?",

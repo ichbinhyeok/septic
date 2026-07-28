@@ -113,20 +113,29 @@
                             <input type="number" min="1" max="10" name="bedrooms" value="${estimateForm.getBedrooms()}">
                         </label>
 
+                    </div>
+                </section>
+
+                <div class="form-actions form-actions--quick">
+                    <button class="button button--primary" type="submit">Show planning estimate</button>
+                    <p>Start with a broad range. Add site details below only when you know them.</p>
+                </div>
+
+                <details class="form-section form-section--secondary calculator-advanced">
+                    <summary>
+                        <span>
+                            <strong>Tighten the range</strong>
+                            <small>Optional soil, access, and site details</small>
+                        </span>
+                        <span aria-hidden="true">+</span>
+                    </summary>
+
+                    <div class="field-grid field-grid--secondary">
                         <label class="field">
                             <span>Occupants (optional)</span>
                             <input type="number" min="1" max="20" name="occupants" value="${estimateForm.getOccupantsValue()}">
                         </label>
-                    </div>
-                </section>
 
-                <section class="form-section form-section--secondary">
-                    <div class="form-section__header">
-                        <h2>Tighten the range</h2>
-                        <p>Add these when you know them. Unknown is still a valid starting point.</p>
-                    </div>
-
-                    <div class="field-grid field-grid--secondary">
                         <label class="field">
                             <span>Soil / perc status</span>
                             <select name="soilPercStatus">
@@ -171,12 +180,7 @@
                             <span>High water table or shallow bedrock suspected</span>
                         </label>
                     </div>
-                </section>
-
-                <div class="form-actions">
-                    <button class="button button--primary" type="submit">Show planning estimate</button>
-                    <p>Planning only. Final sizing, system design, and permitting still need local review.</p>
-                </div>
+                </details>
             </form>
 
             <div class="calculator-output">

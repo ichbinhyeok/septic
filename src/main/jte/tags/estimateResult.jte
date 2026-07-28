@@ -10,46 +10,24 @@
         </div>
     </div>
 
-    <div class="estimate-trust-grid" aria-label="Estimate confidence">
-        <article>
-            <span>What is grounded</span>
-            <strong>${result.confidenceLabel()}</strong>
-            <small>State rules and published sources</small>
-        </article>
-        <article>
-            <span>What is not known</span>
-            <strong>Planning only</strong>
-            <small>Local labor and contractor availability</small>
-        </article>
-        <article>
-            <span>Confidence ceiling</span>
-            <strong>Limited</strong>
-            <small>Soil, access, layout, and failure scope can change it</small>
-        </article>
-        <article>
-            <span>Source freshness</span>
-            <strong>${result.lastVerifiedAt()}</strong>
-            <small>${result.agencyName()} profile</small>
-        </article>
-    </div>
-
     <div class="result-grid">
-        <article class="metric-card">
-            <span class="metric-card__label">Likely minimum tank size</span>
-            <strong>${result.formattedLikelyMinimumTank()}</strong>
-            <p>${result.officialMinimumNote()}</p>
-        </article>
-
-        <article class="metric-card">
-            <span class="metric-card__label">Conservative recommended range</span>
-            <strong>${result.formattedRecommendedTankRange()}</strong>
-            <p>${result.rangeReason()}</p>
-        </article>
-
-        <article class="metric-card metric-card--accent">
+        <article class="metric-card metric-card--accent metric-card--headline">
             <span class="metric-card__label">Planning cost range</span>
             <strong>${result.formattedTotalCostRange()}</strong>
-            <p>The arithmetic midpoint is about ${result.formattedTotalCostMid()}, but it is not the expected bid.</p>
+            <p>Use this for early budgeting. The midpoint, about ${result.formattedTotalCostMid()}, is not an expected bid.</p>
+        </article>
+
+        <article class="metric-card">
+            <span class="metric-card__label">Current decision quality</span>
+            <strong>${result.confidenceLabel()}</strong>
+            <p>Soil, access, layout, and failure scope still limit how tightly this can be priced.</p>
+        </article>
+
+        <article class="metric-card">
+            <span class="metric-card__label">Likely tank lane</span>
+            <strong>${result.formattedLikelyMinimumTank()}</strong>
+            <p>${result.officialMinimumNote()}</p>
+            <p>Recommended planning range: ${result.formattedRecommendedTankRange()}. ${result.rangeReason()}</p>
         </article>
 
         <article class="metric-card">
@@ -59,19 +37,42 @@
         </article>
     </div>
 
-    <div class="estimate-use-map" aria-label="How to use this estimate">
-        <div>
-            <span>Use this result for</span>
-            <strong>Budgeting and spotting the variables that can widen the job.</strong>
+    <div class="estimate-scenario-board" aria-label="Planning scenarios">
+        <div class="estimate-scenario-board__intro">
+            <span class="eyebrow">Read the range as scenarios</span>
+            <h3>Which side of the range should you plan around?</h3>
+            <p>These are planning lanes, not bid predictions. Move upward when the file or site reveals complexity.</p>
         </div>
-        <div>
-            <span>Do not use it for</span>
-            <strong>Choosing a contractor, setting a contract price, or proving permit eligibility.</strong>
+        <div class="estimate-scenario-list">
+            <article>
+                <span>Known-basics lane</span>
+                <strong>${result.formattedBaselineLane()}</strong>
+                <p>Use only while access, soil, layout, system type, and repair scope remain straightforward.</p>
+            </article>
+            <article>
+                <span>Complex-site lane</span>
+                <strong>${result.formattedComplexSiteLane()}</strong>
+                <p>Plan here when poor soil, difficult access, engineered design, or wider failure scope appears.</p>
+            </article>
+            <article>
+                <span>Pause pricing</span>
+                <strong>Key facts still missing</strong>
+                <p>Do not turn this range into a contract price until the permit, site facts, and written local scope agree.</p>
+            </article>
         </div>
+    </div>
+
+    <div class="estimate-tighteners">
         <div>
-            <span>Tighten the range with</span>
-            <strong>The permit and layout, site or soil evaluation, and a local written scope.</strong>
+            <span class="eyebrow">What narrows this result</span>
+            <h3>Bring these facts to the next quote.</h3>
         </div>
+        <ol>
+            @for (var item : result.checklist().stream().limit(3).toList())
+                <li>${item}</li>
+            @endfor
+        </ol>
+        <p><strong>Source profile checked ${result.lastVerifiedAt()}.</strong> Live local bids and contractor availability are not included.</p>
     </div>
 
     <article class="estimate-basis-strip">

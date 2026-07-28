@@ -47,6 +47,14 @@ public record EstimatorResult(
         return "$" + formatNumber(totalCostMid);
     }
 
+    public String formattedBaselineLane() {
+        return "$" + formatNumber(totalCostLow) + " - $" + formatNumber(totalCostMid);
+    }
+
+    public String formattedComplexSiteLane() {
+        return "$" + formatNumber(totalCostMid) + " - $" + formatNumber(totalCostHigh);
+    }
+
     private String formatNumber(int value) {
         return NumberFormat.getNumberInstance(Locale.US).format(value);
     }

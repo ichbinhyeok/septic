@@ -807,6 +807,7 @@
             const input = finder.querySelector("[data-address-record-finder-input]");
             const purposeSelect = finder.querySelector("[data-address-record-finder-purpose]");
             const submit = finder.querySelector("[data-address-record-finder-submit]");
+            const directDocumentButton = finder.querySelector("[data-record-document-direct]");
             const result = finder.querySelector("[data-address-record-finder-result]");
             const status = finder.querySelector("[data-address-record-finder-status]");
             const heading = finder.querySelector("[data-address-record-finder-heading]");
@@ -818,6 +819,11 @@
             const reviewed = finder.querySelector("[data-address-record-finder-reviewed]");
             const steps = finder.querySelector("[data-address-record-finder-steps]");
             const actions = finder.querySelector("[data-address-record-finder-actions]");
+            const officialNote = finder.querySelector(".record-finder__official-note");
+            const routeDetails = finder.querySelector(".record-finder__route-details");
+            const searchPacket = finder.querySelector("[data-record-search-packet]");
+            const searchPacketOutput = finder.querySelector("[data-record-search-packet-output]");
+            const searchPacketCopy = finder.querySelector("[data-record-search-packet-copy]");
             const returnPanel = finder.querySelector("[data-address-record-finder-return]");
             const outcomes = finder.querySelector("[data-address-record-finder-outcomes]");
             const clearProgressButton = finder.querySelector("[data-record-progress-clear]");
@@ -826,6 +832,8 @@
             const documentForm = finder.querySelector("[data-record-document-form]");
             const documentFile = finder.querySelector("[data-record-document-file]");
             const documentSubmit = finder.querySelector("[data-record-document-submit]");
+            const documentPaste = finder.querySelector("[data-record-document-paste]");
+            const documentPasteSubmit = finder.querySelector("[data-record-document-paste-submit]");
             const workspaceImport = finder.querySelector("[data-record-workspace-import]");
             const documentStatus = finder.querySelector("[data-record-document-status]");
             const documentAnalysis = finder.querySelector("[data-record-document-analysis]");
@@ -839,6 +847,10 @@
             let awaitingOfficialReturn = false;
             let workspaceState = { documents: [] };
             const confirmedFindingKeys = new Set();
+            const requestedAddress = new URLSearchParams(window.location.search).get("address")?.trim();
+            if (requestedAddress && input instanceof HTMLInputElement && !input.value) {
+                input.value = requestedAddress.slice(0, 180);
+            }
 
             const purposeRequirements = {
                 buying: [
@@ -895,7 +907,20 @@
             function button(label, href, primary, targetType) {
                 const link = document.createElement("a");
                 link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
-                link.href = href;
+                let resolvedHref = href;
+                if (targetType === "county_records_page"
+                    && routeContext?.matchedAddress
+                    && typeof href === "string"
+                    && href.startsWith("/")
+                    && !href.startsWith("//")) {
+                    const routeUrl = new URL(href, window.location.origin);
+                    routeUrl.searchParams.set("address", routeContext.matchedAddress);
+                    if (routeContext.purpose) {
+                        routeUrl.searchParams.set("purpose", routeContext.purpose);
+                    }
+                    resolvedHref = `${routeUrl.pathname}${routeUrl.search}${routeUrl.hash}`;
+                }
+                link.href = resolvedHref;
                 link.textContent = label;
                 link.dataset.trackClick = "nav";
                 link.dataset.trackSourceContext = "address_record_finder_result";
@@ -1012,6 +1037,27 @@
                         ? `Official route reviewed ${context.routeReviewedAt}`
                         : "Official route linked; confirm current submission details on the destination site.";
                 }
+            }
+
+            function searchPacketText(context) {
+                return [
+                    context?.matchedAddress ? `Property: ${context.matchedAddress}` : "",
+                    context?.countyName || context?.stateName
+                        ? `Location: ${[context.countyName, context.stateName].filter(Boolean).join(", ")}`
+                        : "",
+                    context?.officeLabel ? `File owner: ${context.officeLabel}` : "",
+                    context?.contactLine ? `Fallback contact: ${context.contactLine}` : "",
+                    "Ask for: permit, installed layout or as-built, final approval, and repair history."
+                ].filter(Boolean).join("\n");
+            }
+
+            function renderSearchPacket(context) {
+                if (!(searchPacket instanceof HTMLElement) || !(searchPacketOutput instanceof HTMLElement)) {
+                    return;
+                }
+                const packetText = searchPacketText(context);
+                searchPacketOutput.textContent = packetText.replace(/\n/g, " · ");
+                searchPacket.hidden = !packetText;
             }
 
             function findingsByKey(documents) {
@@ -1341,6 +1387,12 @@
 
             function render(payload) {
                 result.hidden = false;
+                if (officialNote instanceof HTMLElement) {
+                    officialNote.hidden = false;
+                }
+                if (routeDetails instanceof HTMLDetailsElement) {
+                    routeDetails.hidden = false;
+                }
                 routeContext = {
                     stateCode: payload.stateCode || "",
                     stateName: payload.stateName || "",
@@ -1381,6 +1433,7 @@
                     meta.hidden = values.length === 0;
                 }
                 renderOffice(routeContext);
+                renderSearchPacket(routeContext);
                 if (steps) {
                     const relaySteps = Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
                     steps.replaceChildren(...relaySteps.map((value) => {
@@ -1420,6 +1473,82 @@
                 }
             }
 
+            directDocumentButton?.addEventListener("click", () => {
+                try {
+                    sessionStorage.removeItem(pendingReturnStorageKey);
+                    localStorage.removeItem(taskProgressStorageKey);
+                } catch (_) {
+                    // Direct document review still works when browser storage is unavailable.
+                }
+                routeContext = {
+                    stateCode: "",
+                    stateName: "",
+                    countyName: "",
+                    matchedAddress: input.value.trim(),
+                    routePath: "",
+                    officeLabel: "",
+                    contactLine: "",
+                    routeReviewedAt: "",
+                    directDocument: true,
+                    purpose: currentPurpose()
+                };
+                result.hidden = false;
+                if (status) {
+                    status.textContent = "Document in hand";
+                }
+                if (heading) {
+                    heading.textContent = "Check the record you already have";
+                }
+                if (message) {
+                    message.textContent = "Upload a PDF, photo, text file, or letter. SepticPath will extract common permit facts, show the source text, and keep missing or conflicting items visible.";
+                }
+                if (meta) {
+                    meta.hidden = true;
+                    meta.replaceChildren();
+                }
+                actions?.replaceChildren();
+                if (searchPacket instanceof HTMLElement) {
+                    searchPacket.hidden = true;
+                }
+                if (officialNote instanceof HTMLElement) {
+                    officialNote.hidden = true;
+                }
+                if (routeDetails instanceof HTMLDetailsElement) {
+                    routeDetails.hidden = true;
+                }
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = true;
+                }
+                if (next instanceof HTMLElement) {
+                    next.hidden = true;
+                    next.replaceChildren();
+                }
+                if (documentWorkspace instanceof HTMLElement) {
+                    documentWorkspace.hidden = false;
+                    documentWorkspace.scrollIntoView({ behavior: "smooth", block: "start" });
+                    window.setTimeout(() => documentFile?.focus(), 320);
+                }
+                sendArtifactAction("address_record_finder", "direct_document_opened", "document_workspace");
+            });
+
+            searchPacketCopy?.addEventListener("click", async () => {
+                const packetText = searchPacketText(routeContext);
+                if (!packetText) {
+                    return;
+                }
+                const originalLabel = searchPacketCopy.textContent;
+                try {
+                    await navigator.clipboard.writeText(packetText);
+                    searchPacketCopy.textContent = "Copied";
+                    sendArtifactAction("address_record_finder", "copied", "official_search_packet");
+                } catch (_) {
+                    searchPacketCopy.textContent = "Copy unavailable";
+                }
+                window.setTimeout(() => {
+                    searchPacketCopy.textContent = originalLabel;
+                }, 1600);
+            });
+
             actions?.addEventListener("click", (event) => {
                 const officialLink = event.target instanceof Element
                     ? event.target.closest("[data-record-official-link]")
@@ -1429,6 +1558,12 @@
                 }
                 awaitingOfficialReturn = true;
                 saveTaskProgress("official_opened");
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "record_finder_official_open", {
+                        state_code: routeContext?.stateCode || "unknown",
+                        county_name: routeContext?.countyName || "unknown"
+                    });
+                }
                 window.setTimeout(showReturnPrompt, 350);
             });
 
@@ -1444,6 +1579,7 @@
                 const outcome = outcomeButton.dataset.recordOutcome || "missing";
                 saveTaskProgress("outcome_selected", outcome);
                 renderNextStep(outcome);
+                sendArtifactAction("address_record_finder", `outcome_${outcome}`, "official_record_route");
             });
 
             clearProgressButton?.addEventListener("click", () => {
@@ -1932,6 +2068,7 @@
                     return;
                 }
                 routeContext = active.context;
+                const directDocumentSession = Boolean(storedDocuments.length && routeContext.directDocument);
                 if (purposeSelect instanceof HTMLSelectElement && routeContext.purpose) {
                     purposeSelect.value = routeContext.purpose;
                 }
@@ -1940,20 +2077,37 @@
                 }
                 result.hidden = false;
                 if (status) {
-                    status.textContent = "Browser session restored";
+                    status.textContent = directDocumentSession ? "Document session restored" : "Browser session restored";
                 }
                 if (heading) {
-                    heading.textContent = routeContext.countyName
+                    heading.textContent = directDocumentSession
+                        ? "Continue checking your documents"
+                        : routeContext.countyName
                         ? `Continue the ${routeContext.countyName} record check`
                         : "Continue the property record check";
                 }
                 if (message) {
-                    message.textContent = storedDocuments.length
+                    message.textContent = directDocumentSession
+                        ? "The extracted summary stayed in this browser tab. Add the original document again only if you need to re-run the extraction."
+                        : storedDocuments.length
                         ? "The address context and extracted summary stayed only in this browser tab. The original document was not stored."
                         : "Your last official-route step was restored from this device. Choose what happened to continue.";
                 }
                 renderOffice(routeContext);
-                showReturnPrompt();
+                renderSearchPacket(routeContext);
+                if (directDocumentSession) {
+                    if (officialNote instanceof HTMLElement) {
+                        officialNote.hidden = true;
+                    }
+                    if (routeDetails instanceof HTMLDetailsElement) {
+                        routeDetails.hidden = true;
+                    }
+                    if (returnPanel instanceof HTMLElement) {
+                        returnPanel.hidden = true;
+                    }
+                } else {
+                    showReturnPrompt();
+                }
                 if (pending?.outcome && outcomes instanceof HTMLElement) {
                     const savedButton = outcomes.querySelector(`[data-record-outcome="${pending.outcome}"]`);
                     if (savedButton instanceof HTMLButtonElement) {
@@ -2004,26 +2158,19 @@
                 }
             });
 
-            documentForm?.addEventListener("submit", async (event) => {
-                event.preventDefault();
-                if (!(documentFile instanceof HTMLInputElement)
-                    || !(documentSubmit instanceof HTMLButtonElement)
-                    || !documentFile.files?.length) {
-                    if (documentStatus) {
-                        documentStatus.textContent = "Choose a PDF or text file.";
-                    }
-                    return;
-                }
-
+            const analyzeRecordSource = async (file, sourceType, submitButton) => {
                 const data = new FormData();
-                data.append("file", documentFile.files[0]);
+                data.append("file", file);
                 data.append("purpose", routeContext?.purpose || currentPurpose());
                 data.append("stateCode", routeContext?.stateCode || "");
                 data.append("countyName", routeContext?.countyName || "");
-                documentSubmit.disabled = true;
-                documentSubmit.textContent = "Analyzing...";
+                const originalLabel = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = "Analyzing...";
                 if (documentStatus) {
-                    documentStatus.textContent = "Reading the document in memory. Typed scans may take longer while OCR runs. Nothing is being saved.";
+                    documentStatus.textContent = sourceType === "pasted"
+                        ? "Checking the pasted details in memory. Nothing is being saved."
+                        : "Reading the source in memory. Photos and scans may take longer while OCR runs. Nothing is being saved.";
                 }
                 try {
                     const response = await fetch("/api/septic-document-analyzer", {
@@ -2036,6 +2183,15 @@
                         const summary = addDocumentToWorkspace(payload);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
+                        sendArtifactAction("address_record_finder", sourceType, "property_record");
+                        if (typeof window.gtag === "function") {
+                            window.gtag("event", "record_finder_document_added", {
+                                state_code: routeContext?.stateCode || "unknown",
+                                county_name: routeContext?.countyName || "unknown",
+                                source_type: sourceType,
+                                document_count: workspaceState.documents.length
+                            });
+                        }
                     } else {
                         renderDocumentAnalysis(payload);
                     }
@@ -2044,13 +2200,48 @@
                             ? `${payload.fileName || "Document"} added. Add another record to fill the remaining gaps.`
                             : (payload.summary || "The file could not be analyzed.");
                     }
+                    return response.ok;
                 } catch (_) {
                     if (documentStatus) {
                         documentStatus.textContent = "Analysis could not connect. The file was not saved.";
                     }
+                    return false;
                 } finally {
-                    documentSubmit.disabled = false;
-                    documentSubmit.textContent = "Add to property file";
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalLabel;
+                }
+            };
+
+            documentForm?.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                if (!(documentFile instanceof HTMLInputElement)
+                    || !(documentSubmit instanceof HTMLButtonElement)
+                    || !documentFile.files?.length) {
+                    if (documentStatus) {
+                        documentStatus.textContent = "Choose a PDF, photo, or text file.";
+                    }
+                    return;
+                }
+                await analyzeRecordSource(documentFile.files[0], "uploaded", documentSubmit);
+            });
+
+            documentPasteSubmit?.addEventListener("click", async () => {
+                if (!(documentPaste instanceof HTMLTextAreaElement)
+                    || !(documentPasteSubmit instanceof HTMLButtonElement)) {
+                    return;
+                }
+                const pastedText = documentPaste.value.trim();
+                if (pastedText.length < 30) {
+                    if (documentStatus) {
+                        documentStatus.textContent = "Paste at least a few lines of record text so there is enough context to check.";
+                    }
+                    documentPaste.focus();
+                    return;
+                }
+                const pastedFile = new File([pastedText], "pasted-official-record.txt", { type: "text/plain" });
+                const added = await analyzeRecordSource(pastedFile, "pasted", documentPasteSubmit);
+                if (added) {
+                    documentPaste.value = "";
                 }
             });
 
@@ -2117,6 +2308,1174 @@
     }
 
     setupAddressRecordFinders();
+
+    function setupCountyAccessWorkflows() {
+        const workflows = Array.from(document.querySelectorAll("[data-county-access-workflow]"));
+        if (!workflows.length) {
+            return;
+        }
+
+        const lifetime = 30 * 24 * 60 * 60 * 1000;
+
+        workflows.forEach((workflow) => {
+            const countyKey = workflow.dataset.countyKey || window.location.pathname;
+            const mode = workflow.dataset.countyMode || "official_request";
+            const acquisitionMethod = workflow.dataset.countyAcquisitionMethod || "";
+            const requiresAddressOrParcel = workflow.dataset.countyAddressOrParcel === "true";
+            const requiresDocumentSelection = workflow.dataset.countyDocumentSelectionRequired === "true";
+            const requestedPropertyAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
+            const requestedPurpose = new URLSearchParams(window.location.search).get("purpose")?.trim() || "";
+            const primaryUrl = workflow.dataset.countyPrimaryUrl || "";
+            const secondaryUrl = workflow.dataset.countySecondaryUrl || "";
+            const address = workflow.querySelector("[data-county-access-address]");
+            const parcel = workflow.querySelector("[data-county-access-parcel]");
+            const copy = workflow.querySelector("[data-county-access-copy]");
+            const status = workflow.querySelector("[data-county-access-status]");
+            const returnPanel = workflow.querySelector("[data-county-access-return]");
+            const next = workflow.querySelector("[data-county-access-next]");
+            const clear = workflow.querySelector("[data-county-access-clear]");
+            const reference = workflow.querySelector("[data-county-access-reference]");
+            const outcomes = workflow.querySelectorAll("[data-county-access-outcome]");
+            const officialLinks = document.querySelectorAll("[data-county-access-official]");
+            const storageKey = `septicpath-county-access-v1:${countyKey}`;
+            let awaitingReturn = false;
+            let gaPreparationStarted = false;
+            let gaTaskCompleted = false;
+            let gaLastOutcome = "";
+            const gaReadyPaths = new Set();
+            const [stateCode = "", countySlug = ""] = countyKey.split("::");
+
+            function emitCountyGaEvent(eventName, extra = {}) {
+                emitGaEvent(eventName, {
+                    county_key: countyKey,
+                    state_code: stateCode,
+                    county_slug: countySlug,
+                    access_mode: mode,
+                    acquisition_method: acquisitionMethod || "not_published",
+                    ...extra
+                });
+            }
+
+            function markGaPreparationStarted(entryPoint) {
+                if (gaPreparationStarted) {
+                    return;
+                }
+                gaPreparationStarted = true;
+                emitCountyGaEvent("county_prepare_started", { entry_point: entryPoint });
+            }
+
+            emitCountyGaEvent("county_workflow_viewed");
+
+            function safeValue(input) {
+                return input instanceof HTMLInputElement ? input.value.trim() : "";
+            }
+
+            function readState() {
+                try {
+                    const value = JSON.parse(localStorage.getItem(storageKey) || "null");
+                    if (!value || typeof value !== "object" || Date.now() - Number(value.updatedAt || 0) > lifetime) {
+                        localStorage.removeItem(storageKey);
+                        return null;
+                    }
+                    return value;
+                } catch (_) {
+                    return null;
+                }
+            }
+
+            function writeState(patch) {
+                const previous = readState() || {};
+                const value = {
+                    ...previous,
+                    ...patch,
+                    address: safeValue(address),
+                    parcel: safeValue(parcel),
+                    reference: safeValue(reference),
+                    mode,
+                    updatedAt: Date.now()
+                };
+                try {
+                    localStorage.setItem(storageKey, JSON.stringify(value));
+                } catch (_) {
+                    // The visible workflow continues without persistent browser storage.
+                }
+                return value;
+            }
+
+            function showReturn() {
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = false;
+                }
+            }
+
+            function actionLink(label, path, primary = false) {
+                const link = document.createElement("a");
+                link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
+                link.textContent = label;
+                link.href = path;
+                if (/^https?:/i.test(path)) {
+                    link.target = "_blank";
+                    link.rel = "noreferrer";
+                }
+                return link;
+            }
+
+            function workspacePath() {
+                const params = new URLSearchParams();
+                if (safeValue(address)) {
+                    params.set("address", safeValue(address));
+                }
+                if (requestedPurpose) {
+                    params.set("purpose", requestedPurpose);
+                }
+                return `/septic-record-finder/${params.toString() ? `?${params.toString()}` : ""}`;
+            }
+
+            function requestPath() {
+                return "/septic-records-request-builder/?mode=task#records-request-builder";
+            }
+
+            function externalSecondaryUrl() {
+                return /^(https?:|mailto:|tel:)/i.test(secondaryUrl) ? secondaryUrl : "";
+            }
+
+            function officialActionUrl(outcome = "") {
+                const secondary = externalSecondaryUrl();
+                if (acquisitionMethod === "official_route_blocked") {
+                    return secondary || primaryUrl;
+                }
+                if (countyKey === "TX::tarrant-county") {
+                    return primaryUrl;
+                }
+                if (countyKey === "AZ::maricopa-county" && outcome !== "artifact") {
+                    return secondary || primaryUrl;
+                }
+                if ((outcome === "not_found_online" || outcome === "blocked")
+                    || (outcome === "partial" && acquisitionMethod === "official_search")) {
+                    return secondary || primaryUrl;
+                }
+                return primaryUrl;
+            }
+
+            function officialActionLabel(prefix = "Return to") {
+                const route = {
+                    official_search: "the official search",
+                    official_pdf: "the official PDF",
+                    official_portal: "the official portal",
+                    official_contact_form: "the official contact form",
+                    official_contact: "the official OSSF contact",
+                    official_phone: "the official phone instructions",
+                    official_route_blocked: "the verified county contact"
+                }[acquisitionMethod] || "the official route";
+                return `${prefix} ${route}`;
+            }
+
+            function appendOfficialAction(actions, label = officialActionLabel(), primary = false, outcome = "") {
+                const path = officialActionUrl(outcome);
+                if (path) {
+                    actions.append(actionLink(label, path, primary));
+                }
+            }
+
+            function renderNext(outcome) {
+                if (!(next instanceof HTMLElement)) {
+                    return;
+                }
+                const block = document.createElement("div");
+                const heading = document.createElement("strong");
+                const body = document.createElement("p");
+                const actions = document.createElement("div");
+                actions.className = "county-access-workflow__actions";
+
+                if (outcome === "artifact") {
+                    heading.textContent = "Add the document to the property file.";
+                    body.textContent = "The upload workspace extracts permit facts with source evidence and keeps missing documents visible.";
+                    actions.append(actionLink("Upload and review the document", workspacePath(), true));
+                } else if (outcome === "partial") {
+                    heading.textContent = "Keep the partial file and request only what is missing.";
+                    body.textContent = acquisitionMethod
+                        ? "Upload what you found, then return through this county's verified route for the missing item. SepticPath does not substitute an unverified request form."
+                        : "Upload the document you found, then prepare a narrower request for the missing artifact.";
+                    actions.append(actionLink("Add the partial document", workspacePath(), true));
+                    if (acquisitionMethod) {
+                        appendOfficialAction(actions, officialActionLabel(), false, outcome);
+                    } else {
+                        actions.append(actionLink("Prepare the missing-file request", requestPath()));
+                    }
+                } else if (outcome === "not_found_online") {
+                    heading.textContent = "No online result is not an official no-record finding.";
+                    if (acquisitionMethod === "official_search") {
+                        body.textContent = "Retry with another verified property identifier, then use the county's own fallback route if the index still returns nothing.";
+                    } else if (acquisitionMethod) {
+                        body.textContent = "Use this county's verified PDF, portal, or contact route. Do not treat a blank web result as proof that no property file exists.";
+                    } else {
+                        body.textContent = "Ask the responsible office to search by the property identifiers it accepts.";
+                    }
+                    if (acquisitionMethod) {
+                        appendOfficialAction(actions, officialActionLabel("Use"), true, outcome);
+                    } else {
+                        actions.append(actionLink("Prepare an official records request", requestPath(), true));
+                        if (secondaryUrl) {
+                            actions.append(actionLink("Open the fallback route", secondaryUrl));
+                        }
+                    }
+                } else if (outcome === "blocked") {
+                    heading.textContent = "Stop retrying the blocked route.";
+                    body.textContent = acquisitionMethod
+                        ? "Use the alternate official contact shown for this county and preserve the property details you already collected."
+                        : "Use the documented office or request fallback and preserve the property details you already collected.";
+                    if (acquisitionMethod) {
+                        const blockedLabel = {
+                            "TX::tarrant-county": "Use the official OSSF office",
+                            "NC::lincoln-county": "Use the official Environmental Health page",
+                            "TN::blount-county": "Use the official SSDS form fallback",
+                            "NY::suffolk-county": "Review the official phone instructions"
+                        }[countyKey] || officialActionLabel("Use");
+                        appendOfficialAction(actions, blockedLabel, true, outcome);
+                    } else {
+                        actions.append(actionLink("Prepare the fallback request", requestPath(), true));
+                        if (secondaryUrl) {
+                            actions.append(actionLink("Open the alternate route", secondaryUrl));
+                        }
+                    }
+                } else {
+                    heading.textContent = "Track the request until the office sends a property-specific result.";
+                    const savedReference = safeValue(reference);
+                    body.textContent = savedReference
+                        ? `Saved county reference: ${savedReference}. A submitted request is pending until the office sends a file or written no-record response.`
+                        : "A submitted request is pending, not complete. Save the confirmation above and return with the reply or written no-record response.";
+                    if (acquisitionMethod) {
+                        appendOfficialAction(actions, officialActionLabel("Reopen"), true, outcome);
+                        actions.append(actionLink("Open the document workspace", workspacePath()));
+                    } else {
+                        actions.append(actionLink("Open the document workspace", workspacePath(), true));
+                    }
+                }
+
+                block.append(heading, body, actions);
+                next.replaceChildren(block);
+            }
+
+            const saved = readState();
+            if (saved) {
+                if (address instanceof HTMLInputElement && saved.address && !requestedPropertyAddress) {
+                    address.value = String(saved.address).slice(0, 180);
+                }
+                if (parcel instanceof HTMLInputElement && saved.parcel) {
+                    parcel.value = String(saved.parcel).slice(0, 100);
+                }
+                if (reference instanceof HTMLInputElement && saved.reference) {
+                    reference.value = String(saved.reference).slice(0, 120);
+                }
+                if (saved.stage === "official_opened" || saved.outcome) {
+                    showReturn();
+                }
+                if (saved.outcome) {
+                    outcomes.forEach((button) => {
+                        button.toggleAttribute("aria-pressed", button.dataset.countyAccessOutcome === saved.outcome);
+                    });
+                    renderNext(saved.outcome);
+                }
+            }
+            if (address instanceof HTMLInputElement && requestedPropertyAddress) {
+                address.value = requestedPropertyAddress.slice(0, 180);
+                writeState({ stage: "prepared", purpose: requestedPurpose });
+                markGaPreparationStarted("address_handoff");
+            }
+
+            [address, parcel].forEach((input) => {
+                input?.addEventListener("input", () => {
+                    markGaPreparationStarted(input === address ? "property_address" : "parcel_id");
+                    writeState({ stage: "prepared" });
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Property clues saved on this device.";
+                    }
+                });
+            });
+
+            reference?.addEventListener("input", () => {
+                const savedOutcome = readState()?.outcome || "";
+                writeState({ stage: savedOutcome ? "outcome_recorded" : "official_opened" });
+                if (savedOutcome) {
+                    renderNext(savedOutcome);
+                }
+            });
+
+            copy?.addEventListener("click", async () => {
+                const lines = [
+                    safeValue(address) ? `Property address: ${safeValue(address)}` : "",
+                    safeValue(parcel) ? `Parcel / local ID: ${safeValue(parcel)}` : "",
+                    `County access mode: ${mode.replaceAll("_", " ")}`,
+                    primaryUrl ? `Official route: ${primaryUrl}` : ""
+                ].filter(Boolean);
+                if (!lines.length) {
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Add an address or parcel identifier first.";
+                    }
+                    address?.focus();
+                    return;
+                }
+                try {
+                    await copyText(lines.join("\n"));
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Search details copied.";
+                    }
+                    sendArtifactAction("county_access_workflow", "search_details_copied", mode);
+                } catch (_) {
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Copy unavailable. Select the details manually.";
+                    }
+                }
+            });
+
+            const acquisitionWorkspace = workflow.querySelector("[data-county-acquisition-workspace]");
+            const acquisitionTemplate = workflow.querySelector("[data-county-acquisition-template]");
+            const acquisitionPreview = workflow.querySelector("[data-county-acquisition-preview]");
+            const acquisitionCopy = workflow.querySelector("[data-county-acquisition-copy]");
+            const acquisitionInputCopy = workflow.querySelector("[data-county-acquisition-input-copy]");
+            const acquisitionEmail = workflow.querySelector("[data-county-acquisition-email]");
+            const acquisitionDownload = workflow.querySelector("[data-county-acquisition-download]");
+            const acquisitionPrint = workflow.querySelector("[data-county-acquisition-print]");
+            const acquisitionNextCopy = workflow.querySelector("[data-county-acquisition-next-copy]");
+            const officialPdfPrepare = workflow.querySelector("[data-county-official-pdf-prepare]");
+            const preparationDownload = workflow.querySelector("[data-county-preparation-download]");
+            const preparationPrint = workflow.querySelector("[data-county-preparation-print]");
+            const acquisitionStatus = workflow.querySelector("[data-county-acquisition-status]");
+            const acquisitionReadiness = workflow.querySelector("[data-county-acquisition-readiness]");
+            const acquisitionFallback = workflow.querySelector("[data-county-acquisition-fallback]");
+            const acquisitionInputs = Array.from(workflow.querySelectorAll("[data-county-acquisition-field]"));
+            const acquisitionFieldCopies = Array.from(
+                workflow.querySelectorAll("[data-county-acquisition-field-copy]")
+            );
+            const acquisitionDocuments = Array.from(
+                workflow.querySelectorAll(".county-acquisition-documents li")
+            ).map((item) => item.textContent.trim()).filter(Boolean);
+            const recipient = workflow.dataset.countyRecipient || "";
+            const emailSubjectTemplate = workflow.dataset.countyEmailSubject || "Septic record request";
+            const countyAgency = workflow.dataset.countyAgency || "";
+            const countyFee = workflow.dataset.countyFee || "Not published";
+            const countyTiming = workflow.dataset.countyTiming || "Not published";
+            const countyManualBoundary = workflow.dataset.countyManualBoundary || "";
+            const primaryLabel = workflow.dataset.countyPrimaryLabel || "Open official route";
+
+            function acquisitionInputValue(input) {
+                if (input instanceof HTMLInputElement
+                    || input instanceof HTMLSelectElement
+                    || input instanceof HTMLTextAreaElement) {
+                    return input.value.trim();
+                }
+                return "";
+            }
+
+            function acquisitionInputIsActive(input) {
+                const fallback = input?.closest("[data-county-acquisition-fallback]");
+                return !(fallback instanceof HTMLDetailsElement) || fallback.open;
+            }
+
+            function hasRequiredDocumentSelection() {
+                return acquisitionInputs.some((input) =>
+                    acquisitionInputIsActive(input)
+                    && /Requested$/.test(input.dataset.countyAcquisitionField || "")
+                    && acquisitionInputValue(input) === "Request this record"
+                );
+            }
+
+            function acquisitionDetails() {
+                return Object.fromEntries(acquisitionInputs.map((input) => [
+                    input.dataset.countyAcquisitionField || "",
+                    acquisitionInputValue(input)
+                ]).filter(([key]) => key));
+            }
+
+            function acquisitionLabels() {
+                const labels = {
+                    address: "property address",
+                    parcel: "parcel or local ID",
+                    documents: "requested documents"
+                };
+                acquisitionInputs.forEach((input) => {
+                    const key = input.dataset.countyAcquisitionField || "";
+                    const label = input.closest("label")?.querySelector("span")?.textContent
+                        ?.replace("optional", "")
+                        .trim();
+                    if (key && label) {
+                        labels[key] = label;
+                    }
+                });
+                return labels;
+            }
+
+            function acquisitionFieldLabel(input) {
+                if (input === address) {
+                    return "Property address";
+                }
+                if (input === parcel) {
+                    return "Parcel, GPIN, PIN, or Tax ID";
+                }
+                return input?.closest("label")?.querySelector("span")?.textContent
+                    ?.replace(/\s*optional.*$/i, "")
+                    .trim() || "Prepared field";
+            }
+
+            function acquisitionTransferFields() {
+                return [address, parcel, ...acquisitionInputs].filter((input, index, all) =>
+                    (input instanceof HTMLInputElement
+                    || input instanceof HTMLSelectElement
+                    || input instanceof HTMLTextAreaElement)
+                        ? all.indexOf(input) === index && acquisitionInputIsActive(input)
+                        : false
+                );
+            }
+
+            function acquisitionRequiredFields() {
+                return new Set([
+                    address?.hasAttribute("required") ? "address" : "",
+                    parcel?.hasAttribute("required") ? "parcel" : "",
+                    ...acquisitionInputs
+                        .filter((input) => input.hasAttribute("required") && acquisitionInputIsActive(input))
+                        .map((input) => input.dataset.countyAcquisitionField || "")
+                        .filter(Boolean)
+                ].filter(Boolean));
+            }
+
+            function acquisitionValues() {
+                return {
+                    address: safeValue(address),
+                    parcel: safeValue(parcel),
+                    documents: acquisitionDocuments.map((document) => `- ${document}`).join("\n"),
+                    ...acquisitionDetails()
+                };
+            }
+
+            function fillAcquisitionTemplate(template) {
+                const values = acquisitionValues();
+                const labels = acquisitionLabels();
+                const requiredFields = acquisitionRequiredFields();
+                return template.replace(/\{\{([a-zA-Z0-9]+)}}/g, (_, key) => {
+                    const value = values[key];
+                    if (value) {
+                        return value;
+                    }
+                    return requiredFields.has(key)
+                        ? `[add ${labels[key] || key}]`
+                        : "Not provided";
+                });
+            }
+
+            function missingAcquisitionFields() {
+                const missing = [];
+                if (address?.hasAttribute("required") && !safeValue(address)) {
+                    missing.push("Property address");
+                }
+                if (parcel?.hasAttribute("required") && !safeValue(parcel)) {
+                    missing.push("Parcel, GPIN, PIN, or Tax ID");
+                }
+                if (requiresAddressOrParcel && !safeValue(address) && !safeValue(parcel)) {
+                    missing.push("Property address or parcel ID");
+                }
+                acquisitionInputs.forEach((input) => {
+                    if (acquisitionInputIsActive(input)
+                        && input.hasAttribute("required")
+                        && !acquisitionInputValue(input)) {
+                        const label = input.closest("label")?.querySelector("span")?.textContent
+                            ?.replace("optional", "")
+                            .trim();
+                        missing.push(label || "Required field");
+                    }
+                });
+                if (requiresDocumentSelection && !hasRequiredDocumentSelection()) {
+                    missing.push("At least one official document selection");
+                }
+                return missing;
+            }
+
+            function renderAcquisitionReadiness() {
+                if (!(acquisitionReadiness instanceof HTMLElement)) {
+                    return;
+                }
+                const requiredControls = [
+                    address?.hasAttribute("required") ? address : null,
+                    parcel?.hasAttribute("required") ? parcel : null,
+                    ...acquisitionInputs.filter((input) =>
+                        input.hasAttribute("required") && acquisitionInputIsActive(input)
+                    )
+                ].filter(Boolean);
+                const groupRequired = requiresAddressOrParcel ? 1 : 0;
+                const groupReady = requiresAddressOrParcel && (safeValue(address) || safeValue(parcel)) ? 1 : 0;
+                const documentGroupRequired = requiresDocumentSelection ? 1 : 0;
+                const documentGroupReady = requiresDocumentSelection && hasRequiredDocumentSelection() ? 1 : 0;
+                const ready = requiredControls.filter((input) => {
+                    if (input === address || input === parcel) {
+                        return Boolean(safeValue(input));
+                    }
+                    return Boolean(acquisitionInputValue(input));
+                }).length + groupReady + documentGroupReady;
+                const total = requiredControls.length + groupRequired + documentGroupRequired;
+                acquisitionReadiness.textContent = total === 0
+                    ? acquisitionFallback instanceof HTMLDetailsElement
+                        ? "The primary route is ready. Open the fallback only if the free search is empty or incomplete."
+                        : "No additional required fields are published for this route."
+                    : ready === total
+                        ? `Preparation complete: ${ready} of ${total} required details are ready. Only the county step remains.`
+                        : `Preparation progress: ${ready} of ${total} required details are ready.`;
+                acquisitionReadiness.classList.toggle("is-complete", total > 0 && ready === total);
+                const preparationPath = acquisitionFallback instanceof HTMLDetailsElement
+                    ? acquisitionFallback.open ? "fallback_field_pack" : "primary_route"
+                    : total === 0 ? "no_published_fields" : "field_pack";
+                if (!gaReadyPaths.has(preparationPath) && (total === 0 || ready === total)) {
+                    gaReadyPaths.add(preparationPath);
+                    emitCountyGaEvent("county_prepare_ready", {
+                        required_detail_count: total,
+                        preparation_path: preparationPath
+                    });
+                }
+            }
+
+            function renderAcquisitionPreview() {
+                if (!(acquisitionTemplate instanceof HTMLTemplateElement)
+                    || !(acquisitionPreview instanceof HTMLTextAreaElement)) {
+                    return "";
+                }
+                const output = fillAcquisitionTemplate(acquisitionTemplate.content.textContent.trim());
+                acquisitionPreview.value = output;
+                return output;
+            }
+
+            function showAcquisitionStatus(message, error = false) {
+                if (acquisitionStatus instanceof HTMLElement) {
+                    acquisitionStatus.textContent = message;
+                    acquisitionStatus.classList.toggle("is-error", error);
+                }
+            }
+
+            function preparationSheetText() {
+                const labels = acquisitionLabels();
+                const values = acquisitionValues();
+                const missing = missingAcquisitionFields();
+                const preparedLines = Object.entries(values)
+                    .filter(([key, value]) => key !== "documents" && value)
+                    .map(([key, value]) => `${labels[key] || key}: ${value}`);
+                const lines = [
+                    "SEPTICPATH PREPARATION SHEET — NOT AN OFFICIAL COUNTY FORM",
+                    "",
+                    `County task: ${countyKey.replace("::", " ")}`,
+                    countyAgency ? `Official file owner: ${countyAgency}` : "",
+                    `Official route: ${primaryLabel}`,
+                    primaryUrl ? `Official URL: ${primaryUrl}` : "",
+                    secondaryUrl ? `Official fallback: ${secondaryUrl}` : "",
+                    `Published fee: ${countyFee}`,
+                    `Published timing: ${countyTiming}`,
+                    "",
+                    "PREPARED PROPERTY AND ROUTE VALUES",
+                    ...(preparedLines.length ? preparedLines : ["No property values added yet."]),
+                    ...(missing.length ? ["", "STILL TO PREPARE", ...missing.map((item) => `- ${item}`)] : []),
+                    ...(acquisitionDocuments.length
+                        ? ["", "TASK SCOPE TO REVIEW — NOT COUNTY-AUTHORED REQUEST WORDING",
+                            ...acquisitionDocuments.map((item) => `- ${item}`)]
+                        : []),
+                    "",
+                    "FINAL MANUAL STEP",
+                    countyManualBoundary || "Review the details and complete the county's final submission step yourself.",
+                    "",
+                    "Use the county's current PDF, portal, search, contact form, or phone process as the official route."
+                ];
+                return lines.filter((line) => line !== "").reduce((output, line) => {
+                    const previous = output.at(-1);
+                    const isHeading = /^[A-Z][A-Z \u2014-]+$/.test(line);
+                    if (isHeading && previous !== undefined && previous !== "") {
+                        output.push("");
+                    }
+                    output.push(line);
+                    return output;
+                }, []).join("\n");
+            }
+
+            function downloadPreparationSheet() {
+                const body = preparationSheetText();
+                const blob = new Blob([body], { type: "text/plain;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `${countyKey.toLowerCase().replaceAll("::", "-")}-official-route-preparation.txt`;
+                document.body.append(link);
+                link.click();
+                link.remove();
+                URL.revokeObjectURL(url);
+                writeState({ stage: "preparation_downloaded", acquisitionDetails: acquisitionDetails() });
+                showAcquisitionStatus("Preparation sheet downloaded. Keep it beside the official county route.");
+                sendArtifactAction("county_acquisition", "preparation_sheet_downloaded", countyKey);
+                emitCountyGaEvent("county_preparation_downloaded", { artifact_format: "text" });
+            }
+
+            function printPreparationSheet() {
+                const body = preparationSheetText();
+                const printWindow = window.open("", "_blank");
+                if (!printWindow) {
+                    showAcquisitionStatus("Printing was blocked. Allow pop-ups, then try again.", true);
+                    return;
+                }
+                const escapeHtml = (value) => String(value)
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll("\"", "&quot;")
+                    .replaceAll("'", "&#039;");
+                const title = `${countyKey.replace("::", " ")} official-route preparation`;
+                printWindow.opener = null;
+                printWindow.document.write(`<!doctype html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="utf-8">
+                        <title>${escapeHtml(title)}</title>
+                        <style>
+                            body{font:15px/1.55 system-ui,sans-serif;color:#17251f;max-width:780px;margin:42px auto;padding:0 28px}
+                            h1{font-size:24px;line-height:1.2;margin:0 0 10px}
+                            .notice{margin:0 0 28px;padding:12px 0;border-block:2px solid #17251f;font-weight:750}
+                            pre{font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+                            @media print{body{margin:0;max-width:none}}
+                        </style>
+                    </head>
+                    <body>
+                        <h1>${escapeHtml(title)}</h1>
+                        <p class="notice">Preparation aid only — use the county's current document or system for the official action.</p>
+                        <pre>${escapeHtml(body)}</pre>
+                        <script>window.addEventListener("load",()=>window.print())<\/script>
+                    </body>
+                    </html>`);
+                printWindow.document.close();
+                writeState({ stage: "preparation_printed", acquisitionDetails: acquisitionDetails() });
+                showAcquisitionStatus("Print view opened. Save it as a reference sheet, not as a substitute county form.");
+                sendArtifactAction("county_acquisition", "preparation_sheet_printed", countyKey);
+                emitCountyGaEvent("county_preparation_printed");
+            }
+
+            function validateAcquisition() {
+                const missing = missingAcquisitionFields();
+                if (missing.length) {
+                    showAcquisitionStatus(`Add before sending: ${missing.join(", ")}.`, true);
+                    const firstMissing = address?.hasAttribute("required") && !safeValue(address)
+                        ? address
+                        : parcel?.hasAttribute("required") && !safeValue(parcel)
+                            ? parcel
+                            : requiresAddressOrParcel && !safeValue(address) && !safeValue(parcel)
+                                ? (address || parcel)
+                                : requiresDocumentSelection && !hasRequiredDocumentSelection()
+                                    ? acquisitionInputs.find((input) =>
+                                        /Requested$/.test(input.dataset.countyAcquisitionField || "")
+                                    )
+                                    : acquisitionInputs.find((input) =>
+                                        acquisitionInputIsActive(input)
+                                        && input.hasAttribute("required")
+                                        && !acquisitionInputValue(input)
+                                    );
+                    firstMissing?.focus();
+                    return false;
+                }
+                return true;
+            }
+
+            if (acquisitionWorkspace instanceof HTMLElement) {
+                let nextTransferIndex = 0;
+                const savedAcquisition = readState()?.acquisitionDetails;
+                if (savedAcquisition && typeof savedAcquisition === "object") {
+                    acquisitionInputs.forEach((input) => {
+                        const key = input.dataset.countyAcquisitionField || "";
+                        const value = String(savedAcquisition[key] || "");
+                        if ((input instanceof HTMLInputElement
+                                || input instanceof HTMLSelectElement
+                                || input instanceof HTMLTextAreaElement) && value) {
+                            input.value = value.slice(0, 220);
+                        }
+                    });
+                }
+
+                const refreshAcquisition = () => {
+                    renderAcquisitionPreview();
+                    renderAcquisitionReadiness();
+                    updateNextTransferLabel();
+                    writeState({
+                        stage: "prepared",
+                        acquisitionDetails: acquisitionDetails()
+                    });
+                };
+
+                acquisitionInputs.forEach((input) => {
+                    input.addEventListener("input", () => {
+                        markGaPreparationStarted("county_field");
+                        refreshAcquisition();
+                    });
+                    input.addEventListener("change", () => {
+                        markGaPreparationStarted("county_field");
+                        refreshAcquisition();
+                    });
+                });
+                acquisitionFallback?.addEventListener("toggle", () => {
+                    if (acquisitionFallback.open) {
+                        markGaPreparationStarted("fallback_opened");
+                        emitCountyGaEvent("county_fallback_opened");
+                    }
+                    refreshAcquisition();
+                });
+                address?.addEventListener("input", refreshAcquisition);
+                parcel?.addEventListener("input", refreshAcquisition);
+                renderAcquisitionPreview();
+                renderAcquisitionReadiness();
+
+                function updateNextTransferLabel() {
+                    if (!(acquisitionNextCopy instanceof HTMLButtonElement)) {
+                        return;
+                    }
+                    const fields = acquisitionTransferFields();
+                    const nextField = fields.slice(nextTransferIndex).find((input) =>
+                        Boolean(acquisitionInputValue(input)) || input.hasAttribute("required")
+                    );
+                    if (!nextField) {
+                        acquisitionNextCopy.textContent = nextTransferIndex > 0
+                            ? "Start field transfer again"
+                            : "Copy next prepared field";
+                        return;
+                    }
+                    acquisitionNextCopy.textContent = acquisitionInputValue(nextField)
+                        ? `Copy next: ${acquisitionFieldLabel(nextField)}`
+                        : `Add next: ${acquisitionFieldLabel(nextField)}`;
+                }
+
+                updateNextTransferLabel();
+
+                acquisitionFieldCopies.forEach((copyButton) => {
+                    copyButton.addEventListener("click", async () => {
+                        const field = copyButton.closest(".county-acquisition-field")
+                            ?.querySelector("input, select, textarea");
+                        const value = field === address || field === parcel
+                            ? safeValue(field)
+                            : acquisitionInputValue(field);
+                        const label = field?.closest("label")?.querySelector("span")?.textContent
+                            ?.replace("optional", "")
+                            .trim() || "Field";
+                        if (!value) {
+                            showAcquisitionStatus(`Add ${label.toLowerCase()} before copying.`, true);
+                            field?.focus();
+                            return;
+                        }
+                        try {
+                            await copyText(value);
+                            const originalLabel = copyButton.textContent;
+                            copyButton.textContent = "Copied";
+                            copyButton.classList.add("is-copied");
+                            showAcquisitionStatus(`${label} copied. Paste it into the matching county field.`);
+                            window.setTimeout(() => {
+                                copyButton.textContent = originalLabel;
+                                copyButton.classList.remove("is-copied");
+                            }, 1400);
+                            sendArtifactAction("county_acquisition", "field_copied", countyKey);
+                        } catch (_) {
+                            showAcquisitionStatus("Copy unavailable. Select the field value manually.", true);
+                        }
+                    });
+                });
+
+                acquisitionNextCopy?.addEventListener("click", async () => {
+                    const fields = acquisitionTransferFields();
+                    if (!fields.length) {
+                        showAcquisitionStatus("No verified transfer fields are published for this route.", true);
+                        return;
+                    }
+                    if (nextTransferIndex >= fields.length) {
+                        nextTransferIndex = 0;
+                        updateNextTransferLabel();
+                        showAcquisitionStatus("Field transfer restarted from the first prepared value.");
+                        return;
+                    }
+                    if (requiresAddressOrParcel && !safeValue(address) && !safeValue(parcel)) {
+                        showAcquisitionStatus("Add the property address or parcel ID before starting the county transfer.", true);
+                        (address || parcel)?.focus();
+                        return;
+                    }
+                    for (let index = nextTransferIndex; index < fields.length; index += 1) {
+                        const field = fields[index];
+                        const value = acquisitionInputValue(field);
+                        const label = acquisitionFieldLabel(field);
+                        if (!value && field.hasAttribute("required")) {
+                            nextTransferIndex = index;
+                            updateNextTransferLabel();
+                            showAcquisitionStatus(`Add ${label.toLowerCase()} before moving to the next county field.`, true);
+                            field.focus();
+                            return;
+                        }
+                        if (!value) {
+                            continue;
+                        }
+                        try {
+                            await copyText(value);
+                            nextTransferIndex = index + 1;
+                            updateNextTransferLabel();
+                            showAcquisitionStatus(`${label} copied. Paste it into the matching official field, then use “Copy next.”`);
+                            sendArtifactAction("county_acquisition", "next_field_copied", countyKey);
+                        } catch (_) {
+                            showAcquisitionStatus("Copy unavailable. Select the prepared value manually.", true);
+                        }
+                        return;
+                    }
+                    nextTransferIndex = fields.length;
+                    updateNextTransferLabel();
+                    showAcquisitionStatus("All filled values have been carried through. Review the county page before your final manual submission.");
+                });
+
+                preparationDownload?.addEventListener("click", downloadPreparationSheet);
+                preparationPrint?.addEventListener("click", printPreparationSheet);
+
+                officialPdfPrepare?.addEventListener("click", async () => {
+                    if (!validateAcquisition()) {
+                        return;
+                    }
+                    officialPdfPrepare.disabled = true;
+                    officialPdfPrepare.textContent = "Filling the official PDF…";
+                    showAcquisitionStatus("Retrieving the county's original PDF and adding the values you entered.");
+                    try {
+                        const response = await fetch("/api/county-records/prepare-official-pdf", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/pdf"
+                            },
+                            body: JSON.stringify({
+                                countyKey,
+                                address: safeValue(address),
+                                parcel: safeValue(parcel),
+                                fields: acquisitionDetails()
+                            })
+                        });
+                        if (!response.ok) {
+                            let message = "The county's PDF could not be prepared right now.";
+                            try {
+                                const error = await response.json();
+                                message = error.message || message;
+                            } catch (_) {
+                                // Keep the safe fallback message for a non-JSON county/network response.
+                            }
+                            throw new Error(message);
+                        }
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        const disposition = response.headers.get("Content-Disposition") || "";
+                        const fileName = disposition.match(/filename="([^"]+)"/i)?.[1]
+                            || `${countyKey.toLowerCase().replaceAll("::", "-")}-official-form-prepared.pdf`;
+                        link.href = url;
+                        link.download = fileName;
+                        document.body.append(link);
+                        link.click();
+                        link.remove();
+                        URL.revokeObjectURL(url);
+                        writeState({ stage: "official_pdf_prepared", acquisitionDetails: acquisitionDetails() });
+                        showAcquisitionStatus("County original downloaded with the supported fields filled. Review every page and complete checkboxes, signature, attachments, and final sending yourself.");
+                        sendArtifactAction("county_acquisition", "official_pdf_prepared", countyKey);
+                        emitCountyGaEvent("county_official_pdf_prepared", { artifact_format: "pdf" });
+                    } catch (error) {
+                        showAcquisitionStatus(`${error.message} Open the official blank PDF and use the preparation sheet instead.`, true);
+                    } finally {
+                        officialPdfPrepare.disabled = false;
+                        officialPdfPrepare.textContent = "Fill the county's original PDF";
+                    }
+                });
+
+                acquisitionCopy?.addEventListener("click", async () => {
+                    const output = renderAcquisitionPreview();
+                    if (!output) {
+                        return;
+                    }
+                    try {
+                        await copyText(output);
+                        const missing = missingAcquisitionFields();
+                        showAcquisitionStatus(missing.length
+                            ? `Draft copied. Still add: ${missing.join(", ")}.`
+                            : "Complete request copied.");
+                        sendArtifactAction("county_acquisition", "request_copied", countyKey);
+                    } catch (_) {
+                        showAcquisitionStatus("Copy unavailable. Select the prepared request manually.", true);
+                    }
+                });
+
+                acquisitionInputCopy?.addEventListener("click", async () => {
+                    const values = acquisitionValues();
+                    const labels = acquisitionLabels();
+                    const lines = Object.entries(values)
+                        .filter(([key, value]) => key !== "documents" && value)
+                        .map(([key, value]) => `${labels[key] || key}: ${value}`);
+                    if (!lines.length) {
+                        showAcquisitionStatus("Fill at least one verified route input first.", true);
+                        address?.focus();
+                        return;
+                    }
+                    try {
+                        await copyText(lines.join("\n"));
+                        showAcquisitionStatus("Filled route inputs copied. Paste them into the county's official search, form, portal, or use them during the call.");
+                        sendArtifactAction("county_acquisition", "verified_inputs_copied", countyKey);
+                    } catch (_) {
+                        showAcquisitionStatus("Copy unavailable. Keep this page open while completing the official route.", true);
+                    }
+                });
+
+                acquisitionEmail?.addEventListener("click", () => {
+                    if (!recipient || !validateAcquisition()) {
+                        return;
+                    }
+                    const subject = fillAcquisitionTemplate(emailSubjectTemplate);
+                    const body = renderAcquisitionPreview();
+                    writeState({ stage: "email_draft_opened", acquisitionDetails: acquisitionDetails() });
+                    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    showAcquisitionStatus(`Email draft opened for ${recipient}. Attach the official PDF when the county requires it.`);
+                    sendArtifactAction("county_acquisition", "email_draft_opened", countyKey);
+                    emitCountyGaEvent("county_email_draft_opened");
+                });
+
+                acquisitionDownload?.addEventListener("click", () => {
+                    if (!validateAcquisition()) {
+                        return;
+                    }
+                    const body = renderAcquisitionPreview();
+                    const blob = new Blob([body], { type: "text/plain;charset=utf-8" });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.download = `${countyKey.toLowerCase().replaceAll("::", "-")}-septic-record-request.txt`;
+                    document.body.append(link);
+                    link.click();
+                    link.remove();
+                    URL.revokeObjectURL(url);
+                    writeState({ stage: "request_downloaded", acquisitionDetails: acquisitionDetails() });
+                    showAcquisitionStatus("Request text downloaded. Keep it with the county confirmation and reply.");
+                    sendArtifactAction("county_acquisition", "request_downloaded", countyKey);
+                    emitCountyGaEvent("county_request_downloaded", { artifact_format: "text" });
+                });
+
+                acquisitionPrint?.addEventListener("click", () => {
+                    if (!validateAcquisition()) {
+                        return;
+                    }
+                    const body = renderAcquisitionPreview();
+                    const printWindow = window.open("", "_blank");
+                    if (!printWindow) {
+                        showAcquisitionStatus("Printing was blocked. Allow pop-ups, then try again.", true);
+                        return;
+                    }
+                    printWindow.opener = null;
+                    const title = `${countyKey.replace("::", " ")} septic record request`;
+                    const escapeHtml = (value) => value
+                        .replaceAll("&", "&amp;")
+                        .replaceAll("<", "&lt;")
+                        .replaceAll(">", "&gt;")
+                        .replaceAll("\"", "&quot;")
+                        .replaceAll("'", "&#039;");
+                    printWindow.document.write(`<!doctype html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="utf-8">
+                            <title>${escapeHtml(title)}</title>
+                            <style>
+                                body{font:16px/1.55 Georgia,serif;color:#17251f;max-width:760px;margin:48px auto;padding:0 28px}
+                                h1{font:700 24px/1.2 system-ui,sans-serif;margin:0 0 28px}
+                                pre{font:inherit;white-space:pre-wrap;overflow-wrap:anywhere}
+                                .signature{margin-top:48px;padding-top:18px;border-top:1px solid #9aa8a1}
+                                @media print{body{margin:0;max-width:none}.no-print{display:none}}
+                            </style>
+                        </head>
+                        <body>
+                            <h1>${escapeHtml(title)}</h1>
+                            <pre>${escapeHtml(body)}</pre>
+                            <div class="signature">Signature (if required): ____________________ &nbsp; Date: __________</div>
+                            <script>window.addEventListener("load",()=>window.print())<\/script>
+                        </body>
+                        </html>`);
+                    printWindow.document.close();
+                    writeState({ stage: "request_printed", acquisitionDetails: acquisitionDetails() });
+                    showAcquisitionStatus("Print view opened. Choose “Save as PDF” to keep an attachment-ready copy.");
+                    sendArtifactAction("county_acquisition", "request_printed", countyKey);
+                });
+            }
+
+            const brunswickLookup = workflow.querySelector("[data-brunswick-permit-lookup]");
+            const brunswickSearch = workflow.querySelector("[data-brunswick-permit-search]");
+            const brunswickResults = workflow.querySelector("[data-brunswick-permit-results]");
+
+            function appendPermitValue(container, label, value) {
+                if (!value) {
+                    return;
+                }
+                const row = document.createElement("p");
+                const term = document.createElement("strong");
+                term.textContent = `${label}: `;
+                row.append(term, document.createTextNode(value));
+                container.append(row);
+            }
+
+            function renderBrunswickResults(payload) {
+                if (!(brunswickResults instanceof HTMLElement)) {
+                    return;
+                }
+                const heading = document.createElement("h4");
+                heading.textContent = payload.heading || "County permit metadata result";
+                const summary = document.createElement("p");
+                summary.textContent = payload.summary || "";
+                const fragment = document.createDocumentFragment();
+                fragment.append(heading, summary);
+
+                const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+                candidates.forEach((candidate) => {
+                    const card = document.createElement("article");
+                    card.className = "brunswick-permit-lookup__candidate";
+                    if (candidate.septicCandidate) {
+                        const badge = document.createElement("span");
+                        badge.className = "pill";
+                        badge.textContent = "Septic-related wording found";
+                        card.append(badge);
+                    }
+                    appendPermitValue(card, "Permit", candidate.permitNumber);
+                    appendPermitValue(card, "Address", candidate.parcelAddress);
+                    appendPermitValue(card, "Parcel ID", candidate.parcelId);
+                    appendPermitValue(card, "Type", candidate.permitType || candidate.projectType);
+                    appendPermitValue(card, "Category", candidate.projectCategory);
+                    appendPermitValue(card, "Status", candidate.permitStatus);
+                    appendPermitValue(card, "Description", candidate.description);
+                    appendPermitValue(card, "Issued", candidate.dateIssued);
+                    fragment.append(card);
+                });
+
+                const actions = document.createElement("div");
+                actions.className = "county-access-workflow__actions";
+                if (payload.sourceUrl) {
+                    actions.append(actionLink("Inspect the official dataset", payload.sourceUrl));
+                }
+                if (acquisitionMethod) {
+                    const sourceFileRoute = externalSecondaryUrl() || primaryUrl;
+                    if (sourceFileRoute) {
+                        actions.append(actionLink(
+                            "Use Brunswick County's official source-file route",
+                            sourceFileRoute,
+                            candidates.length > 0
+                        ));
+                    }
+                } else {
+                    actions.append(actionLink("Request the septic source file", requestPath(), candidates.length > 0));
+                }
+                fragment.append(actions);
+                brunswickResults.replaceChildren(fragment);
+                brunswickResults.hidden = false;
+            }
+
+            brunswickSearch?.addEventListener("click", async () => {
+                if (!(brunswickLookup instanceof HTMLElement)) {
+                    return;
+                }
+                const searchAddress = safeValue(address);
+                const searchParcel = safeValue(parcel);
+                if (searchAddress.length < 3 && searchParcel.length < 3) {
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Add a Brunswick address or parcel ID first.";
+                    }
+                    address?.focus();
+                    return;
+                }
+
+                const originalLabel = brunswickSearch.textContent;
+                brunswickSearch.disabled = true;
+                brunswickSearch.textContent = "Searching the county index...";
+                try {
+                    const response = await fetch("/api/brunswick-permit-lookup", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ address: searchAddress, parcelId: searchParcel })
+                    });
+                    const payload = await response.json();
+                    renderBrunswickResults(payload);
+                    writeState({ stage: "metadata_queried", metadataStatus: payload.status || "unknown" });
+                    sendArtifactAction("county_access_workflow", `metadata_${payload.status || "unknown"}`, mode);
+                } catch (_) {
+                    renderBrunswickResults({
+                        heading: "The county permit index did not respond",
+                        summary: "Your property clues remain here. Open the official dataset or prepare a source-file request.",
+                        sourceUrl: primaryUrl,
+                        candidates: []
+                    });
+                } finally {
+                    brunswickSearch.disabled = false;
+                    brunswickSearch.textContent = originalLabel;
+                }
+            });
+
+            officialLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    if (!workflow.contains(link) && !document.body.contains(workflow)) {
+                        return;
+                    }
+                    awaitingReturn = true;
+                    writeState({ stage: "official_opened", outcome: "" });
+                    window.setTimeout(showReturn, 350);
+                    sendArtifactAction("county_access_workflow", "official_route_opened", mode);
+                    emitCountyGaEvent("county_official_route_opened", {
+                        route_position: link.dataset.countyRoutePosition || "page_action"
+                    });
+                });
+            });
+
+            window.addEventListener("focus", () => {
+                if (awaitingReturn || readState()?.stage === "official_opened") {
+                    awaitingReturn = false;
+                    showReturn();
+                }
+            });
+
+            outcomes.forEach((button) => {
+                button.addEventListener("click", () => {
+                    outcomes.forEach((item) => item.removeAttribute("aria-pressed"));
+                    button.setAttribute("aria-pressed", "true");
+                    const outcome = button.dataset.countyAccessOutcome || "not_found_online";
+                    writeState({ stage: "outcome_recorded", outcome });
+                    renderNext(outcome);
+                    sendArtifactAction("county_access_workflow", outcome, mode);
+                    if (gaLastOutcome !== outcome) {
+                        gaLastOutcome = outcome;
+                        emitCountyGaEvent("county_return_outcome", { outcome });
+                    }
+                    if (!gaTaskCompleted && (outcome === "artifact" || outcome === "request_submitted")) {
+                        gaTaskCompleted = true;
+                        emitCountyGaEvent("county_task_completed", {
+                            completion_type: outcome
+                        });
+                    }
+                });
+            });
+
+            clear?.addEventListener("click", () => {
+                try {
+                    localStorage.removeItem(storageKey);
+                } catch (_) {
+                    // The fields can still be cleared when storage is unavailable.
+                }
+                if (address instanceof HTMLInputElement) {
+                    address.value = "";
+                }
+                if (parcel instanceof HTMLInputElement) {
+                    parcel.value = "";
+                }
+                if (reference instanceof HTMLInputElement) {
+                    reference.value = "";
+                }
+                outcomes.forEach((item) => item.removeAttribute("aria-pressed"));
+                if (next instanceof HTMLElement) {
+                    next.replaceChildren();
+                }
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = true;
+                }
+                if (status instanceof HTMLElement) {
+                    status.textContent = "Saved property task cleared.";
+                }
+            });
+        });
+    }
+
+    setupCountyAccessWorkflows();
 
     function setupOfferPrepFileChecks() {
         const tools = Array.from(document.querySelectorAll("[data-offer-prep-file-check]"));

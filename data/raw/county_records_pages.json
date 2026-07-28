@@ -433,9 +433,9 @@
       "uniqueAngle": "DeKalb County makes the existing-system question visible because the same septic page covers new permits, repairs, inspection-report history, and certification letters used for refinancing or similar diligence. That is exactly the bridge between records and transfer compliance.",
       "targetReader": "Best for DeKalb County buyers, owners, sellers, and agents who need to know whether the county file supports an existing-system story or whether a permit and site-approval conversation is about to widen.",
       "officeLabel": "DeKalb Public Health septic systems office",
-      "officeUrl": "https://dekalbhealth.net/environmental-health/septic-systems/",
-      "recordsLabel": "Request a DeKalb certification letter",
-      "recordsUrl": "https://dekalbhealth.net/environmental-health/septic-systems/",
+      "officeUrl": "https://dekalbpublichealth.com/environmental-health/septic-systems/",
+      "recordsLabel": "Choose a DeKalb historical file request or certification evaluation",
+      "recordsUrl": "https://dekalbpublichealth.com/environmental-health/septic-systems/",
       "contactLine": "DeKalb Public Health Environmental Health | 404-294-3700 | dekalb.eh@dph.ga.gov | 445 Winn Way, Suite 320, Decatur, GA 30030",
       "decisionSteps": [
         "Open DeKalb's septic systems page first and decide whether the property is really an existing-system certification question, a repair, or a new permit path.",
@@ -984,8 +984,8 @@
       "targetReader": "Best for Tarrant County buyers, owners, and agents who need to know whether the parcel is really in the county OSSF lane, whether the official record trail is visible, and whether the permit packet already points to a larger site or design problem.",
       "officeLabel": "Tarrant County OSSF office",
       "officeUrl": "https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html",
-      "recordsLabel": "Search Tarrant County official records",
-      "recordsUrl": "https://tarrant.tx.publicsearch.us/",
+      "recordsLabel": "Confirm Tarrant OSSF jurisdiction and request the file",
+      "recordsUrl": "https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html",
       "contactLine": "Tarrant County OSSF questions | 817-212-7082 | county OSSF workflow can shift if the property sits in a contract city or ETJ lane.",
       "decisionSteps": [
         "Confirm first whether the parcel is really in Tarrant County's OSSF lane, because contract-city coverage and ETJ questions can change who controls the next septic step.",
@@ -1055,8 +1055,8 @@
       "targetReader": "Best for Denton County buyers, owners, and agents who need to know whether the county already has enough permit, site-plan, and maintenance-transfer history behind the property to support a real buyer or replacement conversation.",
       "officeLabel": "Denton County environmental health OSSF office",
       "officeUrl": "https://www.dentoncounty.gov/657/Environmental-Health-Division",
-      "recordsLabel": "Open Denton County septic permit packet",
-      "recordsUrl": "https://www.dentoncounty.gov/DocumentCenter/View/1440/Septic-Permit-Application-Packet-PDF",
+      "recordsLabel": "Confirm Denton OSSF jurisdiction and request existing records",
+      "recordsUrl": "https://www.dentoncounty.gov/657/Environmental-Health-Division",
       "contactLine": "Denton County Public Health Environmental Health | 940-349-2920 | the county also ties septic work to the development-permit process for unincorporated parcels.",
       "decisionSteps": [
         "Start with Denton County Environmental Health and confirm the parcel is in the county's unincorporated OSSF lane before you trust the current system story.",
@@ -2190,7 +2190,7 @@
       "targetReader": "Best for Suffolk County buyers, owners, and agents who need to know whether the Office of Wastewater Management can confirm the septic location and whether the county file is strong enough to support a transfer, upgrade, or replacement conversation.",
       "officeLabel": "Suffolk County Office of Wastewater Management",
       "officeUrl": "https://www.suffolkcountyny.gov/Departments/Health-Services/WWM",
-      "recordsLabel": "Open Suffolk septic records instructions",
+      "recordsLabel": "Call for a Suffolk septic location record",
       "recordsUrl": "https://www.suffolkcountyny.gov/Departments/Health-Services/Common-Issues-and-Questions",
       "contactLine": "Suffolk County Office of Wastewater Management | 360 Yaphank Avenue Suite 2C Yaphank NY 11980 | 631-852-5700",
       "decisionSteps": [
@@ -5577,7 +5577,7 @@
       "targetReader": "Best for Hamilton County owners, buyers, and agents who need to verify whether an existing septic file can support an addition, repair, short-term rental use, or cautious contractor pricing.",
       "officeLabel": "Hamilton County Development Services",
       "officeUrl": "https://www.hamiltontn.gov/Department_DevelopmentServices.aspx",
-      "recordsLabel": "Hamilton County Septic Information and Forms",
+      "recordsLabel": "Find a Hamilton septic permit and completion certificate",
       "recordsUrl": "https://www.hamiltontn.gov/BuildingInspection_Septic.aspx",
       "contactLine": "Hamilton County Groundwater Department | 423-209-7876",
       "decisionSteps": [
@@ -5914,7 +5914,7 @@
       "targetReader": "Best for St. Mary's County buyers, owners, and contractors who need to know whether the GIS record is enough, whether a repair perc is next, and whether the county file really supports the current property story.",
       "officeLabel": "St. Mary's County Environmental Health Division",
       "officeUrl": "https://smchd.org/permits-records/perc-testing/",
-      "recordsLabel": "Search St. Mary's County environmental health records by GIS",
+      "recordsLabel": "Search the current St. Mary's GIS, then use the Environmental Health request fallback",
       "recordsUrl": "https://smchd.org/permits-records/environmental-health-records/",
       "contactLine": "St. Mary's County Environmental Health Division | 301-475-4321 | smchd.env@maryland.gov",
       "decisionSteps": [
@@ -7298,7 +7298,7 @@
       "targetReader": "Best for Brunswick County buyers, owners, builders, and agents who need to verify whether the county septic file supports an existing system, a new permit path, or a realistic repair or replacement conversation.",
       "officeLabel": "Brunswick County Water Protection Program",
       "officeUrl": "https://www.brunswickcountync.gov/288/Water-Protection-Program",
-      "recordsLabel": "Brunswick County permit reports and permit search",
+      "recordsLabel": "Search Brunswick permit metadata, then request the septic source file",
       "recordsUrl": "https://www.brunswickcountync.gov/195/Permit-Reports",
       "contactLine": "Brunswick County Environmental Health | Water Protection Program | 910-253-2150",
       "decisionSteps": [
@@ -8048,7 +8048,7 @@
       "targetReader": "Best for Blount County buyers, sellers, owners, builders, and agents who need to know whether county records are enough, whether a closing-safe inspection letter is needed, or whether a site evaluation or repair permit comes next.",
       "officeLabel": "Blount County Environmental Health",
       "officeUrl": "https://www.blounttn.gov/299/Environmental-Health",
-      "recordsLabel": "Blount County SSDS request form",
+      "recordsLabel": "Request Blount SSDS records or choose a separate inspection letter",
       "recordsUrl": "https://www.blounttn.gov/DocumentCenter/View/17507/SSDS-Request-Form",
       "contactLine": "Blount County Environmental Health | Bill Wilson | 865-681-9301",
       "decisionSteps": [
@@ -8119,7 +8119,7 @@
       "targetReader": "Best for Maricopa County buyers, sellers, owners, and agents who need a county-file answer before they price a repair, rely on seller memory, or move through a transfer.",
       "officeLabel": "Maricopa County onsite wastewater ownership transfer page",
       "officeUrl": "https://www.maricopa.gov/2491/Onsite-Wastewater-Ownership-Transfer",
-      "recordsLabel": "Maricopa County online septic research",
+      "recordsLabel": "Search Maricopa septic records with a paid research fallback",
       "recordsUrl": "https://www.maricopa.gov/2581/Online-Septic-Research",
       "contactLine": "Maricopa County Environmental Services | SepticQuestions@maricopa.gov | 602-506-6616",
       "decisionSteps": [
@@ -8925,8 +8925,8 @@
       "targetReader": "Best for Forsyth County buyers, owners, pool contractors, and remodelers who need to know whether the county septic file can support a lot change before they trust a fast quote or permit timeline.",
       "officeLabel": "Forsyth County wastewater and septic systems",
       "officeUrl": "https://www.forsyth.cc/publichealth/environmentalhealth/septic_main.aspx",
-      "recordsLabel": "Forsyth septic owner's guide and permit-copy path",
-      "recordsUrl": "https://forsyth.cc/publichealth/assets/documents/septic_guide.pdf",
+      "recordsLabel": "Request a Forsyth septic permit and soil evaluation",
+      "recordsUrl": "https://www.forsyth.cc/publichealth/environmentalhealth/septic_main.aspx",
       "contactLine": "Forsyth County Department of Public Health Environmental Health | 336-703-3225",
       "decisionSteps": [
         "If the lot already has septic and the project adds a pool, deck, outbuilding, home addition, or replacement mobile home, start on the county additions page before applying for a building permit.",
@@ -9801,7 +9801,7 @@
       "targetReader": "Best for Prince William County buyers, owners, agents, and lenders who need to know whether the county-health file and related county records support the current septic story.",
       "officeLabel": "Prince William Health District onsite sewage and water services",
       "officeUrl": "https://www.vdh.virginia.gov/prince-william/environmental-health/onsite-sewage-and-water-services/",
-      "recordsLabel": "Search Prince William health department septic documents",
+      "recordsLabel": "Search Prince William septic documents by address or GPIN",
       "recordsUrl": "https://lfportal.pwcgov.org/healthweb/browse.aspx?startid=1",
       "contactLine": "Prince William Health District On-Site Sewage & Water Services | 703-792-6310 Option 2",
       "decisionSteps": [
@@ -15789,8 +15789,8 @@
       "targetReader": "Best for Alamance County buyers, owners, and remodelers who need to know whether the next move is an improvement permit, a repair permit, or an existing-system inspection before trusting the septic story.",
       "officeLabel": "Alamance County onsite wastewater program",
       "officeUrl": "https://eh.alamancecountync.gov/programs/on-site-wastewater/",
-      "recordsLabel": "Open Alamance County septic application packet",
-      "recordsUrl": "https://eh.alamancecountync.gov/wp-content/uploads/sites/27/2023/07/Septic-app-2024-v1.pdf",
+      "recordsLabel": "Request Alamance records for an existing septic property",
+      "recordsUrl": "https://eh.alamancecountync.gov/programs/on-site-wastewater/",
       "contactLine": "Alamance County Environmental Health | 336-570-6367 | Burlington NC",
       "decisionSteps": [
         "Start with the onsite wastewater program and decide whether the file belongs in an improvement-permit, repair-permit, or existing-system inspection lane.",
@@ -16484,7 +16484,7 @@
       "targetReader": "Best for Knox County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
       "officeLabel": "Knox County Groundwater Protection",
       "officeUrl": "https://www.knoxcounty.org/health/groundwater_protection.php",
-      "recordsLabel": "Request a Knox County SSDS file search",
+      "recordsLabel": "Prepare and track a Knox County SSDS file search",
       "recordsUrl": "https://www.knoxcounty.org/health/groundwater_protection.php",
       "contactLine": "Knox County Groundwater Protection SSDS file search for system records, soil mapping, and completed repairs",
       "decisionSteps": [
@@ -17642,8 +17642,8 @@
       "targetReader": "Best for Brazoria County buyers, sellers, owners, agents, and contractors who need the septic permit file, approval record, site document, or office route before trusting a quote, sale story, repair scope, or new permit plan.",
       "officeLabel": "Brazoria County Environmental Health OSSF contact",
       "officeUrl": "https://www.brazoriacountytx.gov/departments/environmental-health/contact-us",
-      "recordsLabel": "Open Brazoria County OSSF permitting process",
-      "recordsUrl": "https://www.brazoriacountytx.gov/departments/environmental-health/forms-permit-applications/ossf-permitting-process",
+      "recordsLabel": "Confirm the Brazoria OSSF authority and request the existing file",
+      "recordsUrl": "https://www.brazoriacountytx.gov/departments/environmental-health/contact-us",
       "contactLine": "Brazoria County Environmental Health routes OSSF septic systems and maintenance questions through environmental health contacts.",
       "decisionSteps": [
         "Open the OSSF permitting process and confirm whether the file shows permit application, authorization to construct, final approval, or transferability.",
@@ -20118,7 +20118,7 @@
       "targetReader": "Best for Lincoln County buyers, sellers, owners, agents, and contractors who already know the county and need the septic record or permit path before they compare quotes, accept a seller explanation, or plan repair, expansion, or existing-system inspection routing.",
       "officeLabel": "Lincoln County On-Site Water Protection office",
       "officeUrl": "https://www.lincolncountync.gov/451/Environmental-Health",
-      "recordsLabel": "Open Lincoln County septic records and permit lookup path",
+      "recordsLabel": "Request Lincoln septic records by address or parcel PIN",
       "recordsUrl": "https://www.lincolncountync.gov/2617/Onsite-Water",
       "contactLine": "Lincoln County On-Site Water Protection office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
       "decisionSteps": [
@@ -20191,7 +20191,7 @@
       "officeLabel": "Loudon County TDEC SSDS and county health routing office",
       "officeUrl": "https://planningandcodes.loudoncounty-tn.gov/buildingCodes_septicSystemContact.php",
       "recordsLabel": "Open Loudon County septic records and permit lookup path",
-      "recordsUrl": "https://tdec.tn.gov/filenetsearch",
+      "recordsUrl": "https://planningandcodes.loudoncounty-tn.gov/buildingCodes_septicSystemContact.php",
       "contactLine": "Loudon County TDEC SSDS and county health routing office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
       "decisionSteps": [
         "Open the official Loudon County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
@@ -20263,7 +20263,7 @@
       "officeLabel": "Anderson County TDEC SSDS and county health routing office",
       "officeUrl": "https://andersoncountytn.gov/health-department/",
       "recordsLabel": "Open Anderson County septic records and permit lookup path",
-      "recordsUrl": "https://tdec.tn.gov/filenetsearch",
+      "recordsUrl": "https://andersoncountytn.gov/health-department/",
       "contactLine": "Anderson County TDEC SSDS and county health routing office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
       "decisionSteps": [
         "Open the official Anderson County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
@@ -20336,7 +20336,7 @@
       "officeLabel": "Cumberland County TDEC SSDS and county health routing office",
       "officeUrl": "https://cumberlandcountytn.gov/directory/codes/",
       "recordsLabel": "Open Cumberland County septic records and permit lookup path",
-      "recordsUrl": "https://tdec.tn.gov/filenetsearch",
+      "recordsUrl": "https://cumberlandcountytn.gov/directory/codes/",
       "contactLine": "Cumberland County TDEC SSDS and county health routing office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
       "decisionSteps": [
         "Open the official Cumberland County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
