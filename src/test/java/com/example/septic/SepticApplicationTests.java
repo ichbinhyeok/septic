@@ -2502,7 +2502,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/colorado/jefferson-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jefferson County Colorado Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Jefferson County OWTS program")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official use permit forms")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.jeffco.us/2379/Septic-Systems")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jefferson County owns the practical OWTS file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer-of-title permit, parcel lookup, and current-use story all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer-of-title")))
@@ -3489,13 +3490,15 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void washoeCountyRecordsPageShowsApnAndSewerGateWorkflow() throws Exception {
+	void washoeCountyRecordsPageShows311RecordsAndPermitWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/nevada/washoe-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washoe County Nevada Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Washoe septic and well records request")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("APN")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Washoe 311 public-records request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("property situs address")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic_Permit_Ap_Req.pdf")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic-to-sewer")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("www.nnph.org"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Nevada records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Nevada guide")));
 	}
@@ -5496,7 +5499,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oklahoma Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oklahoma Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate before the soil-test request")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://oklahoma.gov/deq/divisions/ecls")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://www.deq.ok.gov/"))));
 	}
 
 	@Test

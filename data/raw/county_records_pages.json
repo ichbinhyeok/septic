@@ -4766,10 +4766,10 @@
       "introCopy": "Jefferson County is a strong Colorado county wedge because the county makes transfer-of-title use permits an explicit part of the septic story for older systems. The county also connects parcel lookup, OWTS permits, and ongoing use or maintenance questions.",
       "uniqueAngle": "Jefferson County stands out because it frames the county file around actual use, not just equipment. That makes it strong for buyer and use-mismatch intent.",
       "targetReader": "Best for Jefferson County buyers, owners, and agents who need to know whether the county transfer-of-title permit, parcel file, or current use story already changes the next move.",
-      "officeLabel": "Jefferson County use permit program",
-      "officeUrl": "https://www.jeffco.us/2386/Use-Permit-Program",
-      "recordsLabel": "Open Jefferson County OWTS program",
-      "recordsUrl": "https://www.jeffco.us/2379/Onsite-Wastewater-Treatment-Systems",
+      "officeLabel": "Open the Jefferson County septic hub",
+      "officeUrl": "https://www.jeffco.us/2379/Septic-Systems",
+      "recordsLabel": "Open the official use permit forms",
+      "recordsUrl": "https://www.jeffco.us/2426/Forms-Planning-Documents",
       "contactLine": "Jefferson County ties transfer-of-title use permits, parcel-level property lookup, and OWTS construction repair use and maintenance permits into one county workflow.",
       "decisionSteps": [
         "Start with Jefferson County's use permit program if the property is older or being sold because the county explicitly uses transfer-of-title permits for older septic systems.",
@@ -7769,34 +7769,34 @@
       "countyName": "Washoe County",
       "countySlug": "washoe-county",
       "title": "Washoe County Nevada Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Washoe County septic records checklist and permit lookup with APN-based records requests, county GIS parcel lookup, online permit routing, and septic-to-sewer trigger checks before you trust a transfer or repair story.",
-      "introCopy": "Washoe County is a strong Nevada wedge because Northern Nevada Public Health and Washoe County GIS make the next actions unusually explicit: find the parcel, submit a septic and well records request with APN and address, and use the county health permit path when trenching, repair, abandonment, or redesign is involved.",
-      "uniqueAngle": "Washoe stands out because the county-health records request page warns that pending permits are not final property records, the parcel search is APN-driven, and the county also publishes a septic-to-sewer conversion workflow when sewer is readily available.",
-      "targetReader": "Best for Washoe County buyers, owners, agents, and contractors who need to know whether the file is final, whether the parcel identifiers are clean, and whether the job is still a septic path or is drifting into sewer-conversion territory.",
-      "officeLabel": "Washoe County septic systems and liquid waste office",
-      "officeUrl": "https://www.nnph.org/programs-and-services/environmental-health/land-development/septic-liquid-waste.php",
-      "recordsLabel": "Open Washoe septic and well records request",
-      "recordsUrl": "https://www.nnph.org/resources/health-forms/septic_and_well_records_request.php",
-      "contactLine": "Northern Nevada Public Health Environmental Health Services | 775.328.2434 | HealthEHS@nnph.org",
+      "metaDescription": "Washoe County septic and well records request through Washoe 311, plus the official septic permit requirements and septic-to-sewer checks before you trust a transfer or repair story.",
+      "introCopy": "Washoe County's current septic-and-well records page directs requesters to the Washoe 311 public-records process. Prepare the property situs address, submit the county request, and use the separate official septic-permit requirements when the task is a new or changed system rather than a records copy.",
+      "uniqueAngle": "Washoe now separates the records task from the permit task clearly: Washoe 311 receives the public-records request, while the official septic-permit requirements document covers the site material needed for permit work.",
+      "targetReader": "Best for Washoe County buyers, owners, agents, and contractors who need either an existing septic/well record through Washoe 311 or the separate requirements for a septic permit.",
+      "officeLabel": "Open Washoe septic permit requirements",
+      "officeUrl": "https://www.washoecounty.gov/building/Files/Files/Septic_Permit_Ap_Req.pdf",
+      "recordsLabel": "Open the Washoe 311 public-records request",
+      "recordsUrl": "https://washoecounty.gov/311/prr-request-form.php",
+      "contactLine": "Washoe 311 | 311 or 775-328-2003",
       "decisionSteps": [
-        "Start with Washoe County GIS and the assessor parcel tools so you have the APN, parcel boundaries, and address variants before you submit any septic records request.",
-        "Use the NNPH septic and well records request with both the APN and address when possible, because the county-health page says either one alone can miss records if the address or APN changed over time.",
-        "If the property is moving beyond a simple records pull into trenching, repair, abandonment, or sewer conversion, switch to the county-health permit path and the county septic-to-sewer workflow before treating the project as a normal low-end septic job."
+        "Confirm the Washoe County situs address before opening the public-records form.",
+        "Use the Washoe 311 public-records request for the septic or well file and keep the request ID for follow-up.",
+        "If the task is permit work rather than a records copy, switch to the official septic-permit requirements and prepare the listed property and site-plan material."
       ],
       "recordsToRequest": [
-        "The septic and well property record set returned through the NNPH records request, tied to both APN and address.",
-        "Any test trench report or other land-development septic file that became part of the permanent property record.",
-        "Any abandonment, repair, replacement, or septic-to-sewer paperwork connected to the parcel."
+        "The septic and well property record returned through Washoe 311.",
+        "The county response or request ID when no responsive record is returned immediately.",
+        "The applicable permit material when the project involves a new or changed septic system."
       ],
       "lowEndBreakers": [
-        "NNPH says pending permits may not be provided because they are not final property records, so an apparently active file can still be incomplete for closing or design purposes.",
-        "NNPH warns that property records may only provide an approximate location, which means exact tank or line location can still require physical verification or outside locating work.",
+        "A public-records response is not a current inspection of the tank, field, or system condition.",
+        "Submitting a general service request without the correct property situs address can delay the record match.",
         "Washoe County's septic-to-sewer workflow creates a separate decision gate when sewer is readily available, so a septic assumption can collapse into a conversion project with different permits and costs."
       ],
       "faqBlocks": [
         {
           "question": "What is the first Washoe County septic record to ask for?",
-          "answer": "Start with the NNPH septic and well records request after pulling the APN from county parcel tools, because the county-health page specifically asks for APN and address to reduce missed records."
+          "answer": "Start with the Washoe 311 public-records request and use the property situs address in the county form."
         },
         {
           "question": "Why does sewer availability matter in Washoe County?",
