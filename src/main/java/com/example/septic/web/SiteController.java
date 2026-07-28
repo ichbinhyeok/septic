@@ -1602,6 +1602,33 @@ The goal is to settle the permit path before we frame the project as a normal in
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping(value = {"/events/workflow-stage", "/events/workflow-stage/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Void> recordWorkflowStage(
+            @RequestBody WorkflowStageForm workflowStageForm,
+            HttpServletRequest request
+    ) {
+        if (!isTrackableInternalPath(workflowStageForm.sourcePage())
+                || !isTrackableArtifactAction(workflowStageForm.sourceContext())
+                || !isTrackableWorkflowRunId(workflowStageForm.workflowRunId())
+                || !isTrackableCountyKey(workflowStageForm.countyKey())
+                || !isTrackableWorkflowStage(workflowStageForm.stage())
+                || !isTrackableWorkflowOutcome(workflowStageForm.outcome())) {
+            return ResponseEntity.noContent().build();
+        }
+
+        leadStorageService.saveWorkflowStage(
+                workflowStageForm.sourcePage(),
+                workflowStageForm.sourceContext(),
+                workflowStageForm.workflowRunId(),
+                workflowStageForm.countyKey(),
+                workflowStageForm.stage(),
+                workflowStageForm.outcome(),
+                request
+        );
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping(value = {"/events/web-vital", "/events/web-vital/"}, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Void> recordWebVital(
@@ -2426,6 +2453,38 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private boolean isTrackableArtifactAction(String value) {
         return value != null && value.matches("[a-z][a-z0-9_]{1,63}");
+    }
+
+    private boolean isTrackableWorkflowRunId(String value) {
+        return value != null && value.matches("[A-Za-z0-9-]{8,64}");
+    }
+
+    private boolean isTrackableCountyKey(String value) {
+        return value != null && (value.isBlank() || value.matches("[A-Z]{2}::[a-z0-9-]{2,72}"));
+    }
+
+    private boolean isTrackableWorkflowStage(String value) {
+        if (value == null) {
+            return false;
+        }
+        return switch (value) {
+            case "workflow_viewed", "preparation_started", "preparation_ready",
+                    "official_route_opened", "official_returned", "outcome_recorded",
+                    "request_submitted", "record_reported", "document_reviewed",
+                    "property_file_ready", "task_finished" -> true;
+            default -> false;
+        };
+    }
+
+    private boolean isTrackableWorkflowOutcome(String value) {
+        if (value == null || value.isBlank()) {
+            return true;
+        }
+        return switch (value) {
+            case "artifact", "partial", "not_found_online", "blocked", "request_submitted",
+                    "found", "missing" -> true;
+            default -> false;
+        };
     }
 
     private boolean isTrackableWebVital(String metricName, Double value) {

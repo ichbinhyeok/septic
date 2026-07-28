@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EventAnalyticsReport;
 import com.example.septic.web.EventAnalyticsRow;
+import com.example.septic.web.WorkflowFunnelRow;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -112,6 +114,7 @@ public class EventAnalyticsService {
         private final Map<RowKey, MutableRow> officialSourceClicks = new HashMap<>();
         private final Map<RowKey, MutableRow> artifactActions = new HashMap<>();
         private final Map<RowKey, MutableRow> internalNavigationClicks = new HashMap<>();
+        private final Map<String, MutableWorkflow> workflows = new HashMap<>();
 
         private MutableReport(Instant now) {
             this.now = now;
@@ -144,6 +147,14 @@ public class EventAnalyticsService {
                         new RowKey(sourcePage, sourceContext, firstNonBlank(text(event, "targetLabel"), text(event, "targetPath"))),
                         occurredAt
                 );
+                case "workflow_stage" -> {
+                    String workflowRunId = text(event, "workflowRunId");
+                    String stage = text(event, "stage");
+                    if (!workflowRunId.isBlank() && !stage.isBlank()) {
+                        workflows.computeIfAbsent(workflowRunId, ignored -> new MutableWorkflow())
+                                .add(stage, occurredAt);
+                    }
+                }
                 default -> {
                     // Web vitals and lead events have different monitoring surfaces.
                 }
@@ -161,6 +172,9 @@ public class EventAnalyticsService {
             long officialTwentyEight = countLastTwentyEightDays(officialSourceClicks);
             long artifactTwentyEight = countLastTwentyEightDays(artifactActions);
             long internalTwentyEight = countLastTwentyEightDays(internalNavigationClicks);
+            List<WorkflowFunnelRow> workflowFunnel = workflowFunnel();
+            long workflowSeven = workflowCohortCount(sprintStart);
+            long workflowTwentyEight = workflowCohortCount(reportStart);
             return new EventAnalyticsReport(
                     DISPLAY_TIME.format(now),
                     officialSeven + artifactSeven + internalSeven,
@@ -169,10 +183,48 @@ public class EventAnalyticsService {
                     artifactSeven,
                     internalSeven,
                     readable && eventRootReadable,
+                    workflowSeven,
+                    workflowTwentyEight,
+                    workflowFunnel,
                     rows(officialSourceClicks),
                     rows(artifactActions),
                     rows(internalNavigationClicks)
             );
+        }
+
+        private long workflowCohortCount(Instant cohortStart) {
+            return workflows.values().stream()
+                    .filter(workflow -> !workflow.firstSeen.isBefore(cohortStart))
+                    .count();
+        }
+
+        private List<WorkflowFunnelRow> workflowFunnel() {
+            Map<String, String> stages = new LinkedHashMap<>();
+            stages.put("workflow_viewed", "Task opened");
+            stages.put("preparation_ready", "Information prepared");
+            stages.put("official_route_opened", "Official route opened");
+            stages.put("outcome_recorded", "Official result reported");
+            stages.put("document_reviewed", "Document reviewed");
+            stages.put("property_file_ready", "Core file ready");
+            stages.put("task_finished", "Task explicitly finished");
+
+            long sevenDayCohort = workflowCohortCount(sprintStart);
+            return stages.entrySet().stream()
+                    .map(entry -> {
+                        long seven = workflows.values().stream()
+                                .filter(workflow -> !workflow.firstSeen.isBefore(sprintStart))
+                                .filter(workflow -> workflow.has(entry.getKey()))
+                                .count();
+                        long twentyEight = workflows.values().stream()
+                                .filter(workflow -> !workflow.firstSeen.isBefore(reportStart))
+                                .filter(workflow -> workflow.has(entry.getKey()))
+                                .count();
+                        int rate = sevenDayCohort == 0
+                                ? 0
+                                : (int) Math.round((seven * 100.0) / sevenDayCohort);
+                        return new WorkflowFunnelRow(entry.getKey(), entry.getValue(), seven, twentyEight, rate);
+                    })
+                    .toList();
         }
 
         private long countLastSevenDays(Map<RowKey, MutableRow> rows) {
@@ -231,6 +283,23 @@ public class EventAnalyticsService {
 
         private long lastTwentyEightDays() {
             return lastTwentyEightDays;
+        }
+    }
+
+    private static final class MutableWorkflow {
+        private Instant firstSeen = Instant.MAX;
+        private final Map<String, Instant> stages = new HashMap<>();
+
+        private void add(String stage, Instant occurredAt) {
+            if (occurredAt.isBefore(firstSeen)) {
+                firstSeen = occurredAt;
+            }
+            stages.merge(stage, occurredAt, (current, candidate) ->
+                    candidate.isAfter(current) ? candidate : current);
+        }
+
+        private boolean has(String stage) {
+            return stages.containsKey(stage);
         }
     }
 

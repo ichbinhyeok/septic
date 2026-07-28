@@ -6110,6 +6110,58 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void authenticatedEventReportShowsAnAnonymousEndToEndWorkflowFunnel() throws Exception {
+		String workflowRunId = "9de9a68d-658d-41b4-a273-945ef36e80bb";
+		for (String stage : List.of(
+				"workflow_viewed",
+				"preparation_ready",
+				"official_route_opened",
+				"outcome_recorded",
+				"document_reviewed",
+				"property_file_ready",
+				"task_finished"
+		)) {
+			mockMvc.perform(post("/events/workflow-stage")
+							.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+							.header("Referer", "https://example.test/septic-record-finder/?address=123%20Main%20St&workflowRunId=" + workflowRunId + "&src=county-test")
+							.content("""
+									{
+									  "sourcePage": "/septic-records-checklist/virginia/prince-william-county/?address=123%%20Main%%20St&workflowRunId=%s&src=county-test",
+									  "sourceContext": "county_access_workflow",
+									  "workflowRunId": "%s",
+									  "countyKey": "VA::prince-william-county",
+									  "stage": "%s",
+									  "outcome": ""
+									}
+									""".formatted(workflowRunId, workflowRunId, stage)))
+					.andExpect(status().isNoContent());
+		}
+
+		mockMvc.perform(get("/ops/event-report/")
+						.header("Authorization", opsReportAuthorization()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Observed completion funnel")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official route opened")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Core file ready")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Task explicitly finished")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("100% of 7-day starts")));
+
+		try (Stream<Path> eventFiles = Files.walk(TEST_STORAGE_ROOT.resolve("events"))) {
+			String eventContent = Files.readString(eventFiles
+					.filter(path -> path.toString().endsWith(".ndjson"))
+					.findFirst()
+					.orElseThrow());
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"eventType\":\"workflow_stage\""));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("\"workflowRunId\":\"" + workflowRunId + "\""));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("123 Main"));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("123%20Main"));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("address="));
+			org.junit.jupiter.api.Assertions.assertFalse(eventContent.contains("workflowRunId="));
+			org.junit.jupiter.api.Assertions.assertTrue(eventContent.contains("src=county-test"));
+		}
+	}
+
+	@Test
 	void eventReportSkipsUnreadableHistoricalFiles() throws Exception {
 		Path malformedEventFile = TEST_STORAGE_ROOT.resolve("events").resolve("2026").resolve("07").resolve("10.ndjson");
 		Files.createDirectories(malformedEventFile.getParent());

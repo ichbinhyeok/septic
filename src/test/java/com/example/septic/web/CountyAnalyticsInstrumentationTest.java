@@ -27,6 +27,12 @@ class CountyAnalyticsInstrumentationTest {
         assertTrue(script.contains("\"county_request_submitted\""));
         assertTrue(script.contains("\"county_record_reported\""));
         assertTrue(script.contains("\"county_record_obtained\""));
+        assertTrue(script.contains("\"/events/workflow-stage\""));
+        assertTrue(script.contains("recordCountyStage(\"official_route_opened\")"));
+        assertTrue(script.contains("recordCountyStage(\"outcome_recorded\", outcome)"));
+        assertTrue(script.contains("recordFinderStage(\"document_reviewed\")"));
+        assertTrue(script.contains("recordFinderStage(\"property_file_ready\")"));
+        assertTrue(script.contains("recordFinderStage(\"task_finished\")"));
         assertFalse(script.contains("\"county_task_completed\""));
     }
 
@@ -49,5 +55,15 @@ class CountyAnalyticsInstrumentationTest {
         assertFalse(parameterBlock.contains("parcel"));
         assertFalse(parameterBlock.contains("reference"));
         assertFalse(parameterBlock.contains("recipient"));
+    }
+
+    @Test
+    void firstPartyEventPathsStripPropertyAndWorkflowQueryValues() throws IOException {
+        String script = Files.readString(APP_JS);
+
+        assertTrue(script.contains("function analyticsSafePath"));
+        assertTrue(script.contains("analyticsQueryKeys.has(key)"));
+        assertTrue(script.contains("sourcePage: analyticsSourcePage()"));
+        assertFalse(script.contains("sourcePage: window.location.pathname + window.location.search"));
     }
 }

@@ -10,6 +10,9 @@ public record EventAnalyticsReport(
         long artifactActionsLastSevenDays,
         long internalNavigationClicksLastSevenDays,
         boolean storageReadable,
+        long workflowTasksLastSevenDays,
+        long workflowTasksLastTwentyEightDays,
+        List<WorkflowFunnelRow> workflowFunnel,
         List<EventAnalyticsRow> officialSourceClicks,
         List<EventAnalyticsRow> artifactActions,
         List<EventAnalyticsRow> internalNavigationClicks

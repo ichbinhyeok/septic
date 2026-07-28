@@ -4,11 +4,31 @@
     document.documentElement.classList.add("js");
     window.SepticPathCoreLoaded = true;
 
+    const analyticsQueryKeys = new Set([
+        "src", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+        "mode", "purpose", "projectType", "recordsMode"
+    ]);
+
+    function analyticsSafePath(url) {
+        const params = new URLSearchParams();
+        url.searchParams.forEach((value, key) => {
+            if (analyticsQueryKeys.has(key) && /^[A-Za-z0-9._~-]{1,80}$/.test(value)) {
+                params.append(key, value);
+            }
+        });
+        const query = params.toString();
+        return `${url.pathname}${query ? `?${query}` : ""}`;
+    }
+
+    function analyticsSourcePage() {
+        return analyticsSafePath(new URL(window.location.href));
+    }
+
     function navigationTarget(anchor) {
         try {
             const url = new URL(anchor.href, window.location.origin);
             if (url.origin === window.location.origin) {
-                return url.pathname + url.search + url.hash;
+                return analyticsSafePath(url);
             }
             if (url.protocol !== "https:") {
                 return null;
@@ -81,7 +101,7 @@
         const sent = new Set();
 
         function sourcePage() {
-            return window.location.pathname + window.location.search + window.location.hash;
+            return analyticsSourcePage();
         }
 
         function navigationType() {
@@ -378,7 +398,7 @@
             return;
         }
         sendEvent("/events/nav-click", {
-            sourcePage: window.location.pathname + window.location.search + window.location.hash,
+            sourcePage: analyticsSourcePage(),
             sourceContext: anchor.dataset.trackSourceContext || "",
             targetPath,
             targetType: anchor.dataset.trackTargetType || "",

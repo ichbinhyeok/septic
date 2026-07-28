@@ -1,6 +1,7 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EventAnalyticsReport
 @import com.example.septic.web.EventAnalyticsRow
+@import com.example.septic.web.WorkflowFunnelRow
 @param PageMeta page
 @param EventAnalyticsReport report
 
@@ -11,7 +12,7 @@
                 <div>
                     <span class="eyebrow">Private operations report</span>
                     <h1>Behavior signals, not vanity totals.</h1>
-                    <p class="lede">This report shows only anonymous action events from the last 7 and 28 days. Use it to find the pages and CTAs that make visitors open an official source or keep a usable records packet.</p>
+                    <p class="lede">This report joins anonymous task stages from the last 7 and 28 days. It shows whether a browser task moved from preparation to an official route, returned with a result, and finished a usable property file.</p>
                 </div>
                 <aside class="hero-sidecard ops-report-sidecard">
                     <span class="pill">Generated</span>
@@ -65,6 +66,27 @@
                 </div>
             </section>
         @endif
+
+        <section class="section section--tight">
+            <div class="container ops-workflow-funnel">
+                <div class="section-heading">
+                    <span class="eyebrow">Observed completion funnel</span>
+                    <h2>Can a visitor finish the records job?</h2>
+                    <p class="lede">${report.workflowTasksLastSevenDays()} anonymous browser ${report.workflowTasksLastSevenDays() == 1 ? "task" : "tasks"} started in the last 7 days; ${report.workflowTasksLastTwentyEightDays()} started in 28 days. Rates below use the 7-day start cohort and never include an address, parcel ID, document, or request text.</p>
+                </div>
+                <ol class="ops-workflow-funnel__steps">
+                    @for(WorkflowFunnelRow row : report.workflowFunnel())
+                        <li>
+                            <span>${row.label()}</span>
+                            <strong>${row.lastSevenDays()}</strong>
+                            <small>${row.sevenDayRate()}% of 7-day starts · ${row.lastTwentyEightDays()} in 28d</small>
+                            <div aria-hidden="true"><span style="width: ${row.sevenDayRate()}%"></span></div>
+                        </li>
+                    @endfor
+                </ol>
+                <p class="ops-workflow-funnel__note">A route opening is not a successful record search. “Core file ready” requires the purpose-specific checklist to be filled without unresolved document conflicts; “finished” requires the visitor to confirm completion.</p>
+            </div>
+        </section>
 
         <section class="section">
             <div class="container ops-report-stack">

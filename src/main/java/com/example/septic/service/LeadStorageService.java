@@ -4,11 +4,15 @@ import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EstimateForm;
 import com.example.septic.web.ContactRequestForm;
 import com.example.septic.web.QuoteLeadForm;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.annotation.PostConstruct;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
@@ -47,6 +51,7 @@ public class LeadStorageService {
             Files.createDirectories(root().resolve("events"));
             Files.createDirectories(root().resolve("exports").resolve("pending"));
             Files.createDirectories(root().resolve("exports").resolve("daily"));
+            scrubHistoricalEventQueries();
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to initialize storage directories", exception);
         }
@@ -146,18 +151,22 @@ public class LeadStorageService {
             HttpServletRequest request
     ) {
         Instant now = Instant.now();
+        String safeSourcePage = safeTrackingSourcePage(sourcePage);
+        String safeTargetPath = targetPath != null && targetPath.startsWith("/")
+                ? safeTrackingSourcePage(targetPath)
+                : safeValue(targetPath, 240);
         try {
             appendEvent(orderedMap(
                     "eventType", targetPath != null && targetPath.startsWith("https://")
                             ? "official_source_click"
                             : "internal_navigation_click",
                     "occurredAt", now.toString(),
-                    "sourcePage", safeValue(sourcePage, 240),
+                    "sourcePage", safeSourcePage,
                     "sourceContext", safeValue(sourceContext, 120),
-                    "targetPath", safeValue(targetPath, 240),
+                    "targetPath", safeTargetPath,
                     "targetType", safeValue(targetType, 80),
                     "targetLabel", safeValue(targetLabel, 160),
-                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+                    "provenance", buildProvenance(request, now, safeSourcePage)
             ), now);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist navigation click event", exception);
@@ -172,18 +181,47 @@ public class LeadStorageService {
             HttpServletRequest request
     ) {
         Instant now = Instant.now();
+        String safeSourcePage = safeTrackingSourcePage(sourcePage);
         try {
             appendEvent(orderedMap(
                     "eventType", "artifact_action",
                     "occurredAt", now.toString(),
-                    "sourcePage", safeValue(sourcePage, 240),
+                    "sourcePage", safeSourcePage,
                     "sourceContext", safeValue(sourceContext, 120),
                     "action", safeValue(action, 64),
                     "artifactType", safeValue(artifactType, 64),
-                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+                    "provenance", buildProvenance(request, now, safeSourcePage)
             ), now);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist artifact action event", exception);
+        }
+    }
+
+    public void saveWorkflowStage(
+            String sourcePage,
+            String sourceContext,
+            String workflowRunId,
+            String countyKey,
+            String stage,
+            String outcome,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        String safeSourcePage = safeTrackingSourcePage(sourcePage);
+        try {
+            appendEvent(orderedMap(
+                    "eventType", "workflow_stage",
+                    "occurredAt", now.toString(),
+                    "sourcePage", safeSourcePage,
+                    "sourceContext", safeValue(sourceContext, 120),
+                    "workflowRunId", safeValue(workflowRunId, 64),
+                    "countyKey", safeValue(countyKey, 80),
+                    "stage", safeValue(stage, 64),
+                    "outcome", safeValue(outcome, 64),
+                    "provenance", buildProvenance(request, now, safeSourcePage)
+            ), now);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist workflow stage event", exception);
         }
     }
 
@@ -196,6 +234,7 @@ public class LeadStorageService {
             HttpServletRequest request
     ) {
         Instant now = Instant.now();
+        String safeSourcePage = safeTrackingSourcePage(sourcePage);
         try {
             appendEvent(orderedMap(
                     "eventType", "web_vital",
@@ -203,12 +242,43 @@ public class LeadStorageService {
                     "metricName", safeValue(metricName, 32),
                     "value", value,
                     "rating", safeValue(rating, 32),
-                    "sourcePage", safeValue(sourcePage, 240),
+                    "sourcePage", safeSourcePage,
                     "navigationType", safeValue(navigationType, 60),
-                    "provenance", buildProvenance(request, now, safeValue(sourcePage, 240))
+                    "provenance", buildProvenance(request, now, safeSourcePage)
             ), now);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist web vital event", exception);
+        }
+    }
+
+    private String safeTrackingSourcePage(String sourcePage) {
+        String value = safeValue(sourcePage, 240);
+        try {
+            URI uri = URI.create(value);
+            String path = uri.getRawPath();
+            if (path == null || !path.startsWith("/") || path.startsWith("//")) {
+                return "/";
+            }
+            String query = uri.getRawQuery();
+            if (query == null || query.isBlank()) {
+                return path;
+            }
+            List<String> safeParameters = java.util.Arrays.stream(query.split("&"))
+                    .filter(parameter -> {
+                        String[] pair = parameter.split("=", 2);
+                        if (pair.length != 2 || !pair[1].matches("[A-Za-z0-9._~-]{1,80}")) {
+                            return false;
+                        }
+                        return switch (pair[0]) {
+                            case "src", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+                                    "mode", "purpose", "projectType", "recordsMode" -> true;
+                            default -> false;
+                        };
+                    })
+                    .toList();
+            return safeParameters.isEmpty() ? path : path + "?" + String.join("&", safeParameters);
+        } catch (IllegalArgumentException exception) {
+            return "/";
         }
     }
 
@@ -331,12 +401,159 @@ public class LeadStorageService {
         provenance.put("submittedPath", request.getRequestURI());
         provenance.put("submittedUrl", request.getRequestURL().toString());
         provenance.put("requestMethod", request.getMethod());
-        provenance.put("queryString", request.getQueryString());
-        provenance.put("referrer", headerOrBlank(request, "Referer"));
+        provenance.put("queryString", safeRequestQuery(request));
+        provenance.put("referrer", safeReferrer(request));
         provenance.put("userAgent", headerOrBlank(request, "User-Agent"));
         provenance.put("forwardedFor", forwardedFor);
         provenance.put("remoteAddress", remoteAddress);
         return provenance;
+    }
+
+    private String safeRequestQuery(HttpServletRequest request) {
+        String query = request.getQueryString();
+        if (query == null || query.isBlank()) {
+            return null;
+        }
+        String safePath = safeTrackingSourcePage(request.getRequestURI() + "?" + query);
+        int queryIndex = safePath.indexOf('?');
+        return queryIndex < 0 ? null : safePath.substring(queryIndex + 1);
+    }
+
+    private String safeReferrer(HttpServletRequest request) {
+        String referrer = headerOrBlank(request, "Referer");
+        if (referrer.isBlank()) {
+            return "";
+        }
+        try {
+            URI uri = URI.create(referrer);
+            if (uri.getScheme() == null || uri.getHost() == null) {
+                return "";
+            }
+            String origin = uri.getScheme() + "://" + uri.getHost()
+                    + (uri.getPort() == -1 ? "" : ":" + uri.getPort());
+            boolean sameSite = uri.getHost().equalsIgnoreCase(request.getServerName())
+                    || uri.getHost().equalsIgnoreCase("septicpath.com")
+                    || uri.getHost().endsWith(".septicpath.com");
+            if (!sameSite) {
+                return origin;
+            }
+            String relative = (uri.getRawPath() == null ? "/" : uri.getRawPath())
+                    + (uri.getRawQuery() == null ? "" : "?" + uri.getRawQuery());
+            return origin + safeTrackingSourcePage(relative);
+        } catch (IllegalArgumentException exception) {
+            return "";
+        }
+    }
+
+    private void scrubHistoricalEventQueries() throws IOException {
+        Path eventsRoot = root().resolve("events");
+        try (var paths = Files.walk(eventsRoot)) {
+            for (Path eventFile : paths.filter(path -> path.toString().endsWith(".ndjson")).toList()) {
+                scrubHistoricalEventFile(eventFile);
+            }
+        }
+    }
+
+    private void scrubHistoricalEventFile(Path eventFile) throws IOException {
+        byte[] bytes = Files.readAllBytes(eventFile);
+        String content = new String(bytes, storedEventCharset(bytes));
+        List<String> originalLines = java.util.Arrays.asList(content.split("\\R", -1));
+        List<String> safeLines = new java.util.ArrayList<>(originalLines.size());
+        boolean changed = false;
+        for (String line : originalLines) {
+            String normalizedLine = line.startsWith("\uFEFF") ? line.substring(1) : line;
+            if (normalizedLine.isBlank()) {
+                safeLines.add(line);
+                continue;
+            }
+            try {
+                JsonNode parsed = objectMapper.readTree(normalizedLine);
+                if (!(parsed instanceof ObjectNode event)) {
+                    safeLines.add(line);
+                    continue;
+                }
+                changed |= scrubEventNode(event);
+                safeLines.add(objectMapper.writeValueAsString(event));
+            } catch (IOException exception) {
+                safeLines.add(line);
+            }
+        }
+        if (!changed) {
+            return;
+        }
+        Path tempFile = eventFile.resolveSibling(eventFile.getFileName() + ".privacy-scrub.tmp");
+        Files.write(tempFile, safeLines, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        moveAtomically(tempFile, eventFile);
+    }
+
+    private Charset storedEventCharset(byte[] bytes) {
+        if (bytes.length >= 2 && bytes[0] == (byte) 0xFF && bytes[1] == (byte) 0xFE) {
+            return StandardCharsets.UTF_16LE;
+        }
+        if (bytes.length >= 2 && bytes[0] == (byte) 0xFE && bytes[1] == (byte) 0xFF) {
+            return StandardCharsets.UTF_16BE;
+        }
+        return StandardCharsets.UTF_8;
+    }
+
+    private boolean scrubEventNode(ObjectNode event) {
+        boolean changed = replaceText(event, "sourcePage", safeTrackingSourcePage(event.path("sourcePage").asText("")));
+        String targetPath = event.path("targetPath").asText("");
+        if (targetPath.startsWith("/")) {
+            changed |= replaceText(event, "targetPath", safeTrackingSourcePage(targetPath));
+        }
+        JsonNode provenanceNode = event.path("provenance");
+        if (provenanceNode instanceof ObjectNode provenance) {
+            changed |= replaceText(provenance, "sourcePage",
+                    safeTrackingSourcePage(provenance.path("sourcePage").asText("")));
+            changed |= replaceText(provenance, "referrer",
+                    safeStoredReferrer(provenance.path("referrer").asText("")));
+            String query = provenance.path("queryString").asText("");
+            String safeQueryPath = safeTrackingSourcePage("/?" + query);
+            int queryIndex = safeQueryPath.indexOf('?');
+            String safeQuery = queryIndex < 0 ? "" : safeQueryPath.substring(queryIndex + 1);
+            changed |= replaceText(provenance, "queryString", safeQuery);
+        }
+        return changed;
+    }
+
+    private String safeStoredReferrer(String referrer) {
+        if (referrer == null || referrer.isBlank()) {
+            return "";
+        }
+        try {
+            URI uri = URI.create(referrer);
+            if (uri.getScheme() == null || uri.getHost() == null) {
+                return "";
+            }
+            String origin = uri.getScheme() + "://" + uri.getHost()
+                    + (uri.getPort() == -1 ? "" : ":" + uri.getPort());
+            boolean septicPathPage = uri.getHost().equalsIgnoreCase("septicpath.com")
+                    || uri.getHost().endsWith(".septicpath.com")
+                    || uri.getHost().equalsIgnoreCase("127.0.0.1")
+                    || uri.getHost().equalsIgnoreCase("localhost");
+            if (!septicPathPage) {
+                return origin;
+            }
+            String relative = (uri.getRawPath() == null ? "/" : uri.getRawPath())
+                    + (uri.getRawQuery() == null ? "" : "?" + uri.getRawQuery());
+            return origin + safeTrackingSourcePage(relative);
+        } catch (IllegalArgumentException exception) {
+            return "";
+        }
+    }
+
+    private boolean replaceText(ObjectNode node, String field, String safeValue) {
+        if (!node.has(field)) {
+            return false;
+        }
+        String current = node.path(field).asText("");
+        if (current.equals(safeValue)) {
+            return false;
+        }
+        node.put(field, safeValue);
+        return true;
     }
 
     private java.util.Optional<String> sanitizeSourcePageHint(String sourcePageHint) {

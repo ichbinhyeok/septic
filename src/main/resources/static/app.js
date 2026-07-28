@@ -2,11 +2,31 @@
     document.documentElement.classList.add("js");
     const coreAlreadyLoaded = Boolean(window.SepticPathCoreLoaded);
 
+    const analyticsQueryKeys = new Set([
+        "src", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+        "mode", "purpose", "projectType", "recordsMode"
+    ]);
+
+    function analyticsSafePath(url) {
+        const params = new URLSearchParams();
+        url.searchParams.forEach((value, key) => {
+            if (analyticsQueryKeys.has(key) && /^[A-Za-z0-9._~-]{1,80}$/.test(value)) {
+                params.append(key, value);
+            }
+        });
+        const query = params.toString();
+        return `${url.pathname}${query ? `?${query}` : ""}`;
+    }
+
+    function analyticsSourcePage() {
+        return analyticsSafePath(new URL(window.location.href));
+    }
+
     function navigationTarget(anchor) {
         try {
             const url = new URL(anchor.href, window.location.origin);
             if (url.origin === window.location.origin) {
-                return url.pathname + url.search + url.hash;
+                return analyticsSafePath(url);
             }
             if (url.protocol !== "https:") {
                 return null;
@@ -46,10 +66,24 @@
 
     function sendArtifactAction(sourceContext, action, artifactType) {
         sendEvent("/events/artifact-action", {
-            sourcePage: window.location.pathname + window.location.search + window.location.hash,
+            sourcePage: analyticsSourcePage(),
             sourceContext,
             action,
             artifactType
+        });
+    }
+
+    function sendWorkflowStage(sourceContext, workflowRunId, countyKey, stage, outcome = "") {
+        if (!workflowRunId || !stage) {
+            return;
+        }
+        sendEvent("/events/workflow-stage", {
+            sourcePage: analyticsSourcePage(),
+            sourceContext,
+            workflowRunId,
+            countyKey: countyKey || "",
+            stage,
+            outcome
         });
     }
 
@@ -148,7 +182,7 @@
         const sent = new Set();
 
         function sourcePage() {
-            return window.location.pathname + window.location.search + window.location.hash;
+            return analyticsSourcePage();
         }
 
         function navigationType() {
@@ -859,6 +893,33 @@
             const requestedAddress = finderQuery.get("address")?.trim();
             const requestedCountyKey = finderQuery.get("countyKey")?.trim() || "";
             const requestedWorkflowRunId = finderQuery.get("workflowRunId")?.trim() || "";
+            let activeWorkflowRunId = requestedWorkflowRunId;
+            const workflowStagesSent = new Set();
+
+            function ensureWorkflowRunId() {
+                if (!activeWorkflowRunId) {
+                    activeWorkflowRunId = typeof window.crypto?.randomUUID === "function"
+                        ? window.crypto.randomUUID()
+                        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+                }
+                return activeWorkflowRunId;
+            }
+
+            function recordFinderStage(stage, outcome = "") {
+                const eventKey = `${stage}:${outcome}`;
+                if (workflowStagesSent.has(eventKey)) {
+                    return;
+                }
+                workflowStagesSent.add(eventKey);
+                sendWorkflowStage(
+                    "address_record_finder",
+                    ensureWorkflowRunId(),
+                    requestedCountyKey,
+                    stage,
+                    outcome
+                );
+            }
+
             if (requestedAddress && input instanceof HTMLInputElement && !input.value) {
                 input.value = requestedAddress.slice(0, 180);
             }
@@ -929,6 +990,7 @@
                     if (routeContext.purpose) {
                         routeUrl.searchParams.set("purpose", routeContext.purpose);
                     }
+                    routeUrl.searchParams.set("workflowRunId", ensureWorkflowRunId());
                     resolvedHref = `${routeUrl.pathname}${routeUrl.search}${routeUrl.hash}`;
                 }
                 link.href = resolvedHref;
@@ -1485,6 +1547,7 @@
             }
 
             directDocumentButton?.addEventListener("click", () => {
+                recordFinderStage("workflow_viewed");
                 try {
                     sessionStorage.removeItem(pendingReturnStorageKey);
                     localStorage.removeItem(taskProgressStorageKey);
@@ -1569,6 +1632,7 @@
                 }
                 awaitingOfficialReturn = true;
                 saveTaskProgress("official_opened");
+                recordFinderStage("official_route_opened");
                 if (typeof window.gtag === "function") {
                     window.gtag("event", "record_finder_official_open", {
                         state_code: routeContext?.stateCode || "unknown",
@@ -1590,6 +1654,10 @@
                 const outcome = outcomeButton.dataset.recordOutcome || "missing";
                 saveTaskProgress("outcome_selected", outcome);
                 renderNextStep(outcome);
+                recordFinderStage("outcome_recorded", outcome);
+                if (outcome === "found") {
+                    recordFinderStage("record_reported", outcome);
+                }
                 sendArtifactAction("address_record_finder", `outcome_${outcome}`, "official_record_route");
             });
 
@@ -1844,6 +1912,7 @@
                         }
                         finishButton.textContent = "Task finished";
                         finishButton.disabled = true;
+                        recordFinderStage("task_finished");
                     });
                     completionCopy.append(completionHeading, completionBody);
                     completion.append(completionCopy, finishButton);
@@ -2194,6 +2263,10 @@
                         const summary = addDocumentToWorkspace(payload);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
+                        recordFinderStage("document_reviewed");
+                        if (!summary.conflicts.length && summary.completeCount === summary.totalCount) {
+                            recordFinderStage("property_file_ready");
+                        }
                         sendArtifactAction("address_record_finder", sourceType, "property_record");
                         if (typeof window.gtag === "function") {
                             window.gtag("event", "record_finder_document_added", {
@@ -2278,6 +2351,7 @@
                 } catch (_) {
                     // The prompt is already visible.
                 }
+                recordFinderStage("official_returned");
                 showReturnPrompt();
             });
 
@@ -2294,6 +2368,7 @@
                     return;
                 }
 
+                recordFinderStage("workflow_viewed");
                 const defaultLabel = "Find septic records";
                 submit.disabled = true;
                 submit.textContent = "Finding county...";
@@ -2351,6 +2426,7 @@
             const requiresDocumentSelection = workflow.dataset.countyDocumentSelectionRequired === "true";
             const requestedPropertyAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
             const requestedPurpose = new URLSearchParams(window.location.search).get("purpose")?.trim() || "";
+            const requestedWorkflowRunId = new URLSearchParams(window.location.search).get("workflowRunId")?.trim() || "";
             const primaryUrl = workflow.dataset.countyPrimaryUrl || "";
             const secondaryUrl = workflow.dataset.countySecondaryUrl || "";
             const address = workflow.querySelector("[data-county-access-address]");
@@ -2368,6 +2444,7 @@
             let gaPreparationStarted = false;
             let gaLastOutcome = "";
             let workflowRunId = "";
+            let workflowReturnRecorded = false;
             const gaReadyPaths = new Set();
             const [stateCode = "", countySlug = ""] = countyKey.split("::");
 
@@ -2386,12 +2463,17 @@
                 });
             }
 
+            function recordCountyStage(stage, outcome = "") {
+                sendWorkflowStage("county_access_workflow", workflowRunId, countyKey, stage, outcome);
+            }
+
             function markGaPreparationStarted(entryPoint) {
                 if (gaPreparationStarted) {
                     return;
                 }
                 gaPreparationStarted = true;
                 emitCountyGaEvent("county_prepare_started", { entry_point: entryPoint });
+                recordCountyStage("preparation_started");
             }
 
             function safeValue(input) {
@@ -2431,14 +2513,17 @@
             }
 
             const initialWorkflowState = readState();
-            workflowRunId = String(initialWorkflowState?.workflowRunId || "");
+            workflowRunId = requestedWorkflowRunId || String(initialWorkflowState?.workflowRunId || "");
             if (!workflowRunId) {
                 workflowRunId = typeof window.crypto?.randomUUID === "function"
                     ? window.crypto.randomUUID()
                     : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
                 writeState({ workflowRunId, stage: "viewed" });
+            } else if (requestedWorkflowRunId && requestedWorkflowRunId !== initialWorkflowState?.workflowRunId) {
+                writeState({ workflowRunId, stage: "viewed", outcome: "" });
             }
             emitCountyGaEvent("county_workflow_viewed");
+            recordCountyStage("workflow_viewed");
 
             function showReturn() {
                 if (returnPanel instanceof HTMLElement) {
@@ -2513,7 +2598,14 @@
             function appendOfficialAction(actions, label = officialActionLabel(), primary = false, outcome = "") {
                 const path = officialActionUrl(outcome);
                 if (path) {
-                    actions.append(actionLink(label, path, primary));
+                    const fallback = externalSecondaryUrl();
+                    const resolvedLabel = outcome
+                        && fallback
+                        && path === fallback
+                        && path !== primaryUrl
+                        ? "Use the verified request fallback"
+                        : label;
+                    actions.append(actionLink(resolvedLabel, path, primary));
                 }
             }
 
@@ -2871,6 +2963,7 @@
                         required_detail_count: total,
                         preparation_path: preparationPath
                     });
+                    recordCountyStage("preparation_ready");
                 }
             }
 
@@ -3489,6 +3582,7 @@
                     writeState({ stage: "official_opened", outcome: "" });
                     window.setTimeout(showReturn, 350);
                     sendArtifactAction("county_access_workflow", "official_route_opened", mode);
+                    recordCountyStage("official_route_opened");
                     emitCountyGaEvent("county_official_route_opened", {
                         route_position: link.dataset.countyRoutePosition || "page_action"
                     });
@@ -3498,6 +3592,10 @@
             window.addEventListener("focus", () => {
                 if (awaitingReturn || readState()?.stage === "official_opened") {
                     awaitingReturn = false;
+                    if (!workflowReturnRecorded) {
+                        workflowReturnRecorded = true;
+                        recordCountyStage("official_returned");
+                    }
                     showReturn();
                 }
             });
@@ -3510,6 +3608,7 @@
                     writeState({ stage: "outcome_recorded", outcome });
                     renderNext(outcome);
                     sendArtifactAction("county_access_workflow", outcome, mode);
+                    recordCountyStage("outcome_recorded", outcome);
                     if (gaLastOutcome !== outcome) {
                         gaLastOutcome = outcome;
                         emitCountyGaEvent("county_return_outcome", {
@@ -3518,11 +3617,13 @@
                         });
                     }
                     if (outcome === "request_submitted") {
+                        recordCountyStage("request_submitted", outcome);
                         emitCountyGaEvent("county_request_submitted", {
                             result_source: "user_reported",
                             case_status: "pending"
                         });
                     } else if (outcome === "artifact") {
+                        recordCountyStage("record_reported", outcome);
                         emitCountyGaEvent("county_record_reported", {
                             result_source: "user_reported",
                             case_status: "needs_document_review"
@@ -5230,7 +5331,7 @@
         }
 
         function shareTargetPath() {
-            return window.location.pathname + window.location.search + "#share";
+            return `${analyticsSourcePage()}#share`;
         }
 
         async function fallbackCopy(text) {
@@ -5288,7 +5389,7 @@
                             await navigator.share({ title, text, url });
                             setTemporaryLabel(button, "Shared", "is-copied");
                             sendNavigationEvent({
-                                sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                                sourcePage: analyticsSourcePage(),
                                 sourceContext: button.dataset.trackSourceContext || "share_route",
                                 targetPath: shareTargetPath(),
                                 targetType: "native_share",
@@ -5306,7 +5407,7 @@
                     setTemporaryLabel(button, "Link copied", "is-copied");
 
                     sendNavigationEvent({
-                        sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                        sourcePage: analyticsSourcePage(),
                         sourceContext: button.dataset.trackSourceContext || "share_route",
                         targetPath: shareTargetPath(),
                         targetType: "clipboard",
@@ -5628,7 +5729,7 @@
             }
 
             sendNavigationEvent({
-                sourcePage: window.location.pathname + window.location.search + window.location.hash,
+                sourcePage: analyticsSourcePage(),
                 sourceContext: anchor.dataset.trackSourceContext || "",
                 targetPath,
                 targetType: anchor.dataset.trackTargetType || "",

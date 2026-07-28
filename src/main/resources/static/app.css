@@ -9331,6 +9331,76 @@ input[type="checkbox"] {
     gap: 24px;
 }
 
+.ops-workflow-funnel {
+    display: grid;
+    gap: 24px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.ops-workflow-funnel__steps {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ops-workflow-funnel__steps li {
+    display: grid;
+    align-content: start;
+    gap: 7px;
+    min-width: 0;
+    padding: 0 16px;
+    border-left: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.ops-workflow-funnel__steps li:first-child {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.ops-workflow-funnel__steps li:last-child {
+    padding-right: 0;
+}
+
+.ops-workflow-funnel__steps span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.ops-workflow-funnel__steps strong {
+    font: 800 clamp(1.65rem, 3vw, 2.7rem)/1 "Manrope", sans-serif;
+}
+
+.ops-workflow-funnel__steps small {
+    min-height: 2.6em;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.35;
+}
+
+.ops-workflow-funnel__steps div {
+    overflow: hidden;
+    height: 4px;
+    margin-top: 5px;
+    background: rgba(35, 108, 95, 0.1);
+}
+
+.ops-workflow-funnel__steps div span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+}
+
+.ops-workflow-funnel__note {
+    max-width: 82ch;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.83rem;
+}
+
 .ops-event-table-section {
     display: grid;
     gap: 12px;
@@ -10125,6 +10195,7 @@ input[type="checkbox"] {
     .coverage-summary__stats,
     .ops-report-hero,
     .ops-report-metrics,
+    .ops-workflow-funnel__steps,
     .trust-ops-priority-routes,
     .state-records-response__head,
     .state-records-response__body,
@@ -10135,6 +10206,25 @@ input[type="checkbox"] {
     .field-grid,
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .ops-workflow-funnel__steps {
+        gap: 14px;
+    }
+
+    .ops-workflow-funnel__steps li,
+    .ops-workflow-funnel__steps li:first-child,
+    .ops-workflow-funnel__steps li:last-child {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 0 0 14px;
+        border-bottom: 1px solid rgba(20, 34, 32, 0.1);
+        border-left: 0;
+    }
+
+    .ops-workflow-funnel__steps small,
+    .ops-workflow-funnel__steps div {
+        grid-column: 1 / -1;
+        min-height: 0;
     }
 
     .content-grid--county-next > .trust-box,
