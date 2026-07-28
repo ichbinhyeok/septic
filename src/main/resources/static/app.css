@@ -9642,11 +9642,11 @@ input[type="checkbox"] {
 
 .content-grid {
     grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
-    align-items: start;
 }
 
 .content-grid--county-next {
     grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.18fr);
+    align-items: start;
 }
 
 .content-grid--county-next > .trust-box {
