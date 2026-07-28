@@ -65,3 +65,38 @@ cannot reproduce the stated handoff.
 Pause broader SEO rollout if wrong-route errors recur, record-obtained rate
 cannot be measured separately from request submissions, or the privacy page no
 longer matches the implemented data flow.
+
+## Browser route audit — 2026-07-29
+
+This audit checks whether the handoff reaches the intended official search,
+form, office, or document in a real headed browser. It does **not** count a
+loaded page as a retrieved property record and does not submit a request.
+
+| County | Intended door | Browser observation | Product handling |
+|---|---|---|---|
+| Prince William, VA | Laserfiche document search | Opened the Health District document repository | Search plus office fallback |
+| Tarrant, TX | OSSF office route | Opened the county OSSF page | Jurisdiction check remains first |
+| Hamilton, TN | Permit document retrieval | Opened the county permit-applications/documents page | Search, then Groundwater fallback |
+| Alamance, NC | Official information-request PDF | PDF opened | Prepare the county PDF |
+| Knox, TN | County-branded file-search form | Live Jotform opened | User completes final form submission |
+| Lincoln, NC | Onsite Water office route | Official page opened | Prepare address/parcel and use office/portal |
+| DeKalb, GA | Open-records form | Current county-branded Jotform opened | Historical file and certification tasks stay separate |
+| Blount, TN | Records Center | GovQA Records Center opened | Choose Developmental Services |
+| St. Mary's, MD | Replacement public GIS | Current ArcGIS experience opened | Use PIA PDF only when GIS is incomplete |
+| Suffolk, NY | Wastewater Management office | Current OWM page opened and confirmed 631-852-5700 | Phone-assisted lookup with Tax Map details ready |
+| Maricopa, AZ | Free septic search | Official form opened | Free search before paid fallback |
+| Brunswick, NC | Permit metadata | Permit Reports page opened | Metadata is a lead, not the source document |
+| Forsyth, NC | Environmental Health request | County request form opened | Historical file and project release stay separate |
+| Denton, TX | Public-information PDF | County PDF opened | Confirm OSSF jurisdiction before requesting |
+| Brazoria, TX | Environmental Health contact | Official contact page opened | Confirm city, ETJ, or county authority |
+| Thurston, WA | Historic septic archive | Laserfiche search opened | Parcel/permit/project identifier required |
+| Harford, MD | Well and septic PIA PDF | County Health PDF opened | Complete the original form |
+| Cumberland, NC | Water and Sewage record options | Official service page opened | Citizen Connect/layout fallback remains visible |
+| San Diego, CA | Environmental Health Document Library | Document search opened | Search by APN, Record ID, or address clues |
+| San Bernardino, CA | Current NextRequest portal | EHS homepage confirmed the destination; portal returned Cloudflare 403 in the automated browser | Preserve county-authored preparation fields, let the user pass browser verification, and show 800-442-2283 fallback |
+
+Result: 18 of 19 tested web destinations opened to the intended official
+surface, Suffolk's current official office page and phone route were confirmed,
+and San Bernardino was retained as a blocked current portal with an explicit
+phone fallback. No row above is marked obtained without a property-matched file,
+written no-record response, or written referral.

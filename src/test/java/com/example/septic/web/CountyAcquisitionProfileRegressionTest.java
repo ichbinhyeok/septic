@@ -63,7 +63,14 @@ class CountyAcquisitionProfileRegressionTest {
         assertTrue(thurston.secondaryUrl().contains("/media/13802"));
         assertTrue(harford.primaryUrl().contains("PIA-Request-Form"));
         assertTrue(harford.limitation().contains("30-day"));
-        assertEquals("https://ehs.sbcounty.gov/", sanBernardino.primaryUrl());
+        assertTrue(sanBernardino.primaryUrl().contains("nextrequest.com/requests/new"));
+        CountyAcquisitionProfileView sanBernardinoAcquisition =
+                CountyAcquisitionProfileCatalog.find("CA::san-bernardino-county");
+        assertEquals("official_portal", sanBernardinoAcquisition.acquisitionMethod());
+        assertFalse(sanBernardinoAcquisition.officialFieldPackVerified());
+        assertTrue(sanBernardinoAcquisition.archivedOfficialFieldPackVerified());
+        assertTrue(sanBernardinoAcquisition.requiredFields().size() >= 10);
+        assertFalse(sanBernardinoAcquisition.officialRecipientVerified());
         assertTrue(cumberland.summary().contains("septic-layout request"));
     }
 

@@ -1922,10 +1922,10 @@
       "introCopy": "San Bernardino County is a strong California county wedge because the county turns septic due diligence into a concrete property-transfer and APN workflow. The official forms tie transfer of ownership, certification, parcel research, and bedroom-count or replacement-area questions into one county path.",
       "uniqueAngle": "San Bernardino County stands out because the permit application itself doubles as a transfer-of-ownership surface. The county requires APN-driven paperwork and a private sewage disposal certification dated within the last 30 days, then widens the story further with adequate-service and bedroom-count rules.",
       "targetReader": "Best for San Bernardino County buyers, owners, and agents who need to know whether an OWTS transfer form is already required, whether the existing system can be certified, and whether parcel or bedroom changes break the current septic story.",
-      "officeLabel": "Open the current San Bernardino OWTS transfer form",
+      "officeLabel": "Review the separate San Bernardino OWTS ownership-change form",
       "officeUrl": "https://ehs.sbcounty.gov/wp-content/uploads/sites/97/Programs/WaterAndWaste/owts-permit-application-transfer-of-ownership.pdf",
-      "recordsLabel": "Open San Bernardino Environmental Health records request",
-      "recordsUrl": "https://ehs.sbcounty.gov/",
+      "recordsLabel": "Open the current San Bernardino records portal",
+      "recordsUrl": "https://sanbernardinocounty.nextrequest.com/requests/new",
       "contactLine": "San Bernardino County Department of Public Health Environmental Health Services | 800-442-2283 | county uses APN lookup, certification forms, and adequate-service conditions throughout its OWTS workflow.",
       "decisionSteps": [
         "Start with the San Bernardino transfer-of-ownership permit form and confirm the APN because the county uses parcel-driven workflow from the first step.",
@@ -1963,7 +1963,8 @@
         "ca_sanbernardino_02",
         "ca_sanbernardino_03",
         "ca_sanbernardino_04",
-        "ca_sanbernardino_05"
+        "ca_sanbernardino_05",
+        "ca_sanbernardino_06"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_environmental_health",

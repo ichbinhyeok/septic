@@ -45,6 +45,7 @@ SUMMARY_CLASSIFICATIONS = [
     "dead",
 ]
 NONPRODUCTION_LABELS = {"old", "temp", "uat", "test", "testing", "stage", "staging", "qa", "dev"}
+EDGE_GATEWAY_STATUSES = {520, 521, 522, 523, 524, 525, 526, 530}
 HEALTH_COLUMNS = [
     "last_http_checked_at",
     "http_check_status",
@@ -73,6 +74,11 @@ def classify(status: int) -> str:
     if 200 <= status < 400:
         return "healthy"
     if status in {401, 403}:
+        return "blocked"
+    if status in EDGE_GATEWAY_STATUSES:
+        # Cloudflare and similar edge responses frequently disagree with a
+        # headed browser and should trigger manual review, not fail the entire
+        # registry as a confirmed dead or persistently broken official source.
         return "blocked"
     if status in {404, 410}:
         return "dead"
@@ -240,7 +246,10 @@ def audit_url(
         if retry_delay > 0:
             time.sleep(retry_delay)
 
-    if int(result.get("statusCode", 0)) >= 500 and int(result.get("attempts", 1)) >= attempts:
+    if (
+        result.get("classification") == "transient"
+        and int(result.get("attempts", 1)) >= attempts
+    ):
         result["classification"] = "persistent_server_error"
     if result.get("classification") == "dns_error":
         confirmed = confirm_dns_nxdomain(url, timeout)

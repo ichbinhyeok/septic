@@ -16,7 +16,8 @@ SepticPath records editorial verification and automated HTTP reachability as two
 
 - A published evidence page must have an editorial content review within 180 days, or a healthy HTTP result paired with an editorial review within 365 days.
 - Only confirmed HTTP 404 or 410 responses are classified as `dead` automatically.
-- Bot blocks, timeouts, TLS failures, rate limits, and server errors enter `manual_http_review`; they are not silently treated as healthy or dead.
+- Bot blocks, timeouts, TLS failures, rate limits, and edge-gateway statuses such as Cloudflare 521 enter `manual_http_review`; they are not silently treated as healthy or dead.
+- A normal 5xx response becomes actionable only when it persists through retries. Edge-gateway responses remain a browser/manual-review signal because they can disagree with a successful human-browser visit.
 - Replacing a source requires an individual source review and uses `source_replacement_review`.
 - A date-only registry edit is not evidence. The audit restores unsupported date-only bumps when a Git baseline is available.
 

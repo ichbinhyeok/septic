@@ -87,6 +87,7 @@ public record CountyAccessProfileView(
     public String primaryAccessNote() {
         return switch (countyKey) {
             case "NY::suffolk-county" -> "Starts a phone call. Have the Tax Map number and construction year ready.";
+            case "CA::san-bernardino-county" -> "Opens the current NextRequest portal linked by Environmental Health. It returned a Cloudflare security block in our automated browser.";
             default -> "";
         };
     }
@@ -96,7 +97,8 @@ public record CountyAccessProfileView(
             case "VA::prince-william-county" -> "Optional fallback. The VDH request site may require browser verification or return an access block.";
             case "TX::tarrant-county" -> "Optional formal-request fallback. JustFOIA may return an access block; use the OSSF office first.";
             case "NC::lincoln-county" -> "Optional submission portal. NextRequest may return an access block; the Environmental Health page and phone remain available.";
-            case "NY::suffolk-county" -> "The county instructions page may reject some browsers. The phone route above is the working action.";
+            case "NY::suffolk-county" -> "The current office page confirms the phone number, Yaphank counter, hours, and online application help.";
+            case "CA::san-bernardino-county" -> "Starts a call. Keep the prepared property and record-scope fields open so you only need to confirm the current intake.";
             default -> "";
         };
     }

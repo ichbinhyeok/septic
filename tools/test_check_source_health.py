@@ -15,6 +15,7 @@ class SourceHealthPolicyTests(unittest.TestCase):
         self.assertEqual("dead", classify(404))
         self.assertEqual("dead", classify(410))
         self.assertEqual("blocked", classify(403))
+        self.assertEqual("blocked", classify(521))
         self.assertEqual("transient", classify(503))
 
     def test_dns_failure_is_actionable(self):
@@ -69,6 +70,26 @@ class SourceHealthPolicyTests(unittest.TestCase):
         self.assertEqual(3, audit_once.call_count)
         self.assertEqual("persistent_server_error", result["classification"])
         self.assertIn(result["classification"], ACTIONABLE_CLASSIFICATIONS)
+
+    @patch("tools.check_source_health.audit_url_once")
+    def test_edge_gateway_status_stays_manual_review_after_retry(self, audit_once):
+        from tools.check_source_health import audit_url
+
+        audit_once.return_value = {
+            "url": "https://example.gov/form.pdf",
+            "statusCode": 521,
+            "classification": "blocked",
+            "error": "HTTP Error 521",
+        }
+        result = audit_url(
+            {"url": "https://example.gov/form.pdf", "sourceIds": ["x"], "agencies": ["Example"]},
+            timeout=5,
+            retries=2,
+            retry_delay=0,
+        )
+        self.assertEqual(3, audit_once.call_count)
+        self.assertEqual("blocked", result["classification"])
+        self.assertNotIn(result["classification"], ACTIONABLE_CLASSIFICATIONS)
 
     @patch("tools.check_source_health.urllib.request.urlopen")
     def test_public_dns_confirmation_requires_authoritative_nxdomain(self, urlopen):

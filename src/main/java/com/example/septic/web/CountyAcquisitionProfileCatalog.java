@@ -830,6 +830,51 @@ public final class CountyAcquisitionProfileCatalog {
                     ),
                     docs("SSDS construction permit", "certificate of completion", "approved layout and site record", "repair, inspection, and correspondence records")
             )),
+            Map.entry("CA::san-bernardino-county", acquisition(
+                    "CA::san-bernardino-county",
+                    "San Bernardino County Department of Public Health — Environmental Health Services",
+                    "Current NextRequest portal — phone fallback",
+                    "No current portal fee is published. A 2015 county form listed $0.10 per page and an additional $0.22 per certified page; confirm current charges before agreeing.",
+                    "No current processing time is published on the reviewed county page.",
+                    "Pass the portal's browser verification and complete its current fields yourself. If it remains blocked, call 800-442-2283 with the carry sheet.",
+                    "",
+                    "800-442-2283",
+                    "San Bernardino Environmental Health records — {{address}}",
+                    "The fields below are preserved from a county-authored 2015 records form. They prepare the property and request facts but are not claimed to be the current NextRequest field list or an accepted submission form.",
+                    """
+                    San Bernardino County official-form carry sheet
+
+                    Facility name: {{facilityName}}
+                    Property location: {{address}}, {{siteCity}}, {{siteState}} {{siteZip}}
+                    Case / file number: {{caseFileNumber}}
+                    Inspector: {{inspector}}
+                    Record date range: {{recordDateRange}}
+                    Specific information requested: {{specificInformation}}
+
+                    Requester name and affiliation: {{requesterName}}
+                    Requester address: {{requesterAddress}}, {{requesterCity}}, {{requesterState}} {{requesterZip}}
+                    Preferred delivery email: {{requesterEmail}}
+                    Phone: {{requesterPhone}}
+                    """,
+                    List.of(
+                            field("facilityName", "Facility name", "Business or apartment-complex name, if applicable", false, "organization"),
+                            field("siteCity", "Property city", "City printed in the location section", true, "address-level2"),
+                            field("siteState", "Property state", "CA", true, "address-level1"),
+                            field("siteZip", "Property ZIP", "ZIP code", true, "postal-code"),
+                            field("caseFileNumber", "Case or file number", "If known", false, "off"),
+                            field("inspector", "Inspector", "If known", false, "name"),
+                            field("recordDateRange", "Record date or time range", "Month/year or inspection date range", false, "off"),
+                            field("specificInformation", "Specific information requested", "File, inspection report, complaint, OWTS permit, or plan", true, "off"),
+                            field("requesterName", "Requester name and affiliation", "Name and business, law office, owner, or private-citizen role", true, "name"),
+                            field("requesterAddress", "Requester street address", "Mailing address", true, "street-address"),
+                            field("requesterCity", "Requester city", "City", true, "address-level2"),
+                            field("requesterState", "Requester state", "State", true, "address-level1"),
+                            field("requesterZip", "Requester ZIP", "ZIP code", true, "postal-code"),
+                            field("requesterEmail", "Requester email", "Preferred method of delivery", true, "email"),
+                            field("requesterPhone", "Requester phone", "Used when copies or files are ready", true, "tel")
+                    ),
+                    docs("OWTS permit, approved plan, and layout", "inspection reports for the property and requested time range", "complaint or case file only when relevant", "written no-record or referral response")
+            )),
             Map.entry("NC::guilford-county", acquisition(
                     "NC::guilford-county",
                     "Guilford County On-Site Water Protection",

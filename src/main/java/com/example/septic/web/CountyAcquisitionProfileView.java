@@ -42,7 +42,15 @@ public record CountyAcquisitionProfileView(
     }
 
     public boolean archivedOfficialFieldPackVerified() {
-        return "TN::sevier-county".equals(countyKey);
+        return "TN::sevier-county".equals(countyKey)
+                || "CA::san-bernardino-county".equals(countyKey);
+    }
+
+    public String archivedFieldVerificationLabel() {
+        if ("CA::san-bernardino-county".equals(countyKey)) {
+            return "Preparation fields preserved from a county-authored form; the current NextRequest fields must be reviewed in the live portal";
+        }
+        return "Property and result-delivery fields verified from a county-authored form; current submission channel still requires confirmation";
     }
 
     public boolean hasPreparedFieldPack() {
@@ -62,7 +70,8 @@ public record CountyAcquisitionProfileView(
                  "MD::prince-georges-county", "CO::adams-county" -> "official_search";
             case "NC::alamance-county", "TX::denton-county" -> "official_pdf";
             case "TX::tarrant-county", "NC::lincoln-county", "GA::dekalb-county",
-                 "TN::blount-county", "TN::knox-county", "NJ::gloucester-county",
+                 "TN::blount-county", "TN::knox-county", "CA::san-bernardino-county",
+                 "NJ::gloucester-county",
                  "TN::wilson-county", "TN::montgomery-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
             case "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
@@ -120,6 +129,9 @@ public record CountyAcquisitionProfileView(
         if ("TN::sevier-county".equals(countyKey)) {
             return "TDEC directs Sevier users to the county. Prepare the fields preserved from the county-authored SSD information form, then call to confirm whether the current intake is email, fax, mail, or another route before sending anything.";
         }
+        if ("CA::san-bernardino-county".equals(countyKey)) {
+            return "Environmental Health currently links to NextRequest. Prepare the fields preserved from its county-authored records form, then use only the current portal fields; if Cloudflare blocks the portal, call to confirm the active intake.";
+        }
         if ("NC::guilford-county".equals(countyKey)) {
             return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
         }
@@ -159,6 +171,7 @@ public record CountyAcquisitionProfileView(
                  "MD::st-marys-county",
                  "NC::brunswick-county",
                  "NC::forsyth-county",
+                 "CA::san-bernardino-county",
                  "NJ::gloucester-county",
                  "TN::sevier-county" -> true;
             default -> false;
@@ -179,7 +192,8 @@ public record CountyAcquisitionProfileView(
 
     public boolean officialPropertyAddressRequired() {
         return switch (countyKey) {
-            case "TN::hamilton-county", "NJ::gloucester-county", "TN::sevier-county" -> true;
+            case "TN::hamilton-county", "CA::san-bernardino-county",
+                 "NJ::gloucester-county", "TN::sevier-county" -> true;
             default -> false;
         };
     }
@@ -222,6 +236,9 @@ public record CountyAcquisitionProfileView(
 
     public String preparationSummary() {
         if (archivedOfficialFieldPackVerified()) {
+            if ("CA::san-bernardino-county".equals(countyKey)) {
+                return "We organize the property and request fields preserved from the county-authored form, clearly separate them from the live portal, and keep each value ready to copy or carry into a fallback call.";
+            }
             return "We organize every property and return-delivery field preserved from the county-authored information form, build the call script, and keep the current intake channel as the only fact left to confirm.";
         }
         if (officialFieldPackVerified()) {
@@ -236,6 +253,9 @@ public record CountyAcquisitionProfileView(
 
     public String manualCompletionBoundary() {
         if (archivedOfficialFieldPackVerified()) {
+            if ("CA::san-bernardino-county".equals(countyKey)) {
+                return "Open the current NextRequest portal and complete its browser verification and live fields yourself. If the portal stays blocked, call 800-442-2283 and confirm the current intake before sending anything.";
+            }
             return "Call the county, confirm the current submission channel and whether its published form is still accepted, then sign, date, and send only through the method the office confirms.";
         }
         return "Review the prepared details, complete any county-only login, signature, CAPTCHA, or payment-consent step that appears, then submit in your own name.";

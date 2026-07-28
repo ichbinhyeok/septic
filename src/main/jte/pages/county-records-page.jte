@@ -110,7 +110,7 @@
                                href="#county-acquisition-workspace"
                                data-track-click="nav"
                                data-track-source-context="county_acquisition_prepare"
-                               data-track-target-type="internal_tool">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare everything before calling" : "Prepare for the official county route"}</a>
+                               data-track-target-type="internal_tool">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare everything before the county handoff" : "Prepare for the official county route"}</a>
                             <a class="button button--secondary"
                                href="${countyAccessProfile.primaryUrl()}"
                                target="_blank"
@@ -411,7 +411,7 @@
                                     @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
                                     <div>
                                         <dt>Field verification</dt>
-                                        <dd>Property and result-delivery fields verified from a county-authored form; current submission channel still requires confirmation</dd>
+                                        <dd>${countyAcquisitionProfile.archivedFieldVerificationLabel()}</dd>
                                     </div>
                                     @else
                                     @if (!countyAcquisitionProfile.officialFieldPackVerified())
