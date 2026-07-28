@@ -5267,7 +5267,7 @@ body.records-task-mode .records-request-builder {
 }
 
 .county-acquisition-field label > span {
-    min-height: 1.25rem;
+    min-height: 2rem;
     padding-right: 3.5rem;
 }
 
@@ -5278,10 +5278,10 @@ body.records-task-mode .records-request-builder {
 
 .county-acquisition-field__copy {
     position: absolute;
-    top: -0.15rem;
+    top: -0.25rem;
     right: 0;
     min-width: 3.1rem;
-    min-height: 1.75rem;
+    min-height: 2.25rem;
     padding: 0 0.55rem;
     color: var(--accent-strong);
     font: 800 0.72rem/1 "Manrope", sans-serif;
@@ -5290,6 +5290,12 @@ body.records-task-mode .records-request-builder {
     border-radius: 999px;
     background: rgba(225, 240, 234, 0.72);
     transition: transform 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.county-acquisition-field__copy::after {
+    position: absolute;
+    inset: -0.25rem;
+    content: "";
 }
 
 .county-acquisition-field__copy:hover,
