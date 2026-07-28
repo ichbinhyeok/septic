@@ -1041,7 +1041,7 @@
                     officeLabel.textContent = context.officeLabel || `${context.countyName || "Local"} septic records office`;
                 }
                 if (contact) {
-                    contact.textContent = context.contactLine || "Use the verified county route below for the current submission method.";
+                    contact.textContent = context.contactLine || "Use the reviewed county route below and confirm the current submission method on the official destination.";
                 }
                 if (reviewed) {
                     reviewed.textContent = context.routeReviewedAt
@@ -1056,7 +1056,7 @@
                     context?.countyName || context?.stateName
                         ? `Location: ${[context.countyName, context.stateName].filter(Boolean).join(", ")}`
                         : "",
-                    context?.officeLabel ? `File owner: ${context.officeLabel}` : "",
+                    context?.officeLabel ? `Starting office/source: ${context.officeLabel}` : "",
                     context?.contactLine ? `Fallback contact: ${context.contactLine}` : "",
                     "Ask for: permit, installed layout or as-built, final approval, and repair history."
                 ].filter(Boolean).join("\n");
@@ -1370,15 +1370,15 @@
                         documentWorkspace.hidden = false;
                     }
                 } else if (outcome === "blocked") {
-                    title.textContent = "Use the local file owner instead of repeating the search.";
-                    copy.textContent = "Open the county-specific guide for the responsible office, or carry this property context into a copy-ready request.";
+                    title.textContent = "Use the responsible office or fallback instead of repeating the search.";
+                    copy.textContent = "Open the county route for the responsible office and verified fallback, or carry this property context into a routing draft.";
                     const localGuide = button("Open county-specific route", countyPath, true, "county_records_page");
                     const request = button("Build a prefilled records request", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool");
                     request.dataset.recordRequestBuilder = "true";
                     links.append(localGuide, request);
                 } else {
-                    title.textContent = "Ask the file owner for the document your purpose requires.";
-                    copy.textContent = "The request builder will carry the address, county, state, and purpose from this search into an office-ready message.";
+                    title.textContent = "Prepare the request your purpose requires.";
+                    copy.textContent = "The request builder carries the address, county, state, and purpose into a routing draft. Confirm the official intake before sending it.";
                     const request = button("Build a prefilled records request", "/septic-records-request-builder/?mode=task#records-request-builder", true, "internal_tool");
                     request.dataset.recordRequestBuilder = "true";
                     links.append(request, button("Review the county route", countyPath, false, "county_records_page"));
@@ -2318,7 +2318,7 @@
                     render({
                         status: "unavailable",
                         heading: "Use the county finder while address lookup reconnects",
-                        message: "No address was saved. Search by county to open a verified local records route.",
+                        message: "No address was saved. Search by county to open the best available local records route and see its verification depth.",
                         routeTitle: "Search county records",
                         routePath: "/septic-records-by-county/"
                     });

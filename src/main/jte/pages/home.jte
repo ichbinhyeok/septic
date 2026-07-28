@@ -38,8 +38,8 @@
                 <li>
                     <span>1</span>
                     <div>
-                        <h3>Find the right office</h3>
-                        <p>We match the property to its county and the best records source we know.</p>
+                        <h3>Find the county and route depth</h3>
+                        <p>We resolve the property county, then show whether the next step is county-specific or only an official starting point.</p>
                     </div>
                 </li>
                 <li>
@@ -91,24 +91,24 @@
         <div class="container">
             <div class="section-heading home-section-heading">
                 <span class="eyebrow">Popular record searches</span>
-                <h2>Go straight to a proven local path.</h2>
-                <p class="lede">These pages already help homeowners reach the correct state or county records system.</p>
+                <h2>Go straight to a reviewed local starting point.</h2>
+                <p class="lede">Each route shows its real depth before you leave: county-specific preparation, a direct search, or an official starting point only.</p>
             </div>
             <div class="home-route-list">
                 <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="internal_page">
-                    <span><strong>Tennessee</strong><small>TDEC septic records and county fallback</small></span>
+                    <span><strong>Tennessee</strong><small>TDEC program, field-office, and public-records fallbacks</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
                 <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
-                    <span><strong>Wake County, North Carolina</strong><small>Permit Portal and parcel records</small></span>
+                    <span><strong>Wake County, North Carolina</strong><small>Official iMAPS search guide · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
                 <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
-                    <span><strong>St. Joseph County, Indiana</strong><small>Health files, permits, and soil reports</small></span>
+                    <span><strong>St. Joseph County, Indiana</strong><small>Official schematic request page · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
                 <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_proven_routes" data-track-target-type="county_records_page">
-                    <span><strong>Greenville County, South Carolina</strong><small>Parcel/TMS and SCDES permit copies</small></span>
+                    <span><strong>Greenville County, South Carolina</strong><small>SCDES guidance and TMS clues · starting-point route</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
             </div>

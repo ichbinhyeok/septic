@@ -4305,10 +4305,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             if ("TN".equals(state.get().stateCode())) {
                 return tennesseeRecordRelay(lookup, state.get(), page);
             }
+            CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.findOrBaseline(page);
+            String routeMessage = accessProfile.countySpecific()
+                    ? "This county-specific route has a reviewed official handoff. The government site or office still controls the final search, signature, payment, and submission."
+                    : "This is an official starting point, not a verified county-specific intake. Use the property clues here, then follow only the fields and steps the official source currently publishes.";
             return new AddressRecordFinderResult(
                     "county_route",
                     page.countyName() + ", " + state.get().stateName() + " records route",
-                    "This is the verified county route for the permit file, records request, parcel clue, or official office handoff.",
+                    routeMessage,
                     state.get().stateCode(), state.get().stateName(), page.countyName(), lookup.matchedAddress(),
                     "Open " + page.countyName() + " records", page.path(state.get().slug()), page.recordsUrl(),
                     page.officeLabel(), page.contactLine(), latestVerifiedAt(

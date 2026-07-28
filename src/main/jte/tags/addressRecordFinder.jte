@@ -1,7 +1,7 @@
 @param String finderId = "address-record-finder"
 @param String eyebrow = "Address record finder"
 @param String heading = "Paste the address. Open the right septic records route."
-@param String intro = "We resolve the property county, then send you to the best verified county records page or state records path already in SepticPath."
+@param String intro = "We resolve the property county, then show the best available county or state route and how deeply that route has been verified."
 @param int totalCountyRouteCount = 0
 @param boolean compact = false
 @param boolean pageHeading = false
@@ -18,8 +18,8 @@
             @endif
             <p>${intro}</p>
             <div class="record-finder__signals" aria-label="Record finder coverage">
-                <span><strong>${totalCountyRouteCount}</strong> county routes</span>
-                <span>Official-source backed</span>
+                <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
+                <span>Route depth shown before handoff</span>
                 <span>No account required</span>
             </div>
             <div class="record-finder__result-preview" aria-label="Example property file result">
@@ -83,7 +83,7 @@
                 <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
             </div>
             <p class="record-finder__privacy">Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
-            <p class="record-finder__form-outcome"><strong>You get:</strong> the file owner, first record to request, and a reusable checklist.</p>
+            <p class="record-finder__form-outcome"><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
             <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
 
@@ -101,11 +101,11 @@
                 </div>
                 <button class="button button--secondary" type="button" data-record-search-packet-copy>Copy details</button>
             </div>
-            <p class="record-finder__official-note">The original record still opens on the government or county site. It opens in a new tab, and this page keeps your place for 30 days.</p>
+            <p class="record-finder__official-note">The official route opens on the government or county site. The record may still require a search, form, call, login, or request there; this page keeps your place for 30 days.</p>
             <details class="record-finder__route-details">
                 <summary>Office contact and search steps</summary>
                 <div class="record-finder__office" data-address-record-finder-office hidden>
-                    <span>Exact file owner</span>
+                    <span>Responsible office or official source</span>
                     <strong data-address-record-finder-office-label></strong>
                     <p data-address-record-finder-contact></p>
                     <small data-address-record-finder-reviewed></small>
