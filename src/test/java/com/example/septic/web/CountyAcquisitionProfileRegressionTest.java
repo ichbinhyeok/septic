@@ -84,4 +84,57 @@ class CountyAcquisitionProfileRegressionTest {
         assertTrue(hanover.limitation().contains("3-5 business days"));
         assertTrue(craven.secondaryUrl().contains("Request-For-Document-Septic-Wells"));
     }
+
+    @Test
+    void gscFourthWaveUsesVerifiedLiveDoorsAndPreservesBlockedRouteBoundaries() {
+        CountyAccessProfileView gloucester = CountyAccessProfileCatalog.find("NJ::gloucester-county");
+        CountyAccessProfileView princeGeorges = CountyAccessProfileCatalog.find("MD::prince-georges-county");
+        CountyAccessProfileView adams = CountyAccessProfileCatalog.find("CO::adams-county");
+        CountyAccessProfileView mahoning = CountyAccessProfileCatalog.find("OH::mahoning-county");
+        CountyAccessProfileView wilson = CountyAccessProfileCatalog.find("TN::wilson-county");
+        CountyAccessProfileView sevier = CountyAccessProfileCatalog.find("TN::sevier-county");
+        CountyAccessProfileView montgomery = CountyAccessProfileCatalog.find("TN::montgomery-county");
+        CountyAccessProfileView guilford = CountyAccessProfileCatalog.find("NC::guilford-county");
+
+        assertTrue(gloucester.primaryUrl().contains("Open-Records-Request-Form-OPRA"));
+        assertTrue(princeGeorges.primaryUrl().contains("lookseerecords"));
+        assertTrue(adams.primaryUrl().contains("experience.arcgis.com"));
+        assertEquals("mailto:info@mahoninghealth.org", mahoning.secondaryUrl());
+        assertTrue(wilson.primaryUrl().contains("formstack.com/forms/public_records_request"));
+        assertEquals("tel:865-429-1766", sevier.primaryUrl());
+        assertFalse(sevier.primaryUrl().contains("request_for_information_ssds"));
+        assertTrue(montgomery.primaryUrl().contains("formstack.com/forms/public_records_request"));
+        assertEquals("tel:336-641-7613", guilford.primaryUrl());
+    }
+
+    @Test
+    void gscFourthWaveOnlyMarksFieldsVerifiedWhenTheLiveFormWasInspected() {
+        CountyAcquisitionProfileView gloucester =
+                CountyAcquisitionProfileCatalog.find("NJ::gloucester-county");
+        CountyAcquisitionProfileView princeGeorges =
+                CountyAcquisitionProfileCatalog.find("MD::prince-georges-county");
+        CountyAcquisitionProfileView adams =
+                CountyAcquisitionProfileCatalog.find("CO::adams-county");
+        CountyAcquisitionProfileView wilson =
+                CountyAcquisitionProfileCatalog.find("TN::wilson-county");
+        CountyAcquisitionProfileView sevier =
+                CountyAcquisitionProfileCatalog.find("TN::sevier-county");
+        CountyAcquisitionProfileView montgomery =
+                CountyAcquisitionProfileCatalog.find("TN::montgomery-county");
+        CountyAcquisitionProfileView guilford =
+                CountyAcquisitionProfileCatalog.find("NC::guilford-county");
+
+        assertTrue(gloucester.officialFieldPackVerified());
+        assertEquals("official_portal", gloucester.acquisitionMethod());
+        assertTrue(princeGeorges.officialFieldPackVerified());
+        assertEquals("official_search", princeGeorges.acquisitionMethod());
+        assertTrue(adams.officialFieldPackVerified());
+        assertEquals("official_search", adams.acquisitionMethod());
+        assertTrue(wilson.officialFieldPackVerified());
+        assertEquals(9, wilson.requiredFields().size());
+        assertTrue(montgomery.officialFieldPackVerified());
+        assertEquals(9, montgomery.requiredFields().size());
+        assertFalse(sevier.officialFieldPackVerified());
+        assertFalse(guilford.officialFieldPackVerified());
+    }
 }

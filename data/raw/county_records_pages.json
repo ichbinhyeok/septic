@@ -11681,9 +11681,9 @@
       "uniqueAngle": "Adams is a use-permit county. The real question is whether the parcel is hitting a covered event that forces an inspection report and a county use permit before the next transaction or expansion can feel safe.",
       "targetReader": "Best for Adams County buyers, owners, agents, and remodel planners who need to know whether the next move is a use-permit inspection, an APN-based file pull, or a repair-permit branch.",
       "officeLabel": "Adams County septic systems program",
-      "officeUrl": "https://adamscountyhealthdepartment.org/permits-install-repair-or-expand-owts",
-      "recordsLabel": "Open Adams County OWTS use permit path",
-      "recordsUrl": "https://adamscountyhealthdepartment.org/wp-content/uploads/sites/2/2026/01/eh-wq-septic-system-use-permit-application-2026.pdf",
+      "officeUrl": "https://adamscountyhealthdepartment.org/licensing-inspections/septic-systems/",
+      "recordsLabel": "Open the Adams County septic record search",
+      "recordsUrl": "https://experience.arcgis.com/experience/aec5c4ffe767495f8576de0d235c7a55",
       "contactLine": "Adams County Health Department Water Quality Program | ehwaterprogram@adcogov.org | use permit and OWTS review handled by the county",
       "decisionSteps": [
         "Start with the county septic page and ask whether the property is hitting a sale, remodel, change-of-use, or mobile-home trigger that requires a use permit.",
@@ -11720,7 +11720,8 @@
         "co_adams_01",
         "co_adams_02",
         "co_adams_03",
-        "co_adams_04"
+        "co_adams_04",
+        "co_adams_05"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -11949,8 +11950,8 @@
       "targetReader": "Best for Gloucester County buyers, owners, engineers, and agents who need to know whether the next move is OPRA, real-estate inspection protocol, or a full plan-review submission.",
       "officeLabel": "Gloucester County septic systems and plan review",
       "officeUrl": "https://www.gloucestercountynj.gov/697/Septic-Systems",
-      "recordsLabel": "Open Gloucester County forms and OPRA septic path",
-      "recordsUrl": "https://www.gloucestercountynj.gov/1155/OPRA-REQUEST-INFORMATION",
+      "recordsLabel": "Open the Gloucester County online OPRA form",
+      "recordsUrl": "https://nj-gloucestercounty.civicplus.com/FormCenter/Human-Resources-14/Open-Records-Request-Form-OPRA-69",
       "contactLine": "Gloucester County Department of Health and Human Services | 856-218-4101 | include lot block and street address for septic or environmental record requests",
       "decisionSteps": [
         "Start with the county septic systems page and decide whether the parcel is really a real-estate inspection issue, a repair-alteration issue, or a change-of-use review.",
@@ -11987,7 +11988,8 @@
         "nj_gloucester_01",
         "nj_gloucester_02",
         "nj_gloucester_03",
-        "nj_gloucester_04"
+        "nj_gloucester_04",
+        "nj_gloucester_05"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "split_local",
@@ -12217,8 +12219,8 @@
       "targetReader": "Best for Prince George's County buyers, owners, engineers, and agents who need to know whether the next move is a Momentum request, a permit review, or an appeal-sensitive design branch.",
       "officeLabel": "Prince George's County wells and sewage disposal systems",
       "officeUrl": "https://www.princegeorgescountymd.gov/departments-offices/health/environmental-health/wells-sewage-disposal-systems",
-      "recordsLabel": "Open Prince George's County Momentum and permit path",
-      "recordsUrl": "https://www.princegeorgescountymd.gov/departments-offices/permitting-inspections-and-enforcement/licensing/health-licenses/site-sewage-disposal-systems",
+      "recordsLabel": "Open the Prince George's County eRecords Explorer",
+      "recordsUrl": "https://lookseerecords.princegeorgescountymd.gov/",
       "contactLine": "Prince George's County Health Department and DPIE | Momentum handles health hazard requests compliance letters percolation tests and sewage permit workflows",
       "decisionSteps": [
         "Start with the county wells-and-sewage page and decide whether the property needs an information request, a permit branch, or a percolation and site-evaluation branch.",
@@ -12255,7 +12257,9 @@
         "md_princegeorges_01",
         "md_princegeorges_02",
         "md_princegeorges_03",
-        "md_princegeorges_04"
+        "md_princegeorges_04",
+        "md_princegeorges_05",
+        "md_princegeorges_06"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_public_health",
@@ -16700,8 +16704,8 @@
       "targetReader": "Best for Montgomery County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
       "officeLabel": "TDEC Nashville Environmental Field Office",
       "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
-      "recordsLabel": "Open Montgomery County's TDEC field-office route",
-      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open the official TDEC public-records form",
+      "recordsUrl": "https://stateoftennessee.formstack.com/forms/public_records_request",
       "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
@@ -16742,6 +16746,7 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
+        "tn_03",
         "tn_04",
         "tn_montgomery_local_01"
       ],
@@ -16844,8 +16849,8 @@
       "targetReader": "Best for Wilson County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
       "officeLabel": "TDEC Nashville Environmental Field Office",
       "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
-      "recordsLabel": "Open Wilson County's TDEC field-office route",
-      "recordsUrl": "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+      "recordsLabel": "Open the official TDEC public-records form",
+      "recordsUrl": "https://stateoftennessee.formstack.com/forms/public_records_request",
       "contactLine": "TDEC Nashville Environmental Field Office | 615-687-7000",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
@@ -16886,6 +16891,7 @@
       "officialSourceIds": [
         "tn_01",
         "tn_02",
+        "tn_03",
         "tn_04",
         "tn_wilson_local_01"
       ],
@@ -16914,11 +16920,11 @@
       "introCopy": "Sevier County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
       "uniqueAngle": "Sevier County matters because TDEC lists it as a contract county and mountain or rental-property work can depend on the right local septic file. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Sevier County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Sevier County Environmental Health",
-      "officeUrl": "https://www.seviercountytn.gov/government/departments/services/environmental_health.php",
-      "recordsLabel": "Open Sevier County Environmental Health septic services",
-      "recordsUrl": "https://www.seviercountytn.gov/government/departments/services/environmental_health.php",
-      "contactLine": "Sevier County Environmental Health, the county-specific jurisdiction route listed by TDEC",
+      "officeLabel": "Call Sevier County Environmental Health",
+      "officeUrl": "tel:865-429-1766",
+      "recordsLabel": "Open TDEC's Sevier County jurisdiction notice",
+      "recordsUrl": "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html",
+      "contactLine": "Sevier County Environmental Health | 865-429-1766 | TDEC directs this county to its local jurisdiction instead of the statewide SSDS application",
       "decisionSteps": [
         "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
         "Confirm whether Sevier County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
@@ -19759,10 +19765,10 @@
       "uniqueAngle": "Guilford is a high-value NC target because it lists site evaluations, permits, inspections, repairs, monitoring, abandonment, and existing-system inspections in one county workflow.",
       "targetReader": "Best for Guilford County buyers, sellers, owners, agents, and contractors who already know the county and need the septic record or permit path before they compare quotes, accept a seller explanation, or plan repair, expansion, or existing-system inspection routing.",
       "officeLabel": "Guilford County On-Site Water Protection office",
-      "officeUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/department-health-and-human-services/public-health/environmental-health/site-wastewater",
-      "recordsLabel": "Open Guilford County septic records and permit lookup path",
-      "recordsUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/department-health-and-human-services/public-health/environmental-health/site-wastewater",
-      "contactLine": "Guilford County On-Site Water Protection office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
+      "officeUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/health-and-human-services-agency/public-health/environmental-health/site-wastewater",
+      "recordsLabel": "Open Guilford County public records",
+      "recordsUrl": "https://guilfordcountync.nextrequest.com/",
+      "contactLine": "Guilford County On-Site Water Protection | 336-641-7613 | call 8-10 a.m. for system type and location when an updated property file exists",
       "decisionSteps": [
         "Open the official Guilford County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
         "Ask for the improvement permit, construction authorization, operation permit, septic layout, or existing-system authorization and tie the request to the address, parcel ID, owner name, subdivision, or permit number that the office can search.",
@@ -19802,6 +19808,7 @@
       ],
       "officialSourceIds": [
         "nc_guilford_01",
+        "nc_guilford_02",
         "nc_02"
       ],
       "workflowStructure": {

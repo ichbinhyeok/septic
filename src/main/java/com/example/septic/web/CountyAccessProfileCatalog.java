@@ -559,6 +559,241 @@ public final class CountyAccessProfileCatalog {
                             "If GIS does not contain the file, complete the county's Request For Document form.",
                             "Handle CAPTCHA and final submission on the county site, then return with the permit or confirmation."
                     )
+            )),
+            Map.entry("NJ::gloucester-county", profile(
+                    "NJ::gloucester-county",
+                    "official_request",
+                    "Official OPRA request form",
+                    "Request Gloucester County septic records with the exact parcel clues",
+                    "Gloucester County prefers its online OPRA form and specifically tells septic and well requesters to include the lot, block, street address, and city.",
+                    "Open the Gloucester County OPRA form",
+                    "https://nj-gloucestercounty.civicplus.com/FormCenter/Human-Resources-14/Open-Records-Request-Form-OPRA-69",
+                    "Review the county septic program",
+                    "https://www.gloucestercountynj.gov/697/Septic-Systems",
+                    "An OPRA confirmation plus the property-matched septic, well, repair, or inspection records",
+                    "The form uses reCAPTCHA and an electronic signature. Most requests use a seven-business-day response window; commercial-purpose or Daniel's Law review may use fourteen business days. Paper copies and special service work may cost extra.",
+                    List.of(
+                            "Requester contact and mailing information",
+                            "Property street address and city",
+                            "Lot and block",
+                            "Preferred delivery and the form's required certifications"
+                    ),
+                    List.of(
+                            "Septic permit, plan, or continuing-use record",
+                            "Real-estate inspection, repair, or alteration record",
+                            "Written partial, denial, or no-record response"
+                    ),
+                    List.of(
+                            "Prepare the requester details, lot, block, street address, and city shown by the official form.",
+                            "Describe the existing septic and well records precisely and choose the delivery method.",
+                            "Review the certifications, add your electronic signature, complete reCAPTCHA, and submit in your own name.",
+                            "Save the confirmation and track the applicable seven- or fourteen-business-day window."
+                    )
+            )),
+            Map.entry("MD::prince-georges-county", profile(
+                    "MD::prince-georges-county",
+                    "portal_with_fallback",
+                    "Guest record search with Momentum fallback",
+                    "Search Prince George's County records as a guest before opening Momentum",
+                    "The county's eRecords Explorer lets a guest search by street number and street name or by application sequence, year, and revision. The Health Department says well and septic information requests are processed in Momentum.",
+                    "Open the DPIE eRecords Explorer",
+                    "https://lookseerecords.princegeorgescountymd.gov/",
+                    "Open Momentum for a Health information request",
+                    "https://momentumhome.princegeorgescountymd.gov/",
+                    "A property-matched eRecords result, application record, or tracked Momentum information request",
+                    "The eRecords beta says data reaches back as far as case year 2010. Momentum requires a profile or login, and an empty eRecords search is not an official no-record response.",
+                    List.of(
+                            "Street number and street name",
+                            "Application sequence number and year when known",
+                            "Revision number when known"
+                    ),
+                    List.of(
+                            "DPIE permit record or plan",
+                            "Well or septic information-request response",
+                            "Application or request tracking number"
+                    ),
+                    List.of(
+                            "Continue as Guest in eRecords and choose address or application-number search.",
+                            "Enter the exact split fields shown by the official search and review the matched case.",
+                            "If the record is missing or the Health Department owns it, create or use a Momentum profile and start the information-request route.",
+                            "Complete login, payment if shown, and final submission on Momentum, then retain the tracking number."
+                    )
+            )),
+            Map.entry("CO::adams-county", profile(
+                    "CO::adams-county",
+                    "portal_with_fallback",
+                    "Live county septic search",
+                    "Search Adams County septic records by address, parcel, owner, or permit number",
+                    "The official Adams County search covers records before 2023 and records from 2023 forward. Search by address, parcel, owner, or permit number before starting a sale or remodel permit.",
+                    "Open the Adams County septic search",
+                    "https://experience.arcgis.com/experience/aec5c4ffe767495f8576de0d235c7a55",
+                    "Open the current septic program and use-permit forms",
+                    "https://adamscountyhealthdepartment.org/licensing-inspections/septic-systems/",
+                    "A property-matched search result or the correct use, transfer, repair, or expansion permit route",
+                    "The search is updated weekly and map points may be misplaced by geocoding. A sale requires a use/transfer-of-title permit and certified inspection; multiple systems need separate inspection reports and fees.",
+                    List.of(
+                            "One search clue: address, parcel, owner, or permit number",
+                            "For a use permit: APN, owner and applicant details, dwelling and bedroom details",
+                            "Certified inspection report, fee, and recent pumper receipt when available"
+                    ),
+                    List.of(
+                            "Pre-2023 or 2023-forward septic record",
+                            "Use or transfer-of-title permit",
+                            "Repair, expansion, or final approval record"
+                    ),
+                    List.of(
+                            "Search the official tool with one exact property clue and confirm the parcel.",
+                            "Check both the Before 2023 and 2023 & After record layers.",
+                            "If the purpose is a sale, remodel, addition, or repair, choose the matching current county form.",
+                            "Transfer the form fields, attach the certified report and required items, then submit and pay on the official route."
+                    )
+            )),
+            Map.entry("OH::mahoning-county", profile(
+                    "OH::mahoning-county",
+                    "official_request",
+                    "Direct official email request",
+                    "Request Mahoning County septic records by email",
+                    "Mahoning County Public Health tells requesters to email the information they are looking for and returns public records by email after processing. Its septic program separately states that septic and well testing is required before a home sale.",
+                    "Open the Mahoning public-records policy",
+                    "https://www.mahoninghealth.org/public-records-policy/",
+                    "Email Mahoning County Public Health",
+                    "mailto:info@mahoninghealth.org",
+                    "An emailed property record, written referral, denial explanation, or documented no-record response",
+                    "Emailed records are free. Paper copies are $0.05 per page and mailed records can add postage. The county promises a reasonable period based on volume and review, not a fixed delivery date.",
+                    List.of(
+                            "Property address and parcel clue",
+                            "Current or prior owner when known",
+                            "Specific existing septic, well, sale-test, permit, or repair records sought"
+                    ),
+                    List.of(
+                            "Septic permit and installation or approval record",
+                            "Sale-time septic and well test record",
+                            "Repair, alteration, or monitoring record"
+                    ),
+                    List.of(
+                            "Identify the property and list the existing records needed.",
+                            "Open your email app from the verified county address and review the factual request.",
+                            "Send in your own name and retain the sent message.",
+                            "Attach the returned file or written outcome to the property task."
+                    )
+            )),
+            Map.entry("TN::wilson-county", profile(
+                    "TN::wilson-county",
+                    "official_request",
+                    "TDEC public-records portal",
+                    "Submit a Wilson County SSDS records request through TDEC",
+                    "TDEC lists Wilson County in the Nashville Field Office service area. Its current public-records Formstack accepts a site-specific county, location, date range, record type, keywords, division, and supporting files.",
+                    "Open the TDEC public-records form",
+                    "https://stateoftennessee.formstack.com/forms/public_records_request",
+                    "Open the Nashville Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+                    "A TDEC request confirmation and the Wilson County SSDS file or written disposition",
+                    "The form may request proof of Tennessee citizenship. More than three requests per month may incur additional costs. Signature, uploads, any cost waiver, and final submission remain on TDEC.",
+                    List.of(
+                            "Requester name, phone, and confirmed email",
+                            "Tennessee citizenship and litigation answers",
+                            "Inspection or copy choice, delivery, date range, Wilson County, location, and record description",
+                            "Division of Water Resources and supporting map when needed"
+                    ),
+                    List.of(
+                            "SSDS construction permit and certificate of completion",
+                            "Approved layout or site record",
+                            "Repair, inspection, or correspondence record"
+                    ),
+                    List.of(
+                            "Prepare the exact fields shown by the TDEC public-records form.",
+                            "Choose Wilson County and Division of Water Resources, then identify the site and date range.",
+                            "Review citizenship, cost, delivery, and litigation answers; upload a map only if useful.",
+                            "Sign and submit in your own name, then save the Formstack confirmation."
+                    )
+            )),
+            Map.entry("TN::sevier-county", profile(
+                    "TN::sevier-county",
+                    "phone_assisted",
+                    "County phone handoff",
+                    "Call Sevier County Environmental Health for the current SSD file-search route",
+                    "TDEC excludes Sevier County from the statewide online SSDS application and directs users to the county jurisdiction. The county web page is currently 403 and its previously indexed information-request PDF now returns 404, so SepticPath does not recreate that form.",
+                    "Call Sevier County Environmental Health",
+                    "tel:865-429-1766",
+                    "Open the TDEC county-jurisdiction notice",
+                    "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html",
+                    "The current county file-search instruction, a permit or certificate response, or a documented no-record outcome",
+                    "Do not submit Sevier requests through the statewide SSDS online application. The former county PDF cannot be treated as a current form while it returns 404.",
+                    List.of(
+                            "Property address or road and subdivision/lot clues",
+                            "Current and prior owner clues when known",
+                            "Approximate construction year and bedroom count when known"
+                    ),
+                    List.of(
+                            "SSD system permit",
+                            "Certificate of completion",
+                            "Written or documented no-record response"
+                    ),
+                    List.of(
+                            "Keep the property clues open and call 865-429-1766.",
+                            "Ask for the current official file-search submission method for an existing SSD permit and certificate of completion.",
+                            "Use only the current form or instructions the county supplies; do not rely on the broken indexed PDF.",
+                            "Record the office instruction and return with the file or outcome."
+                    )
+            )),
+            Map.entry("TN::montgomery-county", profile(
+                    "TN::montgomery-county",
+                    "official_request",
+                    "TDEC public-records portal",
+                    "Submit a Montgomery County SSDS records request through TDEC",
+                    "TDEC lists Montgomery County in the Nashville Field Office service area. Its current public-records Formstack provides the working structured fallback when the SSDS viewer does not resolve the parcel.",
+                    "Open the TDEC public-records form",
+                    "https://stateoftennessee.formstack.com/forms/public_records_request",
+                    "Open the Nashville Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/nashville.html",
+                    "A TDEC request confirmation and the Montgomery County SSDS file or written disposition",
+                    "The form may request proof of Tennessee citizenship. More than three requests per month may incur additional costs. Signature, uploads, any cost waiver, and final submission remain on TDEC.",
+                    List.of(
+                            "Requester name, phone, and confirmed email",
+                            "Tennessee citizenship and litigation answers",
+                            "Inspection or copy choice, delivery, date range, Montgomery County, location, and record description",
+                            "Division of Water Resources and supporting map when needed"
+                    ),
+                    List.of(
+                            "SSDS construction permit and certificate of completion",
+                            "Approved layout or site record",
+                            "Repair, inspection, or correspondence record"
+                    ),
+                    List.of(
+                            "Prepare the exact fields shown by the TDEC public-records form.",
+                            "Choose Montgomery County and Division of Water Resources, then identify the site and date range.",
+                            "Review citizenship, cost, delivery, and litigation answers; upload a map only if useful.",
+                            "Sign and submit in your own name, then save the Formstack confirmation."
+                    )
+            )),
+            Map.entry("NC::guilford-county", profile(
+                    "NC::guilford-county",
+                    "phone_assisted",
+                    "Phone lookup with records fallback",
+                    "Call Guilford County for the system location, then request the underlying file",
+                    "Guilford County says owners may call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when the county has an updated property file. The county also links its official public-records portal.",
+                    "Call Guilford On-Site Water Protection",
+                    "tel:336-641-7613",
+                    "Open Guilford County public records",
+                    "https://guilfordcountync.nextrequest.com/",
+                    "A documented system-location answer, property file, request reference, or written no-record response",
+                    "The phone lookup depends on the county having an updated file and is limited to the published 8-10 a.m. call window. NextRequest may require verification and final submission.",
+                    List.of(
+                            "Property address",
+                            "Parcel or owner clue when known",
+                            "Whether you need location only or the full permit, layout, and repair file"
+                    ),
+                    List.of(
+                            "System type and location information",
+                            "Improvement permit, construction authorization, and operation permit",
+                            "Layout, repair, monitoring, or abandonment record"
+                    ),
+                    List.of(
+                            "Call between 8 a.m. and 10 a.m. with the property clues ready.",
+                            "Record the system type and location answer and ask whether an updated file exists.",
+                            "If you need copies, open the county public-records portal and request the underlying On-Site Water Protection file.",
+                            "Complete verification and final submission on the county portal, then save the request reference."
+                    )
             ))
     );
 

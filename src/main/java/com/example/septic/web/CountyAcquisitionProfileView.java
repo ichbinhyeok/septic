@@ -31,7 +31,12 @@ public record CountyAcquisitionProfileView(
                  "AZ::maricopa-county",
                  "NC::brunswick-county",
                  "NC::forsyth-county",
-                 "TX::denton-county" -> true;
+                 "TX::denton-county",
+                 "NJ::gloucester-county",
+                 "MD::prince-georges-county",
+                 "CO::adams-county",
+                 "TN::wilson-county",
+                 "TN::montgomery-county" -> true;
             default -> false;
         };
     }
@@ -45,13 +50,15 @@ public record CountyAcquisitionProfileView(
     public String acquisitionMethod() {
         return switch (countyKey) {
             case "VA::prince-william-county", "TN::hamilton-county", "MD::st-marys-county",
-                 "AZ::maricopa-county", "NC::brunswick-county" -> "official_search";
+                 "AZ::maricopa-county", "NC::brunswick-county",
+                 "MD::prince-georges-county", "CO::adams-county" -> "official_search";
             case "NC::alamance-county", "TX::denton-county" -> "official_pdf";
             case "TX::tarrant-county", "NC::lincoln-county", "GA::dekalb-county",
-                 "TN::blount-county", "TN::knox-county" -> "official_portal";
+                 "TN::blount-county", "TN::knox-county", "NJ::gloucester-county",
+                 "TN::wilson-county", "TN::montgomery-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
-            case "NY::suffolk-county" -> "official_phone";
-            case "TX::brazoria-county" -> "official_contact";
+            case "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
+            case "TX::brazoria-county", "OH::mahoning-county" -> "official_contact";
             default -> "official_route";
         };
     }
@@ -88,6 +95,27 @@ public record CountyAcquisitionProfileView(
         if ("MD::st-marys-county".equals(countyKey)) {
             return "Search the county's current replacement GIS by address or Tax ID first. Open the official PIA fallback pack only when the mapped Health Department records are missing or incomplete.";
         }
+        if ("NJ::gloucester-county".equals(countyKey)) {
+            return "Use the county's preferred OPRA form. Transfer the verified requester, property, certification, delivery, record-description, and electronic-signature fields; reCAPTCHA and final submission remain on the county site.";
+        }
+        if ("MD::prince-georges-county".equals(countyKey)) {
+            return "Continue as Guest and choose the verified address or application-number search. Use Momentum only if the Health Department information request is still needed.";
+        }
+        if ("CO::adams-county".equals(countyKey)) {
+            return "Search by address, parcel, owner, or permit number and check both the Before 2023 and 2023 & After layers before opening a new permit route.";
+        }
+        if ("TN::wilson-county".equals(countyKey) || "TN::montgomery-county".equals(countyKey)) {
+            return "Transfer the verified TDEC Formstack fields, choose Division of Water Resources and the correct county, then complete any upload, signature, citizenship proof, and final submission on TDEC.";
+        }
+        if ("TN::sevier-county".equals(countyKey)) {
+            return "TDEC directs Sevier users to the county. The county page is 403 and its old indexed PDF is now 404, so call for the current file-search route instead of using a recreated form.";
+        }
+        if ("NC::guilford-county".equals(countyKey)) {
+            return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
+        }
+        if ("OH::mahoning-county".equals(countyKey)) {
+            return "The county accepts public-record requests by email but does not publish a dedicated septic form. Carry the property facts into your own factual message.";
+        }
         return switch (acquisitionMethod()) {
             case "official_search" -> "Use the verified property identifiers shown here, open the official search, and return to record what the search produced.";
             case "official_pdf" -> "Use the county PDF itself. The checklist helps collect verified fields, but it does not replace, sign, or submit the official document.";
@@ -104,7 +132,8 @@ public record CountyAcquisitionProfileView(
         return switch (countyKey) {
             case "NC::alamance-county",
                  "MD::st-marys-county",
-                 "TX::brazoria-county" -> true;
+                 "TX::brazoria-county",
+                 "OH::mahoning-county" -> true;
             default -> false;
         };
     }
@@ -119,7 +148,8 @@ public record CountyAcquisitionProfileView(
                  "TN::blount-county",
                  "MD::st-marys-county",
                  "NC::brunswick-county",
-                 "NC::forsyth-county" -> true;
+                 "NC::forsyth-county",
+                 "NJ::gloucester-county" -> true;
             default -> false;
         };
     }
@@ -138,7 +168,7 @@ public record CountyAcquisitionProfileView(
 
     public boolean officialPropertyAddressRequired() {
         return switch (countyKey) {
-            case "TN::hamilton-county" -> true;
+            case "TN::hamilton-county", "NJ::gloucester-county" -> true;
             default -> false;
         };
     }

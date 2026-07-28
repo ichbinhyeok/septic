@@ -556,6 +556,280 @@ public final class CountyAcquisitionProfileCatalog {
                             field("permitClue", "Known permit, installer, or date", "Any old file clue", false, "off")
                     ),
                     docs("OSSF application and permit", "site evaluation and design/planning materials", "authorization and final approval", "maintenance, repair, and complaint records")
+            )),
+            Map.entry("NJ::gloucester-county", acquisition(
+                    "NJ::gloucester-county",
+                    "Gloucester County Clerk of the Board",
+                    "Official CivicPlus OPRA form",
+                    "Email delivery can avoid copy charges. Paper copies are $0.05 letter-size and $0.07 legal-size; special service and delivery charges may apply.",
+                    "Generally 7 business days; commercial-purpose and some Daniel's Law reviews may use 14 business days.",
+                    "Review the certifications, enter your electronic signature, complete reCAPTCHA, and press Submit on the county form.",
+                    "",
+                    "856-853-3271",
+                    "Gloucester County OPRA request - septic records for {{address}}",
+                    "The fields below follow the live county OPRA form. Gloucester's instructions specifically require lot, block, street address, and city for septic and well records.",
+                    """
+                    Gloucester County OPRA field pack
+
+                    Property street address: {{address}}
+                    Property city: {{propertyCity}}
+                    Lot: {{lot}}
+                    Block: {{block}}
+                    Preferred delivery: {{preferredDelivery}}
+
+                    Existing records requested:
+                    {{specificInformation}}
+
+                    Complete the requestor certifications and electronic signature in the official county form.
+                    """,
+                    List.of(
+                            field("requesterFirstName", "First name", "Optional for an anonymous request", false, "given-name"),
+                            field("requesterLastName", "Last name", "Optional for an anonymous request", false, "family-name"),
+                            field("requesterAddress", "Requester address", "Mailing address", false, "street-address"),
+                            field("requesterCity", "Requester city", "City", false, "address-level2"),
+                            field("requesterState", "Requester state", "State", false, "address-level1"),
+                            field("requesterZip", "Requester ZIP", "ZIP code", false, "postal-code"),
+                            field("requesterEmail", "Email address", "name@example.com", false, "email"),
+                            field("requesterPhone", "Phone number", "Phone number", false, "tel"),
+                            field("propertyCity", "Property city", "City where the property is located", true, "address-level2"),
+                            field("lot", "Property lot", "Lot number", true, "off"),
+                            field("block", "Property block", "Block number", true, "off"),
+                            select("preferredDelivery", "Preferred delivery", true, "Email", "On-Site Inspection", "Pick Up", "U.S. Mail"),
+                            select("indictableOffense", "Indictable-offense certification", true, "I HAVE NOT been convicted", "I HAVE been convicted"),
+                            select("commercialPurpose", "Commercial-purpose certification", true, "WILL use for commercial purpose", "WILL NOT use for commercial purpose"),
+                            select("legalProceeding", "Legal-proceeding certification", true, "Seeking records for a legal proceeding", "Not seeking records for a legal proceeding"),
+                            field("specificInformation", "Records requested", "Describe the existing septic/well records precisely", true, "off"),
+                            select("signatureAgreement", "Electronic signature agreement", true, "I agree"),
+                            field("electronicSignature", "Electronic signature", "First M. Last", true, "name"),
+                            field("confirmationEmail", "Email confirmation address", "Optional email copy", false, "email"),
+                            select("commonLaw", "Also request under common law?", false, "Yes", "No"),
+                            field("commonLawInterest", "Common-law interest", "Required by the county only if you choose Yes", false, "off")
+                    ),
+                    docs("septic permit, plan, and continuing-use records", "real-estate inspection records", "repair and alteration records", "well and environmental property records")
+            )),
+            Map.entry("MD::prince-georges-county", acquisition(
+                    "MD::prince-georges-county",
+                    "Prince George's County DPIE / Health Department",
+                    "Guest eRecords search - Momentum information-request fallback",
+                    "The guest eRecords search is free. Momentum fees depend on the selected Health service and are shown by the official portal.",
+                    "No eRecords or information-request turnaround is published on the reviewed pages.",
+                    "Search as a guest first. If the Health file is missing, create or use a Momentum profile, review any fee, and submit the information request yourself.",
+                    "",
+                    "",
+                    "Prince George's County record search - {{streetNumber}} {{streetName}}",
+                    "The verified guest search has two modes: street number plus street name, or application sequence number plus year and optional revision.",
+                    """
+                    Prince George's County eRecords search carry sheet
+
+                    Search method: {{searchMethod}}
+                    Street number: {{streetNumber}}
+                    Street name: {{streetName}}
+                    Application sequence: {{applicationSequence}}
+                    Application year: {{applicationYear}}
+                    Revision: {{applicationRevision}}
+                    """,
+                    List.of(
+                            select("searchMethod", "Search method", true, "Search by Address", "Search by Application Number"),
+                            field("streetNumber", "Street number", "Required for address search", false, "off"),
+                            field("streetName", "Street name", "Required for address search", false, "off"),
+                            field("applicationSequence", "Application sequence number", "Required for application-number search", false, "off"),
+                            field("applicationYear", "Application year", "Required for application-number search", false, "off"),
+                            field("applicationRevision", "Revision", "Optional revision", false, "off")
+                    ),
+                    docs("DPIE permit record or plan", "well and septic information-request response", "percolation, site-evaluation, repair, or inspection record")
+            )),
+            Map.entry("CO::adams-county", acquisition(
+                    "CO::adams-county",
+                    "Adams County Health Department Water Quality Program",
+                    "Official ArcGIS septic search",
+                    "The official record search is free. Permit and certified-inspection fees apply only if the property needs a use, transfer, repair, or expansion permit.",
+                    "The search is updated weekly. No historical-record response time is published.",
+                    "Choose one verified search clue, review both date layers, and use the county forms only if the property action requires a new permit.",
+                    "",
+                    "303-288-6816",
+                    "Adams County septic search - {{searchClue}}",
+                    "The live search accepts address, parcel, owner, or permit number and separates Before 2023 records from 2023 & After records.",
+                    """
+                    Adams County official search carry sheet
+
+                    Search clue type: {{searchClueType}}
+                    Search value: {{searchClue}}
+
+                    Check both:
+                    - Before 2023 (TCHD)
+                    - 2023 & After (ACHD)
+                    """,
+                    List.of(
+                            select("searchClueType", "Search clue type", true, "Address", "Parcel", "Owner", "Permit number"),
+                            field("searchClue", "Search value", "Enter the matching official search value", true, "off")
+                    ),
+                    docs("pre-2023 or 2023-forward septic record", "permit and record drawing", "use or transfer-of-title permit when required", "repair or expansion record")
+            )),
+            Map.entry("OH::mahoning-county", acquisition(
+                    "OH::mahoning-county",
+                    "Mahoning County Public Health",
+                    "Official public-records email",
+                    "Emailed records are free. Paper copies are $0.05 per page; discs are $1 and mailed delivery adds actual postage.",
+                    "Records are provided within a reasonable period based on volume, storage location, and legal review; no fixed date is promised.",
+                    "Review the property facts and open the verified county email address. You write and send the final factual request in your own name.",
+                    "info@mahoninghealth.org",
+                    "330-270-2855",
+                    "Mahoning County septic records - {{address}}",
+                    "The county accepts public-record requests at this email but does not publish a dedicated septic-record form or required field list.",
+                    """
+                    Routing facts for your Mahoning County email
+
+                    Property address: {{address}}
+                    Parcel or tax clue: {{parcel}}
+                    Current or prior owner: {{owner}}
+                    Existing records sought: {{specificInformation}}
+                    """,
+                    List.of(
+                            field("owner", "Current or prior owner", "If known", false, "name"),
+                            field("specificInformation", "Existing records sought", "Permit, approval, sale test, repair, or other existing record", false, "off")
+                    ),
+                    docs("septic permit and approval record", "sale-time septic and well testing record", "repair, alteration, and monitoring records")
+            )),
+            Map.entry("TN::wilson-county", acquisition(
+                    "TN::wilson-county",
+                    "Tennessee Department of Environment and Conservation - Division of Water Resources",
+                    "Official TDEC Formstack public-records request",
+                    "The form warns that more than three requests per month may incur costs and lets the requester decide whether to waive an advance estimate up to a chosen amount.",
+                    "No delivery turnaround is published on the current form.",
+                    "Review citizenship, litigation, cost, delivery, date, county, and record details; add any file, sign, and submit on TDEC.",
+                    "",
+                    "615-687-7000",
+                    "TDEC SSDS records - Wilson County - {{locationCity}}",
+                    "These fields were verified against the live TDEC public-records Formstack. The form may request proof of Tennessee citizenship before release.",
+                    """
+                    TDEC public-records form carry sheet
+
+                    County: Wilson County
+                    Location: {{locationCity}}
+                    From date / specific date: {{fromDate}}
+                    To date: {{toDate}}
+                    Record type and sites: {{recordType}}
+                    Site ID: {{siteId}}
+                    Subject matter / keywords: {{keywords}}
+                    Division: Division of Water Resources
+                    """,
+                    List.of(
+                            field("requesterName", "Requestor's name", "Full name", true, "name"),
+                            field("requesterPhone", "Phone", "Phone number", true, "tel"),
+                            field("requesterEmail", "Requestor's email", "Confirmed email address", true, "email"),
+                            select("litigation", "Related to anticipated or existing litigation?", true, "Yes", "No"),
+                            select("tennesseeCitizen", "Tennessee citizen?", true, "Yes", "No"),
+                            select("requestType", "Request", false, "Inspection", "Copy / Duplicate"),
+                            select("costEstimateWaiver", "Waive advance estimate?", false, "Yes", "No"),
+                            field("costLimit", "Cost amount not to exceed", "Only if waiving the estimate", false, "off"),
+                            select("monthlyRequestAcknowledgement", "More than 3 requests per month may incur costs", true, "I acknowledge"),
+                            select("deliveryPreference", "Delivery preference", false, "On-Site Pick Up", "Electronic", "USPS First-Class Mail"),
+                            field("fromDate", "From date or specific date", "Date required by the official form", true, "off"),
+                            field("toDate", "To date", "If a range is needed", false, "off"),
+                            field("recordType", "Type of record / sites", "Up to seven sites per request", false, "off"),
+                            field("locationCity", "Location (city)", "City, county, region, or all", true, "address-level2"),
+                            field("siteId", "Site ID", "If known", false, "off"),
+                            field("keywords", "Subject matter or keywords", "SSDS permit, layout, certificate, repair", false, "off"),
+                            select("division", "Division", false, "Division of Water Resources"),
+                            select("county", "Site-specific county", true, "Wilson County")
+                    ),
+                    docs("SSDS construction permit", "certificate of completion", "approved layout and site record", "repair, inspection, and correspondence records")
+            )),
+            Map.entry("TN::sevier-county", acquisition(
+                    "TN::sevier-county",
+                    "Sevier County Environmental Health",
+                    "Verified county phone handoff",
+                    "No current file-search fee is published on an accessible official page.",
+                    "No current turnaround is published on an accessible official page.",
+                    "Call the county and ask for the current official SSD permit and certificate file-search method. Do not use the statewide SSDS application or the broken old PDF.",
+                    "",
+                    "865-429-1766",
+                    "Sevier County SSD file-search routing - {{address}}",
+                    "The property clues below are a call sheet, not claimed current county form fields. The previously indexed county PDF now returns 404.",
+                    """
+                    Sevier County call sheet
+
+                    Property address or road: {{address}}
+                    Subdivision / lot clues: {{subdivisionLot}}
+                    Current or prior owner clues: {{owner}}
+                    Approximate construction year: {{yearBuilt}}
+                    Bedrooms if known: {{bedrooms}}
+                    """,
+                    List.of(
+                            field("subdivisionLot", "Subdivision / lot clues", "If known", false, "off"),
+                            field("owner", "Current or prior owner clues", "If known", false, "name"),
+                            field("yearBuilt", "Approximate construction year", "If known", false, "off"),
+                            field("bedrooms", "Bedrooms", "If known", false, "off")
+                    ),
+                    docs("SSD system permit", "certificate of completion", "written or documented no-record outcome")
+            )),
+            Map.entry("TN::montgomery-county", acquisition(
+                    "TN::montgomery-county",
+                    "Tennessee Department of Environment and Conservation - Division of Water Resources",
+                    "Official TDEC Formstack public-records request",
+                    "The form warns that more than three requests per month may incur costs and lets the requester decide whether to waive an advance estimate up to a chosen amount.",
+                    "No delivery turnaround is published on the current form.",
+                    "Review citizenship, litigation, cost, delivery, date, county, and record details; add any file, sign, and submit on TDEC.",
+                    "",
+                    "615-687-7000",
+                    "TDEC SSDS records - Montgomery County - {{locationCity}}",
+                    "These fields were verified against the live TDEC public-records Formstack. The form may request proof of Tennessee citizenship before release.",
+                    """
+                    TDEC public-records form carry sheet
+
+                    County: Montgomery County
+                    Location: {{locationCity}}
+                    From date / specific date: {{fromDate}}
+                    To date: {{toDate}}
+                    Record type and sites: {{recordType}}
+                    Site ID: {{siteId}}
+                    Subject matter / keywords: {{keywords}}
+                    Division: Division of Water Resources
+                    """,
+                    List.of(
+                            field("requesterName", "Requestor's name", "Full name", true, "name"),
+                            field("requesterPhone", "Phone", "Phone number", true, "tel"),
+                            field("requesterEmail", "Requestor's email", "Confirmed email address", true, "email"),
+                            select("litigation", "Related to anticipated or existing litigation?", true, "Yes", "No"),
+                            select("tennesseeCitizen", "Tennessee citizen?", true, "Yes", "No"),
+                            select("requestType", "Request", false, "Inspection", "Copy / Duplicate"),
+                            select("costEstimateWaiver", "Waive advance estimate?", false, "Yes", "No"),
+                            field("costLimit", "Cost amount not to exceed", "Only if waiving the estimate", false, "off"),
+                            select("monthlyRequestAcknowledgement", "More than 3 requests per month may incur costs", true, "I acknowledge"),
+                            select("deliveryPreference", "Delivery preference", false, "On-Site Pick Up", "Electronic", "USPS First-Class Mail"),
+                            field("fromDate", "From date or specific date", "Date required by the official form", true, "off"),
+                            field("toDate", "To date", "If a range is needed", false, "off"),
+                            field("recordType", "Type of record / sites", "Up to seven sites per request", false, "off"),
+                            field("locationCity", "Location (city)", "City, county, region, or all", true, "address-level2"),
+                            field("siteId", "Site ID", "If known", false, "off"),
+                            field("keywords", "Subject matter or keywords", "SSDS permit, layout, certificate, repair", false, "off"),
+                            select("division", "Division", false, "Division of Water Resources"),
+                            select("county", "Site-specific county", true, "Montgomery County")
+                    ),
+                    docs("SSDS construction permit", "certificate of completion", "approved layout and site record", "repair, inspection, and correspondence records")
+            )),
+            Map.entry("NC::guilford-county", acquisition(
+                    "NC::guilford-county",
+                    "Guilford County On-Site Water Protection",
+                    "Published phone lookup - county records portal fallback",
+                    "The county says some services have fees but does not publish a historical phone-lookup or record-copy fee on the reviewed page.",
+                    "Call between 8 a.m. and 10 a.m.; no records-portal turnaround is published.",
+                    "Call for the system type and location first. If copies are needed, complete verification and final submission in the county's NextRequest portal.",
+                    "",
+                    "336-641-7613",
+                    "Guilford County on-site wastewater file - {{address}}",
+                    "The county publishes the phone lookup and time window but not a dedicated septic-record form field list. The details below are routing facts only.",
+                    """
+                    Guilford County call sheet
+
+                    Property address: {{address}}
+                    Parcel or owner clue: {{parcel}}
+                    Need: {{lookupPurpose}}
+                    """,
+                    List.of(
+                            select("lookupPurpose", "What do you need?", false, "System type and location", "Complete permit and layout file", "Repair or monitoring history")
+                    ),
+                    docs("system type and location information", "improvement permit and construction authorization", "operation permit and layout", "repair, monitoring, or abandonment records")
             ))
     );
 

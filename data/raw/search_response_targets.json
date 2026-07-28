@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-09",
-  "source": "Google Search Console exports reviewed on 2026-07-09 plus current county-response backlog",
+  "generatedAt": "2026-07-29",
+  "source": "Google Search Console API page totals reviewed through 2026-07-25 plus privacy-threshold-safe county response vocabulary",
   "targets": [
     {
       "targetType": "state_records",
@@ -269,6 +269,174 @@
       "ctr": 0.0416666667,
       "position": 18.6041666667,
       "evidenceNote": "Clicks are present despite low average position; exact certification wording matters."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NJ::gloucester-county",
+      "path": "/septic-records-checklist/new-jersey/gloucester-county/",
+      "boost": 144,
+      "queries": [
+        "gloucester county septic records",
+        "gloucester county septic permit lookup",
+        "gloucester county opra septic records"
+      ],
+      "recommendedAnchors": [
+        "Gloucester County septic records",
+        "Gloucester County OPRA request"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 1,
+      "impressions": 20,
+      "ctr": 0.05,
+      "position": 10.3,
+      "evidenceNote": "GSC page totals show continuing county-page traffic; query rows are privacy-thresholded, so the response vocabulary is descriptive and is not presented as observed query counts."
+    },
+    {
+      "targetType": "county_records",
+      "key": "MD::prince-georges-county",
+      "path": "/septic-records-checklist/maryland/prince-georges-county/",
+      "boost": 142,
+      "queries": [
+        "prince george's county septic records",
+        "prince george's county septic permit lookup",
+        "prince george's county erecords septic"
+      ],
+      "recommendedAnchors": [
+        "Prince George's County septic records",
+        "Prince George's County eRecords"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 32,
+      "ctr": 0.0625,
+      "position": 7.8,
+      "evidenceNote": "GSC page totals show two recent clicks and first-page average visibility; only a small privacy-safe query sample was exposed."
+    },
+    {
+      "targetType": "county_records",
+      "key": "CO::adams-county",
+      "path": "/septic-records-checklist/colorado/adams-county/",
+      "boost": 140,
+      "queries": [
+        "adams county septic records",
+        "adams county septic permit lookup",
+        "adams county septic search"
+      ],
+      "recommendedAnchors": [
+        "Adams County septic records",
+        "Adams County septic search"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 26,
+      "ctr": 0.0769230769,
+      "position": 7.3,
+      "evidenceNote": "GSC page totals show two recent clicks and first-page visibility; query rows are privacy-thresholded and are not used as counted evidence."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TN::wilson-county",
+      "path": "/septic-records-checklist/tennessee/wilson-county/",
+      "boost": 138,
+      "queries": [
+        "wilson county septic records",
+        "wilson county septic permit lookup",
+        "wilson county tn ssds records"
+      ],
+      "recommendedAnchors": [
+        "Wilson County septic records",
+        "Wilson County SSDS records"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 48,
+      "ctr": 0.0416666667,
+      "position": 6.6,
+      "evidenceNote": "GSC page totals show two recent clicks and strong first-page visibility; query rows are privacy-thresholded."
+    },
+    {
+      "targetType": "county_records",
+      "key": "OH::mahoning-county",
+      "path": "/septic-records-checklist/ohio/mahoning-county/",
+      "boost": 136,
+      "queries": [
+        "mahoning county septic records",
+        "mahoning county septic permit lookup",
+        "mahoning county septic inspection records"
+      ],
+      "recommendedAnchors": [
+        "Mahoning County septic records",
+        "Mahoning County sale-time septic records"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 25,
+      "ctr": 0.08,
+      "position": 6.6,
+      "evidenceNote": "GSC page totals show two recent clicks and strong first-page visibility; query rows are privacy-thresholded."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TN::sevier-county",
+      "path": "/septic-records-checklist/tennessee/sevier-county/",
+      "boost": 134,
+      "queries": [
+        "sevier county septic records",
+        "sevier county septic permit lookup",
+        "sevier county ssds permit records"
+      ],
+      "recommendedAnchors": [
+        "Sevier County septic records",
+        "Sevier County SSD permit file"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 47,
+      "ctr": 0.0425531915,
+      "position": 7.1,
+      "evidenceNote": "GSC page totals show two recent clicks and first-page visibility; the deep route stays phone-assisted because the county page is 403 and its old indexed PDF is 404."
+    },
+    {
+      "targetType": "county_records",
+      "key": "TN::montgomery-county",
+      "path": "/septic-records-checklist/tennessee/montgomery-county/",
+      "boost": 132,
+      "queries": [
+        "montgomery county tn septic records",
+        "montgomery county tn septic permit lookup",
+        "montgomery county ssds records"
+      ],
+      "recommendedAnchors": [
+        "Montgomery County TN septic records",
+        "Montgomery County SSDS records"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 43,
+      "ctr": 0.0465116279,
+      "position": 7.0,
+      "evidenceNote": "GSC page totals show two recent clicks and first-page visibility; query rows are privacy-thresholded."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::guilford-county",
+      "path": "/septic-records-checklist/north-carolina/guilford-county/",
+      "boost": 130,
+      "queries": [
+        "guilford county septic records",
+        "guilford county septic permit lookup",
+        "guilford county septic system location"
+      ],
+      "recommendedAnchors": [
+        "Guilford County septic records",
+        "Guilford County septic location"
+      ],
+      "evidenceWindow": "2026-06-28..2026-07-25",
+      "clicks": 2,
+      "impressions": 41,
+      "ctr": 0.0487804878,
+      "position": 9.3,
+      "evidenceNote": "GSC page totals show two recent clicks near the first page; query rows are privacy-thresholded."
     }
   ]
 }
