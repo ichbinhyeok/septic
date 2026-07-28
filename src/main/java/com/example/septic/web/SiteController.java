@@ -1963,12 +1963,20 @@ The goal is to settle the permit path before we frame the project as a normal in
                     "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
             case "MD::st-marys-county" ->
                     "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
-            default -> "Open " + countyPage.recordsLabel()
-                    + ". Search with the property address or parcel ID when available. Ask the office for: "
+            default -> completeSentence(countyRecordAction(countyPage.recordsLabel()))
+                    + " Search with the property address or parcel ID when available. Ask the office for: "
                     + completeSentence(countyFirstArtifact(countyPage))
                     + " The file owner is " + countyPage.officeLabel()
                     + "; contact it before treating an empty online search as proof that no record exists.";
         };
+    }
+
+    private String countyRecordAction(String label) {
+        String trimmed = label == null ? "" : label.trim();
+        if (trimmed.matches("(?i)^(open|search|request|use|start|submit|visit|download|complete)\\b.*")) {
+            return trimmed;
+        }
+        return "Open " + trimmed;
     }
 
     private String completeSentence(String value) {
@@ -2092,7 +2100,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 : "For " + countyPage.countyName()
                         + ", carry the street address, parcel ID, owner name, legal description, subdivision, or prior permit clue into the county records route.";
         String ownerNote = sourceOwner + ". Verify whether this office owns the full septic file or only the first handoff before treating the result as complete.";
-        String requestNote = requestMethod + ": open " + countyPage.recordsLabel()
+        String requestNote = requestMethod + ": " + countyRecordAction(countyPage.recordsLabel())
                 + ", ask for " + firstArtifact
                 + ", and keep the state route nearby if the county sends part of the file to a regional or delegated office.";
         String fallbackNote = "If the " + countyPage.countyName()

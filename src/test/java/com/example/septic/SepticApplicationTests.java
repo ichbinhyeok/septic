@@ -2504,6 +2504,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jefferson County Colorado Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official use permit forms")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.jeffco.us/2379/Septic-Systems")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Open Open"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jefferson County owns the practical OWTS file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer-of-title permit, parcel lookup, and current-use story all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer-of-title")))
@@ -3499,6 +3500,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Septic_Permit_Ap_Req.pdf")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic-to-sewer")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("www.nnph.org"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("open Open"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Nevada records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Nevada guide")));
 	}
