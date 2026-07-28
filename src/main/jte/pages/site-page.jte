@@ -18,7 +18,7 @@
             </div>
 
             <aside class="hero-sidecard">
-                <span class="pill">Estimate-only site</span>
+                <span class="pill">Planning and records guidance</span>
                 <strong>Homeowner planning workflow</strong>
                 <p>${calloutBody}</p>
             </aside>

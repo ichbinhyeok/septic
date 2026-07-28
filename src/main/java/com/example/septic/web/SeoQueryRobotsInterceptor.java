@@ -25,7 +25,7 @@ public class SeoQueryRobotsInterceptor implements HandlerInterceptor {
     }
 
     private boolean isDuplicateVariant(HttpServletRequest request) {
-        return request.getParameter("sourcePageHint") != null
-                || request.getParameter("quoteMode") != null;
+        return (request.getQueryString() != null && !request.getQueryString().isBlank())
+                || !request.getParameterMap().isEmpty();
     }
 }

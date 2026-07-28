@@ -81,6 +81,28 @@
                         </details>
                     </div>
                 @endif
+                @if (countyAccessProfile != null)
+                    <section class="county-service-scope county-service-scope--${countyAccessProfile.countySpecific() ? "verified" : "baseline"}"
+                             aria-label="What SepticPath can do on this route">
+                        <div class="county-service-scope__lead">
+                            <span>Official access</span>
+                            <strong>${countyAccessProfile.officialAccessLabel()}</strong>
+                        </div>
+                        <div>
+                            <span>SepticPath can</span>
+                            <strong>${countyAccessProfile.capabilityLabel()}: ${countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack() ? "published fields and handoff" : "property clues and route"}</strong>
+                        </div>
+                        <div>
+                            <span>You complete</span>
+                            <strong>${countyAcquisitionProfile != null ? countyAcquisitionProfile.userOnlyAction() : "The current government-site or office action"}</strong>
+                        </div>
+                        <div>
+                            <span>Done means</span>
+                            <strong>${countyAccessProfile.completionLabel()}</strong>
+                        </div>
+                        <p><strong>${countyAccessProfile.scopeLabel()}.</strong> ${countyAccessProfile.scopeSummary()}@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) <span>Route reviewed ${editorialLastReviewedAt}.</span>@endif</p>
+                    </section>
+                @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
@@ -98,14 +120,30 @@
                                data-track-source-context="county_access_primary"
                                data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
                         @else
-                            <a class="button button--primary"
-                               href="${countyAccessProfile.primaryUrl()}"
-                               target="_blank"
-                               rel="noreferrer"
-                               data-county-access-official
-                               data-track-click="nav"
-                               data-track-source-context="county_access_primary"
-                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                            @if (!countyAccessProfile.countySpecific())
+                                <a class="button button--primary"
+                                   href="#county-access-workflow"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_baseline_prepare"
+                                   data-track-target-type="internal_tool">Prepare property details</a>
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.primaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_primary"
+                                   data-track-target-type="official_source">Open official next step</a>
+                            @else
+                                <a class="button button--primary"
+                                   href="${countyAccessProfile.primaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_primary"
+                                   data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                            @endif
                         @endif
                         @if (countyAccessProfile.hasSecondaryAction() && (countyAcquisitionProfile == null || countyAccessProfile.secondaryUrl().startsWith("http") || countyAccessProfile.secondaryUrl().startsWith("mailto:")))
                             @if (countyAccessProfile.secondaryUrl().startsWith("http"))
@@ -235,9 +273,13 @@
         <section class="section section--tight county-access-workflow-section">
             <div class="container">
                 <div class="county-access-workflow county-access-workflow--${countyAccessProfile.tone()}"
+                     id="county-access-workflow"
                      data-county-access-workflow
                      data-county-key="${countyAccessProfile.countyKey()}"
                      data-county-mode="${countyAccessProfile.mode()}"
+                     data-county-profile-scope="${countyAccessProfile.profileScope()}"
+                     data-county-capability-tier="${countyAccessProfile.capabilityTier()}"
+                     data-county-route-reviewed-at="${editorialLastReviewedAt}"
                      data-county-acquisition-method="${countyAcquisitionProfile != null ? countyAcquisitionProfile.acquisitionMethod() : ""}"
                      data-county-address-or-parcel="${countyAcquisitionProfile != null && countyAcquisitionProfile.requiresAddressOrParcel()}"
                      data-county-document-selection-required="${countyAcquisitionProfile != null && countyAcquisitionProfile.requiresOfficialDocumentSelection()}"
@@ -371,11 +413,13 @@
                                         <dt>Field verification</dt>
                                         <dd>Property and result-delivery fields verified from a county-authored form; current submission channel still requires confirmation</dd>
                                     </div>
-                                    @else if (!countyAcquisitionProfile.officialFieldPackVerified())
+                                    @else
+                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
                                     <div>
                                         <dt>Field verification</dt>
                                         <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
                                     </div>
+                                    @endif
                                     @endif
                                 </dl>
                             </header>
@@ -776,6 +820,12 @@
 
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
 
+    <details class="county-reference-library">
+        <summary>
+            <span>Need the supporting research?</span>
+            <strong>Open official evidence, local exceptions, FAQs, and related routes</strong>
+        </summary>
+        <div class="county-reference-library__body">
     @if (countyLocalContent.priorityPage() && countyLocalContent.hasEvidenceFacts())
         <section class="section section--tight county-local-evidence"
                  data-county-local-evidence
@@ -1324,6 +1374,8 @@
             @endif
         </div>
     </section>
+        </div>
+    </details>
     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
     <section class="sticky-mobile-cta sticky-mobile-cta--single"
              aria-label="Open county septic record path"

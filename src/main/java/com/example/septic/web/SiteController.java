@@ -847,34 +847,43 @@ public class SiteController {
                 Arrays.asList(
                         new SitePageSection(
                                 "Information collected",
-                                "When you request quotes, the site stores the contact and project details needed to route a homeowner inquiry and preserve source provenance.",
+                                "What is handled depends on the action you choose. Browsing public guidance does not create a property file on our servers.",
                                 List.of(
-                                        "Contact details such as name, email, phone number, and ZIP code.",
-                                        "Project inputs such as state, project type, bedroom count, and site-condition answers.",
-                                        "Technical request data such as timestamp, referring page, user agent, and remote address."
+                                        "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
+                                        "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
+                                        "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
                                 )
                         ),
                         new SitePageSection(
-                                "Why it is stored",
-                                "Lead submissions are stored so the estimate can be tied to the original consent and to support later routing to service partners.",
+                                "Browser-only task data",
+                                "Some workflow information stays in your own browser so an official-site handoff does not erase your work.",
                                 List.of(
-                                        "To keep an auditable record of consent language and submission time.",
-                                        "To export normalized lead records for approved partner workflows.",
-                                        "To understand which pages and estimate flows create useful homeowner leads."
+                                        "County-task clues, request progress, and confirmation notes can remain in local browser storage for up to 30 days and can be cleared from the workflow.",
+                                        "Uploaded documents are processed to create an extracted summary. Original files and OCR images are not intentionally retained; a saved workspace is created only when you choose to download it.",
+                                        "Clearing site data in your browser also removes browser-only task state."
                                 )
                         ),
                         new SitePageSection(
-                                "Operational limits",
-                                "This site stores submissions for routing, audit logging, and export operations. Storage and routing practices may evolve as coverage and partner workflows change.",
+                                "Why submitted information is stored",
+                                "Submitted form records support the exact action shown at the time of submission.",
+                                List.of(
+                                        "To answer contact, correction, or privacy requests.",
+                                        "To preserve a consent snapshot, submission time, and estimate context attached to a quote-help request.",
+                                        "To measure whether record and estimate workflows are useful without treating a request confirmation as a record obtained."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Sharing, retention, and your choices",
+                                "A quote-help submission may be reviewed for routing to an appropriate service provider, but submission does not mean a provider is available or has accepted the project.",
                                 List.of(
                                         "Do not submit payment-card, bank-account, government-ID, or other highly sensitive personal information through the forms.",
-                                        "Do not treat a quote request as a guarantee that a contractor will contact you or accept the project.",
-                                        "Material changes to storage, export, or routing practices should be reflected in this policy page."
+                                        "Operational form records and audit logs are retained while needed for inquiry handling, consent records, abuse prevention, and legitimate operations; a fixed deletion period is not yet promised.",
+                                        "Use the Privacy request option on the contact page to ask what was stored or request deletion. Include the lead or contact reference when available."
                                 )
                         )
                 ),
-                "Consent matters here",
-                "Quote requests are tied to a stored consent snapshot and timestamp so the lead record remains attributable."
+                "Control the handoff",
+                "Government submission stays under your control. SepticPath prepares and tracks the task but does not silently submit a county request in your name."
         );
     }
 

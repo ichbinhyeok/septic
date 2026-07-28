@@ -55,6 +55,33 @@ public record EstimatorResult(
         return "$" + formatNumber(totalCostMid) + " - $" + formatNumber(totalCostHigh);
     }
 
+    public double costRangeMultiple() {
+        return totalCostLow <= 0 ? 0 : (double) totalCostHigh / totalCostLow;
+    }
+
+    public String pricePrecisionLabel() {
+        double multiple = costRangeMultiple();
+        if (multiple >= 4.0) {
+            return "Low";
+        }
+        if (multiple >= 2.5) {
+            return "Low-medium";
+        }
+        if (multiple >= 1.75) {
+            return "Medium";
+        }
+        return "Higher";
+    }
+
+    public String pricePrecisionNote() {
+        return switch (pricePrecisionLabel()) {
+            case "Low" -> "The high end is at least 4× the low end. Use scenarios, not a single expected price.";
+            case "Low-medium" -> "The range is still broad. A permit file, site facts, and written scope should narrow it.";
+            case "Medium" -> "Useful for budgeting, but not tight enough to substitute for a local written scope.";
+            default -> "The planning band is relatively tighter, but it is still not a contractor bid.";
+        };
+    }
+
     private String formatNumber(int value) {
         return NumberFormat.getNumberInstance(Locale.US).format(value);
     }

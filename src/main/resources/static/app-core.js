@@ -34,15 +34,23 @@
     }
 
     function setupHashAnchorOffset() {
-        const offsetTargets = new Set(["records-request-builder", "send-note"]);
+        const offsetTargets = new Set(["records-request-builder", "county-access-workflow", "county-acquisition-workspace", "send-note"]);
 
         function alignHashTarget() {
             const id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : "";
-            if (!offsetTargets.has(id)) {
+            if (!id) {
                 return;
             }
             const target = document.getElementById(id);
             if (!(target instanceof HTMLElement)) {
+                return;
+            }
+            let disclosure = target.closest("details");
+            while (disclosure instanceof HTMLDetailsElement) {
+                disclosure.open = true;
+                disclosure = disclosure.parentElement?.closest("details") || null;
+            }
+            if (!offsetTargets.has(id)) {
                 return;
             }
             const header = document.querySelector(".site-header");

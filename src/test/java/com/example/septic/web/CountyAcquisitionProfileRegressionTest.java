@@ -25,6 +25,9 @@ class CountyAcquisitionProfileRegressionTest {
     @Test
     void knoxUsesTheVerifiedLivePortalFields() {
         CountyAccessProfileView access = CountyAccessProfileCatalog.find("TN::knox-county");
+        assertTrue(access.countySpecific());
+        assertEquals("county_specific", access.profileScope());
+        assertEquals("Search first, request if missing", access.capabilityLabel());
         CountyAcquisitionProfileView acquisition =
                 CountyAcquisitionProfileCatalog.find("TN::knox-county");
 

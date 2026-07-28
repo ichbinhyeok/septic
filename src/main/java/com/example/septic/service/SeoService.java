@@ -423,9 +423,14 @@ public class SeoService {
         String seoTitle = contentPageSeoTitle(contentPage);
         List<Map<String, Object>> breadcrumbs = contentPageBreadcrumbs(contentPage, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
+        String pageType = switch (contentPage.slug()) {
+            case "septic-records-request-builder" -> "WebApplication";
+            case "official-septic-lookup-tools", "septic-records-by-county" -> "CollectionPage";
+            default -> "WebPage";
+        };
         jsonLdBlocks.add(toJson(withSemanticEvidence(
                 withEditorialMeta(
-                        webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), "CollectionPage"),
+                        webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), pageType),
                         contentPage.updatedAt(),
                         preparedBy,
                         reviewedBy
@@ -435,9 +440,6 @@ public class SeoService {
                 contentPage.title()
         )));
         jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
-        if (contentPage.faqBlocks() != null && !contentPage.faqBlocks().isEmpty()) {
-            jsonLdBlocks.add(toJson(faqPage(canonicalUrl, seoTitle, contentPage.metaDescription(), contentPage.faqBlocks())));
-        }
         return pageMeta(
                 seoTitle,
                 contentPage.metaDescription(),

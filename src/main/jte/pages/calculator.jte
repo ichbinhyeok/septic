@@ -208,7 +208,7 @@
                         <div class="quote-panel__header">
                             <div>
                                 <span class="eyebrow">Optional next step</span>
-                                <h2>Check local quote availability</h2>
+                                <h2>Request help finding local options</h2>
                             </div>
                             <span class="pill">Short form</span>
                         </div>
@@ -216,7 +216,7 @@
                         @if (result == null)
                             <article class="status-box">
                                 <strong>Already know the job type?</strong>
-                                <p>You can submit the project basics now. Availability depends on your location and project; a contractor match is not guaranteed.</p>
+                                <p>You can submit the project basics now. This stores an inquiry for follow-up; it does not check live contractor inventory or guarantee a response.</p>
                             </article>
                         @endif
 
@@ -312,12 +312,12 @@
 
                             <label class="checkbox checkbox--wide">
                                 <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}" required>
-                                <span>I agree to be contacted about this project and possible local matching options.</span>
+                                <span>I agree to be contacted about this project and possible local service options. I understand this is not a confirmed match.</span>
                             </label>
 
                             <div class="form-actions">
-                                <button class="button button--primary" type="submit">Submit availability check</button>
-                                <p>Submitting does not guarantee a match, price, or response time.</p>
+                                <button class="button button--primary" type="submit">Submit project inquiry</button>
+                                <p>We do not show live provider inventory. Submitting does not guarantee a match, price, or response time.</p>
                             </div>
                         </form>
                     </section>
@@ -331,7 +331,7 @@
                              data-show-after=".result-panel">
                         <div class="sticky-mobile-cta__inner">
                             <a class="button button--secondary" href="#result-top">Back to result</a>
-                            <a class="button button--primary" href="#quote-request">Check availability</a>
+                            <a class="button button--primary" href="#quote-request">Request follow-up</a>
                         </div>
                     </section>
                 @endif

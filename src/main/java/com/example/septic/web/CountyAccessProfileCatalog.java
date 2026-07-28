@@ -821,17 +821,17 @@ public final class CountyAccessProfileCatalog {
             secondaryUrl = countyPage.officeUrl();
         }
 
-        return profile(
+        return baselineProfile(
                 countyPage.key(),
                 "official_route",
-                "Official route with return tracking",
+                "Official starting point only",
                 "Prepare the property clues, then use the official " + countyPage.countyName() + " route",
                 "SepticPath has not verified a county-specific intake form for this route. Prepare reusable property clues here, follow only the fields published by the official source, and return with the document or response.",
                 countyPage.recordsLabel(),
                 countyPage.recordsUrl(),
                 secondaryLabel,
                 secondaryUrl,
-                "A property-matched file, request reference, written referral, or documented no-record response",
+                "A property-matched file, written referral, or documented no-record response. A request reference means the task is still pending.",
                 "The official source may require different identifiers, CAPTCHA, login, signature, payment, or direct contact. SepticPath does not replace or submit that government step.",
                 List.of(
                         "Property address",
@@ -870,6 +870,42 @@ public final class CountyAccessProfileCatalog {
     ) {
         return new CountyAccessProfileView(
                 countyKey,
+                true,
+                mode,
+                modeLabel,
+                heading,
+                summary,
+                primaryLabel,
+                primaryUrl,
+                secondaryLabel,
+                secondaryUrl,
+                completionLabel,
+                limitation,
+                List.copyOf(requiredInputs),
+                List.copyOf(expectedArtifacts),
+                List.copyOf(steps)
+        );
+    }
+
+    private static CountyAccessProfileView baselineProfile(
+            String countyKey,
+            String mode,
+            String modeLabel,
+            String heading,
+            String summary,
+            String primaryLabel,
+            String primaryUrl,
+            String secondaryLabel,
+            String secondaryUrl,
+            String completionLabel,
+            String limitation,
+            List<String> requiredInputs,
+            List<String> expectedArtifacts,
+            List<String> steps
+    ) {
+        return new CountyAccessProfileView(
+                countyKey,
+                false,
                 mode,
                 modeLabel,
                 heading,

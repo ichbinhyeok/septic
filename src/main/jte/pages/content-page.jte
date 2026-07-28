@@ -69,7 +69,14 @@
                     <h1>${contentPage.title()}</h1>
                     <p class="lede">${contentPage.introCopy()}</p>
                 @endif
-                @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-request-builder".equals(contentPage.slug()))
+                @if ("septic-permit-lookup".equals(contentPage.slug())
+                        || "septic-records-request-builder".equals(contentPage.slug())
+                        || "official-septic-lookup-tools".equals(contentPage.slug())
+                        || "tdec-septic-records".equals(contentPage.slug())
+                        || "north-carolina-septic-permit-lookup".equals(contentPage.slug())
+                        || "texas-ossf-records-search".equals(contentPage.slug())
+                        || "florida-ostds-permit-lookup".equals(contentPage.slug())
+                        || "dhec-septic-permit-lookup".equals(contentPage.slug()))
                     <div class="utility-hero-actions" aria-label="Start this records task">
                         @if ("septic-permit-lookup".equals(contentPage.slug()))
                             <div>
@@ -88,7 +95,7 @@
                                    data-track-source-context="permit_lookup_simple_hero"
                                    data-track-target-type="internal_section">I already know the county</a>
                             </div>
-                        @else
+                        @elseif ("septic-records-request-builder".equals(contentPage.slug()))
                             <div>
                                 <strong>Create a request the records office can answer.</strong>
                                 <p>Choose the missing file, add the property clues you know, and copy or download the finished request.</p>
@@ -105,6 +112,44 @@
                                    data-track-source-context="records_request_simple_hero"
                                    data-track-target-type="internal_tool">Find the office first</a>
                             </div>
+                        @else
+                            @if (contentQuickAnswer != null && !contentQuickAnswer.isBlank())
+                                <div class="content-quick-answer content-quick-answer--utility" aria-label="Quick answer">
+                                    <span class="content-quick-answer__label">Quick answer</span>
+                                    <p>${contentQuickAnswer}</p>
+                                    @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
+                                        <p class="content-quick-answer__source">Page reviewed ${editorialLastReviewedAt}</p>
+                                    @endif
+                                </div>
+                            @endif
+                            <div>
+                                <strong>Use the working official route first.</strong>
+                                <p>See who owns the file, what to request, and what to do when a direct government search is restricted or incomplete.</p>
+                            </div>
+                            <div class="utility-hero-actions__buttons">
+                                <a class="button button--primary"
+                                   href="#official-file-path"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_lookup_simple_hero"
+                                   data-track-target-type="internal_section">See the official file path</a>
+                                <a class="button button--secondary"
+                                   href="#official-lookup-command-board"
+                                   data-track-click="nav"
+                                   data-track-source-context="official_lookup_simple_hero"
+                                   data-track-target-type="internal_tool">Open route choices</a>
+                            </div>
+                            @if (!featuredPermitLookupCountyLinks.isEmpty())
+                                <div class="quick-link-strip" aria-label="County examples for this official route">
+                                    <span class="quick-link-strip__label">Known county?</span>
+                                    @for (var link : featuredPermitLookupCountyLinks.stream().limit(3).toList())
+                                        <a class="button button--secondary quick-link-strip__button"
+                                           href="${link.path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="official_lookup_simple_county"
+                                           data-track-target-type="county_records_page">${link.compactTitle()}</a>
+                                    @endfor
+                                </div>
+                            @endif
                         @endif
                     </div>
                 @else
@@ -1334,7 +1379,7 @@
                                 <ul data-records-request-checklist aria-label="Before sending checklist"></ul>
                             </div>
                             <textarea data-records-request-output readonly rows="14"></textarea>
-                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet. <strong>Print</strong> opens a PDF-ready version you can save from the browser. Nothing is uploaded or stored by SepticPath.</p>
+                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet. <strong>Print</strong> opens a PDF-ready version you can save from the browser. The builder does not upload the request to SepticPath; if you save or mark the task sent, its progress can remain in this browser for up to 30 days.</p>
                             <div class="records-request-builder__actions">
                                 <button class="button button--primary"
                                         type="button"
@@ -1466,6 +1511,12 @@
         </section>
     @endif
 
+    <details class="content-reference-library">
+        <summary>
+            <span>Optional reference guide</span>
+            <strong>Open cost drivers, state paths, FAQs, and supporting research</strong>
+        </summary>
+        <div class="content-reference-library__body">
     <section class="section section--tight">
         <div class="container">
             <div class="section-jump-strip" aria-label="Jump between sections">
@@ -1973,5 +2024,7 @@
             </article>
         </div>
     </section>
+        </div>
+    </details>
     </div>
 `)

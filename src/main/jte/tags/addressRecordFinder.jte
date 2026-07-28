@@ -82,7 +82,7 @@
                        data-address-record-finder-input>
                 <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
             </div>
-            <p class="record-finder__privacy">Your address goes only to the U.S. Census county lookup; SepticPath does not save it. A 30-day progress marker stays on this device.</p>
+            <p class="record-finder__privacy">Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
             <p class="record-finder__form-outcome"><strong>You get:</strong> the file owner, first record to request, and a reusable checklist.</p>
             <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>

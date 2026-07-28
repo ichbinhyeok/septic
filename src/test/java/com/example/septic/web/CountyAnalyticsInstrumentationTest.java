@@ -24,7 +24,10 @@ class CountyAnalyticsInstrumentationTest {
         assertTrue(script.contains("\"county_official_pdf_prepared\""));
         assertTrue(script.contains("\"county_official_route_opened\""));
         assertTrue(script.contains("\"county_return_outcome\""));
-        assertTrue(script.contains("\"county_task_completed\""));
+        assertTrue(script.contains("\"county_request_submitted\""));
+        assertTrue(script.contains("\"county_record_reported\""));
+        assertTrue(script.contains("\"county_record_obtained\""));
+        assertFalse(script.contains("\"county_task_completed\""));
     }
 
     @Test
@@ -39,6 +42,9 @@ class CountyAnalyticsInstrumentationTest {
         assertTrue(parameterBlock.contains("county_slug"));
         assertTrue(parameterBlock.contains("access_mode"));
         assertTrue(parameterBlock.contains("acquisition_method"));
+        assertTrue(parameterBlock.contains("profile_scope"));
+        assertTrue(parameterBlock.contains("capability_tier"));
+        assertTrue(parameterBlock.contains("workflow_run_id"));
         assertFalse(parameterBlock.contains("address"));
         assertFalse(parameterBlock.contains("parcel"));
         assertFalse(parameterBlock.contains("reference"));

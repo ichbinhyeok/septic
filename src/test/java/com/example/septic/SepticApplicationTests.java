@@ -282,7 +282,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/official-septic-lookup-tools/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Official Septic Lookup Tools")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Fast search intent routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the working official route first.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#official-lookup-command-board\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#official-file-path\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official content file path")))
@@ -303,7 +303,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC Septic Permit Search by Address and SSDS Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC records need a working office or request path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://www.tn.gov/environment/permits/water/septic-systems-permits.html\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official Tennessee SSDS page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official Tennessee SSDS page")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the field office for the county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Submit a public-records request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tdec.tn.gov/document-viewer/search/stp")))
@@ -320,7 +320,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina searches usually resolve at county environmental health.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open NC records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/wake-county/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/north-carolina/johnston-county/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"#official-file-path\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/septic-records-checklist/texas/tarrant-county/"))));
 
@@ -493,16 +493,17 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void stateAwareContentPickerKeepsOneBestRoutePerState() throws Exception {
+	void officialLookupConsoleSkipsTheGenericStatePicker() throws Exception {
 		String html = mockMvc.perform(get("/official-septic-lookup-tools/"))
 				.andExpect(status().isOk())
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
 
-		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"TN\"").matcher(html).results().count());
-		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"NC\"").matcher(html).results().count());
-		assertEquals(1L, java.util.regex.Pattern.compile("<option value=\"TX\"").matcher(html).results().count());
+		assertEquals(0L, java.util.regex.Pattern.compile("<option value=\"TN\"").matcher(html).results().count());
+		assertEquals(0L, java.util.regex.Pattern.compile("data-state-surface-mode=").matcher(html).results().count());
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("href=\"#official-file-path\""));
+		org.junit.jupiter.api.Assertions.assertTrue(html.contains("href=\"#official-lookup-command-board\""));
 	}
 
 	@Test
@@ -707,7 +708,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start from my document")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-document-direct")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-workspace-import")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("30-day progress marker")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("stay in this browser for up to 30 days")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Save session for later")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-progress-clear")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The original record still opens on the government or county site.")))
@@ -1498,7 +1499,7 @@ class SepticApplicationTests {
 						.param("sourcePageHint", "/septic-replacement-cost/")
 						.param("quoteMode", "true"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check local quote availability")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request help finding local options")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Already know the job type?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Full name")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Project type")))
@@ -2411,7 +2412,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/washington/whatcom-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Whatcom County Washington Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official route with return tracking")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official starting point only")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath has not verified a county-specific intake form for this route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("I downloaded a document")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Whatcom County customer service portal")))
@@ -9969,6 +9970,9 @@ class SepticApplicationTests {
 		EstimatorResult georgiaResult = estimatorService.estimate(georgia);
 		EstimatorResult massachusettsResult = estimatorService.estimate(massachusetts);
 
+		if (georgiaResult.costRangeMultiple() >= 4.0) {
+			org.junit.jupiter.api.Assertions.assertEquals("Low", georgiaResult.pricePrecisionLabel());
+		}
 		org.junit.jupiter.api.Assertions.assertTrue(
 				massachusettsResult.totalCostMid() > georgiaResult.totalCostMid(),
 				"Expected Massachusetts midpoint to exceed Georgia midpoint after state multiplier is applied"

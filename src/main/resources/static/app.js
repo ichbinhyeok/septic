@@ -97,15 +97,23 @@
     }
 
     function setupHashAnchorOffset() {
-        const offsetTargets = new Set(["home-address-record-finder", "records-request-builder", "send-note"]);
+        const offsetTargets = new Set(["home-address-record-finder", "records-request-builder", "county-access-workflow", "county-acquisition-workspace", "send-note"]);
 
         function alignHashTarget() {
             const id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : "";
-            if (!offsetTargets.has(id)) {
+            if (!id) {
                 return;
             }
             const target = document.getElementById(id);
             if (!(target instanceof HTMLElement)) {
+                return;
+            }
+            let disclosure = target.closest("details");
+            while (disclosure instanceof HTMLDetailsElement) {
+                disclosure.open = true;
+                disclosure = disclosure.parentElement?.closest("details") || null;
+            }
+            if (!offsetTargets.has(id)) {
                 return;
             }
             const header = document.querySelector(".site-header");
@@ -847,7 +855,10 @@
             let awaitingOfficialReturn = false;
             let workspaceState = { documents: [] };
             const confirmedFindingKeys = new Set();
-            const requestedAddress = new URLSearchParams(window.location.search).get("address")?.trim();
+            const finderQuery = new URLSearchParams(window.location.search);
+            const requestedAddress = finderQuery.get("address")?.trim();
+            const requestedCountyKey = finderQuery.get("countyKey")?.trim() || "";
+            const requestedWorkflowRunId = finderQuery.get("workflowRunId")?.trim() || "";
             if (requestedAddress && input instanceof HTMLInputElement && !input.value) {
                 input.value = requestedAddress.slice(0, 180);
             }
@@ -2191,6 +2202,18 @@
                                 source_type: sourceType,
                                 document_count: workspaceState.documents.length
                             });
+                            if (requestedCountyKey && requestedWorkflowRunId) {
+                                const [requestedStateCode = "", requestedCountySlug = ""] = requestedCountyKey.split("::");
+                                window.gtag("event", "county_record_obtained", {
+                                    county_key: requestedCountyKey,
+                                    state_code: requestedStateCode,
+                                    county_slug: requestedCountySlug,
+                                    workflow_run_id: requestedWorkflowRunId,
+                                    result_source: "upload_detected",
+                                    case_status: "needs_document_review",
+                                    artifact_count: workspaceState.documents.length
+                                });
+                            }
                         }
                     } else {
                         renderDocumentAnalysis(payload);
@@ -2321,6 +2344,9 @@
             const countyKey = workflow.dataset.countyKey || window.location.pathname;
             const mode = workflow.dataset.countyMode || "official_request";
             const acquisitionMethod = workflow.dataset.countyAcquisitionMethod || "";
+            const profileScope = workflow.dataset.countyProfileScope || "official_starting_point";
+            const capabilityTier = workflow.dataset.countyCapabilityTier || "official_start";
+            const routeReviewedAt = workflow.dataset.countyRouteReviewedAt || "not_published";
             const requiresAddressOrParcel = workflow.dataset.countyAddressOrParcel === "true";
             const requiresDocumentSelection = workflow.dataset.countyDocumentSelectionRequired === "true";
             const requestedPropertyAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
@@ -2340,8 +2366,8 @@
             const storageKey = `septicpath-county-access-v1:${countyKey}`;
             let awaitingReturn = false;
             let gaPreparationStarted = false;
-            let gaTaskCompleted = false;
             let gaLastOutcome = "";
+            let workflowRunId = "";
             const gaReadyPaths = new Set();
             const [stateCode = "", countySlug = ""] = countyKey.split("::");
 
@@ -2352,6 +2378,10 @@
                     county_slug: countySlug,
                     access_mode: mode,
                     acquisition_method: acquisitionMethod || "not_published",
+                    profile_scope: profileScope,
+                    capability_tier: capabilityTier,
+                    route_reviewed_at: routeReviewedAt,
+                    workflow_run_id: workflowRunId,
                     ...extra
                 });
             }
@@ -2363,8 +2393,6 @@
                 gaPreparationStarted = true;
                 emitCountyGaEvent("county_prepare_started", { entry_point: entryPoint });
             }
-
-            emitCountyGaEvent("county_workflow_viewed");
 
             function safeValue(input) {
                 return input instanceof HTMLInputElement ? input.value.trim() : "";
@@ -2402,6 +2430,16 @@
                 return value;
             }
 
+            const initialWorkflowState = readState();
+            workflowRunId = String(initialWorkflowState?.workflowRunId || "");
+            if (!workflowRunId) {
+                workflowRunId = typeof window.crypto?.randomUUID === "function"
+                    ? window.crypto.randomUUID()
+                    : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+                writeState({ workflowRunId, stage: "viewed" });
+            }
+            emitCountyGaEvent("county_workflow_viewed");
+
             function showReturn() {
                 if (returnPanel instanceof HTMLElement) {
                     returnPanel.hidden = false;
@@ -2428,6 +2466,8 @@
                 if (requestedPurpose) {
                     params.set("purpose", requestedPurpose);
                 }
+                params.set("countyKey", countyKey);
+                params.set("workflowRunId", workflowRunId);
                 return `/septic-record-finder/${params.toString() ? `?${params.toString()}` : ""}`;
             }
 
@@ -3472,12 +3512,20 @@
                     sendArtifactAction("county_access_workflow", outcome, mode);
                     if (gaLastOutcome !== outcome) {
                         gaLastOutcome = outcome;
-                        emitCountyGaEvent("county_return_outcome", { outcome });
+                        emitCountyGaEvent("county_return_outcome", {
+                            outcome,
+                            result_source: "user_reported"
+                        });
                     }
-                    if (!gaTaskCompleted && (outcome === "artifact" || outcome === "request_submitted")) {
-                        gaTaskCompleted = true;
-                        emitCountyGaEvent("county_task_completed", {
-                            completion_type: outcome
+                    if (outcome === "request_submitted") {
+                        emitCountyGaEvent("county_request_submitted", {
+                            result_source: "user_reported",
+                            case_status: "pending"
+                        });
+                    } else if (outcome === "artifact") {
+                        emitCountyGaEvent("county_record_reported", {
+                            result_source: "user_reported",
+                            case_status: "needs_document_review"
                         });
                     }
                 });

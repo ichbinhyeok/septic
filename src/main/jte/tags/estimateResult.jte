@@ -18,9 +18,15 @@
         </article>
 
         <article class="metric-card">
-            <span class="metric-card__label">Current decision quality</span>
+            <span class="metric-card__label">Source profile quality</span>
             <strong>${result.confidenceLabel()}</strong>
-            <p>Soil, access, layout, and failure scope still limit how tightly this can be priced.</p>
+            <p>How complete the state rules and planning inputs are. This is not price precision.</p>
+        </article>
+
+        <article class="metric-card">
+            <span class="metric-card__label">Price precision</span>
+            <strong>${result.pricePrecisionLabel()}</strong>
+            <p>${result.pricePrecisionNote()}</p>
         </article>
 
         <article class="metric-card">
@@ -87,15 +93,15 @@
     <article class="result-cta-band">
         <div class="result-cta-band__copy">
             <span class="eyebrow">Next step</span>
-            <h3>Want to check local quote availability?</h3>
-            <p>Send the project basics to see whether a local matching option is available. A match is not guaranteed.</p>
+            <h3>Want help finding local options?</h3>
+            <p>Send the project basics for follow-up. This is an inquiry, not a live contractor-availability lookup or accepted match.</p>
         </div>
         <div class="result-cta-band__actions">
-            <a class="button button--primary" href="#quote-request">Check availability</a>
+            <a class="button button--primary" href="#quote-request">Request follow-up</a>
             <div class="result-cta-band__meta">
                 <span>Short form</span>
                 <span>State context stays visible</span>
-                <span>No guaranteed match</span>
+                <span>No live availability result</span>
             </div>
         </div>
     </article>
