@@ -684,13 +684,13 @@
                     <small>The route identifies where to look. It does not decide whether a property is approved.</small>
                 @elseif ("septic-records-request-builder".equals(contentPage.slug()))
                     <span class="pill">What you leave with</span>
-                    <strong>One office-ready request</strong>
+                    <strong>One route-aware request draft</strong>
                     <ol class="utility-hero-sidecard__list">
                         <li>A clear subject and message</li>
                         <li>The identifiers the office can search</li>
                         <li>Written no-record and archive fallback wording</li>
                     </ol>
-                    <small>Your entries stay in the browser and are not submitted to SepticPath.</small>
+                    <small>This is not an official form. Confirm the accepted intake on the county route before sending.</small>
                 @else
                 <span class="pill">
                     @if ("septic-permit-lookup".equals(contentPage.slug()))
@@ -1278,8 +1278,8 @@
                     </div>
                     <div class="records-request-builder__intro">
                         <span class="eyebrow">Build the message</span>
-                        <h2>Create a request the records office can act on.</h2>
-                        <p>Choose the file you need and add any property details you know. The request updates as you type.</p>
+                        <h2>Prepare a request without replacing the official form.</h2>
+                        <p>Choose the file you need and add the property details you know. Use the result as a free-text draft only when the official route accepts one.</p>
                     </div>
 
                     <details class="records-request-builder__packet-details">
@@ -1287,8 +1287,8 @@
                         <ul class="records-request-builder__packet-strip" data-records-request-quality aria-label="Download packet contents">
                             <li>
                                 <span>Message</span>
-                                <strong>Office-ready wording</strong>
-                                <p>A clear subject and request body for the missing file.</p>
+                                <strong>Route-aware draft</strong>
+                                <p>A clear subject and factual request body—not a recreated government form.</p>
                             </li>
                             <li>
                                 <span>Search clues</span>
@@ -1364,10 +1364,10 @@
                         <div class="records-request-builder__output">
                             <div class="records-request-builder__output-head">
                                 <div>
-                                    <span>Office-ready message</span>
+                                    <span>Routing draft · not an official form</span>
                                     <strong data-records-request-filename>septic-records-request.txt</strong>
                                 </div>
-                                <em data-records-request-status aria-live="polite">Ready to copy or download</em>
+                                <em data-records-request-status aria-live="polite">Confirm official intake before sending</em>
                             </div>
                             <p data-records-request-preview></p>
                             <div class="records-request-builder__submission" data-records-request-submission>
@@ -1379,14 +1379,21 @@
                                 <ul data-records-request-checklist aria-label="Before sending checklist"></ul>
                             </div>
                             <textarea data-records-request-output readonly rows="14"></textarea>
-                            <p class="records-request-builder__privacy"><strong>Copy</strong> sends only the office-ready message. <strong>Download</strong> saves a fuller plain-text packet. <strong>Print</strong> opens a PDF-ready version you can save from the browser. The builder does not upload the request to SepticPath; if you save or mark the task sent, its progress can remain in this browser for up to 30 days.</p>
+                            <p class="records-request-builder__privacy"><strong>Do not substitute this draft for a county PDF or required portal fields.</strong> Copy, download, or print it as a preparation sheet. The builder does not submit anything to SepticPath or the government; saved progress can remain in this browser for up to 30 days.</p>
+                            <label class="records-request-builder__channel-check">
+                                <input type="checkbox" data-records-request-channel-confirmed>
+                                <span>
+                                    <strong>I checked the official county route.</strong>
+                                    The destination accepts a free-text message, or I transferred these facts into its required form or portal.
+                                </span>
+                            </label>
                             <div class="records-request-builder__actions">
                                 <button class="button button--primary"
                                         type="button"
                                         data-records-request-copy>Copy request</button>
                                 <button class="button button--secondary"
                                         type="button"
-                                        data-records-request-mark-sent>Mark sent</button>
+                                        data-records-request-mark-sent disabled>Mark sent</button>
                                 <button class="button button--secondary"
                                         type="button"
                                         data-records-request-download>Download packet .txt</button>

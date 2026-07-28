@@ -4571,7 +4571,8 @@
                 "",
                 "Use",
                 "- Save this file before contacting the official state, county, health department, delegated authority, or permitting office.",
-                "- Copy the message section into the official email, portal, public-records form, or phone workflow.",
+                "- Use the message as free-text only when the official route accepts it. Otherwise transfer the factual fields into the government form or portal.",
+                "- This packet is not an official form and must not replace a required county or state document.",
                 "- Keep the identifier checklist with the response so a missing result does not get mistaken for a missing septic file.",
                 "",
                 "Request target",
@@ -4865,6 +4866,7 @@
             const followupDate = builder.querySelector("[data-records-request-followup-date]");
             const progressNote = builder.querySelector("[data-records-request-progress-note]");
             const markSentButton = builder.querySelector("[data-records-request-mark-sent]");
+            const channelConfirmed = builder.querySelector("[data-records-request-channel-confirmed]");
             const saveProgressButton = builder.querySelector("[data-records-request-save-progress]");
             const clearProgressButton = builder.querySelector("[data-records-request-clear-progress]");
             const progressMessage = builder.querySelector("[data-records-request-progress-message]");
@@ -4874,6 +4876,19 @@
                 taskContext.hidden = false;
             }
             consumeFinderRequestContext(builder);
+
+            if (channelConfirmed instanceof HTMLInputElement && markSentButton instanceof HTMLButtonElement) {
+                const syncChannelConfirmation = () => {
+                    markSentButton.disabled = !channelConfirmed.checked;
+                    if (status) {
+                        status.textContent = channelConfirmed.checked
+                            ? "Official intake checked · ready for your final submission"
+                            : "Confirm official intake before sending";
+                    }
+                };
+                channelConfirmed.addEventListener("change", syncChannelConfirmation);
+                syncChannelConfirmation();
+            }
 
             function dateInputValue(date) {
                 const year = date.getFullYear();
@@ -5015,11 +5030,13 @@
                         sendArtifactAction("records_request_builder", "copied", "records_request_packet");
                         copyButton.textContent = "Request copied";
                         copyButton.classList.add("is-copied");
-                        setTemporaryStatus(status, "Copied to clipboard", "Ready to copy or download");
+                        setTemporaryStatus(status, "Draft copied to clipboard", channelConfirmed?.checked
+                            ? "Official intake checked · ready for your final submission"
+                            : "Confirm official intake before sending");
                     } catch (_error) {
                         copyButton.textContent = "Copy failed";
                         copyButton.classList.add("is-copy-failed");
-                        setTemporaryStatus(status, "Copy failed. Select the text manually.", "Ready to copy or download");
+                        setTemporaryStatus(status, "Copy failed. Select the text manually.", "Confirm official intake before sending");
                     }
                     window.setTimeout(() => {
                         copyButton.textContent = original;
@@ -5035,7 +5052,7 @@
                     sendArtifactAction("records_request_builder", "downloaded", "records_request_packet");
                     downloadButton.textContent = "Downloaded";
                     downloadButton.classList.add("is-copied");
-                    setTemporaryStatus(status, `Downloaded packet ${filename}`, "Ready to copy or download");
+                    setTemporaryStatus(status, `Downloaded preparation packet ${filename}`, "Confirm official intake before sending");
                     window.setTimeout(() => {
                         downloadButton.textContent = "Download packet .txt";
                         downloadButton.classList.remove("is-copied");
@@ -5050,11 +5067,11 @@
                         sendArtifactAction("records_request_builder", "pdf_opened", "records_request_packet");
                         printButton.textContent = "PDF view opened";
                         printButton.classList.add("is-copied");
-                        setTemporaryStatus(status, "Printable packet opened", "Ready to copy or download");
+                        setTemporaryStatus(status, "Printable preparation packet opened", "Confirm official intake before sending");
                     } else {
                         printButton.textContent = "Print blocked";
                         printButton.classList.add("is-copy-failed");
-                        setTemporaryStatus(status, "Pop-up blocked. Allow pop-ups to print the packet.", "Ready to copy or download");
+                        setTemporaryStatus(status, "Pop-up blocked. Allow pop-ups to print the packet.", "Confirm official intake before sending");
                     }
                     window.setTimeout(() => {
                         printButton.textContent = original;
@@ -5064,6 +5081,12 @@
             }
 
             markSentButton?.addEventListener("click", () => {
+                if (!(channelConfirmed instanceof HTMLInputElement) || !channelConfirmed.checked) {
+                    if (progressMessage) {
+                        progressMessage.textContent = "Check the official route and confirm its accepted intake before marking this request sent.";
+                    }
+                    return;
+                }
                 const today = new Date();
                 const followup = new Date(today);
                 const followupDays = followupWindow instanceof HTMLSelectElement
