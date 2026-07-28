@@ -391,6 +391,174 @@ public final class CountyAccessProfileCatalog {
                             "If the online option fails, use the published onsite office phone and preserve the response.",
                             "Return with the layout, permit file, portal result, or request reference."
                     )
+            )),
+            Map.entry("CA::san-diego-county", profile(
+                    "CA::san-diego-county",
+                    "portal_with_fallback",
+                    "Document library with PRRC fallback",
+                    "Search San Diego septic records by APN, record ID, or street",
+                    "The county publishes septic and graywater Land Use Program records in its Environmental Health Document Library. If the file is not online, the county directs users to the centralized Public Records Request Center.",
+                    "Search the Environmental Health Document Library",
+                    "https://www.sandiegocounty.gov/content/sdc/deh/doclibrary.html",
+                    "Open the San Diego Public Records Request Center",
+                    "https://pra.sandiegocounty.gov/requests/new",
+                    "A parcel-matched septic permit, layout, inspection record, or PRRC response",
+                    "Search with only one method at a time. Do not add street type, special characters, or wildcards. For a PRRC fallback, select DEHQ - Food, Water and Housing Division and complete the county's current request fields.",
+                    List.of("Record ID, or APN, or street number and street name", "Street name without Ave, Dr, St, Ct, or another street type", "Request description and relevant attachment only when using PRRC"),
+                    List.of("OWTS permit or layout", "Land Use Program inspection or related septic record", "PRRC confirmation or county response"),
+                    List.of(
+                            "Search with one identifier method only: Record ID, APN, or street number and street name.",
+                            "Choose the septic or Land Use Program document category and review the matched documents.",
+                            "If the file is not online, open PRRC and select DEHQ - Food, Water and Housing Division.",
+                            "Return with the downloaded file, PRRC reference, or written response."
+                    )
+            )),
+            Map.entry("MI::washtenaw-county", profile(
+                    "MI::washtenaw-county",
+                    "official_search",
+                    "Embedded well and septic records search",
+                    "Search Washtenaw building, well, and septic permit records",
+                    "Washtenaw County embeds its public permit-record search and says the best first search uses only the street number.",
+                    "Open Washtenaw's well and septic records search",
+                    "https://www.washtenaw.org/search-permit-records",
+                    "",
+                    "",
+                    "A property-matched well, sewage, septic, building, or inspection record",
+                    "For best results, enter only the street number first. An empty search is not a county no-record determination.",
+                    List.of("Street number for the first search", "Full property address for confirming the match", "Permit or owner clue only if the official search asks"),
+                    List.of("Sewage or septic permit record", "Well or related Environmental Health record", "Building or inspection record tied to the property"),
+                    List.of(
+                            "Open the county search and begin with only the street number.",
+                            "Use the returned address and parcel details to confirm the correct property.",
+                            "Open the sewage, septic, well, building, or inspection documents that belong to that match.",
+                            "Return with the downloaded record or a note that the online search did not resolve the property."
+                    )
+            )),
+            Map.entry("MT::gallatin-county", profile(
+                    "MT::gallatin-county",
+                    "portal_with_office_copy",
+                    "Permit archive with unscanned-file fallback",
+                    "Search Gallatin wastewater permits across current and historic property clues",
+                    "Gallatin County's official archive covers locally issued wastewater permits from 1966 forward and publishes the alternate search keys needed when an address does not work.",
+                    "Open the Gallatin wastewater permit archive",
+                    "https://gallatincountymt-tcmweb.tylerhost.net/eaglecm/web/",
+                    "Read Gallatin's official search instructions",
+                    "https://www.healthygallatin.org/environmental-health/water-quality/wastewater-search-information/",
+                    "A wastewater permit file, scanned image, or identified unscanned permit",
+                    "Use less information, try historic owners and land descriptions, and review the entire file. A result marked No Images requires an in-office copy; the county publishes per-page copy charges.",
+                    List.of("Current or prior property owner", "Current or prior road address", "Subdivision, COS, lot, section, township, or range when available"),
+                    List.of("Individual, shared, or multi-user wastewater permit", "Inspection, variance, addendum, or memo contained in the file", "Permit reference showing that the images are not yet scanned"),
+                    List.of(
+                            "Open the archive, choose Enter, and start with the smallest useful owner or address clue.",
+                            "Retry with subdivision, COS, lot, section, township, range, issue date, or inspection date when needed.",
+                            "Review the full matched document rather than only the first permit page.",
+                            "If the result says No Images, preserve the permit reference and use the county's published in-office copy route."
+                    )
+            )),
+            Map.entry("MD::frederick-county", profile(
+                    "MD::frederick-county",
+                    "official_request",
+                    "Official property information request",
+                    "Complete Frederick County's well and septic information form",
+                    "Frederick County requires its official research form for property-specific well and septic records and states that incomplete requests will not be processed.",
+                    "Open the Frederick information request form",
+                    "https://health.frederickcountymd.gov/376/Information-Request-Form",
+                    "Open the printable county form",
+                    "https://health.frederickcountymd.gov/DocumentCenter/View/3444/Request-for-Information-2023",
+                    "The requested septic location, permitted-bedroom result, well report, or written county response",
+                    "The county requires the current owner and prior owners back to 1950 or the installation year. Well and septic information takes at least 10 business days; technical or percolation requests may take up to 30 business days.",
+                    List.of("Street address, subdivision, lot, tax map, parcel, and year built", "Current owner and previous owners back to 1950 or the installation year", "Requester contact and preferred delivery method"),
+                    List.of("Existing or proposed septic location", "Bedrooms permitted or total bedrooms allowed", "Well completion report or another specifically selected record"),
+                    List.of(
+                            "Use county property and deed searches to assemble the current and required prior-owner names.",
+                            "Complete every applicable property, owner, requester, and delivery field on the official form.",
+                            "Select the exact existing-property or new-property records needed.",
+                            "Complete CAPTCHA and final submission on the county site, then retain the submitted copy and response."
+                    )
+            )),
+            Map.entry("MN::st-louis-county", profile(
+                    "MN::st-louis-county",
+                    "official_search",
+                    "Free Land Explorer septic archive",
+                    "Open St. Louis County's scanned sanitary permit collection",
+                    "The county provides scanned sanitary permits through Land Explorer for free, without a password or membership fee, and publishes a parcel-based access guide.",
+                    "Open St. Louis County Land Explorer",
+                    "https://gis.stlouiscountymn.gov/landexplorer/?webmap=60d0f48848744fc1bc12d68ad3e253b8",
+                    "Read the county septic-record instructions",
+                    "https://www.stlouiscountymn.gov/departments-a-z/planning-zoning/onsite-wastewater/training-and-education/septic-records",
+                    "A parcel-matched sanitary permit or scanned septic document",
+                    "Choose the On-Site Wastewater theme, select the parcel, open Septic Records, accept the document disclaimer, and use View Doc. Not every county record has been scanned.",
+                    List.of("Property location or parcel PIN", "Correct parcel selected in Land Explorer", "Lease PIN when the property uses one"),
+                    List.of("Scanned sanitary permit", "Septic record linked from the parcel popup", "A note that the matched parcel has no scanned document"),
+                    List.of(
+                            "Open Land Explorer, accept its entry notice, and choose the On-Site Wastewater theme.",
+                            "Zoom to or search for the parcel and select the correct property.",
+                            "Open Septic Records from the parcel popup and move through popup records when needed.",
+                            "Accept the record disclaimer, choose View Doc, and return with the downloaded permit."
+                    )
+            )),
+            Map.entry("MI::livingston-county", profile(
+                    "MI::livingston-county",
+                    "split_archive",
+                    "Current and archived record search",
+                    "Choose Livingston well and septic records by document year",
+                    "Livingston County separates current records from 2018 forward and archived records from 2017 and earlier. The county says to search with only the street address or parcel ID.",
+                    "Search current Livingston records (2018-present)",
+                    "https://bsaonline.com/Home/MunicipalityHome?uid=2015",
+                    "Search archived Livingston records (2017 and older)",
+                    "https://images.livgov.com/EH/CustomSearch.aspx?SearchName=EnvironmentalHealth",
+                    "A property-matched well or septic permit record from the correct year range",
+                    "Soil evaluations are excluded from the online well and septic record search. Search only by street address or parcel ID and use the archive that matches the likely document year.",
+                    List.of("Street address or parcel ID", "Approximate permit or installation year", "Owner or record clue only after a property match"),
+                    List.of("Current well or septic record from 2018-present", "Archived well or septic record from 2017 or earlier", "Property addition or site-review record when separately relevant"),
+                    List.of(
+                            "Estimate whether the target record is from 2018-present or 2017 and earlier.",
+                            "Open the matching county-linked archive and search only by street address or parcel ID.",
+                            "Confirm the property before opening or downloading the record.",
+                            "If neither archive resolves the file, retain both search outcomes before contacting Environmental Health."
+                    )
+            )),
+            Map.entry("VA::hanover-county", profile(
+                    "VA::hanover-county",
+                    "official_request",
+                    "Official district records form",
+                    "Complete the Chickahominy well, septic, and drainfield request",
+                    "The official health-district form covers Hanover and asks for the identifiers used across current GPIN, tax-map, subdivision, and older owner or builder files.",
+                    "Open the Hanover onsite-information request form",
+                    "https://www.vdh.virginia.gov/content/uploads/sites/84/2017/02/Request-for-Onsite-Info.pdf",
+                    "Open Chickahominy onsite sewage services",
+                    "https://www.vdh.virginia.gov/chickahominy/onsite-sewage-water-services/",
+                    "A well, septic, or drainfield record, a no-record result, or a fee notice",
+                    "The form states 3-5 business days after a complete request. Pre-1986 septic systems may have no permit file. Research, copy, and mailing fees may apply, while one copy of the requester's own record is free.",
+                    List.of("Requested information and requester contact details", "Property address, GPIN, tax map, subdivision, section, block, and lot", "Approximate house age plus original owner or builder for older properties"),
+                    List.of("Septic permit or drainfield information", "Well information when selected", "Written no-record result or advance fee notice"),
+                    List.of(
+                            "Download and complete the health district's official request form.",
+                            "Add every available parcel and subdivision identifier, especially for an older property.",
+                            "Use the current Chickahominy service page to confirm the receiving office and submission method.",
+                            "Retain the completed form, any fee notice, and the records or no-record response."
+                    )
+            )),
+            Map.entry("NC::craven-county", profile(
+                    "NC::craven-county",
+                    "portal_with_fallback",
+                    "GIS operation permit with official form fallback",
+                    "Find Craven operation permits in GIS, then request the missing file",
+                    "Craven County directs users to GIS first for operation permits issued from 2003 forward and publishes a specific septic-and-well document form when GIS does not resolve the file.",
+                    "Search Craven County GIS",
+                    "https://gis.cravencountync.gov/maps/map.htm",
+                    "Open the Craven septic and well document form",
+                    "https://www.cravencountync.gov/FormCenter/FLI-26/Request-For-Document-Septic-Wells-137",
+                    "An operation permit, septic or well document, or county form confirmation",
+                    "In GIS, search by name, address, or parcel number, open EH Permits, and select the complete Operation Permit. The fallback form requires requester name and email plus property owner and address; CAPTCHA and final submission remain on the county site.",
+                    List.of("Owner name, property address, city, state, and ZIP", "Parcel number or PID when available", "Requester name, date, and email for the fallback form"),
+                    List.of("Operation Permit issued from 2003 forward", "Septic or well document returned through the official form", "County confirmation or documented no-file outcome"),
+                    List.of(
+                            "Search GIS by owner name, address, or parcel number and confirm the property.",
+                            "Open EH Permits and choose the complete Operation Permit record.",
+                            "If GIS does not contain the file, complete the county's Request For Document form.",
+                            "Handle CAPTCHA and final submission on the county site, then return with the permit or confirmation."
+                    )
             ))
     );
 

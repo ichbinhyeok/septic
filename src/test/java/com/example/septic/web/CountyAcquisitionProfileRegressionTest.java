@@ -63,4 +63,25 @@ class CountyAcquisitionProfileRegressionTest {
         assertEquals("https://ehs.sbcounty.gov/", sanBernardino.primaryUrl());
         assertTrue(cumberland.summary().contains("septic-layout request"));
     }
+
+    @Test
+    void thirdWaveRoutesPreserveEachOfficialSearchAndFallbackContract() {
+        CountyAccessProfileView sanDiego = CountyAccessProfileCatalog.find("CA::san-diego-county");
+        CountyAccessProfileView washtenaw = CountyAccessProfileCatalog.find("MI::washtenaw-county");
+        CountyAccessProfileView gallatin = CountyAccessProfileCatalog.find("MT::gallatin-county");
+        CountyAccessProfileView frederick = CountyAccessProfileCatalog.find("MD::frederick-county");
+        CountyAccessProfileView stLouis = CountyAccessProfileCatalog.find("MN::st-louis-county");
+        CountyAccessProfileView livingston = CountyAccessProfileCatalog.find("MI::livingston-county");
+        CountyAccessProfileView hanover = CountyAccessProfileCatalog.find("VA::hanover-county");
+        CountyAccessProfileView craven = CountyAccessProfileCatalog.find("NC::craven-county");
+
+        assertTrue(sanDiego.secondaryUrl().contains("pra.sandiegocounty.gov/requests/new"));
+        assertTrue(washtenaw.limitation().contains("street number"));
+        assertTrue(gallatin.limitation().contains("No Images"));
+        assertTrue(frederick.requiredInputs().contains("Current owner and previous owners back to 1950 or the installation year"));
+        assertTrue(stLouis.primaryUrl().contains("landexplorer"));
+        assertTrue(livingston.secondaryUrl().contains("CustomSearch.aspx"));
+        assertTrue(hanover.limitation().contains("3-5 business days"));
+        assertTrue(craven.secondaryUrl().contains("Request-For-Document-Septic-Wells"));
+    }
 }

@@ -559,37 +559,37 @@
       "countySlug": "gwinnett-county",
       "title": "Gwinnett County Georgia Septic Records Checklist and Permit Lookup",
       "metaDescription": "Gwinnett County septic records checklist and permit lookup with local environmental-health routing, existing-system certification context, and permit-path checks before you trust a quote or transfer story.",
-      "introCopy": "Gwinnett County is a strong Georgia county wedge because the local environmental-health office spells out site evaluation, permitting and inspection of construction, certification of existing systems, and septic complaint investigation. That is the kind of county-specific workflow users actually need before pricing anything.",
-      "uniqueAngle": "Gwinnett County is useful because the office location page is explicit about existing-system certification, while the county homeowner septic page adds complaint, development, and permit-prep context plus the Level 3 soil-report rule for septic permits. Together they make the county file and permit lane much clearer than a state summary alone.",
-      "targetReader": "Best for Gwinnett County buyers, owners, sellers, and agents who need to know whether the next move is existing-system certification, local environmental-health review, or a wider permit and soil-report conversation.",
-      "officeLabel": "Gwinnett Environmental Health Department",
-      "officeUrl": "https://old.gnrhealth.com/locations/gwinnett/environmental-health-dept/",
-      "recordsLabel": "Open Gwinnett septic homeowner guidance",
-      "recordsUrl": "https://old.gnrhealth.com/services/environmental-health-index/septic-systems-homeownerslandlords/",
+      "introCopy": "Gwinnett County gives property owners a concrete first stop: its GIS Data Browser can show a septic-system sketch plus past repair applications and permits when available. If the file is not online, the county directs users to Environmental Health, which maintains records for systems installed since 1959.",
+      "uniqueAngle": "Gwinnett County's current homeowner page gives a direct records sequence: use the county GIS Data Browser for the septic sketch, repair applications, and permits first, then contact Environmental Health for records that are not online. The county says that office maintains septic records for systems installed since 1959.",
+      "targetReader": "Best for Gwinnett County buyers, owners, sellers, and agents who need the parcel's septic sketch, repair applications, permits, or an Environmental Health copy of an older file.",
+      "officeLabel": "Open Gwinnett County septic records guidance",
+      "officeUrl": "https://www.gwinnettcounty.com/government/departments/water/get-educated/septic-tanks",
+      "recordsLabel": "Open the Gwinnett GIS Data Browser",
+      "recordsUrl": "https://www.gwinnettcounty.com/government/departments/information-technology-services/geographic-systems/gis-browser",
       "contactLine": "Gwinnett Environmental | 770-963-5132",
       "decisionSteps": [
-        "Open the Gwinnett Environmental Health Department page first so you can confirm whether the county issue is existing-system certification, site evaluation, complaint investigation, or construction permitting.",
-        "Use the county homeowner septic page next because it explains how environmental health treats septic-related development, failing-system complaints, and permit-prep expectations like the Level 3 soil report.",
-        "Pull any existing-system certification note, site-evaluation record, or permit history before you trust a transfer or repair quote."
+        "Open the county GIS page, launch the GIS Data Browser, and search the property by address, owner, street, or parcel.",
+        "Open the septic parcel material and save any available system sketch, repair application, or permit.",
+        "If the needed record is not online, use the county septic guidance to contact Environmental Health for a copy; the county says it maintains septic records for systems installed since 1959."
       ],
       "recordsToRequest": [
-        "Any Gwinnett certification of an existing system tied to the parcel.",
-        "Any site-evaluation, permit, or construction-inspection history the county can surface.",
-        "Any county note showing whether the property has an active complaint, failing-system issue, or permit-prep requirement that changes the next step."
+        "The septic-system sketch shown for the parcel, when available.",
+        "Past septic repair applications and permits shown in the GIS Data Browser.",
+        "A copy of the Environmental Health septic record when the needed document is not available online."
       ],
       "lowEndBreakers": [
-        "If the county still needs to certify the existing system, the low-end transfer story is still too optimistic.",
-        "A missing site-evaluation or permit trail makes it harder to trust the current system story, especially when a Level 3 soil report may still be required.",
-        "If the parcel already carries a complaint or failing-system history, the cheapest visible repair number can widen quickly."
+        "A GIS result without the expected sketch or permit is not proof that no Environmental Health record exists.",
+        "A parcel match without the past repair application leaves the repair history unresolved.",
+        "The county record shows permitted history and location evidence; it does not replace a current condition inspection."
       ],
       "faqBlocks": [
         {
           "question": "Why is Gwinnett County strong for records and transfer intent?",
-          "answer": "Because Gwinnett's local office explicitly handles certification of existing systems while the county septic guidance also explains site evaluation, permits, and complaint investigations."
+          "answer": "Because the county provides an online GIS parcel route for septic sketches, repair applications, and permits, plus an Environmental Health fallback for records that are not online."
         },
         {
           "question": "What should a Gwinnett owner or buyer ask for first?",
-          "answer": "Start with any existing-system certification, site-evaluation record, or permit history the county already has before you price repairs or negotiate credits."
+          "answer": "Start in the GIS Data Browser and save the septic sketch, repair applications, and permits tied to the parcel. Ask Environmental Health for a copy only when the needed file is not available there."
         }
       ],
       "internalLinkTargets": [
@@ -606,15 +606,15 @@
       "workflowStructure": {
         "fileOwnerCategory": "district_health",
         "fileOwnerModel": "Gwinnett County Environmental Health or the local health district is the practical file owner, and the real county story starts there rather than at a generic statewide desk.",
-        "firstArtifactToPull": "Any Gwinnett certification of an existing system tied to the parcel.",
+        "firstArtifactToPull": "The parcel's septic-system sketch plus any repair application or permit available in the GIS Data Browser.",
         "permitCloseoutCategory": "generic",
         "permitCloseoutSignal": "Gwinnett County still needs a stronger closeout signal than the first permit mention before the file is safe to price against.",
         "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "Any site-evaluation, permit, or construction-inspection history the county can surface.",
+        "transferArtifact": "The GIS septic sketch, repair applications, and permits, followed by the Environmental Health copy when the needed record is not online.",
         "specialProgramCategory": "generic",
         "specialProgramSignal": "Gwinnett County still rewards checking for local program, area-rule, or file-resolution friction before the parcel is treated as routine.",
         "malfunctionCategory": "complaint_trail",
-        "malfunctionSignal": "Gwinnett County already surfaces a complaint, violation, or failing-system trail, so that history matters more than the first quote or seller summary.",
+        "malfunctionSignal": "A past repair application in the county GIS changes what the owner or buyer should verify before relying on the current system story.",
         "quoteGate": "Do not move into pricing until the file owner is fully resolved, the buyer or transfer artifact supports the same story, and the repair or complaint trail is resolved, because Gwinnett County can look simpler on the surface than the real county workflow."
       }
     },
@@ -1990,8 +1990,8 @@
       "introCopy": "San Diego County is a strong California county wedge because the county gives owners a real searchable records surface instead of a generic county health contact page. The county's septic program points users into an Environmental Health Document Library and then into the Public Records Request Center when the visible file is incomplete.",
       "uniqueAngle": "San Diego County stands out because the county explicitly teaches the search method. Users are told to search by Record ID or APN or street number and street name, and the county exposes OWTS permit and layout document categories directly in the document library.",
       "targetReader": "Best for San Diego County buyers, owners, and agents who need to know whether an OWTS file is already online, whether the APN or Record ID search is enough, and when a Public Records Request Center pull is still needed.",
-      "officeLabel": "San Diego County septic systems office",
-      "officeUrl": "https://www.sandiegocounty.gov/content/sdc/deh/lwqd/lu_septic_systems.html",
+      "officeLabel": "Open the San Diego Public Records Request Center",
+      "officeUrl": "https://pra.sandiegocounty.gov/requests/new",
       "recordsLabel": "Open San Diego environmental health document search",
       "recordsUrl": "https://www.sandiegocounty.gov/content/sdc/deh/doclibrary.html",
       "contactLine": "County of San Diego Environmental Health and Quality | 858-505-6700 | septic page routes record searches into the Environmental Health Document Library and unfound files into the Public Records Request Center.",
@@ -4900,8 +4900,8 @@
       "targetReader": "Best for Washtenaw County buyers, sellers, owners, and agents who need to confirm whether the county file, inspection status, and next permit step are strong enough to support a sale, repair, or replacement decision.",
       "officeLabel": "Washtenaw County septic systems office",
       "officeUrl": "https://www.washtenaw.org/2499/Installing-a-Septic-System-in-Washtenaw-County",
-      "recordsLabel": "Search Washtenaw well and septic records",
-      "recordsUrl": "https://www.washtenaw.org/1670/Request-Records-Reports",
+      "recordsLabel": "Open Washtenaw's well and septic records search",
+      "recordsUrl": "https://www.washtenaw.org/search-permit-records",
       "contactLine": "Washtenaw County Environmental Health Division | 734-222-3800",
       "decisionSteps": [
         "Start with the county records search to see whether septic permits, inspection records, and site plans already exist for the parcel.",
@@ -6111,8 +6111,8 @@
       "targetReader": "Best for St. Louis County buyers, sellers, owners, and agents who need to know whether the system can pass transfer, what county records already exist, and whether escrow or replacement is the real next step.",
       "officeLabel": "St. Louis County onsite wastewater office",
       "officeUrl": "https://www.stlouiscountymn.gov/departments-a-z/planning-zoning/onsite-wastewater/apply-for-a-septic-permit",
-      "recordsLabel": "View St. Louis County septic records",
-      "recordsUrl": "https://www.stlouiscountymn.gov/departments-a-z/planning-zoning/onsite-wastewater/training-and-education/septic-records",
+      "recordsLabel": "Open St. Louis County Land Explorer",
+      "recordsUrl": "https://gis.stlouiscountymn.gov/landexplorer/?webmap=60d0f48848744fc1bc12d68ad3e253b8",
       "contactLine": "St. Louis County Onsite Wastewater | 218-471-7103 | oswinfo@stlouiscountymn.gov",
       "decisionSteps": [
         "Start with the county buying-and-selling page to confirm whether the parcel needs a fresh septic compliance inspection before transfer.",
@@ -6439,10 +6439,10 @@
       "introCopy": "Livingston County is a useful Michigan wedge because the county gives owners and agents a public well and septic records path, a live septic permit process, and a site-review trigger for additions and modifications on septic properties.",
       "uniqueAngle": "Livingston stands out because the county is direct about two different realities: it does not run a point-of-sale inspection program, but it does provide public records and clear permit and site-review next steps.",
       "targetReader": "Best for Livingston County buyers, owners, and remodel planners who need to know whether the county file is strong enough, whether a septic permit is next, or whether a planned addition will trigger a county site review.",
-      "officeLabel": "Livingston County septic services office",
-      "officeUrl": "https://milivcounty.gov/environmental-health/septic/",
-      "recordsLabel": "Open Livingston County realtor resources and record search",
-      "recordsUrl": "https://milivcounty.gov/environmental-health/realtor-resources/",
+      "officeLabel": "Search archived Livingston records (2017 and older)",
+      "officeUrl": "https://images.livgov.com/EH/CustomSearch.aspx?SearchName=EnvironmentalHealth",
+      "recordsLabel": "Search current Livingston records (2018-present)",
+      "recordsUrl": "https://bsaonline.com/Home/MunicipalityHome?uid=2015",
       "contactLine": "Livingston County Environmental Health Division | 517-546-9858",
       "decisionSteps": [
         "Start with the county realtor resources page if you need to check whether public well and septic records already exist for the property.",
@@ -6574,7 +6574,7 @@
       "officeLabel": "Frederick County well and septic office",
       "officeUrl": "https://health.frederickcountymd.gov/375/Well-Septic",
       "recordsLabel": "Open Frederick County information research request form",
-      "recordsUrl": "https://health.frederickcountymd.gov/FormCenter/Environmental-Health-6/Information-Research-Request-Form-47",
+      "recordsUrl": "https://health.frederickcountymd.gov/376/Information-Request-Form",
       "contactLine": "Frederick County Health Department Well & Septic Office | 301-600-1726 | 350 Montevue Lane Frederick MD 21702",
       "decisionSteps": [
         "Start on the county Well & Septic page and use the research request form if you need septic size, location, permit history, or technical file information for a specific property.",
@@ -7709,8 +7709,8 @@
       "targetReader": "Best for Gallatin County buyers, sellers, owners, and agents who need to confirm whether the county file is strong enough to support a rebuild, expansion, failed-system repair, or cautious closing conversation.",
       "officeLabel": "Gallatin County wastewater treatment office",
       "officeUrl": "https://www.healthygallatin.org/environmental-health/water-quality/wastewater-septic-treatment/",
-      "recordsLabel": "Search Gallatin County wastewater permit records",
-      "recordsUrl": "https://www.healthygallatin.org/environmental-health/water-quality/wastewater-search-information/",
+      "recordsLabel": "Open the Gallatin wastewater permit archive",
+      "recordsUrl": "https://gallatincountymt-tcmweb.tylerhost.net/eaglecm/web/",
       "contactLine": "Gallatin City-County Health Department Environmental Health Services | 406.582.3120 | ehs@gallatin.mt.gov",
       "decisionSteps": [
         "Start with the Gallatin County environmental health map so you can confirm the parcel's previous address, subdivision, COS number, lot, section-township-range, geo-code, and assessed bedroom count before searching records.",
@@ -16137,8 +16137,8 @@
       "introCopy": "Craven County is a strong North Carolina wedge because the county separates fast permit lookup from slower file reconstruction. The FAQ says you should first search GIS by owner, address, or parcel number and open the EH Permits record, which usually exposes the operation permit for permits issued from 2003 forward. If that trail is missing, the county sends you to a public Request for Document form, while the permit applications page breaks out existing-system approvals, improvement permits or construction authorizations, repair questionnaires, and site-plan worksheets.",
       "uniqueAngle": "Craven County is a GIS-permit-versus-request-form county. The real branch is whether the parcel already has an operation permit visible in county GIS, needs a public document request to rebuild the file, or falls into an existing-system approval or repair lane before any addition or sale story can be trusted.",
       "targetReader": "Best for Craven County buyers, owners, and coastal remodelers who need to know whether the next move is a GIS permit pull, a county document request, or an existing-system approval before trusting the septic story.",
-      "officeLabel": "Open Craven permit applications",
-      "officeUrl": "https://www.cravencountync.gov/1391/Permit-Applications",
+      "officeLabel": "Open the Craven septic and well document form",
+      "officeUrl": "https://www.cravencountync.gov/FormCenter/FLI-26/Request-For-Document-Septic-Wells-137",
       "recordsLabel": "Search Craven GIS septic permits",
       "recordsUrl": "https://gis.cravencountync.gov/maps/map.htm",
       "contactLine": "Craven County Environmental Health | 252-636-4936 | New Bern NC",

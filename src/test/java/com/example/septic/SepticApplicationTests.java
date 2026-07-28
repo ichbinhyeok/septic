@@ -1779,6 +1779,17 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void gwinnettCountyRecordsPageUsesCurrentCountyGisAndEnvironmentalHealthFallback() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/georgia/gwinnett-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Gwinnett GIS Data Browser")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic-system sketch plus past repair applications and permits")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("systems installed since 1959")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.gwinnettcounty.com/government/departments/information-technology-services/geographic-systems/gis-browser")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("old.gnrhealth.com"))));
+	}
+
+	@Test
 	void travisCountyRecordsPageShowsSplitRecordsWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/texas/travis-county/"))
 				.andExpect(status().isOk())
@@ -2321,7 +2332,9 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/california/san-diego-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Diego County California Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open San Diego environmental health document search")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open San Diego environmental health document search")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search with only one method at a time")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("https://pra.sandiegocounty.gov/requests/new")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Diego County Environmental Health usually owns the practical OWTS file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record ID or APN search and the PRRC fallback are both exhausted")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record ID or APN")))
@@ -2584,8 +2597,10 @@ class SepticApplicationTests {
 	void frederickCountyRecordsPageShowsResearchRequestWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/maryland/frederick-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Frederick County Maryland Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Frederick County information research request form")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Frederick County Maryland Septic Records Checklist")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Frederick County information research request form")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("prior owners back to 1950 or the installation year")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("at least 10 business days")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Frederick County's well-and-septic program owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic layout and permit file plus any building-permit conflict note")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
@@ -2791,7 +2806,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/michigan/washtenaw-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washtenaw County Michigan Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Washtenaw well and septic records")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Washtenaw&#39;s well and septic records search")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("enter only the street number first")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washtenaw County Environmental Health owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("time-of-sale inspection result plus the permit and site-plan trail")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("time-of-sale")))
@@ -2805,7 +2821,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/michigan/livingston-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Livingston County Michigan Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Livingston County realtor resources and record search")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search current Livingston records (2018-present)")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search archived Livingston records (2017 and older)")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("point-of-sale")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site review")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Michigan records lookup")))
@@ -2841,7 +2858,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/minnesota/st-louis-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Louis County Minnesota Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("View St. Louis County septic records")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open St. Louis County Land Explorer")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("without a password or membership fee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("escrow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("sanitary permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Minnesota records lookup")))
@@ -3463,8 +3481,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/montana/gallatin-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Gallatin County Montana Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Gallatin County wastewater permit records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("No Images")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Gallatin wastewater permit archive")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("No Images")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("COSA")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Montana records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Montana guide")));
@@ -4243,7 +4261,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/virginia/hanover-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hanover County Virginia Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Hanover County well septic and drainfield request form")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Hanover County well septic and drainfield request form")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("3-5 business days")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("pre-1986")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("pump-out")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Virginia records lookup")))
@@ -5033,7 +5052,9 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/craven-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Craven County North Carolina Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Craven GIS septic permits")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Craven GIS septic permits")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Request-For-Document-Septic-Wells-137")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("CAPTCHA and final submission remain on the county site")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Craven County Environmental Health owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("GIS permit trail, document-request fallback, and existing-system branch all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operation permit")))
