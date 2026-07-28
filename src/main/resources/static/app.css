@@ -5453,6 +5453,49 @@ body.records-task-mode .records-request-builder {
     line-height: 1.45;
 }
 
+.county-handoff-script {
+    display: grid;
+    gap: 0.9rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.1);
+}
+
+.county-handoff-script textarea {
+    min-height: 18rem;
+    border-color: rgba(35, 108, 95, 0.24);
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.county-handoff-script__channels {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.35rem 1rem;
+    padding: 0.9rem 0;
+    border-top: 1px dashed rgba(20, 34, 32, 0.16);
+    border-bottom: 1px dashed rgba(20, 34, 32, 0.16);
+}
+
+.county-handoff-script__channels strong,
+.county-handoff-script__channels small {
+    grid-column: 1 / -1;
+}
+
+.county-handoff-script__channels strong {
+    font-size: 0.84rem;
+}
+
+.county-handoff-script__channels span {
+    color: var(--county-access-accent);
+    font-weight: 750;
+    overflow-wrap: anywhere;
+}
+
+.county-handoff-script__channels small {
+    color: var(--muted);
+    font-size: 0.77rem;
+    line-height: 1.45;
+}
+
 .county-preparation-sheet {
     display: grid;
     gap: 0.9rem;
@@ -5880,6 +5923,15 @@ body.records-task-mode .records-request-builder {
         padding-inline: 0.85rem;
     }
 
+    .county-handoff-script__channels {
+        grid-template-columns: 1fr;
+    }
+
+    .county-handoff-script__channels strong,
+    .county-handoff-script__channels small {
+        grid-column: auto;
+    }
+
     .county-acquisition-facts > div:nth-child(even) {
         padding-left: 0;
         border-left: 0;
@@ -5908,6 +5960,21 @@ body.records-task-mode .records-request-builder {
     .county-access-return__next,
     .county-access-return__clear {
         grid-column: 1;
+    }
+}
+
+@media (max-width: 520px) {
+    .county-acquisition-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .county-acquisition-facts > div:first-child {
+        grid-column: auto;
+    }
+
+    .county-acquisition-facts > div:nth-child(3) {
+        padding-left: 0;
+        border-left: 0;
     }
 }
 

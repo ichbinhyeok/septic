@@ -710,19 +710,20 @@ public final class CountyAccessProfileCatalog {
             Map.entry("TN::sevier-county", profile(
                     "TN::sevier-county",
                     "phone_assisted",
-                    "County phone handoff",
-                    "Call Sevier County Environmental Health for the current SSD file-search route",
-                    "TDEC excludes Sevier County from the statewide online SSDS application and directs users to the county jurisdiction. The county web page is currently 403 and its previously indexed information-request PDF now returns 404, so SepticPath does not recreate that form.",
-                    "Call Sevier County Environmental Health",
+                    "Prepared county handoff",
+                    "Prepare the Sevier County SSD file search before contacting Environmental Health",
+                    "TDEC directs Sevier users to the county. SepticPath preserves the exact property and result-delivery fields from the county-authored information form, while treating its current submission channel as unconfirmed because the county website returns 403 and the direct PDF returns 404.",
+                    "Call with the prepared script",
                     "tel:865-429-1766",
                     "Open the TDEC county-jurisdiction notice",
                     "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html",
                     "The current county file-search instruction, a permit or certificate response, or a documented no-record outcome",
-                    "Do not submit Sevier requests through the statewide SSDS online application. The former county PDF cannot be treated as a current form while it returns 404.",
+                    "Do not use the statewide SSDS application. The preserved county fields are reliable preparation evidence, but the old PDF must not be represented as a currently accepted submission document until the office confirms it.",
                     List.of(
-                            "Property address or road and subdivision/lot clues",
-                            "Current and prior owner clues when known",
-                            "Approximate construction year and bedroom count when known"
+                            "Current owner, property address, and road name",
+                            "Subdivision, lot, block, phase, and section when known",
+                            "Vacant-lot status, construction date, bedroom count, and owner history",
+                            "Preferred result delivery and requester contact details"
                     ),
                     List.of(
                             "SSD system permit",
@@ -730,10 +731,11 @@ public final class CountyAccessProfileCatalog {
                             "Written or documented no-record response"
                     ),
                     List.of(
-                            "Keep the property clues open and call 865-429-1766.",
-                            "Ask for the current official file-search submission method for an existing SSD permit and certificate of completion.",
-                            "Use only the current form or instructions the county supplies; do not rely on the broken indexed PDF.",
-                            "Record the office instruction and return with the file or outcome."
+                            "Complete the preserved county-authored property and delivery fields.",
+                            "Use the prepared script when calling 865-429-1766; ask whether the former form is still current.",
+                            "Confirm whether the office now accepts email, fax, mail, pickup, or another method, plus any fee and turnaround.",
+                            "Sign, date, and send only through the confirmed route; keep the staff name or reference number.",
+                            "Return with the permit, certificate, or documented no-record result."
                     )
             )),
             Map.entry("TN::montgomery-county", profile(

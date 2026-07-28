@@ -16916,24 +16916,24 @@
       "countyName": "Sevier County",
       "countySlug": "sevier-county",
       "title": "Sevier County Tennessee Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Sevier County septic records checklist and permit lookup with TDEC SSDS record search, permit file, inspection-letter routing, and county or regional contact steps before quotes or closings.",
-      "introCopy": "Sevier County septic records work starts with the TDEC SSDS permits hub, the record-search path it links, and the contract county septic assistance route TDEC lists for this county. This page keeps the lookup practical: find the file owner, pull the first artifact, and avoid treating a thin permit story as a safe quote or closing answer.",
-      "uniqueAngle": "Sevier County matters because TDEC lists it as a contract county and mountain or rental-property work can depend on the right local septic file. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
-      "targetReader": "Best for Sevier County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
-      "officeLabel": "Call Sevier County Environmental Health",
+      "metaDescription": "Prepare a Sevier County SSD permit and certificate file search with the county-authored property fields, a ready call script, intake-channel confirmation, and result-delivery choice.",
+      "introCopy": "Sevier County owns this local SSD file-search route, but its public department page currently returns 403 and the previously published information-form PDF returns 404 by direct request. SepticPath prepares the exact property and result-delivery fields preserved from that county-authored form, then leaves only the current email, fax, mail, or pickup method for the office to confirm.",
+      "uniqueAngle": "The hard part in Sevier County is no longer deciding which agency owns the file; TDEC directs the county to its own jurisdiction. The useful service is arriving at Environmental Health with the owner history, address, subdivision and lot clues, construction and bedroom details, preferred return method, and a concise question about the current intake channel.",
+      "targetReader": "Best for Sevier County buyers, owners, agents, and builders who need an SSD System Permit, Certificate of Completion, or documented no-record result without starting an unprepared phone call.",
+      "officeLabel": "Call with the prepared Sevier County script",
       "officeUrl": "tel:865-429-1766",
       "recordsLabel": "Open TDEC's Sevier County jurisdiction notice",
       "recordsUrl": "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html",
-      "contactLine": "Sevier County Environmental Health | 865-429-1766 | TDEC directs this county to its local jurisdiction instead of the statewide SSDS application",
+      "contactLine": "Sevier County Environmental Health | 865-429-1766 | the county-authored form also printed envirhealth@seviercountytn.org and fax 865-429-1965, but current intake through either channel must be confirmed",
       "decisionSteps": [
-        "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
-        "Confirm whether Sevier County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
-        "If the lookup is for a sale, repair, addition, or new work, keep the permit file and inspection-letter path separate before using a cost estimate."
+        "Complete the preserved county-authored fields: current owner, property or road location, subdivision and lot clues, vacant-lot status, construction date, bedrooms, owner history, contact details, and preferred result delivery.",
+        "Call 865-429-1766 with the prepared script and ask whether the former information form is still current and whether the office now accepts email, fax, mail, pickup, or another route.",
+        "Confirm the current fee, turnaround, and reference or staff name, then sign, date, and send only through the method the office confirms."
       ],
       "recordsToRequest": [
-        "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
-        "Any inspection letter, as-built, final approval, repair permit, or site evaluation tied to the current system.",
-        "Any note showing whether the file is owned by TDEC regional staff, a contract county office, or another local environmental health contact."
+        "SSD System Permit tied to the identified property.",
+        "SSD System Certificate of Completion tied to the identified property.",
+        "Written or documented result when the file search cannot locate a record from the supplied information."
       ],
       "lowEndBreakers": [
         "If the SSDS record search does not tie the parcel to a usable permit or approval, the low-end quote is only a planning guess.",
@@ -16943,11 +16943,11 @@
       "faqBlocks": [
         {
           "question": "Where should I start a Sevier County septic permit lookup?",
-          "answer": "Start with the TDEC SSDS permits hub and the record-search or online-service path it links, then confirm the regional or contract county contact that owns the parcel file."
+          "answer": "Prepare the county-authored property fields on this page, then call Sevier County Environmental Health at 865-429-1766 to confirm the current submission channel before sending the prepared information."
         },
         {
-          "question": "Why does Sevier County need a records page before a price page?",
-          "answer": "Because the permit file, inspection letter, repair history, or missing closeout signal can change whether the next step is routine, lender-sensitive, or a wider permit conversation."
+          "question": "Can I email or fax the request?",
+          "answer": "The county-authored information form printed an Environmental Health email address and fax number and offered emailed, faxed, mailed, or office-pickup results. Because the live county page and direct PDF are unavailable, confirm the current intake method by phone before sending personal or property information."
         }
       ],
       "internalLinkTargets": [
@@ -16970,17 +16970,17 @@
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "contract_county",
-        "fileOwnerModel": "Sevier County should be checked against the TDEC SSDS permits hub and the contract county septic assistance route TDEC lists for this county before the owner treats the file as complete.",
-        "firstArtifactToPull": "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
-        "permitCloseoutCategory": "inspection_letter",
-        "permitCloseoutSignal": "The file is stronger when the lookup produces an inspection letter, final approval, as-built, or other closeout signal rather than only a permit mention.",
+        "fileOwnerModel": "TDEC directs Sevier County users to the county jurisdiction. The county Environmental Health office owns the current intake decision while its public web route is unavailable.",
+        "firstArtifactToPull": "The SSD System Permit and Certificate of Completion file-search result tied to the prepared property information.",
+        "permitCloseoutCategory": "certificate_of_completion",
+        "permitCloseoutSignal": "The county-authored search result distinguishes a permit from a Certificate of Completion and can also document that no record was located from the supplied information.",
         "transferCategory": "formal_transfer_artifact",
         "transferArtifact": "Any inspection letter, as-built, final approval, repair permit, or site evaluation tied to the current system.",
         "specialProgramCategory": "contract_county",
-        "specialProgramSignal": "Check whether contract county routing, regional review, or local office instructions change the next request before treating the parcel as routine.",
+        "specialProgramSignal": "Confirm only the current intake channel, fee, turnaround, and reference number after all county-authored property and delivery fields have been prepared.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "A repair permit, complaint, or failing-system note should be resolved before the owner relies on a low-end project number.",
-        "quoteGate": "Do not move into pricing until the Sevier County file owner is clear, the first SSDS artifact is tied to the parcel, and any inspection-letter or repair-permit branch has been separated from a routine lookup."
+        "quoteGate": "Do not move into pricing until the county file search returns the permit, Certificate of Completion, or a documented no-record result and any repair or inspection need is separated from the records task."
       }
     },
     {

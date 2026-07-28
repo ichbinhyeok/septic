@@ -738,28 +738,50 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("TN::sevier-county", acquisition(
                     "TN::sevier-county",
                     "Sevier County Environmental Health",
-                    "Verified county phone handoff",
-                    "No current file-search fee is published on an accessible official page.",
-                    "No current turnaround is published on an accessible official page.",
-                    "Call the county and ask for the current official SSD permit and certificate file-search method. Do not use the statewide SSDS application or the broken old PDF.",
-                    "",
+                    "County-authored field preparation with phone confirmation",
+                    "The reviewed county form does not publish a file-search fee. Confirm any current charge during the call.",
+                    "The reviewed county form does not publish a turnaround. Ask for the current estimate and reference number during the call.",
+                    "Confirm the current intake channel and whether the county's previously published information form is still accepted. Sign, date, and send only after the office confirms the route.",
+                    "envirhealth@seviercountytn.org",
                     "865-429-1766",
-                    "Sevier County SSD file-search routing - {{address}}",
-                    "The property clues below are a call sheet, not claimed current county form fields. The previously indexed county PDF now returns 404.",
+                    "Sevier County SSD file search - {{address}}",
+                    "The property and delivery fields below were transcribed from a county-authored Request for Information regarding an SSD System Permit and Certificate of Completion. Its direct PDF URL is currently unavailable, so these are preparation fields, not a claim that the old form remains the current submission document.",
                     """
-                    Sevier County call sheet
+                    Hello, I need the file-search result for the SSD System Permit and Certificate of Completion for:
 
-                    Property address or road: {{address}}
-                    Subdivision / lot clues: {{subdivisionLot}}
-                    Current or prior owner clues: {{owner}}
-                    Approximate construction year: {{yearBuilt}}
+                    Property address: {{address}}
+                    Current owner: {{currentOwner}}
+                    Road name or lot location: {{roadName}}
+                    Subdivision: {{subdivisionName}}
+                    Lot / block / phase / section: {{lotNumber}} / {{block}} / {{phase}} / {{section}}
+                    Vacant lot: {{vacantLot}}
+                    Home constructed: {{constructionDate}}
                     Bedrooms if known: {{bedrooms}}
+                    Original owner: {{originalOwner}}
+                    Previous owners: {{previousOwners}}
+                    Preferred result delivery: {{resultDelivery}}
+
+                    Your county website is not reachable from my connection. Is the previously published Request for Information form still current? Should I send it by email to envirhealth@seviercountytn.org, by fax to 865-429-1965, by mail, or another way?
+
+                    Please also confirm any current fee, expected turnaround, and the reference or staff name I should keep for follow-up.
                     """,
                     List.of(
-                            field("subdivisionLot", "Subdivision / lot clues", "If known", false, "off"),
-                            field("owner", "Current or prior owner clues", "If known", false, "name"),
-                            field("yearBuilt", "Approximate construction year", "If known", false, "off"),
-                            field("bedrooms", "Bedrooms", "If known", false, "off")
+                            field("currentOwner", "Current owner's name", "Name shown for the property", true, "name"),
+                            field("roadName", "Road name of lot location", "Use when different from the street address", false, "address-line1"),
+                            field("subdivisionName", "Subdivision name", "If applicable", false, "off"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            field("block", "Block", "If known", false, "off"),
+                            field("phase", "Phase", "If known", false, "off"),
+                            field("section", "Section", "If known", false, "off"),
+                            select("vacantLot", "Vacant lot?", false, "Yes", "No"),
+                            field("constructionDate", "Date home constructed", "Year or date if known", false, "off"),
+                            field("bedrooms", "Number of bedrooms", "If known", false, "off"),
+                            field("originalOwner", "Original owner's name", "If known", false, "name"),
+                            field("previousOwners", "Previous owners", "Add every prior owner you know", false, "off"),
+                            select("resultDelivery", "How you want the file-search result", true, "Emailed", "Faxed", "Office pickup", "Mailed"),
+                            field("requesterPhone", "Your phone number", "For the office to reach you", false, "tel"),
+                            field("requesterEmail", "Your email", "For questions or emailed results", false, "email"),
+                            field("requesterFax", "Your fax number", "Only if using fax", false, "off")
                     ),
                     docs("SSD system permit", "certificate of completion", "written or documented no-record outcome")
             )),

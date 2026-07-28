@@ -41,6 +41,14 @@ public record CountyAcquisitionProfileView(
         };
     }
 
+    public boolean archivedOfficialFieldPackVerified() {
+        return "TN::sevier-county".equals(countyKey);
+    }
+
+    public boolean hasPreparedFieldPack() {
+        return officialFieldPackVerified() || archivedOfficialFieldPackVerified();
+    }
+
     public boolean generatedRequestEnabled() {
         // County-authored forms and portals remain the submission authority.
         // Do not enable locally authored request text without documented agency acceptance.
@@ -70,7 +78,9 @@ public record CountyAcquisitionProfileView(
             case "official_portal" -> "Submit through the official request portal";
             case "official_contact_form" -> "Use the official Environmental Health contact form";
             case "official_contact" -> "Contact the official OSSF office";
-            case "official_phone" -> "Call with the county's required property clues ready";
+            case "official_phone" -> archivedOfficialFieldPackVerified()
+                    ? "Prepare the county's published file-search details, then confirm the current intake"
+                    : "Call with the county's required property clues ready";
             case "official_route_blocked" -> "The county's required document link is currently broken";
             default -> "Use the current official route";
         };
@@ -108,7 +118,7 @@ public record CountyAcquisitionProfileView(
             return "Transfer the verified TDEC Formstack fields, choose Division of Water Resources and the correct county, then complete any upload, signature, citizenship proof, and final submission on TDEC.";
         }
         if ("TN::sevier-county".equals(countyKey)) {
-            return "TDEC directs Sevier users to the county. The county page is 403 and its old indexed PDF is now 404, so call for the current file-search route instead of using a recreated form.";
+            return "TDEC directs Sevier users to the county. Prepare the fields preserved from the county-authored SSD information form, then call to confirm whether the current intake is email, fax, mail, or another route before sending anything.";
         }
         if ("NC::guilford-county".equals(countyKey)) {
             return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
@@ -149,7 +159,8 @@ public record CountyAcquisitionProfileView(
                  "MD::st-marys-county",
                  "NC::brunswick-county",
                  "NC::forsyth-county",
-                 "NJ::gloucester-county" -> true;
+                 "NJ::gloucester-county",
+                 "TN::sevier-county" -> true;
             default -> false;
         };
     }
@@ -168,7 +179,7 @@ public record CountyAcquisitionProfileView(
 
     public boolean officialPropertyAddressRequired() {
         return switch (countyKey) {
-            case "TN::hamilton-county", "NJ::gloucester-county" -> true;
+            case "TN::hamilton-county", "NJ::gloucester-county", "TN::sevier-county" -> true;
             default -> false;
         };
     }
@@ -210,6 +221,9 @@ public record CountyAcquisitionProfileView(
     }
 
     public String preparationSummary() {
+        if (archivedOfficialFieldPackVerified()) {
+            return "We organize every property and return-delivery field preserved from the county-authored information form, build the call script, and keep the current intake channel as the only fact left to confirm.";
+        }
         if (officialFieldPackVerified()) {
             return "We separate required and optional county fields, keep the confirmed inputs on this device, and make every value individually copyable.";
         }
@@ -221,6 +235,9 @@ public record CountyAcquisitionProfileView(
     }
 
     public String manualCompletionBoundary() {
+        if (archivedOfficialFieldPackVerified()) {
+            return "Call the county, confirm the current submission channel and whether its published form is still accepted, then sign, date, and send only through the method the office confirms.";
+        }
         return "Review the prepared details, complete any county-only login, signature, CAPTCHA, or payment-consent step that appears, then submit in your own name.";
     }
 
@@ -230,7 +247,9 @@ public record CountyAcquisitionProfileView(
             case "official_search" -> "Official search carry sheet";
             case "official_portal" -> "Official portal transfer sheet";
             case "official_contact_form" -> "Official contact-form carry sheet";
-            case "official_phone" -> "County call sheet";
+            case "official_phone" -> archivedOfficialFieldPackVerified()
+                    ? "County field-and-call sheet"
+                    : "County call sheet";
             case "official_contact" -> "Official contact carry sheet";
             case "official_route_blocked" -> "Verified fallback carry sheet";
             default -> "Official-route preparation sheet";
@@ -243,7 +262,9 @@ public record CountyAcquisitionProfileView(
             case "official_search" -> "Keep this beside the county search so the address, parcel ID, and search clues stay in one place.";
             case "official_portal" -> "Keep this beside the county portal and move through the prepared values in field order.";
             case "official_contact_form" -> "Keep this beside the county form and transfer only the factual details that match its current fields.";
-            case "official_phone" -> "Keep this open during the call so every published property clue is ready when the county asks.";
+            case "official_phone" -> archivedOfficialFieldPackVerified()
+                    ? "Complete the county-authored property fields first. Keep the generated script open while confirming the current email, fax, mail, or pickup process."
+                    : "Keep this open during the call so every published property clue is ready when the county asks.";
             case "official_contact", "official_route_blocked" -> "Keep the verified property facts and official fallback together while you contact the county.";
             default -> "Keep the prepared property facts beside the county's current official route.";
         };
@@ -267,6 +288,18 @@ public record CountyAcquisitionProfileView(
 
     public boolean hasPhone() {
         return phone != null && !phone.isBlank();
+    }
+
+    public boolean hasPreparedHandoffScript() {
+        return "TN::sevier-county".equals(countyKey);
+    }
+
+    public boolean hasPublishedContactEmailPendingIntakeConfirmation() {
+        return "TN::sevier-county".equals(countyKey) && hasEmail();
+    }
+
+    public String publishedFaxPendingIntakeConfirmation() {
+        return "TN::sevier-county".equals(countyKey) ? "865-429-1965" : "";
     }
 
     public List<CountyAcquisitionFieldView> requiredFields() {

@@ -1987,6 +1987,24 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void sevierCountyPreparesTheCountyAuthoredFieldsWithoutClaimingCurrentIntake() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/tennessee/sevier-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prepare everything before calling")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-authored preparation fields")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("current submission channel still requires confirmation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Current owner&#39;s name")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Road name of lot location")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How you want the file-search result")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-handoff-preview")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy prepared call script")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("envirhealth@seviercountytn.org")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("865-429-1965")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Confirm that either channel still accepts file-search requests")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Fill the county&#39;s original PDF"))));
+	}
+
+	@Test
 	void stJosephCountyRecordsPageShowsSchematicLookupWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/indiana/st-joseph-county/"))
 				.andExpect(status().isOk())

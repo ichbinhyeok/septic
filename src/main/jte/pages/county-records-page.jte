@@ -83,12 +83,12 @@
                 @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
-                        @if (countyAcquisitionProfile != null && countyAcquisitionProfile.officialFieldPackVerified())
+                        @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
                             <a class="button button--primary"
                                href="#county-acquisition-workspace"
                                data-track-click="nav"
                                data-track-source-context="county_acquisition_prepare"
-                               data-track-target-type="internal_tool">Prepare for the official county route</a>
+                               data-track-target-type="internal_tool">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare everything before calling" : "Prepare for the official county route"}</a>
                             <a class="button button--secondary"
                                href="${countyAccessProfile.primaryUrl()}"
                                target="_blank"
@@ -198,7 +198,7 @@
                    data-county-access-official="${countyAcquisitionProfile == null}"
                    data-track-click="nav"
                    data-track-source-context="county_records_owner_card"
-                   data-track-target-type="${countyAcquisitionProfile != null ? "internal_tool" : "official_source"}">${countyAcquisitionProfile != null ? (countyAcquisitionProfile.officialFieldPackVerified() ? "Prepare with the official fields" : "Prepare the routing facts") : (countyAccessProfile != null ? countyAccessProfile.primaryLabel() : "Open official records")}</a>
+                   data-track-target-type="${countyAcquisitionProfile != null ? "internal_tool" : "official_source"}">${countyAcquisitionProfile != null ? (countyAcquisitionProfile.hasPreparedFieldPack() ? (countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare before contacting the county" : "Prepare with the official fields") : "Prepare the routing facts") : (countyAccessProfile != null ? countyAccessProfile.primaryLabel() : "Open official records")}</a>
                 <details class="county-review-details">
                     <summary>How this route was checked</summary>
                     <dl class="review-meta">
@@ -366,7 +366,12 @@
                                         <dt>You still do</dt>
                                         <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
                                     </div>
-                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
+                                    @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>Property and result-delivery fields verified from a county-authored form; current submission channel still requires confirmation</dd>
+                                    </div>
+                                    @else if (!countyAcquisitionProfile.officialFieldPackVerified())
                                     <div>
                                         <dt>Field verification</dt>
                                         <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
@@ -387,11 +392,11 @@
                             </div>
 
                             <div class="county-acquisition-workspace__body">
-                                @if (countyAcquisitionProfile.officialFieldPackVerified())
+                                @if (countyAcquisitionProfile.hasPreparedFieldPack())
                                 <form class="county-acquisition-fields" data-county-acquisition-fields>
                                     <div class="county-acquisition-fields__heading">
-                                        <span class="county-access-workflow__step">Verified route inputs</span>
-                                        <strong>Prepare the required details here, then copy them into the county form</strong>
+                                        <span class="county-access-workflow__step">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "County-authored preparation fields" : "Verified route inputs"}</span>
+                                        <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Complete the known county fields before asking only what changed" : "Prepare the required details here, then copy them into the county form"}</strong>
                                         <p data-county-acquisition-readiness aria-live="polite">Start filling the confirmed inputs below.</p>
                                     </div>
                                     @if (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier())
@@ -474,8 +479,8 @@
                                     @else
                                     @if (!countyAcquisitionProfile.requiredFields().isEmpty())
                                         <fieldset class="county-acquisition-fieldset county-acquisition-fieldset--required">
-                                            <legend>Required by the county</legend>
-                                            <p>Complete these before opening the official form.</p>
+                                            <legend>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Preparation essentials" : "Required by the county"}</legend>
+                                            <p>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "The county-authored form asked for these details. Completing these essentials makes the handoff actionable; it does not claim the old PDF is still accepted." : "Complete these before opening the official form."}</p>
                                             <div class="county-acquisition-fieldset__grid">
                                                 @for (var field : countyAcquisitionProfile.requiredFields())
                                                     @template.tags.countyAcquisitionField(field = field)
@@ -488,8 +493,8 @@
                                         <details class="county-acquisition-optional">
                                             <summary>
                                                 <span>
-                                                    <strong>Optional details</strong>
-                                                    <small>Add only if they help identify the record.</small>
+                                                    <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "All other county-authored fields" : "Optional details"}</strong>
+                                                    <small>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Add every detail you know so the office does not have to call back for basic property history." : "Add only if they help identify the record."}</small>
                                                 </span>
                                                 <span>${countyAcquisitionProfile.optionalFields().size()} fields</span>
                                             </summary>
@@ -593,6 +598,33 @@
                                             <strong>${countyAcquisitionProfile.manualCompletionBoundary()}</strong>
                                             <small>SepticPath does not sign in, accept charges, sign, or press the county's final submit button for you.</small>
                                         </div>
+                                        @if (countyAcquisitionProfile.hasPreparedHandoffScript())
+                                        <section class="county-handoff-script">
+                                            <div class="county-acquisition-request__heading">
+                                                <span class="county-access-workflow__step">What to say when they answer</span>
+                                                <strong>Ask only what the broken website cannot tell you</strong>
+                                            </div>
+                                            <p class="county-acquisition-request__guardrail">This call script is written by SepticPath from the county-authored field list. It is not county submission wording.</p>
+                                            <template data-county-handoff-template>${countyAcquisitionProfile.requestTemplate()}</template>
+                                            <textarea readonly
+                                                      rows="18"
+                                                      aria-label="Prepared county handoff script"
+                                                      data-county-handoff-preview></textarea>
+                                            <div class="county-acquisition-request__actions">
+                                                <button class="button button--primary"
+                                                        type="button"
+                                                        data-county-handoff-copy>Copy prepared call script</button>
+                                                <a class="button button--secondary"
+                                                   href="tel:${countyAcquisitionProfile.phone()}">Call ${countyAcquisitionProfile.phone()}</a>
+                                            </div>
+                                            <div class="county-handoff-script__channels">
+                                                <strong>Contacts printed on the county-authored form</strong>
+                                                <span>Email: ${countyAcquisitionProfile.recipientEmail()}</span>
+                                                <span>Fax: ${countyAcquisitionProfile.publishedFaxPendingIntakeConfirmation()}</span>
+                                                <small>Confirm that either channel still accepts file-search requests before sending personal or property information.</small>
+                                            </div>
+                                        </section>
+                                        @endif
                                         <section class="county-preparation-sheet" data-county-preparation-sheet>
                                             <div class="county-preparation-sheet__heading">
                                                 <span class="county-access-workflow__step">Carry everything to the counter</span>
@@ -612,7 +644,7 @@
                                                     <p class="county-preparation-sheet__remainder">${countyAcquisitionProfile.preparedPdfRemainder()}</p>
                                                 @endif
                                                 @endif
-                                                @if (countyAcquisitionProfile.officialFieldPackVerified())
+                                                @if (countyAcquisitionProfile.hasPreparedFieldPack())
                                                 <button class="button button--secondary"
                                                         type="button"
                                                         data-county-acquisition-next-copy>Copy next prepared field</button>
@@ -654,13 +686,17 @@
                                                    href="mailto:${countyAcquisitionProfile.recipientEmail()}"
                                                    data-county-access-official>Open official email recipient</a>
                                             @endif
-                                            @if (countyAcquisitionProfile.hasPhone() && (countyAcquisitionProfile.officialFieldPackVerified() || countyAcquisitionProfile.officialRecipientVerified()))
+                                            @if (countyAcquisitionProfile.hasPublishedContactEmailPendingIntakeConfirmation())
+                                                <a class="button button--quiet"
+                                                   href="mailto:${countyAcquisitionProfile.recipientEmail()}">Open the listed email after the office confirms intake</a>
+                                            @endif
+                                            @if (countyAcquisitionProfile.hasPhone() && (countyAcquisitionProfile.hasPreparedFieldPack() || countyAcquisitionProfile.officialRecipientVerified()))
                                                 <a class="button button--quiet"
                                                    href="tel:${countyAcquisitionProfile.phone()}">Call ${countyAcquisitionProfile.phone()}</a>
                                             @endif
                                             <button class="button button--quiet"
                                                     type="button"
-                                                    data-county-acquisition-input-copy>${countyAcquisitionProfile.officialFieldPackVerified() ? "Copy all filled inputs" : "Copy property facts"}</button>
+                                                    data-county-acquisition-input-copy>${countyAcquisitionProfile.hasPreparedFieldPack() ? "Copy all filled inputs" : "Copy property facts"}</button>
                                         </div>
                                         <div class="county-acquisition-route-steps">
                                             <strong>County-specific steps</strong>

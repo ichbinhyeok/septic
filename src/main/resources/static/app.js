@@ -2637,6 +2637,9 @@
             const acquisitionDownload = workflow.querySelector("[data-county-acquisition-download]");
             const acquisitionPrint = workflow.querySelector("[data-county-acquisition-print]");
             const acquisitionNextCopy = workflow.querySelector("[data-county-acquisition-next-copy]");
+            const handoffTemplate = workflow.querySelector("[data-county-handoff-template]");
+            const handoffPreview = workflow.querySelector("[data-county-handoff-preview]");
+            const handoffCopy = workflow.querySelector("[data-county-handoff-copy]");
             const officialPdfPrepare = workflow.querySelector("[data-county-official-pdf-prepare]");
             const preparationDownload = workflow.querySelector("[data-county-preparation-download]");
             const preparationPrint = workflow.querySelector("[data-county-preparation-print]");
@@ -2841,6 +2844,16 @@
                 return output;
             }
 
+            function renderHandoffPreview() {
+                if (!(handoffTemplate instanceof HTMLTemplateElement)
+                    || !(handoffPreview instanceof HTMLTextAreaElement)) {
+                    return "";
+                }
+                const output = fillAcquisitionTemplate(handoffTemplate.content.textContent.trim());
+                handoffPreview.value = output;
+                return output;
+            }
+
             function showAcquisitionStatus(message, error = false) {
                 if (acquisitionStatus instanceof HTMLElement) {
                     acquisitionStatus.textContent = message;
@@ -2872,6 +2885,10 @@
                     ...(acquisitionDocuments.length
                         ? ["", "TASK SCOPE TO REVIEW — NOT COUNTY-AUTHORED REQUEST WORDING",
                             ...acquisitionDocuments.map((item) => `- ${item}`)]
+                        : []),
+                    ...(handoffTemplate instanceof HTMLTemplateElement
+                        ? ["", "PHONE HANDOFF SCRIPT - WRITTEN BY SEPTICPATH",
+                            renderHandoffPreview()]
                         : []),
                     "",
                     "FINAL MANUAL STEP",
@@ -2991,6 +3008,7 @@
 
                 const refreshAcquisition = () => {
                     renderAcquisitionPreview();
+                    renderHandoffPreview();
                     renderAcquisitionReadiness();
                     updateNextTransferLabel();
                     writeState({
@@ -3019,6 +3037,7 @@
                 address?.addEventListener("input", refreshAcquisition);
                 parcel?.addEventListener("input", refreshAcquisition);
                 renderAcquisitionPreview();
+                renderHandoffPreview();
                 renderAcquisitionReadiness();
 
                 function updateNextTransferLabel() {
@@ -3123,6 +3142,24 @@
 
                 preparationDownload?.addEventListener("click", downloadPreparationSheet);
                 preparationPrint?.addEventListener("click", printPreparationSheet);
+
+                handoffCopy?.addEventListener("click", async () => {
+                    const output = renderHandoffPreview();
+                    if (!output) {
+                        return;
+                    }
+                    try {
+                        await copyText(output);
+                        const missing = missingAcquisitionFields();
+                        showAcquisitionStatus(missing.length
+                            ? `Call script copied. Still prepare: ${missing.join(", ")}.`
+                            : "Call script copied. Ask the office only to confirm the current intake, fee, turnaround, and reference number.");
+                        sendArtifactAction("county_acquisition", "handoff_script_copied", countyKey);
+                        emitCountyGaEvent("county_handoff_script_copied");
+                    } catch (_) {
+                        showAcquisitionStatus("Copy unavailable. Keep the prepared script open during the call.", true);
+                    }
+                });
 
                 officialPdfPrepare?.addEventListener("click", async () => {
                     if (!validateAcquisition()) {

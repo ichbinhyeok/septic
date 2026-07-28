@@ -135,6 +135,12 @@ class CountyAcquisitionProfileRegressionTest {
         assertTrue(montgomery.officialFieldPackVerified());
         assertEquals(9, montgomery.requiredFields().size());
         assertFalse(sevier.officialFieldPackVerified());
+        assertTrue(sevier.archivedOfficialFieldPackVerified());
+        assertTrue(sevier.hasPreparedFieldPack());
+        assertEquals(2, sevier.requiredFields().size());
+        assertEquals("envirhealth@seviercountytn.org", sevier.recipientEmail());
+        assertEquals("865-429-1965", sevier.publishedFaxPendingIntakeConfirmation());
+        assertTrue(sevier.requestTemplate().contains("Is the previously published Request for Information form still current?"));
         assertFalse(guilford.officialFieldPackVerified());
     }
 }

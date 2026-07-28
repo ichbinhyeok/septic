@@ -18,6 +18,7 @@ public record CountyAcquisitionFieldView(
         return "specificInformation".equals(key)
                 || "message".equals(key)
                 || "requestDetails".equals(key)
-                || "purpose".equals(key);
+                || "purpose".equals(key)
+                || "previousOwners".equals(key);
     }
 }
