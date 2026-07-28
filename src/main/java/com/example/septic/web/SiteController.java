@@ -2658,6 +2658,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         int stateWorkflowCount = researchDataService.getPublicStateMoneyPages().size();
         int countyPageCount = researchDataService.getPublicCountyRecordsPages().size();
         int sourceCount = publishedSourceRecords().size();
+        int countySpecificRouteCount = CountyAccessProfileCatalog.countySpecificProfileCount();
+        int preparedFieldPackCount = CountyAcquisitionProfileCatalog.preparedFieldPackCount();
+        int startingPointOnlyCount = Math.max(0, countyPageCount - countySpecificRouteCount);
 
         return new TrustOperationsPageView(
                 "Coverage",
@@ -2670,7 +2673,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                         new TrustMetricView("Published state guides", String.valueOf(stateGuideCount), "Public state guide pages with official-source context."),
                         new TrustMetricView("Published workflow pages", String.valueOf(stateWorkflowCount), "State-specific records, permit, buyer, inspection, replacement, and related pages."),
                         new TrustMetricView("County-backed states", String.valueOf(snapshot.countyBackedStateCount()), "States with at least one live county records workflow route."),
-                        new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records attached to public state, workflow, and county pages.")
+                        new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records attached to public state, workflow, and county pages."),
+                        new TrustMetricView("County-specific handoffs", String.valueOf(countySpecificRouteCount), "Routes with a reviewed county-specific search, request, phone, or office handoff."),
+                        new TrustMetricView("Prepared official field packs", String.valueOf(preparedFieldPackCount), "Routes whose preparation fields were checked against a current or archived county-authored form, portal, search, or phone instruction."),
+                        new TrustMetricView("Official starting points only", String.valueOf(startingPointOnlyCount), "Published county pages that confirm an official source but do not claim a verified county-specific intake.")
                 ),
                 List.of(
                         new TrustLaneView(

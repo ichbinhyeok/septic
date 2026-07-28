@@ -274,7 +274,7 @@
                                data-track-target-type="internal_section">
                                 <span>Search stalled?</span>
                                 <strong>Use the records next-click board</strong>
-                                <small>Move from broad search intent into an official tool, county file pull, or copy-ready request.</small>
+                                <small>Move from broad search intent into an official tool, county file pull, or route-aware request draft.</small>
                             </a>
                         @elseif (!featuredStateMoneyPageLinks.isEmpty())
                             <a class="hero-command"
@@ -677,11 +677,11 @@
                     <span class="pill">What you get</span>
                     <strong>A local permit-file route</strong>
                     <ol class="utility-hero-sidecard__list">
-                        <li>The county and exact file-owning office</li>
+                        <li>The county and best available official route</li>
                         <li>The first permit, drawing, or approval to pull</li>
                         <li>A fallback when the online search is empty or blocked</li>
                     </ol>
-                    <small>The route identifies where to look. It does not decide whether a property is approved.</small>
+                    <small>Each county page says whether the handoff is county-specific or only an official starting point.</small>
                 @elseif ("septic-records-request-builder".equals(contentPage.slug()))
                     <span class="pill">What you leave with</span>
                     <strong>One route-aware request draft</strong>
@@ -883,7 +883,7 @@
                                     </a>
                                 @endif
                                 <p class="state-records-response__route-note">
-                                    If the official site blocks the new tab, stay in this workflow and use address search, county routing, or copy-ready request wording next.
+                                    If the official site blocks the new tab, stay in this workflow and use address search, county routing, or a route-aware request draft next.
                                 </p>
                                 <a href="/septic-permit-search-by-address/"
                                    data-track-click="nav"
@@ -937,7 +937,7 @@
                         <span class="eyebrow">Next-click accelerator</span>
                         <h2>
                             @if ("septic-permit-search-by-address".equals(contentPage.slug()))
-                                If the address search stalls, move to parcel, official tools, or a copy-ready request.
+                                If the address search stalls, move to parcel, official tools, or a route-aware request draft.
                             @elseif ("septic-permit-records-request".equals(contentPage.slug()))
                                 Turn the records request into a precise file pull before the office answers vaguely.
                             @elseif ("septic-as-built-records".equals(contentPage.slug()))

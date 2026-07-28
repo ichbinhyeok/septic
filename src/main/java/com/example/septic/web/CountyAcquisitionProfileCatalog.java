@@ -907,6 +907,12 @@ public final class CountyAcquisitionProfileCatalog {
         return PROFILES.get(countyKey);
     }
 
+    public static int preparedFieldPackCount() {
+        return (int) PROFILES.values().stream()
+                .filter(CountyAcquisitionProfileView::hasPreparedFieldPack)
+                .count();
+    }
+
     private static CountyAcquisitionProfileView acquisition(
             String countyKey,
             String agency,

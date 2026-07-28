@@ -806,6 +806,10 @@ public final class CountyAccessProfileCatalog {
         return PROFILES.get(countyKey);
     }
 
+    public static int countySpecificProfileCount() {
+        return PROFILES.size();
+    }
+
     public static CountyAccessProfileView findOrBaseline(CountyRecordsPage countyPage) {
         CountyAccessProfileView verifiedProfile = find(countyPage.key());
         if (verifiedProfile != null) {

@@ -9,7 +9,7 @@
                 finderId = "record-finder",
                 eyebrow = "Address record finder",
                 heading = "Paste the address. Open the right septic records route.",
-                intro = "We resolve the property county, then send you to the best verified county records page or state records path already in SepticPath.",
+                intro = "We resolve the property county, then show the best available county or state route and how deeply that route has been verified.",
                 totalCountyRouteCount = totalCountyRouteCount,
                 pageHeading = true
             )
@@ -26,7 +26,7 @@
             <article>
                 <span>02</span>
                 <h2>Open the file path</h2>
-                <p>When a verified county route exists, open it first. Otherwise use the state records path with the same address and parcel clues.</p>
+                <p>Open the county route first, then check its depth label. Some routes have county-specific preparation; others confirm only an official place to start.</p>
             </article>
             <article>
                 <span>03</span>
