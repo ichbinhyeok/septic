@@ -9642,6 +9642,30 @@ input[type="checkbox"] {
 
 .content-grid {
     grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+    align-items: start;
+}
+
+.content-grid--county-next {
+    grid-template-columns: minmax(0, 0.82fr) minmax(380px, 1.18fr);
+}
+
+.content-grid--county-next > .trust-box {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.content-grid--county-next > .detail-card:not(.detail-card--full) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+.content-grid--county-next > .detail-card--full {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.content-grid--county-next .county-sibling-routes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .content-grid--top {
@@ -9791,6 +9815,13 @@ input[type="checkbox"] {
     .field-grid,
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .content-grid--county-next > .trust-box,
+    .content-grid--county-next > .detail-card:not(.detail-card--full),
+    .content-grid--county-next > .detail-card--full {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .detail-list--split {
@@ -10656,6 +10687,13 @@ input[type="checkbox"] {
 
     .records-request-tracker__fields {
         grid-template-columns: 1fr;
+    }
+
+    .content-grid--county-next > .trust-box,
+    .content-grid--county-next > .detail-card:not(.detail-card--full),
+    .content-grid--county-next > .detail-card--full {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .records-request-tracker__note {

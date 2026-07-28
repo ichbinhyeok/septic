@@ -1221,7 +1221,7 @@
     </section>
 
     <section class="section">
-        <div class="container content-grid">
+        <div class="container content-grid content-grid--county-next">
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
                 <h2>Use the state workflow after the county file is clearer</h2>
