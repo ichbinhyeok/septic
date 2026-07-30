@@ -2606,7 +2606,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "workflow_viewed", "preparation_started", "preparation_ready",
                     "official_route_opened", "official_returned", "outcome_recorded",
                     "request_submitted", "record_reported", "document_reviewed",
-                    "property_file_ready", "task_finished" -> true;
+                    "document_handoff", "property_file_ready", "task_finished" -> true;
             default -> false;
         };
     }

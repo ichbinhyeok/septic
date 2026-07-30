@@ -6153,6 +6153,7 @@ class SepticApplicationTests {
 				"preparation_ready",
 				"official_route_opened",
 				"outcome_recorded",
+				"document_handoff",
 				"document_reviewed",
 				"property_file_ready",
 				"task_finished"
@@ -6180,6 +6181,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official route opened")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Core file ready")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Task explicitly finished")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County completion comparison")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County, VA")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Upload handoff")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Too little data")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Collect at least 5 task starts")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("100% of 7-day starts")));
 
 		try (Stream<Path> eventFiles = Files.walk(TEST_STORAGE_ROOT.resolve("events"))) {

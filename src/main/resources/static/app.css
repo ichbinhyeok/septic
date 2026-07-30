@@ -9724,7 +9724,7 @@ input[type="checkbox"] {
 
 .ops-workflow-funnel__steps {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
     margin: 0;
     padding: 0;
     list-style: none;
@@ -9783,6 +9783,54 @@ input[type="checkbox"] {
     margin: 0;
     color: var(--muted);
     font-size: 0.83rem;
+}
+
+.ops-county-funnel {
+    display: grid;
+    gap: 22px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.ops-county-funnel__table {
+    min-width: 1380px;
+}
+
+.ops-county-funnel__table td strong,
+.ops-county-funnel__table td small,
+.ops-county-funnel__table td code {
+    display: block;
+}
+
+.ops-county-funnel__table td small {
+    margin-top: 4px;
+    color: var(--muted);
+    font: 700 0.72rem/1.35 "Manrope", sans-serif;
+    white-space: nowrap;
+}
+
+.ops-county-funnel__table td:first-child strong {
+    margin-bottom: 4px;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.ops-county-funnel__evidence {
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(35, 108, 95, 0.09);
+    color: var(--accent-strong);
+    font: 800 0.72rem/1.2 "Manrope", sans-serif;
+    white-space: nowrap;
+}
+
+.ops-event-table td.ops-county-funnel__action {
+    min-width: 260px;
+    color: var(--text);
+    font-family: "Public Sans", sans-serif;
+    font-weight: 600;
+    white-space: normal;
 }
 
 .ops-event-table-section {

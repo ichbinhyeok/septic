@@ -13,6 +13,7 @@ public record EventAnalyticsReport(
         long workflowTasksLastSevenDays,
         long workflowTasksLastTwentyEightDays,
         List<WorkflowFunnelRow> workflowFunnel,
+        List<CountyWorkflowFunnelRow> countyWorkflowFunnels,
         List<EventAnalyticsRow> officialSourceClicks,
         List<EventAnalyticsRow> artifactActions,
         List<EventAnalyticsRow> internalNavigationClicks

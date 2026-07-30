@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EventAnalyticsReport;
 import com.example.septic.web.EventAnalyticsRow;
+import com.example.septic.web.CountyWorkflowFunnelRow;
 import com.example.septic.web.WorkflowFunnelRow;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -152,7 +153,7 @@ public class EventAnalyticsService {
                     String stage = text(event, "stage");
                     if (!workflowRunId.isBlank() && !stage.isBlank()) {
                         workflows.computeIfAbsent(workflowRunId, ignored -> new MutableWorkflow())
-                                .add(stage, occurredAt);
+                                .add(text(event, "countyKey"), stage, occurredAt);
                     }
                 }
                 default -> {
@@ -186,6 +187,7 @@ public class EventAnalyticsService {
                     workflowSeven,
                     workflowTwentyEight,
                     workflowFunnel,
+                    countyWorkflowFunnels(),
                     rows(officialSourceClicks),
                     rows(artifactActions),
                     rows(internalNavigationClicks)
@@ -204,6 +206,7 @@ public class EventAnalyticsService {
             stages.put("preparation_ready", "Information prepared");
             stages.put("official_route_opened", "Official route opened");
             stages.put("outcome_recorded", "Official result reported");
+            stages.put("document_handoff", "Upload workspace opened");
             stages.put("document_reviewed", "Document reviewed");
             stages.put("property_file_ready", "Core file ready");
             stages.put("task_finished", "Task explicitly finished");
@@ -225,6 +228,129 @@ public class EventAnalyticsService {
                         return new WorkflowFunnelRow(entry.getKey(), entry.getValue(), seven, twentyEight, rate);
                     })
                     .toList();
+        }
+
+        private List<CountyWorkflowFunnelRow> countyWorkflowFunnels() {
+            return workflows.values().stream()
+                    .filter(workflow -> !workflow.firstSeen.isBefore(reportStart))
+                    .filter(workflow -> !workflow.countyKey.isBlank())
+                    .collect(java.util.stream.Collectors.groupingBy(workflow -> workflow.countyKey))
+                    .entrySet().stream()
+                    .map(entry -> countyWorkflowRow(entry.getKey(), entry.getValue()))
+                    .sorted(Comparator.comparingLong(CountyWorkflowFunnelRow::startsLastTwentyEightDays).reversed()
+                            .thenComparing(CountyWorkflowFunnelRow::countyLabel))
+                    .toList();
+        }
+
+        private CountyWorkflowFunnelRow countyWorkflowRow(String countyKey, List<MutableWorkflow> countyWorkflows) {
+            long startsSeven = countyWorkflows.stream()
+                    .filter(workflow -> !workflow.firstSeen.isBefore(sprintStart))
+                    .count();
+            long startsTwentyEight = countyWorkflows.size();
+            long prepared = stageCount(countyWorkflows, "preparation_ready");
+            long opened = stageCount(countyWorkflows, "official_route_opened");
+            long outcomes = stageCount(countyWorkflows, "outcome_recorded");
+            long handoffs = stageCount(countyWorkflows, "document_handoff");
+            long reviewed = stageCount(countyWorkflows, "document_reviewed");
+            long ready = stageCount(countyWorkflows, "property_file_ready");
+            int officialRate = conversionRate(countyWorkflows, "workflow_viewed", "official_route_opened");
+            int outcomeRate = conversionRate(countyWorkflows, "official_route_opened", "outcome_recorded");
+            int handoffRate = conversionRate(countyWorkflows, "outcome_recorded", "document_handoff");
+            int reviewRate = conversionRate(countyWorkflows, "document_handoff", "document_reviewed");
+            int readyRate = conversionRate(countyWorkflows, "document_reviewed", "property_file_ready");
+            return new CountyWorkflowFunnelRow(
+                    countyKey,
+                    countyLabel(countyKey),
+                    startsSeven,
+                    startsTwentyEight,
+                    prepared,
+                    opened,
+                    outcomes,
+                    handoffs,
+                    reviewed,
+                    ready,
+                    officialRate,
+                    outcomeRate,
+                    handoffRate,
+                    reviewRate,
+                    readyRate,
+                    evidenceLabel(startsTwentyEight),
+                    nextAction(startsTwentyEight, opened, outcomes, handoffs, reviewed, ready,
+                            officialRate, outcomeRate, handoffRate, reviewRate, readyRate)
+            );
+        }
+
+        private long stageCount(List<MutableWorkflow> countyWorkflows, String stage) {
+            return countyWorkflows.stream().filter(workflow -> workflow.has(stage)).count();
+        }
+
+        private int conversionRate(List<MutableWorkflow> countyWorkflows, String fromStage, String toStage) {
+            List<MutableWorkflow> eligible = countyWorkflows.stream()
+                    .filter(workflow -> workflow.has(fromStage))
+                    .toList();
+            if (eligible.isEmpty()) {
+                return 0;
+            }
+            long converted = eligible.stream()
+                    .filter(workflow -> workflow.reachedAfter(fromStage, toStage))
+                    .count();
+            return (int) Math.round(converted * 100.0 / eligible.size());
+        }
+
+        private String evidenceLabel(long starts) {
+            if (starts >= 20) {
+                return "Stronger directional sample";
+            }
+            if (starts >= 5) {
+                return "Early directional sample";
+            }
+            return "Too little data";
+        }
+
+        private String nextAction(
+                long starts,
+                long opened,
+                long outcomes,
+                long handoffs,
+                long reviewed,
+                long ready,
+                int officialRate,
+                int outcomeRate,
+                int handoffRate,
+                int reviewRate,
+                int readyRate
+        ) {
+            if (starts < 5) {
+                return "Collect at least 5 task starts before changing this county route.";
+            }
+            if (opened == 0 || officialRate < 50) {
+                return "Inspect the preparation-to-official-route handoff first.";
+            }
+            if (outcomes == 0 || outcomeRate < 25) {
+                return "Inspect the return prompt and make the saved-task reminder easier to recognize.";
+            }
+            if (handoffs == 0 || handoffRate < 25) {
+                return "Inspect the document-workspace CTA after the visitor reports an outcome.";
+            }
+            if (reviewed == 0 || reviewRate < 25) {
+                return "Inspect upload guidance, accepted file types, and analyzer errors.";
+            }
+            if (ready == 0 || readyRate < 50) {
+                return "Inspect missing-file guidance and conflict resolution after document review.";
+            }
+            return "Completion is observed. Protect this route and reuse its pattern on the next county.";
+        }
+
+        private String countyLabel(String countyKey) {
+            String[] parts = countyKey.split("::", 2);
+            String state = parts.length > 0 ? parts[0] : "";
+            String county = parts.length > 1 ? parts[1] : countyKey;
+            String countyName = Stream.of(county.split("-"))
+                    .filter(part -> !part.isBlank())
+                    .map(part -> Character.toUpperCase(part.charAt(0)) + part.substring(1))
+                    .reduce((left, right) -> left + " " + right)
+                    .orElse(county);
+            return countyName + ", " + state;
         }
 
         private long countLastSevenDays(Map<RowKey, MutableRow> rows) {
@@ -288,9 +414,13 @@ public class EventAnalyticsService {
 
     private static final class MutableWorkflow {
         private Instant firstSeen = Instant.MAX;
+        private String countyKey = "";
         private final Map<String, Instant> stages = new HashMap<>();
 
-        private void add(String stage, Instant occurredAt) {
+        private void add(String eventCountyKey, String stage, Instant occurredAt) {
+            if (countyKey.isBlank() && eventCountyKey != null && !eventCountyKey.isBlank()) {
+                countyKey = eventCountyKey;
+            }
             if (occurredAt.isBefore(firstSeen)) {
                 firstSeen = occurredAt;
             }
@@ -300,6 +430,12 @@ public class EventAnalyticsService {
 
         private boolean has(String stage) {
             return stages.containsKey(stage);
+        }
+
+        private boolean reachedAfter(String fromStage, String toStage) {
+            Instant from = stages.get(fromStage);
+            Instant to = stages.get(toStage);
+            return from != null && to != null && !to.isBefore(from);
         }
     }
 

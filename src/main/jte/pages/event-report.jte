@@ -1,6 +1,7 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EventAnalyticsReport
 @import com.example.septic.web.EventAnalyticsRow
+@import com.example.septic.web.CountyWorkflowFunnelRow
 @import com.example.septic.web.WorkflowFunnelRow
 @param PageMeta page
 @param EventAnalyticsReport report
@@ -85,6 +86,76 @@
                     @endfor
                 </ol>
                 <p class="ops-workflow-funnel__note">A route opening is not a successful record search. “Core file ready” requires the purpose-specific checklist to be filled without unresolved document conflicts; “finished” requires the visitor to confirm completion.</p>
+            </div>
+        </section>
+
+        <section class="section section--tight">
+            <div class="container ops-county-funnel">
+                <div class="section-heading">
+                    <span class="eyebrow">County completion comparison</span>
+                    <h2>Fix the busiest broken step first.</h2>
+                    <p class="lede">Each row joins anonymous stages by workflow ID and county for the last 28 days. Step rates use only tasks that reached the prior step. Fewer than five starts is marked too early, so one visitor cannot make a county look healthy or broken.</p>
+                </div>
+                @if (report.countyWorkflowFunnels().isEmpty())
+                    <p class="ops-event-table-section__empty">No county-linked workflow has started in the last 28 days.</p>
+                @else
+                    <div class="ops-event-table-wrap">
+                        <table class="ops-event-table ops-county-funnel__table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">County</th>
+                                    <th scope="col">Starts</th>
+                                    <th scope="col">Prepared</th>
+                                    <th scope="col">Official</th>
+                                    <th scope="col">Returned</th>
+                                    <th scope="col">Upload handoff</th>
+                                    <th scope="col">Reviewed</th>
+                                    <th scope="col">File ready</th>
+                                    <th scope="col">Evidence</th>
+                                    <th scope="col">Next action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (CountyWorkflowFunnelRow row : report.countyWorkflowFunnels())
+                                    <tr>
+                                        <td>
+                                            <strong>${row.countyLabel()}</strong>
+                                            <code>${row.countyKey()}</code>
+                                        </td>
+                                        <td>
+                                            <strong>${row.startsLastTwentyEightDays()}</strong>
+                                            <small>${row.startsLastSevenDays()} in 7d</small>
+                                        </td>
+                                        <td>${row.preparedLastTwentyEightDays()}</td>
+                                        <td>
+                                            <strong>${row.officialOpenedLastTwentyEightDays()}</strong>
+                                            <small>${row.officialOpenRate()}%</small>
+                                        </td>
+                                        <td>
+                                            <strong>${row.outcomesLastTwentyEightDays()}</strong>
+                                            <small>${row.outcomeReturnRate()}%</small>
+                                        </td>
+                                        <td>
+                                            <strong>${row.documentHandoffsLastTwentyEightDays()}</strong>
+                                            <small>${row.documentHandoffRate()}%</small>
+                                        </td>
+                                        <td>
+                                            <strong>${row.documentsReviewedLastTwentyEightDays()}</strong>
+                                            <small>${row.documentReviewRate()}%</small>
+                                        </td>
+                                        <td>
+                                            <strong>${row.propertyFilesReadyLastTwentyEightDays()}</strong>
+                                            <small>${row.propertyFileReadyRate()}%</small>
+                                        </td>
+                                        <td><span class="ops-county-funnel__evidence">${row.evidenceLabel()}</span></td>
+                                        <td class="ops-county-funnel__action">${row.nextAction()}</td>
+                                    </tr>
+                                @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="ops-workflow-funnel__note">The 50%, 25%, and 50% cutoffs behind “Next action” are investigation triggers, not industry benchmarks. They decide where to inspect first; they do not declare a county successful.</p>
+                @endif
             </div>
         </section>
 

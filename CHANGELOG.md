@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2.3 - 2026-07-30
+
+- The private operations report now compares anonymous county workflows across preparation, official-route opening, reported return, document-workspace handoff, document review, and usable property-file completion.
+- County conversion rates use only workflows that reached the prior step, while 28-day cohorts with fewer than five starts are explicitly marked as too early for route changes.
+- Each observed county receives a traffic-ordered diagnostic next action so product work starts with the busiest unresolved step instead of page impressions.
+- The document-workspace handoff stage is now accepted by the server and included in both the overall and county completion funnels.
+
 ## 0.0.2.2 - 2026-07-30
 
 - Demand-backed county workflows now hand the same property, county, purpose, and workflow identity directly into the document workspace after an official-route return.
