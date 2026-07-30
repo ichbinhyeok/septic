@@ -301,7 +301,7 @@ public class SeoService {
     public String stateGuideHeading(StateProfile state) {
         return switch (state.stateCode()) {
             case "WV" -> "West Virginia septic permit cost, sewage permit file, and local health guide";
-            case "AL" -> "How much is a perc test in Alabama? Septic permit cost and county records";
+            case "AL" -> "How much does a perc test cost in Alabama? Fees, quotes, and county records";
             case "AR" -> "Arkansas septic cost guide and county permit path";
             case "MS" -> "Mississippi septic cost guide and public records path";
             case "IN" -> "Indiana septic cost guide and county permit path";
@@ -1298,7 +1298,7 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Permit Search by Address & SSDS Records | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Permit Search & 403 Workaround | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits by County | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
@@ -1321,6 +1321,9 @@ public class SeoService {
                 default -> stateMoneyPage.title() + " | SepticPath";
             };
         }
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "WV".equals(state.stateCode())) {
+            return "How Much Does a Perc Test Cost in West Virginia? | SepticPath";
+        }
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
             case "septic-replacement-cost" -> " | Quote Scope | SepticPath";
             case "perc-test-cost" -> " | Soil & Permit Risk | SepticPath";
@@ -1338,6 +1341,9 @@ public class SeoService {
     }
 
     private String stateMoneyPageDescription(StateMoneyPage stateMoneyPage, StateProfile state) {
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "WV".equals(state.stateCode())) {
+            return "See the $300-$3,000 national perc-test planning range, then narrow West Virginia cost by local health department, site review, permit stage, and quote scope.";
+        }
         if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return stateMoneyPage.metaDescription();
         }
@@ -1383,7 +1389,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "How Much Is a Perc Test in Alabama?";
+            case "AL" -> "How Much Does a Perc Test Cost in Alabama?";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";

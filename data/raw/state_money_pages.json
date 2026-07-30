@@ -4191,6 +4191,10 @@
         "/septic-records-checklist/north-carolina/iredell-county/",
         "/septic-records-checklist/north-carolina/alamance-county/",
         "/septic-records-checklist/north-carolina/wake-county/",
+        "/septic-records-checklist/north-carolina/forsyth-county/",
+        "/septic-records-checklist/north-carolina/pitt-county/",
+        "/septic-records-checklist/north-carolina/pender-county/",
+        "/septic-records-checklist/north-carolina/onslow-county/",
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/north-carolina/randolph-county/",
@@ -14325,9 +14329,9 @@
     {
       "contentSlug": "perc-test-cost",
       "stateCode": "WV",
-      "title": "West Virginia Perc Test Cost",
-      "metaDescription": "West Virginia perc and site-planning page with local health department routing, sewage permit application and local site file, and thin local file and public-record delay in mind.",
-      "introCopy": "West Virginia perc and site-testing questions are stronger than a generic national test page because the real homeowner issue is not just a small testing fee. The first questions are which local health department controls the parcel, whether the sewage permit application and local site file already exists, and whether thin local file and public-record delay is already moving the project beyond a simple low-end story.",
+      "title": "How Much Does a Perc Test Cost in West Virginia?",
+      "metaDescription": "See the national perc-test planning range, then narrow West Virginia cost by local health department, site review, permit stage, and quote scope.",
+      "introCopy": "A perc test typically falls in a $300-$3,000 national planning range, but that is not a West Virginia fee schedule or a live quote. The real price depends on which local health department controls the parcel, what site or soil review is required, how many test locations and visits are included, and whether the sewage permit application or local site file already answers part of the job.",
       "uniqueAngle": "West Virginia site-testing intent is strongest when the page connects local health department, sewage permit application and local site file, and thin local file and public-record delay instead of pretending a single perc fee settles the project.",
       "targetReader": "Best for West Virginia owners, buyers, builders, and agents who need to know whether the parcel is still on a straightforward site path before permit, design, or replacement risk widens the job.",
       "fitBullets": [

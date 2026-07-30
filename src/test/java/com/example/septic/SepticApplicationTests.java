@@ -297,7 +297,8 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Permit Search by Address &amp; SSDS Records | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Permit Search &amp; 403 Workaround | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Tennessee septic permits by address or parcel.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/official-septic-lookup-tools/\">Official Septic Lookup Tools</a>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"name\":\"Official Septic Lookup Tools\",\"item\":\"https://example.test/official-septic-lookup-tools/\",\"position\":2")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("TDEC Septic Permit Search by Address and SSDS Records")))
@@ -5407,8 +5408,8 @@ class SepticApplicationTests {
 	void alabamaStateGuideShowsCountyHealthPermitContext() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Septic permit cost and county records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Is a Perc Test in Alabama? | SepticPath")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost in Alabama? Fees, quotes, and county records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Does a Perc Test Cost in Alabama? | SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Build a county-usable quote scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Plan on $300 to $2,700")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Public site evaluation")))
@@ -5431,7 +5432,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permit to Install")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Approval for Use")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost in Alabama?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Alabama")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Permit Lookup &amp; County Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Replacement Cost")))
@@ -5719,12 +5720,24 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("regulatory interpretation and technical assistance")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("West Virginia Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in West Virginia")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("West Virginia Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Does a Perc Test Cost in West Virginia?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("West Virginia Septic Permit Process")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("West Virginia Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("public-records request")));
+	}
+
+	@Test
+	void westVirginiaPercPageAnswersCostIntentBeforePermitRouting() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/west-virginia/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>How Much Does a Perc Test Cost in West Virginia? | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1>How Much Does a Perc Test Cost in West Virginia?</h1>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$300-$3,000 national planning range")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("not a West Virginia fee schedule or a live quote")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("local health department")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/west-virginia/")));
 	}
 
 	@Test

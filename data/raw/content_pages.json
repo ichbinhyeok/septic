@@ -1796,7 +1796,7 @@
         "TN septic records by address"
       ],
       "title": "TDEC Septic Permit Search by Address and SSDS Records",
-      "metaDescription": "Find Tennessee septic permits through the working SSDS program page, field office, county route, or public-records request when the direct TDEC search returns 403.",
+      "metaDescription": "Search Tennessee septic permits by address or parcel. If TDEC returns 403, use the working SSDS, field-office, county, and ready-to-send request paths.",
       "updatedAt": "2026-07-28",
       "reviewedAt": "2026-07-28",
       "introCopy": "TDEC's direct SSDS record search currently returns 403 for some users, including through a VPN. Start with Tennessee's working SSDS program page, then identify the Environmental Field Office or contract-county route and request the permit, layout, final approval, repair history, or written no-record response with the same address, parcel, owner, subdivision, and permit clues.",

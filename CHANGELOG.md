@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2.4 - 2026-07-30
+
+- Search Console-backed titles and descriptions now match the highest-impression Tennessee and Alabama queries while making the TDEC 403 fallback explicit before the click.
+- West Virginia perc-test content now answers cost intent with a bounded national planning range before explaining local-health, site-review, permit-stage, and quote-scope variables.
+- North Carolina's proven state records page now gives additional internal prominence to emerging Forsyth, Pitt, Pender, and Onslow County searches.
+- SEO regression tests protect the revised search snippets, headings, cost caveats, and official-workflow handoffs.
+
 ## 0.0.2.3 - 2026-07-30
 
 - The private operations report now compares anonymous county workflows across preparation, official-route opening, reported return, document-workspace handoff, document review, and usable property-file completion.

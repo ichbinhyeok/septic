@@ -76,7 +76,7 @@
                     <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">
                             <span class="eyebrow">Alabama cost baseline</span>
-                            <h2>How much is a perc test in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>
+                            <h2>How much does a perc test cost in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>
                             <p class="alabama-perc-scope__answer">The planning range covers the wider private site-work conversation. It is not the same thing as the county fee. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application fee.</p>
                             <p>Use the three answers below to identify which cost layer applies, what the quote must include, and whether pricing should pause until the county file or sewer question is resolved.</p>
                         </div>
