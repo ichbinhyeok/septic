@@ -138,6 +138,18 @@ public class EstimatorService {
             drivers.add("Permit routing and site-evaluation steps often decide timing before installer price is truly comparable.");
         }
 
+        if ("AL".equals(state.stateCode())) {
+            if (projectType == ProjectType.NEW_INSTALL || projectType == ProjectType.REPLACEMENT) {
+                officialBasis.add("ADPH currently publishes a $100-$200 flat dwelling application fee for conventional or engineered small-flow systems. This is an official fee layer, not the full project cost.");
+                checklist.add("Ask the county health department for the exact current application charge and whether a changed site or revised application would require another non-refundable fee.");
+            }
+            if (projectType == ProjectType.PERC_TEST || projectType == ProjectType.NEW_INSTALL) {
+                officialBasis.add("ADPH publishes a $150-$250 public site-evaluation fee only in counties with an approved Site Evaluation Program and only for conventional small-flow systems.");
+                checklist.add("Confirm whether this county participates in ADPH's public Site Evaluation Program or requires a private registered professional.");
+            }
+            methodologyLimits.add("Alabama's official fee bands cover the public application or eligible site-evaluation layer only. Private soil work, survey, engineering, installation, excavation, and restoration are not official statewide prices.");
+        }
+
         if ("OR".equals(state.stateCode())) {
             rangePadding += 250;
             drivers.add("Oregon puts site evaluation before permit certainty, and DEQ says the site evaluation does not guarantee approval of a specific system type.");

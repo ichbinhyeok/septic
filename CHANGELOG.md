@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2.1 - 2026-07-30
+
+- Alabama estimates now separate state-adjusted private project ranges from published county application and eligible public site-evaluation fees.
+- The Alabama guide prepares county-specific handoffs for nine Search Console-observed locations, including verified office contacts, official forms, required inputs, and exact confirmation questions.
+- Jefferson County now uses its own JCDH permit workflow and application instead of inheriting the generic statewide form path.
+- Alabama users can select a county and generate a copy-ready request containing the verified office, form, and unresolved fee or submission questions.
+
 ## 0.0.2.0 - 2026-07-28
 
 - The homepage now explains the product through a real property-file outcome and common homeowner questions.

@@ -4248,6 +4248,8 @@
             const project = checker.querySelector("[data-alabama-perc-project]");
             const evidence = checker.querySelector("[data-alabama-perc-evidence]");
             const sewer = checker.querySelector("[data-alabama-perc-sewer]");
+            const county = checker.querySelector("[data-alabama-perc-county]");
+            const property = checker.querySelector("[data-alabama-perc-property]");
             const result = checker.querySelector("[data-alabama-perc-result]");
             const label = checker.querySelector("[data-alabama-perc-label]");
             const heading = checker.querySelector("[data-alabama-perc-heading]");
@@ -4255,6 +4257,11 @@
             const steps = checker.querySelector("[data-alabama-perc-steps]");
             const note = checker.querySelector("[data-alabama-perc-note]");
             const copy = checker.querySelector("[data-alabama-perc-copy]");
+            const selectedCounty = checker.querySelector("[data-alabama-perc-selected-county]");
+            const selectedCountyHeading = checker.querySelector("[data-alabama-perc-selected-county-heading]");
+            const selectedCountyQuestion = checker.querySelector("[data-alabama-perc-selected-county-question]");
+            const selectedCountyPage = checker.querySelector("[data-alabama-perc-selected-county-page]");
+            const selectedCountyForm = checker.querySelector("[data-alabama-perc-selected-county-form]");
 
             if (!(form instanceof HTMLFormElement)
                 || !(project instanceof HTMLSelectElement)
@@ -4273,6 +4280,22 @@
                 const projectText = optionText(project);
                 const evidenceText = optionText(evidence);
                 const sewerText = optionText(sewer);
+                const countyText = (county instanceof HTMLInputElement || county instanceof HTMLSelectElement) && county.value.trim()
+                    ? county.value.trim()
+                    : "Not provided";
+                const countyOption = county instanceof HTMLSelectElement
+                    ? county.options[county.selectedIndex]
+                    : null;
+                const countyStatus = countyOption?.dataset.countyStatus || "";
+                const countyPhone = countyOption?.dataset.countyPhone || "";
+                const countyPageUrl = countyOption?.dataset.countyPage || "";
+                const countyPageLabel = countyOption?.dataset.countyPageLabel || "";
+                const countyFormUrl = countyOption?.dataset.countyForm || "";
+                const countyFormLabel = countyOption?.dataset.countyFormLabel || "";
+                const countyQuestion = countyOption?.dataset.countyQuestion || "";
+                const propertyText = property instanceof HTMLInputElement && property.value.trim()
+                    ? property.value.trim()
+                    : "Not provided";
                 let resultLabel = "Quote the usable scope";
                 let resultHeading = "Request a professional soil and site evaluation with the usable deliverables";
                 let resultBody = "For Alabama land without a usable prior file, ask for the evaluation, test result, and plot plan together. That is the package that can support the county Permit to Install path, not merely a standalone test number.";
@@ -4324,8 +4347,17 @@
                     "Subject: Alabama onsite sewage evaluation and Permit to Install quote request",
                     "",
                     `Project: ${projectText}`,
+                    `County: ${countyText}`,
+                    `Property address or parcel ID: ${propertyText}`,
                     `Existing evidence: ${evidenceText}`,
                     `Public sewer: ${sewerText}`,
+                    ...(countyPhone ? [
+                        `County handoff: ${countyStatus}`,
+                        `Environmental contact: ${countyPhone}`,
+                        `Official county page: ${countyPageUrl}`,
+                        `Official form path: ${countyFormUrl}`,
+                        `Ask the county: ${countyQuestion}`
+                    ] : []),
                     "",
                     "Please quote the scope needed to produce a county-usable Alabama onsite sewage package. Please state separately:",
                     "1. Soil and site evaluation or percolation testing required for this parcel.",
@@ -4333,11 +4365,27 @@
                     "3. Whether you will identify what the county health department needs for a Permit to Install.",
                     "4. What prior permit, Approval for Use, soil report, or survey you need before field work.",
                     "5. Any exclusions, re-staking, redesign, county fees, or follow-up work not included in the quoted price.",
+                    "6. Whether the ADPH $150-$250 public site-evaluation band applies in this county or a private registered professional is required.",
+                    "7. The exact county Permit to Install application fee; ADPH currently publishes a $100-$200 dwelling band.",
                     "",
                     "I understand this request is for a scope and price estimate, not a guarantee that the parcel or a particular system will be approved."
                 ];
 
-                return { resultLabel, resultHeading, resultBody, nextSteps, noteText: noteLines.join("\n") };
+                return {
+                    resultLabel,
+                    resultHeading,
+                    resultBody,
+                    nextSteps,
+                    noteText: noteLines.join("\n"),
+                    countyText,
+                    countyStatus,
+                    countyPhone,
+                    countyPageUrl,
+                    countyPageLabel,
+                    countyFormUrl,
+                    countyFormLabel,
+                    countyQuestion
+                };
             }
 
             function render() {
@@ -4358,6 +4406,27 @@
                         item.textContent = step;
                         return item;
                     }));
+                }
+                if (selectedCounty instanceof HTMLElement) {
+                    selectedCounty.hidden = !value.countyPhone;
+                }
+                if (selectedCountyHeading) {
+                    selectedCountyHeading.textContent = value.countyPhone
+                        ? `${value.countyText} · ${value.countyPhone} · ${value.countyStatus}`
+                        : "";
+                }
+                if (selectedCountyQuestion) {
+                    selectedCountyQuestion.textContent = value.countyQuestion
+                        ? `Ask: “${value.countyQuestion}”`
+                        : "";
+                }
+                if (selectedCountyPage instanceof HTMLAnchorElement) {
+                    selectedCountyPage.href = value.countyPageUrl || "#";
+                    selectedCountyPage.textContent = value.countyPageLabel || "Open official county page";
+                }
+                if (selectedCountyForm instanceof HTMLAnchorElement) {
+                    selectedCountyForm.href = value.countyFormUrl || "#";
+                    selectedCountyForm.textContent = value.countyFormLabel || "Open official form";
                 }
                 note.value = value.noteText;
                 result.scrollIntoView({ behavior: "smooth", block: "start" });

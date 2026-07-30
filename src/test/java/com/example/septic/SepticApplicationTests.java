@@ -1492,6 +1492,27 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void alabamaCalculatorSeparatesOfficialFeesFromPrivateProjectCost() throws Exception {
+		mockMvc.perform(post("/septic-system-cost-calculator/")
+						.param("stateCode", "AL")
+						.param("projectType", "new_install")
+						.param("bedrooms", "3")
+						.param("occupants", "4")
+						.param("soilPercStatus", "unknown")
+						.param("accessDifficulty", "easy")
+						.param("timeline", "researching"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama cost boundary")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$100-$200 published band")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$150-$250 in participating counties")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Private soil work, survey, design, install, excavation, restoration")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama 2024 regional price-level adjustment")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama dwelling permit application fee")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("ADPH currently publishes a $100-$200 flat dwelling application fee")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("approved Site Evaluation Program")));
+	}
+
+	@Test
 	void calculatorSupportsDirectQuoteMode() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/")
 						.param("state", "GA")
@@ -5389,7 +5410,22 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Septic permit cost and county records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Is a Perc Test in Alabama? | SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Build a county-usable quote scope")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama perc-test planning range: $300 to $3,000")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Plan on $300 to $2,700")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Public site evaluation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$150-$250")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Dwelling permit application")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("$100-$200")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Property address or parcel ID")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Verified county handoffs")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Take the packet to the right county door.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Jefferson County permit application")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("205-930-1230")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("submit the application digitally or must I deliver the listed copies")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("256-533-8726")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("256-340-6563")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("334-222-1175")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Another Alabama county")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Run Alabama install estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Narrow my Alabama quote scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-alabama-perc-scope")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county health departments")))

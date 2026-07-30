@@ -240,6 +240,62 @@
       "note": "Florida sits near the national broad price level in the planning model, so DEP-versus-county routing and operating-permit context often matter more than the state multiplier alone.",
       "lastVerifiedAt": "2026-03-09",
       "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "projectType": "new_install",
+      "evidenceType": "state_price_level",
+      "title": "Alabama 2024 regional price-level adjustment",
+      "low": null,
+      "mid": null,
+      "high": null,
+      "multiplier": 0.888,
+      "sourceIds": ["cost_bea_01"],
+      "note": "The calculator applies Alabama's 2024 all-items regional price parity only as a broad price-level adjustment to public national septic anchors. It is not a septic contractor index or a county quote feed.",
+      "lastVerifiedAt": "2026-07-30",
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "projectType": "new_install",
+      "evidenceType": "official_fee",
+      "title": "Alabama dwelling permit application fee",
+      "low": 100,
+      "mid": 150,
+      "high": 200,
+      "multiplier": null,
+      "sourceIds": ["al_05", "al_06"],
+      "note": "ADPH publishes a $100-$200 flat application fee for a conventional or engineered small-flow dwelling permit. It is non-refundable and does not include private soil work, design, installation, excavation, or restoration.",
+      "lastVerifiedAt": "2026-07-30",
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "projectType": "replacement",
+      "evidenceType": "official_fee",
+      "title": "Alabama repair permit application fee",
+      "low": 100,
+      "mid": 150,
+      "high": 200,
+      "multiplier": null,
+      "sourceIds": ["al_05", "al_06"],
+      "note": "The current CEP-2 form covers installation or repair, while the ADPH fee manual publishes the dwelling small-flow application band. Confirm the exact county charge before filing.",
+      "lastVerifiedAt": "2026-07-30",
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "AL",
+      "projectType": "perc_test",
+      "evidenceType": "official_fee",
+      "title": "Alabama public site-evaluation program fee",
+      "low": 150,
+      "mid": 200,
+      "high": 250,
+      "multiplier": null,
+      "sourceIds": ["al_05"],
+      "note": "ADPH publishes this non-refundable fee only for counties with an approved public Site Evaluation Program and only for conventional small-flow systems. Private professional soil work can cost more and is separate.",
+      "lastVerifiedAt": "2026-07-30",
+      "publishStatus": "published"
     }
   ]
 }

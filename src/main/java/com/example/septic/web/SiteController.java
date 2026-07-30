@@ -1712,7 +1712,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("calculatorCtaLabel", stateActionCopy.buttonLabel());
         model.addAttribute("calculatorCtaNote", stateActionCopy.supportingNote());
         model.addAttribute("planningSnapshot", planningSnapshot);
-        model.addAttribute("alabamaPercPlanningRange", nationalPlanningRange("perc_test"));
+        model.addAttribute("alabamaPercPlanningRange", statePlanningRange("AL", "perc_test"));
+        model.addAttribute("alabamaCountyCostRoutes", "AL".equals(state.stateCode())
+                ? alabamaCountyCostRoutes()
+                : List.of());
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
         model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
@@ -1745,6 +1748,138 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialNote", "This " + state.stateName()
                 + " guide is maintained as conservative homeowner guidance and changes when its linked sources or local workflow notes change.");
         return "pages/state-guide";
+    }
+
+    private List<AlabamaCountyCostRouteView> alabamaCountyCostRoutes() {
+        String stateForms = "https://www.alabamapublichealth.gov/onsite/forms.html";
+        return List.of(
+                new AlabamaCountyCostRouteView(
+                        "Jefferson County",
+                        "A county-specific query produced a Google Search click in the reviewed 90-day window.",
+                        "County application available",
+                        "https://jcdh.org/SitePages/Programs-Services/EnvironmentalHealth/CommunityEnvironmentalProtection/OnsiteSewDisp.aspx",
+                        "Open JCDH onsite sewage instructions",
+                        "205-930-1230",
+                        "https://jcdh.org/SitePages/Misc/PdfViewer?AdminUploadId=370",
+                        "Open Jefferson County permit application",
+                        "Prepare the applicant contact, property location, subdivision and lot data, residence type, bedroom count, water source, sewer distance, and plot plan. A registered engineer, land surveyor, or soil classifier completes the professional soil section.",
+                        "JCDH reviews professional site data and performs its own field review. Its page says fees vary; do not substitute the statewide $150-$250 public-evaluation band.",
+                        "What is the current fee, how many copies are required, and can I submit the application digitally or must I deliver the listed copies?",
+                        ""
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Madison County",
+                        "Madison septic-permit and records queries are already appearing in Search Console.",
+                        "Environmental office confirmation",
+                        "https://www.alabamapublichealth.gov/madison/environmental-services.html",
+                        "Open Madison Environmental Services",
+                        "256-533-8726",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the property address or parcel ID, owner name, project type, bedroom count, sewer-availability answer, existing Permit to Install or Approval for Use, and any soil report or plot plan.",
+                        "The reviewed county page confirms onsite permitting and inspection but does not publish whether Madison participates in the $150-$250 public Site Evaluation Program.",
+                        "Does Madison County perform the public site evaluation, what is the current application fee, and which form and submission channel should I use for this parcel?",
+                        "/septic-records-checklist/alabama/madison-county/"
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Morgan County",
+                        "A Morgan County septic-permit query is already appearing in Search Console.",
+                        "Call Environmental",
+                        "https://www.alabamapublichealth.gov/morgan/contact.html",
+                        "Open Morgan County contact page",
+                        "256-340-6563",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the parcel address, owner, new-versus-repair scope, bedroom count, sewer answer, existing file number, and any prior soil or site plan before calling.",
+                        "The official contact page routes septic requests to Environmental but does not publish public-evaluation participation or a county-specific fee.",
+                        "For this parcel, do you provide the public site evaluation or require a private registered professional, and what must accompany the application?",
+                        "/septic-records-checklist/alabama/morgan-county/"
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Blount County",
+                        "A Blount County query surfaced on the Alabama cost page in Search Console.",
+                        "Call Environmental",
+                        "https://www.alabamapublichealth.gov/blount/environmental-services.html",
+                        "Open Blount Environmental Services",
+                        "205-274-2120",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the property address or parcel ID, owner, dwelling type, bedrooms, sewer answer, project type, and every existing permit, Approval for Use, soil report, or plot plan.",
+                        "Blount publishes onsite sewage application and permit responsibility, but the reviewed source does not publish its Site Evaluation Program status or exact fee.",
+                        "Which current application applies, does the county perform the site evaluation, and where do I submit the completed packet and fee?",
+                        "/septic-records-checklist/alabama/blount-county/"
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Cullman County",
+                        "A Cullman query surfaced on the Alabama cost page in Search Console.",
+                        "Call Environmental",
+                        "https://www.alabamapublichealth.gov/cullman/contact.html",
+                        "Open Cullman County contact page",
+                        "256-734-0243",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the parcel identity, owner, project and dwelling details, sewer answer, existing permit history, and any professional soil or plot-plan material.",
+                        "Cullman lists onsite sewage applications and permits. Its reviewed pages do not publish public-evaluation participation or a parcel-specific fee.",
+                        "Does the Environmental Office perform the public site evaluation, what is the exact fee, and do you accept the CEP-2 by mail, in person, or another channel?",
+                        "/septic-records-checklist/alabama/cullman-county/"
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Butler County",
+                        "A Butler County query surfaced on the Alabama cost page in Search Console.",
+                        "Temporary office / call first",
+                        "https://www.alabamapublichealth.gov/butler/contact.html",
+                        "Open Butler County contact page",
+                        "334-382-3154",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the property and owner details, project type, bedroom count, sewer answer, existing septic file, and soil or plot-plan evidence. Confirm the current Environmental/WIC location before travel.",
+                        "Butler publishes onsite sewage applications and permits, but not its Site Evaluation Program participation or exact septic fee. The county is operating from updated locations after the former building fire.",
+                        "Which Environmental location handles this parcel, do you provide the site evaluation, and what form, fee, copies, and submission method are required?",
+                        ""
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Cherokee County",
+                        "A Cherokee County query surfaced on the Alabama cost page in Search Console.",
+                        "Call Environmental",
+                        "https://www.alabamapublichealth.gov/cherokee/environmental-services.html",
+                        "Open Cherokee Environmental Services",
+                        "256-927-7322",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the parcel and owner identity, system purpose, dwelling and bedroom details, sewer answer, existing permits, and any site or soil evidence.",
+                        "Cherokee confirms onsite sewage and septic permitting, but the reviewed sources do not publish public-evaluation participation or the exact fee.",
+                        "Does Cherokee County perform the public site evaluation, which current form applies, and where should I send or deliver the completed packet?",
+                        ""
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Dallas County",
+                        "A Dallas County query surfaced on the Alabama cost page in Search Console.",
+                        "Call Environmental Health",
+                        "https://www.alabamapublichealth.gov/dallas/environmental-services.html",
+                        "Open Dallas Environmental Office",
+                        "334-872-5887",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare parcel location, owner, project scope, bedroom count, sewer answer, any existing Approval for Use or permit number, and soil or plot-plan material.",
+                        "Dallas confirms that Community Environmental Protection handles onsite sewage. The reviewed source does not publish Site Evaluation Program participation or a septic fee.",
+                        "For this parcel, is a county site evaluation available, what fee applies, and should the completed form be mailed, delivered, faxed, or submitted another way?",
+                        ""
+                ),
+                new AlabamaCountyCostRouteView(
+                        "Covington County",
+                        "An Andalusia perc-test query surfaced on the Alabama cost page in Search Console.",
+                        "Call Health Department / Environmental",
+                        "https://www.alabamapublichealth.gov/covington/contact.html",
+                        "Open Covington County contact page",
+                        "334-222-1175",
+                        stateForms,
+                        "Open current ADPH CEP forms",
+                        "Prepare the property address or parcel ID, owner, project type, dwelling and bedroom details, sewer answer, existing permit history, and any soil report or plot plan.",
+                        "Covington lists onsite sewage applications and permits, but the reviewed pages do not publish public-evaluation participation or the exact fee.",
+                        "Does Covington perform the public site evaluation for this parcel, what is the current fee, and what submission channel and attachments are required?",
+                        ""
+                )
+        );
     }
 
     private String renderQueuedStateGuide(Model model, UsStateDirectoryService.UsStateReference stateReference) {
@@ -4191,6 +4326,13 @@ The goal is to settle the permit path before we frame the project as a normal in
         return researchDataService.findNationalAnchor(projectType)
                 .map(anchor -> range(anchor.low(), anchor.high()))
                 .orElse("Under review");
+    }
+
+    private String statePlanningRange(String stateCode, String projectType) {
+        return researchDataService.findStateCostProfile(stateCode)
+                .map(profile -> profile.anchorForProjectType(projectType))
+                .map(anchor -> range(anchor.low(), anchor.high()))
+                .orElseGet(() -> nationalPlanningRange(projectType));
     }
 
     private List<RecordsAccessIndexStateView> recordsAccessIndexStates() {

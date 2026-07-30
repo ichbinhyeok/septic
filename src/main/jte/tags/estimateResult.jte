@@ -90,6 +90,35 @@
         <p><strong>${costEvidence.size()} published cost evidence item${costEvidence.size() == 1 ? "" : "s"}</strong> available below. Local labor, soil, access, engineered design, and permit requirements can move the final bid outside this range.</p>
     </article>
 
+    @if ("AL".equals(result.stateCode()))
+        <section class="alabama-result-ledger" aria-label="Alabama estimate boundary">
+            <div>
+                <span class="eyebrow">Alabama cost boundary</span>
+                <h3>Official fees and private project costs are different layers.</h3>
+                <p>The result above uses an Alabama-adjusted construction planning anchor. ADPH's published $100-$200 dwelling application band and eligible $150-$250 public site-evaluation band do not represent the full install, repair, or professional-design price.</p>
+            </div>
+            <dl>
+                <div>
+                    <dt>County application</dt>
+                    <dd>$100-$200 published band</dd>
+                </div>
+                <div>
+                    <dt>Eligible public site evaluation</dt>
+                    <dd>$150-$250 in participating counties</dd>
+                </div>
+                <div>
+                    <dt>Still quote separately</dt>
+                    <dd>Private soil work, survey, design, install, excavation, restoration</dd>
+                </div>
+            </dl>
+            <div class="alabama-result-ledger__actions">
+                <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Open ADPH fee manual</a>
+                <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer">Open CEP forms</a>
+                <a href="/septic-records-checklist/alabama/">Check the county file first</a>
+            </div>
+        </section>
+    @endif
+
     <article class="result-cta-band">
         <div class="result-cta-band__copy">
             <span class="eyebrow">Next step</span>

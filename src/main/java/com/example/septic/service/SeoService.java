@@ -613,7 +613,7 @@ public class SeoService {
 
     public String stateGuideQuickAnswer(StateProfile state) {
         return switch (state.stateCode()) {
-            case "AL" -> "For Alabama, start with the county health file and confirm whether the parcel already has soil or perc evidence, a Permit to Install, or an Approval for Use before treating a generic perc-test range as a quote.";
+            case "AL" -> "Alabama's current perc and private soil-work planning band is $300-$2,700. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application band. Confirm the county program, sewer availability, and existing file before treating any of those numbers as the full project cost.";
             case "TN" -> "For Tennessee, start with the TDEC SSDS or county file route and confirm the permit, as-built, final approval, and repair history before relying on a cost or inspection assumption.";
             case "NC" -> "For North Carolina, start with the county environmental health file and identify the improvement permit, construction authorization, operation permit, as-built, or repair record tied to the property.";
             case "IN" -> "For Indiana, start with the county or local health office and confirm the permit, site file, soil report, sewer-availability record, and any transfer paperwork before comparing project quotes.";

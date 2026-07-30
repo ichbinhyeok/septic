@@ -275,6 +275,26 @@
       "inspectionHigh": 900,
       "regionalMultiplier": 1.035,
       "sourceIds": ["cost_hg_01", "cost_ha_01", "cost_bea_01"]
+    },
+    {
+      "stateCode": "AL",
+      "status": "derived_state_planning_anchor_from_rpp_2024",
+      "installLow": 4400,
+      "installMid": 10700,
+      "installHigh": 22200,
+      "replacementLow": 5800,
+      "replacementMid": 13300,
+      "replacementHigh": 26600,
+      "drainfieldLow": 3100,
+      "drainfieldHigh": 13300,
+      "percLow": 300,
+      "percHigh": 2700,
+      "pumpingLow": 200,
+      "pumpingHigh": 550,
+      "inspectionLow": 200,
+      "inspectionHigh": 800,
+      "regionalMultiplier": 0.888,
+      "sourceIds": ["cost_hg_01", "cost_ha_01", "cost_bea_01", "al_05"]
     }
   ]
 }

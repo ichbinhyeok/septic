@@ -36,11 +36,12 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 @param String alabamaPercPlanningRange = "Under review"
+@param java.util.List<com.example.septic.web.AlabamaCountyCostRouteView> alabamaCountyCostRoutes = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <div class="state-guide-page">
     <section class="section section--heroish">
-        <div class="container state-hero">
+        <div class="container state-hero @if ("AL".equals(state.stateCode())) state-hero--alabama @endif">
             <div>
                 <span class="eyebrow">${state.stateCode()} county records and permit guide</span>
                 <h1>${guideHeading}</h1>
@@ -48,7 +49,12 @@
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Quick answer</span>
                         <p>${stateQuickAnswer}</p>
-                        @if (primaryRecordsLookupSource != null)
+                        @if ("AL".equals(state.stateCode()))
+                            <p class="content-quick-answer__source">
+                                Official fee source: <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Alabama Department of Public Health Fee System Manual</a>
+                                · reviewed 2026-07-30
+                            </p>
+                        @elseif (primaryRecordsLookupSource != null)
                             <p class="content-quick-answer__source">
                                 Official source: <a href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer">${primaryRecordsLookupSource.agencyName()}</a>
                                 · content reviewed ${primaryRecordsLookupSource.contentVerifiedAt()}
@@ -69,10 +75,34 @@
                 @if ("AL".equals(state.stateCode()))
                     <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">
-                            <span class="eyebrow">Direct Alabama perc test answer</span>
-                            <h2>Alabama perc-test planning range: ${alabamaPercPlanningRange}</h2>
-                            <p class="alabama-perc-scope__answer">This uses the current national public planning anchor, not a statewide county fee. The number can expand when the parcel has no usable soil file, needs a plot plan, has a prior permit that does not fit the project, or may have public sewer.</p>
-                            <p>ADPH says soil testing may need a registered professional and a Permit to Install must go to the county health department before construction. Use the three answers below to turn the generic range into a quote scope that the county can actually use.</p>
+                            <span class="eyebrow">Alabama cost baseline</span>
+                            <h2>How much is a perc test in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>
+                            <p class="alabama-perc-scope__answer">The planning range covers the wider private site-work conversation. It is not the same thing as the county fee. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application fee.</p>
+                            <p>Use the three answers below to identify which cost layer applies, what the quote must include, and whether pricing should pause until the county file or sewer question is resolved.</p>
+                        </div>
+                        <div class="alabama-fee-ledger" aria-label="Verified Alabama septic cost layers">
+                            <article>
+                                <span>Public site evaluation</span>
+                                <strong>$150-$250</strong>
+                                <p>Only for counties with an approved ADPH Site Evaluation Program and conventional small-flow systems.</p>
+                            </article>
+                            <article>
+                                <span>Dwelling permit application</span>
+                                <strong>$100-$200</strong>
+                                <p>ADPH's flat application band for conventional or engineered small-flow dwelling systems. Non-refundable.</p>
+                            </article>
+                            <article>
+                                <span>Private perc / soil planning</span>
+                                <strong>${alabamaPercPlanningRange}</strong>
+                                <p>A state-adjusted planning band, not an official fee or live professional quote.</p>
+                            </article>
+                            <div class="alabama-fee-ledger__footer">
+                                <p><strong>Do not add all three automatically.</strong> The county may not provide the public site evaluation, and private professional work can replace or exceed that layer.</p>
+                                <div>
+                                    <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Verify ADPH fee manual</a>
+                                    <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer">Open official CEP forms</a>
+                                </div>
+                            </div>
                         </div>
                         <form class="alabama-perc-scope__form" data-alabama-perc-scope-form>
                             <label>
@@ -100,6 +130,27 @@
                                     <option value="yes">Yes or likely available</option>
                                 </select>
                             </label>
+                            <label>
+                                <span>Alabama county</span>
+                                <select data-alabama-perc-county autocomplete="address-level2">
+                                    <option value="">Choose a county if known</option>
+                                    @for (var countyRoute : alabamaCountyCostRoutes)
+                                        <option value="${countyRoute.countyName()}"
+                                                data-county-status="${countyRoute.routeStatus()}"
+                                                data-county-phone="${countyRoute.phone()}"
+                                                data-county-page="${countyRoute.officialPageUrl()}"
+                                                data-county-page-label="${countyRoute.officialPageLabel()}"
+                                                data-county-form="${countyRoute.formUrl()}"
+                                                data-county-form-label="${countyRoute.formLabel()}"
+                                                data-county-question="${countyRoute.callQuestion()}">${countyRoute.countyName()}</option>
+                                    @endfor
+                                    <option value="Other Alabama county">Another Alabama county</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Property address or parcel ID</span>
+                                <input type="text" data-alabama-perc-property autocomplete="street-address" placeholder="Optional, but useful for the request">
+                            </label>
                             <button class="button button--primary" type="submit">Narrow my Alabama quote scope</button>
                         </form>
 
@@ -110,6 +161,15 @@
                                 <p data-alabama-perc-body></p>
                             </div>
                             <ol class="alabama-perc-scope__steps" data-alabama-perc-steps></ol>
+                            <div class="alabama-perc-scope__county-handoff" data-alabama-perc-selected-county hidden>
+                                <span>Selected county handoff</span>
+                                <strong data-alabama-perc-selected-county-heading></strong>
+                                <p data-alabama-perc-selected-county-question></p>
+                                <div>
+                                    <a data-alabama-perc-selected-county-page target="_blank" rel="noreferrer"></a>
+                                    <a data-alabama-perc-selected-county-form target="_blank" rel="noreferrer"></a>
+                                </div>
+                            </div>
                             <div class="alabama-perc-scope__note">
                                 <span>Copy-ready request</span>
                                 <textarea data-alabama-perc-note readonly aria-label="Alabama professional quote request"></textarea>
@@ -128,7 +188,68 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="alabama-perc-scope__source-note">This produces a quote scope, not an engineering conclusion or an official fee. Verify sewer availability and the county health file before accepting a low quote. <a href="#sources">Read the official ADPH sources below</a>.</p>
+                        @if (!alabamaCountyCostRoutes.isEmpty())
+                            <section class="alabama-county-handoffs" aria-labelledby="alabama-county-handoffs-title">
+                                <div class="alabama-county-handoffs__header">
+                                    <span class="eyebrow">Verified county handoffs</span>
+                                    <h2 id="alabama-county-handoffs-title">Take the packet to the right county door.</h2>
+                                    <p>These counties surfaced in the reviewed Search Console query sample. A county appears here only when an official office path was checked; unpublished fees and program participation stay marked as unknown.</p>
+                                </div>
+                                <div class="alabama-county-handoffs__list">
+                                    @for (var countyRoute : alabamaCountyCostRoutes)
+                                        <details class="alabama-county-handoff" open="${"Jefferson County".equals(countyRoute.countyName())}">
+                                            <summary>
+                                                <span>
+                                                    <strong>${countyRoute.countyName()}</strong>
+                                                    <small>${countyRoute.routeStatus()}</small>
+                                                </span>
+                                                <span class="alabama-county-handoff__phone">${countyRoute.phone()}</span>
+                                            </summary>
+                                            <div class="alabama-county-handoff__body">
+                                                <p class="alabama-county-handoff__signal">${countyRoute.demandSignal()}</p>
+                                                <div class="alabama-county-handoff__grid">
+                                                    <div>
+                                                        <span>Prepare before contact</span>
+                                                        <p>${countyRoute.prepSummary()}</p>
+                                                    </div>
+                                                    <div>
+                                                        <span>What is verified</span>
+                                                        <p>${countyRoute.publicEvaluationStatus()}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="alabama-county-handoff__script">
+                                                    <span>Ask this exact question</span>
+                                                    <p>“${countyRoute.callQuestion()}”</p>
+                                                </div>
+                                                <div class="alabama-county-handoff__actions">
+                                                    <a href="${countyRoute.officialPageUrl()}" target="_blank" rel="noreferrer">${countyRoute.officialPageLabel()}</a>
+                                                    <a href="${countyRoute.formUrl()}" target="_blank" rel="noreferrer">${countyRoute.formLabel()}</a>
+                                                    @if (countyRoute.hasCountyRecordsPath())
+                                                        <a href="${countyRoute.countyRecordsPath()}">Prepare the county records request</a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </details>
+                                    @endfor
+                                </div>
+                                <p class="alabama-county-handoffs__note"><strong>Not listed?</strong> Use the same preparation packet, then verify the local Environmental Office through ADPH. Absence from this list does not mean the county lacks septic service.</p>
+                            </section>
+                        @endif
+                        <div class="alabama-cost-routes" aria-label="Alabama cost calculator routes">
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=new_install">
+                                <span>New system</span>
+                                <strong>Run Alabama install estimate</strong>
+                            </a>
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=replacement">
+                                <span>Existing system</span>
+                                <strong>Run replacement estimate</strong>
+                            </a>
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=drainfield_replacement">
+                                <span>Field problem</span>
+                                <strong>Price drain-field scope</strong>
+                            </a>
+                        </div>
+                        <p class="alabama-perc-scope__source-note">This produces a budget lane and copy-ready scope, not an engineering conclusion, county invoice, or contractor bid. Verify sewer availability and the county health file before accepting a low quote. <a href="#sources">Read the official ADPH sources below</a>.</p>
                     </section>
                 @endif
                 @if (!featuredCountyRecordLinks.isEmpty())

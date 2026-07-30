@@ -724,7 +724,7 @@
       "publishStatus": "published",
       "pageAngle": "Alabama is strongest when framed around county health departments, Permit to Install timing, Approval-for-Use file retrieval, and buyer diligence rather than a generic install table. The homeowner wedge is knowing whether the county file is complete enough to trust the project before a contractor turns it into a simple permit-cost story.",
       "ruleType": "permit_path",
-      "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH says the Soil and Onsite Sewage Branch coordinates the onsite sewage program in county health departments, that homeowners may need soil testing or a percolation test before submitting an Application for a Permit to Install, and that the completed permit, also called the Approval for Use, includes a diagram of the actual installation. Property owners or their agents can request septic tank information from the local health department, while non-owners may need the Records Request path for a permit copy.",
+      "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH coordinates the onsite sewage program through county health departments, publishes the CEP-2 install-or-repair application, and currently lists a $100-$200 dwelling permit-application band. In counties with an approved public Site Evaluation Program, the published site-evaluation fee is $150-$250. Those official fees are only the administrative and public-evaluation layer; private soil work, design, installation, excavation, and restoration remain separate.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
@@ -740,12 +740,14 @@
         "ADPH says the onsite sewage program is coordinated in county health departments.",
         "ADPH says homeowners must submit an Application for a Permit to Install to the local county health department before construction begins.",
         "ADPH says soil testing or a percolation test may be required when sewer is unavailable.",
-        "ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation."
+        "ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation.",
+        "The current ADPH fee manual lists $100-$200 for a conventional or engineered small-flow dwelling permit application.",
+        "The current ADPH fee manual lists $150-$250 for a public conventional small-flow site evaluation, but only in counties with an approved Site Evaluation Program."
       ],
       "localOverrideNote": "Alabama looks statewide through ADPH, but the homeowner workflow changes quickly once you know which county health department holds the file and whether the Permit to Install or Approval for Use is already on record.",
       "countyOverrideRisk": "high",
-      "lastVerifiedAt": "2026-03-10",
-      "officialSourceIds": ["al_01", "al_02", "al_03", "al_04"],
+      "lastVerifiedAt": "2026-07-30",
+      "officialSourceIds": ["al_01", "al_02", "al_03", "al_04", "al_05", "al_06"],
       "localAuthoritySourceIds": ["al_04"],
       "recordsLookupSourceIds": ["al_03", "al_04"],
       "localActionSteps": [
@@ -768,10 +770,11 @@
       "buyerInspectionTrigger": "Buyers should ask the county health department for the Approval for Use, Permit to Install, and any soil-test history early because closing risk in Alabama usually sits in the county file, not in the listing summary.",
       "maintenanceInspectionNote": "Alabama's current source set is strongest on county health routing, Permit to Install timing, and Approval-for-Use file retrieval, not on one simple statewide maintenance cadence.",
       "specialAreaNote": "Alabama's main wrinkle is the combination of county health department control, before-construction soil-testing risk, and Approval-for-Use file friction before the homeowner can trust a low-end range.",
-      "confidenceScore": 0.81,
+      "confidenceScore": 0.88,
       "itemsNeedingVerification": [
         "Add a durable statewide matrix showing which Alabama counties publish septic file lookups or permit forms online.",
-        "Document where Alabama county offices expose more detail on repair workflow or constrained-site approvals."
+        "Identify every county participating in ADPH's approved public Site Evaluation Program so the $150-$250 fee is never shown as universally available.",
+        "Collect local installer and registered-professional quote samples before narrowing private construction or soil-work ranges below the broad planning bands."
       ]
     },
     {
