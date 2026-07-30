@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2.2 - 2026-07-30
+
+- Demand-backed county workflows now hand the same property, county, purpose, and workflow identity directly into the document workspace after an official-route return.
+- Users who report a downloaded county document no longer need to repeat the address lookup before uploading and reviewing the file.
+- Regression coverage verifies the prepare, official handoff, return outcome, request tracking, and document-review entry points across all 35 researched priority county routes.
+
 ## 0.0.2.1 - 2026-07-30
 
 - Alabama estimates now separate state-adjusted private project ranges from published county application and eligible public site-evaluation fees.

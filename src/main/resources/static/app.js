@@ -2422,6 +2422,7 @@
             const profileScope = workflow.dataset.countyProfileScope || "official_starting_point";
             const capabilityTier = workflow.dataset.countyCapabilityTier || "official_start";
             const routeReviewedAt = workflow.dataset.countyRouteReviewedAt || "not_published";
+            const agency = workflow.dataset.countyAgency || "";
             const requiresAddressOrParcel = workflow.dataset.countyAddressOrParcel === "true";
             const requiresDocumentSelection = workflow.dataset.countyDocumentSelectionRequired === "true";
             const requestedPropertyAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
@@ -2440,6 +2441,8 @@
             const outcomes = workflow.querySelectorAll("[data-county-access-outcome]");
             const officialLinks = document.querySelectorAll("[data-county-access-official]");
             const storageKey = `septicpath-county-access-v1:${countyKey}`;
+            const officialReturnStorageKey = "septicpath-official-return-v1";
+            const recordTaskStorageKey = "septicpath-record-task-progress-v1";
             let awaitingReturn = false;
             let gaPreparationStarted = false;
             let gaLastOutcome = "";
@@ -2531,11 +2534,58 @@
                 }
             }
 
+            function countyNameFromSlug() {
+                return countySlug
+                    .split("-")
+                    .filter(Boolean)
+                    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+                    .join(" ");
+            }
+
+            function saveDocumentWorkspaceHandoff() {
+                const now = Date.now();
+                const context = {
+                    matchedAddress: safeValue(address),
+                    countyKey,
+                    countyName: countyNameFromSlug(),
+                    stateCode,
+                    stateName: stateCode,
+                    purpose: requestedPurpose || "buying",
+                    officeLabel: agency || `${countyNameFromSlug()} septic records office`,
+                    contactLine: "Continue from the county route you already prepared. Add the returned file or written response here.",
+                    routeReviewedAt,
+                    workflowRunId,
+                    directDocument: false
+                };
+                const value = JSON.stringify({
+                    savedAt: now,
+                    expiresAt: now + lifetime,
+                    stage: "official_returned",
+                    outcome: "found",
+                    context
+                });
+                try {
+                    sessionStorage.setItem(officialReturnStorageKey, value);
+                    localStorage.setItem(recordTaskStorageKey, value);
+                } catch (_) {
+                    // Query parameters still preserve the county and workflow identifiers.
+                }
+                writeState({ stage: "document_handoff", outcome: "artifact" });
+                recordCountyStage("document_handoff", "artifact");
+                emitCountyGaEvent("county_document_handoff", {
+                    result_source: "user_reported",
+                    case_status: "needs_document_review"
+                });
+            }
+
             function actionLink(label, path, primary = false) {
                 const link = document.createElement("a");
                 link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
                 link.textContent = label;
                 link.href = path;
+                if (typeof path === "string" && path.startsWith("/septic-record-finder/")) {
+                    link.addEventListener("click", saveDocumentWorkspaceHandoff);
+                }
                 if (/^https?:/i.test(path)) {
                     link.target = "_blank";
                     link.rel = "noreferrer";
