@@ -2622,9 +2622,31 @@
                     .replace(/,/g, "\\,");
             }
 
+            function addBusinessDays(date, days) {
+                const result = new Date(date);
+                let added = 0;
+                while (added < days) {
+                    result.setDate(result.getDate() + 1);
+                    const day = result.getDay();
+                    if (day !== 0 && day !== 6) {
+                        added += 1;
+                    }
+                }
+                return result;
+            }
+
+            function followupSchedule() {
+                return countyKey === "NC::alamance-county"
+                    ? { days: 3, businessDays: true, label: "3-business-day" }
+                    : { days: 7, businessDays: false, label: "7-day" };
+            }
+
             function downloadFollowupCalendar(outcome, status) {
                 const createdAt = new Date();
-                const startsAt = new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000);
+                const schedule = followupSchedule();
+                const startsAt = schedule.businessDays
+                    ? addBusinessDays(createdAt, schedule.days)
+                    : new Date(createdAt.getTime() + schedule.days * 24 * 60 * 60 * 1000);
                 const endsAt = new Date(startsAt.getTime() + 30 * 60 * 1000);
                 const countyName = countyNameFromSlug();
                 const returnUrl = resumeUrl();
@@ -2658,7 +2680,8 @@
                 writeState({ followupScheduledAt: createdAt.getTime(), followupDueAt: startsAt.getTime() });
                 recordCountyStage("followup_scheduled", outcome);
                 emitCountyGaEvent("county_followup_calendar_downloaded", {
-                    followup_days: 7,
+                    followup_days: schedule.days,
+                    followup_business_days: schedule.businessDays,
                     result_source: "user_scheduled"
                 });
                 if (status instanceof HTMLElement) {
@@ -2697,15 +2720,16 @@
             }
 
             function appendFollowupActions(block, outcome) {
+                const schedule = followupSchedule();
                 const followup = document.createElement("div");
                 followup.className = "county-access-followup";
                 const heading = document.createElement("strong");
                 heading.textContent = "Come back when the county replies.";
                 const body = document.createElement("p");
-                body.textContent = "Set a seven-day calendar check or copy a private-safe return link. The reminder never includes the address, parcel ID, or county reference.";
+                body.textContent = `Set a ${schedule.label} calendar check or copy a private-safe return link. The reminder never includes the address, parcel ID, or county reference.`;
                 const actions = document.createElement("div");
                 actions.className = "county-access-workflow__actions";
-                const calendarButton = actionButton("Add a 7-day calendar reminder", true);
+                const calendarButton = actionButton(`Add a ${schedule.label} calendar reminder`, true);
                 const copyButton = actionButton("Copy private-safe return link");
                 const status = document.createElement("span");
                 status.className = "county-access-followup__status";
@@ -3948,8 +3972,8 @@
                 }
             });
 
-            outcomes.forEach((button) => {
-                button.addEventListener("click", () => {
+                outcomes.forEach((button) => {
+                    button.addEventListener("click", () => {
                     outcomes.forEach((item) => item.removeAttribute("aria-pressed"));
                     button.setAttribute("aria-pressed", "true");
                     const outcome = button.dataset.countyAccessOutcome || "not_found_online";
@@ -3977,10 +4001,22 @@
                             case_status: "needs_document_review"
                         });
                     }
+                    });
                 });
-            });
 
-            clear?.addEventListener("click", () => {
+                const alamanceRequestSent = workflow.querySelector("[data-alamance-request-sent]");
+                alamanceRequestSent?.addEventListener("click", () => {
+                    writeState({ stage: "outcome_recorded", outcome: "request_submitted" });
+                    renderNext("request_submitted");
+                    sendArtifactAction("county_access_workflow", "request_submitted", mode);
+                    recordCountyStage("request_submitted", "request_submitted");
+                    emitCountyGaEvent("county_request_submitted", {
+                        result_source: "user_reported",
+                        case_status: "pending"
+                    });
+                });
+
+                clear?.addEventListener("click", () => {
                 try {
                     localStorage.removeItem(storageKey);
                 } catch (_) {

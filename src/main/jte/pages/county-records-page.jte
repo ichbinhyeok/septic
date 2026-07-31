@@ -875,6 +875,9 @@
                             <span class="eyebrow">Back from the official route?</span>
                             <h3>Record the real outcome</h3>
                             <p>An empty online search is not an official no-record response.</p>
+                            @if ("NC::alamance-county".equals(countyAccessProfile.countyKey()))
+                                <button class="county-access-return__sent" type="button" data-alamance-request-sent>I sent the request — add a 3-business-day reminder</button>
+                            @endif
                         </div>
                         <div class="county-access-return__outcomes">
                             @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))

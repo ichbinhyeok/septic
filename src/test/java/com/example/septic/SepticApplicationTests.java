@@ -1501,7 +1501,10 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/app.js"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Add a 7-day calendar reminder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("followupSchedule")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("3-business-day")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("addBusinessDays")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("followup_business_days")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy private-safe return link")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county_followup_calendar_downloaded")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("county_followup_resumed")))

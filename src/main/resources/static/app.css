@@ -6405,7 +6405,8 @@ body.records-task-mode .records-request-builder {
 }
 
 .county-access-return__outcomes button,
-.county-access-return__clear {
+.county-access-return__clear,
+.county-access-return__sent {
     min-height: 2.65rem;
     padding: 0.6rem 0.8rem;
     color: #f7fbf7;
@@ -6420,7 +6421,9 @@ body.records-task-mode .records-request-builder {
 
 .county-access-return__outcomes button:hover,
 .county-access-return__outcomes button:focus-visible,
-.county-access-return__outcomes button[aria-pressed="true"] {
+.county-access-return__outcomes button[aria-pressed="true"],
+.county-access-return__sent:hover,
+.county-access-return__sent:focus-visible {
     color: #163f36;
     background: #dff46a;
     border-color: #dff46a;
@@ -6504,6 +6507,10 @@ body.records-task-mode .records-request-builder {
     color: rgba(247, 251, 247, 0.68);
     border: 0;
     text-decoration: underline;
+}
+
+.county-access-return__sent {
+    margin-top: 1rem;
 }
 
 @media (max-width: 1120px) {
