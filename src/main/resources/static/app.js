@@ -3957,6 +3957,154 @@
                 finally { adamsSearch.disabled = false; adamsSearch.textContent = label; }
             });
 
+            const sanDiegoLookup = workflow.querySelector("[data-san-diego-document-lookup]");
+            const sanDiegoMethod = workflow.querySelector("[data-san-diego-search-method]");
+            const sanDiegoSingleField = workflow.querySelector("[data-san-diego-single-field]");
+            const sanDiegoClueLabel = workflow.querySelector("[data-san-diego-clue-label]");
+            const sanDiegoClue = workflow.querySelector("[data-san-diego-clue]");
+            const sanDiegoStreetFields = workflow.querySelector("[data-san-diego-street-fields]");
+            const sanDiegoStreetNumber = workflow.querySelector("[data-san-diego-street-number]");
+            const sanDiegoStreetName = workflow.querySelector("[data-san-diego-street-name]");
+            const sanDiegoSearch = workflow.querySelector("[data-san-diego-document-search]");
+            const sanDiegoResults = workflow.querySelector("[data-san-diego-document-results]");
+
+            function renderSanDiegoResults(payload) {
+                if (!(sanDiegoResults instanceof HTMLElement)) return;
+                const fragment = document.createDocumentFragment();
+                const heading = document.createElement("h4"); heading.textContent = payload.heading || "San Diego County result";
+                const summary = document.createElement("p"); summary.textContent = payload.summary || "";
+                fragment.append(heading, summary);
+                const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+                candidates.forEach((candidate) => {
+                    const card = document.createElement("article"); card.className = "brunswick-permit-lookup__candidate";
+                    appendPermitValue(card, "Record ID", candidate.recordId);
+                    appendPermitValue(card, "APN", candidate.apn);
+                    appendPermitValue(card, "Document category", candidate.category);
+                    appendPermitValue(card, "Document type", candidate.subcategory);
+                    appendPermitValue(card, "Description", candidate.description);
+                    appendPermitValue(card, "Document date", candidate.documentDate);
+                    if (candidate.url) {
+                        const actions = document.createElement("div"); actions.className = "county-access-workflow__actions";
+                        actions.append(actionLink("Open official document", candidate.url, true));
+                        card.append(actions);
+                    }
+                    fragment.append(card);
+                });
+                const actions = document.createElement("div"); actions.className = "county-access-workflow__actions";
+                actions.append(actionLink("Open the official document library", primaryUrl, candidates.length > 0));
+                if (secondaryUrl) actions.append(actionLink("Request records through PRRC", secondaryUrl));
+                fragment.append(actions);
+                sanDiegoResults.replaceChildren(fragment);
+                sanDiegoResults.hidden = false;
+            }
+
+            function updateSanDiegoMethod() {
+                if (!(sanDiegoMethod instanceof HTMLSelectElement)) return;
+                const streetSearch = sanDiegoMethod.value === "street";
+                if (sanDiegoSingleField instanceof HTMLElement) sanDiegoSingleField.hidden = streetSearch;
+                if (sanDiegoStreetFields instanceof HTMLElement) sanDiegoStreetFields.hidden = !streetSearch;
+                if (!(sanDiegoClue instanceof HTMLInputElement) || !(sanDiegoClueLabel instanceof HTMLElement)) return;
+                if (sanDiegoMethod.value === "record_id") {
+                    sanDiegoClueLabel.textContent = "County record ID";
+                    sanDiegoClue.placeholder = "Example: DEH2024-...";
+                } else {
+                    sanDiegoClueLabel.textContent = "Assessor parcel number (APN)";
+                    sanDiegoClue.placeholder = "xxx-xxx-xx-xx";
+                    if (!sanDiegoClue.value && safeValue(parcel)) sanDiegoClue.value = safeValue(parcel);
+                }
+            }
+
+            sanDiegoMethod?.addEventListener("change", updateSanDiegoMethod);
+            updateSanDiegoMethod();
+
+            sanDiegoSearch?.addEventListener("click", async () => {
+                if (!(sanDiegoLookup instanceof HTMLElement) || !(sanDiegoMethod instanceof HTMLSelectElement)) return;
+                const method = sanDiegoMethod.value;
+                const clue = sanDiegoClue instanceof HTMLInputElement ? sanDiegoClue.value.trim() : "";
+                const streetNumber = sanDiegoStreetNumber instanceof HTMLInputElement ? sanDiegoStreetNumber.value.trim() : "";
+                const streetName = sanDiegoStreetName instanceof HTMLInputElement ? sanDiegoStreetName.value.trim() : "";
+                if (method === "street" ? (!streetNumber || streetName.length < 2) : clue.length < 3) {
+                    const target = method === "street" ? (!streetNumber ? sanDiegoStreetNumber : sanDiegoStreetName) : sanDiegoClue;
+                    target?.focus();
+                    renderSanDiegoResults({
+                        heading: method === "street" ? "Enter a street number and street name" : "Enter a complete search clue",
+                        summary: method === "street" ? "Leave the street type out of the name, as the county requires." : "Use at least three characters.",
+                        candidates: []
+                    });
+                    return;
+                }
+
+                const query = new URLSearchParams({maxrecord_count: "25", ts: String(Date.now())});
+                if (method === "street") {
+                    query.set("street_number", streetNumber.replace(/[^0-9A-Za-z-]/g, "").slice(0, 12).toUpperCase());
+                    query.set("street_name", streetName.replace(/[^\p{L}\p{N} .'-]/gu, " ").replace(/\s+/g, " ").slice(0, 80).toUpperCase());
+                } else {
+                    query.set(method, clue.replace(/[^\p{L}\p{N} .#'/-]/gu, " ").replace(/\s+/g, " ").slice(0, 100).toUpperCase());
+                }
+
+                const label = sanDiegoSearch.textContent;
+                sanDiegoSearch.disabled = true;
+                sanDiegoSearch.textContent = "Searching San Diego County...";
+                try {
+                    const endpoint = "https://file.sandiegocounty.gov/CoSD_LUEG_Repository_External_API/rest/DEHQDocumentLibrary/SearchDocuments";
+                    const response = await fetch(`${endpoint}?${query}`);
+                    const source = await response.json();
+                    if (!response.ok || !Array.isArray(source.records)) throw new Error("county query unavailable");
+                    const allowedHost = "file.sandiegocounty.gov";
+                    const candidates = Array.isArray(source.records) ? source.records.map((record) => {
+                        let documentUrl = "";
+                        try {
+                            const parsedUrl = new URL(record.url);
+                            if (parsedUrl.protocol === "https:" && parsedUrl.hostname === allowedHost) documentUrl = parsedUrl.href;
+                        } catch (_) {
+                            // Ignore malformed or non-county document links.
+                        }
+                        return {
+                            recordId: record.permit_id || "",
+                            apn: record.parcel_nbr || "",
+                            category: record.lueg_type || "",
+                            subcategory: record.lueg_subtype || "",
+                            description: record.description || "",
+                            documentDate: record.r_creation_date ? String(record.r_creation_date).slice(0, 10) : "",
+                            url: documentUrl
+                        };
+                    }) : [];
+                    const payload = candidates.length ? {
+                        status: "found",
+                        heading: `${candidates.length} official document candidate${candidates.length === 1 ? "" : "s"} found`,
+                        summary: "Match the APN or record ID before relying on a file. A candidate does not establish the system's current condition.",
+                        candidates
+                    } : {
+                        status: "not_found",
+                        heading: "No matching online candidate appeared",
+                        summary: "This is not an official no-record finding. Try another single search method or use the county PRRC request.",
+                        candidates: []
+                    };
+                    renderSanDiegoResults(payload);
+                    writeState({stage: "metadata_queried", metadataStatus: payload.status});
+                    emitCountyGaEvent("county_public_index_queried", {index_name: "san_diego_dehq_document_library", lookup_status: payload.status});
+                } catch (_) {
+                    renderSanDiegoResults({
+                        heading: "The official San Diego document service did not respond",
+                        summary: "Your search terms remain in this page. Open the county library or use PRRC to continue.",
+                        candidates: []
+                    });
+                    emitCountyGaEvent("county_public_index_queried", {index_name: "san_diego_dehq_document_library", lookup_status: "unavailable"});
+                } finally {
+                    sanDiegoSearch.disabled = false;
+                    sanDiegoSearch.textContent = label;
+                }
+            });
+
+            [sanDiegoClue, sanDiegoStreetNumber, sanDiegoStreetName].forEach((input) => {
+                input?.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        sanDiegoSearch?.click();
+                    }
+                });
+            });
+
             const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
             const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
             const thurstonResults = workflow.querySelector("[data-thurston-record-results]");

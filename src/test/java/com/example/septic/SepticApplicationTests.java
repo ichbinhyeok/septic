@@ -982,6 +982,8 @@ class SepticApplicationTests {
 				.andExpect(header().string("X-Frame-Options", "DENY"))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-ancestors 'none'")))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://www.google.com")))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://services8.arcgis.com")))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://file.sandiegocounty.gov")))
 				.andExpect(header().string("Strict-Transport-Security", org.hamcrest.Matchers.containsString("max-age=31536000")));
 	}
 
@@ -2427,6 +2429,10 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/california/san-diego-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Diego County California Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search San Diego County documents here")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-san-diego-document-lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Assessor parcel number (APN)")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your search terms are sent only to San Diego County's official public document service")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open San Diego environmental health document search")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search with only one method at a time")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("https://pra.sandiegocounty.gov/requests/new")))

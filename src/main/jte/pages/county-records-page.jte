@@ -891,6 +891,43 @@
                         </section>
                     @endif
 
+                    @if ("CA::san-diego-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup san-diego-document-lookup" id="san-diego-document-search" data-san-diego-document-lookup>
+                            <div>
+                                <span class="eyebrow">Official public query</span>
+                                <h3>Search San Diego County documents here</h3>
+                                <p>Choose one search method. The query goes directly from your browser to the county's public Environmental Health document library.</p>
+                            </div>
+                            <div class="san-diego-document-lookup__form">
+                                <label>
+                                    <span>Search by</span>
+                                    <select data-san-diego-search-method>
+                                        <option value="parcel_number">Assessor parcel number (APN)</option>
+                                        <option value="record_id">County record ID</option>
+                                        <option value="street">Street</option>
+                                    </select>
+                                </label>
+                                <label data-san-diego-single-field>
+                                    <span data-san-diego-clue-label>Assessor parcel number (APN)</span>
+                                    <input type="text" maxlength="100" autocomplete="off" placeholder="xxx-xxx-xx-xx" data-san-diego-clue>
+                                </label>
+                                <div class="san-diego-document-lookup__street" data-san-diego-street-fields hidden>
+                                    <label>
+                                        <span>Street number</span>
+                                        <input type="text" inputmode="numeric" maxlength="12" autocomplete="off" placeholder="1234" data-san-diego-street-number>
+                                    </label>
+                                    <label>
+                                        <span>Street name</span>
+                                        <input type="text" maxlength="80" autocomplete="off" placeholder="Main (leave out Street, Road, Dr, etc.)" data-san-diego-street-name>
+                                    </label>
+                                </div>
+                                <button class="button button--primary" type="button" data-san-diego-document-search>Search official county documents</button>
+                            </div>
+                            <p class="san-diego-document-lookup__privacy">Your search terms are sent only to San Diego County's official public document service.</p>
+                            <div class="brunswick-permit-lookup__results" data-san-diego-document-results aria-live="polite"></div>
+                        </section>
+                    @endif
+
                     @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
                         <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
                             <div>
