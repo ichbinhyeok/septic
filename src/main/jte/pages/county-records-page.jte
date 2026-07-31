@@ -435,6 +435,35 @@
                                 </div>
                             </div>
 
+                            @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
+                                <section class="hamilton-quick-search" aria-labelledby="hamilton-quick-search-heading" data-hamilton-quick-search>
+                                    <div>
+                                        <span class="eyebrow">Start with the official search</span>
+                                        <h4 id="hamilton-quick-search-heading">Enter the street name, then choose the exact address</h4>
+                                        <p>Hamilton's search works best with the street name only. Your entry stays in this browser until you open the county site.</p>
+                                    </div>
+                                    <div class="hamilton-quick-search__action">
+                                        <label for="hamilton-quick-street">
+                                            <span>Street name</span>
+                                            <input id="hamilton-quick-street"
+                                                   type="text"
+                                                   maxlength="120"
+                                                   autocomplete="address-line1"
+                                                   placeholder="For example: Oakwood"
+                                                   data-hamilton-quick-street>
+                                        </label>
+                                        <a class="button button--primary"
+                                           href="${countyAccessProfile.primaryUrl()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-county-access-official
+                                           data-county-route-position="hamilton_quick_search"
+                                           data-hamilton-quick-open>Open Hamilton's official search</a>
+                                        <p class="hamilton-quick-search__hint" data-hamilton-quick-status aria-live="polite">Don't enter the house number here. Select the full address in the county search.</p>
+                                    </div>
+                                </section>
+                            @endif
+
                             <div class="county-acquisition-workspace__body">
                                 @if (countyAcquisitionProfile.hasPreparedFieldPack())
                                 <form class="county-acquisition-fields" data-county-acquisition-fields>
@@ -810,11 +839,17 @@
                             <p>An empty online search is not an official no-record response.</p>
                         </div>
                         <div class="county-access-return__outcomes">
-                            <button type="button" data-county-access-outcome="artifact">I downloaded a document</button>
-                            <button type="button" data-county-access-outcome="partial">I found only part of the file</button>
-                            <button type="button" data-county-access-outcome="not_found_online">Nothing appeared online</button>
-                            <button type="button" data-county-access-outcome="blocked">The route was blocked</button>
-                            <button type="button" data-county-access-outcome="request_submitted">I submitted a request</button>
+                            @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
+                                <button type="button" data-county-access-outcome="artifact">I found the permit or certificate</button>
+                                <button type="button" data-county-access-outcome="not_found_online">The address was not listed</button>
+                                <button type="button" data-county-access-outcome="blocked">The official search was blocked</button>
+                            @else
+                                <button type="button" data-county-access-outcome="artifact">I downloaded a document</button>
+                                <button type="button" data-county-access-outcome="partial">I found only part of the file</button>
+                                <button type="button" data-county-access-outcome="not_found_online">Nothing appeared online</button>
+                                <button type="button" data-county-access-outcome="blocked">The route was blocked</button>
+                                <button type="button" data-county-access-outcome="request_submitted">I submitted a request</button>
+                            @endif
                         </div>
                         <label class="county-access-return__reference">
                             <span>Confirmation, case, or request number <small>if the county issued one</small></span>

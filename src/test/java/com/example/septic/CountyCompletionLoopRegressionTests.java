@@ -52,7 +52,9 @@ class CountyCompletionLoopRegressionTests {
             assertTrue(html.contains("data-county-access-official"), countyPage.key());
             assertTrue(html.contains("data-county-access-return"), countyPage.key());
             assertTrue(html.contains("data-county-access-outcome=\"artifact\""), countyPage.key());
-            assertTrue(html.contains("data-county-access-outcome=\"request_submitted\""), countyPage.key());
+            if (!"TN::hamilton-county".equals(countyPage.key())) {
+                assertTrue(html.contains("data-county-access-outcome=\"request_submitted\""), countyPage.key());
+            }
             assertTrue(html.contains("data-county-access-reference"), countyPage.key());
             assertTrue(html.contains("data-county-access-next"), countyPage.key());
         }

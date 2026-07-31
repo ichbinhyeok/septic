@@ -3353,6 +3353,39 @@
                         refreshAcquisition();
                     });
                 });
+
+                const hamiltonQuickSearch = workflow.querySelector("[data-hamilton-quick-search]");
+                const hamiltonQuickStreet = workflow.querySelector("[data-hamilton-quick-street]");
+                const hamiltonQuickOpen = workflow.querySelector("[data-hamilton-quick-open]");
+                const hamiltonQuickStatus = workflow.querySelector("[data-hamilton-quick-status]");
+                const hamiltonStreetField = acquisitionInputs.find((input) =>
+                    input.dataset.countyAcquisitionField === "streetName"
+                );
+
+                if (hamiltonQuickSearch instanceof HTMLElement
+                    && hamiltonQuickStreet instanceof HTMLInputElement
+                    && hamiltonQuickOpen instanceof HTMLAnchorElement) {
+                    hamiltonQuickOpen.addEventListener("click", (event) => {
+                        const streetName = hamiltonQuickStreet.value.trim();
+                        if (!streetName) {
+                            event.preventDefault();
+                            if (hamiltonQuickStatus instanceof HTMLElement) {
+                                hamiltonQuickStatus.textContent = "Add the street name first. Leave out the house number.";
+                            }
+                            hamiltonQuickStreet.focus();
+                            return;
+                        }
+                        if (hamiltonStreetField instanceof HTMLInputElement) {
+                            hamiltonStreetField.value = streetName;
+                            hamiltonStreetField.dispatchEvent(new Event("input", { bubbles: true }));
+                        }
+                        if (hamiltonQuickStatus instanceof HTMLElement) {
+                            hamiltonQuickStatus.textContent = "Opening the county search in a new tab. Choose the exact full address there.";
+                        }
+                        markGaPreparationStarted("hamilton_quick_search");
+                    });
+                }
+
                 acquisitionFallback?.addEventListener("toggle", () => {
                     if (acquisitionFallback.open) {
                         markGaPreparationStarted("fallback_opened");

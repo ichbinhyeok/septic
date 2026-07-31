@@ -1911,7 +1911,7 @@ class SepticApplicationTests {
 		);
 
 		for (String[] route : routes) {
-			mockMvc.perform(get(route[0]))
+			var response = mockMvc.perform(get(route[0]))
 					.andExpect(status().isOk())
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-access-workflow")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-key=\"" + route[1] + "\"")))
@@ -1934,11 +1934,19 @@ class SepticApplicationTests {
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Prepare for the county step")))
 					.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-county-acquisition-preview"))))
 					.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Copy prepared request"))))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("I downloaded a document")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing appeared online")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("I submitted a request")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-access-reference")))
 					.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("mode=task#records-request-builder"))));
+			if ("TN::hamilton-county".equals(route[1])) {
+				response.andExpect(content().string(org.hamcrest.Matchers.containsString("Enter the street name, then choose the exact address")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Hamilton's official search")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("I found the permit or certificate")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("The address was not listed")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("The official search was blocked")));
+			} else {
+				response.andExpect(content().string(org.hamcrest.Matchers.containsString("I downloaded a document")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing appeared online")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("I submitted a request")));
+			}
 		}
 
 		mockMvc.perform(get("/septic-records-checklist/texas/tarrant-county/"))
