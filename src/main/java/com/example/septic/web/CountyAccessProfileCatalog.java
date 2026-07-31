@@ -33,18 +33,18 @@ public final class CountyAccessProfileCatalog {
                     "jurisdiction_first",
                     "Jurisdiction check required",
                     "Confirm the Tarrant County OSSF authority before requesting a septic file",
-                    "The county, a contract city, or an ETJ may own the OSSF file. The County Clerk search is only a secondary route for recorded affidavits, not a septic permit database.",
-                    "Open the Tarrant County OSSF office",
-                    "https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html",
-                    "Optional JustFOIA fallback (may be access-restricted)",
+                    "Confirm that Tarrant County or a contract city owns the OSSF file, then use the county public-information portal. If the portal is blocked or the authority is unclear, return to the OSSF office instead of treating the route as a no-record result.",
+                    "Open the Tarrant County public-information portal",
                     "https://tarrantcountytx.justfoia.com/publicportal",
+                    "Use the Tarrant County OSSF office if the portal is blocked or jurisdiction is unclear",
+                    "https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html",
                     "The responsible OSSF authority plus its permit, LTO, site evaluation, or written referral",
                     "Do not treat a County Clerk no-result as proof that no OSSF file exists.",
                     List.of("Property address", "Parcel or account number", "City, unincorporated, or ETJ status"),
                     List.of("Permit or license to operate", "Site evaluation", "Recorded OSSF affidavit when applicable"),
                     List.of(
                             "Ask which county, contract-city, or ETJ office regulates the parcel.",
-                            "Request the OSSF file from that authority; use the Clerk only for a recorded affidavit.",
+                            "When Tarrant County owns the file, open the public-information portal and submit in your own name.",
                             "Save the authority name and the document or written referral."
                     )
             )),

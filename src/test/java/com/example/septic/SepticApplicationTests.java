@@ -1926,6 +1926,10 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("exact submission fields are not published or independently verified")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Which OSSF authority applies?")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Tarrant County public-information portal")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tarrantcountytx.justfoia.com/publicportal")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the Tarrant County OSSF office if the portal is blocked or jurisdiction is unclear")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask which county, contract-city, or ETJ office regulates the parcel.")));
 
 		mockMvc.perform(get("/septic-records-checklist/georgia/dekalb-county/"))

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2.5 - 2026-07-31
+
+- Tarrant County now opens the JustFOIA public-information portal as the primary county-owned OSSF request route after the jurisdiction check.
+- A blocked portal or unresolved authority now falls back to the Tarrant County OSSF office instead of sending users to an informational page under a submission heading.
+- Regression coverage protects both official destinations and their primary/fallback roles.
+
 ## 0.0.2.4 - 2026-07-30
 
 - Search Console-backed titles and descriptions now match the highest-impression Tennessee and Alabama queries while making the TDEC 403 fallback explicit before the click.
