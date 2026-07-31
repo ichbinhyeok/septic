@@ -96,6 +96,22 @@ class CountyAcquisitionProfileRegressionTest {
     }
 
     @Test
+    void frederickUsesTheVerifiedLiveInformationRequestFields() {
+        CountyAcquisitionProfileView profile =
+                CountyAcquisitionProfileCatalog.find("MD::frederick-county");
+
+        assertEquals("official_portal", profile.acquisitionMethod());
+        assertTrue(profile.officialFieldPackVerified());
+        assertTrue(profile.officialRecipientVerified());
+        assertTrue(profile.officialUsesPropertyAddress());
+        assertTrue(profile.officialUsesParcelIdentifier());
+        assertEquals(8, profile.requiredFields().size());
+        assertEquals("InformationResearchRequests@Frederickcountymd.gov", profile.recipientEmail());
+        assertTrue(profile.fields().stream().anyMatch(field -> "previousOwners".equals(field.key()) && field.required()));
+        assertTrue(profile.fields().stream().anyMatch(field -> "wellTag".equals(field.key()) && !field.required()));
+    }
+
+    @Test
     void gscFourthWaveUsesVerifiedLiveDoorsAndPreservesBlockedRouteBoundaries() {
         CountyAccessProfileView gloucester = CountyAccessProfileCatalog.find("NJ::gloucester-county");
         CountyAccessProfileView princeGeorges = CountyAccessProfileCatalog.find("MD::prince-georges-county");

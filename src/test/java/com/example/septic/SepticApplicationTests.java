@@ -984,7 +984,7 @@ class SepticApplicationTests {
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://www.google.com")))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://services8.arcgis.com")))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://file.sandiegocounty.gov")))
-				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-src 'self' https://publicaccess24.ewashtenaw.org")))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-src 'self' https://publicaccess24.ewashtenaw.org https://gallatincountymt-tcmweb.tylerhost.net")))
 				.andExpect(header().string("Strict-Transport-Security", org.hamcrest.Matchers.containsString("max-age=31536000")));
 	}
 
@@ -2705,6 +2705,10 @@ class SepticApplicationTests {
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Frederick County information research request form")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("prior owners back to 1950 or the installation year")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("at least 10 business days")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Current Owner&#39;s Full Name")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Previous Owners&#39; Full Names")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("complete reCAPTCHA and the final Submit step")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("InformationResearchRequests@Frederickcountymd.gov")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Frederick County's well-and-septic program owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic layout and permit file plus any building-permit conflict note")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
@@ -2968,6 +2972,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Louis County Minnesota Septic Records Checklist")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open St. Louis County Land Explorer")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("without a password or membership fee")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-st-louis-septic-lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Carry one property clue into Land Explorer")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No scanned document is not an official no-record result")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("escrow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("sanitary permit")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Minnesota records lookup")))
@@ -3591,6 +3598,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Gallatin County Montana Septic Records Checklist")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Gallatin wastewater permit archive")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("No Images")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-gallatin-permit-lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Gallatin wastewater permits without leaving this page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-src=\"https://gallatincountymt-tcmweb.tylerhost.net/eaglecm/web/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("COSA")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Montana records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Montana guide")));

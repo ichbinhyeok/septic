@@ -960,6 +960,77 @@
                         </section>
                     @endif
 
+                    @if ("MT::gallatin-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup washtenaw-permit-lookup" id="gallatin-permit-search" data-gallatin-permit-lookup>
+                            <div>
+                                <span class="eyebrow">Official embedded archive</span>
+                                <h3>Search Gallatin wastewater permits without leaving this page</h3>
+                                <p>Choose the strongest clue you have. SepticPath copies it, then loads Gallatin County's own guest archive below.</p>
+                            </div>
+                            <div class="county-guided-lookup__start">
+                                <label>
+                                    <span>Search field</span>
+                                    <select data-gallatin-permit-method>
+                                        <option value="RoadAddress">Road address</option>
+                                        <option value="PropertyOwnerID">Property owner</option>
+                                        <option value="Subdivision">Subdivision</option>
+                                        <option value="COSNumber">Certificate of survey (COS)</option>
+                                        <option value="TractLotID">Tract or lot</option>
+                                        <option value="PermitID">Permit number</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span data-gallatin-permit-clue-label>Road address</span>
+                                    <input type="text" maxlength="120" autocomplete="off" placeholder="Enter the property road address" data-gallatin-permit-clue>
+                                </label>
+                                <button class="button button--primary" type="button" data-gallatin-permit-load>Copy clue and load official archive</button>
+                            </div>
+                            <p class="washtenaw-permit-lookup__status" data-gallatin-permit-status aria-live="polite">The official archive stays unloaded until you are ready.</p>
+                            <div class="washtenaw-permit-lookup__frame" data-gallatin-permit-frame-wrap hidden>
+                                <div class="washtenaw-permit-lookup__frame-heading">
+                                    <div>
+                                        <strong>Gallatin County Document Search</strong>
+                                        <small>Choose Enter in the official panel, then paste the copied clue into the matching field. Start with the least information.</small>
+                                    </div>
+                                    <a class="button button--quiet" href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer" data-county-access-official>Open the archive separately</a>
+                                </div>
+                                <iframe title="Gallatin County wastewater permit archive"
+                                        data-gallatin-permit-frame
+                                        data-src="https://gallatincountymt-tcmweb.tylerhost.net/eaglecm/web/"
+                                        loading="lazy"
+                                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                            </div>
+                            <p class="county-guided-lookup__note"><strong>If a match says No Images:</strong> it identifies an unscanned permit, not an empty search. Save the permit reference and use <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">Gallatin's official copy instructions</a>.</p>
+                        </section>
+                    @endif
+
+                    @if ("MN::st-louis-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup washtenaw-permit-lookup" id="st-louis-septic-search" data-st-louis-septic-lookup>
+                            <div>
+                                <span class="eyebrow">Guided official search</span>
+                                <h3>Carry one property clue into Land Explorer</h3>
+                                <p>Prepare the parcel PIN or location here, then follow the exact county path to the scanned sanitary permit.</p>
+                            </div>
+                            <div class="county-guided-lookup__start county-guided-lookup__start--handoff">
+                                <label>
+                                    <span>Search field</span>
+                                    <select data-st-louis-septic-method>
+                                        <option value="parcel">Parcel PIN</option>
+                                        <option value="address">Property location</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span data-st-louis-septic-clue-label>Parcel PIN</span>
+                                    <input type="text" maxlength="120" autocomplete="off" placeholder="Enter the parcel PIN" data-st-louis-septic-clue>
+                                </label>
+                                <button class="button button--primary" type="button" data-st-louis-septic-copy>Copy property clue</button>
+                                <a class="button button--quiet" href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer" data-st-louis-land-explorer>Open official Land Explorer</a>
+                            </div>
+                            <p class="washtenaw-permit-lookup__status" data-st-louis-septic-status aria-live="polite">Then choose On-Site Wastewater → select the parcel → Septic Records → accept the disclaimer → View Doc.</p>
+                            <p class="county-guided-lookup__note"><strong>No scanned document is not an official no-record result.</strong> Confirm the parcel and popup records, then use the <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">county's septic-record instructions</a> if the scan is missing.</p>
+                        </section>
+                    @endif
+
                     @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
                         <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
                             <div>

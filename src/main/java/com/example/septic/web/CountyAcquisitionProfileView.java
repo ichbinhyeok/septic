@@ -35,6 +35,7 @@ public record CountyAcquisitionProfileView(
                  "NJ::gloucester-county",
                  "MD::prince-georges-county",
                  "CO::adams-county",
+                 "MD::frederick-county",
                  "TN::wilson-county",
                  "TN::montgomery-county" -> true;
             default -> false;
@@ -72,6 +73,7 @@ public record CountyAcquisitionProfileView(
             case "TX::tarrant-county", "NC::lincoln-county", "GA::dekalb-county",
                  "TN::blount-county", "TN::knox-county", "CA::san-bernardino-county",
                  "NJ::gloucester-county",
+                 "MD::frederick-county",
                  "TN::wilson-county", "TN::montgomery-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
             case "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
@@ -114,6 +116,9 @@ public record CountyAcquisitionProfileView(
         if ("MD::st-marys-county".equals(countyKey)) {
             return "Search the county's current replacement GIS by address or Tax ID first. Open the official PIA fallback pack only when the mapped Health Department records are missing or incomplete.";
         }
+        if ("MD::frederick-county".equals(countyKey)) {
+            return "Transfer the fields verified against Frederick County's live Information Research Request, then complete reCAPTCHA and the final Submit step on the county form. The published email is a fallback when the live form cannot be used.";
+        }
         if ("NJ::gloucester-county".equals(countyKey)) {
             return "Use the county's preferred OPRA form. Transfer the verified requester, property, certification, delivery, record-description, and electronic-signature fields; reCAPTCHA and final submission remain on the county site.";
         }
@@ -154,6 +159,7 @@ public record CountyAcquisitionProfileView(
         return switch (countyKey) {
             case "NC::alamance-county",
                  "MD::st-marys-county",
+                 "MD::frederick-county",
                  "TX::brazoria-county",
                  "OH::mahoning-county" -> true;
             default -> false;
@@ -169,6 +175,7 @@ public record CountyAcquisitionProfileView(
                  "NC::lincoln-county",
                  "TN::blount-county",
                  "MD::st-marys-county",
+                 "MD::frederick-county",
                  "NC::brunswick-county",
                  "NC::forsyth-county",
                  "CA::san-bernardino-county",
@@ -184,6 +191,7 @@ public record CountyAcquisitionProfileView(
                  "NC::alamance-county",
                  "NC::lincoln-county",
                  "MD::st-marys-county",
+                 "MD::frederick-county",
                  "NC::brunswick-county",
                  "NY::suffolk-county" -> true;
             default -> false;

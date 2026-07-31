@@ -875,6 +875,69 @@ public final class CountyAcquisitionProfileCatalog {
                     ),
                     docs("OWTS permit, approved plan, and layout", "inspection reports for the property and requested time range", "complaint or case file only when relevant", "written no-record or referral response")
             )),
+            Map.entry("MD::frederick-county", acquisition(
+                    "MD::frederick-county",
+                    "Frederick County Health Department - Environmental Health Services",
+                    "Live Information Research Request form - published email fallback",
+                    "No information-research fee is published on the current form.",
+                    "At least 10 business days; percolation verification and technical requests may take up to 30 business days.",
+                    "Transfer the verified fields, complete reCAPTCHA, and submit the live county form in your own name.",
+                    "InformationResearchRequests@Frederickcountymd.gov",
+                    "301-600-1726",
+                    "Frederick County well and septic information request - {{address}}",
+                    "These fields were verified against the live county FormCenter request. The county warns that incomplete forms will not be processed.",
+                    """
+                    Frederick County Information Research Request field pack
+
+                    Property: {{address}}, {{propertyCity}}, {{propertyState}} {{propertyZip}}
+                    Subdivision / lot / section / block: {{subdivision}} / {{lotNumber}} / {{section}} / {{block}}
+                    Tax map / parcel: {{taxMap}} / {{parcel}}
+                    Year built: {{yearBuilt}}
+                    Current owner: {{owner}}
+                    Previous owners back to 1950 or installation year: {{previousOwners}}
+                    Property type: {{propertyType}}
+
+                    Requested records:
+                    {{documents}}
+
+                    Requester: {{requesterFirstName}} {{requesterLastName}}
+                    Mailing address: {{requesterAddress}}, {{requesterCity}}, {{requesterState}} {{requesterZip}}
+                    Phone: {{requesterPhone}}
+                    Delivery: {{deliveryMethod}}
+                    Email: {{requesterEmail}}
+                    """,
+                    List.of(
+                            field("owner", "Current Owner's Full Name", "Required by the county form", true, "name"),
+                            field("previousOwners", "Previous Owners' Full Names", "Back to 1950 or the installation year", true, "off"),
+                            field("requesterFirstName", "Requested by - first name", "First name", true, "given-name"),
+                            field("requesterAddress", "Requester mailing address", "Street address", true, "street-address"),
+                            field("requesterCity", "Requester city", "City", true, "address-level2"),
+                            field("requesterState", "Requester state", "State", true, "address-level1"),
+                            field("requesterZip", "Requester ZIP", "ZIP code", true, "postal-code"),
+                            field("requesterPhone", "Primary phone", "Phone number", true, "tel"),
+                            field("subdivision", "Subdivision name", "If known", false, "off"),
+                            field("propertyCity", "Property city", "City", false, "address-level2"),
+                            field("propertyState", "Property state", "MD", false, "address-level1"),
+                            field("propertyZip", "Property ZIP", "ZIP code", false, "postal-code"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            field("section", "Section", "If known", false, "off"),
+                            field("block", "Block", "If known", false, "off"),
+                            field("taxMap", "Tax map", "If known", false, "off"),
+                            field("yearBuilt", "Year built", "If known", false, "off"),
+                            field("wellTag", "Well identification tag number", "Only when requesting well information", false, "off"),
+                            select("propertyType", "Property type", false, "Existing property with dwelling", "New property with no dwelling"),
+                            select("wellReport", "Well completion report", false, "Request", "Do not request"),
+                            select("septicLocation", "Septic location", false, "Request existing septic location", "Request proposed septic location", "Do not request"),
+                            select("bedroomResult", "Bedroom or perc result", false, "Request bedrooms permitted with current system", "Request total bedrooms allowed / perc result", "Do not request"),
+                            field("otherRequest", "Other information requested", "Be specific", false, "off"),
+                            field("requesterLastName", "Requester last name", "Last name", false, "family-name"),
+                            field("requesterPhoneSecondary", "Secondary phone", "Optional", false, "tel"),
+                            field("requesterFax", "Fax", "Optional", false, "off"),
+                            select("deliveryMethod", "Information delivery", false, "Emailed", "Picked up in office", "Faxed", "Mailed"),
+                            field("requesterEmail", "Email address", "Required when choosing email delivery", false, "email")
+                    ),
+                    docs("well completion report", "existing or proposed septic location", "bedrooms permitted with the current system or total bedrooms allowed", "another specifically identified well, septic, or perc record")
+            )),
             Map.entry("NC::guilford-county", acquisition(
                     "NC::guilford-county",
                     "Guilford County On-Site Water Protection",

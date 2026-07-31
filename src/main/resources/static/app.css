@@ -6460,7 +6460,9 @@ body.records-task-mode .records-request-builder {
     font-weight: 700;
 }
 
-.washtenaw-permit-lookup__start input {
+.washtenaw-permit-lookup__start input,
+.county-guided-lookup__start input,
+.county-guided-lookup__start select {
     width: 100%;
     min-height: 46px;
     padding: 0.7rem 0.8rem;
@@ -6469,6 +6471,37 @@ body.records-task-mode .records-request-builder {
     color: var(--ink);
     background: #fff;
     font: inherit;
+}
+
+.county-guided-lookup__start {
+    display: grid;
+    grid-template-columns: minmax(155px, 0.7fr) minmax(220px, 1.3fr) auto;
+    gap: 0.85rem;
+    align-items: end;
+    grid-column: 1 / -1;
+}
+
+.county-guided-lookup__start label {
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.county-guided-lookup__start--handoff {
+    grid-template-columns: minmax(145px, 0.65fr) minmax(210px, 1.15fr) auto auto;
+}
+
+.county-guided-lookup__note {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+}
+
+.county-guided-lookup__note a {
+    color: inherit;
+    font-weight: 700;
 }
 
 .washtenaw-permit-lookup__status,
@@ -6841,9 +6874,15 @@ body.records-task-mode .records-request-builder {
 
     .san-diego-document-lookup__form,
     .san-diego-document-lookup__street,
-    .washtenaw-permit-lookup__start {
+    .washtenaw-permit-lookup__start,
+    .county-guided-lookup__start,
+    .county-guided-lookup__start--handoff {
         grid-template-columns: 1fr;
         min-width: 0;
+    }
+
+    .county-guided-lookup__start .button {
+        width: 100%;
     }
 
     .washtenaw-permit-lookup__frame-heading {

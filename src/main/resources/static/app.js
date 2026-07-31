@@ -4187,6 +4187,189 @@
                 }
             });
 
+            const gallatinLookup = workflow.querySelector("[data-gallatin-permit-lookup]");
+            const gallatinMethod = workflow.querySelector("[data-gallatin-permit-method]");
+            const gallatinClue = workflow.querySelector("[data-gallatin-permit-clue]");
+            const gallatinClueLabel = workflow.querySelector("[data-gallatin-permit-clue-label]");
+            const gallatinLoad = workflow.querySelector("[data-gallatin-permit-load]");
+            const gallatinStatus = workflow.querySelector("[data-gallatin-permit-status]");
+            const gallatinFrameWrap = workflow.querySelector("[data-gallatin-permit-frame-wrap]");
+            const gallatinFrame = workflow.querySelector("[data-gallatin-permit-frame]");
+            let gallatinLoadTimer;
+
+            const gallatinFields = {
+                RoadAddress: ["Road address", "Enter the property road address"],
+                PropertyOwnerID: ["Property owner", "Enter a current or prior owner"],
+                Subdivision: ["Subdivision", "Enter the subdivision name"],
+                COSNumber: ["Certificate of survey (COS)", "Enter the COS number"],
+                TractLotID: ["Tract or lot", "Enter the tract or lot"],
+                PermitID: ["Permit number", "Enter the county permit number"]
+            };
+
+            function showGallatinStatus(message, isWarning = false) {
+                if (!(gallatinStatus instanceof HTMLElement)) return;
+                gallatinStatus.textContent = message;
+                gallatinStatus.classList.toggle("is-warning", isWarning);
+            }
+
+            function updateGallatinMethod(replaceValue = false) {
+                if (!(gallatinMethod instanceof HTMLSelectElement)
+                    || !(gallatinClue instanceof HTMLInputElement)) return;
+                const [label, placeholder] = gallatinFields[gallatinMethod.value] || gallatinFields.RoadAddress;
+                if (gallatinClueLabel instanceof HTMLElement) gallatinClueLabel.textContent = label;
+                gallatinClue.placeholder = placeholder;
+                if (replaceValue || !gallatinClue.value.trim()) {
+                    gallatinClue.value = gallatinMethod.value === "RoadAddress" ? safeValue(address) : "";
+                }
+            }
+
+            gallatinMethod?.addEventListener("change", () => updateGallatinMethod(true));
+            updateGallatinMethod();
+            address?.addEventListener("input", () => {
+                if (gallatinLookup instanceof HTMLElement
+                    && gallatinMethod instanceof HTMLSelectElement
+                    && gallatinMethod.value === "RoadAddress"
+                    && gallatinClue instanceof HTMLInputElement) {
+                    gallatinClue.value = safeValue(address);
+                }
+            });
+
+            gallatinFrame?.addEventListener("load", () => {
+                if (!gallatinFrame.getAttribute("src")) return;
+                window.clearTimeout(gallatinLoadTimer);
+                showGallatinStatus("The official archive opened. Choose Enter, then paste the copied clue into the matching search field.");
+                emitCountyGaEvent("county_official_embed_loaded", {embed_name: "gallatin_eaglecm"});
+            });
+
+            async function loadGallatinArchive() {
+                if (!(gallatinLookup instanceof HTMLElement)
+                    || !(gallatinMethod instanceof HTMLSelectElement)
+                    || !(gallatinClue instanceof HTMLInputElement)
+                    || !(gallatinFrame instanceof HTMLIFrameElement)
+                    || !(gallatinFrameWrap instanceof HTMLElement)) return;
+                const clue = gallatinClue.value.trim().replace(/\s+/g, " ").slice(0, 120);
+                gallatinClue.value = clue;
+                if (clue.length < 2) {
+                    showGallatinStatus("Enter a search clue before loading the county archive.", true);
+                    gallatinClue.focus();
+                    return;
+                }
+                let copied = false;
+                try {
+                    await copyText(clue);
+                    copied = true;
+                } catch (_) {
+                    gallatinClue.select();
+                }
+                gallatinFrameWrap.hidden = false;
+                if (!gallatinFrame.src) gallatinFrame.src = gallatinFrame.dataset.src || "";
+                showGallatinStatus(copied
+                    ? `${clue} copied. Loading Gallatin County's official archive...`
+                    : "Loading the official archive. Copy the selected clue manually if needed.");
+                window.clearTimeout(gallatinLoadTimer);
+                gallatinLoadTimer = window.setTimeout(() => {
+                    showGallatinStatus("The county archive is still loading. Your clue is preserved here; use the separate archive link if the panel stays blank.", true);
+                }, 12000);
+                writeState({stage: "official_search_loaded", metadataStatus: "opened"});
+                emitCountyGaEvent("county_official_embed_opened", {
+                    embed_name: "gallatin_eaglecm",
+                    search_field: gallatinMethod.value
+                });
+            }
+
+            gallatinLoad?.addEventListener("click", loadGallatinArchive);
+            gallatinClue?.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    loadGallatinArchive();
+                }
+            });
+
+            const stLouisLookup = workflow.querySelector("[data-st-louis-septic-lookup]");
+            const stLouisMethod = workflow.querySelector("[data-st-louis-septic-method]");
+            const stLouisClue = workflow.querySelector("[data-st-louis-septic-clue]");
+            const stLouisClueLabel = workflow.querySelector("[data-st-louis-septic-clue-label]");
+            const stLouisCopy = workflow.querySelector("[data-st-louis-septic-copy]");
+            const stLouisStatus = workflow.querySelector("[data-st-louis-septic-status]");
+            const stLouisExplorer = workflow.querySelector("[data-st-louis-land-explorer]");
+
+            function showStLouisStatus(message, isWarning = false) {
+                if (!(stLouisStatus instanceof HTMLElement)) return;
+                stLouisStatus.textContent = message;
+                stLouisStatus.classList.toggle("is-warning", isWarning);
+            }
+
+            function updateStLouisMethod(replaceValue = false) {
+                if (!(stLouisMethod instanceof HTMLSelectElement)
+                    || !(stLouisClue instanceof HTMLInputElement)) return;
+                const useParcel = stLouisMethod.value === "parcel";
+                if (stLouisClueLabel instanceof HTMLElement) stLouisClueLabel.textContent = useParcel ? "Parcel PIN" : "Property location";
+                stLouisClue.placeholder = useParcel ? "Enter the parcel PIN" : "Enter the property location";
+                if (replaceValue || !stLouisClue.value.trim()) {
+                    stLouisClue.value = useParcel ? safeValue(parcel) : safeValue(address);
+                }
+            }
+
+            if (stLouisLookup instanceof HTMLElement && stLouisMethod instanceof HTMLSelectElement) {
+                stLouisMethod.value = safeValue(parcel) ? "parcel" : "address";
+            }
+            stLouisMethod?.addEventListener("change", () => updateStLouisMethod(true));
+            updateStLouisMethod();
+            parcel?.addEventListener("input", () => {
+                if (!(stLouisLookup instanceof HTMLElement)
+                    || !(stLouisMethod instanceof HTMLSelectElement)
+                    || !(stLouisClue instanceof HTMLInputElement)) return;
+                const parcelValue = safeValue(parcel);
+                if (parcelValue) {
+                    stLouisMethod.value = "parcel";
+                    updateStLouisMethod(true);
+                } else if (stLouisMethod.value === "parcel") {
+                    stLouisClue.value = "";
+                }
+            });
+            address?.addEventListener("input", () => {
+                if (stLouisLookup instanceof HTMLElement
+                    && stLouisMethod instanceof HTMLSelectElement
+                    && stLouisMethod.value === "address"
+                    && stLouisClue instanceof HTMLInputElement) stLouisClue.value = safeValue(address);
+            });
+
+            async function copyStLouisClue() {
+                if (!(stLouisLookup instanceof HTMLElement)
+                    || !(stLouisMethod instanceof HTMLSelectElement)
+                    || !(stLouisClue instanceof HTMLInputElement)) return;
+                const clue = stLouisClue.value.trim().replace(/\s+/g, " ").slice(0, 120);
+                stLouisClue.value = clue;
+                if (clue.length < 2) {
+                    showStLouisStatus("Enter the parcel PIN or property location first.", true);
+                    stLouisClue.focus();
+                    return;
+                }
+                try {
+                    await copyText(clue);
+                    showStLouisStatus(`${clue} copied. Open Land Explorer, choose On-Site Wastewater, select the parcel, then open Septic Records → View Doc.`);
+                } catch (_) {
+                    stLouisClue.select();
+                    showStLouisStatus("Clipboard access was unavailable. Copy the selected clue, then open Land Explorer and choose On-Site Wastewater.", true);
+                }
+                writeState({stage: "official_search_prepared", metadataStatus: "prepared"});
+                emitCountyGaEvent("county_official_handoff_prepared", {
+                    destination_name: "st_louis_land_explorer",
+                    search_field: stLouisMethod.value
+                });
+            }
+
+            stLouisCopy?.addEventListener("click", copyStLouisClue);
+            stLouisClue?.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    copyStLouisClue();
+                }
+            });
+            stLouisExplorer?.addEventListener("click", () => {
+                emitCountyGaEvent("county_official_route_opened", {route_name: "st_louis_land_explorer"});
+            });
+
             const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
             const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
             const thurstonResults = workflow.querySelector("[data-thurston-record-results]");
