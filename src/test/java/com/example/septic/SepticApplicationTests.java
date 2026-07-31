@@ -984,6 +984,7 @@ class SepticApplicationTests {
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://www.google.com")))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://services8.arcgis.com")))
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("https://file.sandiegocounty.gov")))
+				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-src 'self' https://publicaccess24.ewashtenaw.org")))
 				.andExpect(header().string("Strict-Transport-Security", org.hamcrest.Matchers.containsString("max-age=31536000")));
 	}
 
@@ -2909,6 +2910,10 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/michigan/washtenaw-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washtenaw County Michigan Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Washtenaw permit records without leaving this page")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-washtenaw-permit-lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-src=\"https://publicaccess24.ewashtenaw.org/PublicAccessServer/city-cq.html?CQID=113\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("The official search stays unloaded until you are ready")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Washtenaw&#39;s well and septic records search")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("enter only the street number first")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Washtenaw County Environmental Health owns the practical septic file")))

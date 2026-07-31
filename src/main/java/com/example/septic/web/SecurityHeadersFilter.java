@@ -25,6 +25,7 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
             "style-src-attr 'unsafe-inline'",
             "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
             "script-src-attr 'unsafe-inline'",
+            "frame-src 'self' https://publicaccess24.ewashtenaw.org",
             "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://services8.arcgis.com https://file.sandiegocounty.gov"
     );
     private static final String EMBED_CONTENT_SECURITY_POLICY = CONTENT_SECURITY_POLICY.replace(

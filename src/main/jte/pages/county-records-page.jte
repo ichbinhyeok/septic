@@ -928,6 +928,38 @@
                         </section>
                     @endif
 
+                    @if ("MI::washtenaw-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup washtenaw-permit-lookup" id="washtenaw-permit-search" data-washtenaw-permit-lookup>
+                            <div>
+                                <span class="eyebrow">Official embedded search</span>
+                                <h3>Search Washtenaw permit records without leaving this page</h3>
+                                <p>The county recommends starting with only the street number. SepticPath prepares that clue, then loads the county's own public search below.</p>
+                            </div>
+                            <div class="washtenaw-permit-lookup__start">
+                                <label>
+                                    <span>Street number</span>
+                                    <input type="text" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="Example: 1234" data-washtenaw-street-number>
+                                </label>
+                                <button class="button button--primary" type="button" data-washtenaw-permit-load>Copy number and load official search</button>
+                            </div>
+                            <p class="washtenaw-permit-lookup__status" data-washtenaw-permit-status aria-live="polite">The official search stays unloaded until you are ready.</p>
+                            <div class="washtenaw-permit-lookup__frame" data-washtenaw-permit-frame-wrap hidden>
+                                <div class="washtenaw-permit-lookup__frame-heading">
+                                    <div>
+                                        <strong>Washtenaw County Public Access</strong>
+                                        <small>Paste the copied number into Search Value, then confirm the full property address in the results.</small>
+                                    </div>
+                                    <a class="button button--quiet" href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer" data-county-access-official>Open the county page instead</a>
+                                </div>
+                                <iframe title="Washtenaw County permit records search"
+                                        data-washtenaw-permit-frame
+                                        data-src="https://publicaccess24.ewashtenaw.org/PublicAccessServer/city-cq.html?CQID=113"
+                                        loading="lazy"
+                                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                            </div>
+                        </section>
+                    @endif
+
                     @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
                         <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
                             <div>

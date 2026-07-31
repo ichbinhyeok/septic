@@ -4105,6 +4105,88 @@
                 });
             });
 
+            const washtenawLookup = workflow.querySelector("[data-washtenaw-permit-lookup]");
+            const washtenawStreetNumber = workflow.querySelector("[data-washtenaw-street-number]");
+            const washtenawLoad = workflow.querySelector("[data-washtenaw-permit-load]");
+            const washtenawStatus = workflow.querySelector("[data-washtenaw-permit-status]");
+            const washtenawFrameWrap = workflow.querySelector("[data-washtenaw-permit-frame-wrap]");
+            const washtenawFrame = workflow.querySelector("[data-washtenaw-permit-frame]");
+            let washtenawLoadTimer;
+
+            function showWashtenawStatus(message, isWarning = false) {
+                if (!(washtenawStatus instanceof HTMLElement)) return;
+                washtenawStatus.textContent = message;
+                washtenawStatus.classList.toggle("is-warning", isWarning);
+            }
+
+            function suggestedWashtenawStreetNumber() {
+                const match = safeValue(address).match(/^\s*(\d{1,8})\b/);
+                return match?.[1] || "";
+            }
+
+            if (washtenawStreetNumber instanceof HTMLInputElement && !washtenawStreetNumber.value) {
+                washtenawStreetNumber.value = suggestedWashtenawStreetNumber();
+            }
+
+            address?.addEventListener("input", () => {
+                if (!(washtenawLookup instanceof HTMLElement)
+                    || !(washtenawStreetNumber instanceof HTMLInputElement)
+                    || washtenawStreetNumber.value.trim()) return;
+                washtenawStreetNumber.value = suggestedWashtenawStreetNumber();
+            });
+
+            washtenawFrame?.addEventListener("load", () => {
+                if (!washtenawFrame.getAttribute("src")) return;
+                window.clearTimeout(washtenawLoadTimer);
+                showWashtenawStatus("The official search panel opened. Paste the copied street number into Search Value; use the county-page link if the panel stays blank.");
+                emitCountyGaEvent("county_official_embed_loaded", {embed_name: "washtenaw_public_access"});
+            });
+
+            async function loadWashtenawSearch() {
+                if (!(washtenawLookup instanceof HTMLElement)
+                    || !(washtenawStreetNumber instanceof HTMLInputElement)
+                    || !(washtenawFrame instanceof HTMLIFrameElement)
+                    || !(washtenawFrameWrap instanceof HTMLElement)) return;
+                const streetNumber = washtenawStreetNumber.value.replace(/\D/g, "").slice(0, 8);
+                washtenawStreetNumber.value = streetNumber;
+                if (!streetNumber) {
+                    showWashtenawStatus("Enter the property's street number before loading the county search.", true);
+                    washtenawStreetNumber.focus();
+                    return;
+                }
+
+                let copied = false;
+                try {
+                    await copyText(streetNumber);
+                    copied = true;
+                } catch (_) {
+                    // The field remains selected below when clipboard access is unavailable.
+                    washtenawStreetNumber.select();
+                }
+
+                washtenawFrameWrap.hidden = false;
+                if (!washtenawFrame.src) {
+                    washtenawFrame.src = washtenawFrame.dataset.src || "";
+                }
+                showWashtenawStatus(copied
+                    ? `${streetNumber} copied. Loading the official county search...`
+                    : "Loading the official county search. Copy the selected street number manually if needed.");
+                window.clearTimeout(washtenawLoadTimer);
+                washtenawLoadTimer = window.setTimeout(() => {
+                    showWashtenawStatus("The county search is still loading. Your street number is preserved here; use the county-page link if the panel stays blank.", true);
+                }, 12000);
+                writeState({stage: "official_search_loaded", metadataStatus: "opened"});
+                emitCountyGaEvent("county_official_embed_opened", {embed_name: "washtenaw_public_access"});
+            }
+
+            washtenawLoad?.addEventListener("click", loadWashtenawSearch);
+            washtenawStreetNumber?.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    loadWashtenawSearch();
+                }
+            });
+
             const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
             const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
             const thurstonResults = workflow.querySelector("[data-thurston-record-results]");
