@@ -4370,6 +4370,96 @@
                 emitCountyGaEvent("county_official_route_opened", {route_name: "st_louis_land_explorer"});
             });
 
+            const tennesseeRecordHandoff = workflow.querySelector("[data-tennessee-record-handoff]");
+            const tennesseeRecordMethod = workflow.querySelector("[data-tennessee-record-method]");
+            const tennesseeRecordClue = workflow.querySelector("[data-tennessee-record-clue]");
+            const tennesseeRecordClueLabel = workflow.querySelector("[data-tennessee-record-clue-label]");
+            const tennesseeRecordCopy = workflow.querySelector("[data-tennessee-record-copy]");
+            const tennesseeRecordStatus = workflow.querySelector("[data-tennessee-record-status]");
+            const tennesseeRecordOpen = workflow.querySelector("[data-tennessee-record-open]");
+
+            function showTennesseeRecordStatus(message, isWarning = false) {
+                if (!(tennesseeRecordStatus instanceof HTMLElement)) return;
+                tennesseeRecordStatus.textContent = message;
+                tennesseeRecordStatus.classList.toggle("is-warning", isWarning);
+            }
+
+            function updateTennesseeRecordMethod(replaceValue = false) {
+                if (!(tennesseeRecordMethod instanceof HTMLSelectElement)
+                    || !(tennesseeRecordClue instanceof HTMLInputElement)) return;
+                const useParcel = tennesseeRecordMethod.value === "parcel";
+                if (tennesseeRecordClueLabel instanceof HTMLElement) {
+                    tennesseeRecordClueLabel.textContent = useParcel ? "Parcel or tax-map ID" : "Property address";
+                }
+                tennesseeRecordClue.placeholder = useParcel ? "Enter the parcel or tax-map ID" : "Enter the property address";
+                if (replaceValue || !tennesseeRecordClue.value.trim()) {
+                    tennesseeRecordClue.value = useParcel ? safeValue(parcel) : safeValue(address);
+                }
+            }
+
+            if (tennesseeRecordHandoff instanceof HTMLElement
+                && tennesseeRecordMethod instanceof HTMLSelectElement) {
+                tennesseeRecordMethod.value = safeValue(address) ? "address" : (safeValue(parcel) ? "parcel" : "address");
+            }
+            tennesseeRecordMethod?.addEventListener("change", () => updateTennesseeRecordMethod(true));
+            updateTennesseeRecordMethod();
+            address?.addEventListener("input", () => {
+                if (tennesseeRecordHandoff instanceof HTMLElement
+                    && tennesseeRecordMethod instanceof HTMLSelectElement
+                    && tennesseeRecordMethod.value === "address"
+                    && tennesseeRecordClue instanceof HTMLInputElement) {
+                    tennesseeRecordClue.value = safeValue(address);
+                }
+            });
+            parcel?.addEventListener("input", () => {
+                if (tennesseeRecordHandoff instanceof HTMLElement
+                    && tennesseeRecordMethod instanceof HTMLSelectElement
+                    && tennesseeRecordMethod.value === "parcel"
+                    && tennesseeRecordClue instanceof HTMLInputElement) {
+                    tennesseeRecordClue.value = safeValue(parcel);
+                }
+            });
+
+            async function copyTennesseeRecordClue() {
+                if (!(tennesseeRecordHandoff instanceof HTMLElement)
+                    || !(tennesseeRecordMethod instanceof HTMLSelectElement)
+                    || !(tennesseeRecordClue instanceof HTMLInputElement)) return;
+                const clue = tennesseeRecordClue.value.trim().replace(/\s+/g, " ").slice(0, 120);
+                tennesseeRecordClue.value = clue;
+                if (clue.length < 2) {
+                    showTennesseeRecordStatus("Enter a property address or parcel clue first.", true);
+                    tennesseeRecordClue.focus();
+                    return;
+                }
+                try {
+                    await copyText(clue);
+                    showTennesseeRecordStatus(countyKey === "TN::williamson-county"
+                        ? `${clue} copied. Open the county form and request the existing inspection or sewage-disposal file.`
+                        : `${clue} copied. Open TDEC and search; a 403 or empty result is not a no-record determination.`);
+                } catch (_) {
+                    tennesseeRecordClue.select();
+                    showTennesseeRecordStatus("Clipboard access was unavailable. Copy the selected clue manually before opening the official route.", true);
+                }
+                writeState({stage: "official_search_prepared", metadataStatus: "prepared"});
+                emitCountyGaEvent("county_official_handoff_prepared", {
+                    destination_name: countyKey === "TN::williamson-county" ? "williamson_records_form" : "tdec_septic_search",
+                    search_field: tennesseeRecordMethod.value
+                });
+            }
+
+            tennesseeRecordCopy?.addEventListener("click", copyTennesseeRecordClue);
+            tennesseeRecordClue?.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    copyTennesseeRecordClue();
+                }
+            });
+            tennesseeRecordOpen?.addEventListener("click", () => {
+                emitCountyGaEvent("county_official_route_opened", {
+                    route_name: countyKey === "TN::williamson-county" ? "williamson_records_form" : "tdec_septic_search"
+                });
+            });
+
             const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
             const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
             const thurstonResults = workflow.querySelector("[data-thurston-record-results]");

@@ -3542,12 +3542,39 @@ class SepticApplicationTests {
 	void williamsonCountyTennesseeRecordsPageShowsPlanReviewWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/williamson-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Williamson County Tennessee Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Williamson County TN Septic Records and Sewage Disposal")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Inspection Duplication of Records Request")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-tennessee-record-handoff")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official records form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing records and new plan review are different lanes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Williamson County electronic plan review information")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("electronic plan")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("location map")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Tennessee guide")));
+	}
+
+	@Test
+	void sumnerCountyRecordsPageShowsTdecSearchAndFallback() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/tennessee/sumner-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Sumner County TN Septic Permit Search and Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-tennessee-record-handoff")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official TDEC search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("septicsystem.files@tn.gov")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A 403 or empty search is not an official no-record result")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("certificate of completion")));
+	}
+
+	@Test
+	void rutherfordCountyRecordsPageShowsTdecBedroomWorkflow() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/tennessee/rutherford-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Rutherford County TN Septic Records and Permit Search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-tennessee-record-handoff")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official TDEC search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A 403 or empty search is not an official no-record result")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("proposed bedroom count")));
 	}
 
 	@Test

@@ -742,6 +742,9 @@ public class SeoService {
             case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
             case "GA::dekalb-county" -> "DeKalb County GA Septic Records or Certification Letter";
             case "TN::blount-county" -> "Blount County TN SSDS Records or Inspection Letter";
+            case "TN::sumner-county" -> "Sumner County TN Septic Permit Search and Records";
+            case "TN::rutherford-county" -> "Rutherford County TN Septic Records and Permit Search";
+            case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
             case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
             case "AZ::maricopa-county" -> "Maricopa County Septic Records Search and Research Request";
@@ -787,6 +790,9 @@ public class SeoService {
             case "NC::lincoln-county" -> "Request Lincoln County septic records by address or parcel PIN and keep the request reference until the permit, approval, layout, or written response arrives.";
             case "GA::dekalb-county" -> "Choose the DeKalb historical septic file route or the separate certification-letter evaluation based on the property task.";
             case "TN::blount-county" -> "Request Blount County SSDS approval and bedroom records, or use the separate inspection-letter path when a closing document is required.";
+            case "TN::sumner-county" -> "Try the official TDEC septic search with a prepared property clue, then use Sumner County's published email and phone fallback when the search is blocked or incomplete.";
+            case "TN::rutherford-county" -> "Find the Rutherford County TDEC septic map, permit, and approved bedroom count without treating a blocked or empty online search as a no-record result.";
+            case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
             case "AZ::maricopa-county" -> "Run Maricopa County's free septic search first, then use the standard or expedited official research request when the online result is empty.";

@@ -5203,7 +5203,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         .comparingInt(this::countyRecordPriorityScore)
                         .reversed()
                         .thenComparing(CountyRecordsPage::countyName))
-                .limit(72)
+                .limit(120)
                 .map(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> new PageLink(
                                 page.countyName() + ", " + state.stateCode() + " permit lookup",

@@ -1031,6 +1031,54 @@
                         </section>
                     @endif
 
+                    @if ("TN::sumner-county".equals(countyAccessProfile.countyKey())
+                            || "TN::rutherford-county".equals(countyAccessProfile.countyKey())
+                            || "TN::williamson-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup washtenaw-permit-lookup" id="tennessee-record-handoff" data-tennessee-record-handoff>
+                            <div>
+                                <span class="eyebrow">Guided official handoff</span>
+                                @if ("TN::williamson-county".equals(countyAccessProfile.countyKey()))
+                                    <h3>Carry one property clue into Williamson's record-copy request</h3>
+                                    <p>Prepare the address or parcel clue here, then open the county's dedicated Inspection Duplication of Records Request—not the new-work plan-review portal.</p>
+                                @else
+                                    <h3>Carry one property clue into the TDEC septic search</h3>
+                                    <p>Prepare the address or parcel clue here before opening Tennessee's official file search. The search currently may return 403, so the county fallback remains visible.</p>
+                                @endif
+                            </div>
+                            <div class="county-guided-lookup__start county-guided-lookup__start--handoff">
+                                <label>
+                                    <span>Property clue</span>
+                                    <select data-tennessee-record-method>
+                                        <option value="address">Property address</option>
+                                        <option value="parcel">Parcel or tax-map ID</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span data-tennessee-record-clue-label>Property address</span>
+                                    <input type="text" maxlength="120" autocomplete="off" placeholder="Enter the property address" data-tennessee-record-clue>
+                                </label>
+                                <button class="button button--primary" type="button" data-tennessee-record-copy>Copy property clue</button>
+                                <a class="button button--quiet" href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer" data-tennessee-record-open data-county-access-official>
+                                    @if ("TN::williamson-county".equals(countyAccessProfile.countyKey()))
+                                        Open official records form
+                                    @else
+                                        Open official TDEC search
+                                    @endif
+                                </a>
+                            </div>
+                            @if ("TN::williamson-county".equals(countyAccessProfile.countyKey()))
+                                <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">On the county form, identify the property and request the existing inspection or sewage-disposal records you need.</p>
+                                <p class="county-guided-lookup__note"><strong>Existing records and new plan review are different lanes.</strong> Call Sewage Disposal at 615-790-5751 if the form does not resolve the file; use electronic plan review only for an actual new-work submittal.</p>
+                            @elseif ("TN::sumner-county".equals(countyAccessProfile.countyKey()))
+                                <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">Search with the copied clue. If TDEC is blocked or incomplete, email septicsystem.files@tn.gov or call 615-687-7000.</p>
+                                <p class="county-guided-lookup__note"><strong>A 403 or empty search is not an official no-record result.</strong> For building work, confirm the septic approval and certificate of completion through <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">Sumner's published instructions</a>.</p>
+                            @else
+                                <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">Search with the copied clue. If TDEC is blocked or incomplete, follow Rutherford's Tennessee Environmental records guidance.</p>
+                                <p class="county-guided-lookup__note"><strong>A 403 or empty search is not an official no-record result.</strong> Before an addition or remodel, confirm the <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">Rutherford septic record</a> supports the proposed bedroom count.</p>
+                            @endif
+                        </section>
+                    @endif
+
                     @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
                         <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
                             <div>

@@ -168,6 +168,66 @@ public final class CountyAccessProfileCatalog {
                             "Complete CAPTCHA, submit, save the reference, and track the seven-business-day window."
                     )
             )),
+            Map.entry("TN::sumner-county", profile(
+                    "TN::sumner-county",
+                    "state_search_with_fallback",
+                    "TDEC search with documented fallback",
+                    "Search the TDEC septic file first, then use Sumner's published fallback",
+                    "Sumner County directs septic-file searches to TDEC and publishes a records email when the online file search does not resolve the property.",
+                    "Open the official TDEC septic search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open Sumner County's septic-file instructions",
+                    "https://sumnercountytn.gov/departments/building-codes/",
+                    "A property-matched TDEC septic permit, approval, certificate, layout, or written file response",
+                    "The TDEC search may return 403 or no online match. Neither outcome proves that no record exists; Sumner publishes septicsystem.files@tn.gov and 615-687-7000 as the fallback.",
+                    List.of("Property address", "Parcel or tax-map clue", "Current or prior owner when available"),
+                    List.of("Septic permit or approval", "Certificate of completion", "System layout or written no-record response"),
+                    List.of(
+                            "Copy the strongest property clue and try the official TDEC septic search.",
+                            "If TDEC returns 403 or no usable match, use Sumner County's published septic-file email or assistance number.",
+                            "For building work, confirm both the valid septic approval and certificate of completion before treating the file as complete."
+                    )
+            )),
+            Map.entry("TN::rutherford-county", profile(
+                    "TN::rutherford-county",
+                    "state_search_with_fallback",
+                    "TDEC search with county guidance",
+                    "Search the TDEC septic file before relying on Rutherford building plans",
+                    "Rutherford County directs owners to Tennessee Environmental septic records and requires the recorded bedroom count to support residential additions and remodeling.",
+                    "Open the official TDEC septic search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open Rutherford County's septic-record guidance",
+                    "https://rutherfordcountytn.gov/planning-faq",
+                    "A property-matched TDEC septic map, permit, bedroom approval, or written file response",
+                    "The TDEC search may return 403 or no online match. Neither outcome proves that no file exists, and a remodel cannot assume more bedrooms than the septic record supports.",
+                    List.of("Property address", "Parcel or tax-map clue", "Current or prior owner when available"),
+                    List.of("Septic map or permit", "Approved bedroom count", "Repair record or written no-record response"),
+                    List.of(
+                            "Copy the strongest property clue and try the official TDEC septic search.",
+                            "If the search is blocked or incomplete, follow Rutherford's Tennessee Environmental records guidance and request the file directly.",
+                            "Before an addition or remodel, match the proposed bedroom count to the septic record."
+                    )
+            )),
+            Map.entry("TN::williamson-county", profile(
+                    "TN::williamson-county",
+                    "official_request",
+                    "County record-copy request",
+                    "Request the existing Williamson County sewage-disposal inspection file",
+                    "Williamson County publishes a dedicated Inspection Duplication of Records Request under Sewage Disposal forms. Use that existing-record lane before electronic plan review for new work.",
+                    "Open the inspection records request",
+                    "https://www.williamsoncounty-tn.gov/DocumentCenter/View/1855/INSPECTION-DUPLICATION-OF-RECORDS-REQUEST",
+                    "Open Williamson County Sewage Disposal",
+                    "https://www.williamsoncounty-tn.gov/126/Sewage-Disposal",
+                    "A duplicated inspection or sewage-disposal property file, or a written county response",
+                    "This is a record-copy request, not an instant search or a new electronic plan-review submission. The office lists 615-790-5751 and weekday hours of 8:00 a.m. to 4:30 p.m.",
+                    List.of("Property address", "Parcel or lot clue", "Owner name", "Exact inspection or sewage-disposal records needed"),
+                    List.of("Inspection record copy", "Septic location or approval material in the county file", "Written county response"),
+                    List.of(
+                            "Prepare the property address, parcel or lot, owner, and requested record types.",
+                            "Open and complete the county's Inspection Duplication of Records Request.",
+                            "Use electronic plan review only after the existing file is understood and new work is actually being submitted."
+                    )
+            )),
             Map.entry("MD::st-marys-county", profile(
                     "MD::st-marys-county",
                     "portal_with_fallback",
