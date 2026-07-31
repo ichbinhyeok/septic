@@ -11,7 +11,6 @@ import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import com.example.septic.data.model.StateQueuePlan;
 import com.example.septic.service.AccessDifficulty;
-import com.example.septic.service.AdamsSepticLookupService;
 import com.example.septic.service.BrunswickPermitLookupService;
 import com.example.septic.service.CensusAddressLookupService;
 import com.example.septic.service.CountyContentQualityService;
@@ -438,7 +437,6 @@ public class SiteController {
     private final UsStateDirectoryService usStateDirectoryService;
     private final PublishingPolicyService publishingPolicyService;
     private final CensusAddressLookupService censusAddressLookupService;
-    private final AdamsSepticLookupService adamsSepticLookupService;
     private final BrunswickPermitLookupService brunswickPermitLookupService;
     private final ThurstonRecordLookupService thurstonRecordLookupService;
     private final EventAnalyticsService eventAnalyticsService;
@@ -459,7 +457,6 @@ public class SiteController {
             UsStateDirectoryService usStateDirectoryService,
             PublishingPolicyService publishingPolicyService,
             CensusAddressLookupService censusAddressLookupService,
-            AdamsSepticLookupService adamsSepticLookupService,
             BrunswickPermitLookupService brunswickPermitLookupService,
             ThurstonRecordLookupService thurstonRecordLookupService,
             EventAnalyticsService eventAnalyticsService,
@@ -479,7 +476,6 @@ public class SiteController {
         this.usStateDirectoryService = usStateDirectoryService;
         this.publishingPolicyService = publishingPolicyService;
         this.censusAddressLookupService = censusAddressLookupService;
-        this.adamsSepticLookupService = adamsSepticLookupService;
         this.brunswickPermitLookupService = brunswickPermitLookupService;
         this.thurstonRecordLookupService = thurstonRecordLookupService;
         this.eventAnalyticsService = eventAnalyticsService;
@@ -694,13 +690,6 @@ public class SiteController {
         return "invalid".equals(result.status())
                 ? ResponseEntity.badRequest().body(result)
                 : ResponseEntity.ok(result);
-    }
-
-    @PostMapping(value = "/api/adams-septic-lookup", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<AdamsSepticLookupService.LookupResult> adamsSepticLookup(@RequestBody AdamsSepticLookupForm form) {
-        AdamsSepticLookupService.LookupResult result = adamsSepticLookupService.lookup(form == null ? "" : form.clue());
-        return "invalid".equals(result.status()) ? ResponseEntity.badRequest().body(result) : ResponseEntity.ok(result);
     }
 
     @PostMapping(value = "/api/thurston-record-lookup", produces = MediaType.APPLICATION_JSON_VALUE)

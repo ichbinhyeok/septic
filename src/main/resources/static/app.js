@@ -3916,8 +3916,41 @@
                 if (clue.length < 3) { adamsClue.focus(); renderAdamsResults({heading:"Enter an address, APN, or record number",summary:"Use at least three characters.",candidates:[]}); return; }
                 const label = adamsSearch.textContent; adamsSearch.disabled = true; adamsSearch.textContent = "Searching Adams County...";
                 try {
-                    const response = await fetch("/api/adams-septic-lookup", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clue})});
-                    const payload = await response.json(); renderAdamsResults(payload);
+                    const safeClue = clue.replace(/[^\p{L}\p{N} .#'/-]/gu, " ").replace(/\s+/g, " ").slice(0, 100);
+                    const sqlClue = safeClue.toUpperCase().replaceAll("'", "''");
+                    const query = new URLSearchParams({
+                        f: "json",
+                        where: `UPPER(Address_Full) LIKE '%${sqlClue}%' OR UPPER(APN) LIKE '%${sqlClue}%' OR UPPER(RECORD_ID) LIKE '%${sqlClue}%'`,
+                        outFields: "Address_Full,APN,RECORD_ID,PE_Description,APPLICATION_DATE",
+                        returnGeometry: "false",
+                        orderByFields: "APPLICATION_DATE DESC",
+                        resultRecordCount: "10"
+                    });
+                    const response = await fetch(`https://services8.arcgis.com/8G2jD4VY84pgX1Z5/arcgis/rest/services/Septic_Records/FeatureServer/6/query?${query}`);
+                    const source = await response.json();
+                    if (!response.ok || source.error) throw new Error("county query unavailable");
+                    const candidates = Array.isArray(source.features) ? source.features.map((feature) => {
+                        const attributes = feature.attributes || {};
+                        return {
+                            address: attributes.Address_Full || "",
+                            apn: attributes.APN || "",
+                            recordId: attributes.RECORD_ID || "",
+                            description: attributes.PE_Description || "",
+                            applicationDate: attributes.APPLICATION_DATE ? new Date(attributes.APPLICATION_DATE).toLocaleDateString() : ""
+                        };
+                    }) : [];
+                    const payload = candidates.length ? {
+                        status: "found",
+                        heading: `${candidates.length} official candidate${candidates.length === 1 ? "" : "s"} found`,
+                        summary: "Match the address or APN before relying on a row. These are index candidates, not proof of current system condition.",
+                        candidates
+                    } : {
+                        status: "not_found",
+                        heading: "No matching online candidate appeared",
+                        summary: "This is not an official no-record finding. Try another clue and check the official county map.",
+                        candidates: []
+                    };
+                    renderAdamsResults(payload);
                     writeState({stage:"metadata_queried",metadataStatus:payload.status || "unknown"});
                     emitCountyGaEvent("county_public_index_queried",{index_name:"adams_septic_arcgis",lookup_status:payload.status || "unknown"});
                 } catch (_) { renderAdamsResults({heading:"The official Adams dataset did not respond",summary:"Open the county map and try the same clue there.",candidates:[]}); }
