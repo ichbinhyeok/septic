@@ -6337,6 +6337,26 @@ body.records-task-mode .records-request-builder {
     margin-top: 0.9rem;
 }
 
+.county-access-followup {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.county-access-followup p {
+    max-width: 44rem;
+    margin: 0;
+}
+
+.county-access-followup__status {
+    min-height: 1.25rem;
+    color: #dff46a;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
 .county-access-return__clear {
     grid-column: 2;
     justify-self: start;

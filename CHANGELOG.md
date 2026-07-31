@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2.6 - 2026-07-31
+
+- Submitted county requests now offer a privacy-safe seven-day calendar reminder and return link so users can record the county's later response.
+- Reminder files and URLs exclude property addresses, parcel IDs, and county request numbers.
+- Returning from a reminder opens the saved county outcome workspace and records follow-up scheduling, link-copy, and resume events.
+
 ## 0.0.2.5 - 2026-07-31
 
 - Tarrant County now opens the JustFOIA public-information portal as the primary county-owned OSSF request route after the jurisdiction check.

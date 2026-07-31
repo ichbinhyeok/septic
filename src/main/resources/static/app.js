@@ -2428,6 +2428,7 @@
             const requestedPropertyAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
             const requestedPurpose = new URLSearchParams(window.location.search).get("purpose")?.trim() || "";
             const requestedWorkflowRunId = new URLSearchParams(window.location.search).get("workflowRunId")?.trim() || "";
+            const requestedResume = new URLSearchParams(window.location.search).get("resume") === "1";
             const primaryUrl = workflow.dataset.countyPrimaryUrl || "";
             const secondaryUrl = workflow.dataset.countySecondaryUrl || "";
             const address = workflow.querySelector("[data-county-access-address]");
@@ -2593,6 +2594,133 @@
                 return link;
             }
 
+            function actionButton(label, primary = false) {
+                const button = document.createElement("button");
+                button.className = `button ${primary ? "button--primary" : "button--secondary"}`;
+                button.type = "button";
+                button.textContent = label;
+                return button;
+            }
+
+            function resumeUrl() {
+                const url = new URL(window.location.pathname, window.location.origin);
+                url.searchParams.set("resume", "1");
+                url.searchParams.set("workflowRunId", workflowRunId);
+                url.hash = "county-access-return";
+                return url.toString();
+            }
+
+            function calendarTimestamp(date) {
+                return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+            }
+
+            function calendarText(value) {
+                return String(value || "")
+                    .replace(/\\/g, "\\\\")
+                    .replace(/\r?\n/g, "\\n")
+                    .replace(/;/g, "\\;")
+                    .replace(/,/g, "\\,");
+            }
+
+            function downloadFollowupCalendar(outcome, status) {
+                const createdAt = new Date();
+                const startsAt = new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000);
+                const endsAt = new Date(startsAt.getTime() + 30 * 60 * 1000);
+                const countyName = countyNameFromSlug();
+                const returnUrl = resumeUrl();
+                const calendar = [
+                    "BEGIN:VCALENDAR",
+                    "VERSION:2.0",
+                    "PRODID:-//SepticPath//County records follow-up//EN",
+                    "CALSCALE:GREGORIAN",
+                    "METHOD:PUBLISH",
+                    "BEGIN:VEVENT",
+                    `UID:${calendarText(workflowRunId)}@septicpath.com`,
+                    `DTSTAMP:${calendarTimestamp(createdAt)}`,
+                    `DTSTART:${calendarTimestamp(startsAt)}`,
+                    `DTEND:${calendarTimestamp(endsAt)}`,
+                    `SUMMARY:${calendarText(`Check ${countyName} septic records request`)}`,
+                    `DESCRIPTION:${calendarText("Return to SepticPath and record whether the county sent a document or a written response. Property details and request numbers are not included in this reminder.")}`,
+                    `URL:${calendarText(returnUrl)}`,
+                    "END:VEVENT",
+                    "END:VCALENDAR",
+                    ""
+                ].join("\r\n");
+                const blob = new Blob([calendar], { type: "text/calendar;charset=utf-8" });
+                const objectUrl = URL.createObjectURL(blob);
+                const download = document.createElement("a");
+                download.href = objectUrl;
+                download.download = `septicpath-${countySlug || "county"}-follow-up.ics`;
+                document.body.append(download);
+                download.click();
+                download.remove();
+                window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
+                writeState({ followupScheduledAt: createdAt.getTime(), followupDueAt: startsAt.getTime() });
+                recordCountyStage("followup_scheduled", outcome);
+                emitCountyGaEvent("county_followup_calendar_downloaded", {
+                    followup_days: 7,
+                    result_source: "user_scheduled"
+                });
+                if (status instanceof HTMLElement) {
+                    status.textContent = "Calendar reminder downloaded. It contains no address, parcel ID, or request number.";
+                }
+            }
+
+            async function copyResumeLink(outcome, status) {
+                const returnUrl = resumeUrl();
+                let copied = false;
+                try {
+                    await navigator.clipboard.writeText(returnUrl);
+                    copied = true;
+                } catch (_) {
+                    const fallback = document.createElement("textarea");
+                    fallback.value = returnUrl;
+                    fallback.setAttribute("readonly", "");
+                    fallback.style.position = "fixed";
+                    fallback.style.opacity = "0";
+                    document.body.append(fallback);
+                    fallback.select();
+                    copied = document.execCommand("copy");
+                    fallback.remove();
+                }
+                if (copied) {
+                    recordCountyStage("resume_link_copied", outcome);
+                    emitCountyGaEvent("county_resume_link_copied", {
+                        result_source: "user_copied"
+                    });
+                }
+                if (status instanceof HTMLElement) {
+                    status.textContent = copied
+                        ? "Return link copied. It identifies only this county workflow, not the property or request number."
+                        : "Copy was blocked. Use the calendar reminder or bookmark this page instead.";
+                }
+            }
+
+            function appendFollowupActions(block, outcome) {
+                const followup = document.createElement("div");
+                followup.className = "county-access-followup";
+                const heading = document.createElement("strong");
+                heading.textContent = "Come back when the county replies.";
+                const body = document.createElement("p");
+                body.textContent = "Set a seven-day calendar check or copy a private-safe return link. The reminder never includes the address, parcel ID, or county reference.";
+                const actions = document.createElement("div");
+                actions.className = "county-access-workflow__actions";
+                const calendarButton = actionButton("Add a 7-day calendar reminder", true);
+                const copyButton = actionButton("Copy private-safe return link");
+                const status = document.createElement("span");
+                status.className = "county-access-followup__status";
+                status.setAttribute("aria-live", "polite");
+                const savedDueAt = Number(readState()?.followupDueAt || 0);
+                if (savedDueAt > Date.now()) {
+                    status.textContent = `Reminder already created for ${new Date(savedDueAt).toLocaleDateString()}.`;
+                }
+                calendarButton.addEventListener("click", () => downloadFollowupCalendar(outcome, status));
+                copyButton.addEventListener("click", () => copyResumeLink(outcome, status));
+                actions.append(calendarButton, copyButton);
+                followup.append(heading, body, actions, status);
+                block.append(followup);
+            }
+
             function workspacePath() {
                 const params = new URLSearchParams();
                 if (safeValue(address)) {
@@ -2735,6 +2863,9 @@
                 }
 
                 block.append(heading, body, actions);
+                if (outcome === "request_submitted") {
+                    appendFollowupActions(block, outcome);
+                }
                 next.replaceChildren(block);
             }
 
@@ -2754,10 +2885,22 @@
                 }
                 if (saved.outcome) {
                     outcomes.forEach((button) => {
-                        button.toggleAttribute("aria-pressed", button.dataset.countyAccessOutcome === saved.outcome);
+                        if (button.dataset.countyAccessOutcome === saved.outcome) {
+                            button.setAttribute("aria-pressed", "true");
+                        } else {
+                            button.removeAttribute("aria-pressed");
+                        }
                     });
                     renderNext(saved.outcome);
                 }
+            }
+            if (requestedResume) {
+                showReturn();
+                recordCountyStage("followup_resumed", saved?.outcome || "pending");
+                emitCountyGaEvent("county_followup_resumed", {
+                    result_source: "reminder_or_saved_link"
+                });
+                window.setTimeout(() => returnPanel?.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
             }
             if (address instanceof HTMLInputElement && requestedPropertyAddress) {
                 address.value = requestedPropertyAddress.slice(0, 180);

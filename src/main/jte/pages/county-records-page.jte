@@ -789,7 +789,7 @@
                         </section>
                     @endif
 
-                    <section class="county-access-return" data-county-access-return hidden>
+                    <section class="county-access-return" id="county-access-return" data-county-access-return hidden>
                         <div>
                             <span class="eyebrow">Back from the official route?</span>
                             <h3>Record the real outcome</h3>

@@ -1493,6 +1493,25 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void countyRequestFollowupKeepsReminderLinksPrivacySafe() throws Exception {
+		mockMvc.perform(get("/septic-records-checklist/texas/tarrant-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"county-access-return\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-access-return")));
+
+		mockMvc.perform(get("/app.js"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Add a 7-day calendar reminder")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Copy private-safe return link")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county_followup_calendar_downloaded")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county_followup_resumed")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("button.setAttribute(\"aria-pressed\", \"true\")")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("url.searchParams.set(\"workflowRunId\", workflowRunId)")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("url.searchParams.set(\"address\""))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("url.searchParams.set(\"parcel\""))));
+	}
+
+	@Test
 	void alabamaCalculatorSeparatesOfficialFeesFromPrivateProjectCost() throws Exception {
 		mockMvc.perform(post("/septic-system-cost-calculator/")
 						.param("stateCode", "AL")
