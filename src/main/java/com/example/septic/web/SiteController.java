@@ -153,7 +153,17 @@ public class SiteController {
                     "alamance-county",
                     "guilford-county"
             ),
-            "IN", List.of("st-joseph-county"),
+            "IN", List.of(
+                    "porter-county",
+                    "monroe-county",
+                    "brown-county",
+                    "bartholomew-county",
+                    "grant-county",
+                    "la-porte-county",
+                    "washington-county",
+                    "tippecanoe-county",
+                    "st-joseph-county"
+            ),
             "SC", List.of("greenville-county")
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
@@ -1072,7 +1082,14 @@ public class SiteController {
         StateMoneyPage buyerPage = researchDataService.findPublicStateMoneyPage("buying-a-house-with-a-septic-system", "indiana")
                 .orElseThrow(() -> new StateNotFoundException("buying-a-house-with-a-septic-system/indiana"));
         String packetUrl = seoService.absoluteUrl(INDIANA_RECORDS_PACKET_PATH);
-        List<PageLink> countyLinks = countyRecordPageLinks(state.stateCode()).stream().limit(4).toList();
+        List<PageLink> allCountyLinks = countyRecordPageLinks(state.stateCode());
+        List<PageLink> countyLinks = java.util.stream.Stream.concat(
+                        allCountyLinks.stream().filter(link -> link.path().contains("/howard-county/")),
+                        stateRecordsCountyLinks(state.stateCode(), allCountyLinks).stream()
+                )
+                .distinct()
+                .limit(4)
+                .toList();
         WorkflowPacketView packet = new WorkflowPacketView(
                 "Professional workflow packet",
                 "Indiana septic records packet for buyer agents and coordinators",

@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-08-01",
-  "source": "Google Search Console API page and query totals reviewed through 2026-07-30 plus privacy-threshold-safe county response vocabulary",
+  "source": "Google Search Console API page and query totals reviewed through 2026-07-31 plus privacy-threshold-safe county response vocabulary",
   "targets": [
     {
       "targetType": "state_records",
@@ -45,12 +45,100 @@
         "septic system lookup",
         "county records route"
       ],
-      "evidenceWindow": "2026-06-08..2026-07-06",
-      "clicks": 19,
-      "impressions": 317,
-      "ctr": 0.0599369085,
-      "position": 11.8517350158,
-      "evidenceNote": "Best records page by clicks; preserve and amplify state-to-county path."
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 39,
+      "impressions": 625,
+      "ctr": 0.0624,
+      "position": 10.1056,
+      "evidenceNote": "Strongest current records hub by clicks; preserve it and shorten the state-to-county path."
+    },
+    {
+      "targetType": "county_records",
+      "key": "IN::porter-county",
+      "path": "/septic-records-checklist/indiana/porter-county/",
+      "boost": 158,
+      "queries": [
+        "porter county septic records",
+        "porter county septic permit lookup",
+        "porter county septic permit search",
+        "porter county septic records request"
+      ],
+      "recommendedAnchors": [
+        "Porter County septic records",
+        "Porter County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 1,
+      "impressions": 17,
+      "ctr": 0.0588235294,
+      "position": 5.1176470588,
+      "evidenceNote": "Largest visible Indiana county-page impression pool and already averaging near position 5."
+    },
+    {
+      "targetType": "county_records",
+      "key": "IN::monroe-county",
+      "path": "/septic-records-checklist/indiana/monroe-county/",
+      "boost": 154,
+      "queries": [
+        "monroe county indiana septic records",
+        "monroe county septic permit lookup",
+        "monroe county septic permit search",
+        "monroe county septic records request"
+      ],
+      "recommendedAnchors": [
+        "Monroe County Indiana septic records",
+        "Monroe County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 2,
+      "impressions": 12,
+      "ctr": 0.1666666667,
+      "position": 6.5,
+      "evidenceNote": "Highest-click Indiana county page in the current window with room to move from position 6.5."
+    },
+    {
+      "targetType": "county_records",
+      "key": "IN::brown-county",
+      "path": "/septic-records-checklist/indiana/brown-county/",
+      "boost": 150,
+      "queries": [
+        "brown county indiana septic records",
+        "brown county septic permit lookup",
+        "brown county septic permit search",
+        "brown county septic records request"
+      ],
+      "recommendedAnchors": [
+        "Brown County Indiana septic records",
+        "Brown County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 8.2222222222,
+      "evidenceNote": "First-page visibility without a click makes this a practical CTR and internal-link opportunity."
+    },
+    {
+      "targetType": "county_records",
+      "key": "IN::grant-county",
+      "path": "/septic-records-checklist/indiana/grant-county/",
+      "boost": 146,
+      "queries": [
+        "grant county indiana septic records",
+        "grant county septic permit lookup",
+        "grant county septic permit search",
+        "grant county septic records request"
+      ],
+      "recommendedAnchors": [
+        "Grant County Indiana septic records",
+        "Grant County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 7.375,
+      "evidenceNote": "First-page visibility without a click; exact response language and stronger hub linkage are warranted."
     },
     {
       "targetType": "state_records",

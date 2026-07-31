@@ -49,16 +49,16 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
-                @if ("NC".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()) && !countyRecordLinks.isEmpty())
-                    <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="North Carolina county record picker">
+                @if (("NC".equals(state.stateCode()) || "IN".equals(state.stateCode())) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()) && !countyRecordLinks.isEmpty())
+                    <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="${state.stateName()} county record picker">
                         <span class="hero-county-launchpad__label">County records</span>
                         <p class="hero-county-launchpad__note">Already know the county? Open its local permit-record workflow without leaving SepticPath.</p>
-                        <form class="hero-county-picker" data-county-route-picker>
-                            <label for="north-carolina-county-route">Find your North Carolina county</label>
+                        <form class="hero-county-picker" data-county-route-picker data-county-route-prefix="/septic-records-checklist/${state.slug()}/" data-county-route-state="${state.stateName()}">
+                            <label for="${state.slug()}-county-route">Find your ${state.stateName()} county</label>
                             <div class="hero-county-picker__controls">
-                                <select id="north-carolina-county-route" data-county-route-select required>
+                                <select id="${state.slug()}-county-route" data-county-route-select required>
                                     <option value="">Choose a county</option>
-                                    @for (var countyLink : countyRecordLinks)
+                                    @for (var countyLink : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks))
                                         <option value="${countyLink.path()}">${countyLink.compactTitle()}</option>
                                     @endfor
                                 </select>
