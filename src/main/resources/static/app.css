@@ -6189,7 +6189,8 @@ body.records-task-mode .records-request-builder {
     content: "•";
 }
 
-.brunswick-permit-lookup {
+.brunswick-permit-lookup,
+.thurston-record-lookup {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 1.25rem 2rem;
@@ -6199,11 +6200,13 @@ body.records-task-mode .records-request-builder {
     background: #f1f6ef;
 }
 
-.brunswick-permit-lookup h3 {
+.brunswick-permit-lookup h3,
+.thurston-record-lookup h3 {
     font-size: clamp(1.3rem, 2vw, 1.8rem);
 }
 
-.brunswick-permit-lookup__results {
+.brunswick-permit-lookup__results,
+.thurston-record-lookup__results {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem;
@@ -6214,22 +6217,28 @@ body.records-task-mode .records-request-builder {
 
 .brunswick-permit-lookup__results > h4,
 .brunswick-permit-lookup__results > p,
-.brunswick-permit-lookup__results > .county-access-workflow__actions {
+.brunswick-permit-lookup__results > .county-access-workflow__actions,
+.thurston-record-lookup__results > h4,
+.thurston-record-lookup__results > p,
+.thurston-record-lookup__results > .county-access-workflow__actions {
     grid-column: 1 / -1;
 }
 
-.brunswick-permit-lookup__results h4 {
+.brunswick-permit-lookup__results h4,
+.thurston-record-lookup__results h4 {
     margin: 0;
     font-size: 1.25rem;
 }
 
-.brunswick-permit-lookup__candidate {
+.brunswick-permit-lookup__candidate,
+.thurston-record-lookup__candidate {
     padding: 1rem;
     border-left: 3px solid var(--county-access-accent);
     background: #fff;
 }
 
-.brunswick-permit-lookup__candidate p {
+.brunswick-permit-lookup__candidate p,
+.thurston-record-lookup__candidate p {
     margin-top: 0.35rem;
     overflow-wrap: anywhere;
     font-size: 0.88rem;

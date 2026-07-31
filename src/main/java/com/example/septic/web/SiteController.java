@@ -29,6 +29,7 @@ import com.example.septic.service.SoilPercStatus;
 import com.example.septic.service.StateQueuePlanService;
 import com.example.septic.service.TankSizeEstimatorResult;
 import com.example.septic.service.TankSizeEstimatorService;
+import com.example.septic.service.ThurstonRecordLookupService;
 import com.example.septic.service.TimelinePreference;
 import com.example.septic.service.PumpScheduleResult;
 import com.example.septic.service.PumpScheduleService;
@@ -437,6 +438,7 @@ public class SiteController {
     private final PublishingPolicyService publishingPolicyService;
     private final CensusAddressLookupService censusAddressLookupService;
     private final BrunswickPermitLookupService brunswickPermitLookupService;
+    private final ThurstonRecordLookupService thurstonRecordLookupService;
     private final EventAnalyticsService eventAnalyticsService;
     private final CountyContentQualityService countyContentQualityService;
     private final SepticDocumentAnalysisService septicDocumentAnalysisService;
@@ -456,6 +458,7 @@ public class SiteController {
             PublishingPolicyService publishingPolicyService,
             CensusAddressLookupService censusAddressLookupService,
             BrunswickPermitLookupService brunswickPermitLookupService,
+            ThurstonRecordLookupService thurstonRecordLookupService,
             EventAnalyticsService eventAnalyticsService,
             CountyContentQualityService countyContentQualityService,
             SepticDocumentAnalysisService septicDocumentAnalysisService,
@@ -474,6 +477,7 @@ public class SiteController {
         this.publishingPolicyService = publishingPolicyService;
         this.censusAddressLookupService = censusAddressLookupService;
         this.brunswickPermitLookupService = brunswickPermitLookupService;
+        this.thurstonRecordLookupService = thurstonRecordLookupService;
         this.eventAnalyticsService = eventAnalyticsService;
         this.countyContentQualityService = countyContentQualityService;
         this.septicDocumentAnalysisService = septicDocumentAnalysisService;
@@ -683,6 +687,18 @@ public class SiteController {
         String address = form == null ? "" : form.address();
         String parcelId = form == null ? "" : form.parcelId();
         BrunswickPermitLookupService.LookupResult result = brunswickPermitLookupService.lookup(address, parcelId);
+        return "invalid".equals(result.status())
+                ? ResponseEntity.badRequest().body(result)
+                : ResponseEntity.ok(result);
+    }
+
+    @PostMapping(value = "/api/thurston-record-lookup", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<ThurstonRecordLookupService.LookupResult> thurstonRecordLookup(
+            @RequestBody ThurstonRecordLookupForm form
+    ) {
+        ThurstonRecordLookupService.LookupResult result = thurstonRecordLookupService.lookup(
+                form == null ? "" : form.parcelId());
         return "invalid".equals(result.status())
                 ? ResponseEntity.badRequest().body(result)
                 : ResponseEntity.ok(result);

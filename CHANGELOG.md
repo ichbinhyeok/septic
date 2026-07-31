@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2.7 - 2026-07-31
+
+- Thurston County now offers an in-product parcel search against the county's public Laserfiche archive before the record-drawing fallback.
+- Search results stay labeled as official document candidates until the user confirms the parcel and septic file type in the county record itself.
+- The lookup keeps parcel data in the request only, limits result display, and records anonymous archive-query outcomes for the county workflow funnel.
+
 ## 0.0.2.6 - 2026-07-31
 
 - Submitted county requests now offer a privacy-safe seven-day calendar reminder and return link so users can record the county's later response.

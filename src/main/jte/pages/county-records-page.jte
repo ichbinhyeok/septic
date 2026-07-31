@@ -789,6 +789,20 @@
                         </section>
                     @endif
 
+                    @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
+                        <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
+                            <div>
+                                <span class="eyebrow">Official public query</span>
+                                <h3>Search Thurston County records by parcel</h3>
+                                <p>Uses the parcel number above to query the county's public Laserfiche archive. A result is an official document candidate, not proof that the file is a septic record for the property.</p>
+                            </div>
+                            <button class="button button--primary" type="button" data-thurston-record-search>
+                                Search official county records
+                            </button>
+                            <div class="thurston-record-lookup__results" data-thurston-record-results aria-live="polite"></div>
+                        </section>
+                    @endif
+
                     <section class="county-access-return" id="county-access-return" data-county-access-return hidden>
                         <div>
                             <span class="eyebrow">Back from the official route?</span>

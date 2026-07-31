@@ -2030,6 +2030,18 @@ class SepticApplicationTests {
 						.content("{\"address\":\"\",\"parcelId\":\"\"}"))
 				.andExpect(status().isBadRequest())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"status\":\"invalid\"")));
+
+		mockMvc.perform(get("/septic-records-checklist/washington/thurston-county/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Thurston County records by parcel")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-thurston-record-search")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("public Laserfiche archive")));
+
+		mockMvc.perform(post("/api/thurston-record-lookup")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("{\"parcelId\":\"\"}"))
+				.andExpect(status().isBadRequest())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"status\":\"invalid\"")));
 	}
 
 	@Test

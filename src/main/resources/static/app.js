@@ -3766,6 +3766,99 @@
                 }
             });
 
+            const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
+            const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
+            const thurstonResults = workflow.querySelector("[data-thurston-record-results]");
+
+            function renderThurstonResults(payload) {
+                if (!(thurstonResults instanceof HTMLElement)) {
+                    return;
+                }
+                const heading = document.createElement("h4");
+                heading.textContent = payload.heading || "County archive result";
+                const summary = document.createElement("p");
+                summary.textContent = payload.summary || "";
+                const fragment = document.createDocumentFragment();
+                fragment.append(heading, summary);
+
+                const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+                candidates.forEach((candidate) => {
+                    const card = document.createElement("article");
+                    card.className = "thurston-record-lookup__candidate";
+                    if (candidate.septicCandidate) {
+                        const badge = document.createElement("span");
+                        badge.className = "pill";
+                        badge.textContent = "Septic-related wording found";
+                        card.append(badge);
+                    }
+                    const title = document.createElement("strong");
+                    title.textContent = candidate.title || "County document";
+                    card.append(title);
+                    if (candidate.documentUrl) {
+                        const actions = document.createElement("div");
+                        actions.className = "county-access-workflow__actions";
+                        actions.append(actionLink("Open the official document", candidate.documentUrl, true));
+                        card.append(actions);
+                    }
+                    fragment.append(card);
+                });
+
+                const actions = document.createElement("div");
+                actions.className = "county-access-workflow__actions";
+                if (payload.sourceUrl) {
+                    actions.append(actionLink("Inspect the official archive", payload.sourceUrl));
+                }
+                if (secondaryUrl) {
+                    actions.append(actionLink("Use the official record-drawing request", secondaryUrl, candidates.length > 0));
+                }
+                fragment.append(actions);
+                thurstonResults.replaceChildren(fragment);
+                thurstonResults.hidden = false;
+            }
+
+            thurstonSearch?.addEventListener("click", async () => {
+                if (!(thurstonLookup instanceof HTMLElement)) {
+                    return;
+                }
+                const searchParcel = safeValue(parcel);
+                if (searchParcel.length < 3) {
+                    if (status instanceof HTMLElement) {
+                        status.textContent = "Add the Thurston parcel number first. The county archive does not accept wildcard address searches.";
+                    }
+                    parcel?.focus();
+                    return;
+                }
+
+                const originalLabel = thurstonSearch.textContent;
+                thurstonSearch.disabled = true;
+                thurstonSearch.textContent = "Searching the county archive...";
+                try {
+                    const response = await fetch("/api/thurston-record-lookup", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ parcelId: searchParcel })
+                    });
+                    const payload = await response.json();
+                    renderThurstonResults(payload);
+                    writeState({ stage: "metadata_queried", metadataStatus: payload.status || "unknown" });
+                    sendArtifactAction("county_access_workflow", `thurston_archive_${payload.status || "unknown"}`, mode);
+                    emitCountyGaEvent("county_public_index_queried", {
+                        index_name: "thurston_laserfiche",
+                        lookup_status: payload.status || "unknown"
+                    });
+                } catch (_) {
+                    renderThurstonResults({
+                        heading: "The Thurston County archive did not respond",
+                        summary: "Your parcel number remains on this device. Open the official archive or use the record-drawing request.",
+                        sourceUrl: primaryUrl,
+                        candidates: []
+                    });
+                } finally {
+                    thurstonSearch.disabled = false;
+                    thurstonSearch.textContent = originalLabel;
+                }
+            });
+
             officialLinks.forEach((link) => {
                 link.addEventListener("click", () => {
                     if (!workflow.contains(link) && !document.body.contains(workflow)) {
