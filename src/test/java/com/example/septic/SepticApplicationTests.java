@@ -1942,6 +1942,12 @@ class SepticApplicationTests {
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("I found the permit or certificate")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("The address was not listed")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("The official search was blocked")));
+			} else if ("NC::alamance-county".equals(route[1])) {
+				response.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with an address or GPIN")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official information-request form")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("I received a file")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("The county needs another property clue")))
+						.andExpect(content().string(org.hamcrest.Matchers.containsString("Three business days passed with no response")));
 			} else {
 				response.andExpect(content().string(org.hamcrest.Matchers.containsString("I downloaded a document")))
 						.andExpect(content().string(org.hamcrest.Matchers.containsString("Nothing appeared online")))

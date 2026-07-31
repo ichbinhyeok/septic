@@ -464,6 +464,44 @@
                                 </section>
                             @endif
 
+                            @if ("NC::alamance-county".equals(countyAccessProfile.countyKey()))
+                                <section class="alamance-request-start" aria-labelledby="alamance-request-start-heading" data-alamance-request-start>
+                                    <div>
+                                        <span class="eyebrow">Existing file request</span>
+                                        <h4 id="alamance-request-start-heading">Start with an address or GPIN</h4>
+                                        <p>Request an existing septic permit or soil evaluation — not a new permit or a paid inspection. The county says to allow three business days.</p>
+                                    </div>
+                                    <div class="alamance-request-start__fields">
+                                        <label for="county-acquisition-address">
+                                            <span>Property address <small>or use the GPIN below</small></span>
+                                            <input id="county-acquisition-address"
+                                                   type="text"
+                                                   maxlength="180"
+                                                   autocomplete="street-address"
+                                                   placeholder="Street, city, state, ZIP"
+                                                   data-county-access-address>
+                                        </label>
+                                        <label for="county-acquisition-parcel">
+                                            <span>GPIN / parcel ID <small>or use the address above</small></span>
+                                            <input id="county-acquisition-parcel"
+                                                   type="text"
+                                                   maxlength="100"
+                                                   autocomplete="off"
+                                                   placeholder="If known"
+                                                   data-county-access-parcel>
+                                        </label>
+                                        <a class="button button--primary"
+                                           href="${countyAccessProfile.primaryUrl()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-county-access-official
+                                           data-county-route-position="alamance_request_start"
+                                           data-alamance-request-open>Open the official information-request form</a>
+                                        <p class="alamance-request-start__hint" data-alamance-request-status aria-live="polite">Use either identifier. Add owner, old tax-map, and date details only if the county needs them.</p>
+                                    </div>
+                                </section>
+                            @endif
+
                             <div class="county-acquisition-workspace__body">
                                 @if (countyAcquisitionProfile.hasPreparedFieldPack())
                                 <form class="county-acquisition-fields" data-county-acquisition-fields>
@@ -472,7 +510,7 @@
                                         <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Complete the known county fields before asking only what changed" : "Prepare the required details here, then copy them into the county form"}</strong>
                                         <p data-county-acquisition-readiness aria-live="polite">Start filling the confirmed inputs below.</p>
                                     </div>
-                                    @if (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier())
+                                    @if (!"NC::alamance-county".equals(countyAccessProfile.countyKey()) && (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier()))
                                         <fieldset class="county-acquisition-fieldset">
                                             <legend>Property to identify</legend>
                                             <p>Use the same property clues you will carry into the official route.</p>
@@ -844,11 +882,17 @@
                                 <button type="button" data-county-access-outcome="not_found_online">The address was not listed</button>
                                 <button type="button" data-county-access-outcome="blocked">The official search was blocked</button>
                             @else
+                            @if ("NC::alamance-county".equals(countyAccessProfile.countyKey()))
+                                <button type="button" data-county-access-outcome="artifact">I received a file</button>
+                                <button type="button" data-county-access-outcome="partial">The county needs another property clue</button>
+                                <button type="button" data-county-access-outcome="followup_due">Three business days passed with no response</button>
+                            @else
                                 <button type="button" data-county-access-outcome="artifact">I downloaded a document</button>
                                 <button type="button" data-county-access-outcome="partial">I found only part of the file</button>
                                 <button type="button" data-county-access-outcome="not_found_online">Nothing appeared online</button>
                                 <button type="button" data-county-access-outcome="blocked">The route was blocked</button>
                                 <button type="button" data-county-access-outcome="request_submitted">I submitted a request</button>
+                            @endif
                             @endif
                         </div>
                         <label class="county-access-return__reference">

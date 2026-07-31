@@ -2848,6 +2848,13 @@
                             actions.append(actionLink("Open the alternate route", secondaryUrl));
                         }
                     }
+                } else if (outcome === "followup_due") {
+                    heading.textContent = "Follow up on the existing-file request now.";
+                    body.textContent = countyKey === "NC::alamance-county"
+                        ? "The county's stated three-business-day window has passed. Reopen the request form or call Environmental Health with the property address or GPIN ready."
+                        : "The expected response window has passed. Reopen the verified county route with the property details you already collected.";
+                    appendOfficialAction(actions, officialActionLabel("Reopen"), true, outcome);
+                    actions.append(actionLink("Open the document workspace", workspacePath()));
                 } else {
                     heading.textContent = "Track the request until the office sends a property-specific result.";
                     const savedReference = safeValue(reference);
@@ -3383,6 +3390,28 @@
                             hamiltonQuickStatus.textContent = "Opening the county search in a new tab. Choose the exact full address there.";
                         }
                         markGaPreparationStarted("hamilton_quick_search");
+                    });
+                }
+
+                const alamanceRequestStart = workflow.querySelector("[data-alamance-request-start]");
+                const alamanceRequestOpen = workflow.querySelector("[data-alamance-request-open]");
+                const alamanceRequestStatus = workflow.querySelector("[data-alamance-request-status]");
+
+                if (alamanceRequestStart instanceof HTMLElement
+                    && alamanceRequestOpen instanceof HTMLAnchorElement) {
+                    alamanceRequestOpen.addEventListener("click", (event) => {
+                        if (!safeValue(address) && !safeValue(parcel)) {
+                            event.preventDefault();
+                            if (alamanceRequestStatus instanceof HTMLElement) {
+                                alamanceRequestStatus.textContent = "Add the property address or GPIN first so the county can identify the existing file.";
+                            }
+                            address?.focus();
+                            return;
+                        }
+                        if (alamanceRequestStatus instanceof HTMLElement) {
+                            alamanceRequestStatus.textContent = "Opening the official form in a new tab. Complete the requester details and select the records you need there.";
+                        }
+                        markGaPreparationStarted("alamance_request_start");
                     });
                 }
 

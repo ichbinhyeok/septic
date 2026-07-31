@@ -5709,6 +5709,75 @@ body.records-task-mode .records-request-builder {
     font-size: 0.86rem;
 }
 
+.alamance-request-start {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
+    gap: clamp(1.25rem, 3vw, 3rem);
+    align-items: end;
+    padding: clamp(1.4rem, 3vw, 2.4rem);
+    background: #fffdf8;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.1);
+}
+
+.alamance-request-start h4 {
+    max-width: 20ch;
+    margin: 0.35rem 0 0;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    line-height: 1.12;
+}
+
+.alamance-request-start > div > p {
+    max-width: 52ch;
+    margin: 0.7rem 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.alamance-request-start__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+}
+
+.alamance-request-start label {
+    display: grid;
+    gap: 0.4rem;
+    color: var(--text);
+    font-weight: 800;
+}
+
+.alamance-request-start label small {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.alamance-request-start input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.85rem;
+    color: var(--text);
+    border: 1px solid rgba(20, 34, 32, 0.2);
+    border-radius: 0.55rem;
+    background: #fff;
+}
+
+.alamance-request-start input:focus {
+    outline: 3px solid color-mix(in srgb, var(--accent-strong) 18%, transparent);
+    border-color: var(--accent-strong);
+}
+
+.alamance-request-start__fields .button,
+.alamance-request-start__hint {
+    grid-column: 1 / -1;
+}
+
+.alamance-request-start__hint {
+    min-height: 1.35rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+}
+
 .county-acquisition-facts {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6440,7 +6509,8 @@ body.records-task-mode .records-request-builder {
 @media (max-width: 1120px) {
     .county-acquisition-workspace__header,
     .county-acquisition-workspace__body,
-    .hamilton-quick-search {
+    .hamilton-quick-search,
+    .alamance-request-start {
         grid-template-columns: 1fr;
     }
 
@@ -6491,6 +6561,10 @@ body.records-task-mode .records-request-builder {
 }
 
 @media (max-width: 700px) {
+    .alamance-request-start__fields {
+        grid-template-columns: 1fr;
+    }
+
     .county-service-scope {
         grid-template-columns: 1fr;
         border-radius: 16px;
