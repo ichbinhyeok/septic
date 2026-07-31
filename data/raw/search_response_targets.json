@@ -170,19 +170,132 @@
       "queries": [
         "south carolina septic records",
         "dhec septic permit lookup",
+        "free dhec septic permit lookup",
+        "dhec septic tank records",
         "scdes septic records",
+        "scdes permit search",
         "south carolina d-1740 septic"
       ],
       "recommendedAnchors": [
         "South Carolina septic records",
         "SCDES septic permit lookup"
       ],
-      "evidenceWindow": "2026-06-08..2026-07-06",
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 30,
+      "impressions": 655,
+      "ctr": 0.0458015267,
+      "position": 9.2045801527,
+      "evidenceNote": "Strong state hub near the first-page boundary; preserve SCDES/DHEC intent and shorten the county handoff."
+    },
+    {
+      "targetType": "county_records",
+      "key": "SC::horry-county",
+      "path": "/septic-records-checklist/south-carolina/horry-county/",
+      "boost": 160,
+      "queries": [
+        "horry county septic records",
+        "horry county septic permit lookup",
+        "horry county scdes septic records",
+        "horry county d-1740 septic file"
+      ],
+      "recommendedAnchors": [
+        "Horry County septic records",
+        "Horry County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 1,
+      "impressions": 16,
+      "ctr": 0.0625,
+      "position": 5.375,
+      "evidenceNote": "Joint-largest visible SC county impression pool and already averaging near position 5."
+    },
+    {
+      "targetType": "county_records",
+      "key": "SC::greenville-county",
+      "path": "/septic-records-checklist/south-carolina/greenville-county/",
+      "boost": 158,
+      "queries": [
+        "greenville county septic records",
+        "greenville county septic permit lookup",
+        "greenville county scdes septic records",
+        "greenville county d-1740 septic file"
+      ],
+      "recommendedAnchors": [
+        "Greenville County septic records",
+        "Greenville County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 1,
+      "impressions": 16,
+      "ctr": 0.0625,
+      "position": 6.5625,
+      "evidenceNote": "Joint-largest visible SC county impression pool with established first-page visibility."
+    },
+    {
+      "targetType": "county_records",
+      "key": "SC::spartanburg-county",
+      "path": "/septic-records-checklist/south-carolina/spartanburg-county/",
+      "boost": 156,
+      "queries": [
+        "spartanburg county septic records",
+        "spartanburg county septic permit lookup",
+        "spartanburg county scdes septic records",
+        "spartanburg county d-1740 septic file"
+      ],
+      "recommendedAnchors": [
+        "Spartanburg County septic records",
+        "Spartanburg County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 6.1875,
+      "evidenceNote": "Largest zero-click SC county opportunity while already averaging position 6.19."
+    },
+    {
+      "targetType": "county_records",
+      "key": "SC::charleston-county",
+      "path": "/septic-records-checklist/south-carolina/charleston-county/",
+      "boost": 152,
+      "queries": [
+        "charleston county septic records",
+        "charleston county septic permit lookup",
+        "charleston county scdes septic records",
+        "charleston county d-1740 septic file"
+      ],
+      "recommendedAnchors": [
+        "Charleston County septic records",
+        "Charleston County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
+      "clicks": 1,
+      "impressions": 13,
+      "ctr": 0.0769230769,
+      "position": 8.3846153846,
+      "evidenceNote": "Visible on page one with enough impressions for stronger state-hub discovery to matter."
+    },
+    {
+      "targetType": "county_records",
+      "key": "SC::anderson-county",
+      "path": "/septic-records-checklist/south-carolina/anderson-county/",
+      "boost": 150,
+      "queries": [
+        "anderson county south carolina septic records",
+        "anderson county septic permit lookup",
+        "anderson county scdes septic records",
+        "anderson county d-1740 septic file"
+      ],
+      "recommendedAnchors": [
+        "Anderson County South Carolina septic records",
+        "Anderson County septic permit lookup"
+      ],
+      "evidenceWindow": "2026-07-04..2026-07-31",
       "clicks": 2,
-      "impressions": 100,
-      "ctr": 0.02,
-      "position": 7.76,
-      "evidenceNote": "Good average position; SCDES/DHEC wording should stay prominent."
+      "impressions": 11,
+      "ctr": 0.1818181818,
+      "position": 4.4545454545,
+      "evidenceNote": "Highest-click SC county page and a county-specific query is also reaching the state hub."
     },
     {
       "targetType": "county_records",

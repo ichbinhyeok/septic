@@ -164,7 +164,16 @@ public class SiteController {
                     "tippecanoe-county",
                     "st-joseph-county"
             ),
-            "SC", List.of("greenville-county")
+            "SC", List.of(
+                    "horry-county",
+                    "greenville-county",
+                    "spartanburg-county",
+                    "charleston-county",
+                    "anderson-county",
+                    "richland-county",
+                    "pickens-county",
+                    "aiken-county"
+            )
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
