@@ -139,13 +139,22 @@ public class SiteController {
             FL_OSTDS_LOOKUP_SLUG, "FL",
             DHEC_PERMIT_LOOKUP_SLUG, "SC"
     );
-    private static final Map<String, String> PRIORITY_COUNTY_INTERNAL_LINK_SLUGS = Map.of(
-            "TX", "tarrant-county",
-            "CA", "san-bernardino-county",
-            "TN", "hamilton-county",
-            "NC", "wake-county",
-            "IN", "st-joseph-county",
-            "SC", "greenville-county"
+    private static final Map<String, List<String>> STATE_RECORDS_PRIORITY_COUNTY_SLUGS = Map.of(
+            "TX", List.of("tarrant-county"),
+            "CA", List.of("san-bernardino-county"),
+            "TN", List.of("hamilton-county"),
+            "NC", List.of(
+                    "buncombe-county",
+                    "wake-county",
+                    "union-county",
+                    "pitt-county",
+                    "pender-county",
+                    "johnston-county",
+                    "alamance-county",
+                    "guilford-county"
+            ),
+            "IN", List.of("st-joseph-county"),
+            "SC", List.of("greenville-county")
     );
     private static final List<String> PERMIT_LOOKUP_STATE_SLUGS = List.of(
             "septic-records-checklist",
@@ -2487,7 +2496,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(5).toList());
         model.addAttribute("secondaryInternalLinks", internalLinks.stream().skip(5).toList());
         model.addAttribute("countyRecordLinks", countyRecordLinks);
-        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        model.addAttribute("featuredCountyRecordLinks", featuredStateMoneyCountyLinks(
+                stateMoneyPage,
+                state,
+                countyRecordLinks
+        ));
         model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
         model.addAttribute("stateRecordsSearchResponse", stateRecordsSearchResponse);
         model.addAttribute("stateOfficialFilePathRows", stateOfficialFilePathRows(
@@ -6898,11 +6911,12 @@ The goal is to settle the permit path before we frame the project as a normal in
             return List.of();
         }
         LinkedHashMap<String, PageLink> selectedLinks = new LinkedHashMap<>();
-        Optional.ofNullable(PRIORITY_COUNTY_INTERNAL_LINK_SLUGS.get(stateCode))
-                .flatMap(preferredSlug -> countyRecordLinks.stream()
+        STATE_RECORDS_PRIORITY_COUNTY_SLUGS.getOrDefault(stateCode, List.of()).forEach(preferredSlug ->
+                countyRecordLinks.stream()
                         .filter(link -> link.path().contains("/" + preferredSlug + "/"))
-                        .findFirst())
-                .ifPresent(link -> selectedLinks.put(link.path(), link));
+                        .findFirst()
+                        .ifPresent(link -> selectedLinks.putIfAbsent(link.path(), link))
+        );
 
         Set<String> boostedCountySlugs = countySearchResponseSlugs(stateCode);
         countyRecordLinks.stream()
@@ -6913,6 +6927,25 @@ The goal is to settle the permit path before we frame the project as a normal in
             return selectedLinks.values().stream().limit(8).toList();
         }
         return countyRecordLinks.stream().limit(6).toList();
+    }
+
+    private List<PageLink> featuredStateMoneyCountyLinks(
+            StateMoneyPage stateMoneyPage,
+            StateProfile state,
+            List<PageLink> countyRecordLinks
+    ) {
+        if (countyRecordLinks == null || countyRecordLinks.isEmpty()) {
+            return List.of();
+        }
+        if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return countyRecordLinks.stream().limit(30).toList();
+        }
+
+        LinkedHashMap<String, PageLink> orderedLinks = new LinkedHashMap<>();
+        stateRecordsCountyLinks(state.stateCode(), countyRecordLinks)
+                .forEach(link -> orderedLinks.put(link.path(), link));
+        countyRecordLinks.forEach(link -> orderedLinks.putIfAbsent(link.path(), link));
+        return orderedLinks.values().stream().limit(30).toList();
     }
 
     private Set<String> countySearchResponseSlugs(String stateCode) {

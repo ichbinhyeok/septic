@@ -60,6 +60,7 @@
                 "[data-records-request-builder]",
                 "[data-packet-note]",
                 "[data-share-route]",
+                "[data-county-route-picker]",
                 "[data-state-surface-tool]"
             ].join(",");
 

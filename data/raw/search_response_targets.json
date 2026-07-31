@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-29",
-  "source": "Google Search Console API page totals reviewed through 2026-07-25 plus privacy-threshold-safe county response vocabulary",
+  "generatedAt": "2026-08-01",
+  "source": "Google Search Console API page and query totals reviewed through 2026-07-30 plus privacy-threshold-safe county response vocabulary",
   "targets": [
     {
       "targetType": "state_records",
@@ -221,12 +221,122 @@
         "Buncombe County septic permit lookup",
         "Buncombe County septic records"
       ],
-      "evidenceWindow": "2026-06-08..2026-07-06",
+      "evidenceWindow": "2026-07-03..2026-07-30",
       "clicks": 0,
-      "impressions": 7,
+      "impressions": 51,
       "ctr": 0,
-      "position": 21.0,
-      "evidenceNote": "Multiple related query variants are appearing; needs exact-anchor reinforcement."
+      "position": 8.14,
+      "evidenceNote": "The indexed county page had only two privacy-visible impressions while the state hub received 51 impressions for Buncombe septic lookup and search variants; route the exact intent here."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::wake-county",
+      "path": "/septic-records-checklist/north-carolina/wake-county/",
+      "boost": 146,
+      "queries": [
+        "wake county septic permit lookup",
+        "wake county septic permit search",
+        "wake county septic records",
+        "wake county imaps septic permit"
+      ],
+      "recommendedAnchors": [
+        "Wake County septic permit lookup",
+        "Wake County septic permit search"
+      ],
+      "evidenceWindow": "2026-07-03..2026-07-30",
+      "clicks": 0,
+      "impressions": 29,
+      "ctr": 0,
+      "position": 8.07,
+      "evidenceNote": "The indexed Wake page had no privacy-visible query rows while the state hub ranked on page one for 29 Wake permit lookup and search impressions; route those searches to the county workflow."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::union-county",
+      "path": "/septic-records-checklist/north-carolina/union-county/",
+      "boost": 140,
+      "queries": [
+        "union county septic permit lookup",
+        "union county septic permit search",
+        "union county septic records",
+        "union county environmental health septic"
+      ],
+      "recommendedAnchors": [
+        "Union County septic permit lookup",
+        "Union County septic records"
+      ],
+      "evidenceWindow": "2026-07-03..2026-07-30",
+      "clicks": 1,
+      "impressions": 19,
+      "ctr": 0.0526315789,
+      "position": 8.11,
+      "evidenceNote": "The state hub earned the click and all privacy-visible impressions for the exact Union County lookup query; strengthen the direct county handoff."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::pitt-county",
+      "path": "/septic-records-checklist/north-carolina/pitt-county/",
+      "boost": 138,
+      "queries": [
+        "pitt county septic permit search",
+        "pitt county septic permit lookup",
+        "pitt county septic records",
+        "pitt county onsite wastewater records"
+      ],
+      "recommendedAnchors": [
+        "Pitt County septic permit search",
+        "Pitt County septic records"
+      ],
+      "evidenceWindow": "2026-07-03..2026-07-30",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 8.07,
+      "evidenceNote": "The indexed Pitt page had no privacy-visible query rows while the state hub received 15 exact permit-search impressions at an average first-page position."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::pender-county",
+      "path": "/septic-records-checklist/north-carolina/pender-county/",
+      "boost": 136,
+      "queries": [
+        "pender county septic permit search",
+        "pender county septic permit lookup",
+        "pender county septic records",
+        "pender county septic permit information request"
+      ],
+      "recommendedAnchors": [
+        "Pender County septic permit search",
+        "Pender County septic records"
+      ],
+      "evidenceWindow": "2026-07-03..2026-07-30",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 8.77,
+      "evidenceNote": "The indexed Pender page had no privacy-visible query rows while the state hub received 13 exact permit-search impressions; make the county request route the primary answer."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::johnston-county",
+      "path": "/septic-records-checklist/north-carolina/johnston-county/",
+      "boost": 132,
+      "queries": [
+        "johnston county septic permit search",
+        "johnston county septic permit lookup",
+        "johnston county septic records",
+        "johnston county septic permit status"
+      ],
+      "recommendedAnchors": [
+        "Johnston County septic permit search",
+        "Johnston County septic records"
+      ],
+      "evidenceWindow": "2026-07-03..2026-07-30",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 9.11,
+      "evidenceNote": "The state hub, rather than the county page, received the privacy-visible Johnston permit-search impressions; reinforce the dedicated permit-status route."
     },
     {
       "targetType": "county_records",

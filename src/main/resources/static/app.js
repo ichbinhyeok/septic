@@ -6812,6 +6812,48 @@
         });
     }
 
+    function setupCountyRoutePickers() {
+        document.querySelectorAll("[data-county-route-picker]").forEach((picker) => {
+            const select = picker.querySelector("[data-county-route-select]");
+            const submit = picker.querySelector("[data-county-route-submit]");
+            const status = picker.querySelector("[data-county-route-status]");
+            if (!(select instanceof HTMLSelectElement) || !(submit instanceof HTMLButtonElement)) {
+                return;
+            }
+
+            const sync = () => {
+                const selected = select.options[select.selectedIndex];
+                const hasRoute = Boolean(selected?.value);
+                submit.disabled = !hasRoute;
+                if (status) {
+                    status.textContent = hasRoute
+                        ? `${selected.text.trim()} is ready. Open its local permit-record workflow.`
+                        : "Select a county to stay on SepticPath and open its local permit-record workflow.";
+                }
+            };
+
+            select.addEventListener("change", sync);
+            picker.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const targetPath = select.value;
+                if (!targetPath.startsWith("/septic-records-checklist/north-carolina/")) {
+                    sync();
+                    return;
+                }
+                sendNavigationEvent({
+                    sourcePage: analyticsSourcePage(),
+                    sourceContext: "state_records_county_picker",
+                    targetPath,
+                    targetType: "county_records_page",
+                    targetLabel: select.options[select.selectedIndex]?.text?.trim() || "North Carolina county records"
+                });
+                window.location.assign(targetPath);
+            });
+            sync();
+        });
+    }
+
+    setupCountyRoutePickers();
     setupStateSurfaceTools();
 
     function buildGaParams(element) {
