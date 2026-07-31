@@ -6085,6 +6085,33 @@ body.records-task-mode .records-request-builder {
         #f2f7f0;
 }
 
+.knox-form-handoff {
+    display: grid;
+    gap: 1rem;
+    padding: 1.1rem 0 1.35rem;
+    border-bottom: 1px solid rgba(20, 34, 32, 0.12);
+}
+
+.knox-form-handoff strong {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text);
+    font-size: 1.12rem;
+    line-height: 1.25;
+}
+
+.knox-form-handoff p {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.knox-form-handoff__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
 .county-acquisition-request__heading strong {
     max-width: 25ch;
     font: 800 clamp(1.15rem, 2vw, 1.45rem)/1.15 "Manrope", sans-serif;

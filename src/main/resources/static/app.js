@@ -3665,6 +3665,37 @@
                     }
                 });
 
+                const knoxFormHandoff = workflow.querySelector("[data-knox-form-handoff]");
+                const knoxFormOpen = workflow.querySelector("[data-knox-form-open]");
+                const knoxFormCopy = workflow.querySelector("[data-knox-form-copy]");
+                const knoxFormStatus = workflow.querySelector("[data-knox-form-status]");
+
+                function showKnoxFormStatus(message) {
+                    if (knoxFormStatus instanceof HTMLElement) {
+                        knoxFormStatus.textContent = message;
+                    }
+                }
+
+                if (knoxFormHandoff instanceof HTMLElement) {
+                    knoxFormOpen?.addEventListener("click", (event) => {
+                        if (!validateAcquisition()) {
+                            event.preventDefault();
+                            showKnoxFormStatus("Complete the required field pack before opening the live county form.");
+                            return;
+                        }
+                        showKnoxFormStatus("Opening the county-branded SSDS file-search form in a new tab. Paste the prepared values, review them, and submit in your own name.");
+                        markGaPreparationStarted("knox_form_handoff");
+                    });
+                    knoxFormCopy?.addEventListener("click", () => {
+                        if (!validateAcquisition()) {
+                            showKnoxFormStatus("Complete the required field pack before copying.");
+                            return;
+                        }
+                        acquisitionInputCopy?.click();
+                        showKnoxFormStatus("Prepared values copied. Paste them into the matching live county-form fields.");
+                    });
+                }
+
                 acquisitionEmail?.addEventListener("click", () => {
                     if (!recipient || !validateAcquisition()) {
                         return;

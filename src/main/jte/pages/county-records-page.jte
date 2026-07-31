@@ -657,6 +657,25 @@
                                 @endif
 
                                 <div class="county-acquisition-request">
+                                    @if ("TN::knox-county".equals(countyAccessProfile.countyKey()))
+                                        <section class="knox-form-handoff" aria-labelledby="knox-form-handoff-heading" data-knox-form-handoff>
+                                            <div>
+                                                <span class="county-access-workflow__step">Live county form</span>
+                                                <strong id="knox-form-handoff-heading">Check the field pack, then open the Knox SSDS search</strong>
+                                                <p data-knox-form-status>Complete the verified fields on the left first. They stay on this device; the county form opens separately.</p>
+                                            </div>
+                                            <div class="knox-form-handoff__actions">
+                                                <button class="button button--secondary" type="button" data-knox-form-copy>Copy all prepared values</button>
+                                                <a class="button button--primary"
+                                                   href="${countyAccessProfile.primaryUrl()}"
+                                                   target="_blank"
+                                                   rel="noreferrer"
+                                                   data-county-access-official
+                                                   data-county-route-position="knox_form_handoff"
+                                                   data-knox-form-open>Open the live Knox SSDS form</a>
+                                            </div>
+                                        </section>
+                                    @endif
                                     @if (countyAcquisitionProfile.generatedRequestEnabled())
                                     <div class="county-acquisition-request__heading">
                                         <span class="county-access-workflow__step">Prepared output</span>
