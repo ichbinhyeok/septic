@@ -15,7 +15,7 @@ public final class CountyAccessProfileCatalog {
                     "Search Prince William County septic records by address or GPIN",
                     "Use the Health District document portal for the historical property file. A blocked or empty portal result is not proof that no record exists.",
                     "Open the Health District document portal",
-                    "https://lfportal.pwcgov.org/healthweb/browse.aspx?startid=1",
+                    "https://lfportal.pwcgov.org/healthweb/Search.aspx?dbid=0&repo=HEALTH-DEPT",
                     "Optional VDH request fallback (may require verification)",
                     "https://vdh.nextrequest.com/",
                     "A property-matched document bundle or a written response from the file owner",
