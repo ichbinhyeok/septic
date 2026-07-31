@@ -875,6 +875,22 @@
                         </section>
                     @endif
 
+                    @if ("CO::adams-county".equals(countyAccessProfile.countyKey()))
+                        <section class="brunswick-permit-lookup adams-septic-lookup" id="adams-septic-search" data-adams-septic-lookup>
+                            <div>
+                                <span class="eyebrow">Official public query</span>
+                                <h3>Search Adams County septic records here</h3>
+                                <p>Enter one address, APN, or county record number. Results come from the county's public septic index and remain candidates until you match the property.</p>
+                            </div>
+                            <label>
+                                <span>Address, APN, or record number</span>
+                                <input type="text" maxlength="100" autocomplete="off" placeholder="Enter one search clue" data-adams-septic-clue>
+                            </label>
+                            <button class="button button--primary" type="button" data-adams-septic-search>Search official Adams records</button>
+                            <div class="brunswick-permit-lookup__results" data-adams-septic-results aria-live="polite"></div>
+                        </section>
+                    @endif
+
                     @if ("WA::thurston-county".equals(countyAccessProfile.countyKey()))
                         <section class="thurston-record-lookup" id="thurston-record-search" data-thurston-record-lookup>
                             <div>

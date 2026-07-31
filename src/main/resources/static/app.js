@@ -3883,6 +3883,47 @@
                 }
             });
 
+            const adamsLookup = workflow.querySelector("[data-adams-septic-lookup]");
+            const adamsClue = workflow.querySelector("[data-adams-septic-clue]");
+            const adamsSearch = workflow.querySelector("[data-adams-septic-search]");
+            const adamsResults = workflow.querySelector("[data-adams-septic-results]");
+
+            function renderAdamsResults(payload) {
+                if (!(adamsResults instanceof HTMLElement)) return;
+                const fragment = document.createDocumentFragment();
+                const heading = document.createElement("h4"); heading.textContent = payload.heading || "Adams County result";
+                const summary = document.createElement("p"); summary.textContent = payload.summary || "";
+                fragment.append(heading, summary);
+                const candidates = Array.isArray(payload.candidates) ? payload.candidates : [];
+                candidates.forEach((candidate) => {
+                    const card = document.createElement("article"); card.className = "brunswick-permit-lookup__candidate";
+                    appendPermitValue(card, "Address", candidate.address);
+                    appendPermitValue(card, "APN", candidate.apn);
+                    appendPermitValue(card, "Record", candidate.recordId);
+                    appendPermitValue(card, "Description", candidate.description);
+                    appendPermitValue(card, "Application date", candidate.applicationDate);
+                    fragment.append(card);
+                });
+                const actions = document.createElement("div"); actions.className = "county-access-workflow__actions";
+                actions.append(actionLink("Open the official Adams map", primaryUrl, candidates.length > 0));
+                if (secondaryUrl) actions.append(actionLink("Open current septic forms", secondaryUrl));
+                fragment.append(actions); adamsResults.replaceChildren(fragment); adamsResults.hidden = false;
+            }
+
+            adamsSearch?.addEventListener("click", async () => {
+                if (!(adamsLookup instanceof HTMLElement) || !(adamsClue instanceof HTMLInputElement)) return;
+                const clue = adamsClue.value.trim();
+                if (clue.length < 3) { adamsClue.focus(); renderAdamsResults({heading:"Enter an address, APN, or record number",summary:"Use at least three characters.",candidates:[]}); return; }
+                const label = adamsSearch.textContent; adamsSearch.disabled = true; adamsSearch.textContent = "Searching Adams County...";
+                try {
+                    const response = await fetch("/api/adams-septic-lookup", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({clue})});
+                    const payload = await response.json(); renderAdamsResults(payload);
+                    writeState({stage:"metadata_queried",metadataStatus:payload.status || "unknown"});
+                    emitCountyGaEvent("county_public_index_queried",{index_name:"adams_septic_arcgis",lookup_status:payload.status || "unknown"});
+                } catch (_) { renderAdamsResults({heading:"The official Adams dataset did not respond",summary:"Open the county map and try the same clue there.",candidates:[]}); }
+                finally { adamsSearch.disabled = false; adamsSearch.textContent = label; }
+            });
+
             const thurstonLookup = workflow.querySelector("[data-thurston-record-lookup]");
             const thurstonSearch = workflow.querySelector("[data-thurston-record-search]");
             const thurstonResults = workflow.querySelector("[data-thurston-record-results]");
