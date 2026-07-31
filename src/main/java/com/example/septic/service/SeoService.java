@@ -1395,7 +1395,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "How Much Does a Perc Test Cost in Alabama?";
+            case "AL" -> "Alabama Perc Test Cost: $300-$2,700 and County Fees";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -1451,7 +1451,7 @@ public class SeoService {
             case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "How much is a perc test in Alabama? Build a county-usable quote scope for soil testing, plot plans, permit steps, and site work before you pay.";
+            case "AL" -> "Alabama perc test cost is typically planned at $300-$2,700. Compare separate ADPH county site-evaluation and permit fees, soil scope, and official next steps.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";

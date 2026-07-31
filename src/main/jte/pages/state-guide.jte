@@ -73,7 +73,7 @@
                     </div>
                 @endif
                 @if ("AL".equals(state.stateCode()))
-                    <section class="alabama-perc-scope" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
+                    <section class="alabama-perc-scope" id="alabama-perc-cost" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">
                             <span class="eyebrow">Alabama cost baseline</span>
                             <h2>How much does a perc test cost in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>

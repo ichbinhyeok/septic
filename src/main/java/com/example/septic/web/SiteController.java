@@ -1690,6 +1690,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<CoreStateComparisonRow> coreStateComparisonRows = coreStateComparisonRows(state);
         List<PageLink> countyRecordLinks = countyRecordPageLinks(state.stateCode());
         List<StateMoneyPage> sortedStateMoneyPages = researchDataService.listPublicStateMoneyPages(state.stateCode()).stream()
+                .filter(page -> !page.isCanonicalAlias())
                 .sorted(Comparator
                         .comparingInt((StateMoneyPage page) -> stateMoneyPagePriorityScore(state, page))
                         .reversed()
@@ -2382,6 +2383,13 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String nullToEmpty(String value) {
         return value == null ? "" : value;
+    }
+
+    @GetMapping({"/perc-test-cost/alabama", "/perc-test-cost/alabama/"})
+    public ResponseEntity<Void> alabamaPercTestCanonicalRedirect() {
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
+                .location(URI.create("/septic-system-cost-calculator/alabama/"))
+                .build();
     }
 
     @GetMapping({
@@ -7162,8 +7170,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                             "Alabama perc test and soil record",
                             "Confirm whether soil testing or a percolation test is already in the file before treating the low-end estimate as realistic.",
                             "Open Alabama perc cost path",
-                            "/perc-test-cost/alabama/",
-                            "state_money_page"
+                            "#alabama-perc-cost",
+                            "page_anchor"
                     )
             );
             default -> List.of(

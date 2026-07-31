@@ -70,7 +70,14 @@ public record StateMoneyPage(
     }
 
     public String path(String stateSlug) {
+        if (isCanonicalAlias()) {
+            return "/septic-system-cost-calculator/alabama/";
+        }
         return "/" + contentSlug + "/" + stateSlug + "/";
+    }
+
+    public boolean isCanonicalAlias() {
+        return "AL".equals(stateCode) && "perc-test-cost".equals(contentSlug);
     }
 
     public String localAuthorityHeading() {

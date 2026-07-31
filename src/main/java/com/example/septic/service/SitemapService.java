@@ -69,6 +69,7 @@ public class SitemapService {
 
         for (StateMoneyPage stateMoneyPage : researchDataService.getPublicStateMoneyPages()) {
             researchDataService.findStateByCode(stateMoneyPage.stateCode())
+                    .filter(state -> !stateMoneyPage.isCanonicalAlias())
                     .filter(state -> publishingPolicyService.isIndexableStateMoneyPage(stateMoneyPage, state))
                     .map(StateProfile::slug)
                     .map(stateMoneyPage::path)

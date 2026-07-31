@@ -1045,7 +1045,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/drain-field-replacement-cost/colorado/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/massachusetts/")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-replacement-cost/idaho/"))))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/alabama/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/perc-test-cost/alabama/"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://example.test/septic-inspection-cost/hawaii/"))));
 	}
 
@@ -5516,8 +5516,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost in Alabama? Fees, quotes, and county records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How Much Does a Perc Test Cost in Alabama? | SepticPath")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much is a perc test in Alabama? Build a county-usable quote scope")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost: $300-$2,700 and County Fees | SepticPath")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama perc test cost is typically planned at $300-$2,700")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Plan on $300 to $2,700")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Public site evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("$150-$250")))
@@ -5543,7 +5543,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in Alabama")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Permit Lookup &amp; County Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Replacement Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("href=\"/perc-test-cost/alabama/\""))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama Septic Inspection Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Record proof path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-records-request/")))
@@ -5551,7 +5551,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Resolve the file path before a cheap number.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Estimate gate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama search path")))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/perc-test-cost/alabama/\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"alabama-perc-cost\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/alabama/madison-county/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Alabama county health file before the estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check Alabama county records before the estimate")))
@@ -5669,6 +5669,13 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open local authority source")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://oklahoma.gov/deq/divisions/ecls")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://www.deq.ok.gov/"))));
+	}
+
+	@Test
+	void alabamaPercTestAliasPermanentlyRedirectsToRankingUrl() throws Exception {
+		mockMvc.perform(get("/perc-test-cost/alabama/"))
+				.andExpect(status().isMovedPermanently())
+				.andExpect(header().string("Location", "/septic-system-cost-calculator/alabama/"));
 	}
 
 	@Test
@@ -8000,7 +8007,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=perc_test")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/georgia/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/tennessee/")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/alabama/")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/perc-test-cost/alabama/"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/failed-perc-test-septic/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-process/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/")))
