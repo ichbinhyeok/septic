@@ -112,6 +112,44 @@
                                    data-track-source-context="records_request_simple_hero"
                                    data-track-target-type="internal_tool">Find the office first</a>
                             </div>
+                        @elseif ("tdec-septic-records".equals(contentPage.slug()))
+                            @if (contentQuickAnswer != null && !contentQuickAnswer.isBlank())
+                                <div class="content-quick-answer content-quick-answer--utility" aria-label="Quick answer">
+                                    <span class="content-quick-answer__label">TDEC search status</span>
+                                    <p>${contentQuickAnswer}</p>
+                                    @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
+                                        <p class="content-quick-answer__source">Official routes reviewed ${editorialLastReviewedAt}</p>
+                                    @endif
+                                </div>
+                            @endif
+                            <div>
+                                <strong>Search the official TDEC septic records viewer first.</strong>
+                                <p>Prepare one address, parcel, owner, or permit clue. If the viewer returns 403, switch to the field-office or records-request route without treating the file as missing.</p>
+                            </div>
+                            <div class="utility-hero-actions__buttons">
+                                <a class="button button--primary"
+                                   href="#tdec-search-workspace"
+                                   data-track-click="nav"
+                                   data-track-source-context="tdec_simple_hero"
+                                   data-track-target-type="internal_tool">Prepare a TDEC search</a>
+                                <a class="button button--secondary"
+                                   href="#official-file-path"
+                                   data-track-click="nav"
+                                   data-track-source-context="tdec_simple_hero"
+                                   data-track-target-type="internal_section">Use the 403 fallback</a>
+                            </div>
+                            @if (!featuredPermitLookupCountyLinks.isEmpty())
+                                <div class="quick-link-strip" aria-label="Tennessee county septic record routes">
+                                    <span class="quick-link-strip__label">Know the county?</span>
+                                    @for (var link : featuredPermitLookupCountyLinks.stream().limit(3).toList())
+                                        <a class="button button--secondary quick-link-strip__button"
+                                           href="${link.path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="tdec_simple_county"
+                                           data-track-target-type="county_records_page">${link.compactTitle()}</a>
+                                    @endfor
+                                </div>
+                            @endif
                         @else
                             @if (contentQuickAnswer != null && !contentQuickAnswer.isBlank())
                                 <div class="content-quick-answer content-quick-answer--utility" aria-label="Quick answer">
@@ -747,6 +785,73 @@
         </div>
     </section>
 
+    @if ("tdec-septic-records".equals(contentPage.slug()))
+        <section class="section section--tight" id="tdec-search-workspace" aria-labelledby="tdec-search-workspace-heading">
+            <div class="container">
+                <div class="tdec-search-workspace" data-tdec-search-workspace>
+                    <header class="tdec-search-workspace__intro">
+                        <span class="eyebrow">Tennessee septic permit search</span>
+                        <h2 id="tdec-search-workspace-heading">Carry one property clue into the official TDEC search.</h2>
+                        <p>Start with the narrowest reliable clue. Your entry stays in this browser until you open Tennessee's official viewer.</p>
+                    </header>
+
+                    <div class="tdec-search-workspace__form">
+                        <label>
+                            <span>Search by</span>
+                            <select data-tdec-search-method>
+                                <option value="address">Property address</option>
+                                <option value="parcel">Parcel or tax-map ID</option>
+                                <option value="owner">Current or prior owner</option>
+                                <option value="permit">Permit number</option>
+                            </select>
+                        </label>
+                        <label class="tdec-search-workspace__clue">
+                            <span data-tdec-search-label>Property address</span>
+                            <input type="text" maxlength="140" autocomplete="off" placeholder="Enter the Tennessee property address" data-tdec-search-clue>
+                        </label>
+                        <button class="button button--primary" type="button" data-tdec-search-copy>Copy search clue</button>
+                        <a class="button button--secondary"
+                           href="https://tdec.tn.gov/document-viewer/search/stp"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-tdec-search-open
+                           data-track-click="nav"
+                           data-track-source-context="tdec_search_workspace"
+                           data-track-target-type="official_source_restricted">Open official TDEC search</a>
+                    </div>
+
+                    <p class="tdec-search-workspace__status" data-tdec-search-status aria-live="polite">Try the official search once. Then choose the outcome below instead of repeatedly retrying the same query.</p>
+
+                    <div class="tdec-search-workspace__outcomes" aria-label="TDEC search outcomes">
+                        <article>
+                            <span>Viewer opens</span>
+                            <strong>Search the copied clue</strong>
+                            <p>Confirm the county and property before saving the permit, layout, approval, or repair record.</p>
+                        </article>
+                        <article>
+                            <span>403 Forbidden</span>
+                            <strong>The viewer is blocked—not the record</strong>
+                            <p>Use the Environmental Field Office or contract-county route with the same clue.</p>
+                            <a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="tdec_search_outcome_403" data-track-target-type="official_contact">Find the field office</a>
+                        </article>
+                        <article>
+                            <span>No usable match</span>
+                            <strong>Request the underlying file</strong>
+                            <p>Ask for the SSDS permit, layout, final approval, repair history, and a written no-record response.</p>
+                            <a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="tdec_search_outcome_empty" data-track-target-type="official_request">Open public-records request</a>
+                        </article>
+                    </div>
+
+                    <footer class="tdec-search-workspace__footer">
+                        <strong>Need a county-specific route?</strong>
+                        <a href="/septic-records-checklist/tennessee/" data-track-click="nav" data-track-source-context="tdec_search_workspace" data-track-target-type="state_money_page">Choose a Tennessee county</a>
+                        <a href="/septic-records-request-builder/?state=TN" data-track-click="nav" data-track-source-context="tdec_search_workspace" data-track-target-type="internal_tool">Prepare request wording</a>
+                    </footer>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if ("septic-permit-lookup".equals(contentPage.slug()))
         <section class="section section--tight" id="permit-address-search" aria-label="Permit route finder">
             <div class="container">
@@ -1156,17 +1261,20 @@
                                    data-track-click="nav"
                                    data-track-source-context="official_tool_tdec_public_records"
                                    data-track-target-type="official_request">Request public records</a>
-                                <a class="button button--secondary"
-                                   href="/tdec-septic-records/"
-                                   data-track-click="nav"
-                                   data-track-source-context="official_tool_console"
-                                   data-track-target-type="internal_page">Use TDEC guide</a>
+                                @if (!"tdec-septic-records".equals(contentPage.slug()))
+                                    <a class="button button--secondary"
+                                       href="/tdec-septic-records/"
+                                       data-track-click="nav"
+                                       data-track-source-context="official_tool_console"
+                                       data-track-target-type="internal_page">Use TDEC guide</a>
+                                @endif
                             </div>
                             @if (!"official-septic-lookup-tools".equals(contentPage.slug()))
                                 <p class="official-tool-route__fallback">TDEC's direct SSDS record search is officially listed but currently returns 403 for some users. Use the field office or records request with the same parcel and owner clues.</p>
                             @endif
                         </article>
 
+                        @if (!"tdec-septic-records".equals(contentPage.slug()))
                         <article class="official-tool-route">
                             <span>NC / county EH</span>
                             <h3>North Carolina septic permit lookup</h3>
@@ -1250,6 +1358,7 @@
                                    data-track-target-type="internal_page">Use Florida guide</a>
                             </div>
                         </article>
+                        @endif
                     </div>
 
                     <div class="official-tool-console__handoff">

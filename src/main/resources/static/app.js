@@ -131,7 +131,7 @@
     }
 
     function setupHashAnchorOffset() {
-        const offsetTargets = new Set(["home-address-record-finder", "records-request-builder", "county-access-workflow", "county-acquisition-workspace", "send-note"]);
+        const offsetTargets = new Set(["home-address-record-finder", "records-request-builder", "county-access-workflow", "county-acquisition-workspace", "tdec-search-workspace", "send-note"]);
 
         function alignHashTarget() {
             const id = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : "";
@@ -2406,6 +2406,96 @@
     }
 
     setupAddressRecordFinders();
+
+    function setupTdecSearchWorkspace() {
+        const workspace = document.querySelector("[data-tdec-search-workspace]");
+        if (!(workspace instanceof HTMLElement)) return;
+
+        const method = workspace.querySelector("[data-tdec-search-method]");
+        const clue = workspace.querySelector("[data-tdec-search-clue]");
+        const clueLabel = workspace.querySelector("[data-tdec-search-label]");
+        const copyButton = workspace.querySelector("[data-tdec-search-copy]");
+        const openLink = workspace.querySelector("[data-tdec-search-open]");
+        const status = workspace.querySelector("[data-tdec-search-status]");
+        const methodCopy = {
+            address: {label: "Property address", placeholder: "Enter the Tennessee property address"},
+            parcel: {label: "Parcel or tax-map ID", placeholder: "Enter the parcel or tax-map ID"},
+            owner: {label: "Current or prior owner", placeholder: "Enter the owner name"},
+            permit: {label: "Permit number", placeholder: "Enter the septic permit number"}
+        };
+
+        function emitTdecEvent(eventName, extra = {}) {
+            if (typeof window.gtag !== "function") return;
+            window.gtag("event", eventName, {
+                page_path: window.location.pathname,
+                search_field: method instanceof HTMLSelectElement ? method.value : "unknown",
+                ...extra
+            });
+        }
+
+        function updateMethod() {
+            if (!(method instanceof HTMLSelectElement) || !(clue instanceof HTMLInputElement)) return;
+            const selected = methodCopy[method.value] || methodCopy.address;
+            if (clueLabel instanceof HTMLElement) clueLabel.textContent = selected.label;
+            clue.placeholder = selected.placeholder;
+            clue.value = "";
+            if (status instanceof HTMLElement) {
+                status.textContent = `Add the ${selected.label.toLowerCase()}, copy it, then open the official TDEC search.`;
+                status.classList.remove("is-warning");
+            }
+        }
+
+        const requestedAddress = new URLSearchParams(window.location.search).get("address")?.trim() || "";
+        if (requestedAddress && method instanceof HTMLSelectElement && clue instanceof HTMLInputElement) {
+            method.value = "address";
+            clue.value = requestedAddress.slice(0, 140);
+        }
+
+        method?.addEventListener("change", updateMethod);
+
+        async function copyClue() {
+            if (!(clue instanceof HTMLInputElement) || !(method instanceof HTMLSelectElement)) return;
+            const value = clue.value.trim().replace(/\s+/g, " ").slice(0, 140);
+            clue.value = value;
+            if (value.length < 2) {
+                if (status instanceof HTMLElement) {
+                    status.textContent = "Enter an address, parcel, owner, or permit clue before opening TDEC.";
+                    status.classList.add("is-warning");
+                }
+                clue.focus();
+                return;
+            }
+            try {
+                await copyText(value);
+                if (status instanceof HTMLElement) {
+                    status.textContent = `${value} copied. Open TDEC and paste it into the matching search field.`;
+                    status.classList.remove("is-warning");
+                }
+            } catch (_) {
+                clue.select();
+                if (status instanceof HTMLElement) {
+                    status.textContent = "Clipboard access was unavailable. Copy the selected clue, then open TDEC.";
+                    status.classList.add("is-warning");
+                }
+            }
+            sendArtifactAction("tdec_search_workspace", "search_clue_prepared", method.value);
+            emitTdecEvent("tdec_search_clue_prepared");
+        }
+
+        copyButton?.addEventListener("click", copyClue);
+        clue?.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                copyClue();
+            }
+        });
+        openLink?.addEventListener("click", () => {
+            sendArtifactAction("tdec_search_workspace", "official_search_opened", method instanceof HTMLSelectElement ? method.value : "unknown");
+            emitTdecEvent("tdec_official_search_opened");
+        });
+    }
+
+    setupTdecSearchWorkspace();
 
     function setupCountyAccessWorkflows() {
         const workflows = Array.from(document.querySelectorAll("[data-county-access-workflow]"));

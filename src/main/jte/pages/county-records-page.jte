@@ -1643,6 +1643,13 @@
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_guide"
                        data-track-target-type="state_guide">Open the ${state.stateName()} guide</a>
+                    @if ("TN".equals(state.stateCode()))
+                        <a class="button button--secondary"
+                           href="/tdec-septic-records/"
+                           data-track-click="nav"
+                           data-track-source-context="county_records_next_best_tdec"
+                           data-track-target-type="internal_page">Open the TDEC septic permit search guide</a>
+                    @endif
                 </div>
             </article>
 
