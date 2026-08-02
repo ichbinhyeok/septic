@@ -753,6 +753,11 @@ public class SeoService {
             case "TN::loudon-county" -> "Loudon County TN Septic Records Search and Permit Files";
             case "TN::maury-county" -> "Maury County TN Septic Permit Lookup and TDEC Records";
             case "TN::jefferson-county" -> "Jefferson County TN Septic Permits, Final Approval and Records";
+            case "TN::davidson-county" -> "Davidson County TN Septic Records and Property File Search";
+            case "TN::madison-county" -> "Madison County TN Septic Drawing and Records Request";
+            case "TN::shelby-county" -> "Shelby County TN Septic Permit, Repair and Inspection";
+            case "TN::putnam-county" -> "Putnam County TN Septic Permit Search and TDEC Records";
+            case "IN::monroe-county" -> "Monroe County IN Septic Permit and OpenGov Workflow";
             case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
             case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
@@ -810,6 +815,11 @@ public class SeoService {
             case "TN::loudon-county" -> "Search the Loudon County septic file in TDEC, then use the county-published records email and Knoxville field-office fallback when the result is missing.";
             case "TN::maury-county" -> "Search TDEC SSDS records for Maury County, then use the Columbia field-office public-records fallback for the permit, layout, repair file, or written response.";
             case "TN::jefferson-county" -> "Use Jefferson County Environmental Health for the septic permit, final approval, inspection letter, existing-system evaluation, or verification record.";
+            case "TN::davidson-county" -> "Search Metro Nashville's scanned Health Environmental Engineering files by parcel, then use the published phone or email fallback for a missing Davidson County septic record.";
+            case "TN::madison-county" -> "Request a Madison County septic drawing with the current owner, known prior owners, full address, applicant details, and optional tax map or parcel number.";
+            case "TN::shelby-county" -> "Prepare the Shelby County Water Quality application, plot plan, and soil analysis for septic installation, modification, repair, or abandonment before the site visit and permit.";
+            case "TN::putnam-county" -> "Search TDEC SSDS records for Putnam County, then use the Cookeville field-office public-records fallback when the viewer is blocked or incomplete.";
+            case "IN::monroe-county" -> "Follow Monroe County's OpenGov sequence from application and soil evaluation through Minimum Specs, approved site plan, and downloadable septic permit.";
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";

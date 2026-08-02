@@ -1089,6 +1089,159 @@ public final class CountyAccessProfileCatalog {
                             "If you need copies, open the county public-records portal and request the underlying On-Site Water Protection file.",
                             "Complete verification and final submission on the county portal, then save the request reference."
                     )
+            )),
+            Map.entry("TN::davidson-county", profile(
+                    "TN::davidson-county",
+                    "portal_with_fallback",
+                    "Scanned property-file search",
+                    "Search Davidson County septic engineering files by parcel",
+                    "Metro Nashville publishes a scanned Environmental Engineering record portal. Start with the parcel or tax ID from Property Information, search the Health Environmental Engineering Reports, and use the published phone or email only when the desired file is absent.",
+                    "Search Metro Nashville engineering records",
+                    "https://documents.nashville.gov/",
+                    "Open Metro septic records instructions",
+                    "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems",
+                    "A property-matched scanned engineering file, bedroom approval and inspection dates, or a written Metro response",
+                    "The portal contains scanned documents of record and adds files periodically. An empty search is not proof that Metro has no file; use 615-340-5630 or septicinfo@nashville.gov for the missing-record fallback.",
+                    List.of(
+                            "Property address",
+                            "Map and parcel number or tax ID",
+                            "Current owner name",
+                            "Subdivision and lot number when applicable"
+                    ),
+                    List.of(
+                            "Scanned Health Environmental Engineering property file",
+                            "Approved bedroom count and approval or inspection dates",
+                            "SSDS approval, layout, repair record, or written no-record response"
+                    ),
+                    List.of(
+                            "Use Metro Property Information to confirm the map and parcel number or tax ID.",
+                            "Open the document portal and choose Health Environmental Engineering Reports.",
+                            "Search the confirmed property and export the matching scanned record as a PDF.",
+                            "If the desired file is missing, contact 615-340-5630 or septicinfo@nashville.gov and retain the response."
+                    )
+            )),
+            Map.entry("TN::madison-county", profile(
+                    "TN::madison-county",
+                    "official_request",
+                    "County septic-record request form",
+                    "Request the Madison County septic drawing and property file",
+                    "Madison County provides a dedicated septic-system records form for Madison County properties. It asks for the current owner, other known owners, full property address, requester contact details and role, with the tax map ID or parcel number as an optional strengthening clue.",
+                    "Open the Madison County records request",
+                    "https://madisoncountytn.gov/FormCenter/Health-Department-11/Septic-System-Records-Request-89",
+                    "Call without sharing contact information",
+                    "tel:731-423-3020",
+                    "The requested septic drawing or property record, an emailed form copy, or a documented county response",
+                    "The form is limited to Madison County, uses reCAPTCHA, and requires requester contact details for online submission. The county publishes option 4 at 731-423-3020 when a requester does not want to share contact information online, but it does not promise a turnaround.",
+                    List.of(
+                            "Current property owner name",
+                            "Original owner or other known owners when available",
+                            "Full property address including city, state, and ZIP",
+                            "Applicant name, phone, email, and role",
+                            "Tax map ID or parcel number when available"
+                    ),
+                    List.of(
+                            "Existing septic-system drawing",
+                            "Property-matched permit or approval record returned with the drawing",
+                            "Email copy, request outcome, or written no-record response"
+                    ),
+                    List.of(
+                            "Confirm that the property is in Madison County and collect the owner and address fields.",
+                            "Add prior owners and the tax map or parcel number when available to reduce false matches.",
+                            "Open the county form, review the values, complete reCAPTCHA, and submit in your own name.",
+                            "Save the emailed copy and attach the returned drawing or written outcome to the property task."
+                    )
+            )),
+            Map.entry("TN::shelby-county", profile(
+                    "TN::shelby-county",
+                    "office_help",
+                    "County Water Quality permit route",
+                    "Route a Shelby County septic installation, repair, modification, or abandonment",
+                    "Shelby County's Water Quality Branch requires an application for septic installation, modification, repair, or abandonment. The office checks completeness before scheduling a site visit, inspects installation, and requires a repair permit before repair work begins.",
+                    "Open Shelby County SSDS guidance",
+                    "https://www.shelbycountytn.gov/FAQ.aspx?PRINT=YES&QID=322",
+                    "Open the Water Quality Branch page",
+                    "https://www.shelbycountytn.gov/221/Water-Quality-Branch",
+                    "A complete application routed to the Water Quality Branch, a permit, inspection outcome, or written office direction",
+                    "The county FAQ publishes a $175 non-refundable processing fee and a normal one-to-two-week permit window only after a complete application is received. Confirm current forms, fees, and timing with the county before payment; this route is for permit work, not proof of current system condition.",
+                    List.of(
+                            "Property address and parcel or owner clue",
+                            "Work type: install, modify, repair, or abandon",
+                            "Plot plan",
+                            "Soil analysis",
+                            "Applicant and contractor contact information"
+                    ),
+                    List.of(
+                            "Water Quality Branch application and receipt",
+                            "Site-visit or inspection outcome",
+                            "Installation, modification, repair, or abandonment permit"
+                    ),
+                    List.of(
+                            "Choose the correct work type before opening the county route.",
+                            "Prepare the plot plan, soil analysis, property identifiers, and applicant details.",
+                            "Confirm the current fee and intake channel with the Water Quality Branch, then submit in your own name.",
+                            "Do not begin repair work before the required site inspection and permit; save the permit and final inspection outcome."
+                    )
+            )),
+            Map.entry("TN::putnam-county", profile(
+                    "TN::putnam-county",
+                    "state_search_with_fallback",
+                    "TDEC search with Cookeville fallback",
+                    "Search the Putnam County SSDS file, then use the Cookeville field office",
+                    "TDEC's Cookeville Environmental Field Office explicitly serves Putnam County and coordinates public-records requests when a data viewer does not resolve the file. Search the statewide SSDS index first, then carry precise property clues into the office fallback.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open the Cookeville Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/cookeville.html",
+                    "A property-matched SSDS permit, layout, approval, repair file, or written TDEC response",
+                    "The office confirms Putnam County coverage, public-records coordination, and 931-206-6329 for septic inquiries, but it does not publish a Putnam-specific intake form, fee, or turnaround. A blank viewer result is not a no-record determination.",
+                    List.of(
+                            "Property address",
+                            "Parcel or tax-map clue",
+                            "Current and prior owner names when available",
+                            "Subdivision, lot, and approximate permit year when known"
+                    ),
+                    List.of(
+                            "SSDS construction permit or approval",
+                            "System layout, inspection letter, or certificate of completion",
+                            "Repair record or written no-record response"
+                    ),
+                    List.of(
+                            "Search the TDEC SSDS index with the strongest property clue and confirm the parcel match.",
+                            "If the result is blocked or incomplete, use the Cookeville field office, which explicitly serves Putnam County.",
+                            "Ask Division of Water Resources or the public-records coordinator for the site-specific file.",
+                            "Keep the returned file, request reference, or written response with the property task."
+                    )
+            )),
+            Map.entry("IN::monroe-county", profile(
+                    "IN::monroe-county",
+                    "portal_with_fallback",
+                    "OpenGov septic permit workflow",
+                    "Prepare and track a Monroe County septic permit in OpenGov",
+                    "Monroe County publishes a five-step permit workflow: application, registered soil evaluation, county Minimum Specs, septic site plan, and permit issuance. The issued permit is downloadable in OpenGov, while the Wastewater office is the fallback for existing historical property files or workflow questions.",
+                    "Open Monroe County wastewater guidance",
+                    "https://www.in.gov/counties/monroe/Departments/health-department/wastewater/",
+                    "Email the Wastewater office",
+                    "mailto:wastewater@co.monroe.in.us",
+                    "A downloadable OpenGov permit and its soil report, Minimum Specs, approved site plan, or a documented office response",
+                    "The county publishes current fee examples but says fees can change. Work on an existing or new septic field generally requires a registered soil evaluation; confirm the current fee and application record number before payment. Historical records may be incomplete and do not prove current condition.",
+                    List.of(
+                            "Property address and parcel clue",
+                            "Permit type: new, repair, renewal or modification, or commercial",
+                            "OpenGov application record number",
+                            "Registered soil evaluation when the field is new or modified",
+                            "Septic site plan and applicant contact information"
+                    ),
+                    List.of(
+                            "Soil evaluation and county Minimum Specs document",
+                            "Approved septic site plan",
+                            "Issued OpenGov septic permit or written Wastewater response"
+                    ),
+                    List.of(
+                            "Choose the permit type and submit the OpenGov septic application to generate a record number.",
+                            "Arrange the required registered soil evaluation and upload it to the application.",
+                            "Use the county's Minimum Specs to prepare and upload the septic site plan.",
+                            "Track corrections through OpenGov, download the issued permit, and keep the final file with the property task."
+                    )
             ))
     );
 
