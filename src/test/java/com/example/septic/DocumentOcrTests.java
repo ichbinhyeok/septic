@@ -139,6 +139,35 @@ class DocumentOcrTests {
     }
 
     @Test
+    void commonPlainTextPermitLabelsAreExtracted() throws Exception {
+        SepticDocumentAnalysisService analyzer = new SepticDocumentAnalysisService(
+                document -> DocumentOcrService.OcrResult.unavailable("should not run")
+        );
+        MockMultipartFile file = new MockMultipartFile(
+                "file",
+                "county-permit.txt",
+                "text/plain",
+                """
+                        Davidson County Environmental Health
+                        Permit: OWTS-26-4408
+                        Property: 401 Church St, Nashville, TN 37219
+                        Approved bedrooms: 4
+                        Final approval: May 10, 2024
+                        As-built site plan: attached
+                        System type: conventional septic system
+                        """.getBytes(java.nio.charset.StandardCharsets.UTF_8)
+        );
+
+        SepticDocumentAnalysisResult result = analyzer.analyze(file, "buying", "TN", "Davidson County");
+
+        assertThat(result.findings()).extracting(finding -> finding.key())
+                .contains("permit_number", "approved_bedrooms", "final_approval", "layout", "system_type");
+        assertThat(result.findings()).filteredOn(finding -> finding.key().equals("permit_number"))
+                .extracting(finding -> finding.value())
+                .containsExactly("OWTS-26-4408");
+    }
+
+    @Test
     void missingOcrExecutableFailsClosedWithoutSavingTheDocument() throws Exception {
         TesseractDocumentOcrService ocr = new TesseractDocumentOcrService(
                 true,

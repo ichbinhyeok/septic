@@ -41,7 +41,8 @@ public class SepticDocumentAnalysisService {
     private static final Semaphore ANALYSIS_SLOTS = new Semaphore(4);
 
     private static final Pattern PERMIT_NUMBER = Pattern.compile(
-            "(?i)\\b(?:permit|application|record)\\s*(?:number|no\\.?|#|id)\\s*[:#-]?\\s*([A-Z0-9][A-Z0-9-]{3,24})");
+            "(?i)\\b(?:permit|application|record)\\s*(?:(?:number|no\\.?|#|id)\\s*[:#-]?|[:#-])\\s*"
+                    + "([A-Z0-9][A-Z0-9-]{3,24})");
     private static final Pattern BEDROOMS = Pattern.compile(
             "(?i)\\b(?:approved|permitted|designed|maximum|max\\.?)\\s*(?:for|at|to|:)?\\s*(\\d{1,2})\\s*(?:bedroom|bedrooms|br)\\b");
     private static final Pattern BEDROOMS_FIELD = Pattern.compile(
@@ -68,7 +69,10 @@ public class SepticDocumentAnalysisService {
     private static final Pattern DATE = Pattern.compile(
             "(?i)\\b(?:approved|approval|final\\s+(?:approval|inspection)|inspection)\\s*(?:date)?\\s*[:#-]?\\s*"
                     + "((?:0?[1-9]|1[0-2])[/-](?:0?[1-9]|[12]\\d|3[01])[/-](?:19|20)\\d{2}|"
-                    + "(?:19|20)\\d{2}-\\d{2}-\\d{2})");
+                    + "(?:19|20)\\d{2}-\\d{2}-\\d{2}|"
+                    + "(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
+                    + "Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
+                    + "\\s+(?:0?[1-9]|[12]\\d|3[01]),?\\s+(?:19|20)\\d{2})");
 
     private final DocumentOcrService documentOcrService;
 
@@ -377,7 +381,8 @@ public class SepticDocumentAnalysisService {
         }
         addContextFinding(findings, lower, text, "layout", "Layout or as-built", List.of(
                 "attached as-built shows", "as-built shows", "site plan shows",
-                "record drawing shows", "layout drawing shows"
+                "record drawing shows", "layout drawing shows", "as-built site plan: attached",
+                "as-built: attached", "as built: attached", "site plan: attached"
         ));
         addContextFinding(findings, lower, text, "repair_history", "Repair history", List.of(
                 "repair history attached", "repair records attached", "previous repair dated",
