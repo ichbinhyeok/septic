@@ -1,0 +1,152 @@
+@layer reset, shell, primitives, workflows, responsive;
+
+@layer workflows {
+  /* Shared information architecture */
+  .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid, .records-access-index-hero {
+    display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .75fr); gap: clamp(36px, 7vw, 92px); align-items: start;
+  }
+  .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body {
+    display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(290px, .75fr); gap: clamp(28px, 5vw, 64px); align-items: start;
+  }
+  .content-grid--top { align-items: stretch; }
+  .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
+  .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+  }
+  .feature-card, .state-card, .detail-card, .trust-box, .hero-sidecard, .hero-card, .mini-card, .metric-card,
+  .comparison-card, .coverage-card, .intent-card, .disclosure-card, .placeholder-panel, .result-panel, .quote-panel,
+  .record-finder-steps article, .money-answer-steps > *, .offer-prep-proof-grid article, .county-service-scope > div {
+    position: relative; margin: 0; padding: clamp(20px, 3vw, 32px); border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 0; background: var(--surface); box-shadow: none;
+  }
+  .hero-sidecard, .hero-card, .trust-box--large, .placeholder-panel, .quote-panel { border: 1px solid var(--line-dark); }
+  .feature-card:hover, .state-card:hover, .detail-card:hover { background: #f9faf6; }
+  .detail-card p, .feature-card p, .state-card p, .hero-sidecard p, .mini-card p { color: var(--muted); }
+  .metric-card strong { display: block; margin: 6px 0; font-family: var(--font-serif); font-size: 2rem; }
+  .metric-card__label { color: var(--muted); }
+
+  /* Search and form workspaces */
+  .record-finder-hero { padding: 0; border-bottom: 1px solid var(--line-dark); background: var(--surface); }
+  .record-finder { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); min-height: calc(100svh - var(--header-height)); }
+  .record-finder__intro, .record-finder__workspace { padding: clamp(40px, 6vw, 82px); }
+  .record-finder__intro { display: flex; flex-direction: column; justify-content: center; background: var(--ink); color: #eaf0ed; }
+  .record-finder__intro h1, .record-finder__intro h2 { color: white; }
+  .record-finder__intro > p { max-width: 58ch; color: #bdc9c4; font-size: 1.06rem; }
+  .record-finder__intro .eyebrow { color: #8fd2c2; }
+  .record-finder__signals { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 16px 0 28px; color: #b8c5c0; font-size: .72rem; }
+  .record-finder__signals span { display: inline-flex; gap: 5px; }
+  .record-finder__signals strong { color: white; }
+  .record-finder__result-preview { max-width: 590px; border: 1px solid #57665f; background: #202e29; }
+  .record-finder__result-preview-head { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #57665f; color: #afbeb7; font-size: .72rem; text-transform: uppercase; }
+  .record-finder__result-preview-head strong { color: #93d6c6; }
+  .record-finder__result-preview ul { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; }
+  .record-finder__result-preview li { display: grid; grid-template-columns: 18px 1fr; padding: 10px 14px; border-right: 1px solid #45534d; border-bottom: 1px solid #45534d; }
+  .record-finder__result-preview li > span { grid-row: 1 / 3; color: #8fd2c2; }
+  .record-finder__result-preview li strong { color: white; font: 600 .78rem var(--font-sans); }
+  .record-finder__result-preview li small { color: #aab8b2; font-size: .7rem; }
+  .record-finder__result-preview li[data-preview-status="missing"] { opacity: .62; }
+  .record-finder__result-preview > p { margin: 0; padding: 10px 14px; color: #9dacA5; font-size: .7rem; }
+  .record-finder__workspace { display: flex; flex-direction: column; justify-content: center; background: var(--paper); }
+  .record-finder__document-entry { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 30px; padding-bottom: 22px; border-bottom: 1px solid var(--line-dark); }
+  .record-finder__document-entry > div { display: grid; }
+  .record-finder__document-entry span { color: var(--muted); font-size: .74rem; }
+  .record-finder__document-kicker { color: var(--accent) !important; font-weight: 700; text-transform: uppercase; }
+  .record-finder__form { display: grid; }
+  .record-finder__form > label { margin-top: 16px; font-weight: 700; }
+  .record-finder__form > p { margin: 4px 0 10px; color: var(--muted); font-size: .76rem; }
+  .record-finder__input-row { display: grid; grid-template-columns: 1fr auto; }
+  .record-finder__input-row input { min-height: 54px; border-right: 0; font-size: 1rem; }
+  .record-finder__input-row .button { min-height: 54px; border-radius: 0 2px 2px 0; }
+  .record-finder__form-outcome { margin-top: 16px !important; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--ink-soft) !important; }
+  .record-finder__fallback a { font-weight: 700; }
+  .record-finder__result { padding: 24px; border: 1px solid var(--line-dark); background: var(--surface); }
+  .record-finder__result-meta, .record-finder__result-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .record-finder__result-meta span { padding: 6px 8px; border: 1px solid var(--line); font-size: .72rem; }
+  .record-finder__search-packet, .record-finder__office, .record-finder__return { margin-top: 20px; padding: 18px; border-left: 3px solid var(--accent); background: var(--accent-pale); }
+  .record-finder__route-details { margin-top: 18px; border-top: 1px solid var(--line); }
+  .record-finder__route-details > summary { padding: 14px 0; font-weight: 700; }
+  .record-finder__outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+  .record-finder__outcomes button { min-height: 42px; border: 1px solid var(--line-dark); background: var(--surface); }
+  .record-finder__outcomes button:hover { border-color: var(--accent); color: var(--accent-dark); }
+  .record-finder__clear-progress { padding: 0; border: 0; color: var(--danger); background: none; font-size: .72rem; text-decoration: underline; }
+  .record-finder--embedded, .record-finder--minimal { display: block; min-height: 0; }
+  .record-finder--embedded .record-finder__intro, .record-finder--minimal .record-finder__workspace { padding: 28px; }
+  .record-finder--embedded .record-finder__workspace { padding: 28px; border: 1px solid var(--line); }
+  .record-finder__minimal-intro { margin-bottom: 20px; }
+
+  .county-finder { border: 1px solid var(--line-dark); background: var(--surface); }
+  .county-finder__intro { padding: 28px; border-bottom: 1px solid var(--line); }
+  .county-finder__panel { display: grid; grid-template-columns: minmax(240px, .65fr) minmax(0, 1.35fr); }
+  .county-finder__filters { padding: 24px; border-right: 1px solid var(--line); background: var(--paper); }
+  .county-finder__search { display: grid; grid-template-columns: 1fr auto; }
+  .county-finder__results { max-height: 620px; overflow-y: auto; padding: 8px 22px 22px; }
+  .county-finder__result { display: grid; gap: 3px; padding: 16px 3px; border-bottom: 1px solid var(--line); text-decoration: none; }
+  .county-finder__result:hover strong { color: var(--accent); }
+  .county-finder__result-meta, .county-finder__status { color: var(--muted); font-size: .72rem; }
+  .county-finder__stats { display: flex; gap: 16px; padding: 12px 0; color: var(--muted); font-size: .72rem; }
+
+  .field-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .field--full { grid-column: 1 / -1; }
+  .form-section { padding: 28px 0; border-top: 1px solid var(--line-dark); }
+  .form-section__header { margin-bottom: 22px; }
+  .form-section__header p { color: var(--muted); }
+  .form-actions--quick { justify-content: space-between; padding: 20px 0; border-top: 1px solid var(--line); }
+  .form-actions--quick p { max-width: 34ch; margin: 0; color: var(--muted); font-size: .75rem; }
+  .form-section--secondary > summary { display: flex; justify-content: space-between; padding: 18px 0; }
+  .secondary-checks { display: grid; gap: 10px; margin-top: 20px; }
+  .checkbox { display: flex; gap: 10px; align-items: flex-start; }
+  .checkbox input { width: 18px; min-height: 18px; margin-top: 3px; }
+
+  .calculator-form, .offer-prep-workspace, .bedroom-checker, .records-request-builder__workspace,
+  .county-access-workflow, .county-acquisition-workspace, .alabama-perc-scope, .micro-tool {
+    padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line-dark); background: var(--surface);
+  }
+  .calculator-output { position: sticky; top: 92px; }
+  .quote-panel { margin-top: 24px; }
+  .quote-form, .offer-prep-form { display: grid; gap: 24px; }
+  .offer-prep-form__group { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .offer-prep-form__wide, .offer-prep-form__group legend, .offer-prep-form__or { grid-column: 1 / -1; }
+  .offer-prep-form__or { position: relative; color: var(--muted); text-align: center; font-size: .72rem; }
+  .offer-prep-result { margin-top: 30px; border-top: 4px solid var(--accent); }
+  .offer-prep-result > div { padding: 24px; border: 1px solid var(--line); border-top: 0; background: var(--surface); }
+
+  .quick-link-strip, .hero-county-launchpad, .county-command-bar, .section-jump-strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .quick-link-strip__label, .section-jump-strip__label { margin-right: 6px; color: var(--muted); }
+  .quick-link-strip .button { min-height: 38px; padding: 8px 11px; font-size: .74rem; }
+
+  .sticky-mobile-cta { display: none; }
+}
+
+@layer responsive {
+  @media (max-width: 960px) {
+    .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid, .records-access-index-hero,
+    .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body { grid-template-columns: 1fr; }
+    .record-finder { grid-template-columns: 1fr; min-height: 0; }
+    .record-finder__intro, .record-finder__workspace { padding: 54px max(24px, calc((100vw - 760px) / 2)); }
+    .calculator-output { position: static; }
+    .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
+    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .record-finder__intro { padding: 34px 20px 30px; }
+    .record-finder__workspace { padding: 34px 20px; }
+    .record-finder__intro h1 { margin-bottom: 14px; font-size: clamp(2.2rem, 11vw, 2.8rem); }
+    .record-finder__intro > p { margin-bottom: 8px; font-size: .98rem; }
+    .record-finder__signals { margin: 10px 0 0; }
+    .record-finder__result-preview { display: none; }
+    .record-finder__document-entry { align-items: stretch; flex-direction: column; }
+    .record-finder__input-row, .county-finder__search { grid-template-columns: 1fr; gap: 8px; }
+    .record-finder__input-row input { border-right: 1px solid var(--line-dark); }
+    .record-finder__input-row .button { border-radius: 2px; }
+    .county-finder__panel { grid-template-columns: 1fr; }
+    .county-finder__filters { border-right: 0; border-bottom: 1px solid var(--line); }
+    .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
+    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid,
+    .field-grid, .offer-prep-form__group { grid-template-columns: 1fr; }
+    .field--full, .offer-prep-form__wide, .offer-prep-form__group legend, .offer-prep-form__or { grid-column: auto; }
+    .record-finder__outcomes { grid-template-columns: 1fr; }
+    .sticky-mobile-cta { position: fixed; z-index: 45; right: 0; bottom: 0; left: 0; display: block; padding: 10px 14px; border-top: 1px solid var(--line-dark); background: rgba(255,254,249,.97); transform: translateY(110%); transition: transform .2s ease; }
+    .sticky-mobile-cta.is-visible { transform: none; }
+    .sticky-mobile-cta .button { width: 100%; }
+    body.has-sticky-mobile-cta { padding-bottom: 68px; }
+  }
+}

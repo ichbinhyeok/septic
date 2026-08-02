@@ -34,9 +34,11 @@
     <link rel="shortcut icon" href="${AssetPaths.versioned("/favicon.svg")}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
+    <link rel="stylesheet" href="${AssetPaths.versioned("/workflows.css")}">
+    <link rel="stylesheet" href="${AssetPaths.versioned("/pages.css")}">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S1SY1NS71P"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -87,7 +89,7 @@
                     <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
-                        <span>septic transfer, records, permit paths, and planning ranges by state</span>
+                        <span>Property records &amp; permit routes</span>
                     </span>
                 </a>
 
@@ -106,13 +108,11 @@
                 </button>
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
-                    <a href="/septic-permit-lookup/">Permit lookup</a>
-                    <a href="/septic-records-checklist/">Records lookup</a>
-                    <a href="/septic-transfer-compliance/">Transfer compliance</a>
-                    <a href="/offer-prep-septic-file-check/">Offer prep</a>
-                    <a href="/states/">State guides</a>
-                    <a href="/septic-system-cost-calculator/">Cost estimator</a>
-                    <a href="/about/">About</a>
+                    <a href="/septic-permit-lookup/">Find a permit</a>
+                    <a href="/septic-records-checklist/">Find records</a>
+                    <a href="/offer-prep-septic-file-check/">Buyer file check</a>
+                    <a href="/states/">States</a>
+                    <a href="/septic-system-cost-calculator/">Cost planning</a>
                 </nav>
             </div>
         </header>

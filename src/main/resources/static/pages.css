@@ -1,0 +1,142 @@
+@layer reset, shell, primitives, workflows, pages, responsive;
+
+@layer pages {
+  /* Home: an operational records desk, not a marketing card wall */
+  .home-hero > .container { width: 100%; }
+  .home-workflow__steps { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; padding: 0; border-top: 1px solid var(--line-dark); list-style: none; }
+  .home-workflow__steps li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 25px 24px 22px 0; border-bottom: 1px solid var(--line); }
+  .home-workflow__steps li + li { padding-left: 24px; border-left: 1px solid var(--line); }
+  .home-workflow__steps li > span, .home-tool-grid__number, .money-answer-steps__number { color: var(--accent); font-size: .72rem; font-weight: 700; }
+  .home-workflow__steps h3 { margin-bottom: 7px; font-family: var(--font-sans); font-size: .96rem; letter-spacing: 0; }
+  .home-workflow__steps p { margin: 0; color: var(--muted); font-size: .78rem; }
+
+  .home-intent-list, .home-route-list { border-top: 1px solid var(--line-dark); }
+  .home-intent-list > a, .home-route-list > a { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; min-height: 82px; padding: 16px 6px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+  .home-intent-list > a:hover, .home-route-list > a:hover { padding-left: 13px; color: var(--accent-dark); background: rgba(255,255,255,.48); }
+  .home-intent-list > a > span:first-child, .home-route-list > a > span:first-child { display: grid; gap: 4px; }
+  .home-intent-list strong, .home-route-list strong { font-family: var(--font-serif); font-size: 1.15rem; }
+  .home-intent-list small, .home-route-list small { color: var(--muted); }
+  .home-intent-list > a > span:last-child, .home-route-list > a > span:last-child { color: var(--accent); font-size: .75rem; font-weight: 700; }
+  .home-tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-dark); }
+  .home-tool-grid article { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); }
+  .home-tool-grid article + article { padding-left: 24px; border-left: 1px solid var(--line); }
+  .home-tool-grid p { color: var(--muted); }
+  .home-tool-grid a { font-size: .78rem; font-weight: 700; }
+  .home-directory { border: 1px solid var(--line-dark); background: var(--surface); }
+  .home-directory > summary { display: flex; justify-content: space-between; gap: 20px; padding: 22px 25px; }
+  .home-directory > summary > span:first-child { display: grid; }
+  .home-directory > summary small { color: var(--muted); }
+  .home-directory > summary > span:last-child { color: var(--accent); font-size: .75rem; font-weight: 700; }
+  .home-directory > .section { padding: 0; border: 0; }
+  .home-coverage-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; font-size: .76rem; }
+
+  /* County and state records pages */
+  .county-records-page .section--heroish, .content-page .section--heroish { position: relative; }
+  .county-records-page .section--heroish h1, .content-page .section--heroish h1, .calculator-intro h1, .offer-prep-hero h1 { font-size: clamp(2.5rem, 4vw, 4.25rem); }
+  .calculator-intro { padding-block: 54px; }
+  .county-records-page .section--heroish::before, .content-page .section--heroish::before { content: "PUBLIC RECORD ROUTE"; position: absolute; top: 20px; right: max(24px, calc((100vw - 1180px) / 2)); color: var(--line-dark); font-size: .64rem; font-weight: 700; letter-spacing: .16em; }
+  .county-records-page__source-title, .county-records-page__local-signal, .county-records-page__support-copy { color: var(--muted); }
+  .county-records-page__local-signal { padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: .8rem; }
+  .county-service-scope { margin-top: 26px; }
+  .county-service-scope { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .county-service-scope__lead { grid-column: auto; }
+  .county-service-scope > p { grid-column: 1 / -1; margin: 0; padding: 18px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: .76rem; }
+  .county-search-intent-strip { padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .76rem; }
+  .county-search-intent-strip__query { display: inline; margin-left: 8px; color: var(--ink); font-weight: 700; }
+  .county-proof-strip, .county-data-strip, .coverage-summary { display: flex; flex-wrap: wrap; gap: 20px 34px; padding: 18px 0; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
+  .county-proof-strip > *, .county-data-strip > * { flex: 1 1 160px; }
+  .county-proof-strip strong, .county-data-strip strong { display: block; font-size: .84rem; }
+  .county-proof-strip span, .county-data-strip span { color: var(--muted); font-size: .7rem; }
+
+  .county-reference-library, .content-reference-library, .county-research-disclosure, .estimate-detail-disclosure, .records-access-data-details { border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
+  .county-reference-library > summary, .content-reference-library > summary, .county-research-disclosure > summary,
+  .estimate-detail-disclosure > summary, .records-access-data-details > summary { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; font-weight: 700; }
+  .county-reference-library__body, .content-reference-library__body, .county-research-disclosure__content, .estimate-detail-disclosure__body { padding-bottom: 24px; }
+  .county-reference-library__body > .section, .content-reference-library__body > .section { padding-block: 36px; }
+
+  .county-route-board, .next-move-board, .records-escalation-board, .official-tool-console,
+  .direct-search-lane, .county-request-panel, .money-answer-panel, .estimate-scenario-board,
+  .county-response-dossier, .county-preparation-sheet, .records-request-tracker, .county-acquisition-request {
+    border-top: 3px solid var(--ink); border-bottom: 1px solid var(--line-dark); background: var(--surface);
+  }
+  .county-route-board > *, .next-move-board > *, .records-escalation-board > *, .official-tool-console > *,
+  .direct-search-lane > *, .county-request-panel > *, .money-answer-panel > *, .estimate-scenario-board > *,
+  .county-response-dossier > *, .county-preparation-sheet > *, .records-request-tracker > *, .county-acquisition-request > * { padding-inline: clamp(20px, 3vw, 34px); }
+  .county-route-cluster, .next-move-row, .official-tool-route, .direct-search-route, .records-escalation-card,
+  .county-availability-row, .estimate-scenario-list > *, .county-response-dossier__rows > * { padding-block: 18px; border-bottom: 1px solid var(--line); }
+  .county-route-cluster__header, .next-move-row, .official-tool-route, .direct-search-route { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: center; }
+  .county-route-cluster__links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+
+  .county-acquisition-fieldset { margin-bottom: 24px; padding: 22px; border: 1px solid var(--line); }
+  .county-acquisition-fieldset--required { border-top: 3px solid var(--accent); }
+  .county-acquisition-fieldset__grid, .county-acquisition-fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .county-acquisition-field { position: relative; }
+  .county-acquisition-field__copy { width: auto; min-height: 34px; margin-top: 6px; padding: 6px 9px; border: 1px solid var(--line); background: var(--paper); font-size: .7rem; }
+
+  /* Dense operational modules share a ledger language */
+  .facts-table, .review-meta, .calculator-record-context__facts, .record-document__analysis dl { margin: 0; }
+  .review-meta > div, .calculator-record-context__facts > div, .record-document__analysis dl > div { display: grid; grid-template-columns: minmax(120px, .45fr) 1fr; gap: 18px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  dt { color: var(--muted); font-size: .72rem; font-weight: 700; text-transform: uppercase; }
+  dd { margin: 0; }
+  .review-meta__name { display: block; font-weight: 700; }
+  .trust-box__label { margin-bottom: 12px; }
+
+  .hero-command-board, .hero-decision-grid, .intent-rail, .records-proof-ladder, .next-move-board__rows,
+  .records-escalation-board__grid, .official-tool-console__grid, .direct-search-lane__grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .hero-command, .hero-decision-card, .intent-rail > *, .records-proof-ladder > *, .records-escalation-card,
+  .official-tool-route, .direct-search-route { padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); text-decoration: none; }
+  .hero-command--primary, .hero-decision-card--accent, .intent-card--primary, .next-move-row--primary { border-top: 3px solid var(--accent); }
+  .hero-command span, .hero-decision-card__label, .next-move-row__label { color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+  .hero-command strong { display: block; margin: 7px 0; color: var(--ink); font-family: var(--font-serif); font-size: 1.2rem; }
+  .hero-command small { color: var(--muted); }
+
+  /* Specialized interactive tools */
+  .bedroom-checker__fields, .bedroom-checker__facts, .bedroom-checker__signals, .record-document form,
+  .records-request-builder__controls, .quote-form, .alabama-perc-scope__form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .bedroom-checker__result, .record-document__analysis, .records-request-builder__output, .alabama-perc-scope__result,
+  .micro-tool__result, .county-access-return, .quote-panel { margin-top: 24px; padding: 24px; border: 1px solid var(--line-dark); background: var(--surface); }
+  .record-document { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line-dark); }
+  .record-document__paste { margin-top: 16px; border-top: 1px solid var(--line); }
+  .record-document__paste summary { padding: 14px 0; font-weight: 700; }
+  .record-document__privacy, [class$="__privacy"], [class$="__note"], [class$="__hint"] { color: var(--muted); font-size: .72rem; }
+  .records-request-builder__output textarea, .packet-copy { min-height: 250px; font-family: ui-monospace, Consolas, monospace; font-size: .8rem; }
+  .micro-tool__choices, .county-request-builder__tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line-dark); }
+  .micro-tool__choice, .county-request-builder__tab { min-height: 42px; padding: 9px 13px; border: 1px solid var(--line); border-bottom: 0; background: var(--paper); }
+  .micro-tool__choice.is-active, .county-request-builder__tab.is-active { color: white; background: var(--accent); }
+
+  /* Directories */
+  .state-grid, .records-access-state-list, .state-link-grid, .county-sibling-routes, .county-route-cluster__links { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .state-grid > a, .records-access-state-list > a, .state-link-grid > a, .county-sibling-routes > a, .county-route-cluster__links > a { padding: 14px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); font-size: .78rem; font-weight: 700; text-decoration: none; }
+  .state-grid > a:hover, .records-access-state-list > a:hover, .state-link-grid > a:hover { color: var(--accent); background: var(--accent-pale); }
+  .county-link-overflow { max-height: 460px; overflow: auto; }
+
+  .ops-report-page { background: #eef0ed; }
+  .ops-report-metrics { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .ops-report-stack > * { margin-bottom: 24px; }
+
+  .not-found-page { min-height: 60vh; }
+}
+
+@layer responsive {
+  @media (max-width: 960px) {
+    .state-grid, .records-access-state-list, .state-link-grid, .county-sibling-routes, .county-route-cluster__links { grid-template-columns: repeat(2, 1fr); }
+    .county-service-scope__lead { grid-column: auto; }
+    .ops-report-metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .home-workflow__steps, .home-tool-grid { grid-template-columns: 1fr; }
+    .home-workflow__steps li + li, .home-tool-grid article + article { padding-left: 0; border-left: 0; }
+    .home-intent-list > a, .home-route-list > a { grid-template-columns: 1fr; gap: 7px; }
+    .home-intent-list > a > span:last-child, .home-route-list > a > span:last-child { display: none; }
+    .home-directory > summary { flex-direction: column; }
+    .county-records-page .section--heroish::before, .content-page .section--heroish::before { display: none; }
+    .county-route-cluster__header, .next-move-row, .official-tool-route, .direct-search-route { grid-template-columns: 1fr; }
+    .county-acquisition-fieldset__grid, .county-acquisition-fields, .hero-command-board, .hero-decision-grid, .intent-rail,
+    .records-proof-ladder, .next-move-board__rows, .records-escalation-board__grid, .official-tool-console__grid,
+    .direct-search-lane__grid, .bedroom-checker__fields, .bedroom-checker__facts, .bedroom-checker__signals,
+    .record-document form, .records-request-builder__controls, .quote-form, .alabama-perc-scope__form,
+    .state-grid, .records-access-state-list, .state-link-grid, .county-sibling-routes, .county-route-cluster__links,
+    .ops-report-metrics { grid-template-columns: 1fr; }
+    .review-meta > div, .calculator-record-context__facts > div, .record-document__analysis dl > div { grid-template-columns: 1fr; gap: 4px; }
+  }
+}
