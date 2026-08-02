@@ -20337,38 +20337,38 @@
       "countyName": "Cumberland County",
       "countySlug": "cumberland-county",
       "title": "Cumberland County Tennessee Septic Records and Permit Lookup",
-      "metaDescription": "Cumberland County septic records and permit lookup with official TDEC SSDS and county health routing links, SSDS permit and inspection-letter records, and file-first checks before pricing or closing.",
-      "introCopy": "Cumberland County needs a county-first lookup because the useful answer is not just whether septic exists. The real question is whether the SSDS permit record, inspection letter, repair permit, or TDEC file search result can be found before a buyer, owner, agent, or contractor trusts the next cost or repair story.",
-      "uniqueAngle": "Cumberland is useful because building-permit pressure and SSDS file lookup often collide for buyers and owners around Crossville.",
-      "targetReader": "Best for Cumberland County buyers, sellers, owners, agents, and contractors who already know the county and need the septic record or permit path before they compare quotes, accept a seller explanation, or plan repair permit or inspection-letter routing.",
-      "officeLabel": "Cumberland County TDEC SSDS and county health routing office",
-      "officeUrl": "https://cumberlandcountytn.gov/directory/codes/",
-      "recordsLabel": "Open Cumberland County septic records and permit lookup path",
-      "recordsUrl": "https://cumberlandcountytn.gov/directory/codes/",
-      "contactLine": "Cumberland County TDEC SSDS and county health routing office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
+      "metaDescription": "Search Cumberland County septic records in TDEC's SSDS index, then use the Cookeville Field Office fallback for permits, layouts, inspection letters, repairs, or a written response.",
+      "introCopy": "Cumberland County's Codes Department states that Tennessee issues septic permits. Start with the TDEC SSDS record search, then use the Cookeville Environmental Field Office—the TDEC office that serves Cumberland County—when the index is blocked, incomplete, or does not return a property-matched file.",
+      "uniqueAngle": "Cumberland County requires a clean handoff between two authorities: county Codes handles the building-permit side, while TDEC owns the septic permit and records route through its SSDS search and Cookeville field office.",
+      "targetReader": "Best for Cumberland County buyers, sellers, owners, agents, and contractors who need a TDEC septic permit, layout, inspection letter, repair record, or documented no-record response before relying on a quote or closing file.",
+      "officeLabel": "TDEC Cookeville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/about-field-offices/field-offices/cookeville.html",
+      "recordsLabel": "Search the official TDEC SSDS records index",
+      "recordsUrl": "https://tdec.tn.gov/document-viewer/search/stp",
+      "contactLine": "TDEC Cookeville Environmental Field Office | 931-520-6688 | septic-related inquiries 931-206-6329 | serves Cumberland County",
       "decisionSteps": [
-        "Open the official Cumberland County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
-        "Ask for the SSDS permit record, inspection letter, repair permit, or TDEC file search result and tie the request to the address, parcel ID, owner name, subdivision, or permit number that the office can search.",
-        "Before pricing, confirm whether the file supports normal use, repair permit or inspection-letter routing, a sale, an addition, or a new permit path."
+        "Search the TDEC SSDS index with the property address, parcel or tax-map clue, current or prior owner, subdivision, or permit number available for the property.",
+        "If the search is blocked or incomplete, use the Cookeville Environmental Field Office septic-inquiries line or public-records route instead of treating a blank result as no record.",
+        "Keep the returned permit, layout, inspection letter, repair file, or written TDEC response with the property file before pricing, closing, or planning an addition."
       ],
       "recordsToRequest": [
-        "The SSDS permit record, inspection letter, repair permit, or TDEC file search result.",
-        "Any repair, complaint, abandonment, expansion, or final inspection record the Cumberland County office can attach to the parcel.",
-        "Any map, sketch, as-built, operation approval, affidavit, or letter showing where the system and replacement area sit."
+        "The TDEC SSDS permit, approval, or record-search result tied to the property.",
+        "Any system layout, inspection letter, repair, complaint, abandonment, expansion, or final-inspection record TDEC can attach to the parcel.",
+        "A written TDEC response, referral, or documented no-record result when the online index does not produce the file."
       ],
       "lowEndBreakers": [
-        "If Cumberland County cannot connect the parcel to a usable septic file, the cheapest quote is only a rough planning number.",
+        "If the TDEC search and Cookeville fallback cannot connect the parcel to a usable septic file, the cheapest quote is only a rough planning number.",
         "If the file shows a repair branch, missing closeout, or old system with no clear dimensions, repair permit or inspection-letter routing can override the low-end story.",
         "If the address, parcel ID, owner name, or legal description is wrong, a clean-looking lookup can still miss the real file."
       ],
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Cumberland County?",
-          "answer": "Start with the official Cumberland County records or environmental health link on this page, then request the SSDS permit record, inspection letter, repair permit, or TDEC file search result using the parcel address and any permit or owner information you already have."
+          "answer": "Start with the official TDEC SSDS record search. If it is blocked or incomplete, contact the TDEC Cookeville Environmental Field Office, which serves Cumberland County, with the address and any parcel, owner, subdivision, or permit clues."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Cumberland County?",
-          "answer": "Ask for SSDS permit and inspection-letter records, plus any repair, final inspection, as-built, approval, or complaint history. That file tells you whether the next move is normal pricing, a repair branch, or a more cautious permit check."
+          "answer": "Ask TDEC for the SSDS permit, layout, inspection letter, repair and final-inspection history, or a written response. County Codes handles building permits, but its own page says Tennessee issues septic permits."
         }
       ],
       "internalLinkTargets": [
@@ -20385,23 +20385,24 @@
       ],
       "officialSourceIds": [
         "tn_cumberland_01",
+        "tn_cumberland_efo_01",
         "tn_01",
         "tn_02",
         "tn_health_local_01"
       ],
       "workflowStructure": {
-        "fileOwnerCategory": "county_health",
-        "fileOwnerModel": "Cumberland County is the practical file owner for county-level searchers; the state guide helps only after the county record path is clear.",
-        "firstArtifactToPull": "the SSDS permit record, inspection letter, repair permit, or TDEC file search result",
+        "fileOwnerCategory": "state_regional",
+        "fileOwnerModel": "TDEC is the septic file owner for Cumberland County. Search the SSDS index first and use the Cookeville Environmental Field Office when the online result is blocked or incomplete; county Codes remains a separate building-permit authority.",
+        "firstArtifactToPull": "the property-matched TDEC SSDS permit, layout, inspection letter, repair file, or written response",
         "permitCloseoutCategory": "final_approval_signal",
         "permitCloseoutSignal": "The file is stronger when it includes a final approval, operation approval, license to operate, diagram, or other closeout artifact rather than only an application.",
         "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "SSDS permit and inspection-letter records plus any sale, inspection, or existing-system document the county can attach to the parcel.",
-        "specialProgramCategory": "local_variation",
-        "specialProgramSignal": "Cumberland County may add local forms, portals, fees, or office routing on top of the state baseline.",
+        "transferArtifact": "TDEC SSDS permit and inspection-letter records plus any sale, inspection, repair, or existing-system document tied to the parcel.",
+        "specialProgramCategory": "state_regional",
+        "specialProgramSignal": "The Cookeville Environmental Field Office serves Cumberland County and publishes a dedicated septic-inquiries number; county Codes is not the septic permit issuer.",
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any complaint, failure, repair application, or tank replacement record should be resolved before the system is treated as routine.",
-        "quoteGate": "Do not move from lookup to pricing until the county file owner, first artifact, and repair or closeout status agree with the buyer, seller, or contractor story."
+        "quoteGate": "Do not move from lookup to pricing until the TDEC file owner, first property-matched artifact, and repair or closeout status agree with the buyer, seller, or contractor story."
       },
       "publishStatus": "published"
     },

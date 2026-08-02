@@ -37,7 +37,7 @@ public record CountyAccessProfileView(
     public String capabilityTier() {
         return switch (mode) {
             case "direct_portal" -> "search_now";
-            case "portal_with_fallback", "metadata_only" -> "search_then_request";
+            case "portal_with_fallback", "state_search_with_fallback", "metadata_only" -> "search_then_request";
             case "official_request" -> "request_records";
             case "phone_assisted", "jurisdiction_first", "temporarily_unavailable" -> "office_help";
             default -> "official_start";
@@ -58,6 +58,7 @@ public record CountyAccessProfileView(
         return switch (mode) {
             case "direct_portal" -> "Direct official search";
             case "portal_with_fallback" -> "Search with official fallback";
+            case "state_search_with_fallback" -> "State search with official fallback";
             case "metadata_only" -> "Permit metadata only";
             case "official_request" -> "Official request required";
             case "phone_assisted" -> "Phone or office intake";
@@ -76,7 +77,7 @@ public record CountyAccessProfileView(
 
     public String tone() {
         return switch (mode) {
-            case "direct_portal", "portal_with_fallback" -> "direct";
+            case "direct_portal", "portal_with_fallback", "state_search_with_fallback" -> "direct";
             case "official_request", "phone_assisted" -> "request";
             case "metadata_only", "jurisdiction_first" -> "verify";
             case "temporarily_unavailable" -> "blocked";

@@ -208,6 +208,89 @@ public final class CountyAccessProfileCatalog {
                             "Before an addition or remodel, match the proposed bedroom count to the septic record."
                     )
             )),
+            Map.entry("TN::cumberland-county", profile(
+                    "TN::cumberland-county",
+                    "state_search_with_fallback",
+                    "TDEC search with Cookeville fallback",
+                    "Search the TDEC SSDS file, then use the Cookeville field office",
+                    "Cumberland County states that Tennessee issues septic permits. TDEC's Cookeville Environmental Field Office serves Cumberland County and publishes a septic-inquiries number plus public-records fallback.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open the TDEC Cookeville Field Office",
+                    "https://www.tn.gov/environment/contacts/about-field-offices/field-offices/cookeville.html",
+                    "A property-matched SSDS permit, approval, layout, inspection letter, or written TDEC response",
+                    "Cumberland County's Codes Department is the building-permit route, not the septic-file owner. A blank TDEC search is not a no-record determination; use Cookeville's published 931-206-6329 septic-inquiries line or public-records route.",
+                    List.of("Property address", "Parcel or tax-map clue", "Current and prior owner names when available", "Subdivision and lot when applicable"),
+                    List.of("SSDS permit or approval", "System layout or inspection letter", "Repair record or written no-record response"),
+                    List.of(
+                            "Search the TDEC SSDS record index with the strongest property clue.",
+                            "If the search is blocked or incomplete, contact the Cookeville Environmental Field Office, which serves Cumberland County.",
+                            "Keep the returned permit, layout, inspection letter, repair file, or written no-record response with the property file."
+                    )
+            )),
+            Map.entry("NC::iredell-county", profile(
+                    "NC::iredell-county",
+                    "direct_portal",
+                    "Direct county GIS record search",
+                    "Open the property in Iredell GIS and use the Septic Records tab",
+                    "Iredell County publishes a direct workflow: accept the GIS disclaimer, search the property address, open the highlighted parcel, and use the Septic Records tab near the bottom of the property details.",
+                    "Search Iredell County GIS",
+                    "https://iredellcountync.mapgeo.io/datasets/properties?abuttersDistance=100&latlng=35.785949%2C-80.887561",
+                    "Read Iredell's official search instructions",
+                    "https://www.iredellcountync.gov/1034/View-Your-Septic-Record-Online",
+                    "The latest operation permit tied to the highlighted Iredell County property, or a written Environmental Health response",
+                    "The county says most permits are online, not all permits. If the Septic Records tab is absent or incomplete, contact Environmental Health rather than treating the blank result as proof that no record exists.",
+                    List.of("Property address", "Parcel PIN if the address match is uncertain"),
+                    List.of("Latest operation permit", "Septic layout or permit image available from the parcel", "Written follow-up response when the online record is missing"),
+                    List.of(
+                            "Accept the county GIS disclaimer and search the property address in the upper-right search.",
+                            "Select the highlighted parcel and verify the address and parcel identity.",
+                            "Scroll through the left property panel and open the Septic Records tab near the bottom.",
+                            "Save the latest operation permit; if no usable record appears, follow up with Iredell Environmental Health."
+                    )
+            )),
+            Map.entry("IN::porter-county", profile(
+                    "IN::porter-county",
+                    "phone_assisted",
+                    "County record lookup by installation era",
+                    "Use Porter County's installation-year rules before requesting the drawing",
+                    "Porter County publishes different lookup requirements by installation era: no county permit records before 1974; address, subdivision and lot, plus the installation-era owner or applicant for 1974–2001; and the property address for 2001 to present.",
+                    "Open Porter's existing-system record instructions",
+                    "https://www.in.gov/localhealth/portercounty/environmental-health/septic-systems/locating-existing-septic-systems/",
+                    "Open Porter County Environmental Health",
+                    "https://www.in.gov/localhealth/portercounty/environmental-health/",
+                    "A county septic drawing, field investigation report, permit material, or a documented pre-1974/no-file response",
+                    "Porter County says it does not hold septic permit records before 1974. When no drawing exists, the county instructs the owner to locate the system or hire someone to locate it; do not invent a layout from general setback guidance.",
+                    List.of("Property address", "Approximate installation year", "Subdivision name and lot for 1974–2001 records", "Installation-era owner or permit applicant for 1974–2001 records"),
+                    List.of("Septic system drawing", "Repair or septic/well field investigation report", "Permit or documented record-availability response"),
+                    List.of(
+                            "Determine whether the installation was before 1974, from 1974–2001, or from 2001 onward.",
+                            "Prepare the address and the additional subdivision, lot, and prior-owner clues required for the applicable era.",
+                            "Contact Porter County Environmental Health and ask for the drawing or applicable field investigation and permit material.",
+                            "If the county has no drawing, use a qualified locate for a project decision instead of guessing from typical dimensions."
+                    )
+            )),
+            Map.entry("SC::horry-county", profile(
+                    "SC::horry-county",
+                    "jurisdiction_first",
+                    "SCDES route after county parcel match",
+                    "Confirm the Horry parcel, then route the septic file through SCDES",
+                    "Horry County's GIS and online services establish the parcel or TMS clue; South Carolina DES remains the septic permitting and permit-copy route. The county parcel fabric is a tax and routing clue, not a survey or septic layout.",
+                    "Open the SCDES septic contact route",
+                    "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
+                    "Open Horry County online services and GIS",
+                    "https://www.horrycountysc.gov/online-services/",
+                    "A parcel-matched septic permit copy, D-1740 or site-review trail, final-inspection status, or written SCDES response",
+                    "Do not use the Horry GIS parcel fabric as the septic layout. Capture the TMS or parcel identity there, then use SCDES to resolve the permit file and any final-inspection, repair, replacement, or abandonment history.",
+                    List.of("Property address", "Horry County TMS or parcel ID", "Owner and subdivision when available", "Permit number or builder clue when available"),
+                    List.of("Septic permit copy", "D-1740 application or site-review record", "Permit to Construct or final-inspection status", "Repair, replacement, malfunction, or abandonment record"),
+                    List.of(
+                            "Use Horry County GIS to confirm the address, TMS or parcel ID, owner, and subdivision clue.",
+                            "Open the SCDES septic contact route and identify the current county or regional intake for Horry County.",
+                            "Request the permit copy, D-1740 or site-review trail, and final-inspection status tied to the parcel.",
+                            "Keep the county parcel clue separate from the septic layout and treat an empty search as pending until SCDES responds."
+                    )
+            )),
             Map.entry("TN::williamson-county", profile(
                     "TN::williamson-county",
                     "official_request",
