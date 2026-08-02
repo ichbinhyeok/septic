@@ -82,26 +82,31 @@
                     </div>
                 @endif
                 @if (countyAccessProfile != null)
-                    <section class="county-service-scope county-service-scope--${countyAccessProfile.countySpecific() ? "verified" : "baseline"}"
-                             aria-label="What SepticPath can do on this route">
-                        <div class="county-service-scope__lead">
-                            <span>Official access</span>
+                    <details class="county-service-scope county-service-scope--${countyAccessProfile.countySpecific() ? "verified" : "baseline"}">
+                        <summary>
+                            <span>What this route can do</span>
                             <strong>${countyAccessProfile.officialAccessLabel()}</strong>
+                        </summary>
+                        <div class="county-service-scope__details" aria-label="What SepticPath can do on this route">
+                            <div>
+                                <span>Official access</span>
+                                <strong>${countyAccessProfile.officialAccessLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>SepticPath can</span>
+                                <strong>${countyAccessProfile.capabilityLabel()}: ${countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack() ? "published fields and handoff" : "property clues and route"}</strong>
+                            </div>
+                            <div>
+                                <span>You complete</span>
+                                <strong>${countyAcquisitionProfile != null ? countyAcquisitionProfile.userOnlyAction() : "The current government-site or office action"}</strong>
+                            </div>
+                            <div>
+                                <span>Done means</span>
+                                <strong>${countyAccessProfile.completionLabel()}</strong>
+                            </div>
+                            <p><strong>${countyAccessProfile.scopeLabel()}.</strong> ${countyAccessProfile.scopeSummary()}@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) <span>Route reviewed ${editorialLastReviewedAt}.</span>@endif</p>
                         </div>
-                        <div>
-                            <span>SepticPath can</span>
-                            <strong>${countyAccessProfile.capabilityLabel()}: ${countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack() ? "published fields and handoff" : "property clues and route"}</strong>
-                        </div>
-                        <div>
-                            <span>You complete</span>
-                            <strong>${countyAcquisitionProfile != null ? countyAcquisitionProfile.userOnlyAction() : "The current government-site or office action"}</strong>
-                        </div>
-                        <div>
-                            <span>Done means</span>
-                            <strong>${countyAccessProfile.completionLabel()}</strong>
-                        </div>
-                        <p><strong>${countyAccessProfile.scopeLabel()}.</strong> ${countyAccessProfile.scopeSummary()}@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) <span>Route reviewed ${editorialLastReviewedAt}.</span>@endif</p>
-                    </section>
+                    </details>
                 @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)

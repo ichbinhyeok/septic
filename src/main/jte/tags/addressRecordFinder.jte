@@ -10,17 +10,19 @@
 <div id="${finderId}" class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
     @if (!minimal)
         <div class="record-finder__intro">
-            <span class="eyebrow">${eyebrow}</span>
-            @if (pageHeading)
-                <h1>${heading}</h1>
-            @else
-                <h2>${heading}</h2>
-            @endif
-            <p>${intro}</p>
-            <div class="record-finder__signals" aria-label="Record finder coverage">
-                <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
-                <span>Route depth shown before handoff</span>
-                <span>No account required</span>
+            <div class="record-finder__heading">
+                <span class="eyebrow">${eyebrow}</span>
+                @if (pageHeading)
+                    <h1>${heading}</h1>
+                @else
+                    <h2>${heading}</h2>
+                @endif
+                <p>${intro}</p>
+                <div class="record-finder__signals" aria-label="Record finder coverage">
+                    <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
+                    <span>Route depth shown before handoff</span>
+                    <span>No account required</span>
+                </div>
             </div>
             <div class="record-finder__result-preview" aria-label="Example property file result">
                 <div class="record-finder__result-preview-head">
@@ -47,45 +49,53 @@
                 <p>${intro}</p>
             </div>
         @endif
-        <div class="record-finder__document-entry">
-            <div>
-                <span class="record-finder__document-kicker">I already have a file</span>
-                <strong>Have a permit, drawing, letter, or screenshot?</strong>
-                <span>Skip the county search and check the document you already have.</span>
-            </div>
-            <button class="button button--quiet" type="button" data-record-document-direct>Start from my document</button>
-        </div>
         <form class="record-finder__form"
               id="${finderId}-form"
               name="address-record-finder"
               data-address-record-finder-form>
-            <label for="${finderId}-purpose">What are you trying to confirm?</label>
-            <select id="${finderId}-purpose" name="purpose" data-address-record-finder-purpose>
-                <option value="buying">Buyer or seller property file</option>
-                <option value="bedrooms">Approved bedroom count or addition</option>
-                <option value="location">Tank, drain field, or reserve-area location</option>
-                <option value="repair">Repair history or current problem</option>
-                <option value="replacement">Replacement scope and cost</option>
-                <option value="lender">Lender, closing, or inspection letter</option>
-                <option value="owner">Owner records and future reference</option>
-            </select>
-            <label for="${finderId}-address">Property address</label>
-            <p>Street, city, state, and ZIP produce the most reliable county match.</p>
-            <div class="record-finder__input-row">
-                <input id="${finderId}-address"
-                       name="address"
-                       type="text"
-                       autocomplete="street-address"
-                       placeholder="401 Church St, Nashville, TN 37219"
-                       maxlength="180"
-                       required
-                       data-address-record-finder-input>
-                <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
+            <div class="record-finder__form-fields">
+                <label class="record-finder__field" for="${finderId}-purpose">
+                    <span>What do you need?</span>
+                    <select id="${finderId}-purpose" name="purpose" data-address-record-finder-purpose>
+                        <option value="buying">Buyer or seller property file</option>
+                        <option value="bedrooms">Approved bedroom count or addition</option>
+                        <option value="location">Tank, drain field, or reserve-area location</option>
+                        <option value="repair">Repair history or current problem</option>
+                        <option value="replacement">Replacement scope and cost</option>
+                        <option value="lender">Lender, closing, or inspection letter</option>
+                        <option value="owner">Owner records and future reference</option>
+                    </select>
+                </label>
+                <div class="record-finder__field record-finder__field--address">
+                    <label for="${finderId}-address">
+                        <span>Property address</span>
+                        <small>Include city, state, and ZIP for the best county match.</small>
+                    </label>
+                    <div class="record-finder__input-row">
+                        <input id="${finderId}-address"
+                               name="address"
+                               type="text"
+                               autocomplete="street-address"
+                               placeholder="401 Church St, Nashville, TN 37219"
+                               maxlength="180"
+                               required
+                               data-address-record-finder-input>
+                        <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
+                    </div>
+                </div>
             </div>
             <p class="record-finder__privacy">Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
             <p class="record-finder__form-outcome"><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
             <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
+        <div class="record-finder__document-entry">
+            <div>
+                <span class="record-finder__document-kicker">Already have a file?</span>
+                <strong>Have a permit, drawing, letter, or screenshot?</strong>
+                <span>Skip county search and start from the document on your device.</span>
+            </div>
+            <button class="button button--quiet" type="button" data-record-document-direct>Use my document</button>
+        </div>
 
         <section class="record-finder__result" data-address-record-finder-result aria-live="polite" hidden>
             <span class="eyebrow" data-address-record-finder-status>County route found</span>

@@ -10,53 +10,56 @@
   }
   .content-grid--top { align-items: stretch; }
   .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
-  .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid {
+  .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .metric-grid {
     display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line);
   }
   .feature-card, .state-card, .detail-card, .trust-box, .hero-sidecard, .hero-card, .mini-card, .metric-card,
   .comparison-card, .coverage-card, .intent-card, .disclosure-card, .placeholder-panel, .result-panel, .quote-panel,
-  .record-finder-steps article, .money-answer-steps > *, .offer-prep-proof-grid article, .county-service-scope > div {
+  .record-finder-steps article, .money-answer-steps > *, .offer-prep-proof-grid article {
     position: relative; margin: 0; padding: clamp(20px, 3vw, 32px); border: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 0; background: var(--surface); box-shadow: none;
   }
   .hero-sidecard, .hero-card, .trust-box--large, .placeholder-panel, .quote-panel { border: 1px solid var(--line-dark); }
   .feature-card:hover, .state-card:hover, .detail-card:hover { background: #f9faf6; }
   .detail-card p, .feature-card p, .state-card p, .hero-sidecard p, .mini-card p { color: var(--muted); }
-  .metric-card strong { display: block; margin: 6px 0; font-family: var(--font-serif); font-size: 2rem; }
+  .metric-card strong { display: block; margin: 6px 0; font-family: var(--font-sans); font-size: 2rem; }
   .metric-card__label { color: var(--muted); }
 
   /* Search and form workspaces */
   .record-finder-hero { padding: 0; border-bottom: 1px solid var(--line-dark); background: var(--surface); }
-  .record-finder { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); min-height: calc(100svh - var(--header-height)); }
-  .record-finder__intro, .record-finder__workspace { padding: clamp(40px, 6vw, 82px); }
-  .record-finder__intro { display: flex; flex-direction: column; justify-content: center; background: var(--ink); color: #eaf0ed; }
-  .record-finder__intro h1, .record-finder__intro h2 { color: white; }
-  .record-finder__intro > p { max-width: 58ch; color: #bdc9c4; font-size: 1.06rem; }
-  .record-finder__intro .eyebrow { color: #8fd2c2; }
-  .record-finder__signals { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 16px 0 28px; color: #b8c5c0; font-size: .72rem; }
+  .record-finder { display: block; min-height: 0; background: var(--surface); }
+  .record-finder__intro, .record-finder__workspace { padding-inline: max(24px, calc((100vw - 1180px) / 2)); }
+  .record-finder__intro { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, .8fr); gap: clamp(36px, 7vw, 92px); align-items: center; padding-block: 50px 32px; color: var(--ink); background: var(--surface); }
+  .record-finder__heading { max-width: 660px; }
+  .record-finder__intro h1, .record-finder__intro h2 { max-width: 16ch; color: var(--ink); font-size: clamp(2.6rem, 4.8vw, 4.6rem); }
+  .record-finder__heading > p { max-width: 57ch; color: var(--ink-soft); font-size: 1rem; }
+  .record-finder__intro .eyebrow { color: var(--accent); }
+  .record-finder__signals { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 16px 0 0; color: var(--muted); font-size: .72rem; }
   .record-finder__signals span { display: inline-flex; gap: 5px; }
-  .record-finder__signals strong { color: white; }
-  .record-finder__result-preview { max-width: 590px; border: 1px solid #57665f; background: #202e29; }
-  .record-finder__result-preview-head { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid #57665f; color: #afbeb7; font-size: .72rem; text-transform: uppercase; }
-  .record-finder__result-preview-head strong { color: #93d6c6; }
+  .record-finder__signals strong { color: var(--ink); }
+  .record-finder__result-preview { max-width: 520px; border: 1px solid var(--line-dark); border-radius: 8px; background: var(--paper); box-shadow: 0 18px 50px rgba(23,44,56,.08); }
+  .record-finder__result-preview-head { display: flex; justify-content: space-between; padding: 12px 15px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .7rem; text-transform: uppercase; }
+  .record-finder__result-preview-head strong { color: var(--accent); }
   .record-finder__result-preview ul { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; }
-  .record-finder__result-preview li { display: grid; grid-template-columns: 18px 1fr; padding: 10px 14px; border-right: 1px solid #45534d; border-bottom: 1px solid #45534d; }
-  .record-finder__result-preview li > span { grid-row: 1 / 3; color: #8fd2c2; }
-  .record-finder__result-preview li strong { color: white; font: 600 .78rem var(--font-sans); }
-  .record-finder__result-preview li small { color: #aab8b2; font-size: .7rem; }
+  .record-finder__result-preview li { display: grid; grid-template-columns: 18px 1fr; padding: 10px 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .record-finder__result-preview li > span { grid-row: 1 / 3; color: var(--accent); }
+  .record-finder__result-preview li strong { color: var(--ink); font: 600 .78rem var(--font-sans); }
+  .record-finder__result-preview li small { color: var(--muted); font-size: .7rem; }
   .record-finder__result-preview li[data-preview-status="missing"] { opacity: .62; }
-  .record-finder__result-preview > p { margin: 0; padding: 10px 14px; color: #9dacA5; font-size: .7rem; }
-  .record-finder__workspace { display: flex; flex-direction: column; justify-content: center; background: var(--paper); }
-  .record-finder__document-entry { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 30px; padding-bottom: 22px; border-bottom: 1px solid var(--line-dark); }
+  .record-finder__result-preview > p { margin: 0; padding: 10px 14px; color: var(--muted); font-size: .7rem; }
+  .record-finder__workspace { display: block; padding-block: 28px 34px; border-top: 1px solid var(--line); background: var(--paper); }
+  .record-finder__document-entry { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
   .record-finder__document-entry > div { display: grid; }
   .record-finder__document-entry span { color: var(--muted); font-size: .74rem; }
   .record-finder__document-kicker { color: var(--accent) !important; font-weight: 700; text-transform: uppercase; }
   .record-finder__form { display: grid; }
-  .record-finder__form > label { margin-top: 16px; font-weight: 700; }
-  .record-finder__form > p { margin: 4px 0 10px; color: var(--muted); font-size: .76rem; }
+  .record-finder__form-fields { display: grid; grid-template-columns: minmax(230px, .62fr) minmax(0, 1.38fr); gap: 18px; align-items: end; }
+  .record-finder__field > span, .record-finder__field > label > span { display: block; margin-bottom: 6px; color: var(--ink); font-size: .78rem; font-weight: 700; }
+  .record-finder__field > small, .record-finder__field > label > small { display: block; margin: -2px 0 6px; color: var(--muted); font-size: .67rem; }
+  .record-finder__form > p { margin: 8px 0 0; color: var(--muted); font-size: .7rem; }
   .record-finder__input-row { display: grid; grid-template-columns: 1fr auto; }
   .record-finder__input-row input { min-height: 54px; border-right: 0; font-size: 1rem; }
-  .record-finder__input-row .button { min-height: 54px; border-radius: 0 2px 2px 0; }
-  .record-finder__form-outcome { margin-top: 16px !important; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--ink-soft) !important; }
+  .record-finder__input-row .button { min-height: 54px; border-radius: 0 6px 6px 0; }
+  .record-finder__form-outcome { color: var(--ink-soft) !important; }
   .record-finder__fallback a { font-weight: 700; }
   .record-finder__result { padding: 24px; border: 1px solid var(--line-dark); background: var(--surface); }
   .record-finder__result-meta, .record-finder__result-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
@@ -69,7 +72,10 @@
   .record-finder__outcomes button:hover { border-color: var(--accent); color: var(--accent-dark); }
   .record-finder__clear-progress { padding: 0; border: 0; color: var(--danger); background: none; font-size: .72rem; text-decoration: underline; }
   .record-finder--embedded, .record-finder--minimal { display: block; min-height: 0; }
-  .record-finder--embedded .record-finder__intro, .record-finder--minimal .record-finder__workspace { padding: 28px; }
+  .record-finder--embedded .record-finder__intro { display: block; padding: 28px; }
+  .record-finder--embedded .record-finder__intro h2 { font-size: 2rem; }
+  .record-finder--embedded .record-finder__result-preview { display: none; }
+  .record-finder--embedded .record-finder__workspace, .record-finder--minimal .record-finder__workspace { padding: 28px; }
   .record-finder--embedded .record-finder__workspace { padding: 28px; border: 1px solid var(--line); }
   .record-finder__minimal-intro { margin-bottom: 20px; }
 
@@ -120,19 +126,20 @@
   @media (max-width: 960px) {
     .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid, .records-access-index-hero,
     .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body { grid-template-columns: 1fr; }
-    .record-finder { grid-template-columns: 1fr; min-height: 0; }
-    .record-finder__intro, .record-finder__workspace { padding: 54px max(24px, calc((100vw - 760px) / 2)); }
+    .record-finder__intro { grid-template-columns: 1fr; padding: 42px max(24px, calc((100vw - 760px) / 2)) 26px; }
+    .record-finder__workspace { padding: 26px max(24px, calc((100vw - 760px) / 2)) 32px; }
+    .record-finder__result-preview { display: none; }
     .calculator-output { position: static; }
     .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
-    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .metric-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 720px) {
-    .record-finder__intro { padding: 34px 20px 30px; }
-    .record-finder__workspace { padding: 34px 20px; }
-    .record-finder__intro h1 { margin-bottom: 14px; font-size: clamp(2.2rem, 11vw, 2.8rem); }
-    .record-finder__intro > p { margin-bottom: 8px; font-size: .98rem; }
+    .record-finder__intro { padding: 28px 20px 20px; }
+    .record-finder__workspace { padding: 20px; }
+    .record-finder__intro h1 { margin-bottom: 10px; font-size: clamp(2rem, 9vw, 2.5rem); }
+    .record-finder__heading > p { margin-bottom: 6px; font-size: .9rem; }
     .record-finder__signals { margin: 10px 0 0; }
-    .record-finder__result-preview { display: none; }
+    .record-finder__form-fields { grid-template-columns: 1fr; gap: 12px; }
     .record-finder__document-entry { align-items: stretch; flex-direction: column; }
     .record-finder__input-row, .county-finder__search { grid-template-columns: 1fr; gap: 8px; }
     .record-finder__input-row input { border-right: 1px solid var(--line-dark); }
@@ -140,7 +147,7 @@
     .county-finder__panel { grid-template-columns: 1fr; }
     .county-finder__filters { border-right: 0; border-bottom: 1px solid var(--line); }
     .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
-    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .county-service-scope, .metric-grid,
+    .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .metric-grid,
     .field-grid, .offer-prep-form__group { grid-template-columns: 1fr; }
     .field--full, .offer-prep-form__wide, .offer-prep-form__group legend, .offer-prep-form__or { grid-column: auto; }
     .record-finder__outcomes { grid-template-columns: 1fr; }
