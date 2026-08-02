@@ -33,9 +33,10 @@
                 <div class="bedroom-checker__fields">
                     <label>
                         <span>Property state</span>
-                        <select data-bedroom-state>
+                        <select required data-bedroom-state>
+                            <option value="" selected disabled>Choose a state</option>
                             @for (var state : states)
-                                <option value="${state.stateCode()}" selected="${"TN".equals(state.stateCode())}">${state.stateName()}</option>
+                                <option value="${state.stateCode()}">${state.stateName()}</option>
                             @endfor
                         </select>
                     </label>
