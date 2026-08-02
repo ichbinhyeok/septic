@@ -1363,7 +1363,7 @@ public class SeoService {
         }
         return switch (state.stateCode()) {
             case "TN" -> "Find Tennessee septic records by county. Get permit copies, inspection letters, repair history, or no-record responses through TDEC or a contract county.";
-            case "NC" -> "Find the North Carolina county route for septic permits, as-builts, final approval, repair files, and written no-record requests. Start with address or parcel clues.";
+            case "NC" -> "Find North Carolina septic permits, as-builts, final approvals, repair files, and no-record responses by address or county environmental health route.";
             case "IN" -> "Find Indiana septic records through county permit search, local health files, as-builts, soil reports, and the right next office when a record is missing.";
             case "SC" -> "Find South Carolina septic records through SCDES permit lookup, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
             case "TX" -> "Find Texas OSSF records through county or authorized-agent routes, permit lookup, approved plans, address or parcel search, ETJ checks, and records request wording.";
