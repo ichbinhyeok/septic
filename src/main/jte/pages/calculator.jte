@@ -197,11 +197,6 @@
                          data-ga-param-estimator-type="cost_estimator"
                          data-ga-param-state-code="${estimateForm.getStateCode()}"
                          data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
-                    <div hidden
-                         data-ga-event="calculator_completed"
-                         data-ga-param-estimator-type="cost_estimator"
-                         data-ga-param-state-code="${estimateForm.getStateCode()}"
-                         data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
                     @template.tags.estimateResult(result = result, costEvidence = costEvidence)
                 @else
                     <article class="placeholder-panel">
