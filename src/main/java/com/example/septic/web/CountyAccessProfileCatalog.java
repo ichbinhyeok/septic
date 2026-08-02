@@ -820,6 +820,156 @@ public final class CountyAccessProfileCatalog {
                             "Attach the returned file or written outcome to the property task."
                     )
             )),
+            Map.entry("TN::bradley-county", profile(
+                    "TN::bradley-county",
+                    "state_search_with_fallback",
+                    "TDEC search with Chattanooga fallback",
+                    "Search the Bradley County SSDS file, then use the Chattanooga field office",
+                    "TDEC's Chattanooga Environmental Field Office lists Bradley among the counties it serves. Search the statewide SSDS index first; when the result is blocked, incomplete, or does not match the parcel, use the field office's Division of Water Resources or public-records route.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open the Chattanooga Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/chattanooga.html",
+                    "A property-matched SSDS permit, approval, layout, inspection letter, repair file, or written TDEC response",
+                    "The Chattanooga page confirms service territory and a public-records fallback, but it does not publish a Bradley-specific intake form, fee, or turnaround. A blank viewer result is not an official no-record determination.",
+                    List.of(
+                            "Property address",
+                            "Parcel or tax-map clue",
+                            "Current and prior owner names when available",
+                            "Subdivision and lot when applicable"
+                    ),
+                    List.of(
+                            "SSDS construction permit or approval",
+                            "System layout, inspection letter, or certificate of completion",
+                            "Repair record or written no-record response"
+                    ),
+                    List.of(
+                            "Search the TDEC SSDS index with the strongest property clue and confirm the parcel match.",
+                            "If the search is blocked or incomplete, use the Chattanooga field office, which explicitly serves Bradley County.",
+                            "Ask Division of Water Resources for the permit, layout, closeout, and repair history tied to the parcel.",
+                            "Keep the returned file or written response with the property record task."
+                    )
+            )),
+            Map.entry("TN::sullivan-county", profile(
+                    "TN::sullivan-county",
+                    "official_request",
+                    "Published septic-layout email route",
+                    "Request a Sullivan County septic layout from the Johnson City field office",
+                    "The Johnson City Environmental Field Office explicitly serves Sullivan County and publishes a septic-layout request route. Its instructions say to email the property address, subdivision name when applicable, original owner, and previous owner.",
+                    "Email the Johnson City septic-layout desk",
+                    "mailto:TDEC.Johnsoncity.EFO@tn.gov",
+                    "Open the Johnson City Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/johnson.html",
+                    "A septic layout, related SSDS file, public-records response, or documented no-record outcome",
+                    "The office publishes 423-854-5392 for 24-hour automated septic-layout and public-records assistance, but it does not promise a response time or a complete historical file for every property.",
+                    List.of(
+                            "Property address",
+                            "Subdivision name when applicable",
+                            "Original owner name",
+                            "Previous owner name"
+                    ),
+                    List.of(
+                            "Existing-system septic layout",
+                            "SSDS permit, approval, or repair record returned with the layout",
+                            "Written referral or no-record response"
+                    ),
+                    List.of(
+                            "Prepare the four property clues published by the Johnson City field office.",
+                            "Open the email route and request the existing Sullivan County septic layout in your own name.",
+                            "If email is not workable, use the published 423-854-5392 automated assistance line or public-records route.",
+                            "Save the sent request and attach the returned layout or written outcome to the property task."
+                    )
+            )),
+            Map.entry("TN::loudon-county", profile(
+                    "TN::loudon-county",
+                    "state_search_with_fallback",
+                    "County-published TDEC search and fallback",
+                    "Search the Loudon County septic file, then use the published email fallback",
+                    "Loudon County publishes three concrete routes: the TDEC septic service, the online septic-file search, and septicsystem.files@tn.gov for a request. It also directs further assistance to the Knoxville Environmental Field Office.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open Loudon County's septic contact instructions",
+                    "https://planningandcodes.loudoncounty-tn.gov/buildingCodes_septicSystemContact.php",
+                    "A property-matched SSDS file, emailed record response, or documented no-record outcome",
+                    "Loudon County publishes the route but not a guaranteed response time, fee, or exact email field list. Use the strongest property clues and do not treat a blank online search as a no-record determination.",
+                    List.of(
+                            "Property address",
+                            "Parcel, tax-map, or legal-description clue",
+                            "Current or prior owner when available",
+                            "Approximate installation or permit year when known"
+                    ),
+                    List.of(
+                            "SSDS permit or approval",
+                            "System layout, inspection letter, or certificate of completion",
+                            "Repair file or written no-record response"
+                    ),
+                    List.of(
+                            "Search the official TDEC SSDS index and confirm the property match.",
+                            "If the search is blocked or incomplete, follow Loudon County's published septicsystem.files@tn.gov request route.",
+                            "Use the published Knoxville field-office number only when the file search and email route do not resolve ownership or next steps.",
+                            "Keep the returned record, request correspondence, or written no-record response."
+                    )
+            )),
+            Map.entry("TN::maury-county", profile(
+                    "TN::maury-county",
+                    "state_search_with_fallback",
+                    "TDEC search with Columbia fallback",
+                    "Search the Maury County SSDS file, then use the Columbia field office",
+                    "TDEC's Columbia Environmental Field Office lists Maury among the counties it serves and coordinates public-records requests when a data viewer does not resolve the file. Search the statewide SSDS index first, then carry a precise parcel request into that fallback.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open the Columbia Environmental Field Office",
+                    "https://www.tn.gov/environment/contacts/field-offices/columbia.html",
+                    "A property-matched SSDS permit, approval, layout, inspection letter, repair file, or written TDEC response",
+                    "The Columbia page confirms Maury service territory and public-records coordination, but it does not publish a Maury-specific form, fee, or turnaround. A blank viewer result is not an official no-record determination.",
+                    List.of(
+                            "Property address",
+                            "Parcel or tax-map clue",
+                            "Current and prior owner names when available",
+                            "Subdivision, lot, and approximate permit year when known"
+                    ),
+                    List.of(
+                            "SSDS construction permit or approval",
+                            "System layout, inspection letter, or certificate of completion",
+                            "Repair record or written no-record response"
+                    ),
+                    List.of(
+                            "Search the TDEC SSDS index with the strongest property clue and confirm the parcel match.",
+                            "If the search is blocked or incomplete, use the Columbia field office, which explicitly serves Maury County.",
+                            "Ask Division of Water Resources or the public-records coordinator for the site-specific SSDS file.",
+                            "Keep the returned file or written response with the property record task."
+                    )
+            )),
+            Map.entry("TN::jefferson-county", profile(
+                    "TN::jefferson-county",
+                    "phone_assisted",
+                    "County Environmental Health intake",
+                    "Confirm the Jefferson County permit, final approval, or existing-system record",
+                    "Jefferson County Environmental Health issues septic permits and publishes separate services for repair, site evaluation, inspection letters, existing-system evaluation, and certificate of verification. For new work it requires subdivision and lot information or a recorded plat and soil map, followed by a final inspection before cover-up.",
+                    "Call Jefferson County Environmental Health",
+                    "tel:865-397-1617",
+                    "Open Jefferson County septic permit guidance",
+                    "https://jeffersoncountytn.gov/environmental-health/",
+                    "The parcel permit and final approval, an existing-system evaluation or verification artifact, or a written office outcome",
+                    "The official page currently shows conflicting new-permit prices: $500 in the fee schedule and $250 in the step-by-step instructions. Confirm the current fee and service scope with the county before payment.",
+                    List.of(
+                            "Property address and parcel or owner clue",
+                            "Subdivision name and lot number when applicable",
+                            "Recorded plat and soil map for a non-subdivision new-permit request",
+                            "Purpose: historical record, repair, inspection letter, existing-system evaluation, or certificate of verification"
+                    ),
+                    List.of(
+                            "Septic permit and final approval",
+                            "Inspection letter, existing-system evaluation, or certificate of verification when requested",
+                            "Repair, upgrade, site-evaluation, or written no-record outcome"
+                    ),
+                    List.of(
+                            "Identify whether you need the historical permit file or a new paid evaluation or verification service.",
+                            "Call Environmental Health with the address, parcel or owner clue, and subdivision and lot when applicable.",
+                            "Ask for the permit and final-approval record first; order a current inspection letter or verification only when the transaction or project requires it.",
+                            "Confirm the current fee because the county page publishes two different new-permit amounts, then keep the receipt and resulting artifact."
+                    )
+            )),
             Map.entry("TN::wilson-county", profile(
                     "TN::wilson-county",
                     "official_request",

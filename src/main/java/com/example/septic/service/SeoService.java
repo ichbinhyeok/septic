@@ -748,6 +748,11 @@ public class SeoService {
             case "TN::montgomery-county" -> "Montgomery County TN Septic Permit Search & Records";
             case "TN::sevier-county" -> "Sevier County TN SSD Permit & Completion Records";
             case "TN::rutherford-county" -> "Rutherford County TN Septic Records and Permit Search";
+            case "TN::bradley-county" -> "Bradley County TN Septic Permit Lookup and TDEC Records";
+            case "TN::sullivan-county" -> "Sullivan County TN Septic Layout and Records Request";
+            case "TN::loudon-county" -> "Loudon County TN Septic Records Search and Permit Files";
+            case "TN::maury-county" -> "Maury County TN Septic Permit Lookup and TDEC Records";
+            case "TN::jefferson-county" -> "Jefferson County TN Septic Permits, Final Approval and Records";
             case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
             case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
@@ -800,6 +805,11 @@ public class SeoService {
             case "TN::montgomery-county" -> "Search the TDEC SSDS and county route with the address, parcel, owner, or permit clue before requesting a Montgomery County file copy or inspection letter.";
             case "TN::sevier-county" -> "Prepare Sevier County's property fields, confirm the current Environmental Health intake channel by phone, and request the SSD permit, Certificate of Completion, or written no-record result.";
             case "TN::rutherford-county" -> "Find the Rutherford County TDEC septic map, permit, and approved bedroom count without treating a blocked or empty online search as a no-record result.";
+            case "TN::bradley-county" -> "Search TDEC SSDS records for Bradley County, then use the Chattanooga field-office fallback for the permit, layout, closeout, repair file, or written response.";
+            case "TN::sullivan-county" -> "Request a Sullivan County septic layout from TDEC using the address, subdivision, original owner, and previous owner, then retain the layout or written outcome.";
+            case "TN::loudon-county" -> "Search the Loudon County septic file in TDEC, then use the county-published records email and Knoxville field-office fallback when the result is missing.";
+            case "TN::maury-county" -> "Search TDEC SSDS records for Maury County, then use the Columbia field-office public-records fallback for the permit, layout, repair file, or written response.";
+            case "TN::jefferson-county" -> "Use Jefferson County Environmental Health for the septic permit, final approval, inspection letter, existing-system evaluation, or verification record.";
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
