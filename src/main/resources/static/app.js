@@ -864,6 +864,13 @@
             const purposeSelect = finder.querySelector("[data-address-record-finder-purpose]");
             const submit = finder.querySelector("[data-address-record-finder-submit]");
             const directDocumentButton = finder.querySelector("[data-record-document-direct]");
+            const startModeButtons = Array.from(finder.querySelectorAll("[data-record-start-mode]"));
+            const addressField = finder.querySelector(".record-finder__field--address");
+            const missingStatusField = finder.querySelector(".record-finder__field--missing");
+            const missingStatus = finder.querySelector("[data-record-missing-status]");
+            const findSupport = Array.from(finder.querySelectorAll("[data-record-find-support]"));
+            const formOutcome = finder.querySelector("[data-record-form-outcome]");
+            const documentEntry = finder.querySelector("[data-record-document-entry]");
             const result = finder.querySelector("[data-address-record-finder-result]");
             const status = finder.querySelector("[data-address-record-finder-status]");
             const heading = finder.querySelector("[data-address-record-finder-heading]");
@@ -908,6 +915,8 @@
             const requestedCountyKey = finderQuery.get("countyKey")?.trim() || "";
             const requestedWorkflowRunId = finderQuery.get("workflowRunId")?.trim() || "";
             const requestedDocumentMode = finderQuery.get("mode") === "document";
+            const requestedMissingMode = finderQuery.get("mode") === "missing";
+            let activeStartMode = requestedDocumentMode ? "review" : requestedMissingMode ? "missing" : "find";
             let activeWorkflowRunId = requestedWorkflowRunId;
             const workflowStagesSent = new Set();
 
@@ -1539,6 +1548,29 @@
                 }
             }
 
+            function applyStartingOutcome(payloadStatus) {
+                if (activeStartMode !== "missing"
+                    || !(missingStatus instanceof HTMLSelectElement)
+                    || !["county_route", "state_route"].includes(payloadStatus)) {
+                    return;
+                }
+                const outcome = missingStatus.value || "not_found_online";
+                if (outcomes instanceof HTMLElement) {
+                    outcomes.querySelectorAll("button").forEach((item) => {
+                        if (item.dataset.recordOutcome === outcome) {
+                            item.setAttribute("aria-pressed", "true");
+                        } else {
+                            item.removeAttribute("aria-pressed");
+                        }
+                    });
+                }
+                saveTaskProgress("outcome_selected", outcome);
+                renderNextStep(outcome);
+                recordFinderStage("outcome_recorded", outcome);
+                showReturnPrompt();
+                sendArtifactAction("address_record_finder", `start_outcome_${outcome}`, "failed_record_search");
+            }
+
             function render(payload) {
                 result.hidden = false;
                 if (officialNote instanceof HTMLElement) {
@@ -1632,9 +1664,10 @@
                         route_type: payload.status
                     });
                 }
+                applyStartingOutcome(payload.status);
             }
 
-            directDocumentButton?.addEventListener("click", () => {
+            function openDirectDocumentWorkspace(entryPoint = "document_entry") {
                 recordFinderStage("workflow_viewed");
                 try {
                     sessionStorage.removeItem(pendingReturnStorageKey);
@@ -1687,10 +1720,83 @@
                 }
                 if (documentWorkspace instanceof HTMLElement) {
                     documentWorkspace.hidden = false;
-                    documentWorkspace.scrollIntoView({ behavior: "smooth", block: "start" });
-                    window.setTimeout(() => documentFile?.focus(), 320);
+                    if (entryPoint === "start_mode_review") {
+                        window.setTimeout(() => purposeSelect?.focus(), 80);
+                    } else {
+                        documentWorkspace.scrollIntoView({ behavior: "smooth", block: "start" });
+                        window.setTimeout(() => documentFile?.focus(), 320);
+                    }
                 }
-                sendArtifactAction("address_record_finder", "direct_document_opened", "document_workspace");
+                sendArtifactAction("address_record_finder", "direct_document_opened", entryPoint);
+            }
+
+            function syncStartMode(mode, { focus = false, openWorkspace = true } = {}) {
+                if (!startModeButtons.length) {
+                    return;
+                }
+                activeStartMode = ["find", "missing", "review"].includes(mode) ? mode : "find";
+                startModeButtons.forEach((button) => {
+                    const selected = button.dataset.recordStartMode === activeStartMode;
+                    button.setAttribute("aria-pressed", String(selected));
+                });
+                const reviewing = activeStartMode === "review";
+                const missing = activeStartMode === "missing";
+                if (addressField instanceof HTMLElement) {
+                    addressField.hidden = reviewing;
+                }
+                if (missingStatusField instanceof HTMLElement) {
+                    missingStatusField.hidden = !missing;
+                }
+                findSupport.forEach((element) => {
+                    if (element instanceof HTMLElement) {
+                        element.hidden = reviewing;
+                    }
+                });
+                if (formOutcome instanceof HTMLElement) {
+                    formOutcome.hidden = reviewing;
+                    formOutcome.innerHTML = missing
+                        ? "<strong>You get:</strong> the responsible office, the correct meaning of the failed search, and the safest next request."
+                        : "<strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.";
+                }
+                if (documentEntry instanceof HTMLElement) {
+                    documentEntry.hidden = reviewing;
+                }
+                submit.textContent = missing ? "Resolve the failed search" : "Find septic records";
+                input.required = !reviewing;
+
+                if (reviewing && openWorkspace) {
+                    openDirectDocumentWorkspace("start_mode_review");
+                } else if (!reviewing && routeContext?.directDocument && workspaceState.documents.length === 0) {
+                    result.hidden = true;
+                    if (documentWorkspace instanceof HTMLElement) {
+                        documentWorkspace.hidden = true;
+                    }
+                }
+
+                if (focus) {
+                    const target = reviewing
+                        ? purposeSelect
+                        : missing && missingStatus instanceof HTMLSelectElement ? missingStatus : input;
+                    window.setTimeout(() => target?.focus(), 40);
+                }
+            }
+
+            startModeButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const mode = button.dataset.recordStartMode || "find";
+                    syncStartMode(mode, { focus: true, openWorkspace: true });
+                    emitGaEvent("record_start_mode_selected", { start_mode: mode });
+                });
+            });
+
+            directDocumentButton?.addEventListener("click", () => {
+                syncStartMode("review", { focus: false, openWorkspace: false });
+                openDirectDocumentWorkspace("document_entry");
+            });
+
+            syncStartMode(activeStartMode, {
+                focus: false,
+                openWorkspace: activeStartMode === "review" && !requestedDocumentMode
             });
 
             searchPacketCopy?.addEventListener("click", async () => {
@@ -1764,6 +1870,7 @@
                 confirmedFindingKeys.clear();
                 form.reset();
                 result.hidden = true;
+                syncStartMode("find", { focus: false, openWorkspace: false });
                 input.focus();
             });
 
@@ -2287,6 +2394,16 @@
                 }
                 routeContext = active.context;
                 const directDocumentSession = Boolean(storedDocuments.length && routeContext.directDocument);
+                if (storedDocuments.length) {
+                    syncStartMode("review", { focus: false, openWorkspace: false });
+                } else if (pending?.outcome && missingStatus instanceof HTMLSelectElement) {
+                    const canRestoreOutcome = Array.from(missingStatus.options)
+                        .some((option) => option.value === pending.outcome);
+                    if (canRestoreOutcome) {
+                        missingStatus.value = pending.outcome;
+                        syncStartMode("missing", { focus: false, openWorkspace: false });
+                    }
+                }
                 if (purposeSelect instanceof HTMLSelectElement && routeContext.purpose) {
                     purposeSelect.value = routeContext.purpose;
                 }
@@ -2550,6 +2667,10 @@
 
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
+                if (activeStartMode === "review") {
+                    openDirectDocumentWorkspace("review_form_submit");
+                    return;
+                }
                 const address = input.value.trim();
                 if (!isFullUsAddress(address)) {
                     render({
@@ -2565,9 +2686,11 @@
                 if (typeof window.gtag === "function") {
                     window.gtag("event", "address_search_started", { search_purpose: currentPurpose() });
                 }
-                const defaultLabel = "Find septic records";
+                const defaultLabel = activeStartMode === "missing"
+                    ? "Resolve the failed search"
+                    : "Find septic records";
                 submit.disabled = true;
-                submit.textContent = "Finding county...";
+                submit.textContent = activeStartMode === "missing" ? "Resolving next step..." : "Finding county...";
                 try {
                     const response = await fetch(apiPath, {
                         method: "POST",

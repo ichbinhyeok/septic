@@ -49,6 +49,28 @@
                 <p>${intro}</p>
             </div>
         @endif
+        @if (!minimal)
+            <section class="record-finder__start" aria-labelledby="${finderId}-start-heading" data-record-start>
+                <div class="record-finder__start-heading">
+                    <span class="eyebrow">Start from your current situation</span>
+                    <h3 id="${finderId}-start-heading">What do you have right now?</h3>
+                </div>
+                <div class="record-finder__start-options" role="group" aria-label="Choose how to start">
+                    <button type="button" aria-pressed="true" data-record-start-mode="find">
+                        <strong>Find a record</strong>
+                        <span>Resolve the county and official file route.</span>
+                    </button>
+                    <button type="button" aria-pressed="false" data-record-start-mode="missing">
+                        <strong>I could not find it</strong>
+                        <span>Separate a blank search, blocked route, and official no-record response.</span>
+                    </button>
+                    <button type="button" aria-pressed="false" data-record-start-mode="review">
+                        <strong>Review a record I have</strong>
+                        <span>Check what the document confirms, misses, or contradicts.</span>
+                    </button>
+                </div>
+            </section>
+        @endif
         <form class="record-finder__form"
               id="${finderId}-form"
               name="address-record-finder"
@@ -83,12 +105,25 @@
                         <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
                     </div>
                 </div>
+                @if (!minimal)
+                    <label class="record-finder__field record-finder__field--missing" hidden>
+                        <span>What happened when you looked?</span>
+                        <small>This changes the next step. A blank result is not the same as an official no-record response.</small>
+                        <select data-record-missing-status>
+                            <option value="not_found_online">Nothing appeared in the online search</option>
+                            <option value="no_record_response">The office sent a written no-record response</option>
+                            <option value="request_submitted">I submitted a request and am waiting</option>
+                            <option value="wrong_agency">The office said it does not own the file</option>
+                            <option value="blocked">The official route would not open or work</option>
+                        </select>
+                    </label>
+                @endif
             </div>
-            <p class="record-finder__privacy">Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
-            <p class="record-finder__form-outcome"><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
-            <p class="record-finder__fallback"><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
+            <p class="record-finder__privacy" data-record-find-support>Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
+            <p class="record-finder__form-outcome" data-record-form-outcome><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
+            <p class="record-finder__fallback" data-record-find-support><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
-        <div class="record-finder__document-entry">
+        <div class="record-finder__document-entry" data-record-document-entry>
             <div>
                 <span class="record-finder__document-kicker">Already have a file?</span>
                 <strong>Have a permit, drawing, letter, or screenshot?</strong>
