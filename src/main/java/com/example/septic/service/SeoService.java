@@ -1203,6 +1203,17 @@ public class SeoService {
         payload.put("@id", absoluteUrl("/#organization"));
         payload.put("name", "SepticPath");
         payload.put("url", absoluteUrl("/"));
+        payload.put("description", "Independent U.S. septic records routing and property-planning tool built from reviewed official sources.");
+        payload.put("logo", Map.of(
+                "@type", "ImageObject",
+                "url", absoluteUrl("/favicon.svg")
+        ));
+        payload.put("publishingPrinciples", absoluteUrl("/editorial-standards/"));
+        payload.put("contactPoint", Map.of(
+                "@type", "ContactPoint",
+                "contactType", "source corrections and privacy requests",
+                "url", absoluteUrl("/contact/")
+        ));
         return payload;
     }
 

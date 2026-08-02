@@ -130,7 +130,7 @@
         <div class="container">
             <div class="section-heading">
                 <span class="eyebrow">For agents and professionals</span>
-                <h2 id="records-access-states">Reusable packets for four priority states.</h2>
+                <h2 id="records-access-states">Reusable packets for ${indexStates.size()} priority states.</h2>
                 <p>These optional packets turn the route into a message that can be forwarded to a buyer, seller, or coordinator.</p>
             </div>
             <div class="records-access-index-grid">

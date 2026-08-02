@@ -394,13 +394,13 @@
                                     @elseif ("septic-records-by-county".equals(contentPage.slug()))
                                         Use this when the county is known and the next click should be the local record path, not another national overview.
                                     @else
-                                        For ${contentPage.primaryKeyword()}, choose this when the national page is not enough and the real blocker is permit path, file history, buyer diligence, or one state-specific lane.
+                                        Start here when the permit path, file history, buyer diligence, or another state-specific rule is still unresolved.
                                     @endif
                                 </p>
                             @else
                                 <span class="hero-decision-card__label">Tool-first move</span>
                                 <h3>I need the planning tool before I read around</h3>
-                                <p>For ${contentPage.primaryKeyword()}, choose this when the main value is getting into the right calculator or planning tool quickly, then using this page as support.</p>
+                                <p>Start with the calculator when a planning range is the immediate need; use the evidence below to identify which inputs still require local confirmation.</p>
                             @endif
                         </button>
 
@@ -433,17 +433,17 @@
                                     @elseif ("septic-records-by-county".equals(contentPage.slug()))
                                         Use this when the office needs a clear request for the permit copy, final approval, repair file, or inspection letter.
                                     @else
-                                        For ${contentPage.primaryKeyword()}, choose this when you know the workflow well enough to use the estimate without flattening the problem too early.
+                                        Use the cautious estimate after the relevant record, office, and approval lane are clear enough to avoid false precision.
                                     @endif
                                 </p>
                             @elseif (contentQuotePath != null)
-                                <span class="hero-decision-card__label">Conversion-ready</span>
+                                <span class="hero-decision-card__label">Next action</span>
                                 <h3>I already know the lane and need the short form</h3>
-                                <p>For ${contentPage.primaryKeyword()}, choose this when the page already matches the live problem and you do not need another broad explainer first.</p>
+                                <p>Continue when this page already matches the property problem and the remaining job is a specific request or decision.</p>
                             @else
                                 <span class="hero-decision-card__label">Fast clarification</span>
                                 <h3>I need one short clarification before I click deeper</h3>
-                                <p>For ${contentPage.primaryKeyword()}, choose this when the page is close but you still need the shortest possible answer before the next move.</p>
+                                <p>Use the short answer to confirm the issue, then continue to the state, county, record, or planning route it names.</p>
                             @endif
                         </button>
 
@@ -470,17 +470,17 @@
                                     @if ("septic-permit-lookup".equals(contentPage.slug()) || "septic-records-by-county".equals(contentPage.slug()))
                                         Use a live source-backed route when you want proof that the national page turns into a concrete local next step.
                                     @else
-                                        For ${contentPage.primaryKeyword()}, choose this when you want to see how the national problem turns into a concrete local workflow and file story.
+                                        Open a source-backed state example to see how the national question turns into a concrete local workflow and file trail.
                                     @endif
                                 </p>
                             @elseif (!featuredInternalLinks.isEmpty())
                                 <span class="hero-decision-card__label">Next internal move</span>
                                 <h3>Show me the strongest next page now</h3>
-                                <p>For ${contentPage.primaryKeyword()}, choose this when the broad page already did enough and the main question is where to go next inside the site.</p>
+                                <p>Open the strongest related task when the overview is already clear and the remaining question is the next file, office, or calculation.</p>
                             @else
                                 <span class="hero-decision-card__label">Read the evidence</span>
                                 <h3>Use the page itself to narrow the question</h3>
-                                <p>For ${contentPage.primaryKeyword()}, choose this when no stronger live example exists yet and the fastest move is using the page structure below.</p>
+                                <p>Use the evidence and checklist below when a stronger local example is not available yet.</p>
                             @endif
                         </button>
                     </div>
@@ -846,6 +846,7 @@
                         <strong>Need a county-specific route?</strong>
                         <a href="/septic-records-checklist/tennessee/" data-track-click="nav" data-track-source-context="tdec_search_workspace" data-track-target-type="state_money_page">Choose a Tennessee county</a>
                         <a href="/septic-records-request-builder/?state=TN" data-track-click="nav" data-track-source-context="tdec_search_workspace" data-track-target-type="internal_tool">Prepare request wording</a>
+                        <a href="/septic-records-access-index/?state=TN" data-track-click="nav" data-track-source-context="tdec_search_workspace" data-track-target-type="data_resource">Compare Tennessee county routes</a>
                     </footer>
                 </div>
             </div>

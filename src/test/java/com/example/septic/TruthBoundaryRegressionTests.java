@@ -35,6 +35,12 @@ class TruthBoundaryRegressionTests {
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
                         "starting-point route"
                 )))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(
+                        "iMAPS parcel match and Permit Search attachments · verified field pack"
+                )))
+                .andExpect(content().string(org.hamcrest.Matchers.not(
+                        org.hamcrest.Matchers.containsString("Official iMAPS search guide · starting-point route")
+                )))
                 .andExpect(content().string(org.hamcrest.Matchers.not(
                         org.hamcrest.Matchers.containsString("Go straight to a proven local path.")
                 )));
@@ -69,5 +75,42 @@ class TruthBoundaryRegressionTests {
                 .andExpect(content().string(org.hamcrest.Matchers.not(
                         org.hamcrest.Matchers.containsString("Exact file owner")
                 )));
+    }
+
+    @Test
+    void primaryNavigationOpensTheProductAndKeepsGuidesSeparatelyNamed() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(
+                        "<a href=\"/septic-record-finder/\">Find records</a>"
+                )))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(
+                        "<a href=\"/septic-records-checklist/\">Records guides</a>"
+                )))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(
+                        "County access dataset"
+                )));
+    }
+
+    @Test
+    void nationalPagesDoNotExposeTemplateOrDoorwayInstructions() throws Exception {
+        for (String path : java.util.List.of(
+                "/septic-system-cost-calculator/",
+                "/perc-test-cost/",
+                "/septic-records-by-county/",
+                "/tdec-septic-records/"
+        )) {
+            mockMvc.perform(get(path))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(org.hamcrest.Matchers.not(
+                            org.hamcrest.Matchers.containsString("choose this page")
+                    )))
+                    .andExpect(content().string(org.hamcrest.Matchers.not(
+                            org.hamcrest.Matchers.containsString(" page: Use this when")
+                    )))
+                    .andExpect(content().string(org.hamcrest.Matchers.not(
+                            org.hamcrest.Matchers.containsString("Conversion-ready")
+                    )));
+        }
     }
 }

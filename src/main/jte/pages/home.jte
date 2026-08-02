@@ -10,6 +10,8 @@
 @param int liveIntentCount
 @param int liveCountyCount = 0
 @param int totalCountyRouteCount = 0
+@param int countySpecificRouteCount = 0
+@param int preparedFieldPackCount = 0
 @param int countyBackedStateCount = 0
 @param int queuedStateCount
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
@@ -93,6 +95,7 @@
                 <span class="eyebrow">High-demand record workflows</span>
                 <h2>Start with the routes that already do more than explain.</h2>
                 <p class="lede">Search demand is strongest on these paths, and the county routes below include a reviewed handoff or prepared official field pack. Starting-point-only examples remain visible after them.</p>
+                <p class="home-route-depth" data-nosnippet><strong>${countySpecificRouteCount}</strong> county-specific handoffs · <strong>${preparedFieldPackCount}</strong> verified field packs · <strong>${Math.max(0, totalCountyRouteCount - countySpecificRouteCount)}</strong> official starting points</p>
             </div>
             <div class="home-route-list">
                 <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="internal_page">
@@ -123,8 +126,8 @@
                     <span><strong>Lincoln County, North Carolina</strong><small>Phone-first intake and portal fallback · county-specific workflow</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
-                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
-                    <span><strong>Wake County, North Carolina</strong><small>Official iMAPS search guide · starting-point route</small></span>
+                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>Wake County, North Carolina</strong><small>iMAPS parcel match and Permit Search attachments · verified field pack</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
                 <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">

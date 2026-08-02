@@ -4806,6 +4806,10 @@
                             outcome,
                             result_source: "user_reported"
                         });
+                        emitCountyGaEvent("record_outcome_reported", {
+                            outcome,
+                            result_source: "user_reported"
+                        });
                     }
                     if (outcome === "request_submitted") {
                         recordCountyStage("request_submitted", outcome);
@@ -4829,6 +4833,11 @@
                         emitCountyGaEvent("county_file_owner_mismatch", {
                             result_source: "user_reported",
                             case_status: "reroute_required"
+                        });
+                    } else if (outcome === "repair_issue") {
+                        emitCountyGaEvent("county_repair_issue_reported", {
+                            result_source: "user_reported",
+                            case_status: "professional_scope_required"
                         });
                     } else if (outcome === "professional_help") {
                         emitCountyGaEvent("county_professional_help_needed", {

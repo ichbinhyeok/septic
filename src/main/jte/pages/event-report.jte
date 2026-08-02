@@ -3,6 +3,7 @@
 @import com.example.septic.web.EventAnalyticsRow
 @import com.example.septic.web.CountyWorkflowFunnelRow
 @import com.example.septic.web.WorkflowFunnelRow
+@import com.example.septic.web.WorkflowOutcomeRow
 @param PageMeta page
 @param EventAnalyticsReport report
 
@@ -20,6 +21,29 @@
                     <strong>${report.generatedAt()}</strong>
                     <p>Official-source clicks, artifact actions, and internal routing are counted separately. Web vitals and lead payloads are excluded.</p>
                 </aside>
+            </div>
+        </section>
+
+        <section class="section section--tight">
+            <div class="container ops-workflow-funnel">
+                <div class="section-heading">
+                    <span class="eyebrow">Returned result mix</span>
+                    <h2>What happened after the official handoff?</h2>
+                    <p class="lede">Review this distribution after two and four complete weeks. It separates a document received from pending requests, empty searches, written no-record replies, wrong offices, access blocks, and repair-side problems.</p>
+                </div>
+                @if (report.workflowOutcomes().isEmpty())
+                    <p class="ops-event-table-section__empty">No user-reported official outcomes in the last 28 days.</p>
+                @else
+                    <ol class="ops-workflow-funnel__steps">
+                        @for(WorkflowOutcomeRow row : report.workflowOutcomes())
+                            <li>
+                                <span>${row.label()}</span>
+                                <strong>${row.lastSevenDays()}</strong>
+                                <small>${row.lastTwentyEightDays()} in the last 28 days</small>
+                            </li>
+                        @endfor
+                    </ol>
+                @endif
             </div>
         </section>
 

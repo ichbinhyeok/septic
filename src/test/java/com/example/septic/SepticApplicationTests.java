@@ -767,6 +767,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("New York")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reusable packets for 5 priority states.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buyer diligence packet")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No full address?")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-record-finder-embed-copy"))));
 
@@ -6303,10 +6306,26 @@ class SepticApplicationTests {
 					.andExpect(status().isNoContent());
 		}
 
+		mockMvc.perform(post("/events/workflow-stage")
+						.contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+						.content("""
+								{
+								  "sourcePage": "/septic-records-checklist/virginia/prince-william-county/",
+								  "sourceContext": "county_access_workflow",
+								  "workflowRunId": "%s",
+								  "countyKey": "VA::prince-william-county",
+								  "stage": "outcome_recorded",
+								  "outcome": "wrong_agency"
+								}
+								""".formatted(workflowRunId)))
+				.andExpect(status().isNoContent());
+
 		mockMvc.perform(get("/ops/event-report/")
 						.header("Authorization", opsReportAuthorization()))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Observed completion funnel")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Returned result mix")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Wrong office or file owner")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official route opened")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Core file ready")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Task explicitly finished")))

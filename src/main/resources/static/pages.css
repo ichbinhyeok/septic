@@ -16,6 +16,8 @@
   .home-intent-list > a > span:first-child, .home-route-list > a > span:first-child { display: grid; gap: 4px; }
   .home-intent-list strong, .home-route-list strong { font-family: var(--font-sans); font-size: 1.05rem; }
   .home-intent-list small, .home-route-list small { color: var(--muted); }
+  .home-route-depth { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 14px 0 0; color: var(--muted); font-size: .76rem; }
+  .home-route-depth strong { color: var(--ink); font-family: var(--font-sans); }
   .home-intent-list > a > span:last-child, .home-route-list > a > span:last-child { color: var(--accent); font-size: .75rem; font-weight: 700; }
   .home-tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-dark); }
   .home-tool-grid article { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); }

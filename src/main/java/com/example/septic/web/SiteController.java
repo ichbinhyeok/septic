@@ -81,7 +81,7 @@ public class SiteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteController.class);
     private static final List<String> CORE_STATE_CODES = List.of("GA", "PA", "CT", "OR", "MA", "FL");
     private static final List<String> ORGANIC_SPRINT_STATE_CODES = List.of("TN", "NC", "TX", "SC", "AL", "IN", "GA");
-    private static final List<String> RECORDS_ACCESS_INDEX_STATE_CODES = List.of("TN", "IN", "NC", "SC");
+    private static final List<String> RECORDS_ACCESS_INDEX_STATE_CODES = List.of("TN", "IN", "NC", "SC", "NY");
     private static final String PERMIT_LOOKUP_SLUG = "septic-permit-lookup";
     private static final String RECORDS_ONLINE_SLUG = "how-to-find-septic-records-online";
     private static final String RECORDS_BY_COUNTY_SLUG = "septic-records-by-county";
@@ -527,6 +527,8 @@ public class SiteController {
                 .toList());
         model.addAttribute("countyFinderLinks", countyFinderLinks());
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
+        model.addAttribute("countySpecificRouteCount", CountyAccessProfileCatalog.countySpecificProfileCount());
+        model.addAttribute("preparedFieldPackCount", CountyAcquisitionProfileCatalog.preparedFieldPackCount());
         model.addAttribute("featuredIntentPages", homeGrowthSpotlights());
         model.addAttribute("countyRouteClusters", countyRouteClusters(8, 4));
         model.addAttribute("liveGuideCount", publicStates.size());
@@ -836,20 +838,38 @@ public class SiteController {
                 model,
                 seoService.basicPage(
                         "About SepticPath",
-                        "Why this estimator exists, how it uses official sources, and what it is designed to do.",
+                        "Who operates SepticPath, how official-source records routes are reviewed, and what this independent planning tool can and cannot establish.",
                         "/about/"
                 ),
                 "About this project",
-                "Built for homeowner planning, not engineered outputs.",
-                "This site exists to give homeowners and homebuyers a faster starting point for septic budgeting, likely system class, and the next practical questions to ask before they request quotes.",
+                "An independent records-first planning product.",
+                "SepticPath helps U.S. homeowners, buyers, sellers, and property professionals move from an address to the public septic file, identify what the file does not prove, and prepare the next question. It is not affiliated with a state, county, health department, or records vendor.",
                 Arrays.asList(
                         new SitePageSection(
-                                "What this site is for",
-                                "The goal is to reduce permit anxiety and cost uncertainty without pretending the result is permit-ready.",
+                                "Who operates and reviews it",
+                                "SepticPath is operated as an independent web product. The Editorial Team and Source Review labels describe product functions, not named licensed engineers, inspectors, attorneys, or government officials.",
                                 List.of(
-                                        "Planning ranges for septic cost, likely tank size, and likely system class.",
-                                        "State-aware pages with official-source links, agency attribution, and last verified dates.",
-                                        "Short quote-request flow after the user has already seen value."
+                                        "Editorial work turns public records instructions into property-task checklists and keeps claims inside the cited source boundary.",
+                                        "Source review checks official destinations, visible form or search fields, review dates, and fallback instructions before a route is described as county-specific.",
+                                        "No professional credential is implied. Engineering, inspection, legal, permitting, and property-condition decisions remain with the appropriate qualified professional or agency."
+                                )
+                        ),
+                        new SitePageSection(
+                                "What this site is for",
+                                "The goal is to reduce records and permit uncertainty without pretending a public file proves current condition or approval.",
+                                List.of(
+                                        "Address and county routing to reviewed official records paths.",
+                                        "State-aware pages with official-source links, agency attribution, and last-reviewed dates.",
+                                        "Document checks and conservative cost planning after the record path is clear."
+                                )
+                        ),
+                        new SitePageSection(
+                                "How the workflow is verified",
+                                "Route checks use test properties or non-sensitive public examples and stop before any government submission, payment, signature, or claim about a real property's status.",
+                                List.of(
+                                        "The address resolver is tested for valid, incomplete, and unmatched U.S. addresses without retaining an address in a server-side property database.",
+                                        "County workflows are checked for the official owner, required search clues, expected artifact, blocked-route fallback, and the difference between an empty search and a written no-record response.",
+                                        "Coverage and the downloadable access index expose route depth and review dates so changes can be audited and corrected."
                                 )
                         ),
                         new SitePageSection(
@@ -871,8 +891,8 @@ public class SiteController {
                                 )
                         )
                 ),
-                "Estimate-first and source-transparent",
-                "Every result should be read as a planning estimate that still needs local verification."
+                "Records first, source-transparent",
+                "Inspect the public route dataset, methodology, and correction path before relying on a workflow. Every property-specific conclusion still needs the official file or office response."
         );
     }
 
@@ -2690,7 +2710,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         }
         return switch (value) {
             case "artifact", "partial", "not_found_online", "blocked", "request_submitted",
-                    "found", "missing" -> true;
+                    "followup_due", "no_record_response", "wrong_agency", "repair_issue",
+                    "professional_help", "found", "missing", "pending" -> true;
             default -> false;
         };
     }
@@ -4448,6 +4469,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "IN" -> INDIANA_RECORDS_PACKET_PATH;
             case "NC" -> NORTH_CAROLINA_LISTING_PACKET_PATH;
             case "SC" -> SOUTH_CAROLINA_PERMIT_PACKET_PATH;
+            case "NY" -> NEW_YORK_BUYER_PACKET_PATH;
             default -> "/septic-records-request-builder/";
         };
     }
@@ -4458,6 +4480,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "IN" -> "Records request packet";
             case "NC" -> "Listing permit packet";
             case "SC" -> "Permit-prep packet";
+            case "NY" -> "Buyer diligence packet";
             default -> "Records request packet";
         };
     }
@@ -4468,6 +4491,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "IN" -> "Open the local health or county records route before treating a statewide answer as the file.";
             case "NC" -> "Start with county Environmental Health and carry the address or parcel into its permit-file path.";
             case "SC" -> "Use the SCDES permit path, then request the D-1740 or county-held file when the search is incomplete.";
+            case "NY" -> "Identify the county or district file owner, then keep the permit, inspection, and transfer artifacts together for buyer review.";
             default -> "Open the state records path, then use the county route that owns the parcel file.";
         };
     }
@@ -7714,43 +7738,43 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         if ("septic-permit-process".equals(route)) {
             heading = "Decision router for " + state.stateName() + " permit work";
-            intro = "Use this when the permit page is still broad and you need the fastest way to identify the real county branch before you price anything.";
+            intro = "Identify the county permit branch and its closeout artifact before pricing the work.";
             firstMove = primaryLocalAuthoritySource != null
                     ? "Confirm the county permit desk and the closeout artifact that proves the system actually cleared the last approval step."
                     : "Identify the county permit desk and the closeout artifact before treating the permit path like routine paperwork.";
         } else if ("buying-a-house-with-a-septic-system".equals(route)) {
             heading = "Decision router for " + state.stateName() + " buyer diligence";
-            intro = "Use this when the buyer page is still broad and you need the fastest route to the local file, transfer artifact, and quote gate behind the deal.";
+            intro = "Match the property to its local file and transfer artifact before negotiating timing, credits, or scope.";
             firstMove = primaryRecordsLookupSource != null
                     ? "Match the seller story to the county file and the buyer-side artifact before you negotiate credits, timing, or scope."
                     : "Resolve the local file and buyer-side artifact before you treat the deal like a routine inspection question.";
         } else if (isInspectionWorkflowCostSlug(route)) {
             heading = "Decision router for " + state.stateName() + " inspection pricing";
-            intro = "Use this when the inspection page is still broad and you need the fastest route to the county file, operating history, and hold-pricing trigger behind the scope.";
+            intro = "Pull the county file and operating history before treating the inspection as routine scope.";
             firstMove = primaryRecordsLookupSource != null
                     ? "Pull the county inspection, pumping, and operating-history file before you price a routine inspection scope."
                     : "Resolve the county inspection file and the last operating-history artifact before you trust a routine inspection number.";
         } else if (isPercWorkflowCostSlug(route)) {
             heading = "Decision router for " + state.stateName() + " perc and site-review pricing";
-            intro = "Use this when the perc or site-review page is still broad and you need the fastest route to the parcel file, permit lane, and redesign trigger behind the lot.";
+            intro = "Resolve the parcel file, permit lane, and redesign trigger before treating the first site-review number as final.";
             firstMove = primaryRecordsLookupSource != null
                     ? "Pull the county parcel file and confirm the site-review or permit lane before you price soils, perc, or redesign work."
                     : "Resolve the county site-review lane and the first parcel artifact before you treat the first perc number like the real scope.";
         } else if (isPumpingWorkflowCostSlug(route)) {
             heading = "Decision router for " + state.stateName() + " pumping and maintenance pricing";
-            intro = "Use this when the pumping page is still broad and you need the fastest route to the maintenance lane, last service artifact, and quote gate behind the parcel.";
+            intro = "Confirm the maintenance lane and last service artifact before pricing the visit as routine pumping.";
             firstMove = primaryRecordsLookupSource != null
                     ? "Pull the county pumping, inspection, or O&M file before you price this like a basic tank visit."
                     : "Resolve the county maintenance lane and the last service artifact before you trust a routine pumping number.";
         } else if (isReplacementWorkflowCostSlug(route)) {
             heading = "Decision router for " + state.stateName() + " replacement pricing";
-            intro = "Use this when the replacement page is still broad and you need the fastest route to the county file, failure branch, and hold-pricing trigger behind the number.";
+            intro = "Confirm the county file, failure branch, and approval constraint before relying on one replacement number.";
             firstMove = primaryRecordsLookupSource != null
                     ? "For " + stateMoneyPage.title() + ", pull the county file and confirm the live repair, failure, reserve-area, or sewer branch before you trust one replacement number."
                     : "Resolve the county file, the local replacement branch, and the last real approval artifact before you treat the first number like the real scope.";
         } else {
             heading = "Decision router for " + state.stateName() + " records work";
-            intro = "Use this when the records page is still broad and you need the fastest route to the county file, first artifact, and pricing gate.";
+            intro = "Resolve the county file owner and first usable artifact before relying on a property or project claim.";
             firstMove = primaryRecordsLookupSource != null
                     ? "Pull the county file and match it to the parcel before you trust any seller, owner, or contractor story."
                     : "Resolve the county file owner and first parcel artifact before you compress this into one estimate or quote.";
@@ -8072,7 +8096,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     private String relatedLinkNote(String sourceSlug, String sourceStateCode, String targetPath) {
         String normalizedPath = normalizePath(targetPath);
         if (normalizedPath == null) {
-            return "Use this page when you need the next step to be more specific than the current overview.";
+            return "Open the next task that names the required file, office, or decision.";
         }
 
         if (isCalculatorPath(normalizedPath)) {
@@ -8124,18 +8148,19 @@ The goal is to settle the permit path before we frame the project as a normal in
                 case "septic-records-checklist" -> "Use this when the file is thinner than the current seller, owner, or contractor story.";
                 case TRANSFER_COMPLIANCE_SLUG -> "Use this when records, permits, buyer timing, and county workflow need to be resolved together.";
                 case "septic-tank-size" -> "Use this when bedroom sizing and minimum gallon band matter more than a full project quote.";
-                default -> "Use this page for the next layer of detail after the current overview.";
+                default -> "Open the task that most closely matches the unresolved file, office, or property decision.";
             };
             return relatedLinkContext(sourceSlug, sourceStateCode) + intentNote;
         }
 
-        return "Use this page when you need the next step to be more specific than the current overview.";
+        return "Open the next task that names the required file, office, or decision.";
     }
 
     private String relatedLinkContext(String sourceSlug, String sourceStateCode) {
         String statePrefix = hasText(sourceStateCode) ? sourceStateCode + " " : "";
-        String sourceLabel = hasText(sourceSlug) ? sourceSlug.replace('-', ' ') : "current";
-        return "For the " + statePrefix + sourceLabel + " page: ";
+        return hasText(sourceStateCode)
+                ? "For " + statePrefix + "property work, "
+                : "For this property task, ";
     }
 
     private List<String> preferredTargetSlugs(String sourceSlug) {

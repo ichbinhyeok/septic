@@ -5,6 +5,7 @@ import com.example.septic.web.EventAnalyticsReport;
 import com.example.septic.web.EventAnalyticsRow;
 import com.example.septic.web.CountyWorkflowFunnelRow;
 import com.example.septic.web.WorkflowFunnelRow;
+import com.example.septic.web.WorkflowOutcomeRow;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import java.io.IOException;
@@ -153,7 +154,7 @@ public class EventAnalyticsService {
                     String stage = text(event, "stage");
                     if (!workflowRunId.isBlank() && !stage.isBlank()) {
                         workflows.computeIfAbsent(workflowRunId, ignored -> new MutableWorkflow())
-                                .add(text(event, "countyKey"), stage, occurredAt);
+                                .add(text(event, "countyKey"), stage, text(event, "outcome"), occurredAt);
                     }
                 }
                 default -> {
@@ -187,6 +188,7 @@ public class EventAnalyticsService {
                     workflowSeven,
                     workflowTwentyEight,
                     workflowFunnel,
+                    workflowOutcomes(),
                     countyWorkflowFunnels(),
                     rows(officialSourceClicks),
                     rows(artifactActions),
@@ -227,6 +229,36 @@ public class EventAnalyticsService {
                                 : (int) Math.round((seven * 100.0) / sevenDayCohort);
                         return new WorkflowFunnelRow(entry.getKey(), entry.getValue(), seven, twentyEight, rate);
                     })
+                    .toList();
+        }
+
+        private List<WorkflowOutcomeRow> workflowOutcomes() {
+            Map<String, String> labels = new LinkedHashMap<>();
+            labels.put("artifact", "Document received or downloaded");
+            labels.put("partial", "Partial file or more clues needed");
+            labels.put("request_submitted", "Request submitted; response pending");
+            labels.put("not_found_online", "Nothing appeared online");
+            labels.put("no_record_response", "Written no-record response");
+            labels.put("wrong_agency", "Wrong office or file owner");
+            labels.put("blocked", "Official route blocked");
+            labels.put("followup_due", "Published follow-up window passed");
+            labels.put("repair_issue", "Repair or failure issue found");
+            labels.put("professional_help", "Professional scope requested");
+
+            return labels.entrySet().stream()
+                    .map(entry -> new WorkflowOutcomeRow(
+                            entry.getKey(),
+                            entry.getValue(),
+                            workflows.values().stream()
+                                    .filter(workflow -> !workflow.firstSeen.isBefore(sprintStart))
+                                    .filter(workflow -> workflow.hasOutcome(entry.getKey()))
+                                    .count(),
+                            workflows.values().stream()
+                                    .filter(workflow -> !workflow.firstSeen.isBefore(reportStart))
+                                    .filter(workflow -> workflow.hasOutcome(entry.getKey()))
+                                    .count()
+                    ))
+                    .filter(row -> row.lastTwentyEightDays() > 0)
                     .toList();
         }
 
@@ -416,8 +448,9 @@ public class EventAnalyticsService {
         private Instant firstSeen = Instant.MAX;
         private String countyKey = "";
         private final Map<String, Instant> stages = new HashMap<>();
+        private final Map<String, Instant> outcomes = new HashMap<>();
 
-        private void add(String eventCountyKey, String stage, Instant occurredAt) {
+        private void add(String eventCountyKey, String stage, String outcome, Instant occurredAt) {
             if (countyKey.isBlank() && eventCountyKey != null && !eventCountyKey.isBlank()) {
                 countyKey = eventCountyKey;
             }
@@ -426,10 +459,18 @@ public class EventAnalyticsService {
             }
             stages.merge(stage, occurredAt, (current, candidate) ->
                     candidate.isAfter(current) ? candidate : current);
+            if (outcome != null && !outcome.isBlank()) {
+                outcomes.merge(outcome, occurredAt, (current, candidate) ->
+                        candidate.isAfter(current) ? candidate : current);
+            }
         }
 
         private boolean has(String stage) {
             return stages.containsKey(stage);
+        }
+
+        private boolean hasOutcome(String outcome) {
+            return outcomes.containsKey(outcome);
         }
 
         private boolean reachedAfter(String fromStage, String toStage) {

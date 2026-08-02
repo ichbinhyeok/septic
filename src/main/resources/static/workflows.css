@@ -8,6 +8,10 @@
   .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body {
     display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(290px, .75fr); gap: clamp(28px, 5vw, 64px); align-items: start;
   }
+  .county-acquisition-workspace__body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 38px);
+  }
   .content-grid--top { align-items: stretch; }
   .card-grid, .detail-grid, .feature-grid, .coverage-grid, .comparison-cards, .offer-prep-proof-grid, .record-finder-steps,
   .money-answer-steps, .micro-tool__signal-grid, .micro-tool__result-grid, .metric-grid {

@@ -114,7 +114,7 @@
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
                     <a href="/septic-permit-lookup/">Find a permit</a>
-                    <a href="/septic-records-checklist/">Find records</a>
+                    <a href="/septic-record-finder/">Find records</a>
                     <a href="/offer-prep-septic-file-check/">Buyer file check</a>
                     <a href="/states/">States</a>
                     <a href="/septic-system-cost-calculator/">Cost planning</a>
@@ -162,8 +162,10 @@
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
                         <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
-                        <li><a href="/septic-records-checklist/">Records lookup</a></li>
+                        <li><a href="/septic-record-finder/">Find records by address</a></li>
+                        <li><a href="/septic-records-checklist/">Records guides</a></li>
                         <li><a href="/septic-records-by-county/">County record paths</a></li>
+                        <li><a href="/septic-records-access-index/">County access dataset</a></li>
                         <li><a href="/offer-prep-septic-file-check/">Offer prep file check</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/states/">State guides</a></li>
