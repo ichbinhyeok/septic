@@ -1,7 +1,7 @@
 package com.example.septic.web;
 
 public class EstimateForm {
-    private String stateCode = "GA";
+    private String stateCode = "";
     private String projectType = "new_install";
     private String sourcePageHint;
     private Integer bedrooms = 3;

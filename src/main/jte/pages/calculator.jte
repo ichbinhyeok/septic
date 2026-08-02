@@ -24,6 +24,7 @@
 @param String recordSystemType = ""
 @param String recordTankCapacity = ""
 @param String recordDesignFlow = ""
+@param String calculatorError = ""
 @param ProjectType[] projectTypes
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
@@ -92,11 +93,17 @@
                     <div class="field-grid field-grid--primary">
                         <label class="field">
                             <span>State</span>
-                            <select name="stateCode">
+                            <select name="stateCode" required aria-describedby="calculator-state-error">
+                                <option value="" selected="${estimateForm.getStateCode() == null || estimateForm.getStateCode().isBlank()}" disabled>Choose a state</option>
                                 @for (var state : states)
                                     <option value="${state.stateCode()}" selected="${state.stateCode().equals(estimateForm.getStateCode())}">${state.stateName()}</option>
                                 @endfor
                             </select>
+                            @if (!calculatorError.isBlank())
+                                <small class="field-error" id="calculator-state-error" role="alert">${calculatorError}</small>
+                            @else
+                                <small id="calculator-state-error">Costs and permit assumptions change by state.</small>
+                            @endif
                         </label>
 
                         <label class="field">

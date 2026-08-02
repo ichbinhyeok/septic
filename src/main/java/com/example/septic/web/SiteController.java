@@ -1569,6 +1569,15 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
             Model model
     ) {
+        if (estimateForm.getStateCode() == null
+                || usStateDirectoryService.findByCode(estimateForm.getStateCode()).isEmpty()) {
+            model.addAttribute("calculatorError", "Choose the property state before showing an estimate.");
+            model.addAttribute("recordsMode", recordsMode);
+            model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
+            model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
+            model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
+            return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, false);
+        }
         EstimatorResult result = estimatorService.estimate(estimateForm);
         model.addAttribute("recordsMode", recordsMode);
         model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
