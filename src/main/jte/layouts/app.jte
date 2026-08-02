@@ -39,12 +39,17 @@
     <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/workflows.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/pages.css")}">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S1SY1NS71P"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-S1SY1NS71P');
+        if (window.location.hostname === "septicpath.com") {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { window.dataLayer.push(arguments); };
+            const analyticsScript = document.createElement("script");
+            analyticsScript.async = true;
+            analyticsScript.src = "https://www.googletagmanager.com/gtag/js?id=G-S1SY1NS71P";
+            document.head.appendChild(analyticsScript);
+            window.gtag("js", new Date());
+            window.gtag("config", "G-S1SY1NS71P");
+        }
     </script>
     <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
     <script>
