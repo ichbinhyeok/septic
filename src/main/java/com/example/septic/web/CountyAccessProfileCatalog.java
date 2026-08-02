@@ -217,7 +217,7 @@ public final class CountyAccessProfileCatalog {
                     "Open the official TDEC SSDS record search",
                     "https://tdec.tn.gov/document-viewer/search/stp",
                     "Open the TDEC Cookeville Field Office",
-                    "https://www.tn.gov/environment/contacts/about-field-offices/field-offices/cookeville.html",
+                    "https://www.tn.gov/environment/contacts/field-offices/cookeville.html",
                     "A property-matched SSDS permit, approval, layout, inspection letter, or written TDEC response",
                     "Cumberland County's Codes Department is the building-permit route, not the septic-file owner. A blank TDEC search is not a no-record determination; use Cookeville's published 931-206-6329 septic-inquiries line or public-records route.",
                     List.of("Property address", "Parcel or tax-map clue", "Current and prior owner names when available", "Subdivision and lot when applicable"),
