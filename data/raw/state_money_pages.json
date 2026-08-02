@@ -4137,11 +4137,11 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "NC",
-      "title": "North Carolina Septic Permit Lookup by County",
-      "metaDescription": "Find North Carolina septic permit records through county environmental health, address or parcel search, permit copies, as-builts, and request paths.",
+      "title": "North Carolina Septic Records: County Permit & As-Built Lookup",
+      "metaDescription": "Find the North Carolina county route for septic permits, as-builts, final approval, repair files, and written no-record requests. Start with address or parcel clues.",
       "updatedAt": "2026-07-20",
       "reviewedAt": "2026-07-20",
-      "introCopy": "Use this North Carolina septic permit lookup to choose the county environmental health route first. Search by address or parcel, then pull the improvement permit, construction authorization, operation permit, as-built, repair record, or written no-record response tied to the property.",
+      "introCopy": "Use this North Carolina records hub when you are ready to choose the county environmental health route. Start with the address or parcel clue, then pull the improvement permit, construction authorization, operation permit, as-built, repair record, or written no-record response tied to the property.",
       "uniqueAngle": "North Carolina is strongest when the page names the county records search, improvement permit, construction authorization, operation permit, as-built file, and local health file owner before the user gets pushed into a generic septic cost estimate.",
       "targetReader": "Best for North Carolina buyers and owners who need to know whether the county file still supports the current septic story or whether the permit ladder already hints at a more complex next step.",
       "fitBullets": [

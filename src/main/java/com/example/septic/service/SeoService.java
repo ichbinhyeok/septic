@@ -590,7 +590,7 @@ public class SeoService {
     public String contentQuickAnswer(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "tdec-septic-records" -> "Open the working Tennessee SSDS program page, identify the field office or contract county, and request the permit, layout, or written no-record response with the parcel, owner, subdivision, lot, or legal description. The direct TDEC record search may return 403.";
-            case "north-carolina-septic-permit-lookup" -> "North Carolina septic permits are usually held by county environmental health. Identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.";
+            case "north-carolina-septic-permit-lookup" -> "North Carolina septic permits are usually held by county environmental health, not one statewide database. Identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.";
             case "septic-records-checklist" -> "Start with the state records route, then open the county file path for the permit, as-built, final approval, inspection letter, or repair record that actually answers the property question.";
             case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
             case "how-to-find-septic-records-online" -> "You can often find septic records online, but the file may live in a state portal, county health office, GIS attachment, or records-request queue. The fastest move is identifying the office that owns the parcel file.";
@@ -740,9 +740,13 @@ public class SeoService {
             case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
             case "TN::knox-county" -> "Knox County TN SSDS File Search and Records Request";
             case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
+            case "NC::guilford-county" -> "Guilford County NC Septic Permit, Layout & Record Request";
+            case "NC::iredell-county" -> "Iredell County NC Septic Records Online & Permit Files";
             case "GA::dekalb-county" -> "DeKalb County GA Septic Records or Certification Letter";
             case "TN::blount-county" -> "Blount County TN SSDS Records or Inspection Letter";
             case "TN::sumner-county" -> "Sumner County TN Septic Permit Search and Records";
+            case "TN::montgomery-county" -> "Montgomery County TN Septic Permit Search & Records";
+            case "TN::sevier-county" -> "Sevier County TN SSD Permit & Completion Records";
             case "TN::rutherford-county" -> "Rutherford County TN Septic Records and Permit Search";
             case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
             case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
@@ -788,9 +792,13 @@ public class SeoService {
             case "NC::alamance-county" -> "Request an existing Alamance County septic property file without confusing a historical record copy with a new application or paid field inspection.";
             case "TN::knox-county" -> "Prepare, send, and track the Knox County SSDS file-search request for the permit, soil mapping, layout, and completed repair records.";
             case "NC::lincoln-county" -> "Request Lincoln County septic records by address or parcel PIN and keep the request reference until the permit, approval, layout, or written response arrives.";
+            case "NC::guilford-county" -> "Find the Guilford County permit, layout, or operation record through On-Site Water Protection or a public-records request using the address or parcel ID.";
+            case "NC::iredell-county" -> "Search Iredell County septic records online by address, parcel, owner, or permit clue, then request the permit, layout, approval, or repair file if the GIS result is incomplete.";
             case "GA::dekalb-county" -> "Choose the DeKalb historical septic file route or the separate certification-letter evaluation based on the property task.";
             case "TN::blount-county" -> "Request Blount County SSDS approval and bedroom records, or use the separate inspection-letter path when a closing document is required.";
             case "TN::sumner-county" -> "Try the official TDEC septic search with a prepared property clue, then use Sumner County's published email and phone fallback when the search is blocked or incomplete.";
+            case "TN::montgomery-county" -> "Search the TDEC SSDS and county route with the address, parcel, owner, or permit clue before requesting a Montgomery County file copy or inspection letter.";
+            case "TN::sevier-county" -> "Prepare Sevier County's property fields, confirm the current Environmental Health intake channel by phone, and request the SSD permit, Certificate of Completion, or written no-record result.";
             case "TN::rutherford-county" -> "Find the Rutherford County TDEC septic map, permit, and approved bedroom count without treating a blocked or empty online search as a no-record result.";
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
@@ -1304,8 +1312,8 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Permit Search by Address | TN Records | SepticPath";
-            case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits by County | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Records Search: SSDS Permit Lookup & 403 Help | SepticPath";
+            case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits: County Search & As-Builts | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
             case "dhec-septic-permit-lookup" -> "DHEC Septic Tank Records & Permit Lookup | SCDES Files | SepticPath";
@@ -1319,7 +1327,7 @@ public class SeoService {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
                 case "TN" -> "Tennessee Septic Records by County | Permit Files | SepticPath";
-                case "NC" -> "North Carolina Septic Permit Lookup by County | SepticPath";
+                case "NC" -> "North Carolina Septic Records: County Permit & As-Built Lookup | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
                 case "TX" -> "Texas OSSF Records & County Address Search | SepticPath";
@@ -1355,7 +1363,7 @@ public class SeoService {
         }
         return switch (state.stateCode()) {
             case "TN" -> "Find Tennessee septic records by county. Get permit copies, inspection letters, repair history, or no-record responses through TDEC or a contract county.";
-            case "NC" -> "Find North Carolina septic permit records through county environmental health, address or parcel search, permit copies, as-builts, and request paths.";
+            case "NC" -> "Find the North Carolina county route for septic permits, as-builts, final approval, repair files, and written no-record requests. Start with address or parcel clues.";
             case "IN" -> "Find Indiana septic records through county permit search, local health files, as-builts, soil reports, and the right next office when a record is missing.";
             case "SC" -> "Find South Carolina septic records through SCDES permit lookup, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
             case "TX" -> "Find Texas OSSF records through county or authorized-agent routes, permit lookup, approved plans, address or parcel search, ETJ checks, and records request wording.";
