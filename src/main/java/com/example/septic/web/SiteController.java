@@ -5494,15 +5494,25 @@ The goal is to settle the permit path before we frame the project as a normal in
             return null;
         }
 
-        List<CountyPatternType> topPatterns = Stream.of(CountyPatternType.values())
-                .filter(pattern -> countyPages.stream().anyMatch(page -> countyMatchesPattern(page, pattern)))
-                .sorted(Comparator
+        Comparator<CountyPatternType> patternComparator = "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                ? Comparator
+                        .comparingInt((CountyPatternType pattern) -> countyPatternPriority(pattern, stateMoneyPage.contentSlug()))
+                        .reversed()
+                        .thenComparing(Comparator.comparingInt(
+                                (CountyPatternType pattern) -> countyPagesMatchingPattern(countyPages, pattern).size()
+                        ).reversed())
+                        .thenComparingInt(CountyPatternType::displayOrder)
+                : Comparator
                         .comparingInt((CountyPatternType pattern) -> countyPagesMatchingPattern(countyPages, pattern).size())
                         .reversed()
                         .thenComparing(Comparator.comparingInt(
                                 (CountyPatternType pattern) -> countyPatternPriority(pattern, stateMoneyPage.contentSlug())
                         ).reversed())
-                        .thenComparingInt(CountyPatternType::displayOrder))
+                        .thenComparingInt(CountyPatternType::displayOrder);
+
+        List<CountyPatternType> topPatterns = Stream.of(CountyPatternType.values())
+                .filter(pattern -> countyPages.stream().anyMatch(page -> countyMatchesPattern(page, pattern)))
+                .sorted(patternComparator)
                 .limit(3)
                 .toList();
 
@@ -6785,10 +6795,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                         ? primaryLocalAuthoritySource.title()
                         : state.agencyName();
         String firstArtifact = firstNonBlank(
+                firstOf(state.recordsToRequest()),
                 countyWorkflowSynthesis == null || countyWorkflowSynthesis.firstArtifacts().isEmpty()
                         ? null
                         : countyWorkflowSynthesis.firstArtifacts().get(0),
-                firstOf(state.recordsToRequest()),
                 "The permit copy, as-built, final approval, inspection letter, or written no-record response tied to the parcel."
         );
         String countyRouteSummary = countyLinks.isEmpty()
@@ -6868,10 +6878,10 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ? state.agencyName()
                 : sourceDisplayName(fileSource);
         String firstArtifact = firstNonBlank(
+                firstOf(state.recordsToRequest()),
                 countyWorkflowSynthesis == null || countyWorkflowSynthesis.firstArtifacts().isEmpty()
                         ? null
                         : countyWorkflowSynthesis.firstArtifacts().get(0),
-                firstOf(state.recordsToRequest()),
                 "Permit copy, as-built, final approval, inspection letter, repair history, or written no-record response."
         );
         String countyDrop = firstNonBlank(
@@ -6880,9 +6890,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         : countyWorkflowSynthesis.countyDropTriggers().get(0),
                 "When the county is known, move from the state route into the county record page before sending the visitor to another broad search."
         );
-        String requestMethod = primaryRecordsLookupSource != null
-                ? "Start with " + primaryRecordsLookupSource.title() + ", then use county or regional contact wording if the portal does not show the parcel file."
-                : "Start with the official state or local authority route, then ask which county, regional, or delegated office owns old septic files.";
+        String requestMethod = stateRecordsRequestMethod(state, primaryRecordsLookupSource);
 
         return List.of(
                 new CountyWorkflowFieldView(
@@ -6903,13 +6911,45 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ),
                 new CountyWorkflowFieldView(
                         "No-record fallback",
-                        "If the " + state.stateName() + " lookup has no match, ask for a written no-record response and the office that owns archived, regional, contract-county, or pre-digital septic files."
+                        stateRecordsNoRecordFallback(state)
                 ),
                 new CountyWorkflowFieldView(
                         "Address clue",
-                        "Carry the " + state.stateName() + " address, parcel/APN/TMS, owner, legal description, subdivision, and any prior permit number into the next request."
+                        stateRecordsAddressClue(state)
                 )
         );
+    }
+
+    private String stateRecordsRequestMethod(StateProfile state, SourceRecord primaryRecordsLookupSource) {
+        return switch (state.stateCode()) {
+            case "IN" -> "Start with the county or local health department that owns residential onsite records. Ask for the permit, site plan or design, soil report, inspection or closeout record, and any operating-permit history tied to the parcel.";
+            case "NC" -> "Start with county environmental health. Ask for the improvement permit, construction authorization, operation permit or certificate of completion, as-built drawing, repair file, and any written no-record response.";
+            case "SC" -> "Start with the SCDES office that covers the county. Ask for the existing permit copy and final-inspection status; use ePermitting for a new D-1740 application, not as proof that an older permit file is online.";
+            case "TN" -> "Start with the dedicated TDEC search guide, then move to the correct field office or contract county for the permit copy, inspection letter, repair permit, layout, or written no-record response.";
+            default -> primaryRecordsLookupSource != null
+                    ? "Start with " + primaryRecordsLookupSource.title() + ", then use county or regional contact wording if the portal does not show the parcel file."
+                    : "Start with the official state or local authority route, then ask which county, regional, or delegated office owns old septic files.";
+        };
+    }
+
+    private String stateRecordsNoRecordFallback(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "IN" -> "A blank web search is not a no-record finding. Ask the county or local health department to check archived permits, site plans, soil reports, inspection records, and any operating-permit file.";
+            case "NC" -> "A county portal miss is not proof that no file exists. Ask county environmental health for a written no-record response and whether older, paper, repair, or renamed-address files need a staff search.";
+            case "SC" -> "If SCDES cannot locate a permit copy, ask for that response in writing. For an older home or a system that still cannot be located, SCDES directs the owner to a licensed septic contractor for field location.";
+            case "TN" -> "A TDEC 403 or empty result is not proof that no file exists. Use the field-office or contract-county route and request the permit, layout, inspection letter, repair history, or a written no-record response.";
+            default -> "If the " + state.stateName() + " lookup has no match, ask for a written no-record response and the office that owns archived, regional, contract-county, or pre-digital septic files.";
+        };
+    }
+
+    private String stateRecordsAddressClue(StateProfile state) {
+        return switch (state.stateCode()) {
+            case "IN" -> "Carry the property address, owner name, parcel number, county, and any permit or application number into the local health department request.";
+            case "NC" -> "Carry the property address, parcel or PIN, owner name, county, subdivision or lot, and any permit or application number into the environmental health request.";
+            case "SC" -> "SCDES asks for the tax map number, lot and block, physical address, installation or build date, original permit holder, and subdivision name when available.";
+            case "TN" -> "Carry the property address, parcel, current and prior owner, subdivision, lot, legal description, and any permit number into the TDEC or contract-county request.";
+            default -> "Carry the " + state.stateName() + " address, parcel/APN/TMS, owner, legal description, subdivision, and any prior permit number into the next request.";
+        };
     }
 
     private List<String> stateRecordsQueryExamples(StateProfile state) {

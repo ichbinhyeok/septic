@@ -134,7 +134,9 @@
                                 <span class="workflow-console__index">02</span>
                                 <span class="workflow-console__label">What to bring</span>
                                 <strong>
-                                    @if (("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()) || "septic-replacement-cost".equals(stateMoneyPage.contentSlug()) || "drain-field-replacement-cost".equals(stateMoneyPage.contentSlug()) || "septic-replacement-area".equals(stateMoneyPage.contentSlug()) || "wet-yard-over-septic-drain-field".equals(stateMoneyPage.contentSlug())) && primaryLocalAuthoritySource != null)
+                                    @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && state.recordsToRequest() != null && !state.recordsToRequest().isEmpty())
+                                        ${state.recordsToRequest().get(0)}
+                                    @elseif (("perc-test-cost".equals(stateMoneyPage.contentSlug()) || "failed-perc-test-septic".equals(stateMoneyPage.contentSlug()) || "septic-replacement-cost".equals(stateMoneyPage.contentSlug()) || "drain-field-replacement-cost".equals(stateMoneyPage.contentSlug()) || "septic-replacement-area".equals(stateMoneyPage.contentSlug()) || "wet-yard-over-septic-drain-field".equals(stateMoneyPage.contentSlug())) && primaryLocalAuthoritySource != null)
                                         ${primaryLocalAuthoritySource.title()}
                                     @elseif (countyWorkflowSynthesis != null && !countyWorkflowSynthesis.firstArtifacts().isEmpty())
                                         ${countyWorkflowSynthesis.firstArtifacts().get(0)}
