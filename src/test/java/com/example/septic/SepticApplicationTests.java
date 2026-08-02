@@ -2337,15 +2337,20 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void venturaCountyRecordsPageShowsOnlineAndPaperWorkflow() throws Exception {
+	void venturaCountyRecordsPageShowsOfficialRequestAndCurrentPermitWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/california/ventura-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ventura County California Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Ventura ISDS records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Email Ventura Environmental Health records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ventura County Environmental Health owns the practical septic file")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("online ISDS return plus the paper-file request and field-verification note")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("sitename")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("paper records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Environmental Health records request with permit cross-check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Ventura County Citizen Access")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("mailto:EHDRecordSearchRequest@ventura.org")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Environmental Health response plus any current permit activity and field-verification note")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("exact site address, APN when available")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("an empty portal result as proof")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("has not verified a county-specific intake form"))))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("rma.venturacounty.gov/divisions/environmental-health/individual-sewage-disposal-systems-record-search"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open California records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the California guide")));
 	}

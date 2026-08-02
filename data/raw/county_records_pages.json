@@ -1521,38 +1521,38 @@
       "countyName": "Ventura County",
       "countySlug": "ventura-county",
       "title": "Ventura County California Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Ventura County septic records checklist and permit lookup with ISDS online search, paper-record fallback, and OWTS permit-type checks before you trust a buyer or replacement story.",
-      "introCopy": "Ventura County is a strong California county wedge because the county gives owners both an ISDS search tool and a broader environmental-health records workflow. That means the file path starts with an actual search surface and then honestly tells you when paper requests or field verification may still be required.",
-      "uniqueAngle": "Ventura County stands out because the county separates online and paper records instead of pretending the digital file is always complete. The county also warns that when no permit is available, an on-site inspection may be required to verify the location of an existing system.",
-      "targetReader": "Best for Ventura County buyers, owners, and agents who need to know whether an ISDS file is already searchable, whether the county file still needs a paper records request, and whether permit-type or field-verification issues could widen the real next step.",
-      "officeLabel": "Ventura County environmental health records office",
-      "officeUrl": "https://rma.venturacounty.gov/divisions/environmental-health/records-search/",
-      "recordsLabel": "Search Ventura ISDS records",
-      "recordsUrl": "https://rma.venturacounty.gov/divisions/environmental-health/individual-sewage-disposal-systems-record-search/",
-      "contactLine": "Ventura County Resource Management Agency Environmental Health | 805-654-2494 | electronic files may be incomplete and some addresses still require a paper records request.",
+      "metaDescription": "Ventura County septic records checklist with the official Environmental Health request form, current permit lookup, and OWTS field-verification steps for buyers and owners.",
+      "introCopy": "Ventura County septic research should begin with the official Environmental Health records-request form, not an unreliable legacy search page. Prepare the exact property address and APN, request Septic/OWTS/ISDS records, and email the records coordinator for the current form or submission instructions if the county document server does not open.",
+      "uniqueAngle": "Ventura County separates the historical Environmental Health file from current permit activity. A thin Citizen Access result does not prove that no septic record exists, and the county's OWTS guidance says an on-site inspection may be required when no permit is available to verify the existing system location.",
+      "targetReader": "Best for Ventura County buyers, owners, and agents who need a dependable request path when the legacy online ISDS search is unavailable, plus a clear way to distinguish current permit activity from the historical septic file.",
+      "officeLabel": "Email Ventura Environmental Health records",
+      "officeUrl": "mailto:EHDRecordSearchRequest@ventura.org?subject=Ventura%20County%20Septic%20Records%20Request",
+      "recordsLabel": "Open Ventura County Citizen Access",
+      "recordsUrl": "https://vcca.venturacounty.gov/citizenaccess/Default.aspx",
+      "contactLine": "Ventura County Environmental Health records | EHDRecordSearchRequest@ventura.org | 805-654-2813 | fax 805-654-2480 | request Septic/OWTS/ISDS records by exact address and APN.",
       "decisionSteps": [
-        "Start with Ventura County's ISDS search and look up the property by sitename, address, or period before you trust the current septic story.",
-        "If the electronic file is thin, move into the county's records-search workflow because Ventura County is explicit that online files may be incomplete and some requests still need an address-specific paper path.",
+        "Open Ventura County's Environmental Health records-request form and enter the exact site address, APN when available, the relevant date range, and Septic/OWTS/ISDS as the record type; if the document server is unavailable, email the records coordinator for the current form and instructions.",
+        "Use Citizen Access as a separate check for available current permit activity, but do not treat an empty portal result as proof that the historical Environmental Health septic file does not exist.",
         "If no permit or clear file is available, read the county's OWTS permit-types guidance next because Ventura County warns that an on-site inspection may still be needed to verify the location of an existing system."
       ],
       "recordsToRequest": [
-        "Any Ventura County ISDS record already visible through the online search tool.",
-        "Any paper file or address-specific records request still needed when the electronic file is incomplete.",
+        "The completed address-specific Environmental Health request and the county's returned Septic/OWTS/ISDS file.",
+        "Any available current permit or application record from Citizen Access, kept separate from the historical Environmental Health response.",
         "Any county permit-type or inspection note showing that field verification is still required for the existing system."
       ],
       "lowEndBreakers": [
-        "If the online ISDS file is incomplete, the first low-end story is still missing county context.",
-        "A property that still needs a paper records search can have more county history than the visible search result suggests.",
+        "If Citizen Access is empty or incomplete, the first low-end story is still missing the historical Environmental Health file.",
+        "A property that still needs an address-specific records request can have more county history than the visible portal result suggests.",
         "If Ventura County still needs an on-site inspection to verify system location, a simple buyer or replacement assumption can widen quickly."
       ],
       "faqBlocks": [
         {
           "question": "Why is Ventura County stronger than a broad California records page?",
-          "answer": "Because Ventura County gives owners a real ISDS search tool, a paper-records fallback, and an honest warning that some existing-system questions still need field verification."
+          "answer": "Because Ventura County provides an address-specific Environmental Health request form, a separate portal for available current permit activity, and an official warning that some existing-system questions still need field verification."
         },
         {
           "question": "What should a Ventura County owner or buyer search first?",
-          "answer": "Start with the county ISDS record search by sitename, address, or period, then escalate into the paper records path if the file still looks thin."
+          "answer": "Start with the Environmental Health request form using the exact address and APN, select Septic/OWTS/ISDS records, and use Citizen Access only as a separate current-permit check."
         }
       ],
       "internalLinkTargets": [
@@ -1568,17 +1568,17 @@
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_environmental_health",
-        "fileOwnerModel": "Ventura County Environmental Health owns the practical septic file, but the ISDS search, paper-record fallback, and any field-verification requirement all have to support the same story.",
-        "firstArtifactToPull": "The online ISDS search first, then any paper-file request return and any county note showing whether field verification is still required.",
+        "fileOwnerModel": "Ventura County Environmental Health owns the practical septic file; its address-specific response, any separate Citizen Access permit activity, and any field-verification requirement all have to support the same story.",
+        "firstArtifactToPull": "The returned Septic/OWTS/ISDS file from the official Environmental Health records request, followed by any relevant current permit activity and county field-verification note.",
         "permitCloseoutCategory": "generic",
-        "permitCloseoutSignal": "Ventura County only gets clean once the visible ISDS file and any paper or field-verification follow-up tell the same system story.",
+        "permitCloseoutSignal": "Ventura County only gets clean once the Environmental Health response and any current permit or field-verification follow-up tell the same system story.",
         "transferCategory": "deal_side_risk",
-        "transferArtifact": "For buyer diligence, the practical artifact is the online ISDS return plus the paper-file request and field-verification note that all support the same path.",
+        "transferArtifact": "For buyer diligence, the practical artifact is the Environmental Health response plus any current permit activity and field-verification note that support the same path.",
         "specialProgramCategory": "local_exception",
-        "specialProgramSignal": "Paper-record fallback and field verification are the local exception signals that can make the digital file look more complete than the real county story.",
+        "specialProgramSignal": "A separate historical records request and field verification are the local exception signals that can make a current permit portal look more complete than the real county story.",
         "malfunctionCategory": "generic",
-        "malfunctionSignal": "If the online search is thin and the parcel still needs a paper or field-verification branch, the county story is not stable enough for routine pricing.",
-        "quoteGate": "Do not move into pricing until the ISDS search, paper-file return, and field-verification note all support the same path, because Ventura can look clean online while the real file is still incomplete."
+        "malfunctionSignal": "If the Environmental Health response is still missing and the parcel needs a field-verification branch, the county story is not stable enough for routine pricing.",
+        "quoteGate": "Do not move into pricing until the Environmental Health response, any relevant current permit activity, and the field-verification note support the same path, because an empty portal result does not prove there is no historical file."
       },
       "publishStatus": "published"
     },

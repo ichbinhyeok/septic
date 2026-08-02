@@ -1618,6 +1618,39 @@ public final class CountyAccessProfileCatalog {
                             "If the portal is blocked or incomplete, contact Environmental Health at 252-902-3200 and retain the resulting file or written response."
                     )
             )),
+            Map.entry("CA::ventura-county", profile(
+                    "CA::ventura-county",
+                    "official_request",
+                    "Environmental Health records request with permit cross-check",
+                    "Request Ventura County's historical septic file, then check current permit activity separately",
+                    "Ventura County publishes an Environmental Health records-request form with property, date-range, and Septic/OWTS/ISDS fields. Use that form for the historical file; Citizen Access is a separate cross-check for available current permit activity and an empty portal result is not a no-record response.",
+                    "Email Ventura Environmental Health records",
+                    "mailto:EHDRecordSearchRequest@ventura.org?subject=Ventura%20County%20Septic%20Records%20Request",
+                    "Open Ventura County Citizen Access",
+                    "https://vcca.venturacounty.gov/citizenaccess/Default.aspx",
+                    "A property-matched Septic/OWTS/ISDS file, written no-record or referral response, or a county request reference that remains pending until the file arrives",
+                    "The form and records coordinator are the historical-file path; Citizen Access is only a separate current-permit cross-check. If the county document server is unavailable, request the current form at EHDRecordSearchRequest@ventura.org. A missing permit may still require county-directed field verification, and Ventura County controls response timing.",
+                    List.of(
+                            "Property or site name",
+                            "Exact property address",
+                            "Assessor's Parcel Number when available",
+                            "Relevant record date range",
+                            "Septic/OWTS/ISDS record type",
+                            "Requester name, phone, and email"
+                    ),
+                    List.of(
+                            "Returned Environmental Health septic or OWTS file",
+                            "Permit, layout, approval, repair, or inspection records tied to the property",
+                            "Written no-record, referral, or follow-up response",
+                            "Any separate current permit activity found in Citizen Access"
+                    ),
+                    List.of(
+                            "Complete the official request with the exact address, APN when available, date range, and Septic/OWTS/ISDS record type.",
+                            "Submit it through the current instructions printed on the county form; if the document server does not open, email EHDRecordSearchRequest@ventura.org for the current form and retain the sent message.",
+                            "Check Citizen Access separately for available current permit activity without treating an empty result as a historical no-record response.",
+                            "Compare the returned file with the current property and follow any county direction for field verification when no permit or system location is available."
+                    )
+            )),
             Map.entry("NC::pender-county", profile(
                     "NC::pender-county",
                     "official_request",
