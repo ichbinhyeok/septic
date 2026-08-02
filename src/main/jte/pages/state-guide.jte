@@ -99,8 +99,8 @@
                             <div class="alabama-fee-ledger__footer">
                                 <p><strong>Do not add all three automatically.</strong> The county may not provide the public site evaluation, and private professional work can replace or exceed that layer.</p>
                                 <div>
-                                    <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Verify ADPH fee manual</a>
-                                    <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer">Open official CEP forms</a>
+                                    <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_fee_manual" data-track-target-type="official_source">Verify ADPH fee manual</a>
+                                    <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_cep_forms" data-track-target-type="official_source">Open official CEP forms</a>
                                 </div>
                             </div>
                         </div>
@@ -166,8 +166,8 @@
                                 <strong data-alabama-perc-selected-county-heading></strong>
                                 <p data-alabama-perc-selected-county-question></p>
                                 <div>
-                                    <a data-alabama-perc-selected-county-page target="_blank" rel="noreferrer"></a>
-                                    <a data-alabama-perc-selected-county-form target="_blank" rel="noreferrer"></a>
+                                    <a data-alabama-perc-selected-county-page target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_selected_county_page" data-track-target-type="official_source"></a>
+                                    <a data-alabama-perc-selected-county-form target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_selected_county_form" data-track-target-type="official_source"></a>
                                 </div>
                             </div>
                             <div class="alabama-perc-scope__note">
@@ -222,8 +222,8 @@
                                                     <p>“${countyRoute.callQuestion()}”</p>
                                                 </div>
                                                 <div class="alabama-county-handoff__actions">
-                                                    <a href="${countyRoute.officialPageUrl()}" target="_blank" rel="noreferrer">${countyRoute.officialPageLabel()}</a>
-                                                    <a href="${countyRoute.formUrl()}" target="_blank" rel="noreferrer">${countyRoute.formLabel()}</a>
+                                                    <a href="${countyRoute.officialPageUrl()}" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_county_page" data-track-target-type="official_source">${countyRoute.officialPageLabel()}</a>
+                                                    <a href="${countyRoute.formUrl()}" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_county_form" data-track-target-type="official_source">${countyRoute.formLabel()}</a>
                                                     @if (countyRoute.hasCountyRecordsPath())
                                                         <a href="${countyRoute.countyRecordsPath()}">Prepare the county records request</a>
                                                     @endif

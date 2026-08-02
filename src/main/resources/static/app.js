@@ -5555,11 +5555,25 @@
                 }
                 note.value = value.noteText;
                 result.scrollIntoView({ behavior: "smooth", block: "start" });
+                return value;
             }
 
             form.addEventListener("submit", (event) => {
                 event.preventDefault();
-                render();
+                const analyticsParams = {
+                    calculator_type: "alabama_perc_scope",
+                    state_code: "AL",
+                    project_type: project.value,
+                    evidence_type: evidence.value,
+                    sewer_status: sewer.value,
+                    county_selected: county instanceof HTMLSelectElement && county.value ? "yes" : "no"
+                };
+                emitGaEvent("calculator_started", analyticsParams);
+                const value = render();
+                emitGaEvent("calculator_completed", {
+                    ...analyticsParams,
+                    outcome: value.resultLabel.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "")
+                });
                 sendArtifactAction("alabama_perc_scope", "generated", "alabama_perc_quote_scope");
             });
 
