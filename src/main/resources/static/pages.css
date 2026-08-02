@@ -125,6 +125,7 @@
   .records-request-builder__controls, .quote-form, .alabama-perc-scope__form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .bedroom-checker__result, .record-document__analysis, .records-request-builder__output, .alabama-perc-scope__result,
   .micro-tool__result, .county-access-return, .quote-panel { margin-top: 24px; padding: 24px; border: 1px solid var(--line-dark); background: var(--surface); }
+  .alabama-perc-scope__county-handoff > div, .alabama-county-handoff__actions { display: flex; flex-wrap: wrap; gap: 10px 18px; }
   .record-document { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--line-dark); }
   .record-document__paste { margin-top: 16px; border-top: 1px solid var(--line); }
   .record-document__paste summary { padding: 14px 0; font-weight: 700; }
