@@ -1107,7 +1107,7 @@
                                 <button class="county-access-return__sent" type="button" data-alamance-request-sent>I sent the request — add a 3-business-day reminder</button>
                             @endif
                         </div>
-                        <div class="county-access-return__outcomes">
+                        <div class="county-access-return__outcomes" aria-label="Official route outcome">
                             @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
                                 <button type="button" data-county-access-outcome="artifact">I found the permit or certificate</button>
                                 <button type="button" data-county-access-outcome="not_found_online">The address was not listed</button>

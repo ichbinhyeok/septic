@@ -70,6 +70,7 @@
   .record-finder__outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
   .record-finder__outcomes button { min-height: 42px; border: 1px solid var(--line-dark); background: var(--surface); }
   .record-finder__outcomes button:hover { border-color: var(--accent); color: var(--accent-dark); }
+  .record-finder__outcomes button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-pale); color: var(--accent-dark); font-weight: 700; }
   .record-finder__clear-progress { padding: 0; border: 0; color: var(--danger); background: none; font-size: .72rem; text-decoration: underline; }
   .record-finder--embedded, .record-finder--minimal { display: block; min-height: 0; }
   .record-finder--embedded .record-finder__intro { display: block; padding: 28px; }
