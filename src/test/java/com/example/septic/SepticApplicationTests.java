@@ -10226,6 +10226,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/not-a-real-route-for-audit/"))
 				.andExpect(status().isNotFound())
 				.andExpect(content().contentTypeCompatibleWith(org.springframework.http.MediaType.TEXT_HTML))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Page Not Found | SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Closest next pages")))

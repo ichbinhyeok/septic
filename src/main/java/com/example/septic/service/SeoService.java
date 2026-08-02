@@ -903,7 +903,7 @@ public class SeoService {
 
     public PageMeta notFound(String message) {
         return pageMeta(
-                "State Not Found",
+                "Page Not Found | SepticPath",
                 message,
                 absoluteUrl("/404"),
                 "noindex,nofollow",
