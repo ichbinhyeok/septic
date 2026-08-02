@@ -5,6 +5,8 @@ import com.example.septic.data.model.CountyWorkflowStructureData;
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.web.CountyEvidenceFactView;
 import com.example.septic.web.CountyLocalContentView;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -25,8 +27,10 @@ public class CountyContentQualityService {
 
     private final Set<String> repeatedUnits;
     private final Set<String> priorityPageKeys;
+    private final ResearchDataService researchDataService;
 
     public CountyContentQualityService(ResearchDataService researchDataService) {
+        this.researchDataService = researchDataService;
         List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
         Map<String, Integer> unitCounts = new HashMap<>();
         for (CountyRecordsPage page : pages) {
@@ -132,13 +136,32 @@ public class CountyContentQualityService {
     }
 
     public String effectiveUpdatedAt(CountyRecordsPage page) {
-        if (!priorityPageKeys.contains(page.key())) {
-            return page.updatedAt();
+        Stream<String> pageDates = Stream.of(page.updatedAt(), page.reviewedAt());
+        Stream<String> sourceDates = safeList(page.officialSourceIds()).stream()
+                .map(researchDataService::findSource)
+                .flatMap(java.util.Optional::stream)
+                .map(SourceRecord::contentVerifiedAt);
+        Stream<String> generatedContentDate = priorityPageKeys.contains(page.key())
+                ? Stream.of(PRIORITY_CONTENT_UPDATED_AT)
+                : Stream.empty();
+
+        return Stream.of(pageDates, sourceDates, generatedContentDate)
+                .flatMap(stream -> stream)
+                .filter(CountyContentQualityService::isIsoDate)
+                .max(String::compareTo)
+                .orElse("");
+    }
+
+    private static boolean isIsoDate(String value) {
+        if (!hasText(value)) {
+            return false;
         }
-        if (!hasText(page.updatedAt()) || PRIORITY_CONTENT_UPDATED_AT.compareTo(page.updatedAt()) > 0) {
-            return PRIORITY_CONTENT_UPDATED_AT;
+        try {
+            LocalDate.parse(value);
+            return true;
+        } catch (DateTimeParseException exception) {
+            return false;
         }
-        return page.updatedAt();
     }
 
     private List<CountyEvidenceFactView> evidenceFacts(CountyRecordsPage page, List<SourceRecord> sources) {

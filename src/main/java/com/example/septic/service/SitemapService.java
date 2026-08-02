@@ -2,11 +2,13 @@ package com.example.septic.service;
 
 import com.example.septic.data.model.ContentPage;
 import com.example.septic.data.model.CountyRecordsPage;
+import com.example.septic.data.model.SourceRecord;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -121,7 +123,17 @@ public class SitemapService {
     }
 
     private String stateMoneyPageLastMod(StateMoneyPage stateMoneyPage, StateProfile state) {
-        return validDateOrBlank(stateMoneyPage.updatedAt());
+        Stream<String> pageAndStateDates = Stream.of(
+                stateMoneyPage.updatedAt(),
+                stateMoneyPage.reviewedAt(),
+                state.lastVerifiedAt()
+        );
+        Stream<String> sourceDates = researchDataService.getSources(stateMoneyPage.officialSourceIds()).stream()
+                .map(SourceRecord::contentVerifiedAt);
+        return Stream.concat(pageAndStateDates, sourceDates)
+                .filter(this::isIsoDate)
+                .max(String::compareTo)
+                .orElse("");
     }
 
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
