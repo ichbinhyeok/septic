@@ -144,7 +144,7 @@
     :root { --container: calc(100% - 28px); --narrow: calc(100% - 28px); --header-height: 64px; }
     body { font-size: 15px; }
     h1 { font-size: clamp(2rem, 9vw, 2.7rem); }
-    .site-nav-toggle { display: inline-flex; align-items: center; }
+    .site-nav-toggle { display: inline-flex; align-items: center; min-height: 48px; }
     .site-nav { display: none; position: absolute; top: 63px; right: 0; left: 0; padding: 8px 14px 16px; border-bottom: 1px solid var(--line-dark); background: var(--surface); }
     .site-header[data-nav-open="true"] .site-nav { display: grid; }
     .site-nav a { min-height: 48px; padding: 0 10px; border-bottom: 1px solid var(--line); font-size: .88rem; }
@@ -154,7 +154,8 @@
     .section--breadcrumb { padding-block: 11px; }
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     .footer-block--brand { grid-column: auto; }
-    .button { width: 100%; }
+    .button { width: 100%; min-height: 48px; }
+    .micro-tool__choice, .county-request-builder__tab { min-height: 48px; }
     .hero__actions, .form-actions, [class$="__actions"] { align-items: stretch; flex-direction: column; }
   }
   @media (prefers-reduced-motion: reduce) {
