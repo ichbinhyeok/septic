@@ -1242,6 +1242,251 @@ public final class CountyAccessProfileCatalog {
                             "Use the county's Minimum Specs to prepare and upload the septic site plan.",
                             "Track corrections through OpenGov, download the issued permit, and keep the final file with the property task."
                     )
+            )),
+            Map.entry("TN::anderson-county", profile(
+                    "TN::anderson-county",
+                    "state_search_with_fallback",
+                    "TDEC search with Knoxville fallback",
+                    "Search the Anderson County SSDS file, then use the Knoxville field office",
+                    "Anderson County is served by TDEC's Knoxville Environmental Field Office for Division of Water Resources work. Search the statewide SSDS index first; when the viewer is blocked, incomplete, or does not match the parcel, carry the exact property clues to the Knoxville office instead of treating the result as no record.",
+                    "Open the official TDEC SSDS record search",
+                    "https://tdec.tn.gov/document-viewer/search/stp",
+                    "Open the TDEC field-office directory",
+                    "https://www.tn.gov/environment/contacts/about-field-offices/field-offices/field-office-map.html",
+                    "A property-matched SSDS permit, layout, approval, repair file, or written TDEC response",
+                    "The official field-office directory assigns Anderson County to Knoxville and publishes 865-594-6035, but it does not publish an Anderson-specific records form, fee, or turnaround. A blank viewer result is not a no-record determination.",
+                    List.of(
+                            "Property address",
+                            "Parcel or tax-map clue",
+                            "Current and prior owner names when available",
+                            "Subdivision, lot, and approximate permit year when known"
+                    ),
+                    List.of(
+                            "SSDS construction permit or approval",
+                            "System layout, inspection letter, or certificate of completion",
+                            "Repair record or written no-record response"
+                    ),
+                    List.of(
+                            "Search the TDEC SSDS index with the strongest property clue and confirm the parcel match.",
+                            "If the result is blocked or incomplete, use the field-office directory and choose Knoxville for Anderson County.",
+                            "Call 865-594-6035 and ask Division of Water Resources for the site-specific SSDS file.",
+                            "Keep the returned file, request reference, or written response with the property task."
+                    )
+            )),
+            Map.entry("NC::randolph-county", profile(
+                    "NC::randolph-county",
+                    "portal_with_fallback",
+                    "County ePermits workflow",
+                    "Choose the Randolph County septic permit job, then apply in ePermits",
+                    "Randolph County separates new, repair, expansion or modification, and existing-system authorization work. New systems move from an Improvement Permit to a separate Construction Authorization and, after installation inspection, an Operation Permit. Existing structures and failing systems use different applications.",
+                    "Open Randolph County ePermits",
+                    "https://esuite.randolphcountync.gov/eSuite.Permits/WelcomePage.aspx",
+                    "Open the county workflow and forms",
+                    "https://www.randolphcountync.gov/397/On-Site-Water-Protection-Program",
+                    "The correct application plus its IP, CA, Operation Permit, repair permit, expansion approval, or existing-system authorization",
+                    "The county requires the parcel number and address, a signed application, site-ready document, and site plan for applicable work. Existing-system authorization may require uncovering the tank; when no permit is on file and no home is connected, the county form limits authorization to two residential bedrooms or four commercial employees.",
+                    List.of(
+                            "Parcel number and property address",
+                            "Job type: new, repair, expansion or modification, or existing-system authorization",
+                            "Signed application or owner authorization",
+                            "Site-ready document and site plan",
+                            "Proposed structures, wells, driveways, surface water, and property-line distances"
+                    ),
+                    List.of(
+                            "Improvement Permit and Construction Authorization for new or expansion work",
+                            "Operation Permit after the final installation inspection",
+                            "Repair permit or existing-system authorization for the applicable job"
+                    ),
+                    List.of(
+                            "Choose the actual property job before opening ePermits; do not use a new-site application for a repair or accessory structure.",
+                            "Confirm the parcel and address, then prepare the signed application, site-ready document, and matching site plan.",
+                            "Submit through ePermits and complete the county site-preparation and inspection steps.",
+                            "Retain the issued IP, CA, Operation Permit, repair permit, or existing-system authorization as separate artifacts."
+                    )
+            )),
+            Map.entry("AL::tuscaloosa-county", profile(
+                    "AL::tuscaloosa-county",
+                    "phone_assisted",
+                    "County Environmental Office intake",
+                    "Call Tuscaloosa County for the septic permit or record path",
+                    "Tuscaloosa County Health Department publishes onsite sewage and septic-tank applications and permits, and directs every septic-tank request to its Environmental Office by phone. Prepare a property-specific request before calling so staff can distinguish a permit copy from new, repair, complaint, or pumper work.",
+                    "Call Tuscaloosa County Health Department",
+                    "tel:205-562-6900",
+                    "Open Tuscaloosa environmental services",
+                    "https://www.alabamapublichealth.gov/tuscaloosa/services.html",
+                    "The responsible Environmental Office route plus a permit copy, application instructions, inspection outcome, or documented response",
+                    "The county publishes the phone route but no public parcel search, record-copy form, fee, or turnaround for septic requests. Confirm the current intake and any fee before sending documents or payment; a historical permit does not prove present system condition.",
+                    List.of(
+                            "Property address and parcel or tax-map clue",
+                            "Current and prior owner names when available",
+                            "Request type: existing record, new permit, repair, complaint, or pumper matter",
+                            "Approximate installation or permit year when known"
+                    ),
+                    List.of(
+                            "Onsite sewage or septic-tank application and permit",
+                            "Available approval or inspection record",
+                            "Written or documented Environmental Office referral or no-record outcome"
+                    ),
+                    List.of(
+                            "Prepare the address, parcel clue, owners, approximate year, and exact request type.",
+                            "Call 205-562-6900 and ask for the Environmental Office as the county instructs.",
+                            "Confirm whether staff can provide the existing permit file or requires a separate application or office visit.",
+                            "Record the staff direction and retain the returned permit, inspection result, or no-record response."
+                    )
+            )),
+            Map.entry("AL::calhoun-county", profile(
+                    "AL::calhoun-county",
+                    "phone_assisted",
+                    "Direct Environmental Department intake",
+                    "Route a Calhoun County septic permit or record request",
+                    "Calhoun County's Environmental Department publishes a direct phone number and explicitly handles onsite sewage applications and permits, septic tanks, small and large flow development, and septic pumper inspections. Start with the property and job type instead of a generic health-department inquiry.",
+                    "Call Calhoun Environmental Department",
+                    "tel:256-237-4324",
+                    "Open Calhoun environmental services",
+                    "https://www.alabamapublichealth.gov/calhoun/environmental-services.html",
+                    "The correct county intake plus an onsite sewage permit, application direction, inspection record, or documented office response",
+                    "The official page publishes services and the direct Environmental Department number but no public record-search tool, copy form, fee, or turnaround. Confirm whether the request is for a historical file or a new paid service before proceeding.",
+                    List.of(
+                            "Property address and parcel or tax-map clue",
+                            "Current or prior owner when available",
+                            "Request type: historical permit, new or repair permit, small or large flow, or pumper matter",
+                            "Approximate installation or permit year when known"
+                    ),
+                    List.of(
+                            "Onsite sewage application or permit",
+                            "Available approval, inspection, or system record",
+                            "Documented Environmental Department referral or no-record outcome"
+                    ),
+                    List.of(
+                            "Identify the property and whether the job is a historical file, permit, repair, development, or pumper request.",
+                            "Call 256-237-4324, the direct Environmental Department number published by the county.",
+                            "Confirm the current intake, documents, fees, and whether an existing record can be copied.",
+                            "Retain the permit, inspection artifact, staff referral, or documented no-record outcome."
+                    )
+            )),
+            Map.entry("SC::charleston-county", profile(
+                    "SC::charleston-county",
+                    "portal_with_fallback",
+                    "TMS lookup with Coastal records route",
+                    "Find the Charleston County TMS, then request the SCDES septic file",
+                    "Charleston County's property-card search provides the parcel ID or TMS that SCDES asks for when locating a permit. SCDES assigns Charleston to its Coastal regional division and routes copies of permits and final inspections through Onsite Wastewater customer support.",
+                    "Search Charleston property record cards",
+                    "https://prcweb.charlestoncounty.org/",
+                    "Call SCDES for permits and final inspections",
+                    "tel:18557312504",
+                    "A parcel-matched Permit to Construct, Approval to Operate or final inspection, site information, or documented no-file response",
+                    "SCDES says permit copies are most likely for homes built within roughly the last 20 years. If the office cannot locate a copy or the home is older, a licensed septic contractor may be needed to locate the physical system; a missing file does not prove no system exists.",
+                    List.of(
+                            "Charleston County parcel ID or TMS",
+                            "Physical address",
+                            "Lot and block numbers when applicable",
+                            "Original permit holder and subdivision when known",
+                            "Installation or home-build date when known"
+                    ),
+                    List.of(
+                            "SCDES Permit to Construct",
+                            "Approval to Operate or final inspection record",
+                            "Permit copy, regional referral, or documented no-file response"
+                    ),
+                    List.of(
+                            "Use the county property-card search to confirm the parcel ID or TMS and address.",
+                            "Add the lot, block, original permit holder, subdivision, and approximate date when available.",
+                            "Call 1-855-731-2504 for the permit or final-inspection copy; Charleston is in the SCDES Coastal division at 843-953-0150.",
+                            "Keep the returned permit and final inspection, or document the no-file result before arranging physical location work."
+                    )
+            )),
+            Map.entry("SC::greenville-county", profile(
+                    "SC::greenville-county",
+                    "portal_with_fallback",
+                    "Map-number lookup with Piedmont II route",
+                    "Find the Greenville County map number, then request the SCDES septic file",
+                    "Greenville County's official real-property search supports street, owner, map number, and subdivision clues. Use the matched property card to prepare the SCDES permit-copy request; SCDES assigns Greenville County to its Piedmont II regional division.",
+                    "Search Greenville County real property",
+                    "https://www.greenvillecounty.org/appsas400/RealProperty/",
+                    "Call SCDES for permits and final inspections",
+                    "tel:18557312504",
+                    "A map-number-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
+                    "The county property search identifies the parcel but does not itself prove a septic permit exists. SCDES says older homes or files it cannot locate may require a licensed septic contractor to identify the system in the field.",
+                    List.of(
+                            "Greenville County map number or parcel clue",
+                            "Physical address",
+                            "Owner, lot, block, and subdivision when known",
+                            "Original permit holder when known",
+                            "Installation or home-build date when known"
+                    ),
+                    List.of(
+                            "SCDES Permit to Construct",
+                            "Approval to Operate or final inspection record",
+                            "Permit copy, Piedmont II referral, or documented no-file response"
+                    ),
+                    List.of(
+                            "Use Greenville County real-property search to match the address and map number.",
+                            "Prepare the additional SCDES clues: lot, block, subdivision, original permit holder, and approximate date.",
+                            "Call 1-855-731-2504 for copies; Greenville is in Piedmont II, whose published regional number is 864-638-4185.",
+                            "Save the permit and final inspection, or retain the documented no-file response before field work."
+                    )
+            )),
+            Map.entry("SC::anderson-county", profile(
+                    "SC::anderson-county",
+                    "portal_with_fallback",
+                    "Assessor lookup with Piedmont II route",
+                    "Confirm the Anderson County parcel, then request the SCDES septic file",
+                    "Anderson County's Assessor and real-property resources provide the parcel anchor needed for the state septic search. SCDES assigns Anderson County to Piedmont II and routes copies of permits and final inspections through its Onsite Wastewater customer-support line.",
+                    "Open Anderson County property resources",
+                    "https://www.andersoncountysc.org/departments-a-z/assessor/",
+                    "Call SCDES for permits and final inspections",
+                    "tel:18557312504",
+                    "A parcel-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
+                    "The assessor resource establishes the property identity, not septic approval or current condition. SCDES may have no copy for an older property, in which case a licensed septic contractor may be required to locate the system physically.",
+                    List.of(
+                            "Anderson County parcel or tax-map number",
+                            "Physical address",
+                            "Owner, lot, block, and subdivision when known",
+                            "Original permit holder when known",
+                            "Installation or home-build date when known"
+                    ),
+                    List.of(
+                            "SCDES Permit to Construct",
+                            "Approval to Operate or final inspection record",
+                            "Permit copy, Piedmont II referral, or documented no-file response"
+                    ),
+                    List.of(
+                            "Use the Anderson County assessor resource to confirm the parcel and address.",
+                            "Prepare the lot, block, subdivision, original permit holder, and approximate date when available.",
+                            "Call 1-855-731-2504 for copies; Anderson is in Piedmont II at 864-638-4185.",
+                            "Retain the returned permit and final inspection or the documented no-file result."
+                    )
+            )),
+            Map.entry("SC::spartanburg-county", profile(
+                    "SC::spartanburg-county",
+                    "portal_with_fallback",
+                    "GIS parcel lookup with Piedmont I route",
+                    "Confirm the Spartanburg County parcel, then request the SCDES septic file",
+                    "Spartanburg County's official GIS resources maintain digital parcel and road data that can anchor the state record request. SCDES assigns Spartanburg County to Piedmont I and uses its customer-support route for copies of permits and final inspections.",
+                    "Open Spartanburg County GIS",
+                    "https://www.spartanburgcounty.gov/185/Geographic-Information-Systems",
+                    "Call SCDES for permits and final inspections",
+                    "tel:18557312504",
+                    "A parcel-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
+                    "County GIS is a parcel-identification aid, not a septic approval or survey. When SCDES cannot locate an older permit copy, its homeowner guidance directs users to a licensed septic contractor for physical system location.",
+                    List.of(
+                            "Spartanburg County parcel or map clue",
+                            "Physical address",
+                            "Owner, lot, block, and subdivision when known",
+                            "Original permit holder when known",
+                            "Installation or home-build date when known"
+                    ),
+                    List.of(
+                            "SCDES Permit to Construct",
+                            "Approval to Operate or final inspection record",
+                            "Permit copy, Piedmont I referral, or documented no-file response"
+                    ),
+                    List.of(
+                            "Use Spartanburg County GIS to confirm the parcel and physical address.",
+                            "Prepare the other SCDES clues: lot, block, subdivision, original permit holder, and approximate date.",
+                            "Call 1-855-731-2504 for copies; Spartanburg is in Piedmont I at 803-285-7461.",
+                            "Keep the returned permit and final inspection or document the no-file result before field work."
+                    )
             ))
     );
 
