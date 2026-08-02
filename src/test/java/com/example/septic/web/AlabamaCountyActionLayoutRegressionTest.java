@@ -14,7 +14,7 @@ class AlabamaCountyActionLayoutRegressionTest {
         String pagesCss = Files.readString(Path.of("src/main/resources/static/pages.css"));
 
         assertTrue(pagesCss.contains(
-                ".alabama-perc-scope__county-handoff > div, .alabama-county-handoff__actions { display: flex; flex-wrap: wrap; gap: 10px 18px; }"
+                ".alabama-fee-ledger__footer > div, .alabama-perc-scope__county-handoff > div, .alabama-county-handoff__actions { display: flex; flex-wrap: wrap; gap: 10px 18px; }"
         ));
     }
 }
