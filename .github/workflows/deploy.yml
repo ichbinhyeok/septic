@@ -186,5 +186,33 @@ jobs:
           rm -f "\$UPLOAD_PROBE" "\$UPLOAD_RESPONSE"
           trap - EXIT
 
+          check_page_contract() {
+            PAGE_PATH="\$1"
+            EXPECTED_MARKER="\$2"
+            PAGE_BODY="\$(mktemp)"
+            if ! curl -fsS \
+              -H 'Host: septicpath.com' \
+              -H 'X-Forwarded-Proto: https' \
+              -H 'X-Forwarded-Port: 443' \
+              "http://127.0.0.1:8090\${PAGE_PATH}" > "\$PAGE_BODY"; then
+              echo "production route probe failed: \${PAGE_PATH}"
+              rm -f "\$PAGE_BODY"
+              exit 1
+            fi
+            if ! grep -Fq "\$EXPECTED_MARKER" "\$PAGE_BODY"; then
+              echo "production route contract missing on \${PAGE_PATH}: \${EXPECTED_MARKER}"
+              rm -f "\$PAGE_BODY"
+              exit 1
+            fi
+            rm -f "\$PAGE_BODY"
+          }
+
+          check_page_contract "/septic-records-checklist/north-carolina/buncombe-county/" 'data-county-acquisition-field="permitCaseNumber"'
+          check_page_contract "/septic-records-checklist/north-carolina/wake-county/" 'data-county-acquisition-field="realEstateId"'
+          check_page_contract "/septic-records-checklist/north-carolina/union-county/" 'data-county-acquisition-field="projectType"'
+          check_page_contract "/septic-records-checklist/north-carolina/pitt-county/" 'data-county-acquisition-field="sitePlanReady"'
+          check_page_contract "/septic-records-checklist/north-carolina/pender-county/" 'data-county-acquisition-field="requestDate"'
+          check_page_contract "/" 'G-S1SY1NS71P'
+
           docker image prune -f
           EOF

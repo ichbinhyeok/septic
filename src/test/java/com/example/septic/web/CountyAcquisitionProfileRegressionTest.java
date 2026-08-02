@@ -169,4 +169,46 @@ class CountyAcquisitionProfileRegressionTest {
         assertTrue(sevier.requestTemplate().contains("Is the previously published Request for Information form still current?"));
         assertFalse(guilford.officialFieldPackVerified());
     }
+
+    @Test
+    void northCarolinaExposureRoutesNowCarryTheRightPreparationBoundary() {
+        CountyAcquisitionProfileView buncombe = CountyAcquisitionProfileCatalog.find("NC::buncombe-county");
+        CountyAcquisitionProfileView wake = CountyAcquisitionProfileCatalog.find("NC::wake-county");
+        CountyAcquisitionProfileView union = CountyAcquisitionProfileCatalog.find("NC::union-county");
+        CountyAcquisitionProfileView pitt = CountyAcquisitionProfileCatalog.find("NC::pitt-county");
+        CountyAcquisitionProfileView pender = CountyAcquisitionProfileCatalog.find("NC::pender-county");
+
+        assertFalse(buncombe.officialFieldPackVerified());
+        assertEquals("official_search", buncombe.acquisitionMethod());
+        assertTrue(buncombe.fields().stream().anyMatch(field -> "permitCaseNumber".equals(field.key())));
+
+        assertTrue(wake.officialFieldPackVerified());
+        assertEquals("official_search", wake.acquisitionMethod());
+        assertTrue(wake.requiresAddressOrParcel());
+        assertTrue(wake.fields().stream().anyMatch(field -> "realEstateId".equals(field.key())));
+
+        assertFalse(union.officialFieldPackVerified());
+        assertEquals("official_portal", union.acquisitionMethod());
+        assertTrue(union.fields().stream().anyMatch(field -> "projectType".equals(field.key())));
+
+        assertFalse(pitt.officialFieldPackVerified());
+        assertEquals("official_search", pitt.acquisitionMethod());
+        assertTrue(pitt.fields().stream().anyMatch(field -> "sitePlanReady".equals(field.key())));
+
+        assertTrue(pender.officialFieldPackVerified());
+        assertEquals("official_pdf", pender.acquisitionMethod());
+        assertEquals(5, pender.requiredFields().size());
+        assertTrue(pender.officialUsesPropertyAddress());
+        assertTrue(pender.officialUsesParcelIdentifier());
+        assertTrue(pender.requiresAddressOrParcel());
+    }
+
+    @Test
+    void workflowRegistryRejectsCatalogDriftAndJoinsPublishedProfiles() {
+        CountyWorkflowRegistry.validateCatalogs();
+
+        CountyAccessProfileView access = CountyAccessProfileCatalog.find("NC::wake-county");
+        CountyAcquisitionProfileView acquisition = CountyAcquisitionProfileCatalog.find("NC::wake-county");
+        assertEquals(access.countyKey(), acquisition.countyKey());
+    }
 }

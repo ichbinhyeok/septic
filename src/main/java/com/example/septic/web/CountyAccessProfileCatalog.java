@@ -1665,6 +1665,10 @@ public final class CountyAccessProfileCatalog {
         return PROFILES.size();
     }
 
+    static List<CountyAccessProfileView> all() {
+        return List.copyOf(PROFILES.values());
+    }
+
     public static CountyAccessProfileView findOrBaseline(CountyRecordsPage countyPage) {
         CountyAccessProfileView verifiedProfile = find(countyPage.key());
         if (verifiedProfile != null) {

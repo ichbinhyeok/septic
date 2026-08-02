@@ -21,6 +21,7 @@ concurrency:
 
 jobs:
   check-sources:
+    name: Official-source monitor (does not deploy)
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -42,3 +43,12 @@ jobs:
           path: reports/source-health.json
           if-no-files-found: warn
           retention-days: 30
+
+      - name: Explain workflow boundary
+        if: always()
+        run: |
+          {
+            echo "## Official-source monitor"
+            echo "This workflow checks third-party government URLs and never deploys SepticPath."
+            echo "A failure here means at least one official source needs review; check **Deploy OCI ARM64** separately for production deployment status."
+          } >> "$GITHUB_STEP_SUMMARY"

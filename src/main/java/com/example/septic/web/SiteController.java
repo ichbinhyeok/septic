@@ -2126,8 +2126,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                 state.lastVerifiedAt()
         );
         CountyLocalContentView countyLocalContent = countyContentQualityService.build(countyPage, sources);
-        CountyAccessProfileView countyAccessProfile = CountyAccessProfileCatalog.findOrBaseline(countyPage);
-        CountyAcquisitionProfileView countyAcquisitionProfile = CountyAcquisitionProfileCatalog.find(countyPage.key());
+        CountyWorkflowProfileView countyWorkflowProfile = CountyWorkflowRegistry.findOrBaseline(countyPage);
+        CountyAccessProfileView countyAccessProfile = countyWorkflowProfile.access();
+        CountyAcquisitionProfileView countyAcquisitionProfile = countyWorkflowProfile.acquisition();
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);

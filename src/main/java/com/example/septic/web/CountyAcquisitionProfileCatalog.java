@@ -938,6 +938,174 @@ public final class CountyAcquisitionProfileCatalog {
                     ),
                     docs("well completion report", "existing or proposed septic location", "bedrooms permitted with the current system or total bedrooms allowed", "another specifically identified well, septic, or perc record")
             )),
+            Map.entry("NC::buncombe-county", acquisition(
+                    "NC::buncombe-county",
+                    "Buncombe County Environmental Health",
+                    "Accela well and septic search - Environmental Health fallback",
+                    "No historical-record search fee is published on the reviewed county pages.",
+                    "No search or fallback turnaround is published.",
+                    "Search Accela yourself and complete any county-only verification or follow-up request.",
+                    "",
+                    "828-250-5016",
+                    "Buncombe County septic file - {{address}}",
+                    "Buncombe publishes the search route and useful property clues, but the live Accela field set was not independently verified. Treat these as routing facts, not claimed form fields.",
+                    """
+                    Buncombe County search carry sheet
+
+                    Property address: {{address}}
+                    Parcel PIN: {{parcel}}
+                    Current or prior owner: {{owner}}
+                    Permit or case number: {{permitCaseNumber}}
+                    Subdivision / lot: {{subdivision}} / {{lotNumber}}
+                    Approximate construction year: {{yearBuilt}}
+                    """,
+                    List.of(
+                            field("owner", "Current or prior owner", "Use the name tied to the permit era when known", false, "name"),
+                            field("permitCaseNumber", "Permit or case number", "If known", false, "off"),
+                            field("subdivision", "Subdivision", "If known", false, "off"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            field("yearBuilt", "Approximate construction year", "Four-digit year", false, "off")
+                    ),
+                    docs("septic permit or Improvement Permit", "Authorization to Construct and operation approval", "layout, site sketch, or inspection record", "repair record or written no-record response")
+            )),
+            Map.entry("NC::wake-county", acquisition(
+                    "NC::wake-county",
+                    "Wake County Environmental Services",
+                    "iMAPS parcel match - Permit Search attachments",
+                    "No fee is published for the online parcel and permit search.",
+                    "Online results are immediate when a scanned file is available; no assistance turnaround is published.",
+                    "Select the exact parcel, open its Septic result, and download the permit attachments yourself.",
+                    "",
+                    "919-856-7400",
+                    "Wake County septic permit search - {{address}}",
+                    "Wake County's official guide verifies address, PIN, owner, and Real Estate ID as iMAPS search fields. Permit number and year remain optional file clues.",
+                    """
+                    Wake County official search carry sheet
+
+                    Property address: {{address}}
+                    Wake County PIN: {{parcel}}
+                    Owner: {{owner}}
+                    Real Estate ID: {{realEstateId}}
+                    Permit number: {{permitNumber}}
+                    Approximate permit year: {{permitYear}}
+                    """,
+                    List.of(
+                            field("owner", "Owner name", "Current or permit-era owner", false, "name"),
+                            field("realEstateId", "Real Estate ID", "Wake County Real Estate ID", false, "off"),
+                            field("permitNumber", "Permit number", "If known", false, "off"),
+                            field("permitYear", "Approximate permit year", "Four-digit year", false, "off")
+                    ),
+                    docs("scanned septic permit", "permit attachments and layout", "improvement, construction, operation, repair, or abandonment record", "documented assistance outcome for an unscanned file")
+            )),
+            Map.entry("NC::union-county", acquisition(
+                    "NC::union-county",
+                    "Union County Environmental Health",
+                    "Existing septic and well permit request - inspection branch",
+                    "No historical-record request fee is published on the reviewed county pages.",
+                    "No request turnaround is published.",
+                    "Complete the current county request yourself, then start a separate existing-system inspection if planned work requires one.",
+                    "",
+                    "704-283-3553",
+                    "Union County existing septic file - {{address}}",
+                    "The county confirms the request and inspection routes, but the live request form blocked automated inspection. These are routing facts to prepare, not claimed live-form fields.",
+                    """
+                    Union County request carry sheet
+
+                    Property address: {{address}}
+                    Parcel number: {{parcel}}
+                    Current or prior owner: {{owner}}
+                    Subdivision / lot: {{subdivision}} / {{lotNumber}}
+                    Record scope: {{requestScope}}
+                    Planned project: {{projectType}}
+                    Requester: {{requesterName}} / {{requesterEmail}} / {{requesterPhone}}
+                    """,
+                    List.of(
+                            field("owner", "Current or prior owner", "If known", false, "name"),
+                            field("subdivision", "Subdivision", "If known", false, "off"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            select("requestScope", "Record needed", false, "Existing septic permit", "Existing well permit", "Permit, layout, and inspection history", "Repair or compliance record"),
+                            select("projectType", "Planned work", false, "No construction planned", "Addition or bedroom change", "Garage, deck, pool, or irrigation", "Repair or replacement"),
+                            field("requesterName", "Requester name", "Your name", false, "name"),
+                            field("requesterEmail", "Requester email", "Email for the response", false, "email"),
+                            field("requesterPhone", "Requester phone", "Phone number", false, "tel")
+                    ),
+                    docs("existing septic and well permit file", "existing-system or compliance inspection result", "repair permit or construction authorization", "operation and maintenance record when applicable")
+            )),
+            Map.entry("NC::pitt-county", acquisition(
+                    "NC::pitt-county",
+                    "Pitt County Environmental Health - On-Site Wastewater",
+                    "EnerGov permit search - Environmental Health fallback",
+                    "No historical permit-search fee is published on the reviewed county page.",
+                    "Online results are immediate when available; no office fallback turnaround is published.",
+                    "Search EnerGov yourself and have Environmental Health confirm any missing permit, site plan, or repair-area answer.",
+                    "",
+                    "252-902-3200",
+                    "Pitt County septic permit file - {{address}}",
+                    "Pitt County publishes the property and design facts used by its onsite wastewater program, but the live EnerGov search fields were not independently verified. Use these as file-matching and follow-up facts.",
+                    """
+                    Pitt County search and follow-up sheet
+
+                    Property address: {{address}}
+                    Tax parcel number: {{parcel}}
+                    Owner: {{owner}}
+                    Owner mailing address: {{ownerMailingAddress}}
+                    Subdivision / lot: {{subdivision}} / {{lotNumber}}
+                    Structure / bedrooms / occupants: {{structureType}} / {{bedrooms}} / {{occupants}}
+                    Projected flow / water supply: {{projectedFlow}} / {{waterSupply}}
+                    Directions: {{directions}}
+                    Site plan ready: {{sitePlanReady}}
+                    """,
+                    List.of(
+                            field("owner", "Property owner", "Owner tied to the parcel", false, "name"),
+                            field("ownerMailingAddress", "Owner mailing address", "If different from the site", false, "street-address"),
+                            field("subdivision", "Subdivision", "If known", false, "off"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            field("structureType", "Structure type", "House, mobile home, business, or other use", false, "off"),
+                            field("bedrooms", "Bedroom count", "Proposed or permitted count", false, "off"),
+                            field("occupants", "Expected occupants", "If relevant", false, "off"),
+                            field("projectedFlow", "Projected wastewater flow", "Gallons per day when known", false, "off"),
+                            select("waterSupply", "Water supply", false, "Private well", "Public water", "Other or unknown"),
+                            field("directions", "Directions to the property", "Useful for an unaddressed or rural parcel", false, "off"),
+                            select("sitePlanReady", "Site plan or plat ready?", false, "Yes", "No", "Not sure")
+                    ),
+                    docs("Improvement Permit or Authorization to Construct", "site plan with primary drainfield and repair area", "operation permit, final inspection, or approval", "repair file or written Environmental Health response")
+            )),
+            Map.entry("NC::pender-county", acquisition(
+                    "NC::pender-county",
+                    "Pender County Environmental Health",
+                    "Official Septic Permit Information Request PDF",
+                    "No request fee is published on the reviewed county form.",
+                    "No processing time is published on the reviewed county form.",
+                    "Transfer these verified fields to the county PDF and send it through the current Environmental Health channel yourself.",
+                    "",
+                    "910-270-5000",
+                    "Pender County septic permit information request - {{address}}",
+                    "These property and requester fields were verified against Pender County's official Septic Permit Information Request PDF. The county PDF remains the submission authority.",
+                    """
+                    Pender County official PDF transfer sheet
+
+                    Request date: {{requestDate}}
+                    Property address: {{address}}
+                    Subdivision / lot: {{subdivision}} / {{lotNumber}}
+                    Parcel ID: {{parcel}}
+                    Name on permit or current owner: {{permitOrCurrentOwner}}
+                    Year built: {{yearBuilt}}
+                    Requested by: {{requesterName}}
+                    Email: {{requesterEmail}}
+                    Phone: {{requesterPhone}}
+                    """,
+                    List.of(
+                            field("requestDate", "Request date", "MM/DD/YYYY", true, "off"),
+                            field("permitOrCurrentOwner", "Name on permit or current owner", "Full name", true, "name"),
+                            field("requesterName", "Requested by", "Your name", true, "name"),
+                            field("requesterEmail", "Requester email", "Email for the response", true, "email"),
+                            field("requesterPhone", "Requester phone", "Phone number", true, "tel"),
+                            field("subdivision", "Subdivision", "If known", false, "off"),
+                            field("lotNumber", "Lot number", "If known", false, "off"),
+                            field("yearBuilt", "Year built", "Four-digit year", false, "off")
+                    ),
+                    docs("septic permit information", "current-through or expired file status", "permit type and available layout", "written no-record, referral, or follow-up response")
+            )),
             Map.entry("NC::guilford-county", acquisition(
                     "NC::guilford-county",
                     "Guilford County On-Site Water Protection",
@@ -974,6 +1142,10 @@ public final class CountyAcquisitionProfileCatalog {
         return (int) PROFILES.values().stream()
                 .filter(CountyAcquisitionProfileView::hasPreparedFieldPack)
                 .count();
+    }
+
+    static List<CountyAcquisitionProfileView> all() {
+        return List.copyOf(PROFILES.values());
     }
 
     private static CountyAcquisitionProfileView acquisition(

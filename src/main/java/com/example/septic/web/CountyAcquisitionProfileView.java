@@ -37,7 +37,9 @@ public record CountyAcquisitionProfileView(
                  "CO::adams-county",
                  "MD::frederick-county",
                  "TN::wilson-county",
-                 "TN::montgomery-county" -> true;
+                 "TN::montgomery-county",
+                 "NC::wake-county",
+                 "NC::pender-county" -> true;
             default -> false;
         };
     }
@@ -68,13 +70,14 @@ public record CountyAcquisitionProfileView(
         return switch (countyKey) {
             case "VA::prince-william-county", "TN::hamilton-county", "MD::st-marys-county",
                  "AZ::maricopa-county", "NC::brunswick-county",
-                 "MD::prince-georges-county", "CO::adams-county" -> "official_search";
-            case "NC::alamance-county", "TX::denton-county" -> "official_pdf";
+                 "MD::prince-georges-county", "CO::adams-county", "NC::buncombe-county",
+                 "NC::wake-county", "NC::pitt-county" -> "official_search";
+            case "NC::alamance-county", "TX::denton-county", "NC::pender-county" -> "official_pdf";
             case "TX::tarrant-county", "NC::lincoln-county", "GA::dekalb-county",
                  "TN::blount-county", "TN::knox-county", "CA::san-bernardino-county",
                  "NJ::gloucester-county",
                  "MD::frederick-county",
-                 "TN::wilson-county", "TN::montgomery-county" -> "official_portal";
+                 "TN::wilson-county", "TN::montgomery-county", "NC::union-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
             case "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
             case "TX::brazoria-county", "OH::mahoning-county" -> "official_contact";
@@ -140,6 +143,21 @@ public record CountyAcquisitionProfileView(
         if ("NC::guilford-county".equals(countyKey)) {
             return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
         }
+        if ("NC::buncombe-county".equals(countyKey)) {
+            return "Search Buncombe's Accela site with the parcel PIN and strongest available clue. If it is blocked, empty, or the job concerns reuse, inspection, or repair, use Environmental Health and keep the resulting reference.";
+        }
+        if ("NC::wake-county".equals(countyKey)) {
+            return "Match the parcel in iMAPS by address, PIN, owner, or Real Estate ID, open its Septic result in Permit Search, and download every relevant attachment. Call when the scan is missing.";
+        }
+        if ("NC::union-county".equals(countyKey)) {
+            return "Use the existing septic and well permit request for the historical file. If construction or a site change is planned, start the county's separate existing-system inspection instead of treating the old permit as clearance.";
+        }
+        if ("NC::pitt-county".equals(countyKey)) {
+            return "Search EnerGov with the parcel and permit clues, then confirm that the returned permit and site plan answer both the primary drainfield and repair-area question. Use Environmental Health when the portal is blocked or incomplete.";
+        }
+        if ("NC::pender-county".equals(countyKey)) {
+            return "Transfer the verified property and requester fields to Pender County's original Septic Permit Information Request PDF. Confirm the current delivery channel on the program page or by phone before sending it.";
+        }
         if ("OH::mahoning-county".equals(countyKey)) {
             return "The county accepts public-record requests by email but does not publish a dedicated septic form. Carry the property facts into your own factual message.";
         }
@@ -180,7 +198,9 @@ public record CountyAcquisitionProfileView(
                  "NC::forsyth-county",
                  "CA::san-bernardino-county",
                  "NJ::gloucester-county",
-                 "TN::sevier-county" -> true;
+                 "TN::sevier-county",
+                 "NC::wake-county",
+                 "NC::pender-county" -> true;
             default -> false;
         };
     }
@@ -193,7 +213,9 @@ public record CountyAcquisitionProfileView(
                  "MD::st-marys-county",
                  "MD::frederick-county",
                  "NC::brunswick-county",
-                 "NY::suffolk-county" -> true;
+                 "NY::suffolk-county",
+                 "NC::wake-county",
+                 "NC::pender-county" -> true;
             default -> false;
         };
     }
@@ -213,7 +235,8 @@ public record CountyAcquisitionProfileView(
     public boolean requiresAddressOrParcel() {
         return switch (countyKey) {
             case "VA::prince-william-county", "NC::lincoln-county",
-                 "MD::st-marys-county", "NC::brunswick-county" -> true;
+                 "MD::st-marys-county", "NC::brunswick-county",
+                 "NC::wake-county", "NC::pender-county" -> true;
             default -> false;
         };
     }
