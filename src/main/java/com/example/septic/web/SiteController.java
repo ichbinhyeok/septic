@@ -681,7 +681,7 @@ public class SiteController {
             return ResponseEntity.badRequest().body(new AddressRecordFinderResult(
                     "invalid",
                     "Enter a full U.S. property address",
-                    "Include street, city, state, and ZIP so the county can be resolved reliably.",
+                    "Include the street, city, and a state abbreviation or ZIP so the county can be resolved reliably.",
                     "", "", "", "", "", "", "", List.of(), List.of()
             ));
         }

@@ -835,6 +835,20 @@
             return;
         }
 
+        const stateCodePattern = /(?:^|[\s,])(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)(?:[\s,]|$)/i;
+
+        function isFullUsAddress(value) {
+            const normalized = value.trim();
+            const hasLocalityShape = (normalized.match(/,/g) || []).length >= 2
+                || normalized.split(/\s+/).length >= 5;
+            return normalized.length >= 8
+                && normalized.length <= 180
+                && /\d/.test(normalized)
+                && /[A-Za-z]/.test(normalized)
+                && hasLocalityShape
+                && (stateCodePattern.test(normalized) || /\b\d{5}(?:-\d{4})?\s*$/.test(normalized));
+        }
+
         const statusLabels = {
             county_route: "County route found",
             state_route: "State route found",
@@ -2370,11 +2384,11 @@
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
                 const address = input.value.trim();
-                if (address.length < 8) {
+                if (!isFullUsAddress(address)) {
                     render({
                         status: "invalid",
                         heading: "Enter a full U.S. property address",
-                        message: "Include street, city, state, and ZIP so the county can be resolved reliably."
+                        message: "Include the street, city, and a state abbreviation or ZIP so the county can be resolved reliably."
                     });
                     input.focus();
                     return;
