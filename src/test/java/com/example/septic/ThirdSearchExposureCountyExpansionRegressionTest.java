@@ -44,6 +44,10 @@ class ThirdSearchExposureCountyExpansionRegressionTest {
         CountyAccessProfileView andersonTn = CountyAccessProfileCatalog.find("TN::anderson-county");
         assertTrue(andersonTn.limitation().contains("865-594-6035"));
         assertTrue(andersonTn.limitation().contains("blank viewer"));
+        assertEquals(
+                "https://www.tn.gov/environment/contacts/field-offices/knoxville.html",
+                andersonTn.secondaryUrl()
+        );
 
         CountyAccessProfileView randolph = CountyAccessProfileCatalog.find("NC::randolph-county");
         assertTrue(randolph.completionLabel().contains("Operation Permit"));

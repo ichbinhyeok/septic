@@ -1252,7 +1252,7 @@ public final class CountyAccessProfileCatalog {
                     "Open the official TDEC SSDS record search",
                     "https://tdec.tn.gov/document-viewer/search/stp",
                     "Open the TDEC field-office directory",
-                    "https://www.tn.gov/environment/contacts/about-field-offices/field-offices/field-office-map.html",
+                    "https://www.tn.gov/environment/contacts/field-offices/knoxville.html",
                     "A property-matched SSDS permit, layout, approval, repair file, or written TDEC response",
                     "The official field-office directory assigns Anderson County to Knoxville and publishes 865-594-6035, but it does not publish an Anderson-specific records form, fee, or turnaround. A blank viewer result is not a no-record determination.",
                     List.of(
