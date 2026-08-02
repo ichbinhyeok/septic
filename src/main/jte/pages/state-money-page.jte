@@ -101,7 +101,7 @@
                                     <a class="button button--secondary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">I already know the county</a>
                                 @elseif (primaryAction.calculator() && showQuoteCta)
                                     <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
-                                    <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                                    <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
                                 @else
                                     <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                                     @if (!"county_page_directory".equals(primaryAction.targetType()))
@@ -1159,7 +1159,7 @@
                 <div class="hero__actions">
                     <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
                     @if (showQuoteCta)
-                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Get matched with local septic pros</a>
+                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
                     @endif
                 </div>
             </article>
