@@ -130,14 +130,17 @@
                 </div>
                 <div class="record-finder__outcomes" data-address-record-finder-outcomes>
                     <button type="button" data-record-outcome="found">I found the record</button>
-                    <button type="button" data-record-outcome="missing">No result</button>
-                    <button type="button" data-record-outcome="blocked">Site blocked me</button>
-                    <button type="button" data-record-outcome="request">I need to request it</button>
+                    <button type="button" data-record-outcome="request_submitted">I submitted a request</button>
+                    <button type="button" data-record-outcome="not_found_online">Nothing appeared online</button>
+                    <button type="button" data-record-outcome="no_record_response">The office confirmed no record</button>
+                    <button type="button" data-record-outcome="wrong_agency">This office does not own the file</button>
+                    <button type="button" data-record-outcome="blocked">The official route was blocked</button>
+                    <button type="button" data-record-outcome="professional_help">I need help with the next decision</button>
                 </div>
                 <button class="record-finder__clear-progress" type="button" data-record-progress-clear>Delete this saved task</button>
                 <div class="record-finder__next" data-address-record-finder-next hidden></div>
             </div>
-            <section class="record-document" data-record-document-workspace hidden>
+            <section class="record-document" id="record-document-workspace" data-record-document-workspace hidden>
                     <div class="record-document__intro">
                         <span class="eyebrow">Your septic property file</span>
                         <h4>Add the records you found.</h4>

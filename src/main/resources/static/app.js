@@ -1444,6 +1444,51 @@
                     if (documentWorkspace instanceof HTMLElement) {
                         documentWorkspace.hidden = false;
                     }
+                } else if (outcome === "request_submitted" || outcome === "request") {
+                    title.textContent = "Keep the request open until the office sends a property-specific answer.";
+                    copy.textContent = "A submission confirmation is pending evidence, not a completed record search. Save the reference and use the county route to follow the office's published timing.";
+                    links.append(
+                        button("Open the county route and save the reference", countyPath, true, "county_records_page"),
+                        button("Prepare the follow-up request", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool")
+                    );
+                } else if (outcome === "no_record_response") {
+                    title.textContent = "Keep the written no-record response with the property file.";
+                    copy.textContent = "A dated office response is evidence. Add it to the file, then decide whether the missing permit trail affects the transaction, inspection, repair, or replacement scope.";
+                    links.append(
+                        button("Add the written response below", "#record-document-workspace", true, "internal_tool"),
+                        button("Review the county route", countyPath, false, "county_records_page")
+                    );
+                    if (documentWorkspace instanceof HTMLElement) {
+                        documentWorkspace.hidden = false;
+                    }
+                } else if (outcome === "wrong_agency") {
+                    title.textContent = "Resolve the file owner before sending another request.";
+                    copy.textContent = "Do not repeat the same request at another generic inbox. Use the county route to identify whether the file belongs to county health, a state or regional office, a contract county, or a city authority.";
+                    links.append(
+                        button("Resolve the responsible office", countyPath, true, "county_records_page"),
+                        button("Search the county directory", "/septic-records-by-county/", false, "internal_tool")
+                    );
+                } else if (outcome === "professional_help") {
+                    const projectTypes = {
+                        replacement: "replacement",
+                        lender: "inspection",
+                        buying: "inspection",
+                        bedrooms: "inspection",
+                        owner: "inspection"
+                    };
+                    const supportUrl = new URL("/septic-system-cost-calculator/", window.location.origin);
+                    if (routeContext?.stateCode) {
+                        supportUrl.searchParams.set("state", routeContext.stateCode);
+                    }
+                    supportUrl.searchParams.set("projectType", projectTypes[routeContext?.purpose] || "inspection");
+                    supportUrl.searchParams.set("quoteMode", "true");
+                    supportUrl.hash = "quote-request";
+                    title.textContent = "Define the problem before asking a professional to price it.";
+                    copy.textContent = "Carry the county, record status, and project purpose into a scoped planning request. SepticPath does not promise contractor availability or send the property file automatically.";
+                    links.append(
+                        button("Prepare a scoped professional request", `${supportUrl.pathname}${supportUrl.search}${supportUrl.hash}`, true, "quote_form"),
+                        button("Keep resolving the county record", countyPath, false, "county_records_page")
+                    );
                 } else if (outcome === "blocked") {
                     title.textContent = "Use the responsible office or fallback instead of repeating the search.";
                     copy.textContent = "Open the county route for the responsible office and verified fallback, or carry this property context into a routing draft.";
@@ -1453,7 +1498,7 @@
                     links.append(localGuide, request);
                 } else {
                     title.textContent = "Prepare the request your purpose requires.";
-                    copy.textContent = "The request builder carries the address, county, state, and purpose into a routing draft. Confirm the official intake before sending it.";
+                    copy.textContent = "A blank online result is not an official no-record response. The request builder carries the address, county, state, and purpose into a routing draft; confirm the official intake before sending it.";
                     const request = button("Build a prefilled records request", "/septic-records-request-builder/?mode=task#records-request-builder", true, "internal_tool");
                     request.dataset.recordRequestBuilder = "true";
                     links.append(request, button("Review the county route", countyPath, false, "county_records_page"));
@@ -2882,6 +2927,31 @@
                 return `/septic-record-finder/${params.toString() ? `?${params.toString()}` : ""}`;
             }
 
+            function professionalSupportPath() {
+                const projectTypes = {
+                    replacement: "replacement",
+                    lender: "inspection",
+                    buying: "inspection",
+                    bedrooms: "inspection",
+                    owner: "inspection"
+                };
+                const params = new URLSearchParams();
+                if (stateCode) {
+                    params.set("state", stateCode);
+                }
+                params.set("projectType", projectTypes[requestedPurpose] || "inspection");
+                params.set("quoteMode", "true");
+                return `/septic-system-cost-calculator/?${params.toString()}#quote-request`;
+            }
+
+            function professionalSupportLink() {
+                const link = actionLink("Prepare a scoped professional request", professionalSupportPath(), true);
+                link.dataset.trackClick = "nav";
+                link.dataset.trackSourceContext = "county_outcome_professional_help";
+                link.dataset.trackTargetType = "quote_form";
+                return link;
+            }
+
             function requestPath() {
                 return "/septic-records-request-builder/?mode=task#records-request-builder";
             }
@@ -2949,6 +3019,23 @@
                     heading.textContent = "Add the document to the property file.";
                     body.textContent = "The upload workspace extracts permit facts with source evidence and keeps missing documents visible.";
                     actions.append(actionLink("Upload and review the document", workspacePath(), true));
+                } else if (outcome === "no_record_response") {
+                    heading.textContent = "Keep the written no-record response as the closing artifact.";
+                    body.textContent = "A dated response from the responsible office is different from an empty portal result. Add it to the property file, then decide whether the missing permit trail changes the transaction, inspection, repair, or replacement scope.";
+                    actions.append(actionLink("Add the written response", workspacePath(), true));
+                    actions.append(professionalSupportLink());
+                } else if (outcome === "wrong_agency") {
+                    heading.textContent = "Resolve the responsible file owner before resubmitting.";
+                    body.textContent = "Do not send the same property details to another generic inbox. Recheck whether county health, a state or regional office, a contract county, or a city authority owns the septic file.";
+                    actions.append(actionLink("Recheck the county directory", "/septic-records-by-county/", true));
+                    if (secondaryUrl) {
+                        actions.append(actionLink("Open the published alternate route", secondaryUrl));
+                    }
+                } else if (outcome === "professional_help") {
+                    heading.textContent = "Carry the record status into a scoped professional conversation.";
+                    body.textContent = "Choose this only when the next question is inspection, failure, permit resolution, repair, or replacement—not because an official page was inconvenient. SepticPath does not guarantee a contractor match or transmit the property file automatically.";
+                    actions.append(professionalSupportLink());
+                    actions.append(actionLink("Keep working the county record", workspacePath()));
                 } else if (outcome === "partial") {
                     heading.textContent = "Keep the partial file and request only what is missing.";
                     body.textContent = acquisitionMethod
@@ -4731,6 +4818,22 @@
                         emitCountyGaEvent("county_record_reported", {
                             result_source: "user_reported",
                             case_status: "needs_document_review"
+                        });
+                    } else if (outcome === "no_record_response") {
+                        recordCountyStage("record_reported", outcome);
+                        emitCountyGaEvent("county_no_record_confirmed", {
+                            result_source: "user_reported",
+                            case_status: "official_no_record_response"
+                        });
+                    } else if (outcome === "wrong_agency") {
+                        emitCountyGaEvent("county_file_owner_mismatch", {
+                            result_source: "user_reported",
+                            case_status: "reroute_required"
+                        });
+                    } else if (outcome === "professional_help") {
+                        emitCountyGaEvent("county_professional_help_needed", {
+                            result_source: "user_reported",
+                            case_status: "scope_required"
                         });
                     }
                     });

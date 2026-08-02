@@ -1125,6 +1125,9 @@
                                 <button type="button" data-county-access-outcome="request_submitted">I submitted a request</button>
                             @endif
                             @endif
+                            <button type="button" data-county-access-outcome="no_record_response">The office sent a written no-record response</button>
+                            <button type="button" data-county-access-outcome="wrong_agency">This office does not own the file</button>
+                            <button type="button" data-county-access-outcome="professional_help">I need help with the next decision</button>
                         </div>
                         <label class="county-access-return__reference">
                             <span>Confirmation, case, or request number <small>if the county issued one</small></span>
