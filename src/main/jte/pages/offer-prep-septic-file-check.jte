@@ -11,9 +11,9 @@
                 <div>
                     <span class="eyebrow">Buyer-side file check</span>
                     <h1>Before the offer, find the septic file path and send one clean request.</h1>
-                    <p class="lede">Use an address or a county to reach the right public records route in Tennessee, Indiana, North Carolina, or South Carolina. Then turn the property question into a ready-to-send request for the listing agent or seller.</p>
+                    <p class="lede">Use a full U.S. address to resolve the public records route, or choose one of the states with published county-level coverage. Then turn the property question into a ready-to-send request for the listing agent or seller.</p>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        <span><strong>4</strong> transaction states</span>
+                        <span><strong>${offerPrepStates.size()}</strong> county-covered states</span>
                         <span><strong>${priorityCountyRouteCount}</strong> county routes</span>
                         <span>Address not saved</span>
                     </div>
@@ -114,6 +114,12 @@
                             <strong data-offer-prep-route-title></strong>
                             <p data-offer-prep-route-note></p>
                             <div class="offer-prep-result__actions" data-offer-prep-route-actions></div>
+                        </div>
+                        <div class="offer-prep-result__next" data-offer-prep-next hidden>
+                            <span>Next decision</span>
+                            <h3 data-offer-prep-next-heading></h3>
+                            <p data-offer-prep-next-message></p>
+                            <div class="offer-prep-result__actions" data-offer-prep-next-actions></div>
                         </div>
                         <div class="offer-prep-result__request">
                             <div>

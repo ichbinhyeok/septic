@@ -907,6 +907,7 @@
             const requestedAddress = finderQuery.get("address")?.trim();
             const requestedCountyKey = finderQuery.get("countyKey")?.trim() || "";
             const requestedWorkflowRunId = finderQuery.get("workflowRunId")?.trim() || "";
+            const requestedDocumentMode = finderQuery.get("mode") === "document";
             let activeWorkflowRunId = requestedWorkflowRunId;
             const workflowStagesSent = new Set();
 
@@ -936,6 +937,14 @@
 
             if (requestedAddress && input instanceof HTMLInputElement && !input.value) {
                 input.value = requestedAddress.slice(0, 180);
+            }
+            const requestedPurpose = finderQuery.get("purpose")?.trim() || "";
+            if (requestedPurpose && purposeSelect instanceof HTMLSelectElement) {
+                const supportedPurpose = Array.from(purposeSelect.options)
+                    .some((option) => option.value === requestedPurpose);
+                if (supportedPurpose) {
+                    purposeSelect.value = requestedPurpose;
+                }
             }
 
             const purposeRequirements = {
@@ -1507,6 +1516,20 @@
                 content.append(title, copy, links);
                 next.replaceChildren(content);
                 next.hidden = false;
+                if (["request_submitted", "request", "no_record_response", "blocked"].includes(outcome)) {
+                    emitGaEvent("missing_record_identified", {
+                        source_context: "address_record_finder_outcome",
+                        purpose: routeContext?.purpose || currentPurpose(),
+                        outcome
+                    });
+                }
+                if (outcome === "professional_help") {
+                    emitGaEvent("professional_help_recommended", {
+                        source_context: "address_record_finder_outcome",
+                        purpose: routeContext?.purpose || currentPurpose(),
+                        outcome
+                    });
+                }
                 if (typeof window.gtag === "function") {
                     window.gtag("event", "record_finder_outcome", {
                         outcome,
@@ -1601,6 +1624,13 @@
                         nextActions.push(official);
                     }
                     actions.replaceChildren(...nextActions);
+                }
+                if (["county_route", "state_route"].includes(payload.status)) {
+                    emitGaEvent("record_route_completed", {
+                        source_context: "address_record_finder",
+                        state_code: payload.stateCode || "unknown",
+                        route_type: payload.status
+                    });
                 }
             }
 
@@ -1909,6 +1939,40 @@
                 if (!(documentAnalysis instanceof HTMLElement)) {
                     return;
                 }
+                const missingCount = summary.checklist.filter((item) => item.status === "missing").length;
+                const analyticsSignature = [
+                    summary.documents.length,
+                    summary.completeCount,
+                    missingCount,
+                    summary.conflicts.length
+                ].join(":");
+                if (documentAnalysis.dataset.analyticsSignature !== analyticsSignature) {
+                    documentAnalysis.dataset.analyticsSignature = analyticsSignature;
+                    emitGaEvent("file_check_completed", {
+                        purpose: routeContext?.purpose || currentPurpose(),
+                        document_count: summary.documents.length,
+                        complete_count: summary.completeCount,
+                        missing_count: missingCount,
+                        conflict_count: summary.conflicts.length,
+                        outcome: summary.conflicts.length
+                            ? "conflict"
+                            : missingCount ? "incomplete" : "core_file_complete"
+                    });
+                    if (missingCount) {
+                        emitGaEvent("missing_record_identified", {
+                            source_context: "property_file_workspace",
+                            purpose: routeContext?.purpose || currentPurpose(),
+                            missing_count: missingCount
+                        });
+                    }
+                    if (summary.conflicts.length) {
+                        emitGaEvent("permit_conflict_identified", {
+                            source_context: "property_file_workspace",
+                            purpose: routeContext?.purpose || currentPurpose(),
+                            conflict_count: summary.conflicts.length
+                        });
+                    }
+                }
                 const wrapper = document.createElement("div");
                 wrapper.className = "record-workspace";
 
@@ -2189,6 +2253,22 @@
                 } catch (_) {
                     return;
                 }
+                if (requestedWorkflowRunId) {
+                    const storedWorkflowRunId = String(stored?.context?.workflowRunId || "");
+                    const pendingWorkflowRunId = String(pending?.context?.workflowRunId || "");
+                    if (stored && storedWorkflowRunId !== requestedWorkflowRunId) {
+                        stored = null;
+                        try {
+                            sessionStorage.removeItem(workspaceStorageKey);
+                            sessionStorage.removeItem(legacyWorkspaceStorageKey);
+                        } catch (_) {
+                            // A new property workflow still starts empty if storage cannot be changed.
+                        }
+                    }
+                    if (pending && pendingWorkflowRunId !== requestedWorkflowRunId) {
+                        pending = null;
+                    }
+                }
                 const storedDocuments = Array.isArray(stored?.documents)
                     ? stored.documents
                     : stored?.analysis ? [stored.analysis] : [];
@@ -2266,6 +2346,49 @@
             }
 
             restoreSessionWorkspace();
+
+            if (requestedDocumentMode && documentWorkspace instanceof HTMLElement) {
+                const [requestedStateCode = "", requestedCountySlug = ""] = requestedCountyKey.split("::");
+                const requestedCountyName = requestedCountySlug
+                    .split("-")
+                    .filter(Boolean)
+                    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+                    .join(" ");
+                routeContext = {
+                    ...(routeContext || {}),
+                    stateCode: routeContext?.stateCode || requestedStateCode,
+                    stateName: routeContext?.stateName || requestedStateCode,
+                    countyName: routeContext?.countyName || requestedCountyName,
+                    matchedAddress: routeContext?.matchedAddress || input.value.trim(),
+                    routePath: routeContext?.routePath || "",
+                    officeLabel: routeContext?.officeLabel || "",
+                    contactLine: routeContext?.contactLine || "",
+                    routeReviewedAt: routeContext?.routeReviewedAt || "",
+                    directDocument: false,
+                    purpose: routeContext?.purpose || currentPurpose()
+                };
+                result.hidden = false;
+                if (status) {
+                    status.textContent = "Record in hand";
+                }
+                if (heading) {
+                    heading.textContent = requestedCountyName
+                        ? `Check the ${requestedCountyName} property file`
+                        : "Check the property file you found";
+                }
+                if (message) {
+                    message.textContent = "Add the permit, approval, layout, inspection, or written office response. Missing and conflicting facts stay visible until the file is usable for the next decision.";
+                }
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = true;
+                }
+                if (next instanceof HTMLElement) {
+                    next.hidden = true;
+                }
+                documentWorkspace.hidden = false;
+                recordFinderStage("document_workspace_opened", "handoff");
+                window.setTimeout(() => documentWorkspace.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+            }
 
             workspaceImport?.addEventListener("change", async () => {
                 if (!(workspaceImport instanceof HTMLInputElement) || !workspaceImport.files?.length) {
@@ -2715,7 +2838,7 @@
             function saveDocumentWorkspaceHandoff() {
                 const now = Date.now();
                 const context = {
-                    matchedAddress: safeValue(address),
+                    matchedAddress: safeValue(address) || requestedPropertyAddress,
                     countyKey,
                     countyName: countyNameFromSlug(),
                     stateCode,
@@ -2916,8 +3039,10 @@
 
             function workspacePath() {
                 const params = new URLSearchParams();
-                if (safeValue(address)) {
-                    params.set("address", safeValue(address));
+                params.set("mode", "document");
+                const propertyAddress = safeValue(address) || requestedPropertyAddress;
+                if (propertyAddress) {
+                    params.set("address", propertyAddress);
                 }
                 if (requestedPurpose) {
                     params.set("purpose", requestedPurpose);
@@ -3036,6 +3161,11 @@
                     body.textContent = "Choose this only when the next question is inspection, failure, permit resolution, repair, or replacement—not because an official page was inconvenient. SepticPath does not guarantee a contractor match or transmit the property file automatically.";
                     actions.append(professionalSupportLink());
                     actions.append(actionLink("Keep working the county record", workspacePath()));
+                    emitGaEvent("professional_help_recommended", {
+                        source_context: "county_record_outcome",
+                        county_key: countyKey,
+                        purpose: requestedPurpose || "unknown"
+                    });
                 } else if (outcome === "partial") {
                     heading.textContent = "Keep the partial file and request only what is missing.";
                     body.textContent = acquisitionMethod
@@ -4897,7 +5027,6 @@
             return;
         }
 
-        const supportedStates = new Set(["TN", "IN", "NC", "SC"]);
         const stateArtifacts = {
             TN: ["septic permit or construction approval", "system layout or site plan", "final approval, repair history, and inspection-letter response if available"],
             IN: ["onsite sewage permit", "soil evaluation and site plan", "final inspection, as-built, and repair history if available"],
@@ -4940,6 +5069,10 @@
             const routeTitle = tool.querySelector("[data-offer-prep-route-title]");
             const routeNote = tool.querySelector("[data-offer-prep-route-note]");
             const routeActions = tool.querySelector("[data-offer-prep-route-actions]");
+            const nextStep = tool.querySelector("[data-offer-prep-next]");
+            const nextHeading = tool.querySelector("[data-offer-prep-next-heading]");
+            const nextMessage = tool.querySelector("[data-offer-prep-next-message]");
+            const nextActions = tool.querySelector("[data-offer-prep-next-actions]");
             const note = tool.querySelector("[data-offer-prep-note]");
             const copy = tool.querySelector("[data-offer-prep-copy]");
             const download = tool.querySelector("[data-offer-prep-download]");
@@ -4960,7 +5093,44 @@
             }
 
             let currentRoute = null;
+            let workflowRunId = "";
             sendArtifactAction("offer_prep_file_check", "opened", "offer_prep_tool");
+
+            function ensureWorkflowRunId() {
+                if (!workflowRunId) {
+                    workflowRunId = typeof window.crypto?.randomUUID === "function"
+                        ? window.crypto.randomUUID()
+                        : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+                }
+                return workflowRunId;
+            }
+
+            function countySlug(route) {
+                const routeMatch = String(route.routePath || "").match(/\/([^/]+-county)\/?(?:\?|$)/i);
+                if (routeMatch) {
+                    return routeMatch[1].toLowerCase();
+                }
+                return String(route.countyName || "")
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                    .replace(/-county$/, "") + "-county";
+            }
+
+            function documentWorkspacePath(route) {
+                const params = new URLSearchParams({
+                    mode: "document",
+                    purpose: "buying",
+                    workflowRunId: ensureWorkflowRunId()
+                });
+                if (address.value.trim()) {
+                    params.set("address", address.value.trim());
+                }
+                if (route.stateCode && route.countyName) {
+                    params.set("countyKey", `${route.stateCode}::${countySlug(route)}`);
+                }
+                return `/septic-record-finder/?${params.toString()}`;
+            }
 
             function routeAction(label, href, primary, targetType, external) {
                 const link = document.createElement("a");
@@ -5069,7 +5239,55 @@
                     }
                     routeActions.replaceChildren(...actions);
                 }
+                if (nextStep instanceof HTMLElement
+                    && nextHeading instanceof HTMLElement
+                    && nextMessage instanceof HTMLElement
+                    && nextActions instanceof HTMLElement) {
+                    const fileAvailable = fileStatus.value === "complete" || fileStatus.value === "partial";
+                    nextStep.hidden = false;
+                    nextHeading.textContent = fileAvailable
+                        ? "Now check what the file proves and what is still missing."
+                        : "Obtain the property-specific file before relying on the septic claim.";
+                    nextMessage.textContent = fileAvailable
+                        ? "The document workspace reads the file, keeps source evidence beside each fact, and flags missing approvals or bedroom conflicts."
+                        : "Use the public route above or send the prepared request below. An empty portal result is not an official no-record response.";
+                    const actions = [];
+                    if (fileAvailable) {
+                        actions.push(routeAction("Review the file you have", documentWorkspacePath(route), true, "document_workspace", false));
+                    } else if (route.routePath) {
+                        actions.push(routeAction("Open the county file route", route.routePath, true, "county_records_page", false));
+                    }
+                    actions.push(routeAction("Open the buyer records checklist", "/buying-a-house-with-a-septic-system/", false, "intent_page", false));
+                    nextActions.replaceChildren(...actions);
+                }
                 note.value = buildNote(route);
+                emitGaEvent("record_route_completed", {
+                    source_context: "offer_prep_file_check",
+                    state_code: route.stateCode || "unknown",
+                    route_type: route.status || "county_route",
+                    resolved_by: resolvedBy
+                });
+                emitGaEvent("record_request_prepared", {
+                    source_context: "offer_prep_file_check",
+                    state_code: route.stateCode || "unknown",
+                    file_status: fileStatus.value
+                });
+                if (["missing", "partial", "unknown"].includes(fileStatus.value)) {
+                    emitGaEvent("missing_record_identified", {
+                        source_context: "offer_prep_file_check",
+                        state_code: route.stateCode || "unknown",
+                        file_status: fileStatus.value
+                    });
+                }
+                if (listingBedrooms.value !== "unknown"
+                    && permitBedrooms.value !== "unknown"
+                    && listingBedrooms.value !== permitBedrooms.value) {
+                    emitGaEvent("permit_conflict_identified", {
+                        source_context: "offer_prep_file_check",
+                        state_code: route.stateCode || "unknown",
+                        conflict_type: "bedroom_count"
+                    });
+                }
                 result.scrollIntoView({ behavior: "smooth", block: "start" });
             }
 
@@ -5082,9 +5300,6 @@
                 const payload = await response.json();
                 if (payload.status === "unavailable") {
                     throw new Error("address_unavailable");
-                }
-                if (!supportedStates.has(payload.stateCode)) {
-                    throw new Error("unsupported_state");
                 }
                 if (!["county_route", "state_route"].includes(payload.status)) {
                     throw new Error("route_not_found");
@@ -5130,9 +5345,7 @@
                         ? "Enter a full address or choose both state and county"
                         : error.message === "address_unavailable"
                             ? "Address lookup is temporarily unavailable"
-                        : error.message === "unsupported_state"
-                            ? "This offer tool currently supports TN, IN, NC, and SC"
-                            : "We could not confirm that county route";
+                        : "We could not confirm that county route";
                 }
                 if (message) {
                     message.textContent = error.message === "address_unavailable"
