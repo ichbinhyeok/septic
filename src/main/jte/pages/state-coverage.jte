@@ -5,6 +5,7 @@
 @param java.util.List<StateCoverageCardView> liveStates
 @param java.util.List<com.example.septic.web.PageLink> featuredIntentPages = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.StateProfile> countyRouteStates = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyRouteClusterView> countyRouteClusters = java.util.List.of()
 @param java.util.List<StateQueuePlanView> priorityQueuePlans = java.util.List.of()
 @param java.util.List<StateCoverageCardView> queuedStates
@@ -30,9 +31,9 @@
                     <p class="lede">Every state guide is public, but the useful move is choosing the page that matches the blocker: records, permit desk, buyer diligence, replacement scope, or county workflow.</p>
                 @endif
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-permit-lookup/">Start with permit lookup</a>
+                    <a class="button button--primary" href="#state-coverage-county-finder">Search county routes</a>
                     <a class="button button--secondary" href="/septic-records-checklist/">Open records lookup</a>
-                    <a class="button button--secondary" href="/septic-permit-process/">Open permit process guide</a>
+                    <a class="text-link" href="/septic-permit-process/">Permit process guide</a>
                 </div>
             </article>
 
@@ -66,6 +67,7 @@
 
     @template.tags.countyFinder(
         countyFinderLinks = countyFinderLinks,
+        stateOptions = countyRouteStates,
         finderId = "state-coverage-county-finder",
         eyebrow = "County finder",
         heading = "Search the live county routes from the state directory.",

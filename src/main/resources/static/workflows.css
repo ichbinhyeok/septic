@@ -2,7 +2,7 @@
 
 @layer workflows {
   /* Shared information architecture */
-  .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid, .records-access-index-hero {
+  .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid {
     display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .75fr); gap: clamp(36px, 7vw, 92px); align-items: start;
   }
   .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body {
@@ -124,7 +124,7 @@
 
 @layer responsive {
   @media (max-width: 960px) {
-    .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid, .records-access-index-hero,
+    .hero__grid, .state-hero, .page-hero, .offer-prep-hero__grid,
     .content-grid, .calculator-layout, .county-access-workflow__layout, .county-acquisition-workspace__body { grid-template-columns: 1fr; }
     .record-finder__intro { grid-template-columns: 1fr; padding: 42px max(24px, calc((100vw - 760px) / 2)) 26px; }
     .record-finder__workspace { padding: 26px max(24px, calc((100vw - 760px) / 2)) 32px; }

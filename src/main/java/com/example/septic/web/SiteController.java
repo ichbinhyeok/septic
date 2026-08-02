@@ -816,6 +816,7 @@ public class SiteController {
                 .toList());
         model.addAttribute("featuredIntentPages", coverageGrowthSpotlights());
         model.addAttribute("countyFinderLinks", countyFinderLinks());
+        model.addAttribute("countyRouteStates", countyRouteStates());
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters(16, 4));
         model.addAttribute("queuedStates", coverageCards.stream()

@@ -8,6 +8,7 @@
 @param java.util.List<StateProfile> states
 
 @template.layouts.app(page = page, content = @`
+    <div class="contact-page">
     <section class="section section--heroish">
         <div class="container page-hero">
             <div class="page-hero__content">
@@ -149,4 +150,5 @@
             </article>
         </div>
     </section>
+    </div>
 `)
