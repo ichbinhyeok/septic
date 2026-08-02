@@ -43,6 +43,9 @@ public class SepticDocumentAnalysisService {
     private static final Pattern PERMIT_NUMBER = Pattern.compile(
             "(?i)\\b(?:permit|application|record)\\s*(?:(?:number|no\\.?|#|id)\\s*[:#-]?|[:#-])\\s*"
                     + "([A-Z0-9][A-Z0-9-]{3,24})");
+    private static final Pattern SEPTIC_PERMIT_NARRATIVE = Pattern.compile(
+            "(?i)\\b(?:septic|onsite(?: wastewater)?|owts|oss|ssts)\\s+permit\\s+"
+                    + "((?=[A-Z0-9-]{4,25}\\b)(?=[A-Z0-9-]*\\d)[A-Z0-9][A-Z0-9-]{3,24})");
     private static final Pattern BEDROOMS = Pattern.compile(
             "(?i)\\b(?:approved|permitted|designed|maximum|max\\.?)\\s*(?:for|at|to|:)?\\s*(\\d{1,2})\\s*(?:bedroom|bedrooms|br)\\b");
     private static final Pattern BEDROOMS_FIELD = Pattern.compile(
@@ -67,7 +70,8 @@ public class SepticDocumentAnalysisService {
                     + "(aerobic(?:\\s+treatment\\s+unit)?|mound|drip(?:\\s+dispersal)?|"
                     + "low[- ]pressure(?:\\s+pipe)?|conventional(?:\\s+gravity)?|gravity)\\s+system\\b");
     private static final Pattern DATE = Pattern.compile(
-            "(?i)\\b(?:approved|approval|final\\s+(?:approval|inspection)|inspection)\\s*(?:date)?\\s*[:#-]?\\s*"
+            "(?i)\\b(?:approved|approval|final\\s+(?:approval|inspection)|inspection)\\s*(?:date)?\\s*"
+                    + "(?:[:#-]|issued|completed|recorded|dated|on)?\\s*"
                     + "((?:0?[1-9]|1[0-2])[/-](?:0?[1-9]|[12]\\d|3[01])[/-](?:19|20)\\d{2}|"
                     + "(?:19|20)\\d{2}-\\d{2}-\\d{2}|"
                     + "(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
@@ -358,6 +362,7 @@ public class SepticDocumentAnalysisService {
     private List<DocumentFinding> extractFindings(String text, boolean ocrUsed) {
         Map<String, DocumentFinding> findings = new LinkedHashMap<>();
         addPatternFinding(findings, text, "permit_number", "Permit or record number", PERMIT_NUMBER, "High");
+        addPatternFinding(findings, text, "permit_number", "Permit or record number", SEPTIC_PERMIT_NARRATIVE, "High");
         addPatternFinding(findings, text, "approved_bedrooms", "Approved bedrooms", BEDROOMS, "Medium");
         addPatternFinding(findings, text, "approved_bedrooms", "Approved bedrooms", BEDROOMS_FIELD, "Medium");
         addPatternFinding(findings, text, "tank_capacity", "Tank capacity", TANK_GALLONS_BEFORE, "Medium", " gallons");
