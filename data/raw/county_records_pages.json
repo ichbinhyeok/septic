@@ -5296,7 +5296,7 @@
       "uniqueAngle": "Buncombe stands out because it gives users both a live septic lookup path and a detailed county guide for finding older or hard-to-match records by case number, parcel history, street name, or related building permit.",
       "targetReader": "Best for Buncombe County buyers, sellers, owners, and agents who need to verify whether the county file supports an addition, a repair conversation, or a clean sale story.",
       "officeLabel": "Buncombe County Environmental Health Septic & Sewage program",
-      "officeUrl": "https://www.buncombecounty.org/governing/depts/health/environmentalhealth.aspx",
+      "officeUrl": "https://www.buncombenc.gov/456/Environmental-Health",
       "recordsLabel": "Buncombe septic permit search guide",
       "recordsUrl": "https://www.buncombecounty.org/common/permits/accela/search-techniques-for-well-and-septic-records.pdf",
       "contactLine": "Buncombe County Environmental Health | Septic & Well | OSWWrequest@buncombecounty.org | 828-250-5016",
@@ -5339,7 +5339,8 @@
       "officialSourceIds": [
         "nc_buncombe_01",
         "nc_buncombe_02",
-        "nc_buncombe_03"
+        "nc_buncombe_03",
+        "nc_buncombe_04"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_public_health",
@@ -7911,8 +7912,8 @@
       "officeLabel": "Union County on-site wastewater disposal program",
       "officeUrl": "https://www.unioncountync.gov/government/departments-a-e/environmental-health/septic-systems",
       "recordsLabel": "Union County existing septic and well permit request",
-      "recordsUrl": "https://www.unioncountync.gov/government/departments-a-e/environmental-health/wells-and-water-testing",
-      "contactLine": "Union County Environmental Health | 704-283-3500",
+      "recordsUrl": "https://lfportal.unioncountync.gov/Forms/WellSepticPermitRequest",
+      "contactLine": "Union County Environmental Health | 704-283-3553",
       "decisionSteps": [
         "Start on the Union County septic systems page and decide whether the property needs a new permit, a repair permit, or an existing-system inspection before construction moves.",
         "If the project touches an existing septic-served lot with a pool, deck, irrigation, detached building, or similar addition, line up the county's existing-system inspection before treating the plan as build-ready.",
@@ -7952,7 +7953,8 @@
       "officialSourceIds": [
         "nc_union_01",
         "nc_union_02",
-        "nc_union_03"
+        "nc_union_03",
+        "nc_union_04"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -15650,9 +15652,9 @@
       "targetReader": "Best for Pitt County buyers, owners, and new-build applicants who need to know whether the next move is an Authorization to Construct review, an improvement permit pull, or a repair-area check before trusting the septic story.",
       "officeLabel": "Pitt County onsite wastewater and septic systems",
       "officeUrl": "https://www.pittcountync.gov/378/On-Site-Wastewater-Septic-Systems",
-      "recordsLabel": "Open Pitt County onsite wastewater and septic systems",
-      "recordsUrl": "https://www.pittcountync.gov/378/On-Site-Wastewater-Septic-Systems",
-      "contactLine": "Pitt County Environmental Health | Greenville NC",
+      "recordsLabel": "Search Pitt County permits in EnerGov",
+      "recordsUrl": "https://pittcountync-energovweb.tylerhost.net/apps/selfservice#/home",
+      "contactLine": "Pitt County Environmental Health | 252-902-3200 | Greenville NC",
       "decisionSteps": [
         "Start with the onsite wastewater page and decide whether the project already needs an Authorization to Construct permit before any work begins.",
         "Check the county layout criteria next because Pitt says the site evaluation must allow room for both a primary drain field and a repair area.",
@@ -15691,6 +15693,7 @@
       ],
       "officialSourceIds": [
         "nc_pitt_01",
+        "nc_pitt_02",
         "nc_pitt_03",
         "nc_pitt_04"
       ],

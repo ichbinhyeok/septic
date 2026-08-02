@@ -5113,7 +5113,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/pitt-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Pitt County North Carolina Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Pitt County onsite wastewater and septic systems")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Pitt County permits in EnerGov")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Pitt County Environmental Health owns the practical septic file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Authorization to Construct, layout record, and repair-area story all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Authorization to Construct")))

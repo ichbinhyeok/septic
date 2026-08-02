@@ -90,6 +90,9 @@ public record CountyAccessProfileView(
             case "NY::suffolk-county" -> "Starts a phone call. Have the Tax Map number and construction year ready.";
             case "TX::tarrant-county" -> "Opens the current JustFOIA public-information portal. It may return an access block; use the OSSF office fallback if it does.";
             case "CA::san-bernardino-county" -> "Opens the current NextRequest portal linked by Environmental Health. It returned a Cloudflare security block in our automated browser.";
+            case "NC::buncombe-county" -> "Opens Buncombe's Accela site. It may require interactive browser access; an access block or empty result is not an official no-record response.";
+            case "NC::union-county" -> "Opens Union County's existing septic and well permit request. It may require interactive browser access.";
+            case "NC::pitt-county" -> "Opens Pitt County's EnerGov portal. It may require interactive browser access; use Environmental Health if the portal is blocked or incomplete.";
             default -> "";
         };
     }

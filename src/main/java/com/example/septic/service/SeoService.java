@@ -760,6 +760,11 @@ public class SeoService {
             case "IN::monroe-county" -> "Monroe County IN Septic Permit and OpenGov Workflow";
             case "TN::anderson-county" -> "Anderson County TN Septic Permit Search and TDEC Records";
             case "NC::randolph-county" -> "Randolph County NC Septic Permits, Repairs and ePermits";
+            case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
+            case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
+            case "NC::union-county" -> "Union County NC Septic Records & Existing System Inspection";
+            case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
+            case "NC::pender-county" -> "Pender County NC Septic Permit Information Request";
             case "AL::tuscaloosa-county" -> "Tuscaloosa County AL Septic Permits and Records Contact";
             case "AL::calhoun-county" -> "Calhoun County AL Septic Permits and Environmental Office";
             case "SC::charleston-county" -> "Charleston County SC Septic Permit and Final Inspection Records";
@@ -830,6 +835,11 @@ public class SeoService {
             case "IN::monroe-county" -> "Follow Monroe County's OpenGov sequence from application and soil evaluation through Minimum Specs, approved site plan, and downloadable septic permit.";
             case "TN::anderson-county" -> "Search Anderson County SSDS records in TDEC, then use the verified Knoxville field-office route when the parcel file is blocked, missing, or incomplete.";
             case "NC::randolph-county" -> "Choose Randolph County's new, repair, expansion, or existing-system job and track the applicable IP, CA, Operation Permit, repair permit, or authorization in ePermits.";
+            case "NC::buncombe-county" -> "Search Buncombe County well and septic records in Accela by address or parcel PIN, then use Environmental Health for an existing-system, inspection, new, or repair route.";
+            case "NC::wake-county" -> "Match the Wake County parcel in iMAPS, open Permit Search, and download the scanned septic permit and attachments without treating a missing Septic box as no record.";
+            case "NC::union-county" -> "Request the Union County septic permit file, then use the separate existing-system inspection path before additions, garages, decks, pools, or irrigation work.";
+            case "NC::pitt-county" -> "Search Pitt County EnerGov records, then verify the Authorization to Construct, site plan, primary drainfield, repair area, and final approval with Environmental Health.";
+            case "NC::pender-county" -> "Prepare Pender County's exact septic permit request fields and obtain the file status, permit type, layout, or written Environmental Health response.";
             case "AL::tuscaloosa-county" -> "Call Tuscaloosa County's Environmental Office with the address, parcel, owner, approximate year, and exact septic permit or record request.";
             case "AL::calhoun-county" -> "Use Calhoun County's direct Environmental Department route for an onsite sewage permit, historical file, inspection record, repair, or development request.";
             case "SC::charleston-county" -> "Find the Charleston County parcel ID or TMS, then request the SCDES Permit to Construct and final inspection through the Coastal records route.";

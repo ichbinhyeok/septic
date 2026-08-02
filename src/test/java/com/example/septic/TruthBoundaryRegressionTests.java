@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,7 +41,7 @@ class TruthBoundaryRegressionTests {
     }
 
     @Test
-    void wakeRouteKeepsOfficeIdentitySeparateFromLinkedApplication() {
+    void wakeRouteKeepsOfficeIdentitySeparateFromTheVerifiedSearchWorkflow() {
         CountyRecordsPage wake = researchDataService
                 .listPublicCountyRecordsPages("NC")
                 .stream()
@@ -53,7 +53,7 @@ class TruthBoundaryRegressionTests {
                 "Wake County Environmental Services · Septic and Waste Water Division",
                 wake.officeLabel()
         );
-        assertFalse(CountyAccessProfileCatalog.findOrBaseline(wake).countySpecific());
+        assertTrue(CountyAccessProfileCatalog.findOrBaseline(wake).countySpecific());
     }
 
     @Test

@@ -1487,6 +1487,170 @@ public final class CountyAccessProfileCatalog {
                             "Call 1-855-731-2504 for copies; Spartanburg is in Piedmont I at 803-285-7461.",
                             "Keep the returned permit and final inspection or document the no-file result before field work."
                     )
+            )),
+            Map.entry("NC::buncombe-county", profile(
+                    "NC::buncombe-county",
+                    "portal_with_fallback",
+                    "Accela search with Environmental Health fallback",
+                    "Search Buncombe County well and septic records, then choose the correct follow-up",
+                    "Buncombe County links its Accela search from Environmental Health and separates a historical record search from an Existing System Request, inspection, new permit, or repair permit. Start with the parcel PIN and search before choosing the next county job.",
+                    "Search Buncombe well and septic records",
+                    "https://aca-prod.accela.com/buncombeconc/default.aspx",
+                    "Open Buncombe Environmental Health",
+                    "https://www.buncombenc.gov/456/Environmental-Health",
+                    "A parcel-matched permit, approval, layout, inspection record, request reference, or written no-record response",
+                    "Accela may block automated access or return no match for an incomplete identity. An empty result is not proof that no county file exists, and an Existing System Request or Inspection is a separate job from a new or repair permit. Buncombe publishes 828-250-5016 for help.",
+                    List.of(
+                            "Property address",
+                            "Buncombe County parcel PIN",
+                            "Current or prior owner name",
+                            "Permit or case number when known",
+                            "Subdivision, lot, and approximate construction year"
+                    ),
+                    List.of(
+                            "Septic permit, Improvement Permit, or Authorization to Construct",
+                            "Operation approval, layout, or site sketch",
+                            "Existing System Request or Inspection result",
+                            "Repair record, request reference, or written no-record response"
+                    ),
+                    List.of(
+                            "Confirm the address and parcel PIN before opening Accela.",
+                            "Search by the strongest available property clue and inspect the matching case attachments.",
+                            "If the file is missing or the task concerns reuse, an addition, or a repair, open Environmental Health and choose the corresponding existing-system, inspection, new, or repair route.",
+                            "Save the matched permit and approval documents, or retain the request reference or written office response."
+                    )
+            )),
+            Map.entry("NC::wake-county", profile(
+                    "NC::wake-county",
+                    "portal_with_fallback",
+                    "Permit Search with iMAPS parcel workflow",
+                    "Match the Wake County parcel in iMAPS, then open the septic permit attachments",
+                    "Wake County's guide starts with an iMAPS search by address, PIN, owner, or Real Estate ID. After selecting the parcel, use the Septic result to open Permit Search and download the scanned permit attachments.",
+                    "Open Wake County Permit Search",
+                    "https://permitsearch.wake.gov/",
+                    "Open the official iMAPS search guide",
+                    "https://s3.us-west-1.amazonaws.com/wakegov.com.if-us-west-1/s3fs-public/documents/2023-07/iMAPS%20Permit%20Search.pdf",
+                    "A parcel-matched scanned septic permit and attachments, or a documented Wake County assistance outcome",
+                    "If iMAPS does not show a Septic box, the permit may be unscanned or the property may not use onsite wastewater; that state is not an official no-record result. Wake County directs users who cannot find a permit to 919-856-7400.",
+                    List.of(
+                            "Property address",
+                            "Wake County PIN",
+                            "Owner name",
+                            "Real Estate ID",
+                            "Permit number or approximate permit year when known"
+                    ),
+                    List.of(
+                            "Scanned septic permit PDF",
+                            "Permit Search attachments and layout",
+                            "Improvement, construction, operation, repair, or abandonment record",
+                            "Written or phone-assisted outcome for an unscanned file"
+                    ),
+                    List.of(
+                            "Use iMAPS with the address, PIN, owner, or Real Estate ID to select the exact parcel.",
+                            "Open the parcel's Septic result and follow it into Permit Search.",
+                            "Download the permit and every relevant attachment; do not stop at the result row.",
+                            "If the Septic result or scan is missing, call 919-856-7400 and document the county's answer before treating the search as complete."
+                    )
+            )),
+            Map.entry("NC::union-county", profile(
+                    "NC::union-county",
+                    "official_request",
+                    "Existing permit request with inspection branch",
+                    "Request the Union County septic file before planning work around the existing system",
+                    "Union County provides a dedicated existing septic and well permit request and separately requires an existing-system inspection before construction such as additions, garages, decks, pools, or irrigation on a septic-served parcel.",
+                    "Request an existing septic or well permit",
+                    "https://lfportal.unioncountync.gov/Forms/WellSepticPermitRequest",
+                    "Open Union County septic-system guidance",
+                    "https://www.unioncountync.gov/government/departments-a-e/environmental-health/septic-systems",
+                    "The existing permit file plus any required inspection, repair, compliance, or O&M record tied to the parcel",
+                    "The request form may block automated access, and a historical permit copy does not clear new construction or prove current condition. Union County publishes 704-283-3553 for Environmental Health; inspection, repair, and new-work decisions remain separate county actions.",
+                    List.of(
+                            "Property address and parcel number",
+                            "Current and prior owner names when known",
+                            "Subdivision and lot",
+                            "Requested permit or record type",
+                            "Project type, including any addition, deck, pool, garage, or irrigation work",
+                            "Requester contact information"
+                    ),
+                    List.of(
+                            "Existing septic and well permit file",
+                            "Existing-system or compliance inspection result",
+                            "Repair permit or construction authorization",
+                            "Operation and maintenance record when applicable"
+                    ),
+                    List.of(
+                            "Submit the existing permit request with the exact parcel identity and requested record scope.",
+                            "Save the confirmation or returned file and compare its approved layout with the current property.",
+                            "If construction or a site change is planned, use the county guidance to start the required existing-system inspection rather than treating the old permit as clearance.",
+                            "Keep the permit, inspection, repair, and O&M artifacts together before making a build or pricing decision."
+                    )
+            )),
+            Map.entry("NC::pitt-county", profile(
+                    "NC::pitt-county",
+                    "portal_with_fallback",
+                    "EnerGov permit search with Environmental Health fallback",
+                    "Search Pitt County permits, then verify the Authorization to Construct and repair area",
+                    "Pitt County links its EnerGov self-service portal from the On-Site Wastewater program. Use the parcel and applicant details to find the file, then confirm that the permit and site plan address both the primary drainfield and repair area.",
+                    "Search Pitt County permits",
+                    "https://pittcountync-energovweb.tylerhost.net/apps/selfservice#/home",
+                    "Open Pitt County On-Site Wastewater",
+                    "https://www.pittcountync.gov/378/On-Site-Wastewater-Septic-Systems",
+                    "A parcel-matched permit or Authorization to Construct with its site plan, approval or inspection record, or documented office response",
+                    "EnerGov may require interactive browser access and an online result alone does not prove construction approval or current capacity. Pitt County publishes 252-902-3200; the county still controls site evaluation, primary and repair-area acceptance, and final approval.",
+                    List.of(
+                            "Property address and tax parcel number",
+                            "Property owner and mailing address",
+                            "Subdivision and lot",
+                            "Structure type, bedroom or occupant count, and projected wastewater flow",
+                            "Water-supply type",
+                            "Site plan or plat and directions to the property"
+                    ),
+                    List.of(
+                            "Improvement Permit or Authorization to Construct",
+                            "Site plan showing the primary drainfield and repair area",
+                            "Operation permit, final inspection, or approval record",
+                            "Repair file, portal reference, or written Environmental Health response"
+                    ),
+                    List.of(
+                            "Search EnerGov with the parcel, address, owner, or known permit clue.",
+                            "Open the matched record and retain its permit number and available documents.",
+                            "Compare the permit and site plan with the proposed structure, wastewater flow, primary field, and repair area.",
+                            "If the portal is blocked or incomplete, contact Environmental Health at 252-902-3200 and retain the resulting file or written response."
+                    )
+            )),
+            Map.entry("NC::pender-county", profile(
+                    "NC::pender-county",
+                    "official_request",
+                    "Septic permit information request",
+                    "Send Pender County the exact fields needed to locate the septic permit file",
+                    "Pender County publishes a dedicated Septic Permit Information Request. Prepare the address, subdivision and lot, parcel ID, permit or owner name, and year built so Environmental Health can return the permit status and type without an address-only guess.",
+                    "Open the Pender septic information request",
+                    "https://www.pendercountync.gov/DocumentCenter/View/164/Septic-Permit-Information-Request-PDF",
+                    "Open Pender County On-Site Wastewater",
+                    "https://pendercountync.gov/230/On-Site-Wastewater-Program-Wells",
+                    "A returned septic permit record with its status and permit type, or a documented Environmental Health response",
+                    "This is a manual county request, and the published form does not promise a fee or turnaround. A returned current-through or expired status and permit type describe the file; they do not prove present system condition, capacity, or an unobstructed repair area. Pender publishes 910-270-5000 in Hampstead and 910-259-1233 in Burgaw.",
+                    List.of(
+                            "Request date",
+                            "Property address",
+                            "Subdivision and lot number",
+                            "Parcel Identification Number",
+                            "Name on the permit or current owner",
+                            "Year built",
+                            "Requester name, email, and phone"
+                    ),
+                    List.of(
+                            "Septic permit information returned by the county",
+                            "Current-through or expired file status",
+                            "Permit type and available layout or location record",
+                            "Written no-record, referral, or follow-up response"
+                    ),
+                    List.of(
+                            "Complete every known property-identity field on the county request instead of relying on the address alone.",
+                            "Send the form through the current Environmental Health channel shown by the county.",
+                            "Save the returned status, permit type, attached file, and any follow-up reference.",
+                            "Use the program page or the appropriate office number if the returned file is missing, expired, or does not answer the repair-area or planned-work question."
+                    )
             ))
     );
 
