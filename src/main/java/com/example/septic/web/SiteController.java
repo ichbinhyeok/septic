@@ -334,12 +334,11 @@ public class SiteController {
     );
     private static final Map<String, List<String>> STATE_RECORDS_RESPONSE_QUERIES = Map.ofEntries(
             Map.entry("TN", List.of(
-                    "tennessee septic records",
-                    "tdec septic records",
-                    "tdec septic permit lookup",
-                    "septic permit lookup",
-                    "state of tn septic records",
-                    "state of tennessee septic records"
+                    "tennessee septic records by county",
+                    "tennessee contract county septic records",
+                    "tennessee county septic permit records",
+                    "tennessee septic inspection letter",
+                    "tennessee septic repair permit records"
             )),
             Map.entry("IN", List.of(
                     "how to find septic tank records online free",
@@ -6825,7 +6824,15 @@ The goal is to settle the permit path before we frame the project as a normal in
                 )
         );
 
-        List<PageLink> actionLinks = List.of(
+        List<PageLink> actionLinks = new ArrayList<>();
+        if ("TN".equals(state.stateCode())) {
+            actionLinks.add(new PageLink(
+                    "TDEC search and 403 guide",
+                    "/tdec-septic-records/",
+                    "Use the dedicated TDEC page for SSDS search fields, 403 fallback, field-office routing, and contract-county exceptions."
+            ));
+        }
+        actionLinks.addAll(List.of(
                 new PageLink(
                         "County records index",
                         "/septic-records-by-county/",
@@ -6846,13 +6853,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "/septic-as-built-records/",
                         "Use when tank, field, reserve-area, site sketch, or layout proof changes the next decision."
                 )
-        );
+        ));
 
         return new StateRecordsSearchResponseView(
                 "Official records route",
                 stateRecordsPriorityLabel(state.stateCode()),
                 state.stateName() + " records lookup guide",
-                "Use this " + state.stateName() + " guide to pick the right office, pull the first file, and jump to a county route when the property location is already known.",
+                stateRecordsResponseSummary(state),
                 queryExamples,
                 responseRows,
                 countyLinks,
@@ -6920,6 +6927,13 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
     }
 
+    private String stateRecordsResponseSummary(StateProfile state) {
+        if ("TN".equals(state.stateCode())) {
+            return "Use this Tennessee county guide after the statewide search identifies the likely file owner. Open the dedicated TDEC search guide for SSDS fields and 403 help; stay here to choose the field office, contract county, or county record route.";
+        }
+        return "Use this " + state.stateName() + " guide to pick the right office, pull the first file, and jump to a county route when the property location is already known.";
+    }
+
     private String stateRecordsRequestMethod(StateProfile state, SourceRecord primaryRecordsLookupSource) {
         return switch (state.stateCode()) {
             case "IN" -> "Start with the county or local health department that owns residential onsite records. Ask for the permit, site plan or design, soil report, inspection or closeout record, and any operating-permit history tied to the parcel.";
@@ -6974,11 +6988,18 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private List<String> stateRecordsResponseQueries(StateProfile state) {
         LinkedHashSet<String> queries = new LinkedHashSet<>();
+        if ("TN".equals(state.stateCode())) {
+            queries.addAll(STATE_RECORDS_RESPONSE_QUERIES.getOrDefault(state.stateCode(), List.of()));
+        }
         researchDataService.findSearchResponseTarget("state_records", state.stateCode())
                 .map(SearchResponseTarget::queryList)
                 .filter(items -> !items.isEmpty())
-                .ifPresent(queries::addAll);
-        queries.addAll(STATE_RECORDS_RESPONSE_QUERIES.getOrDefault(state.stateCode(), List.of()));
+                .ifPresent(items -> items.stream()
+                        .filter(item -> !"TN".equals(state.stateCode()) || !item.toLowerCase(Locale.US).contains("tdec"))
+                        .forEach(queries::add));
+        if (!"TN".equals(state.stateCode())) {
+            queries.addAll(STATE_RECORDS_RESPONSE_QUERIES.getOrDefault(state.stateCode(), List.of()));
+        }
         return queries.isEmpty() ? null : queries.stream().toList();
     }
 
@@ -7040,7 +7061,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String stateRecordsPriorityLabel(String stateCode) {
         return switch (stateCode) {
-            case "TN" -> "TDEC, State of TN, and county-record searches";
+            case "TN" -> "County routing after the statewide TDEC search";
             case "IN" -> "How-to-find records and system-lookup searches";
             case "NC" -> "County health file and permit-lookup searches";
             case "TX" -> "County OSSF records and address-search handoff";
@@ -7084,21 +7105,21 @@ The goal is to settle the permit path before we frame the project as a normal in
             return List.of(
                     new SearchIntentOpportunityView(
                             "tennessee-septic-records",
-                            "Tennessee septic records",
-                            "Tennessee septic records",
-                            "Use this route when the search is about the statewide septic file trail: permit file, inspection letter, repair permit, and the office that can confirm the parcel record.",
-                            "Open Tennessee records path",
-                            recordsPath,
-                            recordsTargetType
+                            "County records",
+                            "Tennessee septic records by county",
+                            "Use this route after the statewide search when the next question is which field office, contract county, or county workflow owns the permit file, inspection letter, or repair record.",
+                            "Open Tennessee county routes",
+                            countyAnchorPath,
+                            "page_anchor"
                     ),
                     new SearchIntentOpportunityView(
                             "tdec-septic-records",
                             "TDEC records",
                             "TDEC septic records",
-                            "Start with the TDEC SSDS route, then confirm whether the parcel belongs with a regional contact or a contract county before treating the record as missing.",
-                            "Open TDEC records source",
-                            recordsPath,
-                            recordsTargetType
+                            "Use the dedicated TDEC guide for accepted search fields, the current SSDS route, 403 handling, and the field-office or contract-county fallback before treating the record as missing.",
+                            "Open TDEC search guide",
+                            "/tdec-septic-records/",
+                            "internal_page"
                     ),
                     new SearchIntentOpportunityView(
                             "state-of-tn-septic-records",
