@@ -359,6 +359,35 @@
         }
     }
 
+    function setupPrimaryFunnelEvents() {
+        const costForm = document.querySelector("#cost-estimator-form");
+        if (costForm instanceof HTMLFormElement) {
+            costForm.addEventListener("submit", () => emitGaEvent("calculator_started", { calculator_type: "septic_cost" }));
+        }
+        if (document.querySelector("#result-top")) {
+            emitGaEvent("calculator_completed", { calculator_type: "septic_cost" });
+        }
+        if (document.querySelector("[data-county-access-workflow]")) {
+            emitGaEvent("county_route_viewed", { page_type: "county_records" });
+        }
+        document.addEventListener("click", (event) => {
+            if (!(event.target instanceof Element)) {
+                return;
+            }
+            const anchor = event.target.closest("a[data-track-click]");
+            if (!(anchor instanceof HTMLAnchorElement)) {
+                return;
+            }
+            const targetType = anchor.dataset.trackTargetType || "";
+            if (targetType.startsWith("official")) {
+                emitGaEvent("official_source_clicked", { source_context: anchor.dataset.trackSourceContext || "", source_type: targetType });
+            }
+            if (targetType === "quote_form" || anchor.getAttribute("href") === "#quote-request") {
+                emitGaEvent("lead_cta_clicked", { source_context: anchor.dataset.trackSourceContext || "", cta_type: targetType || "quote_form" });
+            }
+        });
+    }
+
     function trackGaEvents() {
         document.querySelectorAll("[data-ga-event]").forEach((element) => {
             const eventName = element.getAttribute("data-ga-event");
@@ -384,6 +413,7 @@
     setupWebVitalTracking();
     setupStickyMobileCtas();
     trackGaEvents();
+    setupPrimaryFunnelEvents();
 
     document.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) {

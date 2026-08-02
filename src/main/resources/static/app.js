@@ -2252,6 +2252,9 @@
                         ? "Checking the pasted details in memory. Nothing is being saved."
                         : "Reading the source in memory. Photos and scans may take longer while OCR runs. Nothing is being saved.";
                 }
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "document_upload_started", { source_type: sourceType });
+                }
                 try {
                     const response = await fetch("/api/septic-document-analyzer", {
                         method: "POST",
@@ -2288,8 +2291,14 @@
                                 });
                             }
                         }
+                        if (typeof window.gtag === "function") {
+                            window.gtag("event", "document_upload_completed", { source_type: sourceType, outcome: "success" });
+                        }
                     } else {
                         renderDocumentAnalysis(payload);
+                        if (typeof window.gtag === "function") {
+                            window.gtag("event", "document_upload_completed", { source_type: sourceType, outcome: "rejected" });
+                        }
                     }
                     if (documentStatus) {
                         documentStatus.textContent = response.ok
@@ -2300,6 +2309,9 @@
                 } catch (_) {
                     if (documentStatus) {
                         documentStatus.textContent = "Analysis could not connect. The file was not saved.";
+                    }
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", "document_upload_completed", { source_type: sourceType, outcome: "network_error" });
                     }
                     return false;
                 } finally {
@@ -2369,6 +2381,9 @@
                 }
 
                 recordFinderStage("workflow_viewed");
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "address_search_started", { search_purpose: currentPurpose() });
+                }
                 const defaultLabel = "Find septic records";
                 submit.disabled = true;
                 submit.textContent = "Finding county...";
@@ -2384,12 +2399,18 @@
                     const payload = await response.json();
                     render(payload);
                     if (typeof window.gtag === "function") {
+                        window.gtag("event", "address_search_completed", { search_purpose: currentPurpose(), outcome: payload.status || "unknown" });
+                    }
+                    if (typeof window.gtag === "function") {
                         window.gtag("event", "record_finder_submit", {
                             finder_status: payload.status || "unknown",
                             finder_route_type: payload.status === "county_route" ? "county" : "state"
                         });
                     }
                 } catch (_) {
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", "address_search_completed", { search_purpose: currentPurpose(), outcome: "network_error" });
+                    }
                     render({
                         status: "unavailable",
                         heading: "Use the county finder while address lookup reconnects",
@@ -5012,6 +5033,9 @@
 
             form.addEventListener("submit", async (event) => {
                 event.preventDefault();
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "offer_prep_started", { route_input: address.value.trim().length >= 8 ? "address" : "county" });
+                }
                 const original = submit.textContent;
                 submit.disabled = true;
                 submit.textContent = "Finding file route...";
@@ -5021,8 +5045,14 @@
                         : await resolveByCounty();
                     renderRoute(route, address.value.trim().length >= 8 ? "address" : "county");
                     sendArtifactAction("offer_prep_file_check", "generated", "offer_prep_tool");
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", "offer_prep_completed", { outcome: "route_ready" });
+                    }
                 } catch (error) {
                     renderError(error instanceof Error ? error : new Error("route_not_found"));
+                    if (typeof window.gtag === "function") {
+                        window.gtag("event", "offer_prep_completed", { outcome: "route_unavailable" });
+                    }
                 } finally {
                     submit.disabled = false;
                     submit.textContent = original;
