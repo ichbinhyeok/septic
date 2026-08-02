@@ -1167,7 +1167,6 @@
             function workspaceSummary(documents) {
                 const grouped = findingsByKey(documents);
                 const conflictKeys = new Set([
-                    "permit_number",
                     "approved_bedrooms",
                     "tank_capacity",
                     "design_flow",
