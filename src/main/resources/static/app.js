@@ -2464,6 +2464,16 @@
 
             restoreSessionWorkspace();
 
+            // An explicit inbound intent must win over a previously restored document session.
+            // Keep the session available in storage, but start this visit on the requested path.
+            if (requestedMissingMode) {
+                syncStartMode("missing", { focus: false, openWorkspace: false });
+                result.hidden = true;
+                if (documentWorkspace instanceof HTMLElement) {
+                    documentWorkspace.hidden = true;
+                }
+            }
+
             if (requestedDocumentMode && documentWorkspace instanceof HTMLElement) {
                 const [requestedStateCode = "", requestedCountySlug = ""] = requestedCountyKey.split("::");
                 const requestedCountyName = requestedCountySlug

@@ -46,4 +46,21 @@ class RecordStartIntentRegressionTest {
         assertTrue(script.contains("record_start_mode_selected"));
         assertTrue(script.contains("input.required = !reviewing"));
     }
+
+    @Test
+    void explicitMissingModeWinsOverAStoredDocumentSession() throws IOException {
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+
+        int restore = script.indexOf("restoreSessionWorkspace();");
+        int explicitMode = script.indexOf("if (requestedMissingMode)", restore);
+        int documentMode = script.indexOf("if (requestedDocumentMode && documentWorkspace", explicitMode);
+
+        assertTrue(restore >= 0);
+        assertTrue(explicitMode > restore);
+        assertTrue(documentMode > explicitMode);
+        assertTrue(script.substring(explicitMode, documentMode)
+                .contains("syncStartMode(\"missing\", { focus: false, openWorkspace: false })"));
+        assertTrue(script.substring(explicitMode, documentMode)
+                .contains("documentWorkspace.hidden = true"));
+    }
 }
