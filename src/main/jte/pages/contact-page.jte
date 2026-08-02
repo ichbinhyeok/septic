@@ -17,7 +17,7 @@
                 <p class="lede">Use this page for questions about the site itself. If you need septic pricing help, start with the estimator or quote flow so the request carries the project context that makes it useful.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="#contact-request">Jump to contact form</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request">Use the quote form for project pricing</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="contact_quote_form" data-track-target-type="quote_form">Use the quote form for project pricing</a>
                 </div>
                 <div class="hero__notes">
                     <span>General questions</span>

@@ -6953,8 +6953,38 @@
         });
     }
 
+    function setupCalculatorFunnelTracking() {
+        const form = document.querySelector("#cost-estimator-form");
+        if (!(form instanceof HTMLFormElement)) {
+            return;
+        }
+
+        let started = false;
+        const emitStarted = () => {
+            if (started) {
+                return;
+            }
+            started = true;
+            const state = form.querySelector("[name='stateCode']");
+            const project = form.querySelector("[name='projectType']");
+            const params = { estimator_type: "cost_estimator" };
+            if (state instanceof HTMLSelectElement && state.value) {
+                params.state_code = state.value;
+            }
+            if (project instanceof HTMLSelectElement && project.value) {
+                params.project_type = project.value;
+            }
+            emitGaEvent("calculator_started", params);
+        };
+
+        form.addEventListener("input", emitStarted);
+        form.addEventListener("change", emitStarted);
+        form.addEventListener("submit", emitStarted);
+    }
+
     if (!coreAlreadyLoaded) {
         trackGaEvents();
+        setupCalculatorFunnelTracking();
 
         document.addEventListener("click", (event) => {
             const anchor = event.target.closest("a[data-track-click]");
@@ -6974,6 +7004,12 @@
                 targetType: anchor.dataset.trackTargetType || "",
                 targetLabel: (anchor.dataset.trackLabel || anchor.textContent || "").trim().replace(/\s+/g, " ")
             });
+            if (anchor.dataset.trackTargetType === "quote_form") {
+                emitGaEvent("lead_cta_clicked", {
+                    cta_type: "quote_form",
+                    source_context: anchor.dataset.trackSourceContext || ""
+                });
+            }
         });
     }
 })();

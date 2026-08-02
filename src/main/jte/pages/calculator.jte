@@ -197,6 +197,11 @@
                          data-ga-param-estimator-type="cost_estimator"
                          data-ga-param-state-code="${estimateForm.getStateCode()}"
                          data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
+                    <div hidden
+                         data-ga-event="calculator_completed"
+                         data-ga-param-estimator-type="cost_estimator"
+                         data-ga-param-state-code="${estimateForm.getStateCode()}"
+                         data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
                     @template.tags.estimateResult(result = result, costEvidence = costEvidence)
                 @else
                     <article class="placeholder-panel">
@@ -338,7 +343,7 @@
                              data-show-after=".result-panel">
                         <div class="sticky-mobile-cta__inner">
                             <a class="button button--secondary" href="#result-top">Back to result</a>
-                            <a class="button button--primary" href="#quote-request">Request follow-up</a>
+                            <a class="button button--primary" href="#quote-request" data-track-click="nav" data-track-source-context="calculator_result_followup" data-track-target-type="quote_form">Request follow-up</a>
                         </div>
                     </section>
                 @endif

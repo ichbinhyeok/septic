@@ -126,7 +126,7 @@
             <p>Send the project basics for follow-up. This is an inquiry, not a live contractor-availability lookup or accepted match.</p>
         </div>
         <div class="result-cta-band__actions">
-            <a class="button button--primary" href="#quote-request">Request follow-up</a>
+            <a class="button button--primary" href="#quote-request" data-track-click="nav" data-track-source-context="calculator_result_followup" data-track-target-type="quote_form">Request follow-up</a>
             <div class="result-cta-band__meta">
                 <span>Short form</span>
                 <span>State context stays visible</span>
