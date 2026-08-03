@@ -50,6 +50,14 @@
             </div>
         @endif
         @if (!minimal)
+            <aside class="record-finder__resume" data-record-resume aria-live="polite" hidden>
+                <div>
+                    <span>Saved on this device</span>
+                    <strong data-record-resume-heading>Continue your septic property file</strong>
+                    <small data-record-resume-copy>Your last route and next step are ready.</small>
+                </div>
+                <button class="button button--secondary" type="button" data-record-resume-continue>Continue saved work</button>
+            </aside>
             <section class="record-finder__start" aria-labelledby="${finderId}-start-heading" data-record-start>
                 <div class="record-finder__start-heading">
                     <span class="eyebrow">Start from your current situation</span>

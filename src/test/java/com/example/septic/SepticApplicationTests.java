@@ -686,7 +686,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guides")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1>Find the septic records for a property.</h1>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1>Find, obtain, and understand a septic property file.</h1>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"home-address-record-finder\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Example property file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What are you trying to learn about the property?")))

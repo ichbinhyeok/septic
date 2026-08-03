@@ -21,9 +21,9 @@
         <div class="container">
             @template.tags.addressRecordFinder(
                 finderId = "home-address-record-finder",
-                eyebrow = "One property. One usable file.",
-                heading = "Find the septic records for a property.",
-                intro = "Open the right county route, then turn permits and drawings into one checklist of what is confirmed, missing, or conflicting.",
+                eyebrow = "Septic property file workspace",
+                heading = "Find, obtain, and understand a septic property file.",
+                intro = "Start with an address, a failed search, or a document you already have. Keep the county route, missing evidence, and next action in one workspace.",
                 pageHeading = true,
                 totalCountyRouteCount = totalCountyRouteCount
             )

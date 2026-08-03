@@ -871,6 +871,10 @@
             const findSupport = Array.from(finder.querySelectorAll("[data-record-find-support]"));
             const formOutcome = finder.querySelector("[data-record-form-outcome]");
             const documentEntry = finder.querySelector("[data-record-document-entry]");
+            const resumePanel = finder.querySelector("[data-record-resume]");
+            const resumeHeading = finder.querySelector("[data-record-resume-heading]");
+            const resumeCopy = finder.querySelector("[data-record-resume-copy]");
+            const resumeContinue = finder.querySelector("[data-record-resume-continue]");
             const result = finder.querySelector("[data-address-record-finder-result]");
             const status = finder.querySelector("[data-address-record-finder-status]");
             const heading = finder.querySelector("[data-address-record-finder-heading]");
@@ -2394,6 +2398,9 @@
                 }
                 routeContext = active.context;
                 const directDocumentSession = Boolean(storedDocuments.length && routeContext.directDocument);
+                const resumeMode = storedDocuments.length
+                    ? "review"
+                    : pending?.outcome ? "missing" : "find";
                 if (storedDocuments.length) {
                     syncStartMode("review", { focus: false, openWorkspace: false });
                 } else if (pending?.outcome && missingStatus instanceof HTMLSelectElement) {
@@ -2460,7 +2467,45 @@
                         documentStatus.textContent = `Restored ${workspaceState.documents.length} document ${workspaceState.documents.length === 1 ? "summary" : "summaries"} from this browser session.`;
                     }
                 }
+                if (resumePanel instanceof HTMLElement && !requestedDocumentMode && !requestedMissingMode) {
+                    resumePanel.hidden = false;
+                    resumePanel.dataset.recordResumeMode = resumeMode;
+                    if (resumeHeading) {
+                        resumeHeading.textContent = directDocumentSession
+                            ? "Continue reviewing your saved property file"
+                            : routeContext.countyName
+                            ? `Continue the ${routeContext.countyName} record task`
+                            : "Continue your saved septic record task";
+                    }
+                    if (resumeCopy) {
+                        resumeCopy.textContent = storedDocuments.length
+                            ? `${storedDocuments.length} document ${storedDocuments.length === 1 ? "summary is" : "summaries are"} available in this browser session.`
+                            : pending?.outcome
+                            ? "Your last result and recommended next action are ready."
+                            : "Return after the official site and record what happened without starting over.";
+                    }
+                }
             }
+
+            resumeContinue?.addEventListener("click", () => {
+                const mode = resumePanel?.dataset.recordResumeMode || activeStartMode;
+                syncStartMode(mode, { focus: false, openWorkspace: false });
+                const target = mode === "review" && documentWorkspace instanceof HTMLElement
+                    ? documentWorkspace
+                    : result;
+                target?.scrollIntoView({ behavior: "smooth", block: "start" });
+                window.setTimeout(() => {
+                    if (mode === "review") {
+                        purposeSelect?.focus();
+                    } else if (mode === "missing") {
+                        const selectedOutcome = outcomes?.querySelector('[data-record-outcome][aria-pressed="true"]');
+                        (selectedOutcome || missingStatus)?.focus();
+                    } else {
+                        input.focus();
+                    }
+                }, 320);
+                emitGaEvent("record_saved_task_resumed", { resume_mode: mode });
+            });
 
             restoreSessionWorkspace();
 

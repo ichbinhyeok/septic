@@ -63,4 +63,19 @@ class RecordStartIntentRegressionTest {
         assertTrue(script.substring(explicitMode, documentMode)
                 .contains("documentWorkspace.hidden = true"));
     }
+
+    @Test
+    void homepageFramesTheProductForFindingObtainingAndUnderstandingRecords() throws IOException {
+        String home = Files.readString(Path.of("src/main/jte/pages/home.jte"));
+        String finder = Files.readString(Path.of("src/main/jte/tags/addressRecordFinder.jte"));
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+
+        assertTrue(home.contains("Find, obtain, and understand a septic property file."));
+        assertTrue(home.contains("an address, a failed search, or a document you already have"));
+        assertTrue(finder.contains("data-record-resume"));
+        assertTrue(finder.contains("Continue saved work"));
+        assertTrue(script.contains("record_saved_task_resumed"));
+        assertTrue(script.contains("dataset.recordResumeMode = resumeMode"));
+        assertTrue(script.contains("Continue the ${routeContext.countyName} record task"));
+    }
 }
