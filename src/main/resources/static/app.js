@@ -1682,7 +1682,21 @@
                         official.dataset.recordOfficialLink = "true";
                         nextActions.push(official);
                     }
-                    actions.replaceChildren(...nextActions);
+                    const primaryAction = nextActions.find((link) => link.classList.contains("button--primary"))
+                        || nextActions[0];
+                    const secondaryActions = nextActions.filter((link) => link !== primaryAction);
+                    if (primaryAction && secondaryActions.length) {
+                        const moreActions = document.createElement("details");
+                        const moreSummary = document.createElement("summary");
+                        const moreLinks = document.createElement("div");
+                        moreActions.className = "record-finder__more-actions";
+                        moreSummary.textContent = `Other official routes and tools (${secondaryActions.length})`;
+                        moreLinks.append(...secondaryActions);
+                        moreActions.append(moreSummary, moreLinks);
+                        actions.replaceChildren(primaryAction, moreActions);
+                    } else {
+                        actions.replaceChildren(...nextActions);
+                    }
                 }
                 if (["county_route", "state_route"].includes(payload.status)) {
                     emitGaEvent("record_route_completed", {
