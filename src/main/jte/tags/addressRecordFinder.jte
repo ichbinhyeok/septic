@@ -168,8 +168,8 @@
             <div class="record-finder__return" data-address-record-finder-return hidden>
                 <div>
                     <span class="eyebrow">Back from the official site?</span>
-                    <h4>What happened?</h4>
-                    <p>Your answer stays on this device for 30 days so the next visit can continue from here.</p>
+                    <h4 data-record-return-heading>What happened?</h4>
+                    <p data-record-return-copy>Your answer stays on this device for 30 days so the next visit can continue from here.</p>
                 </div>
                 <div class="record-finder__outcomes" data-address-record-finder-outcomes>
                     <button type="button" data-record-outcome="found">I found the record</button>
@@ -180,6 +180,7 @@
                     <button type="button" data-record-outcome="blocked">The official route was blocked</button>
                     <button type="button" data-record-outcome="professional_help">I need help with the next decision</button>
                 </div>
+                <button class="record-finder__change-outcome" type="button" data-record-change-outcome hidden>Change this result</button>
                 <button class="record-finder__clear-progress" type="button" data-record-progress-clear>Delete this saved task</button>
                 <div class="record-finder__next" data-address-record-finder-next hidden></div>
             </div>

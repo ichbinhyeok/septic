@@ -892,6 +892,9 @@
             const searchPacketOutput = finder.querySelector("[data-record-search-packet-output]");
             const searchPacketCopy = finder.querySelector("[data-record-search-packet-copy]");
             const returnPanel = finder.querySelector("[data-address-record-finder-return]");
+            const returnHeading = finder.querySelector("[data-record-return-heading]");
+            const returnCopy = finder.querySelector("[data-record-return-copy]");
+            const changeOutcomeButton = finder.querySelector("[data-record-change-outcome]");
             const outcomes = finder.querySelector("[data-address-record-finder-outcomes]");
             const clearProgressButton = finder.querySelector("[data-record-progress-clear]");
             const next = finder.querySelector("[data-address-record-finder-next]");
@@ -1571,6 +1574,18 @@
                 saveTaskProgress("outcome_selected", outcome);
                 renderNextStep(outcome);
                 recordFinderStage("outcome_recorded", outcome);
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.classList.add("record-finder__return--resolved");
+                }
+                if (returnHeading) {
+                    returnHeading.textContent = "Result recorded";
+                }
+                if (returnCopy) {
+                    returnCopy.textContent = "This result is saved on this device. Change it only if the official response was different.";
+                }
+                if (changeOutcomeButton instanceof HTMLButtonElement) {
+                    changeOutcomeButton.hidden = false;
+                }
                 showReturnPrompt();
                 sendArtifactAction("address_record_finder", `start_outcome_${outcome}`, "failed_record_search");
             }
@@ -1717,6 +1732,16 @@
                 }
                 if (returnPanel instanceof HTMLElement) {
                     returnPanel.hidden = true;
+                    returnPanel.classList.remove("record-finder__return--resolved");
+                }
+                if (returnHeading) {
+                    returnHeading.textContent = "What happened?";
+                }
+                if (returnCopy) {
+                    returnCopy.textContent = "Your answer stays on this device for 30 days so the next visit can continue from here.";
+                }
+                if (changeOutcomeButton instanceof HTMLButtonElement) {
+                    changeOutcomeButton.hidden = true;
                 }
                 if (next instanceof HTMLElement) {
                     next.hidden = true;
@@ -1857,6 +1882,21 @@
                     recordFinderStage("record_reported", outcome);
                 }
                 sendArtifactAction("address_record_finder", `outcome_${outcome}`, "official_record_route");
+            });
+
+            changeOutcomeButton?.addEventListener("click", () => {
+                if (returnPanel instanceof HTMLElement) {
+                    returnPanel.classList.remove("record-finder__return--resolved");
+                }
+                if (returnHeading) {
+                    returnHeading.textContent = "Choose a different result";
+                }
+                if (returnCopy) {
+                    returnCopy.textContent = "Select what the official source or office actually returned.";
+                }
+                changeOutcomeButton.hidden = true;
+                const firstAlternative = outcomes?.querySelector("button:not([aria-pressed='true'])");
+                firstAlternative?.focus();
             });
 
             clearProgressButton?.addEventListener("click", () => {
