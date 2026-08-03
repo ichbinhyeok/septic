@@ -899,6 +899,8 @@
             const clearProgressButton = finder.querySelector("[data-record-progress-clear]");
             const next = finder.querySelector("[data-address-record-finder-next]");
             const documentWorkspace = finder.querySelector("[data-record-document-workspace]");
+            const documentAddSource = finder.querySelector("[data-record-document-add-source]");
+            const documentAddSourceLabel = finder.querySelector("[data-record-document-add-source-label]");
             const documentForm = finder.querySelector("[data-record-document-form]");
             const documentFile = finder.querySelector("[data-record-document-file]");
             const documentSubmit = finder.querySelector("[data-record-document-submit]");
@@ -1389,6 +1391,12 @@
                 }
                 if (documentFile instanceof HTMLInputElement) {
                     documentFile.value = "";
+                }
+                if (documentAddSource instanceof HTMLDetailsElement) {
+                    documentAddSource.open = true;
+                }
+                if (documentAddSourceLabel) {
+                    documentAddSourceLabel.textContent = "Add the first record";
                 }
                 workspaceState = { documents: [] };
                 confirmedFindingKeys.clear();
@@ -2030,6 +2038,12 @@
                 wrapper.append(analysisActions);
                 documentAnalysis.replaceChildren(wrapper);
                 documentAnalysis.hidden = false;
+                if (documentAddSource instanceof HTMLDetailsElement) {
+                    documentAddSource.open = false;
+                }
+                if (documentAddSourceLabel) {
+                    documentAddSourceLabel.textContent = "Add another source";
+                }
             }
 
             function recordRequestKey(checklist) {

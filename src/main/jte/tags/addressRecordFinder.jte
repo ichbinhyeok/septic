@@ -190,34 +190,39 @@
                         <h4>Add the records you found.</h4>
                         <p>Add a downloaded file, phone screenshot, or text copied from the official page or email. Each source updates one shared checklist and shows conflicts between records.</p>
                     </div>
-                    <form data-record-document-form enctype="multipart/form-data">
-                        <label>
-                            <span>Add a PDF, photo, text file, or letter</span>
-                            <input type="file" name="file" accept="application/pdf,text/plain,image/png,image/jpeg,.pdf,.txt,.png,.jpg,.jpeg" required data-record-document-file>
-                        </label>
-                        <button class="button button--primary" type="submit" data-record-document-submit>Add to property file</button>
-                    </form>
-                    <details class="record-document__paste">
-                        <summary>Or paste text from the official page or email</summary>
-                        <div class="record-document__paste-body">
-                            <label>
-                                <span>Paste the visible record details</span>
-                                <textarea rows="7"
-                                          maxlength="50000"
-                                          placeholder="Permit number, approved bedrooms, tank size, final approval, repair notes…"
-                                          data-record-document-paste></textarea>
-                            </label>
-                            <button class="button button--secondary" type="button" data-record-document-paste-submit>Add pasted text</button>
+                    <details class="record-document__add-source" data-record-document-add-source open>
+                        <summary><span data-record-document-add-source-label>Add the first record</span></summary>
+                        <div class="record-document__add-source-body">
+                            <form data-record-document-form enctype="multipart/form-data">
+                                <label>
+                                    <span>Add a PDF, photo, text file, or letter</span>
+                                    <input type="file" name="file" accept="application/pdf,text/plain,image/png,image/jpeg,.pdf,.txt,.png,.jpg,.jpeg" required data-record-document-file>
+                                </label>
+                                <button class="button button--primary" type="submit" data-record-document-submit>Add to property file</button>
+                            </form>
+                            <details class="record-document__paste">
+                                <summary>Or paste text from the official page or email</summary>
+                                <div class="record-document__paste-body">
+                                    <label>
+                                        <span>Paste the visible record details</span>
+                                        <textarea rows="7"
+                                                  maxlength="50000"
+                                                  placeholder="Permit number, approved bedrooms, tank size, final approval, repair notes…"
+                                                  data-record-document-paste></textarea>
+                                    </label>
+                                    <button class="button button--secondary" type="button" data-record-document-paste-submit>Add pasted text</button>
+                                </div>
+                            </details>
+                            <div class="record-document__resume">
+                                <span>Continuing a saved session?</span>
+                                <label class="button button--quiet">
+                                    Resume a property file
+                                    <input type="file" accept="application/json,.json" data-record-workspace-import>
+                                </label>
+                            </div>
+                            <p class="record-document__privacy">PDF, TXT, PNG, or JPG; maximum 10 MB per source. Originals and OCR images are never saved. The extracted summary stays only in this tab unless you choose “Save session for later.”</p>
                         </div>
                     </details>
-                    <div class="record-document__resume">
-                        <span>Continuing a saved session?</span>
-                        <label class="button button--quiet">
-                            Resume a property file
-                            <input type="file" accept="application/json,.json" data-record-workspace-import>
-                        </label>
-                    </div>
-                    <p class="record-document__privacy">PDF, TXT, PNG, or JPG; maximum 10 MB per source. Originals and OCR images are never saved. The extracted summary stays only in this tab unless you choose “Save session for later.”</p>
                     <div class="record-document__status" data-record-document-status aria-live="polite"></div>
                     <div class="record-document__analysis" data-record-document-analysis hidden></div>
             </section>
