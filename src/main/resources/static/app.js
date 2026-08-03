@@ -2419,6 +2419,12 @@
 
                 documentAnalysis.replaceChildren(wrapper);
                 documentAnalysis.hidden = false;
+                if (documentAddSource instanceof HTMLDetailsElement) {
+                    documentAddSource.open = false;
+                }
+                if (documentAddSourceLabel) {
+                    documentAddSourceLabel.textContent = "Add another source";
+                }
             }
 
             function restoreSessionWorkspace() {
