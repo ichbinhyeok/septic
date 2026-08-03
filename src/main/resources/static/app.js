@@ -1487,8 +1487,15 @@
                 } else if (outcome === "no_record_response") {
                     title.textContent = "Keep the written no-record response with the property file.";
                     copy.textContent = "A dated office response is evidence. Add it to the file, then decide whether the missing permit trail affects the transaction, inspection, repair, or replacement scope.";
+                    const addWrittenResponse = button("Add the written response below", "#record-document-workspace", true, "internal_tool");
+                    addWrittenResponse.addEventListener("click", () => {
+                        if (documentAddSource instanceof HTMLDetailsElement) {
+                            documentAddSource.open = true;
+                        }
+                        window.setTimeout(() => documentFile?.focus({ preventScroll: true }), 0);
+                    });
                     links.append(
-                        button("Add the written response below", "#record-document-workspace", true, "internal_tool"),
+                        addWrittenResponse,
                         button("Review the county route", countyPath, false, "county_records_page")
                     );
                     if (documentWorkspace instanceof HTMLElement) {

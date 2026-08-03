@@ -47,7 +47,7 @@ public class SepticDocumentAnalysisService {
             "(?i)\\b(?:septic|onsite(?: wastewater)?|owts|oss|ssts)\\s+permit\\s+"
                     + "((?=[A-Z0-9-]{4,25}\\b)(?=[A-Z0-9-]*\\d)[A-Z0-9][A-Z0-9-]{3,24})");
     private static final Pattern BEDROOMS = Pattern.compile(
-            "(?i)\\b(?:approved|permitted|designed|maximum|max\\.?)\\s*(?:for|at|to|:)?\\s*(\\d{1,2})\\s*(?:bedroom|bedrooms|br)\\b");
+            "(?i)\\b(?:approved(?:\\s+(?:system\\s+)?capacity)?|permitted|designed|maximum|max\\.?)\\s*(?:for|at|to|:)?\\s*(\\d{1,2})\\s*(?:bedroom|bedrooms|br)\\b");
     private static final Pattern BEDROOMS_FIELD = Pattern.compile(
             "(?i)\\b(?:approved\\s+)?(?:number\\s+of\\s+)?bedrooms?\\s*(?:designed\\s+for)?\\s*[:#-]\\s*(\\d{1,2})\\b");
     private static final Pattern TANK_GALLONS_BEFORE = Pattern.compile(
