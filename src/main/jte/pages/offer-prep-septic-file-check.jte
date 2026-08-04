@@ -22,6 +22,8 @@
                     <span class="pill">Not a permit decision</span>
                     <strong>Use the official file before you negotiate the septic story.</strong>
                     <p>This tool identifies a records route and prepares a factual request. The local office and the official file decide what the property supports.</p>
+                    <p class="offer-prep-hero__transfer-note">Already facing a closing, seller disclosure, or permit-history question?</p>
+                    <a class="offer-prep-hero__transfer-link" href="/septic-transfer-compliance/" data-track-click="nav" data-track-source-context="offer_prep_hero" data-track-target-type="transfer_workflow">Open the transfer workflow <span aria-hidden="true">→</span></a>
                 </aside>
             </div>
         </section>

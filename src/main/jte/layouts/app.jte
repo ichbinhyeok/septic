@@ -167,6 +167,7 @@
                         <li><a href="/septic-records-by-county/">County record paths</a></li>
                         <li><a href="/septic-records-access-index/">County access dataset</a></li>
                         <li><a href="/offer-prep-septic-file-check/">Offer prep file check</a></li>
+                        <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/states/">State guides</a></li>
                     </ul>

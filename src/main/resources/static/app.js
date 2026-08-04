@@ -5517,6 +5517,9 @@
                         actions.push(routeAction("Open the county file route", route.routePath, true, "county_records_page", false));
                     }
                     actions.push(routeAction("Open the buyer records checklist", "/buying-a-house-with-a-septic-system/", false, "intent_page", false));
+                    if (!fileAvailable) {
+                        actions.push(routeAction("Use the transfer workflow", "/septic-transfer-compliance/", false, "transfer_workflow", false));
+                    }
                     nextActions.replaceChildren(...actions);
                 }
                 note.value = buildNote(route);

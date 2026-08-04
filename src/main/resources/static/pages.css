@@ -33,6 +33,10 @@
   .home-coverage-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; font-size: .76rem; }
   .offer-prep-hero__signals { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 20px; color: var(--muted); font-size: .76rem; }
   .offer-prep-hero__signals strong { color: var(--ink); }
+  .offer-prep-hero__transfer-note { margin: 22px 0 7px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+  .offer-prep-hero__transfer-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-dark); font-size: .82rem; font-weight: 700; text-decoration: none; }
+  .offer-prep-hero__transfer-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .offer-prep-hero__transfer-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
   .hero__notes { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; color: var(--muted); font-size: .74rem; }
   .hero__notes span { display: inline-flex; align-items: center; gap: 8px; }
   .hero__notes span + span::before { content: ""; width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }

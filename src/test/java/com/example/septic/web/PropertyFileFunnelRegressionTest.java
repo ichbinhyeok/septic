@@ -27,6 +27,16 @@ class PropertyFileFunnelRegressionTest {
         assertTrue(script.contains("Check the property file you found"));
         assertTrue(offerPrep.contains("data-offer-prep-next"));
         assertTrue(offerPrep.contains("data-offer-prep-next-actions"));
+        assertTrue(offerPrep.contains("/septic-transfer-compliance/"));
+        assertTrue(offerPrep.contains("Open the transfer workflow"));
+        assertTrue(script.contains("Use the transfer workflow"));
+    }
+
+    @Test
+    void transferWorkflowRemainsDiscoverableOutsideThePrimaryMenu() throws IOException {
+        String layout = Files.readString(Path.of("src/main/jte/layouts/app.jte"));
+
+        assertTrue(layout.contains("<li><a href=\"/septic-transfer-compliance/\">Transfer compliance</a></li>"));
     }
 
     @Test
