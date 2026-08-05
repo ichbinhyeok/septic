@@ -21,7 +21,6 @@ class StateRecordsReturnWorkflowRegressionTest {
     @Test
     void everyDedicatedStateRouteIncludesTheSharedReturnWorkflow() throws IOException {
         for (String page : List.of(
-                "tdec-records-page.jte",
                 "north-carolina-records-page.jte",
                 "texas-ossf-records-page.jte",
                 "florida-ostds-records-page.jte",
@@ -34,6 +33,13 @@ class StateRecordsReturnWorkflowRegressionTest {
             assertTrue(template.contains("data-state-fallback-outcome=\"not_found_online\""), page);
             assertTrue(template.contains("no_record_response"), page);
         }
+
+        String tennessee = Files.readString(Path.of("src/main/jte/pages/tdec-records-page.jte"));
+        assertTrue(tennessee.contains("data-tdec-return"));
+        assertTrue(tennessee.contains("data-tdec-outcome=\"found\""));
+        assertTrue(tennessee.contains("data-tdec-outcome=\"empty\""));
+        assertTrue(tennessee.contains("data-tdec-outcome=\"blocked\""));
+        assertTrue(tennessee.contains("data-tdec-outcome=\"no_record\""));
     }
 
     @Test

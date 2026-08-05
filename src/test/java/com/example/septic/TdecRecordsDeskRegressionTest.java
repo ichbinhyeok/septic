@@ -34,7 +34,7 @@ class TdecRecordsDeskRegressionTest {
     }
 
     @Test
-    void usesCurrentOfficialPagesAndKeepsViewerFailureAsFallback() throws Exception {
+    void usesCurrentOfficialPagesAndExplainsViewerFailureWithoutLeadingWithIt() throws Exception {
         String html = mockMvc.perform(get("/tdec-septic-records/"))
                 .andReturn()
                 .getResponse()
@@ -43,7 +43,7 @@ class TdecRecordsDeskRegressionTest {
         assertThat(html)
                 .contains("https://www.tn.gov/environment/permits/water/septic-systems-permits.html")
                 .contains("https://www.tn.gov/environment/contacts/public-records-request.html")
-                .contains("The viewer returned 403")
+                .contains("A 403 is an access failure")
                 .doesNotContain("/environment/permit-permits/water-permits1/");
     }
 
@@ -55,10 +55,34 @@ class TdecRecordsDeskRegressionTest {
                 .getContentAsString();
 
         assertThat(html)
-                .contains("Choose the county first")
+                .contains("Prepare your official route")
                 .contains("data-tdec-route-form")
                 .contains("data-tdec-request-section")
+                .contains("data-tdec-address")
+                .contains("value=\"records\"")
+                .contains("value=\"status\"")
+                .contains("value=\"missing\"")
+                .contains("value=\"repair\"")
                 .doesNotContain("class=\"record-finder")
                 .doesNotContain("Enter the address to find the record owner");
+    }
+
+    @Test
+    void sendsAllNineLocallyAdministeredCountiesToTheirOwnOfficialPrograms() throws Exception {
+        String html = mockMvc.perform(get("/tdec-septic-records/"))
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        assertThat(html)
+                .contains("https://www.blounttn.gov/992/Public-Records-Request")
+                .contains("https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems")
+                .contains("https://www.hamiltontn.gov/BuildingInspection_Septic.aspx")
+                .contains("https://jeffersoncountytn.gov/environmental-health/")
+                .contains("https://www.knoxcounty.org/health/groundwater_protection.php")
+                .contains("https://madisoncountytn.gov/FormCenter/Health-Department-11/Septic-System-Records-Request-89")
+                .contains("https://www.seviercountytn.gov/government/departments/services/environmental_health.php")
+                .contains("https://www.shelbytnhealth.com/182/Septic-Tank-Permitting-Process")
+                .contains("https://www.williamsoncounty-tn.gov/153/Forms-Hand-outs");
     }
 }

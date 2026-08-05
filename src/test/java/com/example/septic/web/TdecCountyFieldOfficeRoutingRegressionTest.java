@@ -32,12 +32,12 @@ class TdecCountyFieldOfficeRoutingRegressionTest {
                 .getContentAsString();
 
         assertThat(Pattern.compile("data-field-office-name=\"").matcher(html).results().count()).isEqualTo(95);
-        assertThat(Pattern.compile("data-field-office-url=\"https://www\\.tn\\.gov/environment/contacts/field-offices/")
-                .matcher(html).results().count()).isEqualTo(95);
+        assertThat(Pattern.compile("data-field-office-url=\"").matcher(html).results().count()).isEqualTo(95);
+        assertThat(html).contains("data-records-url=\"https://www.shelbytnhealth.com/182/Septic-Tank-Permitting-Process\"");
     }
 
     @Test
-    void representativeCountiesMapToAllEightOfficialFieldOffices() throws Exception {
+    void representativeCountiesMapToTheSevenPublishedSepticAssistanceOffices() throws Exception {
         String html = mockMvc.perform(get("/tdec-septic-records/"))
                 .andReturn()
                 .getResponse()
@@ -49,8 +49,12 @@ class TdecCountyFieldOfficeRoutingRegressionTest {
         assertCountyOffice(html, "gibson", "Jackson");
         assertCountyOffice(html, "sullivan", "Johnson City");
         assertCountyOffice(html, "anderson", "Knoxville");
-        assertCountyOffice(html, "fayette", "Memphis");
+        assertCountyOffice(html, "fayette", "Jackson");
+        assertCountyOffice(html, "tipton", "Jackson");
+        assertCountyOffice(html, "coffee", "Nashville");
+        assertCountyOffice(html, "wilson", "Cookeville");
         assertCountyOffice(html, "montgomery", "Nashville");
+        assertThat(html).doesNotContain("data-field-office-name=\"Memphis\"");
     }
 
     private void assertCountyOffice(String html, String countyKey, String officeName) {

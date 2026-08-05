@@ -17,8 +17,9 @@ class TdecAddressVariantQualityRegressionTest {
     void narrowsAFullAddressToStreetAndStreetNameVariants() throws IOException {
         String script = Files.readString(Path.of("src/main/resources/static/tdec-records.js"));
 
-        assertTrue(script.contains("clean.split(\",\", 1)[0]"));
-        assertTrue(script.contains("Pike|Place|Pl|Terrace|Ter|Turnpike|Route|Rte|Way"));
-        assertTrue(script.contains("[clean, streetAddress, withoutDirection, withoutSuffix, streetOnly]"));
+        assertTrue(script.contains("data.address.split(\",\", 1)[0]"));
+        assertTrue(script.contains("street name only"));
+        assertTrue(script.contains("new Set(clues)"));
+        assertTrue(script.contains("/api/address-record-finder"));
     }
 }

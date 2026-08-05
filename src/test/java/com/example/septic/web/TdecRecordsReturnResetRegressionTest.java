@@ -14,10 +14,12 @@ class TdecRecordsReturnResetRegressionTest {
     // Found by /qa on 2026-08-05.
     // Report: .gstack/qa-reports/qa-report-septicpath-com-2026-08-05.md
     @Test
-    void changingAnySearchInputClearsThePriorOfficialHandoffState() throws IOException {
+    void aNewPreparedRouteReplacesThePriorTabScopedHandoffState() throws IOException {
         String script = Files.readString(Path.of("src/main/resources/static/tdec-records.js"));
 
-        assertTrue(script.contains("form?.addEventListener(\"input\", resetReturnState)"));
-        assertTrue(script.contains("form?.addEventListener(\"change\", resetReturnState)"));
+        assertTrue(script.contains("saveSession(data, false)"));
+        assertTrue(script.contains("form?.addEventListener(\"input\", clearPreparedState)"));
+        assertTrue(script.contains("form?.addEventListener(\"change\", clearPreparedState)"));
+        assertTrue(script.contains("sessionStorage.removeItem(SESSION_KEY)"));
     }
 }

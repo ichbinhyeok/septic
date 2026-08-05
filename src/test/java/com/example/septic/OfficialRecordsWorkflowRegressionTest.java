@@ -26,12 +26,12 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Find a Tennessee septic permit or system record")))
-                .andExpect(content().string(containsString("Which county is the property in?")))
-                .andExpect(content().string(containsString("SepticPath does not")))
-                .andExpect(content().string(containsString("search TDEC databases, retrieve a PDF, or confirm that a permit exists")))
+                .andExpect(content().string(containsString("Find the office and search path for an existing septic file")))
+                .andExpect(content().string(containsString("2. Identify the property")))
+                .andExpect(content().string(containsString("SepticPath cannot see a government database")))
+                .andExpect(content().string(containsString("retrieve its PDF, or certify the system’s current condition")))
                 .andExpect(content().string(containsString("data-contract-county=\"true\"")))
-                .andExpect(content().string(containsString("data-tdec-open-request")))
+                .andExpect(content().string(containsString("data-tdec-outcome=\"blocked\"")))
                 .andExpect(content().string(not(containsString("403 Help"))))
                 .andExpect(content().string(not(containsString("Enter the address to find the record owner"))));
     }

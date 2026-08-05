@@ -114,13 +114,12 @@ public class SiteController {
     );
     private static final Map<String, List<String>> TENNESSEE_FIELD_OFFICE_COUNTIES = Map.of(
             "chattanooga", List.of("bledsoe", "bradley", "grundy", "hamilton", "marion", "mcminn", "meigs", "polk", "rhea", "sequatchie"),
-            "columbia", List.of("bedford", "coffee", "franklin", "giles", "hickman", "lawrence", "lewis", "lincoln", "marshall", "maury", "moore", "perry", "wayne"),
-            "cookeville", List.of("cannon", "clay", "cumberland", "dekalb", "fentress", "jackson", "macon", "overton", "pickett", "putnam", "smith", "trousdale", "van-buren", "warren", "white"),
-            "jackson", List.of("benton", "carroll", "chester", "crockett", "decatur", "dyer", "gibson", "hardeman", "hardin", "haywood", "henderson", "henry", "lake", "lauderdale", "madison", "mcnairy", "obion", "weakley"),
+            "columbia", List.of("bedford", "franklin", "giles", "hickman", "lawrence", "lewis", "lincoln", "marshall", "maury", "moore", "perry", "wayne"),
+            "cookeville", List.of("cannon", "clay", "cumberland", "dekalb", "fentress", "jackson", "macon", "overton", "pickett", "putnam", "smith", "trousdale", "van-buren", "warren", "white", "wilson"),
+            "jackson", List.of("benton", "carroll", "chester", "crockett", "decatur", "dyer", "fayette", "gibson", "hardeman", "hardin", "haywood", "henderson", "henry", "lake", "lauderdale", "madison", "mcnairy", "obion", "tipton", "weakley"),
             "johnson", List.of("carter", "greene", "hancock", "hawkins", "johnson", "sullivan", "unicoi", "washington"),
             "knoxville", List.of("anderson", "blount", "campbell", "claiborne", "cocke", "grainger", "hamblen", "jefferson", "knox", "loudon", "monroe", "morgan", "roane", "scott", "sevier", "union"),
-            "memphis", List.of("fayette", "shelby", "tipton"),
-            "nashville", List.of("cheatham", "davidson", "dickson", "houston", "humphreys", "montgomery", "robertson", "rutherford", "stewart", "sumner", "williamson", "wilson")
+            "nashville", List.of("cheatham", "coffee", "davidson", "dickson", "houston", "humphreys", "montgomery", "robertson", "rutherford", "stewart", "sumner", "williamson")
     );
     private static final List<String> TENNESSEE_COUNTY_NAMES = List.of(
             "Anderson", "Bedford", "Benton", "Bledsoe", "Blount", "Bradley", "Campbell", "Cannon",
@@ -2240,8 +2239,14 @@ The goal is to settle the permit path before we frame the project as a normal in
                             .filter(entry -> entry.getValue().contains(countyKey))
                             .map(Map.Entry::getKey)
                             .findFirst()
-                            .orElseThrow(() -> new IllegalStateException("Missing Tennessee field office for " + countyName));
-                    String fieldOfficeName = "johnson".equals(fieldOfficeKey)
+                            .orElse("");
+                    boolean localOnly = "shelby".equals(countyKey);
+                    if (fieldOfficeKey.isBlank() && !localOnly) {
+                        throw new IllegalStateException("Missing Tennessee field office for " + countyName);
+                    }
+                    String fieldOfficeName = localOnly
+                            ? "Shelby County Health Department"
+                            : "johnson".equals(fieldOfficeKey)
                             ? "Johnson City"
                             : fieldOfficeKey.substring(0, 1).toUpperCase(Locale.US) + fieldOfficeKey.substring(1);
                     return new TennesseeCountyRouteView(
@@ -2250,10 +2255,60 @@ The goal is to settle the permit path before we frame the project as a normal in
                             TENNESSEE_CONTRACT_COUNTIES.contains(countyKey),
                             detailedRoute == null ? "" : detailedRoute.path("tennessee"),
                             fieldOfficeName,
-                            "https://www.tn.gov/environment/contacts/field-offices/" + fieldOfficeKey + ".html"
+                            localOnly
+                                    ? tennesseeRecordsUrl(countyKey)
+                                    : "https://www.tn.gov/environment/contacts/field-offices/" + fieldOfficeKey + ".html",
+                            tennesseeRecordsUrl(countyKey),
+                            tennesseeRecordsLabel(countyKey),
+                            tennesseeRecordsHint(countyKey)
                     );
                 })
                 .toList();
+    }
+
+    private String tennesseeRecordsUrl(String countyKey) {
+        return switch (countyKey) {
+            case "blount" -> "https://www.blounttn.gov/992/Public-Records-Request";
+            case "davidson" -> "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems";
+            case "hamilton" -> "https://www.hamiltontn.gov/BuildingInspection_Septic.aspx";
+            case "jefferson" -> "https://jeffersoncountytn.gov/environmental-health/";
+            case "knox" -> "https://www.knoxcounty.org/health/groundwater_protection.php";
+            case "madison" -> "https://madisoncountytn.gov/FormCenter/Health-Department-11/Septic-System-Records-Request-89";
+            case "sevier" -> "https://www.seviercountytn.gov/government/departments/services/environmental_health.php";
+            case "shelby" -> "https://www.shelbytnhealth.com/182/Septic-Tank-Permitting-Process";
+            case "williamson" -> "https://www.williamsoncounty-tn.gov/153/Forms-Hand-outs";
+            default -> "https://tdec.tn.gov/document-viewer/search/stp";
+        };
+    }
+
+    private String tennesseeRecordsLabel(String countyKey) {
+        return switch (countyKey) {
+            case "blount" -> "Open Blount septic records request";
+            case "davidson" -> "Open Nashville property file search";
+            case "hamilton" -> "Open Hamilton document retrieval";
+            case "jefferson" -> "Contact Jefferson Environmental Health";
+            case "knox" -> "Open Knox Groundwater Protection";
+            case "madison" -> "Request Madison septic records";
+            case "sevier" -> "Open Sevier Environmental Health";
+            case "shelby" -> "Open Shelby septic program";
+            case "williamson" -> "Open Williamson records forms";
+            default -> "Open TDEC septic record search";
+        };
+    }
+
+    private String tennesseeRecordsHint(String countyKey) {
+        return switch (countyKey) {
+            case "blount" -> "Choose the septic-tank or Development Services records request, not the general county request.";
+            case "davidson" -> "Use Property File Search for scanned engineering files; use the bedroom-information request when capacity is the question.";
+            case "hamilton" -> "In Document Retrieval, search the site address by street name only and leave off the street number.";
+            case "jefferson" -> "The county page does not advertise a public property-file search. Call Environmental Health for the existing permit or approval copy.";
+            case "knox" -> "Use the county Groundwater Protection program; do not rely on an empty statewide TDEC search.";
+            case "madison" -> "The county form accepts current and prior owners, address, and an optional tax-map or parcel number.";
+            case "sevier" -> "Use the county Environmental Health office for existing local records and septic services.";
+            case "shelby" -> "Use the Shelby County Water Quality and Septic Tank Program or its public-records route.";
+            case "williamson" -> "Use the Inspection Duplication of Records Request under Sewage Disposal forms.";
+            default -> "Search by county and the strongest available property clue. A blank result is not proof that no file exists.";
+        };
     }
 
     private List<FloridaCountyRouteView> floridaCountyRoutes() {

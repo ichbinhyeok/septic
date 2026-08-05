@@ -11,39 +11,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TdecRecordsInputTrustRegressionTest {
 
     private static final Path TDEC_SCRIPT = Path.of("src/main/resources/static/tdec-records.js");
-    private static final Path RETURN_SCRIPT = Path.of("src/main/resources/static/state-records-return.js");
 
     // Regression: ISSUE-001 — a digits-only fragment such as "123" was accepted as a usable street address.
     // Found by /qa on 2026-08-05.
     // Report: .gstack/qa-reports/qa-report-septicpath-com-2026-08-05.md
     @Test
-    void rejectsWeakPropertyCluesAndStatesThatCountyMatchingIsNotVerified() throws IOException {
+    void rejectsWeakPropertyCluesAndUsesTheCensusCountyResolver() throws IOException {
         String script = Files.readString(TDEC_SCRIPT);
 
-        assertTrue(script.contains("A number by itself is not enough"));
-        assertTrue(script.contains("invalid_${type}"));
-        assertTrue(script.contains("did not verify that this address is inside"));
-        assertTrue(script.contains("did not independently match this"));
+        assertTrue(script.contains("Include the street, city, and a state abbreviation or ZIP"));
+        assertTrue(script.contains("missing_property_clue"));
+        assertTrue(script.contains("/api/address-record-finder"));
+        assertTrue(script.contains("address_search_completed"));
     }
 
     @Test
-    void leadsWithTheWorkingTdecEntryAndLabelsTheBlockedViewerAsOptional() throws IOException {
+    void usesTheOfficialViewerForRecordsAndSeparateServicesForStatusOrRepair() throws IOException {
         String script = Files.readString(TDEC_SCRIPT);
-        int workingPage = script.indexOf("Open the current TDEC SSDS page");
-        int directViewer = script.indexOf("Try the direct record viewer (may return 403)");
-
-        assertTrue(workingPage >= 0);
-        assertTrue(directViewer > workingPage);
+        assertTrue(script.contains("Open official SSDS Record Search"));
+        assertTrue(script.contains("Open TDEC Online Services"));
+        assertTrue(script.contains("Open TDEC repair services"));
+        assertTrue(script.contains("A 403 is an access failure"));
     }
 
     @Test
-    void editingOrPreparingANewSearchClearsThePriorOfficialHandoffState() throws IOException {
+    void keepsOnlyTabScopedHandoffStateAndRestoresTheOutcomePrompt() throws IOException {
         String tdecScript = Files.readString(TDEC_SCRIPT);
-        String returnScript = Files.readString(RETURN_SCRIPT);
-
-        assertTrue(tdecScript.contains("state-records-search-reset"));
-        assertTrue(returnScript.contains("state-records-search-reset"));
-        assertTrue(returnScript.contains("sessionStorage.removeItem(RETURN_KEY)"));
-        assertTrue(returnScript.contains("panel.classList.remove(\"is-returning\")"));
+        assertTrue(tdecScript.contains("sessionStorage.setItem(SESSION_KEY"));
+        assertTrue(tdecScript.contains("window.addEventListener(\"focus\""));
+        assertTrue(tdecScript.contains("returnPanel.hidden = false"));
+        assertTrue(tdecScript.contains("restoreForm(restoredData)"));
+        assertTrue(!tdecScript.contains("localStorage"));
     }
 }
