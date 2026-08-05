@@ -2229,10 +2229,39 @@ The goal is to settle the permit path before we frame the project as a normal in
                     return new FloridaCountyRouteView(
                             countyName + " County",
                             countyKey,
-                            FLORIDA_DEP_PERMIT_COUNTIES.contains(authorityKey)
+                            FLORIDA_DEP_PERMIT_COUNTIES.contains(authorityKey),
+                            floridaVerifiedRecordsUrl(countyKey),
+                            floridaVerifiedRecordsLabel(countyKey),
+                            floridaVerifiedRecordsInstructions(countyKey)
                     );
                 })
                 .toList();
+    }
+
+    private String floridaVerifiedRecordsUrl(String countyKey) {
+        return switch (countyKey) {
+            case "hillsborough" -> "https://s1.ebridge.com/ebridge/3.0/default.aspx";
+            case "pasco" -> "https://s2.ebridge.com/ebridge/3.0/default.aspx";
+            case "orange" -> "https://orange.floridahealth.gov/programs-and-services/environmental-public-health/onsite-sewage-disposal/";
+            default -> "";
+        };
+    }
+
+    private String floridaVerifiedRecordsLabel(String countyKey) {
+        return switch (countyKey) {
+            case "hillsborough", "pasco" -> "Open county eBridge records";
+            case "orange" -> "Open Orange County OSTDS office";
+            default -> "";
+        };
+    }
+
+    private String floridaVerifiedRecordsInstructions(String countyKey) {
+        return switch (countyKey) {
+            case "hillsborough" -> "Public eBridge login: user public, password publicuser, cabinet HCHD. Search Program, Permit, street address, ZIP, date, or document type. The official guide says most files go back at least three years.";
+            case "pasco" -> "Public eBridge login: user public, password public, cabinet PASCODOH. Choose OSTDS and the needed permit or inspection document type, then search by the available property clues.";
+            case "orange" -> "Orange County DOH remains the permit and inspection contact. Its official OSTDS page provides the current phone, application email, and inspection path; it does not advertise a public property-record search.";
+            default -> "";
+        };
     }
 
     private List<SouthCarolinaCountyRouteView> southCarolinaCountyRoutes() {

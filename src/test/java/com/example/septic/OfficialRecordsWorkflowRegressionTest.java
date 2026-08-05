@@ -61,6 +61,9 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("data-route-owner=\"county-doh\"")))
                 .andExpect(content().string(containsString("Marion County")))
                 .andExpect(content().string(containsString("Orange County")))
+                .andExpect(content().string(containsString("cabinet HCHD")))
+                .andExpect(content().string(containsString("cabinet PASCODOH")))
+                .andExpect(content().string(containsString("Open county eBridge records")))
                 .andExpect(content().string(containsString("data-fl-open-request")))
                 .andExpect(content().string(not(containsString("Enter the address to find the record owner"))));
     }
