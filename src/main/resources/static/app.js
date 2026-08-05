@@ -2171,6 +2171,140 @@
                 return `/septic-system-cost-calculator/?${params.toString()}`;
             }
 
+            function workspaceNextDecision(summary) {
+                const outcome = summary.recordOutcome?.type || "record_content";
+                const purpose = routeContext?.purpose || currentPurpose();
+                const hasRepairRecord = (summary.grouped.get("repair_history") || []).length > 0;
+                const hasConflict = summary.conflicts.length > 0;
+                const hasMissing = summary.checklist.some((item) => item.status === "missing");
+                const calculatorUrl = new URL(calculatorPath(summary), window.location.origin);
+                const professionalPath = (projectType, recordStatus) => {
+                    calculatorUrl.searchParams.set("projectType", projectType);
+                    calculatorUrl.searchParams.set("recordStatus", recordStatus);
+                    if (routeContext?.countyName) {
+                        calculatorUrl.searchParams.set("county", routeContext.countyName);
+                    }
+                    calculatorUrl.searchParams.set("quoteMode", "true");
+                    calculatorUrl.hash = "quote-request";
+                    return `${calculatorUrl.pathname}${calculatorUrl.search}${calculatorUrl.hash}`;
+                };
+
+                if (outcome === "request_submitted") {
+                    return {
+                        label: "Next decision",
+                        title: "Wait for the responsive records before judging the system",
+                        body: "Save the request reference and follow the official response window. An acknowledgment alone cannot support a permit, repair, or closing decision.",
+                        proof: "Needed next: the permit file, a written no-record response, or a referral naming the responsible office.",
+                        cta: "Review the official route and timing",
+                        href: routeContext?.routePath || "/septic-records-by-county/",
+                        targetType: "county_records_page"
+                    };
+                }
+                if (outcome === "agency_referral") {
+                    return {
+                        label: "Next decision",
+                        title: "Confirm who actually owns the septic file",
+                        body: "Continue with the named office, but do not assume the referral means that office has the record. Ask it to search or identify the next custodian in writing.",
+                        proof: "Needed next: a responsive record or a written search result from the responsible authority.",
+                        cta: "Resolve the file owner",
+                        href: routeContext?.routePath || "/septic-records-by-county/",
+                        targetType: "county_records_page"
+                    };
+                }
+                if (outcome === "no_record_response") {
+                    return {
+                        label: "No record is not no system",
+                        title: "Verify the property on site before making a condition decision",
+                        body: "A documented search found no file. The next useful evidence is a physical locate or inspection tied to the address, parcel, visible components, and current symptoms.",
+                        proof: "Needed next: tank and drainfield location, observed condition, and any repair or replacement scope.",
+                        cta: "Prepare a physical verification scope",
+                        href: professionalPath("inspection", "no_record"),
+                        targetType: "quote_form"
+                    };
+                }
+                if (hasConflict) {
+                    return {
+                        label: "Do not price from disputed facts",
+                        title: "Identify the controlling record first",
+                        body: "Bedroom count, layout, capacity, or approval details disagree. Compare the originals and ask the file owner which record supersedes the other.",
+                        proof: "Needed next: the controlling permit, revision, final approval, or written agency clarification.",
+                        cta: "Request the controlling record",
+                        href: "/septic-records-request-builder/?mode=task#records-request-builder",
+                        targetType: "internal_tool"
+                    };
+                }
+                if (purpose === "replacement") {
+                    return {
+                        label: "Replacement decision",
+                        title: "Turn the file into a site-specific replacement scope",
+                        body: "Use the approved capacity and layout as background, then verify failure evidence, reserve area, access, soil constraints, and current local approval requirements.",
+                        proof: "A historical permit does not approve a new design or prove the existing system has failed.",
+                        cta: "Prepare replacement planning",
+                        href: professionalPath("replacement", "file_reviewed"),
+                        targetType: "quote_form"
+                    };
+                }
+                if (purpose === "repair" || hasRepairRecord) {
+                    return {
+                        label: hasRepairRecord ? "Repair record found" : "Repair decision",
+                        title: "Separate past repair history from the current problem",
+                        body: "Use the record to locate prior work, then document present symptoms and inspect before deciding whether pumping, a component repair, drainfield work, or replacement is appropriate.",
+                        proof: "Needed next: current observations, prior repair location, contractor findings, and any new permit requirement.",
+                        cta: "Prepare an inspection and repair scope",
+                        href: professionalPath("inspection", hasRepairRecord ? "repair_record" : "file_reviewed"),
+                        targetType: "quote_form"
+                    };
+                }
+                if (purpose === "buying" || purpose === "lender") {
+                    return {
+                        label: "Property decision",
+                        title: "Use the records to scope the inspection, not replace it",
+                        body: "Confirm the permitted bedroom count and layout, then ask the inspector to reconcile the current system, visible conditions, occupancy, and any lender or closing requirements.",
+                        proof: "Needed next: a current inspection result and an explanation of any record-to-site mismatch.",
+                        cta: "Prepare an inspection scope",
+                        href: professionalPath("buying_home", "file_reviewed"),
+                        targetType: "quote_form"
+                    };
+                }
+                if (purpose === "bedrooms") {
+                    return {
+                        label: "Capacity decision",
+                        title: "Compare the approved bedroom count with the intended use",
+                        body: "Treat the recorded count as a permit fact, not a promise that an addition is allowed. A mismatch needs local review before design or construction.",
+                        proof: "Needed next: controlling permit, proposed bedroom count, and the local approval path.",
+                        cta: "Check the bedroom permit path",
+                        href: "/septic-bedroom-permit-checker/",
+                        targetType: "internal_tool"
+                    };
+                }
+                if (purpose === "location") {
+                    return {
+                        label: "Location decision",
+                        title: "Translate the paper layout into field markings",
+                        body: "Use the record as a starting clue, then verify tank, distribution, and drainfield locations before digging, building, or driving equipment over the area.",
+                        proof: "Needed next: on-site locate marks and any mismatch between the drawing and visible components.",
+                        cta: "Prepare an on-site locate scope",
+                        href: professionalPath("inspection", "file_reviewed"),
+                        targetType: "quote_form"
+                    };
+                }
+                return {
+                    label: hasMissing ? "File not complete" : "File reviewed",
+                    title: hasMissing ? "Get the missing controlling records" : "Keep the file and act only on the decision you still need to make",
+                    body: hasMissing
+                        ? "Request the open checklist items before relying on the file for capacity, construction, repair, or a property transaction."
+                        : "The core file is assembled. Continue only if you need current condition evidence, a permit decision, or a project scope.",
+                    proof: hasMissing
+                        ? "Needed next: the missing permit, layout, final approval, or repair record listed below."
+                        : "Historical records establish file facts; they do not establish current physical condition.",
+                    cta: hasMissing ? "Request the missing record" : "Open inspection planning",
+                    href: hasMissing
+                        ? "/septic-records-request-builder/?mode=task#records-request-builder"
+                        : professionalPath("inspection", "file_reviewed"),
+                    targetType: hasMissing ? "internal_tool" : "quote_form"
+                };
+            }
+
             function renderPropertyWorkspace(summary) {
                 if (!(documentAnalysis instanceof HTMLElement)) {
                     return;
@@ -2318,6 +2452,35 @@
                     outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimit);
                     wrapper.append(outcomeSection);
                 }
+
+                const nextDecision = workspaceNextDecision(summary);
+                const decisionSection = document.createElement("section");
+                const decisionCopy = document.createElement("div");
+                const decisionLabel = document.createElement("span");
+                const decisionHeading = document.createElement("h5");
+                const decisionBody = document.createElement("p");
+                const decisionProof = document.createElement("p");
+                const decisionAction = button(
+                    nextDecision.cta,
+                    nextDecision.href,
+                    true,
+                    nextDecision.targetType
+                );
+                decisionSection.className = "record-workspace__decision";
+                decisionLabel.className = "record-decision__label";
+                decisionLabel.textContent = nextDecision.label;
+                decisionHeading.textContent = nextDecision.title;
+                decisionBody.textContent = nextDecision.body;
+                decisionProof.className = "record-workspace__decision-proof";
+                decisionProof.textContent = nextDecision.proof;
+                decisionAction.addEventListener("click", () => emitGaEvent("document_decision_selected", {
+                    purpose: routeContext?.purpose || currentPurpose(),
+                    outcome: summary.recordOutcome?.type || (summary.conflicts.length ? "conflict" : "record_content"),
+                    target_type: nextDecision.targetType
+                }));
+                decisionCopy.append(decisionLabel, decisionHeading, decisionBody, decisionProof);
+                decisionSection.append(decisionCopy, decisionAction);
+                wrapper.append(decisionSection);
 
                 if (!specialOutcome && !summary.conflicts.length && summary.completeCount === summary.totalCount) {
                     const completion = document.createElement("section");
@@ -2575,7 +2738,7 @@
                 clear.textContent = "Clear browser file";
                 clear.addEventListener("click", clearWorkspace);
                 if (specialOutcome) {
-                    actions.append(request, download, clear);
+                    actions.append(download, clear);
                 } else {
                     actions.append(request, estimate, download, clear);
                 }
