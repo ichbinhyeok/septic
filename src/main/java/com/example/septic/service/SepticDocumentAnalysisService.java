@@ -102,6 +102,17 @@ public class SepticDocumentAnalysisService {
     private static final Pattern RECEIVED_YOUR_REQUEST = Pattern.compile(
             "(?is)\\b(?:we|the\\s+office|the\\s+department)\\s+(?:have\\s+)?received\\b"
                     + "[^.\\n]{0,80}\\b(?:your|the)\\s+(?:public[- ]records?\\s+)?request\\b");
+    private static final Pattern OFFICE_DOES_NOT_OWN_FILE = Pattern.compile(
+            "(?is)\\b(?:we|our\\s+office|this\\s+office|the\\s+department|the\\s+agency)\\b"
+                    + "[^.\\n]{0,100}\\b(?:do(?:es)?\\s+not|is\\s+not|are\\s+not)\\b"
+                    + "[^.\\n]{0,100}\\b(?:maintain|hold|possess|retain|custodian|responsible|owner)\\w*\\b"
+                    + "[^.\\n]{0,120}\\b(?:septic|ssds|onsite|wastewater|permit|records?|files?)\\b");
+    private static final Pattern REQUEST_REROUTED = Pattern.compile(
+            "(?is)\\b(?:(?:we|our\\s+office|the\\s+department)\\s+(?:have\\s+)?"
+                    + "(?:forwarded|referred|transferred|redirected|routed)|"
+                    + "(?:your|this|the)\\s+(?:public[- ]records?\\s+)?request\\s+"
+                    + "(?:has\\s+been|was|is\\s+being)\\s+(?:forwarded|referred|transferred|redirected|routed))\\b"
+                    + "[^.\\n]{0,160}\\b(?:to|with)\\b[^.\\n]{2,120}");
 
     private final DocumentOcrService documentOcrService;
 
@@ -164,15 +175,20 @@ public class SepticDocumentAnalysisService {
         List<String> missingItems = missingItems(normalizedPurpose, findings);
         boolean officialNoRecord = recordOutcome != null && "no_record_response".equals(recordOutcome.type());
         boolean requestPending = recordOutcome != null && "request_submitted".equals(recordOutcome.type());
+        boolean agencyReferral = recordOutcome != null && "agency_referral".equals(recordOutcome.type());
         List<String> nextSteps = officialNoRecord
                 ? noRecordNextSteps(normalizedPurpose, stateCode, countyName)
                 : requestPending
                 ? requestPendingNextSteps(stateCode, countyName)
+                : agencyReferral
+                ? agencyReferralNextSteps(stateCode, countyName)
                 : nextSteps(normalizedPurpose, findings, missingItems, stateCode, countyName, extracted.ocrUsed());
         DocumentDecision decision = officialNoRecord
                 ? noRecordDecision(normalizedPurpose, recordOutcome)
                 : requestPending
                 ? requestPendingDecision(recordOutcome, findings)
+                : agencyReferral
+                ? agencyReferralDecision(recordOutcome)
                 : decisionFor(normalizedPurpose, findings, missingItems, extracted.ocrUsed());
         String readingMethod = extracted.ocrUsed()
                 ? "OCR read typed text from this scan. "
@@ -181,6 +197,8 @@ public class SepticDocumentAnalysisService {
                 ? "A written official response reports that no matching septic file was located. Keep the dated response as negative evidence."
                 : requestPending
                 ? "The official source acknowledged the request, but it has not supplied the responsive septic records yet. Keep the reference for follow-up."
+                : agencyReferral
+                ? "The responding office says it does not own the septic file or routed the request elsewhere. Preserve the referral and confirm the responsible file owner before resubmitting."
                 : findings.isEmpty()
                 ? readingMethod + "Readable text was found, but no common septic permit fields could be identified automatically."
                 : readingMethod + "We found " + findings.size() + " useful field"
@@ -190,9 +208,11 @@ public class SepticDocumentAnalysisService {
         return new SepticDocumentAnalysisResult(
                 officialNoRecord ? "official_no_record"
                         : requestPending ? "request_pending"
+                        : agencyReferral ? "agency_referral"
                         : findings.isEmpty() ? "needs_review" : "analyzed",
                 officialNoRecord ? "Keep the official no-record response with the property file"
                         : requestPending ? "Keep the request reference until the records arrive"
+                        : agencyReferral ? "Keep the referral and resolve the responsible file owner"
                         : headingFor(normalizedPurpose),
                 summary,
                 normalizedPurpose,
@@ -305,6 +325,22 @@ public class SepticDocumentAnalysisService {
                     matchedEvidence(text, explicit)
             );
         }
+        Matcher ownershipMismatch = OFFICE_DOES_NOT_OWN_FILE.matcher(text);
+        if (ownershipMismatch.find()) {
+            return new DocumentRecordOutcome(
+                    "agency_referral",
+                    "Official file-owner referral",
+                    matchedEvidence(text, ownershipMismatch)
+            );
+        }
+        Matcher rerouted = REQUEST_REROUTED.matcher(text);
+        if (rerouted.find() && OFFICIAL_SEARCH_CONTEXT.matcher(text).find()) {
+            return new DocumentRecordOutcome(
+                    "agency_referral",
+                    "Official file-owner referral",
+                    matchedEvidence(text, rerouted)
+            );
+        }
         if (OFFICIAL_SEARCH_CONTEXT.matcher(text).find()) {
             Matcher received = REQUEST_RECEIVED.matcher(text);
             if (received.find()) {
@@ -364,6 +400,19 @@ public class SepticDocumentAnalysisService {
         return steps;
     }
 
+    private List<String> agencyReferralNextSteps(String stateCode, String countyName) {
+        List<String> steps = new ArrayList<>();
+        steps.add("Keep the referral or transfer message with the property file; it documents which office did not complete the search.");
+        steps.add("Identify the office named in the referral and verify that it owns septic permits for this county, city, contract jurisdiction, or archive period.");
+        steps.add("Do not resend the same property details to another generic inbox without confirming the file owner.");
+        if (countyName != null && !countyName.isBlank()) {
+            steps.add("Return to the " + countyName + " authority route and continue with the responsible office.");
+        } else if (stateCode != null && !stateCode.isBlank()) {
+            steps.add("Use the " + stateCode.toUpperCase(Locale.US) + " county or jurisdiction directory to resolve the next office.");
+        }
+        return steps;
+    }
+
     private DocumentDecision requestPendingDecision(
             DocumentRecordOutcome outcome,
             List<DocumentFinding> findings
@@ -399,6 +448,17 @@ public class SepticDocumentAnalysisService {
                 "Treat this as a completed negative search result. Preserve it and move to the property decision that the missing file affects instead of repeating the same request.",
                 List.of(outcome.label()),
                 nextDecision
+        );
+    }
+
+    private DocumentDecision agencyReferralDecision(DocumentRecordOutcome outcome) {
+        return new DocumentDecision(
+                "reroute_required",
+                "Responsible office not yet confirmed",
+                "The responding office did not complete the property-file search",
+                "Preserve the referral, verify the named authority, and continue with that office instead of treating this as a no-record result.",
+                List.of(outcome.label()),
+                "A referral does not prove that no septic record exists, that a permit was issued, or that the system is approved or serviceable."
         );
     }
 
