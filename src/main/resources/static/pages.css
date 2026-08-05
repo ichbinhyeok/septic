@@ -426,8 +426,97 @@
   .not-found-page { min-height: 60vh; }
 }
 
+@layer pages {
+  /* Tennessee records desk: county-first routing, explicit government handoff. */
+  .tdec-desk { background: #f7f7f3; }
+  .tdec-desk__intro { padding-block: clamp(28px, 3.5vw, 42px); border-bottom: 1px solid var(--line-dark); background: #fbfbf8; }
+  .tdec-desk__intro-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); gap: clamp(38px, 7vw, 92px); align-items: end; }
+  .tdec-desk__intro h1 { max-width: 20ch; margin: 9px 0 14px; font-size: clamp(2.4rem, 4.1vw, 4rem); line-height: 1; letter-spacing: -.05em; }
+  .tdec-desk__intro-grid > div > p { max-width: 64ch; margin: 0; color: var(--ink-soft); font-size: clamp(1rem, 1.4vw, 1.17rem); }
+  .tdec-desk__scope { margin: 0; border-top: 2px solid var(--ink); }
+  .tdec-desk__scope > div { display: grid; grid-template-columns: 122px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .tdec-desk__scope dt { font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+  .tdec-desk__scope dd { margin: 0; color: var(--muted); font-size: .82rem; }
+
+  .tdec-workspace { padding-block: clamp(28px, 4vw, 48px); border-bottom: 1px solid var(--line-dark); }
+  .tdec-workspace > .container { max-width: 1120px; }
+  .tdec-workspace__header { display: flex; justify-content: space-between; gap: 32px; align-items: end; padding-bottom: 20px; border-bottom: 3px solid var(--ink); }
+  .tdec-workspace__header h2 { margin: 7px 0 0; font-size: clamp(1.85rem, 3vw, 2.7rem); }
+  .tdec-workspace__header ol { display: flex; gap: 24px; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: .74rem; font-weight: 700; }
+  .tdec-workspace__header li { display: flex; gap: 7px; align-items: center; }
+  .tdec-workspace__header li span { display: grid; width: 24px; height: 24px; place-items: center; border: 1px solid var(--line-dark); border-radius: 50%; }
+  .tdec-workspace__header li.is-current { color: var(--ink); }
+  .tdec-workspace__header li.is-current span { color: white; border-color: var(--accent); background: var(--accent); }
+  .tdec-workspace__form { display: grid; grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr); border-bottom: 1px solid var(--line-dark); background: #fff; }
+  .tdec-workspace__form fieldset { min-width: 0; margin: 0; padding: 26px 28px 30px; border: 0; border-right: 1px solid var(--line); }
+  .tdec-workspace__form legend { width: 100%; padding: 0 0 18px; font-family: var(--font-sans); font-size: .95rem; font-weight: 800; }
+  .tdec-workspace__form label { display: grid; gap: 7px; color: var(--ink); font-size: .75rem; font-weight: 700; }
+  .tdec-workspace__form label small { color: var(--muted); font-size: .68rem; font-weight: 500; }
+  .tdec-workspace__form input, .tdec-workspace__form select { width: 100%; min-height: 50px; padding: 11px 12px; border: 1px solid var(--line-dark); border-radius: 0; color: var(--ink); background: #fff; }
+  .tdec-workspace__form input:focus, .tdec-workspace__form select:focus { outline: 3px solid color-mix(in srgb, var(--accent) 25%, transparent); outline-offset: 1px; border-color: var(--accent-dark); }
+  .tdec-workspace__field-grid { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(240px, 1.35fr); gap: 18px; }
+  .tdec-workspace__field-grid label:nth-child(n + 3) { padding-top: 2px; }
+  .field-help { margin: 10px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.5; }
+  .tdec-workspace__submit-row { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 28px; }
+  .tdec-workspace__submit-row p { max-width: 48ch; margin: 0; color: var(--muted); font-size: .72rem; }
+  .tdec-workspace .form-error { grid-column: 1 / -1; margin: 0; padding: 12px 28px; color: #8e271f; border-top: 1px solid #d8a9a4; background: #fff4f2; font-weight: 700; }
+
+  .tdec-result { margin-top: 34px; border-top: 3px solid var(--accent-dark); border-bottom: 1px solid var(--line-dark); background: #fff; }
+  .tdec-result__header { display: flex; justify-content: space-between; gap: 28px; align-items: start; padding: 24px 28px; border-bottom: 1px solid var(--line-dark); }
+  .tdec-result__header h2 { max-width: 24ch; margin: 7px 0; font-size: clamp(1.55rem, 2.6vw, 2.25rem); }
+  .tdec-result__header p { max-width: 68ch; margin: 0; color: var(--muted); }
+  .text-button { padding: 0; border: 0; color: var(--accent-dark); background: transparent; font: inherit; font-size: .78rem; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .text-button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 28%, transparent); outline-offset: 4px; }
+  .tdec-result__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tdec-result__steps > section { display: grid; grid-template-columns: 30px 1fr; gap: 12px; min-width: 0; padding: 24px 22px 28px; border-right: 1px solid var(--line); }
+  .tdec-result__steps > section:last-child { border-right: 0; }
+  .tdec-result__number { color: var(--accent); font-size: .7rem; font-weight: 800; }
+  .tdec-result__steps h3 { margin: 0 0 12px; font-family: var(--font-sans); font-size: 1rem; }
+  .tdec-result__steps p, .tdec-result__steps li { color: var(--ink-soft); font-size: .78rem; }
+  .tdec-result__steps ol, .tdec-result__steps ul { margin: 0 0 16px; padding-left: 18px; }
+  .tdec-result__steps li + li { margin-top: 8px; }
+  .tdec-result__actions { display: grid; gap: 8px; margin-top: 16px; }
+  .tdec-result__actions .button { width: 100%; justify-content: center; text-align: center; }
+  .tdec-result__handoff { margin: 12px 0 0; font-size: .68rem !important; }
+
+  .tdec-outcomes { padding-block: clamp(46px, 7vw, 82px); border-bottom: 1px solid var(--line-dark); background: #fbfbf8; }
+  .tdec-outcomes__grid { display: grid; grid-template-columns: minmax(240px, .55fr) minmax(0, 1.45fr); gap: clamp(42px, 8vw, 110px); }
+  .tdec-outcomes header h2 { margin: 8px 0 12px; font-size: clamp(2rem, 3.4vw, 3.1rem); }
+  .tdec-outcomes header p { max-width: 34ch; color: var(--muted); }
+  .tdec-outcomes__list { border-top: 2px solid var(--ink); }
+  .tdec-outcomes__list details { border-bottom: 1px solid var(--line); }
+  .tdec-outcomes__list summary { display: flex; justify-content: space-between; gap: 20px; padding: 20px 2px; cursor: pointer; font-family: var(--font-sans); font-weight: 800; }
+  .tdec-outcomes__list summary small { color: var(--muted); font-size: .72rem; font-weight: 500; }
+  .tdec-outcomes__list details > div { max-width: 72ch; padding: 0 0 22px; }
+  .tdec-outcomes__list details p { color: var(--muted); }
+
+  .tdec-request { padding-block: clamp(42px, 6vw, 72px); border-bottom: 1px solid var(--line-dark); background: #eef4f1; }
+  .tdec-request__grid { display: grid; grid-template-columns: minmax(250px, .6fr) minmax(0, 1.4fr); gap: clamp(40px, 8vw, 100px); }
+  .tdec-request h2 { max-width: 16ch; margin: 8px 0 14px; font-size: clamp(1.9rem, 3vw, 2.8rem); }
+  .tdec-request header p { color: var(--muted); }
+  .tdec-request__output label { display: block; margin-bottom: 8px; font-weight: 800; }
+  .tdec-request__output textarea { width: 100%; min-height: 220px; padding: 16px; resize: vertical; border: 1px solid var(--line-dark); border-radius: 0; background: #fff; font: .82rem/1.55 ui-monospace, Consolas, monospace; }
+  .tdec-request__output > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tdec-request__output dl { margin: 24px 0 0; border-top: 1px solid var(--line-dark); }
+  .tdec-request__output dl > div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .76rem; }
+  .tdec-request__output dt { font-weight: 800; }
+  .tdec-request__output dd { margin: 0; color: var(--muted); }
+
+  .tdec-reference { padding-block: 30px; background: #fff; }
+  .tdec-reference h2 { margin: 0 0 10px; font-size: 1rem; }
+  .tdec-reference p { max-width: 90ch; color: var(--muted); font-size: .76rem; }
+  .tdec-reference nav { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 15px 0; font-size: .78rem; font-weight: 700; }
+  .tdec-reference__disclosure { padding-top: 14px; border-top: 1px solid var(--line); }
+}
+
 @layer responsive {
   @media (max-width: 960px) {
+    .tdec-desk__intro-grid, .tdec-outcomes__grid, .tdec-request__grid { grid-template-columns: 1fr; }
+    .tdec-workspace__form { grid-template-columns: 1fr; }
+    .tdec-workspace__form fieldset { border-right: 0; border-bottom: 1px solid var(--line); }
+    .tdec-result__steps { grid-template-columns: 1fr; }
+    .tdec-result__steps > section { border-right: 0; border-bottom: 1px solid var(--line); }
+    .tdec-result__steps > section:last-child { border-bottom: 0; }
     .official-records-hero__inner, .state-records-hero__inner, .national-records-hero__inner,
     .official-records-route__grid, .state-records-route__grid, .state-records-documents__grid, .national-records-method__grid { grid-template-columns: 1fr; }
     .official-records-hero__copy, .state-records-hero__copy, .national-records-hero__copy { padding-top: 0; }
@@ -443,6 +532,28 @@
     .trust-ops-metrics, .trust-ops-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
+    .tdec-desk__intro { padding-block: 28px; }
+    .tdec-desk__intro h1 { font-size: clamp(2.15rem, 10.5vw, 3.1rem); }
+    .tdec-desk__intro-grid { gap: 24px; }
+    .tdec-desk__scope > div { grid-template-columns: 105px 1fr; gap: 12px; }
+    .tdec-workspace { padding-block: 28px; }
+    .tdec-workspace__header { display: block; }
+    .tdec-workspace__header ol { justify-content: space-between; gap: 8px; margin-top: 18px; }
+    .tdec-workspace__header li { gap: 5px; font-size: .66rem; }
+    .tdec-workspace__form fieldset { padding: 22px 18px; }
+    .tdec-workspace__field-grid { grid-template-columns: 1fr; gap: 14px; }
+    .tdec-workspace__submit-row { display: grid; padding: 18px; }
+    .tdec-workspace__submit-row .button { width: 100%; }
+    .tdec-result { margin-top: 24px; }
+    .tdec-result__header { display: grid; padding: 20px 18px; }
+    .tdec-result__steps > section { padding: 20px 18px; }
+    .tdec-outcomes { padding-block: 38px; }
+    .tdec-outcomes__grid { gap: 24px; }
+    .tdec-outcomes__list summary { display: grid; gap: 5px; }
+    .tdec-request { padding-block: 36px; }
+    .tdec-request__grid { gap: 24px; }
+    .tdec-request__output > div { display: grid; }
+    .tdec-request__output .button { width: 100%; justify-content: center; }
     .official-records-page section, .state-records-page section, .national-records-page section { padding-block: 34px; }
     .official-records-hero h1, .state-records-hero h1, .national-records-hero h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
     .official-records-hero__boundary, .state-records-hero__promise, .national-records-hero__boundary { display: none; }

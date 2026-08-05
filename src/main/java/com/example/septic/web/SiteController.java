@@ -112,6 +112,20 @@ public class SiteController {
     private static final Set<String> TENNESSEE_CONTRACT_COUNTIES = Set.of(
             "blount", "davidson", "hamilton", "jefferson", "knox", "madison", "sevier", "shelby", "williamson"
     );
+    private static final List<String> TENNESSEE_COUNTY_NAMES = List.of(
+            "Anderson", "Bedford", "Benton", "Bledsoe", "Blount", "Bradley", "Campbell", "Cannon",
+            "Carroll", "Carter", "Cheatham", "Chester", "Claiborne", "Clay", "Cocke", "Coffee",
+            "Crockett", "Cumberland", "Davidson", "Decatur", "DeKalb", "Dickson", "Dyer", "Fayette",
+            "Fentress", "Franklin", "Gibson", "Giles", "Grainger", "Greene", "Grundy", "Hamblen",
+            "Hamilton", "Hancock", "Hardeman", "Hardin", "Hawkins", "Haywood", "Henderson", "Henry",
+            "Hickman", "Houston", "Humphreys", "Jackson", "Jefferson", "Johnson", "Knox", "Lake",
+            "Lauderdale", "Lawrence", "Lewis", "Lincoln", "Loudon", "Macon", "Madison", "Marion",
+            "Marshall", "Maury", "McMinn", "McNairy", "Meigs", "Monroe", "Montgomery", "Moore",
+            "Morgan", "Obion", "Overton", "Perry", "Pickett", "Polk", "Putnam", "Rhea", "Roane",
+            "Robertson", "Rutherford", "Scott", "Sequatchie", "Sevier", "Shelby", "Smith", "Stewart",
+            "Sullivan", "Sumner", "Tipton", "Trousdale", "Unicoi", "Union", "Van Buren", "Warren",
+            "Washington", "Wayne", "Weakley", "White", "Williamson", "Wilson"
+    );
     private static final Set<String> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES = Set.of(
             "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston"
     );
@@ -2122,8 +2136,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", "The " + contentPage.title()
                 + " page is maintained as conservative homeowner guidance and changes when its evidence or workflow changes.");
+        if (TDEC_RECORDS_SLUG.equals(contentPage.slug())) {
+            model.addAttribute("tennesseeCountyRoutes", tennesseeCountyRoutes());
+            return "pages/tdec-records-page";
+        }
         if (Set.of(
-                TDEC_RECORDS_SLUG,
                 NC_PERMIT_LOOKUP_SLUG,
                 TX_OSSF_RECORDS_SLUG,
                 FL_OSTDS_LOOKUP_SLUG,
@@ -2142,6 +2159,29 @@ The goal is to settle the permit path before we frame the project as a normal in
             return "pages/national-records-page";
         }
         return "pages/content-page";
+    }
+
+    private List<TennesseeCountyRouteView> tennesseeCountyRoutes() {
+        Map<String, CountyRecordsPage> detailedRoutes = researchDataService.listPublicCountyRecordsPages("TN").stream()
+                .collect(Collectors.toMap(
+                        page -> page.countyName().replaceFirst("(?i)\\s+County$", "").toLowerCase(Locale.US),
+                        page -> page,
+                        (first, ignored) -> first,
+                        LinkedHashMap::new
+                ));
+
+        return TENNESSEE_COUNTY_NAMES.stream()
+                .map(countyName -> {
+                    String countyKey = countyName.toLowerCase(Locale.US).replace(" ", "-");
+                    CountyRecordsPage detailedRoute = detailedRoutes.get(countyName.toLowerCase(Locale.US));
+                    return new TennesseeCountyRouteView(
+                            countyName + " County",
+                            countyKey,
+                            TENNESSEE_CONTRACT_COUNTIES.contains(countyKey),
+                            detailedRoute == null ? "" : detailedRoute.path("tennessee")
+                    );
+                })
+                .toList();
     }
 
     @GetMapping({
