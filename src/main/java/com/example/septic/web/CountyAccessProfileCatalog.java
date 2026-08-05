@@ -1154,32 +1154,33 @@ public final class CountyAccessProfileCatalog {
             Map.entry("TN::shelby-county", profile(
                     "TN::shelby-county",
                     "office_help",
-                    "County Water Quality permit route",
-                    "Route a Shelby County septic installation, repair, modification, or abandonment",
-                    "Shelby County's Water Quality Branch requires an application for septic installation, modification, repair, or abandonment. The office checks completeness before scheduling a site visit, inspects installation, and requires a repair permit before repair work begins.",
-                    "Open Shelby County SSDS guidance",
-                    "https://www.shelbycountytn.gov/FAQ.aspx?PRINT=YES&QID=322",
-                    "Open the Water Quality Branch page",
+                    "Direct office request; no public record search confirmed",
+                    "Ask Shelby County Water Quality for the existing septic property file",
+                    "Shelby County runs its own septic program. The county publishes permit guidance for new installation, modification, repair, and abandonment, but no public existing-record search was confirmed. Ask Water Quality for the existing property file before using a new-work application.",
+                    "Open Shelby County Water Quality",
                     "https://www.shelbycountytn.gov/221/Water-Quality-Branch",
-                    "A complete application routed to the Water Quality Branch, a permit, inspection outcome, or written office direction",
-                    "The county FAQ publishes a $175 non-refundable processing fee and a normal one-to-two-week permit window only after a complete application is received. Confirm current forms, fees, and timing with the county before payment; this route is for permit work, not proof of current system condition.",
+                    "Call Shelby County Water Quality: 901-222-9599",
+                    "tel:901-222-9599",
+                    "A property-matched existing permit, site plan, inspection or final approval, repair history, or written office direction",
+                    "The county website may present a bot challenge. Call 901-222-9599 if the page does not open. Do not pay the new-work application fee merely to request an existing file.",
                     List.of(
-                            "Property address and parcel or owner clue",
-                            "Work type: install, modify, repair, or abandon",
-                            "Plot plan",
-                            "Soil analysis",
-                            "Applicant and contractor contact information"
+                            "Full property address",
+                            "Parcel or tax-map ID when available",
+                            "Current and prior owner names",
+                            "Approximate installation or construction year",
+                            "Requested documents: permit, site plan, inspection, final approval, and repair history"
                     ),
                     List.of(
-                            "Water Quality Branch application and receipt",
-                            "Site-visit or inspection outcome",
-                            "Installation, modification, repair, or abandonment permit"
+                            "Existing septic permit or approval",
+                            "Site plan, layout, or installation drawing",
+                            "Inspection, final approval, and repair or modification history",
+                            "Written no-record response or referral to the correct file owner"
                     ),
                     List.of(
-                            "Choose the correct work type before opening the county route.",
-                            "Prepare the plot plan, soil analysis, property identifiers, and applicant details.",
-                            "Confirm the current fee and intake channel with the Water Quality Branch, then submit in your own name.",
-                            "Do not begin repair work before the required site inspection and permit; save the permit and final inspection outcome."
+                            "Prepare the address, parcel, owner names, approximate year, and exact document list.",
+                            "Open the Water Quality page or call 901-222-9599 and state that you need the existing septic property file.",
+                            "Ask the office to search prior owners and archived files if the address produces no match.",
+                            "Keep the written result; use the separate permit application only if installation, modification, repair, or abandonment work is proposed."
                     )
             )),
             Map.entry("TN::putnam-county", profile(

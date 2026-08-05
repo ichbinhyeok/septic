@@ -16557,20 +16557,20 @@
       "stateCode": "TN",
       "countyName": "Shelby County",
       "countySlug": "shelby-county",
-      "title": "Shelby County TN Septic Permit, Repair and Inspection",
-      "metaDescription": "Use Shelby County's Water Quality route for septic installation, modification, repair, or abandonment, with required plot plan, soil analysis, site visit, and permit checks.",
-      "introCopy": "Shelby County routes septic installation, modification, repair, and abandonment through its Water Quality Branch. Prepare the work type, property clues, plot plan, and soil analysis before intake; the county reviews completeness before scheduling the site visit and requires a permit before septic repair work begins.",
+      "title": "Shelby County TN Septic Records and Permit File Request",
+      "metaDescription": "Ask Shelby County Water Quality for an existing septic permit, site plan, inspection, or repair file. Use the permit application only for new work.",
+      "introCopy": "Shelby County is a contract county, so existing septic records belong with the county Water Quality Branch rather than the statewide TDEC service lane. No public existing-record search was confirmed. Call the branch with the address, parcel, current or prior owner, and approximate installation year; ask for the existing permit, site plan, inspection outcome, and repair history or written direction to the correct file owner.",
       "uniqueAngle": "Shelby County matters because TDEC lists it as a contract county, so the practical lookup can differ from a regional-office-only Tennessee search. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
       "targetReader": "Best for Shelby County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
       "officeLabel": "Shelby County Health Department Water Quality Branch",
-      "officeUrl": "https://www.shelbycountytn.gov/m/faq?cat=50#question-323",
-      "recordsLabel": "Open Shelby County SSDS permit guidance",
-      "recordsUrl": "https://www.shelbycountytn.gov/m/faq?cat=50#question-323",
-      "contactLine": "Shelby County Water Quality Branch septic application, review, inspection, and repair-permit route",
+      "officeUrl": "https://www.shelbycountytn.gov/221/Water-Quality-Branch",
+      "recordsLabel": "Contact Shelby County Water Quality for the existing file",
+      "recordsUrl": "https://www.shelbycountytn.gov/221/Water-Quality-Branch",
+      "contactLine": "Shelby County Water Quality Branch | 901-222-9599 | ask for the existing septic property file, not a new permit application",
       "decisionSteps": [
-        "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
-        "Confirm whether Shelby County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
-        "If the lookup is for a sale, repair, addition, or new work, keep the permit file and inspection-letter path separate before using a cost estimate."
+        "Call Shelby County Water Quality at 901-222-9599 with the property address, parcel, current or prior owner, and approximate installation year.",
+        "Ask for the existing septic permit, plot or site plan, inspection or final approval, and repair or modification history. Request written direction if another office owns the file.",
+        "Use the county's installation or repair permit application only when new work is actually proposed; it is not an existing-record request."
       ],
       "recordsToRequest": [
         "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
@@ -16585,7 +16585,7 @@
       "faqBlocks": [
         {
           "question": "Where should I start a Shelby County septic permit lookup?",
-          "answer": "Start with the TDEC SSDS permits hub and the record-search or online-service path it links, then confirm the regional or contract county contact that owns the parcel file."
+          "answer": "Call Shelby County Water Quality at 901-222-9599 and ask for the existing property file using the address, parcel, current or prior owner, and approximate installation year. The published septic application is for new installation, modification, repair, or abandonment work—not an existing-record search."
         },
         {
           "question": "Why does Shelby County need a records page before a price page?",
@@ -16612,7 +16612,7 @@
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "contract_county",
-        "fileOwnerModel": "Shelby County should be checked against the TDEC SSDS permits hub and the contract county septic assistance route TDEC lists for this county before the owner treats the file as complete.",
+        "fileOwnerModel": "Shelby County Water Quality owns the local septic program. Existing-record users should request the property file directly from the branch rather than entering the statewide TDEC service lane or a new-work application.",
         "firstArtifactToPull": "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
         "permitCloseoutCategory": "inspection_letter",
         "permitCloseoutSignal": "The file is stronger when the lookup produces an inspection letter, final approval, as-built, or other closeout signal rather than only a permit mention.",
