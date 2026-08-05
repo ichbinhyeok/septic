@@ -1266,13 +1266,14 @@
                 };
             }
 
-            function addDocumentToWorkspace(payload) {
+            function addDocumentToWorkspace(payload, sourceType = "uploaded") {
                 const documents = Array.isArray(workspaceState.documents)
                     ? [...workspaceState.documents]
                     : [];
                 const normalized = {
                     ...payload,
                     addedAt: Date.now(),
+                    sourceType,
                     findings: Array.isArray(payload?.findings) ? payload.findings : [],
                     missingItems: Array.isArray(payload?.missingItems) ? payload.missingItems : [],
                     nextSteps: Array.isArray(payload?.nextSteps) ? payload.nextSteps : []
@@ -1332,6 +1333,7 @@
                         fileName: safeImportedText(item.fileName, 180) || `Saved document ${documentIndex + 1}`,
                         summary: safeImportedText(item.summary, 500),
                         purpose: safeImportedText(item.purpose, 30),
+                        sourceType: safeImportedText(item.sourceType, 20) || "uploaded",
                         recordOutcome: item.recordOutcome && typeof item.recordOutcome === "object"
                             ? {
                                 type: safeImportedText(item.recordOutcome.type, 40),
@@ -2833,7 +2835,7 @@
                     });
                     const payload = await response.json();
                     if (response.ok) {
-                        const summary = addDocumentToWorkspace(payload);
+                        const summary = addDocumentToWorkspace(payload, sourceType);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
                         recordFinderStage("document_reviewed");
@@ -2916,7 +2918,14 @@
                     documentPaste.focus();
                     return;
                 }
-                const pastedFile = new File([pastedText], "pasted-official-record.txt", { type: "text/plain" });
+                const pastedSourceCount = workspaceState.documents.filter((item) =>
+                    item?.sourceType === "pasted" || /^pasted-official-record(?:-\d+)?\.txt$/i.test(item?.fileName || "")
+                ).length;
+                const pastedFile = new File(
+                    [pastedText],
+                    `pasted-official-record-${pastedSourceCount + 1}.txt`,
+                    { type: "text/plain" }
+                );
                 const added = await analyzeRecordSource(pastedFile, "pasted", documentPasteSubmit);
                 if (added) {
                     documentPaste.value = "";
