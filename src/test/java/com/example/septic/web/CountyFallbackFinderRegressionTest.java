@@ -31,4 +31,14 @@ class CountyFallbackFinderRegressionTest {
                 .andExpect(content().string(containsString("Find a county route")))
                 .andExpect(content().string(containsString("county routes searchable")));
     }
+
+    // Regression: ISSUE-008 — the restored finder displayed zero states and omitted the state filter.
+    @Test
+    void countyFallbackFinderIncludesThePublishedStateOptions() throws Exception {
+        mockMvc.perform(get("/septic-records-by-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("data-county-finder-state")))
+                .andExpect(content().string(containsString("<option value=\"TN\">Tennessee</option>")))
+                .andExpect(content().string(containsString("<option value=\"NC\">North Carolina</option>")));
+    }
 }

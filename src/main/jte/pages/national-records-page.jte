@@ -5,6 +5,7 @@
 @param String contentQuickAnswer = ""
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.StateProfile> states = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
 
@@ -62,6 +63,7 @@
 
         @template.tags.countyFinder(
             countyFinderLinks = countyFinderLinks,
+            stateOptions = states,
             finderId = contentPage.slug() + "-county-finder",
             eyebrow = "County finder",
             heading = "Search the county route instead of stopping at the national guide.",
