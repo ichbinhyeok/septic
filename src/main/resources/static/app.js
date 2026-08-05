@@ -3037,8 +3037,9 @@
                         body: data
                     });
                     const payload = await response.json();
+                    let summary = null;
                     if (response.ok) {
-                        const summary = addDocumentToWorkspace(payload, sourceType);
+                        summary = addDocumentToWorkspace(payload, sourceType);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
                         recordFinderStage("document_reviewed");
@@ -3077,7 +3078,7 @@
                     }
                     if (documentStatus) {
                         documentStatus.textContent = response.ok
-                            ? summary.completeCount === 0
+                            ? summary?.completeCount === 0
                                 && !summary.conflicts.length
                                 && !summary.recordOutcome
                                 ? `${payload.fileName || "Document"} was read, but no property-specific septic facts were found.`
