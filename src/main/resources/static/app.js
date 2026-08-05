@@ -926,6 +926,7 @@
             const requestedWorkflowRunId = finderQuery.get("workflowRunId")?.trim() || "";
             const requestedDocumentMode = finderQuery.get("mode") === "document";
             const requestedMissingMode = finderQuery.get("mode") === "missing";
+            const expectedStateCode = String(finder.dataset.addressRecordFinderState || "").trim().toUpperCase();
             let activeStartMode = requestedDocumentMode ? "review" : requestedMissingMode ? "missing" : "find";
             let activeWorkflowRunId = requestedWorkflowRunId;
             const workflowStagesSent = new Set();
@@ -2811,6 +2812,10 @@
                     } catch (_) {
                         // There is no persistent progress to clear when storage is unavailable.
                     }
+                    return;
+                }
+                const activeStateCode = String(active.context.stateCode || "").trim().toUpperCase();
+                if (expectedStateCode && activeStateCode !== expectedStateCode) {
                     return;
                 }
                 routeContext = active.context;

@@ -7,6 +7,7 @@
 @param boolean compact = false
 @param boolean pageHeading = false
 @param boolean minimal = false
+@param String expectedStateCode = ""
 
 <div id="${finderId}" class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
     @if (!minimal)
@@ -42,7 +43,7 @@
         </div>
     @endif
 
-    <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder">
+    <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder" data-address-record-finder-state="${expectedStateCode}">
         @if (minimal)
             <div class="record-finder__minimal-intro">
                 <span class="eyebrow">${eyebrow}</span>

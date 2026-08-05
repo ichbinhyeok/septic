@@ -23,7 +23,7 @@ class NorthCarolinaCountyRoutingTests {
         String html = mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString(
-                        "<meta name=\"description\" content=\"Find North Carolina septic permits, as-builts, final approvals, repair files, and no-record responses by address or county environmental health route.\">"
+                        "<meta name=\"description\" content=\"Enter a North Carolina address or choose the county to reach the environmental health file route for as-builts, final approvals, repairs"
                 )))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-route-picker")))
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("Find your North Carolina county")))

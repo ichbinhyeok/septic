@@ -1370,9 +1370,9 @@ public class SeoService {
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
             case "tdec-septic-records" -> "TDEC Septic Records & Tennessee SSDS Permit Lookup | SepticPath";
-            case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits: County Search & As-Builts | SepticPath";
-            case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
-            case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";
+            case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup: County Search & As-Builts | SepticPath";
+            case "texas-ossf-records-search" -> "Texas OSSF Permit Records: Find the Local Authority | SepticPath";
+            case "florida-ostds-permit-lookup" -> "Florida Septic Permit Lookup by County | OSTDS Records | SepticPath";
             case "dhec-septic-permit-lookup" -> "DHEC Septic Tank Records & Permit Lookup | SCDES Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
@@ -1384,10 +1384,10 @@ public class SeoService {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
                 case "TN" -> "Tennessee Septic Records by County | Permit Files | SepticPath";
-                case "NC" -> "North Carolina Septic Records: County Permit & As-Built Lookup | SepticPath";
+                case "NC" -> "North Carolina Septic Records by County | Address & As-Builts | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
-                case "SC" -> "South Carolina Septic Records & SCDES Permit Lookup | SepticPath";
-                case "TX" -> "Texas OSSF Records & County Address Search | SepticPath";
+                case "SC" -> "South Carolina Septic Records by County | Address & File Routes | SepticPath";
+                case "TX" -> "Texas Septic Records by County | Address & Authorized Agents | SepticPath";
                 case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
                 default -> stateMoneyPage.title() + " | SepticPath";
             };
@@ -1420,10 +1420,10 @@ public class SeoService {
         }
         return switch (state.stateCode()) {
             case "TN" -> "Find Tennessee septic records by county. Get permit copies, inspection letters, repair history, or no-record responses through TDEC or a contract county.";
-            case "NC" -> "Find North Carolina septic permits, as-builts, final approvals, repair files, and no-record responses by address or county environmental health route.";
+            case "NC" -> "Enter a North Carolina address or choose the county to reach the environmental health file route for as-builts, final approvals, repairs, and no-record responses.";
             case "IN" -> "Find Indiana septic records through county permit search, local health files, as-builts, soil reports, and the right next office when a record is missing.";
-            case "SC" -> "Find South Carolina septic records through SCDES permit lookup, D-1740 files, ePermitting, county contacts, permit copies, and no-record fallback.";
-            case "TX" -> "Find Texas OSSF records through county or authorized-agent routes, permit lookup, approved plans, address or parcel search, ETJ checks, and records request wording.";
+            case "SC" -> "Enter a South Carolina address or choose the county to reach the correct septic file route, permit copy, final inspection, and no-record fallback.";
+            case "TX" -> "Enter a Texas address or choose the county to identify the local septic file route, authorized agent, approved plan, ETJ check, and request fallback.";
             case "AL" -> "Find Alabama septic permit records through county health departments, perc or soil files, Permit to Install, Approval for Use, address search, and records request wording.";
             default -> stateMoneyPage.metaDescription();
         };

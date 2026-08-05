@@ -3,6 +3,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.StateRecordsSearchResponseView
+@import com.example.septic.web.AssetPaths
 @param PageMeta page
 @param StateMoneyPage stateMoneyPage
 @param StateProfile state
@@ -33,7 +34,8 @@
                     heading = "Enter the property address",
                     intro = "Use the full street address, city, state, and ZIP so the county route can be resolved accurately.",
                     totalCountyRouteCount = totalCountyRouteCount,
-                    minimal = true
+                    minimal = true,
+                    expectedStateCode = state.stateCode()
                 )
             </div>
         </section>
@@ -48,11 +50,20 @@
                     @else
                         <p>Septic records may be held by a state program, county health office, local authorized agent, or an older archive. The county result determines the correct next step.</p>
                     @endif
+                    @if ("NC".equals(state.stateCode()))
+                        <a class="state-records-route__workspace" href="/north-carolina-septic-permit-lookup/">Use the NC county permit workspace</a>
+                    @elseif ("SC".equals(state.stateCode()))
+                        <a class="state-records-route__workspace" href="/dhec-septic-permit-lookup/">Use the SCDES records workspace</a>
+                    @elseif ("TX".equals(state.stateCode()))
+                        <a class="state-records-route__workspace" href="/texas-ossf-records-search/">Find the Texas OSSF permitting authority</a>
+                    @elseif ("TN".equals(state.stateCode()))
+                        <a class="state-records-route__workspace" href="/tdec-septic-records/">Use the Tennessee SSDS records workspace</a>
+                    @endif
                     @if (primaryRecordsLookupSource != null)
-                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer" data-track-click="nav" data-track-target-type="official_source">Open ${primaryRecordsLookupSource.agencyName()}</a>
+                        <a class="button button--secondary" href="${primaryRecordsLookupSource.url()}" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="state_records_hub" data-track-target-type="official_source">Open ${primaryRecordsLookupSource.agencyName()}</a>
                         <small>Official statewide starting point. A county route may still be required.</small>
                     @elseif (primaryLocalAuthoritySource != null)
-                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer" data-track-click="nav" data-track-target-type="official_source">Open ${primaryLocalAuthoritySource.agencyName()}</a>
+                        <a class="button button--secondary" href="${primaryLocalAuthoritySource.url()}" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="state_records_hub" data-track-target-type="official_source">Open ${primaryLocalAuthoritySource.agencyName()}</a>
                         <small>Official agency source. Confirm the property county before requesting a file.</small>
                     @endif
                 </div>
@@ -65,6 +76,12 @@
                 </div>
             </div>
         </section>
+
+        @template.tags.stateRecordsReturn(
+            stateCode = state.stateCode(),
+            stateName = state.stateName(),
+            officeLabel = state.stateName() + " septic records office"
+        )
 
         @if (!countyRecordLinks.isEmpty())
             <section class="state-records-counties" id="county-pages">
@@ -85,6 +102,14 @@
                         </div>
                         <p data-county-route-status aria-live="polite">Choose a county to open its local permit-record workflow.</p>
                     </form>
+                    <details class="state-records-county-index">
+                        <summary>Browse all ${countyRecordLinks.size()} verified county routes</summary>
+                        <nav aria-label="All verified ${state.stateName()} county record routes">
+                            @for (var link : countyRecordLinks)
+                                <a href="${link.path()}">${link.compactTitle()}</a>
+                            @endfor
+                        </nav>
+                    </details>
                 </div>
             </section>
         @endif
@@ -151,5 +176,6 @@
                 </details>
             </div>
         </section>
+        <script src="${AssetPaths.versioned("/state-records-return.js")}" defer></script>
     </div>
 `)

@@ -224,7 +224,9 @@
         }
 
         document.addEventListener("click", event => {
-            const official = event.target instanceof Element ? event.target.closest('a[data-track-click="official_source"]') : null;
+            const official = event.target instanceof Element
+                ? event.target.closest('a[data-track-click="official_source"], a[data-track-target-type="official_source"]')
+                : null;
             if (!(official instanceof HTMLAnchorElement) || !/^https?:/i.test(official.href)) return;
             awaitingReturn = true;
             save("official_opened");

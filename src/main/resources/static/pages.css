@@ -54,6 +54,8 @@
   .state-records-page h2 { max-width: 22ch; margin: 10px 0 16px; font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.08; letter-spacing: -.035em; }
   .state-records-route__grid > div:first-child > p, .state-records-counties > .container > p, .state-records-documents__grid > div > p { max-width: 65ch; color: var(--muted); }
   .state-records-route__grid .button { margin-top: 18px; }
+  .state-records-route__workspace { display: block; width: fit-content; margin-top: 18px; color: var(--accent-dark); font-weight: 800; text-underline-offset: 4px; }
+  .state-records-route__workspace + .button { margin-top: 12px; }
   .state-records-route__grid small { display: block; margin-top: 8px; color: var(--muted); }
   .state-records-route__steps { padding-left: 28px; border-left: 1px solid var(--line-dark); }
   .state-records-route__steps ol { margin: 0; padding: 0; list-style: none; counter-reset: route-step; }
@@ -64,6 +66,11 @@
   .state-records-county-picker > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
   .state-records-county-picker select { min-height: 52px; }
   .state-records-county-picker > p { margin: 10px 0 0; color: var(--muted); font-size: .86rem; }
+  .state-records-county-index { max-width: 820px; margin-top: 20px; border-block: 1px solid var(--line); }
+  .state-records-county-index > summary { padding: 16px 0; cursor: pointer; font-weight: 800; }
+  .state-records-county-index nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; padding: 0 0 18px; }
+  .state-records-county-index a { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--accent-dark); font-size: .82rem; font-weight: 700; text-decoration: none; }
+  .state-records-county-index a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .state-records-documents ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-dark); }
   .state-records-documents li { padding: 14px 0; border-bottom: 1px solid var(--line); }
   .state-records-outcomes > .container > div { max-width: 900px; border-top: 1px solid var(--line-dark); }
@@ -686,6 +693,7 @@
     .official-records-hero__copy > p, .state-records-hero__copy > p, .national-records-hero__copy > p { display: none; }
     .official-records-hero__inner, .state-records-hero__inner, .national-records-hero__inner { gap: 28px; }
     .official-records-county-picker > div, .state-records-county-picker > div { grid-template-columns: 1fr; }
+    .state-records-county-index nav { grid-template-columns: 1fr; }
     .official-records-county-picker .button, .state-records-county-picker .button { width: 100%; }
     .national-records-intent__rows a, .national-records-related nav a, .national-records-method dl > div { grid-template-columns: 1fr; gap: 5px; }
     .home-workflow__steps, .home-tool-grid { grid-template-columns: 1fr; }

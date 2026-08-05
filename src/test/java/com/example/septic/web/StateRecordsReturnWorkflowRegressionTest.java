@@ -43,6 +43,29 @@ class StateRecordsReturnWorkflowRegressionTest {
     }
 
     @Test
+    void highTrafficStateHubsPreserveTheReturnAndCrawlableCountyJourney() throws IOException {
+        String template = Files.readString(Path.of("src/main/jte/pages/state-records-page.jte"));
+
+        assertTrue(template.contains("@template.tags.stateRecordsReturn"));
+        assertTrue(template.contains("/state-records-return.js"));
+        assertTrue(template.contains("state-records-county-index"));
+        assertTrue(template.contains("<a href=\"${link.path()}\">${link.compactTitle()}</a>"));
+        assertTrue(template.contains("/north-carolina-septic-permit-lookup/"));
+        assertTrue(template.contains("/dhec-septic-permit-lookup/"));
+        assertTrue(template.contains("/texas-ossf-records-search/"));
+        assertTrue(template.contains("expectedStateCode = state.stateCode()"));
+    }
+
+    @Test
+    void stateLandingDoesNotRestoreAnotherStatesSavedTask() throws IOException {
+        String finder = Files.readString(Path.of("src/main/jte/tags/addressRecordFinder.jte"));
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+
+        assertTrue(finder.contains("data-address-record-finder-state"));
+        assertTrue(script.contains("activeStateCode !== expectedStateCode"));
+    }
+
+    @Test
     void returnWorkflowKeepsAllRealOfficialOutcomesDistinct() throws IOException {
         String tag = Files.readString(RETURN_TAG);
         String script = Files.readString(RETURN_SCRIPT);
@@ -56,6 +79,7 @@ class StateRecordsReturnWorkflowRegressionTest {
         }
         assertTrue(script.contains("state_record_outcome_recorded"));
         assertTrue(script.contains("state_record_official_returned"));
+        assertTrue(script.contains("data-track-target-type=\"official_source\""));
     }
 
     @Test

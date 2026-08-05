@@ -119,6 +119,19 @@ class OfficialRecordsWorkflowRegressionTest {
     }
 
     @Test
+    void stateHubsAndAgencyWorkspacesHaveDistinctSearchIntents() throws Exception {
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
+                .andExpect(content().string(containsString("North Carolina Septic Records by County | Address &amp; As-Builts")))
+                .andExpect(content().string(containsString("/north-carolina-septic-permit-lookup/")));
+        mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
+                .andExpect(content().string(containsString("South Carolina Septic Records by County | Address &amp; File Routes")))
+                .andExpect(content().string(containsString("/dhec-septic-permit-lookup/")));
+        mockMvc.perform(get("/septic-records-checklist/texas/"))
+                .andExpect(content().string(containsString("Texas Septic Records by County | Address &amp; Authorized Agents")))
+                .andExpect(content().string(containsString("/texas-ossf-records-search/")));
+    }
+
+    @Test
     void officialLookupIndexStillLinksEverySpecializedStateRoute() throws Exception {
         mockMvc.perform(get("/official-septic-lookup-tools/"))
                 .andExpect(status().isOk())
