@@ -542,6 +542,10 @@ public class SepticDocumentAnalysisService {
         if (permitFinding != null && isPermitStopWord(permitFinding.value())) {
             findings.remove("permit_number");
         }
+        DocumentFinding requestReferenceFinding = findings.get("request_reference");
+        if (requestReferenceFinding != null && isRequestReferencePlaceholder(requestReferenceFinding.value())) {
+            findings.remove("request_reference");
+        }
 
         String lower = text.toLowerCase(Locale.US);
         addSystemTypeFinding(findings, text);
@@ -625,6 +629,13 @@ public class SepticDocumentAnalysisService {
             case "activity", "address", "application", "drawing", "evaluation", "fact",
                     "form", "guide", "installation", "number", "option", "procedure",
                     "requested", "satisfactory", "transfer" -> true;
+            default -> false;
+        };
+    }
+
+    private boolean isRequestReferencePlaceholder(String value) {
+        return switch (value.toLowerCase(Locale.US)) {
+            case "id", "no", "number", "reference", "tracking" -> true;
             default -> false;
         };
     }

@@ -23,7 +23,7 @@ class NoRecordWorkspaceUiRegressionTest {
         assertTrue(render.contains("Written no-record response saved"));
         assertTrue(render.contains("Plan physical verification or the next property decision"));
         assertTrue(render.contains("official_no_record_response_reviewed"));
-        assertTrue(render.contains("if (!officialNoRecord)"));
+        assertTrue(render.contains("if (!specialOutcome)"));
         assertFalse(render.contains("officialNoRecord ? \"Request the missing record\""));
     }
 }
