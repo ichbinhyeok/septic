@@ -2428,15 +2428,19 @@
 
                 if (specialOutcome) {
                     const outcomeSection = document.createElement("section");
-                    const outcomeHeading = document.createElement("strong");
+                    const outcomeHeading = document.createElement("span");
                     const outcomeEvidence = document.createElement("blockquote");
+                    const outcomeLimitLabel = document.createElement("span");
                     const outcomeLimit = document.createElement("p");
                     outcomeSection.className = "record-workspace__outcome";
+                    outcomeHeading.className = "record-workspace__outcome-label";
+                    outcomeLimitLabel.className = "record-workspace__outcome-label";
                     outcomeHeading.textContent = requestPending
-                        ? "What this acknowledgment establishes"
+                        ? "Official acknowledgment"
                         : agencyReferral
-                            ? "What this referral establishes"
-                            : "What this response establishes";
+                            ? "Official referral"
+                            : "Official response";
+                    outcomeLimitLabel.textContent = "Does not prove";
                     outcomeEvidence.textContent = summary.recordOutcome.evidence
                         ? `“${summary.recordOutcome.evidence}”`
                         : requestPending
@@ -2445,11 +2449,11 @@
                                 ? "The responding office reported that another authority owns or should receive the request."
                                 : "The official source reported that no matching septic record was located.";
                     outcomeLimit.textContent = requestPending
-                        ? "This proves receipt only. It is not a permit, a completed search, or a no-record response."
+                        ? "A completed search, a responsive record, or a no-record result."
                         : agencyReferral
-                            ? "This proves routing only. It does not prove that the named office has the file, that no file exists, or that the system is approved or serviceable."
-                            : "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
-                    outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimit);
+                            ? "This proves routing only—not that the next office has the file, that no file exists, or that the system is approved."
+                            : "That no septic system exists, that it is approved, or that its present condition is acceptable.";
+                    outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimitLabel, outcomeLimit);
                     wrapper.append(outcomeSection);
                 }
 
@@ -2526,8 +2530,8 @@
                 saveReminder.append(saveCopy, saveSession);
                 wrapper.append(saveReminder);
 
-                const checklistSection = document.createElement("section");
-                const checklistHeading = document.createElement("h5");
+                const checklistSection = document.createElement("details");
+                const checklistHeading = document.createElement("summary");
                 const checklist = document.createElement("ul");
                 checklistSection.className = "record-workspace__section";
                 checklistHeading.textContent = officialNoRecord
@@ -2567,8 +2571,8 @@
 
                 const confirmableChecks = summary.checklist.filter((check) => check.status === "complete");
                 if (confirmableChecks.length) {
-                    const verificationSection = document.createElement("section");
-                    const verificationHeading = document.createElement("h5");
+                    const verificationSection = document.createElement("details");
+                    const verificationHeading = document.createElement("summary");
                     const verificationCopy = document.createElement("p");
                     const verificationList = document.createElement("div");
                     verificationSection.className = "record-workspace__section record-workspace__verification-section";
