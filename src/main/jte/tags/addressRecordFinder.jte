@@ -2,6 +2,7 @@
 @param String eyebrow = "Address record finder"
 @param String heading = "Paste the address. Open the right septic records route."
 @param String intro = "We resolve the property county, then show the best available county or state route and how deeply that route has been verified."
+@param String addressPlaceholder = "123 Main St, City, ST 12345"
 @param int totalCountyRouteCount = 0
 @param boolean compact = false
 @param boolean pageHeading = false
@@ -106,7 +107,7 @@
                                name="address"
                                type="text"
                                autocomplete="street-address"
-                               placeholder="401 Church St, Nashville, TN 37219"
+                               placeholder="${addressPlaceholder}"
                                maxlength="180"
                                required
                                data-address-record-finder-input>

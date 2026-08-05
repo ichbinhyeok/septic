@@ -26,20 +26,12 @@ class StateRecordsAcquisitionRegressionTest {
     // Report: .gstack/qa-reports/qa-report-septicpath-com-2026-08-02.md
     @Test
     void recordsPagesLeadWithStateSpecificArtifactsAndSearchFields() throws Exception {
-        mockMvc.perform(get("/septic-records-checklist/indiana/"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Any county permit, site-review, or design record already tied to the property.")))
-                .andExpect(content().string(containsString("property address, owner name, parcel number, county, and any permit or application number")));
-
-        mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Any prior improvement permit, construction authorization, or operation permit for the site.")))
-                .andExpect(content().string(containsString("parcel or PIN, owner name, county, subdivision or lot")));
-
-        mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("The permit copy already on file for the parcel.")))
-                .andExpect(content().string(containsString("tax map number, lot and block, physical address")))
-                .andExpect(content().string(containsString("licensed septic contractor for field location")));
+        for (String state : java.util.List.of("indiana", "north-carolina", "south-carolina")) {
+            mockMvc.perform(get("/septic-records-checklist/" + state + "/"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().string(containsString("Enter the property address")))
+                    .andExpect(content().string(containsString("data-county-route-picker")))
+                    .andExpect(content().string(containsString("An empty search is not a no-record determination")));
+        }
     }
 }

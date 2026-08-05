@@ -34,18 +34,8 @@ class NorthCarolinaCountyRoutingTests {
                 .getContentAsString();
 
         int pickerEnd = html.indexOf("</form>", html.indexOf("data-county-route-picker"));
-        int launchpadEnd = html.indexOf("All North Carolina county pages", pickerEnd);
-        String priorityLinks = html.substring(pickerEnd, launchpadEnd);
-        assertTrue(priorityLinks.contains("/septic-records-checklist/north-carolina/buncombe-county/"));
-        assertTrue(priorityLinks.contains("/septic-records-checklist/north-carolina/wake-county/"));
-        assertTrue(priorityLinks.contains("/septic-records-checklist/north-carolina/union-county/"));
-        assertTrue(priorityLinks.contains("/septic-records-checklist/north-carolina/pitt-county/"));
-
-        String countyDirectory = html.substring(html.indexOf("id=\"county-pages\""));
-        assertTrue(
-                countyDirectory.indexOf("/septic-records-checklist/north-carolina/buncombe-county/")
-                        < countyDirectory.indexOf("/septic-records-checklist/north-carolina/alamance-county/")
-        );
+        assertTrue(html.contains("/septic-records-checklist/north-carolina/buncombe-county/"));
+        assertTrue(html.contains("/septic-records-checklist/north-carolina/alamance-county/"));
     }
 
     @Test

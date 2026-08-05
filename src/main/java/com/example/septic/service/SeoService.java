@@ -324,7 +324,7 @@ public class SeoService {
             case "MI" -> "Michigan septic cost guide and local health records path";
             case "GA" -> "Georgia septic permit cost, permit records, and soil analysis guide";
             case "RI" -> "Rhode Island septic permit cost, DEM file search, and suitability guide";
-            case "PA" -> "Pennsylvania septic cost guide and SEO permit path";
+            case "PA" -> "Pennsylvania septic cost, permits, and local records";
             case "CT" -> "Connecticut septic cost guide and design flow rules";
             case "OR" -> "Oregon septic cost guide and site evaluation path";
             case "MA" -> "Massachusetts septic cost guide and Title 5 overview";
@@ -589,7 +589,7 @@ public class SeoService {
      */
     public String contentQuickAnswer(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case "tdec-septic-records" -> "Open the working Tennessee SSDS program page, identify the field office or contract county, and request the permit, layout, or written no-record response with the parcel, owner, subdivision, lot, or legal description. The direct TDEC record search may return 403.";
+            case "tdec-septic-records" -> "Tennessee septic records are handled by TDEC or one of nine local county programs. Resolve the county first, then use the official search or request route with the address, parcel, owner, subdivision, lot, legal description, or permit number.";
             case "north-carolina-septic-permit-lookup" -> "North Carolina septic permits are usually held by county environmental health, not one statewide database. Identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.";
             case "septic-records-checklist" -> "Start with the state records route, then open the county file path for the permit, as-built, final approval, inspection letter, or repair record that actually answers the property question.";
             case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
@@ -1369,7 +1369,7 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Records Search: SSDS Permit Lookup & 403 Help | SepticPath";
+            case "tdec-septic-records" -> "TDEC Septic Records & Tennessee SSDS Permit Lookup | SepticPath";
             case "north-carolina-septic-permit-lookup" -> "How to Find NC Septic Permits: County Search & As-Builts | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Records Search & County File Routing | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida OSTDS Permit Lookup | Septic Records and County DOH Files | SepticPath";

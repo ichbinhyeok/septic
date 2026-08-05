@@ -273,7 +273,7 @@ public record CountyAcquisitionProfileView(
             return "We organize every property and return-delivery field preserved from the county-authored information form, build the call script, and keep the current intake channel as the only fact left to confirm.";
         }
         if (officialFieldPackVerified()) {
-            return "We separate required and optional county fields, keep the confirmed inputs on this device, and make every value individually copyable.";
+            return "We separate required and optional county fields, keep the confirmed inputs on this device, and prepare them for the official form.";
         }
         return "We preserve the property facts, show the current official route, published cost and timing, and flag any office or jurisdiction decision that still needs confirmation.";
     }

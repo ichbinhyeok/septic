@@ -2122,6 +2122,25 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", "The " + contentPage.title()
                 + " page is maintained as conservative homeowner guidance and changes when its evidence or workflow changes.");
+        if (Set.of(
+                TDEC_RECORDS_SLUG,
+                NC_PERMIT_LOOKUP_SLUG,
+                TX_OSSF_RECORDS_SLUG,
+                FL_OSTDS_LOOKUP_SLUG,
+                DHEC_PERMIT_LOOKUP_SLUG
+        ).contains(contentPage.slug())) {
+            return "pages/official-records-page";
+        }
+        if (Set.of(
+                "how-to-find-septic-records-online",
+                "septic-records-by-county",
+                "septic-permit-search-by-address",
+                "septic-permit-lookup",
+                "septic-as-built-records",
+                "septic-tank-location-records"
+        ).contains(contentPage.slug())) {
+            return "pages/national-records-page";
+        }
         return "pages/content-page";
     }
 
@@ -2584,6 +2603,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", "This " + stateMoneyPage.title()
                 + " page is maintained as conservative homeowner guidance and changes when its state evidence or workflow changes.");
+        if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                && Set.of("AL", "IN", "NC", "SC", "TN", "TX").contains(state.stateCode())) {
+            model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
+            return "pages/state-records-page";
+        }
         return "pages/state-money-page";
     }
 

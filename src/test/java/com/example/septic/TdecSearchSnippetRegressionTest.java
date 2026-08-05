@@ -22,11 +22,11 @@ class TdecSearchSnippetRegressionTest {
     private MockMvc mockMvc;
 
     @Test
-    void tdecSearchSnippetNamesTheAcceptedIdentifiersAndFallbackRouteWithoutTruncation() throws Exception {
+    void tdecSearchSnippetLeadsWithCountyAndOfficialOwnershipInsteadOfAnErrorCode() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(
-                        "<meta name=\"description\" content=\"Search Tennessee septic permits by address, parcel, owner, or permit number. Use the correct TDEC, field-office, contract-county, or records-request path.\">"
+                        "<meta name=\"description\" content=\"Find the Tennessee office that owns a septic permit file, then use the official TDEC or local county search and request route.\">"
                 )));
     }
 }

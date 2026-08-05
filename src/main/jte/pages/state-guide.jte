@@ -39,7 +39,7 @@
 @param java.util.List<com.example.septic.web.AlabamaCountyCostRouteView> alabamaCountyCostRoutes = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
-    <div class="state-guide-page">
+    <div class="state-guide-page state-guide-page--${state.stateCode().toLowerCase()}">
     <section class="section section--heroish">
         <div class="container state-hero @if ("AL".equals(state.stateCode())) state-hero--alabama @endif">
             <div>
@@ -79,6 +79,10 @@
                             <h2>How much does a perc test cost in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>
                             <p class="alabama-perc-scope__answer">The planning range covers the wider private site-work conversation. It is not the same thing as the county fee. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application fee.</p>
                             <p>Use the three answers below to identify which cost layer applies, what the quote must include, and whether pricing should pause until the county file or sewer question is resolved.</p>
+                            <div class="alabama-perc-scope__primary-actions">
+                                <a class="button button--primary" href="/septic-system-cost-calculator/?state=AL&projectType=perc_test" data-track-click="nav" data-track-source-context="alabama_perc_primary_estimate" data-track-target-type="calculator">Run the Alabama cost estimate</a>
+                                <span>The scope checker below prepares the county and professional questions; it does not calculate a price.</span>
+                            </div>
                         </div>
                         <div class="alabama-fee-ledger" aria-label="Verified Alabama septic cost layers">
                             <article>
@@ -151,7 +155,7 @@
                                 <span>Property address or parcel ID</span>
                                 <input type="text" data-alabama-perc-property autocomplete="street-address" placeholder="Optional, but useful for the request">
                             </label>
-                            <button class="button button--primary" type="submit">Narrow my Alabama quote scope</button>
+                            <button class="button button--secondary" type="submit">Build my county-ready scope</button>
                         </form>
 
                         <div class="alabama-perc-scope__result" data-alabama-perc-result hidden aria-live="polite">
@@ -197,7 +201,7 @@
                                 </div>
                                 <div class="alabama-county-handoffs__list">
                                     @for (var countyRoute : alabamaCountyCostRoutes)
-                                        <details class="alabama-county-handoff" open="${"Jefferson County".equals(countyRoute.countyName())}">
+                                        <details class="alabama-county-handoff">
                                             <summary>
                                                 <span>
                                                     <strong>${countyRoute.countyName()}</strong>

@@ -7483,7 +7483,9 @@
             picker.addEventListener("submit", (event) => {
                 event.preventDefault();
                 const targetPath = select.value;
-                if (!routePrefix.startsWith("/septic-records-checklist/") || !targetPath.startsWith(routePrefix)) {
+                const isCountyRoute = targetPath.startsWith("/septic-records-checklist/");
+                const matchesScopedPrefix = !routePrefix || targetPath.startsWith(routePrefix);
+                if (!isCountyRoute || !matchesScopedPrefix) {
                     sync();
                     return;
                 }
