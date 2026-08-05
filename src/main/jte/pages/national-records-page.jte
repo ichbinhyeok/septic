@@ -4,6 +4,7 @@
 @param ContentPage contentPage
 @param String contentQuickAnswer = ""
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
 
@@ -58,6 +59,16 @@
                 </dl>
             </div>
         </section>
+
+        @template.tags.countyFinder(
+            countyFinderLinks = countyFinderLinks,
+            finderId = contentPage.slug() + "-county-finder",
+            eyebrow = "County finder",
+            heading = "Search the county route instead of stopping at the national guide.",
+            body = "Use this when you know the state or county but do not have a complete property address.",
+            sourceContext = "national_records_county_finder",
+            totalCountyRouteCount = totalCountyRouteCount
+        )
 
         <section class="national-records-outcomes">
             <div class="container">
