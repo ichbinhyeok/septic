@@ -8,6 +8,7 @@ public record SepticDocumentAnalysisResult(
         String summary,
         String purpose,
         String fileName,
+        DocumentRecordOutcome recordOutcome,
         DocumentDecision decision,
         List<DocumentFinding> findings,
         List<String> missingItems,

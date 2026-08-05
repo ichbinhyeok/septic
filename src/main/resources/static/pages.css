@@ -287,6 +287,9 @@
   .record-workspace__count span { margin-top: 7px; color: var(--muted); font-size: .7rem; font-weight: 700; text-transform: uppercase; }
   .record-workspace__save, .record-workspace__completion { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line-dark); }
   .record-workspace__save p, .record-workspace__completion p { margin: 5px 0 0; color: var(--muted); font-size: .78rem; }
+  .record-workspace__outcome { padding: 22px 0 22px 18px; border-bottom: 1px solid var(--line-dark); border-left: 4px solid var(--accent); }
+  .record-workspace__outcome blockquote { margin: 10px 0 8px; color: var(--ink); font: 700 .88rem/1.55 var(--font-sans); }
+  .record-workspace__outcome p { max-width: 74ch; margin: 0; color: var(--muted); font-size: .76rem; }
   .record-workspace__section { padding: 24px 0; border-bottom: 1px solid var(--line-dark); }
   .record-workspace__section > h5 { margin-bottom: 13px; font-size: 1rem; }
   .record-workspace__section > p { margin: -4px 0 15px; color: var(--muted); font-size: .78rem; }

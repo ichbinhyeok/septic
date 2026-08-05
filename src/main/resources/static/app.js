@@ -1193,6 +1193,10 @@
 
             function workspaceSummary(documents) {
                 const grouped = findingsByKey(documents);
+                const recordOutcome = [...documents]
+                    .reverse()
+                    .map((documentResult) => documentResult?.recordOutcome)
+                    .find((outcome) => outcome?.type === "no_record_response") || null;
                 const conflictKeys = new Set([
                     "approved_bedrooms",
                     "tank_capacity",
@@ -1226,6 +1230,7 @@
                     grouped,
                     checklist,
                     conflicts,
+                    recordOutcome,
                     completeCount: checklist.filter((item) => item.status === "complete").length,
                     totalCount: checklist.length
                 };
@@ -1297,6 +1302,13 @@
                         fileName: safeImportedText(item.fileName, 180) || `Saved document ${documentIndex + 1}`,
                         summary: safeImportedText(item.summary, 500),
                         purpose: safeImportedText(item.purpose, 30),
+                        recordOutcome: item.recordOutcome && typeof item.recordOutcome === "object"
+                            ? {
+                                type: safeImportedText(item.recordOutcome.type, 40),
+                                label: safeImportedText(item.recordOutcome.label, 120),
+                                evidence: safeImportedText(item.recordOutcome.evidence, 500)
+                            }
+                            : null,
                         findings,
                         missingItems: Array.isArray(item.missingItems)
                             ? item.missingItems.slice(0, 30).map((entry) => safeImportedText(entry, 200)).filter(Boolean)
@@ -1436,6 +1448,12 @@
                     "Browser-session summary — confirm every field against the original official document.",
                     "",
                     ...contextLines,
+                    ...(summary.recordOutcome?.type === "no_record_response" ? [
+                        "",
+                        "OFFICIAL SEARCH OUTCOME",
+                        "- Written no-record response saved",
+                        summary.recordOutcome.evidence ? `- Evidence: ${summary.recordOutcome.evidence}` : ""
+                    ].filter(Boolean) : []),
                     "",
                     `CHECKLIST PROGRESS: ${summary.completeCount} OF ${summary.totalCount}`,
                     ...checklist,
@@ -2125,12 +2143,14 @@
                 if (!(documentAnalysis instanceof HTMLElement)) {
                     return;
                 }
+                const officialNoRecord = summary.recordOutcome?.type === "no_record_response";
                 const missingCount = summary.checklist.filter((item) => item.status === "missing").length;
                 const analyticsSignature = [
                     summary.documents.length,
                     summary.completeCount,
                     missingCount,
-                    summary.conflicts.length
+                    summary.conflicts.length,
+                    summary.recordOutcome?.type || "record_content"
                 ].join(":");
                 if (documentAnalysis.dataset.analyticsSignature !== analyticsSignature) {
                     documentAnalysis.dataset.analyticsSignature = analyticsSignature;
@@ -2140,10 +2160,19 @@
                         complete_count: summary.completeCount,
                         missing_count: missingCount,
                         conflict_count: summary.conflicts.length,
-                        outcome: summary.conflicts.length
+                        outcome: officialNoRecord
+                            ? "official_no_record"
+                            : summary.conflicts.length
                             ? "conflict"
                             : missingCount ? "incomplete" : "core_file_complete"
                     });
+                    if (officialNoRecord) {
+                        emitGaEvent("official_no_record_response_reviewed", {
+                            purpose: routeContext?.purpose || currentPurpose(),
+                            state_code: routeContext?.stateCode || "unknown",
+                            county_name: routeContext?.countyName || "unknown"
+                        });
+                    }
                     if (missingCount) {
                         emitGaEvent("missing_record_identified", {
                             source_context: "property_file_workspace",
@@ -2171,23 +2200,30 @@
                 const progress = document.createElement("div");
                 const progressBar = document.createElement("span");
                 progressLabel.className = "record-decision__label";
-                progressLabel.textContent = "Property file progress";
-                progressTitle.textContent = summary.conflicts.length
+                progressLabel.textContent = officialNoRecord ? "Official search outcome" : "Property file progress";
+                progressTitle.textContent = officialNoRecord
+                    ? "Written no-record response saved"
+                    : summary.conflicts.length
                     ? "Resolve conflicting records before using the file"
                     : `${summary.completeCount} of ${summary.totalCount} checks complete`;
-                progressBody.textContent = summary.conflicts.length
+                progressBody.textContent = officialNoRecord
+                    ? "The responsible office reported that it could not locate a matching septic file. Keep this dated response and move to the decision affected by the missing record."
+                    : summary.conflicts.length
                     ? "Two documents report different values. Compare both originals or ask the file owner which record controls."
                     : summary.completeCount === summary.totalCount
                         ? "The core records for this purpose are present. This still does not prove current system condition."
                         : "Add another official record or request the missing items below. You will not need to re-enter confirmed facts.";
-                progress.className = "record-workspace__progress";
-                progress.setAttribute("role", "progressbar");
-                progress.setAttribute("aria-valuemin", "0");
-                progress.setAttribute("aria-valuemax", String(summary.totalCount));
-                progress.setAttribute("aria-valuenow", String(summary.completeCount));
-                progressBar.style.width = `${Math.round((summary.completeCount / Math.max(1, summary.totalCount)) * 100)}%`;
-                progress.append(progressBar);
-                progressCopy.append(progressLabel, progressTitle, progressBody, progress);
+                progressCopy.append(progressLabel, progressTitle, progressBody);
+                if (!officialNoRecord) {
+                    progress.className = "record-workspace__progress";
+                    progress.setAttribute("role", "progressbar");
+                    progress.setAttribute("aria-valuemin", "0");
+                    progress.setAttribute("aria-valuemax", String(summary.totalCount));
+                    progress.setAttribute("aria-valuenow", String(summary.completeCount));
+                    progressBar.style.width = `${Math.round((summary.completeCount / Math.max(1, summary.totalCount)) * 100)}%`;
+                    progress.append(progressBar);
+                    progressCopy.append(progress);
+                }
 
                 const documentCount = document.createElement("div");
                 const documentNumber = document.createElement("strong");
@@ -2199,7 +2235,22 @@
                 overview.append(progressCopy, documentCount);
                 wrapper.append(overview);
 
-                if (!summary.conflicts.length && summary.completeCount === summary.totalCount) {
+                if (officialNoRecord) {
+                    const outcomeSection = document.createElement("section");
+                    const outcomeHeading = document.createElement("strong");
+                    const outcomeEvidence = document.createElement("blockquote");
+                    const outcomeLimit = document.createElement("p");
+                    outcomeSection.className = "record-workspace__outcome";
+                    outcomeHeading.textContent = "What this response establishes";
+                    outcomeEvidence.textContent = summary.recordOutcome.evidence
+                        ? `“${summary.recordOutcome.evidence}”`
+                        : "The official source reported that no matching septic record was located.";
+                    outcomeLimit.textContent = "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
+                    outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimit);
+                    wrapper.append(outcomeSection);
+                }
+
+                if (!officialNoRecord && !summary.conflicts.length && summary.completeCount === summary.totalCount) {
                     const completion = document.createElement("section");
                     const completionCopy = document.createElement("div");
                     const completionHeading = document.createElement("strong");
@@ -2247,7 +2298,9 @@
                 const checklistHeading = document.createElement("h5");
                 const checklist = document.createElement("ul");
                 checklistSection.className = "record-workspace__section";
-                checklistHeading.textContent = "What the property file confirms";
+                checklistHeading.textContent = officialNoRecord
+                    ? "Permit facts the response could not establish"
+                    : "What the property file confirms";
                 checklist.className = "record-workspace__checklist";
                 summary.checklist.forEach((check) => {
                     const item = document.createElement("li");
@@ -2262,7 +2315,9 @@
                         ? `${check.values.join(" / ")} - ${check.sources.join(", ")}`
                         : check.status === "conflict"
                             ? `${check.values.join(" versus ")} - compare the originals`
-                            : "Not found in the documents added so far";
+                            : officialNoRecord
+                                ? "Unavailable after the office's documented search"
+                                : "Not found in the documents added so far";
                     copy.append(label, detail);
                     item.append(marker, copy);
                     checklist.append(item);
@@ -2377,14 +2432,24 @@
                 const hasMissing = summary.checklist.some((item) => item.status === "missing");
                 const hasConflict = summary.conflicts.length > 0;
                 const confirmedCount = confirmedFindingKeys.size;
-                const request = button(
-                    hasConflict
-                        ? "Request the controlling record"
-                        : hasMissing ? "Request the missing record" : "Ask the file owner a follow-up",
-                    "/septic-records-request-builder/?mode=task#records-request-builder",
-                    hasMissing || hasConflict,
-                    "internal_tool"
-                );
+                const nextDecisionUrl = new URL(calculatorPath(summary), window.location.origin);
+                nextDecisionUrl.searchParams.set("quoteMode", "true");
+                nextDecisionUrl.hash = "quote-request";
+                const request = officialNoRecord
+                    ? button(
+                        "Plan physical verification or the next property decision",
+                        `${nextDecisionUrl.pathname}${nextDecisionUrl.search}${nextDecisionUrl.hash}`,
+                        true,
+                        "quote_form"
+                    )
+                    : button(
+                        hasConflict
+                            ? "Request the controlling record"
+                            : hasMissing ? "Request the missing record" : "Ask the file owner a follow-up",
+                        "/septic-records-request-builder/?mode=task#records-request-builder",
+                        hasMissing || hasConflict,
+                        "internal_tool"
+                    );
                 const estimate = button(
                     hasConflict
                         ? "Plan cost without disputed values"
@@ -2398,16 +2463,18 @@
                 const download = document.createElement("button");
                 const clear = document.createElement("button");
                 actions.className = "record-document__analysis-actions";
-                request.addEventListener("click", () => saveRequestContext({
-                    requestedRecord: recordRequestKey(summary.checklist),
-                    taskMode: true,
-                    conflictNote: summary.conflicts.map((conflict) => {
-                        const values = conflict.entries
-                            .map((entry) => `${entry.value} in ${entry.sourceFile}`)
-                            .join(" versus ");
-                        return `${conflict.label}: ${values}`;
-                    }).join("; ")
-                }));
+                if (!officialNoRecord) {
+                    request.addEventListener("click", () => saveRequestContext({
+                        requestedRecord: recordRequestKey(summary.checklist),
+                        taskMode: true,
+                        conflictNote: summary.conflicts.map((conflict) => {
+                            const values = conflict.entries
+                                .map((entry) => `${entry.value} in ${entry.sourceFile}`)
+                                .join(" versus ");
+                            return `${conflict.label}: ${values}`;
+                        }).join("; ")
+                    }));
+                }
                 download.type = "button";
                 download.className = "button button--secondary";
                 download.textContent = "Download readable summary";
@@ -2416,7 +2483,11 @@
                 clear.className = "button button--quiet";
                 clear.textContent = "Clear browser file";
                 clear.addEventListener("click", clearWorkspace);
-                actions.append(request, estimate, download, clear);
+                if (officialNoRecord) {
+                    actions.append(request, download, clear);
+                } else {
+                    actions.append(request, estimate, download, clear);
+                }
                 wrapper.append(actions);
 
                 const limit = document.createElement("p");

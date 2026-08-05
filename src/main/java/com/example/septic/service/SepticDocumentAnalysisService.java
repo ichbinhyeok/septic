@@ -2,6 +2,7 @@ package com.example.septic.service;
 
 import com.example.septic.web.DocumentFinding;
 import com.example.septic.web.DocumentDecision;
+import com.example.septic.web.DocumentRecordOutcome;
 import com.example.septic.web.SepticDocumentAnalysisResult;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -77,6 +78,21 @@ public class SepticDocumentAnalysisService {
                     + "(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
                     + "Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
                     + "\\s+(?:0?[1-9]|[12]\\d|3[01]),?\\s+(?:19|20)\\d{2})");
+    private static final Pattern EXPLICIT_NO_RECORD_RESPONSE = Pattern.compile(
+            "(?i)\\b(?:written\\s+|official\\s+|dated\\s+)?no[- ]records?\\s+"
+                    + "(?:response|determination|finding|letter)\\b");
+    private static final Pattern NO_FILE_LOCATED = Pattern.compile(
+            "(?is)\\bno\\s+(?:matching\\s+|responsive\\s+|available\\s+)?"
+                    + "(?:septic(?:\\s+system)?\\s+)?(?:permits?|records?|files?)\\b"
+                    + "[^.]{0,220}\\b(?:located|found|available|on\\s+file|exists?)\\b");
+    private static final Pattern UNABLE_TO_LOCATE_FILE = Pattern.compile(
+            "(?is)\\b(?:could\\s+not|did\\s+not|unable\\s+to|was\\s+unable\\s+to|were\\s+unable\\s+to)"
+                    + "\\s+(?:find|locate)\\b[^.]{0,160}"
+                    + "\\b(?:septic|onsite|ssds|ossf|ostds)\\b[^.]{0,100}\\b(?:permits?|records?|files?)\\b");
+    private static final Pattern OFFICIAL_SEARCH_CONTEXT = Pattern.compile(
+            "(?i)\\b(?:we\\s+searched|our\\s+search|records?\\s+request|public\\s+records?|"
+                    + "environmental\\s+(?:health|field)\\s+office|department|county\\s+office|"
+                    + "archived\\s+(?:paper\\s+)?records?|parcel\\s+(?:number|id)|prior\\s+owner)\\b");
 
     private final DocumentOcrService documentOcrService;
 
@@ -119,6 +135,7 @@ public class SepticDocumentAnalysisService {
                     extracted.message(),
                     normalizedPurpose,
                     fileName,
+                    null,
                     unreadableDecision(normalizedPurpose),
                     List.of(),
                     purposeMissingItems(normalizedPurpose),
@@ -130,32 +147,37 @@ public class SepticDocumentAnalysisService {
             );
         }
 
+        DocumentRecordOutcome recordOutcome = detectRecordOutcome(text);
         List<DocumentFinding> findings = attachPageNumbers(
                 extractFindings(text, extracted.ocrUsed()),
                 extracted.pages()
         );
         List<String> missingItems = missingItems(normalizedPurpose, findings);
-        List<String> nextSteps = nextSteps(
-                normalizedPurpose, findings, missingItems, stateCode, countyName, extracted.ocrUsed()
-        );
-        DocumentDecision decision = decisionFor(
-                normalizedPurpose, findings, missingItems, extracted.ocrUsed()
-        );
+        boolean officialNoRecord = recordOutcome != null && "no_record_response".equals(recordOutcome.type());
+        List<String> nextSteps = officialNoRecord
+                ? noRecordNextSteps(normalizedPurpose, stateCode, countyName)
+                : nextSteps(normalizedPurpose, findings, missingItems, stateCode, countyName, extracted.ocrUsed());
+        DocumentDecision decision = officialNoRecord
+                ? noRecordDecision(normalizedPurpose, recordOutcome)
+                : decisionFor(normalizedPurpose, findings, missingItems, extracted.ocrUsed());
         String readingMethod = extracted.ocrUsed()
                 ? "OCR read typed text from this scan. "
                 : "";
-        String summary = findings.isEmpty()
+        String summary = officialNoRecord
+                ? "A written official response reports that no matching septic file was located. Keep the dated response as negative evidence."
+                : findings.isEmpty()
                 ? readingMethod + "Readable text was found, but no common septic permit fields could be identified automatically."
                 : readingMethod + "We found " + findings.size() + " useful field"
                         + (findings.size() == 1 ? "" : "s")
                         + ". Confirm them against the original document before acting.";
 
         return new SepticDocumentAnalysisResult(
-                findings.isEmpty() ? "needs_review" : "analyzed",
-                headingFor(normalizedPurpose),
+                officialNoRecord ? "official_no_record" : findings.isEmpty() ? "needs_review" : "analyzed",
+                officialNoRecord ? "Keep the official no-record response with the property file" : headingFor(normalizedPurpose),
                 summary,
                 normalizedPurpose,
                 fileName,
+                recordOutcome,
                 decision,
                 findings,
                 missingItems,
@@ -232,6 +254,80 @@ public class SepticDocumentAnalysisService {
                 false,
                 "Plain text was read in memory.",
                 List.of()
+        );
+    }
+
+    private DocumentRecordOutcome detectRecordOutcome(String text) {
+        Matcher explicit = EXPLICIT_NO_RECORD_RESPONSE.matcher(text);
+        boolean explicitResponse = explicit.find();
+        if (OFFICIAL_SEARCH_CONTEXT.matcher(text).find()) {
+            Matcher noFile = NO_FILE_LOCATED.matcher(text);
+            if (noFile.find()) {
+                return new DocumentRecordOutcome(
+                        "no_record_response",
+                        "Official no-record response",
+                        matchedEvidence(text, noFile)
+                );
+            }
+            Matcher unable = UNABLE_TO_LOCATE_FILE.matcher(text);
+            if (unable.find()) {
+                return new DocumentRecordOutcome(
+                        "no_record_response",
+                        "Official no-record response",
+                        matchedEvidence(text, unable)
+                );
+            }
+        }
+        if (explicitResponse) {
+            return new DocumentRecordOutcome(
+                    "no_record_response",
+                    "Official no-record response",
+                    matchedEvidence(text, explicit)
+            );
+        }
+        return null;
+    }
+
+    private String matchedEvidence(String text, Matcher matcher) {
+        return text.substring(matcher.start(), matcher.end())
+                .replaceAll("\\s+", " ")
+                .trim();
+    }
+
+    private List<String> noRecordNextSteps(String purpose, String stateCode, String countyName) {
+        List<String> steps = new ArrayList<>();
+        steps.add("Keep the dated response with the property file; it proves the search outcome, not system condition or legality.");
+        steps.add("Do not repeat the same request unless you have a new identifier, a different archive, or a corrected file owner.");
+        switch (purpose) {
+            case "bedrooms" -> steps.add("Do not infer approved bedroom capacity without a controlling permit or written authority guidance.");
+            case "location" -> steps.add("Arrange appropriate physical locating before digging or relying on an assumed tank or field position.");
+            case "repair", "replacement" -> steps.add("Use the no-record response when scoping field verification, inspection, repair, or replacement work.");
+            case "lender" -> steps.add("Ask the lender or closing agent what substitute evidence or inspection it will accept.");
+            default -> steps.add("Decide whether the missing permit trail requires physical locating, inspection, or a transaction contingency.");
+        }
+        if (countyName != null && !countyName.isBlank()) {
+            steps.add("Retain " + countyName + " as the documented file-owner context for this result.");
+        } else if (stateCode != null && !stateCode.isBlank()) {
+            steps.add("Retain the " + stateCode.toUpperCase(Locale.US) + " agency response with the property file.");
+        }
+        return steps.stream().distinct().toList();
+    }
+
+    private DocumentDecision noRecordDecision(String purpose, DocumentRecordOutcome outcome) {
+        String nextDecision = switch (purpose) {
+            case "bedrooms" -> "The response does not establish an approved bedroom count.";
+            case "location" -> "The response does not establish where the tank or drain field is installed.";
+            case "repair", "replacement" -> "The response does not establish the installed design or present system condition.";
+            case "lender" -> "The response does not establish what substitute evidence a lender will accept.";
+            default -> "The response does not establish the permit history, installed design, capacity, or present condition.";
+        };
+        return new DocumentDecision(
+                "negative_evidence",
+                "Official response saved",
+                "The responsible office reported no matching septic file",
+                "Treat this as a completed negative search result. Preserve it and move to the property decision that the missing file affects instead of repeating the same request.",
+                List.of(outcome.label()),
+                nextDecision
         );
     }
 
