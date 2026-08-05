@@ -51,7 +51,9 @@
             key: option.value,
             name: option.dataset.countyName || option.textContent.trim(),
             contract: option.dataset.contractCounty === "true",
-            internalPath: option.dataset.internalPath || ""
+            internalPath: option.dataset.internalPath || "",
+            fieldOfficeName: option.dataset.fieldOfficeName || "",
+            fieldOfficeUrl: option.dataset.fieldOfficeUrl || ""
         };
     }
 
@@ -194,7 +196,7 @@
 
         routeExplanation.textContent = data.county.contract
             ? `${data.county.name} is one of Tennessee's nine locally administered septic counties.`
-            : "TDEC lists the SSDS Record Search as the online source for existing septic records. The public-records form is the written fallback.";
+            : `TDEC manages this county. The ${data.county.fieldOfficeName} Environmental Field Office is the regional fallback if the online search is blocked or incomplete.`;
         routeActions.replaceChildren();
         if (viewerOutcome instanceof HTMLDetailsElement) viewerOutcome.hidden = data.county.contract;
         fallbackButtons.forEach((button) => {
@@ -207,6 +209,7 @@
         } else {
             routeActions.append(
                 makeLink("Open the current TDEC SSDS page", "https://www.tn.gov/environment/permits/water/septic-systems-permits.html", true, "tdec_ssds_program"),
+                makeLink(`Contact the ${data.county.fieldOfficeName} Field Office`, data.county.fieldOfficeUrl, false, "tdec_field_office"),
                 makeLink("Try the direct record viewer (may return 403)", "https://tdec.tn.gov/document-viewer/search/stp", false, "tdec_ssds_record_search")
             );
             if (data.county.internalPath) {
@@ -216,7 +219,7 @@
         if (routeHandoff instanceof HTMLElement) {
             routeHandoff.textContent = data.county.contract
                 ? "This opens SepticPath's county instructions first. From there, use the verified county form or office route."
-                : "TDEC opens in a new tab. Start from its current SSDS page; use the direct viewer only as an optional attempt because it may return 403.";
+                : `Start with the current SSDS page. If it is blocked or incomplete, the ${data.county.fieldOfficeName} office is the county-specific fallback; use the direct viewer only as an optional attempt because it may return 403.`;
         }
         result.hidden = false;
         requestSection.hidden = true;

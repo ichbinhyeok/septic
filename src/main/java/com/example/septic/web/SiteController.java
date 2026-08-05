@@ -112,6 +112,16 @@ public class SiteController {
     private static final Set<String> TENNESSEE_CONTRACT_COUNTIES = Set.of(
             "blount", "davidson", "hamilton", "jefferson", "knox", "madison", "sevier", "shelby", "williamson"
     );
+    private static final Map<String, List<String>> TENNESSEE_FIELD_OFFICE_COUNTIES = Map.of(
+            "chattanooga", List.of("bledsoe", "bradley", "grundy", "hamilton", "marion", "mcminn", "meigs", "polk", "rhea", "sequatchie"),
+            "columbia", List.of("bedford", "coffee", "franklin", "giles", "hickman", "lawrence", "lewis", "lincoln", "marshall", "maury", "moore", "perry", "wayne"),
+            "cookeville", List.of("cannon", "clay", "cumberland", "dekalb", "fentress", "jackson", "macon", "overton", "pickett", "putnam", "smith", "trousdale", "van-buren", "warren", "white"),
+            "jackson", List.of("benton", "carroll", "chester", "crockett", "decatur", "dyer", "gibson", "hardeman", "hardin", "haywood", "henderson", "henry", "lake", "lauderdale", "madison", "mcnairy", "obion", "weakley"),
+            "johnson", List.of("carter", "greene", "hancock", "hawkins", "johnson", "sullivan", "unicoi", "washington"),
+            "knoxville", List.of("anderson", "blount", "campbell", "claiborne", "cocke", "grainger", "hamblen", "jefferson", "knox", "loudon", "monroe", "morgan", "roane", "scott", "sevier", "union"),
+            "memphis", List.of("fayette", "shelby", "tipton"),
+            "nashville", List.of("cheatham", "davidson", "dickson", "houston", "humphreys", "montgomery", "robertson", "rutherford", "stewart", "sumner", "williamson", "wilson")
+    );
     private static final List<String> TENNESSEE_COUNTY_NAMES = List.of(
             "Anderson", "Bedford", "Benton", "Bledsoe", "Blount", "Bradley", "Campbell", "Cannon",
             "Carroll", "Carter", "Cheatham", "Chester", "Claiborne", "Clay", "Cocke", "Coffee",
@@ -2226,11 +2236,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .map(countyName -> {
                     String countyKey = countyName.toLowerCase(Locale.US).replace(" ", "-");
                     CountyRecordsPage detailedRoute = detailedRoutes.get(countyName.toLowerCase(Locale.US));
+                    String fieldOfficeKey = TENNESSEE_FIELD_OFFICE_COUNTIES.entrySet().stream()
+                            .filter(entry -> entry.getValue().contains(countyKey))
+                            .map(Map.Entry::getKey)
+                            .findFirst()
+                            .orElseThrow(() -> new IllegalStateException("Missing Tennessee field office for " + countyName));
+                    String fieldOfficeName = "johnson".equals(fieldOfficeKey)
+                            ? "Johnson City"
+                            : fieldOfficeKey.substring(0, 1).toUpperCase(Locale.US) + fieldOfficeKey.substring(1);
                     return new TennesseeCountyRouteView(
                             countyName + " County",
                             countyKey,
                             TENNESSEE_CONTRACT_COUNTIES.contains(countyKey),
-                            detailedRoute == null ? "" : detailedRoute.path("tennessee")
+                            detailedRoute == null ? "" : detailedRoute.path("tennessee"),
+                            fieldOfficeName,
+                            "https://www.tn.gov/environment/contacts/field-offices/" + fieldOfficeKey + ".html"
                     );
                 })
                 .toList();

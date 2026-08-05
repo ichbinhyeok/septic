@@ -47,7 +47,9 @@
                                 <option value="${county.countyKey()}"
                                         data-county-name="${county.countyName()}"
                                         data-contract-county="${county.contractCounty()}"
-                                        data-internal-path="${county.internalPath()}">${county.countyName()}</option>
+                                        data-internal-path="${county.internalPath()}"
+                                        data-field-office-name="${county.fieldOfficeName()}"
+                                        data-field-office-url="${county.fieldOfficeUrl()}">${county.countyName()}</option>
                             @endfor
                         </select>
                         <p class="field-help" data-tdec-county-help>Tennessee has 9 counties that use their own septic program. The county decides the route.</p>
