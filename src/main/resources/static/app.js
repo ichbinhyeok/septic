@@ -2313,6 +2313,9 @@
                 const requestPending = summary.recordOutcome?.type === "request_submitted";
                 const agencyReferral = summary.recordOutcome?.type === "agency_referral";
                 const specialOutcome = officialNoRecord || requestPending || agencyReferral;
+                const noPropertyFacts = !specialOutcome
+                    && !summary.conflicts.length
+                    && summary.completeCount === 0;
                 const missingCount = summary.checklist.filter((item) => item.status === "missing").length;
                 const analyticsSignature = [
                     summary.documents.length,
@@ -2392,6 +2395,8 @@
                     ? "The request was routed to another office"
                     : summary.conflicts.length
                     ? "Resolve conflicting records before using the file"
+                    : noPropertyFacts
+                    ? "No property-specific septic facts found"
                     : `${summary.completeCount} of ${summary.totalCount} checks complete`;
                 progressBody.textContent = officialNoRecord
                     ? "The responsible office reported that it could not locate a matching septic file. Keep this dated response and move to the decision affected by the missing record."
@@ -2401,6 +2406,8 @@
                     ? "This office did not complete the septic-file search. Keep the referral, confirm the responsible authority, and continue there without treating this as a no-record result."
                     : summary.conflicts.length
                     ? "Two documents report different values. Compare both originals or ask the file owner which record controls."
+                    : noPropertyFacts
+                    ? "This may be a blank form, general guidance, or an unrelated file. It does not confirm a permit, approval, layout, inspection, or no-record result."
                     : summary.completeCount === summary.totalCount
                         ? "The core records for this purpose are present. This still does not prove current system condition."
                         : "Add another official record or request the missing items below. You will not need to re-enter confirmed facts.";
@@ -3070,7 +3077,11 @@
                     }
                     if (documentStatus) {
                         documentStatus.textContent = response.ok
-                            ? `${payload.fileName || "Document"} added. Add another record to fill the remaining gaps.`
+                            ? summary.completeCount === 0
+                                && !summary.conflicts.length
+                                && !summary.recordOutcome
+                                ? `${payload.fileName || "Document"} was read, but no property-specific septic facts were found.`
+                                : `${payload.fileName || "Document"} added. Add another record to fill the remaining gaps.`
                             : (payload.summary || "The file could not be analyzed.");
                     }
                     return response.ok;
