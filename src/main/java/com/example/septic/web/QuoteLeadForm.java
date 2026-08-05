@@ -19,6 +19,18 @@ public class QuoteLeadForm {
     private String accessDifficulty = "easy";
     private String timeline = "researching";
 
+    @Size(max = 120, message = "County must be 120 characters or fewer.")
+    private String countyName;
+
+    @Pattern(
+            regexp = "(?:|file_reviewed|no_record|agency_referral|conflict|repair_record|request_pending)",
+            message = "Choose a valid record status."
+    )
+    private String recordStatus = "";
+
+    @Pattern(regexp = "email|phone|either", message = "Choose email, phone, or either.")
+    private String preferredContactMethod = "either";
+
     @NotBlank(message = "Name is required.")
     @Size(max = 120, message = "Name must be 120 characters or fewer.")
     private String fullName;
@@ -93,6 +105,10 @@ public class QuoteLeadForm {
 
     public String getConsentTextSnapshot() {
         return "I agree to be contacted about my septic project estimate and matching options.";
+    }
+
+    public String getCountyNameValue() {
+        return countyName == null ? "" : countyName;
     }
 
     public String getStateCode() {
@@ -181,6 +197,30 @@ public class QuoteLeadForm {
 
     public void setTimeline(String timeline) {
         this.timeline = timeline;
+    }
+
+    public String getCountyName() {
+        return countyName;
+    }
+
+    public void setCountyName(String countyName) {
+        this.countyName = countyName;
+    }
+
+    public String getRecordStatus() {
+        return recordStatus;
+    }
+
+    public void setRecordStatus(String recordStatus) {
+        this.recordStatus = recordStatus;
+    }
+
+    public String getPreferredContactMethod() {
+        return preferredContactMethod;
+    }
+
+    public void setPreferredContactMethod(String preferredContactMethod) {
+        this.preferredContactMethod = preferredContactMethod;
     }
 
     public String getFullName() {

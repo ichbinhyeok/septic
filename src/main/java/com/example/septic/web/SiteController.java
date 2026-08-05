@@ -1545,6 +1545,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "recordSystemType", defaultValue = "") String recordSystemType,
             @RequestParam(name = "recordTankCapacity", defaultValue = "") String recordTankCapacity,
             @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
+            @RequestParam(name = "county", defaultValue = "") String countyName,
+            @RequestParam(name = "recordStatus", defaultValue = "") String recordStatus,
             @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
@@ -1566,7 +1568,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
         model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
         model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
-        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, quoteMode);
+        QuoteLeadForm quoteLeadForm = QuoteLeadForm.fromEstimateForm(estimateForm);
+        quoteLeadForm.setCountyName(boundedRecordContext(countyName));
+        quoteLeadForm.setRecordStatus(validRecordStatus(recordStatus));
+        return renderCalculator(model, estimateForm, null, quoteLeadForm, null, false, quoteMode);
     }
 
     @GetMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
@@ -1717,6 +1722,16 @@ The goal is to settle the permit path before we frame the project as a normal in
                 request
         );
         return ResponseEntity.noContent().build();
+    }
+
+    private String validRecordStatus(String value) {
+        if (value == null) {
+            return "";
+        }
+        return switch (value.trim().toLowerCase(Locale.US)) {
+            case "file_reviewed", "no_record", "agency_referral", "conflict", "repair_record", "request_pending" -> value.trim().toLowerCase(Locale.US);
+            default -> "";
+        };
     }
 
     @PostMapping(value = {"/events/workflow-stage", "/events/workflow-stage/"}, consumes = MediaType.APPLICATION_JSON_VALUE)

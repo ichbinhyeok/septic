@@ -258,9 +258,9 @@
                             @if (result == null)
                                 <input type="hidden" name="sourcePageHint" value="${quoteLeadForm.getSourcePageHint()}">
                             @endif
+                            <input type="hidden" name="recordStatus" value="${quoteLeadForm.getRecordStatus()}">
                             <input type="hidden" name="soilPercStatus" value="${quoteLeadForm.getSoilPercStatus()}">
                             <input type="hidden" name="accessDifficulty" value="${quoteLeadForm.getAccessDifficulty()}">
-                            <input type="hidden" name="timeline" value="${quoteLeadForm.getTimeline()}">
                             <input type="hidden" name="garbageDisposal" value="${quoteLeadForm.isGarbageDisposal() ? "true" : "false"}">
                             <input type="hidden" name="additionalKitchen" value="${quoteLeadForm.isAdditionalKitchen() ? "true" : "false"}">
                             <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock() ? "true" : "false"}">
@@ -295,6 +295,29 @@
                                         <input type="number" min="1" max="20" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
                                     </label>
                                 @endif
+
+                                <label class="field">
+                                    <span>County (optional)</span>
+                                    <input type="text" name="countyName" value="${quoteLeadForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
+                                </label>
+
+                                <label class="field">
+                                    <span>How soon do you need the next step?</span>
+                                    <select name="timeline">
+                                        @for (var timeline : timelines)
+                                            <option value="${timeline.value()}" selected="${timeline.value().equals(quoteLeadForm.getTimeline())}">${timeline.label()}</option>
+                                        @endfor
+                                    </select>
+                                </label>
+
+                                <label class="field">
+                                    <span>Preferred contact</span>
+                                    <select name="preferredContactMethod">
+                                        <option value="either" selected="${"either".equals(quoteLeadForm.getPreferredContactMethod())}">Email or phone</option>
+                                        <option value="email" selected="${"email".equals(quoteLeadForm.getPreferredContactMethod())}">Email</option>
+                                        <option value="phone" selected="${"phone".equals(quoteLeadForm.getPreferredContactMethod())}">Phone</option>
+                                    </select>
+                                </label>
 
                                 <label class="field">
                                     <span>Full name</span>

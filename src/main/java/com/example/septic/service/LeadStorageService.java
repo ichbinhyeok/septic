@@ -83,12 +83,15 @@ public class LeadStorageService {
         payload.put("sourcePageHint", sanitizedSourcePageHint);
         payload.put("calculatorUsed", "main_cost_estimator");
         payload.put("stateCode", quoteLeadForm.getStateCode());
+        payload.put("countyName", quoteLeadForm.getCountyName());
         payload.put("projectType", quoteLeadForm.getProjectType());
+        payload.put("recordStatus", quoteLeadForm.getRecordStatus());
         payload.put("contact", orderedMap(
                 "fullName", quoteLeadForm.getFullName(),
                 "email", quoteLeadForm.getEmail(),
                 "phone", quoteLeadForm.getPhone(),
-                "zipCode", quoteLeadForm.getZipCode()
+                "zipCode", quoteLeadForm.getZipCode(),
+                "preferredContactMethod", quoteLeadForm.getPreferredContactMethod()
         ));
         payload.put("userInputs", orderedMap(
                 "bedrooms", estimateForm.getBedrooms(),
@@ -134,7 +137,8 @@ public class LeadStorageService {
                     "sourcePage", effectiveSourcePage,
                     "sourcePageHint", sanitizedSourcePageHint,
                     "stateCode", quoteLeadForm.getStateCode(),
-                    "projectType", quoteLeadForm.getProjectType()
+                    "projectType", quoteLeadForm.getProjectType(),
+                    "recordStatus", quoteLeadForm.getRecordStatus()
             ), now);
             return leadId;
         } catch (IOException exception) {
@@ -348,10 +352,13 @@ public class LeadStorageService {
                 "email", quoteLeadForm.getEmail(),
                 "phone", quoteLeadForm.getPhone(),
                 "zipCode", quoteLeadForm.getZipCode(),
-                "stateCode", quoteLeadForm.getStateCode()
+                "stateCode", quoteLeadForm.getStateCode(),
+                "countyName", quoteLeadForm.getCountyName(),
+                "preferredContactMethod", quoteLeadForm.getPreferredContactMethod()
         ));
         payload.put("project", orderedMap(
                 "projectType", quoteLeadForm.getProjectType(),
+                "recordStatus", quoteLeadForm.getRecordStatus(),
                 "bedrooms", estimateForm.getBedrooms(),
                 "occupants", estimateForm.getOccupants(),
                 "garbageDisposal", estimateForm.isGarbageDisposal(),
@@ -384,7 +391,8 @@ public class LeadStorageService {
                 "sourcePage", provenance.get("sourcePage"),
                 "geoTarget", orderedMap(
                         "stateCode", quoteLeadForm.getStateCode(),
-                        "zipCode", quoteLeadForm.getZipCode()
+                        "zipCode", quoteLeadForm.getZipCode(),
+                        "countyName", quoteLeadForm.getCountyName()
                 ),
                 "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), slugify(result.likelySystemClass()))
         ));
@@ -644,6 +652,9 @@ public class LeadStorageService {
         columns.add(quoteLeadForm.getStateCode());
         columns.add(quoteLeadForm.getZipCode());
         columns.add(quoteLeadForm.getProjectType());
+        columns.add(quoteLeadForm.getCountyName());
+        columns.add(quoteLeadForm.getRecordStatus());
+        columns.add(quoteLeadForm.getPreferredContactMethod());
         columns.add(estimateForm.getTimeline());
         columns.add(result.likelySystemClass());
         columns.add(String.valueOf(result.totalCostMid()));
@@ -695,7 +706,7 @@ public class LeadStorageService {
     }
 
     private String csvHeader() {
-        return "lead_id,submitted_at,state_code,zip_code,project_type,timeline,likely_system_class,total_cost_mid,consent_accepted,export_status,export_json_path"
+        return "lead_id,submitted_at,state_code,zip_code,project_type,county_name,record_status,preferred_contact_method,timeline,likely_system_class,total_cost_mid,consent_accepted,export_status,export_json_path"
                 + System.lineSeparator();
     }
 
