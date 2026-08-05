@@ -230,6 +230,8 @@
 
     county?.addEventListener("change", updateCountyHelp);
     clueType?.addEventListener("change", updateClueField);
+    form?.addEventListener("input", resetReturnState);
+    form?.addEventListener("change", resetReturnState);
     form?.addEventListener("submit", (event) => {
         event.preventDefault();
         const countyValue = selectedCounty();
