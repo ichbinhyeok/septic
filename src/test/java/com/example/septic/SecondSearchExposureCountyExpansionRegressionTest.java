@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -48,8 +49,9 @@ class SecondSearchExposureCountyExpansionRegressionTest {
         assertTrue(madison.limitation().contains("reCAPTCHA"));
 
         CountyAccessProfileView shelby = CountyAccessProfileCatalog.find("TN::shelby-county");
-        assertTrue(shelby.limitation().contains("$175"));
-        assertTrue(shelby.steps().stream().anyMatch(step -> step.contains("repair work")));
+        assertTrue(shelby.limitation().contains("Do not pay the new-work application fee"));
+        assertFalse(shelby.steps().stream().anyMatch(step -> step.contains("$175")));
+        assertTrue(shelby.steps().stream().anyMatch(step -> step.contains("existing septic property file")));
 
         CountyAccessProfileView monroe = CountyAccessProfileCatalog.find("IN::monroe-county");
         assertTrue(monroe.expectedArtifacts().contains("Soil evaluation and county Minimum Specs document"));
@@ -62,14 +64,14 @@ class SecondSearchExposureCountyExpansionRegressionTest {
         for (String title : new String[]{
                 "Davidson County TN Septic Records and Property File Search",
                 "Madison County TN Septic Drawing and Records Request",
-                "Shelby County TN Septic Permit, Repair and Inspection",
+                "Shelby County TN Septic Records and Permit File Request",
                 "Putnam County TN Septic Permit Search and TDEC Records",
                 "Monroe County IN Septic Permit and OpenGov Workflow"
         }) {
             assertTrue(countyPages.contains("\"title\": \"" + title + "\""), title);
         }
         assertTrue(countyPages.contains("scanned Health Environmental Engineering records"));
-        assertTrue(countyPages.contains("requires a permit before septic repair work begins"));
+        assertTrue(countyPages.contains("Use the county's installation or repair permit application only when new work is actually proposed"));
         assertTrue(countyPages.contains("receive the county's Minimum Specs"));
     }
 }
