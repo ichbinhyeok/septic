@@ -141,6 +141,14 @@ public class SiteController {
             "Seminole", "St. Johns", "St. Lucie", "Sumter", "Suwannee", "Taylor", "Union", "Volusia",
             "Wakulla", "Walton", "Washington"
     );
+    private static final List<String> SOUTH_CAROLINA_COUNTY_NAMES = List.of(
+            "Abbeville", "Aiken", "Allendale", "Anderson", "Bamberg", "Barnwell", "Beaufort", "Berkeley",
+            "Calhoun", "Charleston", "Cherokee", "Chester", "Chesterfield", "Clarendon", "Colleton", "Darlington",
+            "Dillon", "Dorchester", "Edgefield", "Fairfield", "Florence", "Georgetown", "Greenville", "Greenwood",
+            "Hampton", "Horry", "Jasper", "Kershaw", "Lancaster", "Laurens", "Lee", "Lexington", "McCormick",
+            "Marion", "Marlboro", "Newberry", "Oconee", "Orangeburg", "Pickens", "Richland", "Saluda",
+            "Spartanburg", "Sumter", "Union", "Williamsburg", "York"
+    );
     private static final Set<String> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES = Set.of(
             "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston"
     );
@@ -2173,10 +2181,9 @@ The goal is to settle the permit path before we frame the project as a normal in
             model.addAttribute("floridaCountyRoutes", floridaCountyRoutes());
             return "pages/florida-ostds-records-page";
         }
-        if (Set.of(
-                DHEC_PERMIT_LOOKUP_SLUG
-        ).contains(contentPage.slug())) {
-            return "pages/official-records-page";
+        if (DHEC_PERMIT_LOOKUP_SLUG.equals(contentPage.slug())) {
+            model.addAttribute("southCarolinaCountyRoutes", southCarolinaCountyRoutes());
+            return "pages/south-carolina-records-page";
         }
         if (Set.of(
                 "how-to-find-septic-records-online",
@@ -2223,6 +2230,28 @@ The goal is to settle the permit path before we frame the project as a normal in
                             countyName + " County",
                             countyKey,
                             FLORIDA_DEP_PERMIT_COUNTIES.contains(authorityKey)
+                    );
+                })
+                .toList();
+    }
+
+    private List<SouthCarolinaCountyRouteView> southCarolinaCountyRoutes() {
+        Map<String, CountyRecordsPage> detailedRoutes = researchDataService.listPublicCountyRecordsPages("SC").stream()
+                .collect(Collectors.toMap(
+                        page -> page.countyName().replaceFirst("(?i)\\s+County$", "").toLowerCase(Locale.US),
+                        page -> page,
+                        (first, ignored) -> first,
+                        LinkedHashMap::new
+                ));
+
+        return SOUTH_CAROLINA_COUNTY_NAMES.stream()
+                .map(countyName -> {
+                    String countyKey = countyName.toLowerCase(Locale.US).replace(" ", "-");
+                    CountyRecordsPage detailedRoute = detailedRoutes.get(countyName.toLowerCase(Locale.US));
+                    return new SouthCarolinaCountyRouteView(
+                            countyName + " County",
+                            countyKey,
+                            detailedRoute == null ? "" : detailedRoute.path("south-carolina")
                     );
                 })
                 .toList();

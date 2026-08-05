@@ -6,8 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Map;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,20 +37,18 @@ class OfficialRecordsWorkflowRegressionTest {
     }
 
     @Test
-    void stateSpecificOfficialPagesDoNotRenderTennesseeRoutes() throws Exception {
-        Map<String, String> expectedHeadings = Map.of(
-                "/dhec-septic-permit-lookup/", "Find South Carolina septic permits and SCDES records"
-        );
-
-        for (var route : expectedHeadings.entrySet()) {
-            mockMvc.perform(get(route.getKey()))
-                    .andExpect(status().isOk())
-                    .andExpect(content().string(containsString(route.getValue())))
-                    .andExpect(content().string(containsString("Enter the address to find the record owner")))
-                    .andExpect(content().string(not(containsString("Tennessee SSDS records and office routing"))))
-                    .andExpect(content().string(not(containsString("Open official SSDS page"))))
-                    .andExpect(content().string(not(containsString("Use TDEC guide"))));
-        }
+    void southCarolinaRouteUsesThePublicScdesSearchAndHonestFallbacks() throws Exception {
+        mockMvc.perform(get("/dhec-septic-permit-lookup/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Search SCDES for the property’s septic file")))
+                .andExpect(content().string(containsString("Open SCDES Site Explorer")))
+                .andExpect(content().string(containsString("data-sc-age")))
+                .andExpect(content().string(containsString("Older than about 20 years")))
+                .andExpect(content().string(containsString("46")))
+                .andExpect(content().string(containsString("OSWWCentral@des.sc.gov")))
+                .andExpect(content().string(containsString("query SCDES, retrieve a PDF, confirm a permit")))
+                .andExpect(content().string(not(containsString("Enter the address to find the record owner"))))
+                .andExpect(content().string(not(containsString("403 Help"))));
     }
 
     @Test
