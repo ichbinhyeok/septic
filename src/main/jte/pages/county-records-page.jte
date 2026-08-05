@@ -1038,6 +1038,8 @@
 
                     @if ("TN::sumner-county".equals(countyAccessProfile.countyKey())
                             || "TN::rutherford-county".equals(countyAccessProfile.countyKey())
+                            || "TN::bradley-county".equals(countyAccessProfile.countyKey())
+                            || "TN::cumberland-county".equals(countyAccessProfile.countyKey())
                             || "TN::williamson-county".equals(countyAccessProfile.countyKey()))
                         <section class="brunswick-permit-lookup washtenaw-permit-lookup" id="tennessee-record-handoff" data-tennessee-record-handoff>
                             <div>
@@ -1077,9 +1079,12 @@
                             @elseif ("TN::sumner-county".equals(countyAccessProfile.countyKey()))
                                 <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">Search with the copied clue. If TDEC is blocked or incomplete, email septicsystem.files@tn.gov or call 615-687-7000.</p>
                                 <p class="county-guided-lookup__note"><strong>A 403 or empty search is not an official no-record result.</strong> For building work, confirm the septic approval and certificate of completion through <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">Sumner's published instructions</a>.</p>
-                            @else
+                            @elseif ("TN::rutherford-county".equals(countyAccessProfile.countyKey()))
                                 <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">Search with the copied clue. If TDEC is blocked or incomplete, follow Rutherford's Tennessee Environmental records guidance.</p>
                                 <p class="county-guided-lookup__note"><strong>A 403 or empty search is not an official no-record result.</strong> Before an addition or remodel, confirm the <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">Rutherford septic record</a> supports the proposed bedroom count.</p>
+                            @else
+                                <p class="washtenaw-permit-lookup__status" data-tennessee-record-status aria-live="polite">Search with the copied clue. If TDEC is blocked, incomplete, or does not match the parcel, continue through the verified regional field office.</p>
+                                <p class="county-guided-lookup__note"><strong>A 403 or empty search is not an official no-record result.</strong> Use <a href="${countyAccessProfile.secondaryUrl()}" target="_blank" rel="noreferrer">${countyAccessProfile.secondaryLabel()}</a> for the permit, layout, closeout, repair file, or written response.</p>
                             @endif
                         </section>
                     @endif
