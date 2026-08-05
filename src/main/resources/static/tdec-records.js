@@ -80,10 +80,12 @@
     function addressVariants(value) {
         const clean = normalized(value);
         const tidy = candidate => normalized(candidate).replace(/\s+([,;])/g, "$1").replace(/([,;]){2,}/g, "$1");
-        const withoutDirection = tidy(clean.replace(/\b(North|South|East|West|Northeast|Northwest|Southeast|Southwest|N|S|E|W|NE|NW|SE|SW)\b\.?/gi, ""));
-        const withoutSuffix = tidy(withoutDirection.replace(/\b(Street|St|Road|Rd|Lane|Ln|Drive|Dr|Avenue|Ave|Boulevard|Blvd|Highway|Hwy|Court|Ct|Circle|Cir|Trail|Trl|Parkway|Pkwy)\b\.?/gi, ""));
+        const streetAddress = tidy(clean.split(",", 1)[0]);
+        const withoutDirection = tidy(streetAddress.replace(/\b(North|South|East|West|Northeast|Northwest|Southeast|Southwest|N|S|E|W|NE|NW|SE|SW)\b\.?/gi, ""));
+        const withoutSuffix = tidy(withoutDirection.replace(/\b(Street|St|Road|Rd|Lane|Ln|Drive|Dr|Avenue|Ave|Boulevard|Blvd|Highway|Hwy|Court|Ct|Circle|Cir|Trail|Trl|Parkway|Pkwy|Pike|Place|Pl|Terrace|Ter|Turnpike|Route|Rte|Way)\b\.?/gi, ""));
         const streetOnly = withoutSuffix.replace(/^\d+[A-Za-z-]*\s+/, "").trim();
-        return [clean, withoutDirection, withoutSuffix, streetOnly].filter((value, index, values) => value && values.indexOf(value) === index);
+        return [clean, streetAddress, withoutDirection, withoutSuffix, streetOnly]
+            .filter((value, index, values) => value && values.indexOf(value) === index);
     }
 
     function clueError(type, value) {
