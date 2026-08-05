@@ -387,7 +387,9 @@ public class SepticDocumentAnalysisService {
         addContextFinding(findings, lower, text, "layout", "Layout or as-built", List.of(
                 "attached as-built shows", "as-built shows", "site plan shows",
                 "record drawing shows", "layout drawing shows", "as-built site plan: attached",
-                "as-built: attached", "as built: attached", "site plan: attached"
+                "as-built: attached", "as built: attached", "site plan: attached",
+                "site layout attached", "system layout attached", "layout is attached",
+                "site plan attached", "as-built attached", "as built attached"
         ));
         addContextFinding(findings, lower, text, "repair_history", "Repair history", List.of(
                 "repair history attached", "repair records attached", "previous repair dated",
