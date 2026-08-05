@@ -126,6 +126,21 @@ public class SiteController {
             "Sullivan", "Sumner", "Tipton", "Trousdale", "Unicoi", "Union", "Van Buren", "Warren",
             "Washington", "Wayne", "Weakley", "White", "Williamson", "Wilson"
     );
+    private static final Set<String> FLORIDA_DEP_PERMIT_COUNTIES = Set.of(
+            "bay", "calhoun", "escambia", "franklin", "gadsden", "gulf", "holmes", "jackson",
+            "jefferson", "leon", "liberty", "marion", "okaloosa", "santa rosa", "wakulla", "walton", "washington"
+    );
+    private static final List<String> FLORIDA_COUNTY_NAMES = List.of(
+            "Alachua", "Baker", "Bay", "Bradford", "Brevard", "Broward", "Calhoun", "Charlotte",
+            "Citrus", "Clay", "Collier", "Columbia", "DeSoto", "Dixie", "Duval", "Escambia",
+            "Flagler", "Franklin", "Gadsden", "Gilchrist", "Glades", "Gulf", "Hamilton", "Hardee",
+            "Hendry", "Hernando", "Highlands", "Hillsborough", "Holmes", "Indian River", "Jackson",
+            "Jefferson", "Lafayette", "Lake", "Lee", "Leon", "Levy", "Liberty", "Madison", "Manatee",
+            "Marion", "Martin", "Miami-Dade", "Monroe", "Nassau", "Okaloosa", "Okeechobee", "Orange",
+            "Osceola", "Palm Beach", "Pasco", "Pinellas", "Polk", "Putnam", "Santa Rosa", "Sarasota",
+            "Seminole", "St. Johns", "St. Lucie", "Sumter", "Suwannee", "Taylor", "Union", "Volusia",
+            "Wakulla", "Walton", "Washington"
+    );
     private static final Set<String> DIRECT_ONLINE_RECORD_SEARCH_COUNTIES = Set.of(
             "NC:craven", "NC:dare", "NC:franklin", "NC:henderson", "NC:johnston"
     );
@@ -2154,8 +2169,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                     .toList());
             return "pages/texas-ossf-records-page";
         }
+        if (FL_OSTDS_LOOKUP_SLUG.equals(contentPage.slug())) {
+            model.addAttribute("floridaCountyRoutes", floridaCountyRoutes());
+            return "pages/florida-ostds-records-page";
+        }
         if (Set.of(
-                FL_OSTDS_LOOKUP_SLUG,
                 DHEC_PERMIT_LOOKUP_SLUG
         ).contains(contentPage.slug())) {
             return "pages/official-records-page";
@@ -2191,6 +2209,20 @@ The goal is to settle the permit path before we frame the project as a normal in
                             countyKey,
                             TENNESSEE_CONTRACT_COUNTIES.contains(countyKey),
                             detailedRoute == null ? "" : detailedRoute.path("tennessee")
+                    );
+                })
+                .toList();
+    }
+
+    private List<FloridaCountyRouteView> floridaCountyRoutes() {
+        return FLORIDA_COUNTY_NAMES.stream()
+                .map(countyName -> {
+                    String countyKey = countyName.toLowerCase(Locale.US).replace(" ", "-").replace(".", "");
+                    String authorityKey = countyName.toLowerCase(Locale.US).replace(".", "");
+                    return new FloridaCountyRouteView(
+                            countyName + " County",
+                            countyKey,
+                            FLORIDA_DEP_PERMIT_COUNTIES.contains(authorityKey)
                     );
                 })
                 .toList();

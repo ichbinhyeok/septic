@@ -437,6 +437,10 @@
   .tx-authority p { max-width: 72ch; margin: 0; color: #d2ddda; }
   .tx-authority .eyebrow { color: #9bc6b9; }
   @media (max-width: 720px) { .tx-authority__grid { grid-template-columns: 1fr; } .tx-authority .button { width: 100%; } }
+  .fl-transition { padding-block: 22px; color: #f8fbf8; background: #285e68; }
+  .fl-transition h2 { margin: 5px 0 6px; color: #fff; font-size: clamp(1.35rem, 2.3vw, 2rem); }
+  .fl-transition p { max-width: 78ch; margin: 0; color: #e1efee; }
+  .fl-transition .eyebrow { color: #b8d8d4; }
   .tdec-desk__intro { padding-block: clamp(28px, 3.5vw, 42px); border-bottom: 1px solid var(--line-dark); background: #fbfbf8; }
   .tdec-desk__intro-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); gap: clamp(38px, 7vw, 92px); align-items: end; }
   .tdec-desk__intro h1 { max-width: 20ch; margin: 9px 0 14px; font-size: clamp(2.4rem, 4.1vw, 4rem); line-height: 1; letter-spacing: -.05em; }

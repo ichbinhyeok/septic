@@ -41,7 +41,6 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void stateSpecificOfficialPagesDoNotRenderTennesseeRoutes() throws Exception {
         Map<String, String> expectedHeadings = Map.of(
-                "/florida-ostds-permit-lookup/", "Find Florida OSTDS permits and septic records",
                 "/dhec-septic-permit-lookup/", "Find South Carolina septic permits and SCDES records"
         );
 
@@ -54,6 +53,20 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(not(containsString("Open official SSDS page"))))
                     .andExpect(content().string(not(containsString("Use TDEC guide"))));
         }
+    }
+
+    @Test
+    void floridaRouteSeparatesCurrentAuthorityFromHistoricalRecords() throws Exception {
+        mockMvc.perform(get("/florida-ostds-permit-lookup/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Find the office that holds the Florida septic file")))
+                .andExpect(content().string(containsString("17 counties use DEP; 50 still use county health departments")))
+                .andExpect(content().string(containsString("data-route-owner=\"dep\"")))
+                .andExpect(content().string(containsString("data-route-owner=\"county-doh\"")))
+                .andExpect(content().string(containsString("Marion County")))
+                .andExpect(content().string(containsString("Orange County")))
+                .andExpect(content().string(containsString("data-fl-open-request")))
+                .andExpect(content().string(not(containsString("Enter the address to find the record owner"))));
     }
 
     @Test
