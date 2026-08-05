@@ -1226,7 +1226,7 @@
                 const recordOutcome = [...documents]
                     .reverse()
                     .map((documentResult) => documentResult?.recordOutcome)
-                    .find((outcome) => ["no_record_response", "request_submitted"].includes(outcome?.type)) || null;
+                    .find((outcome) => ["no_record_response", "request_submitted", "agency_referral"].includes(outcome?.type)) || null;
                 const conflictKeys = new Set([
                     "approved_bedrooms",
                     "tank_capacity",
@@ -2177,7 +2177,8 @@
                 }
                 const officialNoRecord = summary.recordOutcome?.type === "no_record_response";
                 const requestPending = summary.recordOutcome?.type === "request_submitted";
-                const specialOutcome = officialNoRecord || requestPending;
+                const agencyReferral = summary.recordOutcome?.type === "agency_referral";
+                const specialOutcome = officialNoRecord || requestPending || agencyReferral;
                 const missingCount = summary.checklist.filter((item) => item.status === "missing").length;
                 const analyticsSignature = [
                     summary.documents.length,
@@ -2209,6 +2210,13 @@
                     }
                     if (requestPending) {
                         emitGaEvent("record_request_acknowledgment_reviewed", {
+                            purpose: routeContext?.purpose || currentPurpose(),
+                            state_code: routeContext?.stateCode || "unknown",
+                            county_name: routeContext?.countyName || "unknown"
+                        });
+                    }
+                    if (agencyReferral) {
+                        emitGaEvent("official_record_referral_reviewed", {
                             purpose: routeContext?.purpose || currentPurpose(),
                             state_code: routeContext?.stateCode || "unknown",
                             county_name: routeContext?.countyName || "unknown"
@@ -2246,6 +2254,8 @@
                     ? "Written no-record response saved"
                     : requestPending
                     ? "Official records request is pending"
+                    : agencyReferral
+                    ? "The request was routed to another office"
                     : summary.conflicts.length
                     ? "Resolve conflicting records before using the file"
                     : `${summary.completeCount} of ${summary.totalCount} checks complete`;
@@ -2253,6 +2263,8 @@
                     ? "The responsible office reported that it could not locate a matching septic file. Keep this dated response and move to the decision affected by the missing record."
                     : requestPending
                     ? "The office acknowledged the request, but it has not supplied the responsive septic records yet. Keep the reference and follow the published response timing."
+                    : agencyReferral
+                    ? "This office did not complete the septic-file search. Keep the referral, confirm the responsible authority, and continue there without treating this as a no-record result."
                     : summary.conflicts.length
                     ? "Two documents report different values. Compare both originals or ask the file owner which record controls."
                     : summary.completeCount === summary.totalCount
@@ -2288,15 +2300,21 @@
                     outcomeSection.className = "record-workspace__outcome";
                     outcomeHeading.textContent = requestPending
                         ? "What this acknowledgment establishes"
-                        : "What this response establishes";
+                        : agencyReferral
+                            ? "What this referral establishes"
+                            : "What this response establishes";
                     outcomeEvidence.textContent = summary.recordOutcome.evidence
                         ? `“${summary.recordOutcome.evidence}”`
                         : requestPending
                             ? "The official source acknowledged receipt of the records request."
-                            : "The official source reported that no matching septic record was located.";
+                            : agencyReferral
+                                ? "The responding office reported that another authority owns or should receive the request."
+                                : "The official source reported that no matching septic record was located.";
                     outcomeLimit.textContent = requestPending
                         ? "This proves receipt only. It is not a permit, a completed search, or a no-record response."
-                        : "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
+                        : agencyReferral
+                            ? "This proves routing only. It does not prove that the named office has the file, that no file exists, or that the system is approved or serviceable."
+                            : "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
                     outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimit);
                     wrapper.append(outcomeSection);
                 }
@@ -2353,6 +2371,8 @@
                     ? "Permit facts the response could not establish"
                     : requestPending
                     ? "Permit facts still awaiting the office response"
+                    : agencyReferral
+                    ? "Permit facts this office did not evaluate"
                     : "What the property file confirms";
                 checklist.className = "record-workspace__checklist";
                 summary.checklist.forEach((check) => {
@@ -2372,6 +2392,8 @@
                                 ? "Unavailable after the office's documented search"
                                 : requestPending
                                     ? "Not returned yet; this acknowledgment is not the record"
+                                    : agencyReferral
+                                        ? "Not searched by this office; continue with the responsible authority"
                                 : "Not found in the documents added so far";
                     copy.append(label, detail);
                     item.append(marker, copy);
@@ -2500,6 +2522,13 @@
                     : requestPending
                     ? button(
                         "Review the official route and response timing",
+                        routeContext?.routePath || "/septic-records-by-county/",
+                        true,
+                        "county_records_page"
+                    )
+                    : agencyReferral
+                    ? button(
+                        "Resolve the responsible file owner",
                         routeContext?.routePath || "/septic-records-by-county/",
                         true,
                         "county_records_page"
