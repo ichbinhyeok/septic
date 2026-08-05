@@ -859,6 +859,7 @@
         };
 
         finders.forEach((finder) => {
+            const finderRoot = finder.closest(".record-finder");
             const form = finder.querySelector("[data-address-record-finder-form]");
             const input = finder.querySelector("[data-address-record-finder-input]");
             const purposeSelect = finder.querySelector("[data-address-record-finder-purpose]");
@@ -928,6 +929,35 @@
             let activeStartMode = requestedDocumentMode ? "review" : requestedMissingMode ? "missing" : "find";
             let activeWorkflowRunId = requestedWorkflowRunId;
             const workflowStagesSent = new Set();
+
+            if (requestedDocumentMode && finderRoot instanceof HTMLElement) {
+                finderRoot.classList.add("record-finder--document-mode");
+                const heroEyebrow = finderRoot.querySelector(".record-finder__heading .eyebrow");
+                const heroHeading = finderRoot.querySelector(".record-finder__heading h1, .record-finder__heading h2");
+                const heroCopy = finderRoot.querySelector(".record-finder__heading > p");
+                const heroSignals = finderRoot.querySelector(".record-finder__signals");
+                const startPanel = finder.querySelector("[data-record-start]");
+                const routeSteps = document.querySelector(".record-finder-steps");
+                if (heroEyebrow) heroEyebrow.textContent = "Document review workspace";
+                if (heroHeading) heroHeading.textContent = "Review the septic file you already found.";
+                if (heroCopy) {
+                    heroCopy.textContent = "Add the official permit, layout, approval, inspection, or written office response. Confirmed facts, gaps, conflicts, and negative search evidence stay distinct.";
+                }
+                if (heroSignals) {
+                    const signals = [
+                        "Files processed in memory",
+                        "Source evidence beside each fact",
+                        "No account required"
+                    ].map((label) => {
+                        const signal = document.createElement("span");
+                        signal.textContent = label;
+                        return signal;
+                    });
+                    heroSignals.replaceChildren(...signals);
+                }
+                if (startPanel instanceof HTMLElement) startPanel.hidden = true;
+                if (routeSteps instanceof HTMLElement) routeSteps.hidden = true;
+            }
 
             function ensureWorkflowRunId() {
                 if (!activeWorkflowRunId) {
@@ -2673,11 +2703,16 @@
 
             if (requestedDocumentMode && documentWorkspace instanceof HTMLElement) {
                 const [requestedStateCode = "", requestedCountySlug = ""] = requestedCountyKey.split("::");
-                const requestedCountyName = requestedCountySlug
+                const requestedCountyLabel = requestedCountySlug
                     .split("-")
                     .filter(Boolean)
                     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
                     .join(" ");
+                const requestedCountyName = requestedCountyLabel
+                    ? /\bcounty$/i.test(requestedCountyLabel)
+                        ? requestedCountyLabel
+                        : `${requestedCountyLabel} County`
+                    : "";
                 routeContext = {
                     ...(routeContext || {}),
                     stateCode: routeContext?.stateCode || requestedStateCode,

@@ -50,6 +50,9 @@
   .record-finder__result-preview li small { color: var(--muted); font-size: .7rem; }
   .record-finder__result-preview li[data-preview-status="missing"] { opacity: .62; }
   .record-finder__result-preview > p { margin: 0; padding: 10px 14px; color: var(--muted); font-size: .7rem; }
+  .record-finder--document-mode .record-finder__intro { grid-template-columns: minmax(0, 780px); padding-block: 34px 24px; }
+  .record-finder--document-mode .record-finder__intro h1, .record-finder--document-mode .record-finder__intro h2 { max-width: 18ch; font-size: clamp(2.25rem, 4vw, 3.65rem); }
+  .record-finder--document-mode .record-finder__result-preview { display: none; }
   .record-finder__workspace { display: block; padding-block: 28px 34px; border-top: 1px solid var(--line); background: var(--paper); }
   .record-finder__resume { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 22px; padding: 14px 0; border-top: 3px solid var(--accent); border-bottom: 1px solid var(--line-dark); }
   .record-finder__resume > div { display: grid; gap: 3px; }
