@@ -1226,7 +1226,7 @@
                 const recordOutcome = [...documents]
                     .reverse()
                     .map((documentResult) => documentResult?.recordOutcome)
-                    .find((outcome) => outcome?.type === "no_record_response") || null;
+                    .find((outcome) => ["no_record_response", "request_submitted"].includes(outcome?.type)) || null;
                 const conflictKeys = new Set([
                     "approved_bedrooms",
                     "tank_capacity",
@@ -1478,10 +1478,10 @@
                     "Browser-session summary — confirm every field against the original official document.",
                     "",
                     ...contextLines,
-                    ...(summary.recordOutcome?.type === "no_record_response" ? [
+                    ...(summary.recordOutcome?.type ? [
                         "",
                         "OFFICIAL SEARCH OUTCOME",
-                        "- Written no-record response saved",
+                        `- ${summary.recordOutcome.label || summary.recordOutcome.type}`,
                         summary.recordOutcome.evidence ? `- Evidence: ${summary.recordOutcome.evidence}` : ""
                     ].filter(Boolean) : []),
                     "",
@@ -2174,6 +2174,8 @@
                     return;
                 }
                 const officialNoRecord = summary.recordOutcome?.type === "no_record_response";
+                const requestPending = summary.recordOutcome?.type === "request_submitted";
+                const specialOutcome = officialNoRecord || requestPending;
                 const missingCount = summary.checklist.filter((item) => item.status === "missing").length;
                 const analyticsSignature = [
                     summary.documents.length,
@@ -2190,8 +2192,8 @@
                         complete_count: summary.completeCount,
                         missing_count: missingCount,
                         conflict_count: summary.conflicts.length,
-                        outcome: officialNoRecord
-                            ? "official_no_record"
+                        outcome: specialOutcome
+                            ? summary.recordOutcome.type
                             : summary.conflicts.length
                             ? "conflict"
                             : missingCount ? "incomplete" : "core_file_complete"
@@ -2203,7 +2205,14 @@
                             county_name: routeContext?.countyName || "unknown"
                         });
                     }
-                    if (missingCount) {
+                    if (requestPending) {
+                        emitGaEvent("record_request_acknowledgment_reviewed", {
+                            purpose: routeContext?.purpose || currentPurpose(),
+                            state_code: routeContext?.stateCode || "unknown",
+                            county_name: routeContext?.countyName || "unknown"
+                        });
+                    }
+                    if (missingCount && !specialOutcome) {
                         emitGaEvent("missing_record_identified", {
                             source_context: "property_file_workspace",
                             purpose: routeContext?.purpose || currentPurpose(),
@@ -2230,21 +2239,25 @@
                 const progress = document.createElement("div");
                 const progressBar = document.createElement("span");
                 progressLabel.className = "record-decision__label";
-                progressLabel.textContent = officialNoRecord ? "Official search outcome" : "Property file progress";
+                progressLabel.textContent = specialOutcome ? "Official search outcome" : "Property file progress";
                 progressTitle.textContent = officialNoRecord
                     ? "Written no-record response saved"
+                    : requestPending
+                    ? "Official records request is pending"
                     : summary.conflicts.length
                     ? "Resolve conflicting records before using the file"
                     : `${summary.completeCount} of ${summary.totalCount} checks complete`;
                 progressBody.textContent = officialNoRecord
                     ? "The responsible office reported that it could not locate a matching septic file. Keep this dated response and move to the decision affected by the missing record."
+                    : requestPending
+                    ? "The office acknowledged the request, but it has not supplied the responsive septic records yet. Keep the reference and follow the published response timing."
                     : summary.conflicts.length
                     ? "Two documents report different values. Compare both originals or ask the file owner which record controls."
                     : summary.completeCount === summary.totalCount
                         ? "The core records for this purpose are present. This still does not prove current system condition."
                         : "Add another official record or request the missing items below. You will not need to re-enter confirmed facts.";
                 progressCopy.append(progressLabel, progressTitle, progressBody);
-                if (!officialNoRecord) {
+                if (!specialOutcome) {
                     progress.className = "record-workspace__progress";
                     progress.setAttribute("role", "progressbar");
                     progress.setAttribute("aria-valuemin", "0");
@@ -2265,22 +2278,28 @@
                 overview.append(progressCopy, documentCount);
                 wrapper.append(overview);
 
-                if (officialNoRecord) {
+                if (specialOutcome) {
                     const outcomeSection = document.createElement("section");
                     const outcomeHeading = document.createElement("strong");
                     const outcomeEvidence = document.createElement("blockquote");
                     const outcomeLimit = document.createElement("p");
                     outcomeSection.className = "record-workspace__outcome";
-                    outcomeHeading.textContent = "What this response establishes";
+                    outcomeHeading.textContent = requestPending
+                        ? "What this acknowledgment establishes"
+                        : "What this response establishes";
                     outcomeEvidence.textContent = summary.recordOutcome.evidence
                         ? `“${summary.recordOutcome.evidence}”`
-                        : "The official source reported that no matching septic record was located.";
-                    outcomeLimit.textContent = "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
+                        : requestPending
+                            ? "The official source acknowledged receipt of the records request."
+                            : "The official source reported that no matching septic record was located.";
+                    outcomeLimit.textContent = requestPending
+                        ? "This proves receipt only. It is not a permit, a completed search, or a no-record response."
+                        : "This is evidence of the agency search result. It does not prove that no system exists, that the system is legal, or that its present condition is acceptable.";
                     outcomeSection.append(outcomeHeading, outcomeEvidence, outcomeLimit);
                     wrapper.append(outcomeSection);
                 }
 
-                if (!officialNoRecord && !summary.conflicts.length && summary.completeCount === summary.totalCount) {
+                if (!specialOutcome && !summary.conflicts.length && summary.completeCount === summary.totalCount) {
                     const completion = document.createElement("section");
                     const completionCopy = document.createElement("div");
                     const completionHeading = document.createElement("strong");
@@ -2330,6 +2349,8 @@
                 checklistSection.className = "record-workspace__section";
                 checklistHeading.textContent = officialNoRecord
                     ? "Permit facts the response could not establish"
+                    : requestPending
+                    ? "Permit facts still awaiting the office response"
                     : "What the property file confirms";
                 checklist.className = "record-workspace__checklist";
                 summary.checklist.forEach((check) => {
@@ -2347,6 +2368,8 @@
                             ? `${check.values.join(" versus ")} - compare the originals`
                             : officialNoRecord
                                 ? "Unavailable after the office's documented search"
+                                : requestPending
+                                    ? "Not returned yet; this acknowledgment is not the record"
                                 : "Not found in the documents added so far";
                     copy.append(label, detail);
                     item.append(marker, copy);
@@ -2472,6 +2495,13 @@
                         true,
                         "quote_form"
                     )
+                    : requestPending
+                    ? button(
+                        "Review the official route and response timing",
+                        routeContext?.routePath || "/septic-records-by-county/",
+                        true,
+                        "county_records_page"
+                    )
                     : button(
                         hasConflict
                             ? "Request the controlling record"
@@ -2493,7 +2523,7 @@
                 const download = document.createElement("button");
                 const clear = document.createElement("button");
                 actions.className = "record-document__analysis-actions";
-                if (!officialNoRecord) {
+                if (!specialOutcome) {
                     request.addEventListener("click", () => saveRequestContext({
                         requestedRecord: recordRequestKey(summary.checklist),
                         taskMode: true,
@@ -2513,7 +2543,7 @@
                 clear.className = "button button--quiet";
                 clear.textContent = "Clear browser file";
                 clear.addEventListener("click", clearWorkspace);
-                if (officialNoRecord) {
+                if (specialOutcome) {
                     actions.append(request, download, clear);
                 } else {
                     actions.append(request, estimate, download, clear);

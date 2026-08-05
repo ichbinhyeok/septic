@@ -78,6 +78,9 @@ public class SepticDocumentAnalysisService {
                     + "(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|"
                     + "Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
                     + "\\s+(?:0?[1-9]|[12]\\d|3[01]),?\\s+(?:19|20)\\d{2})");
+    private static final Pattern REQUEST_REFERENCE = Pattern.compile(
+            "(?i)\\b(?:request\\s+)?(?:reference|tracking)\\s*(?:number|no\\.?|#|id)?\\s*[:#-]?\\s*"
+                    + "([A-Z0-9][A-Z0-9-]{3,30})\\b");
     private static final Pattern EXPLICIT_NO_RECORD_RESPONSE = Pattern.compile(
             "(?i)\\b(?:written\\s+|official\\s+|dated\\s+)?no[- ]records?\\s+"
                     + "(?:response|determination|finding|letter)\\b");
@@ -93,6 +96,12 @@ public class SepticDocumentAnalysisService {
             "(?i)\\b(?:we\\s+searched|our\\s+search|records?\\s+request|public\\s+records?|"
                     + "environmental\\s+(?:health|field)\\s+office|department|county\\s+office|"
                     + "archived\\s+(?:paper\\s+)?records?|parcel\\s+(?:number|id)|prior\\s+owner)\\b");
+    private static final Pattern REQUEST_RECEIVED = Pattern.compile(
+            "(?is)\\b(?:your|the)?\\s*(?:public[- ]records?\\s+)?request\\b[^.\\n]{0,100}"
+                    + "\\b(?:received|submitted|accepted)\\b");
+    private static final Pattern RECEIVED_YOUR_REQUEST = Pattern.compile(
+            "(?is)\\b(?:we|the\\s+office|the\\s+department)\\s+(?:have\\s+)?received\\b"
+                    + "[^.\\n]{0,80}\\b(?:your|the)\\s+(?:public[- ]records?\\s+)?request\\b");
 
     private final DocumentOcrService documentOcrService;
 
@@ -154,17 +163,24 @@ public class SepticDocumentAnalysisService {
         );
         List<String> missingItems = missingItems(normalizedPurpose, findings);
         boolean officialNoRecord = recordOutcome != null && "no_record_response".equals(recordOutcome.type());
+        boolean requestPending = recordOutcome != null && "request_submitted".equals(recordOutcome.type());
         List<String> nextSteps = officialNoRecord
                 ? noRecordNextSteps(normalizedPurpose, stateCode, countyName)
+                : requestPending
+                ? requestPendingNextSteps(stateCode, countyName)
                 : nextSteps(normalizedPurpose, findings, missingItems, stateCode, countyName, extracted.ocrUsed());
         DocumentDecision decision = officialNoRecord
                 ? noRecordDecision(normalizedPurpose, recordOutcome)
+                : requestPending
+                ? requestPendingDecision(recordOutcome, findings)
                 : decisionFor(normalizedPurpose, findings, missingItems, extracted.ocrUsed());
         String readingMethod = extracted.ocrUsed()
                 ? "OCR read typed text from this scan. "
                 : "";
         String summary = officialNoRecord
                 ? "A written official response reports that no matching septic file was located. Keep the dated response as negative evidence."
+                : requestPending
+                ? "The official source acknowledged the request, but it has not supplied the responsive septic records yet. Keep the reference for follow-up."
                 : findings.isEmpty()
                 ? readingMethod + "Readable text was found, but no common septic permit fields could be identified automatically."
                 : readingMethod + "We found " + findings.size() + " useful field"
@@ -172,8 +188,12 @@ public class SepticDocumentAnalysisService {
                         + ". Confirm them against the original document before acting.";
 
         return new SepticDocumentAnalysisResult(
-                officialNoRecord ? "official_no_record" : findings.isEmpty() ? "needs_review" : "analyzed",
-                officialNoRecord ? "Keep the official no-record response with the property file" : headingFor(normalizedPurpose),
+                officialNoRecord ? "official_no_record"
+                        : requestPending ? "request_pending"
+                        : findings.isEmpty() ? "needs_review" : "analyzed",
+                officialNoRecord ? "Keep the official no-record response with the property file"
+                        : requestPending ? "Keep the request reference until the records arrive"
+                        : headingFor(normalizedPurpose),
                 summary,
                 normalizedPurpose,
                 fileName,
@@ -285,6 +305,24 @@ public class SepticDocumentAnalysisService {
                     matchedEvidence(text, explicit)
             );
         }
+        if (OFFICIAL_SEARCH_CONTEXT.matcher(text).find()) {
+            Matcher received = REQUEST_RECEIVED.matcher(text);
+            if (received.find()) {
+                return new DocumentRecordOutcome(
+                        "request_submitted",
+                        "Official request acknowledgment",
+                        matchedEvidence(text, received)
+                );
+            }
+            Matcher reverse = RECEIVED_YOUR_REQUEST.matcher(text);
+            if (reverse.find()) {
+                return new DocumentRecordOutcome(
+                        "request_submitted",
+                        "Official request acknowledgment",
+                        matchedEvidence(text, reverse)
+                );
+            }
+        }
         return null;
     }
 
@@ -311,6 +349,39 @@ public class SepticDocumentAnalysisService {
             steps.add("Retain the " + stateCode.toUpperCase(Locale.US) + " agency response with the property file.");
         }
         return steps.stream().distinct().toList();
+    }
+
+    private List<String> requestPendingNextSteps(String stateCode, String countyName) {
+        List<String> steps = new ArrayList<>();
+        steps.add("Keep the acknowledgment and request reference until the office supplies a property-specific answer.");
+        steps.add("Do not treat the acknowledgment as a permit, a completed search, or a no-record response.");
+        steps.add("Follow the office's published response timing before sending a duplicate request.");
+        if (countyName != null && !countyName.isBlank()) {
+            steps.add("Use " + countyName + " as the file-owner context when following up.");
+        } else if (stateCode != null && !stateCode.isBlank()) {
+            steps.add("Use the " + stateCode.toUpperCase(Locale.US) + " request route when following up.");
+        }
+        return steps;
+    }
+
+    private DocumentDecision requestPendingDecision(
+            DocumentRecordOutcome outcome,
+            List<DocumentFinding> findings
+    ) {
+        List<String> supportedBy = new ArrayList<>();
+        supportedBy.add(outcome.label());
+        findings.stream()
+                .filter(finding -> "request_reference".equals(finding.key()))
+                .findFirst()
+                .ifPresent(finding -> supportedBy.add("Request reference: " + finding.value()));
+        return new DocumentDecision(
+                "pending",
+                "Official request pending",
+                "The office received the request; the record search is not complete",
+                "Keep the reference and return when the office sends documents, a referral, or a written no-record response.",
+                List.copyOf(supportedBy),
+                "An acknowledgment does not prove permit existence, approval, capacity, location, condition, or a completed no-record search."
+        );
     }
 
     private DocumentDecision noRecordDecision(String purpose, DocumentRecordOutcome outcome) {
@@ -466,6 +537,7 @@ public class SepticDocumentAnalysisService {
         addPatternFinding(findings, text, "design_flow", "Design flow", DESIGN_FLOW, "Medium", " GPD");
         addPatternFinding(findings, text, "design_flow", "Design flow", OPERATIONAL_CAPACITY, "Medium", " GPD");
         addPatternFinding(findings, text, "approval_date", "Approval or inspection date", DATE, "Medium");
+        addPatternFinding(findings, text, "request_reference", "Request reference", REQUEST_REFERENCE, "High");
         DocumentFinding permitFinding = findings.get("permit_number");
         if (permitFinding != null && isPermitStopWord(permitFinding.value())) {
             findings.remove("permit_number");
