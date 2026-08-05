@@ -261,6 +261,12 @@
                         <dt>Done when</dt>
                         <dd>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "You have the file or a written office response"}</dd>
                     </div>
+                    @if (countyAccessProfile != null && countyAccessProfile.limitation() != null && !countyAccessProfile.limitation().isBlank())
+                    <div>
+                        <dt>Watch for</dt>
+                        <dd>${countyAccessProfile.limitation()}</dd>
+                    </div>
+                    @endif
                 </dl>
                 <details class="county-review-details">
                     <summary>How this route was checked</summary>

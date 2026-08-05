@@ -14,11 +14,11 @@
                 <div>
                     <span class="eyebrow">Tennessee existing-system records</span>
                     <h1 id="tdec-page-title">Find a Tennessee septic permit or system record</h1>
-                    <p>Choose the county. Leave with the correct official route and search clues.</p>
+                    <p>Choose the county first. Leave with the correct official route and search clues.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>SepticPath does</dt><dd>Route the county and prepare search or request wording.</dd></div>
-                    <div><dt>SepticPath does not</dt><dd>Search TDEC, retrieve files, or confirm a permit.</dd></div>
+                    <div><dt>SepticPath does not</dt><dd>search TDEC databases, retrieve a PDF, or confirm that a permit exists.</dd></div>
                 </dl>
             </div>
         </section>
