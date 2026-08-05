@@ -232,6 +232,18 @@
             emit("state_record_return_prepared", {state_code: stateCode});
         });
 
+        document.addEventListener("state-records-search-reset", event => {
+            if (event.detail?.stateCode && event.detail.stateCode !== stateCode) return;
+            awaitingReturn = false;
+            try { sessionStorage.removeItem(RETURN_KEY); } catch (_) {}
+            outcomeButtons.forEach(item => item.removeAttribute("aria-pressed"));
+            if (next instanceof HTMLElement) { next.hidden = true; next.replaceChildren(); }
+            if (checkin instanceof HTMLDetailsElement) checkin.open = false;
+            if (clear instanceof HTMLElement) clear.hidden = true;
+            panel.classList.remove("is-returning");
+            if (summary) summary.textContent = "I'm back — record what happened";
+        });
+
         window.addEventListener("focus", () => {
             if (!awaitingReturn) return;
             awaitingReturn = false;

@@ -18,8 +18,10 @@
     const resultTitle = desk.querySelector("[data-tdec-result-title]");
     const resultSummary = desk.querySelector("[data-tdec-result-summary]");
     const variantsList = desk.querySelector("[data-tdec-search-variants]");
+    const verification = desk.querySelector("[data-tdec-search-verification]");
     const routeExplanation = desk.querySelector("[data-tdec-route-explanation]");
     const routeActions = desk.querySelector("[data-tdec-route-actions]");
+    const routeHandoff = desk.querySelector("[data-tdec-route-handoff]");
     const requestSection = desk.querySelector("[data-tdec-request-section]");
     const requestCopy = desk.querySelector("[data-tdec-request-copy]");
     const viewerOutcome = desk.querySelector("[data-tdec-viewer-outcome]");
@@ -75,10 +77,29 @@
 
     function addressVariants(value) {
         const clean = normalized(value);
-        const withoutDirection = clean.replace(/\b(North|South|East|West|Northeast|Northwest|Southeast|Southwest|N|S|E|W|NE|NW|SE|SW)\b\.?/gi, "").replace(/\s+/g, " ").trim();
-        const withoutSuffix = withoutDirection.replace(/\b(Street|St|Road|Rd|Lane|Ln|Drive|Dr|Avenue|Ave|Boulevard|Blvd|Highway|Hwy|Court|Ct|Circle|Cir|Trail|Trl|Parkway|Pkwy)\b\.?/gi, "").replace(/\s+/g, " ").trim();
+        const tidy = candidate => normalized(candidate).replace(/\s+([,;])/g, "$1").replace(/([,;]){2,}/g, "$1");
+        const withoutDirection = tidy(clean.replace(/\b(North|South|East|West|Northeast|Northwest|Southeast|Southwest|N|S|E|W|NE|NW|SE|SW)\b\.?/gi, ""));
+        const withoutSuffix = tidy(withoutDirection.replace(/\b(Street|St|Road|Rd|Lane|Ln|Drive|Dr|Avenue|Ave|Boulevard|Blvd|Highway|Hwy|Court|Ct|Circle|Cir|Trail|Trl|Parkway|Pkwy)\b\.?/gi, ""));
         const streetOnly = withoutSuffix.replace(/^\d+[A-Za-z-]*\s+/, "").trim();
         return [clean, withoutDirection, withoutSuffix, streetOnly].filter((value, index, values) => value && values.indexOf(value) === index);
+    }
+
+    function clueError(type, value) {
+        const compact = value.replace(/[^A-Za-z0-9]/g, "");
+        if (type === "address" && !/[A-Za-z]{3,}/.test(value)) {
+            return "Enter a street name, with the street number if you have it. A number by itself is not enough.";
+        }
+        if (type === "owner" && !/[A-Za-z]{2,}/.test(value)) {
+            return "Enter at least two letters from the current or prior owner's name.";
+        }
+        if ((type === "parcel" || type === "permit") && compact.length < 3) {
+            return `Enter a more complete ${type === "parcel" ? "parcel or tax-map ID" : "permit number"}.`;
+        }
+        return "";
+    }
+
+    function resetReturnState() {
+        document.dispatchEvent(new CustomEvent("state-records-search-reset", { detail: { stateCode: "TN" } }));
     }
 
     function searchVariants(type, value, extraOwner, extraSubdivision) {
@@ -165,6 +186,11 @@
             item.textContent = value;
             return item;
         }));
+        if (verification instanceof HTMLElement) {
+            verification.textContent = data.type === "address"
+                ? `County is based on your selection. SepticPath did not verify that this address is inside ${data.county.name}.`
+                : `County is based on your selection. SepticPath did not independently match this ${fieldConfig[data.type]?.label.toLowerCase() || "property clue"} to ${data.county.name}.`;
+        }
 
         routeExplanation.textContent = data.county.contract
             ? `${data.county.name} is one of Tennessee's nine locally administered septic counties.`
@@ -180,12 +206,17 @@
             routeActions.append(makeLink("Open Tennessee local-service directory", "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html", true, "tdec_contract_county_directory"));
         } else {
             routeActions.append(
-                makeLink("Open official SSDS Record Search", "https://tdec.tn.gov/document-viewer/search/stp", true, "tdec_ssds_record_search"),
-                makeLink("Open current TDEC SSDS page", "https://www.tn.gov/environment/permits/water/septic-systems-permits.html", false, "tdec_ssds_program")
+                makeLink("Open the current TDEC SSDS page", "https://www.tn.gov/environment/permits/water/septic-systems-permits.html", true, "tdec_ssds_program"),
+                makeLink("Try the direct record viewer (may return 403)", "https://tdec.tn.gov/document-viewer/search/stp", false, "tdec_ssds_record_search")
             );
             if (data.county.internalPath) {
                 routeActions.append(makeLink(`See ${data.county.name} fallback`, data.county.internalPath, false, "tdec_county_fallback"));
             }
+        }
+        if (routeHandoff instanceof HTMLElement) {
+            routeHandoff.textContent = data.county.contract
+                ? "This opens SepticPath's county instructions first. From there, use the verified county form or office route."
+                : "TDEC opens in a new tab. Start from its current SSDS page; use the direct viewer only as an optional attempt because it may return 403.";
         }
         result.hidden = false;
         requestSection.hidden = true;
@@ -212,10 +243,22 @@
             emit("records_route_error", { error_type: !countyValue ? "missing_county" : "missing_clue" });
             return;
         }
+        const type = clueType instanceof HTMLSelectElement ? clueType.value : "address";
+        const validationError = clueError(type, clueValue);
+        if (validationError) {
+            if (error instanceof HTMLElement) {
+                error.textContent = validationError;
+                error.hidden = false;
+            }
+            clue?.focus();
+            emit("records_route_error", { error_type: `invalid_${type}` });
+            return;
+        }
         if (error instanceof HTMLElement) error.hidden = true;
+        resetReturnState();
         prepared = {
             county: countyValue,
-            type: clueType instanceof HTMLSelectElement ? clueType.value : "address",
+            type,
             clue: clueValue,
             subdivision: subdivision instanceof HTMLInputElement ? normalized(subdivision.value, 100) : "",
             owner: owner instanceof HTMLInputElement ? normalized(owner.value, 100) : ""
@@ -224,6 +267,7 @@
     });
 
     desk.querySelector("[data-tdec-edit-search]")?.addEventListener("click", () => {
+        resetReturnState();
         prepared = null;
         result.hidden = true;
         requestSection.hidden = true;

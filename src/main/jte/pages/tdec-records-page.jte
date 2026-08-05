@@ -103,6 +103,7 @@
                             <div>
                                 <h3 id="tdec-search-plan-title">Try these search values</h3>
                                 <ol data-tdec-search-variants></ol>
+                                <p class="field-help" data-tdec-search-verification></p>
                                 <button class="text-button" type="button" data-tdec-copy-clues>Copy search clues</button>
                             </div>
                         </section>
@@ -112,7 +113,7 @@
                                 <h3 id="tdec-official-route-title">Open the correct official route</h3>
                                 <p data-tdec-route-explanation></p>
                                 <div class="tdec-result__actions" data-tdec-route-actions></div>
-                                <p class="tdec-result__handoff">The government site opens in a new tab. Keep this page open so you can return for a blocked or empty result.</p>
+                                <p class="tdec-result__handoff" data-tdec-route-handoff></p>
                             </div>
                         </section>
                         <section aria-labelledby="tdec-document-check-title">
