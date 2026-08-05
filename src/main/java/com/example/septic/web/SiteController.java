@@ -2140,8 +2140,14 @@ The goal is to settle the permit path before we frame the project as a normal in
             model.addAttribute("tennesseeCountyRoutes", tennesseeCountyRoutes());
             return "pages/tdec-records-page";
         }
+        if (NC_PERMIT_LOOKUP_SLUG.equals(contentPage.slug())) {
+            model.addAttribute("northCarolinaCountyRoutes", researchDataService
+                    .listPublicCountyRecordsPages("NC").stream()
+                    .sorted(Comparator.comparing(CountyRecordsPage::countyName))
+                    .toList());
+            return "pages/north-carolina-records-page";
+        }
         if (Set.of(
-                NC_PERMIT_LOOKUP_SLUG,
                 TX_OSSF_RECORDS_SLUG,
                 FL_OSTDS_LOOKUP_SLUG,
                 DHEC_PERMIT_LOOKUP_SLUG

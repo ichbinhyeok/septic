@@ -429,6 +429,7 @@
 @layer pages {
   /* Tennessee records desk: county-first routing, explicit government handoff. */
   .tdec-desk { background: #f7f7f3; }
+  .nc-records-desk .nc-directory-link { display: inline-flex; margin-top: 12px; color: var(--accent-dark); font-size: .78rem; font-weight: 800; text-underline-offset: 3px; }
   .tdec-desk__intro { padding-block: clamp(28px, 3.5vw, 42px); border-bottom: 1px solid var(--line-dark); background: #fbfbf8; }
   .tdec-desk__intro-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); gap: clamp(38px, 7vw, 92px); align-items: end; }
   .tdec-desk__intro h1 { max-width: 20ch; margin: 9px 0 14px; font-size: clamp(2.4rem, 4.1vw, 4rem); line-height: 1; letter-spacing: -.05em; }

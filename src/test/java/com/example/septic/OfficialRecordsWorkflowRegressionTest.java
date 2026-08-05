@@ -41,7 +41,6 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void stateSpecificOfficialPagesDoNotRenderTennesseeRoutes() throws Exception {
         Map<String, String> expectedHeadings = Map.of(
-                "/north-carolina-septic-permit-lookup/", "Find a North Carolina septic permit by county",
                 "/texas-ossf-records-search/", "Find Texas OSSF permits and septic records",
                 "/florida-ostds-permit-lookup/", "Find Florida OSTDS permits and septic records",
                 "/dhec-septic-permit-lookup/", "Find South Carolina septic permits and SCDES records"
@@ -56,6 +55,20 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(not(containsString("Open official SSDS page"))))
                     .andExpect(content().string(not(containsString("Use TDEC guide"))));
         }
+    }
+
+    @Test
+    void northCarolinaRouteUsesVerifiedCountyWorkflowsAndAnHonestBoundary() throws Exception {
+        mockMvc.perform(get("/north-carolina-septic-permit-lookup/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Find the county that holds the septic permit")))
+                .andExpect(content().string(containsString("29 county workflows have a source-reviewed route")))
+                .andExpect(content().string(containsString("SepticPath does not")))
+                .andExpect(content().string(containsString("query county systems, download a permit, or confirm that a record exists")))
+                .andExpect(content().string(containsString("data-nc-open-request")))
+                .andExpect(content().string(containsString("Environmental Health staff by county")))
+                .andExpect(content().string(not(containsString("Enter the address to find the record owner"))))
+                .andExpect(content().string(not(containsString("North Carolina public records"))));
     }
 
     @Test
