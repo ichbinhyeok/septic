@@ -41,7 +41,6 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void stateSpecificOfficialPagesDoNotRenderTennesseeRoutes() throws Exception {
         Map<String, String> expectedHeadings = Map.of(
-                "/texas-ossf-records-search/", "Find Texas OSSF permits and septic records",
                 "/florida-ostds-permit-lookup/", "Find Florida OSTDS permits and septic records",
                 "/dhec-septic-permit-lookup/", "Find South Carolina septic permits and SCDES records"
         );
@@ -55,6 +54,18 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(not(containsString("Open official SSDS page"))))
                     .andExpect(content().string(not(containsString("Use TDEC guide"))));
         }
+    }
+
+    @Test
+    void texasRouteLeadsWithTheOfficialAuthoritySearchAndVerifiedCountyRecords() throws Exception {
+        mockMvc.perform(get("/texas-ossf-records-search/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Find who permitted the Texas septic system")))
+                .andExpect(content().string(containsString("Open TCEQ authority search")))
+                .andExpect(content().string(containsString("18 county workflows have a source-reviewed record route")))
+                .andExpect(content().string(containsString("query OARS or county systems, retrieve a permit")))
+                .andExpect(content().string(containsString("data-tx-open-request")))
+                .andExpect(content().string(not(containsString("Enter the address to find the record owner"))));
     }
 
     @Test
