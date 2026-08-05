@@ -184,14 +184,21 @@
   .county-records-page .state-hero > div:first-child > h1,
   .county-records-page .state-hero > div:first-child > .county-records-page__source-title { order: 0; }
   .county-records-page .state-hero > div:first-child > .county-command-bar { order: 1; }
-  .county-records-page .state-hero > div:first-child > .content-quick-answer { order: 2; }
-  .county-records-page .state-hero > div:first-child > .county-service-scope { order: 3; }
-  .county-records-page .state-hero > div:first-child > .county-route-proof-details { order: 4; }
+  .county-records-page .state-hero > div:first-child > .county-route-brief { order: 2; }
+  .county-records-page .state-hero > div:first-child > .county-route-evidence { order: 3; }
   .county-records-page .section--heroish h1, .content-page .section--heroish h1, .calculator-intro h1, .offer-prep-hero h1 { font-size: clamp(2.25rem, 3.5vw, 3.5rem); }
   .calculator-intro { padding-block: 54px; }
   .county-records-page .section--heroish::before, .content-page .section--heroish::before { content: "PUBLIC RECORD ROUTE"; position: absolute; top: 20px; right: max(24px, calc((100vw - 1180px) / 2)); color: var(--line-dark); font-size: .64rem; font-weight: 700; letter-spacing: .16em; }
   .county-records-page__source-title, .county-records-page__local-signal, .county-records-page__support-copy { color: var(--muted); }
   .county-records-page .content-quick-answer { margin-top: 24px; }
+  .county-route-brief, .county-route-evidence { border-bottom: 1px solid var(--line-dark); }
+  .county-route-brief > summary, .county-route-evidence > summary { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; cursor: pointer; font-weight: 800; }
+  .county-route-brief > summary span, .county-route-evidence > summary span { font-size: .78rem; }
+  .county-route-brief > summary small, .county-route-evidence > summary small { color: var(--muted); font-size: .68rem; font-weight: 600; }
+  .county-route-brief__body, .county-route-evidence__body { padding-bottom: 18px; }
+  .county-route-brief__body > .content-quick-answer { margin-top: 0; }
+  .county-route-brief__body > .county-service-scope { margin-top: 12px; }
+  .county-route-evidence__body > .county-route-proof-details:first-child { margin-top: 0; }
   .county-records-page__local-signal { padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: .8rem; }
   .county-service-scope { margin-top: 22px; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
   .county-service-scope > summary { display: flex; justify-content: space-between; gap: 18px; padding: 14px 0; }
@@ -202,6 +209,11 @@
   .county-service-scope__details > div span { display: block; color: var(--muted); font-size: .66rem; font-weight: 700; text-transform: uppercase; }
   .county-service-scope__details > div strong { display: block; margin-top: 5px; font-size: .78rem; }
   .county-service-scope__details > p { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: .72rem; }
+  .county-file-sidecard { align-self: start; }
+  .county-file-sidecard__facts { margin: 14px 0 0; border-top: 2px solid var(--ink); }
+  .county-file-sidecard__facts > div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .county-file-sidecard__facts dt { color: var(--muted); font-size: .66rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .county-file-sidecard__facts dd { margin: 0; font-size: .78rem; font-weight: 700; line-height: 1.4; }
   .county-search-intent-strip { padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .76rem; }
   .county-search-intent-strip__query { display: inline; margin-left: 8px; color: var(--ink); font-weight: 700; }
   .county-proof-strip, .county-data-strip, .coverage-summary { display: flex; flex-wrap: wrap; gap: 20px 34px; padding: 18px 0; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
@@ -647,6 +659,7 @@
     .record-document__analysis-actions .button:first-child { grid-column: 1 / -1; }
     .record-document__analysis-actions .button:last-child { grid-column: 1 / -1; justify-self: start; width: auto; }
     .county-service-scope > summary { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .county-route-brief > summary, .county-route-evidence > summary { align-items: flex-start; flex-direction: column; gap: 4px; }
     .county-service-scope__details { grid-template-columns: 1fr; }
     .county-service-scope__details > p { grid-column: auto; }
     .county-access-return__outcomes { grid-template-columns: 1fr; }

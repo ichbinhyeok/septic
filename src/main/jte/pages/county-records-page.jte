@@ -57,6 +57,12 @@
                 @endif
                 <p class="county-records-page__source-title"
                    data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
+                <details class="county-route-brief">
+                    <summary>
+                        <span>Route details</span>
+                        <small>Responsibility, limits, and completion</small>
+                    </summary>
+                    <div class="county-route-brief__body">
                 @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
                     <div class="content-quick-answer" aria-label="Quick answer">
                         <span class="content-quick-answer__label">Start here</span>
@@ -108,6 +114,8 @@
                         </div>
                     </details>
                 @endif
+                    </div>
+                </details>
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
@@ -195,6 +203,12 @@
                             data-share-text="${countySeoIntro}"
                             data-track-source-context="county_records_share_route">Share county route</button>
                 </div>
+                <details class="county-route-evidence">
+                    <summary>
+                        <span>Verification and local notes</span>
+                        <small>${editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank() ? "Reviewed " + editorialLastReviewedAt : "Official-source context"}</small>
+                    </summary>
+                    <div class="county-route-evidence__body">
                 @if (countyAvailabilitySummary != null)
                     <details class="county-route-proof-details">
                         <summary>Why we trust this route</summary>
@@ -228,20 +242,26 @@
                 @else
                     <p class="lede">${countyLocalContent.introCopy()}</p>
                 @endif
+                    </div>
+                </details>
             </div>
 
             <article class="hero-sidecard county-file-sidecard">
-                <span class="pill">${countyAccessProfile != null ? countyAccessProfile.modeLabel() : "Who has the file"}</span>
-                <strong>${countyPage.officeLabel()}</strong>
-                <p>${countyAccessProfile != null ? countyAccessProfile.limitation() : countyPage.contactLine()}</p>
-                <a class="button button--primary"
-                   href="${countyAcquisitionProfile != null ? "#county-acquisition-workspace" : (countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl())}"
-                   target="${countyAcquisitionProfile != null ? null : "_blank"}"
-                   rel="${countyAcquisitionProfile != null ? null : "noreferrer"}"
-                   data-county-access-official="${countyAcquisitionProfile == null}"
-                   data-track-click="nav"
-                   data-track-source-context="county_records_owner_card"
-                   data-track-target-type="${countyAcquisitionProfile != null ? "internal_tool" : "official_source"}">${countyAcquisitionProfile != null ? (countyAcquisitionProfile.hasPreparedFieldPack() ? (countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare before contacting the county" : "Prepare with the official fields") : "Prepare the routing facts") : (countyAccessProfile != null ? countyAccessProfile.primaryLabel() : "Open official records")}</a>
+                <span class="eyebrow">Record route</span>
+                <dl class="county-file-sidecard__facts">
+                    <div>
+                        <dt>File owner</dt>
+                        <dd>${countyPage.officeLabel()}</dd>
+                    </div>
+                    <div>
+                        <dt>Access</dt>
+                        <dd>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : "Official office route"}</dd>
+                    </div>
+                    <div>
+                        <dt>Done when</dt>
+                        <dd>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "You have the file or a written office response"}</dd>
+                    </div>
+                </dl>
                 <details class="county-review-details">
                     <summary>How this route was checked</summary>
                     <dl class="review-meta">
