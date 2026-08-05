@@ -14,11 +14,11 @@
                 <div>
                     <span class="eyebrow">Tennessee existing-system records</span>
                     <h1 id="tdec-page-title">Find a Tennessee septic permit or system record</h1>
-                    <p>Choose the county first. We will prepare the correct TDEC or local-county route and the search details to carry with you.</p>
+                    <p>Choose the county. Leave with the correct official route and search clues.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>SepticPath does</dt><dd>route the county, prepare searches, and build a records request.</dd></div>
-                    <div><dt>SepticPath does not</dt><dd>search TDEC databases, retrieve a PDF, or confirm that a permit exists.</dd></div>
+                    <div><dt>SepticPath does</dt><dd>Route the county and prepare search or request wording.</dd></div>
+                    <div><dt>SepticPath does not</dt><dd>Search TDEC, retrieve files, or confirm a permit.</dd></div>
                 </dl>
             </div>
         </section>
@@ -197,16 +197,23 @@
             </div>
         </section>
 
-        <section class="tdec-reference" aria-labelledby="tdec-reference-title">
+        <section class="tdec-reference" aria-label="Official sources and route verification">
             <div class="container">
-                <h2 id="tdec-reference-title">Official-source notes</h2>
-                <p>TDEC identifies its SSDS Record Search as the online route. Its current septic-services page lists Blount, Davidson/Nashville, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby, and Williamson as locally handled counties.</p>
-                <nav aria-label="Tennessee official sources">
-                    <a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html" target="_blank" rel="noreferrer">TDEC SSDS program</a>
-                    <a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer">Environmental Field Offices</a>
-                    <a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer">Public Records Request</a>
-                </nav>
-                <p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TDEC or a Tennessee county and cannot determine system condition or legal compliance. Official route review: ${editorialLastReviewedAt}.</p>
+                <details class="tdec-reference__details">
+                    <summary>
+                        <span>Official sources and route verification</span>
+                        <small>Reviewed ${editorialLastReviewedAt}</small>
+                    </summary>
+                    <div>
+                        <p>TDEC identifies its SSDS Record Search as the online route. Its current septic-services page lists Blount, Davidson/Nashville, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby, and Williamson as locally handled counties.</p>
+                        <nav aria-label="Tennessee official sources">
+                            <a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html" target="_blank" rel="noreferrer">TDEC SSDS program</a>
+                            <a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer">Environmental Field Offices</a>
+                            <a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer">Public Records Request</a>
+                        </nav>
+                        <p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TDEC or a Tennessee county and cannot determine system condition or legal compliance.</p>
+                    </div>
+                </details>
             </div>
         </section>
         <script src="${AssetPaths.versioned("/tdec-records.js")}" defer></script>
