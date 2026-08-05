@@ -73,14 +73,16 @@
             </div>
         </section>
 
+        @template.tags.stateRecordsReturn(stateCode = "TX", stateName = "Texas", officeLabel = "the local OSSF authorized agent")
+
         <section class="tdec-outcomes" id="after-search" aria-labelledby="tx-outcomes-title">
             <div class="container tdec-outcomes__grid">
                 <header><span class="eyebrow">After the authority search</span><h2 id="tx-outcomes-title">What happened?</h2><p>An OARS contact result identifies the regulator. It is not the property permit itself.</p></header>
                 <div class="tdec-outcomes__list">
-                    <details><summary><span>I found an OSSF file</span><small>Check approval, property match, design, and later work</small></summary><div><p>Match the address or legal description, owner, permit number, and dates. Confirm the Notice of Approval and whether later repair or alteration records change the original design.</p><a href="/offer-prep-septic-file-check/">Check the file before a property decision</a></div></details>
-                    <details><summary><span>The authority has no public search</span><small>Request the file from the listed authorized agent</small></summary><div><p>Use the OARS contact and send the property keys prepared above. Ask for electronic copies and a written no-record response.</p><button class="text-button" type="button" data-tx-open-request>Prepare an OSSF request</button></div></details>
-                    <details><summary><span>No property result appeared</span><small>Retry legal description, owner, parcel, and permit number</small></summary><div><p>A blank portal result does not establish that the OSSF is unpermitted. Retry alternate identifiers, then request the file manually.</p><button class="text-button" type="button" data-tx-open-request>Prepare a no-result request</button></div></details>
-                    <details><summary><span>The authority confirmed no record</span><small>Ask about predecessor jurisdictions and exemptions</small></summary><div><p>Keep the written response. Ask what date the local program began, whether TCEQ or a prior authority has older files, and whether the office is saying no file was found rather than declaring the system exempt.</p></div></details>
+                    <details data-state-fallback-outcome="found"><summary><span>I found an OSSF file</span><small>Check approval, property match, design, and later work</small></summary><div><p>Match the address or legal description, owner, permit number, and dates. Confirm the Notice of Approval and whether later repair or alteration records change the original design.</p><a href="/offer-prep-septic-file-check/">Check the file before a property decision</a></div></details>
+                    <details data-state-fallback-outcome="wrong_agency blocked"><summary><span>The authority has no public search</span><small>Request the file from the listed authorized agent</small></summary><div><p>Use the OARS contact and send the property keys prepared above. Ask for electronic copies and a written no-record response.</p><button class="text-button" type="button" data-tx-open-request>Prepare an OSSF request</button></div></details>
+                    <details data-state-fallback-outcome="not_found_online"><summary><span>No property result appeared</span><small>Retry legal description, owner, parcel, and permit number</small></summary><div><p>A blank portal result does not establish that the OSSF is unpermitted. Retry alternate identifiers, then request the file manually.</p><button class="text-button" type="button" data-tx-open-request>Prepare a no-result request</button></div></details>
+                    <details data-state-fallback-outcome="no_record_response"><summary><span>The authority confirmed no record</span><small>Ask about predecessor jurisdictions and exemptions</small></summary><div><p>Keep the written response. Ask what date the local program began, whether TCEQ or a prior authority has older files, and whether the office is saying no file was found rather than declaring the system exempt.</p></div></details>
                 </div>
             </div>
         </section>
@@ -91,5 +93,6 @@
 
         <section class="tdec-reference" aria-labelledby="tx-reference-title"><div class="container"><h2 id="tx-reference-title">Official-source notes</h2><p>TCEQ says it is not often the permitting authority. Local authorized agents administer most OSSF programs; the TCEQ regional office handles areas without an authorized local jurisdiction.</p><nav aria-label="Texas official sources"><a href="https://www6.tceq.texas.gov/oars/index.cfm?fuseaction=search.county" target="_blank" rel="noreferrer">TCEQ local authority search</a><a href="https://www.tceq.texas.gov/permitting/ossf/ossfpermits.html" target="_blank" rel="noreferrer">TCEQ OSSF permit guidance</a><a href="https://www.tceq.texas.gov/permitting/ossf/ossf_contacts.html" target="_blank" rel="noreferrer">TCEQ OSSF contacts</a></nav><p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TCEQ or a local authority and cannot certify permit status, system condition, or compliance.@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) Official route review: ${editorialLastReviewedAt}.@endif</p></div></section>
         <script src="${AssetPaths.versioned("/texas-ossf-records.js")}" defer></script>
+        <script src="${AssetPaths.versioned("/state-records-return.js")}" defer></script>
     </div>
 `)

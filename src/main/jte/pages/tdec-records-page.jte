@@ -133,6 +133,8 @@
             </div>
         </section>
 
+        @template.tags.stateRecordsReturn(stateCode = "TN", stateName = "Tennessee", officeLabel = "TDEC or the responsible contract county")
+
         <section class="tdec-outcomes" id="after-search" aria-labelledby="tdec-outcomes-title">
             <div class="container tdec-outcomes__grid">
                 <header>
@@ -141,28 +143,28 @@
                     <p>An empty result or 403 page does not prove that no septic record exists.</p>
                 </header>
                 <div class="tdec-outcomes__list">
-                    <details>
+                    <details data-state-fallback-outcome="found">
                         <summary><span>Found a permit or PDF</span><small>Check the property match and file completeness</small></summary>
                         <div>
                             <p>Match the county, address or parcel, owner, permit number, and dates. Then check whether layout, final approval, bedroom capacity, and repair history are present.</p>
                             <a href="/offer-prep-septic-file-check/" data-track-click="nav" data-track-source-context="tdec_found_file" data-track-target-type="internal_tool">Check what the file means for a property decision</a>
                         </div>
                     </details>
-                    <details>
+                    <details data-state-fallback-outcome="not_found_online">
                         <summary><span>No result appeared</span><small>Retry alternate keys before requesting the file</small></summary>
                         <div>
                             <p>Try street name only, remove Road/Street/Lane and direction letters, then try parcel, prior owner, subdivision, lot, or permit number. If still empty, prepare a written request below.</p>
                             <button class="text-button" type="button" data-tdec-open-request>No-result request</button>
                         </div>
                     </details>
-                    <details data-tdec-viewer-outcome>
+                    <details data-tdec-viewer-outcome data-state-fallback-outcome="blocked">
                         <summary><span>The viewer returned 403</span><small>Use the working TDEC page or written request</small></summary>
                         <div>
                             <p>The TDEC record viewer blocks some visits. That is a website-access failure, not a property result. Use the current SSDS program page or submit the same clues through the official request form.</p>
                             <button class="text-button" type="button" data-tdec-open-request>Prepare blocked-viewer fallback</button>
                         </div>
                     </details>
-                    <details>
+                    <details data-state-fallback-outcome="no_record_response wrong_agency">
                         <summary><span>The office says no record exists</span><small>Keep that response and clarify the archive</small></summary>
                         <div>
                             <p>Ask whether the search included prior owners, archived or pre-digital files, repair records, and any delegated local office. Keep the written no-record response with the property file.</p>
@@ -208,5 +210,6 @@
             </div>
         </section>
         <script src="${AssetPaths.versioned("/tdec-records.js")}" defer></script>
+        <script src="${AssetPaths.versioned("/state-records-return.js")}" defer></script>
     </div>
 `)

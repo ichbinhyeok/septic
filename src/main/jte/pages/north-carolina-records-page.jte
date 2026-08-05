@@ -130,6 +130,8 @@
             </div>
         </section>
 
+        @template.tags.stateRecordsReturn(stateCode = "NC", stateName = "North Carolina", officeLabel = "the county Environmental Health office")
+
         <section class="tdec-outcomes" id="after-search" aria-labelledby="nc-outcomes-title">
             <div class="container tdec-outcomes__grid">
                 <header>
@@ -138,19 +140,19 @@
                     <p>A blank portal result is not the same as a county-confirmed no-record response.</p>
                 </header>
                 <div class="tdec-outcomes__list">
-                    <details>
+                    <details data-state-fallback-outcome="found">
                         <summary><span>I found permit documents</span><small>Confirm match, capacity, layout, and final status</small></summary>
                         <div><p>Match the address or PIN, owner, permit number, and dates. Check whether the Operation Permit or final approval agrees with the improvement permit and installed layout.</p><a href="/offer-prep-septic-file-check/">Check the file before a property decision</a></div>
                     </details>
-                    <details>
+                    <details data-state-fallback-outcome="not_found_online">
                         <summary><span>Nothing appeared online</span><small>Retry alternate keys, then contact county Environmental Health</small></summary>
                         <div><p>Try the PIN, street name without suffix, prior owner, subdivision, lot, and permit number. If still empty, prepare a written request below.</p><button class="text-button" type="button" data-nc-open-request>Prepare a no-result request</button></div>
                     </details>
-                    <details>
+                    <details data-state-fallback-outcome="blocked wrong_agency">
                         <summary><span>The county site is broken or confusing</span><small>Do not interpret a website failure as a property result</small></summary>
                         <div><p>Use the county guide to find the Environmental Health office and send the same match keys through its form, email, or phone route.</p><button class="text-button" type="button" data-nc-open-request>Prepare a manual request</button></div>
                     </details>
-                    <details>
+                    <details data-state-fallback-outcome="no_record_response">
                         <summary><span>The county confirmed no record</span><small>Preserve the response and ask what archive was checked</small></summary>
                         <div><p>Ask whether the search included prior owners, paper or pre-digital files, repair records, and predecessor health districts. Keep the written response with the property file.</p></div>
                     </details>
@@ -185,5 +187,6 @@
             </div>
         </section>
         <script src="${AssetPaths.versioned("/north-carolina-records.js")}" defer></script>
+        <script src="${AssetPaths.versioned("/state-records-return.js")}" defer></script>
     </div>
 `)
