@@ -2399,7 +2399,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
         CountyLocalContentView countyLocalContent = countyContentQualityService.build(countyPage, sources);
         CountyWorkflowProfileView countyWorkflowProfile = CountyWorkflowRegistry.findOrBaseline(countyPage);
-        CountyAccessProfileView countyAccessProfile = countyWorkflowProfile.access();
+        CountyAccessProfileView countyAccessProfile = operationalCountyAccessProfile(
+                countyPage,
+                countyWorkflowProfile.access()
+        );
         CountyAcquisitionProfileView countyAcquisitionProfile = countyWorkflowProfile.acquisition();
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
@@ -2434,6 +2437,38 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialNote", "This " + countyPage.countyName() + ", " + state.stateName()
                 + " route is maintained as conservative homeowner guidance and changes when its official file path changes.");
         return "pages/county-records-page";
+    }
+
+    private CountyAccessProfileView operationalCountyAccessProfile(
+            CountyRecordsPage countyPage,
+            CountyAccessProfileView publishedProfile
+    ) {
+        if (!"NC::wake-county".equals(countyPage.key())) {
+            return publishedProfile;
+        }
+
+        return new CountyAccessProfileView(
+                publishedProfile.countyKey(),
+                publishedProfile.countySpecific(),
+                "phone_assisted",
+                "Phone-assisted records request",
+                publishedProfile.heading(),
+                "Wake County's legacy Permit Search timed out during operating-browser verification. Use the county's published records-assistance number as the primary route, then keep the iMAPS guide as a parcel-matching aid.",
+                "Call Wake County records assistance",
+                "tel:+19198567400",
+                "Open the official iMAPS search guide",
+                publishedProfile.secondaryUrl(),
+                publishedProfile.completionLabel(),
+                "The legacy route at https://permitsearch.wake.gov/ timed out in operating-browser verification. A portal timeout or missing iMAPS result is not an official no-record result; record the county's call outcome before treating the search as complete.",
+                publishedProfile.requiredInputs(),
+                publishedProfile.expectedArtifacts(),
+                List.of(
+                        "Match the parcel with the address, PIN, owner, or Real Estate ID using the official iMAPS guide.",
+                        "Call 919-856-7400 with the matched parcel details and ask for the septic permit attachments.",
+                        "Save the permit file or record the date and outcome of the county assistance call.",
+                        "Treat only a written or documented county answer as a no-record outcome."
+                )
+        );
     }
 
     private String countySeoHeading(CountyRecordsPage countyPage) {
