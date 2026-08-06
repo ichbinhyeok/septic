@@ -85,7 +85,7 @@
 
                     <div class="tdec-workspace__submit-row">
                         <button class="button button--primary" type="submit" data-tdec-prepare>Build my route</button>
-                        <p>Use an address or at least one other property clue. Entries stay in this browser tab and are not saved by SepticPath.</p>
+                        <p>Use an address or at least one other property clue. Property details stay on this device for up to 30 days and are never sent in analytics.</p>
                     </div>
                     <p class="form-error" role="alert" data-tdec-form-error hidden></p>
                 </form>

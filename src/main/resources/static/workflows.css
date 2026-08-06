@@ -212,5 +212,21 @@
     .sticky-mobile-cta.is-visible { transform: none; }
     .sticky-mobile-cta .button { width: 100%; }
     body.has-sticky-mobile-cta { padding-bottom: 68px; }
+
+    .home-hero .record-finder__intro { padding-block: 18px 14px; }
+    .home-hero .record-finder__intro h1 { max-width: 18ch; font-size: clamp(1.8rem, 8vw, 2.15rem); line-height: 1.02; }
+    .home-hero .record-finder__heading > p { font-size: .82rem; line-height: 1.45; }
+    .home-hero .record-finder__signals { display: none; }
+    .home-hero .record-finder__workspace { padding-block: 14px 20px; }
+    .home-hero .record-finder__start { gap: 9px; margin-bottom: 12px; padding-bottom: 12px; }
+    .home-hero .record-finder__start-heading .eyebrow { display: none; }
+    .home-hero .record-finder__start-heading h3 { margin: 0; font-size: 1rem; }
+    .home-hero .record-finder__start-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .home-hero .record-finder__start-options button { min-height: 58px; padding: 9px 8px; border-top: 0; border-left: 1px solid var(--line); }
+    .home-hero .record-finder__start-options button:first-child { border-left: 0; }
+    .home-hero .record-finder__start-options button strong { font-size: .7rem; }
+    .home-hero .record-finder__start-options button span { display: none; }
+    .home-hero .record-finder__start-options button[aria-pressed="true"] { box-shadow: inset 0 4px 0 var(--accent); }
+    .home-hero .record-finder__form-fields { gap: 8px; }
   }
 }

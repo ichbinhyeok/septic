@@ -208,9 +208,13 @@ public class EventAnalyticsService {
             stages.put("preparation_ready", "Information prepared");
             stages.put("official_route_opened", "Official route opened");
             stages.put("outcome_recorded", "Official result reported");
+            stages.put("request_prepared", "Request prepared");
+            stages.put("request_evidence_added", "Request submission evidence added");
+            stages.put("artifact_acquired", "Official artifact acquired");
             stages.put("document_handoff", "Upload workspace opened");
             stages.put("document_reviewed", "Document reviewed");
             stages.put("property_file_ready", "Core file ready");
+            stages.put("decision_ready", "Next decision ready");
             stages.put("task_finished", "Task explicitly finished");
 
             long sevenDayCohort = workflowCohortCount(sprintStart);

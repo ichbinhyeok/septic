@@ -52,6 +52,7 @@
         }
     </script>
     <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
+    <script src="${AssetPaths.versioned("/record-task.js")}" defer></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const featureSelector = [
@@ -94,7 +95,7 @@
                     <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
-                        <span>Property records &amp; permit routes</span>
+                        <span>Records, file review &amp; next decisions</span>
                     </span>
                 </a>
 
@@ -113,9 +114,9 @@
                 </button>
 
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
-                    <a href="/septic-permit-lookup/">Find a permit</a>
                     <a href="/septic-record-finder/">Find records</a>
-                    <a href="/offer-prep-septic-file-check/">Buyer file check</a>
+                    <a href="/septic-record-finder/?mode=document">Review a file</a>
+                    <a href="/offer-prep-septic-file-check/">Next decision</a>
                     <a href="/states/">States</a>
                     <a href="/septic-system-cost-calculator/">Cost planning</a>
                 </nav>
@@ -161,12 +162,13 @@
                 <nav class="footer-block" aria-label="Core pages">
                     <h2 class="footer-heading">Core pages</h2>
                     <ul class="footer-list">
-                        <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-record-finder/">Find records by address</a></li>
+                        <li><a href="/septic-record-finder/?mode=document">Review a file</a></li>
+                        <li><a href="/offer-prep-septic-file-check/">Choose the next decision</a></li>
+                        <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-records-checklist/">Records guides</a></li>
                         <li><a href="/septic-records-by-county/">County record paths</a></li>
                         <li><a href="/septic-records-access-index/">County access dataset</a></li>
-                        <li><a href="/offer-prep-septic-file-check/">Offer prep file check</a></li>
                         <li><a href="/septic-transfer-compliance/">Transfer compliance</a></li>
                         <li><a href="/septic-system-cost-calculator/">Cost estimator</a></li>
                         <li><a href="/states/">State guides</a></li>

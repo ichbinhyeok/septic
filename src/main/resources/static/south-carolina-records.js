@@ -60,8 +60,20 @@
         link.dataset.trackClick = internal ? "county_route" : "official_source";
         link.dataset.trackSourceContext = context;
         link.dataset.trackTargetType = internal ? "internal_route" : "official_search";
-        if (!internal) link.addEventListener("click", () => emit("official_source_clicked", {state_code: "SC", county_name: prepared?.county.name || "", source_type: "scdes_site_explorer"}));
+        if (!internal) link.addEventListener("click", () => {
+            emit("official_source_clicked", {state_code: "SC", county_name: prepared?.county.name || "", source_type: "scdes_site_explorer"});
+            window.SepticRecordTask?.transition("official_opened", "official_opened");
+        });
         return link;
+    }
+
+    function requestButton(label, primary) {
+        const node = document.createElement("button");
+        node.type = "button";
+        node.className = primary ? "button button--primary" : "button button--secondary";
+        node.textContent = label;
+        node.addEventListener("click", showRequest);
+        return node;
     }
 
     function requestText(data) {
@@ -78,6 +90,7 @@
 
     function showRequest() {
         if (!prepared) return;
+        window.SepticRecordTask?.transition("request_prepared", "request_prepared");
         requestCopy.value = requestText(prepared);
         requestSection.hidden = false;
         requestSection.scrollIntoView({behavior: "smooth", block: "start"});
@@ -98,21 +111,36 @@
         }
         error.hidden = true;
         prepared = {county: selected, age: age.value, type: clueType.value, clue: clueValue, lot: clean(lot?.value, 120), owner: clean(owner?.value, 100)};
-        desk.querySelector("[data-sc-result-status]").textContent = age.value === "older" ? "Search first · physical locate may follow" : "SCDES search prepared";
+        const directIdentifier = prepared.type === "tms" || prepared.type === "permit";
+        window.SepticRecordTask?.prepare({
+            stateCode: "SC", stateName: "South Carolina", countyName: selected.name,
+            countyKey: `SC::${selected.key}`, routePath: window.location.pathname,
+            routeMode: directIdentifier ? "official_search" : "identifier_or_request",
+            routeReliability: directIdentifier ? "identifier_required" : "request_first",
+            officialRoute: directIdentifier ? SITE_EXPLORER : selected.internalPath,
+            requestRoute: window.location.pathname,
+            requiredIdentifiers: directIdentifier ? [fields[prepared.type].label] : ["TMS / tax map number or permit number"],
+            requestedDocuments: ["Permit to Construct", "soil evaluation", "approved layout", "DES 4432 final inspection", "repair history"]
+        }, {address: prepared.type === "address" ? prepared.clue : "", identifierType: prepared.type, identifierValue: prepared.clue});
+        window.SepticRecordTask?.transition("route_ready", "route_ready");
+        desk.querySelector("[data-sc-result-status]").textContent = directIdentifier ? "Official identifier ready" : "TMS or file request needed";
         desk.querySelector("[data-sc-result-title]").textContent = `${selected.name} septic record search`;
-        desk.querySelector("[data-sc-result-summary]").textContent = age.value === "older"
-            ? "Search SCDES with every available identifier. If staff cannot locate an older permit, a licensed contractor may need to physically locate the system."
-            : age.value === "unknown"
-                ? "Search SCDES first. If no permit is located, confirm the property's age before deciding whether an office follow-up or physical locate is next."
-                : "Search Site Explorer first, then ask SCDES staff to check the available file if the public result is incomplete.";
+        desk.querySelector("[data-sc-result-summary]").textContent = directIdentifier
+            ? "Use this TMS or permit number in Site Explorer. A map pin alone is not a record result; return with the permit details or attachment."
+            : "An address or owner name is not a reliable Site Explorer key. Get the county TMS first, or prepare an SCDES file request here.";
         desk.querySelector("[data-sc-search-variants]").replaceChildren(...variants(prepared).map(value => { const item = document.createElement("li"); item.textContent = value; return item; }));
         const actions = desk.querySelector("[data-sc-route-actions]");
-        actions.replaceChildren(officialLink("Search SCDES Site Explorer", SITE_EXPLORER, true, "sc_site_explorer"));
-        if (selected.internalPath) actions.append(officialLink(`Open ${selected.name} search guide`, selected.internalPath, false, "sc_county_guide", true));
+        if (directIdentifier) {
+            actions.replaceChildren(officialLink("Search SCDES with this identifier", SITE_EXPLORER, true, "sc_site_explorer"));
+            actions.append(requestButton("Prepare a file request instead", false));
+        } else {
+            actions.replaceChildren(officialLink(`Get the ${selected.name} TMS`, selected.internalPath, true, "sc_county_guide", true));
+            actions.append(requestButton("Prepare an SCDES file request", false));
+        }
         result.hidden = false;
         requestSection.hidden = true;
         result.scrollIntoView({behavior: "smooth", block: "start"});
-        emit("county_route_viewed", {state_code: "SC", county_name: selected.name, route_type: "scdes_site_explorer", property_age: age.value});
+        emit("county_route_viewed", {state_code: "SC", county_name: selected.name, route_type: directIdentifier ? "scdes_site_explorer" : "identifier_or_request", property_age: age.value});
     });
 
     desk.querySelector("[data-sc-edit-search]")?.addEventListener("click", () => { prepared = null; result.hidden = true; requestSection.hidden = true; form.scrollIntoView({behavior: "smooth", block: "start"}); county?.focus(); });

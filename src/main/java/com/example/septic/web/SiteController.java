@@ -2954,8 +2954,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         return switch (value) {
             case "workflow_viewed", "preparation_started", "preparation_ready",
                     "official_route_opened", "official_returned", "outcome_recorded",
-                    "request_submitted", "record_reported", "document_reviewed",
-                    "document_handoff", "property_file_ready", "task_finished" -> true;
+                    "request_prepared", "request_evidence_added", "request_submitted",
+                    "artifact_acquired", "record_reported", "document_reviewed",
+                    "document_handoff", "property_file_ready", "decision_ready", "task_finished" -> true;
             default -> false;
         };
     }
@@ -2967,7 +2968,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         return switch (value) {
             case "artifact", "partial", "not_found_online", "blocked", "request_submitted",
                     "followup_due", "no_record_response", "wrong_agency", "repair_issue",
-                    "professional_help", "found", "missing", "pending" -> true;
+                    "professional_help", "found", "missing", "pending", "resolve_conflict",
+                    "file_complete", "request_missing_record" -> true;
             default -> false;
         };
     }
@@ -4881,7 +4883,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                             page.updatedAt(),
                             researchDataService.countyRecordsPagesGeneratedAt()
                     ),
-                    List.of(), List.of()
+                    List.of(), List.of(),
+                    state.get().stateCode() + "::" + normalizeCountyFinderText(page.countyName()).replace(" county", "").replace(' ', '-'),
+                    accessProfile.countySpecific() ? "verified_county" : "official_start",
+                    accessProfile.countySpecific() ? "source_reviewed" : "baseline",
+                    List.of("Property address", "Parcel or permit number when available"),
+                    List.of("Permit", "site evaluation or layout", "final approval", "repair history"),
+                    page.path(state.get().slug())
             );
         }
 
@@ -4960,7 +4968,13 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "Use Tennessee Property Assessment Data to collect the parcel ID and current or prior owner when available.",
                         "Use the working Tennessee SSDS page to confirm the program, then send the parcel clues to the field office or public-records route for the county.",
                         "Pull the permit, layout, final approval, repair history, or written no-record response before pricing or closing."
-                )
+                ),
+                "TN::" + countyKey.replace(' ', '-'),
+                contractCounty ? "contract_county" : "field_office_request",
+                contractCounty ? "county_owned" : "viewer_secondary",
+                List.of("Property address", "Parcel ID", "Prior owner, subdivision, or permit number when available"),
+                List.of("Construction permit", "soil evaluation", "system layout", "final approval", "repair history"),
+                countyPage.path(state.slug())
         );
     }
 

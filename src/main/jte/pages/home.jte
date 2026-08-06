@@ -33,29 +33,29 @@
     <section class="section section--tight home-workflow" aria-labelledby="home-workflow-title">
         <div class="container">
             <div class="section-heading home-section-heading">
-                <span class="eyebrow">What happens next</span>
-                <h2 id="home-workflow-title">From an address to a useful answer.</h2>
+                <span class="eyebrow">From an address to a useful answer.</span>
+                <h2 id="home-workflow-title">Find records → Review a file → Next decision.</h2>
             </div>
             <ol class="home-workflow__steps">
                 <li>
                     <span>1</span>
                     <div>
-                        <h3>Find the county and route depth</h3>
-                        <p>We resolve the property county, then show whether the next step is county-specific or only an official starting point.</p>
+                        <h3>Find records or prepare the official request</h3>
+                        <p>Resolve the property county, required identifiers, and one real route to a file or a documented request.</p>
                     </div>
                 </li>
                 <li>
                     <span>2</span>
                     <div>
-                        <h3>Check the official file</h3>
-                        <p>If the county requires its own portal, it opens in a new tab. Your property context stays here.</p>
+                        <h3>Review the file or official response</h3>
+                        <p>Check property match, permit status, bedrooms, layout, final approval, repair history, and conflicts in one workspace.</p>
                     </div>
                 </li>
                 <li>
                     <span>3</span>
                     <div>
-                        <h3>Use the result without retyping it</h3>
-                        <p>Upload a document for purpose-specific checks, or carry the property details into a records request.</p>
+                        <h3>Take one concrete next action</h3>
+                        <p>Use the evidence to request a missing record, resolve a conflict, inspect, repair, replace, or ask the responsible agency.</p>
                     </div>
                 </li>
             </ol>

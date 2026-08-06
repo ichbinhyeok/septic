@@ -35,6 +35,7 @@
         const option = county.selectedOptions[0];
         if (!option?.value) return null;
         return {
+            key: option.value,
             name: option.dataset.countyName || option.textContent.trim(),
             internalPath: option.dataset.internalPath || "",
             recordsUrl: option.dataset.recordsUrl || "",
@@ -74,6 +75,7 @@
             node.dataset.trackSourceContext = "nc_county_record_route";
             node.dataset.trackTargetType = "official_source";
             node.addEventListener("click", () => emit("official_source_clicked", { state_code: "NC", county_name: prepared?.county.name || "" }));
+            node.addEventListener("click", () => window.SepticRecordTask?.transition("official_opened", "official_opened"));
         }
         return node;
     }
@@ -92,6 +94,7 @@
 
     function showRequest() {
         if (!prepared) return;
+        window.SepticRecordTask?.transition("request_prepared", "request_prepared");
         requestCopy.value = requestText(prepared);
         requestRoute.href = prepared.county.internalPath;
         requestSection.hidden = false;
@@ -119,6 +122,15 @@
             owner: clean(owner?.value, 100),
             subdivision: clean(subdivision?.value, 100)
         };
+        window.SepticRecordTask?.prepare({
+            stateCode: "NC", stateName: "North Carolina", countyName: countyValue.name,
+            countyKey: `NC::${countyValue.key}`, routePath: window.location.pathname,
+            routeMode: "verified_county", routeReliability: "source_reviewed",
+            officialRoute: countyValue.recordsUrl, requestRoute: countyValue.internalPath,
+            requiredIdentifiers: [fields[prepared.type]?.label || "Property clue", "Prior owner or subdivision if available"],
+            requestedDocuments: ["Improvement Permit", "Construction Authorization", "Operation Permit or final approval", "approved layout", "repair history"]
+        }, {address: prepared.type === "address" ? prepared.clue : "", identifierType: prepared.type, identifierValue: prepared.clue});
+        window.SepticRecordTask?.transition("route_ready", "route_ready");
         desk.querySelector("[data-nc-result-title]").textContent = `${countyValue.name} record route`;
         desk.querySelector("[data-nc-result-summary]").textContent = "Start with the verified county workflow. Use the official source only after you know which portal, form, email, or office owns the file.";
         variantsList.replaceChildren(...variants(prepared.type, prepared.clue, prepared.owner, prepared.subdivision).map((value) => {

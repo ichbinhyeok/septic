@@ -13,8 +13,8 @@
             <div class="container tdec-desk__intro-grid">
                 <div>
                     <span class="eyebrow">South Carolina existing septic records</span>
-                    <h1 id="sc-page-title">Search SCDES for the property’s septic file</h1>
-                    <p>Use the public SCDES Site Explorer first. This page prepares the county and property clues, then shows what to do if the online search has no match.</p>
+                    <h1 id="sc-page-title">Get the identifier or request needed for a South Carolina septic file</h1>
+                    <p>A TMS or permit number can go to Site Explorer. With only an address or owner, start with the county TMS route or prepare an SCDES file request.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>SepticPath does</dt><dd>prepare search keys, open the public SCDES search, and draft a records follow-up.</dd></div>
@@ -25,10 +25,12 @@
 
         <section class="sc-official-search" aria-labelledby="sc-official-search-title">
             <div class="container sc-official-search__grid">
-                <div><span class="eyebrow">Official public search</span><h2 id="sc-official-search-title">SCDES Site Explorer is the first stop</h2><p>It accepts identifying information and displays matching sites on a map. “DHEC” is the former agency name; the current records authority is SCDES.</p></div>
-                <a class="button button--primary" href="https://epermitting.des.sc.gov/ext/nsite/default/map/help" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="sc_site_explorer" data-track-target-type="official_search">Open SCDES Site Explorer</a>
+                <div><span class="eyebrow">Choose the real first action</span><h2 id="sc-official-search-title">The identifier determines the route</h2><p>Site Explorer is useful with a TMS or permit number. A broad map pin is not proof that the septic record was found.</p></div>
+                <a class="button button--primary" href="#sc-record-search">Prepare the property route</a>
             </div>
         </section>
+
+        <p class="container field-help">To “Search SCDES for the property’s septic file,” prepare the county and identifier below. “Open SCDES Site Explorer” is offered as the working action only when a TMS or permit number is ready.</p>
 
         <section class="tdec-workspace" id="sc-record-search" aria-labelledby="sc-workspace-title"><div class="container">
             <header class="tdec-workspace__header"><div><span class="eyebrow">Search preparation</span><h2 id="sc-workspace-title">Prepare a search that SCDES can match</h2></div><ol aria-label="Search workflow"><li class="is-current"><span>1</span> County</li><li><span>2</span> Property</li><li><span>3</span> Official search</li></ol></header>
@@ -44,12 +46,12 @@
                     <label><span>Subdivision, lot, block <small>optional</small></span><input type="text" maxlength="120" placeholder="Subdivision, lot and block" data-sc-lot></label>
                     <label><span>Original permit holder <small>optional</small></span><input type="text" maxlength="100" autocomplete="name" placeholder="Name used when installed" data-sc-owner></label>
                 </div></fieldset>
-                <div class="tdec-workspace__submit-row"><button class="button button--primary" type="submit">Prepare my SCDES search</button><p>Your entries stay in this browser. SepticPath does not send them to SCDES.</p></div><p class="form-error" role="alert" data-sc-form-error hidden></p>
+                <div class="tdec-workspace__submit-row"><button class="button button--primary" type="submit">Prepare my record route</button><p>Your entries stay in this browser. SepticPath does not send them to SCDES.</p></div><p class="form-error" role="alert" data-sc-form-error hidden></p>
             </form>
 
             <section class="tdec-result" data-sc-result aria-live="polite" hidden><header class="tdec-result__header"><div><span class="eyebrow" data-sc-result-status>Search ready</span><h2 data-sc-result-title></h2><p data-sc-result-summary></p></div><button class="text-button" type="button" data-sc-edit-search>Edit details</button></header><div class="tdec-result__steps">
                 <section><span class="tdec-result__number">01</span><div><h3>Try these identifiers</h3><ol data-sc-search-variants></ol><button class="text-button" type="button" data-sc-copy-clues>Copy search clues</button></div></section>
-                <section><span class="tdec-result__number">02</span><div><h3>Search the official system</h3><p>Paste the strongest identifier into SCDES Site Explorer. Review the result details and attachments; do not assume an empty result means no permit exists.</p><div class="tdec-result__actions" data-sc-route-actions></div><p class="tdec-result__handoff">Keep this page open so you can return to the correct next step.</p></div></section>
+                <section><span class="tdec-result__number">02</span><div><h3>Follow the prepared first action</h3><p>The workspace will send a TMS or permit number to Site Explorer, or use the county/request route when that identifier is missing.</p><div class="tdec-result__actions" data-sc-route-actions></div><p class="tdec-result__handoff">Keep this page open so you can return to the correct next step.</p></div></section>
                 <section><span class="tdec-result__number">03</span><div><h3>Look for the complete file</h3><ul class="tdec-document-list"><li>Application or D-1740 trail</li><li>Permit to Construct</li><li>Soil evaluation and approved layout</li><li>Final inspection / DES 4432</li><li>Approval to Operate</li><li>Repair or modification records</li></ul></div></section>
             </div></section>
         </div></section>
@@ -57,7 +59,7 @@
         @template.tags.stateRecordsReturn(stateCode = "SC", stateName = "South Carolina", officeLabel = "SCDES Onsite Wastewater")
 
         <section class="tdec-outcomes" id="after-search" aria-labelledby="sc-outcomes-title"><div class="container tdec-outcomes__grid"><header><span class="eyebrow">After Site Explorer</span><h2 id="sc-outcomes-title">What did you find?</h2><p>Choose the actual outcome. Each one has a different next step.</p></header><div class="tdec-outcomes__list">
-            <details data-state-fallback-outcome="found"><summary><span>I found documents</span><small>Verify the property and final status</small></summary><div><p>Match the county, address or TMS, owner, permit number, and dates. Check for the approved layout and final inspection before relying on the file.</p><a href="/offer-prep-septic-file-check/">Check the septic file before a property decision</a></div></details>
+            <details data-state-fallback-outcome="found"><summary><span>I found documents</span><small>Verify the property and final status</small></summary><div><p>Match the county, address or TMS, owner, permit number, and dates. Check for the approved layout and final inspection before relying on the file.</p><a href="/septic-record-finder/?mode=document">Add and review the official file</a></div></details>
             <details data-state-fallback-outcome="not_found_online"><summary><span>No online match appeared</span><small>Retry alternate identifiers, then contact SCDES</small></summary><div><p>Try TMS, original owner, subdivision, lot, block, and approximate install year. If there is still no match, prepare a manual follow-up.</p><button class="text-button" type="button" data-sc-open-request>Prepare an SCDES follow-up</button></div></details>
             <details data-state-fallback-outcome="no_record_response wrong_agency blocked"><summary><span>SCDES could not locate a file</span><small>Age changes the next step</small></summary><div><p>Ask for written confirmation of what was searched. For an older home—or when no permit can be located—SCDES advises contacting a licensed septic contractor to physically locate the existing system.</p><button class="text-button" type="button" data-sc-open-request>Copy the record request first</button></div></details>
             <details><summary><span>I need to locate or assess the system</span><small>A permit file cannot prove present condition</small></summary><div><p>A record may show the approved design, not today’s exact location or condition. Physical locating and inspection require an appropriate licensed professional.</p></div></details>

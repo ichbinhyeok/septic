@@ -22,7 +22,7 @@
             <div class="state-record-return__body">
                 <div class="state-record-return__outcomes" role="group" aria-label="Official search result">
                     <button type="button" data-state-return-outcome="found">I found documents</button>
-                    <button type="button" data-state-return-outcome="request_submitted">I submitted a request</button>
+                    <button type="button" data-state-return-outcome="request_submitted">I submitted a request — I have details</button>
                     <button type="button" data-state-return-outcome="not_found_online">Nothing appeared online</button>
                     <button type="button" data-state-return-outcome="no_record_response">The office confirmed no record</button>
                     <button type="button" data-state-return-outcome="wrong_agency">This office does not own the file</button>

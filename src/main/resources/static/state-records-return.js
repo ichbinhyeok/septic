@@ -92,6 +92,26 @@
             } catch (_) {
                 // The visible return controls still work without browser storage.
             }
+            const task = window.SepticRecordTask;
+            if (task) {
+                task.prepare({
+                    stateCode,
+                    stateName,
+                    countyName: value.context.countyName,
+                    countyKey: value.context.countyKey,
+                    purpose: value.context.purpose,
+                    officeLabel,
+                    routePath: window.location.pathname
+                });
+                const mappedState = {
+                    official_opened: "official_opened",
+                    not_found_online: "not_found_online",
+                    no_record_response: "no_record_response",
+                    wrong_agency: "wrong_agency",
+                    blocked: "blocked"
+                }[outcome || stage];
+                if (mappedState) task.transition(mappedState, outcome || stage);
+            }
             return value;
         }
 
@@ -100,7 +120,8 @@
             url.searchParams.set("mode", mode);
             const countyKey = saved?.context?.countyKey || "";
             if (countyKey) url.searchParams.set("countyKey", countyKey);
-            if (saved?.context?.workflowRunId) url.searchParams.set("workflowRunId", saved.context.workflowRunId);
+            const workflowRunId = saved?.workflowRunId || saved?.context?.workflowRunId;
+            if (workflowRunId) url.searchParams.set("workflowRunId", workflowRunId);
             return `${url.pathname}${url.search}`;
         }
 
@@ -124,7 +145,8 @@
         function returnUrl(saved) {
             const url = new URL(window.location.pathname, window.location.origin);
             url.searchParams.set("resume", "1");
-            if (saved?.context?.workflowRunId) url.searchParams.set("workflowRunId", saved.context.workflowRunId);
+            const workflowRunId = saved?.workflowRunId || saved?.context?.workflowRunId;
+            if (workflowRunId) url.searchParams.set("workflowRunId", workflowRunId);
             url.hash = "state-records-return";
             return url.toString();
         }
@@ -147,7 +169,7 @@
             const county = saved?.context?.countyName ? ` ${saved.context.countyName}` : "";
             const calendar = [
                 "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//SepticPath//State records return//EN", "BEGIN:VEVENT",
-                `UID:${safe(saved?.context?.workflowRunId || Date.now())}@septicpath.com`,
+                `UID:${safe(saved?.workflowRunId || saved?.context?.workflowRunId || Date.now())}@septicpath.com`,
                 `DTSTAMP:${stamp(new Date())}`, `DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`,
                 `SUMMARY:${safe(`Check${county} septic record response`)}`,
                 `DESCRIPTION:${safe("Return to SepticPath and record what the official source sent. No property identifier is stored in this reminder.")}`,
@@ -193,10 +215,47 @@
                 copy.textContent = "Upload the response or paste its text. A dated office response is different from a blank portal result.";
                 actions.append(link("Add the written response", finderUrl("document", saved), true));
             } else if (outcome === "request_submitted") {
-                heading.textContent = "The request is pending, not complete.";
-                copy.textContent = "Set a private-safe reminder or copy a return link so the official reply can re-enter this property-file workflow.";
-                actions.append(button("Add a 7-day reminder", () => downloadReminder(saved, status), true));
-                actions.append(button("Copy return link", () => copyReturnLink(saved, status)));
+                const confirmed = window.SepticRecordTask?.read()?.status === "request_pending";
+                if (confirmed) {
+                    heading.textContent = "Submission evidence saved — the request is pending.";
+                    copy.textContent = "Return when the official reply arrives so it can be reviewed in this same task.";
+                    actions.append(
+                        button("Add a 7-day reminder", () => downloadReminder(window.SepticRecordTask.read(), status), true),
+                        button("Copy return link", () => copyReturnLink(window.SepticRecordTask.read(), status))
+                    );
+                } else {
+                heading.textContent = "Add submission evidence before marking this request pending.";
+                copy.textContent = "A drafted or copied request is not a submission. Record the date and channel you actually used; an optional confirmation stays only on this device.";
+                const evidence = document.createElement("form");
+                evidence.className = "state-record-return__evidence";
+                evidence.innerHTML = `
+                    <label>Submitted on<input name="submittedOn" type="date" required></label>
+                    <label>Channel<select name="channel" required><option value="">Choose one</option><option value="email">Email</option><option value="portal">Official portal</option><option value="mail">Mail</option><option value="in_person">In person</option><option value="phone">Phone confirmation</option></select></label>
+                    <label>Confirmation or reply reference<input name="reference" type="text" maxlength="160" autocomplete="off" placeholder="Optional; stored on this device"></label>
+                    <button class="button button--primary" type="submit">Save submission evidence</button>`;
+                evidence.addEventListener("submit", event => {
+                    event.preventDefault();
+                    const data = new FormData(evidence);
+                    const updated = window.SepticRecordTask?.addRequestEvidence({
+                        date: data.get("submittedOn"),
+                        channel: data.get("channel"),
+                        reference: data.get("reference")
+                    });
+                    if (!updated) {
+                        status.textContent = "Enter both the submission date and channel.";
+                        return;
+                    }
+                    heading.textContent = "Submission evidence saved — the request is pending.";
+                    copy.textContent = "Return when the official reply arrives so it can be reviewed in this same task.";
+                    evidence.remove();
+                    actions.replaceChildren(
+                        button("Add a 7-day reminder", () => downloadReminder(updated, status), true),
+                        button("Copy return link", () => copyReturnLink(updated, status))
+                    );
+                    emit("request_evidence_added", {state_code: stateCode, county_key: updated.context?.countyKey || ""});
+                });
+                wrapper.append(heading, copy, evidence);
+                }
             } else {
                 const text = {
                     not_found_online: ["A blank search is not a no-record finding.", "Use this page’s alternate identifiers and official request fallback."],
@@ -209,7 +268,8 @@
                 actions.append(link("Open the saved task workspace", finderUrl("missing", saved)));
             }
 
-            wrapper.append(heading, copy, actions, status);
+            if (!wrapper.contains(heading)) wrapper.append(heading, copy);
+            wrapper.append(actions, status);
             next.replaceChildren(wrapper);
             next.hidden = false;
             clear.hidden = false;
@@ -259,6 +319,7 @@
         outcomeButtons.forEach(item => item.addEventListener("click", () => selectOutcome(item.dataset.stateReturnOutcome || "")));
         clear?.addEventListener("click", () => {
             try { localStorage.removeItem(TASK_KEY); sessionStorage.removeItem(RETURN_KEY); } catch (_) {}
+            window.SepticRecordTask?.clear();
             outcomeButtons.forEach(item => item.removeAttribute("aria-pressed"));
             if (next instanceof HTMLElement) { next.hidden = true; next.replaceChildren(); }
             clear.hidden = true;

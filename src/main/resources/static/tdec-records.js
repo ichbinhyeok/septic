@@ -272,6 +272,7 @@
         link.textContent = route.label;
         link.addEventListener("click", () => {
             saveSession(data, true);
+            window.SepticRecordTask?.transition("official_opened", "official_opened");
             if (returnPanel instanceof HTMLElement) returnPanel.hidden = false;
             emit("official_source_clicked", {
                 state_code: "TN",
@@ -322,6 +323,19 @@
         if (!(result instanceof HTMLElement) || !(routeActions instanceof HTMLElement) || !(cluesList instanceof HTMLElement)) return;
         const route = routeFor(data);
         prepared = data;
+        window.SepticRecordTask?.prepare({
+            stateCode: "TN", stateName: "Tennessee", countyName: data.county.name,
+            countyKey: `TN::${data.county.key}`, purpose: data.purpose,
+            officeLabel: data.county.contract ? data.county.name : data.county.fieldOfficeName,
+            routePath: window.location.pathname,
+            routeMode: data.county.contract ? "contract_county" : "field_office_request",
+            routeReliability: data.county.contract ? "county_owned" : "viewer_secondary",
+            officialRoute: route.url,
+            requestRoute: data.county.contract ? data.county.recordsUrl : data.county.fieldOfficeUrl,
+            requiredIdentifiers: ["Property address", "Parcel, prior owner, subdivision, or permit number if available"],
+            requestedDocuments: ["construction permit", "soil evaluation", "system layout", "final approval", "repair history"]
+        }, {address: data.address, identifierType: data.parcel ? "parcel" : data.permit ? "permit" : "address", identifierValue: data.parcel || data.permit || data.address, alternates: [data.owner, data.subdivision]});
+        window.SepticRecordTask?.transition("route_ready", "route_ready");
         resultStatus.textContent = data.county.contract ? "Local county program" : "TDEC-managed county";
         resultTitle.textContent = `${data.county.name} record route`;
         resultSummary.textContent = data.county.contract
@@ -376,6 +390,7 @@
 
     function showRequest(data, reason) {
         if (!(requestCopy instanceof HTMLTextAreaElement) || !(requestLink instanceof HTMLAnchorElement)) return;
+        window.SepticRecordTask?.transition("request_prepared", reason);
         requestCopy.value = buildRequestText(data);
         requestGuidance.textContent = data.county.contract
             ? `${data.county.name} owns this record route. Use its county page or form with the wording below.`
@@ -398,8 +413,8 @@
             description.textContent = "Match county, parcel or address, owner, permit number, and dates. Then check for layout, final approval, bedrooms, and repair history.";
             const link = document.createElement("a");
             link.className = "button button--secondary";
-            link.href = "/offer-prep-septic-file-check/";
-            link.textContent = "Check the file contents";
+            link.href = "/septic-record-finder/?mode=document";
+            link.textContent = "Add and review the official file";
             actions.append(link);
         } else if (kind === "empty" || kind === "blocked") {
             title.textContent = kind === "blocked" ? "Treat this as an access failure" : "Retry the prepared keys, then contact the office";
@@ -481,6 +496,8 @@
     desk.querySelectorAll("[data-tdec-outcome]").forEach(button => button.addEventListener("click", () => {
         if (!prepared || !(outcomeNext instanceof HTMLElement)) return;
         desk.querySelectorAll("[data-tdec-outcome]").forEach(candidate => candidate.setAttribute("aria-pressed", String(candidate === button)));
+        const taskState = {empty: "not_found_online", blocked: "blocked", no_record: "no_record_response"}[button.dataset.tdecOutcome];
+        if (taskState) window.SepticRecordTask?.transition(taskState, button.dataset.tdecOutcome);
         outcomeNext.replaceChildren(outcomeContent(button.dataset.tdecOutcome, prepared));
         outcomeNext.hidden = false;
         emit("tdec_outcome_selected", { outcome: button.dataset.tdecOutcome, county_name: prepared.county.name, state_code: "TN" });

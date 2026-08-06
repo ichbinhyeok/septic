@@ -84,7 +84,7 @@
 
                     <div class="tdec-workspace__submit-row">
                         <button class="button button--primary" type="submit">Prepare county route</button>
-                        <p>Nothing entered here is sent to a county or saved by SepticPath.</p>
+                        <p>Property details stay on this device for up to 30 days and are never sent in analytics.</p>
                     </div>
                     <p class="form-error" role="alert" data-nc-form-error hidden></p>
                 </form>
@@ -142,7 +142,7 @@
                 <div class="tdec-outcomes__list">
                     <details data-state-fallback-outcome="found">
                         <summary><span>I found permit documents</span><small>Confirm match, capacity, layout, and final status</small></summary>
-                        <div><p>Match the address or PIN, owner, permit number, and dates. Check whether the Operation Permit or final approval agrees with the improvement permit and installed layout.</p><a href="/offer-prep-septic-file-check/">Check the file before a property decision</a></div>
+                        <div><p>Match the address or PIN, owner, permit number, and dates. Check whether the Operation Permit or final approval agrees with the improvement permit and installed layout.</p><a href="/septic-record-finder/?mode=document">Add and review the official file</a></div>
                     </details>
                     <details data-state-fallback-outcome="not_found_online">
                         <summary><span>Nothing appeared online</span><small>Retry alternate keys, then contact county Environmental Health</small></summary>

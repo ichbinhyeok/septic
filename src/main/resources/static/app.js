@@ -1419,6 +1419,7 @@
             }
 
             function clearWorkspace() {
+                window.SepticRecordTask?.clear();
                 try {
                     sessionStorage.removeItem(workspaceStorageKey);
                     sessionStorage.removeItem(legacyWorkspaceStorageKey);
@@ -1529,12 +1530,35 @@
                         documentWorkspace.hidden = false;
                     }
                 } else if (outcome === "request_submitted" || outcome === "request") {
-                    title.textContent = "Keep the request open until the office sends a property-specific answer.";
-                    copy.textContent = "A submission confirmation is pending evidence, not a completed record search. Save the reference and use the county route to follow the office's published timing.";
-                    links.append(
-                        button("Open the county route and save the reference", countyPath, true, "county_records_page"),
-                        button("Prepare the follow-up request", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool")
-                    );
+                    const confirmed = window.SepticRecordTask?.read()?.status === "request_pending";
+                    if (confirmed) {
+                        title.textContent = "Submission evidence saved — the request is pending.";
+                        copy.textContent = "Keep the reference and return with the property-specific response.";
+                        links.append(
+                            button("Open the county route", countyPath, true, "county_records_page"),
+                            button("Review the response timing", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool")
+                        );
+                    } else {
+                    title.textContent = "Add submission evidence before marking this request pending.";
+                    copy.textContent = "A copied draft is not a submission. Record the date and channel you actually used; the optional reference stays only on this device.";
+                    const evidence = document.createElement("form");
+                    evidence.className = "state-record-return__evidence";
+                    evidence.innerHTML = `<label>Submitted on<input name="submittedOn" type="date" required></label><label>Channel<select name="channel" required><option value="">Choose one</option><option value="email">Email</option><option value="portal">Official portal</option><option value="mail">Mail</option><option value="in_person">In person</option><option value="phone">Phone confirmation</option></select></label><label>Confirmation or reply reference<input name="reference" maxlength="160" autocomplete="off" placeholder="Optional; stored on this device"></label><button class="button button--primary" type="submit">Save submission evidence</button>`;
+                    evidence.addEventListener("submit", event => {
+                        event.preventDefault();
+                        const data = new FormData(evidence);
+                        const updated = window.SepticRecordTask?.addRequestEvidence({date: data.get("submittedOn"), channel: data.get("channel"), reference: data.get("reference")});
+                        if (!updated) return;
+                        title.textContent = "Submission evidence saved — the request is pending.";
+                        copy.textContent = "Keep the reference and return with the property-specific response.";
+                        evidence.remove();
+                        links.replaceChildren(
+                            button("Open the county route", countyPath, true, "county_records_page"),
+                            button("Review the response timing", "/septic-records-request-builder/?mode=task#records-request-builder", false, "internal_tool")
+                        );
+                    });
+                    content.append(title, copy, evidence);
+                    }
                 } else if (outcome === "no_record_response") {
                     title.textContent = "Keep the written no-record response with the property file.";
                     copy.textContent = "A dated office response is evidence. Add it to the file, then decide whether the missing permit trail affects the transaction, inspection, repair, or replacement scope.";
@@ -1595,7 +1619,8 @@
                     links.append(request, button("Review the county route", countyPath, false, "county_records_page"));
                 }
 
-                content.append(title, copy, links);
+                if (!content.contains(title)) content.append(title, copy);
+                content.append(links);
                 next.replaceChildren(content);
                 next.hidden = false;
                 if (["request_submitted", "request", "no_record_response", "blocked"].includes(outcome)) {
@@ -1676,8 +1701,21 @@
                     officeLabel: payload.officeLabel || "",
                     contactLine: payload.contactLine || "",
                     routeReviewedAt: payload.routeReviewedAt || "",
+                    countyKey: payload.countyKey || "",
+                    routeMode: payload.routeMode || "",
+                    routeReliability: payload.routeReliability || "",
+                    requiredIdentifiers: Array.isArray(payload.requiredIdentifiers) ? payload.requiredIdentifiers : [],
+                    requestedDocuments: Array.isArray(payload.requestedDocuments) ? payload.requestedDocuments : [],
+                    officialRoute: payload.officialRouteUrl || "",
+                    requestRoute: payload.requestRoute || payload.routePath || "",
                     purpose: currentPurpose()
                 };
+                window.SepticRecordTask?.prepare(routeContext, {
+                    address: payload.matchedAddress || input.value.trim(),
+                    identifierType: "address",
+                    identifierValue: payload.matchedAddress || input.value.trim()
+                });
+                window.SepticRecordTask?.transition("route_ready", "route_ready");
                 if (returnPanel instanceof HTMLElement) {
                     returnPanel.hidden = true;
                 }
@@ -1955,6 +1993,7 @@
                 }
                 awaitingOfficialReturn = true;
                 saveTaskProgress("official_opened");
+                window.SepticRecordTask?.transition("official_opened", "official_opened");
                 recordFinderStage("official_route_opened");
                 if (typeof window.gtag === "function") {
                     window.gtag("event", "record_finder_official_open", {
@@ -1976,6 +2015,8 @@
                 outcomeButton.setAttribute("aria-pressed", "true");
                 const outcome = outcomeButton.dataset.recordOutcome || "missing";
                 saveTaskProgress("outcome_selected", outcome);
+                const taskState = {not_found_online: "not_found_online", no_record_response: "no_record_response", wrong_agency: "wrong_agency", blocked: "blocked"}[outcome];
+                if (taskState) window.SepticRecordTask?.transition(taskState, outcome);
                 renderNextStep(outcome);
                 recordFinderStage("outcome_recorded", outcome);
                 if (outcome === "found") {
@@ -3064,9 +3105,12 @@
                     const payload = await response.json();
                     let summary = null;
                     if (response.ok) {
+                        window.SepticRecordTask?.addArtifactEvidence(sourceType === "pasted" ? "official_response" : "official_file");
                         summary = addDocumentToWorkspace(payload, sourceType);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
+                        window.SepticRecordTask?.transition("document_reviewed", "document_reviewed");
+                        window.SepticRecordTask?.transition("decision_ready", summary.conflicts.length ? "resolve_conflict" : summary.completeCount === summary.totalCount ? "file_complete" : "request_missing_record");
                         recordFinderStage("document_reviewed");
                         if (!summary.conflicts.length && summary.completeCount === summary.totalCount) {
                             recordFinderStage("property_file_ready");
