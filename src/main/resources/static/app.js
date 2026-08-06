@@ -2300,6 +2300,17 @@
                         targetType: "internal_tool"
                     };
                 }
+                if (summary.grouped.size === 0) {
+                    return {
+                        label: "No usable property facts yet",
+                        title: "Add a property-specific record before making the next decision",
+                        body: "This source did not confirm a permit, approval, layout, capacity, repair, or official search outcome. Do not turn an unrelated or blank document into inspection or cost advice.",
+                        proof: "Needed next: a responsive property file, a written no-record result, or a referral from the responsible office.",
+                        cta: "Prepare the missing-file request",
+                        href: "/septic-records-request-builder/?mode=task#records-request-builder",
+                        targetType: "internal_tool"
+                    };
+                }
                 if (purpose === "replacement") {
                     return {
                         label: "Replacement decision",
@@ -3110,17 +3121,25 @@
                     const payload = await response.json();
                     let summary = null;
                     if (response.ok) {
-                        window.SepticRecordTask?.addArtifactEvidence(sourceType === "pasted" ? "official_response" : "official_file");
+                        const usableEvidence = Boolean(payload?.recordOutcome)
+                            || (Array.isArray(payload?.findings) && payload.findings.length > 0);
+                        if (usableEvidence) {
+                            window.SepticRecordTask?.addArtifactEvidence(sourceType === "pasted" ? "official_response" : "official_file");
+                        }
                         summary = addDocumentToWorkspace(payload, sourceType);
                         saveWorkspace();
                         renderPropertyWorkspace(summary);
                         window.SepticRecordTask?.transition("document_reviewed", "document_reviewed");
-                        window.SepticRecordTask?.transition("decision_ready", summary.conflicts.length ? "resolve_conflict" : summary.completeCount === summary.totalCount ? "file_complete" : "request_missing_record");
+                        if (usableEvidence) {
+                            window.SepticRecordTask?.transition("decision_ready", summary.conflicts.length ? "resolve_conflict" : summary.completeCount === summary.totalCount ? "file_complete" : "request_missing_record");
+                        }
                         recordFinderStage("document_reviewed");
                         if (!summary.conflicts.length && summary.completeCount === summary.totalCount) {
                             recordFinderStage("property_file_ready");
                         }
-                        sendArtifactAction("address_record_finder", sourceType, "property_record");
+                        if (usableEvidence) {
+                            sendArtifactAction("address_record_finder", sourceType, "property_record");
+                        }
                         if (typeof window.gtag === "function") {
                             window.gtag("event", "record_finder_document_added", {
                                 state_code: routeContext?.stateCode || "unknown",
