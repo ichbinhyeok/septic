@@ -1935,15 +1935,15 @@ class SepticApplicationTests {
 	@Test
 	void priorityCountyPagesExposeTruthfulAccessModesAndReturnWorkflow() throws Exception {
 		List<String[]> routes = List.of(
-				new String[]{"/septic-records-checklist/virginia/prince-william-county/", "VA::prince-william-county", "portal_with_fallback", "official_search", "Search the official county system"},
-				new String[]{"/septic-records-checklist/texas/tarrant-county/", "TX::tarrant-county", "jurisdiction_first", "official_portal", "Submit through the official request portal"},
+				new String[]{"/septic-records-checklist/virginia/prince-william-county/", "VA::prince-william-county", "phone_assisted", "official_phone", "Call with the county's required property clues ready"},
+				new String[]{"/septic-records-checklist/texas/tarrant-county/", "TX::tarrant-county", "jurisdiction_first", "official_contact", "Contact the official OSSF office"},
 				new String[]{"/septic-records-checklist/tennessee/hamilton-county/", "TN::hamilton-county", "portal_with_fallback", "official_search", "Search the official county system"},
 				new String[]{"/septic-records-checklist/north-carolina/alamance-county/", "NC::alamance-county", "official_request", "official_pdf", "Complete the county's official PDF"},
 				new String[]{"/septic-records-checklist/tennessee/knox-county/", "TN::knox-county", "portal_with_fallback", "official_portal", "Submit through the official request portal"},
 				new String[]{"/septic-records-checklist/north-carolina/lincoln-county/", "NC::lincoln-county", "official_request", "official_portal", "Submit through the official request portal"},
 				new String[]{"/septic-records-checklist/georgia/dekalb-county/", "GA::dekalb-county", "official_request", "official_portal", "Submit through the official request portal"},
 				new String[]{"/septic-records-checklist/tennessee/blount-county/", "TN::blount-county", "official_request", "official_portal", "Submit through the official request portal"},
-				new String[]{"/septic-records-checklist/maryland/st-marys-county/", "MD::st-marys-county", "portal_with_fallback", "official_search", "Search the official county system"},
+				new String[]{"/septic-records-checklist/maryland/st-marys-county/", "MD::st-marys-county", "official_request", "official_pdf", "Complete the county's official PDF"},
 				new String[]{"/septic-records-checklist/new-york/suffolk-county/", "NY::suffolk-county", "phone_assisted", "official_phone", "Call with the county's required property clues ready"},
 				new String[]{"/septic-records-checklist/arizona/maricopa-county/", "AZ::maricopa-county", "portal_with_fallback", "official_search", "Search the official county system"},
 				new String[]{"/septic-records-checklist/north-carolina/brunswick-county/", "NC::brunswick-county", "metadata_only", "official_search", "Search the official county system"},
@@ -2001,9 +2001,9 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("exact submission fields are not published or independently verified")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Which OSSF authority applies?")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Tarrant County public-information portal")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tarrantcountytx.justfoia.com/publicportal")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use the Tarrant County OSSF office if the portal is blocked or jurisdiction is unclear")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Tarrant County OSSF office")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official Public Information Act instructions")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("https://tarrantcountytx.justfoia.com/publicportal"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.tarrantcountytx.gov/en/engineering-services/environmental/ossf.html")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask which county, contract-city, or ETJ office regulates the parcel.")));
 
@@ -2455,7 +2455,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/california/san-bernardino-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Bernardino County California Septic Records Checklist")))
-					.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the current San Bernardino records portal")))
+					.andExpect(content().string(org.hamcrest.Matchers.containsString("Call Environmental Health records intake")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Specific information requested")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("No current portal fee is published")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Bernardino County Environmental Health owns the practical OWTS file")))
@@ -2714,10 +2714,10 @@ class SepticApplicationTests {
 	void stMarysCountyRecordsPageShowsGisAndRepairPercWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/maryland/st-marys-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Search St. Mary's County Septic and Environmental Health Records</title>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search St. Mary's County septic records before requesting assistance")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("current St. Mary's County replacement GIS")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search the current St. Mary's GIS, then use the Environmental Health request fallback")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Request St. Mary's County Septic and Environmental Health Records</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request the St. Mary's County Environmental Health property file")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official Environmental Health request PDF")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("county GIS is only a secondary parcel")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("GIS")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("repair perc")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Maryland records lookup")))
@@ -3396,7 +3396,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/virginia/prince-william-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County Virginia Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Prince William septic documents by address or GPIN")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with Prince William On-Site Sewage &amp; Water Services")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County keeps the practical septic story in the health-district database and land records together")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("health-district file plus the pump-out history and as-built or zoning trail")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("GPIN")))

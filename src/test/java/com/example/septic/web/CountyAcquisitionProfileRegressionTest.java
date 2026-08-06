@@ -63,10 +63,11 @@ class CountyAcquisitionProfileRegressionTest {
         assertTrue(thurston.secondaryUrl().contains("/media/13802"));
         assertTrue(harford.primaryUrl().contains("PIA-Request-Form"));
         assertTrue(harford.limitation().contains("30-day"));
-        assertTrue(sanBernardino.primaryUrl().contains("nextrequest.com/requests/new"));
+        assertEquals("tel:800-442-2283", sanBernardino.primaryUrl());
+        assertTrue(sanBernardino.secondaryUrl().contains("RecordsRequestForm.pdf"));
         CountyAcquisitionProfileView sanBernardinoAcquisition =
                 CountyAcquisitionProfileCatalog.find("CA::san-bernardino-county");
-        assertEquals("official_portal", sanBernardinoAcquisition.acquisitionMethod());
+        assertEquals("official_phone", sanBernardinoAcquisition.acquisitionMethod());
         assertFalse(sanBernardinoAcquisition.officialFieldPackVerified());
         assertTrue(sanBernardinoAcquisition.archivedOfficialFieldPackVerified());
         assertTrue(sanBernardinoAcquisition.requiredFields().size() >= 10);
