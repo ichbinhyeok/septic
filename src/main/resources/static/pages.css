@@ -607,6 +607,9 @@
   .tdec-request__output label { display: block; margin-bottom: 8px; font-weight: 800; }
   .tdec-request__output textarea { width: 100%; min-height: 250px; padding: 16px; resize: vertical; border: 1px solid var(--line-dark); border-radius: 0; background: #fff; font: .82rem/1.55 ui-monospace, Consolas, monospace; }
   .tdec-request__output > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tdec-request__output .tdec-request__evidence-callout { display: block; margin-top: 18px; padding: 16px 0; border-block: 1px solid var(--line); }
+  .tdec-request__evidence-callout strong { display: block; font: 800 .9rem/1.35 var(--font-sans); }
+  .tdec-request__evidence-callout p { max-width: 62ch; margin: 5px 0 12px; color: var(--muted); font-size: .78rem; }
   .tdec-request__output dl { margin: 24px 0 0; border-top: 1px solid var(--line-dark); }
   .tdec-request__output dl > div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .76rem; }
   .tdec-request__output dt { font-weight: 800; }

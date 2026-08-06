@@ -147,5 +147,14 @@
     desk.querySelector("[data-sc-copy-clues]")?.addEventListener("click", async event => { if (!prepared) return; await navigator.clipboard.writeText(variants(prepared).join("\n")); event.currentTarget.textContent = "Copied"; });
     desk.querySelectorAll("[data-sc-open-request]").forEach(button => button.addEventListener("click", showRequest));
     desk.querySelector("[data-sc-copy-request]")?.addEventListener("click", async event => { await navigator.clipboard.writeText(requestCopy.value); event.currentTarget.textContent = "Copied"; });
+    desk.querySelector("[data-sc-confirm-request]")?.addEventListener("click", () => {
+        const checkin = desk.querySelector("[data-state-return-checkin]");
+        const submitted = desk.querySelector('[data-state-return-outcome="request_submitted"]');
+        if (checkin instanceof HTMLDetailsElement) checkin.open = true;
+        if (submitted instanceof HTMLButtonElement) submitted.click();
+        const returnPanel = desk.querySelector("[data-state-records-return]");
+        returnPanel?.scrollIntoView({behavior: "smooth", block: "start"});
+        window.setTimeout(() => returnPanel?.querySelector('input[name="submittedOn"]')?.focus(), 350);
+    });
     updateClue();
 })();
