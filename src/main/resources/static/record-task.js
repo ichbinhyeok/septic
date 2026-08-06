@@ -5,6 +5,7 @@
     const LEGACY_TASK_KEY = "septicpath-record-task-progress-v1";
     const LEGACY_RETURN_KEY = "septicpath-official-return-v1";
     const LEGACY_TDEC_KEY = "septicpath:tdec-route:v2";
+    const DOCUMENT_WORKSPACE_KEY = "septicpath-document-workspace-v2";
     const VERSION = 2;
     const LIFETIME = 30 * 24 * 60 * 60 * 1000;
     const STATES = new Set([
@@ -158,14 +159,38 @@
     }
 
     function update(input = {}, propertyInput = null, resetState = false) {
-        const current = read();
+        const stored = read();
         const suppliedContext = normalizeContext(input.context || input);
         const suppliedProperty = normalizeProperty(propertyInput || input.property || {});
+        const suppliedWorkflowRunId = safe(input.workflowRunId, 64);
+        const workflowChanged = Boolean(stored && suppliedWorkflowRunId
+            && suppliedWorkflowRunId !== stored.workflowRunId);
+        const currentPropertyIdentity = safe(
+            stored?.property?.address || stored?.property?.identifierValue,
+            180
+        ).toLowerCase();
+        const suppliedPropertyIdentity = safe(
+            suppliedProperty.address || suppliedProperty.identifierValue,
+            180
+        ).toLowerCase();
+        const propertyChanged = Boolean(stored && resetState && currentPropertyIdentity
+            && suppliedPropertyIdentity && currentPropertyIdentity !== suppliedPropertyIdentity);
+        const startsNewTask = workflowChanged || propertyChanged;
+        const current = startsNewTask ? null : stored;
+        if (startsNewTask) {
+            try {
+                sessionStorage.removeItem(DOCUMENT_WORKSPACE_KEY);
+            } catch (_) {
+                // A new property still starts clean when session storage is unavailable.
+            }
+        }
         const meaningful = value => Object.fromEntries(Object.entries(value).filter(([, item]) =>
             Array.isArray(item) ? item.length > 0 : Boolean(item)));
         return write({
             ...(current || {}),
-            workflowRunId: safe(input.workflowRunId, 64) || current?.workflowRunId || identifier(),
+            workflowRunId: propertyChanged
+                ? identifier()
+                : suppliedWorkflowRunId || current?.workflowRunId || identifier(),
             status: resetState ? "route_ready" : current?.status || "route_ready",
             outcome: resetState ? "" : current?.outcome || "",
             context: {...(current?.context || {}), ...meaningful(suppliedContext)},

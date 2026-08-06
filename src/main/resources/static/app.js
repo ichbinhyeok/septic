@@ -1711,11 +1711,15 @@
                     requestRoute: payload.requestRoute || payload.routePath || "",
                     purpose: currentPurpose()
                 };
-                window.SepticRecordTask?.prepare(routeContext, {
+                const preparedTask = window.SepticRecordTask?.prepare(routeContext, {
                     address: payload.matchedAddress || input.value.trim(),
                     identifierType: "address",
                     identifierValue: payload.matchedAddress || input.value.trim()
                 });
+                if (preparedTask?.workflowRunId) {
+                    activeWorkflowRunId = preparedTask.workflowRunId;
+                    routeContext.workflowRunId = activeWorkflowRunId;
+                }
                 window.SepticRecordTask?.transition("route_ready", "route_ready");
                 if (returnPanel instanceof HTMLElement) {
                     returnPanel.hidden = true;
