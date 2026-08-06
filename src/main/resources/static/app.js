@@ -1693,6 +1693,7 @@
                     routeDetails.hidden = false;
                 }
                 routeContext = {
+                    workflowRunId: ensureWorkflowRunId(),
                     stateCode: payload.stateCode || "",
                     stateName: payload.stateName || "",
                     countyName: payload.countyName || "",
@@ -3499,6 +3500,7 @@
             } else if (requestedWorkflowRunId && requestedWorkflowRunId !== initialWorkflowState?.workflowRunId) {
                 writeState({ workflowRunId, stage: "viewed", outcome: "" });
             }
+            syncRecordTaskV2();
             emitCountyGaEvent("county_workflow_viewed");
             recordCountyStage("workflow_viewed");
 
@@ -3516,8 +3518,33 @@
                     .join(" ");
             }
 
+            function syncRecordTaskV2() {
+                const propertyAddress = safeValue(address) || requestedPropertyAddress;
+                const propertyIdentifier = safeValue(parcel);
+                return window.SepticRecordTask?.sync({
+                    workflowRunId,
+                    stateCode,
+                    stateName: stateCode,
+                    countyKey,
+                    countyName: countyNameFromSlug(),
+                    purpose: requestedPurpose || "buying",
+                    officeLabel: agency || `${countyNameFromSlug()} septic records office`,
+                    routePath: window.location.pathname,
+                    routeMode: mode,
+                    routeReliability: profileScope,
+                    officialRoute: primaryUrl,
+                    requestRoute: secondaryUrl || primaryUrl
+                }, {
+                    address: propertyAddress,
+                    identifierType: propertyIdentifier ? "parcel" : propertyAddress ? "address" : "",
+                    identifierValue: propertyIdentifier || propertyAddress,
+                    alternateIdentifiers: propertyIdentifier ? [propertyIdentifier] : []
+                });
+            }
+
             function saveDocumentWorkspaceHandoff() {
                 const now = Date.now();
+                const savedOutcome = readState()?.outcome || "";
                 const context = {
                     matchedAddress: safeValue(address) || requestedPropertyAddress,
                     countyKey,
@@ -3534,8 +3561,8 @@
                 const value = JSON.stringify({
                     savedAt: now,
                     expiresAt: now + lifetime,
-                    stage: "official_returned",
-                    outcome: "found",
+                    stage: "document_handoff",
+                    outcome: savedOutcome,
                     context
                 });
                 try {
@@ -3544,11 +3571,12 @@
                 } catch (_) {
                     // Query parameters still preserve the county and workflow identifiers.
                 }
-                writeState({ stage: "document_handoff", outcome: "artifact" });
-                recordCountyStage("document_handoff", "artifact");
+                syncRecordTaskV2();
+                writeState({ stage: "document_handoff" });
+                recordCountyStage("document_handoff");
                 emitCountyGaEvent("county_document_handoff", {
-                    result_source: "user_reported",
-                    case_status: "needs_document_review"
+                    result_source: "workspace_navigation",
+                    case_status: "awaiting_upload"
                 });
             }
 
@@ -3901,6 +3929,57 @@
                         : "The expected response window has passed. Reopen the verified county route with the property details you already collected.";
                     appendOfficialAction(actions, officialActionLabel("Reopen"), true, outcome);
                     actions.append(actionLink("Open the document workspace", workspacePath()));
+                } else if (outcome === "request_submitted") {
+                    const confirmed = window.SepticRecordTask?.read()?.status === "request_pending";
+                    if (!confirmed) {
+                        heading.textContent = "Add submission evidence before marking this request pending.";
+                        body.textContent = "Record the date and channel you actually used. A prepared form or an open county page is not a submitted request.";
+                        const evidenceForm = document.createElement("form");
+                        evidenceForm.className = "state-record-return__evidence";
+                        evidenceForm.dataset.countyRequestEvidence = "";
+                        evidenceForm.innerHTML = `<label>Submitted on<input name="submittedOn" type="date" required></label><label>Channel<select name="channel" required><option value="">Choose one</option><option value="email">Email</option><option value="portal">Official portal</option><option value="mail">Mail</option><option value="in_person">In person</option><option value="phone">Phone confirmation</option></select></label><label>Confirmation or reply reference<input name="reference" maxlength="160" autocomplete="off" placeholder="Optional; stored on this device"></label><button class="button button--primary" type="submit">Save submission evidence</button><p class="county-access-workflow__status" data-county-request-evidence-status aria-live="polite"></p>`;
+                        const evidenceReference = evidenceForm.elements.namedItem("reference");
+                        if (evidenceReference instanceof HTMLInputElement) {
+                            evidenceReference.value = safeValue(reference);
+                        }
+                        evidenceForm.addEventListener("submit", event => {
+                            event.preventDefault();
+                            const data = new FormData(evidenceForm);
+                            const updated = window.SepticRecordTask?.addRequestEvidence({
+                                date: data.get("submittedOn"),
+                                channel: data.get("channel"),
+                                reference: data.get("reference")
+                            });
+                            if (!updated) {
+                                const evidenceStatus = evidenceForm.querySelector("[data-county-request-evidence-status]");
+                                if (evidenceStatus) evidenceStatus.textContent = "Add the actual submission date and channel.";
+                                return;
+                            }
+                            const submittedReference = String(data.get("reference") || "").trim();
+                            if (reference instanceof HTMLInputElement) reference.value = submittedReference;
+                            writeState({stage: "request_evidence_added", outcome: "request_submitted", reference: submittedReference});
+                            recordCountyStage("request_evidence_added", "request_submitted");
+                            emitCountyGaEvent("county_request_submitted", {
+                                result_source: "submission_evidence",
+                                case_status: "pending"
+                            });
+                            renderNext("request_submitted");
+                        });
+                        block.append(heading, body, evidenceForm);
+                        next.replaceChildren(block);
+                        return;
+                    }
+                    heading.textContent = "Track the request until the office sends a property-specific result.";
+                    const savedReference = safeValue(reference);
+                    body.textContent = savedReference
+                        ? `Saved county reference: ${savedReference}. The request is pending until the office sends a file or written no-record response.`
+                        : "Submission evidence is saved. The request is pending until the office sends a file or written no-record response.";
+                    if (acquisitionMethod) {
+                        appendOfficialAction(actions, officialActionLabel("Reopen"), true, outcome);
+                        actions.append(actionLink("Open the document workspace", workspacePath()));
+                    } else {
+                        actions.append(actionLink("Open the document workspace", workspacePath(), true));
+                    }
                 } else {
                     heading.textContent = "Track the request until the office sends a property-specific result.";
                     const savedReference = safeValue(reference);
@@ -3916,7 +3995,7 @@
                 }
 
                 block.append(heading, body, actions);
-                if (outcome === "request_submitted") {
+                if (outcome === "request_submitted" && window.SepticRecordTask?.read()?.status === "request_pending") {
                     appendFollowupActions(block, outcome);
                 }
                 next.replaceChildren(block);
@@ -5582,6 +5661,8 @@
                     }
                     awaitingReturn = true;
                     writeState({ stage: "official_opened", outcome: "" });
+                    syncRecordTaskV2();
+                    window.SepticRecordTask?.transition("official_opened", "official_opened");
                     window.setTimeout(showReturn, 350);
                     sendArtifactAction("county_access_workflow", "official_route_opened", mode);
                     recordCountyStage("official_route_opened");
@@ -5607,7 +5688,26 @@
                     outcomes.forEach((item) => item.removeAttribute("aria-pressed"));
                     button.setAttribute("aria-pressed", "true");
                     const outcome = button.dataset.countyAccessOutcome || "not_found_online";
+                    syncRecordTaskV2();
+                    if (outcome === "request_submitted") {
+                        renderNext(outcome);
+                        sendArtifactAction("county_access_workflow", "request_evidence_prompted", mode);
+                        return;
+                    }
                     writeState({ stage: "outcome_recorded", outcome });
+                    if (outcome === "artifact") {
+                        window.SepticRecordTask?.addArtifactEvidence("user_reported_official_file", "artifact");
+                    } else if (outcome === "partial") {
+                        window.SepticRecordTask?.addArtifactEvidence("user_reported_partial_file", "partial");
+                    } else {
+                        const taskState = {
+                            not_found_online: "not_found_online",
+                            no_record_response: "no_record_response",
+                            wrong_agency: "wrong_agency",
+                            blocked: "blocked"
+                        }[outcome];
+                        if (taskState) window.SepticRecordTask?.transition(taskState, outcome);
+                    }
                     renderNext(outcome);
                     sendArtifactAction("county_access_workflow", outcome, mode);
                     recordCountyStage("outcome_recorded", outcome);
@@ -5622,13 +5722,7 @@
                             result_source: "user_reported"
                         });
                     }
-                    if (outcome === "request_submitted") {
-                        recordCountyStage("request_submitted", outcome);
-                        emitCountyGaEvent("county_request_submitted", {
-                            result_source: "user_reported",
-                            case_status: "pending"
-                        });
-                    } else if (outcome === "artifact") {
+                    if (outcome === "artifact") {
                         recordCountyStage("record_reported", outcome);
                         emitCountyGaEvent("county_record_reported", {
                             result_source: "user_reported",
@@ -5661,14 +5755,8 @@
 
                 const alamanceRequestSent = workflow.querySelector("[data-alamance-request-sent]");
                 alamanceRequestSent?.addEventListener("click", () => {
-                    writeState({ stage: "outcome_recorded", outcome: "request_submitted" });
                     renderNext("request_submitted");
-                    sendArtifactAction("county_access_workflow", "request_submitted", mode);
-                    recordCountyStage("request_submitted", "request_submitted");
-                    emitCountyGaEvent("county_request_submitted", {
-                        result_source: "user_reported",
-                        case_status: "pending"
-                    });
+                    sendArtifactAction("county_access_workflow", "request_evidence_prompted", mode);
                 });
 
                 clear?.addEventListener("click", () => {
@@ -5677,6 +5765,7 @@
                 } catch (_) {
                     // The fields can still be cleared when storage is unavailable.
                 }
+                window.SepticRecordTask?.clear();
                 if (address instanceof HTMLInputElement) {
                     address.value = "";
                 }

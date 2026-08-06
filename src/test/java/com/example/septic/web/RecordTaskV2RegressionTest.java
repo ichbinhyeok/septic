@@ -53,6 +53,10 @@ class RecordTaskV2RegressionTest {
     void migrationIsRouteAndStateScopedAndExplicitClearRemovesBothVersions() throws IOException {
         String script = Files.readString(TASK);
         assertTrue(script.contains("routeMatches"));
+        assertTrue(script.contains("countyMatches"));
+        assertTrue(script.contains("addressFinderMatches"));
+        assertTrue(script.contains("document.querySelector(\"[data-address-record-finder]\")"));
+        assertTrue(script.contains("new URLSearchParams(window.location.search).get(\"countyKey\")"));
         assertTrue(script.contains("stateMatches"));
         assertTrue(script.contains("window.location.pathname === \"/tdec-septic-records/\""));
         assertTrue(script.contains("[STORAGE_KEY, LEGACY_TASK_KEY]"));
@@ -66,5 +70,13 @@ class RecordTaskV2RegressionTest {
         assertTrue(script.contains("meaningful(suppliedProperty)"));
         assertTrue(script.contains("...(current?.context || {})"));
         assertTrue(script.contains("...(current?.property || {})"));
+        assertTrue(script.contains("function sync(input = {}, propertyInput = null)"));
+        assertTrue(script.contains("status: resetState ? \"route_ready\" : current?.status || \"route_ready\""));
+    }
+
+    @Test
+    void addressFinderHandsItsExistingWorkflowIdToTheV2Task() throws IOException {
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+        assertTrue(script.contains("workflowRunId: ensureWorkflowRunId(),\n                    stateCode: payload.stateCode"));
     }
 }

@@ -32,9 +32,9 @@
             stateName: safe(value.stateName, 60),
             countyKey: safe(value.countyKey, 80),
             countyName: safe(value.countyName, 100),
-            purpose: safe(value.purpose || "buying", 40),
+            purpose: safe(value.purpose, 40),
             officeLabel: safe(value.officeLabel, 140),
-            routePath: safe(value.routePath || window.location.pathname, 220),
+            routePath: safe(value.routePath, 220),
             routeMode: safe(value.routeMode, 40),
             routeReliability: safe(value.routeReliability, 40),
             officialRoute: safe(value.officialRoute, 500),
@@ -79,7 +79,20 @@
 
     function isCurrentRoute(task) {
         const currentState = safe(document.querySelector("[data-state-records-return]")?.dataset.stateCode, 2).toUpperCase();
-        const routeMatches = !task?.context?.routePath || task.context.routePath === window.location.pathname;
+        const currentCountyKey = safe(
+            document.querySelector("[data-county-access-workflow]")?.dataset.countyKey
+                || new URLSearchParams(window.location.search).get("countyKey"),
+            80
+        );
+        const countyMatches = Boolean(currentCountyKey && task?.context?.countyKey === currentCountyKey);
+        const addressFinderMatches = Boolean(
+            document.querySelector("[data-address-record-finder]")
+            && task?.property?.address
+        );
+        const routeMatches = !task?.context?.routePath
+            || task.context.routePath === window.location.pathname
+            || countyMatches
+            || addressFinderMatches;
         const stateMatches = !currentState || !task?.context?.stateCode || task.context.stateCode === currentState;
         return routeMatches && stateMatches;
     }
@@ -144,7 +157,7 @@
         return task;
     }
 
-    function prepare(input = {}, propertyInput = null) {
+    function update(input = {}, propertyInput = null, resetState = false) {
         const current = read();
         const suppliedContext = normalizeContext(input.context || input);
         const suppliedProperty = normalizeProperty(propertyInput || input.property || {});
@@ -153,13 +166,21 @@
         return write({
             ...(current || {}),
             workflowRunId: safe(input.workflowRunId, 64) || current?.workflowRunId || identifier(),
-            status: "route_ready",
-            outcome: "",
+            status: resetState ? "route_ready" : current?.status || "route_ready",
+            outcome: resetState ? "" : current?.outcome || "",
             context: {...(current?.context || {}), ...meaningful(suppliedContext)},
             property: {...(current?.property || {}), ...meaningful(suppliedProperty)},
             evidence: current?.evidence || [],
             nextAction: input.nextAction || current?.nextAction || ""
         });
+    }
+
+    function prepare(input = {}, propertyInput = null) {
+        return update(input, propertyInput, true);
+    }
+
+    function sync(input = {}, propertyInput = null) {
+        return update(input, propertyInput, false);
     }
 
     function emitStage(task, stage, outcome = "") {
@@ -210,10 +231,10 @@
         return transition("request_pending", "request_submitted", {evidence});
     }
 
-    function addArtifactEvidence(kind = "official_file") {
+    function addArtifactEvidence(kind = "official_file", outcome = "artifact") {
         const current = read() || prepare();
         const evidence = [...current.evidence, {kind: safe(kind, 40), addedAt: new Date().toISOString()}];
-        return transition("artifact_acquired", "artifact", {evidence});
+        return transition("artifact_acquired", safe(outcome, 40) || "artifact", {evidence});
     }
 
     function clear() {
@@ -231,6 +252,7 @@
         states: Object.freeze([...STATES]),
         read,
         prepare,
+        sync,
         transition,
         addRequestEvidence,
         addArtifactEvidence,

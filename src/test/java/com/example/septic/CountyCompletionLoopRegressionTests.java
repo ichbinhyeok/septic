@@ -74,5 +74,18 @@ class CountyCompletionLoopRegressionTests {
         assertTrue(javascript.contains("septicpath-record-task-progress-v1"));
         assertTrue(javascript.contains("workflowRunId"));
         assertTrue(javascript.contains("document_handoff"));
+        assertTrue(javascript.contains("case_status: \"awaiting_upload\""));
+        assertTrue(javascript.contains("window.SepticRecordTask?.sync"));
+        assertTrue(javascript.contains("window.SepticRecordTask?.addRequestEvidence"));
+        assertTrue(javascript.contains("data-county-request-evidence"));
+        assertTrue(javascript.contains("request_evidence_added"));
+        assertTrue(javascript.contains("window.SepticRecordTask?.addArtifactEvidence"));
+        assertTrue(javascript.contains("workspace_navigation"));
+        org.junit.jupiter.api.Assertions.assertFalse(
+                javascript.contains("writeState({ stage: \"document_handoff\", outcome: \"artifact\" })")
+        );
+        org.junit.jupiter.api.Assertions.assertFalse(
+                javascript.contains("recordCountyStage(\"document_handoff\", \"artifact\")")
+        );
     }
 }
