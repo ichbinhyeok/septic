@@ -51,7 +51,7 @@ public record CountyAcquisitionProfileView(
 
     public String archivedFieldVerificationLabel() {
         if ("CA::san-bernardino-county".equals(countyKey)) {
-            return "Preparation fields preserved from a county-authored form; the current NextRequest fields must be reviewed in the live portal";
+            return "Preparation fields preserved from a county-authored form; the current return channel must be confirmed with Environmental Health";
         }
         return "Property and result-delivery fields verified from a county-authored form; current submission channel still requires confirmation";
     }
@@ -68,19 +68,19 @@ public record CountyAcquisitionProfileView(
 
     public String acquisitionMethod() {
         return switch (countyKey) {
-            case "VA::prince-william-county", "TN::hamilton-county", "MD::st-marys-county",
+            case "TN::hamilton-county",
                  "AZ::maricopa-county", "NC::brunswick-county",
                  "MD::prince-georges-county", "CO::adams-county", "NC::buncombe-county",
                  "NC::wake-county", "NC::pitt-county" -> "official_search";
-            case "NC::alamance-county", "TX::denton-county", "NC::pender-county" -> "official_pdf";
-            case "TX::tarrant-county", "NC::lincoln-county", "GA::dekalb-county",
-                 "TN::blount-county", "TN::knox-county", "CA::san-bernardino-county",
+            case "NC::alamance-county", "TX::denton-county", "NC::pender-county", "MD::st-marys-county" -> "official_pdf";
+            case "NC::lincoln-county", "GA::dekalb-county",
+                 "TN::blount-county", "TN::knox-county",
                  "NJ::gloucester-county",
                  "MD::frederick-county",
                  "TN::wilson-county", "TN::montgomery-county", "NC::union-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
-            case "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
-            case "TX::brazoria-county", "OH::mahoning-county" -> "official_contact";
+            case "VA::prince-william-county", "CA::san-bernardino-county", "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
+            case "TX::tarrant-county", "TX::brazoria-county", "OH::mahoning-county" -> "official_contact";
             default -> "official_route";
         };
     }
@@ -101,8 +101,11 @@ public record CountyAcquisitionProfileView(
     }
 
     public String methodInstruction() {
+        if ("VA::prince-william-county".equals(countyKey)) {
+            return "Open the accessible Health District service page first. Use its On-Site Sewage & Water Services contact with the address and GPIN when the optional historical document portal is blocked.";
+        }
         if ("TX::tarrant-county".equals(countyKey)) {
-            return "Use the accessible OSSF office page to confirm whether the county, a contract city, or an ETJ owns the file. JustFOIA is an optional formal-request fallback and may be access-restricted.";
+            return "Use the accessible OSSF office page to confirm whether the county, a contract city, or an ETJ owns the file. When the county owns it, follow the official PIA page's published email, mail, fax, or in-person route.";
         }
         if ("NC::lincoln-county".equals(countyKey)) {
             return "The accessible Environmental Health page confirms that a septic-record request needs the property address and/or parcel number. Use its phone contact first; open NextRequest only when the portal is reachable.";
@@ -117,7 +120,7 @@ public record CountyAcquisitionProfileView(
             return "The free route only publishes an agreement, reCAPTCHA, and Submit step before the search. Open that route first; expand the paid research pack here only if the free search is empty or incomplete.";
         }
         if ("MD::st-marys-county".equals(countyKey)) {
-            return "Search the county's current replacement GIS by address or Tax ID first. Open the official PIA fallback pack only when the mapped Health Department records are missing or incomplete.";
+            return "Complete the Health Department's official PIA PDF for the property file. Use county GIS only to obtain a Tax ID or parcel clue; a map match is not a septic-record result.";
         }
         if ("MD::frederick-county".equals(countyKey)) {
             return "Transfer the fields verified against Frederick County's live Information Research Request, then complete reCAPTCHA and the final Submit step on the county form. The published email is a fallback when the live form cannot be used.";
@@ -138,7 +141,7 @@ public record CountyAcquisitionProfileView(
             return "TDEC directs Sevier users to the county. Prepare the fields preserved from the county-authored SSD information form, then call to confirm whether the current intake is email, fax, mail, or another route before sending anything.";
         }
         if ("CA::san-bernardino-county".equals(countyKey)) {
-            return "Environmental Health currently links to NextRequest. Prepare the fields preserved from its county-authored records form, then use only the current portal fields; if Cloudflare blocks the portal, call to confirm the active intake.";
+            return "The linked NextRequest route is access-restricted. Prepare the county-authored form fields, then call Environmental Health to confirm the current intake channel before sending the form.";
         }
         if ("NC::guilford-county".equals(countyKey)) {
             return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
@@ -242,13 +245,12 @@ public record CountyAcquisitionProfileView(
     }
 
     public boolean fallbackFieldPack() {
-        return "AZ::maricopa-county".equals(countyKey) || "MD::st-marys-county".equals(countyKey);
+        return "AZ::maricopa-county".equals(countyKey);
     }
 
     public String fallbackFieldPackHeading() {
         return switch (countyKey) {
             case "AZ::maricopa-county" -> "Paid research fallback — only after the free search";
-            case "MD::st-marys-county" -> "Official PIA fallback — only if GIS is incomplete";
             default -> "Official fallback fields";
         };
     }
@@ -256,7 +258,6 @@ public record CountyAcquisitionProfileView(
     public String fallbackFieldPackInstruction() {
         return switch (countyKey) {
             case "AZ::maricopa-county" -> "Opening this section activates the county's paid-form requirements. Standard research is $30; expedited research is $60.";
-            case "MD::st-marys-county" -> "Opening this section activates the county PDF requirements. The GIS search itself does not require these requester details.";
             default -> "Use these fields only for the fallback route.";
         };
     }
@@ -268,7 +269,7 @@ public record CountyAcquisitionProfileView(
     public String preparationSummary() {
         if (archivedOfficialFieldPackVerified()) {
             if ("CA::san-bernardino-county".equals(countyKey)) {
-                return "We organize the property and request fields preserved from the county-authored form, clearly separate them from the live portal, and keep each value ready to copy or carry into a fallback call.";
+                return "We organize the property and request fields preserved from the county-authored form and keep each value ready for the intake-confirmation call.";
             }
             return "We organize every property and return-delivery field preserved from the county-authored information form, build the call script, and keep the current intake channel as the only fact left to confirm.";
         }
@@ -285,7 +286,7 @@ public record CountyAcquisitionProfileView(
     public String manualCompletionBoundary() {
         if (archivedOfficialFieldPackVerified()) {
             if ("CA::san-bernardino-county".equals(countyKey)) {
-                return "Open the current NextRequest portal and complete its browser verification and live fields yourself. If the portal stays blocked, call 800-442-2283 and confirm the current intake before sending anything.";
+                return "Call 800-442-2283, confirm the current submission channel and whether the county-authored form is still accepted, then sign, date, and send only through the method the office confirms.";
             }
             return "Call the county, confirm the current submission channel and whether its published form is still accepted, then sign, date, and send only through the method the office confirms.";
         }

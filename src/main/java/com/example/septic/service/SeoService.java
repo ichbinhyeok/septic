@@ -734,7 +734,7 @@ public class SeoService {
 
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         String priorityTitle = switch (countyPage.key()) {
-            case "VA::prince-william-county" -> "Prince William County Septic Records by Address or GPIN";
+            case "VA::prince-william-county" -> "Request Prince William County Septic Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Permit and Completion Certificate";
             case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
@@ -772,7 +772,7 @@ public class SeoService {
             case "SC::anderson-county" -> "Anderson County SC Septic Permit and Final Inspection Records";
             case "SC::spartanburg-county" -> "Spartanburg County SC Septic Permit and Final Inspection Records";
             case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
-            case "MD::st-marys-county" -> "Search St. Mary's County Septic and Environmental Health Records";
+            case "MD::st-marys-county" -> "Request St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
             case "AZ::maricopa-county" -> "Maricopa County Septic Records Search and Research Request";
             case "NC::brunswick-county" -> "Brunswick County Permit Search and Septic File Request";
@@ -782,7 +782,7 @@ public class SeoService {
             case "WA::thurston-county" -> "Thurston County Septic Records and As-Built Search";
             case "NC::cumberland-county" -> "Cumberland County NC Septic Permit Search and Records";
             case "GA::forsyth-county" -> "Forsyth County GA Septic Permit Records Search";
-            case "CA::san-bernardino-county" -> "San Bernardino County Septic Records and Permit Search";
+            case "CA::san-bernardino-county" -> "Request San Bernardino County Septic Records";
             case "MI::washtenaw-county" -> "Washtenaw County Septic Records and Permit Search";
             case "MT::gallatin-county" -> "Gallatin County Septic Records and Permit Search";
             case "MD::frederick-county" -> "Frederick County Septic Records and Permit Search";
@@ -809,7 +809,7 @@ public class SeoService {
 
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
         String priorityDescription = switch (countyPage.key()) {
-            case "VA::prince-william-county" -> "Search the official Prince William Health District document portal by address or GPIN, then use the office fallback when the portal is blocked or incomplete.";
+            case "VA::prince-william-county" -> "Start with the accessible Prince William Health District service page and contact On-Site Sewage & Water Services when the optional historical portal is blocked.";
             case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
             case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";
             case "NC::alamance-county" -> "Request an existing Alamance County septic property file without confusing a historical record copy with a new application or paid field inspection.";
@@ -847,7 +847,7 @@ public class SeoService {
             case "SC::anderson-county" -> "Confirm the Anderson County parcel in the assessor resources, then request the SCDES permit and final inspection through Piedmont II.";
             case "SC::spartanburg-county" -> "Confirm the Spartanburg County parcel in GIS, then request the SCDES permit and final inspection through the Piedmont I route.";
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
-            case "MD::st-marys-county" -> "Search the current St. Mary's County replacement GIS by address or Tax ID, then use the official Environmental Health request PDF when mapped records are missing or incomplete.";
+            case "MD::st-marys-county" -> "Use the official St. Mary's County Environmental Health request PDF for the septic property file; use county GIS only to obtain a parcel or Tax ID clue.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
             case "AZ::maricopa-county" -> "Run Maricopa County's free septic search first, then use the standard or expedited official research request when the online result is empty.";
             case "NC::brunswick-county" -> "Search Brunswick public permit metadata to identify the parcel and permit candidate, then request the original septic IP, CA, OP, or related file.";
@@ -857,7 +857,7 @@ public class SeoService {
             case "WA::thurston-county" -> "Open the official Thurston County septic record route, carry the property address and parcel clues, and save the as-built, permit file, request reference, or written response.";
             case "NC::cumberland-county" -> "Use the official Cumberland County route for an existing septic permit or property file, then save the returned record, referral, or request reference.";
             case "GA::forsyth-county" -> "Open the official Forsyth County Environmental Health route, prepare the property identifiers it asks for, and track the septic permit record or office response.";
-            case "CA::san-bernardino-county" -> "Find the responsible San Bernardino County septic record route, carry address and parcel clues, and preserve the permit file, referral, or request outcome.";
+            case "CA::san-bernardino-county" -> "Call San Bernardino Environmental Health to confirm the current records intake, then use the county-authored form through the channel the office confirms.";
             case "MI::washtenaw-county" -> "Use the official Washtenaw County septic record path with the property address and available parcel clues, then save the file or written office response.";
             case "MT::gallatin-county" -> "Open the official Gallatin County septic record route, follow its current search or request fields, and keep the permit, layout, or documented response.";
             case "MD::frederick-county" -> "Use the official Frederick County septic record route, prepare the address and parcel information it requests, and retain the returned file or request reference.";

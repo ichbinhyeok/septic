@@ -88,8 +88,9 @@ public record CountyAccessProfileView(
     public String primaryAccessNote() {
         return switch (countyKey) {
             case "NY::suffolk-county" -> "Starts a phone call. Have the Tax Map number and construction year ready.";
-            case "TX::tarrant-county" -> "Opens the current JustFOIA public-information portal. It may return an access block; use the OSSF office fallback if it does.";
-            case "CA::san-bernardino-county" -> "Opens the current NextRequest portal linked by Environmental Health. It returned a Cloudflare security block in our automated browser.";
+            case "VA::prince-william-county" -> "Opens the accessible Health District service page. Call On-Site Sewage & Water Services at 703-792-6310, option 2, when the historical portal is blocked.";
+            case "TX::tarrant-county" -> "Opens the accessible OSSF office page so you can identify the file owner before requesting records.";
+            case "CA::san-bernardino-county" -> "Starts a call to the Environmental Health number published for the records process.";
             case "NC::buncombe-county" -> "Opens Buncombe's Accela site. It may require interactive browser access; an access block or empty result is not an official no-record response.";
             case "NC::union-county" -> "Opens Union County's existing septic and well permit request. It may require interactive browser access.";
             case "NC::pitt-county" -> "Opens Pitt County's EnerGov portal. It may require interactive browser access; use Environmental Health if the portal is blocked or incomplete.";
@@ -99,11 +100,11 @@ public record CountyAccessProfileView(
 
     public String secondaryAccessNote() {
         return switch (countyKey) {
-            case "VA::prince-william-county" -> "Optional fallback. The VDH request site may require browser verification or return an access block.";
-            case "TX::tarrant-county" -> "Use the OSSF office page to confirm whether the county, a contract city, or an ETJ owns the file when the portal is blocked or the authority is still unclear.";
+            case "VA::prince-william-county" -> "Optional historical lookup. The document portal may return an access block; that is not a no-record response.";
+            case "TX::tarrant-county" -> "The official PIA page publishes email, mail, fax, and in-person routes even when JustFOIA is access-restricted.";
             case "NC::lincoln-county" -> "Optional submission portal. NextRequest may return an access block; the Environmental Health page and phone remain available.";
             case "NY::suffolk-county" -> "The current office page confirms the phone number, Yaphank counter, hours, and online application help.";
-            case "CA::san-bernardino-county" -> "Starts a call. Keep the prepared property and record-scope fields open so you only need to confirm the current intake.";
+            case "CA::san-bernardino-county" -> "County-authored PDF. Confirm the current return channel with Environmental Health before sending it.";
             default -> "";
         };
     }

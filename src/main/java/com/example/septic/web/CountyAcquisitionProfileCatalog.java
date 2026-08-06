@@ -9,10 +9,10 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("VA::prince-william-county", acquisition(
                     "VA::prince-william-county",
                     "Prince William Health District — On-Site Sewage & Water Services",
-                    "Historical document portal → VDH FOIA fallback",
+                    "Accessible Health District instructions → optional historical portal",
                     "Portal downloads: no published fee. FOIA: actual search/copy cost may apply.",
                     "VDH response window: 5 working days; up to 7 additional working days when invoked.",
-                    "Use the external portal or submit the VDH request in your own name.",
+                    "Open the accessible On-Site Sewage & Water Services page first. Call the published office when the historical repository is blocked.",
                     "",
                     "703-792-6310",
                     "Prince William septic and well records — {{address}}",
@@ -36,7 +36,7 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("TX::tarrant-county", acquisition(
                     "TX::tarrant-county",
                     "Tarrant County Engineering / the parcel's actual OSSF authority",
-                    "Jurisdiction check → JustFOIA or responsible city",
+                    "Jurisdiction check → official PIA instructions or responsible city",
                     "Inspection is generally no charge; written estimate required when county charges exceed $40.",
                     "If not produced within 10 working days, the county must provide a reasonable availability date.",
                     "Confirm the city, ETJ, contract-city, or county authority before submitting.",
@@ -302,14 +302,14 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("MD::st-marys-county", acquisition(
                     "MD::st-marys-county",
                     "St. Mary’s County Health Department — Environmental Health",
-                    "County GIS search → Public Information Act PDF fallback",
+                    "Official Public Information Act PDF → Environmental Health email",
                     "No fee is published on the form.",
                     "No turnaround is published on the form.",
-                    "Search GIS first. If the mapped Health Department record is missing or incomplete, sign the official PDF and email Environmental Health.",
+                    "Complete and sign the official PDF, then email Environmental Health. Use GIS only when a Tax ID or parcel clue is missing.",
                     "smchd.env@maryland.gov",
                     "301-475-4321",
                     "Environmental Health record request — {{address}}",
-                    "The former app redirects to the current Public GIS Map. This exact field pack is only for the official PIA fallback.",
+                    "These fields match the official PIA form. The county GIS is a secondary parcel lookup, not evidence that a septic file exists.",
                     """
                     Please process the attached Public Information Act request:
 
@@ -833,14 +833,14 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("CA::san-bernardino-county", acquisition(
                     "CA::san-bernardino-county",
                     "San Bernardino County Department of Public Health — Environmental Health Services",
-                    "Current NextRequest portal — phone fallback",
+                    "Environmental Health intake-confirmation call — county-authored form",
                     "No current portal fee is published. A 2015 county form listed $0.10 per page and an additional $0.22 per certified page; confirm current charges before agreeing.",
                     "No current processing time is published on the reviewed county page.",
-                    "Pass the portal's browser verification and complete its current fields yourself. If it remains blocked, call 800-442-2283 with the carry sheet.",
+                    "Call 800-442-2283 with the carry sheet and confirm the current return channel before sending the county-authored form.",
                     "",
                     "800-442-2283",
                     "San Bernardino Environmental Health records — {{address}}",
-                    "The fields below are preserved from a county-authored 2015 records form. They prepare the property and request facts but are not claimed to be the current NextRequest field list or an accepted submission form.",
+                    "The fields below are preserved from a county-authored records form that remains on the official county domain. Confirm its current return channel before sending it.",
                     """
                     San Bernardino County official-form carry sheet
 

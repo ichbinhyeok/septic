@@ -2451,7 +2451,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             return "Alamance County NC septic permit lookup and records";
         }
         if ("MD::st-marys-county".equals(countyPage.key())) {
-            return "St. Mary's County septic records and GIS lookup";
+            return "St. Mary's County septic records request";
         }
         return countyPage.countyName() + " septic permit lookup and records request";
     }
@@ -2467,7 +2467,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "NC::alamance-county" ->
                     "Start with Alamance County Environmental Health and pull the latest improvement permit or existing-system inspection. Then check for any malfunction investigation or repair permit tied to the parcel.";
             case "MD::st-marys-county" ->
-                    "Search St. Mary's County environmental health records in the official GIS by address or Tax ID. If the file is thin or the system is failing, continue through the county repair-perc route.";
+                    "Request the St. Mary's County Environmental Health property file with the official PIA form. Use county GIS only to find a Tax ID or parcel clue, then keep the submitted form and written response in the same task.";
             default -> completeSentence(countyRecordAction(countyPage.recordsLabel()))
                     + " Search with the property address or parcel ID when available. Ask the office for: "
                     + completeSentence(countyFirstArtifact(countyPage))
