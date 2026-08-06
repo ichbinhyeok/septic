@@ -1658,6 +1658,9 @@
 
             function render(payload) {
                 result.hidden = false;
+                const resolvedStateCode = String(payload.stateCode || "").trim().toUpperCase();
+                const stateMismatch = Boolean(expectedStateCode && resolvedStateCode && resolvedStateCode !== expectedStateCode);
+                result.dataset.addressRecordFinderStateMismatch = String(stateMismatch);
                 if (officialNote instanceof HTMLElement) {
                     officialNote.hidden = false;
                 }
@@ -1686,13 +1689,18 @@
                     documentWorkspace.hidden = true;
                 }
                 if (status) {
-                    status.textContent = statusLabels[payload.status] || "Record route";
+                    status.textContent = stateMismatch
+                        ? "Address is in another state"
+                        : statusLabels[payload.status] || "Record route";
                 }
                 if (heading) {
                     heading.textContent = payload.heading || "Open the county records route";
                 }
                 if (message) {
-                    message.textContent = payload.message || "Use the county route to pull the official file before pricing.";
+                    const routeMessage = payload.message || "Use the county route to pull the official file before pricing.";
+                    message.textContent = stateMismatch
+                        ? `This address resolves to ${payload.stateName || resolvedStateCode}, not the state guide on this page. Continue with the matched route below; the current state guide does not apply. ${routeMessage}`
+                        : routeMessage;
                 }
                 if (meta) {
                     const values = [payload.countyName, payload.stateName].filter(Boolean);
@@ -1761,6 +1769,12 @@
                         source_context: "address_record_finder",
                         state_code: payload.stateCode || "unknown",
                         route_type: payload.status
+                    });
+                }
+                if (stateMismatch) {
+                    emitGaEvent("address_search_state_mismatch", {
+                        expected_state_code: expectedStateCode,
+                        resolved_state_code: resolvedStateCode
                     });
                 }
                 applyStartingOutcome(payload.status);
