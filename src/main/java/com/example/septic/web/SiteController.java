@@ -7652,6 +7652,20 @@ The goal is to settle the permit path before we frame the project as a normal in
             );
         }
 
+        if ("FL".equals(state.stateCode())
+                && "septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
+            return new StateMoneyPrimaryAction(
+                    "Route the county before searching",
+                    "Open the Florida OSTDS records desk",
+                    "Choose the county to separate the current DEP or county-health authority from the historical record holder.",
+                    "Open Florida county records routes",
+                    "/florida-ostds-permit-lookup/#fl-record-search",
+                    "state_money_primary_florida_records_workspace",
+                    "state_record_workspace",
+                    false
+            );
+        }
+
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && countyRecordLinks.size() >= 2) {
             return new StateMoneyPrimaryAction(
                     "Narrow to the county file lookup",

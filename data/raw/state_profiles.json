@@ -2921,7 +2921,7 @@
       "lastVerifiedAt": "2026-03-09",
       "officialSourceIds": ["fl_01", "fl_02", "fl_03", "fl_04", "fl_05"],
       "localAuthoritySourceIds": ["fl_04", "fl_01"],
-      "recordsLookupSourceIds": ["fl_03", "fl_05"],
+      "recordsLookupSourceIds": ["fl_04"],
       "localActionSteps": [
         "Confirm whether the property is in a DEP-managed county or a county health department path first.",
         "Request permit, inspection, and any private-provider paperwork before trusting the low end.",
