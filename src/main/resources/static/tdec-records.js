@@ -254,12 +254,12 @@
             };
         }
         return {
-            title: "Search the official SSDS record viewer",
-            url: TDEC_VIEWER,
-            explanation: "TDEC manages existing septic records for this county. Search the official viewer with the prepared keys; return here if it is empty or blocked.",
+            title: `Request the ${countyData.fieldOfficeName} file search`,
+            url: countyData.fieldOfficeUrl,
+            explanation: "TDEC manages existing septic records for this county. Start with the responsible field office and give it the prepared property keys so it can check current and archived SSDS files.",
             hint: "The viewer may reject some networks or browser sessions. A 403 is an access failure—not a property result.",
-            label: "Open official SSDS Record Search",
-            context: "tdec_ssds_record_search"
+            label: `Open ${countyData.fieldOfficeName} Field Office`,
+            context: "tdec_field_office_request"
         };
     }
 
@@ -332,7 +332,7 @@
         routeHint.textContent = route.hint;
         routeActions.replaceChildren(makeOfficialLink(route, data));
         if (!data.county.contract && data.purpose === "records") {
-            routeActions.append(makeSecondaryLink(`If blocked: open ${data.county.fieldOfficeName} Field Office`, data.county.fieldOfficeUrl, "tdec_field_office", data));
+            routeActions.append(makeSecondaryLink("Open official SSDS Record Search (may be blocked)", TDEC_VIEWER, "tdec_ssds_record_search", data));
         }
         if (!data.parcel) routeActions.append(makeSecondaryLink("Need a parcel ID? Open Tennessee Property Assessment Data", TPAD, "tn_property_assessment", data));
 

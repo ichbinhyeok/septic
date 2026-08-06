@@ -1778,9 +1778,15 @@
                     });
                 }
                 applyStartingOutcome(payload.status);
+                result.setAttribute("tabindex", "-1");
+                result.scrollIntoView({ behavior: "smooth", block: "start" });
+                result.focus({ preventScroll: true });
             }
 
             function openDirectDocumentWorkspace(entryPoint = "document_entry") {
+                if (finderRoot instanceof HTMLElement) {
+                    finderRoot.classList.add("record-finder--document-mode");
+                }
                 recordFinderStage("workflow_viewed");
                 try {
                     sessionStorage.removeItem(pendingReturnStorageKey);
