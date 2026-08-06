@@ -114,12 +114,13 @@ public class SiteController {
     );
     private static final Map<String, List<String>> TENNESSEE_FIELD_OFFICE_COUNTIES = Map.of(
             "chattanooga", List.of("bledsoe", "bradley", "grundy", "hamilton", "marion", "mcminn", "meigs", "polk", "rhea", "sequatchie"),
-            "columbia", List.of("bedford", "franklin", "giles", "hickman", "lawrence", "lewis", "lincoln", "marshall", "maury", "moore", "perry", "wayne"),
-            "cookeville", List.of("cannon", "clay", "cumberland", "dekalb", "fentress", "jackson", "macon", "overton", "pickett", "putnam", "smith", "trousdale", "van-buren", "warren", "white", "wilson"),
-            "jackson", List.of("benton", "carroll", "chester", "crockett", "decatur", "dyer", "fayette", "gibson", "hardeman", "hardin", "haywood", "henderson", "henry", "lake", "lauderdale", "madison", "mcnairy", "obion", "tipton", "weakley"),
+            "columbia", List.of("bedford", "coffee", "franklin", "giles", "hickman", "lawrence", "lewis", "lincoln", "marshall", "maury", "moore", "perry", "wayne"),
+            "cookeville", List.of("cannon", "clay", "cumberland", "dekalb", "fentress", "jackson", "macon", "overton", "pickett", "putnam", "smith", "trousdale", "van-buren", "warren", "white"),
+            "jackson", List.of("benton", "carroll", "chester", "crockett", "decatur", "dyer", "gibson", "hardeman", "hardin", "haywood", "henderson", "henry", "lake", "lauderdale", "madison", "mcnairy", "obion", "weakley"),
             "johnson", List.of("carter", "greene", "hancock", "hawkins", "johnson", "sullivan", "unicoi", "washington"),
             "knoxville", List.of("anderson", "blount", "campbell", "claiborne", "cocke", "grainger", "hamblen", "jefferson", "knox", "loudon", "monroe", "morgan", "roane", "scott", "sevier", "union"),
-            "nashville", List.of("cheatham", "coffee", "davidson", "dickson", "houston", "humphreys", "montgomery", "robertson", "rutherford", "stewart", "sumner", "williamson")
+            "memphis", List.of("fayette", "tipton"),
+            "nashville", List.of("cheatham", "davidson", "dickson", "houston", "humphreys", "montgomery", "robertson", "rutherford", "stewart", "sumner", "williamson", "wilson")
     );
     private static final List<String> TENNESSEE_COUNTY_NAMES = List.of(
             "Anderson", "Bedford", "Benton", "Bledsoe", "Blount", "Bradley", "Campbell", "Cannon",
