@@ -94,6 +94,7 @@ public class SepticDocumentAnalysisService {
                     + "\\b(?:septic|onsite|ssds|ossf|ostds)\\b[^.]{0,100}\\b(?:permits?|records?|files?)\\b");
     private static final Pattern OFFICIAL_SEARCH_CONTEXT = Pattern.compile(
             "(?i)\\b(?:we\\s+searched|our\\s+search|records?\\s+request|public\\s+records?|"
+                    + "official\\s+(?:written\\s+)?response|written\\s+(?:office\\s+)?response|"
                     + "environmental\\s+(?:health|field)\\s+office|department|county\\s+office|"
                     + "archived\\s+(?:paper\\s+)?records?|parcel\\s+(?:number|id)|prior\\s+owner)\\b");
     private static final Pattern REQUEST_RECEIVED = Pattern.compile(
