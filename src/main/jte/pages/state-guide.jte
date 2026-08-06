@@ -256,7 +256,7 @@
                         <p class="alabama-perc-scope__source-note">This produces a budget lane and copy-ready scope, not an engineering conclusion, county invoice, or contractor bid. Verify sewer availability and the county health file before accepting a low quote. <a href="#sources">Read the official ADPH sources below</a>.</p>
                     </section>
                 @endif
-                @if (!featuredCountyRecordLinks.isEmpty())
+                @if (!featuredCountyRecordLinks.isEmpty() && !"AL".equals(state.stateCode()))
                     <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="${state.stateName()} county record shortcuts">
                         <span class="hero-county-launchpad__label">County file first</span>
                         @for (var link : featuredCountyRecordLinks.stream().limit(3).toList())
@@ -486,7 +486,7 @@
                                        data-track-click="nav"
                                        data-track-source-context="state_guide_micro_tool_records"
                                        data-track-target-type="official_source">Open local records path</a>
-                                    @if (!featuredCountyRecordLinks.isEmpty())
+                                    @if (!featuredCountyRecordLinks.isEmpty() && !"AL".equals(state.stateCode()))
                                         <a class="button button--secondary"
                                            href="${featuredCountyRecordLinks.get(0).path()}"
                                            data-track-click="nav"
@@ -494,7 +494,7 @@
                                            data-track-target-type="county_records_page">Open county records page</a>
                                     @endif
                                 </div>
-                            @elseif (!featuredCountyRecordLinks.isEmpty())
+                            @elseif (!featuredCountyRecordLinks.isEmpty() && !"AL".equals(state.stateCode()))
                                 <h2>Open the county records page first</h2>
                                 <p>The ${state.stateName()} guide has narrowed the problem. The next move is the county page, where the actual parcel file and office path become concrete enough to trust.</p>
                                 <div class="micro-tool__actions">
@@ -848,26 +848,42 @@
                     <p class="lede">Use these ${state.stateName()} routes when the state guide is too broad and the real question is which county file, search form, or local office controls the next step.</p>
                 </div>
 
-                <div class="detail-grid">
-                    @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().limit(6).toList())
-                        <article class="detail-card">
-                            <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
-                            <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta" data-track-target-type="county_page">Open county page</a>
-                        </article>
-                    @endfor
-                </div>
-                @if ((featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).size() > 6)
-                    <details class="county-link-overflow">
-                        <summary>Show all ${state.stateName()} county records pages</summary>
-                        <div class="detail-grid">
-                            @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().skip(6).toList())
-                                <article class="detail-card">
-                                    <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_overflow" data-track-target-type="county_page">${link.title()}</a></h3>
-                                    <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta_overflow" data-track-target-type="county_page">Open county page</a>
-                                </article>
+                @if ("AL".equals(state.stateCode()))
+                    <div class="alabama-county-directory" data-alabama-county-directory>
+                        <label for="alabama-county-directory-search">Search the county directory</label>
+                        <input id="alabama-county-directory-search" type="search" autocomplete="off" placeholder="Type a county name" data-alabama-county-directory-search>
+                        <p class="alabama-county-directory__status" aria-live="polite" data-alabama-county-directory-status>${(featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).size()} county routes</p>
+                        <ul>
+                            @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks))
+                                <li data-alabama-county-directory-row data-county-name="${link.compactTitle().toLowerCase()}">
+                                    <a href="${link.path()}" data-track-click="nav" data-track-source-context="alabama_county_directory" data-track-target-type="county_page">${link.compactTitle()}</a>
+                                </li>
                             @endfor
-                        </div>
-                    </details>
+                        </ul>
+                        <p data-alabama-county-directory-empty hidden>No published Alabama county route matches that search.</p>
+                    </div>
+                @else
+                    <div class="detail-grid">
+                        @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().limit(6).toList())
+                            <article class="detail-card">
+                                <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page" data-track-target-type="county_page">${link.title()}</a></h3>
+                                <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta" data-track-target-type="county_page">Open county page</a>
+                            </article>
+                        @endfor
+                    </div>
+                    @if ((featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).size() > 6)
+                        <details class="county-link-overflow">
+                            <summary>Show all ${state.stateName()} county records pages</summary>
+                            <div class="detail-grid">
+                                @for (var link : (featuredCountyRecordLinks.isEmpty() ? countyRecordLinks : featuredCountyRecordLinks).stream().skip(6).toList())
+                                    <article class="detail-card">
+                                        <h3><a href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_overflow" data-track-target-type="county_page">${link.title()}</a></h3>
+                                        <a class="button button--secondary" href="${link.path()}" data-track-click="nav" data-track-source-context="state_guide_county_page_cta_overflow" data-track-target-type="county_page">Open county page</a>
+                                    </article>
+                                @endfor
+                            </div>
+                        </details>
+                    @endif
                 @endif
             </div>
         </section>

@@ -6702,6 +6702,30 @@
 
     setupAlabamaPercScopeCheckers();
 
+    function setupAlabamaCountyDirectory() {
+        const directory = document.querySelector("[data-alabama-county-directory]");
+        const search = directory?.querySelector("[data-alabama-county-directory-search]");
+        const status = directory?.querySelector("[data-alabama-county-directory-status]");
+        const empty = directory?.querySelector("[data-alabama-county-directory-empty]");
+        const rows = Array.from(directory?.querySelectorAll("[data-alabama-county-directory-row]") || []);
+        if (!(search instanceof HTMLInputElement) || !rows.length) return;
+
+        const filter = () => {
+            const query = search.value.trim().toLowerCase();
+            let visible = 0;
+            rows.forEach(row => {
+                const matches = !query || String(row.dataset.countyName || "").includes(query);
+                row.hidden = !matches;
+                if (matches) visible += 1;
+            });
+            if (status) status.textContent = `${visible} county route${visible === 1 ? "" : "s"}`;
+            if (empty instanceof HTMLElement) empty.hidden = visible !== 0;
+        };
+        search.addEventListener("input", filter);
+    }
+
+    setupAlabamaCountyDirectory();
+
     function setupBedroomEmbedCopies() {
         const copies = Array.from(document.querySelectorAll("[data-bedroom-embed-copy]"));
         copies.forEach((button) => {
