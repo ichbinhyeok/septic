@@ -738,7 +738,7 @@
                                         @endif
                                         <section class="county-preparation-sheet" data-county-preparation-sheet>
                                             <div class="county-preparation-sheet__heading">
-                                                <span class="county-access-workflow__step">Take your entered details with you</span>
+                                                <span class="county-access-workflow__step">Preparation aid — not an official county form</span>
                                                 <strong>${countyAcquisitionProfile.preparationSheetLabel()}</strong>
                                                 <p>Download or print the values above. The government page remains the official route.</p>
                                             </div>
