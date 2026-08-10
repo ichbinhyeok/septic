@@ -420,51 +420,9 @@
                                 <div>
                                     <span class="eyebrow">County-specific preparation</span>
                                     <h3>${countyAcquisitionProfile.methodHeading()}</h3>
-                                    <p>${countyAcquisitionProfile.methodInstruction()}</p>
+                                    <p>${countyAcquisitionProfile.channelLabel()}</p>
                                 </div>
-                                <dl class="county-acquisition-facts" aria-label="Request facts">
-                                    <div>
-                                        <dt>File owner</dt>
-                                        <dd>${countyAcquisitionProfile.agency()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Fee</dt>
-                                        <dd>${countyAcquisitionProfile.feeLabel()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Timing</dt>
-                                        <dd>${countyAcquisitionProfile.timingLabel()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>You still do</dt>
-                                        <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
-                                    </div>
-                                    @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
-                                    <div>
-                                        <dt>Field verification</dt>
-                                        <dd>${countyAcquisitionProfile.archivedFieldVerificationLabel()}</dd>
-                                    </div>
-                                    @else
-                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
-                                    <div>
-                                        <dt>Field verification</dt>
-                                        <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
-                                    </div>
-                                    @endif
-                                    @endif
-                                </dl>
                             </header>
-
-                            <div class="county-acquisition-handoff">
-                                <div>
-                                    <span>SepticPath prepares</span>
-                                    <strong>${countyAcquisitionProfile.preparationSummary()}</strong>
-                                </div>
-                                <div>
-                                    <span>You finish at the county</span>
-                                    <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
-                                </div>
-                            </div>
 
                             @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
                                 <section class="hamilton-quick-search" aria-labelledby="hamilton-quick-search-heading" data-hamilton-quick-search>
@@ -871,6 +829,50 @@
                                            data-county-acquisition-status
                                            aria-live="polite"></p>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="county-acquisition-context">
+                                <dl class="county-acquisition-facts" aria-label="Request facts">
+                                    <div>
+                                        <dt>File owner</dt>
+                                        <dd>${countyAcquisitionProfile.agency()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Fee</dt>
+                                        <dd>${countyAcquisitionProfile.feeLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Timing</dt>
+                                        <dd>${countyAcquisitionProfile.timingLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>You still do</dt>
+                                        <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
+                                    </div>
+                                    @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>${countyAcquisitionProfile.archivedFieldVerificationLabel()}</dd>
+                                    </div>
+                                    @else
+                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
+                                    </div>
+                                    @endif
+                                    @endif
+                                </dl>
+                                <div class="county-acquisition-handoff">
+                                    <div>
+                                        <span>SepticPath prepares</span>
+                                        <strong>${countyAcquisitionProfile.preparationSummary()}</strong>
+                                    </div>
+                                    <div>
+                                        <span>You finish at the county</span>
+                                        <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
+                                    </div>
                                 </div>
                             </div>
 
