@@ -754,14 +754,14 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-11\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("325 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-11")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"27\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"28\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/alabama/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("California records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Montana records")))
@@ -1526,7 +1526,7 @@ class SepticApplicationTests {
 				.results()
 				.count();
 
-		assertEquals(324L, locationCount);
+		assertEquals(325L, locationCount);
 		assertEquals(locationCount, lastModifiedCount);
 	}
 
@@ -10384,7 +10384,7 @@ class SepticApplicationTests {
 	void countyRecordsIndexDataUsesUniqueHttpsRoutesAndResolvableSources() {
 		List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
 
-		assertEquals(324, pages.size());
+		assertEquals(325, pages.size());
 		assertEquals(
 				pages.size(),
 				pages.stream()
@@ -10396,7 +10396,7 @@ class SepticApplicationTests {
 		assertTrue(pages.stream()
 				.flatMap(page -> page.officialSourceIds().stream())
 				.allMatch(sourceId -> researchDataService.findSource(sourceId).isPresent()));
-		assertEquals("2026-07-20", researchDataService.countyRecordsPagesGeneratedAt());
+		assertEquals("2026-08-11", researchDataService.countyRecordsPagesGeneratedAt());
 	}
 
 	private List<String> countyQualityUnits(CountyLocalContentView contentView) {

@@ -6,6 +6,38 @@ import java.util.Map;
 public final class CountyAcquisitionProfileCatalog {
 
     private static final Map<String, CountyAcquisitionProfileView> PROFILES = Map.ofEntries(
+            Map.entry("SD::hughes-county", acquisition(
+                    "SD::hughes-county",
+                    "Hughes County Planning & Zoning",
+                    "Jurisdiction confirmation - planning-office call",
+                    "No historical septic-record lookup fee is published on the reviewed county pages.",
+                    "Planning Office hours are 8 a.m. to 4:30 p.m. Monday through Friday; no records turnaround is published.",
+                    "Call 605-773-7441, confirm that the parcel is in unincorporated Hughes County, and ask whether Planning & Zoning holds the septic permit or inspection file. If not, record the office named in the referral.",
+                    "",
+                    "605-773-7441",
+                    "Hughes County septic-file jurisdiction - {{address}}",
+                    "The county publishes this as a phone-assisted jurisdiction route, not a dedicated historical-record form. The details below are a call sheet and do not represent county-required fields.",
+                    """
+                    Hughes County jurisdiction call sheet
+
+                    Property address: {{address}}
+                    Parcel ID or legal description: {{parcel}}
+                    Incorporated / unincorporated status: {{jurisdiction}}
+                    Current or prior owner: {{owner}}
+                    Approximate construction or septic-work year: {{yearBuilt}}
+                    Record needed: {{lookupPurpose}}
+
+                    Completion result: permit or inspection record, written no-record response, or referral to {{referredOffice}}.
+                    """,
+                    List.of(
+                            select("jurisdiction", "Property jurisdiction", false, "Unincorporated Hughes County", "Inside Pierre or another incorporated place", "Not confirmed"),
+                            field("owner", "Current or prior owner", "Owner name if known", false, "name"),
+                            field("yearBuilt", "Construction or septic-work year", "Approximate year if known", false, "off"),
+                            select("lookupPurpose", "Record needed", false, "Septic permit or application", "Inspection or final approval", "Layout or site record", "Repair history", "Confirm the file owner"),
+                            field("referredOffice", "Office named in any referral", "Record this during the call", false, "organization")
+                    ),
+                    docs("responsible jurisdiction", "building or private-sewage permit", "septic inspection or final-approval record", "written no-record response or named referral")
+            )),
             Map.entry("VA::prince-william-county", acquisition(
                     "VA::prince-william-county",
                     "Prince William Health District — On-Site Sewage & Water Services",

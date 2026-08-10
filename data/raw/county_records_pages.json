@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-20",
+  "generatedAt": "2026-08-11",
   "pages": [
     {
       "stateCode": "IN",
@@ -22419,6 +22419,78 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Repair, expansion, existing-system, or other application types shown in the property history need resolution before the system is treated as routine.",
         "quoteGate": "Do not move from a Franklin County lookup to pricing until the PIN, property match, permit type and status, attached completed forms, and any older-file response all support the same septic story."
+      },
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "SD",
+      "countyName": "Hughes County",
+      "countySlug": "hughes-county",
+      "title": "Hughes County South Dakota Septic Records and Jurisdiction Check",
+      "metaDescription": "Hughes County septic records route with the official unincorporated-area Planning and Zoning office, parcel-jurisdiction check, permit and inspection request, and city or state referral fallback.",
+      "introCopy": "A Hughes County address should not be sent automatically to one generic state desk. The county says Planning and Zoning manages the unincorporated area, issues building permits, and inspects new construction for septic-code compliance. The first useful result is therefore the responsible jurisdiction; the next is the property-matched permit, inspection record, written no-record answer, or named referral.",
+      "uniqueAngle": "Hughes County exposes a real local septic-code office but not a public historical septic-record database or dedicated request form. This workflow closes that gap without pretending that a Pierre address and an unincorporated rural parcel use the same file owner.",
+      "targetReader": "Best for Hughes County buyers, owners, agents, and contractors who need to determine whether the county, an incorporated city, or a state inspection authority owns the septic file before relying on a sale story, repair plan, or quote.",
+      "officeLabel": "Hughes County Planning and Zoning",
+      "officeUrl": "https://www.hughescounty.org/planningandzoning",
+      "recordsLabel": "Confirm the Hughes County septic-file jurisdiction",
+      "recordsUrl": "https://www.hughescounty.org/planningandzoning",
+      "contactLine": "Hughes County Planning Office | 605-773-7441 | 8 a.m.-4:30 p.m. Monday-Friday. The office administers the unincorporated county area and inspects new construction for septic-code compliance; confirm incorporated or unincorporated status before requesting a file.",
+      "parcelAnchorLabel": "Open Hughes County real-estate information",
+      "parcelAnchorUrl": "https://hughescounty.org/realestate",
+      "parcelAnchorNote": "Use the parcel, legal-description, ownership, and boundary clues to distinguish unincorporated Hughes County from Pierre or another incorporated jurisdiction before calling the file owner.",
+      "decisionSteps": [
+        "Collect the full address, parcel ID or legal description, owner, and approximate construction or septic-work year, then determine whether the property is inside an incorporated place.",
+        "For an unincorporated parcel, use Hughes County Planning and Zoning or call 605-773-7441 and ask whether the office holds the building permit and septic inspection file.",
+        "If the county does not own the file, record the city or state inspection office named in the referral and continue there; finish only with a property-matched record, written no-record response, or documented referral."
+      ],
+      "recordsToRequest": [
+        "The building or private-sewage permit and application tied to the parcel.",
+        "Any septic inspection, final approval, layout, site record, repair history, or related permit note.",
+        "A written no-record response or the name and contact route of the incorporated-city or state authority that owns the file."
+      ],
+      "lowEndBreakers": [
+        "An address inside Pierre or another incorporated place may not belong to the county Planning and Zoning file path.",
+        "The county publishes a phone-assisted office route, not a complete online historical septic index, so an empty web search is not a no-record result.",
+        "A building permit without the septic inspection or final record does not prove that the installed system matches the current use or seller story."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Who should I call for a Hughes County septic record?",
+          "answer": "For an unincorporated Hughes County parcel, start with Planning and Zoning at 605-773-7441. The county says that department issues building permits and inspects new construction for septic-code compliance. For an incorporated address, first confirm the city or other inspection authority that owns the file."
+        },
+        {
+          "question": "What counts as a completed Hughes County lookup?",
+          "answer": "A matching permit or inspection record, a written no-record answer from the responsible office, or a documented referral naming the city, county, or state authority that owns the file. A phone call with no recorded outcome is still pending."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/south-dakota/",
+        "/septic-permit-process/south-dakota/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/septic-records-by-county/"
+      ],
+      "officialSourceIds": [
+        "sd_hughes_01",
+        "sd_hughes_02",
+        "sd_hughes_03",
+        "sd_04"
+      ],
+      "workflowStructure": {
+        "fileOwnerCategory": "jurisdiction_first",
+        "fileOwnerModel": "Hughes County Planning and Zoning is the practical starting office for unincorporated parcels because it issues building permits and inspects new construction for septic-code compliance; incorporated parcels require a city or other authority check.",
+        "firstArtifactToPull": "the responsible-jurisdiction confirmation followed by the property-matched building or private-sewage permit and septic inspection or final record",
+        "permitCloseoutCategory": "final_approval_signal",
+        "permitCloseoutSignal": "The file is stronger when it includes the septic inspection or final approval, not only a building-permit mention or an unverified address match.",
+        "transferCategory": "documented_jurisdiction_handoff",
+        "transferArtifact": "the permit and inspection file, a written no-record response, or a named city or state referral tied to the parcel.",
+        "specialProgramCategory": "incorporated_boundary",
+        "specialProgramSignal": "The county page expressly limits its planning role to the unincorporated area, so a Pierre or other incorporated address must not be assumed to use the county file desk.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "A repair, failed inspection, missing final, or file-owner conflict must be resolved before the system is treated as routine.",
+        "quoteGate": "Do not move from a Hughes County address to a septic price or clearance conclusion until the incorporated or unincorporated jurisdiction, file owner, and permit or inspection outcome are documented."
       },
       "publishStatus": "published"
     }

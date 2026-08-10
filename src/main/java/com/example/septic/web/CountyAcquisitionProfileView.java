@@ -82,12 +82,16 @@ public record CountyAcquisitionProfileView(
                  "TN::wilson-county", "TN::montgomery-county", "NC::union-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
             case "VA::prince-william-county", "CA::san-bernardino-county", "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
-            case "TX::tarrant-county", "TX::brazoria-county", "OH::mahoning-county" -> "official_contact";
+            case "TX::tarrant-county", "TX::brazoria-county", "OH::mahoning-county",
+                 "SD::hughes-county" -> "official_contact";
             default -> "official_route";
         };
     }
 
     public String methodHeading() {
+        if ("SD::hughes-county".equals(countyKey)) {
+            return "Confirm the jurisdiction with Hughes County Planning & Zoning";
+        }
         return switch (acquisitionMethod()) {
             case "official_search" -> "Search the official county system";
             case "official_pdf" -> "Complete the county's official PDF";
@@ -168,6 +172,9 @@ public record CountyAcquisitionProfileView(
         }
         if ("OH::mahoning-county".equals(countyKey)) {
             return "The county accepts public-record requests by email but does not publish a dedicated septic form. Carry the property facts into your own factual message.";
+        }
+        if ("SD::hughes-county".equals(countyKey)) {
+            return "Confirm whether the site is in unincorporated Hughes County first. Then call Planning & Zoning with the address and parcel clue; save the record, written no-record answer, or the city or state office named in the referral.";
         }
         return switch (acquisitionMethod()) {
             case "official_search" -> "Use the verified property identifiers shown here, open the official search, and return to record what the search produced.";
@@ -291,6 +298,9 @@ public record CountyAcquisitionProfileView(
     }
 
     public String manualCompletionBoundary() {
+        if ("SD::hughes-county".equals(countyKey)) {
+            return "Call 605-773-7441 in your own name, confirm the parcel's jurisdiction, and record the permit or inspection result, written no-record answer, or referred office before marking the lookup complete.";
+        }
         if (archivedOfficialFieldPackVerified()) {
             if ("CA::san-bernardino-county".equals(countyKey)) {
                 return "Call 800-442-2283, confirm the current submission channel and whether the county-authored form is still accepted, then sign, date, and send only through the method the office confirms.";
