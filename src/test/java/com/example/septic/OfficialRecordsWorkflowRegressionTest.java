@@ -84,6 +84,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void northCarolinaRouteUsesVerifiedCountyWorkflowsAndAnHonestBoundary() throws Exception {
         mockMvc.perform(get("/north-carolina-septic-permit-lookup/"))
                 .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>NC Septic Permit Lookup by County &amp; Address | SepticPath</title>")))
+                .andExpect(content().string(containsString("Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.")))
                 .andExpect(content().string(containsString("Find the county that holds the septic permit")))
                 .andExpect(content().string(containsString("29 county workflows have a source-reviewed route")))
                 .andExpect(content().string(containsString("SepticPath does not")))
@@ -92,6 +94,47 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("Environmental Health staff by county")))
                 .andExpect(content().string(not(containsString("Enter the address to find the record owner"))))
                 .andExpect(content().string(not(containsString("North Carolina public records"))));
+    }
+
+    @Test
+    void northCarolinaWorkspaceLinksEveryCurrentHighDemandCountyRoute() throws Exception {
+        String html = mockMvc.perform(get("/north-carolina-septic-permit-lookup/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Popular county permit searches")))
+                .andExpect(content().string(containsString("Buncombe County septic permit lookup")))
+                .andExpect(content().string(containsString("Union County septic permit lookup")))
+                .andExpect(content().string(containsString("Pender County septic permit lookup")))
+                .andExpect(content().string(containsString("Johnston County septic permit lookup")))
+                .andExpect(content().string(containsString("Wake County septic permit lookup")))
+                .andReturn().getResponse().getContentAsString();
+
+        for (String countySlug : java.util.List.of(
+                "buncombe-county", "union-county", "pender-county", "johnston-county",
+                "wake-county", "lincoln-county", "onslow-county", "franklin-county",
+                "durham-county", "iredell-county", "mecklenburg-county", "davidson-county",
+                "forsyth-county", "guilford-county", "alamance-county", "henderson-county"
+        )) {
+            org.assertj.core.api.Assertions.assertThat(html)
+                    .contains("/septic-records-checklist/north-carolina/" + countySlug + "/");
+        }
+    }
+
+    @Test
+    void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
+        mockMvc.perform(get("/tdec-septic-records/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>TN Septic Permit Search | TDEC &amp; County Records | SepticPath</title>")))
+                .andExpect(content().string(containsString("Search Tennessee septic permits by address, parcel, owner, or permit number.")));
+        mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
+                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost ($300-$2,700) &amp; County Fees | SepticPath</title>")));
+        mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
+                .andExpect(content().string(containsString("<title>Georgia Septic Permit Cost &amp; County Records | SepticPath</title>")));
+        mockMvc.perform(get("/septic-system-cost-calculator/alaska/"))
+                .andExpect(content().string(containsString("<title>Alaska Septic System Cost &amp; Permit Records | SepticPath</title>")));
+        mockMvc.perform(get("/perc-test-cost/arkansas/"))
+                .andExpect(content().string(containsString("<title>Arkansas Perc Test Cost &amp; County Permit Steps | SepticPath</title>")));
+        mockMvc.perform(get("/septic-records-checklist/georgia/forsyth-county/"))
+                .andExpect(content().string(containsString("<title>Forsyth County GA Septic Permit Lookup | SepticPath</title>")));
     }
 
     @Test
