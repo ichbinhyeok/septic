@@ -698,6 +698,7 @@ public class SiteController {
                 .toEpochMilli();
         return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=\"septicpath-records-access-index.csv\"")
+                .header("X-Robots-Tag", "noindex, follow")
                 .header("Link", "<" + seoService.absoluteUrl("/septic-records-access-index/")
                         + ">; rel=\"canonical\", <" + seoService.absoluteUrl("/septic-records-access-index.csv")
                         + ">; rel=\"alternate\"; type=\"text/csv\"")

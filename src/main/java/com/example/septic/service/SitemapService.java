@@ -13,6 +13,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SitemapService {
+    /*
+     * The shared content, state, and county workflow surfaces were materially
+     * rebuilt through this date. Keep this as a manual editorial revision
+     * marker: advance it only when a shared template changes page meaning or
+     * user-visible workflow content, never for cosmetic-only releases.
+     */
+    private static final String SHARED_WORKFLOW_REVISION_DATE = "2026-08-06";
+
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
     private final SeoService seoService;
@@ -57,7 +65,7 @@ public class SitemapService {
             if (!"septic-system-cost-calculator".equals(contentPage.slug())) {
                 entries.add(entry(
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
-                        validDateOrBlank(contentPage.updatedAt())
+                        latestValidDate(Stream.of(contentPage.updatedAt(), SHARED_WORKFLOW_REVISION_DATE))
                 ));
             }
         }
@@ -126,26 +134,29 @@ public class SitemapService {
         Stream<String> pageAndStateDates = Stream.of(
                 stateMoneyPage.updatedAt(),
                 stateMoneyPage.reviewedAt(),
-                state.lastVerifiedAt()
+                state.lastVerifiedAt(),
+                SHARED_WORKFLOW_REVISION_DATE
         );
         Stream<String> sourceDates = researchDataService.getSources(stateMoneyPage.officialSourceIds()).stream()
                 .map(SourceRecord::contentVerifiedAt);
-        return Stream.concat(pageAndStateDates, sourceDates)
-                .filter(this::isIsoDate)
-                .max(String::compareTo)
-                .orElse("");
+        return latestValidDate(Stream.concat(pageAndStateDates, sourceDates));
     }
 
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
-        return validDateOrBlank(countyContentQualityService.effectiveUpdatedAt(countyPage));
+        return latestValidDate(Stream.of(
+                countyContentQualityService.effectiveUpdatedAt(countyPage),
+                SHARED_WORKFLOW_REVISION_DATE
+        ));
     }
 
     private String statePageLastMod(StateProfile state) {
-        return validDateOrBlank(state.lastVerifiedAt());
+        return latestValidDate(Stream.of(state.lastVerifiedAt(), SHARED_WORKFLOW_REVISION_DATE));
     }
 
-    private String validDateOrBlank(String value) {
-        return isIsoDate(value) ? value : "";
+    private String latestValidDate(Stream<String> dates) {
+        return dates.filter(this::isIsoDate)
+                .max(String::compareTo)
+                .orElse("");
     }
 
     private boolean isIsoDate(String value) {

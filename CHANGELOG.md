@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2.9 - 2026-08-11
+
+- Sitemap modification dates now include the latest material shared-workflow revision, so Google can distinguish recently rebuilt state and county pages from their older crawled versions.
+- The downloadable records-access CSV now sends `X-Robots-Tag: noindex, follow`, keeping the canonical HTML dataset page indexable without treating the download artifact as a search landing page.
+- Regression coverage protects both crawl signals and the updated sitemap dates.
+
 ## 0.0.2.8 - 2026-08-11
 
 - Search Console-backed titles and descriptions now match Tennessee permit-search, Alabama perc-cost, Georgia permit-record, Alaska cost-and-record, Arkansas perc-test, and Forsyth County lookup intent.
