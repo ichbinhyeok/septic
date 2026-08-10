@@ -8,6 +8,27 @@ import java.util.Map;
 public final class CountyAccessProfileCatalog {
 
     private static final Map<String, CountyAccessProfileView> PROFILES = Map.ofEntries(
+            Map.entry("SD::hughes-county", profile(
+                    "SD::hughes-county",
+                    "jurisdiction_first",
+                    "Jurisdiction check with county septic-code office",
+                    "Confirm whether Hughes County Planning & Zoning owns the parcel's septic file",
+                    "Hughes County Planning & Zoning administers the unincorporated county area, issues building permits, and inspects new construction for septic-code compliance. Confirm that the property is outside an incorporated city's jurisdiction before asking the office for the permit, inspection, or written referral.",
+                    "Call the Hughes County Planning Office",
+                    "tel:6057737441",
+                    "Open Hughes County Planning & Zoning",
+                    "https://www.hughescounty.org/planningandzoning",
+                    "The responsible jurisdiction plus a property-matched permit or inspection record, written no-record response, or named referral",
+                    "The county publishes a planning-office route, not a dedicated historical septic-record search or request form. Its page limits the department's land-use role to unincorporated Hughes County, so a Pierre or other incorporated address may belong to a city or another inspection authority.",
+                    List.of("Full property address", "Incorporated or unincorporated location", "Parcel ID or legal description when available", "Owner and approximate construction or septic-work year", "Exact record needed"),
+                    List.of("Responsible city, county, or state inspection authority", "Building or private-sewage permit tied to the parcel", "Septic inspection or final-approval record", "Written no-record response or named referral"),
+                    List.of(
+                            "Use the county real-estate map or property documents to collect the parcel ID or legal description and determine whether the site is inside an incorporated city.",
+                            "For unincorporated property, open Planning & Zoning or call 605-773-7441 and ask whether that office holds the building and septic inspection file.",
+                            "If the parcel is incorporated or the county does not own the file, ask for the responsible city or state inspection office by name instead of starting a duplicate generic request.",
+                            "Save the permit, inspection or final record, written no-record answer, or referral before treating the lookup as complete."
+                    )
+            )),
             Map.entry("IN::st-joseph-county", profile(
                     "IN::st-joseph-county",
                     "official_request",
