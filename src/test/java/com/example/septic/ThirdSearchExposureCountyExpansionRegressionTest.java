@@ -64,17 +64,17 @@ class ThirdSearchExposureCountyExpansionRegressionTest {
 
     @Test
     void southCarolinaCountiesUseDistinctParcelAnchorsAndRegionalRoutes() {
-        Map<String, String> primaryUrls = Map.of(
+        Map<String, String> parcelUrls = Map.of(
                 "SC::charleston-county", "https://prcweb.charlestoncounty.org/",
                 "SC::greenville-county", "https://www.greenvillecounty.org/appsas400/RealProperty/",
                 "SC::anderson-county", "https://www.andersoncountysc.org/departments-a-z/assessor/",
                 "SC::spartanburg-county", "https://www.spartanburgcounty.gov/185/Geographic-Information-Systems"
         );
 
-        primaryUrls.forEach((countyKey, url) -> {
+        parcelUrls.forEach((countyKey, url) -> {
             CountyAccessProfileView profile = CountyAccessProfileCatalog.find(countyKey);
-            assertEquals(url, profile.primaryUrl(), countyKey);
-            assertEquals("tel:18557312504", profile.secondaryUrl(), countyKey);
+            assertEquals("https://des.sc.gov/sites/des/files/Library/D-2295.pdf", profile.primaryUrl(), countyKey);
+            assertEquals(url, profile.secondaryUrl(), countyKey);
             assertTrue(profile.limitation().contains("licensed septic contractor"), countyKey);
         });
 
