@@ -14153,38 +14153,38 @@
       "countyName": "Christian County",
       "countySlug": "christian-county",
       "title": "Christian County Missouri Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Christian County septic records checklist and permit lookup with health-department approval, county-certified installer rules, and six-month permit timing before you trust a build, repair, or existing-system story.",
-      "introCopy": "Christian County is a strong Missouri wedge because the county splits wastewater reality across building, environmental, and health files. The building regulations say wastewater work routes through the health department and that permits expire if work or inspections stall for six months, the environmental office says building permits require health-department wastewater approval and older systems may need state-qualified inspection, and the health department says environmental staff regulate wastewater and certify installers while Sunshine requests control the records trail.",
-      "uniqueAngle": "Christian County is a health-verification-and-certified-installer county. The real branch is whether the parcel has a valid health-department wastewater file and approved installer path or whether the existing system still needs inspection before any build or sale story is trustworthy.",
-      "targetReader": "Best for Christian County buyers, owners, and rural builders who need to know whether the next move is a health-department file pull, a state-qualified inspection, or a records request before they price a system or close a deal.",
+      "metaDescription": "Christian County septic records checklist and permit lookup with Health Department permits, licensed-installer rules, and wastewater inspection records before you trust a build, repair, or existing-system story.",
+      "introCopy": "Christian County is a strong Missouri wedge because the Health Department publishes the county-wide onsite wastewater ordinance path, requires systems to be permitted and installers to be certified, and provides a records-request route for wastewater inspection results.",
+      "uniqueAngle": "Christian County is a permit-file-and-certified-installer county. The real branch is whether the parcel has a valid Health Department wastewater file and licensed installer path or whether the record request still needs to resolve the system and inspection history.",
+      "targetReader": "Best for Christian County buyers, owners, and rural builders who need to know whether the next move is a Health Department wastewater file pull, an installer check, or a records request before they price a system or close a deal.",
       "officeLabel": "Christian County Health Department",
-      "officeUrl": "https://www.christiancountymohealth.gov/",
+      "officeUrl": "https://www.christiancountymohealth.gov/wastewater",
       "recordsLabel": "Open Christian County Sunshine Law records guidance",
       "recordsUrl": "https://www.christiancountymohealth.gov/sunshine-law",
       "contactLine": "Christian County Health Department | 417-581-7285 | 301 E Brick Street Ozark MO",
       "decisionSteps": [
-        "Start with the health-department side of the file and confirm whether wastewater approval already exists because Christian County will not treat a building permit as enough by itself.",
-        "Use the county building and environmental guidance next because existing systems can still require a state-qualified inspection and installers must be county-certified as well as state-certified.",
-        "Before trusting a low-end build or repair story, check whether the permit or inspection timeline already broke the six months rule and forced the project back into renewal or re-review."
+        "Start with the Health Department wastewater file and confirm whether the system permit and inspection results already exist for the parcel.",
+        "Check the installer path next because Christian County requires wastewater systems to be permitted and installers to be certified.",
+        "If the online material does not resolve the system history, submit the Health Department records request for wastewater inspection results before trusting a low-end build or repair story."
       ],
       "recordsToRequest": [
         "Any Christian County Health Department wastewater permit or approval tied to the parcel.",
-        "Any inspection or review showing whether an older existing system required a state-qualified inspector.",
-        "Any records-request response, installer note, or county file showing who was allowed to install or repair the system."
+        "Any wastewater inspection result or system record held by Environmental Public Health.",
+        "Any records-request response, installer note, or county file showing who was licensed to install or repair the system."
       ],
       "lowEndBreakers": [
-        "If there is no health-department wastewater approval, the building story is not county-complete.",
-        "If the installer was not county-certified, the visible repair story may miss a compliance problem.",
-        "If the permit or inspection trail went past six months without progress, the project may be less current than the owner suggests."
+        "If there is no Health Department wastewater permit or inspection file, the property story is not county-complete.",
+        "If the installer was not licensed for the county path, the visible repair story may miss a compliance problem.",
+        "If the records request does not confirm the system and inspection history, the cheapest reuse or repair path is still unproven."
       ],
       "faqBlocks": [
         {
           "question": "Why is Christian County a strong Missouri county page?",
-          "answer": "Because Christian County makes owners line up health-department wastewater approval, county-certified installers, and permit timing instead of treating septic as a side issue."
+          "answer": "Because Christian County makes owners line up the Health Department wastewater file, licensed installer path, and inspection records instead of treating septic as a side issue."
         },
         {
           "question": "What is the first Christian County septic record to ask for?",
-          "answer": "Start with the health-department wastewater file, then check whether the permit timing, installer status, and any older-system inspection all support the same story."
+          "answer": "Start with the Health Department wastewater file, then check whether the permit, installer status, and wastewater inspection results all support the same story."
         }
       ],
       "internalLinkTargets": [
@@ -14207,7 +14207,7 @@
         "permitCloseoutCategory": "generic",
         "permitCloseoutSignal": "Christian County still needs a stronger closeout signal than the first permit mention before the file is safe to price against.",
         "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "Any inspection or review showing whether an older existing system required a state-qualified inspector.",
+        "transferArtifact": "Any wastewater inspection result or Health Department records response tied to the parcel.",
         "specialProgramCategory": "generic",
         "specialProgramSignal": "Christian County still rewards checking for local program, area-rule, or file-resolution friction before the parcel is treated as routine.",
         "malfunctionCategory": "repair_branch",
@@ -14487,38 +14487,38 @@
       "countyName": "San Juan County",
       "countySlug": "san-juan-county",
       "title": "San Juan County Utah Septic Records Checklist and Permit Lookup",
-      "metaDescription": "San Juan County septic records checklist and permit lookup with sewer-distance rules, recorder and GIS lookup paths, and subdivision-file review before you trust a rural Utah septic story.",
-      "introCopy": "San Juan County is a strong Utah wedge because the county does not treat rural land as a free pass. The county building page routes septic work through the building-permit lane, the recorder and GIS tools help owners tie the wastewater story to the right parcel, and the subdivision ordinance says private wastewater disposal facilities should be more than 1320 feet from an approved sanitary sewer system unless the county accepts a different path.",
-      "uniqueAngle": "San Juan County is a sewer-distance-and-parcel-proof county. The real branch is whether the lot truly supports a private septic path or whether sewer proximity, subdivision history, or a weak parcel trail changes the next move before you price anything.",
+      "metaDescription": "San Juan County septic records checklist and permit lookup with current building, recorder, surveyor, GIS, and subdivision-review paths before you trust a rural Utah septic story.",
+      "introCopy": "San Juan County is a strong Utah wedge because the county does not treat rural land as a free pass. The current building page routes owners through the Planning and Building permit lane, the recorder and surveyor resources help tie the wastewater story to the right parcel, and the county maintains a current subdivision-ordinance review path for land splits and development questions.",
+      "uniqueAngle": "San Juan County is a permit-and-parcel-proof county. The real branch is whether the lot truly supports a private septic path or whether planning review, subdivision history, or a weak parcel trail changes the next move before you price anything.",
       "targetReader": "Best for San Juan County buyers, owners, and builders who need to know whether the next move is a building permit check, a recorder search, or a GIS parcel review before trusting the septic story.",
       "officeLabel": "San Juan County Building Department",
-      "officeUrl": "https://sanjuancountyut.gov/building",
+      "officeUrl": "https://sanjuancountyut.gov/293/Building-Permits-and-Business-Licenses",
       "recordsLabel": "Open San Juan County recorder and parcel records",
-      "recordsUrl": "https://sanjuancountyut.gov/recorder",
+      "recordsUrl": "https://sanjuancountyut.gov/214/Recorder",
       "contactLine": "San Juan County Building Department | Monticello UT",
       "decisionSteps": [
         "Start with the county building department and verify whether the parcel already has the septic permit or build file tied to the proposed use.",
         "Use the recorder and GIS tools next so the legal parcel, recorded documents, and mapped property details all point to the same site before you trust the wastewater story.",
-        "Check the subdivision ordinance if the lot looks close to sewer or comes from a newer split because the county says private wastewater disposal facilities should be more than 1320 feet from an approved sanitary sewer system."
+        "Check the current subdivision-ordinance and Planning and Building path if the lot comes from a newer split or the parcel history does not support the proposed development."
       ],
       "recordsToRequest": [
         "Any building permit, septic permit, or land-use file tied to the parcel.",
         "Any recorded document, deed, plat, or subdivision record that confirms the lot configuration and access history.",
-        "Any GIS parcel or subdivision material that shows whether the site was expected to connect to sewer or support a private system."
+        "Any GIS parcel or subdivision material that shows how the site was mapped and approved for development."
       ],
       "lowEndBreakers": [
-        "If the lot is within 1320 feet of an approved sanitary sewer system, the private septic story may need more scrutiny than the owner implies.",
+        "If current planning or subdivision review does not support the proposed development, the private septic story may need more scrutiny than the owner implies.",
         "If the recorder trail and GIS parcel story do not match, the file may be thinner than a rural listing suggests.",
         "If subdivision history is incomplete, the cheapest septic path may not be the real path."
       ],
       "faqBlocks": [
         {
           "question": "Why is San Juan County a strong Utah county page?",
-          "answer": "Because San Juan County gives owners the building, recorder, GIS, and subdivision-rule tools needed to test whether a rural parcel truly supports a private septic path."
+          "answer": "Because San Juan County gives owners current building, recorder, surveyor, GIS, and subdivision-review tools needed to test whether a rural parcel truly supports a private septic path."
         },
         {
           "question": "What is the first San Juan County septic record to ask for?",
-          "answer": "Start with the building or septic permit file, then confirm the recorded parcel and sewer-distance story support the same conclusion."
+          "answer": "Start with the building or septic permit file, then confirm the recorded parcel, GIS, and subdivision history support the same conclusion."
         }
       ],
       "internalLinkTargets": [

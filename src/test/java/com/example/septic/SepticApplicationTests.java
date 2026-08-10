@@ -747,18 +747,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-08-03\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-08-11\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"alternate\" type=\"text/csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"Dataset\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-03\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-11\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("324 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-03")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-11")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"27\"")))
@@ -4870,13 +4870,13 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void christianCountyRecordsPageShowsCertifiedInstallerWorkflow() throws Exception {
+	void christianCountyRecordsPageShowsCurrentWastewaterRecordsWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/missouri/christian-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Christian County Missouri Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Christian County Sunshine Law records guidance")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("county-certified")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("six months")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.christiancountymohealth.gov/wastewater")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("wastewater inspection records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Missouri records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Missouri guide")));
 	}
@@ -4930,12 +4930,13 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void sanJuanCountyRecordsPageShowsSewerDistanceWorkflow() throws Exception {
+	void sanJuanCountyRecordsPageShowsCurrentPermitAndParcelWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/utah/san-juan-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Juan County Utah Septic Records Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open San Juan County recorder and parcel records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("1320 feet")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://sanjuancountyut.gov/293/Building-Permits-and-Business-Licenses")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("subdivision history")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("San Juan County Building Department")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Utah records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Utah guide")));
