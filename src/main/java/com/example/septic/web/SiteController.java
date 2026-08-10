@@ -192,13 +192,30 @@ public class SiteController {
             "TN", List.of("hamilton-county"),
             "NC", List.of(
                     "buncombe-county",
-                    "wake-county",
                     "union-county",
-                    "pitt-county",
                     "pender-county",
                     "johnston-county",
+                    "wake-county",
+                    "lincoln-county",
+                    "onslow-county",
+                    "franklin-county",
+                    "durham-county",
+                    "iredell-county",
+                    "mecklenburg-county",
+                    "davidson-county",
+                    "forsyth-county",
+                    "guilford-county",
                     "alamance-county",
-                    "guilford-county"
+                    "henderson-county",
+                    "pitt-county"
+            ),
+            "GA", List.of(
+                    "forsyth-county",
+                    "dekalb-county",
+                    "fulton-county",
+                    "gwinnett-county",
+                    "hall-county",
+                    "jackson-county"
             ),
             "IN", List.of(
                     "porter-county",
@@ -1861,7 +1878,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 : List.of());
         model.addAttribute("coreStateComparisonRows", coreStateComparisonRows);
         model.addAttribute("countyRecordLinks", countyRecordLinks);
-        model.addAttribute("featuredCountyRecordLinks", countyRecordLinks.stream().limit(30).toList());
+        model.addAttribute("featuredCountyRecordLinks", priorityOrderedCountyRecordLinks(state.stateCode(), countyRecordLinks, 30));
         model.addAttribute("guideOfficialFilePathRows", guideOfficialFilePathRows(
                 state,
                 localAuthoritySources.stream().findFirst().orElse(null),
@@ -2189,10 +2206,16 @@ The goal is to settle the permit path before we frame the project as a normal in
             return "pages/tdec-records-page";
         }
         if (NC_PERMIT_LOOKUP_SLUG.equals(contentPage.slug())) {
-            model.addAttribute("northCarolinaCountyRoutes", researchDataService
+            List<CountyRecordsPage> northCarolinaCountyRoutes = researchDataService
                     .listPublicCountyRecordsPages("NC").stream()
                     .sorted(Comparator.comparing(CountyRecordsPage::countyName))
-                    .toList());
+                    .toList();
+            model.addAttribute("northCarolinaCountyRoutes", northCarolinaCountyRoutes);
+            model.addAttribute("northCarolinaPriorityCountyRoutes", priorityCountyRoutes(
+                    "NC",
+                    northCarolinaCountyRoutes,
+                    16
+            ));
             return "pages/north-carolina-records-page";
         }
         if (TX_OSSF_RECORDS_SLUG.equals(contentPage.slug())) {
@@ -7369,11 +7392,31 @@ The goal is to settle the permit path before we frame the project as a normal in
             return countyRecordLinks.stream().limit(30).toList();
         }
 
+        return priorityOrderedCountyRecordLinks(state.stateCode(), countyRecordLinks, 30);
+    }
+
+    private List<PageLink> priorityOrderedCountyRecordLinks(String stateCode, List<PageLink> countyRecordLinks, int limit) {
         LinkedHashMap<String, PageLink> orderedLinks = new LinkedHashMap<>();
-        stateRecordsCountyLinks(state.stateCode(), countyRecordLinks)
+        stateRecordsCountyLinks(stateCode, countyRecordLinks)
                 .forEach(link -> orderedLinks.put(link.path(), link));
         countyRecordLinks.forEach(link -> orderedLinks.putIfAbsent(link.path(), link));
-        return orderedLinks.values().stream().limit(30).toList();
+        return orderedLinks.values().stream().limit(limit).toList();
+    }
+
+    private List<CountyRecordsPage> priorityCountyRoutes(
+            String stateCode,
+            List<CountyRecordsPage> countyRoutes,
+            int limit
+    ) {
+        LinkedHashMap<String, CountyRecordsPage> orderedRoutes = new LinkedHashMap<>();
+        STATE_RECORDS_PRIORITY_COUNTY_SLUGS.getOrDefault(stateCode, List.of()).forEach(preferredSlug ->
+                countyRoutes.stream()
+                        .filter(route -> preferredSlug.equals(route.countySlug()))
+                        .findFirst()
+                        .ifPresent(route -> orderedRoutes.putIfAbsent(route.key(), route))
+        );
+        countyRoutes.forEach(route -> orderedRoutes.putIfAbsent(route.key(), route));
+        return orderedRoutes.values().stream().limit(limit).toList();
     }
 
     private Set<String> countySearchResponseSlugs(String stateCode) {

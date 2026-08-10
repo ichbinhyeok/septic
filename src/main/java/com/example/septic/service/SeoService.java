@@ -421,6 +421,7 @@ public class SeoService {
     public PageMeta contentPage(ContentPage contentPage, EditorialProfile preparedBy, EditorialProfile reviewedBy) {
         String canonicalUrl = absoluteUrl("/" + contentPage.slug() + "/");
         String seoTitle = contentPageSeoTitle(contentPage);
+        String seoDescription = contentPageSeoDescription(contentPage);
         List<Map<String, Object>> breadcrumbs = contentPageBreadcrumbs(contentPage, canonicalUrl);
         List<String> jsonLdBlocks = new ArrayList<>();
         String pageType = switch (contentPage.slug()) {
@@ -430,7 +431,7 @@ public class SeoService {
         };
         jsonLdBlocks.add(toJson(withSemanticEvidence(
                 withEditorialMeta(
-                        webPage(canonicalUrl, seoTitle, contentPage.metaDescription(), pageType),
+                        webPage(canonicalUrl, seoTitle, seoDescription, pageType),
                         contentPage.updatedAt(),
                         preparedBy,
                         reviewedBy
@@ -442,7 +443,7 @@ public class SeoService {
         jsonLdBlocks.add(toJson(breadcrumb(breadcrumbs)));
         return pageMeta(
                 seoTitle,
-                contentPage.metaDescription(),
+                seoDescription,
                 canonicalUrl,
                 "index,follow",
                 breadcrumbLinks(breadcrumbs),
@@ -781,7 +782,7 @@ public class SeoService {
             case "TX::brazoria-county" -> "Brazoria County OSSF Permit Status and Records Request";
             case "WA::thurston-county" -> "Thurston County Septic Records and As-Built Search";
             case "NC::cumberland-county" -> "Cumberland County NC Septic Permit Search and Records";
-            case "GA::forsyth-county" -> "Forsyth County GA Septic Permit Records Search";
+            case "GA::forsyth-county" -> "Forsyth County GA Septic Permit Lookup";
             case "CA::san-bernardino-county" -> "Request San Bernardino County Septic Records";
             case "MI::washtenaw-county" -> "Washtenaw County Septic Records and Permit Search";
             case "MT::gallatin-county" -> "Gallatin County Septic Records and Permit Search";
@@ -1369,14 +1370,22 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Records & Tennessee SSDS Permit Lookup | SepticPath";
-            case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup: County Search & As-Builts | SepticPath";
+            case "tdec-septic-records" -> "TN Septic Permit Search | TDEC & County Records | SepticPath";
+            case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup by County & Address | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Permit Records: Find the Local Authority | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida Septic Permit Lookup by County | OSTDS Records | SepticPath";
             case "dhec-septic-permit-lookup" -> "DHEC Septic Tank Records & Permit Lookup | SCDES Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
             case "septic-tank-size" -> "Septic Tank Size Guide | Bedroom count, gallons, and sizing risk | SepticPath";
             default -> contentPage.title() + " | SepticPath";
+        };
+    }
+
+    private String contentPageSeoDescription(ContentPage contentPage) {
+        return switch (contentPage.slug()) {
+            case "tdec-septic-records" -> "Search Tennessee septic permits by address, parcel, owner, or permit number. Find the correct TDEC SSDS or local county route when the viewer is blocked.";
+            case "north-carolina-septic-permit-lookup" -> "Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.";
+            default -> contentPage.metaDescription();
         };
     }
 
@@ -1394,6 +1403,9 @@ public class SeoService {
         }
         if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "WV".equals(state.stateCode())) {
             return "How Much Does a Perc Test Cost in West Virginia? | SepticPath";
+        }
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "AR".equals(state.stateCode())) {
+            return "Arkansas Perc Test Cost & County Permit Steps | SepticPath";
         }
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
             case "septic-replacement-cost" -> " | Quote Scope | SepticPath";
@@ -1414,6 +1426,9 @@ public class SeoService {
     private String stateMoneyPageDescription(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "WV".equals(state.stateCode())) {
             return "See the $300-$3,000 national perc-test planning range, then narrow West Virginia cost by local health department, site review, permit stage, and quote scope.";
+        }
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "AR".equals(state.stateCode())) {
+            return "See Arkansas perc test costs, then find the county health unit, Onsite Environmental Specialist, soil-suitability questions, permit-copy route, and quote scope.";
         }
         if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return stateMoneyPage.metaDescription();
@@ -1453,14 +1468,14 @@ public class SeoService {
             case "DE" -> "Delaware Septic Cost Guide and Permit Path";
             case "ND" -> "North Dakota Septic Cost Guide and Local Permit Path";
             case "WY" -> "Wyoming Septic Cost Guide and Site-Risk Path";
-            case "AK" -> "Alaska Septic Cost Guide and Buyer File Path";
+            case "AK" -> "Alaska Septic System Cost & Permit Records";
             case "HI" -> "Hawaii Septic Cost Guide and Cesspool Upgrade Path";
             case "ME" -> "Maine Septic Cost Guide and HHE-200 File Path";
             case "NH" -> "New Hampshire Septic Cost Guide and Approval Status Path";
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "Alabama Perc Test Cost: $300-$2,700 and County Fees";
+            case "AL" -> "Alabama Perc Test Cost ($300-$2,700) & County Fees";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -1481,7 +1496,7 @@ public class SeoService {
             case "NY" -> "New York Septic Cost Guide and Appendix 75-A Rules";
             case "OH" -> "Ohio Septic Cost Guide and Local Health Permit Path";
             case "MI" -> "Michigan Septic Cost Guide and Local Health Records Path";
-            case "GA" -> "Georgia Septic Permit Cost, Permit Records, and Soil Analysis Guide";
+            case "GA" -> "Georgia Septic Permit Cost & County Records";
             case "PA" -> "Pennsylvania Septic Cost Guide and SEO Permit Path";
             case "CT" -> "Connecticut Septic Cost Guide and Design Flow Rules";
             case "OR" -> "Oregon Septic Cost Guide and Site Evaluation Path";
@@ -1509,14 +1524,14 @@ public class SeoService {
             case "DE" -> "Delaware septic planning estimates with DNREC permit routing, report-lookup context, county handoff, and official-source links.";
             case "ND" -> "North Dakota septic planning estimates with local public health routing, permit-file visibility, and official-source links.";
             case "WY" -> "Wyoming septic planning estimates with delegated-county routing, site-suitability context, and official-source links.";
-            case "AK" -> "Alaska septic planning estimates with approved-system record pulls, local-office routing, difficult-site risk, and official-source links.";
+            case "AK" -> "Estimate Alaska septic system cost and check approved-system records, local permit offices, difficult-site risk, inspection needs, and official next steps.";
             case "HI" -> "Hawaii septic planning estimates with cesspool-upgrade triggers, county building-permit handoff, approval-to-use timing, and official-source links.";
             case "ME" -> "Maine septic planning estimates with HHE-200 file pulls, town-office routing, Local Plumbing Inspector context, and official-source links.";
             case "NH" -> "New Hampshire septic planning estimates with approval-status checks, OneStop records, local verification, and official-source links.";
             case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "Alabama perc test cost is typically planned at $300-$2,700. Compare separate ADPH county site-evaluation and permit fees, soil scope, and official next steps.";
+            case "AL" -> "Alabama perc tests typically cost $300-$2,700. Compare county site-evaluation and permit fees, soil scope, and the official ADPH next step before requesting quotes.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";
@@ -1537,7 +1552,7 @@ public class SeoService {
             case "NY" -> "New York septic planning estimates with Appendix 75-A rules, county health workflow, and official-source links.";
             case "OH" -> "Ohio septic planning estimates with local health department routing, Chapter 3701-29 permit context, and official-source links.";
             case "MI" -> "Michigan septic planning estimates with local health department routing, file-retrieval context, and official-source links.";
-            case "GA" -> "Georgia septic permit cost guide with county office lookups, permit records, soil analysis steps, garbage-disposal sizing risk, and official DPH links.";
+            case "GA" -> "Estimate Georgia septic permit and system costs, then find county permit records, soil analysis steps, sizing rules, and official Georgia DPH guidance.";
             case "PA" -> "Pennsylvania septic planning estimates with Sewage Enforcement Officer workflow, local permit context, and official-source links.";
             case "CT" -> "Connecticut septic planning estimates with design flow, potential-bedroom risk, local health review, and official-source links.";
             case "OR" -> "Oregon septic planning estimates with site evaluation, permit sequencing, and official-source links.";

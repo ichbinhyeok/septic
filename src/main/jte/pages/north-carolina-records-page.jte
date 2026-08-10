@@ -5,6 +5,7 @@
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<CountyRecordsPage> northCarolinaCountyRoutes = java.util.List.of()
+@param java.util.List<CountyRecordsPage> northCarolinaPriorityCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
 @template.layouts.app(page = page, content = @`
@@ -22,6 +23,36 @@
                 </dl>
             </div>
         </section>
+
+        @if (!northCarolinaPriorityCountyRoutes.isEmpty())
+            <section class="nc-priority-routes" aria-labelledby="nc-priority-routes-title">
+                <div class="container nc-priority-routes__inner">
+                    <header>
+                        <span class="eyebrow">Popular county permit searches</span>
+                        <h2 id="nc-priority-routes-title">Go straight to the county file route</h2>
+                        <p>These county pages explain the official portal, form, email, or phone path and what to do when the first search is empty.</p>
+                    </header>
+                    <nav class="nc-priority-routes__links" aria-label="Popular North Carolina county septic permit lookups">
+                        @for (var county : northCarolinaPriorityCountyRoutes.stream().limit(6).toList())
+                            <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes" data-track-target-type="county_records_page">
+                                <strong>${county.countyName()} septic permit lookup</strong>
+                                <span>Open county route</span>
+                            </a>
+                        @endfor
+                    </nav>
+                    @if (northCarolinaPriorityCountyRoutes.size() > 6)
+                        <details class="nc-priority-routes__more">
+                            <summary>More high-demand county routes</summary>
+                            <nav aria-label="More North Carolina county septic permit lookups">
+                                @for (var county : northCarolinaPriorityCountyRoutes.stream().skip(6).toList())
+                                    <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes_more" data-track-target-type="county_records_page">${county.countyName()} septic records</a>
+                                @endfor
+                            </nav>
+                        </details>
+                    @endif
+                </div>
+            </section>
+        @endif
 
         <section class="tdec-workspace" id="nc-record-search" aria-labelledby="nc-workspace-title">
             <div class="container">

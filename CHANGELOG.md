@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.2.8 - 2026-08-11
+
+- Search Console-backed titles and descriptions now match Tennessee permit-search, Alabama perc-cost, Georgia permit-record, Alaska cost-and-record, Arkansas perc-test, and Forsyth County lookup intent.
+- The North Carolina permit workspace now links the current high-demand county routes directly, while keeping the first six visible and the remaining routes in a compact expandable list.
+- Georgia state guidance now prioritizes Forsyth County and other demand-backed county record routes before the alphabetical directory.
+- Regression coverage protects all sixteen North Carolina acquisition routes, the revised snippets, and the page-to-county handoff.
+
 ## 0.0.2.7 - 2026-07-31
 
 - Thurston County now offers an in-product parcel search against the county's public Laserfiche archive before the record-drawing fallback.

@@ -502,6 +502,21 @@
   /* Tennessee records desk: county-first routing, explicit government handoff. */
   .tdec-desk { color: #17262e; background: #f4f3ee; }
   .nc-records-desk .nc-directory-link { display: inline-flex; margin-top: 12px; color: var(--accent-dark); font-size: .78rem; font-weight: 800; text-underline-offset: 3px; }
+  .nc-priority-routes { padding-block: 30px; border-bottom: 1px solid #aeb8b4; background: #e8f1ed; }
+  .nc-priority-routes__inner { display: grid; grid-template-columns: minmax(240px, .62fr) minmax(0, 1.38fr); gap: clamp(30px, 6vw, 82px); align-items: start; }
+  .nc-priority-routes header h2 { max-width: 16ch; margin: 7px 0 10px; font-size: clamp(1.55rem, 2.6vw, 2.25rem); }
+  .nc-priority-routes header p { max-width: 46ch; margin: 0; color: #52656d; font-size: .82rem; }
+  .nc-priority-routes__links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 2px solid #17262e; }
+  .nc-priority-routes__links a { display: flex; min-height: 64px; justify-content: space-between; gap: 14px; align-items: center; padding: 13px 2px; border-bottom: 1px solid #aeb8b4; color: #17262e; text-decoration: none; }
+  .nc-priority-routes__links a:nth-child(odd) { padding-right: 18px; }
+  .nc-priority-routes__links a:nth-child(even) { padding-left: 18px; border-left: 1px solid #aeb8b4; }
+  .nc-priority-routes__links strong { font: 800 .8rem/1.35 var(--font-sans); }
+  .nc-priority-routes__links span { flex: 0 0 auto; color: #52656d; font-size: .68rem; }
+  .nc-priority-routes__links a:hover strong { color: #0e6b5d; text-decoration: underline; text-underline-offset: 3px; }
+  .nc-priority-routes__more { grid-column: 2; border-bottom: 1px solid #aeb8b4; }
+  .nc-priority-routes__more summary { padding: 13px 2px; cursor: pointer; font: 800 .76rem/1.4 var(--font-sans); }
+  .nc-priority-routes__more nav { display: flex; flex-wrap: wrap; gap: 7px 18px; padding: 0 2px 16px; }
+  .nc-priority-routes__more a { color: #294950; font-size: .74rem; font-weight: 700; text-underline-offset: 3px; }
   .tx-records-desk .nc-directory-link { display: inline-flex; margin-top: 12px; color: var(--accent-dark); font-size: .78rem; font-weight: 800; text-underline-offset: 3px; }
   .tx-authority { padding-block: 22px; color: #f8fbf8; background: var(--ink); }
   .tx-authority__grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; }
@@ -684,7 +699,8 @@
 
 @layer responsive {
   @media (max-width: 960px) {
-    .tdec-desk__intro-grid, .tdec-outcomes__grid, .tdec-request__grid, .state-record-return__inner { grid-template-columns: 1fr; }
+    .tdec-desk__intro-grid, .tdec-outcomes__grid, .tdec-request__grid, .state-record-return__inner, .nc-priority-routes__inner { grid-template-columns: 1fr; }
+    .nc-priority-routes__more { grid-column: auto; }
     .tdec-workspace__form { grid-template-columns: 1fr; }
     .tdec-workspace__form fieldset { border-right: 0; border-bottom: 1px solid var(--line); }
     .tdec-workspace__form fieldset + fieldset { border-left: 0; }
@@ -714,6 +730,11 @@
   @media (max-width: 720px) {
     .sc-official-search__grid { grid-template-columns: 1fr; gap: 18px; }
     .sc-official-search .button { width: 100%; justify-content: center; }
+    .nc-priority-routes { padding-block: 24px; }
+    .nc-priority-routes__inner { gap: 20px; }
+    .nc-priority-routes__links { grid-template-columns: 1fr; }
+    .nc-priority-routes__links a:nth-child(odd), .nc-priority-routes__links a:nth-child(even) { padding-inline: 2px; border-left: 0; }
+    .nc-priority-routes__links span { display: none; }
     .tdec-desk__intro { padding-block: 28px; }
     .tdec-desk__intro h1 { font-size: clamp(2.15rem, 10.5vw, 3.1rem); }
     .tdec-desk__intro-grid { gap: 24px; }
