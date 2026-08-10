@@ -1106,6 +1106,50 @@ public final class CountyAcquisitionProfileCatalog {
                     ),
                     docs("septic permit information", "current-through or expired file status", "permit type and available layout", "written no-record, referral, or follow-up response")
             )),
+            Map.entry("IN::st-joseph-county", acquisition(
+                    "IN::st-joseph-county",
+                    "St. Joseph County Department of Health - Environmental Health Division",
+                    "Official Schematic Request PDF - Environmental Health email, pickup, or fax",
+                    "The official form has an amount paid or invoiced field for office use; no fixed schematic fee is published.",
+                    "No response time is published.",
+                    "Review the official PDF, choose email, pickup, or fax delivery, then send it to Environmental Health in your own name.",
+                    "envirohd@sjcindiana.com",
+                    "574-235-9722",
+                    "Completed septic schematic request - {{address}}",
+                    "The fields match the county-authored Schematic Request. County records run from 1970 to the present, but the county warns that not every system is on file.",
+                    """
+                    St. Joseph County Schematic Request field pack
+
+                    Person requesting schematic: {{requesterName}}
+                    Company: {{company}}
+                    Requester mailing address: {{requesterMailingAddress}}
+                    Requester city / state / ZIP: {{requesterCityStateZip}}
+                    Telephone: {{requesterPhone}}
+                    Fax: {{requesterFax}}
+
+                    Schematic scope: {{schematicScope}}
+                    Delivery method: {{deliveryMethod}}
+                    Email for PDF delivery: {{requesterEmail}}
+                    Pickup date: {{pickupDate}}
+
+                    Property address and city: {{address}}
+                    Subdivision and lot number: {{subdivisionLot}}
+                    """,
+                    List.of(
+                            field("requesterName", "Person requesting schematic(s)", "Full name", true, "name"),
+                            field("company", "Company", "If applicable", false, "organization"),
+                            field("requesterMailingAddress", "Requester address", "Mailing address", false, "street-address"),
+                            field("requesterCityStateZip", "Requester city, state, and ZIP", "City, state, ZIP", false, "off"),
+                            field("requesterPhone", "Telephone", "Phone number", false, "tel"),
+                            field("requesterFax", "Fax", "If using fax delivery", false, "off"),
+                            select("schematicScope", "Schematic information", true, "Most recent schematic only", "All available schematics"),
+                            select("deliveryMethod", "Delivery method", true, "Email PDF", "Pick up", "Fax"),
+                            field("requesterEmail", "Email for PDF delivery", "name@example.com", false, "email"),
+                            field("pickupDate", "Pickup date", "If choosing pickup", false, "off"),
+                            field("subdivisionLot", "Subdivision and lot number", "If known", false, "off")
+                    ),
+                    docs("most recent septic schematic", "all available septic schematics", "written availability, no-record, or referral response")
+            )),
             Map.entry("NC::guilford-county", acquisition(
                     "NC::guilford-county",
                     "Guilford County On-Site Water Protection",

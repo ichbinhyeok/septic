@@ -2129,7 +2129,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Department of Health")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Why we trust this route")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official Schematic Request PDF")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
 	}
 

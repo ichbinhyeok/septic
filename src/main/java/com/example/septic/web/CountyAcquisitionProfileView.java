@@ -39,7 +39,8 @@ public record CountyAcquisitionProfileView(
                  "TN::wilson-county",
                  "TN::montgomery-county",
                  "NC::wake-county",
-                 "NC::pender-county" -> true;
+                 "NC::pender-county",
+                 "IN::st-joseph-county" -> true;
             default -> false;
         };
     }
@@ -72,7 +73,8 @@ public record CountyAcquisitionProfileView(
                  "AZ::maricopa-county", "NC::brunswick-county",
                  "MD::prince-georges-county", "CO::adams-county", "NC::buncombe-county",
                  "NC::wake-county", "NC::pitt-county" -> "official_search";
-            case "NC::alamance-county", "TX::denton-county", "NC::pender-county", "MD::st-marys-county" -> "official_pdf";
+            case "NC::alamance-county", "TX::denton-county", "NC::pender-county", "MD::st-marys-county",
+                 "IN::st-joseph-county" -> "official_pdf";
             case "NC::lincoln-county", "GA::dekalb-county",
                  "TN::blount-county", "TN::knox-county",
                  "NJ::gloucester-county",
@@ -161,6 +163,9 @@ public record CountyAcquisitionProfileView(
         if ("NC::pender-county".equals(countyKey)) {
             return "Transfer the verified property and requester fields to Pender County's original Septic Permit Information Request PDF. Confirm the current delivery channel on the program page or by phone before sending it.";
         }
+        if ("IN::st-joseph-county".equals(countyKey)) {
+            return "Complete St. Joseph County's official Schematic Request PDF with the requester, delivery, property address, and subdivision or lot details prepared here, then email it to Environmental Health or use the published pickup or fax option.";
+        }
         if ("OH::mahoning-county".equals(countyKey)) {
             return "The county accepts public-record requests by email but does not publish a dedicated septic form. Carry the property facts into your own factual message.";
         }
@@ -182,7 +187,8 @@ public record CountyAcquisitionProfileView(
                  "MD::st-marys-county",
                  "MD::frederick-county",
                  "TX::brazoria-county",
-                 "OH::mahoning-county" -> true;
+                 "OH::mahoning-county",
+                 "IN::st-joseph-county" -> true;
             default -> false;
         };
     }
@@ -203,7 +209,8 @@ public record CountyAcquisitionProfileView(
                  "NJ::gloucester-county",
                  "TN::sevier-county",
                  "NC::wake-county",
-                 "NC::pender-county" -> true;
+                 "NC::pender-county",
+                 "IN::st-joseph-county" -> true;
             default -> false;
         };
     }
@@ -226,7 +233,7 @@ public record CountyAcquisitionProfileView(
     public boolean officialPropertyAddressRequired() {
         return switch (countyKey) {
             case "TN::hamilton-county", "CA::san-bernardino-county",
-                 "NJ::gloucester-county", "TN::sevier-county" -> true;
+                 "NJ::gloucester-county", "TN::sevier-county", "IN::st-joseph-county" -> true;
             default -> false;
         };
     }

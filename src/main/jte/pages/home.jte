@@ -130,8 +130,8 @@
                     <span><strong>Wake County, North Carolina</strong><small>iMAPS parcel match and Permit Search attachments · verified field pack</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
-                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
-                    <span><strong>St. Joseph County, Indiana</strong><small>Official schematic request page · starting-point route</small></span>
+                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
+                    <span><strong>St. Joseph County, Indiana</strong><small>Official schematic PDF and verified fields · prepared field pack</small></span>
                     <span aria-hidden="true">Open →</span>
                 </a>
                 <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">

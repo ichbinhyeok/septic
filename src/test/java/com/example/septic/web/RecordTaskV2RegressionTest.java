@@ -76,7 +76,8 @@ class RecordTaskV2RegressionTest {
 
     @Test
     void addressFinderHandsItsExistingWorkflowIdToTheV2Task() throws IOException {
-        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"))
+                .replace("\r\n", "\n");
         assertTrue(script.contains("workflowRunId: ensureWorkflowRunId(),\n                    stateCode: payload.stateCode"));
     }
 }

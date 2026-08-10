@@ -14,7 +14,8 @@ class DocumentNoFactsTruthBoundaryRegressionTest {
     // and advanced to decision_ready with generic inspection advice during final browser QA.
     @Test
     void emptyExtractionDoesNotBecomeAcquisitionOrDecisionSuccess() throws IOException {
-        String script = Files.readString(Path.of("src/main/resources/static/app.js"));
+        String script = Files.readString(Path.of("src/main/resources/static/app.js"))
+                .replace("\r\n", "\n");
 
         assertTrue(script.contains("if (summary.grouped.size === 0)"));
         assertTrue(script.contains("No usable property facts yet"));
