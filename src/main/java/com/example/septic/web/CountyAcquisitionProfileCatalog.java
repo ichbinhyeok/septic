@@ -1204,7 +1204,174 @@ public final class CountyAcquisitionProfileCatalog {
                             select("lookupPurpose", "What do you need?", false, "System type and location", "Complete permit and layout file", "Repair or monitoring history")
                     ),
                     docs("system type and location information", "improvement permit and construction authorization", "operation permit and layout", "repair, monitoring, or abandonment records")
-            ))
+            )),
+            Map.entry("NC::johnston-county", acquisition(
+                    "NC::johnston-county",
+                    "Johnston County Environmental Health",
+                    "Official permit search - published email fallback",
+                    "No search or permit-copy fee is published on the reviewed page.",
+                    "The office is open Monday through Friday, 8 a.m. to 5 p.m.; no email turnaround is published.",
+                    "Search by address, street, or permit number. If the permit copy cannot be located, email envhealth@johnstonnc.gov and retain the reply.",
+                    "envhealth@johnstonnc.gov",
+                    "919-989-5180",
+                    "Johnston County septic permit copy - {{address}}",
+                    "The county publishes the search inputs and an explicit email fallback. These are search and handoff clues, not a locally authored county form.",
+                    """
+                    Johnston County search carry sheet
+
+                    Property address: {{address}}
+                    Street name: {{streetName}}
+                    Permit number: {{permitNumber}}
+                    Current or prior owner: {{owner}}
+                    Parcel clue: {{parcel}}
+                    """,
+                    List.of(
+                            field("streetName", "Street name", "Street name without house number", false, "address-line1"),
+                            field("permitNumber", "Permit number", "If known", false, "off"),
+                            field("owner", "Current or prior owner", "If known", false, "name")
+                    ),
+                    docs("septic permit image", "permit status", "written no-record or referral response")
+            )),
+            Map.entry("TX::comal-county", acquisition(
+                    "TX::comal-county",
+                    "Comal County Engineer's Office - Environmental Health",
+                    "Direct official septic-permit search",
+                    "The county publishes the permit search as an online service; no search fee is shown.",
+                    "Search results are immediate when a matching indexed record exists.",
+                    "Search by address first, then retry with permit number, name, subdivision, or date range and save every property-matched artifact.",
+                    "",
+                    "830-608-2090",
+                    "Comal County septic permit follow-up - {{address}}",
+                    "The search page itself publishes these inputs. A blank result remains unresolved until the alternative fields or Environmental Health follow-up are used.",
+                    """
+                    Comal County search carry sheet
+
+                    Property address: {{address}}
+                    Permit number: {{permitNumber}}
+                    Name on permit: {{owner}}
+                    Subdivision: {{subdivision}}
+                    From / to date: {{dateRange}}
+                    """,
+                    List.of(
+                            field("permitNumber", "Permit number", "If known", false, "off"),
+                            field("owner", "Name on permit", "Owner or applicant", false, "name"),
+                            field("subdivision", "Subdivision", "If known", false, "off"),
+                            field("dateRange", "Permit date range", "Approximate from and to dates", false, "off")
+                    ),
+                    docs("septic permit record", "approval or inspection artifact", "written follow-up response")
+            )),
+            Map.entry("IN::brown-county", acquisition(
+                    "IN::brown-county",
+                    "Brown County Health Department",
+                    "Official Public Records Request PDF",
+                    "No fixed septic-file copy fee is published on the reviewed pages.",
+                    "No response time is published.",
+                    "Open the original county Public Records Request PDF, complete it in your own name, and request the parcel's septic permit, inspections, and system diagram.",
+                    "bchealth@browncounty-in.gov",
+                    "812-988-2255",
+                    "Brown County septic records - {{address}}",
+                    "Brown County says a septic diagram is kept on file. The public-records document is a scanned official PDF, so this carry sheet does not claim to reproduce its fields.",
+                    """
+                    Brown County records carry sheet
+
+                    Property address: {{address}}
+                    Current or prior owner: {{owner}}
+                    Approximate permit or installation year: {{yearBuilt}}
+                    Records needed: {{lookupPurpose}}
+                    """,
+                    List.of(
+                            field("owner", "Current or prior owner", "If known", false, "name"),
+                            field("yearBuilt", "Permit or installation year", "Approximate year", false, "off"),
+                            select("lookupPurpose", "Records needed", false, "Septic permit", "Inspection record", "System diagram", "All available septic records")
+                    ),
+                    docs("septic permit", "inspection record", "system diagram", "written no-record or referral response")
+            )),
+            Map.entry("IN::grant-county", acquisition(
+                    "IN::grant-county",
+                    "Grant County Health Department - Environmental Division",
+                    "Published address-based records search by email or phone",
+                    "No historical records-search fee is published.",
+                    "The office is open Monday through Friday, 8 a.m. to 4 p.m.; no records turnaround is published.",
+                    "Send the exact address to Environmental Health and ask for the permit and any construction plan showing component locations.",
+                    "environmental@grantcounty.in.gov",
+                    "765-651-2401 option 1",
+                    "Grant County septic records search - {{address}}",
+                    "The county FAQ explicitly accepts an address for a records search. The supporting owner and year details are optional matching clues, not claimed form requirements.",
+                    """
+                    Grant County records-search carry sheet
+
+                    Property address: {{address}}
+                    Current or prior owner: {{owner}}
+                    Approximate installation or permit year: {{yearBuilt}}
+                    Need: {{lookupPurpose}}
+                    """,
+                    List.of(
+                            field("owner", "Current or prior owner", "If known", false, "name"),
+                            field("yearBuilt", "Installation or permit year", "Approximate year", false, "off"),
+                            select("lookupPurpose", "Records needed", false, "Permit and construction plan", "Permit only", "All available septic records")
+                    ),
+                    docs("septic permit", "construction plan showing component locations", "written no-record or referral response")
+            )),
+            Map.entry("IN::porter-county", acquisition(
+                    "IN::porter-county",
+                    "Porter County Health Department - Environmental Health",
+                    "Published era-based record lookup by email or phone",
+                    "No historical drawing lookup fee is published.",
+                    "Email submissions are accepted; no records turnaround is published.",
+                    "Choose the installation era, prepare the county's published matching clues, and email or call Environmental Health for the drawing and permit material.",
+                    "environmental.health@portercountyin.gov",
+                    "219-465-3525",
+                    "Porter County septic drawing request - {{address}}",
+                    "Porter County publishes the exact record-availability rules by installation era. Before 1974 it reports no county permit records; 1974-2001 needs additional subdivision, lot, and installation-era owner or applicant clues.",
+                    """
+                    Porter County era-based lookup sheet
+
+                    Property address: {{address}}
+                    Installation era: {{installationEra}}
+                    Subdivision: {{subdivision}}
+                    Lot: {{lotNumber}}
+                    Installation-era owner or permit applicant: {{priorOwner}}
+                    """,
+                    List.of(
+                            select("installationEra", "Installation era", true, "Before 1974", "1974 through 2001", "2001 to present", "Unknown"),
+                            field("subdivision", "Subdivision", "Needed for many 1974-2001 files", false, "off"),
+                            field("lotNumber", "Lot number", "Needed for many 1974-2001 files", false, "off"),
+                            field("priorOwner", "Installation-era owner or applicant", "Needed for many 1974-2001 files", false, "name")
+                    ),
+                    docs("septic system drawing", "permit material", "field investigation report", "documented pre-1974 or no-file response")
+            )),
+            Map.entry("IN::monroe-county", acquisition(
+                    "IN::monroe-county",
+                    "Monroe County Health Department - Wastewater",
+                    "OpenGov permit download - Wastewater office historical fallback",
+                    "Current permit fees are published by type and can change; no historical paper-copy fee is published.",
+                    "No historical-file response time is published.",
+                    "Download an issued permit from OpenGov when a record number exists; for an existing historical property file, email Wastewater or request the paper copy at the Health Department.",
+                    "wastewater@co.monroe.in.us",
+                    "812-349-2543 option 3",
+                    "Monroe County existing septic file - {{address}}",
+                    "The county explicitly publishes both downloadable OpenGov permits and paper copies at the Health Department. New-permit application steps are not substituted for a historical records request.",
+                    """
+                    Monroe County existing-file carry sheet
+
+                    Property address: {{address}}
+                    Parcel clue: {{parcel}}
+                    OpenGov application record number: {{recordNumber}}
+                    Current or prior owner: {{owner}}
+                    Need: {{lookupPurpose}}
+                    """,
+                    List.of(
+                            field("recordNumber", "OpenGov application record number", "WW-XX-XXXX if known", false, "off"),
+                            field("owner", "Current or prior owner", "If known", false, "name"),
+                            select("lookupPurpose", "Records needed", false, "Issued permit", "Approved site plan", "Soil report and Minimum Specs", "All available historical septic records")
+                    ),
+                    docs("issued septic permit", "approved site plan", "soil report and Minimum Specs", "paper historical file or written response")
+            )),
+            Map.entry("SC::horry-county", southCarolinaFoia("SC::horry-county", "Horry")),
+            Map.entry("SC::greenville-county", southCarolinaFoia("SC::greenville-county", "Greenville")),
+            Map.entry("SC::spartanburg-county", southCarolinaFoia("SC::spartanburg-county", "Spartanburg")),
+            Map.entry("SC::charleston-county", southCarolinaFoia("SC::charleston-county", "Charleston")),
+            Map.entry("SC::anderson-county", southCarolinaFoia("SC::anderson-county", "Anderson"))
     );
 
     private CountyAcquisitionProfileCatalog() {
@@ -1253,6 +1420,53 @@ public final class CountyAcquisitionProfileCatalog {
                 requestTemplate.strip(),
                 List.copyOf(fields),
                 List.copyOf(requestedDocuments)
+        );
+    }
+
+    private static CountyAcquisitionProfileView southCarolinaFoia(String countyKey, String countyName) {
+        return acquisition(
+                countyKey,
+                "South Carolina Department of Environmental Services - FOI Office",
+                "Official SCDES D-2295 or written email request",
+                "Search, redaction, scanning, or download time is $23 per hour; 25 or fewer paper pages are free and 26 or more are $0.10 per page. Archive retrieval and deposits may apply.",
+                "SCDES determines availability within 10 working days for recent records or 20 working days for older records; production windows can be 30 or 35 calendar days after determination or deposit.",
+                "Complete the original SCDES D-2295 and send it to foi@des.sc.gov. If the PDF is region-blocked, SCDES also accepts a specific written request by that email; retain the sent message, request reference, and returned septic file.",
+                "foi@des.sc.gov",
+                "803-898-3882",
+                "SCDES septic records request - " + countyName + " County - {{address}}",
+                "These fields match the current SCDES D-2295. Use the " + countyName + " County parcel or TMS clue and describe the historical septic permit, final inspection, and site record needed. The same facts support SCDES's published written-email fallback when CloudFront blocks the PDF by region.",
+                """
+                SCDES D-2295 transfer sheet
+
+                Requester: {{requesterName}}
+                Company / organization: {{company}}
+                Mailing address: {{requesterMailingAddress}}
+                City / state / ZIP: {{requesterCityStateZip}}
+                Phone: {{requesterPhone}}
+                Email: {{requesterEmail}}
+
+                Facility / project: {{facilityName}}
+                Property address: {{address}}
+                County: {{county}}
+                Parcel / TMS: {{parcel}}
+                SCDES contact if known: {{agencyContact}}
+                Description: {{recordDescription}}
+                Delivery: {{deliveryMethod}}
+                """,
+                List.of(
+                        field("requesterName", "Requester name", "Your full name", true, "name"),
+                        field("company", "Company or organization", "If applicable", false, "organization"),
+                        field("requesterMailingAddress", "Requester street address", "Mailing address", true, "street-address"),
+                        field("requesterCityStateZip", "Requester city, state, and ZIP", "City, state ZIP", true, "off"),
+                        field("requesterPhone", "Requester phone", "Phone number", true, "tel"),
+                        field("requesterEmail", "Requester email", "Email address", true, "email"),
+                        field("facilityName", "Facility or project name", "Property or subdivision name", false, "off"),
+                        field("county", "County", countyName + " County", true, "off"),
+                        field("agencyContact", "SCDES file custodian or contact", "If known", false, "name"),
+                        field("recordDescription", "Specific records requested", "Septic permit, final inspection, site record, repair history", true, "off"),
+                        select("deliveryMethod", "Delivery method", true, "Email", "Pickup", "Mail", "Other")
+                ),
+                docs("septic permit copy", "Permit to Construct", "Approval to Operate or final inspection", "site record", "repair or abandonment history", "written no-record or referral response")
         );
     }
 

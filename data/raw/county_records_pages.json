@@ -10653,7 +10653,8 @@
         "nc_johnston_01",
         "nc_johnston_02",
         "nc_johnston_03",
-        "nc_johnston_04"
+        "nc_johnston_04",
+        "nc_johnston_05"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
@@ -18379,6 +18380,8 @@
       ],
       "officialSourceIds": [
         "in_porter_01",
+        "in_porter_02",
+        "in_porter_03",
         "in_03"
       ],
       "publishStatus": "published",
@@ -19313,6 +19316,8 @@
       "officialSourceIds": [
         "in_grant_01",
         "in_grant_02",
+        "in_grant_03",
+        "in_grant_04",
         "in_03"
       ],
       "workflowStructure": {
@@ -19599,6 +19604,8 @@
       "officialSourceIds": [
         "in_brown_01",
         "in_brown_02",
+        "in_brown_03",
+        "in_brown_04",
         "in_03"
       ],
       "workflowStructure": {
@@ -21048,6 +21055,8 @@
         "sc_greenville_parcel_01",
         "sc_03",
         "sc_02",
+        "sc_05",
+        "sc_06",
         "sc_01"
       ],
       "workflowStructure": {
@@ -21246,6 +21255,8 @@
         "sc_charleston_parcel_01",
         "sc_03",
         "sc_02",
+        "sc_05",
+        "sc_06",
         "sc_01"
       ],
       "workflowStructure": {
@@ -21345,6 +21356,8 @@
         "sc_horry_parcel_01",
         "sc_03",
         "sc_02",
+        "sc_05",
+        "sc_06",
         "sc_01"
       ],
       "workflowStructure": {
@@ -21444,6 +21457,8 @@
         "sc_spartanburg_parcel_01",
         "sc_03",
         "sc_02",
+        "sc_05",
+        "sc_06",
         "sc_01"
       ],
       "workflowStructure": {
@@ -21863,6 +21878,8 @@
         "sc_anderson_parcel_01",
         "sc_03",
         "sc_02",
+        "sc_05",
+        "sc_06",
         "sc_01"
       ],
       "workflowStructure": {

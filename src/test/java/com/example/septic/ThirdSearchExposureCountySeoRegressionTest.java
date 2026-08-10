@@ -61,6 +61,7 @@ class ThirdSearchExposureCountySeoRegressionTest {
 
         mockMvc.perform(get("/septic-records-checklist/south-carolina/spartanburg-county/"))
                 .andExpect(content().string(containsString("Piedmont I")))
-                .andExpect(content().string(containsString("tel:18557312504")));
+                .andExpect(content().string(containsString("https://des.sc.gov/sites/des/files/Library/D-2295.pdf")))
+                .andExpect(content().string(containsString("mailto:foi@des.sc.gov")));
     }
 }

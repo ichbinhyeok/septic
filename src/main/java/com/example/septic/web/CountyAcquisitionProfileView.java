@@ -40,7 +40,9 @@ public record CountyAcquisitionProfileView(
                  "TN::montgomery-county",
                  "NC::wake-county",
                  "NC::pender-county",
-                 "IN::st-joseph-county" -> true;
+                 "IN::st-joseph-county",
+                 "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
+                 "SC::charleston-county", "SC::anderson-county" -> true;
             default -> false;
         };
     }
@@ -72,9 +74,11 @@ public record CountyAcquisitionProfileView(
             case "TN::hamilton-county",
                  "AZ::maricopa-county", "NC::brunswick-county",
                  "MD::prince-georges-county", "CO::adams-county", "NC::buncombe-county",
-                 "NC::wake-county", "NC::pitt-county" -> "official_search";
+                 "NC::wake-county", "NC::pitt-county", "NC::johnston-county", "TX::comal-county" -> "official_search";
             case "NC::alamance-county", "TX::denton-county", "NC::pender-county", "MD::st-marys-county",
-                 "IN::st-joseph-county" -> "official_pdf";
+                 "IN::st-joseph-county", "IN::brown-county",
+                 "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
+                 "SC::charleston-county", "SC::anderson-county" -> "official_pdf";
             case "NC::lincoln-county", "GA::dekalb-county",
                  "TN::blount-county", "TN::knox-county",
                  "NJ::gloucester-county",
@@ -83,7 +87,7 @@ public record CountyAcquisitionProfileView(
             case "NC::forsyth-county" -> "official_contact_form";
             case "VA::prince-william-county", "CA::san-bernardino-county", "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
             case "TX::tarrant-county", "TX::brazoria-county", "OH::mahoning-county",
-                 "SD::hughes-county" -> "official_contact";
+                 "SD::hughes-county", "IN::grant-county", "IN::porter-county", "IN::monroe-county" -> "official_contact";
             default -> "official_route";
         };
     }
@@ -91,6 +95,9 @@ public record CountyAcquisitionProfileView(
     public String methodHeading() {
         if ("SD::hughes-county".equals(countyKey)) {
             return "Confirm the jurisdiction with Hughes County Planning & Zoning";
+        }
+        if (countyKey.startsWith("SC::")) {
+            return "Complete D-2295 or use SCDES's written email route";
         }
         return switch (acquisitionMethod()) {
             case "official_search" -> "Search the official county system";
@@ -170,6 +177,27 @@ public record CountyAcquisitionProfileView(
         if ("IN::st-joseph-county".equals(countyKey)) {
             return "Complete St. Joseph County's official Schematic Request PDF with the requester, delivery, property address, and subdivision or lot details prepared here, then email it to Environmental Health or use the published pickup or fax option.";
         }
+        if ("NC::johnston-county".equals(countyKey)) {
+            return "Search by house number and street, street only, or permit number. If the permit copy still cannot be located, use the county's published Environmental Health email fallback and retain the reply.";
+        }
+        if ("TX::comal-county".equals(countyKey)) {
+            return "Search the official county index by address, then retry with permit number, name, subdivision, or date range before escalating an incomplete result to Environmental Health.";
+        }
+        if ("IN::brown-county".equals(countyKey)) {
+            return "Use Brown County's original scanned Public Records Request. This carry sheet identifies the septic records to ask for but does not reproduce unverified PDF fields.";
+        }
+        if ("IN::grant-county".equals(countyKey)) {
+            return "Grant County explicitly offers an address-based records search. Email or call Environmental Health for the permit and any construction plan showing component locations.";
+        }
+        if ("IN::porter-county".equals(countyKey)) {
+            return "Use Porter's published installation-era rules: pre-1974 files are unavailable; 1974-2001 requests need subdivision, lot, and the installation-era owner or applicant; 2001-present requests need the address.";
+        }
+        if ("IN::monroe-county".equals(countyKey)) {
+            return "Download an issued permit from OpenGov when its record number is known. For an existing historical file, use the published Wastewater email or request a paper copy at the Health Department.";
+        }
+        if (countyKey.startsWith("SC::")) {
+            return "Transfer the verified fields to the original SCDES D-2295, sign its certification, and send it to foi@des.sc.gov. If CloudFront blocks the PDF by region, SCDES also accepts a specific written request at that email; retain the sent message, request reference, and returned record.";
+        }
         if ("OH::mahoning-county".equals(countyKey)) {
             return "The county accepts public-record requests by email but does not publish a dedicated septic form. Carry the property facts into your own factual message.";
         }
@@ -195,7 +223,10 @@ public record CountyAcquisitionProfileView(
                  "MD::frederick-county",
                  "TX::brazoria-county",
                  "OH::mahoning-county",
-                 "IN::st-joseph-county" -> true;
+                 "IN::st-joseph-county", "NC::johnston-county", "IN::brown-county",
+                 "IN::grant-county", "IN::porter-county", "IN::monroe-county",
+                 "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
+                 "SC::charleston-county", "SC::anderson-county" -> true;
             default -> false;
         };
     }
@@ -217,7 +248,10 @@ public record CountyAcquisitionProfileView(
                  "TN::sevier-county",
                  "NC::wake-county",
                  "NC::pender-county",
-                 "IN::st-joseph-county" -> true;
+                 "IN::st-joseph-county", "NC::johnston-county", "TX::comal-county",
+                 "IN::brown-county", "IN::grant-county", "IN::porter-county", "IN::monroe-county",
+                 "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
+                 "SC::charleston-county", "SC::anderson-county" -> true;
             default -> false;
         };
     }
@@ -232,7 +266,9 @@ public record CountyAcquisitionProfileView(
                  "NC::brunswick-county",
                  "NY::suffolk-county",
                  "NC::wake-county",
-                 "NC::pender-county" -> true;
+                 "NC::pender-county", "TX::comal-county",
+                 "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
+                 "SC::charleston-county", "SC::anderson-county" -> true;
             default -> false;
         };
     }

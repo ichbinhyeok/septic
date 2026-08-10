@@ -317,8 +317,8 @@ public final class CountyAccessProfileCatalog {
                     "SCDES route after county parcel match",
                     "Confirm the Horry parcel, then route the septic file through SCDES",
                     "Horry County's GIS and online services establish the parcel or TMS clue; South Carolina DES remains the septic permitting and permit-copy route. The county parcel fabric is a tax and routing clue, not a survey or septic layout.",
-                    "Open the SCDES septic contact route",
-                    "https://des.sc.gov/permits-regulations/septic-tanks/septic-tanks-who-call",
+                    "Open the official SCDES D-2295 records request",
+                    "https://des.sc.gov/sites/des/files/Library/D-2295.pdf",
                     "Open Horry County online services and GIS",
                     "https://www.horrycountysc.gov/online-services/",
                     "A parcel-matched septic permit copy, D-1740 or site-review trail, final-inspection status, or written SCDES response",
@@ -327,8 +327,8 @@ public final class CountyAccessProfileCatalog {
                     List.of("Septic permit copy", "D-1740 application or site-review record", "Permit to Construct or final-inspection status", "Repair, replacement, malfunction, or abandonment record"),
                     List.of(
                             "Use Horry County GIS to confirm the address, TMS or parcel ID, owner, and subdivision clue.",
-                            "Open the SCDES septic contact route and identify the current county or regional intake for Horry County.",
-                            "Request the permit copy, D-1740 or site-review trail, and final-inspection status tied to the parcel.",
+                            "Transfer the prepared values to the official SCDES D-2295 and send it to foi@des.sc.gov.",
+                            "Request the permit copy, D-1740 or site-review trail, and final-inspection status tied to the parcel, then retain the request reference.",
                             "Keep the county parcel clue separate from the septic layout and treat an empty search as pending until SCDES responds."
                     )
             )),
@@ -1412,10 +1412,10 @@ public final class CountyAccessProfileCatalog {
                     "TMS lookup with Coastal records route",
                     "Find the Charleston County TMS, then request the SCDES septic file",
                     "Charleston County's property-card search provides the parcel ID or TMS that SCDES asks for when locating a permit. SCDES assigns Charleston to its Coastal regional division and routes copies of permits and final inspections through Onsite Wastewater customer support.",
+                    "Open the official SCDES D-2295 records request",
+                    "https://des.sc.gov/sites/des/files/Library/D-2295.pdf",
                     "Search Charleston property record cards",
                     "https://prcweb.charlestoncounty.org/",
-                    "Call SCDES for permits and final inspections",
-                    "tel:18557312504",
                     "A parcel-matched Permit to Construct, Approval to Operate or final inspection, site information, or documented no-file response",
                     "SCDES says permit copies are most likely for homes built within roughly the last 20 years. If the office cannot locate a copy or the home is older, a licensed septic contractor may be needed to locate the physical system; a missing file does not prove no system exists.",
                     List.of(
@@ -1433,7 +1433,7 @@ public final class CountyAccessProfileCatalog {
                     List.of(
                             "Use the county property-card search to confirm the parcel ID or TMS and address.",
                             "Add the lot, block, original permit holder, subdivision, and approximate date when available.",
-                            "Call 1-855-731-2504 for the permit or final-inspection copy; Charleston is in the SCDES Coastal division at 843-953-0150.",
+                            "Transfer the prepared values to D-2295, send it to foi@des.sc.gov, and retain the request reference; Charleston is in the SCDES Coastal division for follow-up.",
                             "Keep the returned permit and final inspection, or document the no-file result before arranging physical location work."
                     )
             )),
@@ -1443,10 +1443,10 @@ public final class CountyAccessProfileCatalog {
                     "Map-number lookup with Piedmont II route",
                     "Find the Greenville County map number, then request the SCDES septic file",
                     "Greenville County's official real-property search supports street, owner, map number, and subdivision clues. Use the matched property card to prepare the SCDES permit-copy request; SCDES assigns Greenville County to its Piedmont II regional division.",
+                    "Open the official SCDES D-2295 records request",
+                    "https://des.sc.gov/sites/des/files/Library/D-2295.pdf",
                     "Search Greenville County real property",
                     "https://www.greenvillecounty.org/appsas400/RealProperty/",
-                    "Call SCDES for permits and final inspections",
-                    "tel:18557312504",
                     "A map-number-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
                     "The county property search identifies the parcel but does not itself prove a septic permit exists. SCDES says older homes or files it cannot locate may require a licensed septic contractor to identify the system in the field.",
                     List.of(
@@ -1464,7 +1464,7 @@ public final class CountyAccessProfileCatalog {
                     List.of(
                             "Use Greenville County real-property search to match the address and map number.",
                             "Prepare the additional SCDES clues: lot, block, subdivision, original permit holder, and approximate date.",
-                            "Call 1-855-731-2504 for copies; Greenville is in Piedmont II, whose published regional number is 864-638-4185.",
+                            "Transfer the prepared values to D-2295, send it to foi@des.sc.gov, and retain the request reference; Greenville is in Piedmont II for follow-up.",
                             "Save the permit and final inspection, or retain the documented no-file response before field work."
                     )
             )),
@@ -1474,10 +1474,10 @@ public final class CountyAccessProfileCatalog {
                     "Assessor lookup with Piedmont II route",
                     "Confirm the Anderson County parcel, then request the SCDES septic file",
                     "Anderson County's Assessor and real-property resources provide the parcel anchor needed for the state septic search. SCDES assigns Anderson County to Piedmont II and routes copies of permits and final inspections through its Onsite Wastewater customer-support line.",
+                    "Open the official SCDES D-2295 records request",
+                    "https://des.sc.gov/sites/des/files/Library/D-2295.pdf",
                     "Open Anderson County property resources",
                     "https://www.andersoncountysc.org/departments-a-z/assessor/",
-                    "Call SCDES for permits and final inspections",
-                    "tel:18557312504",
                     "A parcel-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
                     "The assessor resource establishes the property identity, not septic approval or current condition. SCDES may have no copy for an older property, in which case a licensed septic contractor may be required to locate the system physically.",
                     List.of(
@@ -1495,7 +1495,7 @@ public final class CountyAccessProfileCatalog {
                     List.of(
                             "Use the Anderson County assessor resource to confirm the parcel and address.",
                             "Prepare the lot, block, subdivision, original permit holder, and approximate date when available.",
-                            "Call 1-855-731-2504 for copies; Anderson is in Piedmont II at 864-638-4185.",
+                            "Transfer the prepared values to D-2295, send it to foi@des.sc.gov, and retain the request reference; Anderson is in Piedmont II for follow-up.",
                             "Retain the returned permit and final inspection or the documented no-file result."
                     )
             )),
@@ -1505,10 +1505,10 @@ public final class CountyAccessProfileCatalog {
                     "GIS parcel lookup with Piedmont I route",
                     "Confirm the Spartanburg County parcel, then request the SCDES septic file",
                     "Spartanburg County's official GIS resources maintain digital parcel and road data that can anchor the state record request. SCDES assigns Spartanburg County to Piedmont I and uses its customer-support route for copies of permits and final inspections.",
+                    "Open the official SCDES D-2295 records request",
+                    "https://des.sc.gov/sites/des/files/Library/D-2295.pdf",
                     "Open Spartanburg County GIS",
                     "https://www.spartanburgcounty.gov/185/Geographic-Information-Systems",
-                    "Call SCDES for permits and final inspections",
-                    "tel:18557312504",
                     "A parcel-matched Permit to Construct, Approval to Operate or final inspection, or documented SCDES response",
                     "County GIS is a parcel-identification aid, not a septic approval or survey. When SCDES cannot locate an older permit copy, its homeowner guidance directs users to a licensed septic contractor for physical system location.",
                     List.of(
@@ -1526,7 +1526,7 @@ public final class CountyAccessProfileCatalog {
                     List.of(
                             "Use Spartanburg County GIS to confirm the parcel and physical address.",
                             "Prepare the other SCDES clues: lot, block, subdivision, original permit holder, and approximate date.",
-                            "Call 1-855-731-2504 for copies; Spartanburg is in Piedmont I at 803-285-7461.",
+                            "Transfer the prepared values to D-2295, send it to foi@des.sc.gov, and retain the request reference; Spartanburg is in Piedmont I for follow-up.",
                             "Keep the returned permit and final inspection or document the no-file result before field work."
                     )
             )),
@@ -1725,6 +1725,90 @@ public final class CountyAccessProfileCatalog {
                             "Send the form through the current Environmental Health channel shown by the county.",
                             "Save the returned status, permit type, attached file, and any follow-up reference.",
                             "Use the program page or the appropriate office number if the returned file is missing, expired, or does not answer the repair-area or planned-work question."
+                    )
+            )),
+            Map.entry("NC::johnston-county", profile(
+                    "NC::johnston-county",
+                    "portal_with_fallback",
+                    "Direct permit search with email fallback",
+                    "Search Johnston County's septic permit index, then request a missing copy",
+                    "Johnston County publishes searches by street, house number and permit number. When the indexed permit copy cannot be located, Environmental Health publishes envhealth@johnstonnc.gov as the request fallback.",
+                    "Search Johnston septic permit records",
+                    "https://www.johnstonnc.gov/envhealth/streetsearch.cfm",
+                    "Open the county permit-status instructions",
+                    "https://johnstonnc.com/envhealth/content.cfm?pd=permits",
+                    "A property-matched permit image or a written Environmental Health response",
+                    "An empty address search is not a no-record determination. Try the street and permit-number alternatives, then use the county's published email fallback.",
+                    List.of("House number and street", "Street name without the house number", "Permit number when known", "Owner or parcel clue for fallback"),
+                    List.of("Septic permit image", "Permit status", "Written no-record or referral response"),
+                    List.of(
+                            "Search by house number and street and verify the property match.",
+                            "Retry with the street-only or permit-number search when the first search is empty.",
+                            "If the permit copy still cannot be located, email Environmental Health with the matched address and parcel clue.",
+                            "Save the permit image or the county's written response before closing the task."
+                    )
+            )),
+            Map.entry("IN::brown-county", profile(
+                    "IN::brown-county",
+                    "official_request",
+                    "Official public-records request",
+                    "Request the septic diagram Brown County keeps on file",
+                    "Brown County says it documents septic inspections, issues permits, and keeps a system diagram on file. Its official forms page links the county Public Records Request for copies that are not directly downloadable.",
+                    "Open the Brown County Public Records Request",
+                    "https://www.in.gov/localhealth/browncounty/files/Request-for-Records-Form-.pdf",
+                    "Read the county septic records description",
+                    "https://www.in.gov/localhealth/browncounty/services-we-offer/septic-and-waste-water/",
+                    "The property septic permit, inspection record and diagram, or a written county response",
+                    "The request is a scanned county PDF and no fixed fee or turnaround is published. A diagram on file is historical documentation, not a current-condition inspection.",
+                    List.of("Property address", "Current or prior owner", "Approximate permit or installation year", "Requester contact information"),
+                    List.of("Septic permit", "Inspection record", "System diagram", "Written no-record or referral response"),
+                    List.of(
+                            "Confirm the address and any prior-owner or approximate-year clue.",
+                            "Open the county Public Records Request and describe the septic permit, inspection, and diagram for that property.",
+                            "Submit through the current instructions on the county form or confirm the channel with Brown County Health Department.",
+                            "Save the returned file or written response with the property task."
+                    )
+            )),
+            Map.entry("IN::grant-county", profile(
+                    "IN::grant-county",
+                    "official_request",
+                    "Published address-based records search",
+                    "Ask Grant County Environmental Health to search the septic file by address",
+                    "Grant County explicitly says the Health Department will perform a records search when given an address. Newer permits and some older files include construction plans that show component locations.",
+                    "Read Grant County's records-search instructions",
+                    "https://www.in.gov/localhealth/grantcounty/environmental-division/faqs/",
+                    "Email Grant County Environmental Health",
+                    "mailto:environmental@grantcounty.in.gov",
+                    "A property-matched permit or construction plan, or a written no-record response",
+                    "Some older permits do not contain construction plans. If the county has no usable file, it directs owners to a septic inspector for physical location rather than inference from a generic plan.",
+                    List.of("Property address", "Current or prior owner when known", "Approximate installation or permit year", "Specific records needed"),
+                    List.of("Septic permit", "Construction plan showing component locations", "Written no-record or referral response"),
+                    List.of(
+                            "Prepare the exact property address and any owner or year clues.",
+                            "Use the published Environmental Health email or phone and ask for the address-based records search.",
+                            "Save the permit and construction plan or the written no-record response.",
+                            "If no plan exists, use a qualified inspector to locate the system rather than guessing."
+                    )
+            )),
+            Map.entry("TX::comal-county", profile(
+                    "TX::comal-county",
+                    "direct_portal",
+                    "Direct county septic-permit search",
+                    "Search all Comal County septic permit records",
+                    "Comal County publishes a dedicated septic record search with permit number, name, address, subdivision, and date-range fields, plus an interactive map.",
+                    "Search Comal County septic permits",
+                    "https://cceo.comalcounty.gov/environmental/searches/record_search.html",
+                    "Open Comal County Environmental Health",
+                    "https://www.comalcounty.gov/274/Environmental-Health",
+                    "A property-matched septic permit record or a documented Environmental Health follow-up",
+                    "Use multiple official search fields before treating a blank result as unresolved. A historical permit does not establish current system condition or remaining capacity.",
+                    List.of("Property address", "Permit number when known", "Owner or applicant name", "Subdivision", "Approximate permit date range"),
+                    List.of("Septic permit record", "Associated approval or inspection record", "Written follow-up response when the portal is incomplete"),
+                    List.of(
+                            "Search the exact address and verify the returned property.",
+                            "Retry with permit number, owner, subdivision, or date range when needed.",
+                            "Open and save every property-matched permit artifact.",
+                            "Contact Environmental Health if the record is missing or incomplete and keep the response."
                     )
             ))
     );
