@@ -4163,6 +4163,9 @@
             }
 
             function syncConditionalAcquisitionRequirement() {
+                if (countyKey !== "IN::st-joseph-county") {
+                    return;
+                }
                 const conditional = conditionalAcquisitionRequirement();
                 const deliveryKeys = new Set(["requesterEmail", "requesterFax", "pickupDate"]);
                 acquisitionInputs.forEach((input) => {
