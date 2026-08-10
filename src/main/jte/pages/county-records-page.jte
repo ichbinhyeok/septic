@@ -416,14 +416,6 @@
                         <section class="county-acquisition-workspace"
                                  id="county-acquisition-workspace"
                                  data-county-acquisition-workspace>
-                            <header class="county-acquisition-workspace__header">
-                                <div>
-                                    <span class="eyebrow">County-specific preparation</span>
-                                    <h3>${countyAcquisitionProfile.methodHeading()}</h3>
-                                    <p>${countyAcquisitionProfile.channelLabel()}</p>
-                                </div>
-                            </header>
-
                             @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
                                 <section class="hamilton-quick-search" aria-labelledby="hamilton-quick-search-heading" data-hamilton-quick-search>
                                     <div>
