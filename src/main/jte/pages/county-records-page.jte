@@ -496,8 +496,8 @@
                                 <form class="county-acquisition-fields" data-county-acquisition-fields>
                                     <div class="county-acquisition-fields__heading">
                                         <span class="county-access-workflow__step">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "County-authored preparation fields" : "Verified route inputs"}</span>
-                                        <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Complete the known county fields before asking only what changed" : "Prepare the required details here, then copy them into the county form"}</strong>
-                                        <p data-county-acquisition-readiness aria-live="polite">Start filling the confirmed inputs below.</p>
+                                        <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Fill the fields preserved from the county form" : "Enter the details the official route accepts"}</strong>
+                                        <p data-county-acquisition-readiness aria-live="polite">Start with the property, then complete the required fields.</p>
                                     </div>
                                     @if (!"NC::alamance-county".equals(countyAccessProfile.countyKey()) && (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier()))
                                         <fieldset class="county-acquisition-fieldset">
@@ -709,7 +709,7 @@
                                     @else
                                         <div class="county-acquisition-request__heading">
                                             <span class="county-access-workflow__step">Next official action</span>
-                                            <strong>${countyAcquisitionProfile.methodHeading()}</strong>
+                                            <strong>Finish on the official route</strong>
                                         </div>
                                         <p class="county-acquisition-request__guardrail">${countyAcquisitionProfile.methodInstruction()}</p>
                                         <div class="county-acquisition-manual-boundary">
@@ -746,13 +746,9 @@
                                         @endif
                                         <section class="county-preparation-sheet" data-county-preparation-sheet>
                                             <div class="county-preparation-sheet__heading">
-                                                <span class="county-access-workflow__step">Carry everything to the counter</span>
+                                                <span class="county-access-workflow__step">Take your entered details with you</span>
                                                 <strong>${countyAcquisitionProfile.preparationSheetLabel()}</strong>
-                                                <p>${countyAcquisitionProfile.preparationSheetInstruction()}</p>
-                                            </div>
-                                            <div class="county-preparation-sheet__notice">
-                                                <strong>Preparation aid — not an official county form</strong>
-                                                <span>It organizes confirmed values, official links, and your task scope. The county PDF, portal, search, contact form, or call remains the official route.</span>
+                                                <p>Download or print the values above. The government page remains the official route.</p>
                                             </div>
                                             <div class="county-preparation-sheet__actions">
                                                 @if (countyAcquisitionProfile.supportsPreparedOfficialPdf())
@@ -817,14 +813,14 @@
                                                     type="button"
                                                     data-county-acquisition-input-copy>${countyAcquisitionProfile.hasPreparedFieldPack() ? "Copy all filled inputs" : "Copy property facts"}</button>
                                         </div>
-                                        <div class="county-acquisition-route-steps">
-                                            <strong>County-specific steps</strong>
+                                        <details class="county-acquisition-route-steps">
+                                            <summary>Show the county-specific steps</summary>
                                             <ol>
                                                 @for (var step : countyAccessProfile.steps())
                                                     <li>${step}</li>
                                                 @endfor
                                             </ol>
-                                        </div>
+                                        </details>
                                         <p class="county-acquisition-request__status"
                                            data-county-acquisition-status
                                            aria-live="polite"></p>
@@ -832,7 +828,12 @@
                                 </div>
                             </div>
 
-                            <div class="county-acquisition-context">
+                            <details class="county-acquisition-context">
+                                <summary>
+                                    <span>Route details</span>
+                                    <strong>Fees, timing, and responsibility</strong>
+                                </summary>
+                                <div class="county-acquisition-context__body">
                                 <dl class="county-acquisition-facts" aria-label="Request facts">
                                     <div>
                                         <dt>File owner</dt>
@@ -874,7 +875,8 @@
                                         <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
                                     </div>
                                 </div>
-                            </div>
+                                </div>
+                            </details>
 
                             <footer class="county-acquisition-documents">
                                 <div>
