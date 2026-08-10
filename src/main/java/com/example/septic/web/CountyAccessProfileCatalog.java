@@ -8,6 +8,26 @@ import java.util.Map;
 public final class CountyAccessProfileCatalog {
 
     private static final Map<String, CountyAccessProfileView> PROFILES = Map.ofEntries(
+            Map.entry("IN::st-joseph-county", profile(
+                    "IN::st-joseph-county",
+                    "official_request",
+                    "Official schematic request",
+                    "Complete the St. Joseph County schematic request and send it to Environmental Health",
+                    "The county publishes a one-page Schematic Request with requester contact, delivery method, property address, and subdivision or lot fields. Prepare those fields here, then use the original county PDF and published Environmental Health email.",
+                    "Open the official Schematic Request PDF",
+                    "https://www.in.gov/localhealth/stjosephcounty/files/Schematic-Request-4-12-2019.pdf",
+                    "Read the county schematic instructions",
+                    "https://www.in.gov/localhealth/stjosephcounty/environmental-health/septic-systems/septic-schematics/",
+                    "The emailed or picked-up property schematic, or a written availability, no-record, or referral response",
+                    "County records run from 1970 to the present, but St. Joseph County says not every system is on file. A blank or missing schematic is not proof that no septic system exists.",
+                    List.of("Property address and city", "Person requesting the schematic", "Most recent or all available schematics", "Email, pickup, or fax delivery", "Subdivision and lot when known"),
+                    List.of("Most recent septic schematic", "All available property schematics when requested", "Written availability, no-record, or referral response"),
+                    List.of(
+                            "Prepare the requester, delivery, address, and subdivision or lot details shown on the official PDF.",
+                            "Open the county PDF, transfer the prepared values, and send it to envirohd@sjcindiana.com or use the published pickup or fax option.",
+                            "Save the returned schematic or written response and add it to the property file before making the next decision."
+                    )
+            )),
             Map.entry("VA::prince-william-county", profile(
                     "VA::prince-william-county",
                     "phone_assisted",

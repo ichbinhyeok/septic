@@ -18258,11 +18258,11 @@
       "officeLabel": "St. Joseph County septic systems office",
       "officeUrl": "https://www.in.gov/localhealth/stjosephcounty/environmental-health/septic-systems/",
       "recordsLabel": "Request St. Joseph County septic schematic records",
-      "recordsUrl": "https://www.in.gov/localhealth/stjosephcounty/environmental-health/septic-systems/septic-schematics/",
-      "contactLine": "St. Joseph County Environmental Health routes schematic requests and septic documents through the Department of Health.",
+      "recordsUrl": "https://www.in.gov/localhealth/stjosephcounty/files/Schematic-Request-4-12-2019.pdf",
+      "contactLine": "St. Joseph County Environmental Health accepts its official Schematic Request at envirohd@sjcindiana.com; call 574-235-9722 to check availability before sending when needed.",
       "decisionSteps": [
         "Open the septic systems page and collect the original applicant, year built, address, subdivision, and lot details that make the county search stronger.",
-        "Use the septic schematics page to request or check records from 1970 to present, remembering the county says not all systems are on file.",
+        "Complete the official Schematic Request PDF, choose most recent or all available schematics, and select email, pickup, or fax delivery; the county says not all systems are on file.",
         "If the project is new, repair, abandonment, operating permit, or variance, use the document page to separate the file request from the permit application."
       ],
       "recordsToRequest": [
@@ -18304,6 +18304,7 @@
         "in_stjoseph_01",
         "in_stjoseph_02",
         "in_stjoseph_03",
+        "in_stjoseph_04",
         "in_03"
       ],
       "publishStatus": "published",

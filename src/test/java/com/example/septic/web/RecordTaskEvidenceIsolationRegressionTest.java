@@ -15,8 +15,10 @@ class RecordTaskEvidenceIsolationRegressionTest {
     // Report: .gstack/qa-reports/records-exhaustive-2026-08-06/qa-report-septicpath-com-2026-08-06.md
     @Test
     void startsAcleanTaskWhenTheWorkflowOrPropertyIdentityChanges() throws IOException {
-        String task = Files.readString(Path.of("src/main/resources/static/record-task.js"));
-        String app = Files.readString(Path.of("src/main/resources/static/app.js"));
+        String task = Files.readString(Path.of("src/main/resources/static/record-task.js"))
+                .replace("\r\n", "\n");
+        String app = Files.readString(Path.of("src/main/resources/static/app.js"))
+                .replace("\r\n", "\n");
 
         assertTrue(task.contains("const workflowChanged = Boolean(stored && suppliedWorkflowRunId"));
         assertTrue(task.contains("const propertyChanged = Boolean(stored && resetState && currentPropertyIdentity"));
