@@ -4141,6 +4141,52 @@
             const countyManualBoundary = workflow.dataset.countyManualBoundary || "";
             const primaryLabel = workflow.dataset.countyPrimaryLabel || "Open official route";
 
+            function conditionalAcquisitionRequirement() {
+                if (countyKey !== "IN::st-joseph-county") {
+                    return null;
+                }
+                const deliveryMethod = acquisitionInputs.find((input) =>
+                    input.dataset.countyAcquisitionField === "deliveryMethod"
+                );
+                const requiredKey = new Map([
+                    ["Email PDF", "requesterEmail"],
+                    ["Fax", "requesterFax"],
+                    ["Pick up", "pickupDate"]
+                ]).get(acquisitionInputValue(deliveryMethod));
+                return requiredKey ? { requiredKey, deliveryMethod: acquisitionInputValue(deliveryMethod) } : null;
+            }
+
+            function acquisitionInputIsRequired(input) {
+                const conditional = conditionalAcquisitionRequirement();
+                return input?.hasAttribute("required")
+                    || conditional?.requiredKey === input?.dataset.countyAcquisitionField;
+            }
+
+            function syncConditionalAcquisitionRequirement() {
+                const conditional = conditionalAcquisitionRequirement();
+                const deliveryKeys = new Set(["requesterEmail", "requesterFax", "pickupDate"]);
+                acquisitionInputs.forEach((input) => {
+                    const key = input.dataset.countyAcquisitionField || "";
+                    if (!deliveryKeys.has(key)) {
+                        return;
+                    }
+                    const isRequired = conditional?.requiredKey === key;
+                    input.setAttribute("aria-required", String(isRequired));
+                    const qualifier = input.closest("label")?.querySelector("span small");
+                    if (qualifier instanceof HTMLElement) {
+                        qualifier.textContent = isRequired
+                            ? `required for ${conditional.deliveryMethod}`
+                            : "optional";
+                    }
+                    if (isRequired && !acquisitionInputValue(input)) {
+                        const optionalGroup = input.closest("details");
+                        if (optionalGroup instanceof HTMLDetailsElement) {
+                            optionalGroup.open = true;
+                        }
+                    }
+                });
+            }
+
             function acquisitionInputValue(input) {
                 if (input instanceof HTMLInputElement
                     || input instanceof HTMLSelectElement
@@ -4179,7 +4225,7 @@
                 acquisitionInputs.forEach((input) => {
                     const key = input.dataset.countyAcquisitionField || "";
                     const label = input.closest("label")?.querySelector("span")?.textContent
-                        ?.replace("optional", "")
+                        ?.replace(/\s*(optional|required for .*)$/i, "")
                         .trim();
                     if (key && label) {
                         labels[key] = label;
@@ -4196,7 +4242,7 @@
                     return "Parcel, GPIN, PIN, or Tax ID";
                 }
                 return input?.closest("label")?.querySelector("span")?.textContent
-                    ?.replace(/\s*optional.*$/i, "")
+                    ?.replace(/\s*(optional|required for .*)$/i, "")
                     .trim() || "Prepared field";
             }
 
@@ -4215,7 +4261,7 @@
                     address?.hasAttribute("required") ? "address" : "",
                     parcel?.hasAttribute("required") ? "parcel" : "",
                     ...acquisitionInputs
-                        .filter((input) => input.hasAttribute("required") && acquisitionInputIsActive(input))
+                        .filter((input) => acquisitionInputIsRequired(input) && acquisitionInputIsActive(input))
                         .map((input) => input.dataset.countyAcquisitionField || "")
                         .filter(Boolean)
                 ].filter(Boolean));
@@ -4258,10 +4304,10 @@
                 }
                 acquisitionInputs.forEach((input) => {
                     if (acquisitionInputIsActive(input)
-                        && input.hasAttribute("required")
+                        && acquisitionInputIsRequired(input)
                         && !acquisitionInputValue(input)) {
                         const label = input.closest("label")?.querySelector("span")?.textContent
-                            ?.replace("optional", "")
+                            ?.replace(/\s*(optional|required for .*)$/i, "")
                             .trim();
                         missing.push(label || "Required field");
                     }
@@ -4280,7 +4326,7 @@
                     address?.hasAttribute("required") ? address : null,
                     parcel?.hasAttribute("required") ? parcel : null,
                     ...acquisitionInputs.filter((input) =>
-                        input.hasAttribute("required") && acquisitionInputIsActive(input)
+                        acquisitionInputIsRequired(input) && acquisitionInputIsActive(input)
                     )
                 ].filter(Boolean);
                 const groupRequired = requiresAddressOrParcel ? 1 : 0;
@@ -4463,7 +4509,7 @@
                                     )
                                     : acquisitionInputs.find((input) =>
                                         acquisitionInputIsActive(input)
-                                        && input.hasAttribute("required")
+                                        && acquisitionInputIsRequired(input)
                                         && !acquisitionInputValue(input)
                                     );
                     firstMissing?.focus();
@@ -4488,6 +4534,7 @@
                 }
 
                 const refreshAcquisition = () => {
+                    syncConditionalAcquisitionRequirement();
                     renderAcquisitionPreview();
                     renderHandoffPreview();
                     renderAcquisitionReadiness();
@@ -4572,6 +4619,7 @@
                 });
                 address?.addEventListener("input", refreshAcquisition);
                 parcel?.addEventListener("input", refreshAcquisition);
+                syncConditionalAcquisitionRequirement();
                 renderAcquisitionPreview();
                 renderHandoffPreview();
                 renderAcquisitionReadiness();
@@ -4582,7 +4630,7 @@
                     }
                     const fields = acquisitionTransferFields();
                     const nextField = fields.slice(nextTransferIndex).find((input) =>
-                        Boolean(acquisitionInputValue(input)) || input.hasAttribute("required")
+                        Boolean(acquisitionInputValue(input)) || acquisitionInputIsRequired(input)
                     );
                     if (!nextField) {
                         acquisitionNextCopy.textContent = nextTransferIndex > 0
@@ -4650,7 +4698,7 @@
                         const field = fields[index];
                         const value = acquisitionInputValue(field);
                         const label = acquisitionFieldLabel(field);
-                        if (!value && field.hasAttribute("required")) {
+                        if (!value && acquisitionInputIsRequired(field)) {
                             nextTransferIndex = index;
                             updateNextTransferLabel();
                             showAcquisitionStatus(`Add ${label.toLowerCase()} before moving to the next county field.`, true);
