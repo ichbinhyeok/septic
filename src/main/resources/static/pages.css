@@ -247,11 +247,51 @@
   .county-route-cluster__header, .next-move-row, .official-tool-route, .direct-search-route { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: center; }
   .county-route-cluster__links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 
-  .county-acquisition-fieldset { margin-bottom: 24px; padding: 22px; border: 1px solid var(--line); }
+  /* County acquisition is a task workspace: inputs lead, the government handoff supports them. */
+  .county-acquisition-workspace { font-size: 1rem; }
+  .county-acquisition-workspace__body { grid-template-columns: minmax(0, 1.2fr) minmax(330px, .8fr); gap: clamp(28px, 4vw, 54px); }
+  .county-acquisition-fields { display: block; min-width: 0; }
+  .county-acquisition-fields__heading { display: grid; gap: 5px; margin-bottom: 20px; }
+  .county-acquisition-fields__heading strong { font: 800 1.15rem/1.3 var(--font-sans); }
+  .county-acquisition-fields__heading p { margin: 0; color: var(--muted); font-size: .86rem; }
+  .county-acquisition-fieldset { margin: 0 0 18px; padding: 19px; border: 1px solid var(--line); background: var(--paper); }
+  .county-acquisition-fieldset legend { padding: 0 8px 0 0; font: 800 .92rem/1.3 var(--font-sans); }
+  .county-acquisition-fieldset > p { margin: 0 0 16px; color: var(--muted); font-size: .8rem; }
   .county-acquisition-fieldset--required { border-top: 3px solid var(--accent); }
-  .county-acquisition-fieldset__grid, .county-acquisition-fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .county-acquisition-fieldset__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .county-acquisition-field { position: relative; }
   .county-acquisition-field__copy { width: auto; min-height: 34px; margin-top: 6px; padding: 6px 9px; border: 1px solid var(--line); background: var(--paper); font-size: .7rem; }
+  .county-acquisition-fields details { margin-bottom: 18px; border-block: 1px solid var(--line); }
+  .county-acquisition-fields details > summary { display: flex; justify-content: space-between; gap: 18px; padding: 15px 0; cursor: pointer; font-weight: 800; }
+  .county-acquisition-request { min-width: 0; padding-block: 22px 25px; border-top-color: var(--accent); }
+  .county-acquisition-request__heading { display: grid; gap: 6px; margin-bottom: 15px; }
+  .county-acquisition-request__heading strong { font: 800 1.2rem/1.3 var(--font-sans); }
+  .county-acquisition-request__guardrail { margin: 0 0 18px; color: var(--muted); font-size: .84rem; }
+  .county-acquisition-request textarea { width: 100%; min-height: 220px; resize: vertical; }
+  .county-acquisition-request__actions { display: grid; gap: 9px; margin-top: 16px; }
+  .county-acquisition-request__actions .button { width: 100%; justify-content: center; }
+  .county-acquisition-manual-boundary { margin: 18px 0; padding: 16px 0; border-block: 1px solid var(--line); }
+  .county-acquisition-manual-boundary span { display: block; margin-bottom: 5px; color: var(--muted); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+  .county-acquisition-route-steps { margin-top: 18px; border-top: 1px solid var(--line); }
+  .county-acquisition-route-steps > summary { padding: 15px 0; cursor: pointer; font-weight: 800; }
+  .county-acquisition-route-steps ol { margin: 0; padding: 0 0 4px 20px; color: var(--muted); }
+  .county-acquisition-route-steps li { margin-bottom: 10px; padding-left: 4px; }
+  .county-preparation-sheet { margin-top: 20px; padding-block: 18px; border-top-width: 1px; background: transparent; }
+  .county-preparation-sheet > * { padding-inline: 0; }
+  .county-preparation-sheet__heading { display: grid; gap: 6px; }
+  .county-preparation-sheet__heading strong { font: 800 1rem/1.35 var(--font-sans); }
+  .county-preparation-sheet__heading p { margin: 0; color: var(--muted); font-size: .82rem; }
+  .county-preparation-sheet__actions { display: grid; gap: 9px; margin-top: 15px; }
+  .county-preparation-sheet__actions .button { width: 100%; justify-content: center; }
+  .county-acquisition-context { margin-top: clamp(28px, 4vw, 44px); border-block: 1px solid var(--line-dark); }
+  .county-acquisition-context > summary { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; align-items: baseline; padding: 18px 0; cursor: pointer; }
+  .county-acquisition-context > summary span { color: var(--muted); font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+  .county-acquisition-context > summary strong { font: 800 .92rem/1.4 var(--font-sans); }
+  .county-acquisition-context__body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: clamp(28px, 5vw, 58px); padding: 8px 0 28px; }
+  .county-acquisition-facts { margin: 0; }
+  .county-acquisition-facts > div { display: grid; grid-template-columns: 118px minmax(0, 1fr); gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .county-acquisition-handoff { padding-left: 24px; border-left: 1px solid var(--line); }
+  .county-acquisition-handoff p { color: var(--muted); }
 
   /* Dense operational modules share a ledger language */
   .facts-table, .review-meta, .calculator-record-context__facts, .record-document__analysis dl { margin: 0; }
@@ -668,6 +708,8 @@
     .records-access-state-directory { grid-template-columns: 1fr; }
     .records-access-index-hero__intro h1 { max-width: 16ch; }
     .trust-ops-metrics, .trust-ops-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .county-acquisition-workspace__body, .county-acquisition-context__body { grid-template-columns: 1fr; }
+    .county-acquisition-handoff { padding: 22px 0 0; border-top: 1px solid var(--line); border-left: 0; }
   }
   @media (max-width: 720px) {
     .sc-official-search__grid { grid-template-columns: 1fr; gap: 18px; }
@@ -728,8 +770,9 @@
     .home-intent-list > a > span:last-child, .home-route-list > a > span:last-child { display: none; }
     .home-directory > summary { flex-direction: column; }
     .county-records-page .section--heroish::before, .content-page .section--heroish::before { display: none; }
+    .county-records-page .county-file-sidecard { display: none; }
     .county-route-cluster__header, .next-move-row, .official-tool-route, .direct-search-route { grid-template-columns: 1fr; }
-    .county-acquisition-fieldset__grid, .county-acquisition-fields, .hero-command-board, .hero-decision-grid, .intent-rail,
+    .county-acquisition-fieldset__grid, .hero-command-board, .hero-decision-grid, .intent-rail,
     .records-proof-ladder, .next-move-board__rows, .records-escalation-board__grid, .official-tool-console__grid,
     .direct-search-lane__grid, .bedroom-checker__fields, .bedroom-checker__facts, .bedroom-checker__signals,
     .record-document form, .records-request-builder__controls, .quote-form, .alabama-perc-scope__form,
@@ -779,6 +822,18 @@
     .workflow-console__topbar { align-items: flex-start; flex-direction: column; gap: 2px; }
     .workflow-console__actions .button { width: 100%; }
     .trust-ops-page .hero-sidecard { display: none; }
+    .county-acquisition-workspace { padding: 20px 18px; }
+    .county-acquisition-workspace__body { gap: 26px; }
+    .county-acquisition-fields__heading strong { font-size: 1.05rem; }
+    .county-acquisition-fieldset { padding: 16px 14px; }
+    .county-acquisition-fieldset__grid { grid-template-columns: 1fr; gap: 14px; }
+    .county-acquisition-request { padding-block: 19px 22px; }
+    .county-acquisition-request > * { padding-inline: 16px; }
+    .county-preparation-sheet > * { padding-inline: 0; }
+    .county-acquisition-context { margin-top: 24px; }
+    .county-acquisition-context > summary { grid-template-columns: 1fr; gap: 3px; padding: 16px 0; }
+    .county-acquisition-context__body { gap: 22px; padding-bottom: 22px; }
+    .county-acquisition-facts > div { grid-template-columns: 1fr; gap: 3px; }
     .state-guide-page--al .state-hero--alabama h1 { margin-bottom: 12px; font-size: clamp(2rem, 9vw, 2.55rem); line-height: 1.02; }
     .state-guide-page--al .content-quick-answer { display: none; }
     .state-guide-page--al .alabama-perc-scope__intro h2 { font-size: 1.45rem; line-height: 1.08; }

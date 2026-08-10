@@ -416,56 +416,6 @@
                         <section class="county-acquisition-workspace"
                                  id="county-acquisition-workspace"
                                  data-county-acquisition-workspace>
-                            <header class="county-acquisition-workspace__header">
-                                <div>
-                                    <span class="eyebrow">County-specific preparation</span>
-                                    <h3>${countyAcquisitionProfile.methodHeading()}</h3>
-                                    <p>${countyAcquisitionProfile.methodInstruction()}</p>
-                                </div>
-                                <dl class="county-acquisition-facts" aria-label="Request facts">
-                                    <div>
-                                        <dt>File owner</dt>
-                                        <dd>${countyAcquisitionProfile.agency()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Fee</dt>
-                                        <dd>${countyAcquisitionProfile.feeLabel()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>Timing</dt>
-                                        <dd>${countyAcquisitionProfile.timingLabel()}</dd>
-                                    </div>
-                                    <div>
-                                        <dt>You still do</dt>
-                                        <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
-                                    </div>
-                                    @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
-                                    <div>
-                                        <dt>Field verification</dt>
-                                        <dd>${countyAcquisitionProfile.archivedFieldVerificationLabel()}</dd>
-                                    </div>
-                                    @else
-                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
-                                    <div>
-                                        <dt>Field verification</dt>
-                                        <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
-                                    </div>
-                                    @endif
-                                    @endif
-                                </dl>
-                            </header>
-
-                            <div class="county-acquisition-handoff">
-                                <div>
-                                    <span>SepticPath prepares</span>
-                                    <strong>${countyAcquisitionProfile.preparationSummary()}</strong>
-                                </div>
-                                <div>
-                                    <span>You finish at the county</span>
-                                    <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
-                                </div>
-                            </div>
-
                             @if ("TN::hamilton-county".equals(countyAccessProfile.countyKey()))
                                 <section class="hamilton-quick-search" aria-labelledby="hamilton-quick-search-heading" data-hamilton-quick-search>
                                     <div>
@@ -538,8 +488,8 @@
                                 <form class="county-acquisition-fields" data-county-acquisition-fields>
                                     <div class="county-acquisition-fields__heading">
                                         <span class="county-access-workflow__step">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "County-authored preparation fields" : "Verified route inputs"}</span>
-                                        <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Complete the known county fields before asking only what changed" : "Prepare the required details here, then copy them into the county form"}</strong>
-                                        <p data-county-acquisition-readiness aria-live="polite">Start filling the confirmed inputs below.</p>
+                                        <strong>${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Fill the fields preserved from the county form" : "Enter the details the official route accepts"}</strong>
+                                        <p data-county-acquisition-readiness aria-live="polite">Start with the property, then complete the required fields.</p>
                                     </div>
                                     @if (!"NC::alamance-county".equals(countyAccessProfile.countyKey()) && (countyAcquisitionProfile.officialUsesPropertyAddress() || countyAcquisitionProfile.officialUsesParcelIdentifier()))
                                         <fieldset class="county-acquisition-fieldset">
@@ -751,7 +701,7 @@
                                     @else
                                         <div class="county-acquisition-request__heading">
                                             <span class="county-access-workflow__step">Next official action</span>
-                                            <strong>${countyAcquisitionProfile.methodHeading()}</strong>
+                                            <strong>Finish on the official route</strong>
                                         </div>
                                         <p class="county-acquisition-request__guardrail">${countyAcquisitionProfile.methodInstruction()}</p>
                                         <div class="county-acquisition-manual-boundary">
@@ -788,13 +738,9 @@
                                         @endif
                                         <section class="county-preparation-sheet" data-county-preparation-sheet>
                                             <div class="county-preparation-sheet__heading">
-                                                <span class="county-access-workflow__step">Carry everything to the counter</span>
+                                                <span class="county-access-workflow__step">Preparation aid — not an official county form</span>
                                                 <strong>${countyAcquisitionProfile.preparationSheetLabel()}</strong>
-                                                <p>${countyAcquisitionProfile.preparationSheetInstruction()}</p>
-                                            </div>
-                                            <div class="county-preparation-sheet__notice">
-                                                <strong>Preparation aid — not an official county form</strong>
-                                                <span>It organizes confirmed values, official links, and your task scope. The county PDF, portal, search, contact form, or call remains the official route.</span>
+                                                <p>Download or print the values above. The government page remains the official route.</p>
                                             </div>
                                             <div class="county-preparation-sheet__actions">
                                                 @if (countyAcquisitionProfile.supportsPreparedOfficialPdf())
@@ -859,20 +805,70 @@
                                                     type="button"
                                                     data-county-acquisition-input-copy>${countyAcquisitionProfile.hasPreparedFieldPack() ? "Copy all filled inputs" : "Copy property facts"}</button>
                                         </div>
-                                        <div class="county-acquisition-route-steps">
-                                            <strong>County-specific steps</strong>
+                                        <details class="county-acquisition-route-steps">
+                                            <summary>Show the county-specific steps</summary>
                                             <ol>
                                                 @for (var step : countyAccessProfile.steps())
                                                     <li>${step}</li>
                                                 @endfor
                                             </ol>
-                                        </div>
+                                        </details>
                                         <p class="county-acquisition-request__status"
                                            data-county-acquisition-status
                                            aria-live="polite"></p>
                                     @endif
                                 </div>
                             </div>
+
+                            <details class="county-acquisition-context">
+                                <summary>
+                                    <span>Route details</span>
+                                    <strong>Fees, timing, and responsibility</strong>
+                                </summary>
+                                <div class="county-acquisition-context__body">
+                                <dl class="county-acquisition-facts" aria-label="Request facts">
+                                    <div>
+                                        <dt>File owner</dt>
+                                        <dd>${countyAcquisitionProfile.agency()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Fee</dt>
+                                        <dd>${countyAcquisitionProfile.feeLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Timing</dt>
+                                        <dd>${countyAcquisitionProfile.timingLabel()}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>You still do</dt>
+                                        <dd>${countyAcquisitionProfile.userCheckpoint()}</dd>
+                                    </div>
+                                    @if (countyAcquisitionProfile.archivedOfficialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>${countyAcquisitionProfile.archivedFieldVerificationLabel()}</dd>
+                                    </div>
+                                    @else
+                                    @if (!countyAcquisitionProfile.officialFieldPackVerified())
+                                    <div>
+                                        <dt>Field verification</dt>
+                                        <dd>Official route confirmed; exact submission fields are not published or independently verified</dd>
+                                    </div>
+                                    @endif
+                                    @endif
+                                </dl>
+                                <div class="county-acquisition-handoff">
+                                    <div>
+                                        <span>SepticPath prepares</span>
+                                        <strong>${countyAcquisitionProfile.preparationSummary()}</strong>
+                                    </div>
+                                    <div>
+                                        <span>You finish at the county</span>
+                                        <strong>${countyAcquisitionProfile.userOnlyAction()}</strong>
+                                    </div>
+                                </div>
+                                </div>
+                            </details>
 
                             <footer class="county-acquisition-documents">
                                 <div>
