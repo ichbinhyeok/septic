@@ -10,6 +10,7 @@
 @param SourceRecord primaryLocalAuthoritySource = null
 @param SourceRecord primaryRecordsLookupSource = null
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> internalLinks = java.util.List.of()
 @param StateRecordsSearchResponseView stateRecordsSearchResponse = null
 @param String editorialLastReviewedAt = ""
@@ -21,8 +22,13 @@
             <div class="container state-records-hero__inner">
                 <div class="state-records-hero__copy">
                     <span class="eyebrow">${state.stateCode()} property records</span>
-                    <h1>Find ${state.stateName()} septic records</h1>
-                    <p>Enter the property address to identify the county, file owner, official search or request route, and the permit documents to ask for.</p>
+                    @if ("NC".equals(state.stateCode()))
+                        <h1>North Carolina septic records by county</h1>
+                        <p>Find the county permit file owner by address, then open the official route for the permit copy, as-built, final approval, repair record, or written no-record response.</p>
+                    @else
+                        <h1>Find ${state.stateName()} septic records</h1>
+                        <p>Enter the property address to identify the county, file owner, official search or request route, and the permit documents to ask for.</p>
+                    @endif
                     <div class="state-records-hero__promise" role="note">
                         <strong>Start here</strong>
                         <span>Enter the property address. SepticPath identifies the county and the best verified public route; it does not claim that a permit exists or retrieve a government file automatically.</span>
@@ -89,6 +95,13 @@
                     <span class="eyebrow">Already know the county?</span>
                     <h2>Find your ${state.stateName()} county</h2>
                     <p>County pages tell you whether the working route is an online search, form, email, call, or public-records request.</p>
+                    @if (!featuredCountyRecordLinks.isEmpty())
+                        <nav class="state-records-priority-counties" aria-label="Popular ${state.stateName()} county permit searches">
+                            @for (var link : featuredCountyRecordLinks.stream().limit(6).toList())
+                                <a href="${link.path()}">${link.compactTitle()}</a>
+                            @endfor
+                        </nav>
+                    @endif
                     <form class="state-records-county-picker" data-county-route-picker data-county-route-prefix="/septic-records-checklist/${state.slug()}/" data-county-route-state="${state.stateName()}">
                         <label for="${state.stateCode().toLowerCase()}-records-county">County</label>
                         <div>

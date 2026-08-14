@@ -20,6 +20,9 @@ public class SitemapService {
      * user-visible workflow content, never for cosmetic-only releases.
      */
     private static final String SHARED_WORKFLOW_REVISION_DATE = "2026-08-06";
+    private static final String RECORDS_CONTENT_REVISION_DATE = "2026-08-10";
+    private static final String STATE_RECORDS_REVISION_DATE = "2026-08-14";
+    private static final String COUNTY_RECORDS_REVISION_DATE = "2026-08-10";
 
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
@@ -65,7 +68,11 @@ public class SitemapService {
             if (!"septic-system-cost-calculator".equals(contentPage.slug())) {
                 entries.add(entry(
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
-                        latestValidDate(Stream.of(contentPage.updatedAt(), SHARED_WORKFLOW_REVISION_DATE))
+                        latestValidDate(Stream.of(
+                                contentPage.updatedAt(),
+                                SHARED_WORKFLOW_REVISION_DATE,
+                                isRecordsWorkflowContentPage(contentPage.slug()) ? RECORDS_CONTENT_REVISION_DATE : ""
+                        ))
                 ));
             }
         }
@@ -135,7 +142,9 @@ public class SitemapService {
                 stateMoneyPage.updatedAt(),
                 stateMoneyPage.reviewedAt(),
                 state.lastVerifiedAt(),
-                SHARED_WORKFLOW_REVISION_DATE
+                "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                        ? STATE_RECORDS_REVISION_DATE
+                        : SHARED_WORKFLOW_REVISION_DATE
         );
         Stream<String> sourceDates = researchDataService.getSources(stateMoneyPage.officialSourceIds()).stream()
                 .map(SourceRecord::contentVerifiedAt);
@@ -145,8 +154,26 @@ public class SitemapService {
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
         return latestValidDate(Stream.of(
                 countyContentQualityService.effectiveUpdatedAt(countyPage),
-                SHARED_WORKFLOW_REVISION_DATE
+                COUNTY_RECORDS_REVISION_DATE
         ));
+    }
+
+    private boolean isRecordsWorkflowContentPage(String slug) {
+        return switch (slug) {
+            case "official-septic-lookup-tools",
+                    "tdec-septic-records",
+                    "north-carolina-septic-permit-lookup",
+                    "texas-ossf-records-search",
+                    "florida-ostds-permit-lookup",
+                    "dhec-septic-permit-lookup",
+                    "how-to-find-septic-records-online",
+                    "septic-records-by-county",
+                    "septic-permit-search-by-address",
+                    "septic-permit-lookup",
+                    "septic-as-built-records",
+                    "septic-tank-location-records" -> true;
+            default -> false;
+        };
     }
 
     private String statePageLastMod(StateProfile state) {

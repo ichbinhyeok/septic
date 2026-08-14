@@ -141,7 +141,11 @@ class OfficialRecordsWorkflowRegressionTest {
     void stateRecordsHubUsesAddressFinderAndCountyPickerInsteadOfALinkWall() throws Exception {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
                 .andExpect(status().isOk())
+                .andExpect(content().string(containsString("North Carolina septic records by county")))
+                .andExpect(content().string(containsString("permit copy, as-built, final approval, repair record")))
                 .andExpect(content().string(containsString("Enter the property address")))
+                .andExpect(content().string(containsString("state-records-priority-counties")))
+                .andExpect(content().string(containsString("href=\"/septic-records-checklist/north-carolina/buncombe-county/\"")))
                 .andExpect(content().string(containsString("data-county-route-picker")))
                 .andExpect(content().string(containsString("Choose a county")))
                 .andExpect(content().string(containsString("An empty search is not a no-record determination")))
