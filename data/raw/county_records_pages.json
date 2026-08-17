@@ -10270,14 +10270,14 @@
       "countyName": "Yuma County",
       "countySlug": "yuma-county",
       "title": "Yuma County Arizona Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Yuma County septic records checklist and permit lookup with eTRAKiT permit search, public-records routing for septic plot plans, and transfer-file friction before you trust an install or buyer story.",
+      "metaDescription": "Yuma County septic records checklist and permit lookup with OpenGov permit search, public-records routing for septic plot plans, and transfer-file friction before you trust an install or buyer story.",
       "introCopy": "Yuma County is strong because Development Services ties permit status, public-records requests, septic plot plans, and forms into one county workflow. That makes this a real county tool, not just an Arizona summary.",
       "uniqueAngle": "Yuma is valuable because the first question is usually not price. It is whether the county permit stack, septic plot plan, and transfer records line up with the current property story.",
       "targetReader": "Best for Yuma County buyers, owners, sellers, and contractors who need to know whether the next move is permit search, public-records request, or a forms-driven county correction path.",
       "officeLabel": "Yuma County development services",
       "officeUrl": "https://www.yumacountyaz.gov/government/development-services",
-      "recordsLabel": "Search Yuma County permit information in eTRAKiT",
-      "recordsUrl": "https://yuma-trk.aspgov.com/etrakit/",
+      "recordsLabel": "Search Yuma County permit information in OpenGov",
+      "recordsUrl": "https://yumacountyaz.portal.opengov.com/",
       "contactLine": "Yuma County Development Services | 928-817-5000 | contact.dds@yumacountyaz.gov",
       "decisionSteps": [
         "Search the county permit center first for property information, permit status, and any septic-related history tied to the parcel.",
@@ -10297,7 +10297,7 @@
       "faqBlocks": [
         {
           "question": "Does Yuma County expose septic records through its permit stack?",
-          "answer": "Yes. Yuma County uses eTRAKiT plus Development Services public-records requests for permit copies, parcel files, and septic plot plans."
+          "answer": "Yes. Yuma County uses OpenGov plus Development Services public-records requests for permit copies, parcel files, and septic plot plans."
         },
         {
           "question": "What Yuma County record matters most before purchase or repair?",
@@ -10318,8 +10318,8 @@
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
-        "fileOwnerModel": "Yuma County Development Services owns the practical septic file, but the real workflow only feels complete when the eTRAKiT permit stack, septic plot plan, and public-records return all match the same parcel story.",
-        "firstArtifactToPull": "The eTRAKiT permit history first, then the septic plot plan, permit copy, and any transfer or correction record tied to the parcel.",
+        "fileOwnerModel": "Yuma County Development Services owns the practical septic file, but the real workflow only feels complete when the OpenGov permit stack, septic plot plan, and public-records return all match the same parcel story.",
+        "firstArtifactToPull": "The OpenGov permit history first, then the septic plot plan, permit copy, and any transfer or correction record tied to the parcel.",
         "permitCloseoutCategory": "permit_ladder",
         "permitCloseoutSignal": "Yuma County gets real when the visible permit stack and county records return support the same install or correction path, not when the parcel only has a thin permit screen.",
         "transferCategory": "deal_side_risk",
@@ -10328,7 +10328,7 @@
         "specialProgramSignal": "Transfer, correction, and forms-driven county review are local exception signals that can widen the path beyond a clean install story.",
         "malfunctionCategory": "generic",
         "malfunctionSignal": "If the county plot plan and the visible improvements do not line up, treat the parcel like a file-rebuild problem before trusting the simple system story.",
-        "quoteGate": "Do not move into pricing until the eTRAKiT permit stack, septic plot plan, and public-records return all support the same path, because Yuma can price the wrong workflow if the county file is split."
+        "quoteGate": "Do not move into pricing until the OpenGov permit stack, septic plot plan, and public-records return all support the same path, because Yuma can price the wrong workflow if the county file is split."
       },
       "publishStatus": "published"
     },

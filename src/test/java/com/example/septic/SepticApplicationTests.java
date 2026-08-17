@@ -4138,13 +4138,13 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void yumaCountyRecordsPageShowsEtrakitAndPlotPlanWorkflow() throws Exception {
+	void yumaCountyRecordsPageShowsOpenGovAndPlotPlanWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/arizona/yuma-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Yuma County Arizona Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Yuma County permit information in eTRAKiT")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Yuma County permit information in OpenGov")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Yuma County Development Services owns the practical septic file")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("eTRAKiT permit stack, septic plot plan, and public-records return all support the same path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("OpenGov permit stack, septic plot plan, and public-records return all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic plot plan")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("public-records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Arizona records lookup")))
