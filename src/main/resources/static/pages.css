@@ -542,10 +542,17 @@
   .tdec-desk__intro-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .5fr); gap: clamp(38px, 8vw, 112px); align-items: end; }
   .tdec-desk__intro h1 { max-width: 20ch; margin: 8px 0 14px; font-size: clamp(2.35rem, 4.1vw, 4.15rem); line-height: .98; letter-spacing: -.055em; }
   .tdec-desk__intro-grid > div > p { max-width: 62ch; margin: 0; color: #455962; font-size: clamp(1rem, 1.35vw, 1.16rem); }
+  .tdec-desk__hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .tdec-desk__hero-actions .button { min-height: 48px; }
+  .tdec-desk__independent { display: block; max-width: 72ch; margin-top: 12px; color: #617278; font-size: .7rem; line-height: 1.5; }
   .tdec-desk__boundary { padding: 18px 0 0; border-top: 3px solid #153f39; }
   .tdec-desk__boundary strong { display: block; margin-bottom: 6px; font: 800 .86rem/1.35 var(--font-sans); }
   .tdec-desk__boundary p { margin: 0 0 10px; font-size: .8rem; line-height: 1.55; }
   .tdec-desk__boundary small { display: block; color: #617278; font-size: .7rem; line-height: 1.5; }
+  .tdec-desk__boundary dl { margin: 0; }
+  .tdec-desk__boundary dl > div { display: grid; grid-template-columns: 76px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #ccd2cf; }
+  .tdec-desk__boundary dt { color: #0e5c50; font: 800 .7rem/1.45 var(--font-sans); text-transform: uppercase; letter-spacing: .04em; }
+  .tdec-desk__boundary dd { margin: 0; color: #455962; font-size: .74rem; line-height: 1.45; }
   .tdec-desk__scope { margin: 0; border-top: 2px solid var(--ink); }
   .tdec-desk__scope > div { display: grid; grid-template-columns: 122px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
   .tdec-desk__scope dt { font-size: .72rem; font-weight: 800; text-transform: uppercase; }
@@ -562,6 +569,8 @@
   .tdec-workspace__header li.is-current { color: var(--ink); }
   .tdec-workspace__header li.is-current span { color: white; border-color: var(--accent); background: var(--accent); }
   .tdec-workspace__form { display: grid; grid-template-columns: minmax(300px, .78fr) minmax(0, 1.22fr); border: 1px solid #aeb8b4; border-top: 0; background: #fff; }
+  .tdec-desk[data-tdec-records-desk] .tdec-workspace__form { grid-template-columns: 1fr; }
+  .tdec-desk[data-tdec-records-desk] .tdec-workspace__form fieldset { padding-block: 24px; }
   .tdec-workspace__form fieldset { min-width: 0; margin: 0; padding: 28px 30px 32px; border: 0; }
   .tdec-workspace__form fieldset + fieldset { border-left: 1px solid #ccd2cf; }
   .tdec-workspace__form legend { width: 100%; padding: 0 0 20px; font-family: var(--font-sans); font-size: 1rem; font-weight: 800; }
@@ -581,9 +590,13 @@
   .tdec-purpose__options small { color: #617278; font-size: .69rem; line-height: 1.4; }
   .tdec-property__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; }
   .tdec-property__county, .tdec-property__address { grid-column: 1 / -1; }
-  .tdec-property__more { grid-column: 1 / -1; margin-top: 2px; border-top: 1px solid #ccd2cf; border-bottom: 1px solid #ccd2cf; }
-  .tdec-property__more > summary { padding: 13px 2px; color: #0e5c50; cursor: pointer; font-size: .75rem; font-weight: 800; }
+  .tdec-property__more, .tdec-property__purpose { grid-column: 1 / -1; margin-top: 2px; border-top: 1px solid #ccd2cf; border-bottom: 1px solid #ccd2cf; }
+  .tdec-property__more > summary, .tdec-property__purpose > summary { padding: 13px 2px; color: #0e5c50; cursor: pointer; font-size: .75rem; font-weight: 800; }
   .tdec-property__more > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 17px; padding: 5px 0 18px; }
+  .tdec-property__more .tdec-property__address { grid-column: 1 / -1; }
+  .tdec-property__purpose { border-top: 0; }
+  .tdec-property__purpose .tdec-purpose__options { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 18px; border-left: 1px solid #ccd2cf; }
+  .tdec-property__purpose .tdec-purpose__options label > span { height: 100%; border-right: 1px solid #ccd2cf; }
   .field-help { margin: 10px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.5; }
   .tdec-workspace__submit-row { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 18px 28px; }
   .tdec-workspace__submit-row p { max-width: 48ch; margin: 0; color: var(--muted); font-size: .72rem; }
@@ -741,6 +754,8 @@
     .tdec-desk__intro { padding-block: 28px; }
     .tdec-desk__intro h1 { font-size: clamp(2.15rem, 10.5vw, 3.1rem); }
     .tdec-desk__intro-grid { gap: 24px; }
+    .tdec-desk__hero-actions { display: grid; margin-top: 20px; }
+    .tdec-desk__hero-actions .button { width: 100%; justify-content: center; }
     .tdec-desk__scope > div { grid-template-columns: 105px 1fr; gap: 12px; }
     .tdec-workspace { padding-block: 28px; }
     .tdec-workspace__header { display: block; }
@@ -752,6 +767,9 @@
     .tdec-property__county, .tdec-property__address { grid-column: auto; }
     .tdec-property__more { grid-column: auto; }
     .tdec-property__more > div { grid-template-columns: 1fr; gap: 14px; }
+    .tdec-property__more .tdec-property__address { grid-column: auto; }
+    .tdec-property__purpose { grid-column: auto; }
+    .tdec-property__purpose .tdec-purpose__options { grid-template-columns: 1fr; }
     .tdec-workspace__submit-row { display: grid; padding: 18px; }
     .tdec-workspace__submit-row .button { width: 100%; }
     .tdec-result { margin-top: 24px; }

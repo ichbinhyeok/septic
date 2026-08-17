@@ -11,15 +11,30 @@
     <div class="tdec-desk" data-tdec-records-desk>
         <section class="tdec-desk__intro" aria-labelledby="tdec-page-title">
             <div class="container tdec-desk__intro-grid">
-                <div>
+                <div class="tdec-desk__hero-copy">
                     <span class="eyebrow">Tennessee septic records</span>
-                    <h1 id="tdec-page-title">Find the office and search path for an existing septic file</h1>
-                    <p>Select the property county and what you need. We verify a full address when possible, then prepare the correct TDEC or local-county route.</p>
+                    <h1 id="tdec-page-title">Search TDEC septic permits and Tennessee SSDS records</h1>
+                    <p>Open Tennessee's official record search now, or choose a county to find the correct local office and missing-file fallback.</p>
+                    <div class="tdec-desk__hero-actions">
+                        <a class="button button--primary"
+                           href="https://tdec.tn.gov/document-viewer/search/stp"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-tdec-hero-official
+                           data-track-click="official_source"
+                           data-track-source-context="tdec_hero_official_search"
+                           data-track-target-type="official_search">Open official TDEC SSDS record search</a>
+                        <a class="button button--secondary" href="#tdec-record-search">Find the correct county or field office</a>
+                    </div>
+                    <small class="tdec-desk__independent">Independent guide. SepticPath does not retrieve or certify government records.</small>
                 </div>
                 <aside class="tdec-desk__boundary" aria-label="Service boundary">
-                    <strong>What you get here</strong>
-                    <p>A verified county route, useful search keys, and the next step if the official site is empty or blocked.</p>
-                    <small>SepticPath cannot see a government database, retrieve its PDF, or certify the system’s current condition.</small>
+                    <strong>Use the route that fits</strong>
+                    <dl>
+                        <div><dt>Statewide</dt><dd>Start with the official TDEC SSDS search.</dd></div>
+                        <div><dt>Local county</dt><dd>Nine counties administer their own septic programs.</dd></div>
+                        <div><dt>No result</dt><dd>Use prior-owner, parcel, archive, and office-request steps.</dd></div>
+                    </dl>
                 </aside>
             </div>
         </section>
@@ -28,25 +43,15 @@
             <div class="container">
                 <header class="tdec-workspace__header">
                     <div>
-                        <span class="eyebrow">Start here</span>
-                        <h2 id="tdec-workspace-title">Prepare your official route</h2>
+                        <span class="eyebrow">County router</span>
+                        <h2 id="tdec-workspace-title">Find the right official record source</h2>
                     </div>
-                    <p>About 2 minutes · Nothing is submitted to an agency</p>
+                    <p>One required choice · Nothing is submitted to an agency</p>
                 </header>
 
                 <form class="tdec-workspace__form" data-tdec-route-form novalidate>
-                    <fieldset class="tdec-purpose">
-                        <legend>1. What do you need?</legend>
-                        <div class="tdec-purpose__options">
-                            <label><input type="radio" name="tdec-purpose" value="records" checked><span><strong>Find the existing file</strong><small>Permit, soil map, layout, final approval, repair history</small></span></label>
-                            <label><input type="radio" name="tdec-purpose" value="status"><span><strong>Confirm approved status</strong><small>Bedrooms, inspection letter, or official approval status</small></span></label>
-                            <label><input type="radio" name="tdec-purpose" value="missing"><span><strong>No result or old file</strong><small>Online search was empty, blocked, or incomplete</small></span></label>
-                            <label><input type="radio" name="tdec-purpose" value="repair"><span><strong>Repair or modify a system</strong><small>Start the current TDEC or local service process</small></span></label>
-                        </div>
-                    </fieldset>
-
                     <fieldset class="tdec-property">
-                        <legend>2. Identify the property</legend>
+                        <legend>Choose the property county</legend>
                         <div class="tdec-property__grid">
                             <label class="tdec-property__county">
                                 <span>County <b aria-hidden="true">*</b></span>
@@ -66,26 +71,31 @@
                                 </select>
                                 <small data-tdec-county-help>The county determines whether TDEC or a local program owns the record.</small>
                             </label>
-                            <label class="tdec-property__address">
-                                <span>Full property address</span>
-                                <input type="text" maxlength="160" autocomplete="street-address" placeholder="123 Main St, Franklin, TN 37064" data-tdec-address>
-                                <small>Include city and ZIP so we can verify the selected county.</small>
-                            </label>
-                            <details class="tdec-property__more">
-                                <summary>Add parcel, owner, lot, or permit number</summary>
+                            <details class="tdec-property__more" data-tdec-property-details>
+                                <summary>Add optional property search keys</summary>
                                 <div>
+                                    <label class="tdec-property__address"><span>Full property address</span><input type="text" maxlength="160" autocomplete="street-address" placeholder="123 Main St, Franklin, TN 37064" data-tdec-address><small>Optional. County verification runs after the route appears.</small></label>
                                     <label><span>Parcel or tax-map ID</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-parcel></label>
                                     <label><span>Current or prior owner</span><input type="text" maxlength="100" autocomplete="name" placeholder="Optional" data-tdec-owner></label>
                                     <label><span>Subdivision and lot</span><input type="text" maxlength="100" autocomplete="off" placeholder="Optional" data-tdec-subdivision></label>
                                     <label><span>Permit number</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-permit></label>
                                 </div>
                             </details>
+                            <details class="tdec-property__purpose">
+                                <summary>Need an inspection letter, repair service, or missing-file help?</summary>
+                                <div class="tdec-purpose__options">
+                                    <label><input type="radio" name="tdec-purpose" value="records" checked><span><strong>Find an existing file</strong><small>Permit, soil map, layout, final approval, repair history</small></span></label>
+                                    <label><input type="radio" name="tdec-purpose" value="status"><span><strong>Confirm approved status</strong><small>Bedrooms, inspection letter, or official approval status</small></span></label>
+                                    <label><input type="radio" name="tdec-purpose" value="missing"><span><strong>No result or old file</strong><small>Online search was empty, blocked, or incomplete</small></span></label>
+                                    <label><input type="radio" name="tdec-purpose" value="repair"><span><strong>Repair or modify a system</strong><small>Start the current TDEC or local service process</small></span></label>
+                                </div>
+                            </details>
                         </div>
                     </fieldset>
 
                     <div class="tdec-workspace__submit-row">
-                        <button class="button button--primary" type="submit" data-tdec-prepare>Build my route</button>
-                        <p>Use an address or at least one other property clue. Property details stay on this device for up to 30 days and are never sent in analytics.</p>
+                        <button class="button button--primary" type="submit" data-tdec-prepare>Show my official route</button>
+                        <p>No address is required. Optional property details stay on this device and are never sent in analytics.</p>
                     </div>
                     <p class="form-error" role="alert" data-tdec-form-error hidden></p>
                 </form>

@@ -26,10 +26,10 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Find the office and search path for an existing septic file")))
-                .andExpect(content().string(containsString("2. Identify the property")))
-                .andExpect(content().string(containsString("SepticPath cannot see a government database")))
-                .andExpect(content().string(containsString("retrieve its PDF, or certify the system’s current condition")))
+                .andExpect(content().string(containsString("Search TDEC septic permits and Tennessee SSDS records")))
+                .andExpect(content().string(containsString("Choose the property county")))
+                .andExpect(content().string(containsString("Open official TDEC SSDS record search")))
+                .andExpect(content().string(containsString("SepticPath does not retrieve or certify government records")))
                 .andExpect(content().string(containsString("data-contract-county=\"true\"")))
                 .andExpect(content().string(containsString("data-tdec-outcome=\"blocked\"")))
                 .andExpect(content().string(not(containsString("403 Help"))))
@@ -123,8 +123,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TN Septic Permit Search | TDEC &amp; County Records | SepticPath</title>")))
-                .andExpect(content().string(containsString("Search Tennessee septic permits by address, parcel, owner, or permit number.")));
+                .andExpect(content().string(containsString("<title>TDEC Septic Records Search | Tennessee SSDS Permit Lookup</title>")))
+                .andExpect(content().string(containsString("Open Tennessee&#39;s official TDEC SSDS record search")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost ($300-$2,700) &amp; County Fees | SepticPath</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
