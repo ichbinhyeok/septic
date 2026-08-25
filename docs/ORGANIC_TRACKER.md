@@ -1842,3 +1842,47 @@ Copy this block for the next review:
     complete days for impressions, clicks, query diversity, and official-source
     exits
   - treat traffic movement as an observed result, not a ranking guarantee
+## 2026-08-17 - TDEC CTR recovery handoff
+
+- Trigger:
+  - Search Console clicks fell from 146 to 89 week over week while impressions
+    held at 5,648 and average position held near 8.8
+  - `/tdec-septic-records/` accounted for 20 lost clicks: impressions increased
+    from 1,715 to 1,889 while CTR fell from 2.80% to 1.48%
+- Diagnosis:
+  - this is a SERP CTR and landing-expectation problem, not a sitewide indexing
+    failure or broad ranking penalty
+  - navigational TDEC queries favor TN.gov and AI answers, so SepticPath's role
+    is the official-route and no-result recovery layer
+  - the prior snippet promised an immediate permit search while the page placed
+    a multi-step router and field-office request before the official SSDS search
+- Shipped treatment:
+  - aligned title, description, and H1 around TDEC septic records and Tennessee
+    SSDS permit lookup
+  - placed the official TDEC SSDS search in the first mobile and desktop viewport
+  - reduced the router to one required county selection; property identifiers
+    and alternate purposes are optional progressive disclosure
+  - restored the statewide SSDS viewer as the primary action for TDEC-managed
+    counties while preserving direct county routes for all nine local programs
+  - moved address verification to a non-blocking background task with a
+    four-second timeout and selected-county fallback
+  - added `hero_official_click`, `route_started`, `route_ready`, `route_error`,
+    and `address_verification_latency` measurement events
+  - replaced reviewer-style labels with transparent product-maintenance and
+    official-source-check language
+- Verification:
+  - full Gradle test suite passed
+  - desktop 1280x720 and mobile 375x812 browser checks passed with no console
+    errors or warnings
+  - Rutherford County opens the official TDEC viewer first; Blount County opens
+    its county-owned records route first
+- Measurement freeze:
+  - do not change the TDEC title, description, H1, or hero actions for 14 complete
+    post-deploy days unless production is functionally broken
+  - primary GSC metric: `/tdec-septic-records/` CTR, segmented by query and device;
+    minimum recovery threshold 2.0%, target range 2.3-2.8%
+  - primary GA4 metric: `official_source_clicked / organic landing user`, with
+    `hero_official_click`, `route_ready`, and verification timeout rate as
+    diagnostics
+  - compare complete same-weekday 14-day and 28-day cohorts; do not react to a
+    single seven-day window

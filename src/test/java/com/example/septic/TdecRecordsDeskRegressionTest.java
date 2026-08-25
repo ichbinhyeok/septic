@@ -55,7 +55,7 @@ class TdecRecordsDeskRegressionTest {
                 .getContentAsString();
 
         assertThat(html)
-                .contains("Prepare your official route")
+                .contains("Find the right official record source")
                 .contains("data-tdec-route-form")
                 .contains("data-tdec-request-section")
                 .contains("data-tdec-address")
@@ -63,6 +63,7 @@ class TdecRecordsDeskRegressionTest {
                 .contains("value=\"status\"")
                 .contains("value=\"missing\"")
                 .contains("value=\"repair\"")
+                .contains("No address is required")
                 .doesNotContain("class=\"record-finder")
                 .doesNotContain("Enter the address to find the record owner");
     }

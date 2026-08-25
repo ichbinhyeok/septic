@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3.0 - 2026-08-17
+
+- The Tennessee records page now leads with the official TDEC SSDS search and keeps county or field-office routing as the fallback instead of presenting SepticPath as the record database.
+- The county router requires only a county; optional address verification runs in the background with a four-second client timeout and never blocks the official route.
+- Search title, description, H1, primary actions, responsive layout, and GA4 route events now describe the same direct-lookup workflow.
+- Editorial labels now identify product maintenance and official-source checks without implying named professional reviewers.
+- Regression coverage protects the statewide viewer, nine locally administered counties, optional property keys, asynchronous verification, and the revised search snippet.
+
 ## 0.0.2.9 - 2026-08-11
 
 - Sitemap modification dates now include the latest material shared-workflow revision, so Google can distinguish recently rebuilt state and county pages from their older crawled versions.

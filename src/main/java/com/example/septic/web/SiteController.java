@@ -501,18 +501,18 @@ public class SiteController {
     private static final String STATE_EDITORIAL_NOTE = "This page is maintained as conservative homeowner guidance and updated when linked official materials or local workflow notes change.";
     private static final String CONTENT_EDITORIAL_NOTE = "This page is a planning hub. Use the linked state-specific pages when rule style, local authority, or records workflow differences matter.";
     private static final EditorialProfile STATE_PAGE_PREPARER = new EditorialProfile(
-            "SepticPath Editorial Team",
-            "Planning editor",
+            "SepticPath content team",
+            "Product-maintained guidance",
             "Turns state rules, permit friction, and buyer-risk signals into estimate-first homeowner guidance."
     );
     private static final EditorialProfile CONTENT_PAGE_PREPARER = new EditorialProfile(
-            "SepticPath Editorial Team",
-            "Content editor",
+            "SepticPath content team",
+            "Product-maintained guidance",
             "Keeps national pages aligned with the estimator, state guides, and the highest-intent next steps."
     );
     private static final EditorialProfile SOURCE_REVIEWER = new EditorialProfile(
-            "SepticPath Source Review",
-            "Source reviewer",
+            "SepticPath official-source checks",
+            "Official-link and workflow review",
             "Checks official links, verification dates, and local workflow notes before a page stays public."
     );
 

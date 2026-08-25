@@ -22,11 +22,11 @@ class TdecSearchSnippetRegressionTest {
     private MockMvc mockMvc;
 
     @Test
-    void tdecSearchSnippetLeadsWithCountyAndOfficialOwnershipInsteadOfAnErrorCode() throws Exception {
+    void tdecSearchSnippetLeadsWithTheOfficialSearchAndHonestFallback() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(
-                        "<meta name=\"description\" content=\"Search Tennessee septic permits by address, parcel, owner, or permit number. Find the correct TDEC SSDS or local county route when the viewer is blocked.\">"
+                        "<meta name=\"description\" content=\"Open Tennessee&#39;s official TDEC SSDS record search, or find the correct county office and next steps when no septic permit or file appears.\">"
                 )));
     }
 }

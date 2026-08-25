@@ -272,14 +272,14 @@
                     <summary>How this route was checked</summary>
                     <dl class="review-meta">
                         <div>
-                            <dt>Prepared by</dt>
+                            <dt>Maintained by</dt>
                             <dd>
                                 <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
                                 <span>${editorialPreparedBy.roleTitle()}</span>
                             </dd>
                         </div>
                         <div>
-                            <dt>Reviewed by</dt>
+                            <dt>Source review</dt>
                             <dd>
                                 <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
                                 <span>${editorialReviewedBy.roleTitle()}</span>

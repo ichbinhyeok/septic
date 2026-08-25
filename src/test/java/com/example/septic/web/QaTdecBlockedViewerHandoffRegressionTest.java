@@ -14,12 +14,13 @@ class QaTdecBlockedViewerHandoffRegressionTest {
     // Found by /qa on 2026-08-06.
     // Report: .gstack/qa-reports/qa-report-septicpath-human-intent-2026-08-06.md
     @Test
-    void makesTheResponsibleFieldOfficeTheDefaultRecordHandoff() throws IOException {
+    void makesTheOfficialViewerPrimaryAndKeepsTheFieldOfficeFallback() throws IOException {
         String script = Files.readString(Path.of("src/main/resources/static/tdec-records.js"));
 
-        assertTrue(script.contains("title: `Request the ${countyData.fieldOfficeName} file search`"));
-        assertTrue(script.contains("url: countyData.fieldOfficeUrl"));
-        assertTrue(script.contains("context: \"tdec_field_office_request\""));
-        assertTrue(script.contains("Open official SSDS Record Search (may be blocked)"));
+        assertTrue(script.contains("title: \"Search the official TDEC SSDS records\""));
+        assertTrue(script.contains("url: TDEC_VIEWER"));
+        assertTrue(script.contains("context: \"tdec_ssds_record_search\""));
+        assertTrue(script.contains("Contact ${data.county.fieldOfficeName} if no file appears"));
+        assertTrue(script.contains("\"tdec_field_office_request\", data"));
     }
 }

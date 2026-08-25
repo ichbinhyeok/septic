@@ -16,22 +16,39 @@ class TdecRecordsInputTrustRegressionTest {
     // Found by /qa on 2026-08-05.
     // Report: .gstack/qa-reports/qa-report-septicpath-com-2026-08-05.md
     @Test
-    void rejectsWeakPropertyCluesAndUsesTheCensusCountyResolver() throws IOException {
+    void keepsPropertyCluesOptionalAndUsesABoundedCountyResolver() throws IOException {
         String script = Files.readString(TDEC_SCRIPT);
 
         assertTrue(script.contains("Include the street, city, and a state abbreviation or ZIP"));
-        assertTrue(script.contains("missing_property_clue"));
+        assertTrue(script.contains("verifyAddressInBackground"));
+        assertTrue(script.contains("controller.abort()"));
+        assertTrue(script.contains("4000"));
+        assertTrue(script.contains("let routeRevision = 0"));
+        assertTrue(script.contains("activeAddressVerification?.controller.abort()"));
+        assertTrue(script.contains("if (revision !== routeRevision) return"));
         assertTrue(script.contains("/api/address-record-finder"));
         assertTrue(script.contains("address_search_completed"));
+        assertTrue(script.contains("address_verification_latency"));
+        assertTrue(script.contains("emit(\"route_started\""));
+        assertTrue(script.contains("emit(\"route_ready\""));
+        assertTrue(script.contains("emit(\"route_error\""));
+        assertTrue(script.contains("emit(\"hero_official_click\""));
+    }
+
+    @Test
+    void doesNotCountARestoredRouteAsANewReadyEvent() throws IOException {
+        String script = Files.readString(TDEC_SCRIPT);
+
+        assertTrue(script.contains("Restored from this browser tab. Confirm the property keys before continuing.\", false, false"));
     }
 
     @Test
     void usesTheOfficialViewerForRecordsAndSeparateServicesForStatusOrRepair() throws IOException {
         String script = Files.readString(TDEC_SCRIPT);
-        assertTrue(script.contains("Open official SSDS Record Search"));
+        assertTrue(script.contains("Open official TDEC SSDS record search"));
         assertTrue(script.contains("Open TDEC Online Services"));
         assertTrue(script.contains("Open TDEC repair services"));
-        assertTrue(script.contains("A 403 is an access failure"));
+        assertTrue(script.contains("A 403 or failed page does not say anything about this property"));
     }
 
     @Test

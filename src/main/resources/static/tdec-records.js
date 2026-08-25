@@ -18,7 +18,6 @@
     const owner = desk.querySelector("[data-tdec-owner]");
     const subdivision = desk.querySelector("[data-tdec-subdivision]");
     const permit = desk.querySelector("[data-tdec-permit]");
-    const prepareButton = desk.querySelector("[data-tdec-prepare]");
     const error = desk.querySelector("[data-tdec-form-error]");
     const result = desk.querySelector("[data-tdec-result]");
     const resultStatus = desk.querySelector("[data-tdec-result-status]");
@@ -37,6 +36,8 @@
     const requestGuidance = desk.querySelector("[data-tdec-request-guidance]");
     const requestLink = desk.querySelector("[data-tdec-request-link]");
     let prepared = null;
+    let routeRevision = 0;
+    let activeAddressVerification = null;
 
     function emit(eventName, params = {}) {
         if (typeof window.gtag === "function") window.gtag("event", eventName, params);
@@ -90,10 +91,6 @@
         };
     }
 
-    function hasPropertyClue(data) {
-        return Boolean(data.address || data.parcel || data.owner || data.subdivision || data.permit);
-    }
-
     function addressLooksComplete(value) {
         const upper = value.toUpperCase();
         const hasState = /(?:^|[\s,])(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)(?:[\s,]|$)/.test(upper);
@@ -115,6 +112,9 @@
     }
 
     function clearPreparedState() {
+        routeRevision += 1;
+        activeAddressVerification?.controller.abort();
+        activeAddressVerification = null;
         prepared = null;
         if (result instanceof HTMLElement) result.hidden = true;
         if (returnPanel instanceof HTMLElement) returnPanel.hidden = true;
@@ -127,18 +127,11 @@
         }
     }
 
-    function setBusy(busy) {
-        if (!(prepareButton instanceof HTMLButtonElement)) return;
-        prepareButton.disabled = busy;
-        prepareButton.textContent = busy ? "Verifying county…" : "Build my route";
-        form?.setAttribute("aria-busy", String(busy));
-    }
-
     function countyKeyFromName(name) {
         return normalized(name).replace(/\s+County$/i, "").toLowerCase().replace(/\s+/g, "-");
     }
 
-    async function verifyAddress(data) {
+    async function verifyAddress(data, signal) {
         if (!data.address) return { data, message: "County is based on your selection because no full address was entered." };
         if (!addressLooksComplete(data.address)) {
             throw new Error("Include the street, city, and a state abbreviation or ZIP, or leave address blank and use another property clue.");
@@ -149,7 +142,8 @@
             const response = await fetch("/api/address-record-finder", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Accept": "application/json" },
-                body: JSON.stringify({ address: data.address })
+                body: JSON.stringify({ address: data.address }),
+                signal
             });
             const lookup = await response.json();
             if (!response.ok || lookup.status === "invalid") throw new Error(lookup.message || "Enter a complete U.S. property address.");
@@ -168,8 +162,10 @@
                 throw new Error("We could not verify that address. Check the city, state, and ZIP, or leave it blank and use a parcel or owner clue.");
             }
 
+            const selectedKey = data.county.key;
             const matchedKey = countyKeyFromName(lookup.countyName);
-            if (matchedKey && matchedKey !== data.county.key && county instanceof HTMLSelectElement) {
+            const countyChanged = Boolean(matchedKey && matchedKey !== selectedKey);
+            if (countyChanged && county instanceof HTMLSelectElement) {
                 const matchedOption = Array.from(county.options).find(option => option.value === matchedKey);
                 if (matchedOption) {
                     county.value = matchedKey;
@@ -181,16 +177,16 @@
             emit("address_search_completed", { state_code: "TN", county_name: data.county.name, match_status: "matched" });
             return {
                 data,
-                message: matchedKey === countyKeyFromName(lookup.countyName)
-                    ? `Address matched ${data.county.name}: ${data.address}`
-                    : `Address matched Tennessee. Confirm the county shown before opening the official site.`
+                message: countyChanged
+                    ? `Address matched ${data.county.name}, so the official route was updated: ${data.address}`
+                    : `Address matched ${data.county.name}: ${data.address}`
             };
         } catch (failure) {
             if (failure instanceof TypeError) {
                 emit("records_fallback_started", { fallback_type: "address_network_error", state_code: "TN" });
                 return { data, message: "Address verification could not connect. The route below uses your selected county." };
             }
-            emit("records_route_error", { error_type: "address_not_verified", state_code: "TN" });
+            if (failure?.name !== "AbortError") emit("records_route_error", { error_type: "address_not_verified", state_code: "TN" });
             throw failure;
         }
     }
@@ -208,6 +204,7 @@
         if (data.owner) clues.push(`Owner: ${data.owner}`);
         if (data.subdivision) clues.push(`Subdivision / lot: ${data.subdivision}`);
         if (data.permit) clues.push(`Permit: ${data.permit}`);
+        if (clues.length === 0) clues.push("Start with the street address; retry with parcel, prior owner, subdivision, or permit number if needed.");
         return [...new Set(clues)];
     }
 
@@ -254,12 +251,12 @@
             };
         }
         return {
-            title: `Request the ${countyData.fieldOfficeName} file search`,
-            url: countyData.fieldOfficeUrl,
-            explanation: "TDEC manages existing septic records for this county. Start with the responsible field office and give it the prepared property keys so it can check current and archived SSDS files.",
-            hint: "The viewer may reject some networks or browser sessions. A 403 is an access failure—not a property result.",
-            label: `Open ${countyData.fieldOfficeName} Field Office`,
-            context: "tdec_field_office_request"
+            title: "Search the official TDEC SSDS records",
+            url: TDEC_VIEWER,
+            explanation: "TDEC manages existing septic records for this county. Start with the statewide SSDS search using the property address, parcel, prior owner, subdivision, or permit number.",
+            hint: `If the search is empty or unavailable, contact the ${countyData.fieldOfficeName} Environmental Field Office for archived and pre-digital files.`,
+            label: "Open official TDEC SSDS record search",
+            context: "tdec_ssds_record_search"
         };
     }
 
@@ -319,7 +316,7 @@
         }
     }
 
-    function render(data, verificationMessage, shouldFocus = true) {
+    function render(data, verificationMessage, shouldFocus = true, trackView = true) {
         if (!(result instanceof HTMLElement) || !(routeActions instanceof HTMLElement) || !(cluesList instanceof HTMLElement)) return;
         const route = routeFor(data);
         prepared = data;
@@ -328,8 +325,8 @@
             countyKey: `TN::${data.county.key}`, purpose: data.purpose,
             officeLabel: data.county.contract ? data.county.name : data.county.fieldOfficeName,
             routePath: window.location.pathname,
-            routeMode: data.county.contract ? "contract_county" : "field_office_request",
-            routeReliability: data.county.contract ? "county_owned" : "viewer_secondary",
+            routeMode: data.county.contract ? "contract_county" : "official_viewer",
+            routeReliability: data.county.contract ? "county_owned" : "viewer_primary",
             officialRoute: route.url,
             requestRoute: data.county.contract ? data.county.recordsUrl : data.county.fieldOfficeUrl,
             requiredIdentifiers: ["Property address", "Parcel, prior owner, subdivision, or permit number if available"],
@@ -346,7 +343,7 @@
         routeHint.textContent = route.hint;
         routeActions.replaceChildren(makeOfficialLink(route, data));
         if (!data.county.contract && data.purpose === "records") {
-            routeActions.append(makeSecondaryLink("Open official SSDS Record Search (may be blocked)", TDEC_VIEWER, "tdec_ssds_record_search", data));
+            routeActions.append(makeSecondaryLink(`Contact ${data.county.fieldOfficeName} if no file appears`, data.county.fieldOfficeUrl, "tdec_field_office_request", data));
         }
         if (!data.parcel) routeActions.append(makeSecondaryLink("Need a parcel ID? Open Tennessee Property Assessment Data", TPAD, "tn_property_assessment", data));
 
@@ -365,12 +362,86 @@
             result.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
             result.focus({ preventScroll: true });
         }
-        emit("county_route_viewed", {
-            state_code: "TN",
-            county_name: data.county.name,
-            route_type: data.county.contract ? "contract_county" : "tdec",
-            purpose: data.purpose
-        });
+        if (trackView) {
+            emit("route_ready", {
+                state_code: "TN",
+                county_name: data.county.name,
+                route_type: data.county.contract ? "contract_county" : "tdec",
+                purpose: data.purpose
+            });
+            emit("county_route_viewed", {
+                state_code: "TN",
+                county_name: data.county.name,
+                route_type: data.county.contract ? "contract_county" : "tdec",
+                purpose: data.purpose
+            });
+        }
+    }
+
+    async function verifyAddressInBackground(data, revision) {
+        if (!data.address) return;
+        if (!addressLooksComplete(data.address)) {
+            if (verification instanceof HTMLElement) verification.textContent = "Address was not verified. The route uses the county you selected.";
+            emit("route_error", { error_type: "address_incomplete", state_code: "TN" });
+            return;
+        }
+        const startedAt = performance.now();
+        const controller = new AbortController();
+        activeAddressVerification?.controller.abort();
+        activeAddressVerification = {controller, revision};
+        const timeout = window.setTimeout(() => controller.abort(), 4000);
+        try {
+            const verified = await verifyAddress(data, controller.signal);
+            if (revision !== routeRevision) return;
+            const countyChanged = prepared?.county?.key !== verified.data.county.key;
+            if (countyChanged) {
+                let officialAlreadyOpened = false;
+                try {
+                    officialAlreadyOpened = Boolean(JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null")?.opened);
+                } catch (_) {
+                    // Keep the updated visible route even when storage is unavailable.
+                }
+                render(verified.data, verified.message, false, false);
+                if (officialAlreadyOpened && returnPanel instanceof HTMLElement) {
+                    returnPanel.hidden = false;
+                    saveSession(verified.data, true);
+                }
+            } else {
+                prepared = verified.data;
+                if (verification instanceof HTMLElement) verification.textContent = verified.message;
+                if (cluesList instanceof HTMLElement) {
+                    cluesList.replaceChildren(...cluesFor(verified.data).map(value => {
+                        const item = document.createElement("li");
+                        item.textContent = value;
+                        return item;
+                    }));
+                }
+            }
+            emit("address_verification_latency", {
+                state_code: "TN",
+                county_name: verified.data.county.name,
+                status: "completed",
+                value: Math.round(performance.now() - startedAt)
+            });
+        } catch (failure) {
+            if (revision !== routeRevision) return;
+            const timedOut = failure?.name === "AbortError";
+            if (verification instanceof HTMLElement) {
+                verification.textContent = timedOut
+                    ? "Address verification took too long. The route still uses the county you selected."
+                    : "Address verification did not complete. Confirm the selected county before relying on this route.";
+            }
+            emit("address_verification_latency", {
+                state_code: "TN",
+                county_name: data.county.name,
+                status: timedOut ? "timeout" : "error",
+                value: Math.round(performance.now() - startedAt)
+            });
+            emit("route_error", { error_type: timedOut ? "address_timeout" : "address_verification_failed", state_code: "TN" });
+        } finally {
+            window.clearTimeout(timeout);
+            if (activeAddressVerification?.revision === revision) activeAddressVerification = null;
+        }
     }
 
     function buildRequestText(data) {
@@ -441,7 +512,7 @@
         return wrapper;
     }
 
-    form?.addEventListener("submit", async event => {
+    form?.addEventListener("submit", event => {
         event.preventDefault();
         clearError();
         const data = values();
@@ -450,20 +521,16 @@
             emit("records_route_error", { error_type: "missing_county", state_code: "TN" });
             return;
         }
-        if (!hasPropertyClue(data)) {
-            showError("Enter the full property address or at least one parcel, owner, subdivision, or permit clue.", address);
-            emit("records_route_error", { error_type: "missing_property_clue", state_code: "TN" });
-            return;
-        }
-        setBusy(Boolean(data.address));
-        try {
-            const verified = await verifyAddress(data);
-            render(verified.data, verified.message);
-        } catch (failure) {
-            showError(failure.message || "We could not prepare that route. Check the property information and try again.", address);
-        } finally {
-            setBusy(false);
-        }
+        const revision = ++routeRevision;
+        emit("route_started", { state_code: "TN", county_name: data.county.name, purpose: data.purpose });
+        render(data, data.address
+            ? "Route ready. Address verification is continuing in the background."
+            : "Route uses the county you selected. Add property keys only if they help the official search.");
+        void verifyAddressInBackground(data, revision);
+    });
+
+    desk.querySelector("[data-tdec-hero-official]")?.addEventListener("click", () => {
+        emit("hero_official_click", { state_code: "TN", destination_type: "tdec_ssds_record_search" });
     });
 
     county?.addEventListener("change", updateCountyHelp);
@@ -521,7 +588,7 @@
             const restoredData = { ...restored, county: selectedCounty() };
             if (restoredData.county) {
                 restoreForm(restoredData);
-                render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false);
+                render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false, false);
                 if (restored.opened) returnPanel.hidden = false;
             }
         }
