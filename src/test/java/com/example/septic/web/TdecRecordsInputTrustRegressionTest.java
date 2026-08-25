@@ -23,6 +23,9 @@ class TdecRecordsInputTrustRegressionTest {
         assertTrue(script.contains("verifyAddressInBackground"));
         assertTrue(script.contains("controller.abort()"));
         assertTrue(script.contains("4000"));
+        assertTrue(script.contains("let routeRevision = 0"));
+        assertTrue(script.contains("activeAddressVerification?.controller.abort()"));
+        assertTrue(script.contains("if (revision !== routeRevision) return"));
         assertTrue(script.contains("/api/address-record-finder"));
         assertTrue(script.contains("address_search_completed"));
         assertTrue(script.contains("address_verification_latency"));
@@ -30,6 +33,13 @@ class TdecRecordsInputTrustRegressionTest {
         assertTrue(script.contains("emit(\"route_ready\""));
         assertTrue(script.contains("emit(\"route_error\""));
         assertTrue(script.contains("emit(\"hero_official_click\""));
+    }
+
+    @Test
+    void doesNotCountARestoredRouteAsANewReadyEvent() throws IOException {
+        String script = Files.readString(TDEC_SCRIPT);
+
+        assertTrue(script.contains("Restored from this browser tab. Confirm the property keys before continuing.\", false, false"));
     }
 
     @Test

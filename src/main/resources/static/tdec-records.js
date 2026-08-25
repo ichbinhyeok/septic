@@ -36,6 +36,8 @@
     const requestGuidance = desk.querySelector("[data-tdec-request-guidance]");
     const requestLink = desk.querySelector("[data-tdec-request-link]");
     let prepared = null;
+    let routeRevision = 0;
+    let activeAddressVerification = null;
 
     function emit(eventName, params = {}) {
         if (typeof window.gtag === "function") window.gtag("event", eventName, params);
@@ -110,6 +112,9 @@
     }
 
     function clearPreparedState() {
+        routeRevision += 1;
+        activeAddressVerification?.controller.abort();
+        activeAddressVerification = null;
         prepared = null;
         if (result instanceof HTMLElement) result.hidden = true;
         if (returnPanel instanceof HTMLElement) returnPanel.hidden = true;
@@ -373,7 +378,7 @@
         }
     }
 
-    async function verifyAddressInBackground(data) {
+    async function verifyAddressInBackground(data, revision) {
         if (!data.address) return;
         if (!addressLooksComplete(data.address)) {
             if (verification instanceof HTMLElement) verification.textContent = "Address was not verified. The route uses the county you selected.";
@@ -382,9 +387,12 @@
         }
         const startedAt = performance.now();
         const controller = new AbortController();
+        activeAddressVerification?.controller.abort();
+        activeAddressVerification = {controller, revision};
         const timeout = window.setTimeout(() => controller.abort(), 4000);
         try {
             const verified = await verifyAddress(data, controller.signal);
+            if (revision !== routeRevision) return;
             const countyChanged = prepared?.county?.key !== verified.data.county.key;
             if (countyChanged) {
                 let officialAlreadyOpened = false;
@@ -416,6 +424,7 @@
                 value: Math.round(performance.now() - startedAt)
             });
         } catch (failure) {
+            if (revision !== routeRevision) return;
             const timedOut = failure?.name === "AbortError";
             if (verification instanceof HTMLElement) {
                 verification.textContent = timedOut
@@ -431,6 +440,7 @@
             emit("route_error", { error_type: timedOut ? "address_timeout" : "address_verification_failed", state_code: "TN" });
         } finally {
             window.clearTimeout(timeout);
+            if (activeAddressVerification?.revision === revision) activeAddressVerification = null;
         }
     }
 
@@ -511,11 +521,12 @@
             emit("records_route_error", { error_type: "missing_county", state_code: "TN" });
             return;
         }
+        const revision = ++routeRevision;
         emit("route_started", { state_code: "TN", county_name: data.county.name, purpose: data.purpose });
         render(data, data.address
             ? "Route ready. Address verification is continuing in the background."
             : "Route uses the county you selected. Add property keys only if they help the official search.");
-        void verifyAddressInBackground(data);
+        void verifyAddressInBackground(data, revision);
     });
 
     desk.querySelector("[data-tdec-hero-official]")?.addEventListener("click", () => {
@@ -577,7 +588,7 @@
             const restoredData = { ...restored, county: selectedCounty() };
             if (restoredData.county) {
                 restoreForm(restoredData);
-                render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false);
+                render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false, false);
                 if (restored.opened) returnPanel.hidden = false;
             }
         }
