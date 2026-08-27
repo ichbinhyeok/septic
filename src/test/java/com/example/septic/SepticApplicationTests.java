@@ -747,18 +747,18 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-08-11\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-08-18\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"alternate\" type=\"text/csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"Dataset\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-11\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-18\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("325 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-11")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-18")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"28\"")))
@@ -4138,13 +4138,13 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void yumaCountyRecordsPageShowsEtrakitAndPlotPlanWorkflow() throws Exception {
+	void yumaCountyRecordsPageShowsOpenGovAndPlotPlanWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/arizona/yuma-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Yuma County Arizona Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Yuma County permit information in eTRAKiT")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search Yuma County permit information in OpenGov")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Yuma County Development Services owns the practical septic file")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("eTRAKiT permit stack, septic plot plan, and public-records return all support the same path")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("OpenGov permit stack, septic plot plan, and public-records return all support the same path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic plot plan")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("public-records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Arizona records lookup")))
