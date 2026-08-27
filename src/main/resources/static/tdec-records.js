@@ -137,7 +137,7 @@
             throw new Error("Include the street, city, and a state abbreviation or ZIP, or leave address blank and use another property clue.");
         }
 
-        emit("address_search_started", { state_code: "TN", source: "tdec_records_desk" });
+        emit("address_search_started", { state_code: "TN", source_context: "tdec_records_desk" });
         try {
             const response = await fetch("/api/address-record-finder", {
                 method: "POST",
