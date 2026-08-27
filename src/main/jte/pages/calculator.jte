@@ -215,15 +215,20 @@
                         <div class="quote-panel__header">
                             <div>
                                 <span class="eyebrow">Optional next step</span>
-                                <h2>Request help finding local options</h2>
+                                <h2>${quoteLeadForm.hasActiveProblem() ? "Request follow-up for this septic problem" : "Request help finding local options"}</h2>
                             </div>
                             <span class="pill">Short form</span>
                         </div>
 
                         @if (result == null)
                             <article class="status-box">
-                                <strong>Already know the job type?</strong>
-                                <p>You can submit the project basics now. This stores an inquiry for follow-up; it does not check live contractor inventory or guarantee a response.</p>
+                                @if (quoteLeadForm.hasActiveProblem())
+                                    <strong>Describe the symptom, not your guess at the repair.</strong>
+                                    <p>The current symptom, ZIP, and timing make this useful for service follow-up without assuming that pumping, repair, or replacement is already the right scope.</p>
+                                @else
+                                    <strong>Already know the job type?</strong>
+                                    <p>You can submit the project basics now. This stores an inquiry for follow-up; it does not check live contractor inventory or guarantee a response.</p>
+                                @endif
                             </article>
                         @endif
 
@@ -234,7 +239,8 @@
                                      data-ga-param-lead-type="quote_request"
                                      data-ga-param-form-id="quote_request_form"
                                      data-ga-param-state-code="${estimateForm.getStateCode()}"
-                                     data-ga-param-project-type="${estimateForm.getProjectType()}">
+                                     data-ga-param-project-type="${estimateForm.getProjectType()}"
+                                     data-ga-param-service-need="${quoteLeadForm.getServiceNeed()}">
                                 <strong>Project details received</strong>
                                 <p>We saved your request under ID ${leadId}. This confirms submission, not contractor availability or a quote.</p>
                             </article>
@@ -243,7 +249,14 @@
                         @if (quoteHasErrors)
                             <article class="status-box status-box--error">
                                 <strong>Finish the required fields</strong>
-                                <p>Name, email, phone, ZIP, and consent are required before this lead can be stored.</p>
+                                <p>Choose what is happening, then complete name, email, phone, ZIP, and consent.</p>
+                            </article>
+                        @endif
+
+                        @if (quoteLeadForm.hasActiveProblem())
+                            <article class="status-box status-box--warning">
+                                <strong>This form is not emergency dispatch.</strong>
+                                <p>If sewage is entering the home or surfacing where people or animals can contact it, reduce water use and contact a licensed local septic service directly. Submitting here does not guarantee response time.</p>
                             </article>
                         @endif
 
@@ -297,6 +310,19 @@
                                 @endif
 
                                 <label class="field">
+                                    <span>What is happening at the property?</span>
+                                    <select name="serviceNeed" required>
+                                        <option value="planned_project" selected="${"planned_project".equals(quoteLeadForm.getServiceNeed())}">No active symptom — planning a project</option>
+                                        <option value="backup_slow_drains" selected="${"backup_slow_drains".equals(quoteLeadForm.getServiceNeed())}">Backup or persistently slow drains</option>
+                                        <option value="surfacing_wastewater" selected="${"surfacing_wastewater".equals(quoteLeadForm.getServiceNeed())}">Wet area or wastewater surfacing outside</option>
+                                        <option value="odor" selected="${"odor".equals(quoteLeadForm.getServiceNeed())}">Strong septic odor</option>
+                                        <option value="alarm" selected="${"alarm".equals(quoteLeadForm.getServiceNeed())}">Septic or pump alarm</option>
+                                        <option value="failed_inspection" selected="${"failed_inspection".equals(quoteLeadForm.getServiceNeed())}">Failed inspection</option>
+                                        <option value="repair_recommended" selected="${"repair_recommended".equals(quoteLeadForm.getServiceNeed())}">Repair or replacement was recommended</option>
+                                    </select>
+                                </label>
+
+                                <label class="field">
                                     <span>County (optional)</span>
                                     <input type="text" name="countyName" value="${quoteLeadForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
                                 </label>
@@ -346,7 +372,7 @@
                             </label>
 
                             <div class="form-actions">
-                                <button class="button button--primary" type="submit">Submit project inquiry</button>
+                                <button class="button button--primary" type="submit">${quoteLeadForm.hasActiveProblem() ? "Request service follow-up" : "Submit project inquiry"}</button>
                                 <p>We do not show live provider inventory. Submitting does not guarantee a match, price, or response time.</p>
                             </div>
                         </form>

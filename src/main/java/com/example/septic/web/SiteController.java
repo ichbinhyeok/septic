@@ -1575,6 +1575,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
             @RequestParam(name = "county", defaultValue = "") String countyName,
             @RequestParam(name = "recordStatus", defaultValue = "") String recordStatus,
+            @RequestParam(name = "serviceNeed", defaultValue = "planned_project") String serviceNeed,
+            @RequestParam(name = "timeline", defaultValue = "researching") String timeline,
             @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
@@ -1599,6 +1601,8 @@ The goal is to settle the permit path before we frame the project as a normal in
         QuoteLeadForm quoteLeadForm = QuoteLeadForm.fromEstimateForm(estimateForm);
         quoteLeadForm.setCountyName(boundedRecordContext(countyName));
         quoteLeadForm.setRecordStatus(validRecordStatus(recordStatus));
+        quoteLeadForm.setServiceNeed(validServiceNeed(serviceNeed));
+        quoteLeadForm.setTimeline(TimelinePreference.fromValue(timeline).value());
         return renderCalculator(model, estimateForm, null, quoteLeadForm, null, false, quoteMode);
     }
 
@@ -1682,6 +1686,16 @@ The goal is to settle the permit path before we frame the project as a normal in
         return value.trim().substring(0, Math.min(value.trim().length(), 120));
     }
 
+    private String validServiceNeed(String value) {
+        if (value == null) {
+            return "planned_project";
+        }
+        return switch (value) {
+            case "backup_slow_drains", "surfacing_wastewater", "odor", "alarm", "failed_inspection", "repair_recommended" -> value;
+            default -> "planned_project";
+        };
+    }
+
     @PostMapping({"/quote-request", "/quote-request/"})
     public String submitQuote(
             @Valid @ModelAttribute QuoteLeadForm quoteLeadForm,
@@ -1704,6 +1718,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 request
         );
         QuoteLeadForm clearedQuoteForm = QuoteLeadForm.fromEstimateForm(estimateForm);
+        clearedQuoteForm.setServiceNeed(quoteLeadForm.getServiceNeed());
         return renderCalculator(model, estimateForm, result, clearedQuoteForm, leadId, false, true);
     }
 

@@ -3,6 +3,7 @@ package com.example.septic.service;
 import java.util.Arrays;
 
 public enum TimelinePreference {
+    URGENT("urgent", "As soon as possible"),
     THIS_MONTH("this_month", "This month"),
     ONE_TO_THREE_MONTHS("one_to_three_months", "1-3 months"),
     RESEARCHING("researching", "Researching");

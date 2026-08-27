@@ -19,6 +19,12 @@ public class QuoteLeadForm {
     private String accessDifficulty = "easy";
     private String timeline = "researching";
 
+    @Pattern(
+            regexp = "planned_project|backup_slow_drains|surfacing_wastewater|odor|alarm|failed_inspection|repair_recommended",
+            message = "Choose what is happening at the property."
+    )
+    private String serviceNeed = "planned_project";
+
     @Size(max = 120, message = "County must be 120 characters or fewer.")
     private String countyName;
 
@@ -104,7 +110,11 @@ public class QuoteLeadForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree to be contacted about my septic project estimate and matching options.";
+        return "I agree to be contacted about this septic project and possible local service options. I understand this is not a confirmed contractor match.";
+    }
+
+    public boolean hasActiveProblem() {
+        return serviceNeed != null && !"planned_project".equals(serviceNeed);
     }
 
     public String getCountyNameValue() {
@@ -197,6 +207,14 @@ public class QuoteLeadForm {
 
     public void setTimeline(String timeline) {
         this.timeline = timeline;
+    }
+
+    public String getServiceNeed() {
+        return serviceNeed;
+    }
+
+    public void setServiceNeed(String serviceNeed) {
+        this.serviceNeed = serviceNeed;
     }
 
     public String getCountyName() {

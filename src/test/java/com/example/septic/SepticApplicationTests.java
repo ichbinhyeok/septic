@@ -10138,6 +10138,7 @@ class SepticApplicationTests {
 		mockMvc.perform(post("/quote-request/")
 						.param("stateCode", "GA")
 						.param("projectType", "replacement")
+						.param("serviceNeed", "repair_recommended")
 						.param("sourcePageHint", "/septic-replacement-cost/")
 						.param("bedrooms", "4")
 						.param("occupants", "5")
@@ -10170,6 +10171,7 @@ class SepticApplicationTests {
 			String leadContent = Files.readString(leadJson);
 			org.junit.jupiter.api.Assertions.assertTrue(leadContent.contains("\"sourcePage\" : \"/septic-replacement-cost/\""));
 			org.junit.jupiter.api.Assertions.assertTrue(leadContent.contains("\"sourcePageHint\" : \"/septic-replacement-cost/\""));
+			org.junit.jupiter.api.Assertions.assertTrue(leadContent.contains("\"serviceNeed\" : \"repair_recommended\""));
 		}
 
 		try (Stream<Path> eventFiles = Files.walk(TEST_STORAGE_ROOT)) {
@@ -10191,9 +10193,10 @@ class SepticApplicationTests {
 		}
 		String exportContent = Files.readString(exportJson);
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"exportStatus\" : \"pending_routing\""));
-		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"2026-03-09-v1\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"2026-08-27-v2\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"userAgent\" : \"MockBrowser/1.0\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"sourcePage\" : \"/septic-replacement-cost/\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"serviceNeed\" : \"repair_recommended\""));
 
 		Path exportCsv;
 		try (Stream<Path> exportCsvFiles = Files.walk(TEST_STORAGE_ROOT)) {
@@ -10238,7 +10241,7 @@ class SepticApplicationTests {
 						.param("zipCode", "30301"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Finish the required fields")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Name, email, phone, ZIP, and consent are required before this lead can be stored.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Choose what is happening, then complete name, email, phone, ZIP, and consent.")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Request received"))));
 	}
 

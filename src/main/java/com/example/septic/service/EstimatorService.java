@@ -477,7 +477,7 @@ public class EstimatorService {
 
     private double timelineMultiplier(TimelinePreference timeline) {
         return switch (timeline) {
-            case THIS_MONTH -> 0.06;
+            case URGENT, THIS_MONTH -> 0.06;
             case ONE_TO_THREE_MONTHS -> 0.03;
             case RESEARCHING -> 0.0;
         };

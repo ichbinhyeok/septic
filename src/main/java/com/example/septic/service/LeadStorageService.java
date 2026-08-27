@@ -73,7 +73,7 @@ public class LeadStorageService {
                 "accepted", quoteLeadForm.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", quoteLeadForm.getConsentTextSnapshot(),
-                "consentLanguageVersion", "2026-03-09-v1"
+                "consentLanguageVersion", "2026-08-27-v2"
         );
 
         Map<String, Object> payload = new LinkedHashMap<>();
@@ -85,6 +85,7 @@ public class LeadStorageService {
         payload.put("stateCode", quoteLeadForm.getStateCode());
         payload.put("countyName", quoteLeadForm.getCountyName());
         payload.put("projectType", quoteLeadForm.getProjectType());
+        payload.put("serviceNeed", quoteLeadForm.getServiceNeed());
         payload.put("recordStatus", quoteLeadForm.getRecordStatus());
         payload.put("contact", orderedMap(
                 "fullName", quoteLeadForm.getFullName(),
@@ -138,6 +139,7 @@ public class LeadStorageService {
                     "sourcePageHint", sanitizedSourcePageHint,
                     "stateCode", quoteLeadForm.getStateCode(),
                     "projectType", quoteLeadForm.getProjectType(),
+                    "serviceNeed", quoteLeadForm.getServiceNeed(),
                     "recordStatus", quoteLeadForm.getRecordStatus()
             ), now);
             return leadId;
@@ -275,7 +277,7 @@ public class LeadStorageService {
                         }
                         return switch (pair[0]) {
                             case "src", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
-                                    "mode", "purpose", "projectType", "recordsMode" -> true;
+                                    "mode", "purpose", "projectType", "serviceNeed", "recordsMode" -> true;
                             default -> false;
                         };
                     })
@@ -340,7 +342,7 @@ public class LeadStorageService {
             Map<String, Object> provenance
     ) {
         Map<String, Object> payload = new LinkedHashMap<>();
-        payload.put("exportVersion", "1.0");
+        payload.put("exportVersion", "1.1");
         payload.put("leadId", leadId);
         payload.put("submittedAt", now.toString());
         payload.put("exportStatus", "pending_routing");
@@ -358,6 +360,7 @@ public class LeadStorageService {
         ));
         payload.put("project", orderedMap(
                 "projectType", quoteLeadForm.getProjectType(),
+                "serviceNeed", quoteLeadForm.getServiceNeed(),
                 "recordStatus", quoteLeadForm.getRecordStatus(),
                 "bedrooms", estimateForm.getBedrooms(),
                 "occupants", estimateForm.getOccupants(),
@@ -394,7 +397,7 @@ public class LeadStorageService {
                         "zipCode", quoteLeadForm.getZipCode(),
                         "countyName", quoteLeadForm.getCountyName()
                 ),
-                "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), slugify(result.likelySystemClass()))
+                "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), quoteLeadForm.getServiceNeed(), slugify(result.likelySystemClass()))
         ));
         return payload;
     }
@@ -652,6 +655,7 @@ public class LeadStorageService {
         columns.add(quoteLeadForm.getStateCode());
         columns.add(quoteLeadForm.getZipCode());
         columns.add(quoteLeadForm.getProjectType());
+        columns.add(quoteLeadForm.getServiceNeed());
         columns.add(quoteLeadForm.getCountyName());
         columns.add(quoteLeadForm.getRecordStatus());
         columns.add(quoteLeadForm.getPreferredContactMethod());
@@ -706,7 +710,7 @@ public class LeadStorageService {
     }
 
     private String csvHeader() {
-        return "lead_id,submitted_at,state_code,zip_code,project_type,county_name,record_status,preferred_contact_method,timeline,likely_system_class,total_cost_mid,consent_accepted,export_status,export_json_path"
+        return "lead_id,submitted_at,state_code,zip_code,project_type,service_need,county_name,record_status,preferred_contact_method,timeline,likely_system_class,total_cost_mid,consent_accepted,export_status,export_json_path"
                 + System.lineSeparator();
     }
 

@@ -164,8 +164,61 @@
             actions.append(countyRoute);
         }
         actions.prepend(primary);
-        wrapper.append(title, description, actions);
+        wrapper.append(title, description, actions, serviceLeadQualifier());
         return wrapper;
+    }
+
+    function serviceLeadQualifier() {
+        const qualifier = document.createElement("section");
+        qualifier.className = "tdec-service-qualifier";
+        qualifier.setAttribute("aria-label", "Current septic problem");
+
+        const eyebrow = document.createElement("span");
+        eyebrow.className = "eyebrow";
+        eyebrow.textContent = "Separate question";
+        const heading = document.createElement("strong");
+        heading.textContent = "Are you searching because something is wrong at the property?";
+        const copy = document.createElement("p");
+        copy.textContent = "Choose a current symptom only if you may need inspection, pumping, repair, or replacement help. A missing record by itself is not a service lead.";
+        const choices = document.createElement("div");
+        choices.className = "tdec-service-qualifier__choices";
+
+        const needs = [
+            ["backup_slow_drains", "Backup or slow drains", "urgent"],
+            ["surfacing_wastewater", "Wet ground or sewage surfacing", "urgent"],
+            ["odor", "Strong septic odor", "this_month"],
+            ["alarm", "Septic or pump alarm", "urgent"],
+            ["failed_inspection", "Failed inspection", "this_month"],
+            ["repair_recommended", "Repair or replacement advised", "this_month"]
+        ];
+        needs.forEach(([serviceNeed, label, timeline]) => {
+            const link = document.createElement("a");
+            link.className = "button button--quiet";
+            const params = new URLSearchParams({
+                state: "TN",
+                projectType: "inspection",
+                serviceNeed,
+                timeline,
+                sourcePageHint: "/tdec-septic-records/",
+                quoteMode: "true"
+            });
+            link.href = `/septic-system-cost-calculator/?${params.toString()}#quote-request`;
+            link.textContent = label;
+            link.dataset.trackClick = "nav";
+            link.dataset.trackSourceContext = "tdec_active_problem";
+            link.dataset.trackTargetType = "quote_form";
+            link.addEventListener("click", () => emit("service_lead_intent_selected", {
+                source_context: "tdec_return_checkpoint",
+                service_need: serviceNeed,
+                state_code: "TN"
+            }));
+            choices.append(link);
+        });
+
+        const safety = document.createElement("small");
+        safety.textContent = "This is not emergency dispatch. If sewage is entering the home or surfacing where people can contact it, reduce water use and contact a licensed local septic service directly.";
+        qualifier.append(eyebrow, heading, copy, choices, safety);
+        return qualifier;
     }
 
     function clearPreparedState() {

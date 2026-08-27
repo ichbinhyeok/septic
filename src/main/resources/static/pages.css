@@ -627,6 +627,12 @@
   .tdec-return__next strong { display: block; font: 800 .95rem/1.35 var(--font-sans); }
   .tdec-return__next p { max-width: 70ch; margin: 5px 0 12px; color: #455962; font-size: .76rem; }
   .tdec-return__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tdec-service-qualifier { margin-top: 18px; padding-top: 16px; border-top: 1px solid #b6c4bf; }
+  .tdec-service-qualifier > strong { display: block; margin-top: 5px; font: 800 .95rem/1.35 var(--font-sans); }
+  .tdec-service-qualifier > p { margin: 5px 0 12px; color: #455962; font-size: .76rem; }
+  .tdec-service-qualifier__choices { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tdec-service-qualifier__choices .button { min-height: 38px; padding: 8px 11px; font-size: .72rem; }
+  .tdec-service-qualifier > small { display: block; margin-top: 12px; color: #5f4b27; font-size: .68rem; line-height: 1.5; }
   .tdec-return--hero { margin-top: 18px; padding: 18px; border: 1px solid #97aaa4; }
   .tdec-return--hero > div:first-child > p { margin: 7px 0 0; color: #455962; font-size: .76rem; }
   .tdec-result__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line-dark); }
