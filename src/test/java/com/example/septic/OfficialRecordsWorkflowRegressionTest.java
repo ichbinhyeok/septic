@@ -123,8 +123,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TDEC Septic Records Search | Tennessee SSDS Permit Lookup</title>")))
-                .andExpect(content().string(containsString("Open Tennessee&#39;s official TDEC SSDS record search")));
+                .andExpect(content().string(containsString("<title>TN Septic Permit Search by Address | TDEC SSDS Records</title>")))
+                .andExpect(content().string(containsString("Search TN septic permits by address, parcel, owner, subdivision, or permit number.")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost ($300-$2,700) &amp; County Fees | SepticPath</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))

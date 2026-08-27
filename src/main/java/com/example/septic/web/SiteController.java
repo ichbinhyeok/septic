@@ -2099,6 +2099,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/failed-perc-test-septic", "/failed-perc-test-septic/",
             "/septic-replacement-area", "/septic-replacement-area/",
             "/wet-yard-over-septic-drain-field", "/wet-yard-over-septic-drain-field/",
+            "/septic-backup-slow-drains", "/septic-backup-slow-drains/",
             "/septic-pumping-cost", "/septic-pumping-cost/",
             "/septic-inspection-cost", "/septic-inspection-cost/",
             "/buying-a-house-with-a-septic-system", "/buying-a-house-with-a-septic-system/",

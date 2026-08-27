@@ -569,6 +569,82 @@
       "publishStatus": "published"
     },
     {
+      "slug": "septic-backup-slow-drains",
+      "intentType": "planning_page",
+      "primaryKeyword": "septic backup slow drains",
+      "secondaryKeywords": [
+        "septic tank backing up",
+        "slow drains septic system",
+        "toilet backing up septic",
+        "septic backup what to do"
+      ],
+      "title": "Septic Backup or Slow Drains: What to Do First",
+      "metaDescription": "Septic tank backing up or drains running slow? See the immediate safety steps, what the symptom can mean, and what to check before calling for service.",
+      "introCopy": "A sewage backup or several slow drains can mean a full tank, a blocked line, a pump or alarm problem, or a drain field that is no longer accepting wastewater. The useful first step is to reduce water use, separate one-fixture plumbing trouble from a whole-house septic symptom, and gather enough system history for the service call.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "replacement",
+      "targetReader": "Best for homeowners with sewage backing up, toilets gurgling, several fixtures draining slowly, or recurring trouble after pumping who need to decide what is urgent and what information a septic provider will need.",
+      "deepDiveParagraphs": [
+        "One slow sink can be an indoor plumbing clog. Several slow fixtures, gurgling toilets, wastewater returning through a low drain, or symptoms that worsen when water is used point more strongly toward the septic line, tank, pump, or drain field. Stop adding water until the cause is checked.",
+        "Pumping history is useful but not a diagnosis. If the system was pumped recently and the symptom returned, tell the provider exactly when it returned and whether an alarm, wet area, odor, or heavy-rain pattern appeared with it. That changes the first inspection from a generic pump-out to a more focused service visit."
+      ],
+      "fitBullets": [
+        "More than one toilet, shower, sink, or floor drain is slow or backing up.",
+        "The system was pumped recently but the symptom returned.",
+        "A septic alarm, sewage odor, wet yard, or surfacing wastewater appears with the drainage problem."
+      ],
+      "decisionSteps": [
+        "Stop laundry, dishwashing, long showers, and other heavy water use; keep people and pets away from sewage or surfacing wastewater.",
+        "Check whether the issue affects one fixture or several fixtures across the home, and note any gurgling, alarm, odor, wet yard, or recent heavy rain.",
+        "Find the last pumping date, permit or as-built, tank and drain-field location, system type, and any prior repair notes.",
+        "Call a septic service provider for an active whole-house backup, surfacing wastewater, or a recurring post-pump problem; describe the symptoms rather than asking only for pumping.",
+        "Use the wet-yard, pumping, records, and replacement guides to understand the likely branch while the service visit is being arranged."
+      ],
+      "lowEndBreakers": [
+        "The problem returned soon after pumping or affects several fixtures.",
+        "An alarm, sewage odor, wet ground, or surfacing wastewater appears at the same time.",
+        "The tank, pump chamber, outlet, or drain-field layout is unknown.",
+        "Older repair history or a missing permit file makes the system scope uncertain."
+      ],
+      "quotePrepChecklist": [
+        "Which fixtures are affected, when the problem started, and whether water use makes it worse.",
+        "Last pumping date and whether the symptom improved or returned afterward.",
+        "Any alarm, odor, wet yard, surfacing wastewater, heavy rain, or power interruption.",
+        "Property address, system age and type if known, tank and field location, permit or as-built, and prior repair notes."
+      ],
+      "driverBullets": [
+        "A single slow fixture and a whole-house backup usually require different first checks.",
+        "Recurring trouble after pumping can signal a blockage, component problem, or drain-field issue rather than routine maintenance alone.",
+        "Active sewage exposure and surfacing wastewater make the situation urgent.",
+        "Clear symptom and record details help the service provider arrive prepared for the right inspection."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a septic backup always mean the tank is full?",
+          "answer": "No. A full tank is one possibility, but a blocked building sewer, failed pump or control, damaged outlet, saturated field, or drain-field failure can create similar symptoms."
+        },
+        {
+          "question": "Should I keep using water while I wait for septic service?",
+          "answer": "Reduce water use immediately. Do not run laundry, dishwashers, long showers, or repeated test flushes when wastewater is backing up or surfacing."
+        },
+        {
+          "question": "What should I tell the septic company?",
+          "answer": "Describe every affected fixture, when the symptom began, the last pumping date, any alarm or wet yard, recent rain or power loss, and whether the problem returned after prior service."
+        }
+      ],
+      "updatedAt": "2026-08-27",
+      "reviewedAt": "2026-08-27",
+      "internalLinkTargets": [
+        "/wet-yard-over-septic-drain-field/",
+        "/septic-pumping-cost/",
+        "/septic-system-replacement/",
+        "/septic-as-built-records/",
+        "/septic-permit-search-by-address/",
+        "/septic-system-cost-calculator/?projectType=replacement"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "slug": "septic-pumping-cost",
       "intentType": "money_page",
       "primaryKeyword": "septic pumping cost",

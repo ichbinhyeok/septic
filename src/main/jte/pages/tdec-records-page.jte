@@ -190,6 +190,8 @@
                 <div class="tdec-quick-help__rows">
                     <a href="/offer-prep-septic-file-check/"><strong>Found a PDF?</strong><span>Check whether the file matches the parcel and what is still missing.</span></a>
                     <a href="/septic-bedroom-permit-checker/"><strong>Need approved bedrooms?</strong><span>Use an official approval or Inspection Letter, not a listing claim.</span></a>
+                    <a href="/septic-backup-slow-drains/"><strong>Backup or several slow drains?</strong><span>Reduce water use and prepare the symptom details a septic service provider needs.</span></a>
+                    <a href="/wet-yard-over-septic-drain-field/"><strong>Wet yard, odor, or surfacing wastewater?</strong><span>See when a visible symptom points beyond routine pumping.</span></a>
                     <a href="/septic-system-replacement/"><strong>Failure or repair concern?</strong><span>Separate record history from a current site evaluation.</span></a>
                 </div>
             </div>

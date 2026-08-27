@@ -1354,6 +1354,7 @@ public class SeoService {
             case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil & Redesign Risk | SepticPath";
             case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve & Field Risk | SepticPath";
             case "wet-yard-over-septic-drain-field" -> "Wet Yard Over Septic Drain Field | Failure Risk | SepticPath";
+            case "septic-backup-slow-drains" -> "Septic Backup or Slow Drains: What to Do First | SepticPath";
             case "septic-pumping-cost" -> "Septic Pumping Cost | Pumping cadence and maintenance risk | SepticPath";
             case "septic-inspection-cost" -> "Septic Inspection Cost | Buyer File Leverage | SepticPath";
             case "buying-a-house-with-a-septic-system" -> "Buying a House With a Septic System | Closing Risk | SepticPath";
@@ -1370,7 +1371,7 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TDEC Septic Records Search | Tennessee SSDS Permit Lookup";
+            case "tdec-septic-records" -> "TN Septic Permit Search by Address | TDEC SSDS Records";
             case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup by County & Address | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Permit Records: Find the Local Authority | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida Septic Permit Lookup by County | OSTDS Records | SepticPath";
@@ -1383,7 +1384,7 @@ public class SeoService {
 
     private String contentPageSeoDescription(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case "tdec-septic-records" -> "Open Tennessee's official TDEC SSDS record search, or find the correct county office and next steps when no septic permit or file appears.";
+            case "tdec-septic-records" -> "Search TN septic permits by address, parcel, owner, subdivision, or permit number. Open the official TDEC SSDS route or find the correct county office.";
             case "north-carolina-septic-permit-lookup" -> "Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.";
             default -> contentPage.metaDescription();
         };
