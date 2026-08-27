@@ -24,7 +24,11 @@
                            data-track-click="official_source"
                            data-track-source-context="tdec_hero_official_search"
                            data-track-target-type="official_search">Open official TDEC SSDS record search</a>
-                        <a class="button button--secondary" href="#tdec-record-search">Find the correct county or field office</a>
+                        <a class="button button--secondary"
+                           href="/septic-record-finder/"
+                           data-track-click="internal_handoff"
+                           data-track-source-context="tdec_hero_address_finder"
+                           data-track-target-type="record_finder">Find the county from a property address</a>
                     </div>
                     <small class="tdec-desk__independent">Independent guide. SepticPath does not retrieve or certify government records.</small>
                 </div>
