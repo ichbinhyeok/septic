@@ -9,6 +9,7 @@
     const TDEC_SERVICES = "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
     const TDEC_PUBLIC_RECORDS = "https://www.tn.gov/environment/contacts/public-records-request.html";
     const TPAD = "https://assessment.cot.tn.gov/TPAD";
+    const HERO_RETURN_KEY = "septicpath:tdec-hero-return:v1";
 
     const form = desk.querySelector("[data-tdec-route-form]");
     const county = desk.querySelector("[data-tdec-county]");
@@ -35,9 +36,14 @@
     const requestCopy = desk.querySelector("[data-tdec-request-copy]");
     const requestGuidance = desk.querySelector("[data-tdec-request-guidance]");
     const requestLink = desk.querySelector("[data-tdec-request-link]");
+    const heroOfficial = desk.querySelector("[data-tdec-hero-official]");
+    const heroReturnPanel = desk.querySelector("[data-tdec-hero-return]");
+    const heroNext = desk.querySelector("[data-tdec-hero-next]");
     let prepared = null;
     let routeRevision = 0;
     let activeAddressVerification = null;
+    let awaitingHeroReturn = false;
+    let heroPromptTracked = false;
 
     function emit(eventName, params = {}) {
         if (typeof window.gtag === "function") window.gtag("event", eventName, params);
@@ -109,6 +115,57 @@
 
     function clearError() {
         if (error instanceof HTMLElement) error.hidden = true;
+    }
+
+    function showHeroReturnPrompt(focusPrompt = false) {
+        if (!(heroReturnPanel instanceof HTMLElement)) return;
+        heroReturnPanel.hidden = false;
+        if (!heroPromptTracked) {
+            heroPromptTracked = true;
+            emit("official_return_prompt_viewed", { source_context: "tdec_hero" });
+        }
+        if (focusPrompt) {
+            heroReturnPanel.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                block: "center"
+            });
+            window.setTimeout(() => heroReturnPanel.querySelector("[data-tdec-hero-outcome]")?.focus({ preventScroll: true }), 260);
+        }
+    }
+
+    function heroOutcomeContent(outcome) {
+        const wrapper = document.createElement("div");
+        const title = document.createElement("strong");
+        const description = document.createElement("p");
+        const actions = document.createElement("div");
+        actions.className = "tdec-return__actions";
+        const primary = document.createElement("a");
+        primary.className = "button button--secondary";
+
+        if (outcome === "found") {
+            title.textContent = "Keep the official file with the property task";
+            description.textContent = "Add the permit, layout, approval, screenshot, or downloaded PDF so confirmed facts and missing evidence stay separate.";
+            primary.href = "/septic-record-finder/?mode=document";
+            primary.textContent = "Add and review the official file";
+        } else {
+            title.textContent = outcome === "blocked"
+                ? "Use the address route instead of repeating the blocked search"
+                : "A blank search is not an official no-record response";
+            description.textContent = outcome === "blocked"
+                ? "Resolve the county from the property address, then use its field office or local program fallback."
+                : "Resolve the county from the address, retry the county-specific route, and prepare an office request if the file is still missing.";
+            primary.href = "/septic-record-finder/?mode=missing";
+            primary.textContent = outcome === "blocked" ? "Use the working address route" : "Resolve the failed search";
+
+            const countyRoute = document.createElement("a");
+            countyRoute.className = "button button--quiet";
+            countyRoute.href = "#tdec-record-search";
+            countyRoute.textContent = "I already know the county";
+            actions.append(countyRoute);
+        }
+        actions.prepend(primary);
+        wrapper.append(title, description, actions);
+        return wrapper;
     }
 
     function clearPreparedState() {
@@ -529,8 +586,58 @@
         void verifyAddressInBackground(data, revision);
     });
 
-    desk.querySelector("[data-tdec-hero-official]")?.addEventListener("click", () => {
+    heroOfficial?.addEventListener("click", () => {
+        awaitingHeroReturn = true;
+        try {
+            sessionStorage.setItem(HERO_RETURN_KEY, JSON.stringify({ openedAt: Date.now() }));
+        } catch (_) {
+            // The in-memory return prompt still works when storage is disabled.
+        }
         emit("hero_official_click", { state_code: "TN", destination_type: "tdec_ssds_record_search" });
+        window.setTimeout(() => showHeroReturnPrompt(false), 350);
+    });
+
+    desk.querySelectorAll("[data-tdec-hero-outcome]").forEach(button => button.addEventListener("click", () => {
+        const outcome = button.dataset.tdecHeroOutcome || "unknown";
+        desk.querySelectorAll("[data-tdec-hero-outcome]").forEach(candidate => candidate.setAttribute("aria-pressed", String(candidate === button)));
+        if (heroNext instanceof HTMLElement) {
+            heroNext.replaceChildren(heroOutcomeContent(outcome));
+            heroNext.hidden = false;
+        }
+        try {
+            sessionStorage.setItem(HERO_RETURN_KEY, JSON.stringify({ openedAt: Date.now(), outcome }));
+        } catch (_) {
+            // The recorded next step remains visible without storage.
+        }
+        emit("official_outcome_recorded", { source_context: "tdec_hero", outcome, state_code: "TN" });
+    }));
+
+    function handleHeroReturn() {
+        if (!awaitingHeroReturn) return;
+        awaitingHeroReturn = false;
+        emit("official_source_returned", { source_context: "tdec_hero", state_code: "TN" });
+        showHeroReturnPrompt(true);
+    }
+
+    window.addEventListener("focus", handleHeroReturn);
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") handleHeroReturn();
+    });
+    window.addEventListener("pageshow", () => {
+        try {
+            const savedHeroReturn = JSON.parse(sessionStorage.getItem(HERO_RETURN_KEY) || "null");
+            if (savedHeroReturn?.openedAt && Date.now() - savedHeroReturn.openedAt < 2 * 60 * 60 * 1000) {
+                showHeroReturnPrompt(false);
+                if (savedHeroReturn.outcome && heroNext instanceof HTMLElement) {
+                    const savedButton = desk.querySelector(`[data-tdec-hero-outcome="${savedHeroReturn.outcome}"]`);
+                    savedButton?.setAttribute("aria-pressed", "true");
+                    heroNext.replaceChildren(heroOutcomeContent(savedHeroReturn.outcome));
+                    heroNext.hidden = false;
+                }
+            }
+        } catch (_) {
+            sessionStorage.removeItem(HERO_RETURN_KEY);
+        }
     });
 
     county?.addEventListener("change", updateCountyHelp);

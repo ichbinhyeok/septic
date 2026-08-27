@@ -31,6 +31,19 @@
                            data-track-target-type="record_finder">Find the county from a property address</a>
                     </div>
                     <small class="tdec-desk__independent">Independent guide. SepticPath does not retrieve or certify government records.</small>
+                    <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title">
+                        <div>
+                            <span class="eyebrow">Back from TDEC?</span>
+                            <h3 id="tdec-hero-return-title">Did the official search solve it?</h3>
+                            <p>Record the result so the next step matches what actually happened.</p>
+                        </div>
+                        <div class="tdec-return__choices" role="group" aria-label="TDEC official search result">
+                            <button type="button" data-tdec-hero-outcome="found">I found a file</button>
+                            <button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button>
+                            <button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button>
+                        </div>
+                        <div class="tdec-return__next" data-tdec-hero-next hidden></div>
+                    </section>
                 </div>
                 <aside class="tdec-desk__boundary" aria-label="Service boundary">
                     <strong>Use the route that fits</strong>
