@@ -258,7 +258,7 @@ public class SeoService {
                 title,
                 description,
                 canonicalUrl,
-                "index,follow",
+                publishingPolicyService.isIndexableStateGuide(state) ? "index,follow" : "noindex,follow",
                 breadcrumbLinks(
                         crumb("Home", absoluteUrl("/")),
                         crumb("Septic System Cost Calculator", absoluteUrl("/septic-system-cost-calculator/")),
@@ -1343,6 +1343,9 @@ public class SeoService {
     }
 
     private String stateGuideSeoTitle(StateProfile state) {
+        if ("AL".equals(state.stateCode())) {
+            return "Alabama Perc Test Cost: $300-$2,700 + County Fees";
+        }
         return stateGuideTitle(state) + " | SepticPath";
     }
 
@@ -1393,7 +1396,7 @@ public class SeoService {
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
-                case "TN" -> "Tennessee Septic Records by County | Permit Files | SepticPath";
+                case "TN" -> "Tennessee Septic Records by County | TDEC & Local Files";
                 case "NC" -> "North Carolina Septic Records by County | Address & As-Builts | SepticPath";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records by County | Address & File Routes | SepticPath";

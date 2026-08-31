@@ -1,6 +1,6 @@
 # SEO Surface
 
-Last updated: 2026-03-10
+Last updated: 2026-09-01
 
 ## What Exists
 
@@ -40,16 +40,21 @@ The app now also issues a permanent redirect when the incoming request is the sa
 - home page
 - main calculator
 - national money pages
-- state guide pages
-- state-specific money pages
+- Search Console demand-backed state guide pages
+- evidence- and demand-backed state-specific money and workflow pages
+- county records pages in the separate `sitemap-county.xml`
+
+Useful state routes that have not yet earned enough search demand remain available to users and crawlers with `noindex,follow`, but stay out of the XML sitemap until the publishing policy reopens them.
 
 ## Current Guardrails
 
 - `quote-request` is disallowed in `robots.txt`
 - 404 pages return `noindex,nofollow`
 - state and money pages use absolute canonical URLs
+- sitemap inclusion and page-level robots directives share the same publishing policy
+- regression coverage checks sitemap and robots-policy alignment across every published state guide and state money page
 
 ## Next SEO Tasks
 
-- add sitemap tests for every newly added state-specific page family
-- add more FAQ-rich state-specific pages where official-source angle is already strong
+- monitor indexed-versus-submitted movement and reopen state cohorts only when Search Console demand or stronger first-party evidence supports it
+- deepen FAQ and decision content on demand-backed state pages before expanding the indexable footprint

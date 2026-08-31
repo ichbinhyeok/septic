@@ -1090,6 +1090,16 @@
                         </article>
 
                         <article class="records-escalation-card">
+                            <span>Under contract</span>
+                            <h3>Check whether the file is ready for a closing decision</h3>
+                            <a class="button button--secondary"
+                               href="/offer-prep-septic-file-check/"
+                               data-track-click="nav"
+                               data-track-source-context="records_escalation_closing_risk"
+                               data-track-target-type="lead_form">Run the free Closing Risk Check</a>
+                        </article>
+
+                        <article class="records-escalation-card">
                             <span>SC / DHEC</span>
                             <h3>DHEC searchers need the SCDES route</h3>
                             <a class="button button--secondary"

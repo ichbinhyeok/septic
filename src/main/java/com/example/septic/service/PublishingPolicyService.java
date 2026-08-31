@@ -27,6 +27,20 @@ public class PublishingPolicyService {
     private static final Set<String> PERC_COST_DEMAND_STATES = Set.of(
             "AR", "GA", "MD", "MO", "NJ", "OH", "OK", "OR", "TN", "WI", "WV"
     );
+    /*
+     * Reviewed against GSC on 2026-08-29. These routes had observable search
+     * demand. Other state pages remain useful and crawlable as noindex,follow
+     * until demand or stronger first-party evidence justifies index budget.
+     */
+    private static final Set<String> STATE_GUIDE_DEMAND_STATES = Set.of(
+            "AL", "AK", "AZ", "GA", "IN", "KY", "MO", "NC", "NY", "PA", "SC", "TN", "TX", "VA"
+    );
+    private static final Set<String> BUYER_DEMAND_STATES = Set.of(
+            "AK", "IA", "ID", "KS", "KY", "LA", "NH", "NJ", "OH", "SC", "SD", "WA"
+    );
+    private static final Set<String> PERMIT_PROCESS_DEMAND_STATES = Set.of(
+            "AR", "CT", "GA", "IN", "KY", "MA", "NM", "OR", "PA", "RI", "SC"
+    );
     private static final int STRONG_COUNTY_COVERAGE = 10;
     private static final int SUPPORTING_COUNTY_COVERAGE = 5;
     private static final int BUYER_COUNTY_COVERAGE = 3;
@@ -37,6 +51,12 @@ public class PublishingPolicyService {
         this.researchDataService = researchDataService;
     }
 
+    public boolean isIndexableStateGuide(StateProfile state) {
+        return state != null
+                && state.isPublished()
+                && STATE_GUIDE_DEMAND_STATES.contains(state.stateCode());
+    }
+
     public boolean isIndexableStateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state) {
         if (stateMoneyPage == null || state == null || !state.isPublished() || !stateMoneyPage.isPublished()) {
             return false;
@@ -45,9 +65,11 @@ public class PublishingPolicyService {
             case "septic-records-checklist" -> hasRecordsSource(state)
                     || hasCountyRecordsPages(state.stateCode())
                     || hasLocalAuthoritySource(state);
-            case "septic-permit-process" -> hasLocalAuthoritySource(state)
+            case "septic-permit-process" -> PERMIT_PROCESS_DEMAND_STATES.contains(state.stateCode())
+                    && hasLocalAuthoritySource(state)
                     && hasItems(state.permitPathSteps(), 3);
-            case "buying-a-house-with-a-septic-system" -> hasText(state.buyerInspectionTrigger())
+            case "buying-a-house-with-a-septic-system" -> BUYER_DEMAND_STATES.contains(state.stateCode())
+                    && hasText(state.buyerInspectionTrigger())
                     && hasDeepPageEvidence(stateMoneyPage)
                     && (countyRecordsCount(state.stateCode()) >= BUYER_COUNTY_COVERAGE
                     || hasStateCostProfile(state.stateCode())

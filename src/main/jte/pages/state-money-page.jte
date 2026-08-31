@@ -1147,21 +1147,31 @@
         <div class="container content-grid">
             <article class="trust-box trust-box--large">
                 <span class="trust-box__label">Next best action</span>
-                <h2>${calculatorCtaLabel}</h2>
-                <p>
-                    ${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.
-                    @if (showQuoteCta)
-                        If you already know the project type, you can also skip straight to the short quote form.
-                    @else
-                        Use the file, permit, or authority path above before you move into quote mode.
-                    @endif
-                </p>
-                <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
-                    @if (showQuoteCta)
-                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
-                    @endif
-                </div>
+                @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                    <h2>Turn the records route into a property-file decision</h2>
+                    <p>Find the official permit or county file first. If a sale or offer is moving, use the free check to identify the bedroom-count, parcel-match, approval, repair, or missing-record question that still needs an answer.</p>
+                    <div class="hero__actions">
+                        <a class="button button--primary" href="/septic-record-finder/" data-track-click="nav" data-track-source-context="state_records_next_best_finder" data-track-target-type="record_finder">Find the property record route</a>
+                        <a class="button button--secondary" href="/offer-prep-septic-file-check/" data-track-click="nav" data-track-source-context="state_records_next_best_closing_risk" data-track-target-type="lead_form">Run the free Closing Risk Check</a>
+                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_records_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    </div>
+                @else
+                    <h2>${calculatorCtaLabel}</h2>
+                    <p>
+                        ${calculatorCtaNote} The calculator result already shows the likely tank band, system class, cost range, and state-specific rule context.
+                        @if (showQuoteCta)
+                            If you already know the project type, you can also skip straight to the short quote form.
+                        @else
+                            Use the file, permit, or authority path above before you move into quote mode.
+                        @endif
+                    </p>
+                    <div class="hero__actions">
+                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
+                        @if (showQuoteCta)
+                            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
+                        @endif
+                    </div>
+                @endif
             </article>
 
             <article class="detail-card">

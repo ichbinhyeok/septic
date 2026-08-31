@@ -6595,7 +6595,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             return true;
         }
         return researchDataService.findPublicStateBySlug(parts[1])
-                .map(state -> publishingPolicyService.isIndexableStateMoneyPage(candidate.get(), state))
+                .map(state -> candidate.get().isPublished() && !candidate.get().isCanonicalAlias())
                 .orElse(false);
     }
 
@@ -6734,7 +6734,6 @@ The goal is to settle the permit path before we frame the project as a normal in
         return targetSlugs.stream()
                 .map(targetSlug -> researchDataService.findPublicStateMoneyPage(targetSlug, state.slug()))
                 .flatMap(Optional::stream)
-                .filter(page -> publishingPolicyService.isIndexableStateMoneyPage(page, state))
                 .map(page -> page.path(state.slug()))
                 .toList();
     }
@@ -6821,10 +6820,6 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
                         .map(state -> Map.entry(page, state))
                         .stream())
-                .filter(entry -> publishingPolicyService.isIndexableStateMoneyPage(
-                        entry.getKey(),
-                        entry.getValue()
-                ))
                 .filter(entry -> authorityStateCode
                         .map(stateCode -> stateCode.equals(entry.getValue().stateCode()))
                         .orElse(true))

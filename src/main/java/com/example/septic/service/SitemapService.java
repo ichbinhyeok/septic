@@ -19,10 +19,10 @@ public class SitemapService {
      * marker: advance it only when a shared template changes page meaning or
      * user-visible workflow content, never for cosmetic-only releases.
      */
-    private static final String SHARED_WORKFLOW_REVISION_DATE = "2026-08-06";
-    private static final String RECORDS_CONTENT_REVISION_DATE = "2026-08-10";
-    private static final String STATE_RECORDS_REVISION_DATE = "2026-08-14";
-    private static final String COUNTY_RECORDS_REVISION_DATE = "2026-08-10";
+    private static final String SHARED_WORKFLOW_REVISION_DATE = "2026-09-01";
+    private static final String RECORDS_CONTENT_REVISION_DATE = "2026-09-01";
+    private static final String STATE_RECORDS_REVISION_DATE = "2026-09-01";
+    private static final String COUNTY_RECORDS_REVISION_DATE = "2026-09-01";
 
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
@@ -78,10 +78,12 @@ public class SitemapService {
         }
 
         for (StateProfile state : researchDataService.getPublicStateProfiles()) {
-            entries.add(entry(
-                    seoService.absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/"),
-                    statePageLastMod(state)
-            ));
+            if (publishingPolicyService.isIndexableStateGuide(state)) {
+                entries.add(entry(
+                        seoService.absoluteUrl("/septic-system-cost-calculator/" + state.slug() + "/"),
+                        statePageLastMod(state)
+                ));
+            }
         }
 
         for (StateMoneyPage stateMoneyPage : researchDataService.getPublicStateMoneyPages()) {
