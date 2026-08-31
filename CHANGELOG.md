@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.5.0 - 2026-08-31
+
+### Added
+
+- The offer-prep workflow now accepts qualified free Closing Risk Check requests for active buyer, seller, and agent transactions with a real due-diligence or closing deadline.
+- Each request is stored with its consent snapshot and delivered to the SepticPath operator through Gmail, with the requester set as the reply-to address.
+- Submission protection includes server-side validation, a hidden bot field, per-client hourly rate limits, and bounded in-memory abuse tracking.
+
+### Changed
+
+- The offer-prep page now leads with under-contract closing risk, explains the one-page readiness brief, and separates the browser-only self-serve tool from the address-storing manual beta.
+- Privacy guidance now explicitly covers stored property details, operator email delivery, prohibited sensitive data, and anonymous analytics fields that exclude addresses and contact details.
+- Production deployment now receives Gmail credentials only through GitHub Actions secrets.
+
 ## 0.0.4.0 - 2026-08-31
 
 - The records access index now renders static links to every reviewed county route, keeping all 325 county guides discoverable without JavaScript or search interaction.

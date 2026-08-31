@@ -6,6 +6,9 @@ name: Deploy OCI ARM64
 # - OCI_HOST
 # - OCI_KEY
 # - OCI_USERNAME
+# - APP_GMAIL_USERNAME
+# - APP_GMAIL_APP_PASSWORD
+# Optional: APP_CLOSING_RISK_NOTIFICATION_EMAIL (defaults to the operator Gmail address)
 
 on:
   push:
@@ -90,6 +93,9 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           IMAGE_TAG: ${{ github.sha }}
+          APP_GMAIL_USERNAME: ${{ secrets.APP_GMAIL_USERNAME }}
+          APP_GMAIL_APP_PASSWORD: ${{ secrets.APP_GMAIL_APP_PASSWORD }}
+          APP_CLOSING_RISK_NOTIFICATION_EMAIL: ${{ secrets.APP_CLOSING_RISK_NOTIFICATION_EMAIL }}
         run: |
           ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' <<EOF
           set -euo pipefail
@@ -117,6 +123,9 @@ jobs:
                 APP_SITE_BASE_URL: https://septicpath.com
                 APP_DATA_ROOT: /app/data/raw
                 APP_STORAGE_ROOT: /app/storage
+                APP_GMAIL_USERNAME: "${APP_GMAIL_USERNAME}"
+                APP_GMAIL_APP_PASSWORD: "${APP_GMAIL_APP_PASSWORD}"
+                APP_CLOSING_RISK_NOTIFICATION_EMAIL: "${APP_CLOSING_RISK_NOTIFICATION_EMAIL:-shinhyeok22@gmail.com}"
                 GG_JTE_DEVELOPMENT_MODE: "false"
                 GG_JTE_USE_PRECOMPILED_TEMPLATES: "true"
               volumes:

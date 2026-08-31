@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EstimateForm;
 import com.example.septic.web.ContactRequestForm;
+import com.example.septic.web.ClosingRiskCheckForm;
 import com.example.septic.web.QuoteLeadForm;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,6 +49,7 @@ public class LeadStorageService {
         try {
             Files.createDirectories(root().resolve("leads"));
             Files.createDirectories(root().resolve("contact-requests"));
+            Files.createDirectories(root().resolve("closing-risk-requests"));
             Files.createDirectories(root().resolve("events"));
             Files.createDirectories(root().resolve("exports").resolve("pending"));
             Files.createDirectories(root().resolve("exports").resolve("daily"));
@@ -329,6 +331,62 @@ public class LeadStorageService {
             return requestId;
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to persist contact request", exception);
+        }
+    }
+
+    public String saveClosingRiskRequest(
+            ClosingRiskCheckForm form,
+            String sourcePage,
+            HttpServletRequest request
+    ) {
+        Instant now = Instant.now();
+        String requestId = UUID.randomUUID().toString();
+        Map<String, Object> consent = orderedMap(
+                "accepted", form.isConsentAccepted(),
+                "acceptedAt", now.toString(),
+                "consentText", form.getConsentTextSnapshot(),
+                "languageVersion", "2026-08-31-v1"
+        );
+
+        Map<String, Object> payload = new LinkedHashMap<>();
+        payload.put("requestId", requestId);
+        payload.put("submittedAt", now.toString());
+        payload.put("sourcePage", sourcePage);
+        payload.put("requestType", "septic_closing_risk_check_beta");
+        payload.put("contact", orderedMap(
+                "fullName", safeValue(form.getFullName(), 120),
+                "email", safeValue(form.getEmail(), 160),
+                "transactionRole", safeValue(form.getTransactionRole(), 20)
+        ));
+        payload.put("property", orderedMap(
+                "address", safeValue(form.getPropertyAddress(), 220),
+                "stateCode", safeValue(form.getStateCode(), 2),
+                "countyName", safeValue(form.getCountyName(), 120),
+                "listingUrl", safeValue(form.getListingUrl(), 500),
+                "listingBedrooms", form.getListingBedrooms(),
+                "permitBedrooms", form.getPermitBedrooms(),
+                "recordStatus", safeValue(form.getRecordStatus(), 24),
+                "deadline", form.getDeadline() == null ? "" : form.getDeadline().toString(),
+                "concern", safeValue(form.getConcern(), 1200)
+        ));
+        payload.put("consent", consent);
+        payload.put("provenance", buildProvenance(request, now, sourcePage));
+
+        try {
+            writeClosingRiskRequestFile(payload, requestId, now);
+            appendEvent(orderedMap(
+                    "eventType", "closing_risk_request_submitted",
+                    "occurredAt", now.toString(),
+                    "requestId", requestId,
+                    "sourcePage", sourcePage,
+                    "stateCode", safeValue(form.getStateCode(), 2),
+                    "transactionRole", safeValue(form.getTransactionRole(), 20),
+                    "recordStatus", safeValue(form.getRecordStatus(), 24),
+                    "deadlineBucket", deadlineBucket(form.getDeadline(), now)
+            ), now);
+            return requestId;
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist closing risk request", exception);
         }
     }
 
@@ -627,6 +685,21 @@ public class LeadStorageService {
         moveAtomically(tempFile, finalFile);
     }
 
+    private void writeClosingRiskRequestFile(Map<String, Object> payload, String requestId, Instant now) throws IOException {
+        Path directory = root()
+                .resolve("closing-risk-requests")
+                .resolve(YEAR.format(now))
+                .resolve(MONTH.format(now))
+                .resolve(DAY.format(now));
+        Files.createDirectories(directory);
+
+        String baseFileName = TIMESTAMP.format(now) + "-" + requestId;
+        Path tempFile = directory.resolve(baseFileName + ".tmp");
+        Path finalFile = directory.resolve(baseFileName + ".json");
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), payload);
+        moveAtomically(tempFile, finalFile);
+    }
+
     private void appendExportQueue(
             Map<String, Object> exportPayload,
             String leadId,
@@ -757,5 +830,25 @@ public class LeadStorageService {
             return trimmed;
         }
         return trimmed.substring(0, maxLength);
+    }
+
+    private String deadlineBucket(java.time.LocalDate deadline, Instant now) {
+        if (deadline == null) {
+            return "unknown";
+        }
+        long days = java.time.temporal.ChronoUnit.DAYS.between(
+                now.atZone(ZoneOffset.UTC).toLocalDate(),
+                deadline
+        );
+        if (days <= 7) {
+            return "within_7_days";
+        }
+        if (days <= 14) {
+            return "within_14_days";
+        }
+        if (days <= 30) {
+            return "within_30_days";
+        }
+        return "over_30_days";
     }
 }

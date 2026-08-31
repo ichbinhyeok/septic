@@ -316,6 +316,23 @@
   /* Specialized interactive tools */
   .bedroom-checker__fields, .bedroom-checker__facts, .bedroom-checker__signals, .record-document form,
   .records-request-builder__controls, .quote-form, .alabama-perc-scope__form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .closing-risk-beta-section { border-block: 1px solid var(--line-dark); background: var(--paper); }
+  .closing-risk-beta-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr); gap: clamp(32px, 6vw, 76px); align-items: start; }
+  .closing-risk-beta-copy { position: sticky; top: 96px; }
+  .closing-risk-beta-copy h2 { max-width: 15ch; }
+  .closing-risk-beta-copy__privacy { margin-top: 22px; padding: 16px 18px; border-left: 3px solid var(--accent); background: var(--accent-pale); color: var(--ink-soft); font-size: 1rem; }
+  .closing-risk-beta-panel { padding: clamp(22px, 4vw, 36px); border: 1px solid var(--line-dark); background: var(--surface); }
+  .closing-risk-beta-form { grid-template-columns: 1fr; }
+  .closing-risk-beta-form > * { min-width: 0; }
+  .closing-risk-beta-form .button { width: 100%; }
+  .closing-risk-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .consent-field { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 11px; align-items: start; padding: 16px; border: 1px solid var(--line); background: var(--paper); }
+  .consent-field input { width: 18px; min-height: 18px; margin-top: 2px; }
+  .consent-field > span { margin: 0; color: var(--ink-soft); font-size: 1rem; font-weight: 500; line-height: 1.55; }
+  .form-status { margin-bottom: 20px; padding: 16px 18px; border-left: 4px solid var(--accent); background: var(--accent-pale); }
+  .form-status--error { border-color: var(--danger); background: #f8e4e1; }
+  .form-status p { margin: 5px 0 0; font-size: 1rem; }
+  .form-note { margin: -8px 0 0; color: var(--muted); font-size: .875rem; }
   .bedroom-checker__result, .record-document__analysis, .records-request-builder__output, .alabama-perc-scope__result,
   .micro-tool__result, .county-access-return, .quote-panel { margin-top: 24px; padding: 24px; border: 1px solid var(--line-dark); background: var(--surface); }
   .county-access-return__outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 18px 0; }
@@ -723,6 +740,8 @@
 
 @layer responsive {
   @media (max-width: 960px) {
+    .closing-risk-beta-grid { grid-template-columns: 1fr; }
+    .closing-risk-beta-copy { position: static; }
     .tdec-desk__intro-grid, .tdec-outcomes__grid, .tdec-request__grid, .state-record-return__inner, .nc-priority-routes__inner { grid-template-columns: 1fr; }
     .nc-priority-routes__more { grid-column: auto; }
     .tdec-workspace__form { grid-template-columns: 1fr; }

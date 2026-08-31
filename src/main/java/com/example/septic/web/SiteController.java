@@ -14,6 +14,8 @@ import com.example.septic.service.AccessDifficulty;
 import com.example.septic.service.BrunswickPermitLookupService;
 import com.example.septic.service.CensusAddressLookupService;
 import com.example.septic.service.CountyContentQualityService;
+import com.example.septic.service.ClosingRiskNotificationService;
+import com.example.septic.service.ClosingRiskRequestLimiter;
 import com.example.septic.service.DrainfieldEstimatorResult;
 import com.example.septic.service.DrainfieldEstimatorService;
 import com.example.septic.service.EventAnalyticsService;
@@ -534,6 +536,8 @@ public class SiteController {
     private final CountyContentQualityService countyContentQualityService;
     private final SepticDocumentAnalysisService septicDocumentAnalysisService;
     private final OfficialCountyPdfService officialCountyPdfService;
+    private final ClosingRiskNotificationService closingRiskNotificationService;
+    private final ClosingRiskRequestLimiter closingRiskRequestLimiter;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -553,7 +557,9 @@ public class SiteController {
             EventAnalyticsService eventAnalyticsService,
             CountyContentQualityService countyContentQualityService,
             SepticDocumentAnalysisService septicDocumentAnalysisService,
-            OfficialCountyPdfService officialCountyPdfService
+            OfficialCountyPdfService officialCountyPdfService,
+            ClosingRiskNotificationService closingRiskNotificationService,
+            ClosingRiskRequestLimiter closingRiskRequestLimiter
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -573,6 +579,8 @@ public class SiteController {
         this.countyContentQualityService = countyContentQualityService;
         this.septicDocumentAnalysisService = septicDocumentAnalysisService;
         this.officialCountyPdfService = officialCountyPdfService;
+        this.closingRiskNotificationService = closingRiskNotificationService;
+        this.closingRiskRequestLimiter = closingRiskRequestLimiter;
     }
 
     @GetMapping("/")
@@ -711,12 +719,57 @@ public class SiteController {
 
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
     public String offerPrepSepticFileCheck(Model model) {
+        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, null);
+    }
+
+    @PostMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
+    public String submitClosingRiskCheck(
+            @Valid @ModelAttribute ClosingRiskCheckForm closingRiskCheckForm,
+            BindingResult bindingResult,
+            HttpServletRequest request,
+            Model model
+    ) {
+        if (closingRiskCheckForm.isBotSubmission()) {
+            return renderOfferPrepSepticFileCheck(
+                    model,
+                    new ClosingRiskCheckForm(),
+                    false,
+                    java.util.UUID.randomUUID().toString()
+            );
+        }
+        if (!bindingResult.hasErrors() && !closingRiskRequestLimiter.allow(request)) {
+            bindingResult.reject("closingRisk.rateLimit", "Too many requests were submitted from this connection. Try again later.");
+        }
+        if (bindingResult.hasErrors()) {
+            return renderOfferPrepSepticFileCheck(model, closingRiskCheckForm, true, null);
+        }
+
+        String requestId = leadStorageService.saveClosingRiskRequest(
+                closingRiskCheckForm,
+                "/offer-prep-septic-file-check/",
+                request
+        );
+        closingRiskNotificationService.notifyOperator(requestId, closingRiskCheckForm);
+        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, requestId);
+    }
+
+    private String renderOfferPrepSepticFileCheck(
+            Model model,
+            ClosingRiskCheckForm closingRiskCheckForm,
+            boolean closingRiskHasErrors,
+            String closingRiskRequestId
+    ) {
         model.addAttribute("page", seoService.offerPrepFileCheckPage());
         model.addAttribute("offerPrepStates", offerPrepStates());
         model.addAttribute("priorityCountyRouteCount", offerPrepStates().stream()
                 .map(StateProfile::stateCode)
                 .mapToInt(stateCode -> researchDataService.listPublicCountyRecordsPages(stateCode).size())
                 .sum());
+        model.addAttribute("closingRiskCheckForm", closingRiskCheckForm);
+        model.addAttribute("closingRiskHasErrors", closingRiskHasErrors);
+        model.addAttribute("closingRiskRequestId", closingRiskRequestId);
+        model.addAttribute("closingRiskMinimumDeadline", LocalDate.now().toString());
+        model.addAttribute("states", researchDataService.getPublicStateProfiles());
         return "pages/offer-prep-septic-file-check";
     }
 
@@ -979,6 +1032,7 @@ public class SiteController {
                                 "What is handled depends on the action you choose. Browsing public guidance does not create a property file on our servers.",
                                 List.of(
                                         "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
+                                        "The free Closing Risk Check stores the submitted contact details, property address, listing or permit facts, deadline, and consent snapshot, and emails those details to the SepticPath operator for manual review.",
                                         "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
                                         "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
                                 )
@@ -997,6 +1051,7 @@ public class SiteController {
                                 "Submitted form records support the exact action shown at the time of submission.",
                                 List.of(
                                         "To answer contact, correction, or privacy requests.",
+                                        "To prepare and reply to a requested Closing Risk Check during the beta.",
                                         "To preserve a consent snapshot, submission time, and estimate context attached to a quote-help request.",
                                         "To measure whether record and estimate workflows are useful without treating a request confirmation as a record obtained."
                                 )

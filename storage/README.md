@@ -20,6 +20,15 @@ Each lead file should contain:
 - contact fields
 - consent text snapshot
 
+## Closing Risk Check beta requests
+
+- `storage/closing-risk-requests/YYYY/MM/DD/<timestamp>-<uuid>.json`
+
+Each request file contains the submitted contact details, property facts,
+transaction deadline, concern, consent snapshot, and request provenance. These
+files are operational intake records and are not placed in the buyer export
+queue.
+
 ## Event stream
 
 - `storage/events/YYYY/MM/DD.ndjson`
@@ -33,6 +42,11 @@ Suggested event types:
 - `result_cta_clicked`
 - `quote_form_started`
 - `quote_form_submitted`
+- `closing_risk_request_submitted`
+
+The closing-risk analytics event contains only the request ID, state, role,
+file-status category, and deadline bucket. It must not contain the property
+address, email address, listing URL, or free-text concern.
 
 ## Buyer export queue
 

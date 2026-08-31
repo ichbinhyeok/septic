@@ -9,10 +9,10 @@ offer. The only promise is a response by the end of the next business day.
 The manual result proves the workflow. Every later case must move to the
 partner's unique self-serve Offer Prep URL.
 
-Do not accept Deal Desk cases through the public contact form. It is a stored
-site-contact intake. Receive the case only as a reply in the original Gmail
-thread, then process it in Offer Prep without retaining the address or drafted
-request outside that thread.
+Keep outbound Deal Desk cases in the original Gmail thread so partner replies
+remain attributable to that conversation. The Offer Prep page also contains a
+separate public Closing Risk Check beta: that form stores the submitted address
+and contact details and emails them to the operator only after explicit consent.
 
 ## Partner link
 
@@ -24,8 +24,10 @@ Example:
 
 `https://septicpath.com/offer-prep-septic-file-check/?src=tn-smoky-mountain-realty&utm_medium=partner&utm_campaign=deal-desk`
 
-The site records the visit, file-check generation, request copy/download, and
-official-route click. It does not record the property address or request text.
+The self-serve workspace records the visit, file-check generation, request
+copy/download, and official-route click. It does not record the property address
+or request text. The manual Closing Risk Check form below it is a separate,
+consented intake and does store the submitted case details.
 
 ## First message: TN or NC listing / buyer team
 
@@ -89,9 +91,10 @@ without deciding the permit or transaction>.
 For the next case, send this exact link to the client or use it yourself:
 <partner-link>
 
-The link finds the county route and creates the same request without storing
-the property address. Please use that link for later cases; this manual Desk
-result is the one complimentary first case for your team.
+The self-serve workspace finds the county route and creates the same request
+without storing the property address. Please use that workspace for later cases;
+the manual Closing Risk Check form on the page is only for a real transaction
+where the requester explicitly wants operator review.
 
 ## Resource-page insertion, only after use
 
@@ -102,8 +105,9 @@ for an iframe, widget, tracking pixel, or a broad backlink.
 
 Before relying on a listing's septic details, buyers can use this free septic
 file check to identify the county records route and create a precise request
-for the permit, layout, final approval, or written no-record response. It does
-not store the property address or make a permit decision.
+for the permit, layout, final approval, or written no-record response. The
+self-serve workspace does not store the property address or make a permit
+decision; the optional manual beta has a separate consented intake.
 
 ### North Carolina insertion
 
