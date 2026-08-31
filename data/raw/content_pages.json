@@ -562,6 +562,7 @@
       "internalLinkTargets": [
         "/drain-field-estimator/",
         "/septic-inspection-cost/",
+        "/septic-backup-slow-drains/",
         "/drain-field-replacement-cost/",
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/?projectType=drainfield_replacement"
@@ -637,7 +638,7 @@
       "internalLinkTargets": [
         "/wet-yard-over-septic-drain-field/",
         "/septic-pumping-cost/",
-        "/septic-system-replacement/",
+        "/septic-replacement-cost/",
         "/septic-as-built-records/",
         "/septic-permit-search-by-address/",
         "/septic-system-cost-calculator/?projectType=replacement"
@@ -699,6 +700,7 @@
       "internalLinkTargets": [
         "/septic-tank-size/",
         "/septic-system-cost-calculator/",
+        "/septic-backup-slow-drains/",
         "/buying-a-house-with-a-septic-system/"
       ],
       "publishStatus": "published"

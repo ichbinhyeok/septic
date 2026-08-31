@@ -126,7 +126,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("<title>TN Septic Permit Search by Address | TDEC SSDS Records</title>")))
                 .andExpect(content().string(containsString("Search TN septic permits by address, parcel, owner, subdivision, or permit number.")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
-                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost ($300-$2,700) &amp; County Fees | SepticPath</title>")));
+                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost: $300-$2,700 + County Fees</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
                 .andExpect(content().string(containsString("<title>Georgia Septic Permit Cost &amp; County Records | SepticPath</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/alaska/"))

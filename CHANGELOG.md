@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.6.0 - 2026-09-01
+
+### Changed
+
+- State guides and state-level buying, permit, and cost pages now enter the XML sitemap only when their Search Console demand cohort supports indexing; useful lower-demand pages remain accessible with `noindex,follow`.
+- Record-research pages now hand transaction-intent visitors directly to the free Closing Risk Check, and calculator pages expose the related tank-size and pumping estimators.
+- Alabama perc-test and Tennessee records snippets now align more tightly with observed search intent.
+
+### Fixed
+
+- Repaired obsolete internal routes, linked previously orphaned record and slow-drain guides, and removed deep or weak sitemap paths from the indexable crawl graph.
+- Regression coverage now verifies sitemap and robots-policy alignment across every published state page, along with the new contextual links and canonical routes.
+
 ## 0.0.5.0 - 2026-08-31
 
 ### Added

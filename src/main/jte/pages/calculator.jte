@@ -431,6 +431,18 @@
                                 <p class="detail-list__note">${link.note()}</p>
                             </li>
                         @endfor
+                        <li>
+                            <a href="/septic-tank-size-estimator/">Septic tank size estimator</a>
+                            <p class="detail-list__note">Estimate a planning tank-capacity band from state, bedrooms, and occupancy.</p>
+                        </li>
+                        <li>
+                            <a href="/septic-pump-schedule-estimator/">Septic pumping schedule estimator</a>
+                            <p class="detail-list__note">Turn tank size and household use into a practical inspection and pumping cadence.</p>
+                        </li>
+                        <li>
+                            <a href="/septic-tank-size/">Septic tank size guide</a>
+                            <p class="detail-list__note">Review bedroom-count, gallons, and sizing assumptions before treating the estimate as a design answer.</p>
+                        </li>
                     </ul>
                 </article>
 

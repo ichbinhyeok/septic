@@ -1675,6 +1675,11 @@
                        data-track-source-context="county_records_next_best_state"
                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                     <a class="button button--secondary"
+                       href="/offer-prep-septic-file-check/"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_next_best_closing_risk"
+                       data-track-target-type="lead_form">Check the file before closing</a>
+                    <a class="button button--secondary"
                        href="/septic-system-cost-calculator/${state.slug()}/"
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_guide"
