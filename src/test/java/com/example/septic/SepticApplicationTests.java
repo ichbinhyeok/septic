@@ -747,7 +747,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-finder-sync-url=\"true\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-index-copy-citation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-share-title=\"Septic Records Access Index\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv?v=2026-08-25\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-access-index.csv\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"nofollow\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"alternate\" type=\"text/csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"Dataset\"")))
@@ -761,6 +762,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-25")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-crawl-directory")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Browse all 325 reviewed county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/nevada/douglas-county/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"28\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/alabama/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("California records")))
@@ -777,6 +781,10 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buyer diligence packet")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("No full address?")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-record-finder-embed-copy"))));
+
+		mockMvc.perform(get("/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-county-crawl-directory"))));
 
 		mockMvc.perform(get("/api/county-finder/?state=TN"))
 				.andExpect(status().isOk())
@@ -808,6 +816,21 @@ class SepticApplicationTests {
 				.andExpect(header().string("Content-Security-Policy", org.hamcrest.Matchers.containsString("frame-ancestors *")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("noindex,nofollow")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")));
+	}
+
+	@Test
+	void indexableStatePagesDoNotEndorseCalculatorVariantsForCrawling() throws Exception {
+		mockMvc.perform(get("/septic-system-cost-calculator/tennessee/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(
+						"href=\"/septic-system-cost-calculator/?state=TN\" rel=\"nofollow\""
+				)));
+
+		mockMvc.perform(get("/septic-inspection-cost/oregon/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(
+						"projectType=inspection\" rel=\"nofollow\" data-track-click=\"nav\""
+				)));
 	}
 
 	@Test
