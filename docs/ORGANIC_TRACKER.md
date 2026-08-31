@@ -71,6 +71,26 @@ Rules:
   query-string URLs.
 - `drain-field-replacement-cost` needs deeper content, not just better metadata.
 
+## 2026-09-01
+
+### Demand-backed index footprint and internal crawl graph
+
+- Data basis: the Search Console demand cohort reviewed on 2026-08-29; no new performance pull was used for this implementation entry.
+- What shipped:
+  - limited state-guide, buyer, permit-process, and cost-page sitemap inclusion to routes supported by observed demand and page evidence;
+  - kept lower-demand routes usable as `noindex,follow` instead of deleting them or blocking internal navigation;
+  - reduced the main sitemap from 369 to 256 URLs while retaining all 325 county routes in the county sitemap;
+  - connected records pages to the free Closing Risk Check and repaired obsolete, orphaned, weakly linked, and overly deep internal paths;
+  - refreshed sitemap modification dates for the materially changed shared, state-records, and county-records workflows.
+- Quality gates:
+  - 872 automated tests passed with no failures and 18 intentional skips;
+  - a local crawl covered 740 pages with no HTTP errors, sitemap orphans, indexable routes deeper than three clicks, or indexable routes with one or fewer incoming links;
+  - regression coverage now compares the publishing policy with sitemap inclusion across every published state guide and state money page.
+- Next measurement:
+  - resubmit both sitemaps after production deployment;
+  - compare submitted-versus-indexed movement and impressions for the retained cohorts after Google recrawls the 2026-09-01 `lastmod` set;
+  - treat ranking or traffic movement as an observed result, not a guaranteed effect of pruning.
+
 ## 2026-07-28
 
 ### Property-file conversion strengthening
