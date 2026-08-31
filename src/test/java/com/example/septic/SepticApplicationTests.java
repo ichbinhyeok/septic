@@ -843,8 +843,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Address not saved")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Self-serve address not saved")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-download")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request the free closing-risk check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not submit Social Security numbers")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("embed code"))));
 
 		mockMvc.perform(get("/sitemap.xml"))
@@ -855,6 +858,57 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"stateCode\":\"TN\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Blount County")));
+	}
+
+	@Test
+	void closingRiskBetaValidatesAndPersistsQualifiedDemand() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("fullName", "Taylor Buyer")
+				.param("email", "taylor@example.com")
+				.param("transactionRole", "buyer")
+				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
+				.param("stateCode", "TN")
+				.param("countyName", "Knox County")
+				.param("recordStatus", "conflicting")
+				.param("deadline", LocalDate.now().plusDays(5).toString())
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-success")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request received.")));
+
+		try (Stream<Path> files = Files.walk(TEST_STORAGE_ROOT.resolve("closing-risk-requests"))) {
+			assertTrue(files.anyMatch(path -> path.toString().endsWith(".json")));
+		}
+
+		resetTestStorage();
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("fullName", "Taylor Buyer")
+				.param("email", "not-an-email")
+				.param("transactionRole", "buyer")
+				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
+				.param("stateCode", "TN")
+				.param("countyName", "Knox County")
+				.param("recordStatus", "missing")
+				.param("deadline", LocalDate.now().minusDays(1).toString()))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted request details.")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-closing-risk-request-success"))));
+	}
+
+	@Test
+	void closingRiskBetaHoneypotReturnsNeutralSuccessWithoutPersistingPii() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("website", "https://spam.example"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-success")));
+
+		Path requestRoot = TEST_STORAGE_ROOT.resolve("closing-risk-requests");
+		if (Files.notExists(requestRoot)) {
+			return;
+		}
+		try (Stream<Path> files = Files.walk(requestRoot)) {
+			assertTrue(files.noneMatch(path -> path.toString().endsWith(".json")));
+		}
 	}
 
 	@Test

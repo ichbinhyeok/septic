@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'gg.jte:jte-spring-boot-starter-4:3.2.3'
 	implementation 'gg.jte:jte:3.2.3'
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv'
