@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.4.0 - 2026-08-31
+
+- The records access index now renders static links to every reviewed county route, keeping all 325 county guides discoverable without JavaScript or search interaction.
+- Parameterized calculator and quote links now use `nofollow`, and the records CSV link no longer creates a date-stamped crawl variant.
+- Regression coverage protects the complete county crawl directory, keeps it off the homepage, and verifies crawl hints on state pages.
+
 ## 0.0.3.0 - 2026-08-17
 
 - The Tennessee records page now leads with the official TDEC SSDS search and keeps county or field-office routing as the fallback instead of presenting SepticPath as the record database.
