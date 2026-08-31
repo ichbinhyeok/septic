@@ -101,11 +101,11 @@
                                     <a class="button button--secondary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">I already know the county</a>
                                 @elseif (primaryAction.calculator() && showQuoteCta)
                                     <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
-                                    <a class="button button--secondary" href="${quotePath}" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
+                                    <a class="button button--secondary" href="${quotePath}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_primary_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
                                 @else
                                     <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
                                     @if (!"county_page_directory".equals(primaryAction.targetType()))
-                                    <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
+                                    <a class="button button--secondary" href="${calculatorPath}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_secondary_calculator" data-track-target-type="calculator">Run the estimate</a>
                                     @endif
                                 @endif
                             </div>
@@ -358,7 +358,7 @@
                                 <p class="next-move-row__signal"><strong>Hold ${state.stateName()} pricing when:</strong> ${countyWorkflowSynthesis.holdQuoteChecks().get(0)}</p>
                             @endif
                         </div>
-                        <a class="button button--secondary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
+                        <a class="button button--secondary" href="${calculatorPath}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_action_rail_calculator" data-track-target-type="calculator">Run the estimate</a>
                     </article>
                 @endif
 
@@ -1157,9 +1157,9 @@
                     @endif
                 </p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
                     @if (showQuoteCta)
-                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
+                        <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}&quoteMode=true#quote-request" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_next_best_quote" data-track-target-type="quote_form">Prepare a scoped quote request</a>
                     @endif
                 </div>
             </article>
@@ -1184,7 +1184,7 @@
               data-show-after='[data-sticky-trigger="state-money-after-hero"]'>
         <div class="sticky-mobile-cta__inner">
             @if (primaryAction.calculator())
-                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_money_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
             @else
                 <a class="button button--primary" href="${primaryAction.path()}" data-track-click="nav" data-track-source-context="${primaryAction.sourceContext()}" data-track-target-type="${primaryAction.targetType()}">${primaryAction.buttonLabel()}</a>
             @endif

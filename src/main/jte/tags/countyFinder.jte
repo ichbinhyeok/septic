@@ -9,6 +9,7 @@
 @param String sourceContext = "county_finder"
 @param int totalCountyRouteCount = 0
 @param boolean syncUrl = false
+@param boolean renderCrawlDirectory = false
 
 @if (!countyFinderLinks.isEmpty())
     <section class="section section--tight county-finder-section">
@@ -132,6 +133,22 @@
                             </a>
                         @endfor
                     </div>
+                    @if (renderCrawlDirectory)
+                        <details class="county-finder__crawl-directory" data-county-crawl-directory>
+                            <summary>Browse all ${countyFinderLinks.size()} reviewed county routes</summary>
+                            <p>These static links keep every reviewed county guide reachable without requiring search or JavaScript.</p>
+                            <ul class="detail-list">
+                                @for (var link : countyFinderLinks)
+                                    <li>
+                                        <a href="${link.path()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="${sourceContext}_crawl_directory"
+                                           data-track-target-type="county_records_page">${link.countyName()}, ${link.stateCode()} septic records</a>
+                                    </li>
+                                @endfor
+                            </ul>
+                        </details>
+                    @endif
                     <p class="county-finder__empty" data-county-finder-empty hidden>No matching county route yet. Try the state name, a nearby county, or open the state records lookup.</p>
                 </div>
             </div>

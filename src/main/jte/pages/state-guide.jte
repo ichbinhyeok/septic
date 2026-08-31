@@ -80,7 +80,7 @@
                             <p class="alabama-perc-scope__answer">The planning range covers the wider private site-work conversation. It is not the same thing as the county fee. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application fee.</p>
                             <p>Use the three answers below to identify which cost layer applies, what the quote must include, and whether pricing should pause until the county file or sewer question is resolved.</p>
                             <div class="alabama-perc-scope__primary-actions">
-                                <a class="button button--primary" href="/septic-system-cost-calculator/?state=AL&projectType=perc_test" data-track-click="nav" data-track-source-context="alabama_perc_primary_estimate" data-track-target-type="calculator">Run the Alabama cost estimate</a>
+                                <a class="button button--primary" href="/septic-system-cost-calculator/?state=AL&projectType=perc_test" rel="nofollow" data-track-click="nav" data-track-source-context="alabama_perc_primary_estimate" data-track-target-type="calculator">Run the Alabama cost estimate</a>
                                 <span>The scope checker below prepares the county and professional questions; it does not calculate a price.</span>
                             </div>
                         </div>
@@ -181,6 +181,7 @@
                                     <button class="button button--secondary" type="button" data-alabama-perc-copy>Copy request</button>
                                     <a class="button button--secondary"
                                        href="/septic-system-cost-calculator/?state=AL&projectType=perc_test"
+                                       rel="nofollow"
                                        data-track-click="nav"
                                        data-track-source-context="alabama_perc_scope_result_estimate"
                                        data-track-target-type="calculator">Run planning range</a>
@@ -240,15 +241,15 @@
                             </section>
                         @endif
                         <div class="alabama-cost-routes" aria-label="Alabama cost calculator routes">
-                            <a href="/septic-system-cost-calculator/?state=AL&projectType=new_install">
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=new_install" rel="nofollow">
                                 <span>New system</span>
                                 <strong>Run Alabama install estimate</strong>
                             </a>
-                            <a href="/septic-system-cost-calculator/?state=AL&projectType=replacement">
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=replacement" rel="nofollow">
                                 <span>Existing system</span>
                                 <strong>Run replacement estimate</strong>
                             </a>
-                            <a href="/septic-system-cost-calculator/?state=AL&projectType=drainfield_replacement">
+                            <a href="/septic-system-cost-calculator/?state=AL&projectType=drainfield_replacement" rel="nofollow">
                                 <span>Field problem</span>
                                 <strong>Price drain-field scope</strong>
                             </a>
@@ -578,6 +579,7 @@
                             <div class="micro-tool__actions">
                                 <a class="button button--primary"
                                    href="/septic-system-cost-calculator/?state=${state.stateCode()}&sourcePageHint=/septic-system-cost-calculator/${state.slug()}/"
+                                   rel="nofollow"
                                    data-track-click="nav"
                                    data-track-source-context="state_guide_micro_tool_calculator"
                                    data-track-target-type="calculator">${calculatorCtaLabel}</a>
@@ -689,7 +691,7 @@
                         <span class="intent-card__label">Run the state estimate</span>
                         <h2>${calculatorCtaLabel}</h2>
                         <p>${calculatorCtaNote}</p>
-                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                        <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
                     @endif
                 </article>
 
@@ -716,7 +718,7 @@
                     <span class="intent-card__label">Price it after the workflow is clearer</span>
                     <h2>${calculatorCtaLabel}</h2>
                     <p>${calculatorCtaNote}</p>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator_followup" data-track-target-type="calculator">Run the estimate</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_guide_action_rail_calculator_followup" data-track-target-type="calculator">Run the estimate</a>
                 </article>
             </div>
         </div>
@@ -1375,7 +1377,7 @@
                 <h2>Use the estimate after the file, permit path, and buyer story are clear enough.</h2>
                 <p>${calculatorCtaNote} If the local file is still thin, go back to the narrower workflow page instead of jumping into quote mode too early.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_ready_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_guide_ready_calculator" data-track-target-type="calculator">${calculatorCtaLabel}</a>
                     @if (!featuredStateMoneyPages.isEmpty())
                         <a class="button button--secondary"
                            href="${featuredStateMoneyPages.get(0).path(state.slug())}"
@@ -1429,7 +1431,7 @@
                         <article class="detail-card">
                             <h3>Main septic cost calculator</h3>
                     <p>Use the calculator when you still need a ${state.stateName()} planning range before choosing one file, permit, or buyer narrative.</p>
-                            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Open the calculator</a>
+                            <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_guide_next_high_intent_calculator" data-track-target-type="calculator">Open the calculator</a>
                         </article>
                     </div>
                     @if (stateMoneyPages.size() > 6)
@@ -1480,7 +1482,7 @@
                    data-track-source-context="state_guide_sticky_workflow"
                    data-track-target-type="state_money_page">Open next workflow page</a>
             @else
-                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
+                <a class="button button--primary" href="/septic-system-cost-calculator/?state=${state.stateCode()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_guide_sticky_calculator" data-track-target-type="calculator">Run state estimate</a>
             @endif
         </div>
     </section>

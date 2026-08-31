@@ -58,7 +58,8 @@
         body = "Type the county or state. Open More filters only when you need a specific file, online route, or parcel-search clue.",
         sourceContext = "records_access_index_county_search",
         totalCountyRouteCount = totalCountyRouteCount,
-        syncUrl = true
+        syncUrl = true,
+        renderCrawlDirectory = true
     )
 
     <section class="section section--tight records-access-state-section"
@@ -102,7 +103,8 @@
                         <p><strong>Important:</strong> Route confidence describes how clearly the file path is documented. It does not prove a property's permit status.</p>
                         <div class="records-access-card__actions">
                             <a class="button button--primary"
-                               href="/septic-records-access-index.csv?v=${dataLastUpdated}"
+                               href="/septic-records-access-index.csv"
+                               rel="nofollow"
                                data-records-index-download
                                data-track-click="nav"
                                data-track-source-context="records_access_index_distribution_csv"

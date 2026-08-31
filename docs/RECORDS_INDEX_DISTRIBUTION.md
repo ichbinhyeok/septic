@@ -105,7 +105,7 @@ Subject: Reusable county septic-record index for <state>
 Hi <first-name>,
 
 Your <specific resource> helps readers with <specific task>. I built a
-filterable <state> view of 324 county septic-record routes across 27 states.
+filterable <state> view of 325 county septic-record routes across 28 states.
 Each row includes the first artifact to request, route type, confidence,
 official-source count, last review date, government URL, and a downloadable
 CSV.
