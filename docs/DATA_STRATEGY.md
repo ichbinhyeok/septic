@@ -38,6 +38,8 @@ V1 can load directly from `data/raw/` if generation is not needed yet.
 These are written by the app at runtime.
 
 - `storage/leads/YYYY/MM/DD/<timestamp>-<uuid>.json`
+- `storage/contact-requests/YYYY/MM/DD/<timestamp>-<uuid>.json`
+- `storage/closing-risk-requests/YYYY/MM/DD/<timestamp>-<uuid>.json`
 - `storage/events/YYYY/MM/DD.ndjson`
 
 ## Format choices
@@ -61,6 +63,7 @@ Use JSON when:
 - State profiles: JSON
 - Cost profiles: JSON
 - Runtime lead submissions: JSON
+- Runtime contact and Closing Risk Check requests: JSON
 - Runtime event stream: NDJSON
 
 ## Validation rules
@@ -112,6 +115,16 @@ Rules:
 - never append multiple leads into a single mutable array file
 - capture consent text snapshot and source URL at submission time
 - store a normalized service and project type
+
+### runtime Closing Risk Check files
+
+Rules:
+
+- write one JSON document per consented manual-review request
+- store contact and property details only in the dedicated request file
+- keep address, email, listing URL, and free-text concern out of analytics events
+- preserve the exact consent text and accepted timestamp
+- do not add beta requests to the quote-lead buyer export queue
 
 ## Write strategy
 

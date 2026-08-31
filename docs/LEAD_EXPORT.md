@@ -69,3 +69,4 @@ Current routing hints are intentionally simple:
 - This is not a buyer-specific API contract.
 - It is a stable internal schema meant to preserve first-party lead context and make later buyer integration easier.
 - If a specific platform requires a stricter field set, add a translator layer rather than rewriting stored history.
+- Closing Risk Check beta requests are stored separately under `storage/closing-risk-requests/` and are not included in this buyer export queue.
