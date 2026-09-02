@@ -44,7 +44,7 @@
                         <a href="/septic-tank-location-records/"><strong>Locate the tank and drain field</strong><span>Start with the record drawing before arranging a professional locate</span></a>
                     @endif
                     <a href="/septic-records-request-builder/"><strong>No record appeared</strong><span>Prepare a precise written request</span></a>
-                    <a href="/offer-prep-septic-file-check/"><strong>The file is incomplete or unclear</strong><span>Check what is missing before a property decision</span></a>
+                    <a href="/offer-prep-septic-file-check/#free-closing-risk-check" data-closing-risk-cta data-track-click="nav" data-track-source-context="national_records_closing_risk" data-track-target-type="lead_form"><strong>Under contract with an unclear file?</strong><span>Request a free human review before the deadline</span></a>
                 </div>
             </div>
         </section>

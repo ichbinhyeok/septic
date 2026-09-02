@@ -72,6 +72,12 @@
                         @endif
                     </div>
                 @endif
+                @if (java.util.Set.of("AL", "IN", "NC", "SC", "TN", "TX").contains(state.stateCode()))
+                    @template.tags.closingRiskCta(
+                        sourceContext = "state_guide_" + state.stateCode().toLowerCase(),
+                        heading = "Buying or selling under a deadline? Check the property file before the next decision."
+                    )
+                @endif
                 @if ("AL".equals(state.stateCode()))
                     <section class="alabama-perc-scope" id="alabama-perc-cost" data-alabama-perc-scope aria-label="Alabama perc test quote scope checker">
                         <div class="alabama-perc-scope__intro">

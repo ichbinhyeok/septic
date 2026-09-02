@@ -300,6 +300,15 @@
         </div>
     </section>
 
+    <section class="section section--tight closing-risk-cta-section">
+        <div class="container">
+            @template.tags.closingRiskCta(
+                sourceContext = "county_records_" + state.stateCode().toLowerCase(),
+                heading = "Found the county route but still have a closing question?"
+            )
+        </div>
+    </section>
+
     @if (countyAccessProfile != null)
         <section class="section section--tight county-access-workflow-section">
             <div class="container">
@@ -1675,7 +1684,8 @@
                        data-track-source-context="county_records_next_best_state"
                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                     <a class="button button--secondary"
-                       href="/offer-prep-septic-file-check/"
+                       href="/offer-prep-septic-file-check/#free-closing-risk-check"
+                       data-closing-risk-cta
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_closing_risk"
                        data-track-target-type="lead_form">Check the file before closing</a>

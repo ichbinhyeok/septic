@@ -83,6 +83,15 @@
             </div>
         </section>
 
+        <section class="section section--tight closing-risk-cta-section">
+            <div class="container">
+                @template.tags.closingRiskCta(
+                    sourceContext = "state_records_" + state.stateCode().toLowerCase(),
+                    heading = "Have a real property and deadline? Turn the record route into a closing decision."
+                )
+            </div>
+        </section>
+
         @template.tags.stateRecordsReturn(
             stateCode = state.stateCode(),
             stateName = state.stateName(),

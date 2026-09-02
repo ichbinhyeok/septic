@@ -1093,10 +1093,11 @@
                             <span>Under contract</span>
                             <h3>Check whether the file is ready for a closing decision</h3>
                             <a class="button button--secondary"
-                               href="/offer-prep-septic-file-check/"
+                               href="/offer-prep-septic-file-check/#free-closing-risk-check"
+                               data-closing-risk-cta
                                data-track-click="nav"
                                data-track-source-context="records_escalation_closing_risk"
-                               data-track-target-type="lead_form">Run the free Closing Risk Check</a>
+                               data-track-target-type="lead_form">Request a free manual review</a>
                         </article>
 
                         <article class="records-escalation-card">

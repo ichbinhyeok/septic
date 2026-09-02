@@ -1152,7 +1152,7 @@
                     <p>Find the official permit or county file first. If a sale or offer is moving, use the free check to identify the bedroom-count, parcel-match, approval, repair, or missing-record question that still needs an answer.</p>
                     <div class="hero__actions">
                         <a class="button button--primary" href="/septic-record-finder/" data-track-click="nav" data-track-source-context="state_records_next_best_finder" data-track-target-type="record_finder">Find the property record route</a>
-                        <a class="button button--secondary" href="/offer-prep-septic-file-check/" data-track-click="nav" data-track-source-context="state_records_next_best_closing_risk" data-track-target-type="lead_form">Run the free Closing Risk Check</a>
+                        <a class="button button--secondary" href="/offer-prep-septic-file-check/#free-closing-risk-check" data-closing-risk-cta data-track-click="nav" data-track-source-context="state_records_next_best_closing_risk" data-track-target-type="lead_form">Request a free manual review</a>
                         <a class="button button--secondary" href="/septic-system-cost-calculator/?state=${state.stateCode()}&projectType=${stateMoneyPage.calculatorProjectType()}" rel="nofollow" data-track-click="nav" data-track-source-context="state_records_next_best_calculator" data-track-target-type="calculator">Run the estimate</a>
                     </div>
                 @else

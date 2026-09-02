@@ -85,3 +85,20 @@ Break the funnel down by `county_key`, `acquisition_method`, `profile_scope`,
 
 External agency pages do not run SepticPath analytics. Their final result is
 measured only when the user returns and chooses an outcome in SepticPath.
+
+## Closing Risk Check demand funnel
+
+Use this separate funnel to measure whether transaction-intent visitors want a
+human file review, not merely whether they visit the offer page:
+
+1. `closing_risk_cta_viewed`
+2. `closing_risk_cta_clicked`
+3. `closing_risk_form_viewed`
+4. `closing_risk_form_started`
+5. `closing_risk_request_submitted`
+
+`closing_risk_form_validation_error` is diagnostic and should not be treated as
+a conversion. Break the funnel down by `source_context` and `request_type` to
+compare state, county, TDEC, national-record, header, footer, and direct entry
+paths. `invalid_count` is the only form-error detail sent to GA4. Property and
+contact values are never included in these browser events.

@@ -18,27 +18,34 @@
                     <span class="eyebrow">Septic closing risk check</span>
                     <h1>Under contract on a septic home? Find what must be confirmed before your deadline.</h1>
                     <p class="lede">Compare the listing story with the available septic file, identify missing or conflicting evidence, and prepare the exact questions that keep due diligence moving.</p>
+                    <div class="hero__actions offer-prep-hero__actions">
+                        <a class="button button--primary" href="#free-closing-risk-check" data-closing-risk-cta data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="lead_form">Request a free manual review</a>
+                        <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Use the self-serve check</a>
+                    </div>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        <span><strong>${offerPrepStates.size()}</strong> county-covered states</span>
-                        <span><strong>${priorityCountyRouteCount}</strong> county routes</span>
-                        <span>Self-serve address not saved</span>
+                        <span><strong>Free beta</strong> for the first 10 qualified requests</span>
+                        <span><strong>Human reply</strong> by email</span>
+                        <span>No payment details requested</span>
                     </div>
                 </div>
                 <aside class="offer-prep-hero__note">
                     <span class="pill">Not a permit decision</span>
                     <strong>Use the official file before you negotiate the septic story.</strong>
                     <p>This tool identifies a records route and prepares a factual request. The local office and the official file decide what the property supports.</p>
-                    <p class="offer-prep-hero__transfer-note">Already facing a closing, seller disclosure, or permit-history question?</p>
-                    <a class="offer-prep-hero__transfer-link" href="/septic-transfer-compliance/" data-track-click="nav" data-track-source-context="offer_prep_hero" data-track-target-type="transfer_workflow">Open the transfer workflow <span aria-hidden="true">→</span></a>
+                    <p class="offer-prep-hero__transfer-note">For a live transaction, start with the manual review below. If you only need a template, use the self-serve check instead.</p>
                 </aside>
             </div>
         </section>
 
-        <section class="section section--tight offer-prep-workspace-section" aria-labelledby="offer-prep-workspace-heading">
+        <section class="section section--tight offer-prep-workspace-section" id="self-serve-file-check" aria-labelledby="offer-prep-workspace-heading">
             <div class="container">
-                <div class="offer-prep-workspace">
+                <details class="offer-prep-workspace">
+                    <summary class="offer-prep-workspace__summary">
+                        <span class="eyebrow">Self-serve alternative</span>
+                        <strong>Build a file request yourself</strong>
+                        <span>No submission or email required. Your address stays in this browser. Routed coverage currently includes ${offerPrepStates.size()} states and ${priorityCountyRouteCount} county paths.</span>
+                    </summary>
                     <div class="offer-prep-workspace__header">
-                        <span class="eyebrow">Offer-period relay</span>
                         <h2 id="offer-prep-workspace-heading">Resolve the file route. Build the request. Keep the offer moving.</h2>
                         <p>Address lookup only identifies the county. It does not save the property address or send a records request.</p>
                     </div>
@@ -143,7 +150,7 @@
                             <p class="offer-prep-result__privacy">Only this browser sees the address and request text. SepticPath records anonymous tool actions, not the property or message.</p>
                         </div>
                     </section>
-                </div>
+                </details>
             </div>
         </section>
 
@@ -220,22 +227,6 @@
                                     @endfor
                                 </select>
                             </label>
-                            <label>
-                                <span>County</span>
-                                <input type="text" name="countyName" value="${closingRiskCheckForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County" required>
-                            </label>
-                            <label class="field--full">
-                                <span>Listing URL <small>(optional)</small></span>
-                                <input type="url" name="listingUrl" value="${closingRiskCheckForm.getListingUrlValue()}" maxlength="500" placeholder="https://...">
-                            </label>
-                            <label>
-                                <span>Bedrooms shown in listing <small>(optional)</small></span>
-                                <input type="number" name="listingBedrooms" value="${closingRiskCheckForm.getListingBedroomsValue()}" min="1" max="20">
-                            </label>
-                            <label>
-                                <span>Bedrooms shown on permit <small>(optional)</small></span>
-                                <input type="number" name="permitBedrooms" value="${closingRiskCheckForm.getPermitBedroomsValue()}" min="1" max="20">
-                            </label>
                             <label class="field--full">
                                 <span>What is known about the septic file?</span>
                                 <select name="recordStatus" required>
@@ -246,11 +237,32 @@
                                     <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">The seller says a file exists, but it has not been reviewed</option>
                                 </select>
                             </label>
-                            <label class="field--full">
-                                <span>What decision is blocked? <small>(optional)</small></span>
-                                <textarea name="concern" maxlength="1200" rows="5" placeholder="Example: The listing says four bedrooms, but the permit copy appears to show three. Our inspection deadline is next week.">${closingRiskCheckForm.getConcernValue()}</textarea>
-                            </label>
                         </div>
+                        <details class="closing-risk-optional">
+                            <summary>Add county or file details <span>(optional)</span></summary>
+                            <div class="field-grid">
+                                <label>
+                                    <span>County</span>
+                                    <input type="text" name="countyName" value="${closingRiskCheckForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
+                                </label>
+                                <label>
+                                    <span>Listing URL</span>
+                                    <input type="url" name="listingUrl" value="${closingRiskCheckForm.getListingUrlValue()}" maxlength="500" placeholder="https://...">
+                                </label>
+                                <label>
+                                    <span>Bedrooms shown in listing</span>
+                                    <input type="number" name="listingBedrooms" value="${closingRiskCheckForm.getListingBedroomsValue()}" min="1" max="20">
+                                </label>
+                                <label>
+                                    <span>Bedrooms shown on permit</span>
+                                    <input type="number" name="permitBedrooms" value="${closingRiskCheckForm.getPermitBedroomsValue()}" min="1" max="20">
+                                </label>
+                                <label class="field--full">
+                                    <span>What decision is blocked?</span>
+                                    <textarea name="concern" maxlength="1200" rows="4" placeholder="Example: The listing says four bedrooms, but the permit copy appears to show three.">${closingRiskCheckForm.getConcernValue()}</textarea>
+                                </label>
+                            </div>
+                        </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
                             <span>I agree that SepticPath may store these property and contact details and email them to its operator to prepare this free beta file check. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
@@ -279,6 +291,10 @@
                     <h2>Keep the claim narrow</h2>
                     <p>A listing detail or an old report is not a compliance conclusion. Use the official response before changing an offer, price, or repair decision.</p>
                 </article>
+            </div>
+            <div class="container offer-prep-transfer-aftercare">
+                <p>Need the broader seller disclosure or permit-history sequence instead?</p>
+                <a href="/septic-transfer-compliance/" data-track-click="nav" data-track-source-context="closing_risk_aftercare" data-track-target-type="transfer_workflow">Open the transfer workflow <span aria-hidden="true">→</span></a>
             </div>
         </section>
     </div>

@@ -116,7 +116,11 @@
                 <nav class="site-nav" id="site-nav-menu" aria-label="Primary">
                     <a href="/septic-record-finder/">Find records</a>
                     <a href="/septic-record-finder/?mode=document">Review a file</a>
-                    <a href="/offer-prep-septic-file-check/">Next decision</a>
+                    <a href="/offer-prep-septic-file-check/"
+                       data-closing-risk-cta
+                       data-track-click="nav"
+                       data-track-source-context="global_header"
+                       data-track-target-type="lead_form">Closing Risk Check</a>
                     <a href="/states/">States</a>
                     <a href="/septic-system-cost-calculator/">Cost planning</a>
                 </nav>
@@ -164,7 +168,11 @@
                     <ul class="footer-list">
                         <li><a href="/septic-record-finder/">Find records by address</a></li>
                         <li><a href="/septic-record-finder/?mode=document">Review a file</a></li>
-                        <li><a href="/offer-prep-septic-file-check/">Choose the next decision</a></li>
+                        <li><a href="/offer-prep-septic-file-check/"
+                               data-closing-risk-cta
+                               data-track-click="nav"
+                               data-track-source-context="global_footer"
+                               data-track-target-type="lead_form">Free Closing Risk Check</a></li>
                         <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-records-checklist/">Records guides</a></li>
                         <li><a href="/septic-records-by-county/">County record paths</a></li>

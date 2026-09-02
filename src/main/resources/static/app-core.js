@@ -382,10 +382,85 @@
             if (targetType.startsWith("official")) {
                 emitGaEvent("official_source_clicked", { source_context: anchor.dataset.trackSourceContext || "", source_type: targetType });
             }
-            if (targetType === "quote_form" || anchor.getAttribute("href") === "#quote-request") {
+            if (targetType === "quote_form" || targetType === "lead_form" || anchor.getAttribute("href") === "#quote-request") {
                 emitGaEvent("lead_cta_clicked", { source_context: anchor.dataset.trackSourceContext || "", cta_type: targetType || "quote_form" });
             }
         });
+    }
+
+    function setupClosingRiskFunnel() {
+        const getSourceContext = () => {
+            try {
+                return window.sessionStorage.getItem("septicpath_closing_risk_source") || "direct";
+            } catch (_error) {
+                return "direct";
+            }
+        };
+        const viewedSources = new Set();
+        const ctas = document.querySelectorAll("[data-closing-risk-cta]");
+
+        document.addEventListener("click", (event) => {
+            if (!(event.target instanceof Element)) return;
+            const cta = event.target.closest("[data-closing-risk-cta]");
+            if (!(cta instanceof HTMLAnchorElement)) return;
+            const sourceContext = cta.dataset.trackSourceContext || "unknown";
+            try {
+                window.sessionStorage.setItem("septicpath_closing_risk_source", sourceContext);
+            } catch (_error) {
+                // Attribution is helpful, but navigation must never depend on storage.
+            }
+            emitGaEvent("closing_risk_cta_clicked", { source_context: sourceContext, request_type: "free_beta" });
+        });
+
+        if ("IntersectionObserver" in window && ctas.length > 0) {
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const sourceContext = entry.target.dataset.trackSourceContext || "unknown";
+                    if (!viewedSources.has(sourceContext)) {
+                        viewedSources.add(sourceContext);
+                        emitGaEvent("closing_risk_cta_viewed", { source_context: sourceContext, request_type: "free_beta" });
+                    }
+                    ctaObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.5 });
+            ctas.forEach((cta) => ctaObserver.observe(cta));
+        }
+
+        const form = document.querySelector("[data-closing-risk-request-form]");
+        if (!(form instanceof HTMLFormElement)) return;
+
+        let formViewed = false;
+        if ("IntersectionObserver" in window) {
+            const formObserver = new IntersectionObserver((entries) => {
+                if (formViewed || !entries.some((entry) => entry.isIntersecting)) return;
+                formViewed = true;
+                emitGaEvent("closing_risk_form_viewed", { source_context: getSourceContext(), request_type: "free_beta" });
+                formObserver.disconnect();
+            }, { threshold: 0.25 });
+            formObserver.observe(form);
+        }
+
+        let formStarted = false;
+        form.addEventListener("input", (event) => {
+            if (formStarted || !(event.target instanceof HTMLElement) || event.target.getAttribute("name") === "website") return;
+            formStarted = true;
+            emitGaEvent("closing_risk_form_started", { source_context: getSourceContext(), request_type: "free_beta" });
+        });
+
+        let validationQueued = false;
+        form.addEventListener("invalid", () => {
+            if (validationQueued) return;
+            validationQueued = true;
+            window.queueMicrotask(() => {
+                emitGaEvent("closing_risk_form_validation_error", {
+                    source_context: getSourceContext(),
+                    request_type: "free_beta",
+                    invalid_count: form.querySelectorAll(":invalid").length
+                });
+                validationQueued = false;
+            });
+        }, true);
     }
 
     function trackGaEvents() {
@@ -414,6 +489,7 @@
     setupStickyMobileCtas();
     trackGaEvents();
     setupPrimaryFunnelEvents();
+    setupClosingRiskFunnel();
 
     document.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) {
