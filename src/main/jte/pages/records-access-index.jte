@@ -101,6 +101,7 @@
                         <h2 id="records-access-distribution">Use all ${totalCountyRouteCount} routes as a working dataset.</h2>
                         <p>The CSV includes the county, route type, first file, route confidence, review date, parcel availability, official URL, and SepticPath guide URL.</p>
                         <p><strong>Important:</strong> Route confidence describes how clearly the file path is documented. It does not prove a property's permit status.</p>
+                        <p>Reuse is subject to the <a href="/data-license/">SepticPath Data License</a>. Linked government materials remain subject to their respective terms.</p>
                         <div class="records-access-card__actions">
                             <a class="button button--primary"
                                href="/septic-records-access-index.csv"

@@ -846,6 +846,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("rel=\"alternate\" type=\"text/csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"Dataset\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"license\":\"https://example.test/data-license/\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"spatialCoverage\":{\"@type\":\"Place\",\"name\":\"United States\"}")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-25\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
@@ -1212,6 +1214,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/texas-ossf-records-search/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/florida-ostds-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/privacy-policy/")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/data-license/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-system-cost-calculator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-tank-size-estimator/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-pump-schedule-estimator/")))
@@ -1596,6 +1599,16 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Terms of Use")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("planning tool, not a permit or compliance service")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("active development"))));
+	}
+
+	@Test
+	void dataLicensePageRendersDatasetReuseTerms() throws Exception {
+		mockMvc.perform(get("/data-license/"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath Data License")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permitted use")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Restricted use")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("original compilation and annotations")));
 	}
 
 	@Test
