@@ -1202,6 +1202,52 @@ public class SiteController {
         );
     }
 
+    @GetMapping({"/data-license", "/data-license/"})
+    public String dataLicense(Model model) {
+        return renderSitePage(
+                model,
+                seoService.basicPage(
+                        "SepticPath Data License",
+                        "Reuse terms for the Septic Records Access Index and its downloadable CSV.",
+                        "/data-license/"
+                ),
+                "Data license",
+                "Reuse terms for the Septic Records Access Index.",
+                "This license applies to SepticPath's original selection, organization, route annotations, and downloadable CSV compilation. It does not replace the terms of any linked government source.",
+                Arrays.asList(
+                        new SitePageSection(
+                                "Permitted use",
+                                "You may download, copy, and use the dataset for personal research, property planning, internal business analysis, and source verification.",
+                                List.of(
+                                        "You may quote limited portions or publish analysis derived from the dataset when you credit SepticPath and link to the Septic Records Access Index.",
+                                        "You may retain local working copies and transform the CSV for your own analysis.",
+                                        "You must independently verify a route or property conclusion against the linked official source."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Restricted use",
+                                "Written permission is required before republishing substantially all of the dataset, reselling it, offering it as a competing directory, or using automated access that burdens the service.",
+                                List.of(
+                                        "Do not imply that SepticPath or a government agency endorses your product, report, or conclusion.",
+                                        "Do not remove source, review-date, confidence, or limitation fields in a way that makes a route appear more certain than published.",
+                                        "Do not use the dataset as proof that a permit exists, that a system complies, or that a property is suitable for a transaction."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Third-party sources and warranty",
+                                "Government pages, agency records, names, and other linked materials remain subject to their owners' rights and terms. This license covers only SepticPath's original compilation and annotations.",
+                                List.of(
+                                        "Official destinations can change, move, restrict access, or contain errors outside SepticPath's control.",
+                                        "The dataset is provided as-is without a guarantee of completeness, uninterrupted availability, or fitness for a specific legal, engineering, permitting, or transaction purpose.",
+                                        "For broader redistribution or commercial licensing, use the contact page and identify the intended use."
+                                )
+                        )
+                ),
+                "Keep the source trail attached",
+                "Credit the index, preserve its limitations, and confirm the current government source before relying on a route."
+        );
+    }
+
     @GetMapping({"/contact", "/contact/"})
     public String contact(Model model) {
         return renderContactPage(model, new ContactRequestForm(), false, null);

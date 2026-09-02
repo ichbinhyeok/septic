@@ -939,6 +939,7 @@ public class SeoService {
                 "/source-policy/",
                 "/coverage/",
                 "/privacy-policy/",
+                "/data-license/",
                 "/terms-of-use/",
                 "/contact/",
                 "/septic-record-finder/",
@@ -1070,14 +1071,15 @@ public class SeoService {
         dataset.put("isAccessibleForFree", true);
         dataset.put("creator", editorialOrganizationReference());
         dataset.put("publisher", editorialOrganizationReference());
+        dataset.put("license", absoluteUrl("/data-license/"));
         if (isIsoDate(dataLastUpdated)) {
             dataset.put("dateModified", dataLastUpdated);
             dataset.put("version", dataLastUpdated);
         }
-        dataset.put("spatialCoverage", Map.of(
-                "@type", "Country",
-                "name", "United States"
-        ));
+        Map<String, Object> spatialCoverage = new LinkedHashMap<>();
+        spatialCoverage.put("@type", "Place");
+        spatialCoverage.put("name", "United States");
+        dataset.put("spatialCoverage", spatialCoverage);
         dataset.put("keywords", List.of(
                 "septic records",
                 "septic permit lookup",

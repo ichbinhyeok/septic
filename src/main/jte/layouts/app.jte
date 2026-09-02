@@ -183,7 +183,7 @@
                         <li><a href="/methodology/">Methodology</a></li>
                         <li><a href="/coverage/">Coverage</a></li>
                         <li><a href="/contact/">Contact</a></li>
-                        <li><a href="/privacy-policy/">Privacy</a> · <a href="/terms-of-use/">Terms</a></li>
+                        <li><a href="/privacy-policy/">Privacy</a> · <a href="/terms-of-use/">Terms</a> · <a href="/data-license/">Data license</a></li>
                     </ul>
                 </nav>
             </div>
