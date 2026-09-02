@@ -33,7 +33,6 @@ public class ClosingRiskCheckForm {
     @Pattern(regexp = "[A-Z]{2}", message = "Choose a valid state.")
     private String stateCode;
 
-    @NotBlank(message = "County is required.")
     @Size(max = 120, message = "County must be 120 characters or fewer.")
     private String countyName;
 
