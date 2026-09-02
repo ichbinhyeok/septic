@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.0.7.0 - 2026-09-02
+
+### Added
+
+- Closing Risk Check CTAs now report anonymous GA4 funnel stages for impressions, clicks, form views, form starts, validation errors, and successful submissions, with source attribution preserved across navigation.
+
+### Changed
+
+- Transaction-intent state, county, TDEC, and national record pages now introduce the free human review immediately after the relevant records workflow with explicit deadline-based copy.
+- The Closing Risk Check now leads with the manual-review offer, moves the self-serve builder into a clearly labeled optional disclosure, and groups nonessential request details behind an optional section.
+- County is no longer required when a complete property address and state are supplied, reducing request friction without removing useful file context.
+
+### Fixed
+
+- Global navigation names the Closing Risk Check directly, and regression tests verify contextual CTA source markers instead of passing on unrelated header or footer links.
+
 ## 0.0.6.0 - 2026-09-01
 
 ### Changed
