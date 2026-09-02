@@ -24,10 +24,11 @@ Example:
 
 `https://septicpath.com/offer-prep-septic-file-check/?src=tn-smoky-mountain-realty&utm_medium=partner&utm_campaign=deal-desk`
 
-The self-serve workspace records the visit, file-check generation, request
-copy/download, and official-route click. It does not record the property address
-or request text. The manual Closing Risk Check form below it is a separate,
-consented intake and does store the submitted case details.
+The page leads with the public manual Closing Risk Check offer. The self-serve
+workspace is a clearly labeled alternative disclosure that records file-check
+generation, request copy/download, and official-route clicks without recording
+the property address or request text. The manual form is a separate, consented
+intake and does store the submitted case details.
 
 ## First message: TN or NC listing / buyer team
 
