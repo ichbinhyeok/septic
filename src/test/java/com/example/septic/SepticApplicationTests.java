@@ -315,7 +315,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official Tennessee SSDS page")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the field office for the county")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Submit a public-records request")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://tdec.tn.gov/document-viewer/search/stp")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("currently returns 403 for some users")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-records-checklist/tennessee/blount-county/")))

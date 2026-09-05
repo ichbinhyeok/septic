@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.10.0 - 2026-09-06
+
+### Added
+
+- Added Gmail, Outlook, default-mail-app, and copyable request options with a published TDEC recipient, generated subject and request body, and anonymous GA4 channel tracking.
+
+### Changed
+
+- Replaced the restricted TDEC viewer as the primary Tennessee records path with a prepared direct-request workflow, while keeping the official viewer as an optional fallback.
+- Routed Tennessee address-finder matches into a county-preselected TDEC workspace while preserving the verified address and request purpose.
+
+### Fixed
+
+- Preserved Tennessee property, county, and source context across the state-records, TDEC, and record-help handoffs instead of making visitors re-enter the same information.
+
 ## 0.0.9.1 - 2026-09-06
 
 ### Fixed

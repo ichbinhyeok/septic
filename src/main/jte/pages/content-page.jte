@@ -811,7 +811,7 @@
                         </label>
                         <button class="button button--primary" type="button" data-tdec-search-copy>Copy search clue</button>
                         <a class="button button--secondary"
-                           href="https://tdec.tn.gov/document-viewer/search/stp"
+                           href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"
                            target="_blank"
                            rel="noreferrer"
                            data-tdec-search-open
@@ -950,7 +950,7 @@
                                         <strong>3. Submit a public-records request</strong>
                                         <span>Ask for the permit, layout, final approval, repair history, or written no-record response.</span>
                                     </a>
-                                    <a href="https://tdec.tn.gov/document-viewer/search/stp"
+                                    <a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"
                                        target="_blank"
                                        rel="noreferrer"
                                        data-track-click="nav"

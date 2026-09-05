@@ -104,7 +104,7 @@ public class SiteController {
     private static final String TENNESSEE_SSDS_PROGRAM_URL =
             "https://www.tn.gov/environment/permits/water/septic-systems-permits.html";
     private static final String TENNESSEE_SSDS_RECORD_SEARCH_URL =
-            "https://tdec.tn.gov/document-viewer/search/stp";
+            "https://dataviewers.tdec.tn.gov/dataviewers/f?p=175";
     private static final String TENNESSEE_PUBLIC_RECORDS_URL =
             "https://www.tn.gov/environment/contacts/public-records-request.html";
     private static final String TENNESSEE_FIELD_OFFICES_URL =
@@ -2413,7 +2413,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                                     : "https://www.tn.gov/environment/contacts/field-offices/" + fieldOfficeKey + ".html",
                             tennesseeRecordsUrl(countyKey),
                             tennesseeRecordsLabel(countyKey),
-                            tennesseeRecordsHint(countyKey)
+                            tennesseeRecordsHint(countyKey),
+                            TENNESSEE_CONTRACT_COUNTIES.contains(countyKey)
+                                    ? ""
+                                    : "johnson".equals(fieldOfficeKey)
+                                    ? "TDEC.Johnsoncity.EFO@tn.gov"
+                                    : "septicsystem.files@tn.gov"
                     );
                 })
                 .toList();
@@ -2430,7 +2435,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "sevier" -> "https://www.seviercountytn.gov/government/departments/services/environmental_health.php";
             case "shelby" -> "https://www.shelbytnhealth.com/182/Septic-Tank-Permitting-Process";
             case "williamson" -> "https://www.williamsoncounty-tn.gov/153/Forms-Hand-outs";
-            default -> "https://tdec.tn.gov/document-viewer/search/stp";
+            default -> TENNESSEE_SSDS_RECORD_SEARCH_URL;
         };
     }
 
@@ -2460,6 +2465,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "sevier" -> "Use the county Environmental Health office for existing local records and septic services.";
             case "shelby" -> "Use the Shelby County Water Quality and Septic Tank Program or its public-records route.";
             case "williamson" -> "Use the Inspection Duplication of Records Request under Sewage Disposal forms.";
+            case "roane" -> "Roane County publishes a septic line at 865-594-0981, option 0. The Knoxville field office also lists 865-594-6035 for septic assistance.";
             default -> "Search by county and the strongest available property clue. A blank result is not proof that no file exists.";
         };
     }
@@ -5085,12 +5091,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .findPublicStateMoneyPage("septic-records-checklist", state.get().slug());
         if (stateRecordsPage.isPresent()) {
             StateMoneyPage page = stateRecordsPage.get();
+            boolean isTennessee = "TN".equals(state.get().stateCode());
+            String fallbackPath = isTennessee
+                    ? "/tdec-septic-records/?county=" + normalizeCountyFinderText(lookup.countyName())
+                            .replace(" county", "")
+                            .replace(' ', '-')
+                    : page.path(state.get().slug());
             return new AddressRecordFinderResult(
                     "state_route",
                     lookup.countyName() + " County, " + state.get().stateName() + " records route",
-                    "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
+                    isTennessee
+                            ? "A dedicated county page is not live yet. Continue to the Tennessee SSDS workspace with this county and address already prepared."
+                            : "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
                     state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
-                    "Open " + state.get().stateName() + " records", page.path(state.get().slug()), "", List.of(), List.of()
+                    isTennessee ? "Continue with " + lookup.countyName() + " County" : "Open " + state.get().stateName() + " records",
+                    fallbackPath, "", List.of(), List.of()
             );
         }
 

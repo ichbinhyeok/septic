@@ -11,7 +11,8 @@ public record TennesseeCountyRouteView(
         String fieldOfficeUrl,
         String recordsUrl,
         String recordsLabel,
-        String recordsHint
+        String recordsHint,
+        String requestEmail
 ) {
     public boolean hasInternalPath() {
         return internalPath != null && !internalPath.isBlank();
@@ -20,7 +21,7 @@ public record TennesseeCountyRouteView(
     public RecordRouteView toRecordRouteView() {
         return new RecordRouteView("TN", "TN::" + countyKey, countyName, contractCounty ? countyName : fieldOfficeName,
                 contractCounty ? "contract_county" : "field_office_request",
-                contractCounty ? "county_owned" : "viewer_secondary",
+                contractCounty ? "county_owned" : "office_primary",
                 contractCounty ? recordsUrl : fieldOfficeUrl, contractCounty ? internalPath : fieldOfficeUrl,
                 List.of("Property address", "Parcel, prior owner, subdivision, or permit number when available"),
                 List.of("Construction permit", "soil evaluation", "system layout", "final approval", "repair history"), "");
