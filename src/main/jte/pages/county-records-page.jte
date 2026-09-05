@@ -304,7 +304,7 @@
         <div class="container">
             @template.tags.closingRiskCta(
                 sourceContext = "county_records_" + state.stateCode().toLowerCase(),
-                heading = "Found the county route but still have a closing question?"
+                heading = "Found the county route but still can’t locate the right file?"
             )
         </div>
     </section>
@@ -1684,11 +1684,11 @@
                        data-track-source-context="county_records_next_best_state"
                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                     <a class="button button--secondary"
-                       href="/offer-prep-septic-file-check/#free-closing-risk-check"
-                       data-closing-risk-cta
+                       href="/offer-prep-septic-file-check/#record-help"
+                       data-record-help-cta
                        data-track-click="nav"
-                       data-track-source-context="county_records_next_best_closing_risk"
-                       data-track-target-type="lead_form">Check the file before closing</a>
+                       data-track-source-context="county_records_next_best_record_help"
+                       data-track-target-type="lead_form">Get help finding the file</a>
                     <a class="button button--secondary"
                        href="/septic-system-cost-calculator/${state.slug()}/"
                        data-track-click="nav"

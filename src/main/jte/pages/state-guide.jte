@@ -75,7 +75,7 @@
                 @if (java.util.Set.of("AL", "IN", "NC", "SC", "TN", "TX").contains(state.stateCode()))
                     @template.tags.closingRiskCta(
                         sourceContext = "state_guide_" + state.stateCode().toLowerCase(),
-                        heading = "Buying or selling under a deadline? Check the property file before the next decision."
+                        heading = "Still missing the septic record for this property?"
                     )
                 @endif
                 @if ("AL".equals(state.stateCode()))

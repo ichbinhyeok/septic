@@ -1090,14 +1090,14 @@
                         </article>
 
                         <article class="records-escalation-card">
-                            <span>Under contract</span>
-                            <h3>Check whether the file is ready for a closing decision</h3>
+                            <span>Search stopped?</span>
+                            <h3>Get help identifying the office and file to request</h3>
                             <a class="button button--secondary"
-                               href="/offer-prep-septic-file-check/#free-closing-risk-check"
-                               data-closing-risk-cta
+                               href="/offer-prep-septic-file-check/#record-help"
+                               data-record-help-cta
                                data-track-click="nav"
-                               data-track-source-context="records_escalation_closing_risk"
-                               data-track-target-type="lead_form">Request a free manual review</a>
+                               data-track-source-context="records_escalation_record_help"
+                               data-track-target-type="lead_form">Ask for record-path help</a>
                         </article>
 
                         <article class="records-escalation-card">

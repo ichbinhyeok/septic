@@ -554,23 +554,23 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void recordsPagesHandTransactionTrafficToTheClosingRiskCheck() throws Exception {
+	void recordsPagesOfferTaskAdjacentRecordHelp() throws Exception {
 		mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_guide_al\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying or selling under a deadline?")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Still missing the septic record for this property?")));
 		mockMvc.perform(get("/septic-records-checklist/tennessee/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"state_records_tn\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Have a real property and deadline?")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Have a property address but no usable septic record?")));
 		mockMvc.perform(get("/septic-records-checklist/tennessee/knox-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"county_records_tn\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Found the county route but still have a closing question?")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Found the county route but still can’t locate the right file?")));
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"tdec_quick_help_closing_risk\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request a free human review")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"tdec_quick_help_record_help\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Send the address and we’ll help identify the Tennessee office")));
 	}
 
 	@Test
@@ -578,7 +578,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/how-to-find-septic-records-online/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-tank-location-records/\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/offer-prep-septic-file-check/\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/offer-prep-septic-file-check/#record-help\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("href=\"/offer-prep/\""))));
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
@@ -939,18 +939,18 @@ class SepticApplicationTests {
 	void offerPrepFileCheckRendersForFourStatesAndEntersSitemap() throws Exception {
 		mockMvc.perform(get("/offer-prep-septic-file-check/?src=tn-rural-buyer-guide"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Offer Prep Septic File Check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Free Septic Record Help")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-file-check")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request a free manual review")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get help finding the file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Self-serve alternative")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-download")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-help-request-form")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("closing-risk-optional")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request the free closing-risk check")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask for record-path help")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not submit Social Security numbers")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("embed code"))));
 
@@ -978,7 +978,7 @@ class SepticApplicationTests {
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-success")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request received.")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your record question is in.")));
 
 		try (Stream<Path> files = Files.walk(TEST_STORAGE_ROOT.resolve("closing-risk-requests"))) {
 			assertTrue(files.anyMatch(path -> path.toString().endsWith(".json")));
@@ -995,7 +995,7 @@ class SepticApplicationTests {
 				.param("recordStatus", "missing")
 				.param("deadline", LocalDate.now().minusDays(1).toString()))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted request details.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted details.")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-closing-risk-request-success"))));
 	}
 
@@ -1028,6 +1028,22 @@ class SepticApplicationTests {
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-closing-risk-request-success")));
+	}
+
+	@Test
+	void recordHelpBetaAcceptsLowFrictionResearchRequestAndPreservesSourceContext() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("email", "researcher@example.com")
+				.param("transactionRole", "researching")
+				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
+				.param("stateCode", "TN")
+				.param("recordStatus", "route_unknown")
+				.param("sourceContext", "tdec_quick_help_record_help")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your record question is in.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-ga-event=\"record_help_request_submitted\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-ga-param-source-context=\"tdec_quick_help_record_help\"")));
 	}
 
 	@Test

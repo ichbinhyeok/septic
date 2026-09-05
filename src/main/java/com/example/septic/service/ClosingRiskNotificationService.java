@@ -25,7 +25,7 @@ public class ClosingRiskNotificationService {
 
     public boolean notifyOperator(String requestId, ClosingRiskCheckForm form) {
         if (!properties.isConfigured()) {
-            LOGGER.warn("Closing risk request {} was stored, but Gmail notification is not configured", requestId);
+            LOGGER.warn("Record help request {} was stored, but Gmail notification is not configured", requestId);
             return false;
         }
 
@@ -33,15 +33,16 @@ public class ClosingRiskNotificationService {
         message.setFrom(properties.sender());
         message.setTo(properties.recipient());
         message.setReplyTo(safeLine(form.getEmail()));
-        message.setSubject("[SepticPath beta] " + safeLine(form.getStateCode()) + " / "
-                + safeLine(form.getCountyName()) + " — deadline " + form.getDeadline());
+        message.setSubject("[SepticPath record help] " + safeLine(form.getStateCode()) + " / "
+                + safeLine(form.getRecordStatus()) + transactionSuffix(form));
         message.setText("""
-                New Septic Closing Risk Check request
+                New Septic Record Help request
 
                 Request ID: %s
+                Source context: %s
                 Name: %s
                 Email: %s
-                Role: %s
+                Process stage: %s
                 Property: %s
                 State / county: %s / %s
                 Listing URL: %s
@@ -51,9 +52,12 @@ public class ClosingRiskNotificationService {
                 Deadline: %s
                 Concern: %s
 
-                The requester consented to operator review and email follow-up. This is a file-readiness review, not an inspection or compliance certification.
+                Start by identifying the likely public-record owner and exact file to request. If the process stage is buyer, seller, agent, or other and a deadline or conflict is present, qualify the request for a deeper closing-risk follow-up.
+
+                The requester consented to operator review and email follow-up. This is record-path help, not an inspection or compliance certification.
                 """.formatted(
                 requestId,
+                safeLine(form.getSourceContext()),
                 safeLine(form.getFullName()),
                 safeLine(form.getEmail()),
                 safeLine(form.getTransactionRole()),
@@ -71,9 +75,16 @@ public class ClosingRiskNotificationService {
             mailSender.send(message);
             return true;
         } catch (MailException exception) {
-            LOGGER.error("Failed to send Gmail notification for closing risk request {}", requestId, exception);
+            LOGGER.error("Failed to send Gmail notification for record help request {}", requestId, exception);
             return false;
         }
+    }
+
+    private String transactionSuffix(ClosingRiskCheckForm form) {
+        if ("researching".equals(form.getTransactionRole())) {
+            return " — research";
+        }
+        return form.getDeadline() == null ? " — transaction" : " — deadline " + form.getDeadline();
     }
 
     private String safeLine(String value) {

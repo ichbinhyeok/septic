@@ -87,7 +87,7 @@
             <div class="container">
                 @template.tags.closingRiskCta(
                     sourceContext = "state_records_" + state.stateCode().toLowerCase(),
-                    heading = "Have a real property and deadline? Turn the record route into a closing decision."
+                    heading = "Have a property address but no usable septic record?"
                 )
             </div>
         </section>
