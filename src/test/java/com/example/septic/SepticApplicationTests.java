@@ -10648,6 +10648,10 @@ class SepticApplicationTests {
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_01").orElseThrow().url());
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_05").orElseThrow().url());
 		assertEquals(
+				"https://www.starkcountyohio.gov/government/offices/auditor/index.php",
+				researchDataService.findSource("oh_stark_01").orElseThrow().url()
+		);
+		assertEquals(
 				pages.size(),
 				pages.stream()
 						.map(page -> page.stateCode() + "|" + page.countyName().toLowerCase())

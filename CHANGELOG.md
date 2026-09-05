@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Replaced retired Missouri DHSS and Clackamas County septic URLs with their current official program and permit-guidance pages.
+- Replaced retired Missouri DHSS and Clackamas County septic URLs with their current official program and permit-guidance pages, and routed Stark County through its stable official Auditor entry page.
 - Updated the published Clackamas County record route and added a regression check that prevents the retired 404 paths from returning.
 
 ## 0.0.9.0 - 2026-09-06
