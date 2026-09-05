@@ -63,7 +63,7 @@ Use JSON when:
 - State profiles: JSON
 - Cost profiles: JSON
 - Runtime lead submissions: JSON
-- Runtime contact and Closing Risk Check requests: JSON
+- Runtime contact and Record Help requests: JSON
 - Runtime event stream: NDJSON
 
 ## Validation rules
@@ -116,14 +116,15 @@ Rules:
 - capture consent text snapshot and source URL at submission time
 - store a normalized service and project type
 
-### runtime Closing Risk Check files
+### runtime Record Help files
 
 Rules:
 
-- write one JSON document per consented manual-review request
+- write one JSON document per consented record-help request
 - store contact and property details only in the dedicated request file
 - keep address, email, listing URL, and free-text concern out of analytics events
 - preserve the exact consent text and accepted timestamp
+- retain the historical `closing-risk-requests` storage path for compatibility
 - do not add beta requests to the quote-lead buyer export queue
 
 ## Write strategy

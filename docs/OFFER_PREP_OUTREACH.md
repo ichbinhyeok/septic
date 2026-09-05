@@ -11,8 +11,10 @@ partner's unique self-serve Offer Prep URL.
 
 Keep outbound Deal Desk cases in the original Gmail thread so partner replies
 remain attributable to that conversation. The Offer Prep page also contains a
-separate public Closing Risk Check beta: that form stores the submitted address
-and contact details and emails them to the operator only after explicit consent.
+separate public Record Help beta: that form starts with the blocked records task,
+stores the submitted address and contact details, and emails them to the operator
+only after explicit consent. Active transaction selections can then be qualified
+for a deeper closing-risk follow-up.
 
 ## Partner link
 
@@ -24,7 +26,7 @@ Example:
 
 `https://septicpath.com/offer-prep-septic-file-check/?src=tn-smoky-mountain-realty&utm_medium=partner&utm_campaign=deal-desk`
 
-The page leads with the public manual Closing Risk Check offer. The self-serve
+The page leads with the public manual Record Help offer. The self-serve
 workspace is a clearly labeled alternative disclosure that records file-check
 generation, request copy/download, and official-route clicks without recording
 the property address or request text. The manual form is a separate, consented
@@ -94,8 +96,8 @@ For the next case, send this exact link to the client or use it yourself:
 
 The self-serve workspace finds the county route and creates the same request
 without storing the property address. Please use that workspace for later cases;
-the manual Closing Risk Check form on the page is only for a real transaction
-where the requester explicitly wants operator review.
+the manual Record Help form on the page accepts both research and live-transaction
+questions; only the latter should be qualified for a deeper closing-risk review.
 
 ## Resource-page insertion, only after use
 
