@@ -37,6 +37,13 @@
     const requestCopy = desk.querySelector("[data-tdec-request-copy]");
     const requestGuidance = desk.querySelector("[data-tdec-request-guidance]");
     const requestLink = desk.querySelector("[data-tdec-request-link]");
+    const requestDestination = desk.querySelector("[data-tdec-request-destination]");
+    const requestEmail = desk.querySelector("[data-tdec-request-email]");
+    const requestSubject = desk.querySelector("[data-tdec-request-subject]");
+    const sendOptions = desk.querySelector("[data-tdec-send-options]");
+    const gmailLink = desk.querySelector("[data-tdec-send-gmail]");
+    const outlookLink = desk.querySelector("[data-tdec-send-outlook]");
+    const mailtoLink = desk.querySelector("[data-tdec-send-mailto]");
     const heroOfficial = desk.querySelector("[data-tdec-hero-official]");
     const heroReturnPanel = desk.querySelector("[data-tdec-hero-return]");
     const heroNext = desk.querySelector("[data-tdec-hero-next]");
@@ -72,7 +79,8 @@
             fieldOfficeUrl: option.dataset.fieldOfficeUrl || "",
             recordsUrl: option.dataset.recordsUrl || TDEC_VIEWER,
             recordsLabel: option.dataset.recordsLabel || "Open official record search",
-            recordsHint: option.dataset.recordsHint || ""
+            recordsHint: option.dataset.recordsHint || "",
+            requestEmail: option.dataset.requestEmail || ""
         };
     }
 
@@ -397,16 +405,34 @@
             };
         }
         return {
-            title: `Contact the ${countyData.fieldOfficeName} Environmental Field Office`,
+            title: `Prepare a direct ${countyData.name} records request`,
             url: countyData.fieldOfficeUrl,
-            explanation: "TDEC's app gateways currently return 403 before the record search loads for some visitors. Start with the responsible field office so the blocked viewer does not become a dead end.",
+            explanation: "TDEC's app gateways currently return 403 before the record search loads for some visitors. Prepare the request here, then send it from the email service you already use.",
             hint: countyData.recordsHint || "Ask the office to search the property address, parcel, prior owner, subdivision, permit number, and archived or pre-digital SSDS files.",
-            label: `Open ${countyData.fieldOfficeName} Field Office`,
-            context: "tdec_field_office_primary"
+            label: "Choose how to send",
+            context: "tdec_request_preparer",
+            action: "prepare_request"
         };
     }
 
     function makeOfficialLink(route, data) {
+        if (route.action === "prepare_request") {
+            const button = document.createElement("button");
+            button.className = "button button--primary";
+            button.type = "button";
+            button.textContent = route.label;
+            button.addEventListener("click", () => {
+                saveSession(data, false);
+                showRequest(data, "direct_request");
+                emit("official_source_clicked", {
+                    state_code: "TN",
+                    county_name: data.county.name,
+                    destination_type: route.context,
+                    purpose: data.purpose
+                });
+            });
+            return button;
+        }
         const link = document.createElement("a");
         link.className = "button button--primary";
         link.href = route.url;
@@ -592,32 +618,91 @@
     }
 
     function buildRequestText(data) {
-        const lines = [
-            `Please search for all available SSDS/septic system records for this property in ${data.county.name}.`,
+        const propertyLines = [
             data.address ? `Property address: ${data.address}` : "",
             data.parcel ? `Parcel or tax-map ID: ${data.parcel}` : "",
             data.owner ? `Current or prior owner: ${data.owner}` : "",
             data.subdivision ? `Subdivision / lot: ${data.subdivision}` : "",
-            data.permit ? `Permit number: ${data.permit}` : "",
+            data.permit ? `Permit number: ${data.permit}` : ""
+        ].filter(Boolean);
+        return [
+            "Hello,",
+            "",
+            `Please search for all available SSDS/septic system records for this property in ${data.county.name}.`,
+            ...propertyLines,
             "",
             "Please include the original construction permit, soil map or evaluation, system layout/as-built, final inspection or Certificate of Completion, and any repair or modification records.",
-            "If no file is located, please provide a written no-record response and identify any archive, delegated office, or pre-digital file location that should be checked."
-        ];
-        return lines.filter((line, index) => line || index > 5).join("\n").replace(/\n{3,}/g, "\n\n");
+            "If no file is located, please provide a written no-record response and identify any archive, delegated office, or pre-digital file location that should be checked.",
+            "",
+            "Thank you."
+        ].join("\n");
+    }
+
+    function requestSubjectFor(data) {
+        return `SSDS records request — ${data.address || data.county.name}`;
+    }
+
+    function fullRequestText(data) {
+        const recipient = data.county.requestEmail;
+        return [
+            recipient ? `To: ${recipient}` : "",
+            `Subject: ${requestSubjectFor(data)}`,
+            "",
+            buildRequestText(data)
+        ].filter((line, index) => line || index > 1).join("\n");
+    }
+
+    function configureSendOptions(data) {
+        const recipient = data.county.requestEmail;
+        const subject = requestSubjectFor(data);
+        const body = buildRequestText(data);
+        const hasRecipient = Boolean(recipient);
+
+        if (requestDestination instanceof HTMLElement) requestDestination.hidden = !hasRecipient;
+        if (sendOptions instanceof HTMLElement) sendOptions.hidden = !hasRecipient;
+        if (requestEmail instanceof HTMLElement) requestEmail.textContent = recipient;
+        if (requestSubject instanceof HTMLElement) requestSubject.textContent = subject;
+        if (!hasRecipient) return;
+
+        const gmail = new URL("https://mail.google.com/mail/");
+        gmail.searchParams.set("view", "cm");
+        gmail.searchParams.set("fs", "1");
+        gmail.searchParams.set("to", recipient);
+        gmail.searchParams.set("su", subject);
+        gmail.searchParams.set("body", body);
+
+        const outlook = new URL("https://outlook.office.com/mail/deeplink/compose");
+        outlook.searchParams.set("to", recipient);
+        outlook.searchParams.set("subject", subject);
+        outlook.searchParams.set("body", body);
+
+        if (gmailLink instanceof HTMLAnchorElement) gmailLink.href = gmail.toString();
+        if (outlookLink instanceof HTMLAnchorElement) outlookLink.href = outlook.toString();
+        if (mailtoLink instanceof HTMLAnchorElement) {
+            mailtoLink.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
     }
 
     function showRequest(data, reason) {
         if (!(requestCopy instanceof HTMLTextAreaElement) || !(requestLink instanceof HTMLAnchorElement)) return;
         window.SepticRecordTask?.transition("request_prepared", reason);
         requestCopy.value = buildRequestText(data);
+        configureSendOptions(data);
         requestGuidance.textContent = data.county.contract
             ? `${data.county.name} owns this record route. Use its county page or form with the wording below.`
-            : `Start with the ${data.county.fieldOfficeName} Environmental Field Office. Use the formal TDEC public-records form only when appropriate.`;
+            : data.county.requestEmail
+                ? `Send this prepared request directly from your own email account. The ${data.county.fieldOfficeName} Environmental Field Office remains the county-specific fallback.`
+                : `Start with the ${data.county.fieldOfficeName} Environmental Field Office. Use the formal TDEC public-records form only when appropriate.`;
         requestLink.href = data.county.contract ? data.county.recordsUrl : data.county.fieldOfficeUrl;
         requestLink.textContent = data.county.contract ? data.county.recordsLabel : `Open ${data.county.fieldOfficeName} Field Office`;
         requestSection.hidden = false;
         requestSection.scrollIntoView({ behavior: "smooth", block: "start" });
         emit("records_fallback_started", { fallback_type: reason, county_name: data.county.name, state_code: "TN" });
+        emit("record_request_prepared", {
+            request_channel: data.county.requestEmail ? "email" : data.county.contract ? "county_route" : "office_route",
+            county_name: data.county.name,
+            state_code: "TN"
+        });
     }
 
     function outcomeContent(kind, data) {
@@ -683,7 +768,7 @@
         } catch (_) {
             // The in-memory return prompt still works when storage is disabled.
         }
-        emit("hero_official_click", { state_code: "TN", destination_type: "tdec_ssds_record_search" });
+        emit("hero_official_click", { state_code: "TN", destination_type: "tdec_ssds_record_search_restricted" });
         window.setTimeout(() => showHeroReturnPrompt(false), 350);
     });
 
@@ -748,15 +833,24 @@
         }
     });
     desk.querySelector("[data-tdec-copy-request]")?.addEventListener("click", async event => {
-        if (!(requestCopy instanceof HTMLTextAreaElement)) return;
+        if (!(requestCopy instanceof HTMLTextAreaElement) || !prepared) return;
         try {
-            await navigator.clipboard.writeText(requestCopy.value);
+            await navigator.clipboard.writeText(fullRequestText(prepared));
             event.currentTarget.textContent = "Copied";
+            emit("record_request_channel_selected", { request_channel: "copy", county_name: prepared.county.name, state_code: "TN" });
         } catch (_) {
             requestCopy.focus();
             requestCopy.select();
         }
     });
+    [
+        [gmailLink, "gmail"],
+        [outlookLink, "outlook"],
+        [mailtoLink, "email_app"]
+    ].forEach(([link, channel]) => link?.addEventListener("click", () => {
+        if (!prepared) return;
+        emit("record_request_channel_selected", { request_channel: channel, county_name: prepared.county.name, state_code: "TN" });
+    }));
     desk.querySelectorAll("[data-tdec-outcome]").forEach(button => button.addEventListener("click", () => {
         if (!prepared || !(outcomeNext instanceof HTMLElement)) return;
         desk.querySelectorAll("[data-tdec-outcome]").forEach(candidate => candidate.setAttribute("aria-pressed", String(candidate === button)));

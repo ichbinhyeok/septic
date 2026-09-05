@@ -593,6 +593,8 @@
   .tdec-desk__intro-grid > div > p { max-width: 62ch; margin: 0; color: #455962; font-size: clamp(1rem, 1.35vw, 1.16rem); }
   .tdec-desk__hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
   .tdec-desk__hero-actions .button { min-height: 48px; }
+  .tdec-desk__hero-actions .text-button { display: inline-flex; min-height: 48px; align-items: center; padding-inline: 8px; }
+  .tdec-desk__intro-grid > div > .tdec-desk__status { max-width: 68ch; margin-top: 16px; padding: 10px 0 10px 14px; border-left: 3px solid #b07a2a; color: #5f4b27; font-size: .76rem; line-height: 1.5; }
   .tdec-desk__independent { display: block; max-width: 72ch; margin-top: 12px; color: #617278; font-size: .7rem; line-height: 1.5; }
   .tdec-desk__boundary { padding: 18px 0 0; border-top: 3px solid #153f39; }
   .tdec-desk__boundary strong { display: block; margin-bottom: 6px; font: 800 .86rem/1.35 var(--font-sans); }
@@ -735,6 +737,16 @@
   .tdec-request__output label { display: block; margin-bottom: 8px; font-weight: 800; }
   .tdec-request__output textarea { width: 100%; min-height: 250px; padding: 16px; resize: vertical; border: 1px solid var(--line-dark); border-radius: 0; background: #fff; font: .82rem/1.55 ui-monospace, Consolas, monospace; }
   .tdec-request__output > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tdec-request__output > .tdec-request__destination { display: block; margin: 0 0 18px; padding: 14px 0; border-block: 1px solid #97aaa4; }
+  .tdec-request__destination > span { display: block; color: #52656d; font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .tdec-request__destination > strong { display: block; margin-top: 4px; overflow-wrap: anywhere; font: 800 1rem/1.35 var(--font-sans); }
+  .tdec-request__destination p { margin: 8px 0 0; color: #455962; font-size: .74rem; overflow-wrap: anywhere; }
+  .tdec-request__output > .tdec-request__send { display: block; margin-top: 18px; padding: 18px 0; border-block: 1px solid #97aaa4; animation: tdec-request-reveal 180ms ease-out both; }
+  .tdec-request__send-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 9px; }
+  .tdec-request__send > small { display: block; max-width: 72ch; margin-top: 10px; color: #52656d; font-size: .68rem; line-height: 1.5; }
+  .tdec-request__send + label { margin-top: 18px; }
+  @keyframes tdec-request-reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .tdec-request__output > .tdec-request__send { animation: none; } }
   .tdec-request__output .tdec-request__evidence-callout { display: block; margin-top: 18px; padding: 16px 0; border-block: 1px solid var(--line); }
   .tdec-request__evidence-callout strong { display: block; font: 800 .9rem/1.35 var(--font-sans); }
   .tdec-request__evidence-callout p { max-width: 62ch; margin: 5px 0 12px; color: var(--muted); font-size: .78rem; }
@@ -819,6 +831,7 @@
     .tdec-desk__intro-grid { gap: 24px; }
     .tdec-desk__hero-actions { display: grid; margin-top: 20px; }
     .tdec-desk__hero-actions .button { width: 100%; justify-content: center; }
+    .tdec-desk__hero-actions .text-button { justify-content: center; }
     .tdec-desk__scope > div { grid-template-columns: 105px 1fr; gap: 12px; }
     .tdec-workspace { padding-block: 28px; }
     .tdec-workspace__header { display: block; }
@@ -859,6 +872,7 @@
     .tdec-request { padding-block: 36px; }
     .tdec-request__grid { gap: 24px; }
     .tdec-request__output > div { display: grid; }
+    .tdec-request__send-actions { display: grid; }
     .tdec-request__output .button { width: 100%; justify-content: center; }
     .alabama-county-directory ul { grid-template-columns: 1fr; }
     .official-records-page section, .state-records-page section, .national-records-page section { padding-block: 34px; }

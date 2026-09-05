@@ -26,9 +26,11 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Search TDEC septic permits and Tennessee SSDS records")))
+                .andExpect(content().string(containsString("Prepare a Tennessee septic record request")))
                 .andExpect(content().string(containsString("Choose the property county")))
-                .andExpect(content().string(containsString("Open official TDEC data viewers")))
+                .andExpect(content().string(containsString("Prepare my record request")))
+                .andExpect(content().string(containsString("Try the official viewer anyway")))
+                .andExpect(content().string(containsString("Viewer status:")))
                 .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html")))
                 .andExpect(content().string(containsString("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175")))
                 .andExpect(content().string(containsString("SepticPath does not retrieve or certify government records")))

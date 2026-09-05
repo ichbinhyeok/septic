@@ -2413,7 +2413,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                                     : "https://www.tn.gov/environment/contacts/field-offices/" + fieldOfficeKey + ".html",
                             tennesseeRecordsUrl(countyKey),
                             tennesseeRecordsLabel(countyKey),
-                            tennesseeRecordsHint(countyKey)
+                            tennesseeRecordsHint(countyKey),
+                            TENNESSEE_CONTRACT_COUNTIES.contains(countyKey)
+                                    ? ""
+                                    : "johnson".equals(fieldOfficeKey)
+                                    ? "TDEC.Johnsoncity.EFO@tn.gov"
+                                    : "septicsystem.files@tn.gov"
                     );
                 })
                 .toList();

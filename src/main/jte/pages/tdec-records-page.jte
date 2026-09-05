@@ -13,23 +13,29 @@
             <div class="container tdec-desk__intro-grid">
                 <div class="tdec-desk__hero-copy">
                     <span class="eyebrow">Tennessee septic records</span>
-                    <h1 id="tdec-page-title">Search TDEC septic permits and Tennessee SSDS records</h1>
-                    <p>Open Tennessee's official data-viewer directory, or choose a county to get a working office route when the TDEC app returns 403.</p>
+                    <h1 id="tdec-page-title">Prepare a Tennessee septic record request</h1>
+                    <p>Enter the property county and address. We’ll identify the record owner and prepare the exact request for the permit, layout, final approval, and repair history.</p>
                     <div class="tdec-desk__hero-actions">
                         <a class="button button--primary"
-                           href="https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-tdec-hero-official
-                           data-track-click="official_source"
-                           data-track-source-context="tdec_hero_official_search"
-                           data-track-target-type="official_source">Open official TDEC data viewers</a>
+                           href="#tdec-record-search"
+                           data-track-click="nav"
+                           data-track-source-context="tdec_hero_request_builder"
+                           data-track-target-type="request_builder">Prepare my record request</a>
                         <a class="button button--secondary"
                            href="/septic-record-finder/"
                            data-track-click="internal_handoff"
                            data-track-source-context="tdec_hero_address_finder"
                            data-track-target-type="record_finder">Find the county from a property address</a>
+                        <a class="text-button"
+                           href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-tdec-hero-official
+                           data-track-click="official_source"
+                           data-track-source-context="tdec_hero_viewer_optional"
+                           data-track-target-type="official_search">Try the official viewer anyway</a>
                     </div>
+                    <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is currently returning 403 in our checks. It may still work for some visitors.</p>
                     <small class="tdec-desk__independent">Independent guide. SepticPath does not retrieve or certify government records.</small>
                     <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title">
                         <div>
@@ -48,9 +54,9 @@
                 <aside class="tdec-desk__boundary" aria-label="Service boundary">
                     <strong>Use the route that fits</strong>
                     <dl>
-                        <div><dt>Statewide</dt><dd>Start with the official TDEC SSDS search.</dd></div>
+                        <div><dt>TDEC county</dt><dd>Prepare a direct records request before trying the restricted viewer.</dd></div>
                         <div><dt>Local county</dt><dd>Nine counties administer their own septic programs.</dd></div>
-                        <div><dt>No result</dt><dd>Use prior-owner, parcel, archive, and office-request steps.</dd></div>
+                        <div><dt>After sending</dt><dd>Keep the reply and bring the returned file back for review.</dd></div>
                     </dl>
                 </aside>
             </div>
@@ -83,7 +89,8 @@
                                                 data-field-office-url="${county.fieldOfficeUrl()}"
                                                 data-records-url="${county.recordsUrl()}"
                                                 data-records-label="${county.recordsLabel()}"
-                                                data-records-hint="${county.recordsHint()}">${county.countyName()}</option>
+                                                data-records-hint="${county.recordsHint()}"
+                                                data-request-email="${county.requestEmail()}">${county.countyName()}</option>
                                     @endfor
                                 </select>
                                 <small data-tdec-county-help>The county determines whether TDEC or a local program owns the record.</small>
@@ -165,16 +172,30 @@
         <section class="tdec-request" data-tdec-request-section hidden aria-labelledby="tdec-request-title">
             <div class="container tdec-request__grid">
                 <header>
-                    <span class="eyebrow">Missing-file fallback</span>
-                    <h2 id="tdec-request-title">Send the office a complete property description</h2>
+                    <span class="eyebrow">Prepared request</span>
+                    <h2 id="tdec-request-title">Choose how to send your request</h2>
                     <p data-tdec-request-guidance></p>
                 </header>
                 <div class="tdec-request__output">
-                    <label for="tdec-request-copy">Copy and edit this wording</label>
+                    <div class="tdec-request__destination" data-tdec-request-destination hidden>
+                        <span>Published septic-files recipient</span>
+                        <strong data-tdec-request-email></strong>
+                        <p><b>Subject:</b> <span data-tdec-request-subject></span></p>
+                    </div>
+                    <div class="tdec-request__send" data-tdec-send-options hidden>
+                        <span class="tdec-result__step">Choose how to send</span>
+                        <div class="tdec-request__send-actions">
+                            <a class="button button--primary" href="#" target="_blank" rel="noreferrer" data-tdec-send-gmail>Gmail</a>
+                            <a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-send-outlook>Outlook</a>
+                            <a class="button button--secondary" href="#" data-tdec-send-mailto>Email app</a>
+                        </div>
+                        <small>Your property details stay in this browser and are sent only to the email service you choose. They are not sent to SepticPath or GA4.</small>
+                    </div>
+                    <label for="tdec-request-copy">Review the request wording</label>
                     <textarea id="tdec-request-copy" readonly data-tdec-request-copy></textarea>
                     <div class="tdec-request__actions">
-                        <button class="button button--secondary" type="button" data-tdec-copy-request>Copy wording</button>
-                        <a class="button button--primary" href="#" target="_blank" rel="noreferrer" data-tdec-request-link data-track-click="official_source" data-track-source-context="tdec_records_request" data-track-target-type="official_request">Open responsible office</a>
+                        <button class="button button--secondary" type="button" data-tdec-copy-request>Copy full request</button>
+                        <a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-request-link data-track-click="official_source" data-track-source-context="tdec_records_request" data-track-target-type="official_request">Open responsible office</a>
                     </div>
                     <p class="tdec-request__citizen"><strong>Formal TDEC public-records form:</strong> the form asks whether the requester is a Tennessee citizen. Start with the responsible field office if you are not eligible or are unsure.</p>
                 </div>

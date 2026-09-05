@@ -89,6 +89,21 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .getAttribute("value")).isEqualTo(MATCHED_ADDRESS);
             assertThat(driver.findElement(By.cssSelector("[data-tdec-result-title]"))
                     .getText()).isEqualTo("Roane County record route");
+            WebElement prepareRequest = driver.findElement(By.xpath("//button[normalize-space()='Choose how to send']"));
+            prepareRequest.click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-tdec-request-section]")));
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-request-email]")).getText())
+                    .isEqualTo("septicsystem.files@tn.gov");
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-request-subject]")).getText())
+                    .contains("SSDS records request", MATCHED_ADDRESS);
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-send-gmail]")).getAttribute("href"))
+                    .startsWith("https://mail.google.com/mail/")
+                    .contains("septicsystem.files%40tn.gov");
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-send-outlook]")).getAttribute("href"))
+                    .startsWith("https://outlook.office.com/mail/deeplink/compose")
+                    .contains("septicsystem.files%40tn.gov");
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-send-mailto]")).getAttribute("href"))
+                    .startsWith("mailto:septicsystem.files@tn.gov?subject=");
             WebElement officeRoute = driver.findElement(By.linkText("Open Knoxville Field Office"));
             assertThat(officeRoute.getAttribute("href"))
                     .isEqualTo("https://www.tn.gov/environment/contacts/field-offices/knoxville.html");
