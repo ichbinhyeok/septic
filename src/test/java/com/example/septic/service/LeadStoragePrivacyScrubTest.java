@@ -75,7 +75,7 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains(requestId));
         assertTrue(storedRequest.contains("123 Private Lane"));
         assertTrue(storedRequest.contains("taylor@example.com"));
-        assertTrue(storedRequest.contains("2026-09-05-record-help-v1"));
+        assertTrue(storedRequest.contains("2026-09-06-record-help-v2"));
         assertTrue(storedRequest.contains("septic_record_help_beta"));
 
         Path eventFile;

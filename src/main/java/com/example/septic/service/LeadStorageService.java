@@ -345,7 +345,7 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", "2026-09-05-record-help-v1"
+                "languageVersion", "2026-09-06-record-help-v2"
         );
 
         Map<String, Object> payload = new LinkedHashMap<>();

@@ -96,14 +96,14 @@ transaction:
 2. `record_help_cta_clicked`
 3. `record_help_form_viewed`
 4. `record_help_form_started`
-5. `record_help_stage_selected`
-6. `record_help_request_submitted`
+5. `record_help_request_submitted`
 
 `record_help_form_validation_error` is diagnostic and should not be treated as
-a conversion. Break the funnel down by `source_context`, `request_type`, and
-`cta_variant`. Use `transaction_intent` and `process_stage` only after the user
-selects a stage; those values contain no property or contact details. Header and
-footer links emit clicks but are excluded from CTA impression counts so a global
-navigation item cannot inflate meaningful offer exposure. `invalid_count` is
-the only form-error detail sent to GA4. Property and contact values are never
-included in these browser events.
+a conversion. `record_help_stage_selected` is an optional qualification event,
+not a required funnel step. Break the funnel down by `source_context`,
+`request_type`, and `cta_variant`. Use `transaction_intent` and `process_stage`
+only after the user selects a stage; those values contain no property or contact
+details. Header and footer links emit clicks but are excluded from CTA impression
+counts so a global navigation item cannot inflate meaningful offer exposure.
+`invalid_count` is the only form-error detail sent to GA4. Property and contact
+values are never included in these browser events.

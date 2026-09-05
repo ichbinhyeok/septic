@@ -322,6 +322,11 @@
   .closing-risk-beta-copy h2 { max-width: 15ch; }
   .closing-risk-beta-copy__privacy { margin-top: 22px; padding: 16px 18px; border-left: 3px solid var(--accent); background: var(--accent-pale); color: var(--ink-soft); font-size: 1rem; }
   .closing-risk-beta-panel { padding: clamp(22px, 4vw, 36px); border: 1px solid var(--line-dark); background: var(--surface); }
+  .record-help-assurance { display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, .52fr); gap: 22px; margin: 0 0 26px; padding: 0 0 24px; border-bottom: 1px solid var(--line-dark); }
+  .record-help-assurance ul { display: grid; gap: 7px; margin: 12px 0 0; padding-left: 20px; color: var(--ink-soft); }
+  .record-help-assurance p { align-self: center; margin: 0; padding-left: 18px; border-left: 3px solid var(--accent); color: var(--ink-soft); }
+  .record-help-assurance p strong, .record-help-assurance p span { display: block; }
+  .record-help-assurance p strong { margin-bottom: 5px; color: var(--ink); }
   .closing-risk-beta-form { grid-template-columns: 1fr; }
   .closing-risk-beta-form > * { min-width: 0; }
   .closing-risk-beta-form .button { width: 100%; }
@@ -800,6 +805,8 @@
     .county-acquisition-handoff { padding: 22px 0 0; border-top: 1px solid var(--line); border-left: 0; }
   }
   @media (max-width: 720px) {
+    .record-help-assurance { grid-template-columns: 1fr; gap: 18px; }
+    .record-help-assurance p { padding: 14px 0 0; border-top: 1px solid var(--line); border-left: 0; }
     .sc-official-search__grid { grid-template-columns: 1fr; gap: 18px; }
     .sc-official-search .button { width: 100%; justify-content: center; }
     .nc-priority-routes { padding-block: 24px; }

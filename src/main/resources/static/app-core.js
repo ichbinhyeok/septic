@@ -478,8 +478,7 @@
         if (stage instanceof HTMLSelectElement && transactionDetails instanceof HTMLDetailsElement) {
             const syncTransactionDetails = (trackSelection) => {
                 const hasTransaction = stage.value !== "" && stage.value !== "researching";
-                if (hasTransaction) transactionDetails.open = true;
-                if (stage.value === "researching") transactionDetails.open = false;
+                transactionDetails.open = hasTransaction;
                 if (trackSelection && stage.value !== "") {
                     emitGaEvent("record_help_stage_selected", {
                         source_context: getSourceContext(),

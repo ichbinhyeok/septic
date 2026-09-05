@@ -19,8 +19,7 @@ public class ClosingRiskCheckForm {
     @Size(max = 160, message = "Email must be 160 characters or fewer.")
     private String email;
 
-    @NotBlank(message = "Choose where you are in the process.")
-    @Pattern(regexp = "researching|buyer|seller|agent|other", message = "Choose a valid stage.")
+    @Pattern(regexp = "^$|researching|buyer|seller|agent|other", message = "Choose a valid stage.")
     private String transactionRole;
 
     @NotBlank(message = "Property address is required.")

@@ -81,6 +81,9 @@ public class ClosingRiskNotificationService {
     }
 
     private String transactionSuffix(ClosingRiskCheckForm form) {
+        if (form.getTransactionRole() == null || form.getTransactionRole().isBlank()) {
+            return "";
+        }
         if ("researching".equals(form.getTransactionRole())) {
             return " — research";
         }

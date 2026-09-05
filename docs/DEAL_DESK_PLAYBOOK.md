@@ -94,7 +94,8 @@ After 100 first messages:
 
 ## Non-goals for this 21-day test
 
-- No public property-address intake form.
+- No additional Deal Desk-specific public address form; the separate public
+  Record Help beta remains available for consented intake.
 - No widget, embed, login, CRM, payment flow, or shareable result page.
 - No automated email sequences or automatic replies.
 - No permit decision, legal judgment, inspection result, or engineering advice.

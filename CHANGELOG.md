@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.9.0 - 2026-09-06
+
+### Changed
+
+- Made the process-stage qualifier optional so visitors can request record-path help without presenting themselves as an active buyer, seller, or agent.
+- Added a concrete pre-submit preview of the reply: likely records office, exact document to request, official request link, and no-record fallback.
+- Set the expectation that manually reviewed replies are normally sent within 1–2 business days and clarified that requests are not added to a newsletter.
+- Updated stored request language metadata and Gmail subjects so an omitted process stage is not mislabeled as a transaction.
+
+### Fixed
+
+- Closing the process-stage selection now also closes transaction-only details while still rejecting unknown submitted stage values.
+- Refreshed the Massachusetts and North Carolina official-source reviews required by the publication-health gate, including the current Massachusetts Title 5 regulation URL.
+
 ## 0.0.8.0 - 2026-09-05
 
 ### Changed

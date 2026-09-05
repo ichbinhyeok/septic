@@ -170,6 +170,17 @@
                 </div>
 
                 <div class="closing-risk-beta-panel">
+                    <div class="record-help-assurance" aria-label="What your reply will include">
+                        <div>
+                            <span class="eyebrow">Your reply will include</span>
+                            <ul>
+                                <li>The likely office or records desk</li>
+                                <li>The exact file or document to request</li>
+                                <li>The official request link and a fallback if no record appears</li>
+                            </ul>
+                        </div>
+                        <p><strong>Human-reviewed</strong><span>We aim to reply by email within 1–2 business days.</span></p>
+                    </div>
                     @if (closingRiskRequestId != null)
                         <div class="form-status form-status--success"
                              role="status"
@@ -179,7 +190,7 @@
                              data-ga-param-request-type="record_help_beta"
                              data-ga-param-source-context="${closingRiskSuccessSourceContext}">
                             <strong>Your record question is in.</strong>
-                            <p>Your reference is ${closingRiskRequestId}. We’ll reply by email after checking the likely public-record path. If you marked an active transaction, we’ll also identify the next closing-risk question.</p>
+                            <p>Your reference is ${closingRiskRequestId}. We aim to reply by email within 1–2 business days after checking the likely public-record path. If you marked an active transaction, we’ll also identify the next closing-risk question.</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
@@ -226,15 +237,16 @@
                                 </select>
                             </label>
                             <label class="field--full">
-                                <span>Where are you in the process?</span>
-                                <select name="transactionRole" required data-record-help-stage>
-                                    <option value="">Choose one</option>
+                                <span>Where are you in the process? <small>(optional)</small></span>
+                                <select name="transactionRole" data-record-help-stage>
+                                    <option value="">Choose if relevant</option>
                                     <option value="researching" selected="${"researching".equals(closingRiskCheckForm.getTransactionRole())}">Just researching the property or records</option>
                                     <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
                                     <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
                                     <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
                                     <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other transaction professional</option>
                                 </select>
+                                <small>This helps us tailor the reply but is not required.</small>
                             </label>
                         </div>
                         <details class="closing-risk-optional" data-record-help-transaction-details>
@@ -275,7 +287,7 @@
                             <span>I agree that SepticPath may store these property and contact details and email them to its operator to help identify the relevant septic record path and follow up about a transaction-related file gap when applicable. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
                         </label>
                         <button class="button button--primary" type="submit">Ask for record-path help</button>
-                        <p class="form-note">Free beta requests are reviewed manually. We’ll point to the likely public-record route; the local office still determines whether a record exists and what it means.</p>
+                        <p class="form-note">Free beta requests are reviewed manually and are not added to a newsletter. The local office still determines whether a record exists and what it means.</p>
                     </form>
                 </div>
             </div>
