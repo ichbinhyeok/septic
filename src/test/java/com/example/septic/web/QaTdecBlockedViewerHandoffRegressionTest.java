@@ -14,13 +14,15 @@ class QaTdecBlockedViewerHandoffRegressionTest {
     // Found by /qa on 2026-08-06.
     // Report: .gstack/qa-reports/qa-report-septicpath-human-intent-2026-08-06.md
     @Test
-    void makesTheOfficialViewerPrimaryAndKeepsTheFieldOfficeFallback() throws IOException {
+    void makesTheWorkingFieldOfficePrimaryAndKeepsTheViewerOptional() throws IOException {
         String script = Files.readString(Path.of("src/main/resources/static/tdec-records.js"));
 
-        assertTrue(script.contains("title: \"Search the official TDEC SSDS records\""));
-        assertTrue(script.contains("url: TDEC_VIEWER"));
-        assertTrue(script.contains("context: \"tdec_ssds_record_search\""));
-        assertTrue(script.contains("Contact ${data.county.fieldOfficeName} if no file appears"));
-        assertTrue(script.contains("\"tdec_field_office_request\", data"));
+        assertTrue(script.contains("title: `Contact the ${countyData.fieldOfficeName} Environmental Field Office`"));
+        assertTrue(script.contains("url: countyData.fieldOfficeUrl"));
+        assertTrue(script.contains("context: \"tdec_field_office_primary\""));
+        assertTrue(script.contains("Try the official TDEC online viewer"));
+        assertTrue(script.contains("Verify the current viewer on TN.gov"));
+        assertTrue(script.contains("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"));
+        assertTrue(script.contains("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html"));
     }
 }

@@ -43,9 +43,10 @@ class TdecRecordsInputTrustRegressionTest {
     }
 
     @Test
-    void usesTheOfficialViewerForRecordsAndSeparateServicesForStatusOrRepair() throws IOException {
+    void usesTheFieldOfficeForRecordsAndSeparateServicesForStatusOrRepair() throws IOException {
         String script = Files.readString(TDEC_SCRIPT);
-        assertTrue(script.contains("Open official TDEC SSDS record search"));
+        assertTrue(script.contains("Open ${countyData.fieldOfficeName} Field Office"));
+        assertTrue(script.contains("Try the official TDEC online viewer"));
         assertTrue(script.contains("Open TDEC Online Services"));
         assertTrue(script.contains("Open TDEC repair services"));
         assertTrue(script.contains("A 403 or failed page does not say anything about this property"));

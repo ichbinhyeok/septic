@@ -104,7 +104,7 @@ public class SiteController {
     private static final String TENNESSEE_SSDS_PROGRAM_URL =
             "https://www.tn.gov/environment/permits/water/septic-systems-permits.html";
     private static final String TENNESSEE_SSDS_RECORD_SEARCH_URL =
-            "https://tdec.tn.gov/document-viewer/search/stp";
+            "https://dataviewers.tdec.tn.gov/dataviewers/f?p=175";
     private static final String TENNESSEE_PUBLIC_RECORDS_URL =
             "https://www.tn.gov/environment/contacts/public-records-request.html";
     private static final String TENNESSEE_FIELD_OFFICES_URL =
@@ -2430,7 +2430,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "sevier" -> "https://www.seviercountytn.gov/government/departments/services/environmental_health.php";
             case "shelby" -> "https://www.shelbytnhealth.com/182/Septic-Tank-Permitting-Process";
             case "williamson" -> "https://www.williamsoncounty-tn.gov/153/Forms-Hand-outs";
-            default -> "https://tdec.tn.gov/document-viewer/search/stp";
+            default -> TENNESSEE_SSDS_RECORD_SEARCH_URL;
         };
     }
 
@@ -2460,6 +2460,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "sevier" -> "Use the county Environmental Health office for existing local records and septic services.";
             case "shelby" -> "Use the Shelby County Water Quality and Septic Tank Program or its public-records route.";
             case "williamson" -> "Use the Inspection Duplication of Records Request under Sewage Disposal forms.";
+            case "roane" -> "Roane County publishes a septic line at 865-594-0981, option 0. The Knoxville field office also lists 865-594-6035 for septic assistance.";
             default -> "Search by county and the strongest available property clue. A blank result is not proof that no file exists.";
         };
     }

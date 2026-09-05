@@ -5,7 +5,8 @@
     if (!(desk instanceof HTMLElement)) return;
 
     const SESSION_KEY = "septicpath:tdec-route:v2";
-    const TDEC_VIEWER = "https://tdec.tn.gov/document-viewer/search/stp";
+    const TDEC_VIEWER = "https://dataviewers.tdec.tn.gov/dataviewers/f?p=175";
+    const TDEC_VIEWERS_PAGE = "https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html";
     const TDEC_SERVICES = "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
     const TDEC_PUBLIC_RECORDS = "https://www.tn.gov/environment/contacts/public-records-request.html";
     const TPAD = "https://assessment.cot.tn.gov/TPAD";
@@ -396,12 +397,12 @@
             };
         }
         return {
-            title: "Search the official TDEC SSDS records",
-            url: TDEC_VIEWER,
-            explanation: "TDEC manages existing septic records for this county. Start with the statewide SSDS search using the property address, parcel, prior owner, subdivision, or permit number.",
-            hint: `If the search is empty or unavailable, contact the ${countyData.fieldOfficeName} Environmental Field Office for archived and pre-digital files.`,
-            label: "Open official TDEC SSDS record search",
-            context: "tdec_ssds_record_search"
+            title: `Contact the ${countyData.fieldOfficeName} Environmental Field Office`,
+            url: countyData.fieldOfficeUrl,
+            explanation: "TDEC's app gateways currently return 403 before the record search loads for some visitors. Start with the responsible field office so the blocked viewer does not become a dead end.",
+            hint: countyData.recordsHint || "Ask the office to search the property address, parcel, prior owner, subdivision, permit number, and archived or pre-digital SSDS files.",
+            label: `Open ${countyData.fieldOfficeName} Field Office`,
+            context: "tdec_field_office_primary"
         };
     }
 
@@ -470,8 +471,8 @@
             countyKey: `TN::${data.county.key}`, purpose: data.purpose,
             officeLabel: data.county.contract ? data.county.name : data.county.fieldOfficeName,
             routePath: window.location.pathname,
-            routeMode: data.county.contract ? "contract_county" : "official_viewer",
-            routeReliability: data.county.contract ? "county_owned" : "viewer_primary",
+            routeMode: data.county.contract ? "contract_county" : data.purpose === "records" ? "field_office_request" : "official_service",
+            routeReliability: data.county.contract ? "county_owned" : data.purpose === "records" ? "office_primary" : "official_service",
             officialRoute: route.url,
             requestRoute: data.county.contract ? data.county.recordsUrl : data.county.fieldOfficeUrl,
             requiredIdentifiers: ["Property address", "Parcel, prior owner, subdivision, or permit number if available"],
@@ -488,7 +489,8 @@
         routeHint.textContent = route.hint;
         routeActions.replaceChildren(makeOfficialLink(route, data));
         if (!data.county.contract && data.purpose === "records") {
-            routeActions.append(makeSecondaryLink(`Contact ${data.county.fieldOfficeName} if no file appears`, data.county.fieldOfficeUrl, "tdec_field_office_request", data));
+            routeActions.append(makeSecondaryLink("Try the official TDEC online viewer", TDEC_VIEWER, "tdec_ssds_record_search_restricted", data));
+            routeActions.append(makeSecondaryLink("Verify the current viewer on TN.gov", TDEC_VIEWERS_PAGE, "tdec_data_viewers_directory", data));
         }
         if (!data.parcel) routeActions.append(makeSecondaryLink("Need a parcel ID? Open Tennessee Property Assessment Data", TPAD, "tn_property_assessment", data));
 

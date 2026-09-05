@@ -89,7 +89,14 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .getAttribute("value")).isEqualTo(MATCHED_ADDRESS);
             assertThat(driver.findElement(By.cssSelector("[data-tdec-result-title]"))
                     .getText()).isEqualTo("Roane County record route");
-            assertThat(driver.findElements(By.linkText("Contact Knoxville if no file appears"))).hasSize(1);
+            WebElement officeRoute = driver.findElement(By.linkText("Open Knoxville Field Office"));
+            assertThat(officeRoute.getAttribute("href"))
+                    .isEqualTo("https://www.tn.gov/environment/contacts/field-offices/knoxville.html");
+            WebElement viewerRoute = driver.findElement(By.linkText("Try the official TDEC online viewer"));
+            assertThat(viewerRoute.getAttribute("href"))
+                    .isEqualTo("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175");
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-route-hint]")).getText())
+                    .contains("865-594-0981", "option 0", "865-594-6035");
 
             driver.get(statePage);
             new Select(driver.findElement(By.cssSelector("[data-address-record-finder-purpose]")))

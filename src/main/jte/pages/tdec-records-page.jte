@@ -14,16 +14,16 @@
                 <div class="tdec-desk__hero-copy">
                     <span class="eyebrow">Tennessee septic records</span>
                     <h1 id="tdec-page-title">Search TDEC septic permits and Tennessee SSDS records</h1>
-                    <p>Open Tennessee's official record search now, or choose a county to find the correct local office and missing-file fallback.</p>
+                    <p>Open Tennessee's official data-viewer directory, or choose a county to get a working office route when the TDEC app returns 403.</p>
                     <div class="tdec-desk__hero-actions">
                         <a class="button button--primary"
-                           href="https://tdec.tn.gov/document-viewer/search/stp"
+                           href="https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html"
                            target="_blank"
                            rel="noreferrer"
                            data-tdec-hero-official
                            data-track-click="official_source"
                            data-track-source-context="tdec_hero_official_search"
-                           data-track-target-type="official_search">Open official TDEC SSDS record search</a>
+                           data-track-target-type="official_source">Open official TDEC data viewers</a>
                         <a class="button button--secondary"
                            href="/septic-record-finder/"
                            data-track-click="internal_handoff"
@@ -205,7 +205,8 @@
                         <p>TDEC’s SSDS Record Search is the statewide online record route. Blount, Davidson, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby, and Williamson administer their own septic programs. TDEC’s June 2026 assistance map is used for the remaining county-to-field-office routing. A 403 is an access failure, not evidence that a property has no record.</p>
                         <nav aria-label="Tennessee official sources">
                             <a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html" target="_blank" rel="noreferrer">TDEC septic systems program</a>
-                            <a href="https://tdec.tn.gov/document-viewer/search/stp" target="_blank" rel="noreferrer">SSDS Record Search</a>
+                            <a href="https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html" target="_blank" rel="noreferrer">TDEC Data and Map Viewers</a>
+                            <a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175" target="_blank" rel="noreferrer">Groundwater Protection (Septic) Permits Data Viewer</a>
                             <a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer">Environmental Field Offices</a>
                             <a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer">Formal public-records form</a>
                         </nav>
