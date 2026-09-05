@@ -1063,6 +1063,20 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void recordHelpBetaStillRejectsAnUnknownProcessStage() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("email", "researcher@example.com")
+				.param("transactionRole", "unknown-stage")
+				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
+				.param("stateCode", "TN")
+				.param("recordStatus", "route_unknown")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted details.")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-closing-risk-request-success"))));
+	}
+
+	@Test
 	void bedroomPermitCheckerRendersAndEntersSitemap() throws Exception {
 		mockMvc.perform(get("/septic-bedroom-permit-checker/"))
 				.andExpect(status().isOk())
