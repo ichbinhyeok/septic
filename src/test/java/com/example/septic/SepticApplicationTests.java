@@ -949,6 +949,9 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Self-serve alternative")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-download")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-help-request-form")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your reply will include")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("within 1–2 business days")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<select name=\"transactionRole\" data-record-help-stage>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("closing-risk-optional")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask for record-path help")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Do not submit Social Security numbers")))
@@ -1044,6 +1047,19 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your record question is in.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-ga-event=\"record_help_request_submitted\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-ga-param-source-context=\"tdec_quick_help_record_help\"")));
+	}
+
+	@Test
+	void recordHelpBetaAcceptsRequestWithoutOptionalProcessStage() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("email", "researcher@example.com")
+				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
+				.param("stateCode", "TN")
+				.param("recordStatus", "route_unknown")
+				.param("sourceContext", "tdec_quick_help_record_help")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your record question is in.")));
 	}
 
 	@Test

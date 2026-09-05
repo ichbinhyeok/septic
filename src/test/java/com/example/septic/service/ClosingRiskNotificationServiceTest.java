@@ -55,6 +55,24 @@ class ClosingRiskNotificationServiceTest {
     }
 
     @Test
+    void doesNotLabelAnUnspecifiedProcessStageAsATransaction() {
+        JavaMailSender mailSender = mock(JavaMailSender.class);
+        ClosingRiskNotificationService service = new ClosingRiskNotificationService(
+                mailSender,
+                new ClosingRiskNotificationProperties("shinhyeok22@gmail.com", "shinhyeok22@gmail.com")
+        );
+        ClosingRiskCheckForm form = completedForm();
+        form.setTransactionRole(null);
+        form.setDeadline(null);
+
+        assertTrue(service.notifyOperator("request-optional-stage", form));
+
+        ArgumentCaptor<SimpleMailMessage> captor = ArgumentCaptor.forClass(SimpleMailMessage.class);
+        verify(mailSender).send(captor.capture());
+        assertEquals("[SepticPath record help] TN / conflicting", captor.getValue().getSubject());
+    }
+
+    @Test
     void reportsFailureWithoutLosingTheStoredRequestWhenGmailRejectsTheMessage() {
         JavaMailSender mailSender = mock(JavaMailSender.class);
         doThrow(new MailSendException("SMTP unavailable"))
