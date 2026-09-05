@@ -6,13 +6,11 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class ClosingRiskCheckForm {
-    @NotBlank(message = "Name is required.")
     @Size(max = 120, message = "Name must be 120 characters or fewer.")
     private String fullName;
 
@@ -21,8 +19,8 @@ public class ClosingRiskCheckForm {
     @Size(max = 160, message = "Email must be 160 characters or fewer.")
     private String email;
 
-    @NotBlank(message = "Choose your role in the transaction.")
-    @Pattern(regexp = "buyer|seller|agent|other", message = "Choose a valid role.")
+    @NotBlank(message = "Choose where you are in the process.")
+    @Pattern(regexp = "researching|buyer|seller|agent|other", message = "Choose a valid stage.")
     private String transactionRole;
 
     @NotBlank(message = "Property address is required.")
@@ -49,12 +47,15 @@ public class ClosingRiskCheckForm {
     private Integer permitBedrooms;
 
     @NotBlank(message = "Choose what is known about the septic file.")
-    @Pattern(regexp = "missing|partial|conflicting|unknown", message = "Choose a valid file status.")
+    @Pattern(regexp = "missing|route_unknown|request_unclear|partial|conflicting|unknown", message = "Choose a valid record problem.")
     private String recordStatus;
 
-    @NotNull(message = "Due-diligence or closing deadline is required.")
     @FutureOrPresent(message = "Deadline cannot be in the past.")
     private LocalDate deadline;
+
+    @Size(max = 120, message = "Source context must be 120 characters or fewer.")
+    @Pattern(regexp = "^$|[a-z0-9_-]+$", message = "Source context is invalid.")
+    private String sourceContext;
 
     @Size(max = 1200, message = "Notes must be 1,200 characters or fewer.")
     private String concern;
@@ -70,7 +71,7 @@ public class ClosingRiskCheckForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree that SepticPath may store these property and contact details and email them to its operator to prepare this free beta file check. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.";
+        return "I agree that SepticPath may store these property and contact details and email them to its operator to help identify the relevant septic record path and follow up about a transaction-related file gap when applicable. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.";
     }
 
     public String getFullNameValue() { return fullName == null ? "" : fullName; }
@@ -80,6 +81,7 @@ public class ClosingRiskCheckForm {
     public String getListingUrlValue() { return listingUrl == null ? "" : listingUrl; }
     public String getConcernValue() { return concern == null ? "" : concern; }
     public String getDeadlineValue() { return deadline == null ? "" : deadline.toString(); }
+    public String getSourceContextValue() { return sourceContext == null ? "" : sourceContext; }
     public String getListingBedroomsValue() { return listingBedrooms == null ? "" : listingBedrooms.toString(); }
     public String getPermitBedroomsValue() { return permitBedrooms == null ? "" : permitBedrooms.toString(); }
 
@@ -105,6 +107,8 @@ public class ClosingRiskCheckForm {
     public void setRecordStatus(String recordStatus) { this.recordStatus = recordStatus; }
     public LocalDate getDeadline() { return deadline; }
     public void setDeadline(LocalDate deadline) { this.deadline = deadline; }
+    public String getSourceContext() { return sourceContext; }
+    public void setSourceContext(String sourceContext) { this.sourceContext = sourceContext; }
     public String getConcern() { return concern; }
     public void setConcern(String concern) { this.concern = concern; }
     public boolean isConsentAccepted() { return consentAccepted; }

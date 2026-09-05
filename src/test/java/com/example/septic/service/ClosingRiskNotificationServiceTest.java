@@ -35,8 +35,9 @@ class ClosingRiskNotificationServiceTest {
         SimpleMailMessage message = captor.getValue();
         assertEquals("shinhyeok22@gmail.com", message.getTo()[0]);
         assertEquals("taylor@example.com", message.getReplyTo());
-        assertTrue(message.getSubject().contains("TN / Knox County"));
+        assertTrue(message.getSubject().contains("TN / conflicting"));
         assertTrue(message.getText().contains("Request ID: request-123"));
+        assertTrue(message.getText().contains("Source context: tdec_quick_help_record_help"));
         assertTrue(message.getText().contains("123 Private Lane"));
         assertTrue(message.getText().contains("Deadline:"));
     }
@@ -82,6 +83,7 @@ class ClosingRiskNotificationServiceTest {
         form.setDeadline(LocalDate.now().plusDays(6));
         form.setConcern("Need to resolve the bedroom mismatch.");
         form.setConsentAccepted(true);
+        form.setSourceContext("tdec_quick_help_record_help");
         return form;
     }
 }

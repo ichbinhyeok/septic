@@ -388,28 +388,36 @@
         });
     }
 
-    function setupClosingRiskFunnel() {
+    function setupRecordHelpFunnel() {
         const getSourceContext = () => {
             try {
-                return window.sessionStorage.getItem("septicpath_closing_risk_source") || "direct";
+                return window.sessionStorage.getItem("septicpath_record_help_source") || "direct";
             } catch (_error) {
                 return "direct";
             }
         };
         const viewedSources = new Set();
-        const ctas = document.querySelectorAll("[data-closing-risk-cta]");
+        const ctas = document.querySelectorAll("[data-record-help-cta]");
 
         document.addEventListener("click", (event) => {
             if (!(event.target instanceof Element)) return;
-            const cta = event.target.closest("[data-closing-risk-cta]");
+            const cta = event.target.closest("[data-record-help-cta], [data-record-help-link]");
             if (!(cta instanceof HTMLAnchorElement)) return;
             const sourceContext = cta.dataset.trackSourceContext || "unknown";
             try {
-                window.sessionStorage.setItem("septicpath_closing_risk_source", sourceContext);
+                window.sessionStorage.setItem("septicpath_record_help_source", sourceContext);
             } catch (_error) {
                 // Attribution is helpful, but navigation must never depend on storage.
             }
-            emitGaEvent("closing_risk_cta_clicked", { source_context: sourceContext, request_type: "free_beta" });
+            const sourceInput = document.querySelector("[data-record-help-source-context]");
+            if (sourceInput instanceof HTMLInputElement) {
+                sourceInput.value = sourceContext;
+            }
+            emitGaEvent("record_help_cta_clicked", {
+                source_context: sourceContext,
+                request_type: "record_help_beta",
+                cta_variant: "task_adjacent_v1"
+            });
         });
 
         if ("IntersectionObserver" in window && ctas.length > 0) {
@@ -419,7 +427,11 @@
                     const sourceContext = entry.target.dataset.trackSourceContext || "unknown";
                     if (!viewedSources.has(sourceContext)) {
                         viewedSources.add(sourceContext);
-                        emitGaEvent("closing_risk_cta_viewed", { source_context: sourceContext, request_type: "free_beta" });
+                        emitGaEvent("record_help_cta_viewed", {
+                            source_context: sourceContext,
+                            request_type: "record_help_beta",
+                            cta_variant: "task_adjacent_v1"
+                        });
                     }
                     ctaObserver.unobserve(entry.target);
                 });
@@ -427,15 +439,24 @@
             ctas.forEach((cta) => ctaObserver.observe(cta));
         }
 
-        const form = document.querySelector("[data-closing-risk-request-form]");
+        const form = document.querySelector("[data-record-help-request-form]");
         if (!(form instanceof HTMLFormElement)) return;
+
+        const sourceInput = form.querySelector("[data-record-help-source-context]");
+        if (sourceInput instanceof HTMLInputElement) {
+            sourceInput.value = getSourceContext();
+        }
 
         let formViewed = false;
         if ("IntersectionObserver" in window) {
             const formObserver = new IntersectionObserver((entries) => {
                 if (formViewed || !entries.some((entry) => entry.isIntersecting)) return;
                 formViewed = true;
-                emitGaEvent("closing_risk_form_viewed", { source_context: getSourceContext(), request_type: "free_beta" });
+                emitGaEvent("record_help_form_viewed", {
+                    source_context: getSourceContext(),
+                    request_type: "record_help_beta",
+                    cta_variant: "task_adjacent_v1"
+                });
                 formObserver.disconnect();
             }, { threshold: 0.25 });
             formObserver.observe(form);
@@ -445,17 +466,41 @@
         form.addEventListener("input", (event) => {
             if (formStarted || !(event.target instanceof HTMLElement) || event.target.getAttribute("name") === "website") return;
             formStarted = true;
-            emitGaEvent("closing_risk_form_started", { source_context: getSourceContext(), request_type: "free_beta" });
+            emitGaEvent("record_help_form_started", {
+                source_context: getSourceContext(),
+                request_type: "record_help_beta",
+                cta_variant: "task_adjacent_v1"
+            });
         });
+
+        const stage = form.querySelector("[data-record-help-stage]");
+        const transactionDetails = form.querySelector("[data-record-help-transaction-details]");
+        if (stage instanceof HTMLSelectElement && transactionDetails instanceof HTMLDetailsElement) {
+            const syncTransactionDetails = (trackSelection) => {
+                const hasTransaction = stage.value !== "" && stage.value !== "researching";
+                if (hasTransaction) transactionDetails.open = true;
+                if (stage.value === "researching") transactionDetails.open = false;
+                if (trackSelection && stage.value !== "") {
+                    emitGaEvent("record_help_stage_selected", {
+                        source_context: getSourceContext(),
+                        request_type: "record_help_beta",
+                        process_stage: stage.value,
+                        transaction_intent: hasTransaction ? "active" : "research"
+                    });
+                }
+            };
+            syncTransactionDetails(false);
+            stage.addEventListener("change", () => syncTransactionDetails(true));
+        }
 
         let validationQueued = false;
         form.addEventListener("invalid", () => {
             if (validationQueued) return;
             validationQueued = true;
             window.queueMicrotask(() => {
-                emitGaEvent("closing_risk_form_validation_error", {
+                emitGaEvent("record_help_form_validation_error", {
                     source_context: getSourceContext(),
-                    request_type: "free_beta",
+                    request_type: "record_help_beta",
                     invalid_count: form.querySelectorAll(":invalid").length
                 });
                 validationQueued = false;
@@ -489,7 +534,7 @@
     setupStickyMobileCtas();
     trackGaEvents();
     setupPrimaryFunnelEvents();
-    setupClosingRiskFunnel();
+    setupRecordHelpFunnel();
 
     document.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) {

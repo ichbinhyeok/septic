@@ -188,7 +188,7 @@
                     <h2 id="tdec-help-title">A record search cannot prove current system condition</h2>
                 </header>
                 <div class="tdec-quick-help__rows">
-                    <a href="/offer-prep-septic-file-check/#free-closing-risk-check" data-closing-risk-cta data-track-click="nav" data-track-source-context="tdec_quick_help_closing_risk" data-track-target-type="lead_form"><strong>Under contract?</strong><span>Request a free human review of what is confirmed, missing, or conflicting before your deadline.</span></a>
+                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_quick_help_record_help" data-track-target-type="lead_form"><strong>Search returned nothing?</strong><span>Send the address and we’ll help identify the Tennessee office and record to request.</span></a>
                     <a href="/septic-bedroom-permit-checker/"><strong>Need approved bedrooms?</strong><span>Use an official approval or Inspection Letter, not a listing claim.</span></a>
                     <a href="/septic-backup-slow-drains/"><strong>Backup or several slow drains?</strong><span>Reduce water use and prepare the symptom details a septic service provider needs.</span></a>
                     <a href="/wet-yard-over-septic-drain-field/"><strong>Wet yard, odor, or surfacing wastewater?</strong><span>See when a visible symptom points beyond routine pumping.</span></a>

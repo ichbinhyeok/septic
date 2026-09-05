@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RecordsFirstProductRegressionTest {
 
     @Test
-    void navigationLeadsWithFindReviewAndDecision() throws IOException {
+    void navigationLeadsWithFindReviewAndRecordHelp() throws IOException {
         String layout = Files.readString(Path.of("src/main/jte/layouts/app.jte"));
         int find = layout.indexOf("Find records</a>");
         int review = layout.indexOf("Review a file</a>");
-        int decision = layout.indexOf("Closing Risk Check</a>");
+        int decision = layout.indexOf("Record help</a>");
         assertTrue(find > 0 && review > find && decision > review);
         assertTrue(layout.contains("/record-task.js"));
     }

@@ -316,7 +316,7 @@
   /* Specialized interactive tools */
   .bedroom-checker__fields, .bedroom-checker__facts, .bedroom-checker__signals, .record-document form,
   .records-request-builder__controls, .quote-form, .alabama-perc-scope__form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .closing-risk-beta-section { border-block: 1px solid var(--line-dark); background: var(--paper); }
+  .closing-risk-beta-section { scroll-margin-top: 84px; border-block: 1px solid var(--line-dark); background: var(--paper); }
   .closing-risk-beta-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr); gap: clamp(32px, 6vw, 76px); align-items: start; }
   .closing-risk-beta-copy { position: sticky; top: 96px; }
   .closing-risk-beta-copy h2 { max-width: 15ch; }
@@ -325,6 +325,7 @@
   .closing-risk-beta-form { grid-template-columns: 1fr; }
   .closing-risk-beta-form > * { min-width: 0; }
   .closing-risk-beta-form .button { width: 100%; }
+  .closing-risk-beta-form label > small { color: var(--muted); font-size: .76rem; font-weight: 500; line-height: 1.45; }
   .closing-risk-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
   .closing-risk-cta-section { padding-block: clamp(20px, 4vw, 42px); }
   .closing-risk-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(24px, 5vw, 64px); align-items: center; padding: clamp(24px, 4vw, 42px); border: 1px solid var(--line-dark); border-left: 6px solid var(--accent); background: var(--surface); }
@@ -346,6 +347,7 @@
   .offer-prep-workspace > .offer-prep-result { margin-bottom: 36px; }
   .closing-risk-optional { border: 1px solid var(--line); background: var(--paper); }
   .closing-risk-optional > summary { padding: 14px 16px; cursor: pointer; font-weight: 800; }
+  .closing-risk-optional[open] > summary { color: var(--accent-dark); background: var(--accent-pale); }
   .closing-risk-optional > summary span { color: var(--muted); font-weight: 500; }
   .closing-risk-optional > .field-grid { padding: 18px; border-top: 1px solid var(--line); }
   .offer-prep-transfer-aftercare { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; margin-top: 24px; color: var(--muted); }

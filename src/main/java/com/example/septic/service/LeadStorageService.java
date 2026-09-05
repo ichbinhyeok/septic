@@ -345,14 +345,15 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", "2026-08-31-v1"
+                "languageVersion", "2026-09-05-record-help-v1"
         );
 
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("requestId", requestId);
         payload.put("submittedAt", now.toString());
         payload.put("sourcePage", sourcePage);
-        payload.put("requestType", "septic_closing_risk_check_beta");
+        payload.put("requestType", "septic_record_help_beta");
+        payload.put("sourceContext", safeValue(form.getSourceContext(), 120));
         payload.put("contact", orderedMap(
                 "fullName", safeValue(form.getFullName(), 120),
                 "email", safeValue(form.getEmail(), 160),
@@ -375,10 +376,11 @@ public class LeadStorageService {
         try {
             writeClosingRiskRequestFile(payload, requestId, now);
             appendEvent(orderedMap(
-                    "eventType", "closing_risk_request_submitted",
+                    "eventType", "record_help_request_submitted",
                     "occurredAt", now.toString(),
                     "requestId", requestId,
                     "sourcePage", sourcePage,
+                    "sourceContext", safeValue(form.getSourceContext(), 120),
                     "stateCode", safeValue(form.getStateCode(), 2),
                     "transactionRole", safeValue(form.getTransactionRole(), 20),
                     "recordStatus", safeValue(form.getRecordStatus(), 24),

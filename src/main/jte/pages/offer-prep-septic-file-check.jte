@@ -7,6 +7,7 @@
 @param ClosingRiskCheckForm closingRiskCheckForm
 @param boolean closingRiskHasErrors = false
 @param String closingRiskRequestId = null
+@param String closingRiskSuccessSourceContext = "direct"
 @param String closingRiskMinimumDeadline
 @param java.util.List<StateProfile> states = java.util.List.of()
 
@@ -15,15 +16,15 @@
         <section class="section section--heroish offer-prep-hero">
             <div class="container offer-prep-hero__grid">
                 <div>
-                    <span class="eyebrow">Septic closing risk check</span>
-                    <h1>Under contract on a septic home? Find what must be confirmed before your deadline.</h1>
-                    <p class="lede">Compare the listing story with the available septic file, identify missing or conflicting evidence, and prepare the exact questions that keep due diligence moving.</p>
+                    <span class="eyebrow">Free septic record help</span>
+                    <h1>Can’t find the septic file? We’ll help identify the right office and record to request.</h1>
+                    <p class="lede">Send the property address and tell us where the search stopped. We’ll reply with the most likely public-record path—and flag the next file question if a live transaction is involved.</p>
                     <div class="hero__actions offer-prep-hero__actions">
-                        <a class="button button--primary" href="#free-closing-risk-check" data-closing-risk-cta data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="lead_form">Request a free manual review</a>
+                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="lead_form">Get help finding the file</a>
                         <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Use the self-serve check</a>
                     </div>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        <span><strong>Free beta</strong> for the first 10 qualified requests</span>
+                        <span><strong>Free beta</strong> for early requests</span>
                         <span><strong>Human reply</strong> by email</span>
                         <span>No payment details requested</span>
                     </div>
@@ -32,7 +33,7 @@
                     <span class="pill">Not a permit decision</span>
                     <strong>Use the official file before you negotiate the septic story.</strong>
                     <p>This tool identifies a records route and prepares a factual request. The local office and the official file decide what the property supports.</p>
-                    <p class="offer-prep-hero__transfer-note">For a live transaction, start with the manual review below. If you only need a template, use the self-serve check instead.</p>
+                    <p class="offer-prep-hero__transfer-note">Start with record-path help below. If a missing or conflicting file is holding up a live transaction, your answers also tell us whether a closing-risk review is the useful next step.</p>
                 </aside>
             </div>
         </section>
@@ -154,18 +155,18 @@
             </div>
         </section>
 
-        <section class="section closing-risk-beta-section" id="free-closing-risk-check" aria-labelledby="closing-risk-beta-heading">
+        <section class="section closing-risk-beta-section" id="record-help" aria-labelledby="closing-risk-beta-heading">
             <div class="container closing-risk-beta-grid">
                 <div class="closing-risk-beta-copy">
-                    <span class="eyebrow">Free beta · first 10 qualified requests</span>
-                    <h2 id="closing-risk-beta-heading">Ask for a manual closing-risk review.</h2>
-                    <p class="lede">If a real transaction has a deadline, send the property facts that are blocking the next decision. We will compare the listing details with the available file path and reply with what is confirmed, missing, or conflicting.</p>
+                    <span class="eyebrow">Start with the problem you have now</span>
+                    <h2 id="closing-risk-beta-heading">Tell us where the record search got stuck.</h2>
+                    <p class="lede">You do not need to be under contract. Send the address, state, and the point where the search stopped. We’ll use those facts to identify the likely office, record, or request language.</p>
                     <ol class="detail-list">
-                        <li><strong>One-page readiness brief:</strong> listing facts, permit evidence, and unresolved gaps.</li>
-                        <li><strong>Deadline-based next steps:</strong> who to contact and what to request before due diligence ends.</li>
-                        <li><strong>No false certification:</strong> this is document preparation, not an inspection, engineering opinion, or permit decision.</li>
+                        <li><strong>Exact next route:</strong> the agency or records desk most likely to own the file.</li>
+                        <li><strong>What to request:</strong> the permit, layout, approval, or written no-record response that fits the situation.</li>
+                        <li><strong>Transaction handoff:</strong> when a deadline or conflict raises a closing question, we’ll say what a deeper file review would need.</li>
                     </ol>
-                    <p class="closing-risk-beta-copy__privacy">Unlike the self-serve tool above, this beta stores the submitted address and emails it to the SepticPath operator so a human review can be completed. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
+                    <p class="closing-risk-beta-copy__privacy">This beta stores the submitted address and emails it to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
                 </div>
 
                 <div class="closing-risk-beta-panel">
@@ -173,46 +174,31 @@
                         <div class="form-status form-status--success"
                              role="status"
                              data-closing-risk-request-success
-                             data-ga-event="closing_risk_request_submitted"
-                             data-ga-track-once="closing-risk-request:${closingRiskRequestId}"
-                             data-ga-param-request-type="free_beta">
-                            <strong>Request received.</strong>
-                            <p>Your reference is ${closingRiskRequestId}. We will reply by email after reviewing the property file path and deadline.</p>
+                             data-ga-event="record_help_request_submitted"
+                             data-ga-track-once="record-help-request:${closingRiskRequestId}"
+                             data-ga-param-request-type="record_help_beta"
+                             data-ga-param-source-context="${closingRiskSuccessSourceContext}">
+                            <strong>Your record question is in.</strong>
+                            <p>Your reference is ${closingRiskRequestId}. We’ll reply by email after checking the likely public-record path. If you marked an active transaction, we’ll also identify the next closing-risk question.</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
                         <div class="form-status form-status--error" role="alert">
-                            <strong>Check the highlighted request details.</strong>
-                            <p>Use a real property, a current or future deadline, and complete contact information. All required fields and consent must be valid.</p>
+                            <strong>Check the highlighted details.</strong>
+                            <p>Use a real property address, valid email, and complete the required record-help fields and consent.</p>
                         </div>
                     @endif
 
-                    <form class="quote-form closing-risk-beta-form" method="post" action="/offer-prep-septic-file-check/#free-closing-risk-check" data-closing-risk-request-form>
+                    <form class="quote-form closing-risk-beta-form" method="post" action="/offer-prep-septic-file-check/#record-help" data-record-help-request-form>
                         <div class="closing-risk-honeypot" aria-hidden="true" hidden>
                             <label>Website<input type="text" name="website" value="${closingRiskCheckForm.getWebsite() == null ? "" : closingRiskCheckForm.getWebsite()}" tabindex="-1" autocomplete="off"></label>
                         </div>
+                        <input type="hidden" name="sourceContext" value="${closingRiskCheckForm.getSourceContextValue()}" data-record-help-source-context>
                         <div class="field-grid">
-                            <label>
-                                <span>Name</span>
-                                <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120" required>
-                            </label>
                             <label>
                                 <span>Email</span>
                                 <input type="email" name="email" value="${closingRiskCheckForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
-                            </label>
-                            <label>
-                                <span>Your role</span>
-                                <select name="transactionRole" required>
-                                    <option value="">Choose role</option>
-                                    <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
-                                    <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
-                                    <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
-                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other transaction professional</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Due-diligence or closing deadline</span>
-                                <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}" required>
+                                <small>We’ll send the record path here. No newsletter signup.</small>
                             </label>
                             <label class="field--full">
                                 <span>Property address</span>
@@ -227,20 +213,41 @@
                                     @endfor
                                 </select>
                             </label>
-                            <label class="field--full">
-                                <span>What is known about the septic file?</span>
+                            <label>
+                                <span>Where did the search stop?</span>
                                 <select name="recordStatus" required>
-                                    <option value="">Choose file status</option>
-                                    <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">No septic file was supplied</option>
-                                    <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">A partial permit, drawing, or report is available</option>
-                                    <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The listing and available records conflict</option>
-                                    <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">The seller says a file exists, but it has not been reviewed</option>
+                                    <option value="">Choose the closest match</option>
+                                    <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no septic record</option>
+                                    <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns the record</option>
+                                    <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
+                                    <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
+                                    <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
+                                    <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
+                                </select>
+                            </label>
+                            <label class="field--full">
+                                <span>Where are you in the process?</span>
+                                <select name="transactionRole" required data-record-help-stage>
+                                    <option value="">Choose one</option>
+                                    <option value="researching" selected="${"researching".equals(closingRiskCheckForm.getTransactionRole())}">Just researching the property or records</option>
+                                    <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
+                                    <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
+                                    <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
+                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other transaction professional</option>
                                 </select>
                             </label>
                         </div>
-                        <details class="closing-risk-optional">
-                            <summary>Add county or file details <span>(optional)</span></summary>
+                        <details class="closing-risk-optional" data-record-help-transaction-details>
+                            <summary>Add context for a faster answer <span>(optional)</span></summary>
                             <div class="field-grid">
+                                <label>
+                                    <span>Name</span>
+                                    <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120">
+                                </label>
+                                <label>
+                                    <span>Due-diligence or closing deadline</span>
+                                    <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
+                                </label>
                                 <label>
                                     <span>County</span>
                                     <input type="text" name="countyName" value="${closingRiskCheckForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
@@ -258,17 +265,17 @@
                                     <input type="number" name="permitBedrooms" value="${closingRiskCheckForm.getPermitBedroomsValue()}" min="1" max="20">
                                 </label>
                                 <label class="field--full">
-                                    <span>What decision is blocked?</span>
-                                    <textarea name="concern" maxlength="1200" rows="4" placeholder="Example: The listing says four bedrooms, but the permit copy appears to show three.">${closingRiskCheckForm.getConcernValue()}</textarea>
+                                    <span>What happened, or what decision is blocked?</span>
+                                    <textarea name="concern" maxlength="1200" rows="4" placeholder="Example: The county search returned nothing, and I’m not sure whether to ask the health department or building office.">${closingRiskCheckForm.getConcernValue()}</textarea>
                                 </label>
                             </div>
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree that SepticPath may store these property and contact details and email them to its operator to prepare this free beta file check. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
+                            <span>I agree that SepticPath may store these property and contact details and email them to its operator to help identify the relevant septic record path and follow up about a transaction-related file gap when applicable. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
                         </label>
-                        <button class="button button--primary" type="submit">Request the free closing-risk check</button>
-                        <p class="form-note">Qualified beta requests are reviewed manually. Submission does not guarantee a response time, record availability, or professional service match.</p>
+                        <button class="button button--primary" type="submit">Ask for record-path help</button>
+                        <p class="form-note">Free beta requests are reviewed manually. We’ll point to the likely public-record route; the local office still determines whether a record exists and what it means.</p>
                     </form>
                 </div>
             </div>

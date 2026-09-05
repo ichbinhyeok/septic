@@ -56,6 +56,7 @@ class LeadStoragePrivacyScrubTest {
         form.setRecordStatus("conflicting");
         form.setDeadline(LocalDate.now().plusDays(6));
         form.setConcern("Need to resolve the bedroom mismatch before inspection ends.");
+        form.setSourceContext("tdec_quick_help_record_help");
         form.setConsentAccepted(true);
 
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -74,14 +75,16 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains(requestId));
         assertTrue(storedRequest.contains("123 Private Lane"));
         assertTrue(storedRequest.contains("taylor@example.com"));
-        assertTrue(storedRequest.contains("2026-08-31-v1"));
+        assertTrue(storedRequest.contains("2026-09-05-record-help-v1"));
+        assertTrue(storedRequest.contains("septic_record_help_beta"));
 
         Path eventFile;
         try (var files = Files.walk(storageRoot.resolve("events"))) {
             eventFile = files.filter(path -> path.toString().endsWith(".ndjson")).findFirst().orElseThrow();
         }
         String analyticsEvent = Files.readString(eventFile);
-        assertTrue(analyticsEvent.contains("closing_risk_request_submitted"));
+        assertTrue(analyticsEvent.contains("record_help_request_submitted"));
+        assertTrue(analyticsEvent.contains("tdec_quick_help_record_help"));
         assertTrue(analyticsEvent.contains("within_7_days"));
         assertFalse(analyticsEvent.contains("123 Private Lane"));
         assertFalse(analyticsEvent.contains("taylor@example.com"));

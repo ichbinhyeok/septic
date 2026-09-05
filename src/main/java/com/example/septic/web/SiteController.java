@@ -719,7 +719,7 @@ public class SiteController {
 
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
     public String offerPrepSepticFileCheck(Model model) {
-        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, null);
+        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, null, "direct");
     }
 
     @PostMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
@@ -734,14 +734,15 @@ public class SiteController {
                     model,
                     new ClosingRiskCheckForm(),
                     false,
-                    java.util.UUID.randomUUID().toString()
+                    java.util.UUID.randomUUID().toString(),
+                    "bot"
             );
         }
         if (!bindingResult.hasErrors() && !closingRiskRequestLimiter.allow(request)) {
             bindingResult.reject("closingRisk.rateLimit", "Too many requests were submitted from this connection. Try again later.");
         }
         if (bindingResult.hasErrors()) {
-            return renderOfferPrepSepticFileCheck(model, closingRiskCheckForm, true, null);
+            return renderOfferPrepSepticFileCheck(model, closingRiskCheckForm, true, null, closingRiskCheckForm.getSourceContextValue());
         }
 
         String requestId = leadStorageService.saveClosingRiskRequest(
@@ -750,14 +751,23 @@ public class SiteController {
                 request
         );
         closingRiskNotificationService.notifyOperator(requestId, closingRiskCheckForm);
-        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, requestId);
+        return renderOfferPrepSepticFileCheck(
+                model,
+                new ClosingRiskCheckForm(),
+                false,
+                requestId,
+                closingRiskCheckForm.getSourceContextValue().isBlank()
+                        ? "direct"
+                        : closingRiskCheckForm.getSourceContextValue()
+        );
     }
 
     private String renderOfferPrepSepticFileCheck(
             Model model,
             ClosingRiskCheckForm closingRiskCheckForm,
             boolean closingRiskHasErrors,
-            String closingRiskRequestId
+            String closingRiskRequestId,
+            String closingRiskSuccessSourceContext
     ) {
         model.addAttribute("page", seoService.offerPrepFileCheckPage());
         model.addAttribute("offerPrepStates", offerPrepStates());
@@ -768,6 +778,7 @@ public class SiteController {
         model.addAttribute("closingRiskCheckForm", closingRiskCheckForm);
         model.addAttribute("closingRiskHasErrors", closingRiskHasErrors);
         model.addAttribute("closingRiskRequestId", closingRiskRequestId);
+        model.addAttribute("closingRiskSuccessSourceContext", closingRiskSuccessSourceContext);
         model.addAttribute("closingRiskMinimumDeadline", LocalDate.now().toString());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         return "pages/offer-prep-septic-file-check";

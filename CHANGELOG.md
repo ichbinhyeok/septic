@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.8.0 - 2026-09-05
+
+### Changed
+
+- Reframed the zero-click Closing Risk Check experiment as task-adjacent septic record help: visitors now ask for the likely office and exact file before being qualified for a deeper transaction review.
+- Reduced the initial request to email, property address, state, search problem, and process stage; name, deadline, county, listing, bedroom, and concern details are optional.
+- Contextual records CTAs now speak to a failed or uncertain record search, while buyer, seller, and agent selections reveal transaction details for follow-up qualification.
+- Gmail notifications and stored requests now distinguish record-help demand from an active-transaction opportunity and preserve the originating CTA context.
+
+### Added
+
+- Added a clean GA4 funnel for `record_help_cta_viewed`, `record_help_cta_clicked`, `record_help_form_viewed`, `record_help_form_started`, `record_help_stage_selected`, validation errors, and successful requests.
+- Added `request_type`, `source_context`, `cta_variant`, and anonymous transaction-intent parameters so the revised offer can be judged without property or contact data in analytics.
+
 ## 0.0.7.0 - 2026-09-02
 
 ### Added
