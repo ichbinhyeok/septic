@@ -389,11 +389,37 @@
     }
 
     function setupRecordHelpFunnel() {
+        const contextKey = "septicpath_record_help_context";
         const getSourceContext = () => {
             try {
                 return window.sessionStorage.getItem("septicpath_record_help_source") || "direct";
             } catch (_error) {
                 return "direct";
+            }
+        };
+        const saveRecordHelpContext = () => {
+            const task = window.SepticRecordTask?.read?.();
+            if (!task?.property?.address && !task?.context?.stateCode && !task?.context?.countyName) return;
+            try {
+                window.sessionStorage.setItem(contextKey, JSON.stringify({
+                    savedAt: Date.now(),
+                    address: String(task.property?.address || "").slice(0, 180),
+                    stateCode: String(task.context?.stateCode || "").slice(0, 2).toUpperCase(),
+                    countyName: String(task.context?.countyName || "").slice(0, 120),
+                    purpose: String(task.context?.purpose || "").slice(0, 40),
+                    status: String(task.status || "").slice(0, 40)
+                }));
+            } catch (_error) {
+                // Context carryover is optional; the help form remains usable without browser storage.
+            }
+        };
+        const readRecordHelpContext = () => {
+            try {
+                const context = JSON.parse(window.sessionStorage.getItem(contextKey) || "null");
+                if (!context?.savedAt || Date.now() - Number(context.savedAt) > 2 * 60 * 60 * 1000) return null;
+                return context;
+            } catch (_error) {
+                return null;
             }
         };
         const viewedSources = new Set();
@@ -409,6 +435,7 @@
             } catch (_error) {
                 // Attribution is helpful, but navigation must never depend on storage.
             }
+            saveRecordHelpContext();
             const sourceInput = document.querySelector("[data-record-help-source-context]");
             if (sourceInput instanceof HTMLInputElement) {
                 sourceInput.value = sourceContext;
@@ -445,6 +472,32 @@
         const sourceInput = form.querySelector("[data-record-help-source-context]");
         if (sourceInput instanceof HTMLInputElement) {
             sourceInput.value = getSourceContext();
+        }
+        const carriedContext = readRecordHelpContext();
+        if (carriedContext) {
+            const address = form.querySelector('[name="propertyAddress"]');
+            const state = form.querySelector('[name="stateCode"]');
+            const county = form.querySelector('[name="countyName"]');
+            const recordStatus = form.querySelector('[name="recordStatus"]');
+            if (address instanceof HTMLInputElement && !address.value) address.value = carriedContext.address || "";
+            if (state instanceof HTMLSelectElement
+                && !state.value
+                && Array.from(state.options).some(option => option.value === carriedContext.stateCode)) {
+                state.value = carriedContext.stateCode;
+            }
+            if (county instanceof HTMLInputElement && !county.value) county.value = carriedContext.countyName || "";
+            const statusMap = {
+                not_found_online: "missing",
+                blocked: "route_unknown",
+                wrong_agency: "route_unknown",
+                no_record_response: "missing"
+            };
+            const carriedStatus = statusMap[carriedContext.status] || "";
+            if (recordStatus instanceof HTMLSelectElement
+                && !recordStatus.value
+                && Array.from(recordStatus.options).some(option => option.value === carriedStatus)) {
+                recordStatus.value = carriedStatus;
+            }
         }
 
         let formViewed = false;
