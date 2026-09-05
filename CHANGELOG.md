@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.9.1 - 2026-09-06
+
+### Fixed
+
+- Replaced retired Missouri DHSS and Clackamas County septic URLs with their current official program and permit-guidance pages.
+- Updated the published Clackamas County record route and added a regression check that prevents the retired 404 paths from returning.
+
 ## 0.0.9.0 - 2026-09-06
 
 ### Changed

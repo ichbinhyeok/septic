@@ -4506,8 +4506,8 @@
       "targetReader": "Best for Clackamas County buyers, owners, and planners who need to know whether the county septic file, authorization notice, or no-records branch already changes the next move.",
       "officeLabel": "Clackamas County septic program",
       "officeUrl": "https://www.clackamas.us/septic",
-      "recordsLabel": "Open Clackamas authorization notice guidance",
-      "recordsUrl": "https://www.clackamas.us/septic/authornotice.html",
+      "recordsLabel": "Open Clackamas septic permit guidance",
+      "recordsUrl": "https://www.clackamas.us/building/permit-septic",
       "contactLine": "Clackamas County septic pages combine county record lookup, project-document requirements, authorization notices, and missing-record recovery into one workflow.",
       "decisionSteps": [
         "Start with Clackamas County's septic-program page if the property file matters because the county exposes record lookup before permitting.",
