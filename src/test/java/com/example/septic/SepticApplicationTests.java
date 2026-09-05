@@ -855,13 +855,13 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"license\":\"https://example.test/data-license/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"spatialCoverage\":{\"@type\":\"Place\",\"name\":\"United States\"}")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-08-25\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-09-06\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("325 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-08-25")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-09-06")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-crawl-directory")))
@@ -2837,7 +2837,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/oregon/clackamas-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Clackamas County Oregon Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Clackamas authorization notice guidance")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Clackamas septic permit guidance")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://www.clackamas.us/building/permit-septic\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("change in use")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("no-records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Oregon records lookup")))
@@ -10641,8 +10642,15 @@ class SepticApplicationTests {
 	@Test
 	void countyRecordsIndexDataUsesUniqueHttpsRoutesAndResolvableSources() {
 		List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
+		String missouriProgramUrl = "https://health.mo.gov/business-professionals/onsite-wastewater-treatment";
 
 		assertEquals(325, pages.size());
+		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_01").orElseThrow().url());
+		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_05").orElseThrow().url());
+		assertEquals(
+				"https://www.starkcountyohio.gov/government/offices/auditor/index.php",
+				researchDataService.findSource("oh_stark_01").orElseThrow().url()
+		);
 		assertEquals(
 				pages.size(),
 				pages.stream()
