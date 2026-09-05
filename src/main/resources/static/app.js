@@ -1052,7 +1052,7 @@
                 const link = document.createElement("a");
                 link.className = `button ${primary ? "button--primary" : "button--secondary"}`;
                 let resolvedHref = href;
-                if (targetType === "county_records_page"
+                if (["county_records_page", "state_records_workspace"].includes(targetType)
                     && routeContext?.matchedAddress
                     && typeof href === "string"
                     && href.startsWith("/")
@@ -1781,8 +1781,12 @@
                         nextActions.push(link);
                     });
                     if (!nextActions.length && payload.routePath) {
-                        nextActions.push(button(payload.routeTitle || "Open records route", payload.routePath, true,
-                            payload.status === "county_route" ? "county_records_page" : "internal_page"));
+                        const targetType = payload.status === "county_route"
+                            ? "county_records_page"
+                            : payload.routePath.startsWith("/tdec-septic-records/")
+                                ? "state_records_workspace"
+                                : "internal_page";
+                        nextActions.push(button(payload.routeTitle || "Open records route", payload.routePath, true, targetType));
                     }
                     if (!relayActions.length && payload.officialRouteUrl) {
                         const official = button(officialRouteLabel(payload.officialRouteUrl), payload.officialRouteUrl, false, "official_source");

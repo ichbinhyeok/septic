@@ -5085,12 +5085,21 @@ The goal is to settle the permit path before we frame the project as a normal in
                 .findPublicStateMoneyPage("septic-records-checklist", state.get().slug());
         if (stateRecordsPage.isPresent()) {
             StateMoneyPage page = stateRecordsPage.get();
+            boolean isTennessee = "TN".equals(state.get().stateCode());
+            String fallbackPath = isTennessee
+                    ? "/tdec-septic-records/?county=" + normalizeCountyFinderText(lookup.countyName())
+                            .replace(" county", "")
+                            .replace(' ', '-')
+                    : page.path(state.get().slug());
             return new AddressRecordFinderResult(
                     "state_route",
                     lookup.countyName() + " County, " + state.get().stateName() + " records route",
-                    "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
+                    isTennessee
+                            ? "A dedicated county page is not live yet. Continue to the Tennessee SSDS workspace with this county and address already prepared."
+                            : "A verified county page is not live yet, so start with the state records workflow and use the resolved county plus your address or parcel clue.",
                     state.get().stateCode(), state.get().stateName(), lookup.countyName(), lookup.matchedAddress(),
-                    "Open " + state.get().stateName() + " records", page.path(state.get().slug()), "", List.of(), List.of()
+                    isTennessee ? "Continue with " + lookup.countyName() + " County" : "Open " + state.get().stateName() + " records",
+                    fallbackPath, "", List.of(), List.of()
             );
         }
 

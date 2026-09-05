@@ -168,6 +168,41 @@
         return wrapper;
     }
 
+    function restoreIncomingRoute() {
+        const params = new URLSearchParams(window.location.search);
+        const incomingCounty = normalized(params.get("county"), 80).toLowerCase();
+        if (!(county instanceof HTMLSelectElement) || !incomingCounty) return false;
+        const option = Array.from(county.options).find(candidate => candidate.value === incomingCounty);
+        if (!option) return false;
+
+        county.value = option.value;
+        if (address instanceof HTMLInputElement) address.value = normalized(params.get("address"));
+        const purposeMap = {
+            buying: "records",
+            bedrooms: "status",
+            location: "records",
+            repair: "repair",
+            replacement: "repair",
+            lender: "status",
+            owner: "records",
+            missing: "missing"
+        };
+        const incomingPurpose = purposeMap[normalized(params.get("purpose"), 24)] || "records";
+        const purpose = form?.querySelector(`input[name="tdec-purpose"][value="${incomingPurpose}"]`);
+        if (purpose instanceof HTMLInputElement) purpose.checked = true;
+        if (address?.value) {
+            const details = desk.querySelector("[data-tdec-property-details]");
+            if (details instanceof HTMLDetailsElement) details.open = true;
+        }
+
+        updateCountyHelp();
+        const data = values();
+        const revision = ++routeRevision;
+        render(data, "County and address carried forward from the property search. Confirm the match before opening the official route.");
+        void verifyAddressInBackground(data, revision);
+        return true;
+    }
+
     function serviceLeadQualifier() {
         const qualifier = document.createElement("section");
         qualifier.className = "tdec-service-qualifier";
@@ -741,19 +776,22 @@
         }
     });
 
-    try {
-        const restored = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
-        if (restored?.county?.key && Date.now() - restored.savedAt < 2 * 60 * 60 * 1000) {
-            if (county instanceof HTMLSelectElement) county.value = restored.county.key;
-            const restoredData = { ...restored, county: selectedCounty() };
-            if (restoredData.county) {
-                restoreForm(restoredData);
-                render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false, false);
-                if (restored.opened) returnPanel.hidden = false;
+    const incomingRouteRestored = restoreIncomingRoute();
+    if (!incomingRouteRestored) {
+        try {
+            const restored = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+            if (restored?.county?.key && Date.now() - restored.savedAt < 2 * 60 * 60 * 1000) {
+                if (county instanceof HTMLSelectElement) county.value = restored.county.key;
+                const restoredData = { ...restored, county: selectedCounty() };
+                if (restoredData.county) {
+                    restoreForm(restoredData);
+                    render(restoredData, "Restored from this browser tab. Confirm the property keys before continuing.", false, false);
+                    if (restored.opened) returnPanel.hidden = false;
+                }
             }
+        } catch (_) {
+            sessionStorage.removeItem(SESSION_KEY);
         }
-    } catch (_) {
-        sessionStorage.removeItem(SESSION_KEY);
     }
     updateCountyHelp();
 })();
