@@ -6,11 +6,15 @@
 
 - Clarified that only the Tennessee property county is required and that address and property details are optional.
 - Made route and delivery transitions settle immediately and move keyboard focus to the newly revealed content.
+- Applied the same deterministic validation, result, request, and return transitions to the North Carolina, South Carolina, Florida, and Texas record desks.
+- Added an always-available statewide directory fallback for North Carolina and TCEQ OARS fallback for Texas when a county portal is blocked.
 
 ### Fixed
 
 - Connected county validation help and error text to the select control, including accurate `aria-invalid` state and recovery behavior.
 - Added browser regression coverage for validation focus, error clearing, and delivery-section visibility.
+- Restored saved county and property clues when a visitor returns from an official site, preventing manual-request buttons from silently doing nothing after a reload.
+- Opened the official-return checkpoint as soon as an external source is launched so browser focus-event differences cannot hide the next step.
 
 ## 0.0.10.0 - 2026-09-06
 
