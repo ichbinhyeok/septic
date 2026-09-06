@@ -28,7 +28,7 @@
                     <button type="button" data-state-return-outcome="wrong_agency">This office does not own the file</button>
                     <button type="button" data-state-return-outcome="blocked">The official route was blocked</button>
                 </div>
-                <div class="state-record-return__next" data-state-return-next aria-live="polite" hidden></div>
+                <div class="state-record-return__next" data-state-return-next aria-live="polite" tabindex="-1" hidden></div>
                 <button class="state-record-return__clear" type="button" data-state-return-clear hidden>Delete this saved step</button>
             </div>
         </details>

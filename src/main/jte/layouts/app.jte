@@ -53,6 +53,7 @@
     </script>
     <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
     <script src="${AssetPaths.versioned("/record-task.js")}" defer></script>
+    <script src="${AssetPaths.versioned("/state-records-ui.js")}" defer></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const featureSelector = [

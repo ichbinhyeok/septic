@@ -7,6 +7,7 @@
     const TASK_KEY = "septicpath-record-task-progress-v1";
     const RETURN_KEY = "septicpath-official-return-v1";
     const LIFETIME = 30 * 24 * 60 * 60 * 1000;
+    const ui = window.SepticStateRecordsUi;
 
     const emit = (name, params = {}) => {
         if (typeof window.gtag === "function") window.gtag("event", name, params);
@@ -191,8 +192,7 @@
             const target = document.getElementById(outcomesId);
             const detail = target?.querySelector(`[data-state-fallback-outcome~="${outcome}"]`);
             if (detail instanceof HTMLDetailsElement) detail.open = true;
-            target?.scrollIntoView({behavior: "smooth", block: "start"});
-            window.setTimeout(() => detail?.querySelector("summary")?.focus(), 350);
+            ui?.reveal(target, detail?.querySelector("summary"));
         }
 
         function render(outcome, saved) {
@@ -280,6 +280,7 @@
             outcomeButtons.forEach(item => item.setAttribute("aria-pressed", String(item.dataset.stateReturnOutcome === outcome)));
             render(outcome, saved);
             if (summary) summary.textContent = "Saved result ready";
+            ui?.reveal(next, next);
             emit("state_record_outcome_recorded", {state_code: stateCode, outcome});
         }
 
@@ -290,6 +291,7 @@
             if (!(official instanceof HTMLAnchorElement) || !/^https?:/i.test(official.href)) return;
             awaitingReturn = true;
             save("official_opened");
+            if (checkin instanceof HTMLDetailsElement) checkin.open = true;
             if (summary) summary.textContent = "Official source opened — return here with the result";
             emit("state_record_return_prepared", {state_code: stateCode});
         });
@@ -313,6 +315,7 @@
             if (summary) summary.textContent = "Welcome back — what happened?";
             panel.classList.add("is-returning");
             save("official_returned");
+            ui?.reveal(panel, summary);
             emit("state_record_official_returned", {state_code: stateCode});
         });
 
@@ -336,6 +339,6 @@
             }
             if (summary) summary.textContent = saved.outcome ? "Saved result ready" : "Official search ready to continue";
         }
-        if (requestedResume) window.setTimeout(() => panel.scrollIntoView({behavior: "smooth", block: "start"}), 150);
+        if (requestedResume) window.setTimeout(() => ui?.reveal(panel, summary), 150);
     });
 })();

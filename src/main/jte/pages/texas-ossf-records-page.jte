@@ -40,30 +40,30 @@
                     <fieldset>
                         <legend>1. Do we have a verified county record route?</legend>
                         <label for="tx-county">Verified county workflows</label>
-                        <select id="tx-county" data-tx-county required>
+                        <select id="tx-county" data-tx-county required aria-describedby="tx-county-help tx-form-error">
                             <option value="">Choose a county</option>
                             @for (var county : texasCountyRoutes)
                                 <option value="${county.countySlug()}" data-county-name="${county.countyName()}" data-internal-path="${county.path("texas")}" data-records-url="${county.recordsUrl()}" data-records-label="${county.recordsLabel()}">${county.countyName()}</option>
                             @endfor
                         </select>
-                        <p class="field-help">${texasCountyRoutes.size()} county workflows have a source-reviewed record route. For every other county, use TCEQ OARS to identify the authorized agent.</p>
+                        <p class="field-help" id="tx-county-help">${texasCountyRoutes.size()} county workflows have a source-reviewed record route. For every other county, use TCEQ OARS to identify the authorized agent.</p>
                         <a class="nc-directory-link" href="https://www6.tceq.texas.gov/oars/index.cfm?fuseaction=search.county" target="_blank" rel="noreferrer">My county is not listed</a>
                     </fieldset>
                     <fieldset>
                         <legend>2. What can the authority use to match the OSSF?</legend>
                         <div class="tdec-workspace__field-grid">
                             <label><span>Search by</span><select data-tx-clue-type><option value="address">Street address</option><option value="parcel">Parcel or account ID</option><option value="owner">Current or prior owner</option><option value="permit">Permit number</option></select></label>
-                            <label><span data-tx-clue-label>Street address</span><input type="text" maxlength="140" autocomplete="street-address" placeholder="123 Main Street" data-tx-clue required></label>
+                            <label><span data-tx-clue-label>Street address</span><input type="text" maxlength="140" autocomplete="street-address" placeholder="123 Main Street" data-tx-clue required aria-describedby="tx-form-error"></label>
                             <label><span>Legal description <small>optional</small></span><input type="text" maxlength="120" placeholder="Survey, abstract, tract, lot" data-tx-legal></label>
                             <label><span>Subdivision and lot <small>optional</small></span><input type="text" maxlength="100" placeholder="Subdivision, block, lot" data-tx-subdivision></label>
                         </div>
                     </fieldset>
                     <div class="tdec-workspace__submit-row"><button class="button button--primary" type="submit">Prepare OSSF record route</button><p>Property details stay on this device for up to 30 days and are never sent in analytics.</p></div>
-                    <p class="form-error" role="alert" data-tx-form-error hidden></p>
+                    <p class="form-error" id="tx-form-error" role="alert" data-tx-form-error hidden></p>
                 </form>
 
                 <section class="tdec-result" data-tx-result aria-live="polite" hidden>
-                    <header class="tdec-result__header"><div><span class="eyebrow">Local route prepared</span><h2 data-tx-result-title></h2><p data-tx-result-summary></p></div><button class="text-button" type="button" data-tx-edit-search>Edit search</button></header>
+                    <header class="tdec-result__header"><div><span class="eyebrow">Local route prepared</span><h2 data-tx-result-title tabindex="-1"></h2><p data-tx-result-summary></p></div><button class="text-button" type="button" data-tx-edit-search>Edit search</button></header>
                     <div class="tdec-result__steps">
                         <section><span class="tdec-result__number">01</span><div><h3>Carry these match keys</h3><ol data-tx-search-variants></ol><button class="text-button" type="button" data-tx-copy-clues>Copy search clues</button></div></section>
                         <section><span class="tdec-result__number">02</span><div><h3>Open the verified record path</h3><p>Start with the county guide so you know whether the official link is a public portal, a request form, or an office contact.</p><div class="tdec-result__actions" data-tx-route-actions></div><p class="tdec-result__handoff">Keep this tab open. Return if the authority page has no property search or the record is incomplete.</p></div></section>
@@ -88,7 +88,7 @@
         </section>
 
         <section class="tdec-request" data-tx-request-section hidden aria-labelledby="tx-request-title">
-            <div class="container tdec-request__grid"><header><span class="eyebrow">Manual fallback</span><h2 id="tx-request-title">Prepare an OSSF file request</h2><p>Send this wording to the authorized agent shown in OARS or through the verified county instructions.</p></header><div class="tdec-request__output"><label for="tx-request-copy">Request wording to copy</label><textarea id="tx-request-copy" readonly data-tx-request-copy></textarea><div><button class="button button--secondary" type="button" data-tx-copy-request>Copy request wording</button><a class="button button--primary" data-tx-request-route href="#">Open county instructions</a></div></div></div>
+            <div class="container tdec-request__grid"><header><span class="eyebrow">Manual fallback</span><h2 id="tx-request-title" tabindex="-1">Prepare an OSSF file request</h2><p>Send this wording to the authorized agent shown in OARS or through the verified county instructions.</p></header><div class="tdec-request__output"><label for="tx-request-copy">Request wording to copy</label><textarea id="tx-request-copy" readonly data-tx-request-copy></textarea><div><button class="button button--secondary" type="button" data-tx-copy-request>Copy request wording</button><a class="button button--primary" data-tx-request-route href="#">Open county instructions</a></div></div></div>
         </section>
 
         <section class="tdec-reference" aria-labelledby="tx-reference-title"><div class="container"><h2 id="tx-reference-title">Official-source notes</h2><p>TCEQ says it is not often the permitting authority. Local authorized agents administer most OSSF programs; the TCEQ regional office handles areas without an authorized local jurisdiction.</p><nav aria-label="Texas official sources"><a href="https://www6.tceq.texas.gov/oars/index.cfm?fuseaction=search.county" target="_blank" rel="noreferrer">TCEQ local authority search</a><a href="https://www.tceq.texas.gov/permitting/ossf/ossfpermits.html" target="_blank" rel="noreferrer">TCEQ OSSF permit guidance</a><a href="https://www.tceq.texas.gov/permitting/ossf/ossf_contacts.html" target="_blank" rel="noreferrer">TCEQ OSSF contacts</a></nav><p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TCEQ or a local authority and cannot certify permit status, system condition, or compliance.@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) Official route review: ${editorialLastReviewedAt}.@endif</p></div></section>
