@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.11.0 - 2026-09-06
+
+### Changed
+
+- Clarified that only the Tennessee property county is required and that address and property details are optional.
+- Made route and delivery transitions settle immediately and move keyboard focus to the newly revealed content.
+
+### Fixed
+
+- Connected county validation help and error text to the select control, including accurate `aria-invalid` state and recovery behavior.
+- Added browser regression coverage for validation focus, error clearing, and delivery-section visibility.
+
 ## 0.0.10.0 - 2026-09-06
 
 ### Added
