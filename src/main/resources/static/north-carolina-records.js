@@ -21,6 +21,7 @@
     const resultTitle = desk.querySelector("[data-nc-result-title]");
     const requestTitle = desk.querySelector("#nc-request-title");
     const ui = window.SepticStateRecordsUi;
+    const COUNTY_DIRECTORY = "https://www.dph.ncdhhs.gov/environmental-health/ehs-directory-june-2026/download?attachment=";
     let prepared = null;
 
     const fields = {
@@ -165,7 +166,8 @@
         }));
         actions.replaceChildren(
             link(`Open ${countyValue.name} instructions`, countyValue.internalPath, true),
-            link(countyValue.recordsLabel, countyValue.recordsUrl, false, true)
+            link(countyValue.recordsLabel, countyValue.recordsUrl, false, true),
+            link("Open NC county staff directory", COUNTY_DIRECTORY, false, true)
         );
         result.hidden = false;
         requestSection.hidden = true;

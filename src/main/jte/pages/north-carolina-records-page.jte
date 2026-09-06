@@ -201,7 +201,7 @@
                 <div class="tdec-request__output">
                     <label for="nc-request-copy">Request wording to copy</label>
                     <textarea id="nc-request-copy" readonly data-nc-request-copy></textarea>
-                    <div><button class="button button--secondary" type="button" data-nc-copy-request>Copy request wording</button><a class="button button--primary" data-nc-request-route href="#">Open county instructions</a></div>
+                    <div><button class="button button--secondary" type="button" data-nc-copy-request>Copy request wording</button><a class="button button--primary" data-nc-request-route href="#">Open county instructions</a><a class="button button--secondary" href="https://www.dph.ncdhhs.gov/environmental-health/ehs-directory-june-2026/download?attachment=" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="nc_request_county_directory" data-track-target-type="official_source">Open NC county staff directory</a></div>
                 </div>
             </div>
         </section>
