@@ -56,16 +56,20 @@ class TdecRecordsDeskRegressionTest {
 
         assertThat(html)
                 .contains("Find the right official record source")
+                .contains("Choose the property county. Add the address or other property details if you have them.")
                 .contains("data-tdec-route-form")
                 .contains("data-tdec-request-section")
                 .contains("data-tdec-address")
+                .contains("aria-describedby=\"tdec-county-help tdec-form-error\"")
+                .contains("id=\"tdec-request-title\" tabindex=\"-1\"")
                 .contains("value=\"records\"")
                 .contains("value=\"status\"")
                 .contains("value=\"missing\"")
                 .contains("value=\"repair\"")
                 .contains("No address is required")
                 .doesNotContain("class=\"record-finder")
-                .doesNotContain("Enter the address to find the record owner");
+                .doesNotContain("Enter the address to find the record owner")
+                .doesNotContain("Enter the property county and address");
     }
 
     @Test

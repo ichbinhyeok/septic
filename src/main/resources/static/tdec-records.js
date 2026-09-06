@@ -34,6 +34,7 @@
     const returnPanel = desk.querySelector("[data-tdec-return]");
     const outcomeNext = desk.querySelector("[data-tdec-outcome-next]");
     const requestSection = desk.querySelector("[data-tdec-request-section]");
+    const requestTitle = desk.querySelector("#tdec-request-title");
     const requestCopy = desk.querySelector("[data-tdec-request-copy]");
     const requestGuidance = desk.querySelector("[data-tdec-request-guidance]");
     const requestLink = desk.querySelector("[data-tdec-request-link]");
@@ -119,11 +120,26 @@
             error.textContent = message;
             error.hidden = false;
         }
+        if (target instanceof HTMLElement) target.setAttribute("aria-invalid", "true");
         target?.focus();
     }
 
     function clearError() {
         if (error instanceof HTMLElement) error.hidden = true;
+        if (county instanceof HTMLElement) county.removeAttribute("aria-invalid");
+    }
+
+    function revealImmediately(target, focusTarget) {
+        if (!(target instanceof HTMLElement)) return;
+        const root = document.documentElement;
+        const previousScrollBehavior = root.style.scrollBehavior;
+        try {
+            root.style.scrollBehavior = "auto";
+            target.scrollIntoView({ behavior: "auto", block: "start" });
+            if (focusTarget instanceof HTMLElement) focusTarget.focus({ preventScroll: true });
+        } finally {
+            root.style.scrollBehavior = previousScrollBehavior;
+        }
     }
 
     function showHeroReturnPrompt(focusPrompt = false) {
@@ -274,6 +290,7 @@
         if (returnPanel instanceof HTMLElement) returnPanel.hidden = true;
         if (requestSection instanceof HTMLElement) requestSection.hidden = true;
         if (outcomeNext instanceof HTMLElement) outcomeNext.hidden = true;
+        clearError();
         try {
             sessionStorage.removeItem(SESSION_KEY);
         } catch (_) {
@@ -532,8 +549,7 @@
         outcomeNext.hidden = true;
         saveSession(data, false);
         if (shouldFocus) {
-            result.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-            result.focus({ preventScroll: true });
+            revealImmediately(result, result);
         }
         if (trackView) {
             emit("route_ready", {
@@ -696,7 +712,7 @@
         requestLink.href = data.county.contract ? data.county.recordsUrl : data.county.fieldOfficeUrl;
         requestLink.textContent = data.county.contract ? data.county.recordsLabel : `Open ${data.county.fieldOfficeName} Field Office`;
         requestSection.hidden = false;
-        requestSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        revealImmediately(requestSection, requestTitle);
         emit("records_fallback_started", { fallback_type: reason, county_name: data.county.name, state_code: "TN" });
         emit("record_request_prepared", {
             request_channel: data.county.requestEmail ? "email" : data.county.contract ? "county_route" : "office_route",

@@ -52,6 +52,12 @@ class TdecRecordsInputTrustRegressionTest {
         assertTrue(script.contains("Open TDEC repair services"));
         assertTrue(script.contains("A 403 or failed page does not say anything about this property"));
         assertTrue(script.contains("record_request_channel_selected"));
+        assertTrue(script.contains("target.setAttribute(\"aria-invalid\", \"true\")"));
+        assertTrue(script.contains("county.removeAttribute(\"aria-invalid\")"));
+        assertTrue(script.contains("function revealImmediately(target, focusTarget)"));
+        assertTrue(script.contains("root.style.scrollBehavior = \"auto\""));
+        assertTrue(script.contains("revealImmediately(result, result)"));
+        assertTrue(script.contains("revealImmediately(requestSection, requestTitle)"));
     }
 
     @Test

@@ -14,7 +14,7 @@
                 <div class="tdec-desk__hero-copy">
                     <span class="eyebrow">Tennessee septic records</span>
                     <h1 id="tdec-page-title">Prepare a Tennessee septic record request</h1>
-                    <p>Enter the property county and address. We’ll identify the record owner and prepare the exact request for the permit, layout, final approval, and repair history.</p>
+                    <p>Choose the property county. Add the address or other property details if you have them. We’ll identify the record owner and prepare the exact request for the permit, layout, final approval, and repair history.</p>
                     <div class="tdec-desk__hero-actions">
                         <a class="button button--primary"
                            href="#tdec-record-search"
@@ -78,7 +78,7 @@
                         <div class="tdec-property__grid">
                             <label class="tdec-property__county">
                                 <span>County <b aria-hidden="true">*</b></span>
-                                <select data-tdec-county required>
+                                <select data-tdec-county required aria-describedby="tdec-county-help tdec-form-error">
                                     <option value="">Choose a Tennessee county</option>
                                     @for (var county : tennesseeCountyRoutes)
                                         <option value="${county.countyKey()}"
@@ -93,7 +93,7 @@
                                                 data-request-email="${county.requestEmail()}">${county.countyName()}</option>
                                     @endfor
                                 </select>
-                                <small data-tdec-county-help>The county determines whether TDEC or a local program owns the record.</small>
+                                <small id="tdec-county-help" data-tdec-county-help>The county determines whether TDEC or a local program owns the record.</small>
                             </label>
                             <details class="tdec-property__more" data-tdec-property-details>
                                 <summary>Add optional property search keys</summary>
@@ -121,7 +121,7 @@
                         <button class="button button--primary" type="submit" data-tdec-prepare>Show my official route</button>
                         <p>No address is required. Optional property details stay on this device and are never sent in analytics.</p>
                     </div>
-                    <p class="form-error" role="alert" data-tdec-form-error hidden></p>
+                    <p class="form-error" id="tdec-form-error" role="alert" data-tdec-form-error hidden></p>
                 </form>
 
                 <section class="tdec-result" data-tdec-result aria-live="polite" tabindex="-1" hidden>
@@ -173,7 +173,7 @@
             <div class="container tdec-request__grid">
                 <header>
                     <span class="eyebrow">Prepared request</span>
-                    <h2 id="tdec-request-title">Choose how to send your request</h2>
+                    <h2 id="tdec-request-title" tabindex="-1">Choose how to send your request</h2>
                     <p data-tdec-request-guidance></p>
                 </header>
                 <div class="tdec-request__output">
