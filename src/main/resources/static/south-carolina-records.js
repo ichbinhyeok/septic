@@ -15,6 +15,9 @@
     const result = desk.querySelector("[data-sc-result]");
     const requestSection = desk.querySelector("[data-sc-request-section]");
     const requestCopy = desk.querySelector("[data-sc-request-copy]");
+    const resultTitle = desk.querySelector("[data-sc-result-title]");
+    const requestTitle = desk.querySelector("#sc-request-title");
+    const ui = window.SepticStateRecordsUi;
     const SITE_EXPLORER = "https://epermitting.des.sc.gov/ext/nsite/default/map/help";
     let prepared = null;
 
@@ -88,28 +91,51 @@
         ].filter(Boolean).join("\n");
     }
 
+    function restorePrepared() {
+        const saved = ui?.restoreTask("SC", window.location.pathname, county, clueType, clue);
+        if (!saved) return null;
+        updateClue();
+        const selected = selectedCounty();
+        if (!selected) return null;
+        return {
+            county: selected,
+            age: age.value,
+            type: clueType.value,
+            clue: clean(clue.value),
+            lot: clean(lot?.value, 120),
+            owner: clean(owner?.value, 100)
+        };
+    }
+
     function showRequest() {
-        if (!prepared) return;
+        prepared ||= restorePrepared();
+        if (!prepared) {
+            const target = selectedCounty() ? clue : county;
+            ui?.showError(error, "Prepare the county and property identifier above before drafting a request.", target);
+            ui?.reveal(form, target);
+            emit("records_route_error", {state_code: "SC", error_type: "missing_preparation"});
+            return;
+        }
         window.SepticRecordTask?.transition("request_prepared", "request_prepared");
         requestCopy.value = requestText(prepared);
         requestSection.hidden = false;
-        requestSection.scrollIntoView({behavior: "smooth", block: "start"});
+        ui?.reveal(requestSection, requestTitle);
         emit("records_fallback_started", {state_code: "SC", county_name: prepared.county.name, property_age: prepared.age});
     }
 
+    county?.addEventListener("change", () => ui?.clearError(error, county));
+    clue?.addEventListener("input", () => ui?.clearError(error, clue));
     clueType?.addEventListener("change", updateClue);
     form?.addEventListener("submit", event => {
         event.preventDefault();
         const selected = selectedCounty();
         const clueValue = clean(clue?.value);
         if (!selected || !clueValue) {
-            error.textContent = !selected ? "Choose the South Carolina county first." : "Enter at least one property identifier.";
-            error.hidden = false;
-            (!selected ? county : clue)?.focus();
+            ui?.showError(error, !selected ? "Choose the South Carolina county first." : "Enter at least one property identifier.", !selected ? county : clue);
             emit("records_route_error", {state_code: "SC", error_type: !selected ? "missing_county" : "missing_clue"});
             return;
         }
-        error.hidden = true;
+        ui?.clearError(error, county, clue);
         prepared = {county: selected, age: age.value, type: clueType.value, clue: clueValue, lot: clean(lot?.value, 120), owner: clean(owner?.value, 100)};
         const directIdentifier = prepared.type === "tms" || prepared.type === "permit";
         window.SepticRecordTask?.prepare({
@@ -124,7 +150,7 @@
         }, {address: prepared.type === "address" ? prepared.clue : "", identifierType: prepared.type, identifierValue: prepared.clue});
         window.SepticRecordTask?.transition("route_ready", "route_ready");
         desk.querySelector("[data-sc-result-status]").textContent = directIdentifier ? "Official identifier ready" : "TMS or file request needed";
-        desk.querySelector("[data-sc-result-title]").textContent = `${selected.name} septic record search`;
+        resultTitle.textContent = `${selected.name} septic record search`;
         desk.querySelector("[data-sc-result-summary]").textContent = directIdentifier
             ? "Use this TMS or permit number in Site Explorer. A map pin alone is not a record result; return with the permit details or attachment."
             : "An address or owner name is not a reliable Site Explorer key. Get the county TMS first, or prepare an SCDES file request here.";
@@ -139,11 +165,11 @@
         }
         result.hidden = false;
         requestSection.hidden = true;
-        result.scrollIntoView({behavior: "smooth", block: "start"});
+        ui?.reveal(result, resultTitle);
         emit("county_route_viewed", {state_code: "SC", county_name: selected.name, route_type: directIdentifier ? "scdes_site_explorer" : "identifier_or_request", property_age: age.value});
     });
 
-    desk.querySelector("[data-sc-edit-search]")?.addEventListener("click", () => { prepared = null; result.hidden = true; requestSection.hidden = true; form.scrollIntoView({behavior: "smooth", block: "start"}); county?.focus(); });
+    desk.querySelector("[data-sc-edit-search]")?.addEventListener("click", () => { prepared = null; result.hidden = true; requestSection.hidden = true; ui?.clearError(error, county, clue); document.dispatchEvent(new CustomEvent("state-records-search-reset", {detail: {stateCode: "SC"}})); ui?.reveal(form, county); });
     desk.querySelector("[data-sc-copy-clues]")?.addEventListener("click", async event => { if (!prepared) return; await navigator.clipboard.writeText(variants(prepared).join("\n")); event.currentTarget.textContent = "Copied"; });
     desk.querySelectorAll("[data-sc-open-request]").forEach(button => button.addEventListener("click", showRequest));
     desk.querySelector("[data-sc-copy-request]")?.addEventListener("click", async event => { await navigator.clipboard.writeText(requestCopy.value); event.currentTarget.textContent = "Copied"; });
@@ -153,8 +179,7 @@
         if (checkin instanceof HTMLDetailsElement) checkin.open = true;
         if (submitted instanceof HTMLButtonElement) submitted.click();
         const returnPanel = desk.querySelector("[data-state-records-return]");
-        returnPanel?.scrollIntoView({behavior: "smooth", block: "start"});
-        window.setTimeout(() => returnPanel?.querySelector('input[name="submittedOn"]')?.focus(), 350);
+        ui?.reveal(returnPanel, returnPanel?.querySelector('input[name="submittedOn"]'));
     });
     updateClue();
 })();

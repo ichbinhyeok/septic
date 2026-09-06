@@ -92,6 +92,14 @@ class TennesseeRecordHelpBrowserRegressionTest {
             WebElement prepareRequest = driver.findElement(By.xpath("//button[normalize-space()='Choose how to send']"));
             prepareRequest.click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-tdec-request-section]")));
+            WebElement requestTitle = driver.findElement(By.id("tdec-request-title"));
+            assertThat(driver.switchTo().activeElement()).isEqualTo(requestTitle);
+            Number requestTitleTop = (Number) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].getBoundingClientRect().top;",
+                    requestTitle
+            );
+            Number viewportHeight = (Number) ((JavascriptExecutor) driver).executeScript("return window.innerHeight;");
+            assertThat(requestTitleTop.doubleValue()).isBetween(0.0, viewportHeight.doubleValue());
             assertThat(driver.findElement(By.cssSelector("[data-tdec-request-email]")).getText())
                     .isEqualTo("septicsystem.files@tn.gov");
             assertThat(driver.findElement(By.cssSelector("[data-tdec-request-subject]")).getText())
@@ -138,6 +146,24 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .getFirstSelectedOption().getAttribute("value")).isEqualTo("TN");
             assertThat(driver.findElement(By.name("countyName")).getAttribute("value"))
                     .isEqualTo("Roane");
+
+            driver.get(baseUrl() + "/tdec-septic-records/");
+            WebElement countySelect = driver.findElement(By.cssSelector("[data-tdec-county]"));
+            new Select(countySelect).selectByValue("");
+            WebElement routeSubmit = driver.findElement(By.cssSelector("[data-tdec-prepare]"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", routeSubmit);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", routeSubmit);
+            assertThat(countySelect.getAttribute("aria-invalid")).isEqualTo("true");
+            assertThat(countySelect.getAttribute("aria-describedby"))
+                    .isEqualTo("tdec-county-help tdec-form-error");
+            assertThat(driver.switchTo().activeElement()).isEqualTo(countySelect);
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-form-error]")).getText())
+                    .isEqualTo("Choose the Tennessee county first.");
+
+            new Select(countySelect).selectByValue("roane");
+            assertThat(countySelect.getAttribute("aria-invalid")).isNull();
+            assertThat(driver.findElement(By.cssSelector("[data-tdec-form-error]")).getAttribute("hidden"))
+                    .isEqualTo("true");
         } finally {
             driver.quit();
         }

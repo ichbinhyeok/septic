@@ -72,7 +72,7 @@
                     <fieldset>
                         <legend>1. Which county is the property in?</legend>
                         <label for="nc-county">Verified county workflows</label>
-                        <select id="nc-county" data-nc-county required>
+                        <select id="nc-county" data-nc-county required aria-describedby="nc-county-help nc-form-error">
                             <option value="">Choose a county</option>
                             @for (var county : northCarolinaCountyRoutes)
                                 <option value="${county.countySlug()}"
@@ -82,7 +82,7 @@
                                         data-records-label="${county.recordsLabel()}">${county.countyName()}</option>
                             @endfor
                         </select>
-                        <p class="field-help">${northCarolinaCountyRoutes.size()} county workflows have a source-reviewed route. If your county is not listed, use the official statewide staff directory below.</p>
+                        <p class="field-help" id="nc-county-help">${northCarolinaCountyRoutes.size()} county workflows have a source-reviewed route. If your county is not listed, use the official statewide staff directory below.</p>
                         <a class="nc-directory-link" href="https://www.dph.ncdhhs.gov/environmental-health/ehs-directory-june-2026/download?attachment=" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="nc_county_directory" data-track-target-type="official_directory">My county is not listed</a>
                     </fieldset>
 
@@ -100,7 +100,7 @@
                             </label>
                             <label>
                                 <span data-nc-clue-label>Street address</span>
-                                <input type="text" maxlength="140" autocomplete="street-address" placeholder="123 Main Street" data-nc-clue required>
+                                <input type="text" maxlength="140" autocomplete="street-address" placeholder="123 Main Street" data-nc-clue required aria-describedby="nc-form-error">
                             </label>
                             <label>
                                 <span>Prior owner <small>optional</small></span>
@@ -117,14 +117,14 @@
                         <button class="button button--primary" type="submit">Prepare county route</button>
                         <p>Property details stay on this device for up to 30 days and are never sent in analytics.</p>
                     </div>
-                    <p class="form-error" role="alert" data-nc-form-error hidden></p>
+                    <p class="form-error" id="nc-form-error" role="alert" data-nc-form-error hidden></p>
                 </form>
 
                 <section class="tdec-result" data-nc-result aria-live="polite" hidden>
                     <header class="tdec-result__header">
                         <div>
                             <span class="eyebrow">County route prepared</span>
-                            <h2 data-nc-result-title></h2>
+                            <h2 data-nc-result-title tabindex="-1"></h2>
                             <p data-nc-result-summary></p>
                         </div>
                         <button class="text-button" type="button" data-nc-edit-search>Edit search</button>
@@ -195,13 +195,13 @@
             <div class="container tdec-request__grid">
                 <header>
                     <span class="eyebrow">Manual fallback</span>
-                    <h2 id="nc-request-title">Prepare a county file request</h2>
+                    <h2 id="nc-request-title" tabindex="-1">Prepare a county file request</h2>
                     <p>SepticPath drafts the wording. You still send it through the county's official form, email, or phone workflow.</p>
                 </header>
                 <div class="tdec-request__output">
                     <label for="nc-request-copy">Request wording to copy</label>
                     <textarea id="nc-request-copy" readonly data-nc-request-copy></textarea>
-                    <div><button class="button button--secondary" type="button" data-nc-copy-request>Copy request wording</button><a class="button button--primary" data-nc-request-route href="#">Open county instructions</a></div>
+                    <div><button class="button button--secondary" type="button" data-nc-copy-request>Copy request wording</button><a class="button button--primary" data-nc-request-route href="#">Open county instructions</a><a class="button button--secondary" href="https://www.dph.ncdhhs.gov/environmental-health/ehs-directory-june-2026/download?attachment=" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="nc_request_county_directory" data-track-target-type="official_source">Open NC county staff directory</a></div>
                 </div>
             </div>
         </section>

@@ -18,6 +18,10 @@
     const requestSection = desk.querySelector("[data-nc-request-section]");
     const requestCopy = desk.querySelector("[data-nc-request-copy]");
     const requestRoute = desk.querySelector("[data-nc-request-route]");
+    const resultTitle = desk.querySelector("[data-nc-result-title]");
+    const requestTitle = desk.querySelector("#nc-request-title");
+    const ui = window.SepticStateRecordsUi;
+    const COUNTY_DIRECTORY = "https://www.dph.ncdhhs.gov/environmental-health/ehs-directory-june-2026/download?attachment=";
     let prepared = null;
 
     const fields = {
@@ -92,29 +96,51 @@
         ].filter(Boolean).join("\n");
     }
 
+    function restorePrepared() {
+        const saved = ui?.restoreTask("NC", window.location.pathname, county, clueType, clue);
+        if (!saved) return null;
+        updateClue();
+        const countyValue = selectedCounty();
+        if (!countyValue) return null;
+        return {
+            county: countyValue,
+            type: clueType.value,
+            clue: clean(clue.value),
+            owner: clean(owner?.value, 100),
+            subdivision: clean(subdivision?.value, 100)
+        };
+    }
+
     function showRequest() {
-        if (!prepared) return;
+        prepared ||= restorePrepared();
+        if (!prepared) {
+            const target = selectedCounty() ? clue : county;
+            ui?.showError(error, "Prepare the county and property clue above before drafting a request.", target);
+            ui?.reveal(form, target);
+            emit("records_route_error", {state_code: "NC", error_type: "missing_preparation"});
+            return;
+        }
         window.SepticRecordTask?.transition("request_prepared", "request_prepared");
         requestCopy.value = requestText(prepared);
         requestRoute.href = prepared.county.internalPath;
         requestSection.hidden = false;
-        requestSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        ui?.reveal(requestSection, requestTitle);
         emit("records_fallback_started", { state_code: "NC", county_name: prepared.county.name });
     }
 
+    county?.addEventListener("change", () => ui?.clearError(error, county));
+    clue?.addEventListener("input", () => ui?.clearError(error, clue));
     clueType?.addEventListener("change", updateClue);
     form?.addEventListener("submit", (event) => {
         event.preventDefault();
         const countyValue = selectedCounty();
         const clueValue = clean(clue?.value);
         if (!countyValue || !clueValue) {
-            error.textContent = !countyValue ? "Choose the North Carolina county first." : "Enter at least one property clue.";
-            error.hidden = false;
-            (!countyValue ? county : clue)?.focus();
+            ui?.showError(error, !countyValue ? "Choose the North Carolina county first." : "Enter at least one property clue.", !countyValue ? county : clue);
             emit("records_route_error", { state_code: "NC", error_type: !countyValue ? "missing_county" : "missing_clue" });
             return;
         }
-        error.hidden = true;
+        ui?.clearError(error, county, clue);
         prepared = {
             county: countyValue,
             type: clueType.value,
@@ -131,7 +157,7 @@
             requestedDocuments: ["Improvement Permit", "Construction Authorization", "Operation Permit or final approval", "approved layout", "repair history"]
         }, {address: prepared.type === "address" ? prepared.clue : "", identifierType: prepared.type, identifierValue: prepared.clue});
         window.SepticRecordTask?.transition("route_ready", "route_ready");
-        desk.querySelector("[data-nc-result-title]").textContent = `${countyValue.name} record route`;
+        resultTitle.textContent = `${countyValue.name} record route`;
         desk.querySelector("[data-nc-result-summary]").textContent = "Start with the verified county workflow. Use the official source only after you know which portal, form, email, or office owns the file.";
         variantsList.replaceChildren(...variants(prepared.type, prepared.clue, prepared.owner, prepared.subdivision).map((value) => {
             const item = document.createElement("li");
@@ -140,19 +166,21 @@
         }));
         actions.replaceChildren(
             link(`Open ${countyValue.name} instructions`, countyValue.internalPath, true),
-            link(countyValue.recordsLabel, countyValue.recordsUrl, false, true)
+            link(countyValue.recordsLabel, countyValue.recordsUrl, false, true),
+            link("Open NC county staff directory", COUNTY_DIRECTORY, false, true)
         );
         result.hidden = false;
         requestSection.hidden = true;
-        result.scrollIntoView({ behavior: "smooth", block: "start" });
+        ui?.reveal(result, resultTitle);
         emit("county_route_viewed", { state_code: "NC", county_name: countyValue.name, route_type: "verified_county" });
     });
     desk.querySelector("[data-nc-edit-search]")?.addEventListener("click", () => {
         prepared = null;
         result.hidden = true;
         requestSection.hidden = true;
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
-        county?.focus();
+        ui?.clearError(error, county, clue);
+        document.dispatchEvent(new CustomEvent("state-records-search-reset", {detail: {stateCode: "NC"}}));
+        ui?.reveal(form, county);
     });
     desk.querySelector("[data-nc-copy-clues]")?.addEventListener("click", async (event) => {
         if (!prepared) return;
