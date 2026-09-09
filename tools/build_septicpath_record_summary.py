@@ -204,7 +204,7 @@ def build_report(config: dict, annotated_path: Path, output_path: Path, logo_pat
         Paragraph("ANNOTATED AGENCY SKETCH", styles["eyebrow"]),
         Paragraph("Where the system appears in the historical drawing", styles["title"]),
         Paragraph("Colored callouts were added by SepticPath. The underlying agency page remains unchanged in the separately attached original PDF.", styles["subtitle"]),
-        Paragraph("Orientation note: the sketch labels Sugar Grove Road and the driveway, but it has no north arrow or survey scale. Right and behind below are drawing-relative directions only.", styles["small"]),
+        Paragraph("Orientation note: the sketch labels the road and driveway, but it has no north arrow or survey scale. Right and behind below are drawing-relative directions only.", styles["small"]),
         Spacer(1, 6),
     ])
     img = PILImage.open(annotated_path)
