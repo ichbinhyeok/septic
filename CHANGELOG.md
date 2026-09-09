@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.12.1 - 2026-09-10
+
+### Changed
+
+- Reworked homepage, Tennessee TDEC, Hamilton County, Tennessee, and North Carolina search snippets around the exact record-finding intent shown in Search Console.
+- Clarified in the TDEC search description that SepticPath can help recover files when the official viewer returns a 403, no record, or the wrong address.
+
 ## 0.0.12.0 - 2026-09-09
 
 ### Added
