@@ -301,7 +301,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TDEC Septic Records Search: SSDS Permit Lookup &amp; 403 Help</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>TN Septic Permit Search | TDEC Records &amp; File Help</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start a Tennessee SSDS septic-record search with the address, parcel, owner, or permit number.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/official-septic-lookup-tools/\">Official Septic Lookup Tools</a>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"name\":\"Official Septic Lookup Tools\",\"item\":\"https://example.test/official-septic-lookup-tools/\",\"position\":2")))
@@ -774,7 +774,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("SepticPath")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Record Research")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Find Septic Records by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/app.css?v=")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/workflows.css?v=")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/pages.css?v=")))
@@ -3673,7 +3673,7 @@ class SepticApplicationTests {
 	void hamiltonTennesseeCountyRecordsPageShowsPermitRetrievalWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/hamilton-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Hamilton County TN Septic Permit and Completion Certificate</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Hamilton County TN Septic Records &amp; Permit Search | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find a Hamilton County septic permit and certificate of completion")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the permit, layout, approval, or repair trail without guessing which office owns it.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find a Hamilton septic permit and completion certificate")))
@@ -7841,7 +7841,7 @@ class SepticApplicationTests {
 	void tennesseeRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Tennessee Septic Records by County | TDEC &amp; Local Files</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Tennessee Septic Records by County | Permit Lookup</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/\">Septic Records Lookup</a>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"name\":\"Septic Records Lookup\",\"item\":\"https://example.test/septic-records-checklist/\",\"position\":2")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee Septic Records by County")))
