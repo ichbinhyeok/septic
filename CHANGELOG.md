@@ -12,7 +12,7 @@
 - Repositioned SepticPath around human septic record research: public-source search, property verification, agency follow-up, original evidence, and plain-English findings.
 - Made the assisted investigation the primary path while preserving self-serve search and request tools as clear alternatives.
 - Moved the compact inquiry form ahead of supporting explanation on mobile so email and property address are visible immediately after the CTA handoff.
-- Refreshed reviewed official sources for Louisiana, Maryland, Rhode Island, Vermont, and Wasatch County, including the current Louisiana program and Wasatch document URLs.
+- Refreshed reviewed official sources for Louisiana, Maryland, Rhode Island, Vermont, Wasatch County, Cache County, Stark County, and Prince George’s County, replacing retired document and search URLs with their current official routes.
 
 ### Fixed
 
