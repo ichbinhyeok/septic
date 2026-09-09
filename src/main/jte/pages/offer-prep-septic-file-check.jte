@@ -16,24 +16,27 @@
         <section class="section section--heroish offer-prep-hero">
             <div class="container offer-prep-hero__grid">
                 <div>
-                    <span class="eyebrow">Free septic record help</span>
-                    <h1>Can’t find the septic file? We’ll help identify the right office and record to request.</h1>
-                    <p class="lede">Send the property address and tell us where the search stopped. We’ll reply with the most likely public-record path—and flag the next file question if a live transaction is involved.</p>
+                    <span class="eyebrow">Human septic record research · free beta</span>
+                    <h1>Send the address. We’ll investigate the septic record for you.</h1>
+                    <p class="lede">We search available public sources, verify the property, contact the responsible office when needed, and explain the records we receive in plain English.</p>
                     <div class="hero__actions offer-prep-hero__actions">
-                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="lead_form">Get help finding the file</a>
-                        <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Use the self-serve check</a>
+                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="lead_form">Start my record investigation</a>
+                        <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Search records myself</a>
                     </div>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        <span><strong>Free beta</strong> for early requests</span>
-                        <span><strong>Human reply</strong> by email</span>
-                        <span>No payment details requested</span>
+                        <span><strong>Human-reviewed</strong> research</span>
+                        <span><strong>Agency follow-up</strong> when needed</span>
+                        <span><strong>Original files</strong> plus clear findings</span>
                     </div>
                 </div>
-                <aside class="offer-prep-hero__note">
-                    <span class="pill">Not a permit decision</span>
-                    <strong>Use the official file before you negotiate the septic story.</strong>
-                    <p>This tool identifies a records route and prepares a factual request. The local office and the official file decide what the property supports.</p>
-                    <p class="offer-prep-hero__transfer-note">Start with record-path help below. If a missing or conflicting file is holding up a live transaction, your answers also tell us whether a closing-risk review is the useful next step.</p>
+                <aside class="offer-prep-hero__note service-scope-ledger" aria-label="How the record investigation works">
+                    <div class="service-scope-ledger__topline"><span>SEPTICPATH / RESEARCH DESK</span><span>01—03</span></div>
+                    <ol>
+                        <li><span>01</span><div><strong>Verify the property</strong><p>Match the address, parcel, county, and responsible record holder.</p></div></li>
+                        <li><span>02</span><div><strong>Follow the record</strong><p>Search credible sources and contact the public office when the online path stops.</p></div></li>
+                        <li><span>03</span><div><strong>Explain the result</strong><p>Return the original response, confirmed facts, unknowns, and next useful step.</p></div></li>
+                    </ol>
+                    <p class="offer-prep-hero__transfer-note">Record availability and response times vary. SepticPath is not an inspection, permit authority, or compliance certification.</p>
                 </aside>
             </div>
         </section>
@@ -158,13 +161,13 @@
         <section class="section closing-risk-beta-section" id="record-help" aria-labelledby="closing-risk-beta-heading">
             <div class="container closing-risk-beta-grid">
                 <div class="closing-risk-beta-copy">
-                    <span class="eyebrow">Start with the problem you have now</span>
-                    <h2 id="closing-risk-beta-heading">Tell us where the record search got stuck.</h2>
-                    <p class="lede">You do not need to be under contract. Send the address, state, and the point where the search stopped. We’ll use those facts to identify the likely office, record, or request language.</p>
+                    <span class="eyebrow">Start the investigation</span>
+                    <h2 id="closing-risk-beta-heading">Tell us the property and what you need to learn.</h2>
+                    <p class="lede">You do not need to know the county office, record name, or request process. Send the address and the problem; we’ll take the search as far as the available evidence allows.</p>
                     <ol class="detail-list">
-                        <li><strong>Exact next route:</strong> the agency or records desk most likely to own the file.</li>
-                        <li><strong>What to request:</strong> the permit, layout, approval, or written no-record response that fits the situation.</li>
-                        <li><strong>Transaction handoff:</strong> when a deadline or conflict raises a closing question, we’ll say what a deeper file review would need.</li>
+                        <li><strong>Research:</strong> search available public sources and match the property to the right jurisdiction.</li>
+                        <li><strong>Acquisition:</strong> contact the responsible office for the permit, layout, approval, or written response when needed.</li>
+                        <li><strong>Interpretation:</strong> return original materials with confirmed facts, important gaps, and the next useful step.</li>
                     </ol>
                     <p class="closing-risk-beta-copy__privacy">This beta stores the submitted address and emails it to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
                 </div>
@@ -174,9 +177,9 @@
                         <div>
                             <span class="eyebrow">Your reply will include</span>
                             <ul>
-                                <li>The likely office or records desk</li>
-                                <li>The exact file or document to request</li>
-                                <li>The official request link and a fallback if no record appears</li>
+                                <li>A verified property and record-owner route</li>
+                                <li>Agency outreach when an online record is unavailable</li>
+                                <li>Original files plus a plain-English findings summary</li>
                             </ul>
                         </div>
                         <p><strong>Human-reviewed</strong><span>We aim to reply by email within 1–2 business days.</span></p>
@@ -189,8 +192,8 @@
                              data-ga-track-once="record-help-request:${closingRiskRequestId}"
                              data-ga-param-request-type="record_help_beta"
                              data-ga-param-source-context="${closingRiskSuccessSourceContext}">
-                            <strong>Your record question is in.</strong>
-                            <p>Your reference is ${closingRiskRequestId}. We aim to reply by email within 1–2 business days after checking the likely public-record path. If you marked an active transaction, we’ll also identify the next closing-risk question.</p>
+                            <strong>Your record investigation is in.</strong>
+                            <p>Your reference is ${closingRiskRequestId}. We’ll begin with the available public sources and email you within 1–2 business days with either an answer, an agency-request update, or the next fact we need.</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
@@ -205,11 +208,16 @@
                             <label>Website<input type="text" name="website" value="${closingRiskCheckForm.getWebsite() == null ? "" : closingRiskCheckForm.getWebsite()}" tabindex="-1" autocomplete="off"></label>
                         </div>
                         <input type="hidden" name="sourceContext" value="${closingRiskCheckForm.getSourceContextValue()}" data-record-help-source-context>
+                        <div class="record-help-form-intro">
+                            <span class="eyebrow">About two minutes</span>
+                            <strong>Email and property address are enough to start.</strong>
+                            <small>We’ll ask only for details that help us find the right record.</small>
+                        </div>
                         <div class="field-grid">
                             <label>
                                 <span>Email</span>
                                 <input type="email" name="email" value="${closingRiskCheckForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
-                                <small>We’ll send the record path here. No newsletter signup.</small>
+                                <small>We’ll send research updates and the result here. No newsletter signup.</small>
                             </label>
                             <label class="field--full">
                                 <span>Property address</span>
@@ -284,10 +292,10 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree that SepticPath may store these property and contact details and email them to its operator to help identify the relevant septic record path and follow up about a transaction-related file gap when applicable. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
+                            <span>I agree that SepticPath may store these property and contact details and email them to its operator to research the relevant septic records, contact the responsible public office when appropriate, and follow up about the result. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
                         </label>
-                        <button class="button button--primary" type="submit">Ask for record-path help</button>
-                        <p class="form-note">Free beta requests are reviewed manually and are not added to a newsletter. The local office still determines whether a record exists and what it means.</p>
+                        <button class="button button--primary" type="submit">Ask SepticPath to investigate</button>
+                        <p class="form-note">Free beta requests are reviewed manually and are not added to a newsletter. Public offices control record availability and response timing; if a fee or owner authorization is required, we’ll tell you before anything else happens.</p>
                     </form>
                 </div>
             </div>
@@ -297,18 +305,18 @@
             <div class="container offer-prep-proof-grid">
                 <article>
                     <span>01</span>
-                    <h2>Do not guess the file owner</h2>
-                    <p>Start at the county or state route that owns the permit, layout, approval, or written no-record response.</p>
+                    <h2>One address is enough to begin</h2>
+                    <p>We identify the likely county or state record owner and verify the property before relying on a result.</p>
                 </article>
                 <article>
                     <span>02</span>
-                    <h2>Ask for the usable artifacts</h2>
-                    <p>Request the permit and final record with the layout, bedroom capacity, repair history, and any inspection or approval record that applies.</p>
+                    <h2>We pursue the usable artifacts</h2>
+                    <p>When appropriate, we request the permit, final record, layout, bedroom capacity, repair history, and relevant approval documents.</p>
                 </article>
                 <article>
                     <span>03</span>
-                    <h2>Keep the claim narrow</h2>
-                    <p>A listing detail or an old report is not a compliance conclusion. Use the official response before changing an offer, price, or repair decision.</p>
+                    <h2>You receive evidence, not a guess</h2>
+                    <p>We preserve the original source and clearly separate confirmed facts, unresolved questions, and decisions that require a licensed professional.</p>
                 </article>
             </div>
             <div class="container offer-prep-transfer-aftercare">

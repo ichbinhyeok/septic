@@ -48,15 +48,15 @@ class TdecRecordsDeskRegressionTest {
     }
 
     @Test
-    void doesNotRenderTheGenericAddressFinderOrPromiseRetrieval() throws Exception {
+    void keepsTheSelfServeCountyRouterSeparateFromTheHumanResearchService() throws Exception {
         String html = mockMvc.perform(get("/tdec-septic-records/"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
 
         assertThat(html)
-                .contains("Find the right official record source")
-                .contains("Choose the property county. Add the address or other property details if you have them.")
+                .contains("Prefer to handle it yourself? Find the official route.")
+                .contains("Send the property address. We’ll verify the county")
                 .contains("data-tdec-route-form")
                 .contains("data-tdec-request-section")
                 .contains("data-tdec-address")

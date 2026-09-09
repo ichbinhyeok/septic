@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.0.12.0 - 2026-09-09
+
+### Added
+
+- Added a premium, service-led homepage with a representative research dossier and an anonymized completed Tennessee record case.
+- Added first-viewport assisted-research entry points to national and county record pages, plus a reusable report generator for returned agency files.
+
+### Changed
+
+- Repositioned SepticPath around human septic record research: public-source search, property verification, agency follow-up, original evidence, and plain-English findings.
+- Made the assisted investigation the primary path while preserving self-serve search and request tools as clear alternatives.
+- Moved the compact inquiry form ahead of supporting explanation on mobile so email and property address are visible immediately after the CTA handoff.
+- Refreshed reviewed official sources for Louisiana, Maryland, Rhode Island, Vermont, Wasatch County, Cache County, Stark County, and Prince George’s County, replacing retired document and search URLs with their current official routes.
+
+### Fixed
+
+- Removed contradictory language that said SepticPath could not retrieve records while offering an assisted retrieval service.
+- Removed a property-specific road name from the reusable report template so published examples remain anonymous.
+
 ## 0.0.11.0 - 2026-09-06
 
 ### Changed

@@ -21,12 +21,24 @@
                         <strong>What you receive here</strong>
                         <span>The county, likely file owner, verified official route, useful search fields, and the next step for found, missing, blocked, or incomplete files.</span>
                     </div>
+                    <div class="national-records-service-entry" aria-label="SepticPath assisted record research">
+                        <div>
+                            <strong>Prefer a human search?</strong>
+                            <span>We’ll investigate public sources, contact the responsible office when needed, and explain what comes back.</span>
+                        </div>
+                        <a class="button button--primary"
+                           href="/offer-prep-septic-file-check/#record-help"
+                           data-record-help-cta
+                           data-track-click="nav"
+                           data-track-source-context="national_records_hero_record_help"
+                           data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                    </div>
                 </div>
                 @template.tags.addressRecordFinder(
                     finderId = "national-records-" + contentPage.slug(),
                     eyebrow = "Start with the property",
                     heading = "Enter the address to find the right office",
-                    intro = "A full address resolves the county. SepticPath prepares the official handoff; it does not retrieve or certify the government record.",
+                    intro = "A full address resolves the county and starts the official route. If the public search stops, SepticPath can investigate the record and contact the responsible office for you.",
                     totalCountyRouteCount = totalCountyRouteCount,
                     minimal = true
                 )
@@ -44,7 +56,7 @@
                         <a href="/septic-tank-location-records/"><strong>Locate the tank and drain field</strong><span>Start with the record drawing before arranging a professional locate</span></a>
                     @endif
                     <a href="/septic-records-request-builder/"><strong>No record appeared</strong><span>Prepare a precise written request</span></a>
-                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="national_records_record_help" data-track-target-type="lead_form"><strong>Still can’t find the right file?</strong><span>Send the address and we’ll help identify the office and record to request</span></a>
+                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="national_records_record_help" data-track-target-type="lead_form"><strong>Still can’t find the right file?</strong><span>Send the address. We’ll investigate, contact the responsible office when needed, and explain the response.</span></a>
                 </div>
             </div>
         </section>
