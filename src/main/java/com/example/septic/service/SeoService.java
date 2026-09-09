@@ -43,7 +43,7 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic Record Research, Retrieval & Permit Help | SepticPath",
+                "Find Septic Records by Address | SepticPath",
                 "Send the property address. SepticPath searches public sources, identifies the responsible office, requests missing records when appropriate, and explains the response.",
                 canonicalUrl,
                 "index,follow",
@@ -737,7 +737,7 @@ public class SeoService {
         String priorityTitle = switch (countyPage.key()) {
             case "VA::prince-william-county" -> "Request Prince William County Septic Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
-            case "TN::hamilton-county" -> "Hamilton County TN Septic Permit and Completion Certificate";
+            case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
             case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
             case "TN::knox-county" -> "Knox County TN SSDS File Search and Records Request";
             case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
@@ -1376,7 +1376,7 @@ public class SeoService {
             case "septic-tank-location-records" -> "Septic Tank Location Records | Find Tank & Drain Field Plans | SepticPath";
             case "septic-inspection-letter" -> "Septic Inspection Letter | Closing & Permit Checks | SepticPath";
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
-            case "tdec-septic-records" -> "TN Septic Permit Search by Address | TDEC SSDS Records";
+            case "tdec-septic-records" -> "TN Septic Permit Search | TDEC Records & File Help";
             case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup by County & Address | SepticPath";
             case "texas-ossf-records-search" -> "Texas OSSF Permit Records: Find the Local Authority | SepticPath";
             case "florida-ostds-permit-lookup" -> "Florida Septic Permit Lookup by County | OSTDS Records | SepticPath";
@@ -1389,7 +1389,7 @@ public class SeoService {
 
     private String contentPageSeoDescription(ContentPage contentPage) {
         return switch (contentPage.slug()) {
-            case "tdec-septic-records" -> "Search TN septic permits by address, parcel, owner, subdivision, or permit number. Open the official TDEC SSDS route or find the correct county office.";
+            case "tdec-septic-records" -> "Search Tennessee septic records through TDEC. If you get a 403, no record, or the wrong address, send the property and SepticPath will help recover the file.";
             case "north-carolina-septic-permit-lookup" -> "Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.";
             default -> contentPage.metaDescription();
         };
@@ -1398,8 +1398,8 @@ public class SeoService {
     private String stateMoneyPageSeoTitle(StateMoneyPage stateMoneyPage, StateProfile state) {
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return switch (state.stateCode()) {
-                case "TN" -> "Tennessee Septic Records by County | TDEC & Local Files";
-                case "NC" -> "North Carolina Septic Records by County | Address & As-Builts | SepticPath";
+                case "TN" -> "Tennessee Septic Records by County | Permit Lookup";
+                case "NC" -> "North Carolina Septic Records by County | Permit Lookup";
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records by County | Address & File Routes | SepticPath";
                 case "TX" -> "Texas Septic Records by County | Address & Authorized Agents | SepticPath";

@@ -26,7 +26,7 @@ class TdecSearchSnippetRegressionTest {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(
-                        "<meta name=\"description\" content=\"Search TN septic permits by address, parcel, owner, subdivision, or permit number. Open the official TDEC SSDS route or find the correct county office.\">"
+                        "<meta name=\"description\" content=\"Search Tennessee septic records through TDEC. If you get a 403, no record, or the wrong address, send the property and SepticPath will help recover the file.\">"
                 )));
     }
 }

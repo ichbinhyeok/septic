@@ -127,8 +127,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TN Septic Permit Search by Address | TDEC SSDS Records</title>")))
-                .andExpect(content().string(containsString("Search TN septic permits by address, parcel, owner, subdivision, or permit number.")));
+                .andExpect(content().string(containsString("<title>TN Septic Permit Search | TDEC Records &amp; File Help</title>")))
+                .andExpect(content().string(containsString("If you get a 403, no record, or the wrong address")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost: $300-$2,700 + County Fees</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
@@ -172,7 +172,7 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void stateHubsAndAgencyWorkspacesHaveDistinctSearchIntents() throws Exception {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
-                .andExpect(content().string(containsString("North Carolina Septic Records by County | Address &amp; As-Builts")))
+                .andExpect(content().string(containsString("North Carolina Septic Records by County | Permit Lookup")))
                 .andExpect(content().string(containsString("/north-carolina-septic-permit-lookup/")));
         mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
                 .andExpect(content().string(containsString("South Carolina Septic Records by County | Address &amp; File Routes")))
