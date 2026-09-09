@@ -1097,7 +1097,7 @@
                                data-record-help-cta
                                data-track-click="nav"
                                data-track-source-context="records_escalation_record_help"
-                               data-track-target-type="lead_form">Ask for record-path help</a>
+                               data-track-target-type="lead_form">Ask SepticPath to investigate</a>
                         </article>
 
                         <article class="records-escalation-card">

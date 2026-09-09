@@ -43,8 +43,8 @@ public class SeoService {
     public PageMeta homePage() {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
-                "Septic Records Lookup, Permit Search & Cost Guides by State | SepticPath",
-                "State-aware septic records lookup, permit search, county file paths, buyer workflow, and planning cost guides across all 50 states.",
+                "Septic Record Research, Retrieval & Permit Help | SepticPath",
+                "Send the property address. SepticPath searches public sources, identifies the responsible office, requests missing records when appropriate, and explains the response.",
                 canonicalUrl,
                 "index,follow",
                 List.of(),
@@ -689,8 +689,8 @@ public class SeoService {
 
     public PageMeta offerPrepFileCheckPage() {
         String canonicalUrl = absoluteUrl("/offer-prep-septic-file-check/");
-        String title = "Free Septic Record Help | Find the Right Office and File | SepticPath";
-        String description = "Could not find a septic permit or record? Send the property address and where the search stopped to get help identifying the likely office and exact file to request.";
+        String title = "Septic Record Research & Retrieval Help | SepticPath";
+        String description = "Send the property address. We search public sources, verify the property, contact the responsible office when needed, and explain the records we receive.";
         return pageMeta(
                 title,
                 description,
@@ -698,7 +698,7 @@ public class SeoService {
                 "index,follow",
                 breadcrumbLinks(
                         crumb("Home", absoluteUrl("/")),
-                        crumb("Free Septic Record Help", canonicalUrl)
+                        crumb("Septic Record Research", canonicalUrl)
                 ),
                 List.of(
                         toJson(webPage(canonicalUrl, title, description, "WebApplication")),

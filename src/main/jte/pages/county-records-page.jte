@@ -116,10 +116,23 @@
                 @endif
                     </div>
                 </details>
+                <div class="county-service-entry" aria-label="SepticPath assisted record research">
+                    <div>
+                        <span>SEPTICPATH RESEARCH DESK</span>
+                        <strong>Prefer not to chase the county file yourself?</strong>
+                        <p>Send the address. We’ll search available sources, contact the responsible office when needed, and return the original response with a clear explanation.</p>
+                    </div>
+                    <a class="button button--primary"
+                       href="/offer-prep-septic-file-check/#record-help"
+                       data-record-help-cta
+                       data-track-click="nav"
+                       data-track-source-context="county_records_${state.stateCode().toLowerCase()}"
+                       data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                </div>
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
-                            <a class="button button--primary"
+                            <a class="button button--secondary"
                                href="#county-acquisition-workspace"
                                data-track-click="nav"
                                data-track-source-context="county_acquisition_prepare"
@@ -134,7 +147,7 @@
                                data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
                         @else
                             @if (!countyAccessProfile.countySpecific())
-                                <a class="button button--primary"
+                                <a class="button button--secondary"
                                    href="#county-access-workflow"
                                    data-track-click="nav"
                                    data-track-source-context="county_baseline_prepare"
@@ -148,7 +161,7 @@
                                    data-track-source-context="county_access_primary"
                                    data-track-target-type="official_source">Open official next step</a>
                             @else
-                                <a class="button button--primary"
+                                <a class="button button--secondary"
                                    href="${countyAccessProfile.primaryUrl()}"
                                    target="_blank"
                                    rel="noreferrer"
@@ -187,7 +200,7 @@
                                data-track-source-context="county_records_command_parcel_anchor"
                                data-track-target-type="official_source">Find parcel/TMS</a>
                         @endif
-                        <a class="button button--primary"
+                        <a class="button button--secondary"
                            href="${countyPage.recordsUrl()}"
                            target="_blank"
                            rel="noreferrer"
@@ -195,7 +208,7 @@
                            data-track-source-context="county_records_command_records"
                            data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                     @endif
-                    <button class="button button--secondary"
+                    <button class="button button--quiet"
                             type="button"
                             data-share-route
                             data-share-url="${page.canonicalUrl()}"
@@ -297,15 +310,6 @@
                     <p>${editorialNote}</p>
                 </details>
             </article>
-        </div>
-    </section>
-
-    <section class="section section--tight closing-risk-cta-section">
-        <div class="container">
-            @template.tags.closingRiskCta(
-                sourceContext = "county_records_" + state.stateCode().toLowerCase(),
-                heading = "Found the county route but still can’t locate the right file?"
-            )
         </div>
     </section>
 
@@ -1688,7 +1692,7 @@
                        data-record-help-cta
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_record_help"
-                       data-track-target-type="lead_form">Get help finding the file</a>
+                       data-track-target-type="lead_form">Ask SepticPath to investigate</a>
                     <a class="button button--secondary"
                        href="/septic-system-cost-calculator/${state.slug()}/"
                        data-track-click="nav"

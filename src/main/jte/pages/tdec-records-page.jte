@@ -12,16 +12,22 @@
         <section class="tdec-desk__intro" aria-labelledby="tdec-page-title">
             <div class="container tdec-desk__intro-grid">
                 <div class="tdec-desk__hero-copy">
-                    <span class="eyebrow">Tennessee septic records</span>
-                    <h1 id="tdec-page-title">Prepare a Tennessee septic record request</h1>
-                    <p>Choose the property county. Add the address or other property details if you have them. We’ll identify the record owner and prepare the exact request for the permit, layout, final approval, and repair history.</p>
+                    <span class="eyebrow">Tennessee septic record investigation</span>
+                    <h1 id="tdec-page-title">TDEC viewer not working? We can investigate the record for you.</h1>
+                    <p>Send the property address. We’ll verify the county, search available sources, contact TDEC or the responsible local program when needed, and explain the response.</p>
                     <div class="tdec-desk__hero-actions">
                         <a class="button button--primary"
+                           href="/offer-prep-septic-file-check/#record-help"
+                           data-record-help-cta
+                           data-track-click="nav"
+                           data-track-source-context="tdec_hero_record_investigation"
+                           data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                        <a class="button button--secondary"
                            href="#tdec-record-search"
                            data-track-click="nav"
                            data-track-source-context="tdec_hero_request_builder"
-                           data-track-target-type="request_builder">Prepare my record request</a>
-                        <a class="button button--secondary"
+                           data-track-target-type="request_builder">Prepare the request myself</a>
+                        <a class="text-button"
                            href="/septic-record-finder/"
                            data-track-click="internal_handoff"
                            data-track-source-context="tdec_hero_address_finder"
@@ -36,7 +42,7 @@
                            data-track-target-type="official_search">Try the official viewer anyway</a>
                     </div>
                     <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is currently returning 403 in our checks. It may still work for some visitors.</p>
-                    <small class="tdec-desk__independent">Independent guide. SepticPath does not retrieve or certify government records.</small>
+                    <small class="tdec-desk__independent">Independent service. We can research and request available records; TDEC and local counties control record availability, response timing, and permit status.</small>
                     <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title">
                         <div>
                             <span class="eyebrow">Back from TDEC?</span>
@@ -52,11 +58,11 @@
                     </section>
                 </div>
                 <aside class="tdec-desk__boundary" aria-label="Service boundary">
-                    <strong>Use the route that fits</strong>
+                    <strong>What SepticPath does</strong>
                     <dl>
-                        <div><dt>TDEC county</dt><dd>Prepare a direct records request before trying the restricted viewer.</dd></div>
-                        <div><dt>Local county</dt><dd>Nine counties administer their own septic programs.</dd></div>
-                        <div><dt>After sending</dt><dd>Keep the reply and bring the returned file back for review.</dd></div>
+                        <div><dt>01 Verify</dt><dd>Match the address, parcel clues, county, and responsible record holder.</dd></div>
+                        <div><dt>02 Request</dt><dd>Contact TDEC or the local county program when the online route stops.</dd></div>
+                        <div><dt>03 Explain</dt><dd>Return the original agency response with confirmed facts and next steps.</dd></div>
                     </dl>
                 </aside>
             </div>
@@ -66,8 +72,8 @@
             <div class="container">
                 <header class="tdec-workspace__header">
                     <div>
-                        <span class="eyebrow">County router</span>
-                        <h2 id="tdec-workspace-title">Find the right official record source</h2>
+                        <span class="eyebrow">Self-serve alternative</span>
+                        <h2 id="tdec-workspace-title">Prefer to handle it yourself? Find the official route.</h2>
                     </div>
                     <p>One required choice · Nothing is submitted to an agency</p>
                 </header>
@@ -209,7 +215,7 @@
                     <h2 id="tdec-help-title">A record search cannot prove current system condition</h2>
                 </header>
                 <div class="tdec-quick-help__rows">
-                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_quick_help_record_help" data-track-target-type="lead_form"><strong>Search returned nothing?</strong><span>Send the address and we’ll help identify the Tennessee office and record to request.</span></a>
+                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_quick_help_record_help" data-track-target-type="lead_form"><strong>Search returned nothing?</strong><span>Send the address. We’ll investigate available sources, contact the responsible office when needed, and explain the response.</span></a>
                     <a href="/septic-bedroom-permit-checker/"><strong>Need approved bedrooms?</strong><span>Use an official approval or Inspection Letter, not a listing claim.</span></a>
                     <a href="/septic-backup-slow-drains/"><strong>Backup or several slow drains?</strong><span>Reduce water use and prepare the symptom details a septic service provider needs.</span></a>
                     <a href="/wet-yard-over-septic-drain-field/"><strong>Wet yard, odor, or surfacing wastewater?</strong><span>See when a visible symptom points beyond routine pumping.</span></a>

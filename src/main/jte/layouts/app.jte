@@ -96,7 +96,7 @@
                     <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                     <span class="brand__text">
                         <strong>SepticPath</strong>
-                        <span>Records, file review &amp; next decisions</span>
+                        <span>Research, retrieval &amp; clear findings</span>
                     </span>
                 </a>
 
@@ -121,7 +121,7 @@
                        data-record-help-link
                        data-track-click="nav"
                        data-track-source-context="global_header"
-                       data-track-target-type="lead_form">Record help</a>
+                       data-track-target-type="lead_form">Ask SepticPath</a>
                     <a href="/states/">States</a>
                     <a href="/septic-system-cost-calculator/">Cost planning</a>
                 </nav>
@@ -158,10 +158,10 @@
                         <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
                         <span class="brand__text">
                             <strong>SepticPath</strong>
-                            <span>Records-first guidance with official-source context.</span>
+                            <span>Human record research with official-source context.</span>
                         </span>
                     </a>
-                    <p class="footer-copy">This site is a homeowner workflow and planning tool. It helps with records, permit path, buyer diligence, and cost framing, but it does not provide engineering design, permit approval, or legal compliance certification.</p>
+                    <p class="footer-copy">SepticPath researches public septic records, follows the responsible agency path when needed, and explains the evidence in plain English. It does not provide engineering design, permit approval, inspection, or legal compliance certification.</p>
                 </section>
 
                 <nav class="footer-block" aria-label="Core pages">
@@ -173,7 +173,7 @@
                                data-record-help-link
                                data-track-click="nav"
                                data-track-source-context="global_footer"
-                               data-track-target-type="lead_form">Free record help</a></li>
+                               data-track-target-type="lead_form">Ask SepticPath for help</a></li>
                         <li><a href="/septic-permit-lookup/">Permit lookup</a></li>
                         <li><a href="/septic-records-checklist/">Records guides</a></li>
                         <li><a href="/septic-records-by-county/">County record paths</a></li>
