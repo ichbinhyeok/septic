@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.13.0 - 2026-09-11
+
+### Changed
+
+- Made the free human-research beta terms visible beside the homepage investigation action.
+- Added a first-viewport address action to the main record finder and moved calculator inputs ahead of related-record shortcuts.
+- Reframed About and Contact around the human-reviewed record research service, including a direct path for property-specific investigations.
+
+### Fixed
+
+- Prevented the mobile self-serve summary label and heading from overlapping.
+- Replaced the empty dynamic record-result heading with meaningful fallback text.
+
 ## 0.0.12.1 - 2026-09-10
 
 ### Changed
