@@ -967,29 +967,29 @@ public class SiteController {
                 model,
                 seoService.basicPage(
                         "About SepticPath",
-                        "Who operates SepticPath, how official-source records routes are reviewed, and what this independent planning tool can and cannot establish.",
+                        "Who operates SepticPath, how human record research is reviewed, and what this independent service can and cannot establish.",
                         "/about/"
                 ),
                 "About this project",
-                "An independent records-first planning product.",
-                "SepticPath helps U.S. homeowners, buyers, sellers, and property professionals move from an address to the public septic file, identify what the file does not prove, and prepare the next question. It is not affiliated with a state, county, health department, or records vendor.",
+                "An independent septic record research service.",
+                "SepticPath helps U.S. homeowners, buyers, sellers, and property professionals move from an address to a useful property record answer. We research available public sources, identify the responsible office, follow up when appropriate, and explain the returned material. SepticPath is not affiliated with a state, county, health department, or records vendor.",
                 Arrays.asList(
                         new SitePageSection(
                                 "Who operates and reviews it",
-                                "SepticPath is operated as an independent web product. The Editorial Team and Source Review labels describe product functions, not named licensed engineers, inspectors, attorneys, or government officials.",
+                                "SepticPath is operated as an independent, human-reviewed research service. Editorial Team, Research Desk, and Source Review describe service functions, not licensed engineering, inspection, legal, or government credentials.",
                                 List.of(
-                                        "Editorial work turns public records instructions into property-task checklists and keeps claims inside the cited source boundary.",
-                                        "Source review checks official destinations, visible form or search fields, review dates, and fallback instructions before a route is described as county-specific.",
+                                        "Research work matches the property and jurisdiction, searches credible public sources, and preserves the original source material.",
+                                        "Source review checks official destinations, required request details, review dates, and fallback instructions before a route is described as county-specific.",
                                         "No professional credential is implied. Engineering, inspection, legal, permitting, and property-condition decisions remain with the appropriate qualified professional or agency."
                                 )
                         ),
                         new SitePageSection(
                                 "What this site is for",
-                                "The goal is to reduce records and permit uncertainty without pretending a public file proves current condition or approval.",
+                                "The goal is to turn a confusing or blocked record search into a documented answer without pretending a public file proves current condition or approval.",
                                 List.of(
-                                        "Address and county routing to reviewed official records paths.",
-                                        "State-aware pages with official-source links, agency attribution, and last-reviewed dates.",
-                                        "Document checks and conservative cost planning after the record path is clear."
+                                        "Property and jurisdiction matching across available public sources.",
+                                        "Focused agency follow-up when the public online route is missing, blocked, or unclear.",
+                                        "Original files, confirmed facts, remaining unknowns, and the next useful step returned in plain English."
                                 )
                         ),
                         new SitePageSection(
@@ -1020,8 +1020,8 @@ public class SiteController {
                                 )
                         )
                 ),
-                "Records first, source-transparent",
-                "Inspect the public route dataset, methodology, and correction path before relying on a workflow. Every property-specific conclusion still needs the official file or office response."
+                "Human research, source-transparent",
+                "Every conclusion is tied to the available source file or office response. Records can be unavailable, incomplete, fee-based, or restricted by owner authorization; when that happens, SepticPath explains the constraint and the next useful step."
         );
     }
 

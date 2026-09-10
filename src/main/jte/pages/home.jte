@@ -32,6 +32,7 @@
                        data-track-target-type="lead_form">Ask SepticPath to investigate</a>
                     <a class="text-button" href="#self-serve-records" data-track-click="nav" data-track-source-context="home_service_hero" data-track-target-type="internal_tool">Search public records myself</a>
                 </div>
+                <small class="home-service-hero__beta-note">Free beta · No payment details · Human reply in 1–2 business days</small>
                 <ul class="home-service-hero__signals" aria-label="What SepticPath handles">
                     <li><strong>Human-reviewed</strong><span>Not an automated link list</span></li>
                     <li><strong>Agency follow-up</strong><span>When the public route stops</span></li>

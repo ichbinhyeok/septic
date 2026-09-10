@@ -14,10 +14,10 @@
             <div class="page-hero__content">
                 <span class="eyebrow">Contact</span>
                 <h1>General questions, source corrections, and privacy requests</h1>
-                <p class="lede">Use this page for questions about the site itself. If you need septic pricing help, start with the estimator or quote flow so the request carries the project context that makes it useful.</p>
+                <p class="lede">Use this page for questions about SepticPath, source corrections, privacy requests, and partnerships. For help finding a property record, use the investigation form so the address and research question stay together.</p>
                 <div class="hero__actions">
                     <a class="button button--primary" href="#contact-request">Jump to contact form</a>
-                    <a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true#quote-request" data-track-click="nav" data-track-source-context="contact_quote_form" data-track-target-type="quote_form">Use the quote form for project pricing</a>
+                    <a class="button button--secondary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="contact_record_help" data-track-target-type="lead_form">Start a property record investigation</a>
                 </div>
                 <div class="hero__notes">
                     <span>General questions</span>
@@ -28,10 +28,10 @@
             </div>
 
             <aside class="hero-sidecard">
-                <span class="pill">Working contact channel</span>
-                <strong>Best for non-quote requests</strong>
-                <p>This intake form gives the site a real public contact path before a support inbox or business address is published. Project-specific quote requests should still start in the estimator.</p>
-                <p>The form appears immediately below this hero so source corrections and privacy requests do not get buried under trust copy.</p>
+                <span class="pill">Public contact channel</span>
+                <strong>Reviewed by the SepticPath research desk</strong>
+                <p>Replies are handled by email. Address-specific record research belongs in the investigation form; this channel is for site, source, privacy, and partnership questions.</p>
+                <p>A successful submission returns a reference ID you can keep for follow-up.</p>
             </aside>
         </div>
     </section>
@@ -110,14 +110,14 @@
 
                     <div class="form-actions">
                         <button class="button button--primary" type="submit">Send contact request</button>
-                        <p>This form is for project operations and trust questions. Septic pricing requests should use the estimator or quote flow.</p>
+                        <p>This form is for site operations and trust questions. Property-specific record help should use the investigation form.</p>
                     </div>
                 </form>
             </section>
 
             <aside class="detail-card">
                 <h2>Response expectations</h2>
-                <p>This site is still estimate-first. The contact form creates a durable intake record, but it should not be treated as emergency service dispatch.</p>
+                <p>Every request is reviewed by the SepticPath operator. Use the property investigation form for address-specific research and this form for site and trust questions.</p>
                 <ul class="detail-list">
                     <li>Use the Source correction topic when a state page or official-source summary needs review.</li>
                     <li>Use the Privacy request topic when the question is about stored leads, events, or data-handling.</li>
@@ -140,12 +140,12 @@
             </article>
 
             <article class="detail-card">
-                <h2>Use the estimator instead when</h2>
-                <p>Homeowner pricing and contractor matching work best when the request includes the project assumptions used in the estimate.</p>
+                <h2>Use record investigation instead when</h2>
+                <p>Property-specific help works best when the address, goal, and any failed search attempt arrive together.</p>
                 <ul class="detail-list">
-                    <li>Run the cost estimator first for install, replacement, inspection, or buyer planning questions.</li>
-                    <li>Use the short quote form after the estimate if you want local pricing help.</li>
-                    <li>Keep this contact form for site operations, not urgent septic dispatch.</li>
+                    <li>You cannot find the permit, as-built, system drawing, or approved bedroom count.</li>
+                    <li>An official search is blocked, unclear, or returned no useful result.</li>
+                    <li>You want SepticPath to identify the responsible office and explain the returned file.</li>
                 </ul>
             </article>
         </div>

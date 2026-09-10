@@ -18,8 +18,8 @@
             </div>
 
             <aside class="hero-sidecard">
-                <span class="pill">Planning and records guidance</span>
-                <strong>Homeowner planning workflow</strong>
+                <span class="pill">Independent research service</span>
+                <strong>Human-reviewed public record research</strong>
                 <p>${calloutBody}</p>
             </aside>
         </div>
@@ -49,7 +49,7 @@
                 <span class="trust-box__label">Important note</span>
                 <h2>${calloutTitle}</h2>
                 <p>${calloutBody}</p>
-                <a href="/septic-system-cost-calculator/">Open the main estimator</a>
+                <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Start a property record investigation</a>
             </article>
         </div>
     </section>

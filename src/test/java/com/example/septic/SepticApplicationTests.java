@@ -1696,7 +1696,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("General questions, source corrections, and privacy requests")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Send a contact request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Source correction")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?quoteMode=true#quote-request")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/offer-prep-septic-file-check/#record-help")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Reviewed by the SepticPath research desk")));
 	}
 
 	@Test
