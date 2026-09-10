@@ -20,6 +20,13 @@
                     <h2>${heading}</h2>
                 @endif
                 <p>${intro}</p>
+                @if (pageHeading)
+                    <a class="button button--primary record-finder__hero-action"
+                       href="#${finderId}-form"
+                       data-track-click="nav"
+                       data-track-source-context="record_finder_hero"
+                       data-track-target-type="internal_tool">Start with the property address</a>
+                @endif
                 <div class="record-finder__signals" aria-label="Record finder coverage">
                     <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
                     <span>Route depth shown before handoff</span>
@@ -144,7 +151,7 @@
 
         <section class="record-finder__result" data-address-record-finder-result aria-live="polite" hidden>
             <span class="eyebrow" data-address-record-finder-status>County route found</span>
-            <h3 data-address-record-finder-heading></h3>
+            <h3 data-address-record-finder-heading>Property record route</h3>
             <p data-address-record-finder-message></p>
             <div class="record-finder__result-meta" data-address-record-finder-meta hidden></div>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>

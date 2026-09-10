@@ -37,14 +37,6 @@
                 <span class="eyebrow">Septic cost calculator</span>
                 <h1>Estimate the cost of a septic project.</h1>
                 <p class="lede">Choose the state, job type, and property details. We will show a broad planning range, what moved it, and what to verify before trusting the low end.</p>
-                @if (!calculatorLandingLinks.isEmpty())
-                    <div class="quick-link-strip" aria-label="Workflow shortcuts">
-                        <span class="quick-link-strip__label">Need records first?</span>
-                        @for (var link : calculatorLandingLinks.stream().limit(4).toList())
-                            <a class="button button--secondary quick-link-strip__button" href="${link.path()}">${link.title()}</a>
-                        @endfor
-                    </div>
-                @endif
             </div>
         </div>
     </section>
@@ -188,6 +180,15 @@
                         </label>
                     </div>
                 </details>
+
+                @if (!calculatorLandingLinks.isEmpty())
+                    <nav class="quick-link-strip calculator-record-shortcuts" aria-label="Related record workflows">
+                        <span class="quick-link-strip__label">Need records first?</span>
+                        @for (var link : calculatorLandingLinks.stream().limit(4).toList())
+                            <a class="button button--secondary quick-link-strip__button" href="${link.path()}">${link.title()}</a>
+                        @endfor
+                    </nav>
+                @endif
             </form>
 
             <div class="calculator-output">
