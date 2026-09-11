@@ -2277,6 +2277,9 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<CountyFinderLinkView> directOnlineCountyFinderLinks = RECORDS_BY_COUNTY_SLUG.equals(contentPage.slug())
                 ? directOnlineCountyFinderLinks()
                 : List.of();
+        List<OfficialRecordToolView> officialRecordTools = TANK_LOCATION_RECORDS_SLUG.equals(contentPage.slug())
+                ? officialRecordTools()
+                : List.of();
         List<PageLink> renderedInternalLinks = renderedInternalLinks(contentPage, internalLinks, fanoutRestrictedSurface);
         List<CountyWorkflowFieldView> contentOfficialFilePathRows = contentOfficialFilePathRows(
                 contentPage,
@@ -2306,6 +2309,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("secondaryPermitLookupCountyLinks", permitLookupCountyLinks.stream().skip(6).toList());
         model.addAttribute("countyFinderLinks", countyFinderLinks);
         model.addAttribute("directOnlineCountyFinderLinks", directOnlineCountyFinderLinks);
+        model.addAttribute("officialRecordTools", officialRecordTools);
+        model.addAttribute("officialRecordToolStateCount", officialRecordTools.stream()
+                .map(OfficialRecordToolView::stateCode)
+                .distinct()
+                .count());
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
@@ -4987,6 +4995,75 @@ The goal is to settle the permit path before we frame the project as a normal in
         return countyFinderLinks(totalCountyRouteCount()).stream()
                 .filter(this::isDirectOnlineRecordRoute)
                 .toList();
+    }
+
+    private List<OfficialRecordToolView> officialRecordTools() {
+        return researchDataService.getPublicCountyRecordsPages().stream()
+                .map(page -> researchDataService.findStateByCode(page.stateCode())
+                        .flatMap(state -> officialRecordTool(page, state)))
+                .flatMap(Optional::stream)
+                .sorted(Comparator
+                        .comparingInt((OfficialRecordToolView tool) -> switch (tool.toolType()) {
+                            case "record_map" -> 0;
+                            case "direct_search" -> 1;
+                            default -> 2;
+                        })
+                        .thenComparing(OfficialRecordToolView::stateName)
+                        .thenComparing(OfficialRecordToolView::countyName))
+                .toList();
+    }
+
+    private Optional<OfficialRecordToolView> officialRecordTool(CountyRecordsPage page, StateProfile state) {
+        String recordsEvidence = normalizeCountyFinderText(String.join(" ",
+                firstNonBlank(page.recordsLabel(), ""),
+                firstNonBlank(page.recordsUrl(), "")
+        ));
+        String parcelEvidence = normalizeCountyFinderText(String.join(" ",
+                firstNonBlank(page.parcelAnchorLabel(), ""),
+                firstNonBlank(page.parcelAnchorUrl(), ""),
+                firstNonBlank(page.parcelAnchorNote(), "")
+        ));
+        boolean recordMap = containsMapOrGisClue(recordsEvidence);
+        boolean directSearch = DIRECT_ONLINE_RECORD_SEARCH_COUNTIES.contains(
+                page.stateCode() + ":" + normalizeCountyFinderText(page.countyName()).replace(" county", "")
+        );
+        boolean parcelMap = page.hasParcelAnchor() && containsMapOrGisClue(parcelEvidence);
+        if (!recordMap && !directSearch && !parcelMap) {
+            return Optional.empty();
+        }
+
+        String toolType = recordMap ? "record_map" : directSearch ? "direct_search" : "parcel_map";
+        String toolTypeLabel = switch (toolType) {
+            case "record_map" -> "Septic map or GIS";
+            case "direct_search" -> "Direct permit search";
+            default -> "Parcel map handoff";
+        };
+        String officialUrl = "parcel_map".equals(toolType) ? page.parcelAnchorUrl() : page.recordsUrl();
+        String officialLabel = "parcel_map".equals(toolType)
+                ? firstNonBlank(page.parcelAnchorLabel(), "Open official parcel map")
+                : firstNonBlank(page.recordsLabel(), "Open official records tool");
+        String combinedText = normalizeCountyFinderText(countyCombinedText(page));
+        List<String> clues = new ArrayList<>();
+        if (combinedText.contains("address")) clues.add("address");
+        if (page.hasParcelAnchor() || combinedText.matches(".*\\b(parcel|apn|tms|pin)\\b.*")) clues.add("parcel/APN");
+        if (combinedText.contains("owner")) clues.add("owner");
+        if (combinedText.contains("permit number")) clues.add("permit number");
+        String lookupClues = clues.isEmpty() ? "county and property details" : String.join(", ", clues);
+        boolean documentClue = combinedText.matches(".*\\b(attachment|attachments|download|pdf|scan|scanned|drawing|layout|as built)\\b.*");
+        String searchText = normalizeCountyFinderText(String.join(" ",
+                page.countyName(), state.stateName(), state.stateCode(), toolTypeLabel,
+                officialLabel, lookupClues, countyFirstArtifact(page)
+        ));
+        return Optional.of(new OfficialRecordToolView(
+                state.stateCode(), state.stateName(), page.countyName(), page.path(state.slug()),
+                toolType, toolTypeLabel, officialLabel, officialUrl, lookupClues,
+                countyFirstArtifact(page), page.hasParcelAnchor(), documentClue, searchText
+        ));
+    }
+
+    private boolean containsMapOrGisClue(String normalizedText) {
+        return normalizedText.matches(".*\\b(gis|map|maps|mapper|mapserver|geocortex|qpublic)\\b.*")
+                || normalizedText.contains("arcgis");
     }
 
     private List<CountyFinderLinkView> countyFinderLinksForContentPage(ContentPage contentPage, int limit) {

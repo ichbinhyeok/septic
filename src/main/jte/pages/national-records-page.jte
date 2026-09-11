@@ -5,9 +5,11 @@
 @param String contentQuickAnswer = ""
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
+@param java.util.List<com.example.septic.web.OfficialRecordToolView> officialRecordTools = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.StateProfile> states = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
+@param long officialRecordToolStateCount = 0
 
 @template.layouts.app(page = page, content = @`
     <div class="national-records-page">
@@ -75,6 +77,111 @@
                 </dl>
             </div>
         </section>
+
+        @if ("septic-tank-location-records".equals(contentPage.slug()) && !officialRecordTools.isEmpty())
+            <section class="section section--tight" id="official-septic-map-directory">
+                <div class="container">
+                    <div class="official-map-directory" data-official-map-directory>
+                        <header class="official-map-directory__header">
+                            <div>
+                                <span class="eyebrow">Official map &amp; GIS directory</span>
+                                <h2>Open the public tool that can narrow the tank or drain-field search.</h2>
+                                <p>These are reviewed government map, GIS, parcel, and direct permit-search routes. A mapped point or permit hit is evidence to inspect—not a field locate or proof of current condition.</p>
+                            </div>
+                            <dl class="official-map-directory__coverage" aria-label="Official map directory coverage">
+                                <div><dt>Official routes</dt><dd>${officialRecordTools.size()}</dd></div>
+                                <div><dt>States represented</dt><dd>${officialRecordToolStateCount}</dd></div>
+                            </dl>
+                        </header>
+
+                        <div class="official-map-directory__controls" aria-label="Filter official septic map routes">
+                            <label class="official-map-directory__query">
+                                <span>County or state</span>
+                                <input type="search" autocomplete="off" placeholder="Try Gwinnett, Colorado, or NC" data-map-directory-query>
+                            </label>
+                            <label>
+                                <span>Tool type</span>
+                                <select data-map-directory-type>
+                                    <option value="">All public tools</option>
+                                    <option value="record_map">Septic map or GIS</option>
+                                    <option value="direct_search">Direct permit search</option>
+                                    <option value="parcel_map">Parcel map handoff</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>State</span>
+                                <select data-map-directory-state>
+                                    <option value="">All states</option>
+                                    @for (var state : states)
+                                        <option value="${state.stateCode()}">${state.stateName()}</option>
+                                    @endfor
+                                </select>
+                            </label>
+                            <div class="official-map-directory__toggles">
+                                <label class="official-map-directory__toggle">
+                                    <input type="checkbox" data-map-directory-parcel>
+                                    <span>Parcel clue</span>
+                                </label>
+                                <label class="official-map-directory__toggle">
+                                    <input type="checkbox" data-map-directory-documents>
+                                    <span>Drawing/document clue</span>
+                                </label>
+                            </div>
+                            <button class="button button--quiet" type="button" data-map-directory-clear>Clear filters</button>
+                        </div>
+
+                        <div class="official-map-directory__status" aria-live="polite">
+                            <strong data-map-directory-count>${officialRecordTools.size()} official routes</strong>
+                            <span>Government sources open in a new tab.</span>
+                        </div>
+
+                        <div class="official-map-directory__list" data-map-directory-list>
+                            @for (var tool : officialRecordTools)
+                                <article class="official-map-route"
+                                         data-map-directory-route
+                                         data-map-type="${tool.toolType()}"
+                                         data-map-state="${tool.stateCode()}"
+                                         data-map-parcel="${tool.parcelClueAvailable()}"
+                                         data-map-documents="${tool.documentClueAvailable()}"
+                                         data-map-search="${tool.searchText()}">
+                                    <div class="official-map-route__identity">
+                                        <span>${tool.stateCode()} · ${tool.toolTypeLabel()}</span>
+                                        <h3>${tool.countyName()}</h3>
+                                    </div>
+                                    <div class="official-map-route__detail">
+                                        <p><strong>Search clues:</strong> ${tool.lookupClues()}</p>
+                                        <p><strong>First file to inspect:</strong> ${tool.firstArtifactLabel()}</p>
+                                    </div>
+                                    <div class="official-map-route__actions">
+                                        <a class="button button--primary"
+                                           href="${tool.officialUrl()}"
+                                           target="_blank"
+                                           rel="noreferrer"
+                                           data-track-click="nav"
+                                           data-track-source-context="tank_location_official_map"
+                                           data-track-target-type="official_source">${tool.officialLabel()}</a>
+                                        <a href="${tool.countyPath()}"
+                                           data-track-click="nav"
+                                           data-track-source-context="tank_location_map_county_guide"
+                                           data-track-target-type="county_records_page">Read the county handoff</a>
+                                    </div>
+                                </article>
+                            @endfor
+                        </div>
+                        <p class="official-map-directory__empty" data-map-directory-empty hidden>No matching public tool in the reviewed set. Clear the filters or use the county request route below.</p>
+
+                        <div class="official-map-directory__fallback">
+                            <div>
+                                <span class="eyebrow">No public map?</span>
+                                <h3>A missing map does not mean the septic file is missing.</h3>
+                                <p>Use the county finder below for request forms, office contacts, and written no-record follow-up.</p>
+                            </div>
+                            <a class="button button--secondary" href="#${contentPage.slug()}-county-finder">Find the county request route</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
 
         @template.tags.countyFinder(
             countyFinderLinks = countyFinderLinks,

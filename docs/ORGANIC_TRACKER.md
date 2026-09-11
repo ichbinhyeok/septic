@@ -1906,3 +1906,28 @@ Copy this block for the next review:
     diagnostics
   - compare complete same-weekday 14-day and 28-day cohorts; do not react to a
     single seven-day window
+
+## 2026-09-11 - Official septic map and GIS directory
+
+- Goal: test a distinct map, GIS, and tank-location search cluster without
+  creating another overlapping records URL family.
+- Surface: `/septic-tank-location-records/`; canonical, title, description,
+  and H1 were left unchanged.
+- Shipped treatment:
+  - classified existing reviewed county evidence into septic map or GIS,
+    direct permit search, and parcel-map handoff routes
+  - server-rendered 31 official routes across 12 states with direct government
+    links and matching county handoff pages
+  - added county/state, tool-type, parcel-clue, and drawing/document-clue
+    filters plus an explicit no-result fallback to the county request finder
+  - preserved the boundary that a mapped point or permit hit is not a field
+    locate or proof of current condition
+- Measurement:
+  - GSC: page impressions, clicks, CTR, and query diversity for terms containing
+    `map`, `GIS`, `tank location`, `drain field location`, and county names
+  - GA4: official-source exits from `tank_location_official_map`, county-guide
+    clicks from `tank_location_map_county_guide`, and attributed record-help
+    submissions whose entry page is `/septic-tank-location-records/`
+  - first directional check after 14 complete days; 28-day decision check
+- Guardrail: do not create a separate septic-map URL or expand heuristic labels
+  into unsupported claims about record completeness or field accuracy.
