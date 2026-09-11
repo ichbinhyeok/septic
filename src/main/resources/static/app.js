@@ -789,6 +789,63 @@
 
     setupCountyFinders();
 
+    function setupOfficialMapDirectories() {
+        document.querySelectorAll("[data-official-map-directory]").forEach((directory) => {
+            const query = directory.querySelector("[data-map-directory-query]");
+            const type = directory.querySelector("[data-map-directory-type]");
+            const state = directory.querySelector("[data-map-directory-state]");
+            const parcel = directory.querySelector("[data-map-directory-parcel]");
+            const documents = directory.querySelector("[data-map-directory-documents]");
+            const clear = directory.querySelector("[data-map-directory-clear]");
+            const count = directory.querySelector("[data-map-directory-count]");
+            const empty = directory.querySelector("[data-map-directory-empty]");
+            const routes = Array.from(directory.querySelectorAll("[data-map-directory-route]"));
+
+            if (!(query instanceof HTMLInputElement) || !routes.length) return;
+
+            const normalize = (value) => String(value || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, " ")
+                .trim();
+
+            const update = () => {
+                const needle = normalize(query.value);
+                const selectedType = type instanceof HTMLSelectElement ? type.value : "";
+                const selectedState = state instanceof HTMLSelectElement ? state.value : "";
+                const parcelOnly = parcel instanceof HTMLInputElement && parcel.checked;
+                const documentsOnly = documents instanceof HTMLInputElement && documents.checked;
+                let visible = 0;
+
+                routes.forEach((route) => {
+                    const matches = (!needle || normalize(route.dataset.mapSearch).includes(needle))
+                        && (!selectedType || route.dataset.mapType === selectedType)
+                        && (!selectedState || route.dataset.mapState === selectedState)
+                        && (!parcelOnly || route.dataset.mapParcel === "true")
+                        && (!documentsOnly || route.dataset.mapDocuments === "true");
+                    route.hidden = !matches;
+                    if (matches) visible += 1;
+                });
+
+                if (count) count.textContent = `${visible} official route${visible === 1 ? "" : "s"}`;
+                if (empty) empty.hidden = visible !== 0;
+            };
+
+            query.addEventListener("input", update);
+            [type, state, parcel, documents].forEach((control) => control?.addEventListener("change", update));
+            clear?.addEventListener("click", () => {
+                query.value = "";
+                if (type instanceof HTMLSelectElement) type.value = "";
+                if (state instanceof HTMLSelectElement) state.value = "";
+                if (parcel instanceof HTMLInputElement) parcel.checked = false;
+                if (documents instanceof HTMLInputElement) documents.checked = false;
+                update();
+                query.focus();
+            });
+        });
+    }
+
+    setupOfficialMapDirectories();
+
     function setupRecordsAccessIndex() {
         const root = document.querySelector("[data-records-access-index]");
         if (!root) {

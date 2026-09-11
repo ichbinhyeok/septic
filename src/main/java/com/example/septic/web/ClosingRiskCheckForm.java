@@ -56,6 +56,12 @@ public class ClosingRiskCheckForm {
     @Pattern(regexp = "^$|[a-z0-9_-]+$", message = "Source context is invalid.")
     private String sourceContext;
 
+    @Size(max = 240, message = "Source page must be 240 characters or fewer.")
+    private String sourcePageHint;
+
+    @Size(max = 240, message = "Entry page must be 240 characters or fewer.")
+    private String entryPageHint;
+
     @Size(max = 1200, message = "Notes must be 1,200 characters or fewer.")
     private String concern;
 
@@ -81,6 +87,8 @@ public class ClosingRiskCheckForm {
     public String getConcernValue() { return concern == null ? "" : concern; }
     public String getDeadlineValue() { return deadline == null ? "" : deadline.toString(); }
     public String getSourceContextValue() { return sourceContext == null ? "" : sourceContext; }
+    public String getSourcePageHintValue() { return sourcePageHint == null ? "" : sourcePageHint; }
+    public String getEntryPageHintValue() { return entryPageHint == null ? "" : entryPageHint; }
     public String getListingBedroomsValue() { return listingBedrooms == null ? "" : listingBedrooms.toString(); }
     public String getPermitBedroomsValue() { return permitBedrooms == null ? "" : permitBedrooms.toString(); }
 
@@ -108,6 +116,10 @@ public class ClosingRiskCheckForm {
     public void setDeadline(LocalDate deadline) { this.deadline = deadline; }
     public String getSourceContext() { return sourceContext; }
     public void setSourceContext(String sourceContext) { this.sourceContext = sourceContext; }
+    public String getSourcePageHint() { return sourcePageHint; }
+    public void setSourcePageHint(String sourcePageHint) { this.sourcePageHint = sourcePageHint; }
+    public String getEntryPageHint() { return entryPageHint; }
+    public void setEntryPageHint(String entryPageHint) { this.entryPageHint = entryPageHint; }
     public String getConcern() { return concern; }
     public void setConcern(String concern) { this.concern = concern; }
     public boolean isConsentAccepted() { return consentAccepted; }

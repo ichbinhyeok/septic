@@ -60,6 +60,7 @@
                 "#result-top",
                 "[data-choice-group]",
                 "[data-county-finder]",
+                "[data-official-map-directory]",
                 "[data-county-access-workflow]",
                 "[data-address-record-finder]",
                 "[data-offer-prep-file-check]",

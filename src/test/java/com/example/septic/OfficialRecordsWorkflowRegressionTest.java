@@ -213,4 +213,26 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(not(containsString("PREPARED BY"))));
         }
     }
+
+    @Test
+    void tankLocationPagePublishesAFilterableOfficialMapDirectory() throws Exception {
+        mockMvc.perform(get("/septic-tank-location-records/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Official map &amp; GIS directory")))
+                .andExpect(content().string(containsString("data-official-map-directory")))
+                .andExpect(content().string(containsString("data-map-directory-type")))
+                .andExpect(content().string(containsString("data-map-directory-state")))
+                .andExpect(content().string(containsString("value=\"GA\" data-map-directory-state-option")))
+                .andExpect(content().string(containsString("value=\"NC\" data-map-directory-state-option")))
+                .andExpect(content().string(not(containsString("value=\"AK\" data-map-directory-state-option"))))
+                .andExpect(content().string(containsString("data-map-directory-documents")))
+                .andExpect(content().string(containsString("data-map-directory-empty")))
+                .andExpect(content().string(containsString("data-map-type=\"record_map\"")))
+                .andExpect(content().string(containsString("data-map-type=\"direct_search\"")))
+                .andExpect(content().string(containsString("Gwinnett County")))
+                .andExpect(content().string(containsString("Craven County")))
+                .andExpect(content().string(containsString("tank_location_official_map")))
+                .andExpect(content().string(containsString("A missing map does not mean the septic file is missing.")))
+                .andExpect(content().string(containsString("Find the county request route")));
+    }
 }

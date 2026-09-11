@@ -40,6 +40,8 @@ public class ClosingRiskNotificationService {
 
                 Request ID: %s
                 Source context: %s
+                Search entry page: %s
+                CTA source page: %s
                 Name: %s
                 Email: %s
                 Process stage: %s
@@ -58,6 +60,8 @@ public class ClosingRiskNotificationService {
                 """.formatted(
                 requestId,
                 safeLine(form.getSourceContext()),
+                safeLine(form.getEntryPageHint()),
+                safeLine(form.getSourcePageHint()),
                 safeLine(form.getFullName()),
                 safeLine(form.getEmail()),
                 safeLine(form.getTransactionRole()),

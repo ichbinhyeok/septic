@@ -321,6 +321,37 @@
   .records-escalation-board__grid, .official-tool-console__grid, .direct-search-lane__grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
   .hero-command, .hero-decision-card, .intent-rail > *, .records-proof-ladder > *, .records-escalation-card,
   .official-tool-route, .direct-search-route { padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); text-decoration: none; }
+  .official-map-directory { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line-dark); }
+  .official-map-directory__header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 6vw, 80px); align-items: end; padding: clamp(28px, 5vw, 56px) 0; }
+  .official-map-directory__header h2 { max-width: 760px; margin-bottom: 12px; }
+  .official-map-directory__header p { max-width: 760px; color: var(--muted); }
+  .official-map-directory__coverage { display: flex; gap: 28px; margin: 0; }
+  .official-map-directory__coverage div { min-width: 110px; }
+  .official-map-directory__coverage dt { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+  .official-map-directory__coverage dd { margin: 5px 0 0; font-family: var(--font-display); font-size: clamp(1.7rem, 4vw, 2.7rem); line-height: 1; }
+  .official-map-directory__controls { display: grid; grid-template-columns: minmax(220px, 1.4fr) repeat(2, minmax(150px, .7fr)) auto auto; gap: 12px; align-items: end; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .official-map-directory__controls label { display: grid; gap: 7px; color: var(--muted); font-size: .78rem; }
+  .official-map-directory__controls input[type="search"], .official-map-directory__controls select { min-height: 46px; width: 100%; }
+  .official-map-directory__toggle { display: flex !important; min-height: 46px; align-items: center; gap: 9px !important; padding: 0 4px; color: var(--ink) !important; white-space: nowrap; }
+  .official-map-directory__toggle input { width: 18px; height: 18px; }
+  .official-map-directory__toggles { display: grid; gap: 2px; }
+  .official-map-directory__status { display: flex; justify-content: space-between; gap: 18px; padding: 17px 0 12px; color: var(--muted); font-size: .8rem; }
+  .official-map-directory__status strong { color: var(--ink); }
+  .official-map-directory__list { border-top: 1px solid var(--line-dark); }
+  .official-map-route { display: grid; grid-template-columns: minmax(170px, .65fr) minmax(260px, 1.35fr) minmax(210px, auto); gap: clamp(18px, 4vw, 48px); align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); transition: padding .18s ease, background-color .18s ease; }
+  .official-map-route:hover, .official-map-route:focus-within { padding-left: 12px; padding-right: 12px; background: var(--paper); }
+  .official-map-route[hidden] { display: none; }
+  .official-map-route__identity span { color: var(--accent); font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .official-map-route__identity h3 { margin: 6px 0 0; }
+  .official-map-route__detail { display: grid; gap: 5px; }
+  .official-map-route__detail p { margin: 0; color: var(--muted); font-size: .86rem; }
+  .official-map-route__detail strong { color: var(--ink); }
+  .official-map-route__actions { display: grid; justify-items: end; gap: 9px; text-align: right; }
+  .official-map-route__actions .button { max-width: 280px; }
+  .official-map-directory__fallback { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; padding: 28px 0; }
+  .official-map-directory__fallback h3 { margin: 5px 0 7px; }
+  .official-map-directory__fallback p { margin: 0; color: var(--muted); }
+  .official-map-directory__empty { margin: 0; padding: 28px 0; color: var(--muted); border-bottom: 1px solid var(--line); }
   .hero-command--primary, .hero-decision-card--accent, .intent-card--primary, .next-move-row--primary { border-top: 3px solid var(--accent); }
   .hero-command span, .hero-decision-card__label, .next-move-row__label { color: var(--muted); font-size: .68rem; font-weight: 700; text-transform: uppercase; }
   .hero-command strong { display: block; margin: 7px 0; color: var(--ink); font-family: var(--font-sans); font-size: 1.08rem; }
@@ -983,6 +1014,11 @@
 
 @layer responsive {
   @media (max-width: 960px) {
+    .official-map-directory__header, .official-map-directory__fallback { grid-template-columns: 1fr; align-items: start; }
+    .official-map-directory__controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .official-map-directory__query { grid-column: 1 / -1; }
+    .official-map-route { grid-template-columns: minmax(150px, .65fr) minmax(0, 1.35fr); }
+    .official-map-route__actions { grid-column: 1 / -1; grid-template-columns: auto auto; justify-content: start; justify-items: start; align-items: center; text-align: left; }
     .home-service-hero__grid, .home-case__header, .home-case__body, .home-deliverable__grid, .offer-prep-hero__grid { grid-template-columns: 1fr; }
     .service-dossier { max-width: 620px; }
     .home-case__outcome { position: static; }
@@ -1021,6 +1057,14 @@
     .county-acquisition-handoff { padding: 22px 0 0; border-top: 1px solid var(--line); border-left: 0; }
   }
   @media (max-width: 720px) {
+    .official-map-directory__coverage { width: 100%; justify-content: space-between; gap: 16px; }
+    .official-map-directory__controls, .official-map-route { grid-template-columns: 1fr; }
+    .official-map-directory__query, .official-map-route__actions { grid-column: auto; }
+    .official-map-directory__controls .button, .official-map-route__actions, .official-map-route__actions .button, .official-map-directory__fallback .button { width: 100%; }
+    .official-map-route__actions { grid-template-columns: 1fr; justify-items: stretch; }
+    .official-map-route__actions > a { text-align: center; }
+    .official-map-route:hover, .official-map-route:focus-within { padding-left: 0; padding-right: 0; }
+    .official-map-directory__status { display: grid; gap: 4px; }
     .home-service-hero { padding-block: 38px 48px; }
     .home-service-hero::before { display: none; }
     .home-service-hero__grid { gap: 34px; }
