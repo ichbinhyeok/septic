@@ -6,10 +6,10 @@
 @param java.util.List<com.example.septic.web.PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> countyFinderLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.OfficialRecordToolView> officialRecordTools = java.util.List.of()
+@param java.util.List<com.example.septic.data.model.StateProfile> officialRecordToolStates = java.util.List.of()
 @param java.util.List<com.example.septic.data.model.StateProfile> states = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
-@param long officialRecordToolStateCount = 0
 
 @template.layouts.app(page = page, content = @`
     <div class="national-records-page">
@@ -90,7 +90,7 @@
                             </div>
                             <dl class="official-map-directory__coverage" aria-label="Official map directory coverage">
                                 <div><dt>Official routes</dt><dd>${officialRecordTools.size()}</dd></div>
-                                <div><dt>States represented</dt><dd>${officialRecordToolStateCount}</dd></div>
+                                <div><dt>States represented</dt><dd>${officialRecordToolStates.size()}</dd></div>
                             </dl>
                         </header>
 
@@ -112,8 +112,8 @@
                                 <span>State</span>
                                 <select data-map-directory-state>
                                     <option value="">All states</option>
-                                    @for (var state : states)
-                                        <option value="${state.stateCode()}">${state.stateName()}</option>
+                                    @for (var state : officialRecordToolStates)
+                                        <option value="${state.stateCode()}" data-map-directory-state-option>${state.stateName()}</option>
                                     @endfor
                                 </select>
                             </label>

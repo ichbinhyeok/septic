@@ -2280,6 +2280,12 @@ The goal is to settle the permit path before we frame the project as a normal in
         List<OfficialRecordToolView> officialRecordTools = TANK_LOCATION_RECORDS_SLUG.equals(contentPage.slug())
                 ? officialRecordTools()
                 : List.of();
+        Set<String> officialRecordToolStateCodes = officialRecordTools.stream()
+                .map(OfficialRecordToolView::stateCode)
+                .collect(Collectors.toSet());
+        List<StateProfile> officialRecordToolStates = renderedStates.stream()
+                .filter(state -> officialRecordToolStateCodes.contains(state.stateCode()))
+                .toList();
         List<PageLink> renderedInternalLinks = renderedInternalLinks(contentPage, internalLinks, fanoutRestrictedSurface);
         List<CountyWorkflowFieldView> contentOfficialFilePathRows = contentOfficialFilePathRows(
                 contentPage,
@@ -2310,10 +2316,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyFinderLinks", countyFinderLinks);
         model.addAttribute("directOnlineCountyFinderLinks", directOnlineCountyFinderLinks);
         model.addAttribute("officialRecordTools", officialRecordTools);
-        model.addAttribute("officialRecordToolStateCount", officialRecordTools.stream()
-                .map(OfficialRecordToolView::stateCode)
-                .distinct()
-                .count());
+        model.addAttribute("officialRecordToolStates", officialRecordToolStates);
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
