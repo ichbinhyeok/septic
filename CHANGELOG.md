@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.14.0 - 2026-09-12
+
+### Added
+
+- Added a vendor-facing Septic Record Brief example that shows the full research, agency-request, interpretation, and delivery workflow with anonymized source documents.
+- Added a regression test and sitemap entry for the new example page.
+- Documented the Prince George's County record-request route and its current access constraint for international operators.
+
+### Changed
+
+- Linked the completed example from the homepage proof section and the assisted record-research offer page.
+
 ## 0.0.13.0 - 2026-09-11
 
 ### Changed

@@ -945,6 +945,7 @@ public class SeoService {
                 "/septic-record-finder/",
                 "/septic-records-access-index/",
                 "/offer-prep-septic-file-check/",
+                "/septic-record-brief-example/",
                 "/septic-bedroom-permit-checker/"
         );
     }

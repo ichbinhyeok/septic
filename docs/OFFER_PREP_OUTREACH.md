@@ -26,28 +26,33 @@ Example:
 
 `https://septicpath.com/offer-prep-septic-file-check/?src=tn-smoky-mountain-realty&utm_medium=partner&utm_campaign=deal-desk`
 
+Completed, anonymized Record Brief example:
+
+`https://septicpath.com/septic-record-brief-example/?utm_source=<partner-slug>&utm_medium=outreach&utm_campaign=inspector-pilot`
+
 The page leads with the public manual Record Help offer. The self-serve
 workspace is a clearly labeled alternative disclosure that records file-check
 generation, request copy/download, and official-route clicks without recording
 the property address or request text. The manual form is a separate, consented
 intake and does store the submitted case details.
 
-## First message: TN or NC listing / buyer team
+## First message: home-inspection company or transaction coordinator
 
-Subject: One active septic file check for your next offer
+Subject: Can I prep the permit file for your next septic inspection?
 
 Hi <first-name>,
 
-I saw that <personalized observation about their rural, land, or septic-home
-work>. I can do one active septic listing or offer case for your team: reply in
-this thread with the address, or just state + county and the listing bedroom
-count. By the end of the next business day, I will send the official file
-route, the first three records to request, and a copy-ready note for the
-listing agent.
+I noticed <one specific observation about the company's paid septic inspection,
+coverage, or outside inspection partner>.
 
-This is not a permit decision, legal opinion, or septic design review. It is a
-fast way to put the county-file question in the correct place before an offer
-relies on septic details.
+SepticPath handles the pre-inspection desk work: finding the septic permit,
+system layout, and approval history and returning a short, source-linked Record
+Brief. Here is a completed anonymized example: <tracked-example-link>
+
+Send one upcoming property address and deadline, and I will prepare the first
+one at no cost. No client name or contact information is needed. If the record
+is not online, I will identify the responsible office and clearly flag any
+authorization, fee, or timing constraint.
 
 ## First message: septic specialist or inspector
 
@@ -55,14 +60,18 @@ Subject: One active listing file route, prepared for your client
 
 Hi <first-name>,
 
-I noticed <personalized observation about their inspection or septic work>. I
-am offering one free file-route prep for an active septic listing or offer you
-are already touching. Reply in this thread with the address, or state + county
-and the advertised bedroom count. By the end of the next business day, I will
-return the official records path, the three documents to request first, and a
-clean listing-agent request the client can send.
+I noticed <one specific observation about the company's real-estate septic
+inspection process, records-first workflow, or multi-county coverage>.
 
-It does not replace your inspection, permit authority, or engineering judgment.
+SepticPath handles the work before the site visit: locating the septic permit,
+system layout, and approval history and returning a short, source-linked Record
+Brief. Here is a completed anonymized example: <tracked-example-link>
+
+Send one upcoming property address and deadline, and I will prepare the first
+one at no cost. No client name or contact information is needed. If the record
+is not online, I will identify the responsible office and clearly flag any
+authorization, fee, or timing constraint. It does not replace the onsite
+inspection or professional judgment.
 
 ## One follow-up only
 
