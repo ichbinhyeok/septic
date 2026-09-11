@@ -16,6 +16,7 @@
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 @param CountyRecordsPage countyPage
+@param com.example.septic.web.CountySearchGuideView countySearchGuide = null
 @param CountyLocalContentView countyLocalContent
 @param StateProfile state
 @param java.util.List<SourceRecord> sources
@@ -312,6 +313,10 @@
             </article>
         </div>
     </section>
+
+    @if (countySearchGuide != null)
+        @template.tags.countySearchGuide(entry = countySearchGuide)
+    @endif
 
     @if (countyAccessProfile != null)
         <section class="section section--tight county-access-workflow-section">

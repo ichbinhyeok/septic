@@ -1095,7 +1095,10 @@ public class SeoService {
                 "Route confidence score",
                 "Official source count",
                 "Last reviewed date",
-                "Official records URL"
+                "Official records URL",
+                "Published search coverage where reviewed",
+                "Search identifiers and available documents where reviewed",
+                "Missing-file fallback and search-instruction review date"
         ));
         dataset.put("measurementTechnique", "Editorial review of listed official government sources");
         dataset.put("abstract", "Includes " + countyRouteCount + " county routes across " + stateCount

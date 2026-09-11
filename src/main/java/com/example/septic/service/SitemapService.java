@@ -70,6 +70,7 @@ public class SitemapService {
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
                         latestValidDate(Stream.of(
                                 contentPage.updatedAt(),
+                                "septic-as-built-records".equals(contentPage.slug()) ? "2026-09-11" : "",
                                 SHARED_WORKFLOW_REVISION_DATE,
                                 isRecordsWorkflowContentPage(contentPage.slug()) ? RECORDS_CONTENT_REVISION_DATE : ""
                         ))
@@ -156,7 +157,8 @@ public class SitemapService {
     private String countyRecordsPageLastMod(CountyRecordsPage countyPage, StateProfile state) {
         return latestValidDate(Stream.of(
                 countyContentQualityService.effectiveUpdatedAt(countyPage),
-                COUNTY_RECORDS_REVISION_DATE
+                COUNTY_RECORDS_REVISION_DATE,
+                countyPage.searchGuide() == null ? "" : countyPage.searchGuide().reviewedAt()
         ));
     }
 

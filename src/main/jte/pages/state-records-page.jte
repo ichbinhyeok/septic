@@ -15,6 +15,7 @@
 @param StateRecordsSearchResponseView stateRecordsSearchResponse = null
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
+@param java.util.List<com.example.septic.web.CountySearchGuideView> countySearchGuides = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <div class="state-records-page">
@@ -135,6 +136,8 @@
                 </div>
             </section>
         @endif
+
+        @template.tags.recordSearchComparison(entries = countySearchGuides, heading = "Choose the right archive for your " + state.stateName() + " property")
 
         <section class="state-records-documents">
             <div class="container state-records-documents__grid">

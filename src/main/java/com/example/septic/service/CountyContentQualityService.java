@@ -136,7 +136,8 @@ public class CountyContentQualityService {
     }
 
     public String effectiveUpdatedAt(CountyRecordsPage page) {
-        Stream<String> pageDates = Stream.of(page.updatedAt(), page.reviewedAt());
+        Stream<String> pageDates = Stream.of(page.updatedAt(), page.reviewedAt(),
+                page.searchGuide() == null ? "" : page.searchGuide().reviewedAt());
         Stream<String> sourceDates = safeList(page.officialSourceIds()).stream()
                 .map(researchDataService::findSource)
                 .flatMap(java.util.Optional::stream)

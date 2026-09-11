@@ -1,5 +1,16 @@
 # Organic Tracker
 
+## 2026-09-11 — Source-backed county search evidence (not yet deployed)
+
+- Baseline: GSC 2026-08-12 through 2026-09-08, 511 clicks / 21,376 impressions, 2.39% CTR, position 8.78. As-built page: 2 clicks / 227 impressions, position 26.8. Forsyth and Henderson queries surfaced the NC hub; indexed county URLs were self-canonical.
+- Removed state-page editorial/search-authoring instructions from public copy.
+- Added source-reviewed instructions for Wake, Forsyth, Johnston, Craven, and Henderson NC: archive coverage, identifiers, documents, ordered retrieval steps, and no-result fallback. Unverified archive ranges are explicitly unknown.
+- Reused the existing anonymized Tennessee agency sketch on the as-built page. Explained the 225-foot total as length, not area, and distinguished a construction permit from evidence of completed installation or current condition.
+- Added a five-county comparison to the existing state records hub and 325-county access index. Appended six source/coverage fields to the existing CSV; 320 unreviewed entries remain blank for these new fields. No duplicate keyword pages or extra AEO-only schema.
+- Linked comparison -> county instructions -> drawing/request help, and the homepage case -> drawing explanation. Advanced dates only where source-reviewed data or substantive content changed.
+- Verification: added source-resolution, rendered-route, CSV completeness/unknown-data, and drawing-boundary regression tests; browser-checked mobile comparison, county link navigation, and desktop drawing. No actual customer request was submitted.
+- After deployment: compare the same URLs and query cohorts over 28 days; track nonbrand impressions, clicks/CTR by position, and help submissions by landing page. These changes create useful search evidence, not a promise of ranking or AI citations.
+
 Last updated: 2026-06-28
 
 ## Why this file exists

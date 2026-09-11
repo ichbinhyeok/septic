@@ -8850,6 +8850,23 @@
       "countyName": "Wake County",
       "countySlug": "wake-county",
       "title": "Wake County North Carolina Septic Records Checklist and Permit Lookup",
+      "searchGuide": {
+        "summary": "Use iMAPS to find the parcel, then open the septic permit and its PDF attachments.",
+        "coverage": "The iMAPS guide does not state a complete scan date range. The separate old permit database covers records before July 1, 2018 and points newer searches to the Permit Portal.",
+        "identifiers": "Address, PIN, owner, or real estate ID in iMAPS.",
+        "documents": "Scanned permit PDFs under Attachments in the Permit Portal, when available.",
+        "steps": [
+          "Select the matching property in iMAPS and look for its Septic option.",
+          "Open the relevant permit, then select Attachments in the Permit Portal and open each needed PDF.",
+          "Compare the parcel and document dates; a database entry without an attachment is not a downloaded permit."
+        ],
+        "noResult": "The Septic option may be absent if no permit has been scanned or the property may not use septic. The county guide directs unsuccessful searches to 919-856-7400.",
+        "sourceIds": [
+          "nc_wake_02",
+          "nc_wake_05"
+        ],
+        "reviewedAt": "2026-09-11"
+      },
       "metaDescription": "Wake County septic records checklist and permit lookup with iMAPS permit search, addition and existing-system permit requests, and abandonment workflow before you trust a reuse or remodel story.",
       "introCopy": "Wake County is one of the clearest North Carolina wedges because the county publishes a scanned septic permit search guide, a wastewater permit application that branches new, addition, existing, and expansion work, and a county abandonment procedure.",
       "uniqueAngle": "Wake stands out because it links file retrieval directly to permit branching. You can search scanned septic permits in iMAPS, open attachments in the Permit Portal, and immediately see whether the next county path is Addition, Existing, Expansion, or Abandonment.",
@@ -8922,6 +8939,24 @@
       "countyName": "Forsyth County",
       "countySlug": "forsyth-county",
       "title": "Forsyth County North Carolina Septic Records Checklist and Permit Lookup",
+      "searchGuide": {
+        "summary": "Ask Forsyth County Environmental Health for the existing septic permit and soil evaluation sheet.",
+        "coverage": "No complete online archive date range is established by the county sources reviewed here.",
+        "identifiers": "Have the address, parcel identifier, and any former-owner information ready for the office.",
+        "documents": "The county owner's guide identifies the permit and soil evaluation sheet as records of approximate system location and tank size.",
+        "steps": [
+          "Use the county Wastewater / Septic Systems contact route to ask for an existing-file copy.",
+          "Specify both the septic permit and soil evaluation sheet; describe any missing layout information.",
+          "If you also plan an addition, pool, deck, or outbuilding, review the separate Health Department Release instructions."
+        ],
+        "noResult": "Ask Environmental Health whether older files can be located. A request for existing records is separate from applying for construction approval.",
+        "sourceIds": [
+          "nc_forsyth_01",
+          "nc_forsyth_04",
+          "nc_forsyth_02"
+        ],
+        "reviewedAt": "2026-09-11"
+      },
       "metaDescription": "Forsyth County septic records checklist and permit lookup with Health Department Release triggers, repair applications, and permit-copy guidance before you trust a pool, deck, addition, or repair story.",
       "introCopy": "Forsyth County is page-ready because Public Health makes existing-lot septic friction unusually explicit. The county publishes a septic main page, a dedicated additions page for existing septic properties, a repairs path, and an owner's guide that tells people to get a copy of the septic tank permit and soil evaluation sheet.",
       "uniqueAngle": "Forsyth's wedge is not just permits. The county forces septic-served additions and pool, deck, outbuilding, and replacement-mobile-home projects through a Health Department Release, which makes the existing file central before building permits move.",
@@ -10604,6 +10639,22 @@
       "countyName": "Johnston County",
       "countySlug": "johnston-county",
       "title": "Johnston County North Carolina Septic Records Checklist and Permit Lookup",
+      "searchGuide": {
+        "summary": "Begin with the street-name search; request the septic permit image from Environmental Health when needed.",
+        "coverage": "The street-search page does not publish a complete archive date range.",
+        "identifiers": "At least 3 characters from the beginning of the street name.",
+        "documents": "An address search is available. The county separately directs septic permit image requests to envhealth@johnstonnc.gov.",
+        "steps": [
+          "Enter the beginning of the street name in the county search, using at least 3 characters.",
+          "Check the matching address and any returned permit details before relying on the result.",
+          "For a copy, use the county's published permit-image request address and include the property and any permit identifiers you found."
+        ],
+        "noResult": "Ask envhealth@johnstonnc.gov for the existing septic permit image if the result is absent or does not supply the document.",
+        "sourceIds": [
+          "nc_johnston_02"
+        ],
+        "reviewedAt": "2026-09-11"
+      },
       "metaDescription": "Johnston County septic records checklist and permit lookup with permit-status search, permit-image request path, and pump-inspection or repair friction before you trust a simple septic story.",
       "introCopy": "Johnston County is strong because the county puts permit status checks, permit-image requests, repair workflow, and recurring pump inspections in one place. That makes the county file much more actionable than a generic North Carolina page.",
       "uniqueAngle": "Johnston is a permit-status county. The real question is whether the county permit file, image request, and pump or repair history all support the current property story.",
@@ -16142,6 +16193,22 @@
       "countyName": "Craven County",
       "countySlug": "craven-county",
       "title": "Craven County North Carolina Septic Records Checklist and Permit Lookup",
+      "searchGuide": {
+        "summary": "Search iMaps, open EH Permits, and view the property's Operation Permit.",
+        "coverage": "The county FAQ describes viewing and printing permits issued from 2003 to the current year.",
+        "identifiers": "Property owner name, address, or parcel number.",
+        "documents": "Operation Permit through the EH Permits tab, when a matching file is available.",
+        "steps": [
+          "Open the county GIS and start iMaps. Search by name, address, or parcel number.",
+          "Select the property, open EH Permits, and choose View beside the relevant Operation Permit.",
+          "Save the permit and check that its parcel and system details match the property."
+        ],
+        "noResult": "The county directs searches without a permit to its Request for Document: Septic tank systems and Wells form. Use the county guide below for that request route.",
+        "sourceIds": [
+          "nc_craven_05"
+        ],
+        "reviewedAt": "2026-09-11"
+      },
       "metaDescription": "Craven County septic records checklist with GIS permit lookup, document-request fallback, and existing-system approval branches before you trust a coastal NC septic story.",
       "introCopy": "Craven County is a strong North Carolina wedge because the county separates fast permit lookup from slower file reconstruction. The FAQ says you should first search GIS by owner, address, or parcel number and open the EH Permits record, which usually exposes the operation permit for permits issued from 2003 forward. If that trail is missing, the county sends you to a public Request for Document form, while the permit applications page breaks out existing-system approvals, improvement permits or construction authorizations, repair questionnaires, and site-plan worksheets.",
       "uniqueAngle": "Craven County is a GIS-permit-versus-request-form county. The real branch is whether the parcel already has an operation permit visible in county GIS, needs a public document request to rebuild the file, or falls into an existing-system approval or repair lane before any addition or sale story can be trusted.",
@@ -22303,6 +22370,23 @@
       "countyName": "Henderson County",
       "countySlug": "henderson-county",
       "title": "Henderson County North Carolina Septic Records and Permit Lookup",
+      "searchGuide": {
+        "summary": "Check the current portal first, then the legacy archive for older records.",
+        "coverage": "Current portal: 2004–present. Legacy archive: 1968–early 2004. Many 1979–1983 records are missing.",
+        "identifiers": "Current portal: application number, partial address, or parcel number without dashes. Legacy searches can use former owner or subdivision and lot.",
+        "documents": "Permit details and available attachments in the appropriate archive; coverage dates do not guarantee a file for every property.",
+        "steps": [
+          "Use GIS to check the parcel, year built, subdivision, and former owners.",
+          "Start in the 2004–present portal for later repairs or revisions, even for an older home.",
+          "For a pre-2004 permit, also try the legacy archive using the original applicant or subdivision and lot."
+        ],
+        "noResult": "Do not treat an empty current-portal search as proof that an older permit never existed. Check the legacy archive and ask Environmental Health about the documented gaps.",
+        "sourceIds": [
+          "nc_henderson_01",
+          "nc_henderson_04"
+        ],
+        "reviewedAt": "2026-09-11"
+      },
       "metaDescription": "Henderson County septic records and permit lookup with a 1968-2004 legacy archive, 2004-present address and parcel search, and file-gap checks before you trust a sale, repair, or addition story.",
       "introCopy": "Henderson County is a genuine online-records county, not a generic county contact page. Environmental Health separates historic permits from 1968 through early 2004 from the 2004-present public portal, so a missing recent result does not automatically mean the parcel has no septic history.",
       "uniqueAngle": "The useful Henderson move is an era split. Search the legacy archive with a former owner, subdivision, road, or permit clue for older files; use the current public portal with an address or parcel number for 2004-present permits. The county also tells users that many 1979-1983 septic permits were destroyed, which makes a no-result answer meaningful rather than ambiguous.",
