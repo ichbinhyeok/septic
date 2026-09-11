@@ -390,6 +390,36 @@
 
     function setupRecordHelpFunnel() {
         const contextKey = "septicpath_record_help_context";
+        const sourcePageKey = "septicpath_record_help_source_page";
+        const entryPageKey = "septicpath_record_help_entry_page";
+        const attributionTtlMs = 2 * 60 * 60 * 1000;
+        const currentPage = analyticsSourcePage();
+        const readPageAttribution = (key) => {
+            try {
+                const saved = JSON.parse(window.sessionStorage.getItem(key) || "null");
+                if (!saved?.path || !saved?.savedAt || Date.now() - Number(saved.savedAt) > attributionTtlMs) return "";
+                return String(saved.path).slice(0, 240);
+            } catch (_error) {
+                return "";
+            }
+        };
+        const savePageAttribution = (key, path) => {
+            try {
+                window.sessionStorage.setItem(key, JSON.stringify({ savedAt: Date.now(), path: String(path || "").slice(0, 240) }));
+            } catch (_error) {
+                // Attribution must never block the records workflow.
+            }
+        };
+        let entryPage = readPageAttribution(entryPageKey);
+        if (!entryPage) {
+            entryPage = currentPage;
+            savePageAttribution(entryPageKey, entryPage);
+        }
+        const getSourcePage = () => readPageAttribution(sourcePageKey) || currentPage;
+        const attributionParams = () => ({
+            entry_page: entryPage,
+            source_page: getSourcePage()
+        });
         const getSourceContext = () => {
             try {
                 return window.sessionStorage.getItem("septicpath_record_help_source") || "direct";
@@ -435,6 +465,7 @@
             } catch (_error) {
                 // Attribution is helpful, but navigation must never depend on storage.
             }
+            savePageAttribution(sourcePageKey, currentPage);
             saveRecordHelpContext();
             const sourceInput = document.querySelector("[data-record-help-source-context]");
             if (sourceInput instanceof HTMLInputElement) {
@@ -443,7 +474,8 @@
             emitGaEvent("record_help_cta_clicked", {
                 source_context: sourceContext,
                 request_type: "record_help_beta",
-                cta_variant: "task_adjacent_v1"
+                cta_variant: "task_adjacent_v1",
+                ...attributionParams()
             });
         });
 
@@ -457,7 +489,9 @@
                         emitGaEvent("record_help_cta_viewed", {
                             source_context: sourceContext,
                             request_type: "record_help_beta",
-                            cta_variant: "task_adjacent_v1"
+                            cta_variant: "task_adjacent_v1",
+                            entry_page: entryPage,
+                            source_page: currentPage
                         });
                     }
                     ctaObserver.unobserve(entry.target);
@@ -472,6 +506,19 @@
         const sourceInput = form.querySelector("[data-record-help-source-context]");
         if (sourceInput instanceof HTMLInputElement) {
             sourceInput.value = getSourceContext();
+        }
+        const sourcePageInput = form.querySelector("[data-record-help-source-page]");
+        if (sourcePageInput instanceof HTMLInputElement && !sourcePageInput.value) {
+            sourcePageInput.value = getSourcePage();
+        }
+        const entryPageInput = form.querySelector("[data-record-help-entry-page]");
+        if (entryPageInput instanceof HTMLInputElement && !entryPageInput.value) {
+            entryPageInput.value = entryPage;
+        }
+        const success = document.querySelector("[data-closing-risk-request-success]");
+        if (success instanceof HTMLElement) {
+            success.dataset.gaParamEntryPage = entryPage;
+            success.dataset.gaParamSourcePage = getSourcePage();
         }
         const carriedContext = readRecordHelpContext();
         if (carriedContext) {
@@ -508,7 +555,8 @@
                 emitGaEvent("record_help_form_viewed", {
                     source_context: getSourceContext(),
                     request_type: "record_help_beta",
-                    cta_variant: "task_adjacent_v1"
+                    cta_variant: "task_adjacent_v1",
+                    ...attributionParams()
                 });
                 formObserver.disconnect();
             }, { threshold: 0.25 });
@@ -522,7 +570,8 @@
             emitGaEvent("record_help_form_started", {
                 source_context: getSourceContext(),
                 request_type: "record_help_beta",
-                cta_variant: "task_adjacent_v1"
+                cta_variant: "task_adjacent_v1",
+                ...attributionParams()
             });
         });
 
@@ -537,7 +586,8 @@
                         source_context: getSourceContext(),
                         request_type: "record_help_beta",
                         process_stage: stage.value,
-                        transaction_intent: hasTransaction ? "active" : "research"
+                        transaction_intent: hasTransaction ? "active" : "research",
+                        ...attributionParams()
                     });
                 }
             };
@@ -553,7 +603,8 @@
                 emitGaEvent("record_help_form_validation_error", {
                     source_context: getSourceContext(),
                     request_type: "record_help_beta",
-                    invalid_count: form.querySelectorAll(":invalid").length
+                    invalid_count: form.querySelectorAll(":invalid").length,
+                    ...attributionParams()
                 });
                 validationQueued = false;
             });
@@ -584,9 +635,9 @@
     setupSiteNav();
     setupWebVitalTracking();
     setupStickyMobileCtas();
-    trackGaEvents();
     setupPrimaryFunnelEvents();
     setupRecordHelpFunnel();
+    trackGaEvents();
 
     document.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) {

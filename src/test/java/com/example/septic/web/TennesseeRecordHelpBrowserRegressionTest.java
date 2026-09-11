@@ -146,6 +146,10 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .getFirstSelectedOption().getAttribute("value")).isEqualTo("TN");
             assertThat(driver.findElement(By.name("countyName")).getAttribute("value"))
                     .isEqualTo("Roane");
+            assertThat(driver.findElement(By.name("entryPageHint")).getAttribute("value"))
+                    .isEqualTo("/septic-records-checklist/tennessee/");
+            assertThat(driver.findElement(By.name("sourcePageHint")).getAttribute("value"))
+                    .isEqualTo("/septic-records-checklist/tennessee/");
 
             driver.get(baseUrl() + "/tdec-septic-records/");
             WebElement countySelect = driver.findElement(By.cssSelector("[data-tdec-county]"));

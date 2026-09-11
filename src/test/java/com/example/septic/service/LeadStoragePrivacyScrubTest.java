@@ -57,6 +57,8 @@ class LeadStoragePrivacyScrubTest {
         form.setDeadline(LocalDate.now().plusDays(6));
         form.setConcern("Need to resolve the bedroom mismatch before inspection ends.");
         form.setSourceContext("tdec_quick_help_record_help");
+        form.setEntryPageHint("/tdec-septic-records/?address=123%20Private%20Lane&utm_source=google");
+        form.setSourcePageHint("/septic-records-checklist/tennessee/knox-county/?parcel=secret&utm_medium=organic");
         form.setConsentAccepted(true);
 
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -85,9 +87,12 @@ class LeadStoragePrivacyScrubTest {
         String analyticsEvent = Files.readString(eventFile);
         assertTrue(analyticsEvent.contains("record_help_request_submitted"));
         assertTrue(analyticsEvent.contains("tdec_quick_help_record_help"));
+        assertTrue(analyticsEvent.contains("/tdec-septic-records/?utm_source=google"));
+        assertTrue(analyticsEvent.contains("/septic-records-checklist/tennessee/knox-county/?utm_medium=organic"));
         assertTrue(analyticsEvent.contains("within_7_days"));
         assertFalse(analyticsEvent.contains("123 Private Lane"));
         assertFalse(analyticsEvent.contains("taylor@example.com"));
         assertFalse(analyticsEvent.contains("example.com/listing"));
+        assertFalse(analyticsEvent.contains("parcel=secret"));
     }
 }

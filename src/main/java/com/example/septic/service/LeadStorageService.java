@@ -341,6 +341,8 @@ public class LeadStorageService {
     ) {
         Instant now = Instant.now();
         String requestId = UUID.randomUUID().toString();
+        String attributedSourcePage = sanitizeSourcePageHint(form.getSourcePageHint()).orElse(sourcePage);
+        String entryPage = sanitizeSourcePageHint(form.getEntryPageHint()).orElse(attributedSourcePage);
         Map<String, Object> consent = orderedMap(
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
@@ -354,6 +356,11 @@ public class LeadStorageService {
         payload.put("sourcePage", sourcePage);
         payload.put("requestType", "septic_record_help_beta");
         payload.put("sourceContext", safeValue(form.getSourceContext(), 120));
+        payload.put("attribution", orderedMap(
+                "entryPage", entryPage,
+                "sourcePage", attributedSourcePage,
+                "sourceContext", safeValue(form.getSourceContext(), 120)
+        ));
         payload.put("contact", orderedMap(
                 "fullName", safeValue(form.getFullName(), 120),
                 "email", safeValue(form.getEmail(), 160),
@@ -380,6 +387,8 @@ public class LeadStorageService {
                     "occurredAt", now.toString(),
                     "requestId", requestId,
                     "sourcePage", sourcePage,
+                    "entryPage", entryPage,
+                    "attributedSourcePage", attributedSourcePage,
                     "sourceContext", safeValue(form.getSourceContext(), 120),
                     "stateCode", safeValue(form.getStateCode(), 2),
                     "transactionRole", safeValue(form.getTransactionRole(), 20),
@@ -570,6 +579,8 @@ public class LeadStorageService {
 
     private boolean scrubEventNode(ObjectNode event) {
         boolean changed = replaceText(event, "sourcePage", safeTrackingSourcePage(event.path("sourcePage").asText("")));
+        changed |= replaceText(event, "entryPage", safeTrackingSourcePage(event.path("entryPage").asText("")));
+        changed |= replaceText(event, "attributedSourcePage", safeTrackingSourcePage(event.path("attributedSourcePage").asText("")));
         String targetPath = event.path("targetPath").asText("");
         if (targetPath.startsWith("/")) {
             changed |= replaceText(event, "targetPath", safeTrackingSourcePage(targetPath));
@@ -635,7 +646,7 @@ public class LeadStorageService {
         if (!trimmed.startsWith("/") || trimmed.startsWith("//")) {
             return java.util.Optional.empty();
         }
-        return java.util.Optional.of(trimmed);
+        return java.util.Optional.of(safeTrackingSourcePage(trimmed));
     }
 
     private void writeLeadFile(Map<String, Object> payload, String leadId, Instant now) throws IOException {

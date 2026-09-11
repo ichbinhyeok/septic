@@ -38,6 +38,8 @@ class ClosingRiskNotificationServiceTest {
         assertTrue(message.getSubject().contains("TN / conflicting"));
         assertTrue(message.getText().contains("Request ID: request-123"));
         assertTrue(message.getText().contains("Source context: tdec_quick_help_record_help"));
+        assertTrue(message.getText().contains("Search entry page: /tdec-septic-records/"));
+        assertTrue(message.getText().contains("CTA source page: /septic-records-checklist/tennessee/knox-county/"));
         assertTrue(message.getText().contains("123 Private Lane"));
         assertTrue(message.getText().contains("Deadline:"));
     }
@@ -102,6 +104,8 @@ class ClosingRiskNotificationServiceTest {
         form.setConcern("Need to resolve the bedroom mismatch.");
         form.setConsentAccepted(true);
         form.setSourceContext("tdec_quick_help_record_help");
+        form.setEntryPageHint("/tdec-septic-records/");
+        form.setSourcePageHint("/septic-records-checklist/tennessee/knox-county/");
         return form;
     }
 }

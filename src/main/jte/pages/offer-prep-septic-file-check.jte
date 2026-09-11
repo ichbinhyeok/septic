@@ -208,6 +208,8 @@
                             <label>Website<input type="text" name="website" value="${closingRiskCheckForm.getWebsite() == null ? "" : closingRiskCheckForm.getWebsite()}" tabindex="-1" autocomplete="off"></label>
                         </div>
                         <input type="hidden" name="sourceContext" value="${closingRiskCheckForm.getSourceContextValue()}" data-record-help-source-context>
+                        <input type="hidden" name="sourcePageHint" value="${closingRiskCheckForm.getSourcePageHintValue()}" data-record-help-source-page>
+                        <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
                         <div class="record-help-form-intro">
                             <span class="eyebrow">About two minutes</span>
                             <strong>Email and property address are enough to start.</strong>
