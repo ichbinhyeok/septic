@@ -303,7 +303,7 @@
             <section class="next-move-board" aria-label="Next septic workflow moves">
                 <div class="next-move-board__header">
                     <span class="eyebrow">Next move board</span>
-                    <h2>Do these in order before the page becomes a price page.</h2>
+                    <h2>Check the records before comparing costs.</h2>
                 </div>
 
                 <div class="next-move-board__rows">

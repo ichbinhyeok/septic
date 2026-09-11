@@ -12,6 +12,7 @@
 @param int priorityCountyRouteCount = 0
 @param int totalCountyRouteCount = 0
 @param String dataLastUpdated = ""
+@param java.util.List<com.example.septic.web.CountySearchGuideView> countySearchGuides = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
     <section class="records-access-index-hero" data-records-access-index>
@@ -62,6 +63,8 @@
         renderCrawlDirectory = true
     )
 
+    @template.tags.recordSearchComparison(entries = countySearchGuides)
+
     <section class="section section--tight records-access-state-section"
              aria-labelledby="records-access-state-directory"
              data-records-state-directory
@@ -100,6 +103,7 @@
                         <span class="eyebrow">For research and professional reuse</span>
                         <h2 id="records-access-distribution">Use all ${totalCountyRouteCount} routes as a working dataset.</h2>
                         <p>The CSV includes the county, route type, first file, route confidence, review date, parcel availability, official URL, and SepticPath guide URL.</p>
+                        <p>For ${countySearchGuides.size()} counties, it also includes search coverage, identifiers, available documents, missing-file instructions, and supporting source URLs. Blank values mean these details have not been reviewed; they do not mean records are unavailable.</p>
                         <p><strong>Important:</strong> Route confidence describes how clearly the file path is documented. It does not prove a property's permit status.</p>
                         <p>Reuse is subject to the <a href="/data-license/">SepticPath Data License</a>. Linked government materials remain subject to their respective terms.</p>
                         <div class="records-access-card__actions">

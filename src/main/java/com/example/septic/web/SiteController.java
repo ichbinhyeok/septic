@@ -58,6 +58,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.slf4j.Logger;
@@ -646,6 +647,7 @@ public class SiteController {
                 countyRouteStates.size()
         ));
         model.addAttribute("indexStates", indexStates);
+        model.addAttribute("countySearchGuides", countySearchGuides(null));
         model.addAttribute("countyFinderLinks", countyFinderLinks);
         model.addAttribute("countyRouteStates", countyRouteStates);
         model.addAttribute("stateDirectory", countyRouteStates.stream()
@@ -664,6 +666,8 @@ public class SiteController {
     @ResponseBody
     public ResponseEntity<String> recordsAccessIndexCsv() {
         List<CountyFinderLinkView> countyFinderLinks = countyFinderLinks(totalCountyRouteCount());
+        Map<String, CountySearchGuideView> searchGuides = countySearchGuides(null).stream()
+                .collect(Collectors.toMap(CountySearchGuideView::countyPath, Function.identity()));
         List<String> rows = new ArrayList<>();
         rows.add(csvRow(
                 "state_code",
@@ -677,13 +681,22 @@ public class SiteController {
                 "parcel_anchor",
                 "last_reviewed",
                 "official_records_url",
-                "septicpath_guide_url"
+                "septicpath_guide_url",
+                "search_coverage",
+                "search_identifiers",
+                "available_documents",
+                "missing_file_fallback",
+                "search_instructions_reviewed_at",
+                "search_instruction_source_urls"
         ));
         countyFinderLinks.stream()
                 .sorted(Comparator
                         .comparing(CountyFinderLinkView::stateName)
                         .thenComparing(CountyFinderLinkView::countyName))
-                .map(link -> csvRow(
+                .map(link -> {
+                    CountySearchGuideView entry = searchGuides.get(link.path());
+                    var guide = entry == null ? null : entry.guide();
+                    return csvRow(
                         link.stateCode(),
                         link.stateName(),
                         link.countyName(),
@@ -695,8 +708,15 @@ public class SiteController {
                         Boolean.toString(link.parcelAnchorAvailable()),
                         link.lastReviewedAt(),
                         link.recordsUrl(),
-                        link.absoluteUrl()
-                ))
+                        link.absoluteUrl(),
+                        guide == null ? "" : guide.coverage(),
+                        guide == null ? "" : guide.identifiers(),
+                        guide == null ? "" : guide.documents(),
+                        guide == null ? "" : guide.noResult(),
+                        guide == null ? "" : guide.reviewedAt(),
+                        entry == null ? "" : entry.sources().stream().map(SourceRecord::url).collect(Collectors.joining(" | "))
+                    );
+                })
                 .forEach(rows::add);
         String body = String.join("\r\n", rows) + "\r\n";
         String dataLastUpdated = recordsAccessIndexDataLastUpdated(countyFinderLinks);
@@ -2576,6 +2596,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);
+        model.addAttribute("countySearchGuide", countySearchGuide(countyPage));
         model.addAttribute("countyAccessProfile", countyAccessProfile);
         model.addAttribute("countyAcquisitionProfile", countyAcquisitionProfile);
         model.addAttribute("countyLocalContent", countyLocalContent);
@@ -2990,6 +3011,7 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
+        model.addAttribute("countySearchGuides", countySearchGuides(state.stateCode()));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
         model.addAttribute("localAuthoritySources", localAuthoritySources);
@@ -4977,10 +4999,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         Stream<String> reviewedDates = countyLinks == null
                 ? Stream.empty()
                 : countyLinks.stream().map(CountyFinderLinkView::lastReviewedAt);
-        return Stream.concat(
+        return Stream.of(
                         Stream.of(researchDataService.countyRecordsPagesGeneratedAt()),
-                        reviewedDates
-                )
+                        reviewedDates,
+                        countySearchGuides(null).stream().map(entry -> entry.guide().reviewedAt())
+                ).flatMap(Function.identity())
                 .filter(this::isIsoDate)
                 .max(String::compareTo)
                 .orElseThrow(() -> new IllegalStateException("Records access index requires a valid review date"));
@@ -4997,6 +5020,27 @@ The goal is to settle the permit path before we frame the project as a normal in
     private List<CountyFinderLinkView> directOnlineCountyFinderLinks() {
         return countyFinderLinks(totalCountyRouteCount()).stream()
                 .filter(this::isDirectOnlineRecordRoute)
+                .toList();
+    }
+
+    private CountySearchGuideView countySearchGuide(CountyRecordsPage county) {
+        if (county.searchGuide() == null) {
+            return null;
+        }
+        return researchDataService.findStateByCode(county.stateCode())
+                .map(state -> new CountySearchGuideView(county.countyName(), county.stateCode(),
+                        county.path(state.slug()), county.searchGuide(),
+                        researchDataService.getSources(county.searchGuide().sourceIds())))
+                .orElse(null);
+    }
+
+    private List<CountySearchGuideView> countySearchGuides(String stateCode) {
+        return researchDataService.getPublicCountyRecordsPages().stream()
+                .filter(county -> county.searchGuide() != null)
+                .filter(county -> stateCode == null || stateCode.equals(county.stateCode()))
+                .sorted(Comparator.comparing(CountyRecordsPage::countyName))
+                .map(this::countySearchGuide)
+                .filter(java.util.Objects::nonNull)
                 .toList();
     }
 
@@ -7358,9 +7402,6 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         List<String> queryExamples = stateRecordsQueryExamples(state);
         List<PageLink> countyLinks = stateRecordsCountyLinks(state.stateCode(), countyRecordLinks);
-        String firstQuery = queryExamples.stream()
-                .findFirst()
-                .orElse(state.stateName().toLowerCase(Locale.US) + " septic records");
         String officialPath = primaryRecordsLookupSource != null
                 ? primaryRecordsLookupSource.title()
                 : primaryLocalAuthoritySource != null
@@ -7374,18 +7415,18 @@ The goal is to settle the permit path before we frame the project as a normal in
                 "The permit copy, as-built, final approval, inspection letter, or written no-record response tied to the parcel."
         );
         String countyRouteSummary = countyLinks.isEmpty()
-                ? "Keep the state route focused on office ownership, request language, parcel identifiers, and official source depth."
-                : "Route county-known searches into " + compactCountyRouteList(countyLinks)
-                        + " before the visitor has to run another search.";
+                ? "Have the property address and parcel number ready when contacting the responsible office. Ask whether it holds the original file or whether another local office keeps it."
+                : "Local search instructions are available for " + compactCountyRouteList(countyLinks)
+                        + ". Choose the property's county to find the relevant office and records route.";
 
         List<CountyWorkflowFieldView> responseRows = List.of(
                 new CountyWorkflowFieldView(
-                        "Search capture",
-                        "Answer " + firstQuery + " with the file owner, the official route, and the first artifact before the page becomes another broad state overview."
+                        "Finding an existing record",
+                        "Search for the property's permit and supporting documents using its address or parcel number. If no record appears, ask the responsible office to check its archives."
                 ),
                 new CountyWorkflowFieldView(
                         "Official path",
-                        "Use " + officialPath + " as the verification lane, then clarify whether the request belongs with a state office, regional contact, contract county, or local health department."
+                        officialPath + " provides official source context. The county instructions above identify the search or request route for an existing property file."
                 ),
                 new CountyWorkflowFieldView(
                         "County handoff",

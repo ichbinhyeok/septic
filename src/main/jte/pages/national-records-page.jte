@@ -19,6 +19,9 @@
                     <span class="eyebrow">Property record workflow</span>
                     <h1>${contentPage.title()}</h1>
                     <p>${contentQuickAnswer}</p>
+                    @if ("septic-as-built-records".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump" href="#read-a-septic-drawing">See a real returned drawing and how to read it ↓</a>
+                    @endif
                     <div class="national-records-hero__boundary" role="note">
                         <strong>What you receive here</strong>
                         <span>The county, likely file owner, verified official route, useful search fields, and the next step for found, missing, blocked, or incomplete files.</span>
@@ -46,6 +49,10 @@
                 )
             </div>
         </section>
+
+        @if ("septic-as-built-records".equals(contentPage.slug()))
+            @template.tags.septicDrawingGuide()
+        @endif
 
         <section class="national-records-intent">
             <div class="container">

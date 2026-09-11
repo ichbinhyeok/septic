@@ -33,6 +33,7 @@ public record CountyRecordsPage(
         List<String> internalLinkTargets,
         List<String> officialSourceIds,
         CountyWorkflowStructureData workflowStructure,
+        CountyRecordSearchGuide searchGuide,
         String updatedAt,
         String reviewedAt,
         String publishStatus
