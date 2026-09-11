@@ -23,6 +23,7 @@
                         <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="lead_form">Start my record investigation</a>
                         <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Search records myself</a>
                     </div>
+                    <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="case_study">See a completed Record Brief <span aria-hidden="true">→</span></a>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
                         <span><strong>Human-reviewed</strong> research</span>
                         <span><strong>Agency follow-up</strong> when needed</span>

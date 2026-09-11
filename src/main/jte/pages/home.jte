@@ -158,7 +158,7 @@
                         <span>DELIVERED TO REQUESTER</span>
                         <strong>Original PDF · annotated plan · plain-English brief</strong>
                     </div>
-                    <a href="/septic-as-built-records/#read-a-septic-drawing">Read the drawing and see what the record proves</a>
+                    <a href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_representative_case" data-track-target-type="case_study">Open the completed Record Brief example</a>
                     <a class="button button--primary"
                        href="/offer-prep-septic-file-check/#record-help"
                        data-record-help-cta

@@ -742,6 +742,16 @@ public class SiteController {
         return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, null, "direct");
     }
 
+    @GetMapping({"/septic-record-brief-example", "/septic-record-brief-example/"})
+    public String recordBriefExample(Model model) {
+        model.addAttribute("page", seoService.basicPage(
+                "Sample Septic Record Brief | Agency Permit & Layout | SepticPath",
+                "Review an anonymized completed septic record brief built from a real agency response, historical permit, and system drawing.",
+                "/septic-record-brief-example/"
+        ));
+        return "pages/record-brief-example";
+    }
+
     @PostMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
     public String submitClosingRiskCheck(
             @Valid @ModelAttribute ClosingRiskCheckForm closingRiskCheckForm,
