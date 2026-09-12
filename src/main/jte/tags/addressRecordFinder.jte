@@ -140,6 +140,12 @@
             <p class="record-finder__form-outcome" data-record-form-outcome><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
             <p class="record-finder__fallback" data-record-find-support><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
+        @if (pageHeading)
+            <div class="record-finder__document-entry">
+                <div><span class="record-finder__document-kicker">Prefer to hand this off?</span><strong>Let us investigate the property records.</strong><span>We search available sources, contact the responsible office when needed, and explain the records we obtain. Availability is not guaranteed.</span></div>
+                <a class="button button--secondary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-source-context="record_finder_start">Ask us to investigate</a>
+            </div>
+        @endif
         <div class="record-finder__document-entry" data-record-document-entry>
             <div>
                 <span class="record-finder__document-kicker">Already have a file?</span>
@@ -155,6 +161,10 @@
             <p data-address-record-finder-message></p>
             <div class="record-finder__result-meta" data-address-record-finder-meta hidden></div>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
+            <div class="record-finder__document-entry">
+                <div><strong>A route is only the starting point.</strong><span>Want help getting the actual file or understanding what it says? Ask us to continue from your saved property details.</span></div>
+                <a class="button button--secondary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-source-context="record_finder_result">Get help with this property</a>
+            </div>
             <div class="record-finder__search-packet" data-record-search-packet hidden>
                 <div>
                     <span>Take this with you</span>

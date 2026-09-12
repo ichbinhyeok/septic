@@ -6281,7 +6281,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operationally approved septic system")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("OneStop")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Buying a House With a Septic System in New Hampshire")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Permit Lookup and Plan Records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Replacement Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Perc Test Cost")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("New Hampshire Septic Inspection Cost")))

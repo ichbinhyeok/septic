@@ -12,9 +12,13 @@
         <section class="tdec-desk__intro" aria-labelledby="fl-page-title">
             <div class="container tdec-desk__intro-grid">
                 <div><span class="eyebrow">Florida existing OSTDS records</span><h1 id="fl-page-title">Find the office that holds the Florida septic file</h1><p>Florida is mid-transition. Select the county to separate the current permit authority from the office that may still hold an older property record.</p></div>
-                <dl class="tdec-desk__scope" aria-label="What this tool can do"><div><dt>SepticPath does</dt><dd>identify the current county route, prepare record keys, and explain the archive fallback.</dd></div><div><dt>SepticPath does not</dt><dd>search DEP or county systems, retrieve documents, or confirm permit status.</dd></div></dl>
+                <dl class="tdec-desk__scope" aria-label="What this tool can do"><div><dt>This self-serve tool</dt><dd>identifies the current county route, prepares record keys, and explains the archive fallback.</dd></div><div><dt>Tool limits</dt><dd>It does not search DEP or county systems, retrieve documents, or confirm permit status. You can separately ask us to research available records.</dd></div></dl>
             </div>
         </section>
+
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "fl_records_evidence")
+        </div>
 
         <section class="fl-transition" aria-labelledby="fl-transition-title"><div class="container"><span class="eyebrow">Current authority split</span><h2 id="fl-transition-title">17 counties use DEP; 50 still use county health departments</h2><p>DEP began permitting Northwest Florida counties in January 2025 and Marion County in July 2025. Older records may still require the county health department even where DEP handles new permits now.</p></div></section>
 

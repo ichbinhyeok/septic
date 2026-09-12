@@ -261,6 +261,7 @@
                             </a>
                         </div>
                         <p class="alabama-perc-scope__source-note">This produces a budget lane and copy-ready scope, not an engineering conclusion, county invoice, or contractor bid. Verify sewer availability and the county health file before accepting a low quote. <a href="#sources">Read the official ADPH sources below</a>.</p>
+                        <p><strong>Buying a property with an existing system?</strong> Before paying for new site work, check what the existing file already documents. <a href="/septic-record-brief-example/">See an actual agency file and our explanation</a>, or <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-source-context="alabama_cost_existing_file">ask us to investigate the records</a>. A records review does not replace a required soil evaluation.</p>
                     </section>
                 @endif
                 @if (!featuredCountyRecordLinks.isEmpty() && !"AL".equals(state.stateCode()))

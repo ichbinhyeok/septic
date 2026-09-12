@@ -194,10 +194,12 @@ public class SiteController {
             "CA", List.of("san-bernardino-county"),
             "TN", List.of("hamilton-county"),
             "NC", List.of(
+                    "forsyth-county",
+                    "henderson-county",
+                    "johnston-county",
                     "buncombe-county",
                     "union-county",
                     "pender-county",
-                    "johnston-county",
                     "wake-county",
                     "lincoln-county",
                     "onslow-county",
@@ -206,10 +208,8 @@ public class SiteController {
                     "iredell-county",
                     "mecklenburg-county",
                     "davidson-county",
-                    "forsyth-county",
                     "guilford-county",
                     "alamance-county",
-                    "henderson-county",
                     "pitt-county"
             ),
             "GA", List.of(

@@ -96,6 +96,7 @@
             const task = window.SepticRecordTask;
             if (task) {
                 task.prepare({
+                    workflowRunId: value.context.workflowRunId,
                     stateCode,
                     stateName,
                     countyName: value.context.countyName,
@@ -269,6 +270,17 @@
             }
 
             if (!wrapper.contains(heading)) wrapper.append(heading, copy);
+            if (outcome !== "request_submitted") {
+                const assistance = link(outcome === "found" ? "Ask us to explain the records" : "Ask us to continue the investigation", "/offer-prep-septic-file-check/#record-help");
+                assistance.setAttribute("data-record-help-cta", "");
+                assistance.dataset.trackSourceContext = `state_return_${stateCode.toLowerCase()}_${outcome}`;
+                actions.append(assistance);
+                const note = document.createElement("p");
+                note.textContent = outcome === "found"
+                    ? "Prefer a person to review it? Tell us what you need to resolve. We can explain the available documents and identify missing evidence; this is not an inspection."
+                    : "You can hand the research to us. We check alternate sources and contact the responsible office when needed. Record availability and response times vary.";
+                wrapper.append(note);
+            }
             wrapper.append(actions, status);
             next.replaceChildren(wrapper);
             next.hidden = false;

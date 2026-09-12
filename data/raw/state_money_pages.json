@@ -16091,46 +16091,46 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "NH",
-      "title": "New Hampshire Septic Records Checklist and Permit Lookup",
-      "metaDescription": "New Hampshire septic records lookup and permit search with NHDES or the local health officer routing, OneStop record and local failure-verification note pulls, and operational-approval and archive-gap friction.",
-      "introCopy": "New Hampshire records lookup starts with the permit search, county file, or official office path. New Hampshire records work is less about one statewide file and more about getting the right NHDES or the local health officer file in hand. If the homeowner cannot surface the OneStop record and local failure-verification note, the low end is still just a planning story.",
-      "uniqueAngle": "New Hampshire's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. New Hampshire records intent is strongest when the page connects NHDES or the local health officer routing, OneStop record and local failure-verification note, and operational-approval and archive-gap friction instead of pretending the state keeps one simple homeowner database.",
+      "title": "New Hampshire Septic Permit Lookup and Plan Records",
+      "metaDescription": "Find New Hampshire septic approvals in NHDES OneStop, request older plans from the archive, and check town records when the online file is incomplete.",
+      "introCopy": "Looking for a septic approval or the plan for a New Hampshire property? Start with NHDES Subsurface OneStop, then use the archive request if the drawing or older approval is not online. The town may also hold copies. Identify the document you need before requesting the file.",
+      "uniqueAngle": "A permit-search entry, a plan drawing, and evidence of present system condition answer different questions. Keep those distinctions visible when sharing the file with a buyer or professional.",
       "targetReader": "Best for New Hampshire buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
-        "You know the parcel uses septic, but no one has confirmed which NHDES or the local health officer actually controls the file. You also need the right records lookup or permit search path before the file story is trustworthy.",
-        "The owner says the system is permitted, but there is still no OneStop record and local failure-verification note in hand.",
-        "You need to know whether operational-approval and archive-gap friction makes the record trail more complicated than the owner remembers."
+        "You need to find the approval associated with a property.",
+        "You found a search entry but still need the plan itself.",
+        "You have an older file or an empty online result and need a next step."
       ],
       "decisionSteps": [
-        "Start with the NHDES or the local health officer and confirm who actually holds the onsite file for the property.",
-        "Request the OneStop record and local failure-verification note, permit file, approval path, and any transfer-related or follow-up record tied to the parcel.",
-        "Compare the records you received against the property story so you know whether the next step is buyer diligence, permit cleanup, or replacement planning.",
-        "Then move into pricing only after the file is strong enough to trust the current system narrative."
+        "Search NHDES Subsurface OneStop for an approval associated with the property.",
+        "If the plan is not available, use the Subsurface Systems File and Archive Records Request and identify the documents needed.",
+        "Ask the town about copies if the state search or archive response is incomplete.",
+        "Match the returned documents to the property and list unresolved questions before relying on them."
       ],
       "lowEndBreakers": [
-        "The low-end file story breaks if no one has identified the NHDES or the local health officer holding the actual record.",
-        "A missing OneStop record and local failure-verification note can hide a very different system path than the owner summary suggests.",
-        "operational-approval and archive-gap friction can make the file much more demanding than a generic record lookup implies."
+        "A search result without a plan may not answer a layout question.",
+        "An older approval may describe a different configuration than the property has today.",
+        "A missing online result does not establish that no archive file exists."
       ],
       "quotePrepChecklist": [
-        "The NHDES or the local health officer identified for the property.",
-        "Any OneStop record and local failure-verification note, permit file, design packet, or approval note already tied to the parcel.",
+        "The town, property address, and available map and lot identifiers.",
+        "Any approval reference, plan, or prior correspondence already located.",
         "Any transfer, complaint, inspection, or follow-up record already in the file.",
         "A short summary of the real use case: buyer diligence, permit cleanup, replacement planning, or service-history check."
       ],
       "driverBullets": [
-        "New Hampshire records lookup gets useful only after the permit search, county file owner, or official office path is clear.",
-        "A thin OneStop record and local failure-verification note trail can hide the real approval story behind the current system.",
-        "operational-approval and archive-gap friction can matter as much as the permit copy before the homeowner trusts the low end."
+        "The document needed determines whether an online search is enough.",
+        "Plan retrieval may require a different step than finding an approval reference.",
+        "Record availability does not establish current system condition."
       ],
       "faqBlocks": [
         {
           "question": "Who holds New Hampshire septic records in practice?",
-          "answer": "Usually the NHDES or the local health officer, which is the first office to identify before you ask for the OneStop record and local failure-verification note or any transfer paperwork."
+          "answer": "Start with NHDES's online search and archive route. The town may also have copies of approvals and plans."
         },
         {
           "question": "Does New Hampshire have a septic permit lookup?",
-          "answer": "Use the New Hampshire records lookup path to find the permit search, county file owner, or official office that can confirm the permit, as-built, inspection, or repair record before quotes."
+          "answer": "Yes. NHDES directs users to Subsurface OneStop and its Subsurface Applications Status Query. A matching entry does not guarantee the plan is available online; use the archive request when needed."
         }
       ],
       "internalLinkTargets": [

@@ -49,6 +49,12 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
+                @if ("NH".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                    @template.tags.newHampshireRecordsQuickStart()
+                @endif
+                @if ("AZ".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+                    <p class="content-quick-answer"><strong>Property in Maricopa County?</strong> <a href="/septic-records-checklist/arizona/maricopa-county/">Start with the free Maricopa County septic search and records guide</a>. Use the county-specific route before a general Arizona permit guide.</p>
+                @endif
                 @if (("NC".equals(state.stateCode()) || "IN".equals(state.stateCode()) || "SC".equals(state.stateCode())) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()) && !countyRecordLinks.isEmpty())
                     <div class="hero-county-launchpad hero-county-launchpad--before-panel" aria-label="${state.stateName()} county record picker">
                         <span class="hero-county-launchpad__label">County records</span>
@@ -286,6 +292,12 @@
     </section>
 
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
+
+    @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "state_records_evidence_" + state.stateCode().toLowerCase(java.util.Locale.ROOT))
+        </div>
+    @endif
 
     <section class="section section--tight">
         <div class="container">

@@ -1598,7 +1598,7 @@ public final class CountyAccessProfileCatalog {
                     "NC::union-county",
                     "official_request",
                     "Existing permit request with inspection branch",
-                    "Request the Union County septic file before planning work around the existing system",
+                    "Union County NC septic permit lookup and existing records request",
                     "Union County provides a dedicated existing septic and well permit request and separately requires an existing-system inspection before construction such as additions, garages, decks, pools, or irrigation on a septic-served parcel.",
                     "Request an existing septic or well permit",
                     "https://lfportal.unioncountync.gov/Forms/WellSepticPermitRequest",

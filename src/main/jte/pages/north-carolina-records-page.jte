@@ -49,7 +49,7 @@
                             <summary>More high-demand county routes</summary>
                             <nav aria-label="More North Carolina county septic permit lookups">
                                 @for (var county : northCarolinaPriorityCountyRoutes.stream().skip(6).toList())
-                                    <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes_more" data-track-target-type="county_records_page">${county.countyName()} septic records</a>
+                                    <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes_more" data-track-target-type="county_records_page">${county.countyName()} septic permit lookup</a>
                                 @endfor
                             </nav>
                         </details>

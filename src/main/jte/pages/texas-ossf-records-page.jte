@@ -17,11 +17,15 @@
                     <p>Texas has no single property-record database for every OSSF. Confirm the local permitting authority, then search or request the file from that authorized agent or TCEQ region.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>SepticPath does</dt><dd>identify the authority search, route verified counties, and prepare file clues.</dd></div>
-                    <div><dt>SepticPath does not</dt><dd>query OARS or county systems, retrieve a permit, or decide whether an OSSF is legal.</dd></div>
+                    <div><dt>This self-serve tool</dt><dd>identifies the authority search, routes verified counties, and prepares file clues.</dd></div>
+                    <div><dt>Tool limits</dt><dd>It does not query OARS or county systems, retrieve a permit, or decide whether an OSSF is legal. You can separately ask us to research available records.</dd></div>
                 </dl>
             </div>
         </section>
+
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "tx_records_evidence")
+        </div>
 
         <section class="tx-authority" aria-labelledby="tx-authority-title">
             <div class="container tx-authority__grid">
