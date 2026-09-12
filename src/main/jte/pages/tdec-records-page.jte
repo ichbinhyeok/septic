@@ -57,14 +57,7 @@
                         <div class="tdec-return__next" data-tdec-hero-next hidden></div>
                     </section>
                 </div>
-                <aside class="tdec-desk__boundary" aria-label="Service boundary">
-                    <strong>What SepticPath does</strong>
-                    <dl>
-                        <div><dt>01 Verify</dt><dd>Match the address, parcel clues, county, and responsible record holder.</dd></div>
-                        <div><dt>02 Request</dt><dd>Contact TDEC or the local county program when the online route stops.</dd></div>
-                        <div><dt>03 Explain</dt><dd>Return the original agency response with confirmed facts and next steps.</dd></div>
-                    </dl>
-                </aside>
+                @template.tags.recordEvidence(sourceContext = "tdec_records_evidence")
             </div>
         </section>
 

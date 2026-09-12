@@ -50,6 +50,10 @@
             </div>
         </section>
 
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "national_records_evidence")
+        </div>
+
         @if ("septic-as-built-records".equals(contentPage.slug()))
             @template.tags.septicDrawingGuide()
         @endif

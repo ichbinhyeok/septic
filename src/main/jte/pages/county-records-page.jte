@@ -117,19 +117,7 @@
                 @endif
                     </div>
                 </details>
-                <div class="county-service-entry" aria-label="SepticPath assisted record research">
-                    <div>
-                        <span>SEPTICPATH RESEARCH DESK</span>
-                        <strong>Prefer not to chase the county file yourself?</strong>
-                        <p>Send the address. We’ll search available sources, contact the responsible office when needed, and return the original response with a clear explanation.</p>
-                    </div>
-                    <a class="button button--primary"
-                       href="/offer-prep-septic-file-check/#record-help"
-                       data-record-help-cta
-                       data-track-click="nav"
-                       data-track-source-context="county_records_${state.stateCode().toLowerCase()}"
-                       data-track-target-type="lead_form">Ask SepticPath to investigate</a>
-                </div>
+                @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase())
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())

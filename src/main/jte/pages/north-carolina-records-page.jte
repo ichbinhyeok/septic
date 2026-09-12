@@ -18,11 +18,15 @@
                     <p>North Carolina does not provide one statewide property-level septic permit search. Choose the county, prepare a property clue, and open that county's verified search or request path.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>SepticPath does</dt><dd>route verified counties, prepare search keys, and draft a file request.</dd></div>
-                    <div><dt>SepticPath does not</dt><dd>query county systems, download a permit, or confirm that a record exists.</dd></div>
+                    <div><dt>This self-serve tool</dt><dd>routes verified counties, prepares search keys, and drafts a file request.</dd></div>
+                    <div><dt>Tool limits</dt><dd>It does not query county systems, download a permit, or confirm that a record exists. You can also ask our research service to investigate.</dd></div>
                 </dl>
             </div>
         </section>
+
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "nc_records_evidence")
+        </div>
 
         @if (!northCarolinaPriorityCountyRoutes.isEmpty())
             <section class="nc-priority-routes" aria-labelledby="nc-priority-routes-title">
