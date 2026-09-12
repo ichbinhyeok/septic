@@ -17,11 +17,15 @@
                     <p>A TMS or permit number can go to Site Explorer. With only an address or owner, start with the county TMS route or prepare an SCDES file request.</p>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>SepticPath does</dt><dd>prepare search keys, open the public SCDES search, and draft a records follow-up.</dd></div>
-                    <div><dt>SepticPath does not</dt><dd>query SCDES, retrieve a PDF, confirm a permit, or judge system condition.</dd></div>
+                    <div><dt>This self-serve tool</dt><dd>prepares search keys, opens the public SCDES search, and drafts a records follow-up.</dd></div>
+                    <div><dt>Tool limits</dt><dd>It does not query SCDES, retrieve a PDF, confirm a permit, or judge system condition. You can also ask our research service to investigate.</dd></div>
                 </dl>
             </div>
         </section>
+
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "sc_records_evidence")
+        </div>
 
         <section class="sc-official-search" aria-labelledby="sc-official-search-title">
             <div class="container sc-official-search__grid">

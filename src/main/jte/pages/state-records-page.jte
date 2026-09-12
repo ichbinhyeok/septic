@@ -47,6 +47,10 @@
             </div>
         </section>
 
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "state_records_" + state.stateCode().toLowerCase())
+        </div>
+
         <section class="state-records-route">
             <div class="container state-records-route__grid">
                 <div>

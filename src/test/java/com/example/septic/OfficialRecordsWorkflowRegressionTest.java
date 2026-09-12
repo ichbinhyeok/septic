@@ -92,7 +92,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.")))
                 .andExpect(content().string(containsString("Find the county that holds the septic permit")))
                 .andExpect(content().string(containsString("29 county workflows have a source-reviewed route")))
-                .andExpect(content().string(containsString("SepticPath does not")))
+                .andExpect(content().string(containsString("This self-serve tool")))
                 .andExpect(content().string(containsString("query county systems, download a permit, or confirm that a record exists")))
                 .andExpect(content().string(containsString("data-nc-open-request")))
                 .andExpect(content().string(containsString("Environmental Health staff by county")))
