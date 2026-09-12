@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.0.15.0 - 2026-09-12
+
+### Added
+
+- See anonymized original records and an explained example from the record finder, state records guides, and Florida/Texas lookup tools.
+- Hand off a record search for human help after using the free finder or returning from an official source, with guidance tailored to the result.
+- Find the free Maricopa search, Union County existing-record instructions, and New Hampshire OneStop/archive routes near the top of their guides.
+
+### Changed
+
+- Aligned selected search titles and New Hampshire copy with record lookup intent, and surfaced relevant Arizona and North Carolina county links.
+- Clarified that self-service tool limitations do not describe the separate human research service.
+
+### Fixed
+
+- Track dynamically displayed help actions and keep workflow context separate when starting a different search.
+- Keep new county quick answers above secondary route controls without replacing free lookup options.
+
 ## 0.0.14.0 - 2026-09-12
 
 ### Added
