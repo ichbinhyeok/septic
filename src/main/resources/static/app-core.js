@@ -479,7 +479,7 @@
             });
         });
 
-        if ("IntersectionObserver" in window && ctas.length > 0) {
+        if ("IntersectionObserver" in window) {
             const ctaObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (!entry.isIntersecting) return;
@@ -498,6 +498,15 @@
                 });
             }, { threshold: 0.5 });
             ctas.forEach((cta) => ctaObserver.observe(cta));
+            // Outcome actions are created after an official-site return.
+            const addedCtas = new MutationObserver((records) => {
+                records.forEach((record) => record.addedNodes.forEach((node) => {
+                    if (!(node instanceof Element)) return;
+                    if (node.matches("[data-record-help-cta]")) ctaObserver.observe(node);
+                    node.querySelectorAll("[data-record-help-cta]").forEach((cta) => ctaObserver.observe(cta));
+                }));
+            });
+            addedCtas.observe(document.body, { childList: true, subtree: true });
         }
 
         const form = document.querySelector("[data-record-help-request-form]");

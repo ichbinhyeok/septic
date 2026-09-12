@@ -243,6 +243,7 @@
   .county-records-page .state-hero > div:first-child > h1,
   .county-records-page .state-hero > div:first-child > .county-records-page__source-title { order: 0; }
   .county-records-page .state-hero > div:first-child > .county-service-entry { order: 1; }
+  .county-records-page .state-hero > div:first-child > [data-search-intent-answer] { order: 1; }
   .county-records-page .state-hero > div:first-child > .county-command-bar { order: 2; }
   .county-records-page .state-hero > div:first-child > .county-route-brief { order: 3; }
   .county-records-page .state-hero > div:first-child > .county-route-evidence { order: 4; }

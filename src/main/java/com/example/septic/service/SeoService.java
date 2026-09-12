@@ -763,7 +763,7 @@ public class SeoService {
             case "NC::randolph-county" -> "Randolph County NC Septic Permits, Repairs and ePermits";
             case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
-            case "NC::union-county" -> "Union County NC Septic Records & Existing System Inspection";
+            case "NC::union-county" -> "Union County NC Septic Permit Lookup & Records Request";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
             case "NC::pender-county" -> "Pender County NC Septic Permit Information Request";
             case "AL::tuscaloosa-county" -> "Tuscaloosa County AL Septic Permits and Records Contact";
@@ -775,7 +775,7 @@ public class SeoService {
             case "TN::williamson-county" -> "Williamson County TN Septic Records and Sewage Disposal";
             case "MD::st-marys-county" -> "Request St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
-            case "AZ::maricopa-county" -> "Maricopa County Septic Records Search and Research Request";
+            case "AZ::maricopa-county" -> "Maricopa County Septic Search | Free Records & Permit Lookup";
             case "NC::brunswick-county" -> "Brunswick County Permit Search and Septic File Request";
             case "NC::forsyth-county" -> "Request Forsyth County NC Septic Permit and Soil Evaluation";
             case "TX::denton-county" -> "Denton County OSSF Records and Jurisdiction Check";
@@ -838,7 +838,7 @@ public class SeoService {
             case "NC::randolph-county" -> "Choose Randolph County's new, repair, expansion, or existing-system job and track the applicable IP, CA, Operation Permit, repair permit, or authorization in ePermits.";
             case "NC::buncombe-county" -> "Search Buncombe County well and septic records in Accela by address or parcel PIN, then use Environmental Health for an existing-system, inspection, new, or repair route.";
             case "NC::wake-county" -> "Match the Wake County parcel in iMAPS, open Permit Search, and download the scanned septic permit and attachments without treating a missing Septic box as no record.";
-            case "NC::union-county" -> "Request the Union County septic permit file, then use the separate existing-system inspection path before additions, garages, decks, pools, or irrigation work.";
+            case "NC::union-county" -> "Find Union County NC's existing septic permit records request. Prepare the address and parcel ID, follow current county instructions, and separate records from inspections.";
             case "NC::pitt-county" -> "Search Pitt County EnerGov records, then verify the Authorization to Construct, site plan, primary drainfield, repair area, and final approval with Environmental Health.";
             case "NC::pender-county" -> "Prepare Pender County's exact septic permit request fields and obtain the file status, permit type, layout, or written Environmental Health response.";
             case "AL::tuscaloosa-county" -> "Call Tuscaloosa County's Environmental Office with the address, parcel, owner, approximate year, and exact septic permit or record request.";
@@ -850,7 +850,7 @@ public class SeoService {
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Use the official St. Mary's County Environmental Health request PDF for the septic property file; use county GIS only to obtain a parcel or Tax ID clue.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
-            case "AZ::maricopa-county" -> "Run Maricopa County's free septic search first, then use the standard or expedited official research request when the online result is empty.";
+            case "AZ::maricopa-county" -> "Open Maricopa County's free online septic search for available permit records. See the first-screen disclaimer and the county research fallback if no file appears.";
             case "NC::brunswick-county" -> "Search Brunswick public permit metadata to identify the parcel and permit candidate, then request the original septic IP, CA, OP, or related file.";
             case "NC::forsyth-county" -> "Request the Forsyth County septic permit and soil evaluation, with separate release and repair routes for new property work.";
             case "TX::denton-county" -> "Confirm Denton County OSSF jurisdiction before requesting the existing license to operate, final approval, site plan, or maintenance record.";

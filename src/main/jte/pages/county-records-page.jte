@@ -58,6 +58,7 @@
                 @endif
                 <p class="county-records-page__source-title"
                    data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
+                @template.tags.countySearchQuickStart(countyKey = countyPage.key())
                 <details class="county-route-brief">
                     <summary>
                         <span>Route details</span>

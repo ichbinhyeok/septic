@@ -16,6 +16,10 @@
         </div>
     </section>
 
+    <div class="container record-evidence-band">
+        @template.tags.recordEvidence(sourceContext = "record_finder_evidence")
+    </div>
+
     <section class="section section--tight">
         <div class="container record-finder-steps">
             <article>
