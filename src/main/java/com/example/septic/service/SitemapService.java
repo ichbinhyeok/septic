@@ -8,6 +8,7 @@ import com.example.septic.data.model.StateProfile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,25 @@ public class SitemapService {
     private static final String RECORDS_CONTENT_REVISION_DATE = "2026-09-01";
     private static final String STATE_RECORDS_REVISION_DATE = "2026-09-01";
     private static final String COUNTY_RECORDS_REVISION_DATE = "2026-09-01";
+    /*
+     * Page-specific material revisions keep lastmod accurate without making a
+     * cosmetic or narrowly scoped release look like a sitewide content update.
+     */
+    private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
+            Map.entry("/", "2026-09-11"),
+            Map.entry("/septic-record-finder/", "2026-09-12"),
+            Map.entry("/septic-records-access-index/", "2026-09-11"),
+            Map.entry("/septic-record-brief-example/", "2026-09-12"),
+            Map.entry("/offer-prep-septic-file-check/", "2026-09-12"),
+            Map.entry("/official-septic-lookup-tools/", "2026-09-12"),
+            Map.entry("/tdec-septic-records/", "2026-09-12"),
+            Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
+            Map.entry("/texas-ossf-records-search/", "2026-09-12"),
+            Map.entry("/florida-ostds-permit-lookup/", "2026-09-12"),
+            Map.entry("/dhec-septic-permit-lookup/", "2026-09-12"),
+            Map.entry("/septic-as-built-records/", "2026-09-11"),
+            Map.entry("/septic-tank-location-records/", "2026-09-11")
+    );
 
     private final ResearchDataService researchDataService;
     private final PublishingPolicyService publishingPolicyService;
@@ -54,14 +74,13 @@ public class SitemapService {
 
     public String sitemapXml() {
         List<SitemapEntry> entries = new ArrayList<>();
-        entries.add(entry(seoService.absoluteUrl("/"), ""));
+        entries.add(entry(seoService.absoluteUrl("/"), materialRevision("/")));
         entries.add(entry(seoService.absoluteUrl("/septic-system-cost-calculator/"), ""));
         entries.add(entry(seoService.absoluteUrl("/septic-tank-size-estimator/"), ""));
         entries.add(entry(seoService.absoluteUrl("/septic-pump-schedule-estimator/"), ""));
         entries.add(entry(seoService.absoluteUrl("/drain-field-estimator/"), ""));
         seoService.staticPagePaths().stream()
-                .map(seoService::absoluteUrl)
-                .map(url -> entry(url, ""))
+                .map(path -> entry(seoService.absoluteUrl(path), materialRevision(path)))
                 .forEach(entries::add);
 
         for (ContentPage contentPage : researchDataService.getPublicContentPages()) {
@@ -70,7 +89,7 @@ public class SitemapService {
                         seoService.absoluteUrl("/" + contentPage.slug() + "/"),
                         latestValidDate(Stream.of(
                                 contentPage.updatedAt(),
-                                "septic-as-built-records".equals(contentPage.slug()) ? "2026-09-11" : "",
+                                materialRevision("/" + contentPage.slug() + "/"),
                                 SHARED_WORKFLOW_REVISION_DATE,
                                 isRecordsWorkflowContentPage(contentPage.slug()) ? RECORDS_CONTENT_REVISION_DATE : ""
                         ))
@@ -178,6 +197,10 @@ public class SitemapService {
                     "septic-tank-location-records" -> true;
             default -> false;
         };
+    }
+
+    private String materialRevision(String path) {
+        return MATERIAL_PAGE_REVISIONS.getOrDefault(path, "");
     }
 
     private String statePageLastMod(StateProfile state) {

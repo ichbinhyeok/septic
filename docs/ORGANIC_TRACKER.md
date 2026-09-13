@@ -1942,3 +1942,16 @@ Copy this block for the next review:
   - first directional check after 14 complete days; 28-day decision check
 - Guardrail: do not create a separate septic-map URL or expand heuristic labels
   into unsupported claims about record completeness or field accuracy.
+
+## 2026-09-13 - Bing discovery and AI citation baseline
+
+- Bing's two direct recommendations were missing IndexNow adoption and
+  insufficient inbound links from quality domains.
+- Added deploy-time sitemap diffing and IndexNow notification. Only added,
+  materially revised, or deleted URLs are submitted after a successful deploy.
+- Corrected page-specific sitemap revision dates, including the 2026-09-12 TDEC
+  material update, without falsely refreshing the full URL inventory.
+- Preserved the active TDEC CTR experiment. Do not change its title,
+  description, H1, or hero before the 2026-09-25 complete-period review.
+- Captured the Bing Search Performance, AI citation, GA4, priority-cohort, and
+  weekly decision framework in `docs/BING_GROWTH_PLAN_2026-09-13.md`.

@@ -86,6 +86,11 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
 
+      - name: Snapshot production sitemaps before deploy
+        run: |
+          curl -fsS https://septicpath.com/sitemap.xml -o /tmp/septicpath-sitemap-before.xml
+          curl -fsS https://septicpath.com/sitemap-county.xml -o /tmp/septicpath-sitemap-county-before.xml
+
       - name: Deploy on OCI ARM64 server
         env:
           OCI_HOST: ${{ secrets.OCI_HOST }}
@@ -225,3 +230,11 @@ jobs:
 
           docker image prune -f
           EOF
+
+      - name: Notify Bing and participating engines about changed URLs
+        run: |
+          node tools/submit-indexnow.mjs \
+            --previous-sitemap /tmp/septicpath-sitemap-before.xml \
+            --sitemap https://septicpath.com/sitemap.xml \
+            --previous-sitemap /tmp/septicpath-sitemap-county-before.xml \
+            --sitemap https://septicpath.com/sitemap-county.xml
