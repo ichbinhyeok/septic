@@ -534,6 +534,8 @@
             const address = form.querySelector('[name="propertyAddress"]');
             const state = form.querySelector('[name="stateCode"]');
             const county = form.querySelector('[name="countyName"]');
+            const recordType = form.querySelector('[name="recordType"]');
+            const researchGoal = form.querySelector('[name="researchGoal"]');
             const recordStatus = form.querySelector('[name="recordStatus"]');
             if (address instanceof HTMLInputElement && !address.value) address.value = carriedContext.address || "";
             if (state instanceof HTMLSelectElement
@@ -542,7 +544,26 @@
                 state.value = carriedContext.stateCode;
             }
             if (county instanceof HTMLInputElement && !county.value) county.value = carriedContext.countyName || "";
+            if (recordType instanceof HTMLSelectElement && !recordType.value) {
+                recordType.value = "septic";
+            }
+            const purposeGoalMap = {
+                buying: "original_documents",
+                bedrooms: "design_capacity",
+                location: "system_layout",
+                repair: "repair_history",
+                replacement: "original_documents",
+                lender: "approval_status",
+                owner: "original_documents"
+            };
+            const carriedGoal = purposeGoalMap[carriedContext.purpose] || "";
+            if (researchGoal instanceof HTMLSelectElement
+                && !researchGoal.value
+                && Array.from(researchGoal.options).some(option => option.value === carriedGoal)) {
+                researchGoal.value = carriedGoal;
+            }
             const statusMap = {
+                route_ready: "not_started",
                 not_found_online: "missing",
                 blocked: "route_unknown",
                 wrong_agency: "route_unknown",
