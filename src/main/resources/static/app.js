@@ -934,6 +934,7 @@
             const resumeCopy = finder.querySelector("[data-record-resume-copy]");
             const resumeContinue = finder.querySelector("[data-record-resume-continue]");
             const result = finder.querySelector("[data-address-record-finder-result]");
+            const resultHandoff = result?.querySelector(":scope > .record-finder__document-entry");
             const status = finder.querySelector("[data-address-record-finder-status]");
             const heading = finder.querySelector("[data-address-record-finder-heading]");
             const message = finder.querySelector("[data-address-record-finder-message]");
@@ -1260,6 +1261,18 @@
 
             function renderSearchPacket(context) {
                 if (!(searchPacket instanceof HTMLElement) || !(searchPacketOutput instanceof HTMLElement)) {
+                    return;
+                }
+                const hasPropertyContext = Boolean(
+                    context?.matchedAddress
+                    || context?.countyName
+                    || context?.stateName
+                    || context?.officeLabel
+                    || context?.contactLine
+                );
+                if (!hasPropertyContext) {
+                    searchPacketOutput.textContent = "";
+                    searchPacket.hidden = true;
                     return;
                 }
                 const packetText = searchPacketText(context);
@@ -1747,14 +1760,19 @@
                 result.hidden = false;
                 const resolvedStateCode = String(payload.stateCode || "").trim().toUpperCase();
                 const stateMismatch = Boolean(expectedStateCode && resolvedStateCode && resolvedStateCode !== expectedStateCode);
+                const propertyResolved = ["county_route", "state_route", "unsupported"].includes(payload.status);
                 result.dataset.addressRecordFinderStateMismatch = String(stateMismatch);
                 if (officialNote instanceof HTMLElement) {
-                    officialNote.hidden = false;
+                    officialNote.hidden = !propertyResolved;
                 }
                 if (routeDetails instanceof HTMLDetailsElement) {
-                    routeDetails.hidden = false;
+                    routeDetails.hidden = !propertyResolved;
+                    if (!propertyResolved) routeDetails.open = false;
                 }
-                routeContext = {
+                if (resultHandoff instanceof HTMLElement) {
+                    resultHandoff.hidden = !propertyResolved;
+                }
+                routeContext = propertyResolved ? {
                     workflowRunId: ensureWorkflowRunId(),
                     stateCode: payload.stateCode || "",
                     stateName: payload.stateName || "",
@@ -1772,17 +1790,19 @@
                     officialRoute: payload.officialRouteUrl || "",
                     requestRoute: payload.requestRoute || payload.routePath || "",
                     purpose: currentPurpose()
-                };
-                const preparedTask = window.SepticRecordTask?.prepare(routeContext, {
-                    address: payload.matchedAddress || input.value.trim(),
-                    identifierType: "address",
-                    identifierValue: payload.matchedAddress || input.value.trim()
-                });
-                if (preparedTask?.workflowRunId) {
-                    activeWorkflowRunId = preparedTask.workflowRunId;
-                    routeContext.workflowRunId = activeWorkflowRunId;
+                } : null;
+                if (propertyResolved) {
+                    const preparedTask = window.SepticRecordTask?.prepare(routeContext, {
+                        address: payload.matchedAddress || input.value.trim(),
+                        identifierType: "address",
+                        identifierValue: payload.matchedAddress || input.value.trim()
+                    });
+                    if (preparedTask?.workflowRunId) {
+                        activeWorkflowRunId = preparedTask.workflowRunId;
+                        routeContext.workflowRunId = activeWorkflowRunId;
+                    }
+                    window.SepticRecordTask?.transition("route_ready", "route_ready");
                 }
-                window.SepticRecordTask?.transition("route_ready", "route_ready");
                 if (returnPanel instanceof HTMLElement) {
                     returnPanel.hidden = true;
                 }
@@ -1816,10 +1836,10 @@
                     }));
                     meta.hidden = values.length === 0;
                 }
-                renderOffice(routeContext);
-                renderSearchPacket(routeContext);
+                renderOffice(propertyResolved ? routeContext : null);
+                renderSearchPacket(propertyResolved ? routeContext : null);
                 if (steps) {
-                    const relaySteps = Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
+                    const relaySteps = propertyResolved && Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
                     steps.replaceChildren(...relaySteps.map((value) => {
                         const item = document.createElement("li");
                         item.textContent = value;
