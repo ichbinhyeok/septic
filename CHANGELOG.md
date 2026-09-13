@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.15.1 - 2026-09-13
+
+### Added
+
+- Added IndexNow verification and deploy-time notification for sitemap URLs that were added, materially changed, or deleted.
+- Added a Bing Search and AI Performance baseline, priority cohorts, and weekly decision scorecard.
+
+### Fixed
+
+- Corrected page-specific sitemap revision dates, including the latest TDEC, record finder, and public record-evidence updates, without falsely refreshing the full site.
+
 ## 0.0.15.0 - 2026-09-12
 
 ### Added
