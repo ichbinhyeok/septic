@@ -3,11 +3,15 @@ package com.example.septic.web;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SeoService;
 import com.example.septic.service.UsStateDirectoryService;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,6 +35,15 @@ public class SiteExceptionHandler {
         model.addAttribute("message", exception.getMessage());
         model.addAttribute("relatedLinks", relatedLinks(exception.missingPath()));
         return "pages/not-found";
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public Object handleMaxUploadSizeExceeded(HttpServletRequest request) {
+        if (request.getRequestURI().startsWith("/offer-prep-septic-file-check")) {
+            return "redirect:/offer-prep-septic-file-check/?mode=review&uploadError=too_large#record-help";
+        }
+        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+                .body(Map.of("error", "Upload too large"));
     }
 
     private List<PageLink> relatedLinks(String missingPath) {

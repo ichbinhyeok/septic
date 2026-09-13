@@ -744,6 +744,7 @@ public class SiteController {
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
     public String offerPrepSepticFileCheck(
             @RequestParam(name = "mode", required = false) String mode,
+            @RequestParam(name = "uploadError", required = false) String uploadError,
             Model model
     ) {
         ClosingRiskCheckForm form = new ClosingRiskCheckForm();
@@ -754,7 +755,11 @@ public class SiteController {
             form.setSourceContext("document_review");
             form.setSourcePageHint("/septic-record-finder/");
         }
-        return renderOfferPrepSepticFileCheck(model, form, false, null, form.getSourceContextValue());
+        boolean uploadTooLarge = "too_large".equalsIgnoreCase(uploadError);
+        if (uploadTooLarge) {
+            model.addAttribute("closingRiskDocumentError", "The upload was too large. Add up to three files, keep each file at 10 MB or less, and keep the combined upload at 15 MB or less.");
+        }
+        return renderOfferPrepSepticFileCheck(model, form, uploadTooLarge, null, form.getSourceContextValue());
     }
 
     @GetMapping({"/septic-record-brief-example", "/septic-record-brief-example/"})
