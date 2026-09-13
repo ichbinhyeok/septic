@@ -23,6 +23,7 @@ import com.example.septic.service.EstimatorResult;
 import com.example.septic.service.EstimatorService;
 import com.example.septic.service.LeadStorageService;
 import com.example.septic.service.ProjectType;
+import com.example.septic.service.RecordHelpDocumentPolicy;
 import com.example.septic.service.ResearchDataService;
 import com.example.septic.service.SeoService;
 import com.example.septic.service.SepticDocumentAnalysisService;
@@ -539,6 +540,7 @@ public class SiteController {
     private final OfficialCountyPdfService officialCountyPdfService;
     private final ClosingRiskNotificationService closingRiskNotificationService;
     private final ClosingRiskRequestLimiter closingRiskRequestLimiter;
+    private final RecordHelpDocumentPolicy recordHelpDocumentPolicy;
 
     public SiteController(
             ResearchDataService researchDataService,
@@ -560,7 +562,8 @@ public class SiteController {
             SepticDocumentAnalysisService septicDocumentAnalysisService,
             OfficialCountyPdfService officialCountyPdfService,
             ClosingRiskNotificationService closingRiskNotificationService,
-            ClosingRiskRequestLimiter closingRiskRequestLimiter
+            ClosingRiskRequestLimiter closingRiskRequestLimiter,
+            RecordHelpDocumentPolicy recordHelpDocumentPolicy
     ) {
         this.researchDataService = researchDataService;
         this.estimatorService = estimatorService;
@@ -582,6 +585,7 @@ public class SiteController {
         this.officialCountyPdfService = officialCountyPdfService;
         this.closingRiskNotificationService = closingRiskNotificationService;
         this.closingRiskRequestLimiter = closingRiskRequestLimiter;
+        this.recordHelpDocumentPolicy = recordHelpDocumentPolicy;
     }
 
     @GetMapping("/")
@@ -738,8 +742,24 @@ public class SiteController {
     }
 
     @GetMapping({"/offer-prep-septic-file-check", "/offer-prep-septic-file-check/"})
-    public String offerPrepSepticFileCheck(Model model) {
-        return renderOfferPrepSepticFileCheck(model, new ClosingRiskCheckForm(), false, null, "direct");
+    public String offerPrepSepticFileCheck(
+            @RequestParam(name = "mode", required = false) String mode,
+            @RequestParam(name = "uploadError", required = false) String uploadError,
+            Model model
+    ) {
+        ClosingRiskCheckForm form = new ClosingRiskCheckForm();
+        if ("review".equalsIgnoreCase(mode)) {
+            form.setRecordType("septic");
+            form.setResearchGoal("understand_file");
+            form.setRecordStatus("partial");
+            form.setSourceContext("document_review");
+            form.setSourcePageHint("/septic-record-finder/");
+        }
+        boolean uploadTooLarge = "too_large".equalsIgnoreCase(uploadError);
+        if (uploadTooLarge) {
+            model.addAttribute("closingRiskDocumentError", "The upload was too large. Add up to three files, keep each file at 10 MB or less, and keep the combined upload at 15 MB or less.");
+        }
+        return renderOfferPrepSepticFileCheck(model, form, uploadTooLarge, null, form.getSourceContextValue());
     }
 
     @GetMapping({"/septic-record-brief-example", "/septic-record-brief-example/"})
@@ -768,10 +788,22 @@ public class SiteController {
                     "bot"
             );
         }
+        if (!bindingResult.hasErrors()) {
+            String documentError = recordHelpDocumentPolicy.validate(
+                    closingRiskCheckForm.getDocuments(),
+                    "understand_file".equals(closingRiskCheckForm.getResearchGoal())
+            );
+            if (!documentError.isBlank()) {
+                bindingResult.rejectValue("documents", "closingRisk.documents", documentError);
+            }
+        }
         if (!bindingResult.hasErrors() && !closingRiskRequestLimiter.allow(request)) {
             bindingResult.reject("closingRisk.rateLimit", "Too many requests were submitted from this connection. Try again later.");
         }
         if (bindingResult.hasErrors()) {
+            if (bindingResult.getFieldError("documents") != null) {
+                model.addAttribute("closingRiskDocumentError", bindingResult.getFieldError("documents").getDefaultMessage());
+            }
             return renderOfferPrepSepticFileCheck(model, closingRiskCheckForm, true, null, closingRiskCheckForm.getSourceContextValue());
         }
 
@@ -781,6 +813,9 @@ public class SiteController {
                 request
         );
         closingRiskNotificationService.notifyOperator(requestId, closingRiskCheckForm);
+        if ("understand_file".equals(closingRiskCheckForm.getResearchGoal())) {
+            model.addAttribute("documentReviewMode", true);
+        }
         return renderOfferPrepSepticFileCheck(
                 model,
                 new ClosingRiskCheckForm(),
@@ -809,6 +844,11 @@ public class SiteController {
         model.addAttribute("closingRiskHasErrors", closingRiskHasErrors);
         model.addAttribute("closingRiskRequestId", closingRiskRequestId);
         model.addAttribute("closingRiskSuccessSourceContext", closingRiskSuccessSourceContext);
+        model.addAttribute("documentReviewMode",
+                Boolean.TRUE.equals(model.asMap().get("documentReviewMode"))
+                        || "understand_file".equals(closingRiskCheckForm.getResearchGoal())
+                        || "document_review".equals(closingRiskCheckForm.getSourceContextValue())
+                        || (closingRiskSuccessSourceContext != null && closingRiskSuccessSourceContext.contains("document_review")));
         model.addAttribute("closingRiskMinimumDeadline", LocalDate.now().toString());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
         return "pages/offer-prep-septic-file-check";
@@ -1074,6 +1114,7 @@ public class SiteController {
                                 List.of(
                                         "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
                                         "The free Record Help beta stores the submitted contact details, property address, record type, research goal, what the requester has already found, relevant listing or permit facts, deadline, notes, and consent snapshot. These details are emailed to the SepticPath operator for manual review.",
+                                        "When you choose human document review, the source files you attach are stored with the private request record and emailed to the SepticPath operator. The form currently accepts up to three PDF, TXT, PNG, or JPG files with a 15 MB combined limit.",
                                         "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
                                         "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
                                 )
@@ -1083,7 +1124,7 @@ public class SiteController {
                                 "Some workflow information stays in your own browser so an official-site handoff does not erase your work.",
                                 List.of(
                                         "County-task clues, request progress, and confirmation notes can remain in local browser storage for up to 30 days and can be cleared from the workflow.",
-                                        "Uploaded documents are processed to create an extracted summary. Original files and OCR images are not intentionally retained; a saved workspace is created only when you choose to download it.",
+                                        "Documents added to the self-serve review workspace are processed to create an extracted summary. Original files and OCR images from that browser-only tool are not intentionally retained; a saved workspace is created only when you choose to download it. This differs from the human-review form described above.",
                                         "Clearing site data in your browser also removes browser-only task state."
                                 )
                         ),

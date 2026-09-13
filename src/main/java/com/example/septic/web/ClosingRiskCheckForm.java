@@ -9,6 +9,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ClosingRiskCheckForm {
     @Size(max = 120, message = "Name must be 120 characters or fewer.")
@@ -74,6 +77,8 @@ public class ClosingRiskCheckForm {
     @Size(min = 10, max = 1200, message = "Add at least 10 characters and no more than 1,200.")
     private String concern;
 
+    private List<MultipartFile> documents = new ArrayList<>();
+
     @AssertTrue(message = "Consent is required.")
     private boolean consentAccepted;
 
@@ -85,7 +90,7 @@ public class ClosingRiskCheckForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree that SepticPath may use the contact and property details I provide to research this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.";
+        return "I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.";
     }
 
     public String getFullNameValue() { return fullName == null ? "" : fullName; }
@@ -135,6 +140,8 @@ public class ClosingRiskCheckForm {
     public void setEntryPageHint(String entryPageHint) { this.entryPageHint = entryPageHint; }
     public String getConcern() { return concern; }
     public void setConcern(String concern) { this.concern = concern; }
+    public List<MultipartFile> getDocuments() { return documents == null ? List.of() : documents; }
+    public void setDocuments(List<MultipartFile> documents) { this.documents = documents == null ? new ArrayList<>() : documents; }
     public boolean isConsentAccepted() { return consentAccepted; }
     public void setConsentAccepted(boolean consentAccepted) { this.consentAccepted = consentAccepted; }
     public String getWebsite() { return website; }

@@ -2,18 +2,27 @@ package com.example.septic.service;
 
 import com.example.septic.config.ClosingRiskNotificationProperties;
 import com.example.septic.web.ClosingRiskCheckForm;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ClosingRiskNotificationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClosingRiskNotificationService.class);
     private final JavaMailSender mailSender;
     private final ClosingRiskNotificationProperties properties;
+    private final RecordHelpDocumentPolicy recordHelpDocumentPolicy;
 
     public ClosingRiskNotificationService(
             JavaMailSender mailSender,
@@ -21,6 +30,7 @@ public class ClosingRiskNotificationService {
     ) {
         this.mailSender = mailSender;
         this.properties = properties;
+        this.recordHelpDocumentPolicy = new RecordHelpDocumentPolicy();
     }
 
     public boolean notifyOperator(String requestId, ClosingRiskCheckForm form) {
@@ -29,13 +39,66 @@ public class ClosingRiskNotificationService {
             return false;
         }
 
+        List<MultipartFile> documents = recordHelpDocumentPolicy.present(form.getDocuments());
+        if (!documents.isEmpty()) {
+            return notifyOperatorWithDocuments(requestId, form, documents);
+        }
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(properties.sender());
         message.setTo(properties.recipient());
         message.setReplyTo(safeLine(form.getEmail()));
-        message.setSubject("[SepticPath record help] " + safeLine(form.getStateCode()) + " / "
-                + safeLine(form.getRecordStatus()) + transactionSuffix(form));
-        message.setText("""
+        message.setSubject(subject(form));
+        message.setText(messageText(requestId, form, 0));
+        try {
+            mailSender.send(message);
+            return true;
+        } catch (MailException exception) {
+            LOGGER.error("Failed to send Gmail notification for record help request {}", requestId, exception);
+            return false;
+        }
+    }
+
+    private boolean notifyOperatorWithDocuments(
+            String requestId,
+            ClosingRiskCheckForm form,
+            List<MultipartFile> documents
+    ) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, StandardCharsets.UTF_8.name());
+            helper.setFrom(properties.sender());
+            helper.setTo(properties.recipient());
+            helper.setReplyTo(safeLine(form.getEmail()));
+            helper.setSubject(subject(form));
+            helper.setText(messageText(requestId, form, documents.size()), false);
+            for (int index = 0; index < documents.size(); index++) {
+                MultipartFile document = documents.get(index);
+                String displayName = recordHelpDocumentPolicy.displayFileName(document, index + 1);
+                ByteArrayResource resource = new ByteArrayResource(document.getBytes()) {
+                    @Override
+                    public String getFilename() {
+                        return displayName;
+                    }
+                };
+                helper.addAttachment(displayName, resource, recordHelpDocumentPolicy.trustedContentType(document));
+            }
+            mailSender.send(message);
+            return true;
+        } catch (MessagingException | IOException | MailException exception) {
+            LOGGER.error("Failed to send Gmail notification with documents for record help request {}", requestId, exception);
+            return false;
+        }
+    }
+
+    private String subject(ClosingRiskCheckForm form) {
+        String service = "understand_file".equals(form.getResearchGoal()) ? "document review" : "record help";
+        return "[SepticPath " + service + "] " + safeLine(form.getStateCode()) + " / "
+                + safeLine(form.getRecordStatus()) + transactionSuffix(form);
+    }
+
+    private String messageText(String requestId, ClosingRiskCheckForm form, int documentCount) {
+        return """
                 New Septic Record Help request
 
                 Request ID: %s
@@ -54,6 +117,7 @@ public class ClosingRiskNotificationService {
                 Permit bedrooms: %s
                 Record status: %s
                 Deadline: %s
+                Documents attached: %s
                 Concern: %s
 
                 Start by identifying the likely public-record owner and exact file to request. If the process stage is buyer, seller, agent, or other and a deadline or conflict is present, qualify the request for a deeper closing-risk follow-up.
@@ -77,15 +141,9 @@ public class ClosingRiskNotificationService {
                 form.getPermitBedrooms() == null ? "not supplied" : form.getPermitBedrooms(),
                 safeLine(form.getRecordStatus()),
                 form.getDeadline(),
+                documentCount,
                 safeMultiline(form.getConcern())
-        ));
-        try {
-            mailSender.send(message);
-            return true;
-        } catch (MailException exception) {
-            LOGGER.error("Failed to send Gmail notification for record help request {}", requestId, exception);
-            return false;
-        }
+        );
     }
 
     private String transactionSuffix(ClosingRiskCheckForm form) {

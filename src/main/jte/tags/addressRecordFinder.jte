@@ -50,6 +50,35 @@
         </div>
     @endif
 
+    @if (pageHeading)
+        <section class="record-review-paths" id="${finderId}-review-paths" aria-labelledby="${finderId}-review-path-heading" data-record-review-paths>
+            <div class="record-review-paths__intro">
+                <span class="eyebrow">One file. Two ways forward.</span>
+                <h2 id="${finderId}-review-path-heading">Choose how you want the record reviewed.</h2>
+                <p>Use the private browser workspace for a quick first pass, or send the source file and your exact questions to the SepticPath research desk.</p>
+            </div>
+            <div class="record-review-paths__choices">
+                <article>
+                    <span>SELF-SERVE / PRIVATE</span>
+                    <h3>Check it myself</h3>
+                    <p>Extract record facts in this browser. The original file and OCR images are not retained by SepticPath.</p>
+                    <a class="button button--secondary" href="#record-document-workspace">Open the private workspace</a>
+                </article>
+                <article class="record-review-paths__human">
+                    <span>HUMAN REVIEW / FREE BETA</span>
+                    <h3>Have SepticPath review it</h3>
+                    <p>Send up to three source files and the questions you need answered. We’ll separate confirmed facts, gaps, conflicts, and the next useful step.</p>
+                    <a class="button button--primary"
+                       href="/offer-prep-septic-file-check/?mode=review#record-help"
+                       data-record-help-cta
+                       data-track-click="nav"
+                       data-track-source-context="document_review_handoff"
+                       data-track-target-type="lead_form">Send my file and questions</a>
+                </article>
+            </div>
+        </section>
+    @endif
+
     <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder" data-address-record-finder-state="${expectedStateCode}">
         @if (minimal)
             <div class="record-finder__minimal-intro">

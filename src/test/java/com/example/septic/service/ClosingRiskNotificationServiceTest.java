@@ -2,9 +2,16 @@ package com.example.septic.service;
 
 import com.example.septic.config.ClosingRiskNotificationProperties;
 import com.example.septic.web.ClosingRiskCheckForm;
+import jakarta.mail.Multipart;
+import jakarta.mail.Session;
+import jakarta.mail.internet.MimeMessage;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Properties;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +24,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.when;
 
 class ClosingRiskNotificationServiceTest {
 
@@ -88,6 +96,35 @@ class ClosingRiskNotificationServiceTest {
 
         assertFalse(service.notifyOperator("request-789", completedForm()));
         verify(mailSender).send(any(SimpleMailMessage.class));
+    }
+
+    @Test
+    void attachesCustomerSourceFilesForHumanReview() throws Exception {
+        JavaMailSender mailSender = mock(JavaMailSender.class);
+        MimeMessage mimeMessage = new MimeMessage(Session.getInstance(new Properties()));
+        when(mailSender.createMimeMessage()).thenReturn(mimeMessage);
+        ClosingRiskNotificationService service = new ClosingRiskNotificationService(
+                mailSender,
+                new ClosingRiskNotificationProperties("shinhyeok22@gmail.com", "shinhyeok22@gmail.com")
+        );
+        ClosingRiskCheckForm form = completedForm();
+        form.setResearchGoal("understand_file");
+        form.setDocuments(List.of(new MockMultipartFile(
+                "documents",
+                "county-permit.pdf",
+                "application/pdf",
+                "%PDF-1.7\nrecord".getBytes(StandardCharsets.US_ASCII)
+        )));
+
+        assertTrue(service.notifyOperator("request-review", form));
+
+        ArgumentCaptor<MimeMessage> captor = ArgumentCaptor.forClass(MimeMessage.class);
+        verify(mailSender).send(captor.capture());
+        MimeMessage sent = captor.getValue();
+        assertEquals("[SepticPath document review] TN / conflicting — deadline " + form.getDeadline(), sent.getSubject());
+        Multipart content = (Multipart) sent.getContent();
+        assertEquals(2, content.getCount());
+        assertEquals("county-permit.pdf", content.getBodyPart(1).getFileName());
     }
 
     private ClosingRiskCheckForm completedForm() {
