@@ -27,7 +27,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class LeadStorageService {
@@ -38,10 +40,20 @@ public class LeadStorageService {
 
     private final AppStorageProperties storageProperties;
     private final ObjectMapper objectMapper;
+    private final RecordHelpDocumentPolicy recordHelpDocumentPolicy;
 
-    public LeadStorageService(AppStorageProperties storageProperties) {
+    @Autowired
+    public LeadStorageService(
+            AppStorageProperties storageProperties,
+            RecordHelpDocumentPolicy recordHelpDocumentPolicy
+    ) {
         this.storageProperties = storageProperties;
+        this.recordHelpDocumentPolicy = recordHelpDocumentPolicy;
         this.objectMapper = JsonMapper.builder().findAndAddModules().build();
+    }
+
+    LeadStorageService(AppStorageProperties storageProperties) {
+        this(storageProperties, new RecordHelpDocumentPolicy());
     }
 
     @PostConstruct
@@ -347,8 +359,15 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", "2026-09-14-record-help-v3"
+                "languageVersion", "2026-09-14-record-help-v4"
         );
+
+        List<Map<String, Object>> documentMetadata;
+        try {
+            documentMetadata = saveClosingRiskDocuments(form.getDocuments(), requestId, now);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist record-help documents", exception);
+        }
 
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("requestId", requestId);
@@ -379,6 +398,7 @@ public class LeadStorageService {
                 "deadline", form.getDeadline() == null ? "" : form.getDeadline().toString(),
                 "concern", safeValue(form.getConcern(), 1200)
         ));
+        payload.put("documents", documentMetadata);
         payload.put("consent", consent);
         payload.put("provenance", buildProvenance(request, now, sourcePage));
 
@@ -715,6 +735,51 @@ public class LeadStorageService {
         Path finalFile = directory.resolve(baseFileName + ".json");
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), payload);
         moveAtomically(tempFile, finalFile);
+    }
+
+    private List<Map<String, Object>> saveClosingRiskDocuments(
+            List<MultipartFile> uploads,
+            String requestId,
+            Instant now
+    ) throws IOException {
+        List<MultipartFile> documents = recordHelpDocumentPolicy.present(uploads);
+        if (documents.isEmpty()) {
+            return List.of();
+        }
+        String validationError = recordHelpDocumentPolicy.validate(documents, false);
+        if (!validationError.isBlank()) {
+            throw new IllegalArgumentException(validationError);
+        }
+
+        String requestDirectoryName = TIMESTAMP.format(now) + "-" + requestId + "-files";
+        Path directory = root()
+                .resolve("closing-risk-requests")
+                .resolve(YEAR.format(now))
+                .resolve(MONTH.format(now))
+                .resolve(DAY.format(now))
+                .resolve(requestDirectoryName);
+        Files.createDirectories(directory);
+
+        List<Map<String, Object>> metadata = new java.util.ArrayList<>();
+        for (int index = 0; index < documents.size(); index++) {
+            MultipartFile document = documents.get(index);
+            String storedName = recordHelpDocumentPolicy.safeFileName(document, index + 1);
+            Path tempFile = directory.resolve(storedName + ".tmp");
+            Path finalFile = directory.resolve(storedName);
+            try (var input = document.getInputStream()) {
+                Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            }
+            moveAtomically(tempFile, finalFile);
+            metadata.add(orderedMap(
+                    "originalName", recordHelpDocumentPolicy.displayFileName(document, index + 1),
+                    "storedName", storedName,
+                    "contentType", recordHelpDocumentPolicy.trustedContentType(document),
+                    "sizeBytes", document.getSize(),
+                    "storagePath", "closing-risk-requests/" + YEAR.format(now) + "/" + MONTH.format(now)
+                            + "/" + DAY.format(now) + "/" + requestDirectoryName + "/" + storedName
+            ));
+        }
+        return List.copyOf(metadata);
     }
 
     private void appendExportQueue(

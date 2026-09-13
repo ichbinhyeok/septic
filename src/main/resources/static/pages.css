@@ -460,6 +460,12 @@
   .record-help-assurance p { align-self: center; margin: 0; padding-left: 18px; border-left: 3px solid var(--accent); color: var(--ink-soft); }
   .record-help-assurance p strong, .record-help-assurance p span { display: block; }
   .record-help-assurance p strong { margin-bottom: 5px; color: var(--ink); }
+  .record-help-documents { display: grid; gap: 10px; padding: 18px; border: 1px solid var(--line-dark); border-left: 4px solid var(--accent); background: var(--accent-pale); }
+  .record-help-documents[hidden], .record-help-documents[data-review-active="false"] { display: none; }
+  .record-help-documents label { display: grid; gap: 8px; }
+  .record-help-documents input[type="file"] { padding: 12px; border: 1px dashed var(--line-dark); background: var(--surface); }
+  .record-help-documents p { margin: 0; color: var(--muted); font-size: .72rem; line-height: 1.5; }
+  .offer-prep-workspace-section--hidden { display: none; }
   .closing-risk-beta-form { grid-template-columns: 1fr; }
   .closing-risk-beta-form > * { min-width: 0; }
   .closing-risk-beta-form .button { width: 100%; }

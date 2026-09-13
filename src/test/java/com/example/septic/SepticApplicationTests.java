@@ -978,6 +978,71 @@ class SepticApplicationTests {
 	}
 
 	@Test
+	void documentReviewEntrySeparatesSelfServeAndHumanReview() throws Exception {
+		mockMvc.perform(get("/septic-record-finder/?mode=document"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("One file. Two ways forward.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check it myself")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Have SepticPath review it")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(
+						"href=\"/offer-prep-septic-file-check/?mode=review#record-help\"")));
+
+		mockMvc.perform(get("/offer-prep-septic-file-check/?mode=review"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Send the file. We’ll answer the questions it raises.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("enctype=\"multipart/form-data\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"documents\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-review-active=\"true\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("What questions do you want answered?")));
+	}
+
+	@Test
+	void humanDocumentReviewRequiresAndPrivatelyStoresAValidSourceFile() throws Exception {
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("email", "reviewer@example.com")
+				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
+				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "understand_file")
+				.param("recordStatus", "partial")
+				.param("concern", "Does this record approve four bedrooms?")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted details.")));
+
+		MockMultipartFile permit = new MockMultipartFile(
+				"documents",
+				"county-permit.pdf",
+				"application/pdf",
+				"%PDF-1.7\nrecord".getBytes(java.nio.charset.StandardCharsets.US_ASCII)
+		);
+		mockMvc.perform(multipart("/offer-prep-septic-file-check/")
+				.file(permit)
+				.param("email", "reviewer@example.com")
+				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
+				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "understand_file")
+				.param("recordStatus", "partial")
+				.param("sourceContext", "direct")
+				.param("concern", "Does this record approve four bedrooms?")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your document review is in.")));
+
+		try (Stream<Path> files = Files.walk(TEST_STORAGE_ROOT.resolve("closing-risk-requests"))) {
+			assertTrue(files.anyMatch(path -> path.getFileName().toString().equals("01-county-permit.pdf")));
+		}
+		try (Stream<Path> files = Files.walk(TEST_STORAGE_ROOT.resolve("closing-risk-requests"))) {
+			Path request = files.filter(path -> path.toString().endsWith(".json")).findFirst().orElseThrow();
+			String stored = Files.readString(request);
+			assertTrue(stored.contains("\"documents\""));
+			assertTrue(stored.contains("01-county-permit.pdf"));
+			assertTrue(stored.contains("\"sourceContext\" : \"direct\""));
+		}
+	}
+
+	@Test
 	void closingRiskBetaValidatesAndPersistsQualifiedDemand() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("fullName", "Taylor Buyer")

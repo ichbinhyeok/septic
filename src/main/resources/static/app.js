@@ -994,6 +994,7 @@
                 const heroHeading = finderRoot.querySelector(".record-finder__heading h1, .record-finder__heading h2");
                 const heroCopy = finderRoot.querySelector(".record-finder__heading > p");
                 const heroSignals = finderRoot.querySelector(".record-finder__signals");
+                const heroAction = finderRoot.querySelector(".record-finder__hero-action");
                 const startPanel = finder.querySelector("[data-record-start]");
                 const routeSteps = document.querySelector(".record-finder-steps");
                 if (heroEyebrow) heroEyebrow.textContent = "Document review workspace";
@@ -1001,11 +1002,15 @@
                 if (heroCopy) {
                     heroCopy.textContent = "Add the official permit, layout, approval, inspection, or written office response. Confirmed facts, gaps, conflicts, and negative search evidence stay distinct.";
                 }
+                if (heroAction instanceof HTMLAnchorElement) {
+                    heroAction.textContent = "Choose how to review it";
+                    heroAction.href = `#${finderRoot.id || "record-finder"}-review-paths`;
+                }
                 if (heroSignals) {
                     const signals = [
-                        "Files processed in memory",
-                        "Source evidence beside each fact",
-                        "No account required"
+                        "Private self-serve option",
+                        "Human review available",
+                        "Source-backed answers"
                     ].map((label) => {
                         const signal = document.createElement("span");
                         signal.textContent = label;

@@ -6,9 +6,11 @@
 @param int priorityCountyRouteCount = 0
 @param ClosingRiskCheckForm closingRiskCheckForm
 @param boolean closingRiskHasErrors = false
+@param String closingRiskDocumentError = null
 @param String closingRiskRequestId = null
 @param String closingRiskSuccessSourceContext = "direct"
 @param String closingRiskMinimumDeadline
+@param boolean documentReviewMode = false
 @param java.util.List<StateProfile> states = java.util.List.of()
 
 @template.layouts.app(page = page, content = @`
@@ -16,33 +18,45 @@
         <section class="section section--heroish offer-prep-hero">
             <div class="container offer-prep-hero__grid">
                 <div>
-                    <span class="eyebrow">Human septic record research · free beta</span>
-                    <h1>Send the address. We’ll investigate the septic record for you.</h1>
-                    <p class="lede">We search available public sources, verify the property, contact the responsible office when needed, and explain the records we receive in plain English.</p>
+                    <span class="eyebrow">${documentReviewMode ? "Human septic document review · free beta" : "Human septic record research · free beta"}</span>
+                    <h1>${documentReviewMode ? "Send the file. We’ll answer the questions it raises." : "Send the address. We’ll investigate the septic record for you."}</h1>
+                    <p class="lede">${documentReviewMode ? "Upload the permit, drawing, approval, inspection, or agency reply you already have. We’ll explain what it confirms, what remains unclear, and what to ask next." : "We search available public sources, verify the property, contact the responsible office when needed, and explain the records we receive in plain English."}</p>
                     <div class="hero__actions offer-prep-hero__actions">
-                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="lead_form">Start my record investigation</a>
-                        <a class="button button--secondary" href="#self-serve-file-check" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">Search records myself</a>
+                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${documentReviewMode ? "document_review_hero" : "record_help_hero"}" data-track-target-type="lead_form">${documentReviewMode ? "Send my file for review" : "Start my record investigation"}</a>
+                        <a class="button button--secondary" href="${documentReviewMode ? "/septic-record-finder/?mode=document#record-document-workspace" : "#self-serve-file-check"}" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">${documentReviewMode ? "Check it myself" : "Search records myself"}</a>
                     </div>
                     <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="case_study">See a completed Record Brief <span aria-hidden="true">→</span></a>
                     <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        <span><strong>Human-reviewed</strong> research</span>
-                        <span><strong>Agency follow-up</strong> when needed</span>
-                        <span><strong>Original files</strong> plus clear findings</span>
+                        @if (documentReviewMode)
+                            <span><strong>Source-matched</strong> answers</span>
+                            <span><strong>Gaps and conflicts</strong> kept visible</span>
+                            <span><strong>Human-reviewed</strong> reply</span>
+                        @else
+                            <span><strong>Human-reviewed</strong> research</span>
+                            <span><strong>Agency follow-up</strong> when needed</span>
+                            <span><strong>Original files</strong> plus clear findings</span>
+                        @endif
                     </div>
                 </div>
                 <aside class="offer-prep-hero__note service-scope-ledger" aria-label="How the record investigation works">
                     <div class="service-scope-ledger__topline"><span>SEPTICPATH / RESEARCH DESK</span><span>01—03</span></div>
                     <ol>
-                        <li><span>01</span><div><strong>Verify the property</strong><p>Match the address, parcel, county, and responsible record holder.</p></div></li>
-                        <li><span>02</span><div><strong>Follow the record</strong><p>Search credible sources and contact the public office when the online path stops.</p></div></li>
-                        <li><span>03</span><div><strong>Explain the result</strong><p>Return the original response, confirmed facts, unknowns, and next useful step.</p></div></li>
+                        @if (documentReviewMode)
+                            <li><span>01</span><div><strong>Match the source</strong><p>Check the property, issuing office, record type, and date.</p></div></li>
+                            <li><span>02</span><div><strong>Answer your questions</strong><p>Read the source text and drawing against the decision you need to make.</p></div></li>
+                            <li><span>03</span><div><strong>Show the limits</strong><p>Separate what the file confirms from gaps, conflicts, and field questions.</p></div></li>
+                        @else
+                            <li><span>01</span><div><strong>Verify the property</strong><p>Match the address, parcel, county, and responsible record holder.</p></div></li>
+                            <li><span>02</span><div><strong>Follow the record</strong><p>Search credible sources and contact the public office when the online path stops.</p></div></li>
+                            <li><span>03</span><div><strong>Explain the result</strong><p>Return the original response, confirmed facts, unknowns, and next useful step.</p></div></li>
+                        @endif
                     </ol>
                     <p class="offer-prep-hero__transfer-note">Record availability and response times vary. SepticPath is not an inspection, permit authority, or compliance certification.</p>
                 </aside>
             </div>
         </section>
 
-        <section class="section section--tight offer-prep-workspace-section" id="self-serve-file-check" aria-labelledby="offer-prep-workspace-heading">
+        <section class="section section--tight offer-prep-workspace-section ${documentReviewMode ? "offer-prep-workspace-section--hidden" : ""}" id="self-serve-file-check" aria-labelledby="offer-prep-workspace-heading">
             <div class="container">
                 <details class="offer-prep-workspace">
                     <summary class="offer-prep-workspace__summary">
@@ -162,15 +176,21 @@
         <section class="section closing-risk-beta-section" id="record-help" aria-labelledby="closing-risk-beta-heading">
             <div class="container closing-risk-beta-grid">
                 <div class="closing-risk-beta-copy">
-                    <span class="eyebrow">Start the investigation</span>
-                    <h2 id="closing-risk-beta-heading">Tell us the property and what you need to learn.</h2>
-                    <p class="lede">You do not need to know the county office, record name, or request process. Send the address and the problem; we’ll take the search as far as the available evidence allows.</p>
+                    <span class="eyebrow">${documentReviewMode ? "Start the human review" : "Start the investigation"}</span>
+                    <h2 id="closing-risk-beta-heading">${documentReviewMode ? "Send the source record and your questions." : "Tell us the property and what you need to learn."}</h2>
+                    <p class="lede">${documentReviewMode ? "We read the actual file in its property and agency context—not as a generic document summary." : "You do not need to know the county office, record name, or request process. Send the address and the problem; we’ll take the search as far as the available evidence allows."}</p>
                     <ol class="detail-list">
-                        <li><strong>Research:</strong> search available public sources and match the property to the right jurisdiction.</li>
-                        <li><strong>Acquisition:</strong> contact the responsible office for the permit, layout, approval, or written response when needed.</li>
-                        <li><strong>Interpretation:</strong> return original materials with confirmed facts, important gaps, and the next useful step.</li>
+                        @if (documentReviewMode)
+                            <li><strong>Match:</strong> tie the file to the property, parcel, issuing office, and record date.</li>
+                            <li><strong>Read:</strong> answer your questions from the source text and drawing—not assumptions.</li>
+                            <li><strong>Separate:</strong> show confirmed facts, missing evidence, conflicts, and what still needs field or agency confirmation.</li>
+                        @else
+                            <li><strong>Research:</strong> search available public sources and match the property to the right jurisdiction.</li>
+                            <li><strong>Acquisition:</strong> contact the responsible office for the permit, layout, approval, or written response when needed.</li>
+                            <li><strong>Interpretation:</strong> return original materials with confirmed facts, important gaps, and the next useful step.</li>
+                        @endif
                     </ol>
-                    <p class="closing-risk-beta-copy__privacy">This beta stores the submitted address and emails it to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
+                    <p class="closing-risk-beta-copy__privacy">This beta privately stores the submitted address and attached records and emails them to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
                 </div>
 
                 <div class="closing-risk-beta-panel">
@@ -178,9 +198,15 @@
                         <div>
                             <span class="eyebrow">Your reply will include</span>
                             <ul>
-                                <li>A verified property and record-owner route</li>
-                                <li>Agency outreach when an online record is unavailable</li>
-                                <li>Original files plus a plain-English findings summary</li>
+                                @if (documentReviewMode)
+                                    <li>Direct answers tied to the source file</li>
+                                    <li>Confirmed facts, limitations, gaps, and conflicts</li>
+                                    <li>The next useful agency or field question, when needed</li>
+                                @else
+                                    <li>A verified property and record-owner route</li>
+                                    <li>Agency outreach when an online record is unavailable</li>
+                                    <li>Original files plus a plain-English findings summary</li>
+                                @endif
                             </ul>
                         </div>
                         <p><strong>Human-reviewed</strong><span>We aim to reply by email within 1–2 business days.</span></p>
@@ -193,18 +219,18 @@
                              data-ga-track-once="record-help-request:${closingRiskRequestId}"
                              data-ga-param-request-type="record_help_beta"
                              data-ga-param-source-context="${closingRiskSuccessSourceContext}">
-                            <strong>Your record investigation is in.</strong>
-                            <p>Your reference is ${closingRiskRequestId}. We’ll begin with the available public sources and email you within 1–2 business days with either an answer, an agency-request update, or the next fact we need.</p>
+                            <strong>${documentReviewMode ? "Your document review is in." : "Your record investigation is in."}</strong>
+                            <p>Your reference is ${closingRiskRequestId}. ${documentReviewMode ? "We’ll review the attached source files and email answers, limitations, and next steps within 1–2 business days." : "We’ll begin with the available public sources and email you within 1–2 business days with either an answer, an agency-request update, or the next fact we need."}</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
                         <div class="form-status form-status--error" role="alert">
                             <strong>Check the highlighted details.</strong>
-                            <p>Use a real property address, valid email, and complete the required record-help fields and consent.</p>
+                            <p>${closingRiskDocumentError == null ? "Use a real property address, valid email, and complete the required record-help fields and consent." : closingRiskDocumentError}</p>
                         </div>
                     @endif
 
-                    <form class="quote-form closing-risk-beta-form" method="post" action="/offer-prep-septic-file-check/#record-help" data-record-help-request-form>
+                    <form class="quote-form closing-risk-beta-form" method="post" enctype="multipart/form-data" action="/offer-prep-septic-file-check/#record-help" data-record-help-request-form>
                         <div class="closing-risk-honeypot" aria-hidden="true" hidden>
                             <label>Website<input type="text" name="website" value="${closingRiskCheckForm.getWebsite() == null ? "" : closingRiskCheckForm.getWebsite()}" tabindex="-1" autocomplete="off"></label>
                         </div>
@@ -213,8 +239,8 @@
                         <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
                         <div class="record-help-form-intro">
                             <span class="eyebrow">Free during beta · Human-reviewed</span>
-                            <strong>Give us the address and the decision you need to make.</strong>
-                            <small>No payment is required for our research during the beta. We ask before proceeding if an agency requires a fee or owner authorization.</small>
+                            <strong>${documentReviewMode ? "Give us the source file and the questions you need answered." : "Give us the address and the decision you need to make."}</strong>
+                            <small>${documentReviewMode ? "No payment is required during the beta. We’ll reply from the evidence in the file and name anything it cannot establish." : "No payment is required for our research during the beta. We ask before proceeding if an agency requires a fee or owner authorization."}</small>
                         </div>
                         <div class="field-grid">
                             <label>
@@ -258,22 +284,41 @@
                                 </select>
                             </label>
                             <label class="field--full">
-                                <span>What have you tried or found so far?</span>
+                                <span>${documentReviewMode ? "What best describes the file?" : "What have you tried or found so far?"}</span>
                                 <select name="recordStatus" required>
                                     <option value="">Choose the closest match</option>
-                                    <option value="not_started" selected="${"not_started".equals(closingRiskCheckForm.getRecordStatus())}">I haven’t searched yet or don’t know where to start</option>
-                                    <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no matching record</option>
-                                    <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns the record</option>
-                                    <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
-                                    <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
-                                    <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
-                                    <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
+                                    @if (documentReviewMode)
+                                        <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I have one or more documents but may not have the full file</option>
+                                        <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The document appears to conflict with the property or listing</option>
+                                        <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure whether the document is official or complete</option>
+                                        <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure what this document is</option>
+                                    @else
+                                        <option value="not_started" selected="${"not_started".equals(closingRiskCheckForm.getRecordStatus())}">I haven’t searched yet or don’t know where to start</option>
+                                        <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no matching record</option>
+                                        <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns the record</option>
+                                        <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
+                                        <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
+                                        <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
+                                        <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
+                                    @endif
                                 </select>
                             </label>
+                            <div class="field--full record-help-documents" data-record-help-documents data-review-active="${documentReviewMode}">
+                                <label>
+                                    <span>Source files for human review</span>
+                                    <input type="file"
+                                           name="documents"
+                                           accept="application/pdf,text/plain,image/png,image/jpeg,.pdf,.txt,.png,.jpg,.jpeg"
+                                           multiple
+                                           data-record-help-document-input>
+                                    <small>Up to 3 PDF, TXT, PNG, or JPG files. 10 MB per file, 15 MB combined.</small>
+                                </label>
+                                <p>Attach the agency record itself whenever possible. Listing screenshots can provide context, but they do not replace the official source file.</p>
+                            </div>
                             <label class="field--full">
-                                <span>What do you need to decide, or what is missing?</span>
-                                <textarea name="concern" maxlength="1200" minlength="10" rows="4" placeholder="Example: I’m buying this property and need the approved bedroom count before September 25. I found a parcel page, but no permit or layout." required>${closingRiskCheckForm.getConcernValue()}</textarea>
-                                <small>One or two sentences is enough. Include any deadline or conflicting information.</small>
+                                <span data-record-help-question-label>${documentReviewMode ? "What questions do you want answered?" : "What do you need to decide, or what is missing?"}</span>
+                                <textarea name="concern" maxlength="1200" minlength="10" rows="4" placeholder="${documentReviewMode ? "Example: Does this approve four bedrooms, and does the sketch show the installed drainfield or only the proposed design?" : "Example: I’m buying this property and need the approved bedroom count before September 25. I found a parcel page, but no permit or layout."}" required data-record-help-question>${closingRiskCheckForm.getConcernValue()}</textarea>
+                                <small data-record-help-question-help>${documentReviewMode ? "Ask the exact questions affecting your purchase, sale, repair, addition, inspection, or records decision." : "One or two sentences is enough. Include any deadline or conflicting information."}</small>
                             </label>
                             <label>
                                 <span>Deadline <small>(optional)</small></span>
@@ -320,10 +365,10 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree that SepticPath may use the contact and property details I provide to research this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.</span>
+                            <span>I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.</span>
                         </label>
-                        <button class="button button--primary" type="submit">Ask SepticPath to investigate</button>
-                        <p class="form-note">Free beta requests are reviewed manually and are not added to a newsletter. Public offices control record availability and response timing; if a fee or owner authorization is required, we’ll tell you before anything else happens.</p>
+                        <button class="button button--primary" type="submit" data-record-help-submit>${documentReviewMode ? "Send my file for human review" : "Ask SepticPath to investigate"}</button>
+                        <p class="form-note">${documentReviewMode ? "Free beta files are reviewed manually and are not added to a public dataset or newsletter. A record review cannot confirm current field conditions or replace an inspection." : "Free beta requests are reviewed manually and are not added to a newsletter. Public offices control record availability and response timing; if a fee or owner authorization is required, we’ll tell you before anything else happens."}</p>
                     </form>
                 </div>
             </div>

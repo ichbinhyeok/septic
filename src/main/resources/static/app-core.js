@@ -610,6 +610,59 @@
         const stage = form.querySelector("[data-record-help-stage]");
         const goal = form.querySelector("[data-record-help-goal]");
         const transactionDetails = form.querySelector("[data-record-help-transaction-details]");
+        const documentDetails = form.querySelector("[data-record-help-documents]");
+        const documentInput = form.querySelector("[data-record-help-document-input]");
+        const questionLabel = form.querySelector("[data-record-help-question-label]");
+        const questionInput = form.querySelector("[data-record-help-question]");
+        const questionHelp = form.querySelector("[data-record-help-question-help]");
+        const submitButton = form.querySelector("[data-record-help-submit]");
+
+        const syncDocumentReviewMode = () => {
+            if (!(goal instanceof HTMLSelectElement)) return;
+            const reviewingDocument = goal.value === "understand_file";
+            if (documentDetails instanceof HTMLElement) {
+                documentDetails.hidden = !reviewingDocument;
+                documentDetails.dataset.reviewActive = String(reviewingDocument);
+            }
+            if (documentInput instanceof HTMLInputElement) documentInput.required = reviewingDocument;
+            if (questionLabel instanceof HTMLElement) {
+                questionLabel.textContent = reviewingDocument
+                    ? "What questions do you want answered?"
+                    : "What do you need to decide, or what is missing?";
+            }
+            if (questionInput instanceof HTMLTextAreaElement) {
+                questionInput.placeholder = reviewingDocument
+                    ? "Example: Does this approve four bedrooms, and does the sketch show the installed drainfield or only the proposed design?"
+                    : "Example: I’m buying this property and need the approved bedroom count before September 25. I found a parcel page, but no permit or layout.";
+            }
+            if (questionHelp instanceof HTMLElement) {
+                questionHelp.textContent = reviewingDocument
+                    ? "Ask the exact questions affecting your purchase, sale, repair, addition, inspection, or records decision."
+                    : "One or two sentences is enough. Include any deadline or conflicting information.";
+            }
+            if (submitButton instanceof HTMLButtonElement) {
+                submitButton.textContent = reviewingDocument
+                    ? "Send my file for human review"
+                    : "Ask SepticPath to investigate";
+            }
+        };
+
+        if (documentInput instanceof HTMLInputElement) {
+            documentInput.addEventListener("change", () => {
+                const files = Array.from(documentInput.files || []);
+                const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+                const oversized = files.some(file => file.size > 10 * 1024 * 1024);
+                let message = "";
+                if (files.length > 3) message = "Add no more than three files.";
+                else if (oversized) message = "Each file must be 10 MB or smaller.";
+                else if (totalBytes > 15 * 1024 * 1024) message = "The combined file size must be 15 MB or smaller.";
+                documentInput.setCustomValidity(message);
+                if (message) documentInput.reportValidity();
+            });
+        }
+        syncDocumentReviewMode();
+        goal?.addEventListener("change", syncDocumentReviewMode);
+
         if (stage instanceof HTMLSelectElement
             && goal instanceof HTMLSelectElement
             && transactionDetails instanceof HTMLDetailsElement) {
