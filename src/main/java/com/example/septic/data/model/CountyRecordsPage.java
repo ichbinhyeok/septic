@@ -34,6 +34,7 @@ public record CountyRecordsPage(
         List<String> officialSourceIds,
         CountyWorkflowStructureData workflowStructure,
         CountyRecordSearchGuide searchGuide,
+        CountyOperationalProof operationalProof,
         String updatedAt,
         String reviewedAt,
         String publishStatus

@@ -30,8 +30,8 @@ import static org.mockito.Mockito.when;
 )
 class TennesseeRecordHelpBrowserRegressionTest {
 
-    private static final String INPUT_ADDRESS = "2163 Sugar Grove Valley Rd, Harriman, TN 37748";
-    private static final String MATCHED_ADDRESS = "2163 SUGAR GROVE VALLEY RD, HARRIMAN, TN, 37748";
+    private static final String INPUT_ADDRESS = "123 Example Rd, Wartburg, TN 37887";
+    private static final String MATCHED_ADDRESS = "123 EXAMPLE RD, WARTBURG, TN, 37887";
 
     @LocalServerPort
     private int port;
@@ -49,7 +49,7 @@ class TennesseeRecordHelpBrowserRegressionTest {
                         CensusAddressLookupService.CensusAddressLookupResult.Status.MATCHED,
                         MATCHED_ADDRESS,
                         "TN",
-                        "Roane"
+                        "Morgan"
                 )
         );
 
@@ -70,11 +70,11 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .click();
 
             WebElement route = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//a[normalize-space()='Continue with Roane County']")
+                    By.xpath("//a[normalize-space()='Continue with Morgan County']")
             ));
             String routeHref = route.getAttribute("href");
             assertThat(routeHref)
-                    .contains("/tdec-septic-records/?county=roane")
+                    .contains("/tdec-septic-records/?county=morgan")
                     .contains("address=")
                     .contains("purpose=location")
                     .doesNotContain("/septic-records-checklist/tennessee/#");
@@ -84,11 +84,11 @@ class TennesseeRecordHelpBrowserRegressionTest {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-tdec-result]")));
 
             Select county = new Select(driver.findElement(By.cssSelector("[data-tdec-county]")));
-            assertThat(county.getFirstSelectedOption().getAttribute("value")).isEqualTo("roane");
+            assertThat(county.getFirstSelectedOption().getAttribute("value")).isEqualTo("morgan");
             assertThat(driver.findElement(By.cssSelector("[data-tdec-address]"))
                     .getAttribute("value")).isEqualTo(MATCHED_ADDRESS);
             assertThat(driver.findElement(By.cssSelector("[data-tdec-result-title]"))
-                    .getText()).isEqualTo("Roane County record route");
+                    .getText()).isEqualTo("Morgan County record route");
             WebElement prepareRequest = driver.findElement(By.xpath("//button[normalize-space()='Choose how to send']"));
             prepareRequest.click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-tdec-request-section]")));
@@ -119,7 +119,7 @@ class TennesseeRecordHelpBrowserRegressionTest {
             assertThat(viewerRoute.getAttribute("href"))
                     .isEqualTo("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175");
             assertThat(driver.findElement(By.cssSelector("[data-tdec-route-hint]")).getText())
-                    .contains("865-594-0981", "option 0", "865-594-6035");
+                    .contains("Search by county", "A blank result is not proof that no file exists");
 
             driver.get(statePage);
             new Select(driver.findElement(By.cssSelector("[data-address-record-finder-purpose]")))
@@ -145,7 +145,7 @@ class TennesseeRecordHelpBrowserRegressionTest {
             assertThat(new Select(driver.findElement(By.name("stateCode")))
                     .getFirstSelectedOption().getAttribute("value")).isEqualTo("TN");
             assertThat(driver.findElement(By.name("countyName")).getAttribute("value"))
-                    .isEqualTo("Roane");
+                    .isEqualTo("Morgan");
             assertThat(driver.findElement(By.name("entryPageHint")).getAttribute("value"))
                     .isEqualTo("/septic-records-checklist/tennessee/");
             assertThat(driver.findElement(By.name("sourcePageHint")).getAttribute("value"))
@@ -164,7 +164,7 @@ class TennesseeRecordHelpBrowserRegressionTest {
             assertThat(driver.findElement(By.cssSelector("[data-tdec-form-error]")).getText())
                     .isEqualTo("Choose the Tennessee county first.");
 
-            new Select(countySelect).selectByValue("roane");
+            new Select(countySelect).selectByValue("morgan");
             assertThat(countySelect.getAttribute("aria-invalid")).isNull();
             assertThat(driver.findElement(By.cssSelector("[data-tdec-form-error]")).getAttribute("hidden"))
                     .isEqualTo("true");

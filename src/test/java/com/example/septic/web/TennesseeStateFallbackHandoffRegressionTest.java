@@ -36,19 +36,19 @@ class TennesseeStateFallbackHandoffRegressionTest {
         when(censusAddressLookupService.lookup(anyString())).thenReturn(
                 new CensusAddressLookupService.CensusAddressLookupResult(
                         CensusAddressLookupService.CensusAddressLookupResult.Status.MATCHED,
-                        "2163 SUGAR GROVE VALLEY RD, HARRIMAN, TN, 37748",
+                        "123 EXAMPLE RD, WARTBURG, TN, 37887",
                         "TN",
-                        "Roane"
+                        "Morgan"
                 )
         );
 
         mockMvc.perform(post("/api/address-record-finder")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"address\":\"2163 Sugar Grove Valley Rd, Harriman, TN 37748\"}"))
+                        .content("{\"address\":\"123 Example Rd, Wartburg, TN 37887\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value("state_route"))
-                .andExpect(jsonPath("$.countyName").value("Roane"))
-                .andExpect(jsonPath("$.routeTitle").value("Continue with Roane County"))
-                .andExpect(jsonPath("$.routePath").value("/tdec-septic-records/?county=roane"));
+                .andExpect(jsonPath("$.countyName").value("Morgan"))
+                .andExpect(jsonPath("$.routeTitle").value("Continue with Morgan County"))
+                .andExpect(jsonPath("$.routePath").value("/tdec-septic-records/?county=morgan"));
     }
 }

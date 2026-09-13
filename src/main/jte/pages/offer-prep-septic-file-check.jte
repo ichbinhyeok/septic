@@ -212,9 +212,9 @@
                         <input type="hidden" name="sourcePageHint" value="${closingRiskCheckForm.getSourcePageHintValue()}" data-record-help-source-page>
                         <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
                         <div class="record-help-form-intro">
-                            <span class="eyebrow">About two minutes</span>
-                            <strong>Email and property address are enough to start.</strong>
-                            <small>We’ll ask only for details that help us find the right record.</small>
+                            <span class="eyebrow">Free during beta · Human-reviewed</span>
+                            <strong>Give us the address and the decision you need to make.</strong>
+                            <small>No payment is required for our research during the beta. We ask before proceeding if an agency requires a fee or owner authorization.</small>
                         </div>
                         <div class="field-grid">
                             <label>
@@ -236,16 +236,49 @@
                                 </select>
                             </label>
                             <label>
-                                <span>Where did the search stop?</span>
+                                <span>Record type</span>
+                                <select name="recordType" required>
+                                    <option value="">Choose record type</option>
+                                    <option value="septic" selected="${"septic".equals(closingRiskCheckForm.getRecordType())}">Septic system</option>
+                                    <option value="well" selected="${"well".equals(closingRiskCheckForm.getRecordType())}">Private well</option>
+                                    <option value="not_sure" selected="${"not_sure".equals(closingRiskCheckForm.getRecordType())}">Not sure</option>
+                                </select>
+                            </label>
+                            <label class="field--full">
+                                <span>What do you need to find out?</span>
+                                <select name="researchGoal" required data-record-help-goal>
+                                    <option value="">Choose the closest goal</option>
+                                    <option value="original_documents" selected="${"original_documents".equals(closingRiskCheckForm.getResearchGoal())}">Find the original permit or approval documents</option>
+                                    <option value="system_layout" selected="${"system_layout".equals(closingRiskCheckForm.getResearchGoal())}">Find the tank, drainfield, or well location</option>
+                                    <option value="approval_status" selected="${"approval_status".equals(closingRiskCheckForm.getResearchGoal())}">Verify permit or approval status</option>
+                                    <option value="design_capacity" selected="${"design_capacity".equals(closingRiskCheckForm.getResearchGoal())}">Check bedroom or design capacity</option>
+                                    <option value="repair_history" selected="${"repair_history".equals(closingRiskCheckForm.getResearchGoal())}">Find repair or modification history</option>
+                                    <option value="understand_file" selected="${"understand_file".equals(closingRiskCheckForm.getResearchGoal())}">Understand a file I already have</option>
+                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getResearchGoal())}">Not sure or something else</option>
+                                </select>
+                            </label>
+                            <label class="field--full">
+                                <span>What have you tried or found so far?</span>
                                 <select name="recordStatus" required>
                                     <option value="">Choose the closest match</option>
-                                    <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no septic record</option>
+                                    <option value="not_started" selected="${"not_started".equals(closingRiskCheckForm.getRecordStatus())}">I haven’t searched yet or don’t know where to start</option>
+                                    <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no matching record</option>
                                     <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns the record</option>
                                     <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
                                     <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
                                     <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
                                     <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
                                 </select>
+                            </label>
+                            <label class="field--full">
+                                <span>What do you need to decide, or what is missing?</span>
+                                <textarea name="concern" maxlength="1200" minlength="10" rows="4" placeholder="Example: I’m buying this property and need the approved bedroom count before September 25. I found a parcel page, but no permit or layout." required>${closingRiskCheckForm.getConcernValue()}</textarea>
+                                <small>One or two sentences is enough. Include any deadline or conflicting information.</small>
+                            </label>
+                            <label>
+                                <span>Deadline <small>(optional)</small></span>
+                                <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
+                                <small>Closing, auction, inspection, or other decision date.</small>
                             </label>
                             <label class="field--full">
                                 <span>Where are you in the process? <small>(optional)</small></span>
@@ -268,10 +301,6 @@
                                     <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120">
                                 </label>
                                 <label>
-                                    <span>Due-diligence or closing deadline</span>
-                                    <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
-                                </label>
-                                <label>
                                     <span>County</span>
                                     <input type="text" name="countyName" value="${closingRiskCheckForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
                                 </label>
@@ -287,15 +316,11 @@
                                     <span>Bedrooms shown on permit</span>
                                     <input type="number" name="permitBedrooms" value="${closingRiskCheckForm.getPermitBedroomsValue()}" min="1" max="20">
                                 </label>
-                                <label class="field--full">
-                                    <span>What happened, or what decision is blocked?</span>
-                                    <textarea name="concern" maxlength="1200" rows="4" placeholder="Example: The county search returned nothing, and I’m not sure whether to ask the health department or building office.">${closingRiskCheckForm.getConcernValue()}</textarea>
-                                </label>
                             </div>
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree that SepticPath may store these property and contact details and email them to its operator to research the relevant septic records, contact the responsible public office when appropriate, and follow up about the result. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.</span>
+                            <span>I agree that SepticPath may use the contact and property details I provide to research this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.</span>
                         </label>
                         <button class="button button--primary" type="submit">Ask SepticPath to investigate</button>
                         <p class="form-note">Free beta requests are reviewed manually and are not added to a newsletter. Public offices control record availability and response timing; if a fee or owner authorization is required, we’ll tell you before anything else happens.</p>

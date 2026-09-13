@@ -1073,7 +1073,7 @@ public class SiteController {
                                 "What is handled depends on the action you choose. Browsing public guidance does not create a property file on our servers.",
                                 List.of(
                                         "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
-                                        "The free Closing Risk Check stores the submitted contact details, property address, listing or permit facts, deadline, and consent snapshot, and emails those details to the SepticPath operator for manual review.",
+                                        "The free Record Help beta stores the submitted contact details, property address, record type, research goal, what the requester has already found, relevant listing or permit facts, deadline, notes, and consent snapshot. These details are emailed to the SepticPath operator for manual review.",
                                         "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
                                         "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
                                 )
@@ -1092,7 +1092,7 @@ public class SiteController {
                                 "Submitted form records support the exact action shown at the time of submission.",
                                 List.of(
                                         "To answer contact, correction, or privacy requests.",
-                                        "To prepare and reply to a requested Closing Risk Check during the beta.",
+                                        "To research and reply to a requested property-record investigation during the beta, including contacting the responsible public office when appropriate.",
                                         "To preserve a consent snapshot, submission time, and estimate context attached to a quote-help request.",
                                         "To measure whether record and estimate workflows are useful without treating a request confirmation as a record obtained."
                                 )

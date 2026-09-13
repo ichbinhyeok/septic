@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-11",
+  "generatedAt": "2026-09-14",
   "pages": [
     {
       "stateCode": "IN",
@@ -16677,6 +16677,68 @@
         "tn_04",
         "tn_shelby_local_01"
       ],
+      "searchGuide": {
+        "summary": "Shelby County is a contract county. Ask the county Water Quality Branch for the existing property file rather than using a new-system application or assuming the statewide TDEC desk owns it.",
+        "coverage": "The county sources reviewed here do not publish a complete online archive date range, and no public house-specific drawing search was confirmed.",
+        "identifiers": "Property address, parcel ID, current or prior owner, subdivision and lot when known, and approximate installation year.",
+        "documents": "Existing septic permit and application, site or plot plan, final or inspection record, repair history, and a written no-record response when nothing is held.",
+        "steps": [
+          "Confirm the parcel and any subdivision or lot reference in public property and plat sources.",
+          "Contact Shelby County Water Quality and clearly request the existing septic property file, not a permit for new work.",
+          "Match every returned document to the parcel, address, date, and approved bedroom or design details before using it."
+        ],
+        "noResult": "Ask the branch to confirm in writing whether it found no other permits and whether another county program holds related inspection, soil, or repair records. An empty public search is not a no-record determination.",
+        "sourceIds": [
+          "tn_01",
+          "tn_shelby_local_01"
+        ],
+        "reviewedAt": "2026-09-14"
+      },
+      "operationalProof": {
+        "routeId": "tn-shelby-septic",
+        "statusLabel": "Document obtained",
+        "title": "The county returned the original permit and site plan.",
+        "summary": "In an actual Shelby County request, public parcel, plat, and permit sources established the property clues but did not expose the house-specific drawing. A targeted request to Water Quality returned the 1989 permit and approved plan.",
+        "steps": [
+          "Matched parcel, subdivision, lot, and approximate build year",
+          "Rerouted a failed legacy contact to the current county program",
+          "Reviewed the original and delivered a plain-English Record Brief"
+        ],
+        "findings": [
+          "Four-bedroom approved design",
+          "1,000-gallon septic tank",
+          "600 feet of conventional field lines",
+          "County reported no additional permits in its file"
+        ],
+        "limitation": "The drawing documents the design approved at that time. It does not verify the system's present location, condition, or undocumented changes.",
+        "documents": [
+          {
+            "label": "County approval letter",
+            "imagePath": "/images/case-study/redacted/agency-approval-letter-full-public.png",
+            "imageAlt": "Nearly full page of an actual county septic approval letter with customer details redacted",
+            "stage": "agency file"
+          },
+          {
+            "label": "Hand-drawn approved plan",
+            "imagePath": "/images/case-study/redacted/approved-site-plan-full-public.png",
+            "imageAlt": "Nearly full page of an actual approved septic site plan with identifying details redacted",
+            "stage": "agency plan"
+          },
+          {
+            "label": "State historical permit",
+            "imagePath": "/images/case-study/redacted/state-historical-permit-full-public.png",
+            "imageAlt": "Nearly full historical state septic permit showing system specifications and a hand-drawn layout with identifying details redacted",
+            "stage": "state file"
+          },
+          {
+            "label": "Plain-English Record Brief",
+            "imagePath": "/images/case-study/redacted/record-brief-full-public.png",
+            "imageAlt": "Nearly full page of a SepticPath Record Brief with property identifiers redacted",
+            "stage": "SepticPath delivery"
+          }
+        ],
+        "verifiedAt": "2026-09-10"
+      },
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "contract_county",
@@ -22593,6 +22655,276 @@
         "malfunctionSignal": "A repair, failed inspection, missing final, or file-owner conflict must be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from a Hughes County address to a septic price or clearance conclusion until the incorporated or unincorporated jurisdiction, file owner, and permit or inspection outcome are documented."
       },
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "TN",
+      "countyName": "Roane County",
+      "countySlug": "roane-county",
+      "title": "Roane County TN Septic Permit Lookup and Layout Records",
+      "metaDescription": "Search Roane County septic permits through TDEC, then use the Knoxville field-office route for a missing layout, historical permit, approval, or repair file.",
+      "introCopy": "Roane County's existing septic files run through the Tennessee Department of Environment and Conservation and its Knoxville Environmental Field Office. Start with the current SSDS record search, but carry the address, parcel, subdivision, lot, current or prior owners, and approximate installation year into a targeted records request when the viewer is blocked or incomplete.",
+      "uniqueAngle": "The practical Roane County problem is often not whether a historical file exists, but whether modern parcel clues can be connected to an older permit filed under a subdivision, lot, or prior owner. This route preserves those clues and separates an approved historical drawing from proof of the system's current field location.",
+      "targetReader": "Best for Roane County buyers, owners, agents, and contractors who cannot find the tank or drainfield layout online and need the historical permit file before arranging field location, inspection, repair, or a transaction decision.",
+      "officeLabel": "TDEC Knoxville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/knoxville.html",
+      "recordsLabel": "Open the current TDEC SSDS record search",
+      "recordsUrl": "https://tdec.tn.gov/document-viewer/search/stp",
+      "contactLine": "TDEC Septic System Files | septicsystem.files@tn.gov | Knoxville field-office support: 865-594-6035",
+      "decisionSteps": [
+        "Search the current TDEC SSDS viewer with the address and any permit clues it accepts; record a blocked or empty result without treating it as proof that no file exists.",
+        "Confirm the Roane County parcel, prior owners, subdivision, lot, and approximate construction year in public property sources.",
+        "When the viewer is inaccessible or incomplete, request the existing file through TDEC Septic System Files and include the Knoxville office context for the county."
+      ],
+      "recordsToRequest": [
+        "The original septic construction permit, application, site evaluation, and construction or final approval.",
+        "The tank and drainfield sketch, layout, or as-built-like drawing, including repair or modification records.",
+        "A written no-record response or a referral identifying the office that holds the older file."
+      ],
+      "lowEndBreakers": [
+        "A 403 response or empty online search does not establish that Roane County or TDEC has no historical file.",
+        "An old sketch without a north arrow, scale, survey control, or current landmarks cannot locate buried components reliably today.",
+        "A permitted design does not prove the installation remains unchanged or in serviceable condition."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Where do I request an old Roane County septic layout?",
+          "answer": "Start with the current TDEC SSDS record search. If it is blocked or does not produce the file, provide TDEC Septic System Files with the address, parcel, county, current or prior owners, subdivision and lot, and approximate installation year; the Knoxville Environmental Field Office serves Roane County."
+        },
+        {
+          "question": "Does a returned Roane County sketch show where the system is today?",
+          "answer": "It can preserve the approved historical design and relative layout, but it is not automatically a current survey or field locate. Age, ownership changes, repairs, and undocumented modifications still require on-site verification when exact location or condition matters."
+        }
+      ],
+      "internalLinkTargets": [
+        "/tdec-septic-records/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/buying-a-house-with-a-septic-system/tennessee/"
+      ],
+      "officialSourceIds": [
+        "tn_01",
+        "tn_03",
+        "tn_08",
+        "tn_roane_local_01"
+      ],
+      "searchGuide": {
+        "summary": "Search the TDEC SSDS viewer first, then use a clue-rich TDEC request when the viewer is blocked, incomplete, or unable to resolve an older file.",
+        "coverage": "TDEC does not publish a complete searchable archive range on the sources reviewed here. An observed Roane County retrieval produced a 1970s-era file, but that result does not guarantee coverage for every property.",
+        "identifiers": "Address, parcel ID, county, current and prior owners, subdivision and lot, and approximate construction or permit year.",
+        "documents": "Historical permit or application, site and soil evaluation, tank and field layout, construction approval, completion record, and repair or modification history.",
+        "steps": [
+          "Try the current SSDS viewer and save any permit number, owner, or location clues it returns.",
+          "Cross-check the parcel and older ownership or subdivision clues before concluding the record is missing.",
+          "Send a targeted request to TDEC Septic System Files and identify Roane County and the Knoxville field-office route."
+        ],
+        "noResult": "Ask TDEC for a written search result using both present-day and legacy clues. A blocked viewer, modern-address miss, or absent public attachment is not a final no-record finding.",
+        "sourceIds": [
+          "tn_01",
+          "tn_03",
+          "tn_08",
+          "tn_roane_local_01"
+        ],
+        "reviewedAt": "2026-09-14"
+      },
+      "operationalProof": {
+        "routeId": "tn-roane-septic",
+        "statusLabel": "Historical file obtained",
+        "title": "A blocked viewer did not mean the layout was gone.",
+        "summary": "In an actual Roane County request, parcel, ownership, and subdivision clues were assembled outside the TDEC viewer. A targeted state-file request then returned a historical construction permit and system sketch.",
+        "steps": [
+          "Matched the parcel to subdivision, lot, and prior-owner clues",
+          "Escalated through TDEC's file desk and Knoxville route",
+          "Translated the handwritten permit into a usable summary"
+        ],
+        "findings": [
+          "Three-bedroom historical design",
+          "900-gallon septic tank",
+          "225 total feet across three field lines",
+          "Original permit and sketch preserved together"
+        ],
+        "limitation": "The historical sketch was not drawn to scale and had no north arrow. It supports the old design, not the exact present-day location or condition.",
+        "documents": [
+          {
+            "label": "County approval letter",
+            "imagePath": "/images/case-study/redacted/agency-approval-letter-full-public.png",
+            "imageAlt": "Nearly full page of an actual county septic approval letter with customer details redacted",
+            "stage": "agency file"
+          },
+          {
+            "label": "State permit and system sketch",
+            "imagePath": "/images/case-study/redacted/state-historical-permit-full-public.png",
+            "imageAlt": "Nearly full historical state septic permit from this route showing system specifications and a hand-drawn layout with identifying details redacted",
+            "stage": "this route · state file"
+          },
+          {
+            "label": "Hand-drawn approved plan",
+            "imagePath": "/images/case-study/redacted/approved-site-plan-full-public.png",
+            "imageAlt": "Nearly full page of an actual approved septic site plan from another completed request with identifying details redacted",
+            "stage": "work sample · agency plan"
+          },
+          {
+            "label": "Plain-English Record Brief",
+            "imagePath": "/images/case-study/redacted/record-brief-full-public.png",
+            "imageAlt": "Nearly full page of a SepticPath Record Brief from another completed request with property identifiers redacted",
+            "stage": "work sample · SepticPath delivery"
+          }
+        ],
+        "verifiedAt": "2026-09-09"
+      },
+      "workflowStructure": {
+        "fileOwnerCategory": "state_regional",
+        "fileOwnerModel": "TDEC Division of Water Resources owns the practical existing-file route, with Roane County served through the Knoxville Environmental Field Office.",
+        "firstArtifactToPull": "the historical septic permit and any attached tank-and-drainfield sketch tied to present or legacy property clues",
+        "permitCloseoutCategory": "historical_approval",
+        "permitCloseoutSignal": "The strongest file includes the permit, design details, and approval or completion context rather than a database match alone.",
+        "transferCategory": "documented_file_match",
+        "transferArtifact": "the returned permit and layout matched through parcel, subdivision, lot, ownership, and date clues.",
+        "specialProgramCategory": "legacy_identifier_search",
+        "specialProgramSignal": "Older Roane County files may require subdivision, lot, or former-owner clues when a modern street address is insufficient.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Any later repair, modification, or field-location question remains separate from what the original design approved.",
+        "quoteGate": "Do not treat a Roane County historical layout as a current field locate or condition report; resolve any repair history and on-site location need before relying on it for work or a transaction."
+      },
+      "updatedAt": "2026-09-14",
+      "reviewedAt": "2026-09-14",
+      "publishStatus": "published"
+    },
+    {
+      "stateCode": "TN",
+      "countyName": "Overton County",
+      "countySlug": "overton-county",
+      "title": "Overton County TN Septic Permit and Historical Record Search",
+      "metaDescription": "Search Overton County septic records through TDEC and the Cookeville office. Use former owners and road names to recover an older permit, repair file, or layout.",
+      "introCopy": "Overton County existing septic records are handled through TDEC and the Cookeville Environmental Field Office. A present-day address can be insufficient for an older file, so a useful search package also carries the parcel or tax-map number, former owners, older road wording, and approximate construction or repair year.",
+      "uniqueAngle": "Overton County illustrates a common historical-record problem: the agency can return a relevant file under a former owner and road name even when the document does not contain the modern street number. The record can still be useful, but its match strength must be explained rather than overstated.",
+      "targetReader": "Best for Overton County owners, buyers, agents, and contractors who need an older septic permit, repair file, or layout and must determine whether legacy owner and road clues truly connect it to the current parcel.",
+      "officeLabel": "TDEC Cookeville Environmental Field Office",
+      "officeUrl": "https://www.tn.gov/environment/contacts/field-offices/cookeville.html",
+      "recordsLabel": "Open the current TDEC SSDS record search",
+      "recordsUrl": "https://tdec.tn.gov/document-viewer/search/stp",
+      "contactLine": "TDEC Septic System Files | septicsystem.files@tn.gov | Cookeville EFO: TDEC.Cookeville.EFO@tn.gov | 931-520-6688",
+      "decisionSteps": [
+        "Search the TDEC SSDS viewer using the modern address and preserve any matching permit, owner, or locality clues.",
+        "Cross-check the parcel or tax-map number, former owners, historical road name, and approximate home or repair year.",
+        "When the online result is absent or incomplete, request the historical file through TDEC and include the Cookeville office serving Overton County."
+      ],
+      "recordsToRequest": [
+        "The original system permit plus any later repair, modification, or expansion record.",
+        "The site sketch or layout, approved bedrooms, tank size, field-line detail, and approval or inspection notes.",
+        "A written explanation of the property identifiers used when the returned record lacks the modern street number."
+      ],
+      "lowEndBreakers": [
+        "A former-owner and road-name match can be relevant without proving an exact current-address match.",
+        "A repair record describes work on an existing system and may not contain the original installation file or a complete modern layout.",
+        "Historical design details do not verify current condition, later alterations, or the precise field position today."
+      ],
+      "faqBlocks": [
+        {
+          "question": "How do I search for an old Overton County septic record?",
+          "answer": "Start with the current TDEC SSDS viewer, then add the parcel or tax-map number, prior owners, older road wording, and approximate construction or repair year to a TDEC file request. The Cookeville Environmental Field Office serves Overton County."
+        },
+        {
+          "question": "What if the returned Overton County file has no modern street number?",
+          "answer": "Compare the former owner, road name, parcel history, document date, and system details. Treat it as a limited historical match unless those clues establish the connection; do not present it as a certain current-address match."
+        }
+      ],
+      "internalLinkTargets": [
+        "/tdec-septic-records/",
+        "/septic-records-checklist/tennessee/",
+        "/septic-permit-search-by-address/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
+        "/buying-a-house-with-a-septic-system/tennessee/"
+      ],
+      "officialSourceIds": [
+        "tn_01",
+        "tn_03",
+        "tn_08",
+        "tn_overton_local_01"
+      ],
+      "searchGuide": {
+        "summary": "Search with the modern address, then expand to the parcel, former owners, and historical road clues before requesting the file through TDEC and its Cookeville office.",
+        "coverage": "The reviewed official sources do not state a complete archive date range. An observed request returned a 1993 repair file, which proves older material can be held but not that every original installation file survives.",
+        "identifiers": "Modern address, parcel or tax-map number, former owners, historical road name, and approximate installation or repair year.",
+        "documents": "Original permit when held, repair or modification permit, site sketch, system specifications, approval notes, and a written no-record or match-limitation response.",
+        "steps": [
+          "Try the current TDEC SSDS search with the modern property information.",
+          "Add former-owner and historical-road clues from public parcel research.",
+          "Ask TDEC Septic System Files and the Cookeville route to search both the present and legacy identifiers."
+        ],
+        "noResult": "Ask whether the office searched former-owner and older road-name indexes. If a returned file lacks the modern number, document the match as limited rather than forcing certainty.",
+        "sourceIds": [
+          "tn_01",
+          "tn_03",
+          "tn_08",
+          "tn_overton_local_01"
+        ],
+        "reviewedAt": "2026-09-14"
+      },
+      "operationalProof": {
+        "routeId": "tn-overton-septic",
+        "statusLabel": "Limited historical match obtained",
+        "title": "Legacy owner clues recovered a repair file.",
+        "summary": "In an actual Overton County request, the modern street address was not printed on the returned document. TDEC located a 1993 repair file under a former owner and historical road wording, allowing a useful but explicitly limited match.",
+        "steps": [
+          "Connected the present parcel to former-owner and road-name clues",
+          "Requested the archive through TDEC's Cookeville route",
+          "Separated confirmed system facts from the unresolved address match"
+        ],
+        "findings": [
+          "1993 repair to an existing system",
+          "Three-bedroom residence in the file",
+          "1,000-gallon two-compartment concrete tank",
+          "Approximately 200 feet of disposal field"
+        ],
+        "limitation": "The document did not print the modern street number. Former-owner and road-name evidence supports the match, but does not make it certain without additional parcel or field confirmation.",
+        "documents": [
+          {
+            "label": "County approval letter",
+            "imagePath": "/images/case-study/redacted/agency-approval-letter-full-public.png",
+            "imageAlt": "Nearly full page of an actual county septic approval letter with customer details redacted",
+            "stage": "work sample · agency file"
+          },
+          {
+            "label": "Returned repair layout",
+            "imagePath": "/images/case-study/redacted/state-repair-layout-full-public.png",
+            "imageAlt": "Nearly full page of an actual historical state repair layout from this route with identifying details redacted",
+            "stage": "this route · repair file"
+          },
+          {
+            "label": "Hand-drawn approved plan",
+            "imagePath": "/images/case-study/redacted/approved-site-plan-full-public.png",
+            "imageAlt": "Nearly full page of an actual approved septic site plan from another completed request with identifying details redacted",
+            "stage": "work sample · agency plan"
+          },
+          {
+            "label": "Plain-English Record Brief",
+            "imagePath": "/images/case-study/redacted/record-brief-full-public.png",
+            "imageAlt": "Nearly full page of a SepticPath Record Brief from another completed request with property identifiers redacted",
+            "stage": "work sample · SepticPath delivery"
+          }
+        ],
+        "verifiedAt": "2026-09-09"
+      },
+      "workflowStructure": {
+        "fileOwnerCategory": "state_regional",
+        "fileOwnerModel": "TDEC Division of Water Resources owns the practical existing-file route, with Overton County served through the Cookeville Environmental Field Office.",
+        "firstArtifactToPull": "the original or repair permit and layout matched through parcel, former-owner, historical-road, and date clues",
+        "permitCloseoutCategory": "historical_repair_record",
+        "permitCloseoutSignal": "A repair file can establish system specifications and work history, but should not be treated as the complete original installation file without supporting records.",
+        "transferCategory": "limited_legacy_match",
+        "transferArtifact": "the returned file plus a transparent explanation of which owner, road, parcel, and date clues support or limit the match.",
+        "specialProgramCategory": "legacy_identifier_search",
+        "specialProgramSignal": "Older Overton County files may be indexed under a former owner or road wording without the modern street number.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "A repair record is material history and must remain distinct from proof of current condition or a complete original approval chain.",
+        "quoteGate": "Do not use an Overton County legacy file as a certain present-address or condition conclusion until its identifier match and any later repair or field evidence are resolved."
+      },
+      "updatedAt": "2026-09-14",
+      "reviewedAt": "2026-09-14",
       "publishStatus": "published"
     }
   ]

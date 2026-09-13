@@ -41,6 +41,8 @@ class ClosingRiskNotificationServiceTest {
         assertTrue(message.getText().contains("Search entry page: /tdec-septic-records/"));
         assertTrue(message.getText().contains("CTA source page: /septic-records-checklist/tennessee/knox-county/"));
         assertTrue(message.getText().contains("123 Private Lane"));
+        assertTrue(message.getText().contains("Record type: septic"));
+        assertTrue(message.getText().contains("Research goal: design_capacity"));
         assertTrue(message.getText().contains("Deadline:"));
     }
 
@@ -95,6 +97,8 @@ class ClosingRiskNotificationServiceTest {
         form.setTransactionRole("buyer");
         form.setPropertyAddress("123 Private Lane, Knoxville, TN 37920");
         form.setStateCode("TN");
+        form.setRecordType("septic");
+        form.setResearchGoal("design_capacity");
         form.setCountyName("Knox County");
         form.setListingUrl("https://example.com/listing/123");
         form.setListingBedrooms(4);

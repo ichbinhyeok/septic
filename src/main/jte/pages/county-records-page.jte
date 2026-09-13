@@ -118,7 +118,9 @@
                 @endif
                     </div>
                 </details>
-                @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase())
+                @if (countyPage.operationalProof() == null)
+                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase())
+                @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
@@ -305,6 +307,14 @@
 
     @if (countySearchGuide != null)
         @template.tags.countySearchGuide(entry = countySearchGuide)
+    @endif
+
+    @if (countyPage.operationalProof() != null)
+        @template.tags.countyOperationalProof(
+            proof = countyPage.operationalProof(),
+            countyName = countyPage.countyName(),
+            sourceContext = "county_operational_proof_" + state.stateCode().toLowerCase() + "_" + countyPage.countySlug()
+        )
     @endif
 
     @if (countyAccessProfile != null)

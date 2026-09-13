@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.16.0 - 2026-09-14
+
+### Added
+
+- Added a private, transactional route-intelligence database that automatically records linked branch outcomes, custodians, request references, and evidence changes.
+- Added structured availability, channel, requester-requirement, fee, response-time, and verified-outcome views for reusable record-access routes.
+- Added immutable Bing, Search Console, and GA4 growth snapshots plus an opportunity engine that joins search demand, AI citations, cases, and verified outcomes.
+
+### Changed
+
+- Made route and analytics knowledge capture a required part of future customer operations and search-analysis work, without requiring a separate user reminder.
+
 ## 0.0.15.1 - 2026-09-13
 
 ### Added
