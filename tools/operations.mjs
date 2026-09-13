@@ -99,6 +99,7 @@ function latestGrowthSignals(d) {
 
 export function growthOpportunities(d) {
   const signals = latestGrowthSignals(d);
+  const publishedProofRoutes = publicProofRouteIds();
   return routeIntelligence(d).map(route => {
     const linked = signals.filter(signal => (signal.route_ids || []).includes(route.route_id));
     const search = linked.filter(signal => ['bing_search','google_search_console'].includes(signal.platform));
@@ -111,6 +112,9 @@ export function growthOpportunities(d) {
     if (impressions >= 1000 && ctr !== null && ctr < 0.025) {
       opportunityType = 'ctr_and_handoff';
       nextAction = 'Protect ranking, test one search snippet variable, and make the verified route the first useful action.';
+    } else if (route.verified_outcome_count > 0 && publishedProofRoutes.has(route.route_id)) {
+      opportunityType = 'measure_published_proof';
+      nextAction = 'The anonymized route proof is published. Measure indexing, impressions, clicks, and qualified requests before expanding it.';
     } else if (route.verified_outcome_count > 0 && impressions === 0 && aiCitations === 0) {
       opportunityType = 'publish_verified_proof';
       nextAction = 'Create or strengthen the matching public route page using anonymized, source-backed outcome proof.';
@@ -133,6 +137,15 @@ export function growthOpportunities(d) {
       next_action:nextAction
     };
   }).sort((left,right) => right.opportunity_score - left.opportunity_score || left.route_id.localeCompare(right.route_id));
+}
+
+export function publicProofRouteIds() {
+  const publicPagesPath = path.join(root, 'data/raw/county_records_pages.json');
+  if (!fs.existsSync(publicPagesPath)) return new Set();
+  const pages = json(publicPagesPath).pages || [];
+  return new Set(pages
+    .filter(page => page.publishStatus === 'published' && page.operationalProof?.routeId)
+    .map(page => page.operationalProof.routeId));
 }
 
 export function validate(d) {

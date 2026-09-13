@@ -30,6 +30,14 @@ public class ClosingRiskCheckForm {
     @Pattern(regexp = "[A-Z]{2}", message = "Choose a valid state.")
     private String stateCode;
 
+    @NotBlank(message = "Choose the record type.")
+    @Pattern(regexp = "septic|well|not_sure", message = "Choose a valid record type.")
+    private String recordType;
+
+    @NotBlank(message = "Choose what you need to find out.")
+    @Pattern(regexp = "original_documents|system_layout|approval_status|design_capacity|repair_history|understand_file|other", message = "Choose a valid research goal.")
+    private String researchGoal;
+
     @Size(max = 120, message = "County must be 120 characters or fewer.")
     private String countyName;
 
@@ -46,7 +54,7 @@ public class ClosingRiskCheckForm {
     private Integer permitBedrooms;
 
     @NotBlank(message = "Choose what is known about the septic file.")
-    @Pattern(regexp = "missing|route_unknown|request_unclear|partial|conflicting|unknown", message = "Choose a valid record problem.")
+    @Pattern(regexp = "not_started|missing|route_unknown|request_unclear|partial|conflicting|unknown", message = "Choose a valid record problem.")
     private String recordStatus;
 
     @FutureOrPresent(message = "Deadline cannot be in the past.")
@@ -62,7 +70,8 @@ public class ClosingRiskCheckForm {
     @Size(max = 240, message = "Entry page must be 240 characters or fewer.")
     private String entryPageHint;
 
-    @Size(max = 1200, message = "Notes must be 1,200 characters or fewer.")
+    @NotBlank(message = "Tell us what you need to decide or what is missing.")
+    @Size(min = 10, max = 1200, message = "Add at least 10 characters and no more than 1,200.")
     private String concern;
 
     @AssertTrue(message = "Consent is required.")
@@ -76,7 +85,7 @@ public class ClosingRiskCheckForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree that SepticPath may store these property and contact details and email them to its operator to help identify the relevant septic record path and follow up about a transaction-related file gap when applicable. I understand this is not an inspection, permit decision, legal opinion, or compliance certification.";
+        return "I agree that SepticPath may use the contact and property details I provide to research this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification.";
     }
 
     public String getFullNameValue() { return fullName == null ? "" : fullName; }
@@ -102,6 +111,10 @@ public class ClosingRiskCheckForm {
     public void setPropertyAddress(String propertyAddress) { this.propertyAddress = propertyAddress; }
     public String getStateCode() { return stateCode; }
     public void setStateCode(String stateCode) { this.stateCode = stateCode; }
+    public String getRecordType() { return recordType; }
+    public void setRecordType(String recordType) { this.recordType = recordType; }
+    public String getResearchGoal() { return researchGoal; }
+    public void setResearchGoal(String researchGoal) { this.researchGoal = researchGoal; }
     public String getCountyName() { return countyName; }
     public void setCountyName(String countyName) { this.countyName = countyName; }
     public String getListingUrl() { return listingUrl; }

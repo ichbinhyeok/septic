@@ -47,6 +47,8 @@ public class ClosingRiskNotificationService {
                 Process stage: %s
                 Property: %s
                 State / county: %s / %s
+                Record type: %s
+                Research goal: %s
                 Listing URL: %s
                 Listing bedrooms: %s
                 Permit bedrooms: %s
@@ -68,6 +70,8 @@ public class ClosingRiskNotificationService {
                 safeLine(form.getPropertyAddress()),
                 safeLine(form.getStateCode()),
                 safeLine(form.getCountyName()),
+                safeLine(form.getRecordType()),
+                safeLine(form.getResearchGoal()),
                 safeLine(form.getListingUrl()),
                 form.getListingBedrooms() == null ? "not supplied" : form.getListingBedrooms(),
                 form.getPermitBedrooms() == null ? "not supplied" : form.getPermitBedrooms(),

@@ -49,6 +49,12 @@ storage/operations/
 !storage/events/README.md
 .gstack/
 
+# Local customer operations and design review artifacts
+.codex-remote-attachments/
+/record-*.png
+/docs/RECORD_HELP_CASE_LOG.csv
+/tools/build_mary_*.py
+
 ### Python ###
 __pycache__/
 *.py[cod]

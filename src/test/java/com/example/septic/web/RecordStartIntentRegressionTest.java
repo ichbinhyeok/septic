@@ -90,12 +90,15 @@ class RecordStartIntentRegressionTest {
         assertTrue(county.contains("@template.tags.recordEvidence("));
         assertTrue(county.indexOf("@template.tags.recordEvidence(") < county.indexOf("class=\"county-command-bar"));
         String evidence = Files.readString(Path.of("src/main/jte/tags/recordEvidence.jte"));
-        assertTrue(evidence.contains("Original records. A clear explanation."));
+        assertTrue(evidence.contains("We chase the file. Then make it usable."));
         assertTrue(evidence.contains("Investigate my property"));
         assertTrue(evidence.contains("data-record-help-cta"));
-        assertTrue(evidence.contains("Record availability varies by property."));
+        assertTrue(evidence.contains("Record availability varies by property and jurisdiction."));
         assertTrue(national.contains("Prefer a human search?"));
         assertTrue(national.contains("SepticPath can investigate the record and contact the responsible office for you"));
-        assertTrue(offer.contains("Email and property address are enough to start."));
+        assertTrue(offer.contains("Give us the address and the decision you need to make."));
+        assertTrue(offer.contains("name=\"recordType\""));
+        assertTrue(offer.contains("name=\"researchGoal\""));
+        assertTrue(offer.contains("name=\"concern\""));
     }
 }

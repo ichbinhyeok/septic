@@ -155,3 +155,11 @@ If a state field is missing or low confidence:
 - label the result as lower confidence
 - show the local verification note
 - show the official source module
+
+## Adjacent record-source notes
+
+- Tennessee water-well bulk-data fallback and redaction limits are documented
+  in `docs/TDEC_WATER_WELL_ARCGIS_ROUTE.md`.
+- This adjacent well-record route does not change the product boundary:
+  SepticPath remains septic-first, with well research included when it helps
+  resolve a property due-diligence request.

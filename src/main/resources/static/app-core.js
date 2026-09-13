@@ -555,6 +555,29 @@
                 recordStatus.value = carriedStatus;
             }
         }
+        const sourcePath = sourcePageInput instanceof HTMLInputElement ? sourcePageInput.value : "";
+        const countyRoute = sourcePath.match(/^\/septic-records-checklist\/([^/]+)\/([^/]+)-county\/?/i);
+        if (countyRoute) {
+            const state = form.querySelector('[name="stateCode"]');
+            const county = form.querySelector('[name="countyName"]');
+            const normalizeSlug = (value) => String(value || "")
+                .toLowerCase()
+                .replace(/&/g, "and")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+            if (state instanceof HTMLSelectElement && !state.value) {
+                const stateOption = Array.from(state.options)
+                    .find((option) => normalizeSlug(option.textContent) === countyRoute[1].toLowerCase());
+                if (stateOption) state.value = stateOption.value;
+            }
+            if (county instanceof HTMLInputElement && !county.value) {
+                county.value = countyRoute[2]
+                    .split("-")
+                    .filter(Boolean)
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ") + " County";
+            }
+        }
 
         let formViewed = false;
         if ("IntersectionObserver" in window) {
@@ -585,11 +608,17 @@
         });
 
         const stage = form.querySelector("[data-record-help-stage]");
+        const goal = form.querySelector("[data-record-help-goal]");
         const transactionDetails = form.querySelector("[data-record-help-transaction-details]");
-        if (stage instanceof HTMLSelectElement && transactionDetails instanceof HTMLDetailsElement) {
+        if (stage instanceof HTMLSelectElement
+            && goal instanceof HTMLSelectElement
+            && transactionDetails instanceof HTMLDetailsElement) {
             const syncTransactionDetails = (trackSelection) => {
                 const hasTransaction = stage.value !== "" && stage.value !== "researching";
-                transactionDetails.open = hasTransaction;
+                const needsDocumentContext = goal.value === "design_capacity"
+                    || goal.value === "understand_file"
+                    || goal.value === "approval_status";
+                transactionDetails.open = hasTransaction || needsDocumentContext;
                 if (trackSelection && stage.value !== "") {
                     emitGaEvent("record_help_stage_selected", {
                         source_context: getSourceContext(),
@@ -602,6 +631,7 @@
             };
             syncTransactionDetails(false);
             stage.addEventListener("change", () => syncTransactionDetails(true));
+            goal.addEventListener("change", () => syncTransactionDetails(false));
         }
 
         let validationQueued = false;

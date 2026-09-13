@@ -1,12 +1,12 @@
 (() => {
-    const captions = { plan: "County original · approved site plan", approval: "County original · approval letter", findings: "SepticPath Record Brief · findings", guidance: "SepticPath Record Brief · guidance and limitations" };
+    const captions = { plan: "Agency original · approved site plan", approval: "Agency original · approval letter", permit: "State original · historical septic permit", findings: "SepticPath delivery · Record Brief", guidance: "SepticPath Record Brief · guidance and limitations" };
     document.querySelectorAll("[data-record-evidence]").forEach((section) => {
         if (section.dataset.evidenceReady) return;
         section.dataset.evidenceReady = "true";
         const emit = (name, extra = {}) => {
             if (typeof window.gtag === "function") window.gtag("event", name, {
                 source_context: section.dataset.evidenceContext,
-                case_id: "shelby_tn_completed", ...extra
+                evidence_set: "completed_requests", ...extra
             });
         };
         if ("IntersectionObserver" in window) {

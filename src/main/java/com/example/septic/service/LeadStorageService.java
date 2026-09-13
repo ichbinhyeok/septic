@@ -347,7 +347,7 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", "2026-09-06-record-help-v2"
+                "languageVersion", "2026-09-14-record-help-v3"
         );
 
         Map<String, Object> payload = new LinkedHashMap<>();
@@ -370,6 +370,8 @@ public class LeadStorageService {
                 "address", safeValue(form.getPropertyAddress(), 220),
                 "stateCode", safeValue(form.getStateCode(), 2),
                 "countyName", safeValue(form.getCountyName(), 120),
+                "recordType", safeValue(form.getRecordType(), 20),
+                "researchGoal", safeValue(form.getResearchGoal(), 40),
                 "listingUrl", safeValue(form.getListingUrl(), 500),
                 "listingBedrooms", form.getListingBedrooms(),
                 "permitBedrooms", form.getPermitBedrooms(),
@@ -391,6 +393,8 @@ public class LeadStorageService {
                     "attributedSourcePage", attributedSourcePage,
                     "sourceContext", safeValue(form.getSourceContext(), 120),
                     "stateCode", safeValue(form.getStateCode(), 2),
+                    "recordType", safeValue(form.getRecordType(), 20),
+                    "researchGoal", safeValue(form.getResearchGoal(), 40),
                     "transactionRole", safeValue(form.getTransactionRole(), 20),
                     "recordStatus", safeValue(form.getRecordStatus(), 24),
                     "deadlineBucket", deadlineBucket(form.getDeadline(), now)

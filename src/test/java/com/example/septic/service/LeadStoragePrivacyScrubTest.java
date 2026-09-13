@@ -49,6 +49,8 @@ class LeadStoragePrivacyScrubTest {
         form.setTransactionRole("buyer");
         form.setPropertyAddress("123 Private Lane, Knoxville, TN 37920");
         form.setStateCode("TN");
+        form.setRecordType("septic");
+        form.setResearchGoal("design_capacity");
         form.setCountyName("Knox County");
         form.setListingUrl("https://example.com/listing/123");
         form.setListingBedrooms(4);
@@ -77,7 +79,9 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains(requestId));
         assertTrue(storedRequest.contains("123 Private Lane"));
         assertTrue(storedRequest.contains("taylor@example.com"));
-        assertTrue(storedRequest.contains("2026-09-06-record-help-v2"));
+        assertTrue(storedRequest.contains("2026-09-14-record-help-v3"));
+        assertTrue(storedRequest.contains("\"recordType\" : \"septic\""));
+        assertTrue(storedRequest.contains("\"researchGoal\" : \"design_capacity\""));
         assertTrue(storedRequest.contains("septic_record_help_beta"));
 
         Path eventFile;

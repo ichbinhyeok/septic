@@ -566,7 +566,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/knox-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"county_records_tn\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Original records. A clear explanation.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("We chase the file. Then make it usable.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Investigate my property")));
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())
@@ -865,17 +865,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"license\":\"https://example.test/data-license/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"spatialCoverage\":{\"@type\":\"Place\",\"name\":\"United States\"}")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-09-11\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-09-14\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("325 county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("327 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-09-11")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Updated 2026-09-14")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-crawl-directory")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Browse all 325 reviewed county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Browse all 327 reviewed county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/nevada/douglas-county/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"28\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/alabama/\"")))
@@ -900,7 +900,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/api/county-finder/?state=TN"))
 				.andExpect(status().isOk())
-				.andExpect(header().string("X-County-Finder-Match-Count", "21"))
+				.andExpect(header().string("X-County-Finder-Match-Count", "23"))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"stateCode\":\"TN\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("\"stateCode\":\"NC\""))));
 
@@ -985,8 +985,11 @@ class SepticApplicationTests {
 				.param("transactionRole", "buyer")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
 				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "design_capacity")
 				.param("countyName", "Knox County")
 				.param("recordStatus", "conflicting")
+				.param("concern", "Need to confirm the approved bedroom count.")
 				.param("deadline", LocalDate.now().plusDays(5).toString())
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
@@ -1004,8 +1007,11 @@ class SepticApplicationTests {
 				.param("transactionRole", "buyer")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
 				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "original_documents")
 				.param("countyName", "Knox County")
 				.param("recordStatus", "missing")
+				.param("concern", "Need the original permit before closing.")
 				.param("deadline", LocalDate.now().minusDays(1).toString()))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted details.")))
@@ -1036,7 +1042,10 @@ class SepticApplicationTests {
 				.param("transactionRole", "buyer")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
 				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "system_layout")
 				.param("recordStatus", "unknown")
+				.param("concern", "Need to locate the septic tank and drainfield.")
 				.param("deadline", LocalDate.now().plusDays(5).toString())
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
@@ -1050,7 +1059,10 @@ class SepticApplicationTests {
 				.param("transactionRole", "researching")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "original_documents")
 				.param("recordStatus", "route_unknown")
+				.param("concern", "I need the original septic permit and layout.")
 				.param("sourceContext", "tdec_quick_help_record_help")
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
@@ -1065,7 +1077,10 @@ class SepticApplicationTests {
 				.param("email", "researcher@example.com")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
+				.param("recordType", "septic")
+				.param("researchGoal", "original_documents")
 				.param("recordStatus", "route_unknown")
+				.param("concern", "I need the original septic permit and layout.")
 				.param("sourceContext", "tdec_quick_help_record_help")
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
@@ -1799,7 +1814,7 @@ class SepticApplicationTests {
 				.results()
 				.count();
 
-		assertEquals(325L, locationCount);
+		assertEquals(327L, locationCount);
 		assertEquals(locationCount, lastModifiedCount);
 	}
 
@@ -10666,7 +10681,7 @@ class SepticApplicationTests {
 		List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
 		String missouriProgramUrl = "https://health.mo.gov/business-professionals/onsite-wastewater-treatment";
 
-		assertEquals(325, pages.size());
+		assertEquals(327, pages.size());
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_01").orElseThrow().url());
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_05").orElseThrow().url());
 		assertEquals(
@@ -10684,7 +10699,7 @@ class SepticApplicationTests {
 		assertTrue(pages.stream()
 				.flatMap(page -> page.officialSourceIds().stream())
 				.allMatch(sourceId -> researchDataService.findSource(sourceId).isPresent()));
-		assertEquals("2026-08-11", researchDataService.countyRecordsPagesGeneratedAt());
+		assertEquals("2026-09-14", researchDataService.countyRecordsPagesGeneratedAt());
 	}
 
 	private List<String> countyQualityUnits(CountyLocalContentView contentView) {
