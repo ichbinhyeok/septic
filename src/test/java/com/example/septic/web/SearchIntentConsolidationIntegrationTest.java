@@ -29,6 +29,7 @@ class SearchIntentConsolidationIntegrationTest {
                 .andExpect(content().string(containsString("<title>Tennessee Septic Permit Process: TDEC Steps &amp; Records | SepticPath</title>")))
                 .andExpect(content().string(containsString("<meta name=\"robots\" content=\"index,follow\">")))
                 .andExpect(content().string(not(containsString("<meta name=\"robots\" content=\"noindex,follow\">"))))
+                .andExpect(content().string(containsString("Start the Tennessee permit route")))
                 .andExpect(content().string(containsString("data-track-source-context=\"tn_permit_process_intent_missing\"")))
                 .andExpect(content().string(containsString("data-track-source-context=\"tn_permit_process_intent_document\"")))
                 .andExpect(content().string(containsString("data-track-source-context=\"tn_permit_process_intent_human\"")));

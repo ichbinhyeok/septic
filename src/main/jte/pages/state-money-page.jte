@@ -176,8 +176,8 @@
                     <div class="state-money-intent-inline">
                         @template.tags.searchIntentNextSteps(
                             officialPath = primaryAction.path(),
-                            officialLabel = "Start the Tennessee permit route",
-                            sourceContext = "tn_permit_process_intent",
+                            officialLabel = "Start the " + state.stateName() + " permit route",
+                            sourceContext = state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_permit_process_intent",
                             officialTargetType = primaryAction.targetType()
                         )
                     </div>
