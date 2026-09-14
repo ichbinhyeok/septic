@@ -31,6 +31,7 @@
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param StateRecordsSearchResponseView stateRecordsSearchResponse = null
+@param boolean searchIntentHandoff = false
 @param java.util.List<CountyWorkflowFieldView> stateOfficialFilePathRows = java.util.List.of()
 @param java.util.List<SearchIntentOpportunityView> searchIntentOpportunities = java.util.List.of()
 @param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
@@ -171,6 +172,16 @@
                         </div>
                     </div>
                 </div>
+                @if (searchIntentHandoff)
+                    <div class="state-money-intent-inline">
+                        @template.tags.searchIntentNextSteps(
+                            officialPath = primaryAction.path(),
+                            officialLabel = "Start the " + state.stateName() + " permit route",
+                            sourceContext = state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_permit_process_intent",
+                            officialTargetType = primaryAction.targetType()
+                        )
+                    </div>
+                @endif
                 @if (stateRecordsSearchResponse != null && !stateRecordsSearchResponse.countyLinks().isEmpty())
                     <div class="hero-county-launchpad" aria-label="${state.stateName()} priority county record shortcuts">
                         <span class="hero-county-launchpad__label">County records</span>
@@ -292,6 +303,12 @@
     </section>
 
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
+
+    @if (searchIntentHandoff)
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "state_workflow_evidence_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + stateMoneyPage.contentSlug(), variant = "permit_process")
+        </div>
+    @endif
 
     @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
         <div class="container record-evidence-band">

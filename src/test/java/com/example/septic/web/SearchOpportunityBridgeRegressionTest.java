@@ -19,10 +19,17 @@ class SearchOpportunityBridgeRegressionTest {
         assertTrue(finder.contains("data-address-record-finder-result aria-live=\"polite\" hidden"));
     }
 
-    @Test void evidenceIsRestrictedToRecordsIntentOnLegacyStatePages() throws Exception {
+    @Test void evidenceIsRestrictedToDemandBackedRecordsAndPermitIntents() throws Exception {
         String page = read("jte/pages/state-money-page.jte");
         assertTrue(page.contains("@if (\"septic-records-checklist\".equals(stateMoneyPage.contentSlug()))"));
-        assertEquals(1, page.split("@template.tags.recordEvidence", -1).length - 1);
+        assertTrue(page.contains("@if (searchIntentHandoff)"));
+        assertEquals(2, page.split("@template.tags.recordEvidence", -1).length - 1);
+        assertTrue(page.indexOf("state-money-intent-inline") < page.indexOf("<article class=\"hero-sidecard\">"));
+        String evidence = read("jte/tags/recordEvidence.jte");
+        assertTrue(evidence.contains("data-evidence-progress"));
+        assertTrue(evidence.contains("Swipe to compare the original pages"));
+        String evidenceScript = read("resources/static/record-evidence.js");
+        assertTrue(evidenceScript.contains("Document ${nearestIndex + 1} of ${documents.length}"));
         for (String state : new String[]{"florida-ostds", "texas-ossf"}) {
             String tool = read("jte/pages/" + state + "-records-page.jte");
             assertEquals(1, tool.split("@template.tags.recordEvidence", -1).length - 1);

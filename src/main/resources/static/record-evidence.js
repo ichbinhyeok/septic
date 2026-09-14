@@ -19,6 +19,31 @@
             observer.observe(section.querySelector(".record-evidence__documents"));
         }
         const dialog = section.querySelector("dialog");
+        const papers = section.querySelector(".record-evidence__papers");
+        const progress = section.querySelector("[data-evidence-progress]");
+        if (papers && progress) {
+            const documents = Array.from(papers.querySelectorAll("a[data-evidence-document]"));
+            let progressFrame = 0;
+            const updateProgress = () => {
+                progressFrame = 0;
+                const center = papers.scrollLeft + papers.clientWidth / 2;
+                let nearestIndex = 0;
+                let nearestDistance = Number.POSITIVE_INFINITY;
+                documents.forEach((documentLink, index) => {
+                    const documentCenter = documentLink.offsetLeft + documentLink.offsetWidth / 2;
+                    const distance = Math.abs(documentCenter - center);
+                    if (distance < nearestDistance) {
+                        nearestDistance = distance;
+                        nearestIndex = index;
+                    }
+                });
+                progress.textContent = `Document ${nearestIndex + 1} of ${documents.length}`;
+            };
+            papers.addEventListener("scroll", () => {
+                if (!progressFrame) progressFrame = window.requestAnimationFrame(updateProgress);
+            }, { passive: true });
+            updateProgress();
+        }
         let opener;
         section.querySelectorAll("[data-evidence-document]").forEach((link) => {
             link.addEventListener("click", (event) => {

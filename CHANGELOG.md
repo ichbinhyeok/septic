@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.17.0 - 2026-09-14
+
+### Added
+
+- Added a data-driven search portfolio that classifies pages by measured demand, operational proof, and local source depth.
+- Added four-way next-step routing for demand-backed state and county record pages: original records, failed searches, document review, and human investigation.
+- Added contextual real-record evidence for county and permit-process pages, including mobile document navigation and progress feedback.
+
+### Changed
+
+- Made Tennessee's observed permit-process page indexable with query-aligned metadata and accurate page-level sitemap revision dates.
+- Moved the primary situation selector ahead of supporting editorial content on mobile while preserving the desktop research-desk layout.
+- Generalized permit-route labels and analytics context so future state demand targets do not inherit Tennessee-specific copy.
+
 ## 0.0.16.0 - 2026-09-14
 
 ### Added

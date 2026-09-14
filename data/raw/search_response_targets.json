@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-01",
-  "source": "Google Search Console API page and query totals reviewed through 2026-07-31 plus privacy-threshold-safe county response vocabulary",
+  "generatedAt": "2026-09-14",
+  "source": "Google Search Console page and query totals plus Bing Webmaster page evidence reviewed through 2026-09-12 and privacy-threshold-safe county response vocabulary",
   "targets": [
     {
       "targetType": "state_records",
@@ -748,6 +748,28 @@
       "ctr": 0.0487804878,
       "position": 9.3,
       "evidenceNote": "GSC page totals show two recent clicks near the first page; query rows are privacy-thresholded."
+    },
+    {
+      "targetType": "state_workflow",
+      "key": "TN::septic-permit-process",
+      "path": "/septic-permit-process/tennessee/",
+      "boost": 225,
+      "queries": [
+        "tennessee septic permit process",
+        "tdec septic permit process",
+        "tennessee septic permit records",
+        "tdec septic permit lookup"
+      ],
+      "recommendedAnchors": [
+        "Tennessee septic permit process",
+        "TDEC permit steps and records"
+      ],
+      "evidenceWindow": "2026-06-13..2026-09-12",
+      "clicks": 24,
+      "impressions": 2200,
+      "ctr": 0.0111,
+      "position": 5.85,
+      "evidenceNote": "Bing Webmaster page totals identify the largest Tennessee snippet gap: first-page visibility with a 1.11% CTR. The route needs indexability, query-exact snippet copy, and direct record handoffs."
     }
   ]
 }

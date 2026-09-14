@@ -65,7 +65,8 @@ public class PublishingPolicyService {
             case "septic-records-checklist" -> hasRecordsSource(state)
                     || hasCountyRecordsPages(state.stateCode())
                     || hasLocalAuthoritySource(state);
-            case "septic-permit-process" -> PERMIT_PROCESS_DEMAND_STATES.contains(state.stateCode())
+            case "septic-permit-process" -> (PERMIT_PROCESS_DEMAND_STATES.contains(state.stateCode())
+                    || hasSearchDemandTarget(stateMoneyPage, state))
                     && hasLocalAuthoritySource(state)
                     && hasItems(state.permitPathSteps(), 3);
             case "buying-a-house-with-a-septic-system" -> BUYER_DEMAND_STATES.contains(state.stateCode())
@@ -155,6 +156,13 @@ public class PublishingPolicyService {
 
     private boolean hasStateCostProfile(String stateCode) {
         return researchDataService.findStateCostProfile(stateCode).isPresent();
+    }
+
+    private boolean hasSearchDemandTarget(StateMoneyPage stateMoneyPage, StateProfile state) {
+        return researchDataService.findSearchResponseTarget(
+                "state_workflow",
+                state.stateCode() + "::" + stateMoneyPage.contentSlug()
+        ).isPresent();
     }
 
     private boolean hasItems(List<?> values, int minimumSize) {

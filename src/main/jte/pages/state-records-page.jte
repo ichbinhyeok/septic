@@ -47,6 +47,17 @@
             </div>
         </section>
 
+        @if (stateRecordsSearchResponse != null)
+            <div class="container state-records-intent-band">
+                @template.tags.searchIntentNextSteps(
+                    officialPath = "/septic-record-finder/",
+                    officialLabel = "Find the county and official record route",
+                    sourceContext = "state_records_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT),
+                    officialTargetType = "record_finder"
+                )
+            </div>
+        @endif
+
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "state_records_" + state.stateCode().toLowerCase())
         </div>
