@@ -121,6 +121,15 @@
                 @if (countyPage.operationalProof() == null)
                     @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase())
                 @endif
+                @if (countySearchResponse != null)
+                    @template.tags.searchIntentNextSteps(
+                        officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
+                        officialLabel = countyAccessProfile != null ? countyAccessProfile.primaryLabel() : countyPage.recordsActionLabel(),
+                        sourceContext = "county_search_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + countyPage.countySlug(),
+                        officialTargetType = "official_source",
+                        openOfficialInNewTab = true
+                    )
+                @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
                     @if (countyAccessProfile != null)
                         @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())

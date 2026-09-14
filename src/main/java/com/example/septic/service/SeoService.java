@@ -1417,6 +1417,9 @@ public class SeoService {
         if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "AR".equals(state.stateCode())) {
             return "Arkansas Perc Test Cost & County Permit Steps | SepticPath";
         }
+        if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && "TN".equals(state.stateCode())) {
+            return "Tennessee Septic Permit Process: TDEC Steps & Records | SepticPath";
+        }
         return stateMoneyPage.title() + switch (stateMoneyPage.contentSlug()) {
             case "septic-replacement-cost" -> " | Quote Scope | SepticPath";
             case "perc-test-cost" -> " | Soil & Permit Risk | SepticPath";
@@ -1439,6 +1442,9 @@ public class SeoService {
         }
         if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "AR".equals(state.stateCode())) {
             return "See Arkansas perc test costs, then find the county health unit, Onsite Environmental Specialist, soil-suitability questions, permit-copy route, and quote scope.";
+        }
+        if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && "TN".equals(state.stateCode())) {
+            return "Follow Tennessee septic permit steps through TDEC or a contract county, find existing records, and identify construction, repair, and inspection-letter routes.";
         }
         if (!"septic-records-checklist".equals(stateMoneyPage.contentSlug())) {
             return stateMoneyPage.metaDescription();

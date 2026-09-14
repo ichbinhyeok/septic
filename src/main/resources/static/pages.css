@@ -288,6 +288,7 @@
   .county-records-page .state-hero > div:first-child > .county-records-page__source-title { order: 0; }
   .county-records-page .state-hero > div:first-child > .county-service-entry { order: 1; }
   .county-records-page .state-hero > div:first-child > [data-search-intent-answer] { order: 1; }
+  .county-records-page .state-hero > div:first-child > .search-intent-next { order: 1; }
   .county-records-page .state-hero > div:first-child > .county-command-bar { order: 2; }
   .county-records-page .state-hero > div:first-child > .county-route-brief { order: 3; }
   .county-records-page .state-hero > div:first-child > .county-route-evidence { order: 4; }
@@ -328,6 +329,23 @@
   .county-file-sidecard__facts dd { margin: 0; font-size: .78rem; font-weight: 700; line-height: 1.4; }
   .county-search-intent-strip { padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .76rem; }
   .county-search-intent-strip__query { display: inline; margin-left: 8px; color: var(--ink); font-weight: 700; }
+  .search-intent-next { margin-block: 26px 8px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--line-dark); }
+  .search-intent-next__intro { display: grid; grid-template-columns: minmax(150px, .36fr) minmax(0, 1fr); gap: 24px; padding: 14px 4px; border-bottom: 1px solid var(--line-dark); }
+  .search-intent-next__intro span { color: var(--accent-dark); font-size: .67rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .search-intent-next__intro strong { font: 800 clamp(.88rem, 1.3vw, 1rem)/1.4 var(--font-sans); }
+  .search-intent-next__routes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .search-intent-next__routes a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 18px; min-height: 88px; padding: 17px 18px 16px 4px; color: var(--ink); border-bottom: 1px solid var(--line); text-decoration: none; transition: padding-left .18s ease, color .18s ease, background-color .18s ease; }
+  .search-intent-next__routes a:nth-child(odd) { padding-right: 22px; border-right: 1px solid var(--line); }
+  .search-intent-next__routes a:nth-child(even) { padding-left: 22px; }
+  .search-intent-next__routes a:hover { padding-left: 12px; color: var(--accent-dark); background: color-mix(in srgb, var(--accent) 4%, transparent); }
+  .search-intent-next__routes a:nth-child(even):hover { padding-left: 30px; }
+  .search-intent-next__routes a:focus-visible { position: relative; z-index: 1; outline: 3px solid var(--focus); outline-offset: -3px; }
+  .search-intent-next__routes small { grid-column: 1; color: var(--muted); font-size: .66rem; font-weight: 700; letter-spacing: .03em; }
+  .search-intent-next__routes strong { grid-column: 1; font: 800 .87rem/1.35 var(--font-sans); }
+  .search-intent-next__routes a > span { grid-column: 2; grid-row: 1 / 3; align-self: center; color: var(--accent); transition: transform .18s ease; }
+  .search-intent-next__routes a:hover > span { transform: translateX(4px); }
+  .state-records-intent-band, .state-money-intent-band { padding-bottom: 30px; }
+  .state-records-intent-band .search-intent-next, .state-money-intent-band .search-intent-next { margin-top: 0; }
   .county-proof-strip, .county-data-strip, .coverage-summary { display: flex; flex-wrap: wrap; gap: 20px 34px; padding: 18px 0; border-top: 1px solid var(--line-dark); border-bottom: 1px solid var(--line-dark); }
   .county-proof-strip > *, .county-data-strip > * { flex: 1 1 160px; }
   .county-proof-strip strong, .county-data-strip strong { display: block; font-size: .84rem; }
@@ -1730,6 +1748,10 @@
     .county-records-page .county-file-sidecard { display: none; }
     .county-service-entry { grid-template-columns: 1fr; gap: 15px; padding: 18px; }
     .county-service-entry .button { width: 100%; justify-content: center; }
+    .search-intent-next__intro { grid-template-columns: 1fr; gap: 5px; }
+    .search-intent-next__routes { grid-template-columns: 1fr; }
+    .search-intent-next__routes a:nth-child(odd), .search-intent-next__routes a:nth-child(even) { min-height: 78px; padding-inline: 3px 12px; border-right: 0; }
+    .search-intent-next__routes a:nth-child(even):hover { padding-left: 12px; }
     .county-records-page .county-command-bar { margin-top: 16px; padding-top: 14px; }
     .county-records-page .county-command-bar .button { flex: 1 1 100%; justify-content: center; }
     .county-route-cluster__header, .next-move-row, .official-tool-route, .direct-search-route { grid-template-columns: 1fr; }

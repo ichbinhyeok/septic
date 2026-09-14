@@ -24,6 +24,7 @@ public class SitemapService {
     private static final String RECORDS_CONTENT_REVISION_DATE = "2026-09-01";
     private static final String STATE_RECORDS_REVISION_DATE = "2026-09-01";
     private static final String COUNTY_RECORDS_REVISION_DATE = "2026-09-01";
+    private static final String SEARCH_INTENT_HANDOFF_REVISION_DATE = "2026-09-14";
     /*
      * Page-specific material revisions keep lastmod accurate without making a
      * cosmetic or narrowly scoped release look like a sitewide content update.
@@ -166,7 +167,10 @@ public class SitemapService {
                 state.lastVerifiedAt(),
                 "septic-records-checklist".equals(stateMoneyPage.contentSlug())
                         ? STATE_RECORDS_REVISION_DATE
-                        : SHARED_WORKFLOW_REVISION_DATE
+                        : SHARED_WORKFLOW_REVISION_DATE,
+                hasSearchIntentHandoff(stateMoneyPage, state)
+                        ? SEARCH_INTENT_HANDOFF_REVISION_DATE
+                        : ""
         );
         Stream<String> sourceDates = researchDataService.getSources(stateMoneyPage.officialSourceIds()).stream()
                 .map(SourceRecord::contentVerifiedAt);
@@ -177,8 +181,22 @@ public class SitemapService {
         return latestValidDate(Stream.of(
                 countyContentQualityService.effectiveUpdatedAt(countyPage),
                 COUNTY_RECORDS_REVISION_DATE,
-                countyPage.searchGuide() == null ? "" : countyPage.searchGuide().reviewedAt()
+                countyPage.searchGuide() == null ? "" : countyPage.searchGuide().reviewedAt(),
+                researchDataService.findSearchResponseTarget(
+                                "county_records",
+                                countyPage.stateCode() + "::" + countyPage.countySlug()
+                        ).isPresent()
+                        ? SEARCH_INTENT_HANDOFF_REVISION_DATE
+                        : ""
         ));
+    }
+
+    private boolean hasSearchIntentHandoff(StateMoneyPage stateMoneyPage, StateProfile state) {
+        if ("TN".equals(state.stateCode()) && "septic-permit-process".equals(stateMoneyPage.contentSlug())) {
+            return true;
+        }
+        return "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                && researchDataService.findSearchResponseTarget("state_records", state.stateCode()).isPresent();
     }
 
     private boolean isRecordsWorkflowContentPage(String slug) {

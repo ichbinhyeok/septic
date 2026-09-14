@@ -293,6 +293,17 @@
 
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
 
+    @if ("TN".equals(state.stateCode()) && "septic-permit-process".equals(stateMoneyPage.contentSlug()))
+        <div class="container state-money-intent-band">
+            @template.tags.searchIntentNextSteps(
+                officialPath = primaryAction.path(),
+                officialLabel = "Start the Tennessee permit route",
+                sourceContext = "tn_permit_process_intent",
+                officialTargetType = primaryAction.targetType()
+            )
+        </div>
+    @endif
+
     @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()))
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "state_records_evidence_" + state.stateCode().toLowerCase(java.util.Locale.ROOT))

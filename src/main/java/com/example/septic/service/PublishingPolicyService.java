@@ -38,8 +38,9 @@ public class PublishingPolicyService {
     private static final Set<String> BUYER_DEMAND_STATES = Set.of(
             "AK", "IA", "ID", "KS", "KY", "LA", "NH", "NJ", "OH", "SC", "SD", "WA"
     );
+    /* Tennessee was added after Bing recorded 2,200 impressions at position 5.85 through 2026-09-12. */
     private static final Set<String> PERMIT_PROCESS_DEMAND_STATES = Set.of(
-            "AR", "CT", "GA", "IN", "KY", "MA", "NM", "OR", "PA", "RI", "SC"
+            "AR", "CT", "GA", "IN", "KY", "MA", "NM", "OR", "PA", "RI", "SC", "TN"
     );
     private static final int STRONG_COUNTY_COVERAGE = 10;
     private static final int SUPPORTING_COUNTY_COVERAGE = 5;
