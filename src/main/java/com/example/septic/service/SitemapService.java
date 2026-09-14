@@ -192,7 +192,10 @@ public class SitemapService {
     }
 
     private boolean hasSearchIntentHandoff(StateMoneyPage stateMoneyPage, StateProfile state) {
-        if ("TN".equals(state.stateCode()) && "septic-permit-process".equals(stateMoneyPage.contentSlug())) {
+        if (researchDataService.findSearchResponseTarget(
+                "state_workflow",
+                state.stateCode() + "::" + stateMoneyPage.contentSlug()
+        ).isPresent()) {
             return true;
         }
         return "septic-records-checklist".equals(stateMoneyPage.contentSlug())

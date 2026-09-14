@@ -1,11 +1,22 @@
 @import com.example.septic.web.AssetPaths
 @param String sourceContext = "records_evidence"
+@param String variant = "records"
 
 <section class="record-evidence" data-record-evidence data-evidence-context="${sourceContext}" aria-label="Actual records delivered by SepticPath">
     <header class="record-evidence__heading">
-        <span class="record-evidence__eyebrow">REAL WORK SAMPLES</span>
-        <h2>We chase the file. Then make it usable.</h2>
-        <p>Selected full pages from separate completed requests: original agency records, hand-drawn plans, and the brief delivered after review.</p>
+        @if ("permit_process".equals(variant))
+            <span class="record-evidence__eyebrow">REAL PERMIT FILES</span>
+            <h2>A permit process matters when it leads to the property file.</h2>
+            <p>Actual agency approvals, historical permits, and approved plans show what the Tennessee workflow is ultimately meant to produce—and what SepticPath can help explain.</p>
+        @elseif ("county".equals(variant))
+            <span class="record-evidence__eyebrow">REAL COUNTY FILES</span>
+            <h2>This is the kind of record the route should produce.</h2>
+            <p>Selected pages from completed requests show the original agency file, drawing, and plain-English brief. Availability still depends on the property and office.</p>
+        @else
+            <span class="record-evidence__eyebrow">REAL WORK SAMPLES</span>
+            <h2>We chase the file. Then make it usable.</h2>
+            <p>Selected full pages from separate completed requests: original agency records, hand-drawn plans, and the brief delivered after review.</p>
+        @endif
     </header>
     <div class="record-evidence__documents">
         <div class="record-evidence__source">
@@ -40,7 +51,11 @@
     </div>
     <p class="record-evidence__source-note"><span aria-hidden="true"></span><strong>Privacy reviewed:</strong> black bars remove identifying details; agency language, form structure, system data, and drawing geometry remain visible. Samples are from separate requests, not one property file. Record availability varies by property and jurisdiction.</p>
     <ol class="record-evidence__steps" aria-label="How we handle a record request">
-        <li>Search public sources</li><li>Request agency files when needed</li><li>Explain what comes back</li>
+        @if ("permit_process".equals(variant))
+            <li>Identify the permit authority</li><li>Retrieve the property file</li><li>Explain approvals and gaps</li>
+        @else
+            <li>Search public sources</li><li>Request agency files when needed</li><li>Explain what comes back</li>
+        @endif
     </ol>
     <div class="record-evidence__action">
         <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${sourceContext}" data-track-target-type="lead_form">Investigate my property</a>

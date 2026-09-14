@@ -566,7 +566,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/tennessee/knox-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-track-source-context=\"county_records_tn\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("We chase the file. Then make it usable.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("This is the kind of record the route should produce.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Investigate my property")));
 		mockMvc.perform(get("/tdec-septic-records/"))
 				.andExpect(status().isOk())

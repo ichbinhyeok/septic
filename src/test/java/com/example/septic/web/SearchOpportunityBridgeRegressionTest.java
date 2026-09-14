@@ -19,10 +19,11 @@ class SearchOpportunityBridgeRegressionTest {
         assertTrue(finder.contains("data-address-record-finder-result aria-live=\"polite\" hidden"));
     }
 
-    @Test void evidenceIsRestrictedToRecordsIntentOnLegacyStatePages() throws Exception {
+    @Test void evidenceIsRestrictedToDemandBackedRecordsAndPermitIntents() throws Exception {
         String page = read("jte/pages/state-money-page.jte");
         assertTrue(page.contains("@if (\"septic-records-checklist\".equals(stateMoneyPage.contentSlug()))"));
-        assertEquals(1, page.split("@template.tags.recordEvidence", -1).length - 1);
+        assertTrue(page.contains("@if (searchIntentHandoff)"));
+        assertEquals(2, page.split("@template.tags.recordEvidence", -1).length - 1);
         for (String state : new String[]{"florida-ostds", "texas-ossf"}) {
             String tool = read("jte/pages/" + state + "-records-page.jte");
             assertEquals(1, tool.split("@template.tags.recordEvidence", -1).length - 1);

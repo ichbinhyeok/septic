@@ -119,7 +119,7 @@
                     </div>
                 </details>
                 @if (countyPage.operationalProof() == null)
-                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase())
+                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county")
                 @endif
                 @if (countySearchResponse != null)
                     @template.tags.searchIntentNextSteps(

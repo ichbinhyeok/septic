@@ -38,9 +38,8 @@ public class PublishingPolicyService {
     private static final Set<String> BUYER_DEMAND_STATES = Set.of(
             "AK", "IA", "ID", "KS", "KY", "LA", "NH", "NJ", "OH", "SC", "SD", "WA"
     );
-    /* Tennessee was added after Bing recorded 2,200 impressions at position 5.85 through 2026-09-12. */
     private static final Set<String> PERMIT_PROCESS_DEMAND_STATES = Set.of(
-            "AR", "CT", "GA", "IN", "KY", "MA", "NM", "OR", "PA", "RI", "SC", "TN"
+            "AR", "CT", "GA", "IN", "KY", "MA", "NM", "OR", "PA", "RI", "SC"
     );
     private static final int STRONG_COUNTY_COVERAGE = 10;
     private static final int SUPPORTING_COUNTY_COVERAGE = 5;
@@ -66,7 +65,8 @@ public class PublishingPolicyService {
             case "septic-records-checklist" -> hasRecordsSource(state)
                     || hasCountyRecordsPages(state.stateCode())
                     || hasLocalAuthoritySource(state);
-            case "septic-permit-process" -> PERMIT_PROCESS_DEMAND_STATES.contains(state.stateCode())
+            case "septic-permit-process" -> (PERMIT_PROCESS_DEMAND_STATES.contains(state.stateCode())
+                    || hasSearchDemandTarget(stateMoneyPage, state))
                     && hasLocalAuthoritySource(state)
                     && hasItems(state.permitPathSteps(), 3);
             case "buying-a-house-with-a-septic-system" -> BUYER_DEMAND_STATES.contains(state.stateCode())
@@ -156,6 +156,13 @@ public class PublishingPolicyService {
 
     private boolean hasStateCostProfile(String stateCode) {
         return researchDataService.findStateCostProfile(stateCode).isPresent();
+    }
+
+    private boolean hasSearchDemandTarget(StateMoneyPage stateMoneyPage, StateProfile state) {
+        return researchDataService.findSearchResponseTarget(
+                "state_workflow",
+                state.stateCode() + "::" + stateMoneyPage.contentSlug()
+        ).isPresent();
     }
 
     private boolean hasItems(List<?> values, int minimumSize) {

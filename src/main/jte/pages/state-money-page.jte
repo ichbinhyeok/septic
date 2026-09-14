@@ -31,6 +31,7 @@
 @param java.util.List<com.example.septic.web.PageLink> countyRecordLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.PageLink> featuredCountyRecordLinks = java.util.List.of()
 @param StateRecordsSearchResponseView stateRecordsSearchResponse = null
+@param boolean searchIntentHandoff = false
 @param java.util.List<CountyWorkflowFieldView> stateOfficialFilePathRows = java.util.List.of()
 @param java.util.List<SearchIntentOpportunityView> searchIntentOpportunities = java.util.List.of()
 @param StateCountyWorkflowSynthesisView countyWorkflowSynthesis = null
@@ -293,7 +294,7 @@
 
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
 
-    @if ("TN".equals(state.stateCode()) && "septic-permit-process".equals(stateMoneyPage.contentSlug()))
+    @if (searchIntentHandoff)
         <div class="container state-money-intent-band">
             @template.tags.searchIntentNextSteps(
                 officialPath = primaryAction.path(),
@@ -301,6 +302,9 @@
                 sourceContext = "tn_permit_process_intent",
                 officialTargetType = primaryAction.targetType()
             )
+        </div>
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "state_workflow_evidence_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + stateMoneyPage.contentSlug(), variant = "permit_process")
         </div>
     @endif
 

@@ -3088,6 +3088,10 @@ The goal is to settle the permit path before we frame the project as a normal in
         ));
         model.addAttribute("countyWorkflowSynthesis", countyWorkflowSynthesis);
         model.addAttribute("stateRecordsSearchResponse", stateRecordsSearchResponse);
+        model.addAttribute("searchIntentHandoff", researchDataService.findSearchResponseTarget(
+                "state_workflow",
+                state.stateCode() + "::" + stateMoneyPage.contentSlug()
+        ).isPresent());
         model.addAttribute("stateOfficialFilePathRows", stateOfficialFilePathRows(
                 stateMoneyPage,
                 state,
