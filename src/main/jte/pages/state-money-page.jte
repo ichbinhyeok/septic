@@ -172,6 +172,16 @@
                         </div>
                     </div>
                 </div>
+                @if (searchIntentHandoff)
+                    <div class="state-money-intent-inline">
+                        @template.tags.searchIntentNextSteps(
+                            officialPath = primaryAction.path(),
+                            officialLabel = "Start the Tennessee permit route",
+                            sourceContext = "tn_permit_process_intent",
+                            officialTargetType = primaryAction.targetType()
+                        )
+                    </div>
+                @endif
                 @if (stateRecordsSearchResponse != null && !stateRecordsSearchResponse.countyLinks().isEmpty())
                     <div class="hero-county-launchpad" aria-label="${state.stateName()} priority county record shortcuts">
                         <span class="hero-county-launchpad__label">County records</span>
@@ -295,14 +305,6 @@
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
 
     @if (searchIntentHandoff)
-        <div class="container state-money-intent-band">
-            @template.tags.searchIntentNextSteps(
-                officialPath = primaryAction.path(),
-                officialLabel = "Start the Tennessee permit route",
-                sourceContext = "tn_permit_process_intent",
-                officialTargetType = primaryAction.targetType()
-            )
-        </div>
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "state_workflow_evidence_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + stateMoneyPage.contentSlug(), variant = "permit_process")
         </div>

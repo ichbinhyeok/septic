@@ -21,7 +21,8 @@
     <div class="record-evidence__documents">
         <div class="record-evidence__source">
             <span class="record-evidence__label">01 / RECEIVED FROM THE COUNTY</span>
-            <div class="record-evidence__papers">
+            <p class="record-evidence__swipe-hint">Swipe to compare the original pages <span data-evidence-progress aria-live="polite">Document 1 of 3</span></p>
+            <div class="record-evidence__papers" aria-label="Original document samples. Swipe or scroll horizontally on small screens.">
                 <a class="record-evidence__letter" href="/images/case-study/redacted/agency-approval-letter-full-public.png" data-evidence-document="approval" aria-label="Enlarge the actual county approval letter">
                     <img src="/images/case-study/redacted/agency-approval-letter-full-public.png" width="1275" height="1650" loading="lazy" alt="Nearly full page of an actual county septic approval letter with identifying details redacted">
                     <span>Approval letter · full page ↗</span>
