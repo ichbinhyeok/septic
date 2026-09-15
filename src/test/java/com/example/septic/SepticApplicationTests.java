@@ -1361,7 +1361,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc><lastmod>2026-09-11</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc><lastmod>2026-09-01</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-09-12</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-09-12</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-09-16</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-09-14</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))

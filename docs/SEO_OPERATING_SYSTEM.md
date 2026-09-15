@@ -25,6 +25,18 @@ The report is derived from `search_response_targets.json`, state workflow data, 
 5. After a material change, update only the affected sitemap `lastmod`. Freeze the title during the full comparison window.
 6. Compare complete 28-day windows. Review impressions and position first, CTR second, then GA4 handoffs and qualified requests.
 
+## GA4 data-freshness gate
+
+GA4 property `527957430` reports in `America/Los_Angeles`. Standard reports and Data API results can remain incomplete for 24–48 hours, so routine growth decisions must end at **D-3 in the property timezone**. The current day and the two preceding property days may be inspected only as provisional diagnostics; never use them to declare a landing-page or engagement regression.
+
+Before acting on a sharp GA4 change:
+
+1. Compare the same complete weekdays and disclose the exact window.
+2. Break out sessions with a blank landing page, `(not set)`, or `(data not available)` attribution before interpreting engagement rate.
+3. Check business events separately. `record_help_request_submitted` is the assisted-request outcome; `record_finder_submit` and official-route opens are self-serve actions, not customer inquiries.
+4. Treat aggregate key events as mixed funnel activity, not revenue or requests.
+5. Require seven complete post-deployment days for a directional UX reading and 28 complete days for a portfolio decision.
+
 ## Decision rules
 
 - Rising impressions with flat clicks: improve title, description, and above-the-fold query match.

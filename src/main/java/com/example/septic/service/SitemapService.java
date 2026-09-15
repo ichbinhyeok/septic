@@ -31,7 +31,7 @@ public class SitemapService {
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
             Map.entry("/", "2026-09-11"),
-            Map.entry("/septic-record-finder/", "2026-09-12"),
+            Map.entry("/septic-record-finder/", "2026-09-16"),
             Map.entry("/septic-records-access-index/", "2026-09-11"),
             Map.entry("/septic-record-brief-example/", "2026-09-12"),
             Map.entry("/offer-prep-septic-file-check/", "2026-09-12"),
