@@ -51,7 +51,9 @@ class RecordSearchEvidenceTest {
                 .toList();
 
         assertThat(pages).extracting(page -> page.stateCode() + "::" + page.countySlug())
-                .containsExactlyInAnyOrder("TN::shelby-county", "TN::roane-county", "TN::overton-county");
+                .containsExactlyInAnyOrder(
+                        "TN::shelby-county", "TN::roane-county", "TN::overton-county",
+                        "SC::anderson-county", "WI::st-croix-county");
 
         for (var page : pages) {
             var proof = page.operationalProof();
@@ -66,7 +68,9 @@ class RecordSearchEvidenceTest {
 
             var state = data.findStateByCode(page.stateCode()).orElseThrow();
             var html = mvc.perform(get(page.path(state.slug()))).andReturn().getResponse().getContentAsString();
-            assertThat(html).contains("Observed retrieval", proof.statusLabel(), proof.documents().getFirst().imagePath(), proof.limitation());
+            assertThat(html).contains(
+                    "Observed retrieval", proof.statusLabel(), proof.documents().getFirst().imagePath(), proof.limitation(),
+                    "work samples from completed requests with identifying details removed");
         }
     }
 

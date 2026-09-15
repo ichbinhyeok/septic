@@ -9155,6 +9155,51 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "St. Croix County has a real repair-side branch, so the repair or failure file matters before anyone assumes the cheapest visible scope is still available.",
         "quoteGate": "Do not move into pricing until the buyer or transfer artifact supports the same story, and the repair or complaint trail is resolved, because St. Croix County can look simpler on the surface than the real county workflow."
+      },
+      "operationalProof": {
+        "routeId": "wi-stcroix-septic",
+        "statusLabel": "26-page county file obtained",
+        "title": "The parcel archive exposed the sanitary permit packet behind the summary screen.",
+        "summary": "In an actual St. Croix County request, the statewide parcel record and county property-file index were matched before the complete sanitary permit packet was reviewed. The usable answer came from reconciling the revised plan, inspection sheet, and application rather than repeating a single database value.",
+        "steps": [
+          "Matched the state parcel ID to the county-formatted parcel and sanitary permit",
+          "Reviewed all 26 pages and isolated an unrelated appendix before relying on the file",
+          "Translated the design, layout, and internal capacity conflict into a bounded property answer"
+        ],
+        "findings": [
+          "Four-bedroom, 600-gallon-per-day design",
+          "One tank and three dispersal cells using 45 chambers",
+          "The application and inspection records differed: 1,200 vs. 1,255 gallons",
+          "The drawing showed relative direction, but not field-ready coordinates"
+        ],
+        "limitation": "The archive documents the approved and inspected system at that time. It does not confirm later repairs, present condition, or whether a planned addition clears both the active and replacement areas.",
+        "documents": [
+          {
+            "label": "County approval letter",
+            "imagePath": "/images/case-study/redacted/agency-approval-letter-full-public.png",
+            "imageAlt": "Nearly full page of an actual county septic approval letter with customer details redacted",
+            "stage": "work sample · agency file"
+          },
+          {
+            "label": "Approved system plan",
+            "imagePath": "/images/case-study/redacted/approved-site-plan-full-public.png",
+            "imageAlt": "Nearly full page of an actual approved septic site plan with identifying details redacted",
+            "stage": "work sample · agency plan"
+          },
+          {
+            "label": "State historical permit",
+            "imagePath": "/images/case-study/redacted/state-historical-permit-full-public.png",
+            "imageAlt": "Nearly full historical state septic permit with identifying details redacted",
+            "stage": "work sample · state file"
+          },
+          {
+            "label": "Plain-English Record Brief",
+            "imagePath": "/images/case-study/redacted/record-brief-full-public.png",
+            "imageAlt": "Nearly full page of a SepticPath Record Brief with property identifiers redacted",
+            "stage": "work sample · SepticPath delivery"
+          }
+        ],
+        "verifiedAt": "2026-09-16"
       }
     },
     {
@@ -22024,6 +22069,51 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Any repair, failure, replacement, abandonment, or constrained-site note should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from Anderson County lookup to pricing until the county parcel anchor, SCDES contact path, permit copy, D-1740/site-review trail, and final inspection status all agree with the buyer, seller, owner, or contractor story."
+      },
+      "operationalProof": {
+        "routeId": "sc-anderson-septic",
+        "statusLabel": "Permit and final approval obtained",
+        "title": "The state file returned both the approved design and the installed-system record.",
+        "summary": "In an actual Anderson County request, the tax-map parcel, subdivision, and lot were matched before SCDES returned the construction permit and final approval. Reading both mattered: the planned trench length and the installed trench total were not the same.",
+        "steps": [
+          "Anchored the request to the county parcel, subdivision, and lot",
+          "Requested the construction permit and final approval through the SCDES record owner",
+          "Compared planned specifications with the final installation sketch and explained the difference"
+        ],
+        "findings": [
+          "360-gallon-per-day design and a 1,000-gallon tank",
+          "The permit planned 300 feet of trench while final approval recorded 200 feet",
+          "Three installed trenches and their setbacks were shown on the final sketch",
+          "The customer confirmed the delivered explanation was informative"
+        ],
+        "limitation": "The not-to-scale historical drawing has no GPS coordinates and does not verify current condition, undocumented changes, or exact field location. Approved capacity should not be inferred as a bedroom count without the agency file saying so.",
+        "documents": [
+          {
+            "label": "County approval letter",
+            "imagePath": "/images/case-study/redacted/agency-approval-letter-full-public.png",
+            "imageAlt": "Nearly full page of an actual county septic approval letter with customer details redacted",
+            "stage": "work sample · agency file"
+          },
+          {
+            "label": "Hand-drawn approved plan",
+            "imagePath": "/images/case-study/redacted/approved-site-plan-full-public.png",
+            "imageAlt": "Nearly full page of an actual approved septic site plan with identifying details redacted",
+            "stage": "work sample · agency plan"
+          },
+          {
+            "label": "State historical permit",
+            "imagePath": "/images/case-study/redacted/state-historical-permit-full-public.png",
+            "imageAlt": "Nearly full historical state septic permit with identifying details redacted",
+            "stage": "work sample · state file"
+          },
+          {
+            "label": "Plain-English Record Brief",
+            "imagePath": "/images/case-study/redacted/record-brief-full-public.png",
+            "imageAlt": "Nearly full page of a SepticPath Record Brief with property identifiers redacted",
+            "stage": "work sample · SepticPath delivery"
+          }
+        ],
+        "verifiedAt": "2026-09-16"
       },
       "publishStatus": "published"
     },

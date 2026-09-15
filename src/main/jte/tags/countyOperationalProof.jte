@@ -50,7 +50,7 @@
                     </figure>
                 @endfor
             </div>
-            <p class="county-operational-proof__privacy"><i aria-hidden="true"></i><strong>Privacy reviewed:</strong> black bars remove identifying details; agency language, form structure, system data, and drawing geometry remain visible. Samples are not one property file.</p>
+            <p class="county-operational-proof__privacy"><i aria-hidden="true"></i><strong>Privacy reviewed:</strong> work samples from completed requests with identifying details removed.</p>
         </div>
     </div>
 </section>
