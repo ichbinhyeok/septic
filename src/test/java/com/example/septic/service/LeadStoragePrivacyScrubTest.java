@@ -79,7 +79,10 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains(requestId));
         assertTrue(storedRequest.contains("123 Private Lane"));
         assertTrue(storedRequest.contains("taylor@example.com"));
-        assertTrue(storedRequest.contains("2026-09-14-record-help-v4"));
+        assertTrue(storedRequest.contains(RecordHelpOffer.VERSION));
+        assertTrue(storedRequest.contains("\"optionalUnlockAmountCents\" : 2900"));
+        assertTrue(storedRequest.contains("\"upfrontPaymentRequired\" : false"));
+        assertTrue(storedRequest.contains("\"agencyFeesRequireApproval\" : true"));
         assertTrue(storedRequest.contains("\"recordType\" : \"septic\""));
         assertTrue(storedRequest.contains("\"researchGoal\" : \"design_capacity\""));
         assertTrue(storedRequest.contains("septic_record_help_beta"));

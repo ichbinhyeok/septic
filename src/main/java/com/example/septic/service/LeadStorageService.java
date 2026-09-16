@@ -359,7 +359,7 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", "2026-09-14-record-help-v4"
+                "languageVersion", RecordHelpOffer.VERSION
         );
 
         List<Map<String, Object>> documentMetadata;
@@ -374,6 +374,14 @@ public class LeadStorageService {
         payload.put("submittedAt", now.toString());
         payload.put("sourcePage", sourcePage);
         payload.put("requestType", "septic_record_help_beta");
+        payload.put("offer", orderedMap(
+                "version", RecordHelpOffer.VERSION,
+                "currency", "USD",
+                "optionalUnlockAmountCents", 2900,
+                "upfrontPaymentRequired", false,
+                "agencyFeesRequireApproval", true,
+                "terms", RecordHelpOffer.TERMS
+        ));
         payload.put("sourceContext", safeValue(form.getSourceContext(), 120));
         payload.put("attribution", orderedMap(
                 "entryPage", entryPage,

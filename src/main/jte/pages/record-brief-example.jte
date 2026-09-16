@@ -6,9 +6,9 @@
         <section class="record-brief-hero" aria-labelledby="record-brief-title">
             <div class="container record-brief-hero__grid">
                 <div class="record-brief-hero__copy">
-                    <span class="eyebrow">Pre-inspection records desk for septic professionals</span>
-                    <h1 id="record-brief-title">Your inspector should inspect. <em>We chase the records.</em></h1>
-                    <p class="lede">Send an address and deadline. SepticPath identifies the record holder, searches every viable source, handles agency requests and follow-ups, then returns the original files with a field-ready brief.</p>
+                    <span class="eyebrow">See what you receive</span>
+                    <h1 id="record-brief-title">Official records. <em>Answers you can understand.</em></h1>
+                    <p class="lede">See how an agency permit and drawing become clear findings about recorded capacity, layout and missing information. Research and agency requests are free. Preview your result before choosing the source files and explanation for US $29; agency fees are extra with approval.</p>
                     <div class="record-brief-hero__actions">
                         <a class="button button--primary" href="#pilot" data-record-help-cta data-track-click="nav" data-track-source-context="record_brief_example_hero" data-track-target-type="lead_form">Send one property</a>
                         <a class="text-button" href="#completed-brief">See the complete case</a>
@@ -151,13 +151,13 @@
         <section class="record-brief-pilot" id="pilot" aria-labelledby="record-brief-pilot-title">
             <div class="container record-brief-pilot__grid">
                 <div>
-                    <span class="eyebrow">For inspectors and real-estate teams</span>
+                    <span class="eyebrow">For your property and your questions</span>
                     <h2 id="record-brief-pilot-title">Give us one upcoming property.</h2>
-                    <p>Send only the address, county, and inspection or due-diligence deadline. We’ll prepare one record brief at no cost from whatever can be verified and tell you plainly when a record requires authorization, a fee, or more time.</p>
+                    <p>Send the address, county, and inspection or due-diligence deadline. Research and agency requests are free. When we have a useful verified result, preview it before choosing the original records and human-reviewed Record Brief for US $29. Agency fees are extra at cost, with your approval.</p>
                 </div>
                 <div class="record-brief-pilot__action">
                     <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_brief_example_pilot" data-track-target-type="lead_form">Send one property</a>
-                    <small>No client name or contact information required · One complimentary pilot per company</small>
+                    <small>No upfront payment · Existing free-beta requests keep their original terms</small>
                 </div>
             </div>
         </section>

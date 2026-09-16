@@ -3,9 +3,9 @@
 
 <aside class="closing-risk-cta" data-closing-risk-cta-container>
     <div>
-        <span class="eyebrow">Human record research · free beta</span>
+        <span class="eyebrow">Free research · Optional $29 result unlock</span>
         <h2>${heading}</h2>
-        <p>Send the property address and what you need to learn. We’ll search public sources, contact the responsible office when appropriate, and explain what comes back.</p>
+        <p>Need the permit, tank layout, approved capacity or repair history? Send the address and your question. We search the records, contact the office and check what the evidence actually confirms for your property.</p>
     </div>
     <div class="closing-risk-cta__action">
         <a class="button button--primary"
@@ -14,6 +14,6 @@
            data-track-click="nav"
            data-track-source-context="${sourceContext}"
            data-track-target-type="lead_form">Ask SepticPath to investigate</a>
-        <small>Email and property address to start. No payment details.</small>
+        <small>No upfront payment. Preview a useful result before choosing the $29 records and explanation. Agency fees extra with approval.</small>
     </div>
 </aside>

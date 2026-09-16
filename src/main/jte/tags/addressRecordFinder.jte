@@ -65,9 +65,9 @@
                     <a class="button button--secondary" href="#record-document-workspace">Open the private workspace</a>
                 </article>
                 <article class="record-review-paths__human">
-                    <span>HUMAN REVIEW / FREE BETA</span>
+                    <span>FREE PREVIEW / OPTIONAL $29 ANSWERS</span>
                     <h3>Have SepticPath review it</h3>
-                    <p>Send up to three source files and the questions you need answered. We’ll separate confirmed facts, gaps, conflicts, and the next useful step.</p>
+                    <p>Not sure whether your file confirms approval, bedroom capacity or completed repairs? Send the source and your questions. Preview our findings free, then choose detailed, human-reviewed answers for US $29. Agency fees, if needed, are extra with your approval.</p>
                     <a class="button button--primary"
                        href="/offer-prep-septic-file-check/?mode=review#record-help"
                        data-record-help-cta

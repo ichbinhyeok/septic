@@ -520,6 +520,16 @@
   .consent-field { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 11px; align-items: start; padding: 16px; border: 1px solid var(--line); background: var(--paper); }
   .consent-field input { width: 18px; min-height: 18px; margin-top: 2px; }
   .consent-field > span { margin: 0; color: var(--ink-soft); font-size: 1rem; font-weight: 500; line-height: 1.55; }
+  .record-help-consent-details { margin-top: -8px; }
+  .record-help-consent-details summary { padding: 10px 0; cursor: pointer; color: var(--ink-soft); font-size: .875rem; line-height: 1.5; }
+  .record-help-consent-details p { margin: 8px 0 0; color: var(--ink-soft); font-size: .875rem; line-height: 1.65; }
+  .record-help-fee-note { margin: -8px 0 0; color: var(--ink-soft); font-size: .875rem; line-height: 1.55; }
+  .record-help-pricing-faq .container { max-width: 900px; }
+  .record-help-pricing-faq h2 { margin-bottom: 24px; }
+  .record-help-pricing-faq details { border-bottom: 1px solid var(--line); }
+  .record-help-pricing-faq details:first-of-type { border-top: 1px solid var(--line); }
+  .record-help-pricing-faq summary { padding: 20px 4px; color: var(--ink); font-weight: 600; line-height: 1.5; cursor: pointer; }
+  .record-help-pricing-faq details p { margin: 0; padding: 0 4px 24px; color: var(--ink-soft); line-height: 1.7; }
   .form-status { margin-bottom: 20px; padding: 16px 18px; border-left: 4px solid var(--accent); background: var(--accent-pale); }
   .form-status--error { border-color: var(--danger); background: #f8e4e1; }
   .form-status p { margin: 5px 0 0; font-size: 1rem; }

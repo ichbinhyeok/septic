@@ -25,8 +25,8 @@ class RecordBriefExampleRegressionTest {
     void completedRecordBriefShowsEvidenceFactsLimitsAndPilotPath() throws Exception {
         mockMvc.perform(get("/septic-record-brief-example/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Your inspector should inspect.")))
-                .andExpect(content().string(containsString("We chase the records.")))
+                .andExpect(content().string(containsString("Official records.")))
+                .andExpect(content().string(containsString("Answers you can understand.")))
                 .andExpect(content().string(containsString("INPUT FROM INSPECTOR")))
                 .andExpect(content().string(containsString("SEPTICPATH DESK WORK")))
                 .andExpect(content().string(containsString("DELIVERED BEFORE SITE VISIT")))

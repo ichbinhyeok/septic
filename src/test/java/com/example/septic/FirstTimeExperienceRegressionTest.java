@@ -12,15 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FirstTimeExperienceRegressionTest {
 
     @Test
-    void homepageDisclosesFreeBetaBesidePrimaryAction() throws IOException {
+    void homepageDisclosesOptionalUnlockBesidePrimaryAction() throws IOException {
         String template = Files.readString(Path.of("src/main/jte/pages/home.jte"));
 
         int primaryAction = template.indexOf("Ask SepticPath to investigate");
-        int freeBeta = template.indexOf("Free beta · No payment details");
+        int offer = template.indexOf("Free research and agency requests · Optional $29 result unlock · Agency fees extra with approval");
 
         assertTrue(primaryAction >= 0);
-        assertTrue(freeBeta > primaryAction);
-        assertTrue(freeBeta - primaryAction < 500);
+        assertTrue(offer > primaryAction);
+        assertTrue(offer - primaryAction < 500);
+        assertFalse(template.contains("Free beta · No payment details"));
+        int example = template.indexOf("In one completed request");
+        assertTrue(example >= 0 && example < offer);
     }
 
     @Test

@@ -21,8 +21,10 @@
         <div class="container home-service-hero__grid">
             <div class="home-service-hero__copy">
                 <span class="eyebrow">Human septic record research</span>
-                <h1 id="home-service-title">Send the address.<br>We’ll investigate the septic record.</h1>
-                <p class="lede">We search public sources, verify the property, contact the responsible office when needed, and turn the response into a clear record summary.</p>
+                <h1 id="home-service-title">Your septic questions.<br>Answers from official records.</h1>
+                <p class="lede">Send the address and your question. We find the records, check the property match, and explain what is confirmed—and what still needs checking.</p>
+                <p><strong>How many bedrooms does the record show?</strong><br>In one completed request, the permit documented a 3-bedroom design. It did not prove the system’s current condition.</p>
+                <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_service_proof" data-track-target-type="case_study">See actual records and our explanation <span aria-hidden="true">→</span></a>
                 <div class="home-service-hero__actions">
                     <a class="button button--primary"
                        href="/offer-prep-septic-file-check/#record-help"
@@ -32,39 +34,33 @@
                        data-track-target-type="lead_form">Ask SepticPath to investigate</a>
                     <a class="text-button" href="#self-serve-records" data-track-click="nav" data-track-source-context="home_service_hero" data-track-target-type="internal_tool">Search public records myself</a>
                 </div>
-                <small class="home-service-hero__beta-note">Free beta · No payment details · Human reply in 1–2 business days</small>
-                <ul class="home-service-hero__signals" aria-label="What SepticPath handles">
-                    <li><strong>Human-reviewed</strong><span>Not an automated link list</span></li>
-                    <li><strong>Agency follow-up</strong><span>When the public route stops</span></li>
-                    <li><strong>Clear findings</strong><span>Original records plus plain English</span></li>
-                </ul>
+                <small class="home-service-hero__beta-note">Free research and agency requests · Optional $29 result unlock · Agency fees extra with approval</small>
                 <small class="home-service-hero__boundary">Record availability and response times vary. SepticPath is an independent research service, not an inspection or permit authority.</small>
             </div>
 
-            <aside class="service-dossier" aria-label="Example SepticPath record summary">
+            <aside class="service-dossier" aria-label="Answers from a completed Tennessee record request">
                 <div class="service-dossier__topline">
-                    <span>REPRESENTATIVE RECORD SUMMARY</span>
-                    <span>DETAILS ADAPTED</span>
+                    <span>COMPLETED TENNESSEE REQUEST</span>
+                    <span>IDENTIFIERS REMOVED</span>
                 </div>
                 <div class="service-dossier__status">
                     <span aria-hidden="true">✓</span>
-                    <div><small>Research outcome</small><strong>Agency record located</strong></div>
+                    <div><small>From record to answer</small><strong>3-bedroom design documented</strong></div>
                 </div>
                 <dl class="service-dossier__facts">
-                    <div><dt>Property</dt><dd>Address and parcel matched</dd></div>
-                    <div><dt>Source</dt><dd>Responsible public agency</dd></div>
-                    <div><dt>Files</dt><dd>Permit + system drawing</dd></div>
+                    <div><dt>Question</dt><dd>What size system does the file describe?</dd></div>
+                    <div><dt>Evidence</dt><dd>Historical agency permit + drawing</dd></div>
+                    <div><dt>Answer</dt><dd>3 bedrooms · 900-gallon tank · 225 ft of field lines</dd></div>
                 </dl>
-                <div class="service-dossier__sketch" aria-hidden="true">
-                    <span class="service-dossier__house">HOUSE</span>
-                    <span class="service-dossier__line"></span>
-                    <span class="service-dossier__tank">TANK</span>
-                    <span class="service-dossier__field">DISPOSAL AREA</span>
-                    <span class="service-dossier__annotation">Location clues highlighted</span>
-                </div>
+                <figure class="case-plan__scan">
+                    <img src="/images/case-study/tn-historical-sketch-anonymized.png"
+                         alt="Actual historical agency drawing showing the house, tank and three field lines"
+                         width="1110" height="560">
+                    <figcaption>Actual agency scan · identifying details cropped out</figcaption>
+                </figure>
                 <div class="service-dossier__finding">
-                    <small>What we explain</small>
-                    <p>The original file, the facts it supports, what remains unknown, and the next useful step.</p>
+                    <small>What this does not answer</small>
+                    <p>The historical design does not establish current condition or safety. A site inspection is still needed to assess how the system works today.</p>
                 </div>
                 <div class="service-dossier__footer"><span>Original source preserved</span><span>Plain-English summary included</span></div>
             </aside>
@@ -195,8 +191,8 @@
                 <li>
                     <span>3</span>
                     <div>
-                        <h3>Return a useful answer</h3>
-                        <p>You receive the original response, the key facts in plain English, and a clear explanation of what to do next.</p>
+                        <h3>Preview the answer, then choose</h3>
+                        <p>See what we found and what it answers for free. Choose the original records and detailed explanation for US $29 when the result is useful to you.</p>
                     </div>
                 </li>
             </ol>
@@ -206,9 +202,9 @@
     <section class="section home-deliverable" aria-labelledby="home-deliverable-title">
         <div class="container home-deliverable__grid">
             <div>
-                <span class="eyebrow">The deliverable</span>
-                <h2 id="home-deliverable-title">Not another search result. A property-specific record brief.</h2>
-                <p class="lede">We preserve the source material and separate confirmed facts from assumptions, so you know exactly what the record does—and does not—say.</p>
+                <span class="eyebrow">What the $29 package contains</span>
+                <h2 id="home-deliverable-title">The original record. The answer to your question. What to do next.</h2>
+                <p class="lede">Keep the official evidence and understand how it relates to your purchase, sale, repair, addition or records question. We show what is documented, what conflicts, and what still needs an agency answer or site visit.</p>
             </div>
             <ul class="home-deliverable__list">
                 <li><span>01</span><strong>Verified property and jurisdiction match</strong></li>

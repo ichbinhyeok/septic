@@ -101,6 +101,8 @@ public class ClosingRiskNotificationService {
         return """
                 New Septic Record Help request
 
+                Offer: free submission, research and agency requests; optional US $29 result unlock after a useful verified preview. Agency fees at cost require advance approval. No automatic charge. Check the original intake terms before offering payment to a returning free-beta customer.
+
                 Request ID: %s
                 Source context: %s
                 Search entry page: %s
