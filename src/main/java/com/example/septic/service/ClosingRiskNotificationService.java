@@ -59,6 +59,44 @@ public class ClosingRiskNotificationService {
         }
     }
 
+    public boolean notifyCustomerReceipt(String requestId, ClosingRiskCheckForm form) {
+        if (!properties.isConfigured()) {
+            LOGGER.warn("Customer receipt for record-help request {} was not sent because Gmail is not configured", requestId);
+            return false;
+        }
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(properties.sender());
+        message.setTo(safeLine(form.getEmail()));
+        message.setReplyTo(properties.recipient());
+        message.setSubject("SepticPath received your record request — " + requestId);
+        message.setText("""
+                We received your SepticPath record-help request.
+
+                Reference: %s
+                Property: %s
+                Question: %s
+
+                We aim to send an initial update within 1–2 business days. Agency response times can take longer.
+
+                Research and agency requests are free. If we find useful, property-matched evidence, we will email a free preview of the source, document scope, property match, questions it can answer, and material limits. Your actual property-specific answers and located source records are included in the optional US $29 package. Your own uploaded files remain yours. There is no automatic charge. Any agency fee requires your approval first.
+
+                Keep this email and reference number if you need to follow up. Do not email payment-card details or access codes.
+
+                SepticPath is an independent records-research service, not an inspection, permitting, engineering, or legal authority.
+                """.formatted(
+                requestId,
+                safeLine(form.getPropertyAddress()),
+                safeMultiline(form.getConcern())
+        ));
+        try {
+            mailSender.send(message);
+            return true;
+        } catch (MailException exception) {
+            LOGGER.error("Failed to send customer receipt for record-help request {}", requestId, exception);
+            return false;
+        }
+    }
+
     private boolean notifyOperatorWithDocuments(
             String requestId,
             ClosingRiskCheckForm form,
@@ -101,7 +139,7 @@ public class ClosingRiskNotificationService {
         return """
                 New Septic Record Help request
 
-                Offer: free submission, research and agency requests; optional US $29 result unlock after a useful verified preview. Agency fees at cost require advance approval. No automatic charge. Check the original intake terms before offering payment to a returning free-beta customer.
+                Offer: free submission, research and agency requests; evidence preview shows source, scope, property match, answerable questions and limits. Actual answers and located source files unlock for US $29. Agency fees at cost require advance approval. No automatic charge. Preserve the original intake terms for all returning customers, including free-beta service and earlier free-finding promises.
 
                 Request ID: %s
                 Source context: %s
@@ -148,6 +186,13 @@ public class ClosingRiskNotificationService {
         );
     }
 
+    private String safeMultiline(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value.replace('\r', ' ').replace('\n', ' ').strip();
+    }
+
     private String transactionSuffix(ClosingRiskCheckForm form) {
         if (form.getTransactionRole() == null || form.getTransactionRole().isBlank()) {
             return "";
@@ -162,7 +207,4 @@ public class ClosingRiskNotificationService {
         return value == null ? "" : value.replace('\r', ' ').replace('\n', ' ').trim();
     }
 
-    private String safeMultiline(String value) {
-        return value == null ? "" : value.trim();
-    }
 }

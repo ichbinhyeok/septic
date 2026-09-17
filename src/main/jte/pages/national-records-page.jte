@@ -21,6 +21,12 @@
                     <p>${contentQuickAnswer}</p>
                     @if ("septic-as-built-records".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#read-a-septic-drawing">See a real returned drawing and how to read it ↓</a>
+                    @elseif ("septic-tank-location-records".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump" href="#location-projects">Read the guide for pools, additions, or pumping ↓</a>
+                    @elseif ("how-to-find-septic-records-online".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump" href="#no-record-online">Understand what a missing search result means ↓</a>
+                    @elseif ("septic-permit-search-by-address".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump" href="#old-address-records">Check old addresses and property matches ↓</a>
                     @endif
                     <div class="national-records-hero__boundary" role="note">
                         <strong>What you receive here</strong>
@@ -50,13 +56,15 @@
             </div>
         </section>
 
-        <div class="container record-evidence-band">
-            @template.tags.recordEvidence(sourceContext = "national_records_evidence")
-        </div>
-
         @if ("septic-as-built-records".equals(contentPage.slug()))
             @template.tags.septicDrawingGuide()
         @endif
+
+        @template.tags.recordLearningGuide(slug = contentPage.slug())
+
+        <div class="container record-evidence-band">
+            @template.tags.recordEvidence(sourceContext = "national_records_evidence")
+        </div>
 
         <section class="national-records-intent">
             <div class="container">

@@ -24,6 +24,10 @@ class FirstTimeExperienceRegressionTest {
         assertFalse(template.contains("Free beta · No payment details"));
         int example = template.indexOf("In one completed request");
         assertTrue(example >= 0 && example < offer);
+        int selfServe = template.indexOf("class=\"home-service-hero__self-serve\"");
+        assertTrue(selfServe > offer);
+        assertTrue(template.contains("Confirmed in the historical record"));
+        assertTrue(template.contains("Current condition is not confirmed."));
     }
 
     @Test

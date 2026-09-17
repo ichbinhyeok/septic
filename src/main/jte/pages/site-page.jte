@@ -28,7 +28,7 @@
     <section class="section section--tight">
         <div class="container detail-grid">
             @for (var section : sections)
-                <article class="detail-card">
+                <article class="detail-card" id="${"Research findings and public examples".equals(section.title()) ? "research-publication" : null}">
                     <h2>${section.title()}</h2>
                     <p>${section.body()}</p>
                     @if (section.bullets() != null && !section.bullets().isEmpty())

@@ -21,9 +21,13 @@
         <div class="container home-service-hero__grid">
             <div class="home-service-hero__copy">
                 <span class="eyebrow">Human septic record research</span>
-                <h1 id="home-service-title">Your septic questions.<br>Answers from official records.</h1>
-                <p class="lede">Send the address and your question. We find the records, check the property match, and explain what is confirmed—and what still needs checking.</p>
-                <p><strong>How many bedrooms does the record show?</strong><br>In one completed request, the permit documented a 3-bedroom design. It did not prove the system’s current condition.</p>
+                <h1 id="home-service-title">Septic records.<br>Clear answers.</h1>
+                <p class="lede">Send your address and question. We find the official records, check the property match, and explain the answers.</p>
+                <div class="home-service-hero__example-answer">
+                    <span>How many bedrooms does the record show?</span>
+                    <strong>3-bedroom design documented.</strong>
+                    <small>In one completed request · current condition not established</small>
+                </div>
                 <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_service_proof" data-track-target-type="case_study">See actual records and our explanation <span aria-hidden="true">→</span></a>
                 <div class="home-service-hero__actions">
                     <a class="button button--primary"
@@ -32,25 +36,24 @@
                        data-track-click="nav"
                        data-track-source-context="home_service_hero"
                        data-track-target-type="lead_form">Ask SepticPath to investigate</a>
-                    <a class="text-button" href="#self-serve-records" data-track-click="nav" data-track-source-context="home_service_hero" data-track-target-type="internal_tool">Search public records myself</a>
                 </div>
                 <small class="home-service-hero__beta-note">Free research and agency requests · Optional $29 result unlock · Agency fees extra with approval</small>
+                <a class="home-service-hero__self-serve" href="#self-serve-records" data-track-click="nav" data-track-source-context="home_service_hero" data-track-target-type="internal_tool">Prefer to search public records yourself? <span aria-hidden="true">→</span></a>
                 <small class="home-service-hero__boundary">Record availability and response times vary. SepticPath is an independent research service, not an inspection or permit authority.</small>
             </div>
 
-            <aside class="service-dossier" aria-label="Answers from a completed Tennessee record request">
+            <aside class="service-dossier service-dossier--answer" aria-label="Answers from a completed Tennessee record request">
                 <div class="service-dossier__topline">
                     <span>COMPLETED TENNESSEE REQUEST</span>
                     <span>IDENTIFIERS REMOVED</span>
                 </div>
                 <div class="service-dossier__status">
                     <span aria-hidden="true">✓</span>
-                    <div><small>From record to answer</small><strong>3-bedroom design documented</strong></div>
+                    <div><small>Confirmed in the historical record</small><strong>3-bedroom design</strong></div>
                 </div>
                 <dl class="service-dossier__facts">
-                    <div><dt>Question</dt><dd>What size system does the file describe?</dd></div>
                     <div><dt>Evidence</dt><dd>Historical agency permit + drawing</dd></div>
-                    <div><dt>Answer</dt><dd>3 bedrooms · 900-gallon tank · 225 ft of field lines</dd></div>
+                    <div><dt>System</dt><dd>900-gallon tank · 225 ft of field lines</dd></div>
                 </dl>
                 <figure class="case-plan__scan">
                     <img src="/images/case-study/tn-historical-sketch-anonymized.png"
@@ -60,7 +63,8 @@
                 </figure>
                 <div class="service-dossier__finding">
                     <small>What this does not answer</small>
-                    <p>The historical design does not establish current condition or safety. A site inspection is still needed to assess how the system works today.</p>
+                    <h2>Current condition is not confirmed.</h2>
+                    <p>A site inspection is still needed to assess how the system works today. Historical records do not establish present safety.</p>
                 </div>
                 <div class="service-dossier__footer"><span>Original source preserved</span><span>Plain-English summary included</span></div>
             </aside>
@@ -167,6 +171,38 @@
         </div>
     </section>
 
+    <section class="record-learning section" id="read-record-stories" aria-labelledby="home-reading-title">
+        <div class="container record-learning__body">
+            <span class="eyebrow">Real investigations. Practical reading.</span>
+            <h2 id="home-reading-title">Real questions. Records we found. Clear answers.</h2>
+            <p class="record-learning__lede">See how we found original septic records and turned them into useful explanations for property owners. Choose a case like yours.</p>
+            <div class="record-learning__pair">
+                <article>
+                    <span class="eyebrow">Actual case · finding the layout</span>
+                    <h3>A property listing could not show the tank and field.</h3>
+                    <p>A historical agency file supplied a three-bedroom design, a 900-gallon tank and three field lines. See how we found it—and why the drawing was not a current survey.</p>
+                    <a href="/septic-as-built-records/#layout-case" data-track-click="nav" data-track-source-context="home_reading_layout" data-track-target-type="case_study">Read the layout investigation →</a>
+                </article>
+                <article>
+                    <span class="eyebrow">Actual investigation · recovering a file</span>
+                    <h3>From a missing septic file to documented design facts.</h3>
+                    <p>An empty public search and an outdated contact were not the end. Read the County's returned design facts and the questions its file could not settle.</p>
+                    <a href="/septic-record-brief-example/#sale-case" data-track-click="nav" data-track-source-context="home_reading_sale" data-track-target-type="case_study">Read the county-file investigation →</a>
+                </article>
+            </div>
+            <a href="/septic-record-brief-example/#real-cases" data-track-click="nav" data-track-source-context="home_case_collection" data-track-target-type="case_study">Explore all five real record-help cases →</a>
+            <nav class="record-learning__contents" aria-label="Practical septic record guides">
+                <a href="/how-to-find-septic-records-online/#no-record-online">No records found online?</a>
+                <a href="/septic-tank-location-records/#location-projects">Planning a pool, addition or pumping?</a>
+                <a href="/septic-permit-search-by-address/#old-address-records">An old address does not match?</a>
+                <a href="/septic-permit-process/#permit-status-reading">Inspection passed—but is the permit final?</a>
+                <a href="/septic-permit-process/#design-final-case">Actual case: planned and installed lengths differed</a>
+                <a href="/septic-tank-location-records/#addition-file-case">Actual case: checking records before an addition</a>
+                <a href="/septic-permit-search-by-address/#old-address-case">Actual case: a repair file without a street number</a>
+            </nav>
+        </div>
+    </section>
+
     <section class="section section--tight home-workflow" aria-labelledby="home-workflow-title">
         <div class="container">
             <div class="section-heading home-section-heading">
@@ -192,7 +228,7 @@
                     <span>3</span>
                     <div>
                         <h3>Preview the answer, then choose</h3>
-                        <p>See what we found and what it answers for free. Choose the original records and detailed explanation for US $29 when the result is useful to you.</p>
+                        <p>Preview the source, property match, questions it can answer and limits for free. Choose the original records and your property-specific answers for US $29.</p>
                     </div>
                 </li>
             </ol>

@@ -99,6 +99,26 @@ class ClosingRiskNotificationServiceTest {
     }
 
     @Test
+    void sendsCustomerAPlainTextReceiptWithReferenceAndNoPaymentRequest() {
+        JavaMailSender mailSender = mock(JavaMailSender.class);
+        ClosingRiskNotificationService service = new ClosingRiskNotificationService(
+                mailSender,
+                new ClosingRiskNotificationProperties("shinhyeok22@gmail.com", "shinhyeok22@gmail.com")
+        );
+
+        assertTrue(service.notifyCustomerReceipt("request-receipt", completedForm()));
+
+        ArgumentCaptor<SimpleMailMessage> captor = ArgumentCaptor.forClass(SimpleMailMessage.class);
+        verify(mailSender).send(captor.capture());
+        SimpleMailMessage receipt = captor.getValue();
+        assertEquals("taylor@example.com", receipt.getTo()[0]);
+        assertTrue(receipt.getSubject().contains("request-receipt"));
+        assertTrue(receipt.getText().contains("Reference: request-receipt"));
+        assertTrue(receipt.getText().contains("There is no automatic charge"));
+        assertTrue(receipt.getText().contains("Do not email payment-card details"));
+    }
+
+    @Test
     void attachesCustomerSourceFilesForHumanReview() throws Exception {
         JavaMailSender mailSender = mock(JavaMailSender.class);
         MimeMessage mimeMessage = new MimeMessage(Session.getInstance(new Properties()));

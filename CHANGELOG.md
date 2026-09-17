@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.0.18.0 - 2026-09-17
+
+### Added
+
+- Added a free evidence preview with a $29 unlock only when the research can produce a useful, supportable result; agency fees remain separate when they apply.
+- Added customer receipt emails, durable notification outcomes, and recovery-safe intake storage so a saved request is not lost when analytics or email delivery fails.
+- Added privacy-reviewed case collections, finding visuals, and record-reading guides that turn completed research into public, indexable proof without publishing customer files.
+- Added route-level intake attribution and a mandatory hash-verified, page-reviewed attachment delivery gate for customer-case files.
+
+### Changed
+
+- Simplified the assisted-research intake so an address and question are enough to start, while preserving optional technical context and uploaded-file recovery.
+- Expanded homepage, offer, example, and records-guide copy around the core value: finding the right custodian, requesting evidence, interpreting what it supports, and clearly stating limits.
+- Preserved the terms promised to earlier free-beta and prior-offer requests while applying the new evidence-preview terms only to new submissions.
+
+### Fixed
+
+- Prevented analytics failures after durable request storage from turning a successful intake into a customer-facing submission error.
+- Strengthened publication and delivery boundaries so generated visuals are new explanatory assets and original records remain private, masked evidence.
+
 ## 0.0.17.0 - 2026-09-14
 
 ### Added

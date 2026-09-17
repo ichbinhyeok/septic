@@ -785,6 +785,8 @@
         </div>
     </section>
 
+    @template.tags.recordLearningGuide(slug = contentPage.slug())
+
     @if ("tdec-septic-records".equals(contentPage.slug()))
         <section class="section section--tight" id="tdec-search-workspace" aria-labelledby="tdec-search-workspace-heading">
             <div class="container">

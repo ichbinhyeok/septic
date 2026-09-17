@@ -56,6 +56,12 @@
     <script src="${AssetPaths.versioned("/state-records-ui.js")}" defer></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            if (document.querySelector("[data-reading-guide]")) {
+                const readingScript = document.createElement("script");
+                readingScript.src = "${AssetPaths.versioned("/record-reading.js")}";
+                readingScript.defer = true;
+                document.head.appendChild(readingScript);
+            }
             const featureSelector = [
                 "#result-top",
                 "[data-choice-group]",
@@ -123,6 +129,7 @@
                        data-track-click="nav"
                        data-track-source-context="global_header"
                        data-track-target-type="lead_form">Ask SepticPath</a>
+                    <a href="/septic-record-brief-example/#real-cases" data-track-click="nav" data-track-source-context="global_reading" data-track-target-type="internal_page">Real cases</a>
                     <a href="/states/">States</a>
                     <a href="/septic-system-cost-calculator/">Cost planning</a>
                 </nav>
@@ -188,6 +195,8 @@
                 <nav class="footer-block" aria-label="Trust pages">
                     <h2 class="footer-heading">Trust</h2>
                     <ul class="footer-list">
+                        <li><a href="/septic-record-brief-example/#real-cases">Real record-help cases</a></li>
+                        <li><a href="/#read-record-stories">Practical record guides</a></li>
                         <li><a href="/about/">About</a></li>
                         <li><a href="/editorial-standards/">Editorial standards</a></li>
                         <li><a href="/methodology/">Methodology</a></li>

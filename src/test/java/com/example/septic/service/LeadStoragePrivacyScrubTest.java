@@ -86,6 +86,12 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains("\"recordType\" : \"septic\""));
         assertTrue(storedRequest.contains("\"researchGoal\" : \"design_capacity\""));
         assertTrue(storedRequest.contains("septic_record_help_beta"));
+        assertTrue(storedRequest.contains("\"operatorStatus\" : \"pending\""));
+
+        service.recordClosingRiskNotificationOutcome(requestId, false, true);
+        storedRequest = Files.readString(requestFile);
+        assertTrue(storedRequest.contains("\"operatorStatus\" : \"failed\""));
+        assertTrue(storedRequest.contains("\"customerReceiptStatus\" : \"sent\""));
 
         Path eventFile;
         try (var files = Files.walk(storageRoot.resolve("events"))) {
@@ -101,5 +107,32 @@ class LeadStoragePrivacyScrubTest {
         assertFalse(analyticsEvent.contains("taylor@example.com"));
         assertFalse(analyticsEvent.contains("example.com/listing"));
         assertFalse(analyticsEvent.contains("parcel=secret"));
+    }
+
+    @Test
+    void analyticsWriteFailureDoesNotTurnAStoredRequestIntoAFailedSubmission() throws Exception {
+        LeadStorageService service = new LeadStorageService(new AppStorageProperties(storageRoot.toString()));
+        service.initializeDirectories();
+        Path eventsDirectory = storageRoot.resolve("events");
+        Files.delete(eventsDirectory);
+        Files.writeString(eventsDirectory, "blocks analytics directory creation");
+
+        ClosingRiskCheckForm form = new ClosingRiskCheckForm();
+        form.setEmail("customer@example.com");
+        form.setPropertyAddress("123 Main Street, Knoxville, TN 37920");
+        form.setStateCode("TN");
+        form.setConcern("Find the official septic permit for this address.");
+        form.setConsentAccepted(true);
+
+        String requestId = service.saveClosingRiskRequest(
+                form,
+                "/offer-prep-septic-file-check/",
+                new MockHttpServletRequest()
+        );
+
+        assertFalse(requestId.isBlank());
+        try (var files = Files.walk(storageRoot.resolve("closing-risk-requests"))) {
+            assertTrue(files.anyMatch(path -> path.toString().endsWith(".json")));
+        }
     }
 }

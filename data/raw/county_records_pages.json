@@ -4237,41 +4237,44 @@
       "countyName": "King County",
       "countySlug": "king-county",
       "title": "King County Washington Septic Records Checklist and Permit Lookup",
-      "metaDescription": "King County septic records checklist and permit lookup with transfer workflow, remodel review, and septic record-drawing checks before you trust a buyer or addition story.",
-      "introCopy": "King County is a strong Washington county wedge because the county makes the sale and remodel story concrete. Public Health ties property transfers, buyer due diligence, and remodel or expansion review directly to onsite-sewage records and approved-use questions.",
-      "uniqueAngle": "King County stands out because the same county stack covers both sale-time septic review and bedroom or expansion friction. That makes it a real county workflow page instead of a generic records page.",
+      "metaDescription": "Find King County septic designs, inspection records, and as-built drawings. Check property identity and approval markings, and request a missing record from Public Health.",
+      "introCopy": "Start with King County's septic records search for site designs, historical inspections, and as-built record drawings. Match the address and parcel before reading the file. A design, an inspection, and an approved record drawing answer different questions; identify which document you have before relying on it for a sale or remodel.",
+      "uniqueAngle": "King County separates historical septic documents from operation and maintenance records. Compare the dated documents and their approval markings, and ask Public Health to clarify any missing final record rather than treating a search result as a complete approval file.",
       "targetReader": "Best for King County buyers, owners, and remodel planners who need to know whether the septic record drawing, approved use, or reserve-area story already changes the next move.",
       "officeLabel": "King County property transfer septic guidance",
       "officeUrl": "https://kingcounty.gov/en/dept/dph/health-safety/environmental-health/on-site-sewage-systems/sales-transfers",
-      "recordsLabel": "Open King County buyer and seller septic guide",
-      "recordsUrl": "https://cdn.kingcounty.gov/-/media/king-county/depts/dph/documents/health-safety/environmental-health/training/buying-selling-homes-on-septic.pdf?hash=08FDCD5CD112ED8B3E7AD27AF91338CB&rev=259cc02ccb464115b3b680928def96e7",
+      "recordsLabel": "Search King County septic drawings and historical records",
+      "recordsUrl": "https://kingcounty.gov/en/dept/dph/health-safety/environmental-health/on-site-sewage-systems/oss-system-records",
       "contactLine": "King County Public Health | county transfer and remodel pages both point users back to septic record drawings, approved use, and local review before closing or permit work.",
       "decisionSteps": [
-        "Start with King County's transfer guidance if the property is being sold because the county treats the septic file and approved system story as part of the transaction itself.",
-        "If the plan involves a remodel, addition, or bedroom increase, move into the county remodel review path because King County ties building changes directly to septic capacity and record quality.",
-        "Pull the record drawing and approved-use history before trusting the low-risk story because a clean listing does not mean the county file supports the current use."
+        "Search the county septic records tool by address or parcel and save the site design, historical inspection, and record drawing as separate documents.",
+        "Read the document labels, dates, and approval markings. Use the Public Health Permit Center for the associated permit when available, and ask Public Health whether the final record is complete if the documents leave that unclear.",
+        "For a missing drawing, use the county's as-built help route with the parcel and street address. Check OnlineRME separately for maintenance and time-of-sale inspection attachments."
       ],
       "recordsToRequest": [
         "Any King County record drawing or approved septic design tied to the parcel.",
-        "Any transfer-time septic artifact or buyer due-diligence note tied to the property.",
-        "Any county remodel or expansion review artifact showing whether the existing septic approval still fits the current use."
+        "The associated installation permit, inspection results, and approved final record drawing when held.",
+        "Operation and maintenance records or time-of-sale inspection attachments relevant to the question."
       ],
       "lowEndBreakers": [
-        "A missing record drawing can turn a routine buyer story into a county file problem.",
-        "An addition or bedroom change can widen into a septic-capacity review even when the seller says the system is fine.",
-        "If approved use and current use do not match, the cheapest closing or remodel story is too simple."
+        "A site design, an inspection result, and an approved record drawing are different evidence; identify what the file actually contains.",
+        "A missing online drawing can reflect an old address, unscanned records, or incomplete submissions; ask Public Health before concluding the file does not exist.",
+        "Historical records do not establish current condition or authorize a proposed addition."
       ],
       "faqBlocks": [
         {
-          "question": "Why is King County strong for buyer and remodel intent?",
-          "answer": "Because King County combines sale-time septic workflow, buyer due diligence, and remodel review around the same county septic record and approved-use file."
+          "question": "Is a septic site design the same as an approved record drawing?",
+          "answer": "No. King County identifies an approved record drawing by its as-built cover letter and the drawing's designer or engineer and Public Health approval markings. Keep design approval, inspection results, and final record drawings separate when asking what is complete."
         },
         {
           "question": "What should a King County owner or buyer check first?",
-          "answer": "Start by checking the county septic record drawing and approved use, then see whether transfer or remodel review widens the next move."
+          "answer": "Match the parcel and address, then identify the document type and approval markings. If the online file is missing, the county lists changed addresses, unscanned microfiche, and missing final construction documents among possible reasons; an empty search alone does not establish that no record exists."
         }
       ],
       "internalLinkTargets": [
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/septic-permit-process/#permit-status-reading",
+        "/septic-record-brief-example/",
         "/septic-records-checklist/washington/",
         "/septic-permit-process/washington/",
         "/buying-a-house-with-a-septic-system/washington/",
@@ -4280,21 +4283,23 @@
       "officialSourceIds": [
         "wa_king_01",
         "wa_king_02",
-        "wa_king_03"
+        "wa_king_03",
+        "wa_king_records_20260917",
+        "wa_king_record_drawing_20260917"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "district_health",
         "fileOwnerModel": "King County Public Health owns the practical onsite-sewage file, and the meaningful story starts with the septic record drawing and approved-use trail rather than a seller summary.",
         "firstArtifactToPull": "The septic record drawing first, then any approved-use note, transfer-era artifact, and remodel or expansion review tied to the parcel.",
         "permitCloseoutCategory": "use_approval",
-        "permitCloseoutSignal": "King County gets real when the record drawing, approved use, and county review trail still support the same system story, not when the property only has a vague septic mention.",
+        "permitCloseoutSignal": "Identify the approved record drawing and associated permit or inspection evidence. If the final record is missing or the statuses are unclear, obtain Public Health clarification.",
         "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "For buyer diligence, the practical artifact is the county record drawing plus the transfer-side septic review that proves the current use still matches the filed system.",
+        "transferArtifact": "The approved record drawing and applicable time-of-sale inspection report; a historical file alone does not certify current condition.",
         "specialProgramCategory": "local_exception",
         "specialProgramSignal": "Bedroom-count changes, additions, and reserve-area pressure are real local exception branches that can widen the county review fast.",
         "malfunctionCategory": "repair_branch",
-        "malfunctionSignal": "If approved use and current use do not match, or the record drawing is thin, the parcel is already closer to a repair or redesign branch than a routine buyer lane.",
-        "quoteGate": "Do not move into pricing until the record drawing, approved-use history, and any transfer or remodel review all support the same path, because King County can hide the real capacity problem behind a clean listing."
+        "malfunctionSignal": "Missing documents or conflicting use descriptions leave a question unresolved; they are not by themselves evidence of system failure.",
+        "quoteGate": "Resolve the property match, document type, and approval questions before using the file to plan work. Public Health and the appropriate on-site professional determine what further review is required."
       },
       "publishStatus": "published"
     },
@@ -9096,8 +9101,8 @@
       "countyName": "St. Croix County",
       "countySlug": "st-croix-county",
       "title": "St. Croix County Wisconsin Septic Records Checklist and Permit Lookup",
-      "metaDescription": "St. Croix County septic records checklist and permit lookup with Ascent permit and maintenance search, sanitary permit workflow, and existing-tank certification before you trust a repair or buyer story.",
-      "introCopy": "St. Croix County is strong enough to become a page immediately because the county publishes one of the clearest Wisconsin county workflows: a maintenance-notice explanation, exact steps for pulling sanitary maintenance and permit documents in Ascent, and the permit and inspection path for new work, repairs, and reconnections.",
+      "metaDescription": "Find St. Croix County sanitary permits, maintenance history, and scanned property files. Compare the original plan, revisions, and inspection before relying on the record.",
+      "introCopy": "Use St. Croix County's Ascent search to find the sanitary permit and maintenance history by parcel or site address. Open the permit documents as well as the summary, and use the county's scanned Property Files for the recorded packet. Compare the permit, plan revisions, and inspection before treating a single number as the full system description.",
       "uniqueAngle": "St. Croix stands out because owners do not have to guess where the file lives. The county tells them exactly how to search maintenance history and permit documents online, then pairs that record trail with repair, reconnection, and existing-tank certification forms.",
       "targetReader": "Best for St. Croix County buyers, owners, sellers, and remodelers who need to know whether the file problem is missing maintenance history, missing sanitary permits, or an existing-system certification issue.",
       "officeLabel": "St. Croix County sanitary program",
@@ -9106,7 +9111,7 @@
       "recordsUrl": "https://ascent.sccwi.gov/",
       "contactLine": "St. Croix County Community Development | 715-386-4680",
       "decisionSteps": [
-        "Start on the county sanitary program page and pull the parcel in Ascent so you can see maintenance history, the sanitary permit number, and any attached permit documents before trusting anyone's memory.",
+        "Search Ascent by Parcel ID or Site Address, open the SAN permit, and review maintenance history and permit documents separately. Use the county's linked Property Files for scanned sanitary and soil records.",
         "If the county has not received a sanitary inspection report within the last three years, line up licensed pumping or inspection and make sure the maintenance report actually gets filed with the county.",
         "If the real issue is repair, reconnection, rejuvenation, or reuse of an existing tank, move into the county permit and certification forms before you treat the job as a simple low-end fix."
       ],
@@ -9126,11 +9131,13 @@
           "answer": "Start with the Ascent maintenance history and the initial sanitary permit documents tied to the parcel, then check whether an existing-tank certification or repair permit is also in play."
         },
         {
-          "question": "Why is St. Croix County strong enough for a county page now?",
-          "answer": "Because the county publishes a complete homeowner-facing workflow: online maintenance and permit search, three-year maintenance compliance, permit routing, and existing-tank certification."
+          "question": "Where can I find the drawing behind a St. Croix sanitary permit summary?",
+          "answer": "Open the SAN permit in Ascent and check its documents. The county also publishes scanned Property Files for sanitary permits and soil reports. Compare the parcel, permit number, document dates, and revisions before relying on the drawing; maintenance history is a separate part of the file."
         }
       ],
       "internalLinkTargets": [
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/septic-record-brief-example/",
         "/septic-records-checklist/wisconsin/",
         "/septic-permit-process/wisconsin/",
         "/buying-a-house-with-a-septic-system/wisconsin/",
@@ -9169,7 +9176,7 @@
         "findings": [
           "Four-bedroom, 600-gallon-per-day design",
           "One tank and three dispersal cells using 45 chambers",
-          "The application and inspection records differed: 1,200 vs. 1,255 gallons",
+        "The inspection and application recorded 1,200 gallons; the revised plan showed 1,255",
           "The drawing showed relative direction, but not field-ready coordinates"
         ],
         "limitation": "The archive documents the approved and inspected system at that time. It does not confirm later repairs, present condition, or whether a planned addition clears both the active and replacement areas.",
@@ -16714,7 +16721,8 @@
         "/septic-records-by-county/",
         "/septic-permit-search-by-address/",
         "/septic-permit-records-request/",
-        "/septic-as-built-records/"
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/septic-record-brief-example/"
       ],
       "officialSourceIds": [
         "tn_01",
@@ -18350,9 +18358,9 @@
       "countyName": "Morgan County",
       "countySlug": "morgan-county",
       "title": "Morgan County Alabama Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Morgan County septic records checklist and permit lookup with official Alabama county source routing, permit file requests, approval artifacts, and low-end quote breakers.",
-      "introCopy": "Morgan County septic permit lookup should start with the official county path, not a generic Alabama average. Morgan County is useful because ADPH exposes environmental services, onsite sewage applications and permits, septic tank applications, and a direct environmental phone path.",
-      "uniqueAngle": "Morgan County is useful because ADPH exposes environmental services, onsite sewage applications and permits, septic tank applications, and a direct environmental phone path.",
+      "metaDescription": "Request Morgan County septic records through Environmental Services. Learn the owner or agent route and what the completed permit, Approval for Use, and installation diagram can show.",
+      "introCopy": "For an existing Morgan County septic file, ask Environmental Services for the completed permit, also called the Approval for Use, and the installation diagram. Alabama directs owners and their agents to the local health department; other requesters use ADPH's records-request route. Confirm your requester status and identify the property before requesting the file.",
+      "uniqueAngle": "The useful result is the underlying permit and installation diagram, not just an office contact or application entry. Check that the returned pages belong to the property, then separate recorded system details from questions that still need an on-site inspection or locate.",
       "targetReader": "Best for Morgan County buyers, sellers, owners, agents, and contractors who need the septic permit file, approval record, site document, or office route before trusting a quote, sale story, repair scope, or new permit plan.",
       "officeLabel": "Morgan County environmental services office",
       "officeUrl": "https://www.alabamapublichealth.gov/morgan/contact.html",
@@ -18360,9 +18368,9 @@
       "recordsUrl": "https://www.alabamapublichealth.gov/onsite/septic-tanks.html",
       "contactLine": "Morgan County Environmental Services | 256-340-6563",
       "decisionSteps": [
-        "Open Morgan County contact or services first and route the question to environmental services rather than a generic county office.",
-        "Use ADPH permit-copy rules to pull the permit, Approval for Use, and diagram through the right requester path.",
-        "If the file involves a repair, tank application, or pumper question, separate that branch before using a cost estimate."
+        "Check whether you are the property owner or an authorized agent. Morgan County's contact page directs septic questions to its Environmental Office at 256-340-6563; ADPH provides a records-request route for other requesters.",
+        "Ask for the completed permit or Approval for Use and the installation diagram, using the property address, parcel, and known owner or installation clues. Ask about any charge before authorizing it.",
+        "Match the returned pages to the property and compare the permit with the diagram and later repair records. Preserve conflicting or missing details as questions for the office or an on-site professional."
       ],
       "recordsToRequest": [
         "The permit copy, Approval for Use, system diagram, and any environmental-services note tied to the parcel.",
@@ -18377,11 +18385,11 @@
       "faqBlocks": [
         {
           "question": "Where should I start a Morgan County septic permit lookup?",
-          "answer": "Start with Check Alabama permit-copy and Approval for Use rules, then verify the office path through Morgan County environmental services office before relying on a quote, sale file, or repair plan."
+          "answer": "Owners and agents should contact Morgan County Environmental Services for the existing file. ADPH directs other requesters to its Records Request page. Ask specifically for the completed permit or Approval for Use and the installation diagram, rather than a new-system application."
         },
         {
-          "question": "Why does Morgan County need a records page before a price page?",
-          "answer": "Because the permit file, approval artifact, site record, office routing, or missing-file response can change whether the next step is routine, lender-sensitive, repair-driven, or a wider permit conversation."
+          "question": "What will the completed septic permit tell me?",
+          "answer": "ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation and other system information. Read the original pages together and check the property identifiers. A historical drawing does not by itself establish present condition or an excavation-ready location."
         },
         {
           "question": "What should I bring into the first Morgan County office call?",
@@ -18397,7 +18405,8 @@
         "/septic-records-by-county/",
         "/septic-permit-search-by-address/",
         "/septic-permit-records-request/",
-        "/septic-as-built-records/"
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/septic-record-brief-example/"
       ],
       "officialSourceIds": [
         "al_morgan_01",
@@ -22046,7 +22055,9 @@
         "/septic-as-built-records/",
         "/septic-inspection-letter/",
         "/how-to-find-septic-records-online/",
-        "/septic-permit-lookup/"
+        "/septic-permit-lookup/",
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/septic-record-brief-example/"
       ],
       "officialSourceIds": [
         "sc_anderson_parcel_01",
@@ -22084,7 +22095,7 @@
           "360-gallon-per-day design and a 1,000-gallon tank",
           "The permit planned 300 feet of trench while final approval recorded 200 feet",
           "Three installed trenches and their setbacks were shown on the final sketch",
-          "The customer confirmed the delivered explanation was informative"
+          "Construction and final-approval figures were kept separate in the explanation"
         ],
         "limitation": "The not-to-scale historical drawing has no GPS coordinates and does not verify current condition, undocumented changes, or exact field location. Approved capacity should not be inferred as a bedroom count without the agency file saying so.",
         "documents": [
@@ -22792,7 +22803,10 @@
         "/septic-permit-search-by-address/",
         "/septic-permit-records-request/",
         "/septic-as-built-records/",
-        "/buying-a-house-with-a-septic-system/tennessee/"
+        "/buying-a-house-with-a-septic-system/tennessee/",
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/how-to-find-septic-records-online/#no-record-online",
+        "/septic-record-brief-example/"
       ],
       "officialSourceIds": [
         "tn_01",
@@ -22927,7 +22941,10 @@
         "/septic-permit-search-by-address/",
         "/septic-permit-records-request/",
         "/septic-as-built-records/",
-        "/buying-a-house-with-a-septic-system/tennessee/"
+        "/buying-a-house-with-a-septic-system/tennessee/",
+        "/septic-as-built-records/#read-a-septic-drawing",
+        "/how-to-find-septic-records-online/#no-record-online",
+        "/septic-record-brief-example/"
       ],
       "officialSourceIds": [
         "tn_01",

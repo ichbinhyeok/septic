@@ -544,7 +544,7 @@
                 state.value = carriedContext.stateCode;
             }
             if (county instanceof HTMLInputElement && !county.value) county.value = carriedContext.countyName || "";
-            if (recordType instanceof HTMLSelectElement && !recordType.value) {
+            if (recordType instanceof HTMLSelectElement && (!recordType.value || recordType.value === "not_sure")) {
                 recordType.value = "septic";
             }
             const purposeGoalMap = {
@@ -558,7 +558,7 @@
             };
             const carriedGoal = purposeGoalMap[carriedContext.purpose] || "";
             if (researchGoal instanceof HTMLSelectElement
-                && !researchGoal.value
+                && (!researchGoal.value || researchGoal.value === "other")
                 && Array.from(researchGoal.options).some(option => option.value === carriedGoal)) {
                 researchGoal.value = carriedGoal;
             }
@@ -571,7 +571,7 @@
             };
             const carriedStatus = statusMap[carriedContext.status] || "";
             if (recordStatus instanceof HTMLSelectElement
-                && !recordStatus.value
+                && (!recordStatus.value || recordStatus.value === "not_started")
                 && Array.from(recordStatus.options).some(option => option.value === carriedStatus)) {
                 recordStatus.value = carriedStatus;
             }

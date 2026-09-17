@@ -27,12 +27,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class LeadStorageService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LeadStorageService.class);
     private static final DateTimeFormatter YEAR = DateTimeFormatter.ofPattern("yyyy").withZone(ZoneOffset.UTC);
     private static final DateTimeFormatter MONTH = DateTimeFormatter.ofPattern("MM").withZone(ZoneOffset.UTC);
     private static final DateTimeFormatter DAY = DateTimeFormatter.ofPattern("dd").withZone(ZoneOffset.UTC);
@@ -41,6 +45,7 @@ public class LeadStorageService {
     private final AppStorageProperties storageProperties;
     private final ObjectMapper objectMapper;
     private final RecordHelpDocumentPolicy recordHelpDocumentPolicy;
+    private final Map<String, Path> closingRiskRequestPaths = new ConcurrentHashMap<>();
 
     @Autowired
     public LeadStorageService(
@@ -66,6 +71,7 @@ public class LeadStorageService {
             Files.createDirectories(root().resolve("exports").resolve("pending"));
             Files.createDirectories(root().resolve("exports").resolve("daily"));
             scrubHistoricalEventQueries();
+            warnAboutUnresolvedRecordHelpNotifications();
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to initialize storage directories", exception);
         }
@@ -408,10 +414,20 @@ public class LeadStorageService {
         ));
         payload.put("documents", documentMetadata);
         payload.put("consent", consent);
+        payload.put("notification", orderedMap(
+                "operatorStatus", "pending",
+                "customerReceiptStatus", "pending",
+                "lastAttemptAt", ""
+        ));
         payload.put("provenance", buildProvenance(request, now, sourcePage));
 
         try {
-            writeClosingRiskRequestFile(payload, requestId, now);
+            Path requestFile = writeClosingRiskRequestFile(payload, requestId, now);
+            closingRiskRequestPaths.put(requestId, requestFile);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist closing risk request", exception);
+        }
+        try {
             appendEvent(orderedMap(
                     "eventType", "record_help_request_submitted",
                     "occurredAt", now.toString(),
@@ -427,9 +443,59 @@ public class LeadStorageService {
                     "recordStatus", safeValue(form.getRecordStatus(), 24),
                     "deadlineBucket", deadlineBucket(form.getDeadline(), now)
             ), now);
-            return requestId;
         } catch (IOException exception) {
-            throw new IllegalStateException("Failed to persist closing risk request", exception);
+            LOGGER.error("Record-help request {} was stored, but its analytics event could not be written", requestId, exception);
+        }
+        return requestId;
+    }
+
+    private void warnAboutUnresolvedRecordHelpNotifications() throws IOException {
+        Path requestRoot = root().resolve("closing-risk-requests");
+        if (Files.notExists(requestRoot)) {
+            return;
+        }
+        long unresolved;
+        try (var files = Files.walk(requestRoot)) {
+            unresolved = files
+                    .filter(path -> path.toString().endsWith(".json"))
+                    .filter(path -> {
+                        try {
+                            JsonNode notification = objectMapper.readTree(path.toFile()).path("notification");
+                            String operatorStatus = notification.path("operatorStatus").asText("");
+                            return "pending".equals(operatorStatus) || "failed".equals(operatorStatus);
+                        } catch (IOException exception) {
+                            LOGGER.error("Could not inspect record-help notification status in {}", path, exception);
+                            return true;
+                        }
+                    })
+                    .count();
+        }
+        if (unresolved > 0) {
+            LOGGER.error("{} stored record-help request(s) have a pending or failed operator notification and need manual recovery", unresolved);
+        }
+    }
+
+    public void recordClosingRiskNotificationOutcome(
+            String requestId,
+            boolean operatorNotified,
+            boolean customerReceiptSent
+    ) {
+        Path requestFile = closingRiskRequestPaths.get(requestId);
+        if (requestFile == null || Files.notExists(requestFile)) {
+            LOGGER.error("Notification outcome for record-help request {} could not be linked to its stored request", requestId);
+            return;
+        }
+        try {
+            ObjectNode payload = (ObjectNode) objectMapper.readTree(requestFile.toFile());
+            ObjectNode notification = payload.withObject("notification");
+            notification.put("operatorStatus", operatorNotified ? "sent" : "failed");
+            notification.put("customerReceiptStatus", customerReceiptSent ? "sent" : "failed");
+            notification.put("lastAttemptAt", Instant.now().toString());
+            Path tempFile = requestFile.resolveSibling(requestFile.getFileName() + ".tmp");
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), payload);
+            moveAtomically(tempFile, requestFile);
+        } catch (IOException exception) {
+            LOGGER.error("Failed to persist notification outcome for record-help request {}", requestId, exception);
         }
     }
 
@@ -730,7 +796,7 @@ public class LeadStorageService {
         moveAtomically(tempFile, finalFile);
     }
 
-    private void writeClosingRiskRequestFile(Map<String, Object> payload, String requestId, Instant now) throws IOException {
+    private Path writeClosingRiskRequestFile(Map<String, Object> payload, String requestId, Instant now) throws IOException {
         Path directory = root()
                 .resolve("closing-risk-requests")
                 .resolve(YEAR.format(now))
@@ -743,6 +809,7 @@ public class LeadStorageService {
         Path finalFile = directory.resolve(baseFileName + ".json");
         objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), payload);
         moveAtomically(tempFile, finalFile);
+        return finalFile;
     }
 
     private List<Map<String, Object>> saveClosingRiskDocuments(
