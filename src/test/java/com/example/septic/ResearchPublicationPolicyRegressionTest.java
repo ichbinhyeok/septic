@@ -29,6 +29,7 @@ class ResearchPublicationPolicyRegressionTest {
                 .andExpect(content().string(containsString("name=\"consentAccepted\"")))
                 .andExpect(content().string(containsString("name=\"phone\"")))
                 .andExpect(content().string(not(containsString("name=\"phoneContactAccepted\""))))
+                .andExpect(content().string(containsString("We only offer the $29 unlock when we find useful, property-matched evidence that can answer your question.")))
                 .andExpect(content().string(containsString("does not authorize automated or prerecorded marketing")))
                 .andExpect(content().string(containsString("SepticPath may connect me with up to three relevant local professionals")))
                 .andExpect(content().string(containsString("up to three relevant local septic professionals")))

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.18.2 - 2026-09-18
+
+### Changed
+
+- Clarified beside the primary Record Help price that the optional $29 unlock is offered only when useful, property-matched evidence can answer the customer's question.
+
 ## 0.0.18.1 - 2026-09-18
 
 ### Added
