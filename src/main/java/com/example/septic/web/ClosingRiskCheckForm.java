@@ -22,6 +22,10 @@ public class ClosingRiskCheckForm {
     @Size(max = 160, message = "Email must be 160 characters or fewer.")
     private String email;
 
+    @Size(max = 30, message = "Phone number must be 30 characters or fewer.")
+    @Pattern(regexp = "^$|[0-9+().\\-\\s]{7,30}$", message = "Enter a valid phone number or leave it blank.")
+    private String phone;
+
     @Pattern(regexp = "^$|researching|buyer|seller|agent|other", message = "Choose a valid stage.")
     private String transactionRole;
 
@@ -90,12 +94,13 @@ public class ClosingRiskCheckForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, and email me the result. This is records research—not an inspection, permit decision, legal opinion, or compliance certification. "
+        return "I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, email me the result, and connect me with local professionals as described in these terms when field work may help. If I provide a mobile number, connected professionals may make service-specific manual calls or send texts about this request. This is records research—not an inspection, permit decision, legal opinion, or compliance certification. "
                 + com.example.septic.service.RecordHelpOffer.TERMS;
     }
 
     public String getFullNameValue() { return fullName == null ? "" : fullName; }
     public String getEmailValue() { return email == null ? "" : email; }
+    public String getPhoneValue() { return phone == null ? "" : phone; }
     public String getPropertyAddressValue() { return propertyAddress == null ? "" : propertyAddress; }
     public String getCountyNameValue() { return countyName == null ? "" : countyName; }
     public String getListingUrlValue() { return listingUrl == null ? "" : listingUrl; }
@@ -111,6 +116,8 @@ public class ClosingRiskCheckForm {
     public void setFullName(String fullName) { this.fullName = fullName; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
     public String getTransactionRole() { return transactionRole; }
     public void setTransactionRole(String transactionRole) { this.transactionRole = transactionRole; }
     public String getPropertyAddress() { return propertyAddress; }

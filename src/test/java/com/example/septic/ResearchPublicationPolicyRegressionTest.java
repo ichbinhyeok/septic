@@ -27,6 +27,12 @@ class ResearchPublicationPolicyRegressionTest {
                 .andExpect(content().string(containsString("href=\"/privacy-policy/#research-publication\"")))
                 .andExpect(content().string(containsString("Your contact details and private correspondence are not published.")))
                 .andExpect(content().string(containsString("name=\"consentAccepted\"")))
+                .andExpect(content().string(containsString("name=\"phone\"")))
+                .andExpect(content().string(not(containsString("name=\"phoneContactAccepted\""))))
+                .andExpect(content().string(containsString("does not authorize automated or prerecorded marketing")))
+                .andExpect(content().string(containsString("SepticPath may connect me with up to three relevant local professionals")))
+                .andExpect(content().string(containsString("up to three relevant local septic professionals")))
+                .andExpect(content().string(containsString("You are never required to hire anyone we connect you with")))
                 .andExpect(content().string(not(containsString("Your request stays private"))))
                 .andExpect(content().string(not(containsString("name=\"publicationConsent\""))));
         mockMvc.perform(get("/privacy-policy/"))
@@ -34,6 +40,7 @@ class ResearchPublicationPolicyRegressionTest {
                 .andExpect(content().string(containsString("id=\"research-publication\"")))
                 .andExpect(content().string(containsString("Submitting a request does not grant us permission to publish your uploaded documents")))
                 .andExpect(content().string(containsString("does not retroactively change earlier consent")))
+                .andExpect(content().string(containsString("up to three relevant local septic professionals")))
                 .andExpect(content().string(containsString("Redacting personal details does not grant copyright permission")));
     }
 

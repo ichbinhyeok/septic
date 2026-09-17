@@ -46,6 +46,7 @@ class LeadStoragePrivacyScrubTest {
         ClosingRiskCheckForm form = new ClosingRiskCheckForm();
         form.setFullName("Taylor Buyer");
         form.setEmail("taylor@example.com");
+        form.setPhone("+1 865 555 0182");
         form.setTransactionRole("buyer");
         form.setPropertyAddress("123 Private Lane, Knoxville, TN 37920");
         form.setStateCode("TN");
@@ -79,10 +80,18 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains(requestId));
         assertTrue(storedRequest.contains("123 Private Lane"));
         assertTrue(storedRequest.contains("taylor@example.com"));
+        assertTrue(storedRequest.contains("+1 865 555 0182"));
         assertTrue(storedRequest.contains(RecordHelpOffer.VERSION));
         assertTrue(storedRequest.contains("\"optionalUnlockAmountCents\" : 2900"));
         assertTrue(storedRequest.contains("\"upfrontPaymentRequired\" : false"));
         assertTrue(storedRequest.contains("\"agencyFeesRequireApproval\" : true"));
+        assertTrue(storedRequest.contains("\"professionalMatchingIncluded\" : true"));
+        assertTrue(storedRequest.contains("\"professionalRecipientLimit\" : 3"));
+        assertTrue(storedRequest.contains("\"professionalContactChannels\" : [ \"email\", \"manual_call\", \"service_text\" ]"));
+        assertTrue(storedRequest.contains("\"marketingCallsOrTextsAuthorized\" : false"));
+        assertTrue(storedRequest.contains("\"phoneSharingWithProfessionalAuthorized\" : true"));
+        assertTrue(storedRequest.contains("\"automatedOrPrerecordedContactAuthorized\" : false"));
+        assertTrue(storedRequest.contains("\"onwardResaleAuthorized\" : false"));
         assertTrue(storedRequest.contains("\"recordType\" : \"septic\""));
         assertTrue(storedRequest.contains("\"researchGoal\" : \"design_capacity\""));
         assertTrue(storedRequest.contains("septic_record_help_beta"));
@@ -105,6 +114,7 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(analyticsEvent.contains("within_7_days"));
         assertFalse(analyticsEvent.contains("123 Private Lane"));
         assertFalse(analyticsEvent.contains("taylor@example.com"));
+        assertFalse(analyticsEvent.contains("+1 865 555 0182"));
         assertFalse(analyticsEvent.contains("example.com/listing"));
         assertFalse(analyticsEvent.contains("parcel=secret"));
     }

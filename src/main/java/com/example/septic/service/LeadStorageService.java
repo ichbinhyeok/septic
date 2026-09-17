@@ -365,7 +365,16 @@ public class LeadStorageService {
                 "accepted", form.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", form.getConsentTextSnapshot(),
-                "languageVersion", RecordHelpOffer.VERSION
+                "languageVersion", RecordHelpOffer.VERSION,
+                "professionalMatchingIncluded", true,
+                "professionalRecipientLimit", 3,
+                "professionalContactChannels", form.getPhone() == null || form.getPhone().isBlank()
+                        ? List.of("email")
+                        : List.of("email", "manual_call", "service_text"),
+                "marketingCallsOrTextsAuthorized", false,
+                "phoneSharingWithProfessionalAuthorized", form.getPhone() != null && !form.getPhone().isBlank(),
+                "automatedOrPrerecordedContactAuthorized", false,
+                "onwardResaleAuthorized", false
         );
 
         List<Map<String, Object>> documentMetadata;
@@ -397,6 +406,7 @@ public class LeadStorageService {
         payload.put("contact", orderedMap(
                 "fullName", safeValue(form.getFullName(), 120),
                 "email", safeValue(form.getEmail(), 160),
+                "phone", safeValue(form.getPhone(), 30),
                 "transactionRole", safeValue(form.getTransactionRole(), 20)
         ));
         payload.put("property", orderedMap(

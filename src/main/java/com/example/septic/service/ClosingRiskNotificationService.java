@@ -80,6 +80,8 @@ public class ClosingRiskNotificationService {
 
                 Research and agency requests are free. If we find useful, property-matched evidence, we will email a free preview of the source, document scope, property match, questions it can answer, and material limits. Your actual property-specific answers and located source records are included in the optional US $29 package. Your own uploaded files remain yours. There is no automatic charge. Any agency fee requires your approval first.
 
+                If records do not answer the question and local field work may help, SepticPath may connect you with up to three relevant local septic professionals using the contact details you provided. A connected professional may respond by email or, if you provided a mobile number, by a manual call or text about this request. Some participating professionals may compensate SepticPath for an introduction. This does not authorize automated or prerecorded marketing, unrelated solicitations, or resale of your request.
+
                 Keep this email and reference number if you need to follow up. Do not email payment-card details or access codes.
 
                 SepticPath is an independent records-research service, not an inspection, permitting, engineering, or legal authority.
@@ -147,6 +149,8 @@ public class ClosingRiskNotificationService {
                 CTA source page: %s
                 Name: %s
                 Email: %s
+                Phone: %s
+                Matched-professional phone sharing authorized: %s
                 Process stage: %s
                 Property: %s
                 State / county: %s / %s
@@ -162,7 +166,7 @@ public class ClosingRiskNotificationService {
 
                 Start by identifying the likely public-record owner and exact file to request. If the process stage is buyer, seller, agent, or other and a deadline or conflict is present, qualify the request for a deeper closing-risk follow-up.
 
-                The requester consented to operator review and email follow-up. This is record-path help, not an inspection or compliance certification.
+                The requester consented to operator review, email follow-up, and the disclosed local-professional matching terms when field work may help. Matching may share name, email, optional mobile number, property address, and service need with up to three relevant local septic professionals. A supplied mobile number authorizes manual calls or service-specific texts about this request, but not automated or prerecorded marketing, unrelated solicitations, or onward resale. This is record-path help, not an inspection or compliance certification.
                 """.formatted(
                 requestId,
                 safeLine(form.getSourceContext()),
@@ -170,6 +174,8 @@ public class ClosingRiskNotificationService {
                 safeLine(form.getSourcePageHint()),
                 safeLine(form.getFullName()),
                 safeLine(form.getEmail()),
+                safeLine(form.getPhone()),
+                form.getPhone() != null && !form.getPhone().isBlank(),
                 safeLine(form.getTransactionRole()),
                 safeLine(form.getPropertyAddress()),
                 safeLine(form.getStateCode()),
