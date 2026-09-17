@@ -19,6 +19,7 @@
 
 - Prevented analytics failures after durable request storage from turning a successful intake into a customer-facing submission error.
 - Strengthened publication and delivery boundaries so generated visuals are new explanatory assets and original records remain private, masked evidence.
+- Replaced three retired St. Joseph County source paths with the county's current septic, forms, and schematic-request links.
 
 ## 0.0.17.0 - 2026-09-14
 

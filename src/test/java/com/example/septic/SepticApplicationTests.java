@@ -2501,7 +2501,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Indiana Septic Records Checklist and Permit Lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request St. Joseph County septic schematic records")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("records from 1970 to present")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("records start in 1970")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("some records are incomplete")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("St. Joseph County Department of Health")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-permit-lookup/")))
