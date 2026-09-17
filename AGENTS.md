@@ -39,3 +39,25 @@ storage. Never publish the private dashboard or commit the private ledger.
 Do not claim inbox freshness beyond the saved checkpoint. If the ledger is
 missing, report missing local data and recover a private backup; do not silently
 create an empty replacement or mark historical cases completed.
+
+## Mandatory attachment delivery gate
+
+Before creating a Gmail draft, sending or forwarding email, or uploading to an
+external portal when the message attaches or relies on a customer-case file:
+
+1. Download and register the exact source file locally with its SHA-256.
+2. Create a private manifest under `storage/operations/delivery-gates/` covering
+   every attached or summarized file.
+3. Review every page and record street/address, parcel, plat/subdivision, lot,
+   owner/applicant, and geometry as match, mismatch, not present, or not
+   applicable. Never infer a match from the email thread, request subject,
+   agency sender, filename, or surrounding case context.
+4. Run `node tools/delivery-gate.mjs <manifest-path>` and require a current
+   `DELIVERY GATE: PASS` receipt. A mismatch, unlinked identity, incomplete page
+   review, changed hash, or blocked source prohibits the external action.
+5. Rerun the gate if the recipient, subject, source file, attachment set, file
+   bytes, or customer-facing filename changes. Receipts expire after 24 hours.
+
+Do not bypass or soften a failed gate. Keep an unmatched agency return as
+unlinked evidence and update the case instead of sending or interpreting it as
+the requested property's record.

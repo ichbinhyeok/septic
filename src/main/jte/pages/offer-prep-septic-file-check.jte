@@ -9,6 +9,7 @@
 @param String closingRiskDocumentError = null
 @param String closingRiskRequestId = null
 @param String closingRiskSuccessSourceContext = "direct"
+@param boolean closingRiskReceiptSent = false
 @param String closingRiskMinimumDeadline
 @param boolean documentReviewMode = false
 @param java.util.List<StateProfile> states = java.util.List.of()
@@ -21,7 +22,7 @@
                     <span class="eyebrow">Free research · Optional $29 result unlock</span>
                     <h1>${documentReviewMode ? "Send the file. We’ll answer the questions it raises." : "Send the address. We’ll investigate the septic record for you."}</h1>
                     <p class="lede">${documentReviewMode ? "Does the file show an approved design or a completed installation? Does it support the bedroom count or the seller’s claim? Send it with your questions. We’ll check the evidence and explain the limits." : "Missing a permit or tank layout? Unsure about approved capacity, repairs, or a seller’s claim? We search the official records, contact the responsible office, and explain what the evidence says about your property."}</p>
-                    <p class="record-help-price-note">Free research and agency requests. Preview a useful result, then choose the original records and clear answers for <strong>US $29</strong>. Agency fees are additional at cost, with your approval.</p>
+                    <p class="record-help-price-note">Free research and agency requests. Preview the evidence we found and the questions it can answer. Choose the original records and your answers for <strong>US $29</strong>. Agency fees are additional at cost, with your approval.</p>
                     <div class="hero__actions offer-prep-hero__actions">
                         <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${documentReviewMode ? "document_review_hero" : "record_help_hero"}" data-track-target-type="lead_form">${documentReviewMode ? "Send my file for review" : "Start my record investigation"}</a>
                         <a class="button button--secondary" href="${documentReviewMode ? "/septic-record-finder/?mode=document#record-document-workspace" : "#self-serve-file-check"}" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">${documentReviewMode ? "Check it myself" : "Search records myself"}</a>
@@ -49,7 +50,7 @@
                         @else
                             <li><span>01</span><div><strong>Verify the property</strong><p>Match the address, parcel, county, and responsible record holder.</p></div></li>
                             <li><span>02</span><div><strong>Follow the record</strong><p>Search credible sources and contact the public office when the online path stops.</p></div></li>
-                            <li><span>03</span><div><strong>Preview, then choose</strong><p>See what the official result answers and its limits. Choose the original records and clear explanation for $29.</p></div></li>
+                            <li><span>03</span><div><strong>Preview, then choose</strong><p>See the source, property match, questions it can answer and limits. Unlock the original records and your answers for $29.</p></div></li>
                         @endif
                     </ol>
                     <p class="offer-prep-hero__transfer-note">Record availability and response times vary. SepticPath is not an inspection, permit authority, or compliance certification.</p>
@@ -188,7 +189,7 @@
                         @else
                             <li><strong>Find your record:</strong> check the property and search for permits, drawings, approvals and repair records.</li>
                             <li><strong>Handle the agency:</strong> request missing records and follow the response so you do not have to work out the process yourself.</li>
-                            <li><strong>Understand the answer:</strong> preview the findings and limits, then choose the original records and detailed explanation for $29.</li>
+                            <li><strong>Choose your answers:</strong> preview the evidence and its limits, then unlock the original records and property-specific explanation for $29.</li>
                         @endif
                     </ol>
                     <p class="closing-risk-beta-copy__privacy">This beta privately stores the submitted address and attached records and emails them to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
@@ -206,7 +207,7 @@
                                 @else
                                     <li>Records checked against your address and parcel</li>
                                     <li>Agency requests and updates handled for you</li>
-                                    <li>A free preview of the answer; originals and detailed explanation for $29 if you choose</li>
+                            <li>A free preview of the source, property match and answerable questions; originals and actual answers for $29 if you choose</li>
                                 @endif
                             </ul>
                         </div>
@@ -221,7 +222,7 @@
                              data-ga-param-request-type="record_help_beta"
                              data-ga-param-source-context="${closingRiskSuccessSourceContext}">
                             <strong>${documentReviewMode ? "Your document review is in." : "Your record investigation is in."}</strong>
-                            <p>Your reference is ${closingRiskRequestId}. We’ll begin the free research or document review and email an initial update within 1–2 business days. If a useful verified result is ready, we’ll send a free preview and an optional $29 unlock offer. No payment is due now. Any agency fees require your approval first.</p>
+                            <p>Your reference is ${closingRiskRequestId}. ${closingRiskReceiptSent ? "We also emailed this reference and your request details to you." : "Save this reference and use it if you need to follow up."} We’ll begin the free research or document review and aim to email an initial update within 1–2 business days. If a useful verified result is ready, we’ll send a free preview and an optional $29 unlock offer. No payment is due now. Any agency fees require your approval first.</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
@@ -262,48 +263,6 @@
                                     @endfor
                                 </select>
                             </label>
-                            <label>
-                                <span>Record type</span>
-                                <select name="recordType" required>
-                                    <option value="">Choose record type</option>
-                                    <option value="septic" selected="${"septic".equals(closingRiskCheckForm.getRecordType())}">Septic system</option>
-                                    <option value="well" selected="${"well".equals(closingRiskCheckForm.getRecordType())}">Private well</option>
-                                    <option value="not_sure" selected="${"not_sure".equals(closingRiskCheckForm.getRecordType())}">Not sure</option>
-                                </select>
-                            </label>
-                            <label class="field--full">
-                                <span>What do you need to find out?</span>
-                                <select name="researchGoal" required data-record-help-goal>
-                                    <option value="">Choose the closest goal</option>
-                                    <option value="original_documents" selected="${"original_documents".equals(closingRiskCheckForm.getResearchGoal())}">Find the original permit or approval documents</option>
-                                    <option value="system_layout" selected="${"system_layout".equals(closingRiskCheckForm.getResearchGoal())}">Find the tank, drainfield, or well location</option>
-                                    <option value="approval_status" selected="${"approval_status".equals(closingRiskCheckForm.getResearchGoal())}">Verify permit or approval status</option>
-                                    <option value="design_capacity" selected="${"design_capacity".equals(closingRiskCheckForm.getResearchGoal())}">Check bedroom or design capacity</option>
-                                    <option value="repair_history" selected="${"repair_history".equals(closingRiskCheckForm.getResearchGoal())}">Find repair or modification history</option>
-                                    <option value="understand_file" selected="${"understand_file".equals(closingRiskCheckForm.getResearchGoal())}">Understand a file I already have</option>
-                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getResearchGoal())}">Not sure or something else</option>
-                                </select>
-                            </label>
-                            <label class="field--full">
-                                <span>${documentReviewMode ? "What best describes the file?" : "What have you tried or found so far?"}</span>
-                                <select name="recordStatus" required>
-                                    <option value="">Choose the closest match</option>
-                                    @if (documentReviewMode)
-                                        <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I have one or more documents but may not have the full file</option>
-                                        <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The document appears to conflict with the property or listing</option>
-                                        <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure whether the document is official or complete</option>
-                                        <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure what this document is</option>
-                                    @else
-                                        <option value="not_started" selected="${"not_started".equals(closingRiskCheckForm.getRecordStatus())}">I haven’t searched yet or don’t know where to start</option>
-                                        <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no matching record</option>
-                                        <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns the record</option>
-                                        <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
-                                        <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
-                                        <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
-                                        <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
-                                    @endif
-                                </select>
-                            </label>
                             <div class="field--full record-help-documents" data-record-help-documents data-review-active="${documentReviewMode}">
                                 <label>
                                     <span>Source files for human review</span>
@@ -321,27 +280,64 @@
                                 <textarea name="concern" maxlength="1200" minlength="10" rows="4" placeholder="${documentReviewMode ? "Example: Does this approve four bedrooms, and does the sketch show the installed drainfield or only the proposed design?" : "Example: I’m buying this property and need the approved bedroom count before September 25. I found a parcel page, but no permit or layout."}" required data-record-help-question>${closingRiskCheckForm.getConcernValue()}</textarea>
                                 <small data-record-help-question-help>${documentReviewMode ? "Ask the exact questions affecting your purchase, sale, repair, addition, inspection, or records decision." : "One or two sentences is enough. Include any deadline or conflicting information."}</small>
                             </label>
-                            <label>
-                                <span>Deadline <small>(optional)</small></span>
-                                <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
-                                <small>Closing, auction, inspection, or other decision date.</small>
-                            </label>
-                            <label class="field--full">
-                                <span>Where are you in the process? <small>(optional)</small></span>
-                                <select name="transactionRole" data-record-help-stage>
-                                    <option value="">Choose if relevant</option>
-                                    <option value="researching" selected="${"researching".equals(closingRiskCheckForm.getTransactionRole())}">Just researching the property or records</option>
-                                    <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
-                                    <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
-                                    <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
-                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other transaction professional</option>
-                                </select>
-                                <small>This helps us tailor the reply but is not required.</small>
-                            </label>
                         </div>
                         <details class="closing-risk-optional" data-record-help-transaction-details>
-                            <summary>Add context for a faster answer <span>(optional)</span></summary>
+                            <summary>Add details that may speed up the search <span>(optional)</span></summary>
                             <div class="field-grid">
+                                <label>
+                                    <span>Record type</span>
+                                    <select name="recordType">
+                                        <option value="septic" selected="${"septic".equals(closingRiskCheckForm.getRecordType())}">Septic system</option>
+                                        <option value="well" selected="${"well".equals(closingRiskCheckForm.getRecordType())}">Private well</option>
+                                        <option value="not_sure" selected="${"not_sure".equals(closingRiskCheckForm.getRecordType())}">Not sure</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>What do you need to find out?</span>
+                                    <select name="researchGoal" data-record-help-goal>
+                                        <option value="original_documents" selected="${"original_documents".equals(closingRiskCheckForm.getResearchGoal())}">Find original permit or approval documents</option>
+                                        <option value="system_layout" selected="${"system_layout".equals(closingRiskCheckForm.getResearchGoal())}">Find tank, drainfield, or well location</option>
+                                        <option value="approval_status" selected="${"approval_status".equals(closingRiskCheckForm.getResearchGoal())}">Verify permit or approval status</option>
+                                        <option value="design_capacity" selected="${"design_capacity".equals(closingRiskCheckForm.getResearchGoal())}">Check bedroom or design capacity</option>
+                                        <option value="repair_history" selected="${"repair_history".equals(closingRiskCheckForm.getResearchGoal())}">Find repair or modification history</option>
+                                        <option value="understand_file" selected="${"understand_file".equals(closingRiskCheckForm.getResearchGoal())}">Understand a file I already have</option>
+                                        <option value="other" selected="${"other".equals(closingRiskCheckForm.getResearchGoal())}">Not sure or something else</option>
+                                    </select>
+                                </label>
+                                <label class="field--full">
+                                    <span>${documentReviewMode ? "What best describes the file?" : "What have you tried or found so far?"}</span>
+                                    <select name="recordStatus">
+                                        @if (documentReviewMode)
+                                            <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I may not have the full file</option>
+                                            <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The document may conflict with the property or listing</option>
+                                            <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure whether it is official or complete</option>
+                                            <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure what this document is</option>
+                                        @else
+                                            <option value="not_started" selected="${"not_started".equals(closingRiskCheckForm.getRecordStatus())}">I haven’t searched yet</option>
+                                            <option value="missing" selected="${"missing".equals(closingRiskCheckForm.getRecordStatus())}">I searched but found no matching record</option>
+                                            <option value="route_unknown" selected="${"route_unknown".equals(closingRiskCheckForm.getRecordStatus())}">I don’t know which office owns it</option>
+                                            <option value="request_unclear" selected="${"request_unclear".equals(closingRiskCheckForm.getRecordStatus())}">I’m not sure which document to request</option>
+                                            <option value="partial" selected="${"partial".equals(closingRiskCheckForm.getRecordStatus())}">I found only part of the file</option>
+                                            <option value="conflicting" selected="${"conflicting".equals(closingRiskCheckForm.getRecordStatus())}">The file conflicts with the property or listing</option>
+                                            <option value="unknown" selected="${"unknown".equals(closingRiskCheckForm.getRecordStatus())}">Someone says a file exists, but I can’t confirm it</option>
+                                        @endif
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Deadline <small>(optional)</small></span>
+                                    <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
+                                </label>
+                                <label>
+                                    <span>Where are you in the process?</span>
+                                    <select name="transactionRole" data-record-help-stage>
+                                        <option value="">Choose if relevant</option>
+                                        <option value="researching" selected="${"researching".equals(closingRiskCheckForm.getTransactionRole())}">Researching</option>
+                                        <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
+                                        <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
+                                        <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
+                                        <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other professional</option>
+                                    </select>
+                                </label>
                                 <label>
                                     <span>Name</span>
                                     <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120">
@@ -374,7 +370,7 @@
                         </details>
                         <p class="record-help-fee-note">Approved agency fees are separate and may apply even if no record is found or you do not unlock.</p>
                         <button class="button button--primary" type="submit" data-record-help-submit>${documentReviewMode ? "Send my file for human review" : "Ask SepticPath to investigate"}</button>
-                        <p class="form-note">No card required. No automatic charge. Your request stays private; no newsletter signup.</p>
+                        <p class="form-note">No card required. No automatic charge. Your contact details and private correspondence are not published. No newsletter signup. <a href="/privacy-policy/#research-publication">How we use research findings</a>.</p>
                     </form>
                 </div>
             </div>
@@ -383,13 +379,17 @@
         <section class="section section--tight record-help-pricing-faq" aria-labelledby="record-help-pricing">
             <div class="container">
                 <h2 id="record-help-pricing">How the $29 unlock works</h2>
+                <div class="record-help-package-compare" aria-label="Free preview and optional $29 package comparison">
+                    <div><span>FREE PREVIEW</span><strong>“We found a property-matched permit that answers the recorded design-capacity question.”</strong><p>Illustrative preview · source and document scope · answerable questions · important limits · no payment required</p></div>
+                    <div><span>OPTIONAL $29 PACKAGE</span><strong>The original permit, drawing, and page-by-page explanation.</strong><p>Source files · evidence-linked answers · conflicts and missing facts · next useful step</p></div>
+                </div>
                 <details>
                     <summary>How do I pay and receive my result?</summary>
-                    <p>We email your free preview first. If you want the US $29 package, we send payment instructions by email. After confirming payment, we email the source records and our detailed explanation. Delivery is handled personally, not an instant website download. For files you already supplied, you are paying for the reviewed answers; your own files remain yours.</p>
+                    <p>We email your free preview first. If you want the US $29 package, we send secure provider-hosted payment instructions by email. After confirming payment, we email the source records and our detailed explanation. The payment email states the expected delivery timing; if anything is delayed, reply to that email with your reference number. Delivery is handled personally, not an instant website download. Never send card details by email. For files you already supplied, you are paying for the reviewed answers; your own files remain yours.</p>
                 </details>
                 <details>
                     <summary>What will I see before paying?</summary>
-                    <p>You see the actual finding, its official source, how we matched the property, and what remains unresolved. For example, a record might show a tank and field layout but leave later repairs unconfirmed. We make that distinction before you decide whether the detailed package is useful to you.</p>
+                    <p>You see the agency or official source, document type and date, available pages or drawings, how we matched the property, which of your questions the evidence can answer, and material limits. Your property-specific conclusions and the located source files are included in the optional $29 package. If the evidence cannot answer your question, we say so before offering payment. Public examples show completed work for other properties; they are not findings about yours.</p>
                 </details>
                 <details>
                     <summary>What does the $29 package add?</summary>
@@ -397,7 +397,7 @@
                 </details>
                 <details>
                     <summary>What if the agency is still searching or finds nothing?</summary>
-                    <p>We keep you informed without asking you to pay for a pending request. An empty online search or a request receipt is not a useful result. A property-specific official response may help answer your question even without a permit; we explain its actual finding and limits before offering any optional package. A missing record does not prove that a system does not exist.</p>
+                    <p>We keep you informed without asking you to pay for a pending request. An empty online search or a request receipt is not a useful result. If no source file was found, we tell you that for free. A substantive official response may still support a reviewed answer; its source, relevance and limits must be clear before any optional offer. A missing record does not prove that a system does not exist.</p>
                 </details>
                 <details>
                     <summary>Are agency requests included? Can there be extra costs?</summary>
@@ -425,7 +425,7 @@
                 <article>
                     <span>03</span>
                     <h2>You receive evidence, not a guess</h2>
-                    <p>Your free preview identifies the official source, what it answers, and important limits. Choose the $29 source records and explanation when the result is useful to you. Existing free-beta requests keep their original free terms.</p>
+                    <p>Your free preview identifies the official source, property match, questions it can answer and important limits. Your actual answers and located source records are included in the optional $29 package. Existing requests keep their accepted terms, including free-beta service and any earlier promise of a free finding.</p>
                 </article>
             </div>
             <div class="container offer-prep-transfer-aftercare">

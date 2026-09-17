@@ -35,11 +35,11 @@ public class ClosingRiskCheckForm {
 
     @NotBlank(message = "Choose the record type.")
     @Pattern(regexp = "septic|well|not_sure", message = "Choose a valid record type.")
-    private String recordType;
+    private String recordType = "not_sure";
 
     @NotBlank(message = "Choose what you need to find out.")
     @Pattern(regexp = "original_documents|system_layout|approval_status|design_capacity|repair_history|understand_file|other", message = "Choose a valid research goal.")
-    private String researchGoal;
+    private String researchGoal = "other";
 
     @Size(max = 120, message = "County must be 120 characters or fewer.")
     private String countyName;
@@ -58,7 +58,7 @@ public class ClosingRiskCheckForm {
 
     @NotBlank(message = "Choose what is known about the septic file.")
     @Pattern(regexp = "not_started|missing|route_unknown|request_unclear|partial|conflicting|unknown", message = "Choose a valid record problem.")
-    private String recordStatus;
+    private String recordStatus = "not_started";
 
     @FutureOrPresent(message = "Deadline cannot be in the past.")
     private LocalDate deadline;

@@ -30,19 +30,28 @@ public class SitemapService {
      * cosmetic or narrowly scoped release look like a sitewide content update.
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
-            Map.entry("/", "2026-09-11"),
+            Map.entry("/", "2026-09-17"),
             Map.entry("/septic-record-finder/", "2026-09-16"),
             Map.entry("/septic-records-access-index/", "2026-09-11"),
-            Map.entry("/septic-record-brief-example/", "2026-09-12"),
-            Map.entry("/offer-prep-septic-file-check/", "2026-09-12"),
+            Map.entry("/septic-record-brief-example/", "2026-09-17"),
+            Map.entry("/offer-prep-septic-file-check/", "2026-09-17"),
             Map.entry("/official-septic-lookup-tools/", "2026-09-12"),
             Map.entry("/tdec-septic-records/", "2026-09-12"),
             Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
             Map.entry("/texas-ossf-records-search/", "2026-09-12"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-09-12"),
             Map.entry("/dhec-septic-permit-lookup/", "2026-09-12"),
-            Map.entry("/septic-as-built-records/", "2026-09-11"),
-            Map.entry("/septic-tank-location-records/", "2026-09-11")
+            Map.entry("/septic-as-built-records/", "2026-09-17"),
+            Map.entry("/septic-tank-location-records/", "2026-09-17"),
+            Map.entry("/how-to-find-septic-records-online/", "2026-09-17"),
+            Map.entry("/septic-permit-search-by-address/", "2026-09-17"),
+            Map.entry("/septic-permit-process/", "2026-09-17"),
+            Map.entry("/septic-permit-records-request/", "2026-09-17"),
+            Map.entry("/septic-transfer-compliance/", "2026-09-17"),
+            Map.entry("/buying-a-house-with-a-septic-system/", "2026-09-17"),
+            Map.entry("/septic-records-checklist/alabama/morgan-county/", "2026-09-17"),
+            Map.entry("/septic-records-checklist/wisconsin/st-croix-county/", "2026-09-17"),
+            Map.entry("/septic-records-checklist/washington/king-county/", "2026-09-17")
     );
 
     private final ResearchDataService researchDataService;

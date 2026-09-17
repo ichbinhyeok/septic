@@ -1,0 +1,65 @@
+@param String variant
+
+@if ("roane".equals(variant))
+<figure class="record-finding record-finding--layout" id="record-finding-roane" aria-labelledby="record-finding-roane-title" data-reading-milestone="record-finding-roane">
+    <header class="record-finding__header"><span class="record-finding__brand">SepticPath <span>/ RESEARCH NOTES</span></span><span class="record-finding__context">Roane County, TN · Actual record research</span></header>
+    <div class="record-finding__intro"><h3 id="record-finding-roane-title">Three written lengths. One usable answer.</h3><p>We separated the permit facts from the historical sketch, then added the field-line labels together.</p></div>
+    <div class="record-finding__line-study" aria-label="Length comparison of three field lines recorded as 60, 80 and 85 feet, totaling 225 feet. This is not a physical layout.">
+        <div><span>LINE 01</span><i style="--line-size:70.6%"></i><strong>60 <small>ft</small></strong></div>
+        <div><span>LINE 02</span><i style="--line-size:94.1%"></i><strong>80 <small>ft</small></strong></div>
+        <div><span>LINE 03</span><i style="--line-size:100%"></i><strong>85 <small>ft</small></strong></div>
+    </div>
+    <div class="record-finding__answer record-finding__answer--total"><span class="record-finding__eyebrow">RECORDED TOTAL</span><p><strong>225 linear feet</strong> across three labeled field lines.</p><dl><div><dt>Design recorded</dt><dd>3 <span>bedrooms</span></dd></div><div><dt>Tank capacity recorded</dt><dd>900 <span>gal</span></dd></div></dl></div>
+    <figcaption>SepticPath-created length comparison based on the returned permit and sketch. It is not the original drawing, a scaled layout or a present-day locate.</figcaption>
+    <details class="record-finding__sources"><summary>How we reached this finding</summary><ol><li><strong>Request:</strong> ask TDEC for the permit, layout, final approval and repair records tied to the property.</li><li><strong>Read:</strong> take tank and design facts from the permit text; take line lengths from the sketch labels.</li><li><strong>Limit:</strong> preserve that the sketch has no north arrow and does not establish current location or condition.</li></ol><a href="#drawing-labels" data-track-click="nav" data-track-source-context="finding_visual_roane" data-track-target-type="case_study">Read the original sketch carefully →</a></details>
+</figure>
+@elseif ("shelby".equals(variant))
+<figure class="record-finding record-finding--route" id="record-finding-shelby" aria-labelledby="record-finding-shelby-title" data-reading-milestone="record-finding-shelby">
+    <header class="record-finding__header"><span class="record-finding__brand">SepticPath <span>/ RESEARCH NOTES</span></span><span class="record-finding__context">Shelby County, TN · Actual record research</span></header>
+    <div class="record-finding__intro"><h3 id="record-finding-shelby-title">A dead end was not the answer.</h3><p>The useful work was knowing when to leave the public search and correct the agency route.</p></div>
+    <ol class="record-finding__route" aria-label="Research route from public search through corrected county contact to returned evidence">
+        <li><span>01</span><div><b>PUBLIC SEARCH</b><strong>Lot identified</strong><small>No house-specific septic file</small></div></li>
+        <li class="is-blocked"><span>02</span><div><b>OLD CONTACT</b><strong>Route rejected</strong><small>Invalid recipient</small></div></li>
+        <li><span>03</span><div><b>CURRENT COUNTY ROUTE</b><strong>Request received</strong><small>Parcel + lot + record list</small></div></li>
+        <li class="is-result"><span>04</span><div><b>RETURNED EVIDENCE</b><strong>Source packet found</strong><small>Permit + approved plan</small></div></li>
+    </ol>
+    <div class="record-finding__answer"><span class="record-finding__eyebrow">THE DOCUMENTARY RESULT</span><p>The returned file supported a <strong>readable, source-backed brief</strong> instead of another unsupported property claim.</p><dl><div><dt>Design recorded</dt><dd>4 <span>bedrooms</span></dd></div><div><dt>Tank capacity recorded</dt><dd>1,000 <span>gal</span></dd></div><div><dt>Field length recorded</dt><dd>600 <span>ft</span></dd></div></dl></div>
+    <figcaption>SepticPath-created route summary. It does not reproduce the County file or imply a current inspection, installation or property-sale outcome.</figcaption>
+    <details class="record-finding__sources"><summary>How we reached this finding</summary><ol><li><strong>Search:</strong> check parcel, plat, GIS and permit sources without treating an empty result as proof of no record.</li><li><strong>Reroute:</strong> replace the failed direct address with the current published County contact.</li><li><strong>Deliver:</strong> keep the original pages beside the explanation and state what the file did not verify.</li></ol><a href="#completed-brief" data-track-click="nav" data-track-source-context="finding_visual_shelby" data-track-target-type="case_study">See the source pages become a Record Brief →</a></details>
+</figure>
+@elseif ("stcroix".equals(variant))
+<figure class="record-finding record-finding--filter" id="record-finding-stcroix" aria-labelledby="record-finding-stcroix-title" data-reading-milestone="record-finding-stcroix">
+    <header class="record-finding__header"><span class="record-finding__brand">SepticPath <span>/ RESEARCH NOTES</span></span><span class="record-finding__context">St. Croix County, WI · Actual record research</span></header>
+    <div class="record-finding__intro"><h3 id="record-finding-stcroix-title">Twenty-six pages in. Three pages out.</h3><p>We isolated the relevant record stages instead of handing over an unexplained archive packet.</p></div>
+    <div class="record-finding__filter" aria-label="Twenty-six archive pages reviewed and three relevant pages selected for the focused extract">
+        <div class="record-finding__archive"><strong>26</strong><span>ARCHIVE PAGES<br>REVIEWED</span><i aria-hidden="true"></i></div>
+        <div class="record-finding__extract"><strong>3</strong><span>RELEVANT PAGES<br>SELECTED</span></div>
+    </div>
+    <div class="record-finding__document-read"><div><span>INSPECTION</span><strong>1,200 <small>gal</small></strong></div><div><span>REVISED PLAN</span><strong>1,255 <small>gal</small></strong></div><div><span>APPLICATION</span><strong>1,200 <small>gal</small></strong></div></div>
+    <div class="record-finding__answer"><span class="record-finding__eyebrow">WHAT OUR REVIEW PRESERVED</span><p>The source pages disagree on tank capacity. We showed <strong>both recorded values</strong> rather than silently choosing one.</p><dl><div><dt>Design recorded</dt><dd>4 <span>bedrooms</span></dd></div><div><dt>Design flow recorded</dt><dd>600 <span>gal/day</span></dd></div><div><dt>Dispersal recorded</dt><dd>45 <span>chambers / 3 cells</span></dd></div></dl></div>
+    <figcaption>SepticPath-created document-selection summary based on the reviewed County packet. It is not a reproduction of the pages or approval for present-day construction.</figcaption>
+    <details class="record-finding__sources"><summary>How we reached this finding</summary><ol><li><strong>Match:</strong> connect the parcel to the County archive packet.</li><li><strong>Separate:</strong> isolate the revised system pages from superseded layouts and an unrelated appendix.</li><li><strong>Compare:</strong> retain the 1,200- and 1,255-gallon entries with their document stages.</li></ol><a href="/septic-records-checklist/wisconsin/st-croix-county/" data-track-click="nav" data-track-source-context="finding_visual_stcroix" data-track-target-type="county_records_page">See the County route and case findings →</a></details>
+</figure>
+@elseif ("overton".equals(variant))
+<figure class="record-finding record-finding--match" id="record-finding-overton" aria-labelledby="record-finding-overton-title" data-reading-milestone="record-finding-overton">
+    <header class="record-finding__header"><span class="record-finding__brand">SepticPath <span>/ RESEARCH NOTES</span></span><span class="record-finding__context">Overton County, TN · Actual record research</span></header>
+    <div class="record-finding__intro"><h3 id="record-finding-overton-title">The clues found a file. They did not prove the match.</h3><p>We followed historical identity clues, then kept the missing modern street number visible.</p></div>
+    <ol class="record-finding__clues" aria-label="Clue chain from current parcel through earlier owner and road wording to a 1993 repair record"><li><span>CURRENT PARCEL</span></li><li><span>FORMER OWNER</span></li><li><span>ROAD WORDING</span></li><li><span>1993 REPAIR FILE</span></li></ol>
+    <div class="record-finding__match-status"><div><span>SUPPORTED CLUES</span><strong>Owner + road</strong></div><div class="is-missing"><span>MISSING IDENTIFIER</span><strong>Modern street number</strong></div><b>LIMITED MATCH</b></div>
+    <div class="record-finding__answer"><span class="record-finding__eyebrow">WHAT THE RETURNED FILE STATES</span><p>The candidate repair record lists the values below. We did <strong>not</strong> present them as confirmed current-property facts.</p><dl><div><dt>Residence in file</dt><dd>3 <span>bedrooms</span></dd></div><div><dt>Tank in file</dt><dd>1,000 <span>gal · 2 compartments</span></dd></div><div><dt>Field in file</dt><dd>≈200 <span>ft</span></dd></div></dl></div>
+    <figcaption>SepticPath-created identity-chain summary. The returned historical file is a limited match, not proof of the current property's system or condition.</figcaption>
+    <details class="record-finding__sources"><summary>How we reached this finding</summary><ol><li><strong>Start:</strong> establish the current parcel and collect prior-owner and road-name clues.</li><li><strong>Request:</strong> give those clues to the TDEC archive rather than searching only the modern address.</li><li><strong>Qualify:</strong> disclose that the returned attachment lacks the modern street number and keep the match limited.</li></ol><a href="/septic-records-checklist/tennessee/overton-county/" data-track-click="nav" data-track-source-context="finding_visual_overton" data-track-target-type="county_records_page">Read the returned-file findings and limitation →</a></details>
+</figure>
+@else
+<figure class="record-finding" id="record-finding-comparison" aria-labelledby="record-finding-title" data-reading-milestone="record-finding-comparison">
+    <header class="record-finding__header"><span class="record-finding__brand">SepticPath <span>/ RESEARCH NOTES</span></span><span class="record-finding__context">Anderson County, SC · Actual record research</span></header>
+    <div class="record-finding__intro"><h3 id="record-finding-title">Planned vs. recorded.</h3><p>We compared the construction permit with the final approval.</p></div>
+    <div class="record-finding__comparison" aria-label="Recorded trench length comparison: construction permit 300 feet; final installation 200 feet, made up of 40, 80 and 80 feet. Bars compare lengths, not physical layout.">
+        <div class="record-finding__row"><div class="record-finding__label"><span>01 / CONSTRUCTION PERMIT</span><strong>300 <small>ft</small></strong></div><div class="record-finding__track" aria-hidden="true"><div class="record-finding__planned"></div></div><p>Source: Permit to Construct · planned trench length</p></div>
+        <div class="record-finding__row"><div class="record-finding__label"><span>02 / FINAL INSTALLATION RECORD</span><strong>200 <small>ft</small></strong></div><div class="record-finding__track" aria-hidden="true"><div class="record-finding__installed"><span>40</span><span>80</span><span>80</span></div></div><p>Source: Final approval · 40 + 80 + 80 ft</p></div>
+    </div>
+    <div class="record-finding__answer"><span class="record-finding__eyebrow">WHAT OUR REVIEW ADDED</span><p>One explanation that keeps the <strong>planned design</strong> separate from the <strong>final recorded installation.</strong></p><dl><div><dt>Tank capacity recorded</dt><dd>1,000 <span>gal</span></dd></div><div><dt>Design flow recorded</dt><dd>360 <span>gal/day</span></dd></div></dl></div>
+    <figcaption>SepticPath-created comparison based on recorded figures. Not an original document, site plan or physical layout. Historical records do not establish current condition.</figcaption>
+    <details class="record-finding__sources"><summary>How we reached this finding</summary><ol><li><strong>Find:</strong> obtain the construction permit and final approval from the responsible state records office.</li><li><strong>Compare:</strong> check the property identifiers, document stages and written trench lengths.</li><li><strong>Explain:</strong> report each figure with its source. Do not infer an approved bedroom count from tank size or design flow.</li></ol><a href="/septic-permit-process/#design-final-case" data-track-click="nav" data-track-source-context="finding_visual_anderson" data-track-target-type="case_study">Read the full investigation →</a></details>
+</figure>
+@endif

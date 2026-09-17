@@ -72,13 +72,14 @@ export function routeIntelligence(d) {
       ? responseHours[middle]
       : (responseHours[middle - 1] + responseHours[middle]) / 2;
     const verifiedOutcomeBranches = new Set(observations.filter(item => ['record_received','no_match','delivered'].includes(item.kind)).map(item => item.branch_id));
+    const deliveredCaseCount = caseIds.filter(caseId => closed.has(normalized.cases.find(item => item.id === caseId)?.status)).length;
     return {
       route_id:route.id, title:route.title, state:route.state, county:route.county,
       record_type:route.record_type, verification:route.verification,
       first_action:route.first_action, fallback:route.fallback, limitations:route.limitations,
       availability:route.availability || 'unknown', primary_channel:route.primary_channel || 'unknown',
       requester_requirements:route.requester_requirements || [], fee_policy:route.fee_policy || 'unknown',
-      case_count:caseIds.length, branch_count:branchIds.length,
+      case_count:caseIds.length, delivered_case_count:deliveredCaseCount, branch_count:branchIds.length,
       observation_count:observations.length, verified_outcome_count:verifiedOutcomeBranches.size,
       status_counts:statusCounts, response_time_sample_count:responseHours.length,
       median_response_hours:medianResponseHours, last_observed:observations.at(-1)?.observed_at || null,
@@ -112,10 +113,10 @@ export function growthOpportunities(d) {
     if (impressions >= 1000 && ctr !== null && ctr < 0.025) {
       opportunityType = 'ctr_and_handoff';
       nextAction = 'Protect ranking, test one search snippet variable, and make the verified route the first useful action.';
-    } else if (route.verified_outcome_count > 0 && publishedProofRoutes.has(route.route_id)) {
+    } else if (route.delivered_case_count > 0 && publishedProofRoutes.has(route.route_id)) {
       opportunityType = 'measure_published_proof';
       nextAction = 'The anonymized route proof is published. Measure indexing, impressions, clicks, and qualified requests before expanding it.';
-    } else if (route.verified_outcome_count > 0 && impressions === 0 && aiCitations === 0) {
+    } else if (route.delivered_case_count > 0) {
       opportunityType = 'publish_verified_proof';
       nextAction = 'Create or strengthen the matching public route page using anonymized, source-backed outcome proof.';
     } else if (route.case_count > 0 && route.verified_outcome_count === 0) {
@@ -127,16 +128,71 @@ export function growthOpportunities(d) {
     }
     const score = Math.round(
       Math.log10(impressions + 1) * 20 + Math.log10(aiCitations + 1) * 10
-      + route.case_count * 10 + route.verified_outcome_count * 20
+      + route.case_count * 10 + route.verified_outcome_count * 10 + route.delivered_case_count * 20
     );
     return {
       route_id:route.route_id, title:route.title, opportunity_score:score,
       opportunity_type:opportunityType, search_impressions:impressions,
       search_clicks:clicks, search_ctr:ctr, ai_citations:aiCitations,
-      case_count:route.case_count, verified_outcome_count:route.verified_outcome_count,
+      case_count:route.case_count, delivered_case_count:route.delivered_case_count, verified_outcome_count:route.verified_outcome_count,
       next_action:nextAction
     };
   }).sort((left,right) => right.opportunity_score - left.opportunity_score || left.route_id.localeCompare(right.route_id));
+}
+
+export function caseAttribution(d) {
+  const rows = upgradeLedger(d).cases.map(caseRow => ({
+    case_id: caseRow.id,
+    intake_at: caseRow.intake_at || null,
+    state: caseRow.state,
+    county: caseRow.county,
+    status: caseRow.status,
+    outcome: closed.has(caseRow.status) ? 'delivered' : caseRow.status === 'blocked_intake' ? 'blocked' : 'open',
+    entry_page: caseRow.entry_page || null,
+    source_context: caseRow.source_context || 'unknown',
+    attribution_key: caseRow.entry_page || `context:${caseRow.source_context || 'unknown'}`,
+    route_ids: caseRow.route_ids || []
+  }));
+  const groups = new Map();
+  for (const row of rows) {
+    const key = `${row.attribution_key}|${row.source_context}`;
+    const group = groups.get(key) || {
+      attribution_key: row.attribution_key,
+      entry_page: row.entry_page,
+      source_context: row.source_context,
+      case_count: 0,
+      delivered_count: 0,
+      delivered_limited_count: 0,
+      open_count: 0,
+      blocked_count: 0,
+      observed_delivery_rate: 0,
+      states: new Set(),
+      counties: new Set(),
+      case_ids: [],
+      route_ids: new Set()
+    };
+    group.case_count += 1;
+    if (row.status === 'delivered') group.delivered_count += 1;
+    if (row.status === 'delivered_limited') group.delivered_limited_count += 1;
+    if (row.outcome === 'open') group.open_count += 1;
+    if (row.outcome === 'blocked') group.blocked_count += 1;
+    group.states.add(row.state);
+    group.counties.add(`${row.county}, ${row.state}`);
+    group.case_ids.push(row.case_id);
+    row.route_ids.forEach(routeId => group.route_ids.add(routeId));
+    groups.set(key, group);
+  }
+  const summary = [...groups.values()].map(group => ({
+    ...group,
+    observed_delivery_rate: (group.delivered_count + group.delivered_limited_count) / group.case_count,
+    states: [...group.states].sort(),
+    counties: [...group.counties].sort(),
+    route_ids: [...group.route_ids].sort()
+  })).sort((left, right) =>
+    right.case_count - left.case_count
+    || right.observed_delivery_rate - left.observed_delivery_rate
+    || left.attribution_key.localeCompare(right.attribution_key));
+  return {rows, summary};
 }
 
 export function publicProofRouteIds() {
@@ -191,7 +247,7 @@ export function validate(d) {
     for (const sourceId of o.source_ids || []) if (!ids.sources.has(sourceId)) errors.push(`${o.id}: unknown source ${sourceId}`);
   }
   for (const signal of d.growth_signals) {
-    if (!['bing_search','bing_ai','google_search_console','ga4'].includes(signal.platform)) errors.push(`${signal.id}: invalid growth platform`);
+    if (!['bing_search','bing_ai','google_search_console','ga4','first_party_intake'].includes(signal.platform)) errors.push(`${signal.id}: invalid growth platform`);
     if (!signal.observed_at || Number.isNaN(Date.parse(signal.observed_at)) || !date(signal.window_start) || !date(signal.window_end)) errors.push(`${signal.id}: invalid growth dates`);
     if (!signal.scope_type || !signal.scope_key || !signal.metrics || typeof signal.metrics !== 'object') errors.push(`${signal.id}: incomplete growth signal`);
   }
@@ -273,17 +329,20 @@ export function render(d) {
   md+=d.cases.map(c=>`| ${cell(c.customer)} | ${cell(c.state+' / '+c.county+' / '+c.parcel)} | ${cell(c.intent)} | ${states[c.status]||c.status} | ${cell(c.summary)} | ${cell(c.next_action)} | ${c.deadline||'미제공'} |`).join('\n');
   fs.writeFileSync(path.join(home,'STATUS.md'),md+'\n');
   const csv=(rows,fields)=>'\uFEFF'+fields.join(',')+'\n'+rows.map(r=>fields.map(f=>'"'+String(Array.isArray(r[f])?r[f].join(' | '):r[f]??'').replace(/"/g,'""')+'"').join(',')).join('\n')+'\n';
-  fs.writeFileSync(path.join(home,'views/cases.csv'),csv(d.cases,['id','customer','email','property','state','county','parcel','intent','status','summary','deadline','next_check','next_action','last_customer_update']));
+  fs.writeFileSync(path.join(home,'views/cases.csv'),csv(d.cases,['id','customer','email','property','state','county','parcel','intent','status','summary','source_context','entry_page','deadline','next_check','next_action','last_customer_update']));
   fs.writeFileSync(path.join(home,'views/branches.csv'),csv(d.branches,['id','case_id','topic','custodian','status','summary','request_number','next_check','next_action','source_ids','route_ids']));
   fs.writeFileSync(path.join(home,'views/routes.csv'),csv(d.routes,['id','title','state','county','record_type','verification','last_verified','first_action','fallback','limitations','source_ids']));
   const intelligence=routeIntelligence(d);
   fs.writeFileSync(path.join(home,'views/route-intelligence.json'),JSON.stringify(intelligence,null,2)+'\n');
-  fs.writeFileSync(path.join(home,'views/route-intelligence.csv'),csv(intelligence.map(item=>({...item,status_counts:JSON.stringify(item.status_counts),requester_requirements:item.requester_requirements})),['route_id','title','state','county','record_type','verification','availability','primary_channel','fee_policy','case_count','branch_count','observation_count','verified_outcome_count','response_time_sample_count','median_response_hours','last_observed','last_verified','status_counts','requester_requirements']));
+  fs.writeFileSync(path.join(home,'views/route-intelligence.csv'),csv(intelligence.map(item=>({...item,status_counts:JSON.stringify(item.status_counts),requester_requirements:item.requester_requirements})),['route_id','title','state','county','record_type','verification','availability','primary_channel','fee_policy','case_count','delivered_case_count','branch_count','observation_count','verified_outcome_count','response_time_sample_count','median_response_hours','last_observed','last_verified','status_counts','requester_requirements']));
   fs.writeFileSync(path.join(home,'views/growth-signals.json'),JSON.stringify(d.growth_signals,null,2)+'\n');
   fs.writeFileSync(path.join(home,'views/growth-signals.csv'),csv(d.growth_signals.map(signal=>({...signal,metrics:JSON.stringify(signal.metrics)})),['id','observed_at','platform','window_start','window_end','scope_type','scope_key','metrics','route_ids','notes']));
   const opportunities=growthOpportunities(d);
   fs.writeFileSync(path.join(home,'views/growth-opportunities.json'),JSON.stringify(opportunities,null,2)+'\n');
-  fs.writeFileSync(path.join(home,'views/growth-opportunities.csv'),csv(opportunities,['route_id','title','opportunity_score','opportunity_type','search_impressions','search_clicks','search_ctr','ai_citations','case_count','verified_outcome_count','next_action']));
+  fs.writeFileSync(path.join(home,'views/growth-opportunities.csv'),csv(opportunities,['route_id','title','opportunity_score','opportunity_type','search_impressions','search_clicks','search_ctr','ai_citations','case_count','delivered_case_count','verified_outcome_count','next_action']));
+  const attribution=caseAttribution(d);
+  fs.writeFileSync(path.join(home,'views/case-attribution.json'),JSON.stringify(attribution,null,2)+'\n');
+  fs.writeFileSync(path.join(home,'views/case-attribution.csv'),csv(attribution.summary.map(row=>({...row,states:row.states.join(' | '),counties:row.counties.join(' | '),case_ids:row.case_ids.join(' | '),route_ids:row.route_ids.join(' | ')})),['attribution_key','entry_page','source_context','case_count','delivered_count','delivered_limited_count','open_count','blocked_count','observed_delivery_rate','states','counties','case_ids','route_ids']));
   // Read-only public compatibility export; never include customer identities.
   fs.writeFileSync(path.join(root,'docs/RECORD_HELP_CASE_LOG.csv'),csv(d.cases.map(c=>({anonymous_case_id:c.id,last_updated:d.updated_at.slice(0,10),state:c.state,county:c.county,outcome_state:c.status,next_check:c.next_check,route_ids:c.route_ids,private_detail:'storage/operations/ledger.json'})),['anonymous_case_id','last_updated','state','county','outcome_state','next_check','route_ids','private_detail']));
   const caseCards=d.cases.map(c=>`<details class="record" data-status="${escape(c.status)}"><summary><span class="badge">${escape(states[c.status]||c.status)}</span><strong>${escape(c.customer)}</strong><span>${escape(c.state+' · '+c.county)}</span><span>${escape(c.deadline?'마감 '+c.deadline:'마감 미제공')}</span></summary><div class="content"><p class="intent">${escape(c.intent)}</p><p>${escape(c.summary)}</p><p class="muted">${escape(c.property)} · ${escape(c.parcel)} · ${escape(c.email)}</p><p><b>다음 행동:</b> ${escape(c.next_action)} (${escape(c.next_check||'추가 문의 시')})</p><p>최근 고객 전달: ${escape(c.last_customer_update||'확인된 발송 없음')}</p><h3>개별 조사 상태</h3><div class="scroll"><table><thead><tr><th>분야 / 담당</th><th>상태</th><th>현재 결론</th><th>다음 확인</th></tr></thead><tbody>${d.branches.filter(b=>b.case_id===c.id).map(b=>`<tr><td>${escape(b.topic)}<br><small>${escape(b.custodian)}</small></td><td>${escape(b.status)}<br>${escape(b.request_number||'')}</td><td>${escape(b.summary)}<br>${(b.source_ids||[]).map(id=>sourceLink(d,id)).join(' · ')}</td><td>${escape(b.next_check||'—')}<br>${escape(b.next_action)}</td></tr>`).join('')}</tbody></table></div><h3>근거와 보존 자료</h3><ul>${c.source_ids.map(id=>`<li>${sourceLink(d,id)}</li>`).join('')}</ul><h3>적용 경로</h3><p>${c.route_ids.map(id=>`<a href="#${escape(id)}" onclick="showTab('routes')">${escape(id)}</a>`).join(' · ')}</p><h3>처리 이력</h3>${d.events.filter(e=>e.case_id===c.id).sort((a,b)=>b.timestamp.localeCompare(a.timestamp)).map(e=>`<p><small>${escape(e.timestamp)} · ${escape(e.type)}</small><br>${escape(e.summary)} ${(e.source_ids||[]).map(id=>sourceLink(d,id)).join(' ')}</p>`).join('')}</div></details>`).join('');

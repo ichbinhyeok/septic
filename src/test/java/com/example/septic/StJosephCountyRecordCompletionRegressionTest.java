@@ -24,7 +24,7 @@ class StJosephCountyRecordCompletionRegressionTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("data-county-acquisition-workspace")))
                 .andExpect(content().string(containsString("Open the official Schematic Request PDF")))
-                .andExpect(content().string(containsString("Schematic-Request-4-12-2019.pdf")))
+                .andExpect(content().string(containsString("Schematic-Request-Form.pdf")))
                 .andExpect(content().string(containsString("envirohd@sjcindiana.com")))
                 .andExpect(content().string(containsString("Person requesting schematic(s)")))
                 .andExpect(content().string(containsString("Most recent schematic only")))

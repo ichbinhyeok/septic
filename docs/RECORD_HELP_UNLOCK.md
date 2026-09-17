@@ -11,8 +11,12 @@ to the property, and explain what it answers and what remains unknown.
 Show existing public examples early, with their existing anonymization and
 historical limits. Do not add unverified testimonials, success rates or promises
 of record availability. Research and necessary agency requests remain free.
-The preview states a real finding and its limits; US $29 buys the source package
-and detailed answers. For uploaded files, sell the interpretation, not access
+The preview identifies the source, document type/date/extent, property match,
+questions the evidence can answer and material limitations. It does not reveal
+the customer's substantive answers. US $29 buys the located source package and
+property-specific reviewed answers. Public completed examples demonstrate quality
+on other properties, not findings about the new customer's property.
+For uploaded files, sell the interpretation, not access
 back to the customer's own documents. Payment instructions and delivery are by
 email, with delivery after confirmed payment. No automatic download is promised.
 
@@ -33,7 +37,9 @@ The existing 21 cases and all other intakes accepted under the previous free
 offer retain free service for their original request, including late agency
 returns, explanations and corrections. Do not rewrite historical intakes.
 New intake files store an immutable offer snapshot with version
-`record-help-optional-unlock-29-v1`, USD and 2900 cents. The absence of this
+`record-help-evidence-preview-29-v2`, USD and 2900 cents. Requests with the older
+`record-help-optional-unlock-29-v1` or any earlier promise of a free substantive
+finding retain that promise. Do not replace their preview terms with v2. The absence of this
 snapshot is NOT permission to charge. Check the original terms and linked case
 before creating an offer, including duplicate intakes and returning customers.
 Never use a customer's deadline or a delayed agency return to change free terms.
@@ -49,14 +55,18 @@ Never use a customer's deadline or a delayed agency return to change free terms.
 4. Pending requests, receipts, generic metadata, portal no-match, blocked access,
    wrong-property files and insufficient identity evidence do not qualify.
    An official status or written no-record response can qualify only when it
-   materially addresses the actual question. Disclose its conclusion, search
-   scope and limits for free; do not imply physical absence or final approval.
+   materially addresses the actual question. Disclose that no source file was
+   found and the search scope and limits for free; do not imply physical absence
+   or final approval. Do not sell an empty search as a useful answer.
 5. Run the mandatory delivery gate for any preview or final message that relies
    on a customer-case file, even without an attachment. Require a fresh PASS for
    the exact recipient, subject and artifacts. Payment never bypasses this gate.
-6. Preview the real finding, source/date, document extent, property match,
-   answered questions, unresolved questions and important adverse findings.
-   State exactly what the optional US $29 purchase contains.
+6. Preview the source/date, document extent, property match, questions the
+   evidence can answer, unresolved questions and material limits. Do not reveal
+   the actual property-specific answer in a v2 preview. Disclose source conflicts,
+   identity uncertainty or inability to answer the question before payment, and
+   communicate known urgent safety concerns promptly. State exactly what the
+   optional US $29 purchase contains without promising a favorable result.
 
 ## Manual payment and delivery
 
@@ -78,13 +88,33 @@ changed. Do not promise immediate automatic download in this manual workflow.
 If delivery cannot be fulfilled or materially differs from the preview, correct
 it or refund the service fee through the provider; retain the real outcome.
 
+Before the first paid offer, run one provider test-mode case through preview,
+hosted checkout, payment verification, delivery evidence, and refund. Record the
+offer version, amount, currency, provider transaction ID, confirmation time,
+delivery time, and refund outcome. Do not use a real customer or production
+payment method for this rehearsal. The payment email must state the expected
+delivery timing and tell the customer to reply with the request reference if the
+package is delayed.
+
+## Intake notification recovery
+
+Each stored intake records separate operator-notification and customer-receipt
+statuses (`pending`, `sent`, or `failed`) with the latest attempt time. A failed
+email does not invalidate or delete the stored intake. Review failed or pending
+statuses during the daily intake check, use the stored request and attachments
+to recover the work, and record the actual follow-up result in the operations
+ledger. Never infer that an on-screen success message means the operator email
+was delivered.
+
 ## Templates (not sent)
 
 Preview subject: Your property record result is ready — free preview
 
-We verified [source/date] for [property]. The result establishes [actual finding].
-It does not establish [limits]. Your optional US $29 package includes [source
-files/extent], our question-by-question explanation and next steps. There is no
+We matched [document type/date, page extent] from [official source] to [property]
+using [verified property anchors]. It supports an answer to [customer question].
+It cannot establish [limits/unanswered questions]. Your optional US $29 package
+includes [located source files/extent], the actual answers to your questions,
+our source-linked explanation and next steps. There is no
 automatic charge. If you choose it, use [verified case-specific checkout]. We
 will email the reviewed package after confirming payment.
 
@@ -116,3 +146,11 @@ Review after 20 useful-result offers: paid offers / all offers, total operator
 minutes / paid orders, and why customers paid or declined. Pending work is not
 a failed search; a positive reply is not a payment. No price or scope changes
 are automatic. Keep the US $29 terms already shown to each customer.
+
+Use separate denominators: all new requests, requests with a useful verified
+result, actual offers sent, payments, completed deliveries and refunds. Record
+active operator minutes even when no offer is possible. Free-beta deliveries,
+thank-you replies and positive feedback are evidence of usefulness, not paid
+demand. Twenty offers is an exploratory review point, not a statistically proven
+conversion benchmark. Record voluntarily supplied decline reasons such as
+already found elsewhere, inadequate answer scope, missed deadline, price or trust.

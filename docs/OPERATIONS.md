@@ -38,6 +38,12 @@ distinguishes CTR/handoff work, operational bottlenecks, verified proof worth
 publishing, and routes that still need evidence. Scores prioritize review; they
 do not claim causal lift or guaranteed rankings.
 
+Customer acquisition attribution is rendered automatically from each case's
+`entry_page` and `source_context` into `views/case-attribution.json` and `.csv`.
+Use this view to distinguish pages that merely attract visits from pages and CTA
+contexts that produce delivered work. A missing historical `entry_page` remains
+explicitly grouped by source context; do not invent a URL from the case location.
+
 ## What was migrated
 
 The September 13, 2026 migration reconciled all located real record-help intakes
@@ -73,6 +79,41 @@ their historical 'not sent' statements do not override later verified sends.
    reusable route intelligence without a separate logging task.
 8. Validate and render. Advance the inbox checkpoint only after the complete
    incremental fetch was triaged. The tool blocks advancing with untriaged mail.
+
+### Mandatory returned-file identity gate
+
+Before treating any agency attachment as responsive evidence, interpreting it,
+renaming it, adding it to a customer packet, or forwarding it:
+
+1. Open every page and record the visible street/house number, parcel ID,
+   plat/subdivision, lot number, owner or applicant, and map geometry when each
+   item is present.
+2. Compare those anchors with the controlling case record and original parcel
+   or plat. A matching email subject, thread, request number, or agency cover
+   message does not prove that its attachment matches the property.
+3. If an anchor conflicts, quarantine the attachment as a custodian mismatch,
+   exclude all of its annotations and conclusions, and set a correction action
+   if it was already delivered.
+4. If the attachment lacks enough anchors to identify the property, keep it as
+   unlinked evidence. Do not fill the gap from the filename or request context.
+5. A customer-facing filename may describe a parcel only after this check is
+   recorded. Otherwise preserve the agency filename and label the match as
+   unverified.
+
+For every external message or portal submission that attaches **or summarizes**
+a customer-case file, the recorded check must be enforced by the local gate:
+
+```powershell
+node tools/delivery-gate.mjs storage/operations/delivery-gates/<manifest>.json
+```
+
+The command verifies the case recipient, local source and ledger SHA-256, every
+page reviewed, all six identity anchors, strong property linkage, map geometry,
+filename changes, the source blocklist and review freshness. It writes a receipt
+valid for 24 hours only when every artifact passes. Do not create an external
+draft, send, forward, or upload unless the exact planned delivery has a current
+PASS receipt. Templates and field guidance are in
+`storage/operations/delivery-gates/README.md`.
 
 There is **no background Gmail synchronizer** running. An agent/operator must
 perform the incremental import. Do not claim the inbox is current past its

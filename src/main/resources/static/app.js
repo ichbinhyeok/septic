@@ -8197,6 +8197,99 @@
         });
     }
 
+    function setupRecordHelpFormSafety() {
+        const form = document.querySelector("[data-record-help-request-form]");
+        if (!(form instanceof HTMLFormElement)) {
+            return;
+        }
+        const storageKey = "septicpath_record_help_draft_v1";
+        const fileInput = form.querySelector("[data-record-help-document-input]");
+        let fileError = form.querySelector("[data-record-help-file-error]");
+        if (!fileError && fileInput) {
+            fileError = document.createElement("p");
+            fileError.className = "record-help-file-error";
+            fileError.setAttribute("data-record-help-file-error", "");
+            fileError.setAttribute("role", "alert");
+            fileError.hidden = true;
+            fileInput.closest("label")?.append(fileError);
+        }
+
+        const saveDraft = () => {
+            try {
+                const values = {};
+                new FormData(form).forEach((value, name) => {
+                    if (name !== "documents" && name !== "website" && typeof value === "string") {
+                        values[name] = value;
+                    }
+                });
+                window.sessionStorage.setItem(storageKey, JSON.stringify(values));
+            } catch (_error) {
+                // The form still works when browser storage is unavailable.
+            }
+        };
+
+        const restoreDraft = () => {
+            if (new URLSearchParams(window.location.search).get("uploadError") !== "too_large") {
+                return;
+            }
+            try {
+                const values = JSON.parse(window.sessionStorage.getItem(storageKey) || "{}");
+                Object.entries(values).forEach(([name, value]) => {
+                    const field = form.elements.namedItem(name);
+                    if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+                        if (field.type === "checkbox") {
+                            field.checked = value === "true" || value === "on";
+                        } else if (!field.value) {
+                            field.value = String(value);
+                        }
+                    }
+                });
+            } catch (_error) {
+                // Leave the server-rendered form untouched if the draft is invalid.
+            }
+        };
+
+        const validateFiles = () => {
+            if (!(fileInput instanceof HTMLInputElement) || !fileInput.files) {
+                return true;
+            }
+            const files = [...fileInput.files];
+            const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+            const tooMany = files.length > 3;
+            const oneTooLarge = files.some((file) => file.size > 10 * 1024 * 1024);
+            const totalTooLarge = totalBytes > 15 * 1024 * 1024;
+            const valid = !tooMany && !oneTooLarge && !totalTooLarge;
+            if (fileError) {
+                fileError.hidden = valid;
+                fileError.textContent = valid
+                    ? ""
+                    : "Choose up to 3 files, keep each file at 10 MB or less, and keep the combined upload at 15 MB or less.";
+            }
+            return valid;
+        };
+
+        if (document.querySelector("[data-closing-risk-request-success]")) {
+            try {
+                window.sessionStorage.removeItem(storageKey);
+            } catch (_error) {
+                // No action needed.
+            }
+        } else {
+            restoreDraft();
+        }
+        fileInput?.addEventListener("change", validateFiles);
+        form.addEventListener("input", saveDraft);
+        form.addEventListener("change", saveDraft);
+        form.addEventListener("submit", (event) => {
+            saveDraft();
+            if (!validateFiles()) {
+                event.preventDefault();
+                fileError?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        });
+    }
+
+    setupRecordHelpFormSafety();
     setupCountyRoutePickers();
     setupStateSurfaceTools();
 

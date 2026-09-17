@@ -812,7 +812,14 @@ public class SiteController {
                 "/offer-prep-septic-file-check/",
                 request
         );
-        closingRiskNotificationService.notifyOperator(requestId, closingRiskCheckForm);
+        boolean operatorNotified = closingRiskNotificationService.notifyOperator(requestId, closingRiskCheckForm);
+        boolean customerReceiptSent = closingRiskNotificationService.notifyCustomerReceipt(requestId, closingRiskCheckForm);
+        leadStorageService.recordClosingRiskNotificationOutcome(
+                requestId,
+                operatorNotified,
+                customerReceiptSent
+        );
+        model.addAttribute("closingRiskReceiptSent", customerReceiptSent);
         if ("understand_file".equals(closingRiskCheckForm.getResearchGoal())) {
             model.addAttribute("documentReviewMode", true);
         }
@@ -1046,7 +1053,7 @@ public class SiteController {
                 Arrays.asList(
                         new SitePageSection(
                                 "Who operates and reviews it",
-                                "SepticPath is operated as an independent, human-reviewed research service. Editorial Team, Research Desk, and Source Review describe service functions, not licensed engineering, inspection, legal, or government credentials.",
+                                "SepticPath is an independent service. A human operator reviews property-record requests, sources, and customer replies. Labels such as Research Desk and Source Review describe service functions, not a government office or licensed engineering, inspection, or legal practice.",
                                 List.of(
                                         "Research work matches the property and jurisdiction, searches credible public sources, and preserves the original source material.",
                                         "Source review checks official destinations, required request details, review dates, and fallback instructions before a route is described as county-specific.",
@@ -1113,7 +1120,7 @@ public class SiteController {
                                 "What is handled depends on the action you choose. Browsing public guidance does not create a property file on our servers.",
                                 List.of(
                                         "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
-                                        "Record Help stores the submitted contact details, property address, record type, research goal, what the requester has already found, relevant listing or permit facts, deadline, notes, consent and offer terms. Submission, research and agency requests are free, with an optional US $29 useful-result unlock. Agency fees are additional at cost with prior approval. These details are emailed to the SepticPath operator for manual review.",
+                                        "Record Help stores the submitted contact details, property address, record type, research goal, what the requester has already found, relevant listing or permit facts, deadline, notes, consent and offer terms. Submission, research and agency requests are free, with an optional US $29 useful-result unlock. Agency fees are additional at cost with prior approval. These details are emailed to the SepticPath operator for manual review, and a plain-text receipt with the reference and submitted request details is emailed to the requester when mail delivery succeeds.",
                                         "When you choose human document review, the source files you attach are stored with the private request record and emailed to the SepticPath operator. The form currently accepts up to three PDF, TXT, PNG, or JPG files with a 15 MB combined limit.",
                                         "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
                                         "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
@@ -1145,6 +1152,16 @@ public class SiteController {
                                         "Do not submit payment-card, bank-account, government-ID, or other highly sensitive personal information through the forms.",
                                         "Operational form records and audit logs are retained while needed for inquiry handling, consent records, abuse prevention, and legitimate operations; a fixed deletion period is not yet promised.",
                                         "Use the Privacy request option on the contact page to ask what was stored or request deletion. Include the lead or contact reference when available."
+                                )
+                        ),
+                        new SitePageSection(
+                                "Research findings and public examples",
+                                "We may explain our research methods and facts from lawfully accessible public records in educational guides and descriptions of our service. This is separate from publishing your private request.",
+                                List.of(
+                                        "We do not publish your contact details, private correspondence, or nonpublic personal circumstances as part of these examples. We review combinations of location, dates, document identifiers and other details that could identify a requester before publication.",
+                                        "Submitting a request does not grant us permission to publish your uploaded documents or use your name, words or identity as a testimonial. Identifiable customer features require a separate appropriate permission or legal basis.",
+                                        "Publication of source images and drawings requires a separate assessment of the applicable rights. Redacting personal details does not grant copyright permission, and this notice does not create a license to customer or third-party documents.",
+                                        "This notice does not retroactively change earlier consent or confidentiality commitments. Contact us with a privacy or correction concern about a public example."
                                 )
                         )
                 ),
@@ -1244,43 +1261,43 @@ public class SiteController {
                 model,
                 seoService.basicPage(
                         "Terms of Use",
-                        "The core use conditions for this estimate-only septic planning website.",
+                        "Use conditions for SepticPath public tools, record research, document review, and optional paid result packages.",
                         "/terms-of-use/"
                 ),
                 "Terms of use",
-                "Use this site as a planning tool, not as engineering or legal approval.",
-                "These terms describe the intended use of the public estimator and related content. They set the operating boundaries for a planning tool, not a permit or compliance service.",
+                "Use SepticPath for research and planning—not as an inspection, permit decision, engineering opinion, or legal approval.",
+                "These terms cover the public tools, property-record research, document review, agency requests, and optional paid result packages offered by SepticPath.",
                 Arrays.asList(
                         new SitePageSection(
-                                "Estimate-only use",
-                                "Results are planning estimates designed to help users ask better questions before speaking with local septic professionals.",
+                                "What the service provides",
+                                "Public guidance and calculators provide planning information. Record Help researches available sources, matches returned material to the property when possible, and explains what the evidence does and does not answer.",
                                 List.of(
-                                        "Outputs are not engineered designs.",
-                                        "Outputs are not code-compliance determinations.",
-                                        "Outputs are not permit approvals or official state calculations."
+                                        "Submitting a Record Help request, research, document review, and necessary agency requests are free.",
+                                        "Before any optional purchase, the free preview identifies the official source, document scope, property match, questions the evidence can answer, and material limitations. Property-specific answers and located source files are included in the paid package; customer-supplied files remain the customer's own.",
+                                        "Records can be unavailable, incomplete, delayed, or held by a different office; SepticPath does not guarantee that a requested record exists or will be released."
                                 )
                         ),
                         new SitePageSection(
-                                "User responsibility",
-                                "Users remain responsible for confirming local permit rules, system feasibility, and contractor qualifications.",
+                                "Optional US $29 result package and agency fees",
+                                "After a useful preview, a customer may choose a one-time US $29 package containing the located source records and detailed, human-reviewed answers described in the offer email.",
                                 List.of(
-                                        "County and local authorities may override state-level general guidance.",
-                                        "Actual cost depends on site evaluation, system type, access, and local scope.",
-                                        "Homebuyers should still request system records and inspection evidence before closing."
+                                        "There is no upfront service payment, subscription, or automatic charge. Payment instructions use a provider-hosted checkout or invoice; never send card details by email.",
+                                        "Agency search, copy, or portal fees are separate, charged at actual cost, and require approval before they are incurred. An approved agency fee may apply even if no record is found or the optional package is declined.",
+                                        "Existing requests retain their accepted terms, including free-beta service and any earlier promise of a free finding. If a paid package cannot be delivered as described, SepticPath will correct the delivery or refund the service fee through the payment provider."
                                 )
                         ),
                         new SitePageSection(
-                                "Commercial use and availability",
-                                "The site may evolve, change coverage, or stop accepting quote requests without notice if source coverage, partner availability, or product scope changes.",
+                                "Evidence boundaries and customer responsibility",
+                                "A historical permit, drawing, approval, or agency response documents what that source says; it does not by itself prove present condition, safety, installation, code compliance, or future approval.",
                                 List.of(
-                                        "Content may be updated when sources change or pages are re-verified.",
-                                        "Quote matching is not guaranteed in every state or project category.",
-                                        "No warranty is made that any estimate range will match a final contractor proposal."
+                                        "Customers remain responsible for inspections, site evaluations, permit decisions, legal advice, deadlines, and work by appropriately qualified professionals.",
+                                        "The free preview discloses missing evidence, identity uncertainty, conflicting sources and limitations that affect whether the package can answer the customer's question. It does not promise a favorable result. Known urgent safety concerns are communicated promptly. A wrong-property file, pending request or empty search is not sold as a verified answer.",
+                                        "Content and public-source routes may change as agencies update their systems. Keep the request reference and reply to the service email for delivery questions, corrections, or refund requests."
                                 )
                         )
                 ),
-                "Trust the workflow, not fake precision",
-                "Use the estimate to narrow the likely range, then verify locally and collect real quotes."
+                "Trust the evidence and its stated limits",
+                "Use the source-backed answer to decide what to verify next with the responsible agency or qualified field professional."
         );
     }
 
