@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.18.1 - 2026-09-18
+
+### Added
+
+- Added optional mobile-number capture to Record Help so customers can receive service-specific calls or texts when a local field professional may be useful.
+- Added durable consent evidence for email, manual-call, and service-text connection channels while excluding automated marketing and onward lead resale.
+
+### Changed
+
+- Extended free Record Help into a low-friction local-professional connection path when public records cannot answer the property question.
+- Kept the intake to one required consent and one submit action while making the mobile number optional and preserving the optional $29 evidence unlock.
+
 ## 0.0.18.0 - 2026-09-17
 
 ### Added

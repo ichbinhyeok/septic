@@ -189,6 +189,7 @@
                         @else
                             <li><strong>Find your record:</strong> check the property and search for permits, drawings, approvals and repair records.</li>
                             <li><strong>Handle the agency:</strong> request missing records and follow the response so you do not have to work out the process yourself.</li>
+                            <li><strong>Keep moving when records stop:</strong> if field work is the next step, we can connect you with relevant local septic professionals.</li>
                             <li><strong>Choose your answers:</strong> preview the evidence and its limits, then unlock the original records and property-specific explanation for $29.</li>
                         @endif
                     </ol>
@@ -249,6 +250,11 @@
                                 <span>Email</span>
                                 <input type="email" name="email" value="${closingRiskCheckForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
                                 <small>We’ll send research updates and the result here. No newsletter signup.</small>
+                            </label>
+                            <label>
+                                <span>Mobile number <small>(optional)</small></span>
+                                <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
+                                <small>Add a number if you would like connected local professionals to call or text about this request. Free research does not require a phone number.</small>
                             </label>
                             <label class="field--full">
                                 <span>Property address</span>
@@ -362,15 +368,16 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree to the research, email contact, and optional $29 unlock terms below. Agency fees require my approval.</span>
+                            <span>I agree to the free research and email updates. If records cannot answer my question, SepticPath may connect me with up to three relevant local professionals using the contact details I provide. Optional $29 unlock terms are below.</span>
                         </label>
+                        <p class="form-note">A connected professional may respond by email or, if you provide a mobile number, by a manual call or text about this request. You are never required to hire anyone we connect you with. This does not authorize automated or prerecorded marketing, unrelated solicitations, or resale of your request.</p>
                         <details class="record-help-consent-details">
                             <summary>Read research consent and pricing terms</summary>
                             <p>${closingRiskCheckForm.getConsentTextSnapshot()}</p>
                         </details>
                         <p class="record-help-fee-note">Approved agency fees are separate and may apply even if no record is found or you do not unlock.</p>
                         <button class="button button--primary" type="submit" data-record-help-submit>${documentReviewMode ? "Send my file for human review" : "Ask SepticPath to investigate"}</button>
-                        <p class="form-note">No card required. No automatic charge. Your contact details and private correspondence are not published. No newsletter signup. <a href="/privacy-policy/#research-publication">How we use research findings</a>.</p>
+                        <p class="form-note">No card required. No automatic charge. Your contact details and private correspondence are not published. <a href="/privacy-policy/#research-publication">How we use research findings</a>.</p>
                     </form>
                 </div>
             </div>
