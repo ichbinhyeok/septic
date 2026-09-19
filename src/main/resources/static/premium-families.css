@@ -1,4 +1,21 @@
 /* Public-page design families. Embeds and the private event report are excluded. */
+/* Interactive guide surfaces: choices and results, not nested dashboard cards. */
+.premium-site--editorial .micro-tool--hero { padding: 28px; border: 1px solid #cbdcd5; border-radius: 14px; box-shadow: none; background: #ffffffed; }
+.premium-site--editorial .micro-tool--hero .micro-tool__result { padding: 24px 0 0; border: 0; border-top: 1px solid #cbdcd5; background: transparent; }
+.premium-site--editorial .micro-tool--hero .micro-tool__result h2 { font-size: 25px; line-height: 1.25; letter-spacing: -.03em; }
+.premium-site--editorial .micro-tool--hero :is(.micro-tool__signal-grid,.micro-tool__result-grid) { display: grid; gap: 20px; margin-block: 22px; border: 0; }
+.premium-site--editorial .micro-tool--hero .micro-tool__signal-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.premium-site--editorial .micro-tool--hero .micro-tool__result-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.premium-site--editorial .micro-tool--hero .mini-card { padding: 16px 0 0; border: 0; border-top: 1px solid #cbdcd5; border-radius: 0; background: transparent; box-shadow: none; }
+.premium-site--editorial .micro-tool--hero .mini-card :is(strong,.intent-card__label) { display: block; }
+.premium-site--editorial .micro-tool--hero .mini-card strong { margin-block: 6px; font-size: 15px; }
+.premium-site--editorial .micro-tool--hero .mini-card p { font-size: 14px; line-height: 1.6; color: #48666a; }
+.premium-site--editorial .micro-tool--hero .micro-tool__panel { padding: 20px 0 0; border: 0; border-top: 1px solid #cbdcd5; background: transparent; }
+.premium-site--editorial .micro-tool--hero .micro-tool__picker { margin-block: 24px; padding: 0; border: 0; background: transparent; }
+@media(max-width:760px) {
+  .premium-site--editorial .micro-tool--hero { padding: 22px 18px; }
+  .premium-site--editorial .micro-tool--hero :is(.micro-tool__signal-grid,.micro-tool__result-grid) { grid-template-columns: 1fr; gap: 14px; }
+}
 .premium-site--editorial .state-review-disclosure { margin-top: 18px; border-top: 1px solid #cbdcd5; }
 .premium-site--editorial .state-review-disclosure > summary { padding-block: 18px; min-height: 48px; cursor: pointer; color: #0b514c; font-size: 14px; font-weight: 700; }
 .premium-site--editorial .state-review-disclosure .review-meta > div { grid-template-columns: 1fr; gap: 6px; }
