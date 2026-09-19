@@ -1,4 +1,23 @@
 /* Public-page design families. Embeds and the private event report are excluded. */
+/* Cost context: preserve every number and caveat, separate planning from official action. */
+.premium-site--editorial .cost-gate-panel { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px,5vw,72px); padding-block: 24px; }
+.premium-site--editorial .cost-gate-panel__range { padding: 36px; border-radius: 16px; color: #e9f5ef; background: #08343e; }
+.premium-site--editorial .cost-gate-panel__header .eyebrow { color: #94dcca; }
+.premium-site--editorial .cost-gate-panel__header h2 { max-width: 22ch; color: #fff; font-size: clamp(28px,2.8vw,40px); line-height: 1.12; letter-spacing: -.04em; }
+.premium-site--editorial .cost-gate-panel__metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; margin-top: 32px; }
+.premium-site--editorial .cost-gate-panel__metric { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid #ffffff35; }
+.premium-site--editorial .cost-gate-panel__metric span { font-size: 13px; color: #c3ded5; }
+.premium-site--editorial .cost-gate-panel__metric strong { font-size: clamp(20px,2vw,30px); line-height: 1.25; font-variant-numeric: tabular-nums; }
+.premium-site--editorial .cost-gate-panel__sources { display: grid; gap: 28px; align-content: start; }
+.premium-site--editorial .cost-gate-panel__source { padding-top: 24px; border-top: 1px solid #cbdcd5; }
+.premium-site--editorial .cost-gate-panel__source-label { color: #007564; font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.premium-site--editorial .cost-gate-panel__source h3 { margin: 10px 0 14px; font-size: 26px; line-height: 1.2; }
+.premium-site--editorial .cost-gate-panel__source p { color: #48666a; line-height: 1.75; }
+@media(max-width:760px) {
+  .premium-site--editorial .cost-gate-panel { grid-template-columns: 1fr; gap: 30px; }
+  .premium-site--editorial .cost-gate-panel__range { padding: 26px 22px; }
+  .premium-site--editorial .cost-gate-panel__metrics { gap: 24px 16px; }
+}
 /* One section owns hero spacing; nested legacy padding must not double it. */
 .premium-site--editorial :is(.state-money-hero-section,.state-guide-page > .section--heroish) .state-hero { padding-block: 0; }
 .premium-site--editorial :is(.state-money-hero-section,.state-guide-page > .section--heroish) .hero-sidecard { margin-top: 0; }
