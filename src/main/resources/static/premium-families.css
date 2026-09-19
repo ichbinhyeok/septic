@@ -1,4 +1,7 @@
 /* Public-page design families. Embeds and the private event report are excluded. */
+/* One section owns hero spacing; nested legacy padding must not double it. */
+.premium-site--editorial :is(.state-money-hero-section,.state-guide-page > .section--heroish) .state-hero { padding-block: 0; }
+.premium-site--editorial :is(.state-money-hero-section,.state-guide-page > .section--heroish) .hero-sidecard { margin-top: 0; }
 /* Full-route audit: a workflow is a readable sequence, never a cramped card mosaic. */
 .premium-site--editorial .next-move-board { padding: 0; border: 0; background: transparent; }
 .premium-site--editorial .next-move-board__header { padding: 0 0 30px; }
