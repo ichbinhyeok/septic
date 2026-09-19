@@ -1,7 +1,4 @@
 /* Shared editorial treatment for the county and Florida records journeys. */
-.county-records-page .county-evidence-section { padding-block: 76px; background: #f1f5f0; }
-.county-records-page .county-route-console-section .county-file-sidecard .eyebrow { color: #9fe2ce; }
-.county-records-page .county-access-workflow__plan .button--secondary { color: #e5f5ee; border-color: #7ea9a4; background: #103e47; }
 .fl-records-desk .fl-premium-evidence { padding: 88px 0; background: #f1f5f0; }
 .fl-records-desk .fl-premium-evidence__inner { display: flex; flex-direction: column; align-items: stretch; gap: 42px; }
 .fl-records-desk .fl-premium-evidence__scope { order: 2; padding-top: 28px; border-top: 1px solid #c2d2cb; }
@@ -52,7 +49,6 @@
 .county-records-page .county-access-workflow__evidence ul { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; padding-left: 20px; line-height: 1.7; }
 .county-records-page .county-access-workflow__evidence p { max-width: 90ch; color: #bcd4d0; font-size: 14px; }
 @media(max-width:800px) {
-  .county-records-page .county-evidence-section { padding-block: 48px; }
   :is(.fl-records-desk,.county-records-page) .record-evidence__heading { grid-template-columns: 1fr; gap: 16px; }
   :is(.fl-records-desk,.county-records-page) .record-evidence__documents { grid-template-columns: 1fr; padding: 22px; gap: 30px; }
   :is(.fl-records-desk,.county-records-page) .record-evidence__papers { display: flex; overflow-x: auto; padding-bottom: 20px; }

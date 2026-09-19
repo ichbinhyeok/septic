@@ -196,6 +196,9 @@
                 @endif
                     </div>
                 </details>
+                @if (countyPage.operationalProof() == null)
+                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county")
+                @endif
                 @if (countySearchResponse != null)
                     @template.tags.searchIntentNextSteps(
                         officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
@@ -388,14 +391,6 @@
             </article>
         </div>
     </section>
-
-    @if (countyPage.operationalProof() == null)
-        <div class="county-evidence-section">
-            <div class="container">
-                @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county")
-            </div>
-        </div>
-    @endif
 
     @if (countySearchGuide != null)
         @template.tags.countySearchGuide(entry = countySearchGuide)
