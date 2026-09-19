@@ -1,4 +1,9 @@
 /* Public-page design families. Embeds and the private event report are excluded. */
+.premium-site--editorial .state-review-disclosure { margin-top: 18px; border-top: 1px solid #cbdcd5; }
+.premium-site--editorial .state-review-disclosure > summary { padding-block: 18px; min-height: 48px; cursor: pointer; color: #0b514c; font-size: 14px; font-weight: 700; }
+.premium-site--editorial .state-review-disclosure .review-meta > div { grid-template-columns: 1fr; gap: 6px; }
+.premium-site--editorial .state-review-disclosure .review-meta dd { font-size: 14px; line-height: 1.65; }
+.premium-site--editorial .state-review-disclosure summary:focus-visible { outline: 3px solid #35baa5; outline-offset: 4px; }
 /* Cost context: preserve every number and caveat, separate planning from official action. */
 .premium-site--editorial .cost-gate-panel { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(30px,5vw,72px); padding-block: 24px; }
 .premium-site--editorial .cost-gate-panel__range { padding: 36px; border-radius: 16px; color: #e9f5ef; background: #08343e; }

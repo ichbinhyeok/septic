@@ -618,6 +618,8 @@
                 <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleTypeLabel()}</strong>
+                <details class="state-review-disclosure">
+                    <summary>Sources, review, and limitations</summary>
                 <dl class="review-meta">
                     <div>
                         <dt>Maintained by</dt>
@@ -645,6 +647,7 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
+                </details>
                 @if (!featuredStateMoneyPages.isEmpty())
                     <a class="button button--secondary"
                        href="${featuredStateMoneyPages.get(0).path(state.slug())}"
