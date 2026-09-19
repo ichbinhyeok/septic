@@ -21,6 +21,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PayPalCheckoutClient {
+    private static final String CHECKOUT_BRAND_NAME = "SepticPath";
+    private static final String STATEMENT_DESCRIPTOR = "SEPTICPATH";
     private final PaidUnlockProperties properties;
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
@@ -50,10 +52,16 @@ public class PayPalCheckoutClient {
         requireConfigured();
         Map<String, Object> payload = Map.of(
                 "intent", "CAPTURE",
+                "application_context", Map.of(
+                        "brand_name", CHECKOUT_BRAND_NAME,
+                        "shipping_preference", "NO_SHIPPING",
+                        "user_action", "PAY_NOW"
+                ),
                 "purchase_units", new Object[]{Map.of(
                         "reference_id", offer.id(),
                         "custom_id", offer.id(),
                         "description", "SepticPath reviewed property record package",
+                        "soft_descriptor", STATEMENT_DESCRIPTOR,
                         "amount", Map.of(
                                 "currency_code", offer.currency(),
                                 "value", offer.amount()
