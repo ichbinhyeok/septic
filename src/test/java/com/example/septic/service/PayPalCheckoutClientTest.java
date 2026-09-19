@@ -13,6 +13,7 @@ import java.net.http.HttpClient;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ class PayPalCheckoutClientTest {
     private HttpServer server;
     private String baseUrl;
     private final AtomicInteger tokenRequests = new AtomicInteger();
+    private final AtomicReference<String> createdOrderBody = new AtomicReference<>();
 
     @BeforeEach
     void startServer() throws IOException {
@@ -31,6 +33,10 @@ class PayPalCheckoutClientTest {
         });
         server.createContext("/v2/checkout/orders/ORDER-123", exchange -> respond(exchange, 200, completedOrder("offer-123")));
         server.createContext("/v2/checkout/orders/ORDER-MISMATCH", exchange -> respond(exchange, 200, completedOrder("another-offer")));
+        server.createContext("/v2/checkout/orders", exchange -> {
+            createdOrderBody.set(new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8));
+            respond(exchange, 201, "{\"id\":\"CREATED-ORDER\",\"status\":\"CREATED\"}");
+        });
         server.createContext("/v1/notifications/verify-webhook-signature", exchange ->
                 respond(exchange, 200, "{\"verification_status\":\"SUCCESS\"}"));
         server.start();
@@ -58,6 +64,29 @@ class PayPalCheckoutClientTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("does not match");
         assertThat(tokenRequests).hasValue(1);
+    }
+
+    @Test
+    void createsOrdersWithSepticPathBrandingAndNoShipping() throws Exception {
+        PayPalCheckoutClient client = client();
+        PaidUnlockStore.Offer offer = new PaidUnlockStore.Offer(
+                "offer-123", PaidUnlockStore.OFFER_VERSION, "public-token-hash", "buyer@example.com",
+                "reference", "property", "source", "scope", "question", "limits",
+                "package.pdf", "stored.pdf", "package-hash", "29.00", "USD", "READY", Instant.now(),
+                new PaidUnlockStore.ReleaseApproval(
+                        "PASS", "case-123", "buyer@example.com", "subject", "package-hash",
+                        true, true, Instant.now(), "reviewer"
+                )
+        );
+
+        var order = client.createOrder(offer);
+        var request = JsonMapper.builder().build().readTree(createdOrderBody.get());
+
+        assertThat(order.path("id").asText()).isEqualTo("CREATED-ORDER");
+        assertThat(request.path("application_context").path("brand_name").asText()).isEqualTo("SepticPath");
+        assertThat(request.path("application_context").path("shipping_preference").asText()).isEqualTo("NO_SHIPPING");
+        assertThat(request.path("application_context").path("user_action").asText()).isEqualTo("PAY_NOW");
+        assertThat(request.path("purchase_units").get(0).path("soft_descriptor").asText()).isEqualTo("SEPTICPATH");
     }
 
     @Test
