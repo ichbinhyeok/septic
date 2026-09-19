@@ -23,10 +23,10 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
             "font-src 'self' https://fonts.gstatic.com",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             "style-src-attr 'unsafe-inline'",
-            "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
+            "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com https://www.paypal.com https://www.sandbox.paypal.com https://www.paypalobjects.com",
             "script-src-attr 'unsafe-inline'",
-            "frame-src 'self' https://publicaccess24.ewashtenaw.org https://gallatincountymt-tcmweb.tylerhost.net",
-            "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://services8.arcgis.com https://file.sandiegocounty.gov"
+            "frame-src 'self' https://publicaccess24.ewashtenaw.org https://gallatincountymt-tcmweb.tylerhost.net https://www.paypal.com https://www.sandbox.paypal.com",
+            "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.google.com https://www.googletagmanager.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://services8.arcgis.com https://file.sandiegocounty.gov https://www.paypal.com https://www.sandbox.paypal.com"
     );
     private static final String EMBED_CONTENT_SECURITY_POLICY = CONTENT_SECURITY_POLICY.replace(
             "frame-ancestors 'none'", "frame-ancestors *"
@@ -40,7 +40,7 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         response.setHeader("X-Content-Type-Options", "nosniff");
         response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-        response.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=()");
+        response.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=(self)");
         if (isEmbeddableChecker(request)) {
             response.setHeader("Content-Security-Policy", EMBED_CONTENT_SECURITY_POLICY);
         } else {

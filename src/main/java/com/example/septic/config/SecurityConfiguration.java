@@ -23,7 +23,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/ops/event-report", "/ops/event-report/").hasRole("OPS")
+                        .requestMatchers("/ops/event-report", "/ops/event-report/", "/ops/paid-unlocks", "/ops/paid-unlocks/**").hasRole("OPS")
                         .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());
