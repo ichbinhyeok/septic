@@ -1,4 +1,16 @@
 /* Public-page design families. Embeds and the private event report are excluded. */
+/* The professional handoff note is usable content, not a tiny full-width code block. */
+.premium-site--editorial .packet-copy-card { display: grid; grid-template-columns: minmax(260px,.8fr) minmax(0,1.2fr); gap: 20px 56px; padding-block: 36px; border-left: 0; }
+.premium-site--editorial .packet-copy-card__head { grid-column: 1; }
+.premium-site--editorial .packet-copy-card__head h2 { max-width: 18ch; }
+.premium-site--editorial .packet-copy-card__head em { display: inline-block; margin-top: 14px; color: #087665; font-size: 13px; font-style: normal; }
+.premium-site--editorial .packet-copy__subject { grid-column: 1; margin: 0; align-self: start; }
+.premium-site--editorial .packet-copy { grid-column: 2; grid-row: 1 / 4; margin: 0; padding: 30px; white-space: pre-wrap; overflow-wrap: anywhere; font: 15px/1.8 Manrope,sans-serif; color: #24474e; background: #fff; border: 1px solid #d6e2da; border-radius: 12px; }
+.premium-site--editorial .packet-copy__actions { grid-column: 1; display: flex; flex-wrap: wrap; gap: 12px; align-self: start; }
+@media(max-width:760px) {
+  .premium-site--editorial .packet-copy-card { grid-template-columns: 1fr; gap: 22px; }
+  .premium-site--editorial .packet-copy { grid-column: 1; grid-row: auto; padding: 24px 20px; }
+}
 /* Interactive guide surfaces: choices and results, not nested dashboard cards. */
 .premium-site--editorial .micro-tool--hero { padding: 28px; border: 1px solid #cbdcd5; border-radius: 14px; box-shadow: none; background: #ffffffed; }
 .premium-site--editorial .micro-tool--hero .micro-tool__result { padding: 24px 0 0; border: 0; border-top: 1px solid #cbdcd5; background: transparent; }
