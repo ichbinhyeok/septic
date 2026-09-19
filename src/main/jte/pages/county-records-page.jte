@@ -14,6 +14,7 @@
 @import com.example.septic.web.CountySearchResponseView
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.AssetPaths
 @param PageMeta page
 @param CountyRecordsPage countyPage
 @param com.example.septic.web.CountySearchGuideView countySearchGuide = null
@@ -45,17 +46,94 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "signature", content = @`
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-county.css")}">
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-records-lower.css")}">
     <div class="county-records-page">
-    <section class="section section--heroish">
+    <section class="premium-county-hero" aria-labelledby="premium-county-title">
+        <div class="premium-county-hero__image" aria-hidden="true"></div>
+        <div class="premium-county-hero__wash" aria-hidden="true"></div>
+        <div class="premium-county-hero__inner">
+            <div class="premium-county-hero__copy">
+                <span class="premium-county-hero__eyebrow">${countyPage.countyName()} · ${state.stateName()}</span>
+                @if (countySeoHeading != null && !countySeoHeading.isBlank())
+                    <h1 id="premium-county-title" class="county-records-page__search-title">${countySeoHeading}</h1>
+                @else
+                    <h1 id="premium-county-title">${countyPage.title()}</h1>
+                @endif
+                <p data-source-title="${countyPage.title()}">Send the property. We’ll trace the permit, layout, approval, or repair file—and explain what the official response actually means.</p>
+                <div class="premium-county-hero__actions">
+                    <a class="premium-county-button premium-county-button--primary"
+                       href="/offer-prep-septic-file-check/#record-help"
+                       data-record-help-cta
+                       data-track-click="nav"
+                       data-track-source-context="county_records_premium_hero"
+                       data-track-target-type="lead_form">Investigate my property <span aria-hidden="true">→</span></a>
+                    <a class="premium-county-button premium-county-button--text"
+                       href="${countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl()}"
+                       target="_blank"
+                       rel="noreferrer"
+                       data-track-click="nav"
+                       data-track-source-context="county_records_premium_official"
+                       data-track-target-type="official_source">Use the official route yourself</a>
+                </div>
+                <ul class="premium-county-hero__promises" aria-label="SepticPath county investigation benefits">
+                    <li><span aria-hidden="true">◇</span> Accurate requests</li>
+                    <li><span aria-hidden="true">▱</span> Real records</li>
+                    <li><span aria-hidden="true">✦</span> Plain-English findings</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="premium-county-glance" aria-labelledby="premium-county-glance-title">
+        <div class="premium-county-glance__inner">
+            <div class="premium-county-glance__answer">
+                <span class="premium-county-kicker">The county answer</span>
+                <h2 id="premium-county-glance-title">At a glance.</h2>
+                <dl>
+                    <div>
+                        <dt><span aria-hidden="true">⌂</span> Who holds the file</dt>
+                        <dd>${countyPage.officeLabel()} is the working official route for this property record.</dd>
+                    </div>
+                    <div>
+                        <dt><span aria-hidden="true">▱</span> What to request</dt>
+                        <dd>The complete file—including the permit, approvals, site plan, final inspection, and related documents.</dd>
+                    </div>
+                    <div>
+                        <dt><span aria-hidden="true">⌕</span> If nothing appears</dt>
+                        <dd>An empty search is not proof that no file exists. Confirm it with the office before making a property decision.</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="premium-county-glance__gallery" aria-label="Records used to verify a septic property file">
+                <figure class="premium-county-glance__figure premium-county-glance__figure--inspection">
+                    <div class="premium-county-checksheet" aria-hidden="true">
+                        <strong>FINAL INSPECTION</strong>
+                        <span>☑ System installed as approved</span>
+                        <span>☑ Components verified</span>
+                        <span>☑ Site conditions accepted</span>
+                    </div>
+                    <figcaption><strong>Inspection record</strong><span>Confirms installation</span></figcaption>
+                </figure>
+                <figure class="premium-county-glance__figure premium-county-glance__figure--site">
+                    <div class="premium-county-glance__photo" aria-hidden="true"></div>
+                    <figcaption><strong>Site documentation</strong><span>Shows what was built</span></figcaption>
+                </figure>
+                <figure class="premium-county-glance__figure premium-county-glance__figure--parcel">
+                    <div class="premium-county-glance__photo" aria-hidden="true"><i></i></div>
+                    <figcaption><strong>Aerial parcel view</strong><span>Helps verify the property</span></figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--heroish county-route-console-section">
         <div class="container state-hero">
             <div>
-                <span class="eyebrow">${countyPage.countyName()} property file</span>
-                @if (countySeoHeading != null && !countySeoHeading.isBlank())
-                    <h1 class="county-records-page__search-title">${countySeoHeading}</h1>
-                @else
-                    <h1>${countyPage.title()}</h1>
-                @endif
+                <span class="eyebrow">Official route workspace</span>
+                <h2>Start with the right county path.</h2>
                 <p class="county-records-page__source-title"
                    data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
                 @template.tags.countySearchQuickStart(countyKey = countyPage.key())

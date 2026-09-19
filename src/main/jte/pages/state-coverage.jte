@@ -17,7 +17,7 @@
 @param int countyBackedStateCount = 0
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "directory", content = @`
     <div class="state-coverage-page">
     <section class="section section--heroish">
         <div class="container content-grid">

@@ -7,7 +7,7 @@
 @param java.util.List<CountyRecordsPage> texasCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "regional", content = @`
     <div class="tdec-desk tx-records-desk" data-tx-records-desk>
         <section class="tdec-desk__intro" aria-labelledby="tx-page-title">
             <div class="container tdec-desk__intro-grid">
@@ -15,6 +15,7 @@
                     <span class="eyebrow">Texas existing OSSF records</span>
                     <h1 id="tx-page-title">Find who permitted the Texas septic system</h1>
                     <p>Texas has no single property-record database for every OSSF. Confirm the local permitting authority, then search or request the file from that authorized agent or TCEQ region.</p>
+                    <div class="regional-hero-actions"><a class="button button--primary" href="#tx-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>This self-serve tool</dt><dd>identifies the authority search, routes verified counties, and prepares file clues.</dd></div>

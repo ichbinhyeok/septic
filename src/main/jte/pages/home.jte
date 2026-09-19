@@ -16,390 +16,321 @@
 @param int queuedStateCount
 @param com.example.septic.web.WorkflowNetworkSnapshotView workflowNetworkSnapshot = null
 
-@template.layouts.app(page = page, content = @`
-    <section class="home-service-hero" aria-labelledby="home-service-title">
-        <div class="container home-service-hero__grid">
-            <div class="home-service-hero__copy">
-                <span class="eyebrow">Human septic record research</span>
-                <h1 id="home-service-title">Septic records.<br>Clear answers.</h1>
-                <p class="lede">Send your address and question. We find the official records, check the property match, and explain the answers.</p>
-                <div class="home-service-hero__example-answer">
-                    <span>How many bedrooms does the record show?</span>
-                    <strong>3-bedroom design documented.</strong>
-                    <small>In one completed request · current condition not established</small>
-                </div>
-                <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_service_proof" data-track-target-type="case_study">See actual records and our explanation <span aria-hidden="true">→</span></a>
-                <div class="home-service-hero__actions">
-                    <a class="button button--primary"
+@template.layouts.app(page = page, designFamily = "signature", content = @`
+    <section class="home-v2-hero" aria-labelledby="home-v2-title">
+        <div class="home-v2-hero__image" aria-hidden="true"></div>
+        <div class="home-v2-hero__veil" aria-hidden="true"></div>
+        <div class="container home-v2-hero__body">
+            <div class="home-v2-hero__copy">
+                <span class="home-v2-kicker">Public record research</span>
+                <h1 id="home-v2-title">Send the address.<br><em>We’ll find the record</em><br>and explain the answer.</h1>
+                <p>Permits, drawings, agency replies—and the questions the file still cannot answer.</p>
+                <div class="home-v2-hero__actions">
+                    <a class="button home-v2-button--light"
                        href="/offer-prep-septic-file-check/#record-help"
                        data-record-help-cta
                        data-track-click="nav"
-                       data-track-source-context="home_service_hero"
-                       data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                       data-track-source-context="home_v2_hero"
+                       data-track-target-type="lead_form">Start with an address <span aria-hidden="true">→</span></a>
+                    <a class="home-v2-text-link"
+                       href="/septic-record-brief-example/"
+                       data-track-click="nav"
+                       data-track-source-context="home_v2_hero"
+                       data-track-target-type="case_study">See an actual completed brief <span aria-hidden="true">↗</span></a>
                 </div>
-                <small class="home-service-hero__beta-note">Free research and agency requests · Optional $29 result unlock · Agency fees extra with approval</small>
-                <a class="home-service-hero__self-serve" href="#self-serve-records" data-track-click="nav" data-track-source-context="home_service_hero" data-track-target-type="internal_tool">Prefer to search public records yourself? <span aria-hidden="true">→</span></a>
-                <small class="home-service-hero__boundary">Record availability and response times vary. SepticPath is an independent research service, not an inspection or permit authority.</small>
+                <small>Research and agency requests are free. Optional $29 result unlock.</small>
+                <span class="home-v2-seo-copy">Septic records.<br>Clear answers.</span>
+                <span class="home-v2-seo-copy">Ask SepticPath to investigate</span>
+                <a class="home-service-hero__self-serve" href="#self-serve-records">Prefer to search public records yourself? <span aria-hidden="true">→</span></a>
             </div>
 
-            <aside class="service-dossier service-dossier--answer" aria-label="Answers from a completed Tennessee record request">
-                <div class="service-dossier__topline">
-                    <span>COMPLETED TENNESSEE REQUEST</span>
-                    <span>IDENTIFIERS REMOVED</span>
+        </div>
+        <div class="home-v2-hero__principles" aria-label="How SepticPath works">
+            <span>⌕ <b>We search<br>across sources</b></span>
+            <span>▤ <b>We get the<br>actual records</b></span>
+            <span>◌ <b>We explain<br>what they mean</b></span>
+        </div>
+    </section>
+
+    <section class="home-v2-proof" id="home-proof" aria-labelledby="home-v2-proof-title">
+        <div class="container home-v2-proof__intro">
+            <div>
+                <span class="home-v2-kicker">One completed request</span>
+                <h2 id="home-v2-proof-title">A public search failed.<br><em>The record did not.</em></h2>
+                <p>The public search failed. We retrieved the permit and explained the layout. What looks like a dead end online is often just offline.</p>
+            </div>
+            <div class="home-v2-before-after" aria-label="A public search result compared with the records SepticPath found">
+                <article class="home-v2-browser">
+                    <span>Before</span>
+                    <div class="home-v2-browser__bar"><i></i><i></i><i></i></div>
+                    <p>123 Maple Ridge Road <b>⌕</b></p>
+                    <strong>No results found</strong>
+                    <small>Try a different search or check your spelling.</small>
+                </article>
+                <span class="home-v2-before-after__arrow" aria-hidden="true">→</span>
+                <article class="home-v2-record-found">
+                    <span>After</span>
+                    <div class="home-v2-record-found__papers" aria-hidden="true">
+                        <i>PERMIT<small>3 bedrooms<br>900-gallon tank</small></i>
+                        <i>SITE PLAN<small>House · tank<br>3 field lines</small></i>
+                        <i>AGENCY REPLY<small>Records located<br>File attached</small></i>
+                    </div>
+                    <p><b>✓</b><span><strong>Record found.</strong><small>Permits, drawings, agency replies and more—all in one place.</small></span></p>
+                </article>
+            </div>
+        </div>
+
+        <div class="container home-v2-proof__stage">
+            <figure class="home-v2-proof__scan">
+                <div class="home-v2-proof__scan-topline"><span>ILLUSTRATIVE RECORD RECONSTRUCTION</span><span>Source facts preserved</span></div>
+                <div class="home-v2-proof__diagram" role="img" aria-label="Reconstructed property diagram showing a house, septic tank, and three field lines">
+                    <svg viewBox="0 0 900 450" aria-hidden="true">
+                        <path class="proof-lot" d="M65 48H835V395H65Z"/>
+                        <path class="proof-drive" d="M80 78C186 90 220 120 273 192"/>
+                        <path class="proof-house" d="M254 154H472V282H254Z M235 154L362 75L492 154"/>
+                        <path class="proof-flow" d="M472 220H565V252H472Z M565 236H670"/>
+                        <path class="proof-field" d="M670 150V326 M714 150V326 M758 150V326"/>
+                        <circle cx="520" cy="236" r="10"/>
+                        <text x="316" y="220">HOUSE</text>
+                        <text x="484" y="212">900 GAL TANK</text>
+                        <text x="677" y="348">3 × 75 FT FIELD LINES</text>
+                    </svg>
+                    <span class="home-v2-proof__pin home-v2-proof__pin--house">Property matched</span>
+                    <span class="home-v2-proof__pin home-v2-proof__pin--tank">Tank location clue</span>
+                    <span class="home-v2-proof__pin home-v2-proof__pin--field">225 ft total</span>
                 </div>
-                <div class="service-dossier__status">
-                    <span aria-hidden="true">✓</span>
-                    <div><small>Confirmed in the historical record</small><strong>3-bedroom design</strong></div>
-                </div>
-                <dl class="service-dossier__facts">
-                    <div><dt>Evidence</dt><dd>Historical agency permit + drawing</dd></div>
-                    <div><dt>System</dt><dd>900-gallon tank · 225 ft of field lines</dd></div>
+                <figcaption>Clean reconstruction for orientation. The downloadable brief links back to the original source record.</figcaption>
+            </figure>
+
+            <aside class="home-v2-proof__reading" aria-label="Findings extracted from the record">
+                <span class="home-v2-proof__number">01</span>
+                <p class="home-v2-proof__label">What the file establishes</p>
+                <h3>Three bedrooms.<br>One 900-gallon tank.<br>225 feet of field line.</h3>
+                <dl>
+                    <div><dt>Property match</dt><dd>Address and agency file aligned</dd></div>
+                    <div><dt>Record type</dt><dd>Historical construction permit</dd></div>
+                    <div><dt>Location clue</dt><dd>Tank drawn beside the house</dd></div>
                 </dl>
-                <figure class="case-plan__scan">
-                    <img src="/images/case-study/tn-historical-sketch-anonymized.png"
-                         alt="Actual historical agency drawing showing the house, tank and three field lines"
-                         width="1110" height="560">
-                    <figcaption>Actual agency scan · identifying details cropped out</figcaption>
-                </figure>
-                <div class="service-dossier__finding">
-                    <small>What this does not answer</small>
-                    <h2>Current condition is not confirmed.</h2>
-                    <p>A site inspection is still needed to assess how the system works today. Historical records do not establish present safety.</p>
-                </div>
-                <div class="service-dossier__footer"><span>Original source preserved</span><span>Plain-English summary included</span></div>
+                <a href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_v2_proof" data-track-target-type="case_study">Read the complete Record Brief <span aria-hidden="true">→</span></a>
             </aside>
+
+            <div class="home-v2-proof__limit">
+                <span>What this does not answer</span>
+                <strong>The historical file does not confirm present condition.</strong>
+                <p>Current condition is not confirmed. A site inspection is still needed to assess how the system performs today.</p>
+            </div>
         </div>
-    </section>
 
-    <section class="section home-case" aria-labelledby="home-case-title">
-        <div class="container">
-            <header class="home-case__header">
-                <div>
-                    <span class="eyebrow">Completed request · identifying details changed</span>
-                    <h2 id="home-case-title">The public search failed. We retrieved the permit and explained the layout.</h2>
-                </div>
-                <p>Built from the agency reply and historical file returned in a real Tennessee request. Personal details were replaced; the document type, system facts, and outcome were preserved.</p>
-            </header>
-
-            <div class="home-case__body">
-                <div class="case-evidence" aria-label="Reconstructed example of an agency reply, returned record, and annotated system drawing">
-                    <div class="case-evidence__desk-label">
-                        <span>COMPLETED CASE / TENNESSEE</span>
-                        <strong>Actual workflow · anonymized evidence</strong>
+        <section class="home-v2-source-proof" aria-labelledby="home-v2-source-proof-title">
+            <div class="container">
+                <header class="home-v2-source-proof__header">
+                    <div>
+                        <span class="home-v2-kicker">Original masked evidence</span>
+                        <h2 id="home-v2-source-proof-title">The summary is polished.<br><em>The source stays attached.</em></h2>
                     </div>
+                    <p>A separate completed request, shown with identifying details removed. The source document, our reading, and the limits remain distinguishable.</p>
+                </header>
 
-                    <article class="case-document case-document--record" aria-label="Anonymized reconstruction of the returned historical permit">
-                        <div class="case-document__masthead">
-                            <span>RETURNED AGENCY FILE</span>
-                            <small>PAGE 02 / 03</small>
-                        </div>
-                        <p class="case-document__agency">HISTORICAL FORM · 1970s RECORD</p>
-                        <h3>Permit for construction of subsurface sewage disposal system</h3>
-                        <div class="case-permit-form">
-                            <p><b class="case-form-check">✓</b> Standard System <span></span> Alternating System <span></span> Other</p>
-                            <p>Issued To: <em>[NAME REPLACED]</em></p>
-                            <p>Authorized at: <em>[PROPERTY ADDRESS REPLACED]</em></p>
-                            <p>Septic tank of <em>900</em> gallons with <em>225</em> linear feet of field line</p>
-                            <p>in <em>3</em> trenches, <em>36</em> inches wide and <em>30</em> inches deep</p>
-                            <p>designed for Residential · <em>3 bedrooms</em></p>
-                        </div>
-                        <div class="case-document__stamp">HISTORICAL<br>RECORD</div>
-                        <small class="case-document__facsimile">Reconstructed from returned file · names, address, dates, signatures changed</small>
-                    </article>
+                <div class="home-v2-source-proof__story">
+                    <figure class="home-v2-source-proof__plan">
+                        <span>01 · Original site plan excerpt</span>
+                        <img src="/images/case-study/redacted/shelby-site-plan-detail-public.png"
+                             alt="Masked historical site plan excerpt showing a proposed four-bedroom residence, 1,000-gallon tank, and field lines"
+                             width="560"
+                             height="1200"
+                             loading="lazy">
+                        <figcaption>Handwritten dimensions and layout clues remain visible; identifying details are excluded.</figcaption>
+                    </figure>
 
-                    <article class="case-document case-document--email" aria-label="Anonymized reconstruction of the actual agency response email">
-                        <div class="case-email__toolbar"><i></i><i></i><i></i><span>ACTUAL REPLY · PERSONAL DETAILS REMOVED</span></div>
-                        <dl class="case-email__headers">
-                            <div><dt>From</dt><dd>Tennessee public records team</dd></div>
-                            <div><dt>To</dt><dd>requester@redacted.email</dd></div>
-                            <div><dt>Subject</dt><dd>Septic file request — [ADDRESS REPLACED]</dd></div>
+                    <div class="home-v2-source-proof__translation" aria-label="Facts translated from the original record">
+                        <span>02 · What we can responsibly say</span>
+                        <dl>
+                            <div><dt>Residence</dt><dd><strong>Proposed 4-bedroom residence</strong><small>Written inside the building footprint</small></dd></div>
+                            <div><dt>Tank</dt><dd><strong>1,000-gallon concrete tank</strong><small>Drawn beside the residence</small></dd></div>
+                            <div><dt>Field</dt><dd><strong>600 ft of field lines</strong><small>Noted directly on the plan</small></dd></div>
+                            <div><dt>Boundary</dt><dd><strong>Historical approval, not present condition</strong><small>A current inspection is still a separate step</small></dd></div>
                         </dl>
-                        <div class="case-email__message">
-                            <p>Good afternoon and thank you for your request.</p>
-                            <p><strong>Please find attached the septic file you requested.</strong></p>
-                            <p class="case-email__limit">The documents reflect historical agency files and do not attest to the system’s current functionality.</p>
-                        </div>
-                        <div class="case-email__attachment"><span>PDF</span><div><strong>historical_septic_file.pdf</strong><small>3 pages · attached by agency</small></div></div>
-                    </article>
+                    </div>
 
-                    <article class="case-document case-document--plan" aria-label="Anonymized reconstruction of the handwritten agency sketch with SepticPath annotation">
-                        <div class="case-plan__title"><strong>ACTUAL AGENCY RECORD RETURNED FOR A SEPTICPATH REQUEST</strong><span>IDENTIFIERS CROPPED</span></div>
-                        <figure class="case-plan__scan">
-                            <img src="/images/case-study/tn-historical-sketch-anonymized.png"
-                                 alt="Cropped portion of the actual historical agency sketch showing a driveway, house, tank, and three field lines labeled 60, 80, and 85 feet"
-                                 width="1110"
-                                 height="560"
-                                 loading="lazy">
-                            <span class="case-plan__scan-mark" aria-hidden="true"></span>
-                            <figcaption>Original agency scan · identifying header and road label excluded from the crop</figcaption>
-                        </figure>
-                        <ul class="case-plan__facts" aria-label="Facts extracted from the returned record">
-                            <li><strong>900 gal</strong><span>Septic tank</span></li>
-                            <li><strong>3 bedrooms</strong><span>Design basis</span></li>
-                            <li><strong>225 ft</strong><span>Three field lines</span></li>
-                        </ul>
-                        <div class="case-plan__note"><span>SEPTICPATH NOTE 01</span><p>The sketch places the tank immediately right of the house, about 5 ft away, with three field lines labeled 60, 80, and 85 ft.</p></div>
-                    </article>
-
-                    <p class="case-evidence__disclosure">Based on the actual reply and returned file. Personal details changed; system specifications retained.</p>
+                    <figure class="home-v2-source-proof__reply">
+                        <span>03 · Agency language</span>
+                        <img src="/images/case-study/redacted/shelby-approval-letter-excerpt-public.png"
+                             alt="Public agency letter excerpt confirming approval of a septic system plot plan"
+                             width="1040"
+                             height="560"
+                             loading="lazy">
+                        <figcaption>The agency letter confirms what was approved and explains that changes require further review.</figcaption>
+                    </figure>
                 </div>
 
-                <aside class="home-case__outcome" aria-label="Representative case outcome">
-                    <div class="home-case__outcome-topline"><span>CASE OUTCOME</span><strong>DELIVERED</strong></div>
-                    <p>A dead-end public search became a usable evidence package.</p>
-                    <dl class="home-case__verified-facts">
-                        <div><dt>Record</dt><dd>Historical construction permit</dd></div>
-                        <div><dt>Design</dt><dd>3 bedrooms · 900-gallon tank</dd></div>
-                        <div><dt>Field</dt><dd>225 ft · 3 trenches</dd></div>
-                        <div><dt>Location clue</dt><dd>Tank drawn beside house</dd></div>
-                        <div><dt>Important limit</dt><dd>Does not prove current condition</dd></div>
-                    </dl>
-                    <div class="home-case__delivered">
-                        <span>DELIVERED TO REQUESTER</span>
-                        <strong>Original PDF · annotated plan · plain-English brief</strong>
+                <details class="home-v2-source-proof__drawer">
+                    <summary>
+                        <span><strong>Inspect the full masked originals</strong><small>See the source before relying on our explanation.</small></span>
+                        <span>Open archive <b aria-hidden="true">＋</b></span>
+                    </summary>
+                    <div class="home-v2-source-proof__originals">
+                        <figure>
+                            <img src="/images/case-study/redacted/agency-approval-letter-full-public.png"
+                                 alt="Full public agency approval letter with identifying details masked"
+                                 width="1275"
+                                 height="1650"
+                                 loading="lazy">
+                            <figcaption>Agency approval letter · identifying details masked</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="/images/case-study/redacted/approved-site-plan-full-public.png"
+                                 alt="Full approved septic site plan with identifying details masked"
+                                 width="1275"
+                                 height="1650"
+                                 loading="lazy">
+                            <figcaption>Approved site plan · identifying details masked</figcaption>
+                        </figure>
                     </div>
-                    <a href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="home_representative_case" data-track-target-type="case_study">Open the completed Record Brief example</a>
-                    <a class="button button--primary"
-                       href="/offer-prep-septic-file-check/#record-help"
-                       data-record-help-cta
-                       data-track-click="nav"
-                       data-track-source-context="home_representative_case"
-                       data-track-target-type="lead_form">Start with my property address</a>
-                    <small>Records can be unavailable, incomplete, or require owner authorization or a fee. We’ll explain the next step if that happens.</small>
-                </aside>
+                </details>
             </div>
-        </div>
+        </section>
     </section>
 
-    <section class="record-learning section" id="read-record-stories" aria-labelledby="home-reading-title">
-        <div class="container record-learning__body">
-            <span class="eyebrow">Real investigations. Practical reading.</span>
-            <h2 id="home-reading-title">Real questions. Records we found. Clear answers.</h2>
-            <p class="record-learning__lede">See how we found original septic records and turned them into useful explanations for property owners. Choose a case like yours.</p>
-            <div class="record-learning__pair">
-                <article>
-                    <span class="eyebrow">Actual case · finding the layout</span>
-                    <h3>A property listing could not show the tank and field.</h3>
-                    <p>A historical agency file supplied a three-bedroom design, a 900-gallon tank and three field lines. See how we found it—and why the drawing was not a current survey.</p>
-                    <a href="/septic-as-built-records/#layout-case" data-track-click="nav" data-track-source-context="home_reading_layout" data-track-target-type="case_study">Read the layout investigation →</a>
-                </article>
-                <article>
-                    <span class="eyebrow">Actual investigation · recovering a file</span>
-                    <h3>From a missing septic file to documented design facts.</h3>
-                    <p>An empty public search and an outdated contact were not the end. Read the County's returned design facts and the questions its file could not settle.</p>
-                    <a href="/septic-record-brief-example/#sale-case" data-track-click="nav" data-track-source-context="home_reading_sale" data-track-target-type="case_study">Read the county-file investigation →</a>
-                </article>
+    <section class="home-v2-service" aria-labelledby="home-v2-service-title">
+        <div class="home-v2-service__image" aria-hidden="true"></div>
+        <div class="container home-v2-service__body">
+            <div class="home-v2-service__headline">
+                <span class="home-v2-kicker">One request. A complete research path.</span>
+                <h2 id="home-v2-service-title">One request.<br>Every credible path.</h2>
             </div>
-            <a href="/septic-record-brief-example/#real-cases" data-track-click="nav" data-track-source-context="home_case_collection" data-track-target-type="case_study">Explore all five real record-help cases →</a>
-            <nav class="record-learning__contents" aria-label="Practical septic record guides">
-                <a href="/how-to-find-septic-records-online/#no-record-online">No records found online?</a>
-                <a href="/septic-tank-location-records/#location-projects">Planning a pool, addition or pumping?</a>
-                <a href="/septic-permit-search-by-address/#old-address-records">An old address does not match?</a>
-                <a href="/septic-permit-process/#permit-status-reading">Inspection passed—but is the permit final?</a>
-                <a href="/septic-permit-process/#design-final-case">Actual case: planned and installed lengths differed</a>
-                <a href="/septic-tank-location-records/#addition-file-case">Actual case: checking records before an addition</a>
-                <a href="/septic-permit-search-by-address/#old-address-case">Actual case: a repair file without a street number</a>
-            </nav>
-        </div>
-    </section>
-
-    <section class="section section--tight home-workflow" aria-labelledby="home-workflow-title">
-        <div class="container">
-            <div class="section-heading home-section-heading">
-                <span class="eyebrow">One request. A complete research path.</span>
-                <h2 id="home-workflow-title">We keep working when the public search stops.</h2>
-            </div>
-            <ol class="home-workflow__steps">
-                <li>
-                    <span>1</span>
-                    <div>
-                        <h3>Research every credible source</h3>
-                        <p>We match the address, parcel, jurisdiction, and likely record owner across available public sources.</p>
-                    </div>
-                </li>
-                <li>
-                    <span>2</span>
-                    <div>
-                        <h3>Request the missing record</h3>
-                        <p>If the online trail ends, we prepare and send a focused request to the responsible public office when appropriate.</p>
-                    </div>
-                </li>
-                <li>
-                    <span>3</span>
-                    <div>
-                        <h3>Preview the answer, then choose</h3>
-                        <p>Preview the source, property match, questions it can answer and limits for free. Choose the original records and your property-specific answers for US $29.</p>
-                    </div>
-                </li>
+            <ol class="home-v2-service__steps">
+                <li><span>01</span><div><h3>We identify the right record owner.</h3><p>Address, parcel, county, agency, and likely file are checked before the search begins.</p></div></li>
+                <li><span>02</span><div><h3>We keep going when the portal stops.</h3><p>If the record is not online, we send a focused request to the responsible public office.</p></div></li>
+                <li><span>03</span><div><h3>You receive the source and the answer.</h3><p>The original file, property-specific findings, conflicts, limits, and next step stay together.</p></div></li>
             </ol>
         </div>
     </section>
 
-    <section class="section home-deliverable" aria-labelledby="home-deliverable-title">
-        <div class="container home-deliverable__grid">
-            <div>
-                <span class="eyebrow">What the $29 package contains</span>
-                <h2 id="home-deliverable-title">The original record. The answer to your question. What to do next.</h2>
-                <p class="lede">Keep the official evidence and understand how it relates to your purchase, sale, repair, addition or records question. We show what is documented, what conflicts, and what still needs an agency answer or site visit.</p>
+    <section class="home-v2-brief" aria-labelledby="home-v2-brief-title">
+        <div class="container home-v2-brief__grid">
+            <div class="home-v2-brief__copy">
+                <span class="home-v2-kicker">The $29 completed package</span>
+                <h2 id="home-v2-brief-title">Not another link.<br><em>A usable property record.</em></h2>
+                <p><strong>The original record. The answer to your question. What to do next.</strong></p>
+                <p>You see the source, the match, the answer to your question, and the line between documented fact and professional judgment.</p>
+                <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="home_v2_brief" data-track-target-type="lead_form">Start with my address</a>
             </div>
-            <ul class="home-deliverable__list">
-                <li><span>01</span><strong>Verified property and jurisdiction match</strong></li>
-                <li><span>02</span><strong>Original agency files and response</strong></li>
-                <li><span>03</span><strong>Permit, bedroom, layout, and history facts extracted</strong></li>
-                <li><span>04</span><strong>Location clues annotated when a drawing exists</strong></li>
-                <li><span>05</span><strong>Unknowns and next professional step made explicit</strong></li>
-            </ul>
+            <div class="home-v2-brief__contents">
+                <p class="home-v2-proof__label">Included in every completed brief</p>
+                <ol>
+                    <li><span>01</span><strong>Verified property and jurisdiction match</strong></li>
+                    <li><span>02</span><strong>Original agency files and response</strong></li>
+                    <li><span>03</span><strong>Permit, bedroom, layout, and history facts</strong></li>
+                    <li><span>04</span><strong>Annotated location clues when a drawing exists</strong></li>
+                    <li><span>05</span><strong>Unknowns and the next professional step</strong></li>
+                </ol>
+            </div>
         </div>
     </section>
 
-    <section class="section section--tight home-self-serve" id="self-serve-records" aria-labelledby="home-self-serve-title">
+    <section class="home-v2-questions" aria-labelledby="home-v2-questions-title">
         <div class="container">
-            @template.tags.addressRecordFinder(
-                finderId = "home-address-record-finder",
-                eyebrow = "Self-serve alternative",
-                heading = "Prefer to search public records yourself?",
-                intro = "Start with the property address and we’ll route you to the most likely public record source.",
-                pageHeading = false,
-                totalCountyRouteCount = totalCountyRouteCount,
-                minimal = true
-            )
-        </div>
-    </section>
-
-    <section class="section section--tight home-intents" aria-labelledby="home-intents-title">
-        <div class="container">
-            <div class="section-heading home-section-heading">
-                <span class="eyebrow">Start with your question</span>
-                <h2 id="home-intents-title">What are you trying to learn about the property?</h2>
-            </div>
-            <nav class="home-intent-list" aria-label="Common septic record questions">
-                <a href="/septic-permit-search-by-address/">
-                    <span><strong>Does this address have a septic permit?</strong><small>Find the county route and the identifiers that make the search work.</small></span>
-                    <span>Find the permit →</span>
-                </a>
-                <a href="/septic-as-built-records/">
-                    <span><strong>Where are the tank and drain field?</strong><small>Ask for the as-built, site sketch, or installed layout instead of a generic permit copy.</small></span>
-                    <span>Find the drawing →</span>
-                </a>
-                <a href="/septic-bedroom-permit-checker/">
-                    <span><strong>How many bedrooms were approved?</strong><small>Separate the listing count from the bedroom capacity supported by the official file.</small></span>
-                    <span>Check bedrooms →</span>
-                </a>
-                <a href="/septic-system-cost-calculator/">
-                    <span><strong>What could repair or replacement cost?</strong><small>Use a planning range and see which missing facts can still move it.</small></span>
-                    <span>Plan the cost →</span>
-                </a>
+            <header class="home-v2-questions__header">
+                <div><span class="home-v2-kicker">Start with the question</span><h2 id="home-v2-questions-title">What are you trying to learn about the property?</h2></div>
+                <p>Open a focused route, or send the address and let us trace the file for you.</p>
+            </header>
+            <nav class="home-v2-questions__list" aria-label="Common septic record questions">
+                <a href="/septic-permit-search-by-address/"><span>01</span><strong>Does this property have a septic permit?</strong><em>Find the record</em></a>
+                <a href="/septic-as-built-records/"><span>02</span><strong>Where are the tank and drain field?</strong><em>Find the drawing</em></a>
+                <a href="/septic-bedroom-permit-checker/"><span>03</span><strong>How many bedrooms were approved?</strong><em>Check capacity</em></a>
+                <a href="/septic-system-cost-calculator/"><span>04</span><strong>What could repair or replacement cost?</strong><em>Plan the cost</em></a>
             </nav>
         </div>
     </section>
 
-    <section class="section section--tight">
+    <section class="home-v2-routes" aria-labelledby="home-v2-routes-title">
+        <div class="container home-v2-routes__grid">
+            <header>
+                <span class="home-v2-kicker">High-demand record workflows</span>
+                <h2 id="home-v2-routes-title">Start with the routes that already do more than explain.</h2>
+                <p>These reviewed paths include a county-specific handoff or a prepared official field pack. Other locations remain clearly labeled as a starting-point route.</p>
+            </header>
+            <nav aria-label="Reviewed county record routes">
+                <a href="/septic-records-checklist/virginia/prince-william-county/"><span>Prince William County, Virginia</span><em>County-specific workflow</em></a>
+                <a href="/septic-records-checklist/texas/tarrant-county/"><span>Tarrant County, Texas</span><em>County-specific workflow</em></a>
+                <a href="/septic-records-checklist/tennessee/hamilton-county/"><span>Hamilton County, Tennessee</span><em>County-specific workflow</em></a>
+                <a href="/septic-records-checklist/north-carolina/wake-county/"><span>Wake County, North Carolina</span><em>iMAPS parcel match and Permit Search attachments · verified field pack</em></a>
+                <a href="/septic-records-checklist/indiana/st-joseph-county/"><span>St. Joseph County, Indiana</span><em>Official schematic PDF and verified fields · prepared field pack</em></a>
+                <a href="/septic-records-checklist/south-carolina/greenville-county/"><span>Greenville County, South Carolina</span><em>Guidance and property clues · starting-point route</em></a>
+                <a href="/tdec-septic-records/"><span>Tennessee TDEC records</span><em>Program and field-office paths</em></a>
+            </nav>
+        </div>
+    </section>
+
+    <section class="home-v2-stories" aria-labelledby="home-v2-stories-title">
         <div class="container">
-            <div class="section-heading home-section-heading">
-                <span class="eyebrow">High-demand record workflows</span>
-                <h2>Start with the routes that already do more than explain.</h2>
-                <p class="lede">Search demand is strongest on these paths, and the county routes below include a reviewed handoff or prepared official field pack. Starting-point-only examples remain visible after them.</p>
-                <p class="home-route-depth" data-nosnippet><strong>${countySpecificRouteCount}</strong> county-specific handoffs · <strong>${preparedFieldPackCount}</strong> verified field packs · <strong>${Math.max(0, totalCountyRouteCount - countySpecificRouteCount)}</strong> official starting points</p>
+            <header><span class="home-v2-kicker">Real investigations</span><h2 id="home-v2-stories-title">Start with a case like yours.</h2></header>
+            <nav aria-label="Real septic record investigations">
+                <a href="/septic-as-built-records/#layout-case">Finding the tank and field from a historical layout <span>Read case →</span></a>
+                <a href="/septic-record-brief-example/#sale-case">Recovering a missing file before a sale <span>Read case →</span></a>
+                <a href="/septic-permit-search-by-address/#old-address-case">A repair file without a modern street number <span>Read case →</span></a>
+                <a href="/septic-permit-process/#design-final-case">When the planned and installed lengths differed <span>Read case →</span></a>
+                <a href="/septic-tank-location-records/#addition-file-case">Checking the historic layout before an addition <span>Read case →</span></a>
+            </nav>
+            <a class="home-v2-stories__all" href="/septic-record-brief-example/#real-cases">Explore all five real record-help cases →</a>
+        </div>
+    </section>
+
+    <section class="home-v2-self-serve" id="self-serve-records" aria-labelledby="home-v2-self-serve-title">
+        <div class="container home-v2-self-serve__grid">
+            <div>
+                <span class="home-v2-kicker">Self-serve alternative</span>
+                <h2 id="home-v2-self-serve-title">Start with the address.</h2>
+                <p>Prefer to search public records yourself? We’ll identify the county and route you toward the most likely public record source. Your address is not stored by SepticPath.</p>
+                <p><strong>Find septic records</strong> by address, or find the record route by county name below.</p>
+                <a href="/septic-record-finder/?mode=document" data-record-document-direct>Have a permit, drawing, letter, or screenshot?</a>
             </div>
-            <div class="home-route-list">
-                <a href="/tdec-septic-records/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="internal_page">
-                    <span><strong>Tennessee TDEC records</strong><small>Program, field-office, and public-records fallbacks · direct search may block</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/virginia/prince-william-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Prince William County, Virginia</strong><small>Historical address/GPIN search · county-specific workflow</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/texas/tarrant-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Tarrant County, Texas</strong><small>OSSF authority check and request handoff · county-specific workflow</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/tennessee/hamilton-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Hamilton County, Tennessee</strong><small>Free document retrieval and email fallback · county-specific workflow</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/north-carolina/alamance-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Alamance County, North Carolina</strong><small>Official request PDF and verified fields · prepared field pack</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/tennessee/knox-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Knox County, Tennessee</strong><small>Live file-search form and verified fields · prepared field pack</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/north-carolina/lincoln-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Lincoln County, North Carolina</strong><small>Phone-first intake and portal fallback · county-specific workflow</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/north-carolina/wake-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>Wake County, North Carolina</strong><small>iMAPS parcel match and Permit Search attachments · verified field pack</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/indiana/st-joseph-county/" data-track-click="nav" data-track-source-context="home_priority_routes" data-track-target-type="county_records_page">
-                    <span><strong>St. Joseph County, Indiana</strong><small>Official schematic PDF and verified fields · prepared field pack</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
-                <a href="/septic-records-checklist/south-carolina/greenville-county/" data-track-click="nav" data-track-source-context="home_starting_point_routes" data-track-target-type="county_records_page">
-                    <span><strong>Greenville County, South Carolina</strong><small>SCDES guidance and TMS clues · starting-point route</small></span>
-                    <span aria-hidden="true">Open →</span>
-                </a>
+            <div>
+                @template.tags.addressRecordFinder(
+                    finderId = "home-address-record-finder",
+                    eyebrow = "Self-serve record routing",
+                    heading = "Find the public record path",
+                    intro = "Enter the property address to identify the county and likely record source.",
+                    pageHeading = false,
+                    totalCountyRouteCount = totalCountyRouteCount,
+                    minimal = true
+                )
             </div>
         </div>
     </section>
 
-    <section class="section section--tight section--muted">
+    <section class="home-v2-directory">
         <div class="container">
-            <div class="section-heading home-section-heading">
-                <span class="eyebrow">If the record is missing</span>
-                <h2>Finish the job without starting over.</h2>
-            </div>
-            <div class="home-tool-grid">
-                <article>
-                    <span class="home-tool-grid__number">01</span>
-                    <h3>Ask for the right file</h3>
-                    <p>Build a clear request for the permit, as-built, final approval, or repair history.</p>
-                    <a href="/septic-records-request-builder/#records-request-builder">Create a records request</a>
-                </article>
-                <article>
-                    <span class="home-tool-grid__number">02</span>
-                    <h3>Check approved bedrooms</h3>
-                    <p>Use the permit details to understand whether the septic approval may limit bedroom count.</p>
-                    <a href="/septic-bedroom-permit-checker/">Check bedroom capacity</a>
-                </article>
-                <article>
-                    <span class="home-tool-grid__number">03</span>
-                    <h3>Plan the likely cost</h3>
-                    <p>Get a broad planning range and see exactly which unknowns can move the price.</p>
-                    <a href="/septic-system-cost-calculator/">Estimate septic cost</a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section--tight">
-        <div class="container">
-            <details class="home-directory">
-                <summary>
-                    <span>
-                        <strong>Search by county instead</strong>
-                        <small>Use this if you do not have the full property address.</small>
-                    </span>
-                    <span aria-hidden="true">Browse ${totalCountyRouteCount} county paths</span>
-                </summary>
+            <details>
+                <summary><span><strong>Search by county instead</strong><small>Use this when you do not have the full property address.</small></span><span>Browse ${totalCountyRouteCount} county paths</span></summary>
                 @template.tags.countyFinder(
                     countyFinderLinks = countyFinderLinks,
                     finderId = "home-county-finder",
                     eyebrow = "County search",
                     heading = "Search by county or state.",
-                    body = "Choose a result to open the local permit, records request, parcel, as-built, or inspection-letter page.",
+                    body = "Open the local permit, records request, parcel, as-built, or inspection-letter route.",
                     sourceContext = "home_county_finder",
                     totalCountyRouteCount = totalCountyRouteCount
                 )
             </details>
-            <div class="home-coverage-links">
-                <a href="/states/">Browse all state guides</a>
-                <a href="/coverage/">See records coverage</a>
+            <nav class="home-v2-directory__links" aria-label="Coverage and research standards">
+                <a href="/states/">All state guides</a>
+                <a href="/septic-records-by-county/">Browse records by county</a>
+                <a href="/septic-records-request-builder/#records-request-builder">Build a records request</a>
+                <a href="/coverage/">Records coverage</a>
                 <a href="/methodology/">How we verify sources</a>
-            </div>
+            </nav>
+            <p class="home-v2-directory__return">Back from the official site? Keep the property details together and continue with the next available route.</p>
+        </div>
+    </section>
+
+    <section class="home-v2-final" aria-labelledby="home-v2-final-title">
+        <div class="home-v2-final__image" aria-hidden="true"></div>
+        <div class="container home-v2-final__body">
+            <span class="home-v2-kicker">Your property deserves a clear record</span>
+            <h2 id="home-v2-final-title">Stop searching.<br><em>Start knowing.</em></h2>
+            <a class="button home-v2-button--light" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="home_v2_final" data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+            <small>SepticPath is an independent research service, not an inspection or permitting authority.</small>
         </div>
     </section>
 `)

@@ -8,7 +8,7 @@
 @param java.util.List<CountyRecordsPage> northCarolinaPriorityCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "regional", content = @`
     <div class="tdec-desk nc-records-desk" data-nc-records-desk>
         <section class="tdec-desk__intro" aria-labelledby="nc-page-title">
             <div class="container tdec-desk__intro-grid">
@@ -16,6 +16,7 @@
                     <span class="eyebrow">North Carolina existing-system records</span>
                     <h1 id="nc-page-title">Find the county that holds the septic permit</h1>
                     <p>North Carolina does not provide one statewide property-level septic permit search. Choose the county, prepare a property clue, and open that county's verified search or request path.</p>
+                    <div class="regional-hero-actions"><a class="button button--primary" href="#nc-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>This self-serve tool</dt><dd>routes verified counties, prepares search keys, and drafts a file request.</dd></div>

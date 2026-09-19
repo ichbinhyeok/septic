@@ -7,8 +7,8 @@
 @param PumpScheduleResult result = null
 @param UsageProfile[] usageProfiles
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "tool", content = @`
+    <section class="section section--heroish pump-schedule-hero">
         <div class="container section-heading">
             <span class="eyebrow">Maintenance estimator</span>
             <h1>Estimate a rough septic pumping and inspection cadence.</h1>

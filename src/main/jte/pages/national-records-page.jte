@@ -11,7 +11,7 @@
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "directory", content = @`
     <div class="national-records-page">
         <section class="national-records-hero">
             <div class="container national-records-hero__inner">

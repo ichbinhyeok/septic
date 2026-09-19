@@ -9,8 +9,8 @@
 @param java.util.List<PageLink> benchmarkGuides = java.util.List.of()
 @param int queuedStateCount = 0
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
+    <section class="section section--heroish state-guide-queued-hero">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${stateCode} research queue</span>

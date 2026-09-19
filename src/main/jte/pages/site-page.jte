@@ -8,8 +8,8 @@
 @param String calloutTitle
 @param String calloutBody
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
+    <section class="section section--heroish site-page-hero">
         <div class="container page-hero">
             <div class="page-hero__content">
                 <span class="eyebrow">${eyebrow}</span>

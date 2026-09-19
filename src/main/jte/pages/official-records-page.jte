@@ -8,7 +8,7 @@
 @param String editorialLastReviewedAt = ""
 @param int totalCountyRouteCount = 0
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "regional", content = @`
     <div class="official-records-page official-records-page--${contentPage.slug()}">
         <section class="official-records-hero">
             <div class="container official-records-hero__inner">

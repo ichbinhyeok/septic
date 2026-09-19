@@ -744,12 +744,45 @@
         });
     }
 
+    function setupPremiumMotion() {
+        if (!("IntersectionObserver" in window)
+            || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+
+        const sections = document.querySelectorAll([
+            ".national-records-page > section:not(.national-records-hero)",
+            ".national-records-page > .record-evidence-band",
+            ".state-records-page > section:not(.state-records-hero)",
+            "main > .records-access-index-hero ~ section",
+            ".calculator-intro ~ section"
+        ].join(","));
+        if (!sections.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-inview");
+                observer.unobserve(entry.target);
+            });
+        }, { rootMargin: "0px 0px -10%", threshold: 0.08 });
+
+        sections.forEach((section) => {
+            if (section.querySelector("[data-address-record-finder], [data-county-finder], form")) {
+                return;
+            }
+            section.classList.add("premium-scroll-reveal");
+            observer.observe(section);
+        });
+    }
+
     setupHashAnchorOffset();
     setupSiteNav();
     setupWebVitalTracking();
     setupStickyMobileCtas();
     setupPrimaryFunnelEvents();
     setupRecordHelpFunnel();
+    setupPremiumMotion();
     trackGaEvents();
 
     document.addEventListener("click", (event) => {

@@ -13,8 +13,8 @@
 @param java.util.List<com.example.septic.web.StateRuleFactView> stateRuleFacts = java.util.List.of()
 @param OccupancyProfile[] occupancyProfiles
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "tool", content = @`
+    <section class="section section--heroish tank-size-hero">
         <div class="container section-heading">
             <span class="eyebrow">Tank size estimator</span>
             <h1>Estimate likely septic tank size by state, bedroom count, and household use.</h1>

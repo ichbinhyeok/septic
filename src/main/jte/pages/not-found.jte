@@ -4,8 +4,8 @@
 @param String message
 @param java.util.List<PageLink> relatedLinks = java.util.List.of()
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "recovery", content = @`
+    <section class="section section--heroish not-found-hero">
         <div class="container narrow">
             <span class="eyebrow">404</span>
             <h1>Page not found</h1>

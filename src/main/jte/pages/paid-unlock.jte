@@ -6,7 +6,7 @@
 @param boolean paymentConfigured
 @param String paypalSdkUrl
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "transaction", content = @`
     <section class="section section--heroish paid-unlock" aria-labelledby="paid-unlock-title">
         <div class="container narrow">
             <span class="eyebrow">Private result preview · No automatic charge</span>

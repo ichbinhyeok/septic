@@ -7,234 +7,65 @@
 @param java.util.List<TennesseeCountyRouteView> tennesseeCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
-@template.layouts.app(page = page, content = @`
-    <div class="tdec-desk" data-tdec-records-desk>
-        <section class="tdec-desk__intro" aria-labelledby="tdec-page-title">
-            <div class="container tdec-desk__intro-grid">
-                <div class="tdec-desk__hero-copy">
-                    <span class="eyebrow">Tennessee septic record investigation</span>
-                    <h1 id="tdec-page-title">TDEC viewer not working? We can investigate the record for you.</h1>
+@template.layouts.app(page = page, designFamily = "signature", content = @`
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-tdec.css")}">
+    <main class="ptdec tdec-desk" data-tdec-records-desk>
+        <section class="ptdec-hero" aria-labelledby="tdec-page-title">
+            <div class="ptdec-hero__shade" aria-hidden="true"></div>
+            <div class="ptdec-hero__inner">
+                <div class="ptdec-hero__copy">
+                    <span class="ptdec-kicker">Tennessee septic records</span>
+                    <h1 id="tdec-page-title">TDEC search<br>stopped? <em>We keep<br>going.</em></h1>
                     <p>Send the property address. We’ll verify the county, search available sources, contact TDEC or the responsible local program when needed, and explain the response.</p>
-                    <div class="tdec-desk__hero-actions">
-                        <a class="button button--primary"
-                           href="/offer-prep-septic-file-check/#record-help"
-                           data-record-help-cta
-                           data-track-click="nav"
-                           data-track-source-context="tdec_hero_record_investigation"
-                           data-track-target-type="lead_form">Ask SepticPath to investigate</a>
-                        <a class="button button--secondary"
-                           href="#tdec-record-search"
-                           data-track-click="nav"
-                           data-track-source-context="tdec_hero_request_builder"
-                           data-track-target-type="request_builder">Prepare the request myself</a>
-                        <a class="text-button"
-                           href="/septic-record-finder/"
-                           data-track-click="internal_handoff"
-                           data-track-source-context="tdec_hero_address_finder"
-                           data-track-target-type="record_finder">Find the county from a property address</a>
-                        <a class="text-button"
-                           href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-tdec-hero-official
-                           data-track-click="official_source"
-                           data-track-source-context="tdec_hero_viewer_optional"
-                           data-track-target-type="official_search">Try the official viewer anyway</a>
+                    <div class="ptdec-hero__actions">
+                        <a class="ptdec-button ptdec-button--coral" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate <span aria-hidden="true">→</span></a>
+                        <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Use the official route myself <span aria-hidden="true">→</span></a>
                     </div>
-                    <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is currently returning 403 in our checks. It may still work for some visitors.</p>
-                    <small class="tdec-desk__independent">Independent service. We can research and request available records; TDEC and local counties control record availability, response timing, and permit status.</small>
-                    <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title">
-                        <div>
-                            <span class="eyebrow">Back from TDEC?</span>
-                            <h3 id="tdec-hero-return-title">Did the official search solve it?</h3>
-                            <p>Record the result so the next step matches what actually happened.</p>
-                        </div>
-                        <div class="tdec-return__choices" role="group" aria-label="TDEC official search result">
-                            <button type="button" data-tdec-hero-outcome="found">I found a file</button>
-                            <button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button>
-                            <button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button>
-                        </div>
-                        <div class="tdec-return__next" data-tdec-hero-next hidden></div>
-                    </section>
+                    <div class="ptdec-hero__trust" aria-label="How SepticPath works">
+                        <span>⌕ <b>Real records<br>Real people</b></span>
+                        <span>◆ <b>County sources<br>&amp; direct outreach</b></span>
+                        <span>▤ <b>Clear explanations<br>No guesswork</b></span>
+                    </div>
+                    <small class="ptdec-independent">Independent service. TDEC and local counties control record availability, response timing, and permit status.</small>
                 </div>
-                @template.tags.recordEvidence(sourceContext = "tdec_records_evidence")
+
+            </div>
+            <div class="ptdec-hero__utility">
+                <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is currently returning 403 in our checks. It may still work for some visitors. TDEC viewer not working? We can investigate the record for you. We can research and request available records.</p>
+                <nav aria-label="Other Tennessee record options"><a href="/septic-record-finder/" data-track-click="internal_handoff" data-track-source-context="tdec_hero_address_finder" data-track-target-type="record_finder">Find the county from a property address</a><a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175" target="_blank" rel="noreferrer" data-tdec-hero-official data-track-click="official_source" data-track-source-context="tdec_hero_viewer_optional" data-track-target-type="official_search">Try the official viewer anyway</a></nav>
+                <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title"><div><span class="eyebrow">Back from TDEC?</span><h3 id="tdec-hero-return-title">Did the official search solve it?</h3><p>Record the result so the next step matches what actually happened.</p></div><div class="tdec-return__choices" role="group" aria-label="TDEC official search result"><button type="button" data-tdec-hero-outcome="found">I found a file</button><button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button><button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button></div><div class="tdec-return__next" data-tdec-hero-next hidden></div></section>
             </div>
         </section>
 
-        <section class="tdec-workspace" id="tdec-record-search" aria-labelledby="tdec-workspace-title">
-            <div class="container">
-                <header class="tdec-workspace__header">
-                    <div>
-                        <span class="eyebrow">Self-serve alternative</span>
-                        <h2 id="tdec-workspace-title">Prefer to handle it yourself? Find the official route.</h2>
+        <section class="tdec-workspace ptdec-route" id="tdec-record-search" aria-labelledby="tdec-workspace-title">
+            <div class="ptdec-route__inner">
+                <header class="ptdec-route__header"><div><span class="ptdec-kicker">Self-serve official routing</span><h2 id="tdec-workspace-title">Find the official route</h2><p>Prefer to handle it yourself? Find the official route.</p></div><span>Nothing is submitted to an agency</span></header>
+                <form class="tdec-workspace__form ptdec-route__form" data-tdec-route-form novalidate>
+                    <fieldset class="tdec-property"><legend class="sr-only">Choose the property county</legend><div class="ptdec-route__fields">
+                        <label class="tdec-property__county"><span>County <b aria-hidden="true">*</b></span><select data-tdec-county required aria-describedby="tdec-county-help tdec-form-error"><option value="">Select a county</option>@for (var county : tennesseeCountyRoutes)<option value="${county.countyKey()}" data-county-name="${county.countyName()}" data-contract-county="${county.contractCounty()}" data-internal-path="${county.internalPath()}" data-field-office-name="${county.fieldOfficeName()}" data-field-office-url="${county.fieldOfficeUrl()}" data-records-url="${county.recordsUrl()}" data-records-label="${county.recordsLabel()}" data-records-hint="${county.recordsHint()}" data-request-email="${county.requestEmail()}">${county.countyName()}</option>@endfor</select><small id="tdec-county-help" data-tdec-county-help>The county determines who owns the record. No address is required.</small></label>
+                        <label class="tdec-property__address"><span>Property address or parcel ID</span><span class="ptdec-input"><i aria-hidden="true">⌕</i><input type="text" maxlength="160" autocomplete="street-address" placeholder="Enter an address or parcel ID" data-tdec-address></span></label>
+                        <button class="ptdec-button ptdec-button--green" type="submit" data-tdec-prepare>Show my route <span aria-hidden="true">→</span></button>
                     </div>
-                    <p>One required choice · Nothing is submitted to an agency</p>
-                </header>
-
-                <form class="tdec-workspace__form" data-tdec-route-form novalidate>
-                    <fieldset class="tdec-property">
-                        <legend>Choose the property county</legend>
-                        <div class="tdec-property__grid">
-                            <label class="tdec-property__county">
-                                <span>County <b aria-hidden="true">*</b></span>
-                                <select data-tdec-county required aria-describedby="tdec-county-help tdec-form-error">
-                                    <option value="">Choose a Tennessee county</option>
-                                    @for (var county : tennesseeCountyRoutes)
-                                        <option value="${county.countyKey()}"
-                                                data-county-name="${county.countyName()}"
-                                                data-contract-county="${county.contractCounty()}"
-                                                data-internal-path="${county.internalPath()}"
-                                                data-field-office-name="${county.fieldOfficeName()}"
-                                                data-field-office-url="${county.fieldOfficeUrl()}"
-                                                data-records-url="${county.recordsUrl()}"
-                                                data-records-label="${county.recordsLabel()}"
-                                                data-records-hint="${county.recordsHint()}"
-                                                data-request-email="${county.requestEmail()}">${county.countyName()}</option>
-                                    @endfor
-                                </select>
-                                <small id="tdec-county-help" data-tdec-county-help>The county determines whether TDEC or a local program owns the record.</small>
-                            </label>
-                            <details class="tdec-property__more" data-tdec-property-details>
-                                <summary>Add optional property search keys</summary>
-                                <div>
-                                    <label class="tdec-property__address"><span>Full property address</span><input type="text" maxlength="160" autocomplete="street-address" placeholder="123 Main St, Franklin, TN 37064" data-tdec-address><small>Optional. County verification runs after the route appears.</small></label>
-                                    <label><span>Parcel or tax-map ID</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-parcel></label>
-                                    <label><span>Current or prior owner</span><input type="text" maxlength="100" autocomplete="name" placeholder="Optional" data-tdec-owner></label>
-                                    <label><span>Subdivision and lot</span><input type="text" maxlength="100" autocomplete="off" placeholder="Optional" data-tdec-subdivision></label>
-                                    <label><span>Permit number</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-permit></label>
-                                </div>
-                            </details>
-                            <details class="tdec-property__purpose">
-                                <summary>Need an inspection letter, repair service, or missing-file help?</summary>
-                                <div class="tdec-purpose__options">
-                                    <label><input type="radio" name="tdec-purpose" value="records" checked><span><strong>Find an existing file</strong><small>Permit, soil map, layout, final approval, repair history</small></span></label>
-                                    <label><input type="radio" name="tdec-purpose" value="status"><span><strong>Confirm approved status</strong><small>Bedrooms, inspection letter, or official approval status</small></span></label>
-                                    <label><input type="radio" name="tdec-purpose" value="missing"><span><strong>No result or old file</strong><small>Online search was empty, blocked, or incomplete</small></span></label>
-                                    <label><input type="radio" name="tdec-purpose" value="repair"><span><strong>Repair or modify a system</strong><small>Start the current TDEC or local service process</small></span></label>
-                                </div>
-                            </details>
-                        </div>
-                    </fieldset>
-
-                    <div class="tdec-workspace__submit-row">
-                        <button class="button button--primary" type="submit" data-tdec-prepare>Show my official route</button>
-                        <p>No address is required. Optional property details stay on this device and are never sent in analytics.</p>
-                    </div>
-                    <p class="form-error" id="tdec-form-error" role="alert" data-tdec-form-error hidden></p>
+                    <details class="tdec-property__more ptdec-route__more" data-tdec-property-details><summary>Add owner, permit, subdivision, or other search keys</summary><div><label><span>Parcel or tax-map ID</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-parcel></label><label><span>Current or prior owner</span><input type="text" maxlength="100" autocomplete="name" placeholder="Optional" data-tdec-owner></label><label><span>Subdivision and lot</span><input type="text" maxlength="100" autocomplete="off" placeholder="Optional" data-tdec-subdivision></label><label><span>Permit number</span><input type="text" maxlength="80" autocomplete="off" placeholder="Optional" data-tdec-permit></label></div></details>
+                    <details class="tdec-property__purpose ptdec-route__purpose"><summary>Choose a different goal</summary><div class="tdec-purpose__options"><label><input type="radio" name="tdec-purpose" value="records" checked><span><strong>Find an existing file</strong><small>Permit, soil map, layout, final approval, repair history</small></span></label><label><input type="radio" name="tdec-purpose" value="status"><span><strong>Confirm approved status</strong><small>Bedrooms, inspection letter, or official approval status</small></span></label><label><input type="radio" name="tdec-purpose" value="missing"><span><strong>No result or old file</strong><small>Online search was empty, blocked, or incomplete</small></span></label><label><input type="radio" name="tdec-purpose" value="repair"><span><strong>Repair or modify a system</strong><small>Start the current TDEC or local service process</small></span></label></div></details></fieldset>
+                    <p class="ptdec-route__privacy">We’ll show the likely office, records link, and what to know before you go. Optional details stay on this device.</p><p class="form-error" id="tdec-form-error" role="alert" data-tdec-form-error hidden></p>
                 </form>
 
-                <section class="tdec-result" data-tdec-result aria-live="polite" tabindex="-1" hidden>
-                    <header class="tdec-result__header">
-                        <div>
-                            <span class="eyebrow" data-tdec-result-status>Route ready</span>
-                            <h2 data-tdec-result-title></h2>
-                            <p data-tdec-result-summary></p>
-                        </div>
-                        <button class="text-button" type="button" data-tdec-edit-search>Edit property</button>
-                    </header>
-
-                    <div class="tdec-result__body">
-                        <section class="tdec-result__route" aria-labelledby="tdec-route-title">
-                            <span class="tdec-result__step">Next official step</span>
-                            <h3 id="tdec-route-title" data-tdec-route-title></h3>
-                            <p data-tdec-route-explanation></p>
-                            <div class="tdec-result__actions" data-tdec-route-actions></div>
-                            <p class="tdec-result__hint" data-tdec-route-hint></p>
-                        </section>
-
-                        <aside class="tdec-result__clues" aria-labelledby="tdec-clues-title">
-                            <span class="tdec-result__step">Take these with you</span>
-                            <h3 id="tdec-clues-title">Property search keys</h3>
-                            <ul data-tdec-search-clues></ul>
-                            <p data-tdec-search-verification></p>
-                            <button class="text-button" type="button" data-tdec-copy-clues>Copy search keys</button>
-                        </aside>
-                    </div>
-
-                    <section class="tdec-return" data-tdec-return hidden aria-labelledby="tdec-return-title">
-                        <div>
-                            <span class="eyebrow">When you return</span>
-                            <h3 id="tdec-return-title">What happened on the official site?</h3>
-                        </div>
-                        <div class="tdec-return__choices" role="group" aria-label="Official search outcome">
-                            <button type="button" data-tdec-outcome="found">Found a file</button>
-                            <button type="button" data-tdec-outcome="empty">No result</button>
-                            <button type="button" data-tdec-outcome="blocked">Site blocked or failed</button>
-                            <button type="button" data-tdec-outcome="no_record">Office found no record</button>
-                        </div>
-                        <div class="tdec-return__next" data-tdec-outcome-next hidden></div>
-                    </section>
+                <section class="tdec-result ptdec-result" data-tdec-result aria-live="polite" tabindex="-1" hidden>
+                    <header class="tdec-result__header"><div><span class="eyebrow" data-tdec-result-status>Route ready</span><h2 data-tdec-result-title></h2><p data-tdec-result-summary></p></div><button class="text-button" type="button" data-tdec-edit-search>Edit property</button></header>
+                    <div class="tdec-result__body"><section class="tdec-result__route" aria-labelledby="tdec-route-title"><span class="tdec-result__step">Next official step</span><h3 id="tdec-route-title" data-tdec-route-title></h3><p data-tdec-route-explanation></p><div class="tdec-result__actions" data-tdec-route-actions></div><p class="tdec-result__hint" data-tdec-route-hint></p></section><aside class="tdec-result__clues" aria-labelledby="tdec-clues-title"><span class="tdec-result__step">Take these with you</span><h3 id="tdec-clues-title">Property search keys</h3><ul data-tdec-search-clues></ul><p data-tdec-search-verification></p><button class="text-button" type="button" data-tdec-copy-clues>Copy search keys</button></aside></div>
+                    <section class="tdec-return" data-tdec-return hidden aria-labelledby="tdec-return-title"><div><span class="eyebrow">When you return</span><h3 id="tdec-return-title">What happened on the official site?</h3></div><div class="tdec-return__choices" role="group" aria-label="Official search outcome"><button type="button" data-tdec-outcome="found">Found a file</button><button type="button" data-tdec-outcome="empty">No result</button><button type="button" data-tdec-outcome="blocked">Site blocked or failed</button><button type="button" data-tdec-outcome="no_record">Office found no record</button></div><div class="tdec-return__next" data-tdec-outcome-next hidden></div></section>
                 </section>
             </div>
         </section>
 
-        <section class="tdec-request" data-tdec-request-section hidden aria-labelledby="tdec-request-title">
-            <div class="container tdec-request__grid">
-                <header>
-                    <span class="eyebrow">Prepared request</span>
-                    <h2 id="tdec-request-title" tabindex="-1">Choose how to send your request</h2>
-                    <p data-tdec-request-guidance></p>
-                </header>
-                <div class="tdec-request__output">
-                    <div class="tdec-request__destination" data-tdec-request-destination hidden>
-                        <span>Published septic-files recipient</span>
-                        <strong data-tdec-request-email></strong>
-                        <p><b>Subject:</b> <span data-tdec-request-subject></span></p>
-                    </div>
-                    <div class="tdec-request__send" data-tdec-send-options hidden>
-                        <span class="tdec-result__step">Choose how to send</span>
-                        <div class="tdec-request__send-actions">
-                            <a class="button button--primary" href="#" target="_blank" rel="noreferrer" data-tdec-send-gmail>Gmail</a>
-                            <a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-send-outlook>Outlook</a>
-                            <a class="button button--secondary" href="#" data-tdec-send-mailto>Email app</a>
-                        </div>
-                        <small>Your property details stay in this browser and are sent only to the email service you choose. They are not sent to SepticPath or GA4.</small>
-                    </div>
-                    <label for="tdec-request-copy">Review the request wording</label>
-                    <textarea id="tdec-request-copy" readonly data-tdec-request-copy></textarea>
-                    <div class="tdec-request__actions">
-                        <button class="button button--secondary" type="button" data-tdec-copy-request>Copy full request</button>
-                        <a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-request-link data-track-click="official_source" data-track-source-context="tdec_records_request" data-track-target-type="official_request">Open responsible office</a>
-                    </div>
-                    <p class="tdec-request__citizen"><strong>Formal TDEC public-records form:</strong> the form asks whether the requester is a Tennessee citizen. Start with the responsible field office if you are not eligible or are unsure.</p>
-                </div>
-            </div>
-        </section>
+        <section class="tdec-request ptdec-request" data-tdec-request-section hidden aria-labelledby="tdec-request-title"><div class="ptdec-request__inner"><header><span class="ptdec-kicker">Prepared request</span><h2 id="tdec-request-title" tabindex="-1">Choose how to send your request</h2><p data-tdec-request-guidance></p></header><div class="tdec-request__output"><div class="tdec-request__destination" data-tdec-request-destination hidden><span>Published septic-files recipient</span><strong data-tdec-request-email></strong><p><b>Subject:</b> <span data-tdec-request-subject></span></p></div><div class="tdec-request__send" data-tdec-send-options hidden><span class="tdec-result__step">Choose how to send</span><div class="tdec-request__send-actions"><a class="button button--primary" href="#" target="_blank" rel="noreferrer" data-tdec-send-gmail>Gmail</a><a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-send-outlook>Outlook</a><a class="button button--secondary" href="#" data-tdec-send-mailto>Email app</a></div><small>Your property details stay in this browser and are sent only to the email service you choose. They are not sent to SepticPath or GA4.</small></div><label for="tdec-request-copy">Review the request wording</label><textarea id="tdec-request-copy" readonly data-tdec-request-copy></textarea><div class="tdec-request__actions"><button class="button button--secondary" type="button" data-tdec-copy-request>Copy full request</button><a class="button button--secondary" href="#" target="_blank" rel="noreferrer" data-tdec-request-link data-track-click="official_source" data-track-source-context="tdec_records_request" data-track-target-type="official_request">Open responsible office</a></div><p class="tdec-request__citizen"><strong>Formal TDEC public-records form:</strong> the form asks whether the requester is a Tennessee citizen. Start with the responsible field office if you are not eligible or are unsure.</p></div></div></section>
 
-        <section class="tdec-quick-help" aria-labelledby="tdec-help-title">
-            <div class="container">
-                <header>
-                    <span class="eyebrow">Before you decide what the file means</span>
-                    <h2 id="tdec-help-title">A record search cannot prove current system condition</h2>
-                </header>
-                <div class="tdec-quick-help__rows">
-                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_quick_help_record_help" data-track-target-type="lead_form"><strong>Search returned nothing?</strong><span>Send the address. We’ll investigate available sources, contact the responsible office when needed, and explain the response.</span></a>
-                    <a href="/septic-bedroom-permit-checker/"><strong>Need approved bedrooms?</strong><span>Use an official approval or Inspection Letter, not a listing claim.</span></a>
-                    <a href="/septic-backup-slow-drains/"><strong>Backup or several slow drains?</strong><span>Reduce water use and prepare the symptom details a septic service provider needs.</span></a>
-                    <a href="/wet-yard-over-septic-drain-field/"><strong>Wet yard, odor, or surfacing wastewater?</strong><span>See when a visible symptom points beyond routine pumping.</span></a>
-                    <a href="/septic-replacement-cost/"><strong>Failure or repair concern?</strong><span>Separate record history from a current site evaluation.</span></a>
-                </div>
-            </div>
-        </section>
+        <section class="ptdec-boundary" aria-labelledby="tdec-help-title"><div class="ptdec-boundary__inner"><header><span class="ptdec-kicker">Records explain history—not condition</span><h2 id="tdec-help-title">Know what the file can prove.</h2></header><div class="ptdec-boundary__feature"><p>A permit may show approved bedrooms, system type, or a layout drawing. It cannot confirm how the system performs today.</p><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_quick_help_record_help" data-track-target-type="lead_form">Search returned nothing? Send the address. We’ll investigate available sources →</a></div><nav class="tdec-quick-help__rows" aria-label="Related septic guidance"><a href="/septic-bedroom-permit-checker/"><strong>Need approved bedrooms?</strong><span>Use an official approval or Inspection Letter.</span></a><a href="/septic-backup-slow-drains/"><strong>Backup or slow drains?</strong><span>Prepare the symptom details a provider needs.</span></a><a href="/wet-yard-over-septic-drain-field/"><strong>Wet yard or odor?</strong><span>Understand visible warning signs.</span></a><a href="/septic-replacement-cost/"><strong>Repair concern?</strong><span>Separate record history from site evaluation.</span></a></nav></div></section>
 
-        <section class="tdec-reference" aria-label="Official sources and route verification">
-            <div class="container">
-                <details class="tdec-reference__details">
-                    <summary><span>Sources, county ownership, and limitations</span><small>Reviewed ${editorialLastReviewedAt}</small></summary>
-                    <div>
-                        <p>TDEC’s SSDS Record Search is the statewide online record route. Blount, Davidson, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby, and Williamson administer their own septic programs. TDEC’s June 2026 assistance map is used for the remaining county-to-field-office routing. A 403 is an access failure, not evidence that a property has no record.</p>
-                        <nav aria-label="Tennessee official sources">
-                            <a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html" target="_blank" rel="noreferrer">TDEC septic systems program</a>
-                            <a href="https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html" target="_blank" rel="noreferrer">TDEC Data and Map Viewers</a>
-                            <a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175" target="_blank" rel="noreferrer">Groundwater Protection (Septic) Permits Data Viewer</a>
-                            <a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer">Environmental Field Offices</a>
-                            <a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer">Formal public-records form</a>
-                        </nav>
-                        <p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TDEC or a Tennessee county. Official agencies control record availability and permit status.</p>
-                    </div>
-                </details>
-            </div>
-        </section>
+        <section class="ptdec-proof"><div class="ptdec-proof__inner"><div class="ptdec-proof__copy"><span class="ptdec-kicker">A clearer evidence trail</span><h2>From public source<br>to a usable answer.</h2><p>We preserve source boundaries, explain what was actually found, and tell you when a county—not TDEC—owns the route.</p></div><div class="ptdec-proof__evidence">@template.tags.recordEvidence(sourceContext = "tdec_records_evidence")</div></div></section>
+
+        <section class="tdec-reference ptdec-reference" aria-label="Official sources and route verification"><div class="ptdec-reference__inner"><details class="tdec-reference__details"><summary><span>Official sources, county ownership, and limitations</span><small>Reviewed ${editorialLastReviewedAt}</small></summary><div><p>TDEC’s SSDS Record Search is the statewide online record route. Blount, Davidson, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby, and Williamson administer their own septic programs. TDEC’s June 2026 assistance map is used for the remaining county-to-field-office routing. A 403 is an access failure, not evidence that a property has no record.</p><nav aria-label="Tennessee official sources"><a href="https://www.tn.gov/environment/permits/water/septic-systems-permits.html" target="_blank" rel="noreferrer">TDEC septic systems program</a><a href="https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html" target="_blank" rel="noreferrer">TDEC Data and Map Viewers</a><a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175" target="_blank" rel="noreferrer">Groundwater Protection (Septic) Permits Data Viewer</a><a href="https://www.tn.gov/environment/contacts/field-offices.html" target="_blank" rel="noreferrer">Environmental Field Offices</a><a href="https://www.tn.gov/environment/contacts/public-records-request.html" target="_blank" rel="noreferrer">Formal public-records form</a></nav><p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with TDEC or a Tennessee county. Official agencies control record availability and permit status.</p></div></details></div></section>
         <script src="${AssetPaths.versioned("/tdec-records.js")}" defer></script>
-    </div>
+    </main>
 `)

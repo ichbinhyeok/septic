@@ -1,0 +1,177 @@
+/* Public-page design families. Embeds and the private event report are excluded. */
+.premium-site { --studio-ink: #082e37; --studio-muted: #536e73; --studio-paper: #fafbf7; --studio-line: #cbdcd5; --studio-accent: #008775; }
+.premium-site main { overflow-wrap: break-word; }
+.premium-site :is(input,select,textarea):focus-visible { outline: 3px solid #35baa5; outline-offset: 3px; }
+.premium-site .section-heading h2 { letter-spacing: -.045em; line-height: 1.08; }
+.premium-site .detail-card { box-shadow: none; }
+.premium-site--tool .section--heroish h1 { color: var(--studio-ink); text-shadow: none; }
+:is(.premium-site--tool,.premium-site--editorial,.premium-site--service) .section--heroish .button--secondary { color: #0b514c; border-color: #43877c; background: #f8fcf3e8; text-shadow: none; }
+:is(.premium-site--tool,.premium-site--editorial,.premium-site--service) .section--heroish .eyebrow { color: #007564; }
+.premium-site--editorial .site-page-hero + .section .detail-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px 56px; border-top: 0; }
+.premium-site--regional .state-records-hero .record-finder .record-finder__workspace { padding: 0; }
+.premium-site--regional .state-records-hero .record-finder .record-finder__form-fields { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.premium-site--regional .state-records-hero .record-finder .record-finder__input-row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.premium-site--regional .state-records-hero .record-finder .record-finder__input-row input { width: 100%; min-width: 0; }
+.premium-site--regional .state-records-hero .record-finder .eyebrow { color: #087665; }
+.premium-site--regional .state-records-hero .record-finder .record-finder__workspace-header { padding: 0 0 20px; }
+.premium-site--regional .state-records-hero .state-records-hero__inner { align-items: start; padding-block: 0; }
+.premium-site--directory .record-finder--minimal .eyebrow { color: #087665; }
+.premium-site--regional .regional-hero-actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; margin-top: 30px; }
+.premium-site--regional .regional-hero-actions .button { background: #8de4cf; border-color: #8de4cf; color: #082e37; }
+.premium-site--regional .regional-hero-actions > a:not(.button) { color: #d5f2e7; text-underline-offset: 5px; }
+.premium-site .ptdec .ptdec-hero__trust b { color: #c7e8df; }
+.premium-site .record-finder__studio-art { margin: 0; overflow: hidden; border-radius: 14px; background: #082e37; box-shadow: 0 22px 60px #001c2440; }
+.premium-site .record-finder__studio-art img { display: block; width: 100%; height: 350px; object-fit: cover; object-position: right; }
+.premium-site .record-finder__studio-art figcaption { padding: 20px 24px; color: #dceee7; font-size: 14px; }
+.premium-site .record-evidence-band { padding-block: clamp(48px,6vw,88px); }
+
+/* The original files remain actual clickable images, with room for comparison. */
+.premium-site:not(.premium-site--signature) .record-evidence .record-evidence__heading { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px 56px; align-items: end; margin-bottom: 32px; }
+.premium-site:not(.premium-site--signature) .record-evidence .record-evidence__eyebrow { grid-column: 1 / -1; }
+.premium-site:not(.premium-site--signature) .record-evidence .record-evidence__heading h2 { max-width: 20ch; margin: 0; color: var(--studio-ink); font-size: clamp(30px,3.2vw,48px); line-height: 1.07; }
+.premium-site:not(.premium-site--signature) .record-evidence__documents { padding: 32px; border: 0; background: #eaf0e8; grid-template-columns: 1.2fr 1fr; gap: 38px; }
+.premium-site:not(.premium-site--signature) .record-evidence__papers { height: auto; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; max-width: none; align-items: start; }
+.premium-site:not(.premium-site--signature) .record-evidence__papers a { position: relative; inset: auto; width: auto; transform: none; padding: 8px; }
+.premium-site:not(.premium-site--signature) .record-evidence__papers a:nth-child(2) { margin-top: 28px; }
+.premium-site:not(.premium-site--signature) .record-evidence__papers a:nth-child(3) { margin-top: 56px; }
+.premium-site:not(.premium-site--signature) .record-evidence__papers a:hover { transform: translateY(-5px); }
+.premium-site:not(.premium-site--signature) .record-evidence__brief { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px; border: 0; }
+.premium-site:not(.premium-site--signature) .record-evidence__brief-title { grid-column: 1 / -1; }
+.premium-site:not(.premium-site--signature) .record-evidence__brief > a:first-of-type { grid-row: 2 / 5; }
+.premium-site:not(.premium-site--signature) .record-evidence__brief img { margin: 0; }
+.premium-site:not(.premium-site--signature) .record-evidence__brief p { margin: 0; }
+
+/* Regional lookup desks: image-led introduction, then a compact usable workspace. */
+.premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero) { position: relative; isolation: isolate; padding-block: 76px; color: #fff; background: #072e37; }
+.premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero)::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,#052b34 0%,#052b34ed 37%,#052b3440 85%),url('/images/brand/septicpath-aerial-hero-v1.jpg') center 55% / cover; }
+.premium-site--regional .tx-records-desk .tdec-desk__intro::before { background-image: linear-gradient(90deg,#052b34 0%,#052b34ed 37%,#052b3440 85%),url('/images/brand/septicpath-waterfront-property-v1.jpg'); }
+.premium-site--regional :is(.tdec-desk__intro-grid,.official-records-hero__inner,.state-records-hero__inner) { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(40px,7vw,100px); align-items: center; min-height: 380px; }
+.premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero) h1 { color: #fff; max-width: 19ch; font-family: Manrope,sans-serif; font-size: clamp(38px,4.3vw,64px); line-height: 1.04; letter-spacing: -.055em; }
+.premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero) .eyebrow { color: #8ce6d1; }
+.premium-site--regional :is(.tdec-desk__intro-grid > div > p,.official-records-hero__copy > p,.state-records-hero__copy > p) { max-width: 54ch; color: #d7e9e4; font-size: 17px; line-height: 1.7; }
+.premium-site--regional .tdec-desk__scope { align-self: end; margin: 0; padding: 26px; border: 1px solid #ffffff30; border-radius: 16px; background: #062e38dd; backdrop-filter: blur(12px); }
+.premium-site--regional .tdec-desk__scope dt { color: #9be8d5; }
+.premium-site--regional .tdec-desk__scope dd { color: #e2eee9; line-height: 1.7; }
+.premium-site--regional :is(.official-records-hero__boundary,.state-records-hero__promise) { margin-top: 28px; border-color: #ffffff40; background: #052b3490; color: #d7e9e4; }
+.premium-site--regional :is(.official-records-hero__boundary,.state-records-hero__promise) strong { color: #9be8d5; }
+.premium-site--regional .state-records-hero .record-finder { color: var(--studio-ink); background: #fafdf9; border: 0; border-radius: 18px; padding: 30px; box-shadow: 0 24px 70px #00191c40; }
+.premium-site--regional .state-records-hero .record-finder :is(h2,label,p) { color: var(--studio-ink); }
+.premium-site--regional .tdec-workspace { padding-block: 72px; background: #fff; }
+.premium-site--regional .tdec-workspace__header { padding: 0 0 32px; border-bottom: 1px solid var(--studio-line); }
+.premium-site--regional .tdec-workspace__header h2 { max-width: 22ch; font-size: clamp(30px,3.3vw,48px); letter-spacing: -.045em; }
+.premium-site--regional .tdec-workspace__form { border: 0; padding-top: 32px; gap: 32px; }
+.premium-site--regional .tdec-workspace__form fieldset { padding: 0; border: 0; }
+.premium-site--regional .tdec-workspace__form legend { float: left; padding: 0; margin-bottom: 24px; }
+.premium-site--regional .tdec-workspace__form legend + * { clear: both; }
+.premium-site--regional .tdec-workspace__field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.premium-site--regional .tdec-workspace__form :is(input,select) { border-radius: 10px; border-color: #bed2cc; background: #fbfdfb; min-height: 54px; }
+.premium-site--regional .tdec-workspace__submit-row { padding: 26px 0 0; background: transparent; border-top: 1px solid var(--studio-line); }
+.premium-site--regional :is(.tdec-outcomes,.state-records-route,.official-records-route) { padding-block: 76px; background: #f3f6ef; }
+.premium-site--regional .tdec-outcomes__list summary { padding-block: 25px; font-size: 17px; }
+
+/* Editorial and service pages use photography as a backdrop, with live searchable copy. */
+:is(.premium-site--editorial,.premium-site--service,.premium-site--directory) .section--heroish { position: relative; isolation: isolate; padding-block: 70px; background: #f3f7f1; }
+:is(.premium-site--editorial,.premium-site--service) .section--heroish::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,#f6f8f2 0%,#f6f8f2f5 42%,#f6f8f245 100%),url('/images/brand/septicpath-research-studio-v1.png') right center / cover; }
+.premium-site--editorial .state-guide-page .section--heroish::before { background-image: linear-gradient(90deg,#f6f8f2 0%,#f6f8f2f5 42%,#f6f8f230 100%),url('/images/brand/septicpath-lake-property-v1.jpg'); }
+:is(.premium-site--editorial,.premium-site--service) :is(.state-hero,.page-hero) { gap: clamp(40px,6vw,90px); align-items: start; }
+:is(.premium-site--editorial,.premium-site--service) .section--heroish h1 { max-width: 21ch; font-size: clamp(36px,4.1vw,60px); line-height: 1.05; letter-spacing: -.05em; color: var(--studio-ink); }
+:is(.premium-site--editorial,.premium-site--service) .section--heroish .lede { max-width: 60ch; font-size: 17px; color: #3e5d64; line-height: 1.75; }
+:is(.premium-site--editorial,.premium-site--service) .hero-sidecard { margin-top: 160px; padding: 28px; border: 1px solid #ffffff80; border-radius: 14px; background: #fafff5f0; box-shadow: 0 20px 70px #092e3720; }
+:is(.premium-site--editorial,.premium-site--service) .hero-sidecard strong { color: var(--studio-ink); font-size: 24px; line-height: 1.25; }
+:is(.premium-site--editorial,.premium-site--service) .hero-sidecard p { color: #48666a; }
+:is(.premium-site--editorial,.premium-site--service) .detail-grid { column-gap: 56px; row-gap: 36px; }
+:is(.premium-site--editorial,.premium-site--service) .detail-card { padding: 28px 0; border: 0; border-top: 1px solid var(--studio-line); border-radius: 0; background: transparent; }
+:is(.premium-site--editorial,.premium-site--service) .detail-card h2 { font-size: clamp(25px,2.5vw,36px); letter-spacing: -.035em; }
+:is(.premium-site--editorial,.premium-site--service) .detail-card :is(p,li) { line-height: 1.8; }
+:is(.premium-site--editorial,.premium-site--service) .trust-box--large { border: 0; border-radius: 0; padding: 42px; color: #d6eae3; background: #082e37; }
+:is(.premium-site--editorial,.premium-site--service) .trust-box--large :is(h2,h3,a) { color: #fff; }
+.premium-site--service .quote-panel { padding: 36px; border: 1px solid var(--studio-line); border-radius: 18px; box-shadow: 0 24px 60px #103c4310; }
+.premium-site--service .field-grid { gap: 24px; }
+
+/* Directories retain their working search controls; the opening becomes a visual destination. */
+.premium-site--directory :is(.national-records-hero,.records-access-index-hero,.record-finder-hero) { padding-block: 72px; background: #edf4ee; }
+.premium-site--directory :is(.national-records-hero,.records-access-index-hero) { background: linear-gradient(90deg,#f4f8f2 5%,#f4f8f2ec 47%,#f4f8f240),url('/images/brand/septicpath-waterfront-property-v1.jpg') center / cover; }
+.premium-site--directory :is(.national-records-hero,.records-access-index-hero,.record-finder-hero,.section--heroish) h1 { max-width: 20ch; font-size: clamp(38px,4.3vw,64px); line-height: 1.05; letter-spacing: -.05em; }
+.premium-site--directory .record-finder-hero .record-finder { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.premium-site--directory .record-finder__intro { gap: 56px; padding-bottom: 44px; }
+.premium-site--directory .record-finder__heading { padding-block: 20px; }
+.premium-site--directory .record-finder__result-preview { border: 0; border-radius: 16px; box-shadow: 0 20px 60px #0a303522; }
+.premium-site--directory .record-finder-steps { gap: 40px; padding-block: 32px; }
+.premium-site--directory .record-finder-steps article { padding: 24px 0; border: 0; border-top: 2px solid #84bdad; border-radius: 0; background: transparent; }
+.premium-site--directory .records-access-state-directory { padding-block: 40px; }
+
+/* Calculators: a compact photographic introduction and a quiet, precise working surface. */
+.premium-site--tool .section--heroish { position: relative; isolation: isolate; padding-block: 56px; background: #eff4ef; }
+.premium-site--tool .section--heroish::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg,#eff4ef 0%,#eff4eff5 55%,#eff4ef50),url('/images/brand/septicpath-lake-property-v1.jpg') right 55% / cover; }
+.premium-site--tool .section--heroish h1 { max-width: 26ch; font-size: clamp(32px,3.8vw,54px); line-height: 1.08; letter-spacing: -.045em; }
+.premium-site--tool .section--heroish .lede { max-width: 75ch; color: #49686d; font-size: 16px; line-height: 1.75; }
+.premium-site--tool .calculator-layout { gap: 40px; align-items: start; padding-top: 30px; }
+.premium-site--tool .calculator-form { border: 1px solid var(--studio-line); border-radius: 18px; padding: clamp(24px,3vw,42px); background: #fff; box-shadow: 0 22px 65px #082e370d; }
+.premium-site--tool .field-grid { gap: 24px; }
+.premium-site--tool :is(.calculator-form,.bedroom-checker) :is(input,select) { min-height: 52px; border-color: #b4cbc4; border-radius: 9px; background: #fbfdfa; }
+.premium-site--tool .form-section { border-color: var(--studio-line); padding-block: 26px; }
+.premium-site--tool .hero-sidecard { border: 0; border-radius: 16px; background: #ffffffdc; box-shadow: none; }
+.premium-site--tool .detail-card { padding: 28px; border: 1px solid var(--studio-line); border-radius: 12px; background: #f6f9f3; }
+.premium-site--tool .bedroom-checker { border-radius: 16px; border-color: var(--studio-line); }
+
+/* Private purchase and recovery screens share the brand without changing behavior. */
+.premium-site .ptdec .ptdec-hero__shade { background: linear-gradient(90deg,#052c35ed,#052c35c0 38%,transparent 70%); }
+.premium-site .ptdec .ptdec-hero__inner { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 48px; }
+.premium-site .ptdec .ptdec-hero__copy h1 { color: #fff; font-size: clamp(44px,4.5vw,66px); }
+.premium-site .ptdec .ptdec-hero__copy h1 em { color: #86e3cc; }
+.premium-site .ptdec .ptdec-hero__copy > p { color: #dcece7; font-size: 17px; }
+.premium-site .ptdec .ptdec-hero__copy :is(.ptdec-kicker,.ptdec-link,.ptdec-independent,.ptdec-hero__trust) { color: #c7e8df; }
+.premium-site .ptdec .ptdec-hero__utility { width: 100%; margin: 0; padding: 24px max(28px,calc((100vw - 1400px)/2)); color: #325860; background: #eef5ef; }
+.premium-site .ptdec .ptdec-proof__inner { grid-template-columns: 1fr; gap: 36px; }
+.premium-site .ptdec .ptdec-proof__copy { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 48px; align-items: end; }
+.premium-site .ptdec .ptdec-proof__copy .ptdec-kicker { grid-column: 1 / -1; }
+.premium-site .ptdec .ptdec-proof__copy h2 { font-size: clamp(32px,3.5vw,48px); margin: 0; }
+.premium-site .ptdec .ptdec-proof__evidence > * { transform: none; box-shadow: none; }
+.premium-site .ptdec .ptdec-proof .record-evidence__documents { padding: 28px; grid-template-columns: 1.25fr .75fr; }
+.premium-site .ptdec .ptdec-proof .record-evidence__brief img { max-height: 340px; }
+.premium-site .record-brief-example-page .record-brief-hero { background: linear-gradient(90deg,#082e37fa,#082e37df),url('/images/brand/septicpath-research-studio-v1.png') center / cover; }
+.premium-site .record-brief-example-page .record-brief-hero::before { display: none; }
+.premium-site .record-brief-example-page .record-brief-hero h1 { max-width: 15ch; font-size: clamp(38px,4.5vw,64px); line-height: 1.04; }
+.premium-site .record-brief-example-page .record-case-chain { border-radius: 16px; box-shadow: 0 24px 70px #001c2440; }
+.premium-site--transaction .paid-unlock { background: #f0f5ef; padding-block: 64px; }
+.premium-site--transaction .paid-unlock h1 { font-size: clamp(34px,4vw,54px); line-height: 1.08; letter-spacing: -.045em; }
+.premium-site--transaction .paid-unlock__card { padding: 32px; margin-block: 24px; background: #fff; border: 1px solid var(--studio-line); border-radius: 16px; }
+.premium-site--transaction .paid-unlock__card dl > div { padding-block: 14px; border-bottom: 1px solid #e1eae4; }
+.premium-site--recovery .section--heroish { background: #edf4ee; }
+
+@media(max-width:1000px) {
+  .premium-site--regional :is(.tdec-desk__intro-grid,.official-records-hero__inner,.state-records-hero__inner) { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__documents { gap: 24px; padding: 24px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__brief { display: block; }
+  .premium-site:not(.premium-site--signature) .record-evidence__brief img { max-height: 340px; margin-block: 18px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__brief p { margin-block: 14px; }
+}
+@media(max-width:760px) {
+  .premium-site--editorial .site-page-hero + .section .detail-grid { grid-template-columns: 1fr; gap: 12px; }
+  .premium-site .record-finder__studio-art img { height: 240px; }
+  .premium-site .ptdec .ptdec-hero__inner { grid-template-columns: 1fr; min-height: auto; padding-bottom: 48px; }
+  .premium-site .ptdec .ptdec-hero__shade { background: #052c35df; }
+  .premium-site .ptdec .ptdec-hero__utility { padding-inline: 20px; }
+  .premium-site .ptdec .ptdec-proof__copy { grid-template-columns: 1fr; }
+  .premium-site .ptdec .ptdec-proof .record-evidence__documents { grid-template-columns: 1fr; padding: 20px; }
+  .premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero) { padding-block: 44px; }
+  .premium-site--regional :is(.tdec-desk__intro-grid,.official-records-hero__inner,.state-records-hero__inner) { grid-template-columns: 1fr; gap: 32px; }
+  .premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero)::before { background-position: 65% center; }
+  .premium-site--regional .tdec-desk__scope { padding: 22px; }
+  .premium-site--regional .tdec-workspace { padding-block: 48px; }
+  .premium-site--regional .tdec-workspace__form { grid-template-columns: 1fr; }
+  .premium-site--regional .tdec-workspace__field-grid { grid-template-columns: 1fr; }
+  :is(.premium-site--editorial,.premium-site--service,.premium-site--directory,.premium-site--tool) .section--heroish { padding-block: 44px; }
+  :is(.premium-site--editorial,.premium-site--service) .hero-sidecard { margin-top: 0; }
+  :is(.premium-site--editorial,.premium-site--service) .section--heroish::before { background-image: linear-gradient(180deg,#f6f8f2f5,#f6f8f2dd),url('/images/brand/septicpath-research-studio-v1.png'); }
+  .premium-site--directory :is(.national-records-hero,.records-access-index-hero,.record-finder-hero) { padding-block: 44px; }
+  .premium-site--directory .record-finder__intro { gap: 24px; }
+  .premium-site:not(.premium-site--signature) .record-evidence .record-evidence__heading { grid-template-columns: 1fr; gap: 16px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__documents { grid-template-columns: 1fr; padding: 20px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__papers { display: flex; overflow-x: auto; padding-bottom: 18px; }
+  .premium-site:not(.premium-site--signature) .record-evidence__papers a { flex: 0 0 75%; margin: 0; }
+  .premium-site--service .quote-panel { padding: 24px 20px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .premium-site .record-evidence__papers a { transition: none; }
+}

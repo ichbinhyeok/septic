@@ -2,7 +2,7 @@
 @param PageMeta page
 @param int totalCountyRouteCount = 0
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "directory", content = @`
     <section class="record-finder-hero">
         <div class="container">
             @template.tags.addressRecordFinder(

@@ -4,7 +4,7 @@
 @param java.util.List<StateProfile> states = java.util.List.of()
 @param String bedroomCheckerEmbedUrl = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "tool", content = @`
     <section class="section section--heroish bedroom-checker-hero">
         <div class="container state-hero">
             <div>

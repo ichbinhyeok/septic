@@ -43,7 +43,7 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-money-page">
     <section class="section section--heroish state-money-hero-section">
         <div class="container state-hero">

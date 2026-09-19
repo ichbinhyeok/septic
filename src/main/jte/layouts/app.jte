@@ -3,6 +3,7 @@
 @import gg.jte.Content
 @param PageMeta page
 @param Content content
+@param String designFamily = ""
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,11 +35,14 @@
     <link rel="shortcut icon" href="${AssetPaths.versioned("/favicon.svg")}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,600&display=swap" rel="stylesheet"></noscript>
     <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/workflows.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/pages.css")}">
+    @if (!designFamily.isBlank())
+        <link rel="stylesheet" href="${AssetPaths.versioned("/premium-families.css")}">
+    @endif
     <script>
         if (window.location.hostname === "septicpath.com") {
             window.dataLayer = window.dataLayer || [];
@@ -94,7 +98,7 @@
         <script type="application/ld+json">$unsafe{jsonLd}</script>
     @endfor
 </head>
-<body>
+<body class="${designFamily.isBlank() ? null : "premium-site premium-site--" + designFamily}">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="shell">
         <header class="site-header">
@@ -125,6 +129,7 @@
                     <a href="/septic-record-finder/">Find records</a>
                     <a href="/septic-record-finder/?mode=document">Review a file</a>
                     <a href="/offer-prep-septic-file-check/#record-help"
+                       class="site-nav__help"
                        data-record-help-link
                        data-track-click="nav"
                        data-track-source-context="global_header"
@@ -160,7 +165,21 @@
         </main>
 
         <footer class="site-footer">
-            <div class="container footer-grid">
+            <div class="container">
+                <section class="footer-callout" aria-labelledby="footer-callout-title">
+                    <div>
+                        <span>Human record research</span>
+                        <h2 id="footer-callout-title">A public record is only useful when it answers your property question.</h2>
+                    </div>
+                    <a class="footer-callout__action"
+                       href="/offer-prep-septic-file-check/#record-help"
+                       data-record-help-link
+                       data-track-click="nav"
+                       data-track-source-context="global_footer_callout"
+                       data-track-target-type="lead_form">Ask SepticPath <span aria-hidden="true">→</span></a>
+                </section>
+
+                <div class="footer-grid">
                 <section class="footer-block footer-block--brand">
                     <a class="brand brand--footer" href="/">
                         <img src="${AssetPaths.versioned("/favicon.svg")}" alt="SepticPath logo" class="brand__logo" width="44" height="44">
@@ -205,6 +224,13 @@
                         <li><a href="/privacy-policy/">Privacy</a> · <a href="/terms-of-use/">Terms</a> · <a href="/data-license/">Data license</a></li>
                     </ul>
                 </nav>
+                </div>
+
+                <div class="footer-meta">
+                    <span>Independent research service</span>
+                    <span>Official agencies control record availability and permit status.</span>
+                    <span>© SepticPath</span>
+                </div>
             </div>
         </footer>
     </div>

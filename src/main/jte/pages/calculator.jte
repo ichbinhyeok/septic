@@ -30,7 +30,7 @@
 @param AccessDifficulty[] accessLevels
 @param TimelinePreference[] timelines
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "tool", content = @`
     <section class="section section--heroish calculator-intro">
         <div class="container">
             <div class="section-heading">

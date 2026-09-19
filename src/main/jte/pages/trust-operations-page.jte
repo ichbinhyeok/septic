@@ -4,7 +4,7 @@
 @param PageMeta page
 @param TrustOperationsPageView operationsPage
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="trust-ops-page">
         <section class="section section--heroish">
             <div class="container state-hero">

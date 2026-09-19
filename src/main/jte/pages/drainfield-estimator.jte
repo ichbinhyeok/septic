@@ -19,8 +19,8 @@
 @param AccessDifficulty[] accessLevels
 @param TimelinePreference[] timelines
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "tool", content = @`
+    <section class="section section--heroish drainfield-estimator-hero">
         <div class="container section-heading">
             <span class="eyebrow">Drain field estimator</span>
             <h1>Estimate drain field replacement risk, redesign pressure, and likely cost swing.</h1>

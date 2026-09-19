@@ -1,6 +1,7 @@
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.ClosingRiskCheckForm
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.AssetPaths
 @param PageMeta page
 @param java.util.List<StateProfile> offerPrepStates = java.util.List.of()
 @param int priorityCountyRouteCount = 0
@@ -14,46 +15,30 @@
 @param boolean documentReviewMode = false
 @param java.util.List<StateProfile> states = java.util.List.of()
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "signature", content = @`
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-intake.css")}">
     <div class="offer-prep-page" data-offer-prep-file-check>
-        <section class="section section--heroish offer-prep-hero">
+        <section class="offer-prep-hero" aria-labelledby="offer-prep-title">
             <div class="container offer-prep-hero__grid">
-                <div>
-                    <span class="eyebrow">Free research · Optional $29 result unlock</span>
-                    <h1>${documentReviewMode ? "Send the file. We’ll answer the questions it raises." : "Send the address. We’ll investigate the septic record for you."}</h1>
-                    <p class="lede">${documentReviewMode ? "Does the file show an approved design or a completed installation? Does it support the bedroom count or the seller’s claim? Send it with your questions. We’ll check the evidence and explain the limits." : "Missing a permit or tank layout? Unsure about approved capacity, repairs, or a seller’s claim? We search the official records, contact the responsible office, and explain what the evidence says about your property."}</p>
-                    <p class="record-help-price-note">Free research and agency requests. Preview the evidence we found and the questions it can answer. Choose the original records and your answers for <strong>US $29</strong>. ${documentReviewMode ? "We only offer the $29 unlock when the evidence supports a useful, source-backed answer to your question." : "We only offer the $29 unlock when we find useful, property-matched evidence that can answer your question."} Agency fees are additional at cost, with your approval.</p>
-                    <div class="hero__actions offer-prep-hero__actions">
-                        <a class="button button--primary" href="#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${documentReviewMode ? "document_review_hero" : "record_help_hero"}" data-track-target-type="lead_form">${documentReviewMode ? "Send my file for review" : "Start my record investigation"}</a>
-                        <a class="button button--secondary" href="${documentReviewMode ? "/septic-record-finder/?mode=document#record-document-workspace" : "#self-serve-file-check"}" data-track-click="nav" data-track-source-context="closing_risk_hero" data-track-target-type="internal_tool">${documentReviewMode ? "Check it myself" : "Search records myself"}</a>
-                    </div>
-                    <a class="offer-prep-hero__example" href="/septic-record-brief-example/" data-track-click="nav" data-track-source-context="record_help_hero" data-track-target-type="case_study">See actual records and our explanation <span aria-hidden="true">→</span></a>
-                    <div class="offer-prep-hero__signals" aria-label="Offer prep tool coverage">
-                        @if (documentReviewMode)
-                            <span><strong>Source-matched</strong> answers</span>
-                            <span><strong>Gaps and conflicts</strong> kept visible</span>
-                            <span><strong>Human-reviewed</strong> reply</span>
-                        @else
-                            <span><strong>Human-reviewed</strong> research</span>
-                            <span><strong>Agency follow-up</strong> when needed</span>
-                            <span><strong>Original files</strong> plus clear findings</span>
-                        @endif
+                <div class="offer-prep-hero__intro">
+                    <span class="offer-prep-kicker">Start a record search</span>
+                    <h1 id="offer-prep-title">${documentReviewMode ? "Send the file. We’ll answer the questions it raises." : "Tell us the property. We’ll handle the record work."}</h1>
+                    <p class="lede">${documentReviewMode ? "Does the file show an approved design or a completed installation? Send it with your questions. We’ll check the evidence and explain the limits." : "Share the address and what you need to know. We’ll identify the record owner, search available sources, and contact the responsible office when necessary."}</p>
+                    <a class="button button--primary offer-prep-hero__start" href="#record-help" aria-label="${documentReviewMode ? "Send my file for review" : "Start my record investigation"}" data-record-help-cta data-track-click="nav" data-track-source-context="${documentReviewMode ? "document_review_hero" : "record_help_hero"}" data-track-target-type="lead_form">${documentReviewMode ? "Send my file for review" : "Start the research"}<span aria-hidden="true">→</span></a>
+                    <p class="offer-prep-hero__free"><span aria-hidden="true">✦</span> Research and agency requests are free. Optional $29 result unlock. ${documentReviewMode ? "We only offer the unlock when the evidence supports a useful, source-backed answer to your question." : "We only offer the $29 unlock when we find useful, property-matched evidence that can answer your question."} No upfront payment or automatic charge. Agency fees are additional at cost, with your approval.</p>
+                    <div class="offer-prep-hero__signals" aria-label="Research service benefits">
+                        <span>No account required</span>
+                        <span>Private property details</span>
+                        <span>Real people, real research</span>
                     </div>
                 </div>
-                <aside class="offer-prep-hero__note service-scope-ledger" aria-label="How the record investigation works">
-                    <div class="service-scope-ledger__topline"><span>SEPTICPATH / RESEARCH DESK</span><span>01—03</span></div>
-                    <ol>
-                        @if (documentReviewMode)
-                            <li><span>01</span><div><strong>Match the source</strong><p>Check the property, issuing office, record type, and date.</p></div></li>
-                            <li><span>02</span><div><strong>Answer your questions</strong><p>Read the source text and drawing against the decision you need to make.</p></div></li>
-                            <li><span>03</span><div><strong>Preview, then choose</strong><p>See what we can answer and what remains unclear. Unlock the source-backed explanation for $29 only if you want it.</p></div></li>
-                        @else
-                            <li><span>01</span><div><strong>Verify the property</strong><p>Match the address, parcel, county, and responsible record holder.</p></div></li>
-                            <li><span>02</span><div><strong>Follow the record</strong><p>Search credible sources and contact the public office when the online path stops.</p></div></li>
-                            <li><span>03</span><div><strong>Preview, then choose</strong><p>See the source, property match, questions it can answer and limits. Unlock the original records and your answers for $29.</p></div></li>
-                        @endif
-                    </ol>
-                    <p class="offer-prep-hero__transfer-note">Record availability and response times vary. SepticPath is not an inspection, permit authority, or compliance certification.</p>
+                <aside class="offer-prep-hero__visual" aria-label="A property is matched to its permit, site plan, and source-backed findings">
+                    <picture>
+                        <source media="(max-width: 700px)" srcset="/images/brand/septicpath-hero-art-mobile-v3.png">
+                        <img src="/images/brand/septicpath-hero-art-desktop-v3.png" alt="Aerial property view with a reconstructed permit, site plan, agency response, and clearly labeled findings" width="1792" height="1024">
+                    </picture>
+                    <div class="offer-prep-hero__match"><span aria-hidden="true">✓</span><strong>Property matched</strong><small>Address and parcel located</small></div>
+                    <p>Properties matter.<br>So do the people<br>who live on them.</p>
                 </aside>
             </div>
         </section>
@@ -384,12 +369,16 @@
         </section>
 
         <section class="section section--tight record-help-pricing-faq" aria-labelledby="record-help-pricing">
-            <div class="container">
-                <h2 id="record-help-pricing">How the $29 unlock works</h2>
-                <div class="record-help-package-compare" aria-label="Free preview and optional $29 package comparison">
-                    <div><span>FREE PREVIEW</span><strong>“We found a property-matched permit that answers the recorded design-capacity question.”</strong><p>Illustrative preview · source and document scope · answerable questions · important limits · no payment required</p></div>
-                    <div><span>OPTIONAL $29 PACKAGE</span><strong>The original permit, drawing, and page-by-page explanation.</strong><p>Source files · evidence-linked answers · conflicts and missing facts · next useful step</p></div>
+            <div class="container record-help-pricing-grid">
+                <div class="record-help-pricing-intro">
+                    <span class="offer-prep-kicker">Clear before you pay</span>
+                    <h2 id="record-help-pricing">How the $29 unlock works</h2>
+                    <div class="record-help-package-compare" aria-label="Free preview and optional $29 package comparison">
+                        <div><span>FREE PREVIEW</span><strong>“We found a property-matched permit that answers the recorded design-capacity question.”</strong><p>Illustrative preview · source and document scope · answerable questions · important limits · no payment required</p></div>
+                        <div><span>OPTIONAL $29 PACKAGE</span><strong>The original permit, drawing, and page-by-page explanation.</strong><p>Source files · evidence-linked answers · conflicts and missing facts · next useful step</p></div>
+                    </div>
                 </div>
+                <div class="record-help-pricing-questions">
                 <details>
                     <summary>How do I pay and receive my result?</summary>
                     <p>We email your free preview first. If you want the US $29 package, we send secure provider-hosted payment instructions by email. After confirming payment, we email the source records and our detailed explanation. The payment email states the expected delivery timing; if anything is delayed, reply to that email with your reference number. Delivery is handled personally, not an instant website download. Never send card details by email. For files you already supplied, you are paying for the reviewed answers; your own files remain yours.</p>
@@ -414,6 +403,7 @@
                     <summary>I already submitted during the free beta. Will I be charged?</summary>
                     <p>Your original free-beta request remains free, including records that arrive later and our explanation.</p>
                 </details>
+                </div>
             </div>
         </section>
 
