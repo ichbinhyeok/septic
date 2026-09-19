@@ -33,6 +33,7 @@ dependencies {
 	implementation 'gg.jte:jte-spring-boot-starter-4:3.2.3'
 	implementation 'gg.jte:jte:3.2.3'
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 	implementation 'org.apache.pdfbox:pdfbox:3.0.8'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
