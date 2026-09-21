@@ -36,9 +36,9 @@ public class SitemapService {
             Map.entry("/septic-record-brief-example/", "2026-09-17"),
             Map.entry("/offer-prep-septic-file-check/", "2026-09-17"),
             Map.entry("/official-septic-lookup-tools/", "2026-09-12"),
-            Map.entry("/tdec-septic-records/", "2026-09-12"),
+            Map.entry("/tdec-septic-records/", "2026-09-22"),
             Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
-            Map.entry("/texas-ossf-records-search/", "2026-09-12"),
+            Map.entry("/texas-ossf-records-search/", "2026-09-22"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-09-12"),
             Map.entry("/dhec-septic-permit-lookup/", "2026-09-12"),
             Map.entry("/septic-as-built-records/", "2026-09-17"),
@@ -51,7 +51,14 @@ public class SitemapService {
             Map.entry("/buying-a-house-with-a-septic-system/", "2026-09-17"),
             Map.entry("/septic-records-checklist/alabama/morgan-county/", "2026-09-17"),
             Map.entry("/septic-records-checklist/wisconsin/st-croix-county/", "2026-09-17"),
-            Map.entry("/septic-records-checklist/washington/king-county/", "2026-09-17")
+            Map.entry("/septic-records-checklist/washington/king-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/new-hampshire/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/alamance-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/forsyth-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/pender-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/pitt-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/tennessee/wilson-county/", "2026-09-22")
     );
 
     private final ResearchDataService researchDataService;
@@ -171,6 +178,7 @@ public class SitemapService {
                 stateMoneyPage.updatedAt(),
                 stateMoneyPage.reviewedAt(),
                 state.lastVerifiedAt(),
+                materialRevision(stateMoneyPage.path(state.slug())),
                 "septic-records-checklist".equals(stateMoneyPage.contentSlug())
                         ? STATE_RECORDS_REVISION_DATE
                         : SHARED_WORKFLOW_REVISION_DATE,
@@ -187,6 +195,7 @@ public class SitemapService {
         return latestValidDate(Stream.of(
                 countyContentQualityService.effectiveUpdatedAt(countyPage),
                 COUNTY_RECORDS_REVISION_DATE,
+                materialRevision(countyPage.path(state.slug())),
                 countyPage.searchGuide() == null ? "" : countyPage.searchGuide().reviewedAt(),
                 researchDataService.findSearchResponseTarget(
                                 "county_records",

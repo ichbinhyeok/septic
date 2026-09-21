@@ -883,10 +883,17 @@
             if (validationQueued) return;
             validationQueued = true;
             window.queueMicrotask(() => {
+                const invalidFields = Array.from(form.querySelectorAll(":invalid"))
+                    .map((field) => field.getAttribute("name"))
+                    .filter(Boolean)
+                    .sort()
+                    .join(",")
+                    .slice(0, 100);
                 emitGaEvent("record_help_form_validation_error", {
                     source_context: getSourceContext(),
                     request_type: "record_help_beta",
                     invalid_count: form.querySelectorAll(":invalid").length,
+                    invalid_fields: invalidFields || "unknown",
                     ...attributionParams()
                 });
                 validationQueued = false;

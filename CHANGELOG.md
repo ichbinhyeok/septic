@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.20.1 - 2026-09-22
+
+### Changed
+
+- Simplified the record-help intake around the research service by moving phone details out of the primary path and removing deferred contractor-referral consent language.
+- Added privacy-safe field-level validation telemetry so form friction can be diagnosed without collecting customer answers.
+- Strengthened the Pitt County record-search page with clearer distinctions between portal metadata and the underlying septic documents buyers need.
+
+### Fixed
+
+- Corrected sitemap last-modified dates so material state and county page revisions propagate to their sitemap entries.
+- Refreshed sitemap dates for the recently improved Tennessee, Texas, New Hampshire, North Carolina, and Washington search pages.
+
 ## 0.0.20.0 - 2026-09-22
 
 ### Changed
