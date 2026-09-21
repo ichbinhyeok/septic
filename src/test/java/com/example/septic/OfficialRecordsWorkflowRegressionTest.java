@@ -121,6 +121,32 @@ class OfficialRecordsWorkflowRegressionTest {
             org.assertj.core.api.Assertions.assertThat(html)
                     .contains("/septic-records-checklist/north-carolina/" + countySlug + "/");
         }
+
+        int priorityStart = html.indexOf("Popular county permit searches");
+        int priorityEnd = html.indexOf("More high-demand county routes", priorityStart);
+        String visiblePriorityRoutes = html.substring(priorityStart, priorityEnd);
+        org.assertj.core.api.Assertions.assertThat(visiblePriorityRoutes)
+                .containsSubsequence(
+                        "Johnston County septic permit lookup",
+                        "Forsyth County septic permit lookup",
+                        "Pender County septic permit lookup",
+                        "Wake County septic permit lookup",
+                        "Pitt County septic permit lookup",
+                        "Buncombe County septic permit lookup"
+                );
+    }
+
+    @Test
+    void northCarolinaCountyTitlesMatchObservedPermitSearchIntent() throws Exception {
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/forsyth-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Forsyth County NC Septic Permit Lookup &amp; Records | SepticPath</title>")));
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/pender-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Pender County NC Septic Permit Search &amp; Records | SepticPath</title>")));
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/alamance-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Alamance County NC Septic Records &amp; Permit Lookup | SepticPath</title>")));
     }
 
     @Test

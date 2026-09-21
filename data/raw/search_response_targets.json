@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-14",
-  "source": "Google Search Console page and query totals plus Bing Webmaster page evidence reviewed through 2026-09-12 and privacy-threshold-safe county response vocabulary",
+  "generatedAt": "2026-09-21",
+  "source": "Google Search Console three-month query totals through 2026-09-19 plus prior page-level and Bing Webmaster evidence; privacy-threshold-safe county response vocabulary",
   "targets": [
     {
       "targetType": "state_records",
@@ -334,12 +334,34 @@
         "Alamance County septic records",
         "Alamance County permits"
       ],
-      "evidenceWindow": "2026-06-08..2026-07-06",
-      "clicks": 2,
-      "impressions": 57,
-      "ctr": 0.0350877193,
-      "position": 9.5087719298,
-      "evidenceNote": "County page already has clicks; query-level septic records average position is around 5."
+      "evidenceWindow": "2026-06-20..2026-09-19",
+      "clicks": 3,
+      "impressions": 34,
+      "ctr": 0.0882352941,
+      "position": null,
+      "evidenceNote": "The current three-month Alamance County septic-record query earned 3 clicks from 34 impressions; preserve the working record intent and keep the dedicated county route prominent."
+    },
+    {
+      "targetType": "county_records",
+      "key": "NC::forsyth-county",
+      "path": "/septic-records-checklist/north-carolina/forsyth-county/",
+      "boost": 154,
+      "queries": [
+        "forsyth county septic records",
+        "forsyth county septic permit lookup",
+        "forsyth county septic permit search",
+        "forsyth county nc septic records"
+      ],
+      "recommendedAnchors": [
+        "Forsyth County septic permit lookup",
+        "Forsyth County septic records"
+      ],
+      "evidenceWindow": "2026-06-20..2026-09-19",
+      "clicks": 0,
+      "impressions": 71,
+      "ctr": 0,
+      "position": null,
+      "evidenceNote": "The current three-month query portfolio shows 71 impressions with no clicks for the Forsyth County septic-record cluster; route the exact lookup intent to the dedicated county workflow."
     },
     {
       "targetType": "county_records",
@@ -422,12 +444,12 @@
         "Buncombe County septic permit lookup",
         "Buncombe County septic records"
       ],
-      "evidenceWindow": "2026-07-03..2026-07-30",
+      "evidenceWindow": "2026-06-20..2026-09-19",
       "clicks": 0,
-      "impressions": 51,
+      "impressions": 53,
       "ctr": 0,
-      "position": 8.14,
-      "evidenceNote": "The indexed county page had only two privacy-visible impressions while the state hub received 51 impressions for Buncombe septic lookup and search variants; route the exact intent here."
+      "position": null,
+      "evidenceNote": "The current three-month query portfolio shows 53 impressions with no clicks for the Buncombe County lookup cluster; route the exact intent to the dedicated Accela and Environmental Health workflow."
     },
     {
       "targetType": "county_records",
@@ -444,12 +466,12 @@
         "Wake County septic permit lookup",
         "Wake County septic permit search"
       ],
-      "evidenceWindow": "2026-07-03..2026-07-30",
+      "evidenceWindow": "2026-06-20..2026-09-19",
       "clicks": 0,
-      "impressions": 29,
+      "impressions": 64,
       "ctr": 0,
-      "position": 8.07,
-      "evidenceNote": "The indexed Wake page had no privacy-visible query rows while the state hub ranked on page one for 29 Wake permit lookup and search impressions; route those searches to the county workflow."
+      "position": null,
+      "evidenceNote": "Two current three-month Wake County permit-search variants total 64 impressions with no clicks; route both variants to the dedicated iMAPS and Permit Search workflow."
     },
     {
       "targetType": "county_records",
@@ -488,12 +510,12 @@
         "Pitt County septic permit search",
         "Pitt County septic records"
       ],
-      "evidenceWindow": "2026-07-03..2026-07-30",
+      "evidenceWindow": "2026-06-20..2026-09-19",
       "clicks": 0,
-      "impressions": 15,
+      "impressions": 56,
       "ctr": 0,
-      "position": 8.07,
-      "evidenceNote": "The indexed Pitt page had no privacy-visible query rows while the state hub received 15 exact permit-search impressions at an average first-page position."
+      "position": null,
+      "evidenceNote": "The current three-month query portfolio shows 56 impressions with no clicks for Pitt County permit search; strengthen the direct EnerGov and Environmental Health route."
     },
     {
       "targetType": "county_records",
@@ -510,12 +532,12 @@
         "Pender County septic permit search",
         "Pender County septic records"
       ],
-      "evidenceWindow": "2026-07-03..2026-07-30",
-      "clicks": 0,
-      "impressions": 13,
-      "ctr": 0,
-      "position": 8.77,
-      "evidenceNote": "The indexed Pender page had no privacy-visible query rows while the state hub received 13 exact permit-search impressions; make the county request route the primary answer."
+      "evidenceWindow": "2026-06-20..2026-09-19",
+      "clicks": 3,
+      "impressions": 64,
+      "ctr": 0.046875,
+      "position": null,
+      "evidenceNote": "The current three-month Pender County permit-search query earned 3 clicks from 64 impressions; preserve the working intent and make the county information-request route more prominent."
     },
     {
       "targetType": "county_records",
@@ -532,12 +554,12 @@
         "Johnston County septic permit search",
         "Johnston County septic records"
       ],
-      "evidenceWindow": "2026-07-03..2026-07-30",
+      "evidenceWindow": "2026-06-20..2026-09-19",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 91,
       "ctr": 0,
-      "position": 9.11,
-      "evidenceNote": "The state hub, rather than the county page, received the privacy-visible Johnston permit-search impressions; reinforce the dedicated permit-status route."
+      "position": null,
+      "evidenceNote": "The current three-month query portfolio shows 91 impressions with no clicks for Johnston County permit search; make its street-search and copy-request page the first county handoff."
     },
     {
       "targetType": "county_records",

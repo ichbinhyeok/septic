@@ -738,7 +738,7 @@ public class SeoService {
             case "VA::prince-william-county" -> "Request Prince William County Septic Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
-            case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
+            case "NC::alamance-county" -> "Alamance County NC Septic Records & Permit Lookup";
             case "TN::knox-county" -> "Knox County TN SSDS File Search and Records Request";
             case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
             case "NC::guilford-county" -> "Guilford County NC Septic Permit, Layout & Record Request";
@@ -765,7 +765,7 @@ public class SeoService {
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
             case "NC::union-county" -> "Union County NC Septic Permit Lookup & Records Request";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
-            case "NC::pender-county" -> "Pender County NC Septic Permit Information Request";
+            case "NC::pender-county" -> "Pender County NC Septic Permit Search & Records";
             case "AL::tuscaloosa-county" -> "Tuscaloosa County AL Septic Permits and Records Contact";
             case "AL::calhoun-county" -> "Calhoun County AL Septic Permits and Environmental Office";
             case "SC::charleston-county" -> "Charleston County SC Septic Permit and Final Inspection Records";
@@ -777,7 +777,7 @@ public class SeoService {
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
             case "AZ::maricopa-county" -> "Maricopa County Septic Search | Free Records & Permit Lookup";
             case "NC::brunswick-county" -> "Brunswick County Permit Search and Septic File Request";
-            case "NC::forsyth-county" -> "Request Forsyth County NC Septic Permit and Soil Evaluation";
+            case "NC::forsyth-county" -> "Forsyth County NC Septic Permit Lookup & Records";
             case "TX::denton-county" -> "Denton County OSSF Records and Jurisdiction Check";
             case "TX::brazoria-county" -> "Brazoria County OSSF Permit Status and Records Request";
             case "WA::thurston-county" -> "Thurston County Septic Records and As-Built Search";

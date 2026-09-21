@@ -5529,7 +5529,7 @@ class SepticApplicationTests {
 	void alamanceCountyRecordsPageShowsRepairPermitAndInspectionWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/alamance-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Request Alamance County NC Septic Records | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Alamance County NC Septic Records &amp; Permit Lookup | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request Alamance County septic records for an existing property")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("dedicated information-request form for an existing septic permit or soil evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request Alamance records for an existing septic property")))
