@@ -12,7 +12,7 @@
 @param int totalCountyRouteCount = 0
 
 @template.layouts.app(page = page, designFamily = "directory", content = @`
-    <div class="national-records-page">
+    <div class="national-records-page ${"septic-records-by-county".equals(contentPage.slug()) ? "national-records-page--county-index" : ""}">
         <section class="national-records-hero">
             <div class="container national-records-hero__inner">
                 <div class="national-records-hero__copy">
@@ -28,22 +28,24 @@
                     @elseif ("septic-permit-search-by-address".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#old-address-records">Check old addresses and property matches ↓</a>
                     @endif
-                    <div class="national-records-hero__boundary" role="note">
-                        <strong>What you receive here</strong>
-                        <span>The county, likely file owner, verified official route, useful search fields, and the next step for found, missing, blocked, or incomplete files.</span>
-                    </div>
-                    <div class="national-records-service-entry" aria-label="SepticPath assisted record research">
-                        <div>
-                            <strong>Prefer a human search?</strong>
-                            <span>We’ll investigate public sources, contact the responsible office when needed, and explain what comes back.</span>
+                    @if (!"septic-records-by-county".equals(contentPage.slug()))
+                        <div class="national-records-hero__boundary" role="note">
+                            <strong>What you receive here</strong>
+                            <span>The county, likely file owner, verified official route, useful search fields, and the next step for found, missing, blocked, or incomplete files.</span>
                         </div>
-                        <a class="button button--primary"
-                           href="/offer-prep-septic-file-check/#record-help"
-                           data-record-help-cta
-                           data-track-click="nav"
-                           data-track-source-context="national_records_hero_record_help"
-                           data-track-target-type="lead_form">Ask SepticPath to investigate</a>
-                    </div>
+                        <div class="national-records-service-entry" aria-label="SepticPath assisted record research">
+                            <div>
+                                <strong>Prefer a human search?</strong>
+                                <span>We’ll investigate public sources, contact the responsible office when needed, and explain what comes back.</span>
+                            </div>
+                            <a class="button button--primary"
+                               href="/offer-prep-septic-file-check/#record-help"
+                               data-record-help-cta
+                               data-track-click="nav"
+                               data-track-source-context="national_records_hero_record_help"
+                               data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                        </div>
+                    @endif
                 </div>
                 @template.tags.addressRecordFinder(
                     finderId = "national-records-" + contentPage.slug(),
@@ -73,27 +75,49 @@
                 <div class="national-records-intent__rows">
                     <a href="/septic-permit-search-by-address/"><strong>Find the permit file</strong><span>Resolve county and official source</span></a>
                     <a href="/septic-as-built-records/"><strong>Find the installed layout</strong><span>Ask for as-built, site sketch, or approved plan</span></a>
-                    @if (!"septic-tank-location-records".equals(contentPage.slug()))
+                    @if (!"septic-tank-location-records".equals(contentPage.slug()) && !"septic-records-by-county".equals(contentPage.slug()))
                         <a href="/septic-tank-location-records/"><strong>Locate the tank and drain field</strong><span>Start with the record drawing before arranging a professional locate</span></a>
                     @endif
                     <a href="/septic-records-request-builder/"><strong>No record appeared</strong><span>Prepare a precise written request</span></a>
-                    <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="national_records_record_help" data-track-target-type="lead_form"><strong>Still can’t find the right file?</strong><span>Send the address. We’ll investigate, contact the responsible office when needed, and explain the response.</span></a>
+                    @if (!"septic-records-by-county".equals(contentPage.slug()))
+                        <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="national_records_record_help" data-track-target-type="lead_form"><strong>Still can’t find the right file?</strong><span>Send the address. We’ll investigate, contact the responsible office when needed, and explain the response.</span></a>
+                    @endif
                 </div>
             </div>
         </section>
 
         <section class="national-records-method">
-            <div class="container national-records-method__grid">
-                <div>
-                    <span class="eyebrow">A defensible search</span>
-                    <h2>Carry more than the street address</h2>
-                    <p>Government archives may be indexed under an earlier owner, parcel, subdivision, lot, legal description, or permit number. A failed address search is not proof that no file exists.</p>
-                </div>
-                <dl>
-                    <div><dt>Search clues</dt><dd>Address, parcel/APN, current and prior owner, subdivision, lot, legal description, permit number.</dd></div>
-                    <div><dt>Useful documents</dt><dd>Permit/application, soil or site evaluation, approved plan, as-built, final approval, repair history.</dd></div>
-                    <div><dt>Safe fallback</dt><dd>Ask the file owner for a written no-record response and the next archive or delegated office to contact.</dd></div>
-                </dl>
+            <div class="container">
+                @if ("septic-records-by-county".equals(contentPage.slug()))
+                    <details class="national-records-method__disclosure">
+                        <summary><span>Search beyond the street address</span><strong>What information should I gather?</strong></summary>
+                        <div class="national-records-method__grid">
+                            <div>
+                                <span class="eyebrow">A defensible search</span>
+                                <h2>Carry more than the street address</h2>
+                                <p>Government archives may be indexed under an earlier owner, parcel, subdivision, lot, legal description, or permit number. A failed address search is not proof that no file exists.</p>
+                            </div>
+                            <dl>
+                                <div><dt>Search clues</dt><dd>Address, parcel/APN, current and prior owner, subdivision, lot, legal description, permit number.</dd></div>
+                                <div><dt>Useful documents</dt><dd>Permit/application, soil or site evaluation, approved plan, as-built, final approval, repair history.</dd></div>
+                                <div><dt>Safe fallback</dt><dd>Ask the file owner for a written no-record response and the next archive or delegated office to contact.</dd></div>
+                            </dl>
+                        </div>
+                    </details>
+                @else
+                    <div class="national-records-method__grid">
+                        <div>
+                            <span class="eyebrow">A defensible search</span>
+                            <h2>Carry more than the street address</h2>
+                            <p>Government archives may be indexed under an earlier owner, parcel, subdivision, lot, legal description, or permit number. A failed address search is not proof that no file exists.</p>
+                        </div>
+                        <dl>
+                            <div><dt>Search clues</dt><dd>Address, parcel/APN, current and prior owner, subdivision, lot, legal description, permit number.</dd></div>
+                            <div><dt>Useful documents</dt><dd>Permit/application, soil or site evaluation, approved plan, as-built, final approval, repair history.</dd></div>
+                            <div><dt>Safe fallback</dt><dd>Ask the file owner for a written no-record response and the next archive or delegated office to contact.</dd></div>
+                        </dl>
+                    </div>
+                @endif
             </div>
         </section>
 
@@ -225,7 +249,7 @@
             </div>
         </section>
 
-        @if (!featuredInternalLinks.isEmpty())
+        @if (!featuredInternalLinks.isEmpty() && !"septic-records-by-county".equals(contentPage.slug()))
             <section class="national-records-related">
                 <div class="container">
                     <span class="eyebrow">Related workflows</span>
