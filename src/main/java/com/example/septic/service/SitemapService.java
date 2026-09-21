@@ -40,7 +40,7 @@ public class SitemapService {
             Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
             Map.entry("/texas-ossf-records-search/", "2026-09-22"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-09-12"),
-            Map.entry("/dhec-septic-permit-lookup/", "2026-09-12"),
+            Map.entry("/dhec-septic-permit-lookup/", "2026-09-22"),
             Map.entry("/septic-as-built-records/", "2026-09-17"),
             Map.entry("/septic-tank-location-records/", "2026-09-17"),
             Map.entry("/how-to-find-septic-records-online/", "2026-09-17"),

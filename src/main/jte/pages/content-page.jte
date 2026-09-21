@@ -1383,6 +1383,25 @@
                         @endif
                     </div>
 
+                    @if ("official-septic-lookup-tools".equals(contentPage.slug()))
+                    <nav class="official-institution-directory" aria-labelledby="official-institution-directory-title">
+                        <div class="official-institution-directory__intro">
+                            <span class="eyebrow">Institution-led record desks</span>
+                            <h3 id="official-institution-directory-title">Start where the file is actually kept.</h3>
+                            <p>Each desk turns the state program, local custodian, missing-result path, and request wording into one property workflow.</p>
+                        </div>
+                        <div class="official-institution-directory__links">
+                            <a href="/septic-records-checklist/new-hampshire/"><span>NHDES · New Hampshire</span><strong>OneStop plans and archive recovery</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/virginia/"><span>VDH · Virginia</span><strong>Search, local district, and request route</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/maine/"><span>Maine HHE-200</span><strong>Disposal-system permit and town file</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/alabama/"><span>ADPH · Alabama</span><strong>Permit to Install and Approval for Use</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/arkansas/"><span>ADH · Arkansas</span><strong>County health unit and permit-copy route</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/oregon/"><span>Oregon DEQ</span><strong>Map, tax lot, ORMS, and local archive</strong><b aria-hidden="true">↗</b></a>
+                            <a href="/septic-records-checklist/vermont/"><span>Vermont DEC</span><strong>Permit search and missing-record recovery</strong><b aria-hidden="true">↗</b></a>
+                        </div>
+                    </nav>
+                    @endif
+
                     <div class="official-tool-console__handoff">
                         <strong>When the search tool does not find the file</strong>
                         <p>Retry with parcel ID, owner name, street name, subdivision, permit number, or legal description. If the record still does not appear, send a precise request instead of assuming the septic file does not exist.</p>

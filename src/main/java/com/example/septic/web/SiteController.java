@@ -3192,6 +3192,14 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("editorialLastReviewedAt", lastReviewedAt);
         model.addAttribute("editorialNote", "This " + stateMoneyPage.title()
                 + " page is maintained as conservative homeowner guidance and changes when its state evidence or workflow changes.");
+        Optional<InstitutionRecordsExperience> institutionRecordsExperience =
+                "septic-records-checklist".equals(stateMoneyPage.contentSlug())
+                        ? InstitutionRecordsExperienceCatalog.find(state.stateCode())
+                        : Optional.empty();
+        if (institutionRecordsExperience.isPresent()) {
+            model.addAttribute("institutionExperience", institutionRecordsExperience.get());
+            return "pages/institution-records-page";
+        }
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
                 && Set.of("AL", "IN", "NC", "SC", "TN", "TX").contains(state.stateCode())) {
             model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
