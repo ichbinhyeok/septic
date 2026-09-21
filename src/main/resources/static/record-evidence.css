@@ -23,7 +23,7 @@
 .record-evidence__brief a:hover img { opacity: .8; }
 .record-evidence .record-evidence__brief p { font-size: 12px; line-height: 1.55; margin: 12px 0; }
 .record-evidence__brief p strong { display: block; margin-bottom: 3px; }
-.record-evidence__read { color: #285c53; font-size: 12px; text-underline-offset: 3px; }
+.record-evidence__read { display: inline-flex; align-items: center; min-height: 44px; color: #285c53; font-size: 12px; text-underline-offset: 3px; }
 .record-evidence .record-evidence__source-note { position: relative; font-size: 11px; line-height: 1.6; margin: 12px 0; padding-left: 24px; color: #596767; }
 .record-evidence__source-note > span { position: absolute; left: 0; top: .35em; width: 16px; height: 9px; border-radius: 1px; background: #182427; }
 .record-evidence__steps { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 18px 0; padding: 0; list-style: none; font-size: 12px; font-weight: 600; }

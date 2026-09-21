@@ -219,6 +219,24 @@
   .national-records-method dl > div { display: grid; grid-template-columns: 130px 1fr; gap: 22px; padding: 17px 0; border-bottom: 1px solid var(--line); }
   .national-records-method dt { font-weight: 700; }
   .national-records-method dd { margin: 0; color: var(--muted); }
+  .national-records-method__disclosure { border-block: 1px solid var(--line-dark); }
+  .national-records-method__disclosure > summary { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 24px; list-style: none; }
+  .national-records-method__disclosure > summary::-webkit-details-marker { display: none; }
+  .national-records-method__disclosure > summary span { color: var(--muted); font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .national-records-method__disclosure > summary strong { font-size: 1rem; }
+  .national-records-method__disclosure > summary::after { color: var(--accent-dark); content: "+"; font-size: 1.4rem; font-weight: 400; }
+  .national-records-method__disclosure[open] > summary::after { content: "−"; }
+  .national-records-method__disclosure .national-records-method__grid { padding: 36px 0 10px; border-top: 1px solid var(--line); }
+  .national-records-page--county-index .national-records-hero__inner { align-items: center; }
+  .national-records-page--county-index .national-records-hero__copy > p { max-width: 48ch; }
+  .national-records-page--county-index .national-records-intent,
+  .national-records-page--county-index .national-records-method,
+  .national-records-page--county-index .national-records-outcomes { padding-block: clamp(34px, 4vw, 54px); }
+  @media (max-width: 720px) {
+    .national-records-method__disclosure > summary { min-height: 94px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 5px; padding-right: 32px; }
+    .national-records-method__disclosure > summary::after { position: absolute; right: 0; }
+    .national-records-method__disclosure > summary { position: relative; }
+  }
   .national-records-outcomes > .container > div { max-width: 900px; border-top: 1px solid var(--line-dark); }
   .national-records-outcomes details, .national-records-reference details { border-bottom: 1px solid var(--line); }
   .national-records-outcomes summary, .national-records-reference summary { padding: 20px 0; cursor: pointer; font-family: var(--font-sans); font-weight: 700; }
@@ -859,7 +877,7 @@
   .tdec-service-qualifier > strong { display: block; margin-top: 5px; font: 800 .95rem/1.35 var(--font-sans); }
   .tdec-service-qualifier > p { margin: 5px 0 12px; color: #455962; font-size: .76rem; }
   .tdec-service-qualifier__choices { display: flex; flex-wrap: wrap; gap: 7px; }
-  .tdec-service-qualifier__choices .button { min-height: 38px; padding: 8px 11px; font-size: .72rem; }
+  .tdec-service-qualifier__choices .button { min-height: 44px; padding: 8px 11px; font-size: .72rem; }
   .tdec-service-qualifier > small { display: block; margin-top: 12px; color: #5f4b27; font-size: .68rem; line-height: 1.5; }
   .tdec-return--hero { margin-top: 18px; padding: 18px; border: 1px solid #97aaa4; }
   .tdec-return--hero > div:first-child > p { margin: 7px 0 0; color: #455962; font-size: .76rem; }

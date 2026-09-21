@@ -32,7 +32,7 @@
 .ptdec-button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(6,42,57,.17); }
 .ptdec-button--coral { background: linear-gradient(135deg, #ff795d, #fa5f45); box-shadow: 0 15px 35px rgba(255,96,69,.22); }
 .ptdec-button--green { background: linear-gradient(135deg, #008f78, #057b6b); }
-.ptdec-link { color: #075c8c; font-weight: 800; }
+.ptdec-link { display: inline-flex; align-items: center; min-height: 44px; color: #075c8c; font-weight: 800; }
 .ptdec-hero__trust { display: flex; gap: 28px; padding-top: 20px; border-top: 1px solid rgba(12,50,75,.13); }
 .ptdec-hero__trust span { display: flex; gap: 10px; color: var(--pt-green); font-size: 1.45rem; line-height: 1; }
 .ptdec-hero__trust b { color: #193b5b; font-size: .68rem; line-height: 1.35; letter-spacing: .045em; text-transform: uppercase; }
@@ -59,7 +59,7 @@
 .ptdec-found { position: absolute; z-index: 4; right: 0; bottom: 24px; width: 48%; min-height: 198px; padding: 25px 30px; border: 1px solid rgba(84,245,216,.72); border-radius: 18px; display: grid; gap: 13px; color: #fff; background: rgba(3,42,54,.88); box-shadow: 0 24px 60px rgba(2,21,31,.27); backdrop-filter: blur(14px); }
 .ptdec-found strong { font-size: 1.05rem; }.ptdec-found i { margin-right: 11px; padding: 3px 7px; border-radius: 50%; color: #007e6a; background: white; font-style: normal; }.ptdec-found span { font-size: .82rem; }
 .ptdec-hero__utility { position: relative; z-index: 6; width: min(1480px, calc(100% - 72px)); margin: -6px auto 0; padding: 12px 0 20px; display: flex; justify-content: space-between; gap: 24px; color: #294b63; font-size: .72rem; }
-.ptdec-hero__utility p { margin: 0; }.ptdec-hero__utility nav { display: flex; gap: 20px; }.ptdec-hero__utility a { color: #075d87; font-weight: 800; }
+.ptdec-hero__utility p { margin: 0; }.ptdec-hero__utility nav { display: flex; gap: 20px; }.ptdec-hero__utility a { display: inline-flex; align-items: center; min-height: 44px; color: #075d87; font-weight: 800; }
 .ptdec-hero__utility .tdec-return { width: 100%; }
 
 .ptdec-route { padding: 24px; background: #fff; }
@@ -72,7 +72,7 @@
 .ptdec-route__fields select:focus, .ptdec-route__fields input:focus, .ptdec-route__more input:focus { outline: 3px solid rgba(0,139,116,.15); border-color: var(--pt-green); }
 .ptdec-route__fields small { display: none; }.ptdec-input { position: relative; display: block; }.ptdec-input i { position: absolute; z-index: 2; left: 16px; top: 17px; color: #315877; font-style: normal; }.ptdec-input input { padding-left: 44px; }
 .ptdec-route__fields .ptdec-button { height: 55px; }
-.ptdec-route__more, .ptdec-route__purpose { margin-top: 14px; border-top: 1px solid var(--pt-line); }.ptdec-route__more summary, .ptdec-route__purpose summary { padding: 15px 0 4px; color: #1b5d7b; font-size: .78rem; font-weight: 800; cursor: pointer; }.ptdec-route__more > div { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 12px 0; }.ptdec-route__purpose .tdec-purpose__options { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; padding: 12px 0; }.ptdec-route__purpose label { padding: 13px; border: 1px solid #bfdae4; border-radius: 10px; display: flex; gap: 8px; background: white; }.ptdec-route__purpose strong, .ptdec-route__purpose small { display: block; }.ptdec-route__purpose small { margin-top: 3px; color: #64788b; font-size: .67rem; }
+.ptdec-route__more, .ptdec-route__purpose { margin-top: 14px; border-top: 1px solid var(--pt-line); }.ptdec-route__more summary, .ptdec-route__purpose summary { display: flex; align-items: center; min-height: 44px; padding: 10px 0; color: #1b5d7b; font-size: .78rem; font-weight: 800; cursor: pointer; }.ptdec-route__more > div { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 12px 0; }.ptdec-route__purpose .tdec-purpose__options { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; padding: 12px 0; }.ptdec-route__purpose label { padding: 13px; border: 1px solid #bfdae4; border-radius: 10px; display: flex; gap: 8px; background: white; }.ptdec-route__purpose strong, .ptdec-route__purpose small { display: block; }.ptdec-route__purpose small { margin-top: 3px; color: #64788b; font-size: .67rem; }
 .ptdec-route__privacy { margin: 16px 0 0; color: #64788b; font-size: .72rem; }
 
 .ptdec-result, .ptdec-request { width: min(1360px, calc(100% - 48px)); margin: 36px auto 0; padding: clamp(26px,4vw,55px); border-radius: 22px; color: #102c46; background: #fff; box-shadow: 0 22px 70px rgba(21,66,87,.12); }
@@ -80,7 +80,7 @@
 .ptdec-request__inner { display: grid; grid-template-columns: .7fr 1.3fr; gap: 55px; }.ptdec-request textarea { width: 100%; min-height: 220px; }
 
 .ptdec-boundary { padding: clamp(70px,9vw,145px) 36px; background: #092c37; color: white; }
-.ptdec-boundary__inner { width: min(1320px,100%); margin: auto; display: grid; grid-template-columns: .75fr 1.25fr; gap: 7vw; }.ptdec-boundary .ptdec-kicker { color: #65dfc9; }.ptdec-boundary h2 { max-width: 520px; font-size: clamp(3rem,5vw,5.8rem); line-height: .98; letter-spacing: -.065em; }.ptdec-boundary__feature > p { max-width: 710px; color: #d7e8e9; font-size: clamp(1.15rem,1.8vw,1.55rem); line-height: 1.6; }.ptdec-boundary__feature > a { display: inline-block; margin: 12px 0 42px; color: #69e3ce; font-weight: 800; }
+.ptdec-boundary__inner { width: min(1320px,100%); margin: auto; display: grid; grid-template-columns: .75fr 1.25fr; gap: 7vw; }.ptdec-boundary .ptdec-kicker { color: #65dfc9; }.ptdec-boundary h2 { max-width: 520px; font-size: clamp(3rem,5vw,5.8rem); line-height: .98; letter-spacing: -.065em; }.ptdec-boundary__feature > p { max-width: 710px; color: #d7e8e9; font-size: clamp(1.15rem,1.8vw,1.55rem); line-height: 1.6; }.ptdec-boundary__feature > a { display: inline-flex; align-items: center; min-height: 44px; margin: 12px 0 42px; color: #69e3ce; font-weight: 800; }
 .ptdec-boundary .tdec-quick-help__rows { border-top: 1px solid rgba(255,255,255,.2); }.ptdec-boundary .tdec-quick-help__rows a { padding: 19px 4px; border-bottom: 1px solid rgba(255,255,255,.17); display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; color: white; text-decoration: none; transition: padding .18s ease, background .18s ease; }.ptdec-boundary .tdec-quick-help__rows a:hover { padding-left: 14px; background: rgba(255,255,255,.04); }.ptdec-boundary .tdec-quick-help__rows span { color: #aac1c6; }
 
 .ptdec-proof { padding: clamp(70px,9vw,140px) 36px; background: #f0f8f8; }.ptdec-proof__inner { width: min(1320px,100%); margin: auto; display: grid; grid-template-columns: .72fr 1.28fr; gap: 6vw; align-items: center; }.ptdec-proof__copy h2 { font-size: clamp(2.8rem,4.5vw,5rem); line-height: 1; letter-spacing: -.06em; }.ptdec-proof__copy p { color: #4b6677; font-size: 1.05rem; line-height: 1.7; }.ptdec-proof__evidence > * { transform: rotate(1deg); box-shadow: 0 30px 80px rgba(21,68,78,.13); }
@@ -89,7 +89,7 @@
 .ptdec-proof .record-evidence__documents { padding: 0; border: 0; border-radius: 14px; background: #ece9df; }
 .ptdec-proof .record-evidence__steps,
 .ptdec-proof .record-evidence__action { margin-left: 24px; }
-.ptdec-reference { padding: 30px 36px 70px; background: #f0f8f8; }.ptdec-reference__inner { width: min(1320px,100%); margin: auto; }.ptdec-reference details { border-top: 1px solid #b9ced3; border-bottom: 1px solid #b9ced3; }.ptdec-reference summary { padding: 24px 0; display: flex; justify-content: space-between; gap: 20px; font-weight: 800; cursor: pointer; }.ptdec-reference details > div { padding: 0 0 28px; color: #496575; line-height: 1.65; }.ptdec-reference nav { display: flex; flex-wrap: wrap; gap: 12px 22px; }.ptdec-reference nav a { color: #006f62; font-weight: 800; }
+.ptdec-reference { padding: 30px 36px 70px; background: #f0f8f8; }.ptdec-reference__inner { width: min(1320px,100%); margin: auto; }.ptdec-reference details { border-top: 1px solid #b9ced3; border-bottom: 1px solid #b9ced3; }.ptdec-reference summary { padding: 24px 0; display: flex; justify-content: space-between; gap: 20px; font-weight: 800; cursor: pointer; }.ptdec-reference details > div { padding: 0 0 28px; color: #496575; line-height: 1.65; }.ptdec-reference nav { display: flex; flex-wrap: wrap; gap: 12px 22px; }.ptdec-reference nav a { display: inline-flex; align-items: center; min-height: 44px; color: #006f62; font-weight: 800; }
 
 @media (max-width: 1050px) {
     .ptdec-hero__inner { grid-template-columns: 1fr; width: min(760px, calc(100% - 40px)); padding-top: 15px; }

@@ -169,13 +169,13 @@
                     <p class="footer-copy">Independent property-record research. We search public systems, follow the responsible agency path, and explain what the returned evidence can—and cannot—establish.</p>
                     <a class="footer-inquiry" href="/offer-prep-septic-file-check/#record-help" data-record-help-link data-track-click="nav" data-track-source-context="global_footer" data-track-target-type="lead_form">Ask SepticPath <span aria-hidden="true">↗</span></a>
                 </section>
-                <nav class="footer-block" aria-label="Start here"><h2 class="footer-heading">Start here</h2><ul class="footer-list">
+                <nav class="footer-block" aria-label="Start here"><p class="footer-heading">Start here</p><ul class="footer-list">
                     <li><a href="/septic-record-finder/">Find records</a></li><li><a href="/septic-record-finder/?mode=document">Review a file</a></li><li><a href="/septic-permit-lookup/">Permit lookup</a></li><li><a href="/septic-system-cost-calculator/">Cost planning</a></li>
                 </ul></nav>
-                <nav class="footer-block" aria-label="Explore"><h2 class="footer-heading">Explore</h2><ul class="footer-list">
+                <nav class="footer-block" aria-label="Explore"><p class="footer-heading">Explore</p><ul class="footer-list">
                     <li><a href="/septic-record-brief-example/#real-cases">Our work</a></li><li><a href="/septic-records-checklist/">Records guides</a></li><li><a href="/septic-records-by-county/">County record paths</a></li><li><a href="/septic-records-access-index/">County access dataset</a></li><li><a href="/septic-transfer-compliance/">Transfer compliance</a></li><li><a href="/states/">State guides</a></li>
                 </ul></nav>
-                <nav class="footer-block" aria-label="Standards"><h2 class="footer-heading">Standards</h2><ul class="footer-list">
+                <nav class="footer-block" aria-label="Standards"><p class="footer-heading">Standards</p><ul class="footer-list">
                     <li><a href="/about/">About</a></li><li><a href="/methodology/">Methodology</a></li><li><a href="/editorial-standards/">Editorial standards</a></li><li><a href="/coverage/">Coverage</a></li><li><a href="/contact/">Contact</a></li>
                 </ul></nav>
             </div>
