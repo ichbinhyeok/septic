@@ -94,9 +94,10 @@
 .home-ed-self nav{display:grid;margin-top:28px;border-top:1px solid var(--home-rule)}
 .home-ed-self nav a{display:flex;justify-content:space-between;padding:17px 0;color:var(--home-ink);border-bottom:1px solid var(--home-rule);font:500 1.1rem "Newsreader",serif}
 .home-ed-self [data-address-record-finder]{margin:0;background:#f8f4ec}
-.home-ed-directory{margin-top:54px}.home-ed-directory>p{color:#69716d;font-size:.72rem}.home-ed-directory>p a{color:var(--home-forest);font-weight:700}
+.home-ed-directory{margin-top:54px}.home-ed-directory>p{color:#69716d;font-size:.72rem}.home-ed-directory>p a{display:inline-flex;align-items:center;min-height:44px;color:var(--home-forest);font-weight:700}
 .home-ed-directory details{border-top:1px solid var(--home-rule);border-bottom:1px solid var(--home-rule)}
 .home-ed-directory summary{display:flex;justify-content:space-between;padding:24px 0;cursor:pointer}
+.home-ed-directory [data-track-source-context="home_county_finder_priority_route"]{display:inline-flex;align-items:center;min-height:44px}
 .home-ed-directory summary span:first-child{display:grid}
 .home-ed-directory summary small{margin-top:4px;color:#6f7772}
 .home-ed-final{position:relative;min-height:470px;color:#fff;background:#13251e}
