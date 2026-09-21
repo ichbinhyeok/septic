@@ -19,6 +19,14 @@
                     <span class="eyebrow">Property record workflow</span>
                     <h1>${contentPage.title()}</h1>
                     <p>${contentQuickAnswer}</p>
+                    @if ("septic-records-by-county".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump"
+                           href="/offer-prep-septic-file-check/#record-help"
+                           data-record-help-cta
+                           data-track-click="nav"
+                           data-track-source-context="national_records_county_index_record_help"
+                           data-track-target-type="lead_form">Ask SepticPath to investigate →</a>
+                    @endif
                     @if ("septic-as-built-records".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#read-a-septic-drawing">See a real returned drawing and how to read it ↓</a>
                     @elseif ("septic-tank-location-records".equals(contentPage.slug()))
