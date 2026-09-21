@@ -738,7 +738,7 @@ public class SeoService {
             case "VA::prince-william-county" -> "Request Prince William County Septic Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
-            case "NC::alamance-county" -> "Request Alamance County NC Septic Records";
+            case "NC::alamance-county" -> "Alamance County NC Septic Records & Permit Lookup";
             case "TN::knox-county" -> "Knox County TN SSDS File Search and Records Request";
             case "NC::lincoln-county" -> "Request Lincoln County NC Septic Records";
             case "NC::guilford-county" -> "Guilford County NC Septic Permit, Layout & Record Request";
@@ -763,9 +763,10 @@ public class SeoService {
             case "NC::randolph-county" -> "Randolph County NC Septic Permits, Repairs and ePermits";
             case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
-            case "NC::union-county" -> "Union County NC Septic Permit Lookup & Records Request";
+            case "NC::union-county" -> "Union County NC Septic Permit Search | Existing Records";
+            case "TN::wilson-county" -> "Wilson County TN Septic Permit Search | TDEC Records";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
-            case "NC::pender-county" -> "Pender County NC Septic Permit Information Request";
+            case "NC::pender-county" -> "Pender County NC Septic Permit Search & Records";
             case "AL::tuscaloosa-county" -> "Tuscaloosa County AL Septic Permits and Records Contact";
             case "AL::calhoun-county" -> "Calhoun County AL Septic Permits and Environmental Office";
             case "SC::charleston-county" -> "Charleston County SC Septic Permit and Final Inspection Records";
@@ -776,8 +777,9 @@ public class SeoService {
             case "MD::st-marys-county" -> "Request St. Mary's County Septic and Environmental Health Records";
             case "NY::suffolk-county" -> "Suffolk County NY Septic Location Record Request";
             case "AZ::maricopa-county" -> "Maricopa County Septic Search | Free Records & Permit Lookup";
+            case "WA::king-county" -> "King County Septic System Search & As-Built Records";
             case "NC::brunswick-county" -> "Brunswick County Permit Search and Septic File Request";
-            case "NC::forsyth-county" -> "Request Forsyth County NC Septic Permit and Soil Evaluation";
+            case "NC::forsyth-county" -> "Forsyth County NC Septic Permit Lookup & Records";
             case "TX::denton-county" -> "Denton County OSSF Records and Jurisdiction Check";
             case "TX::brazoria-county" -> "Brazoria County OSSF Permit Status and Records Request";
             case "WA::thurston-county" -> "Thurston County Septic Records and As-Built Search";
@@ -851,6 +853,7 @@ public class SeoService {
             case "MD::st-marys-county" -> "Use the official St. Mary's County Environmental Health request PDF for the septic property file; use county GIS only to obtain a parcel or Tax ID clue.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
             case "AZ::maricopa-county" -> "Open Maricopa County's free online septic search for available permit records. See the first-screen disclaimer and the county research fallback if no file appears.";
+            case "WA::king-county" -> "Search King County septic system records, as-built drawings, tank and drainfield location clues, and inspection history before requesting a missing file.";
             case "NC::brunswick-county" -> "Search Brunswick public permit metadata to identify the parcel and permit candidate, then request the original septic IP, CA, OP, or related file.";
             case "NC::forsyth-county" -> "Request the Forsyth County septic permit and soil evaluation, with separate release and repair routes for new property work.";
             case "TX::denton-county" -> "Confirm Denton County OSSF jurisdiction before requesting the existing license to operate, final approval, site plan, or maintenance record.";
@@ -1382,7 +1385,7 @@ public class SeoService {
             case "official-septic-lookup-tools" -> "Official Septic Lookup Tools | TDEC, DHEC, OSSF, OSTDS, and County Records | SepticPath";
             case "tdec-septic-records" -> "TN Septic Permit Search | TDEC Records & File Help";
             case "north-carolina-septic-permit-lookup" -> "NC Septic Permit Lookup by County & Address | SepticPath";
-            case "texas-ossf-records-search" -> "Texas OSSF Permit Records: Find the Local Authority | SepticPath";
+            case "texas-ossf-records-search" -> "Texas OSSF Permit Search by Address | Local Records";
             case "florida-ostds-permit-lookup" -> "Florida Septic Permit Lookup by County | OSTDS Records | SepticPath";
             case "dhec-septic-permit-lookup" -> "DHEC Septic Tank Records & Permit Lookup | SCDES Files | SepticPath";
             case "septic-system-cost-calculator" -> "Septic Cost Calculator | Use after records, permits, and file checks | SepticPath";
@@ -1395,6 +1398,7 @@ public class SeoService {
         return switch (contentPage.slug()) {
             case "tdec-septic-records" -> "Search Tennessee septic records through TDEC. If you get a 403, no record, or the wrong address, send the property and SepticPath will help recover the file.";
             case "north-carolina-septic-permit-lookup" -> "Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.";
+            case "texas-ossf-records-search" -> "Search Texas OSSF permits by address, identify the local permitting authority, and follow the correct county, city, ETJ, or authorized-agent records route.";
             default -> contentPage.metaDescription();
         };
     }
@@ -1408,6 +1412,7 @@ public class SeoService {
                 case "SC" -> "South Carolina Septic Records by County | Address & File Routes | SepticPath";
                 case "TX" -> "Texas Septic Records by County | Address & Authorized Agents | SepticPath";
                 case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
+                case "NH" -> "NH Septic Permit Lookup | NHDES OneStop & Plans";
                 default -> stateMoneyPage.title() + " | SepticPath";
             };
         }

@@ -14,24 +14,25 @@
             <div class="ptdec-hero__shade" aria-hidden="true"></div>
             <div class="ptdec-hero__inner">
                 <div class="ptdec-hero__copy">
-                    <span class="ptdec-kicker">Tennessee septic records</span>
-                    <h1 id="tdec-page-title">TDEC search<br>stopped? <em>We keep<br>going.</em></h1>
-                    <p>Send the property address. We’ll verify the county, search available sources, contact TDEC or the responsible local program when needed, and explain the response.</p>
+                    <span class="ptdec-kicker">TDEC search failed or came back empty?</span>
+                    <h1 id="tdec-page-title">Send the address.<br><em>We chase the record.</em></h1>
+                    <p>We verify the county, search public files, contact TDEC or the local program when needed, and explain what the response means for your property.</p>
                     <div class="ptdec-hero__actions">
-                        <a class="ptdec-button ptdec-button--coral" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate <span aria-hidden="true">→</span></a>
-                        <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Use the official route myself <span aria-hidden="true">→</span></a>
+                        <a class="ptdec-button ptdec-button--coral" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a>
+                        <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Find the official route myself <span aria-hidden="true">→</span></a>
                     </div>
+                    <p class="ptdec-hero__price">Research and agency requests are free. Optional $29 result unlock only when useful property-matched evidence is found.</p>
                     <div class="ptdec-hero__trust" aria-label="How SepticPath works">
-                        <span>⌕ <b>Real records<br>Real people</b></span>
-                        <span>◆ <b>County sources<br>&amp; direct outreach</b></span>
-                        <span>▤ <b>Clear explanations<br>No guesswork</b></span>
+                        <span><b>01 · Search</b><small>TDEC and county sources</small></span>
+                        <span><b>02 · Request</b><small>The responsible records office</small></span>
+                        <span><b>03 · Explain</b><small>A clear property answer</small></span>
                     </div>
                     <small class="ptdec-independent">Independent service. TDEC and local counties control record availability, response timing, and permit status.</small>
                 </div>
 
             </div>
             <div class="ptdec-hero__utility">
-                <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is currently returning 403 in our checks. It may still work for some visitors. TDEC viewer not working? We can investigate the record for you. We can research and request available records.</p>
+                <p class="tdec-desk__status" role="status"><strong>Viewer status:</strong> TDEC’s septic viewer is returning 403 in our checks. A blocked screen is not a no-record result.</p>
                 <nav aria-label="Other Tennessee record options"><a href="/septic-record-finder/" data-track-click="internal_handoff" data-track-source-context="tdec_hero_address_finder" data-track-target-type="record_finder">Find the county from a property address</a><a href="https://dataviewers.tdec.tn.gov/dataviewers/f?p=175" target="_blank" rel="noreferrer" data-tdec-hero-official data-track-click="official_source" data-track-source-context="tdec_hero_viewer_optional" data-track-target-type="official_search">Try the official viewer anyway</a></nav>
                 <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title"><div><span class="eyebrow">Back from TDEC?</span><h3 id="tdec-hero-return-title">Did the official search solve it?</h3><p>Record the result so the next step matches what actually happened.</p></div><div class="tdec-return__choices" role="group" aria-label="TDEC official search result"><button type="button" data-tdec-hero-outcome="found">I found a file</button><button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button><button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button></div><div class="tdec-return__next" data-tdec-hero-next hidden></div></section>
             </div>

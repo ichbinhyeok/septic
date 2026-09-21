@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.20.0 - 2026-09-22
+
+### Changed
+
+- Promoted proven county record-search opportunities with clearer high-intent page titles and supporting descriptions for searchers looking for permits, layouts, as-builts, and existing records.
+- Refocused the Tennessee records landing page on a single address-first investigation action, a concise three-step workflow, and clearer evidence and pricing expectations.
+- Aligned Texas, New Hampshire, Wilson County, Union County, King County, Alamance County, Pender County, and Forsyth County search surfaces with the language people use when seeking official septic files.
+
+### Fixed
+
+- Preserved county-specific workflow guidance and route ownership while improving search-result relevance and title clarity.
+- Improved the readability of the Tennessee pricing disclosure without relying on CSS specificity overrides.
+
 ## 0.0.19.1 - 2026-09-21
 
 ### Changed

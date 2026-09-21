@@ -28,7 +28,7 @@ class TopTrafficCountyCompletionRegressionTest {
             }
         });
 
-        assertEquals(30, countyKeys.size(), "The reviewed GSC county cohort changed; re-audit every added route.");
+        assertEquals(31, countyKeys.size(), "The reviewed GSC county cohort changed; re-audit every added route.");
 
         for (String countyKey : countyKeys) {
             CountyAccessProfileView access = CountyAccessProfileCatalog.find(countyKey);
