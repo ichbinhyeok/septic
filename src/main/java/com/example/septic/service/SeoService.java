@@ -1411,8 +1411,13 @@ public class SeoService {
                 case "IN" -> "Indiana Septic Records Lookup & County Permit Search | SepticPath";
                 case "SC" -> "South Carolina Septic Records by County | Address & File Routes | SepticPath";
                 case "TX" -> "Texas Septic Records by County | Address & Authorized Agents | SepticPath";
-                case "AL" -> "Alabama Septic Permit Lookup | County Health Records, Perc Files, and Address Search | SepticPath";
-                case "NH" -> "NH Septic Permit Lookup | NHDES OneStop & Plans";
+                case "AL" -> "ADPH Septic Records & Approval for Use | Alabama";
+                case "AR" -> "Arkansas ADH Septic Permit Copy & Records Help";
+                case "ME" -> "Maine HHE-200 Septic Permit Search & Help";
+                case "NH" -> "NHDES Septic Records & OneStop Plans | New Hampshire";
+                case "OR" -> "Oregon DEQ Septic Records & Tax Lot Search";
+                case "VA" -> "VDH Septic Records Lookup & Requests | Virginia";
+                case "VT" -> "Vermont DEC Septic Permit Search & Missing Records";
                 default -> stateMoneyPage.title() + " | SepticPath";
             };
         }

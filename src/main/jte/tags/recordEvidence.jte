@@ -24,15 +24,15 @@
             <p class="record-evidence__swipe-hint">Swipe to compare the original pages <span data-evidence-progress aria-live="polite">Document 1 of 3</span></p>
             <div class="record-evidence__papers" aria-label="Original document samples. Swipe or scroll horizontally on small screens.">
                 <a class="record-evidence__letter" href="/images/case-study/redacted/agency-approval-letter-full-public.png" data-evidence-document="approval" aria-label="Enlarge the actual county approval letter">
-                    <img src="/images/case-study/redacted/agency-approval-letter-full-public.png" width="1275" height="1650" loading="lazy" alt="Nearly full page of an actual county septic approval letter with identifying details redacted">
+                    <img src="/images/case-study/redacted/agency-approval-letter-preview.webp" width="600" height="776" loading="lazy" decoding="async" alt="Nearly full page of an actual county septic approval letter with identifying details redacted">
                     <span>Approval letter · full page ↗</span>
                 </a>
                 <a class="record-evidence__permit" href="/images/case-study/redacted/state-historical-permit-full-public.png" data-evidence-document="permit" aria-label="Enlarge the actual historical state septic permit">
-                    <img src="/images/case-study/redacted/state-historical-permit-full-public.png" width="1283" height="1647" loading="lazy" alt="Nearly full historical state septic permit showing system specifications and a hand-drawn layout with identifying details redacted">
+                    <img src="/images/case-study/redacted/state-historical-permit-preview.webp" width="600" height="770" loading="lazy" decoding="async" alt="Nearly full historical state septic permit showing system specifications and a hand-drawn layout with identifying details redacted">
                     <span>Historical permit · full page ↗</span>
                 </a>
                 <a class="record-evidence__plan" href="/images/case-study/redacted/approved-site-plan-full-public.png" data-evidence-document="plan" aria-label="Enlarge the actual approved septic site plan">
-                    <img src="/images/case-study/redacted/approved-site-plan-full-public.png" width="1275" height="1650" loading="lazy" alt="Nearly full page of an actual hand-drawn approved septic plan with identifying details redacted">
+                    <img src="/images/case-study/redacted/approved-site-plan-preview.webp" width="600" height="776" loading="lazy" decoding="async" alt="Nearly full page of an actual hand-drawn approved septic plan with identifying details redacted">
                     <span>Approved plan · full page ↗</span>
                 </a>
             </div>
@@ -42,7 +42,7 @@
             <div class="record-evidence__brief">
                 <div class="record-evidence__brief-title"><strong>SepticPath</strong><span>RECORD BRIEF</span></div>
                 <a href="/images/case-study/redacted/record-brief-full-public.png" data-evidence-document="findings" aria-label="Enlarge the actual SepticPath Record Brief">
-                    <img src="/images/case-study/redacted/record-brief-full-public.png" width="1275" height="1650" loading="lazy" alt="Nearly full page of a SepticPath Record Brief with the property identifiers redacted">
+                    <img src="/images/case-study/redacted/record-brief-preview.webp" width="600" height="776" loading="lazy" decoding="async" alt="Nearly full page of a SepticPath Record Brief with the property identifiers redacted">
                 </a>
                 <p><strong>What this helps with</strong>A starting point for discussing the layout with a septic professional.</p>
                 <p><strong>What it does not prove</strong>This is an approved design, not proof of the system’s current location or condition.</p>

@@ -112,6 +112,10 @@
 .premium-site:not(.premium-site--signature) .record-evidence__brief > a:first-of-type { grid-row: 2 / 5; }
 .premium-site:not(.premium-site--signature) .record-evidence__brief img { margin: 0; }
 .premium-site:not(.premium-site--signature) .record-evidence__brief p { margin: 0; }
+.premium-site--regional .sc-service-proof .record-evidence { color: #dcebe7; }
+.premium-site.premium-site--regional .sc-service-proof .record-evidence .record-evidence__heading { display: none; }
+.premium-site--regional .sc-service-proof :is(.record-evidence__source-note,.record-evidence__action span) { color: #b8cdca; }
+.premium-site--regional .sc-service-proof .record-evidence__steps { color: #dcebe7; }
 
 /* Regional lookup desks: image-led introduction, then a compact usable workspace. */
 .premium-site--regional :is(.tdec-desk__intro,.official-records-hero,.state-records-hero) { position: relative; isolation: isolate; padding-block: 76px; color: #fff; background: #072e37; }

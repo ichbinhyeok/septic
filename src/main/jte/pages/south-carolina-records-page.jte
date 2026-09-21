@@ -9,36 +9,27 @@
 
 @template.layouts.app(page = page, designFamily = "regional", content = @`
     <main class="tdec-desk sc-records-desk" data-sc-records-desk>
-        <section class="tdec-desk__intro" aria-labelledby="sc-page-title">
+        <section class="tdec-desk__intro sc-service-hero" aria-labelledby="sc-page-title">
             <div class="container tdec-desk__intro-grid">
-                <div>
-                    <span class="eyebrow">South Carolina existing septic records</span>
-                    <h1 id="sc-page-title">Get the identifier or request needed for a South Carolina septic file</h1>
-                    <p>A TMS or permit number can go to Site Explorer. With only an address or owner, start with the county TMS route or prepare an SCDES file request.</p>
-                    <div class="regional-hero-actions"><a class="button button--primary" href="#sc-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
+                <div class="sc-service-hero__copy">
+                    <span class="eyebrow">DHEC search failed or only found a map pin?</span>
+                    <h1 id="sc-page-title">Send the address.<br><em>We chase the South Carolina septic file.</em></h1>
+                    <p>We confirm the county and TMS, search SCDES and public sources, contact the responsible office when needed, and explain what the returned file means for your property.</p>
+                    <div class="tdec-desk__hero-actions"><a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="sc_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a><a class="text-button" href="#sc-record-search" data-track-click="nav" data-track-source-context="sc_hero_request_builder" data-track-target-type="request_builder">Find the official SCDES route myself <span aria-hidden="true">→</span></a></div>
+                    <p class="sc-service-hero__price">Research and agency requests are free. Optional $29 result unlock only when useful property-matched evidence is found.</p>
+                    <div class="sc-service-hero__steps" aria-label="How SepticPath works">
+                        <span><b>01 · Identify</b><small>County, address, and TMS</small></span>
+                        <span><b>02 · Search</b><small>SCDES and official sources</small></span>
+                        <span><b>03 · Explain</b><small>A property-matched answer</small></span>
+                    </div>
+                    <small class="tdec-desk__independent">Independent service. SCDES and local offices control record availability, response timing, and permit status.</small>
                 </div>
-                <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>This self-serve tool</dt><dd>prepares search keys, opens the public SCDES search, and drafts a records follow-up.</dd></div>
-                    <div><dt>Tool limits</dt><dd>It does not query SCDES, retrieve a PDF, confirm a permit, or judge system condition. You can also ask our research service to investigate.</dd></div>
-                </dl>
             </div>
+            <div class="container sc-service-hero__status"><strong>DHEC is now SCDES.</strong> Old DHEC searches should use the current SCDES route. A broad map pin is not proof of a septic file, and an empty search is not a no-record decision.</div>
         </section>
-
-        <div class="container record-evidence-band">
-            @template.tags.recordEvidence(sourceContext = "sc_records_evidence")
-        </div>
-
-        <section class="sc-official-search" aria-labelledby="sc-official-search-title">
-            <div class="container sc-official-search__grid">
-                <div><span class="eyebrow">Choose the real first action</span><h2 id="sc-official-search-title">The identifier determines the route</h2><p>Site Explorer is useful with a TMS or permit number. A broad map pin is not proof that the septic record was found.</p></div>
-                <a class="button button--primary" href="#sc-record-search">Prepare the property route</a>
-            </div>
-        </section>
-
-        <p class="container field-help">To “Search SCDES for the property’s septic file,” prepare the county and identifier below. “Open SCDES Site Explorer” is offered as the working action only when a TMS or permit number is ready.</p>
 
         <section class="tdec-workspace" id="sc-record-search" aria-labelledby="sc-workspace-title"><div class="container">
-            <header class="tdec-workspace__header"><div><span class="eyebrow">Search preparation</span><h2 id="sc-workspace-title">Prepare a search that SCDES can match</h2></div><ol aria-label="Search workflow"><li class="is-current"><span>1</span> County</li><li><span>2</span> Property</li><li><span>3</span> Official search</li></ol></header>
+            <header class="tdec-workspace__header"><div><span class="eyebrow">Self-serve official route</span><h2 id="sc-workspace-title">Search SCDES for the property’s septic file</h2><p>Prefer to handle it yourself? Prepare the identifier SCDES can match, then open SCDES Site Explorer.</p></div><ol aria-label="Search workflow"><li class="is-current"><span>1</span> County</li><li><span>2</span> Property</li><li><span>3</span> Official search</li></ol></header>
             <form class="tdec-workspace__form sc-workspace__form" data-sc-route-form novalidate>
                 <fieldset><legend>1. Where and when?</legend>
                     <label for="sc-county">South Carolina county</label><select id="sc-county" data-sc-county required aria-describedby="sc-county-help sc-form-error"><option value="">Choose a county</option>@for (var county : southCarolinaCountyRoutes)<option value="${county.countyKey()}" data-county-name="${county.countyName()}" data-internal-path="${county.internalPath()}">${county.countyName()}</option>@endfor</select>
@@ -71,6 +62,8 @@
         </div></div></section>
 
         <section class="tdec-request" data-sc-request-section hidden aria-labelledby="sc-request-title"><div class="container tdec-request__grid"><header><span class="eyebrow">Manual follow-up</span><h2 id="sc-request-title" tabindex="-1">Ask SCDES for the property file</h2><p>The draft includes the identifiers SCDES asks homeowners to provide. You still review and send it yourself.</p></header><div class="tdec-request__output"><label for="sc-request-copy">Request wording to copy</label><textarea id="sc-request-copy" readonly data-sc-request-copy></textarea><div><button class="button button--secondary" type="button" data-sc-copy-request>Copy request wording</button><a class="button button--primary" href="mailto:OSWWCentral@des.sc.gov">Email SCDES Onsite Wastewater</a></div><div class="tdec-request__evidence-callout"><strong>Sent it?</strong><p>A copied draft is not a submitted request. Save the date and channel only after you actually send it.</p><button class="button button--secondary" type="button" data-sc-confirm-request>Save submission evidence</button></div><dl><div><dt>Customer service</dt><dd>1-855-731-2504</dd></div><div><dt>Email</dt><dd>OSWWCentral@des.sc.gov</dd></div></dl></div></div></section>
+
+        <section class="sc-service-proof" aria-labelledby="sc-proof-title"><div class="container sc-service-proof__grid"><header><span class="eyebrow">A real evidence trail</span><h2 id="sc-proof-title">From an official file to an answer you can use.</h2><p>These anonymized materials show the kind of source documents we preserve, match to the property, and explain.</p></header><div class="record-evidence-band">@template.tags.recordEvidence(sourceContext = "sc_records_evidence")</div></div></section>
 
         <section class="tdec-reference" aria-labelledby="sc-reference-title"><div class="container"><h2 id="sc-reference-title">Official-source notes</h2><p>SCDES describes Site Explorer as the public ePermitting search. Its homeowner guidance asks for tax map number, lot, block, physical address, installation or construction date, original permit holder, and subdivision when staff search for a file.</p><nav aria-label="South Carolina official sources"><a href="https://epermitting.des.sc.gov/ext/nsite/default/map/help" target="_blank" rel="noreferrer">SCDES Site Explorer</a><a href="https://des.sc.gov/permits-regulations/septic-tanks/homeowner-resources/how-locate-septic-tank" target="_blank" rel="noreferrer">How SCDES locates records</a><a href="https://www.des.sc.gov/permits-regulations/septic-tanks/permits-licenses/septic-tanks-residential-single-home-builder" target="_blank" rel="noreferrer">Residential permit process</a><a href="https://des.sc.gov/sites/des/files/Library/D-4432.pdf" target="_blank" rel="noreferrer">Final inspection form DES 4432</a></nav><p class="tdec-reference__disclosure"><strong>Independent guide.</strong> SepticPath is not affiliated with SCDES and cannot certify permit existence, compliance, location, or condition.@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) Official route review: ${editorialLastReviewedAt}.@endif</p></div></section>
         <script src="${AssetPaths.versioned("/south-carolina-records.js")}" defer></script>
