@@ -86,12 +86,14 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains("\"upfrontPaymentRequired\" : false"));
         assertTrue(storedRequest.contains("\"agencyFeesRequireApproval\" : true"));
         assertTrue(storedRequest.contains("\"professionalMatchingIncluded\" : true"));
-        assertTrue(storedRequest.contains("\"professionalRecipientLimit\" : 3"));
+        assertTrue(storedRequest.contains("\"professionalRecipientPolicy\" : \"relevant_local_only\""));
         assertTrue(storedRequest.contains("\"professionalContactChannels\" : [ \"email\", \"manual_call\", \"service_text\" ]"));
         assertTrue(storedRequest.contains("\"marketingCallsOrTextsAuthorized\" : false"));
         assertTrue(storedRequest.contains("\"phoneSharingWithProfessionalAuthorized\" : true"));
         assertTrue(storedRequest.contains("\"automatedOrPrerecordedContactAuthorized\" : false"));
         assertTrue(storedRequest.contains("\"onwardResaleAuthorized\" : false"));
+        assertTrue(storedRequest.contains("\"unrelatedMarketingAuthorized\" : false"));
+        assertTrue(storedRequest.contains("\"matchingCompensationDisclosed\" : true"));
         assertTrue(storedRequest.contains("\"recordType\" : \"septic\""));
         assertTrue(storedRequest.contains("\"researchGoal\" : \"design_capacity\""));
         assertTrue(storedRequest.contains("septic_record_help_beta"));

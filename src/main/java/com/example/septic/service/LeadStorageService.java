@@ -367,14 +367,16 @@ public class LeadStorageService {
                 "consentText", form.getConsentTextSnapshot(),
                 "languageVersion", RecordHelpOffer.VERSION,
                 "professionalMatchingIncluded", true,
-                "professionalRecipientLimit", 3,
+                "professionalRecipientPolicy", "relevant_local_only",
                 "professionalContactChannels", form.getPhone() == null || form.getPhone().isBlank()
                         ? List.of("email")
                         : List.of("email", "manual_call", "service_text"),
                 "marketingCallsOrTextsAuthorized", false,
                 "phoneSharingWithProfessionalAuthorized", form.getPhone() != null && !form.getPhone().isBlank(),
                 "automatedOrPrerecordedContactAuthorized", false,
-                "onwardResaleAuthorized", false
+                "onwardResaleAuthorized", false,
+                "unrelatedMarketingAuthorized", false,
+                "matchingCompensationDisclosed", true
         );
 
         List<Map<String, Object>> documentMetadata;

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.21.1 - 2026-09-22
+
+### Changed
+
+- Restored concise consent for sharing a request with relevant local septic professionals when field work may help, while keeping the mobile number optional.
+- Aligned the visible intake, saved consent snapshot, privacy explanation, and operator notification around the same professional-matching scope.
+- Removed the redundant record-type selector from the septic intake while preserving structured septic routing internally.
+
 ## 0.0.21.0 - 2026-09-22
 
 ### Added
