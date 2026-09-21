@@ -80,8 +80,6 @@ public class ClosingRiskNotificationService {
 
                 Research and agency requests are free. If we find useful, property-matched evidence, we will email a free preview of the source, document scope, property match, questions it can answer, and material limits. Your actual property-specific answers and located source records are included in the optional US $29 package. Your own uploaded files remain yours. There is no automatic charge. Any agency fee requires your approval first.
 
-                If records do not answer the question and local field work may help, SepticPath may connect you with up to three relevant local septic professionals using the contact details you provided. A connected professional may respond by email or, if you provided a mobile number, by a manual call or text about this request. Some participating professionals may compensate SepticPath for an introduction. This does not authorize automated or prerecorded marketing, unrelated solicitations, or resale of your request.
-
                 Keep this email and reference number if you need to follow up. Do not email payment-card details or access codes.
 
                 SepticPath is an independent records-research service, not an inspection, permitting, engineering, or legal authority.

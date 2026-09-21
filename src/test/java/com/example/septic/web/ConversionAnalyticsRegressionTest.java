@@ -24,6 +24,7 @@ class ConversionAnalyticsRegressionTest {
         assertTrue(coreScript.contains("record_help_form_viewed"));
         assertTrue(coreScript.contains("record_help_form_started"));
         assertTrue(coreScript.contains("record_help_form_validation_error"));
+        assertTrue(coreScript.contains("invalid_fields: invalidFields"));
         assertTrue(coreScript.contains("record_help_stage_selected"));
         assertTrue(coreScript.contains("cta_variant: \"task_adjacent_v1\""));
         assertTrue(calculator.contains("data-ga-event=\"calculator_submit\""));

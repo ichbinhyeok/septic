@@ -94,7 +94,7 @@ public class ClosingRiskCheckForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, email me the result, and connect me with local professionals as described in these terms when field work may help. If I provide a mobile number, connected professionals may make service-specific manual calls or send texts about this request. This is records research—not an inspection, permit decision, legal opinion, or compliance certification. "
+        return "I agree that SepticPath may use the contact, property details, and documents I provide to research or review this request, contact the responsible public office when appropriate, and email me about this request. A mobile number is optional and is used only for a time-sensitive question about this request. This is records research—not an inspection, permit decision, legal opinion, or compliance certification. "
                 + com.example.septic.service.RecordHelpOffer.TERMS;
     }
 

@@ -236,11 +236,6 @@
                                 <input type="email" name="email" value="${closingRiskCheckForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
                                 <small>We’ll send research updates and the result here. No newsletter signup.</small>
                             </label>
-                            <label>
-                                <span>Mobile number <small>(optional)</small></span>
-                                <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
-                                <small>Add a number if you would like connected local professionals to call or text about this request. Free research does not require a phone number.</small>
-                            </label>
                             <label class="field--full">
                                 <span>Property address</span>
                                 <input type="text" name="propertyAddress" value="${closingRiskCheckForm.getPropertyAddressValue()}" autocomplete="street-address" maxlength="220" placeholder="123 Main St, City, ST 12345" required>
@@ -334,6 +329,11 @@
                                     <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120">
                                 </label>
                                 <label>
+                                    <span>Mobile number <small>(optional)</small></span>
+                                    <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
+                                    <small>Only if you want us to use it for a time-sensitive question about this request.</small>
+                                </label>
+                                <label>
                                     <span>County</span>
                                     <input type="text" name="countyName" value="${closingRiskCheckForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
                                 </label>
@@ -353,9 +353,8 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree to the free research and email updates. If records cannot answer my question, SepticPath may connect me with up to three relevant local professionals using the contact details I provide. Optional $29 unlock terms are below.</span>
+                            <span>I agree that SepticPath may use these details to research this property, contact the responsible public office when needed, and email me about this request. Optional $29 unlock terms are below.</span>
                         </label>
-                        <p class="form-note">A connected professional may respond by email or, if you provide a mobile number, by a manual call or text about this request. You are never required to hire anyone we connect you with. This does not authorize automated or prerecorded marketing, unrelated solicitations, or resale of your request.</p>
                         <details class="record-help-consent-details">
                             <summary>Read research consent and pricing terms</summary>
                             <p>${closingRiskCheckForm.getConsentTextSnapshot()}</p>
