@@ -33,7 +33,7 @@
 .ptdec-button--coral { background: linear-gradient(135deg, #ff795d, #fa5f45); box-shadow: 0 15px 35px rgba(255,96,69,.22); }
 .ptdec-button--green { background: linear-gradient(135deg, #008f78, #057b6b); }
 .ptdec-link { display: inline-flex; align-items: center; min-height: 44px; color: #075c8c; font-weight: 800; }
-.ptdec-hero__price { margin: -14px 0 24px; color: #c0d6d6 !important; font-size: .76rem !important; font-weight: 650; line-height: 1.45 !important; }
+.ptdec .ptdec-hero__price { margin: -14px 0 24px; color: #c0d6d6; font-size: 1rem; font-weight: 650; line-height: 1.45; }
 .ptdec-hero__trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; max-width: 610px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.2); }
 .ptdec-hero__trust span { display: grid; gap: 5px; padding-right: 18px; }
 .ptdec-hero__trust span + span { padding-left: 18px; border-left: 1px solid rgba(255,255,255,.16); }
