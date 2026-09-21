@@ -1,0 +1,103 @@
+.fl-premium-hero {
+    position: relative;
+    min-height: 700px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #edfaff;
+}
+
+.fl-premium-hero__art {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background: url('/images/brand/septicpath-florida-records-hero-v3.png') center / cover no-repeat;
+}
+
+.fl-premium-hero::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background: linear-gradient(90deg, rgba(247,253,252,.2), transparent 48%);
+}
+
+.fl-premium-hero__inner {
+    display: flex;
+    min-height: 700px;
+    align-items: center;
+    padding-block: 58px 72px;
+}
+
+.fl-premium-hero__copy { width: min(575px, 44vw); }
+.fl-premium-hero .eyebrow { color: #087e70; letter-spacing: .23em; }
+.fl-premium-hero h1 {
+    max-width: 11ch;
+    margin: 16px 0 22px;
+    color: #082b40;
+    font-size: clamp(3.7rem, 5vw, 5.35rem);
+    font-weight: 800;
+    line-height: .94;
+    letter-spacing: -.065em;
+}
+.fl-premium-hero__copy > p { max-width: 42ch; color: #385766; font-size: 1.12rem; line-height: 1.55; }
+.fl-premium-hero .button { min-width: 270px; min-height: 60px; gap: 28px; margin-top: 12px; border-radius: 12px; font-size: .96rem; }
+.fl-premium-hero__copy ul { display: flex; gap: 28px; margin: 38px 0 0; padding: 0; color: #214b56; list-style: none; }
+.fl-premium-hero__copy li { position: relative; padding-left: 20px; font-size: .68rem; font-weight: 750; }
+.fl-premium-hero__copy li::before { position: absolute; left: 0; color: #079a84; content: "✓"; font-weight: 900; }
+.fl-premium-hero__seo-copy { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.fl-premium-transition { color: #16414e; background: #fff; border-bottom: 1px solid #d7e6e2; }
+.fl-premium-transition__inner { display: grid; grid-template-columns: 190px 1fr minmax(240px, .42fr); gap: 34px; align-items: center; min-height: 118px; }
+.fl-premium-transition__inner > span { color: #0a8b76; font-size: .65rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+.fl-premium-transition h2 { margin: 0; font-size: clamp(1.45rem, 2.1vw, 2.2rem); letter-spacing: -.04em; }
+.fl-premium-transition p { margin: 0; color: #637a80; font-size: .76rem; line-height: 1.55; }
+
+.fl-premium-evidence { padding: 30px 0; border-bottom: 1px solid #d8ebe7; background: #f7fcfa; }
+.fl-premium-evidence__inner { display: grid; grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 42px; align-items: center; }
+.fl-premium-evidence__scope { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; }
+.fl-premium-evidence__scope div { padding-left: 18px; border-left: 2px solid #1aa48a; }
+.fl-premium-evidence__scope dt { margin-bottom: 7px; color: #123b48; font-size: .73rem; font-weight: 850; letter-spacing: .05em; text-transform: uppercase; }
+.fl-premium-evidence__scope dd { margin: 0; color: #60777c; font-size: .76rem; line-height: 1.55; }
+.fl-premium-evidence__proof { min-width: 0; }
+.fl-premium-evidence .record-evidence { margin: 0; }
+.fl-premium-evidence .record-evidence__heading { margin-bottom: 28px; }
+.fl-premium-evidence .record-evidence__heading h2 { max-width: 13ch; font-size: clamp(2.1rem,3vw,3.6rem); }
+.fl-premium-evidence .record-evidence__documents { padding: 0; border: 0; background: transparent; }
+
+.fl-records-desk .tdec-workspace { padding: clamp(70px, 8vw, 112px) 0; background: linear-gradient(180deg, #f2fbff, #fff 64%); }
+.fl-records-desk .tdec-workspace > .container { overflow: hidden; border: 1px solid #cfe7ea; border-radius: 28px; background: rgba(255,255,255,.96); box-shadow: 0 28px 80px rgba(31,98,105,.12); }
+.fl-records-desk .tdec-workspace__header { padding: 38px 42px 28px; background: linear-gradient(120deg, #eefaff, #f5fffb); }
+.fl-records-desk .tdec-workspace__header h2 { margin-bottom: 0; color: #0a3042; font-size: clamp(2.4rem, 4vw, 4.25rem); letter-spacing: -.06em; }
+.fl-records-desk .tdec-workspace__header ol { border-color: #b9d8d6; }
+.fl-records-desk .tdec-workspace__form { border: 0; border-radius: 0; box-shadow: none; }
+.fl-records-desk .tdec-workspace__form fieldset { padding: 34px 42px; }
+.fl-records-desk .tdec-workspace__form input,
+.fl-records-desk .tdec-workspace__form select { min-height: 55px; border-color: #b9d4d3; border-radius: 12px; background: #fbfefd; }
+.fl-records-desk .tdec-workspace__submit-row { padding: 26px 42px 36px; background: #f5fbf9; }
+.fl-records-desk .tdec-workspace__submit-row .button { min-height: 56px; border-radius: 12px; }
+.fl-records-desk .tdec-result { border: 0; border-top: 1px solid #cfe2de; border-radius: 0; background: #f8fcfb; }
+
+@media (max-width: 960px) {
+    .fl-premium-hero__copy { width: min(540px, 58vw); }
+    .fl-premium-transition__inner { grid-template-columns: 1fr; gap: 8px; padding-block: 28px; }
+    .fl-premium-evidence__inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+    .fl-premium-hero,
+    .fl-premium-hero__inner { min-height: 1120px; }
+    .fl-premium-hero__art { background-image: url('/images/brand/septicpath-florida-records-hero-mobile-v3.png'); background-position: center top; background-size: cover; }
+    .fl-premium-hero::after { background: linear-gradient(180deg, rgba(249,254,252,.96) 0 43%, rgba(249,254,252,.08) 54%, transparent 62%); }
+    .fl-premium-hero__inner { align-items: flex-start; padding-top: 50px; }
+    .fl-premium-hero__copy { width: 100%; }
+    .fl-premium-hero h1 { max-width: 10ch; font-size: clamp(3rem, 13vw, 4rem); }
+    .fl-premium-hero__copy > p { max-width: 30ch; font-size: 1rem; }
+    .fl-premium-hero .button { width: 100%; min-width: 0; }
+    .fl-premium-hero__copy ul { display: none; }
+    .fl-premium-evidence__scope { grid-template-columns: 1fr; }
+    .fl-records-desk .tdec-workspace { padding-block: 56px; }
+    .fl-records-desk .tdec-workspace > .container { width: calc(100% - 20px); border-radius: 20px; }
+    .fl-records-desk .tdec-workspace__header,
+    .fl-records-desk .tdec-workspace__form fieldset,
+    .fl-records-desk .tdec-workspace__submit-row { padding-inline: 20px; }
+}

@@ -3,8 +3,8 @@
 @param PageMeta page
 @param WorkflowPacketView packet
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
+    <section class="section section--heroish workflow-packet-hero">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${packet.eyebrow()}</span>

@@ -1,0 +1,37 @@
+@import com.example.septic.web.PageMeta
+@import com.example.septic.data.model.ContentPage
+@import com.example.septic.web.PageLink
+@import com.example.septic.web.StudioCaseStudies.Study
+@import com.example.septic.web.StudioGuideRoutes
+@import com.example.septic.web.StudioPreviewController.GuideState
+@import com.example.septic.web.AssetPaths
+@param ContentPage contentPage
+@param java.util.List<GuideState> guideStates
+@param java.util.List<PageLink> internalLinks
+@param Study featuredStudy
+@param PageMeta page = null
+@param boolean production = false
+@template.studio.shell(page = page, production = production, title = contentPage.title(), heroImage = "/images/studio/permit-lookup-desk-v1.webp", pageClass = "studio-permit-lookup", pageStyles = "/studio-permit-lookup.css", content = @`
+<main id="main">
+    <section class="lookup-hero" aria-labelledby="lookup-title"><img src="/images/studio/permit-lookup-desk-v1.webp" alt="Illustrative rural property research desk with a site map and record folders" width="1795" height="876" fetchpriority="high"><div class="lookup-hero__shade"></div><div class="studio-wrap"><p class="studio-overline">Septic permit lookup</p><h1 id="lookup-title">Find the office.<br>Follow the file.</h1><p>Start with the state. Then follow the county record route.</p><a class="lookup-light-button" href="#state-route">Choose a state <span aria-hidden="true">↓</span></a></div></section>
+
+    <section class="lookup-route studio-wrap" id="state-route" aria-labelledby="route-title"><div class="lookup-route__action"><p class="studio-overline">Start with place</p><h2 id="route-title">The right doorway<br>changes by place.</h2><form data-lookup-state-form><label for="lookup-state">State<select id="lookup-state" required><option value="">Choose a state</option>@for(var state : guideStates)<option value="${state.published() ? "/septic-system-cost-calculator/" + state.slug() + "/" : "/offer-prep-septic-file-check/?state=" + state.code()}">${state.name()}</option>@endfor</select></label><button class="studio-button" type="submit">Open the records route <span aria-hidden="true">→</span></button></form><noscript><p><a href="${com.example.septic.web.StudioGuideRoutes.route("/states/", production)}">Browse all state guides →</a></p></noscript><p>${contentPage.introCopy()}</p><p>${contentPage.targetReader()}</p></div><ol class="lookup-route__steps"><li><span>01</span><div><h3>State route</h3><p>See whether the state provides a portal, a regional office, or a county handoff.</p></div></li><li><span>02</span><div><h3>County custodian</h3><p>Identify who holds the file and what property clues the office needs.</p></div></li><li><span>03</span><div><h3>The record itself</h3><p>Retrieve the matching permit, plan, approval, repair history, or written response.</p></div></li></ol></section>
+
+    <section class="lookup-file" aria-labelledby="file-title"><div class="lookup-file__copy"><p class="studio-overline">What you are looking for</p><h2 id="file-title">A permit mention<br>is not the file.</h2><ul><li>Permit and application</li><li>Site plan or as-built</li><li>Final approval or inspection</li><li>Repair and alteration history</li><li>Written no-record response</li></ul><details><summary>What to bring to the search <span aria-hidden="true">+</span></summary><ul>@for(var item : contentPage.quotePrepChecklist())<li>${item}</li>@endfor</ul></details><p class="lookup-boundary">A historical record does not establish current system condition or exact field location.</p></div><figure><img src="/images/studio/permit-file-spread-v1.webp" alt="Illustrative permit file, site plan, inspection sheet and correspondence" width="1457" height="1079" loading="lazy"><figcaption>Illustrative record set—not a file for your property.</figcaption></figure></section>
+
+    <section class="lookup-empty studio-wrap" aria-labelledby="empty-title"><p class="studio-overline">The no-result path</p><h2 id="empty-title">When the first search<br>comes back empty.</h2><ol>@for(int i=0;i<contentPage.lowEndBreakers().size();i++)<li><span>0${i+1}</span><p>${contentPage.lowEndBreakers().get(i)}</p></li>@endfor</ol><a class="studio-text-link" href="${com.example.septic.web.StudioGuideRoutes.route("/septic-records-checklist/", production)}">Use the records checklist <span aria-hidden="true">→</span></a></section>
+
+    <section class="lookup-fit studio-wrap" aria-labelledby="fit-title"><div><p class="studio-overline">A useful starting point</p><h2 id="fit-title">Begin here when<br>the file is still a claim.</h2></div><ul>@for(var item : contentPage.fitBullets())<li>${item}</li>@endfor</ul></section>
+
+    @template.studio.research-proof(production = production, study = featuredStudy, directCase = true, imageOverride = "/images/studio/checklist-case-house-v1.webp", imageNote = "Illustrative setting", imageWidth = 1561, imageHeight = 1008)
+
+    <section class="lookup-depth studio-wrap" aria-labelledby="depth-title"><div class="lookup-depth__heading"><p class="studio-overline">Why the route matters</p><h2 id="depth-title">The lookup changes<br>the next move.</h2></div><div class="lookup-depth__prose">@for(var paragraph : contentPage.deepDiveParagraphs())<p>${paragraph}</p>@endfor<ul>@for(var item : contentPage.driverBullets())<li>${item}</li>@endfor</ul></div><ol class="lookup-decisions">@for(int i=0;i<contentPage.decisionSteps().size();i++)<li><span>0${i+1}</span><p>${contentPage.decisionSteps().get(i)}</p></li>@endfor</ol></section>
+
+    <section class="lookup-related studio-wrap" aria-labelledby="related-title"><div><p class="studio-overline">Continue the search</p><h2 id="related-title">The next useful route.</h2></div><div><ul>@for(var link : internalLinks.subList(0, Math.min(6, internalLinks.size())))<li><a href="${StudioGuideRoutes.preview(link.path())}"><span>${link.compactTitle()}</span><small>${link.note()}</small><b aria-hidden="true">↗</b></a></li>@endfor</ul>@if(internalLinks.size() > 6)<details><summary>More local record routes <span aria-hidden="true">+</span></summary><ul>@for(var link : internalLinks.subList(6, internalLinks.size()))<li><a href="${StudioGuideRoutes.preview(link.path())}"><span>${link.compactTitle()}</span><small>${link.note()}</small><b aria-hidden="true">↗</b></a></li>@endfor</ul></details>@endif</div></section>
+
+    <section class="lookup-faq studio-wrap" aria-labelledby="faq-title"><p class="studio-overline">Common questions</p><h2 id="faq-title">Before you rely on the result.</h2>@for(var faq : contentPage.faqBlocks())<details><summary>${faq.question()} <span aria-hidden="true">+</span></summary><p>${faq.answer()}</p></details>@endfor</section>
+
+    <section class="lookup-next" aria-labelledby="lookup-next-title"><img src="/images/studio/checklist-closing-house-v1.webp" alt="" width="1774" height="887" loading="lazy"><div class="studio-wrap"><p class="studio-overline">Have the property?</p><h2 id="lookup-next-title">We can trace<br>the route.</h2><div><a class="studio-button" href="${com.example.septic.web.StudioGuideRoutes.route("/offer-prep-septic-file-check/", production)}">Ask SepticPath <span aria-hidden="true">↗</span></a><a href="${com.example.septic.web.StudioGuideRoutes.route("/official-septic-lookup-tools/#find-route", production)}">Find records by address <span aria-hidden="true">→</span></a></div></div></section>
+</main>
+<script src="${AssetPaths.versioned("/studio-permit-lookup.js")}" defer></script>
+`)

@@ -36,7 +36,7 @@ public class PaidUnlockNotificationService {
             LOGGER.error("Paid package {} could not be emailed because mail is not configured", fulfillment.offer().id());
             return false;
         }
-        URI download = siteProperties.baseUri().resolve("/paid-unlock/download/" + fulfillment.downloadToken());
+        URI delivery = siteProperties.baseUri().resolve("/paid-unlock/delivery/" + fulfillment.downloadToken());
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailProperties.sender());
         message.setTo(fulfillment.offer().customerEmail());
@@ -60,7 +60,7 @@ public class PaidUnlockNotificationService {
                 Shinhyeok
                 Founder, SepticPath
                 """.formatted(
-                        download,
+                        delivery,
                         fulfillment.expiresAt(),
                         paidUnlockProperties.maxDownloads(),
                         fulfillment.offer().requestReference()

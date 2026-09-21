@@ -7,7 +7,7 @@
 @param String contactRequestId
 @param java.util.List<StateProfile> states
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "service", content = @`
     <div class="contact-page">
     <section class="section section--heroish">
         <div class="container page-hero">

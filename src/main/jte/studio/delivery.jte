@@ -1,0 +1,10 @@
+@import com.example.septic.web.PageMeta
+@param PageMeta page = null
+@param boolean production = false
+@template.studio.shell(page = page, production = production, title = "Private delivery", heroImage = "/images/studio/official-lookup-files-v1.webp", pageClass = "studio-transaction studio-delivery", pageStyles = "/studio-transaction.css", content = @`
+<main id="main">
+<section class="stx-hero stx-hero--delivery"><img src="/images/studio/official-lookup-files-v1.webp" alt="" width="1536" height="1024" fetchpriority="high"><div class="stx-shade"></div><div class="studio-wrap stx-hero__inner"><p class="stx-ready"><span></span>Payment confirmed · Package ready</p><h1>Your record package is ready.</h1><p>Your private delivery is prepared.</p><a class="studio-button" href="#package-contents">Download the reviewed package <span aria-hidden="true">↓</span></a><small>Keep the downloaded file. This private link expires and has a download limit.</small></div></section>
+<section class="stx-delivery" id="package-contents"><div class="studio-wrap"><header><p class="studio-overline">Private delivery</p><h2>What’s inside.</h2></header><dl><div><dt>Original source records</dt><dd>Permit, site drawing and completion record</dd></div><div><dt>Reviewed findings</dt><dd>A plain-English explanation written against the customer’s question</dd></div><div><dt>Limits and next steps</dt><dd>What the record can establish, what remains open and where field verification may still help</dd></div><div><dt>File integrity verified</dt><dd>The delivered file still matches the approved release package</dd></div><div><dt>Private link</dt><dd>Expires in 72 hours</dd></div><div><dt>Downloads remaining</dt><dd>3 of 3</dd></div></dl></div></section>
+<section class="stx-followup"><div class="studio-wrap"><div><p class="studio-overline">Keep the file. Keep the context.</p><h2>Have a follow-up question?</h2></div><p>Reply with your reference and we’ll pick up from the same evidence.</p></div></section>
+</main>
+`)

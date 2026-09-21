@@ -33,6 +33,12 @@
                     <span>No account required</span>
                 </div>
             </div>
+            @if (pageHeading)
+                <figure class="record-finder__studio-art">
+                    <img src="/images/brand/septicpath-research-studio-v1.png" width="1672" height="941" alt="Property research folder with a site drawing and source review notes">
+                    <figcaption>Find the source. Understand the property.</figcaption>
+                </figure>
+            @else
             <div class="record-finder__result-preview" aria-label="Example property file result">
                 <div class="record-finder__result-preview-head">
                     <span>Example property file</span>
@@ -47,6 +53,7 @@
                 </ul>
                 <p>The real result names the source file and shows the exact text behind each fact.</p>
             </div>
+            @endif
         </div>
     @endif
 

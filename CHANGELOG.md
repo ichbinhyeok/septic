@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.0.19.0 - 2026-09-21
+
+### Added
+
+- Added the premium Studio design system, image-led page families, reusable production shell, and responsive templates for records, cost, permit, problem, evidence, and transaction journeys.
+- Added modern production experiences for Record Help intake, the septic cost calculator, and the bedroom-permit checker with preserved attribution, validation, analytics, and server-side behavior.
+- Added public-route, SEO, layout, asset, and conversion-measurement audits plus regression coverage for Studio routing and production/preview separation.
+- Added a durable pre-redesign code branch and representative desktop, tablet, and mobile screenshots for a future migration case study.
+
+### Changed
+
+- Modernized the shared visual language, navigation, evidence presentation, inquiry surfaces, error states, paid delivery, and high-value search-page families while retaining their established regional content and official-source context.
+- Kept public URLs, canonical targets, indexability, redirects, state and county content, and sitemap behavior stable instead of replacing mature search pages with thinner design-only templates.
+- Consolidated the retired tank-size, pumping-schedule, and drain-field estimator entry points into the primary cost calculator with mode-preserving redirects.
+- Converted 31 Studio images from PNG to WebP, reducing their combined payload from about 76 MB to about 7 MB while preserving the approved visual direction.
+
+### Fixed
+
+- Isolated design-preview metadata and navigation from production so preview URLs remain noindex and do not leak into public pages.
+- Preserved Record Help source, entry-page, and campaign context through the premium intake form and restored its production submission target.
+- Restored the detailed calculator guidance, evidence boundaries, official-rule links, and legacy estimator query handoffs required by existing customer journeys.
+
 ## 0.0.18.2 - 2026-09-18
 
 ### Changed

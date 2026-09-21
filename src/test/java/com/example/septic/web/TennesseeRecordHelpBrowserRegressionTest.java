@@ -79,6 +79,12 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .contains("purpose=location")
                     .doesNotContain("/septic-records-checklist/tennessee/#");
 
+            // The result scrolls into view asynchronously. Center it before a native click.
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", route);
+            wait.until(ignored -> Boolean.TRUE.equals(((JavascriptExecutor) driver).executeScript(
+                    "const r=arguments[0].getBoundingClientRect(); const hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2); return hit && arguments[0].contains(hit);",
+                    route)));
             route.click();
             wait.until(ExpectedConditions.urlContains("/tdec-septic-records/"));
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-tdec-result]")));

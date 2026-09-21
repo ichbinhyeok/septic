@@ -1,0 +1,53 @@
+// Run with browse eval on /design-preview/studio/tools/. All valid lookups are mocked.
+window.studioToolsQa = (async () => {
+    const check = (condition, label) => { if (!condition) throw new Error(label); passed.push(label); };
+    const passed = [];
+    const $ = selector => document.querySelector(selector);
+    const wait = () => new Promise(resolve => setTimeout(resolve, 100));
+    const originalFetch = window.fetch;
+    const storageBefore = JSON.stringify({ ...localStorage });
+    let calls = [];
+    const fixture = { status: 'matched', heading: 'Fixture county route', message: 'Test route, not a record.', matchedAddress: '100 QA TEST ROAD', countyName: 'Fixture County', stateName: 'Tennessee', stateCode: 'TN', officeLabel: 'Fixture office', officialRouteUrl: 'https://example.org/records', routePath: '/design-preview/studio/guides/', relayActions: [{ label: 'Unsafe', path: 'javascript:alert(1)' }], relaySteps: ['Confirm identifiers'] };
+    const submit = async () => { $('#route-address').value = '100 QA Test Road, Test, TN 00000'; $('#route-form').requestSubmit(); await wait(); };
+    try {
+        check(!$('.tools-optional').open, 'Optional identifiers collapsed initially');
+        $('.tools-optional summary').click();
+        check($('.tools-optional').open, 'Optional identifiers expand');
+        $('.tools-optional summary').click();
+        $('#draft-form').elements.address.value = 'A'.repeat(180);
+        $('#draft-form').dispatchEvent(new Event('input')); await wait();
+        check($('#request-output').scrollHeight <= $('#request-output').clientHeight + 2, 'Full long draft visible without inner scrolling');
+        $('#draft-form').reset(); await wait();
+        check($('#request-output').scrollHeight <= $('#request-output').clientHeight + 2, 'Letter refits after reset');
+        window.fetch = async (url, options) => { calls.push([url, options.method]); return { ok: true, json: async () => fixture }; };
+        await submit();
+        check($('#result-heading').textContent === fixture.heading, 'Matched route rendered');
+        check($('#result-facts').textContent.includes('Fixture office'), 'Real response fields rendered');
+        check(!$('#result-actions').textContent.includes('Unsafe'), 'Unsafe URL rejected');
+        check($('#result-actions a[target]').rel.includes('noopener'), 'External source isolated');
+        $('#draft-form').elements.parcel.value = 'OLD-PARCEL';
+        $('#draft-form').elements.owner.value = 'Old owner';
+        $('#result-actions button').click(); await wait();
+        check(!$('#draft-form').elements.parcel.value && !$('#draft-form').elements.owner.value, 'New property clears old parcel and owner');
+        check($('#request-output').value.includes('Fixture County, Tennessee') && !$('#request-output').value.includes('County County'), 'Address carried into draft without doubled county');
+        $('#draft-form').elements.record.value = 'Repair record'; $('#draft-form').dispatchEvent(new Event('input'));
+        check($('#request-output').value.includes('Record requested: Repair record'), 'Draft selection updates');
+        $('#route-address').dispatchEvent(new Event('input'));
+        check($('#route-result').hidden, 'Edited address hides stale result');
+        window.fetch = async () => ({ ok: true, json: async () => ({ status: 'not_found', heading: 'Not found', message: 'Check the address.' }) });
+        await submit(); check(!$('#result-actions button'), 'No fake matched address for not-found');
+        window.fetch = async () => { throw new Error('Fixture network failure'); };
+        await submit(); check($('#result-heading').textContent.includes('could not finish') && !$('#route-submit').disabled, 'Network failure recoverable');
+        window.fetch = () => new Promise(resolve => { window.resolveStudioFixture = resolve; });
+        $('#route-form').requestSubmit(); await wait();
+        $('#route-address').dispatchEvent(new Event('input'));
+        window.resolveStudioFixture({ ok: true, json: async () => fixture }); await wait();
+        check($('#route-result').hidden && !$('#route-submit').disabled, 'Late response ignored after editing');
+        $('#draft-form').reset(); await wait();
+        check($('#request-output').value.includes('[full property address]') && !$('#request-output').value.includes('Fixture County'), 'Reset clears property context');
+        check(JSON.stringify({ ...localStorage }) === storageBefore, 'No persistent draft storage');
+        check(calls.every(([url, method]) => url === '/api/address-record-finder' && method === 'POST'), 'No lead, email or payment request');
+        check(document.documentElement.scrollWidth <= innerWidth, 'No horizontal overflow');
+        return JSON.stringify({ passed: passed.length, checks: passed });
+    } finally { window.fetch = originalFetch; delete window.resolveStudioFixture; }
+})();

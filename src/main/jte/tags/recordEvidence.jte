@@ -2,7 +2,7 @@
 @param String sourceContext = "records_evidence"
 @param String variant = "records"
 
-<section class="record-evidence" data-record-evidence data-evidence-context="${sourceContext}" aria-label="Actual records delivered by SepticPath">
+<section class="record-evidence record-evidence--${variant}" data-record-evidence data-evidence-context="${sourceContext}" aria-label="Actual records delivered by SepticPath">
     <header class="record-evidence__heading">
         @if ("permit_process".equals(variant))
             <span class="record-evidence__eyebrow">REAL PERMIT FILES</span>

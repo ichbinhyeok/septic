@@ -249,6 +249,39 @@ public class PaidUnlockStore {
         }
     }
 
+    public synchronized Optional<DeliveryPreview> inspectDownload(String downloadToken) {
+        if (downloadToken == null || downloadToken.length() < 32 || downloadToken.length() > 180) {
+            return Optional.empty();
+        }
+        String tokenHash = sha256(downloadToken.getBytes(StandardCharsets.UTF_8));
+        Path grantPath = grantPath(tokenHash);
+        if (!Files.isRegularFile(grantPath)) {
+            return Optional.empty();
+        }
+        try {
+            Grant grant = objectMapper.readValue(grantPath.toFile(), Grant.class);
+            if (!constantTimeEquals(grant.tokenHash(), tokenHash)
+                    || Instant.now(clock).isAfter(grant.expiresAt())
+                    || grant.downloadCount() >= grant.maxDownloads()) {
+                return Optional.empty();
+            }
+            Offer offer = findOfferById(grant.offerId()).orElseThrow();
+            if (!"PAID".equals(offer.status()) || !packageIsStillApproved(offer)) {
+                return Optional.empty();
+            }
+            return Optional.of(new DeliveryPreview(
+                    offer,
+                    offer.packageFileName(),
+                    offer.packageSha256(),
+                    grant.expiresAt(),
+                    grant.maxDownloads() - grant.downloadCount(),
+                    grant.maxDownloads()
+            ));
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to inspect paid-unlock delivery", exception);
+        }
+    }
+
     private boolean packageIsStillApproved(Offer offer) {
         Path path = packagePath(offer);
         if (!Files.isRegularFile(path)
@@ -473,6 +506,14 @@ public class PaidUnlockStore {
             String fileName,
             String sha256,
             int downloadCount,
+            int maxDownloads
+    ) {}
+    public record DeliveryPreview(
+            Offer offer,
+            String fileName,
+            String sha256,
+            Instant expiresAt,
+            int downloadsRemaining,
             int maxDownloads
     ) {}
     private record Payment(

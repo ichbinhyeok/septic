@@ -7,7 +7,7 @@
 @param java.util.List<SouthCarolinaCountyRouteView> southCarolinaCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "regional", content = @`
     <main class="tdec-desk sc-records-desk" data-sc-records-desk>
         <section class="tdec-desk__intro" aria-labelledby="sc-page-title">
             <div class="container tdec-desk__intro-grid">
@@ -15,6 +15,7 @@
                     <span class="eyebrow">South Carolina existing septic records</span>
                     <h1 id="sc-page-title">Get the identifier or request needed for a South Carolina septic file</h1>
                     <p>A TMS or permit number can go to Site Explorer. With only an address or owner, start with the county TMS route or prepare an SCDES file request.</p>
+                    <div class="regional-hero-actions"><a class="button button--primary" href="#sc-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>This self-serve tool</dt><dd>prepares search keys, opens the public SCDES search, and drafts a records follow-up.</dd></div>

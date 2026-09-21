@@ -1,7 +1,7 @@
 /* Real source documents, kept visually distinct from the delivered interpretation. */
 .record-evidence { container-type: inline-size; color: #243b3e; min-width: 0; margin-block: 24px; }
 .record-evidence__heading { margin-bottom: 20px; }
-.record-evidence .record-evidence__eyebrow, .record-evidence .record-evidence__label { display: block; font: 700 10px/1.5 "Public Sans", sans-serif; letter-spacing: .12em; color: #3e6660; }
+.record-evidence .record-evidence__eyebrow, .record-evidence .record-evidence__label { display: block; font: 700 10px/1.5 "Manrope", sans-serif; letter-spacing: .12em; color: #3e6660; }
 .record-evidence .record-evidence__heading h2 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.13; letter-spacing: -.035em; margin: 8px 0 10px; }
 .record-evidence .record-evidence__heading p { font-size: 14px; line-height: 1.6; margin: 0; max-width: 65ch; }
 .record-evidence__documents { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(230px, .82fr); gap: 28px; padding: 24px; background: #e9e6dc; border-block: 1px solid #d3d1c8; }
@@ -17,7 +17,7 @@
 .record-evidence__papers span { display: block; font-size: 10px; font-weight: 600; padding-top: 7px; }
 .record-evidence__brief { background: white; padding: 14px; margin-top: 18px; box-shadow: 0 7px 20px #2536331c; border-top: 3px solid #36635d; }
 .record-evidence__brief-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid #e3e7e5; }
-.record-evidence__brief-title strong { font: 600 20px "Source Serif 4", Georgia, serif; }
+.record-evidence__brief-title strong { font: 700 20px "Manrope", sans-serif; }
 .record-evidence__brief-title span { font-size: 9px; letter-spacing: .1em; }
 .record-evidence__brief img { display: block; width: 100%; height: auto; aspect-ratio: 8.5 / 11; object-fit: contain; margin: 12px 0; background: #f7f9f8; transition: opacity 150ms ease; }
 .record-evidence__brief a:hover img { opacity: .8; }
@@ -38,6 +38,14 @@
 .record-evidence__dialog > p { font-size: 12px; }
 .record-evidence__dialog > img { display: block; max-width: 100%; width: auto; height: auto; margin-inline: auto; }
 .tdec-desk__intro-grid:has(> .record-evidence) { grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
+.tdec-desk__intro .record-evidence { color: #eef7f4; }
+.tdec-desk__intro .record-evidence .record-evidence__eyebrow { color: #7be0d0; }
+.tdec-desk__intro .record-evidence .record-evidence__heading h2 { color: #fff; }
+.tdec-desk__intro .record-evidence__heading p,
+.tdec-desk__intro .record-evidence__source-note,
+.tdec-desk__intro .record-evidence__action span { color: #bfd2ce; }
+.tdec-desk__intro .record-evidence__documents { color: #243b3e; border: 0; border-radius: 14px; box-shadow: 0 28px 70px #0000003d; }
+.tdec-desk__intro .record-evidence__steps { color: #dbe8e5; }
 @container (max-width: 520px) {
     .record-evidence__documents { grid-template-columns: 1fr; gap: 20px; padding: 18px; }
     .record-evidence__swipe-hint { display: flex; justify-content: space-between; gap: 14px; margin: 9px 0 0; color: #596767; font-size: 10px; line-height: 1.4; }

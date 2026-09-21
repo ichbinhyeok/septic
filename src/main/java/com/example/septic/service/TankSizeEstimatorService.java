@@ -57,6 +57,16 @@ public class TankSizeEstimatorService {
         );
     }
 
+    public TankSizeEstimatorResult estimate(EstimateForm form) {
+        TankSizeForm tankSizeForm = new TankSizeForm();
+        tankSizeForm.setStateCode(form.getStateCode());
+        tankSizeForm.setBedrooms(form.getBedrooms());
+        tankSizeForm.setGarbageDisposal(form.isGarbageDisposal());
+        tankSizeForm.setAdditionalKitchen(form.isAdditionalKitchen());
+        tankSizeForm.setOccupancyProfile(form.getOccupancyProfile());
+        return estimate(tankSizeForm);
+    }
+
     private Integer estimatedOccupants(Integer bedrooms, OccupancyProfile occupancyProfile) {
         int safeBedrooms = bedrooms == null || bedrooms < 1 ? 3 : bedrooms;
         return switch (occupancyProfile) {

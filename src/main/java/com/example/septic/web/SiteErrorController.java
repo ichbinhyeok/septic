@@ -35,7 +35,7 @@ public class SiteErrorController implements ErrorController {
         String message = statusCode == HttpStatus.NOT_FOUND.value()
                 ? "That page is not live. Use the closest records, permit, estimator, or state path below instead."
                 : "This page could not be loaded. Use the closest working path below while the issue is reviewed.";
-        return renderNotFound(model, missingPath, message);
+        return renderNotFound(model, missingPath, message, statusCode);
     }
 
     @RequestMapping(
@@ -56,14 +56,17 @@ public class SiteErrorController implements ErrorController {
         return renderNotFound(
                 model,
                 request.getRequestURI(),
-                "That page is not live. Use the closest records, permit, estimator, or state path below instead."
+                "The page may have moved. Start again with the records workspace, browse a guide, or tell us what you need.",
+                HttpStatus.NOT_FOUND.value()
         );
     }
 
-    private String renderNotFound(Model model, String missingPath, String message) {
+    private String renderNotFound(Model model, String missingPath, String message, int statusCode) {
         model.addAttribute("page", seoService.notFound(message));
         model.addAttribute("message", message);
         model.addAttribute("relatedLinks", relatedLinks(missingPath));
+        model.addAttribute("statusCode", statusCode);
+        model.addAttribute("requestPath", missingPath);
         return "pages/not-found";
     }
 
@@ -105,13 +108,13 @@ public class SiteErrorController implements ErrorController {
         addLink(links, new PageLink("Septic Records Lookup", "/septic-records-checklist/", "Use the records path when you need permits, as-builts, or lookup steps first."));
         addLink(links, new PageLink("Open the main cost estimator", "/septic-system-cost-calculator/", "Start from the estimator when the exact page path is missing."));
         addLink(links, new PageLink("Browse all live state guides", "/states/", "Use the state directory when you want the closest live guide instead of a dead URL."));
-        return new ArrayList<>(links.values()).subList(0, Math.min(links.size(), 5));
+        return new ArrayList<>(links.values()).subList(0, Math.min(links.size(), 3));
     }
 
     private void addIntentLinks(LinkedHashMap<String, PageLink> links, String normalizedPath, String contentSlug) {
         String haystack = (normalizedPath + " " + (contentSlug == null ? "" : contentSlug)).toLowerCase();
         if (containsAny(haystack, "drain", "wet-yard", "wet", "reserve", "field")) {
-            addLink(links, new PageLink("Drain field estimator", "/drain-field-estimator/", "Use the field-specific estimator when the missing path was about wet yard, reserve area, or drain field failure."));
+            addLink(links, new PageLink("Drain field scope estimator", "/septic-system-cost-calculator/?projectType=drainfield_replacement", "Use the field mode when the missing path was about wet yard, reserve area, or drain field failure."));
             addLink(links, new PageLink("Wet Yard Over Septic Drain Field", "/wet-yard-over-septic-drain-field/", "Open the symptom-first guide when the user started from soggy ground, seepage, or odor."));
         }
         if (containsAny(haystack, "perc", "soil", "site-review")) {

@@ -43,7 +43,7 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="content-page content-page--${contentPage.slug()}">
     <section class="section section--heroish">
         <div class="container state-hero">
@@ -234,7 +234,7 @@
                         <a class="hero-command hero-command--primary"
                            href="${officialLookupPrimaryUrl != null ? officialLookupPrimaryUrl : ("septic-records-by-county".equals(contentPage.slug()) ? "#septic-records-by-county-county-finder" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "#address-record-finder" : (("official-septic-lookup-tools".equals(contentPage.slug()) || "tdec-septic-records".equals(contentPage.slug()) || "north-carolina-septic-permit-lookup".equals(contentPage.slug()) || "texas-ossf-records-search".equals(contentPage.slug()) || "florida-ostds-permit-lookup".equals(contentPage.slug()) || "dhec-septic-permit-lookup".equals(contentPage.slug())) ? "#official-lookup-command-board" : calculatorPath)))}"
                            target="${officialLookupPrimaryUrl != null ? "_blank" : null}"
-                           rel="${officialLookupPrimaryUrl != null ? "noreferrer" : null}"
+                           rel="${officialLookupPrimaryUrl != null ? "noreferrer" : (calculatorPath.contains("?") ? "nofollow" : null)}"
                            data-track-click="nav"
                            data-track-source-context="content_page_hero_command_primary"
                            data-track-target-type="${officialLookupPrimaryUrl != null ? "official_source" : ("septic-permit-search-by-address".equals(contentPage.slug()) ? "internal_section" : calculatorCtaTargetType)}">
@@ -256,6 +256,7 @@
                         @if (secondaryActionPath != null)
                             <a class="hero-command"
                                href="${secondaryActionPath}"
+                               rel="${secondaryActionPath.contains("?") ? "nofollow" : null}"
                                data-track-click="nav"
                                data-track-source-context="content_page_hero_command_secondary"
                                data-track-target-type="${secondaryActionTargetType}">
@@ -266,6 +267,7 @@
                         @elseif (contentQuotePath != null)
                             <a class="hero-command"
                                href="${contentQuotePath}"
+                               rel="nofollow"
                                data-track-click="nav"
                                data-track-source-context="content_page_hero_command_quote"
                                data-track-target-type="quote_form">
@@ -363,7 +365,7 @@
                      data-state-surface-tool
                      data-state-surface-mode="${secondaryActionPath != null ? "state-first" : "tool-first"}"
                      data-state-surface-tool-label="${secondaryActionPath != null ? secondaryActionLabel : calculatorCtaLabel}"
-                     data-state-surface-tool-supports-state="${calculatorPath.startsWith("/septic-system-cost-calculator") || calculatorPath.startsWith("/septic-tank-size-estimator") || calculatorPath.startsWith("/drain-field-estimator")}">
+                     data-state-surface-tool-supports-state="${calculatorPath.startsWith("/septic-system-cost-calculator") || calculatorPath.startsWith("/septic-tank-size-estimator")}">
                     <div class="hero-decision-grid hero-decision-grid--three micro-tool__choices">
                         <button class="hero-decision-card hero-decision-card--accent micro-tool__choice is-active"
                                 type="button"
@@ -572,6 +574,7 @@
                                            data-track-target-type="${calculatorCtaTargetType}">Browse state pages</a>
                                         <a class="button button--secondary"
                                            href="${secondaryActionPath}"
+                                           rel="${secondaryActionPath.contains("?") ? "nofollow" : null}"
                                            data-state-surface-link="tool"
                                            data-state-surface-default-label="${secondaryActionLabel}"
                                            data-state-surface-selected-label="${secondaryActionLabel}"
@@ -581,8 +584,8 @@
                                     </div>
                                 @else
                                     <div class="micro-tool__actions">
-                                        <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_micro_tool_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
-                                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_micro_tool_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                                        <a class="button button--primary" href="${calculatorPath}" rel="${calculatorPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_micro_tool_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                                        <a class="button button--secondary" href="${secondaryActionPath}" rel="${secondaryActionPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_micro_tool_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
                                     </div>
                                 @endif
                             @else
@@ -591,6 +594,7 @@
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${calculatorPath}"
+                                       rel="${calculatorPath.contains("?") ? "nofollow" : null}"
                                        data-state-surface-link="tool"
                                        data-state-surface-default-label="${calculatorCtaLabel}"
                                        data-state-surface-selected-label="${calculatorCtaLabel}"
@@ -612,6 +616,7 @@
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${secondaryActionPath}"
+                                       rel="${secondaryActionPath.contains("?") ? "nofollow" : null}"
                                        data-state-surface-link="tool"
                                        data-state-surface-default-label="${secondaryActionLabel}"
                                        data-state-surface-selected-label="${secondaryActionLabel}"
@@ -620,6 +625,7 @@
                                        data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
                                     <a class="button button--secondary"
                                        href="${calculatorPath}"
+                                       rel="${calculatorPath.contains("?") ? "nofollow" : null}"
                                        data-state-surface-link="state-page"
                                        data-state-surface-default-label="${calculatorCtaLabel}"
                                        data-state-surface-selected-label="Return to selected state page"
@@ -634,6 +640,7 @@
                                 <div class="micro-tool__actions">
                                     <a class="button button--primary"
                                        href="${contentQuotePath}"
+                                       rel="nofollow"
                                        data-state-surface-link="tool"
                                        data-state-surface-default-label="Start short quote form"
                                        data-state-surface-selected-label="Start short quote form"
@@ -642,6 +649,7 @@
                                        data-track-target-type="quote_form">Start short quote form</a>
                                     <a class="button button--secondary"
                                        href="${calculatorPath}"
+                                       rel="${calculatorPath.contains("?") ? "nofollow" : null}"
                                        data-state-surface-link="tool"
                                        data-state-surface-default-label="${calculatorCtaLabel}"
                                        data-state-surface-selected-label="${calculatorCtaLabel}"
@@ -1395,7 +1403,7 @@
                 <div class="records-request-builder" data-records-request-builder>
                     <div class="records-request-builder__task-context" data-records-task-context hidden>
                         <span class="eyebrow">Continue this property file</span>
-                        <h1 data-records-task-heading>Request the missing record without starting over.</h1>
+                        <h2 data-records-task-heading>Request the missing record without starting over.</h2>
                         <p data-records-task-copy>The address, county, purpose, and missing document were carried here from the records workspace.</p>
                         <a href="/#home-address-record-finder" data-records-task-back>Back to property file</a>
                     </div>
@@ -1667,7 +1675,7 @@
                     <span class="intent-card__label">${secondaryActionPath != null ? "Primary move" : "Run the estimate"}</span>
                     <h2>${calculatorCtaLabel}</h2>
                     <p>${calculatorCtaNote} @if (contentWorkflowCoverage != null) ${contentWorkflowCoverage.summary()} @endif</p>
-                    <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                    <a class="button button--primary" href="${calculatorPath}" rel="${calculatorPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_action_rail_primary" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                 </article>
 
                 <article class="intent-card">
@@ -1675,12 +1683,12 @@
                         <span class="intent-card__label">Use the estimate after the workflow check</span>
                         <h2>${secondaryActionLabel}</h2>
                         <p>${secondaryActionNote} @if (contentWorkflowCoverage != null && !contentWorkflowCoverage.bullets().isEmpty()) ${contentWorkflowCoverage.bullets().get(0)} @endif</p>
-                        <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_action_rail_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                        <a class="button button--secondary" href="${secondaryActionPath}" rel="${secondaryActionPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_action_rail_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
                     @elseif (contentQuotePath != null)
                         <span class="intent-card__label">Go straight to conversion</span>
                         <h2>Open the short quote form</h2>
                         <p>Use this when you already know the intent lane and want to skip directly into the shorter conversion path.</p>
-                        <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_action_rail_quote" data-track-target-type="quote_form">Start short quote form</a>
+                        <a class="button button--secondary" href="${contentQuotePath}" rel="nofollow" data-track-click="nav" data-track-source-context="content_page_action_rail_quote" data-track-target-type="quote_form">Start short quote form</a>
                     @else
                         <span class="intent-card__label">Clear the basics first</span>
                         <h2>Jump to the FAQ section</h2>
@@ -1982,11 +1990,11 @@
                         @endif
                     </p>
                     <div class="hero__actions">
-                        <a class="button button--primary" href="${calculatorPath}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
+                        <a class="button button--primary" href="${calculatorPath}" rel="${calculatorPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_next_best_action" data-track-target-type="${calculatorCtaTargetType}">${calculatorCtaLabel}</a>
                         @if (secondaryActionPath != null)
-                            <a class="button button--secondary" href="${secondaryActionPath}" data-track-click="nav" data-track-source-context="content_page_next_best_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
+                            <a class="button button--secondary" href="${secondaryActionPath}" rel="${secondaryActionPath.contains("?") ? "nofollow" : null}" data-track-click="nav" data-track-source-context="content_page_next_best_secondary" data-track-target-type="${secondaryActionTargetType}">${secondaryActionLabel}</a>
                         @elseif (contentQuotePath != null)
-                            <a class="button button--secondary" href="${contentQuotePath}" data-track-click="nav" data-track-source-context="content_page_next_best_quote" data-track-target-type="quote_form">Start short quote form</a>
+                            <a class="button button--secondary" href="${contentQuotePath}" rel="nofollow" data-track-click="nav" data-track-source-context="content_page_next_best_quote" data-track-target-type="quote_form">Start short quote form</a>
                         @endif
                     </div>
             </article>

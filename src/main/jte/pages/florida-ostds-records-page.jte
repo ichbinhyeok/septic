@@ -7,20 +7,35 @@
 @param java.util.List<FloridaCountyRouteView> floridaCountyRoutes = java.util.List.of()
 @param String editorialLastReviewedAt = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "signature", content = @`
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-florida.css")}">
+    <link rel="stylesheet" href="${AssetPaths.versioned("/premium-records-lower.css")}">
     <div class="tdec-desk fl-records-desk" data-fl-records-desk>
-        <section class="tdec-desk__intro" aria-labelledby="fl-page-title">
-            <div class="container tdec-desk__intro-grid">
-                <div><span class="eyebrow">Florida existing OSTDS records</span><h1 id="fl-page-title">Find the office that holds the Florida septic file</h1><p>Florida is mid-transition. Select the county to separate the current permit authority from the office that may still hold an older property record.</p></div>
-                <dl class="tdec-desk__scope" aria-label="What this tool can do"><div><dt>This self-serve tool</dt><dd>identifies the current county route, prepares record keys, and explains the archive fallback.</dd></div><div><dt>Tool limits</dt><dd>It does not search DEP or county systems, retrieve documents, or confirm permit status. You can separately ask us to research available records.</dd></div></dl>
+        <section class="fl-premium-hero" aria-labelledby="fl-page-title">
+            <div class="fl-premium-hero__art" aria-hidden="true"></div>
+            <div class="container fl-premium-hero__inner">
+                <div class="fl-premium-hero__copy">
+                    <span class="eyebrow">Florida OSTDS records</span>
+                    <h1 id="fl-page-title">One county.<br>One clear record route.</h1>
+                    <p>Choose the county. We’ll identify the current permit authority, the likely historical file owner, and what to request.</p>
+                    <a class="button button--primary" href="#fl-record-search">Find the record route <span aria-hidden="true">→</span></a>
+                    <ul aria-label="Benefits of the Florida route finder">
+                        <li>Accurate guidance</li>
+                        <li>Current and historical routes</li>
+                        <li>Clear next steps</li>
+                    </ul>
+                    <span class="fl-premium-hero__seo-copy">Find the office that holds the Florida septic file</span>
+                </div>
             </div>
         </section>
 
-        <div class="container record-evidence-band">
-            @template.tags.recordEvidence(sourceContext = "fl_records_evidence")
-        </div>
-
-        <section class="fl-transition" aria-labelledby="fl-transition-title"><div class="container"><span class="eyebrow">Current authority split</span><h2 id="fl-transition-title">17 counties use DEP; 50 still use county health departments</h2><p>DEP began permitting Northwest Florida counties in January 2025 and Marion County in July 2025. Older records may still require the county health department even where DEP handles new permits now.</p></div></section>
+        <section class="fl-premium-transition" aria-labelledby="fl-transition-title">
+            <div class="container fl-premium-transition__inner">
+                <span>Current authority split</span>
+                <h2 id="fl-transition-title">17 counties use DEP; 50 still use county health departments</h2>
+                <p>Older records may remain with the county health department even where DEP handles new permits now.</p>
+            </div>
+        </section>
 
         <section class="tdec-workspace" id="fl-record-search" aria-labelledby="fl-workspace-title"><div class="container">
             <header class="tdec-workspace__header"><div><span class="eyebrow">Florida OSTDS records desk</span><h2 id="fl-workspace-title">Route the county before searching</h2></div><ol aria-label="Search workflow"><li class="is-current"><span>1</span> County</li><li><span>2</span> Property clue</li><li><span>3</span> Record route</li></ol></header>
@@ -40,6 +55,16 @@
                 <section><span class="tdec-result__number">03</span><div><h3>Ask for the complete OSTDS file</h3><ul class="tdec-document-list"><li>Application and construction permit</li><li>Site evaluation and site plan</li><li>Building floor plan in the permit packet</li><li>Final inspection or final approval</li><li>Repair, modification, abandonment, and operating records</li></ul></div></section>
             </div></section>
         </div></section>
+
+        <section class="fl-premium-evidence" aria-label="Florida route evidence and tool limits">
+            <div class="container fl-premium-evidence__inner">
+                <dl class="fl-premium-evidence__scope">
+                    <div><dt>This self-serve tool</dt><dd>identifies the current authority, historical fallback, and the property clues to carry into the official search.</dd></div>
+                    <div><dt>Tool limits</dt><dd>It does not query DEP or county systems, retrieve a permit, or certify property condition or compliance.</dd></div>
+                </dl>
+                <div class="fl-premium-evidence__proof">@template.tags.recordEvidence(sourceContext = "fl_records_evidence")</div>
+            </div>
+        </section>
 
         @template.tags.stateRecordsReturn(stateCode = "FL", stateName = "Florida", officeLabel = "DEP or the county health department")
 

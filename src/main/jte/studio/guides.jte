@@ -1,0 +1,33 @@
+@import com.example.septic.web.PageMeta
+@import com.example.septic.web.StudioPreviewController.GuideState
+@import com.example.septic.web.AssetPaths
+@param java.util.List<GuideState> guideStates
+@param PageMeta page = null
+@param boolean production = false
+@template.studio.shell(page = page, production = production, title = "Property guides by state", heroImage = "/images/studio/guides-lane-v1.webp", mobileHeroImage = "/images/studio/guides-mobile-v1.webp", pageClass = "studio-guides", pageStyles = "/studio-guides.css", content = @`
+<main id="main">
+    <section class="guides-hero" aria-labelledby="guides-title">
+        <picture class="guides-hero__picture"><source media="(max-width: 700px)" srcset="/images/studio/guides-mobile-v1.webp"><img src="/images/studio/guides-lane-v1.webp" alt="" width="1672" height="941" fetchpriority="high"></picture>
+        <div class="studio-wrap guides-hero__copy"><p class="studio-overline">The property guide</p><h1 id="guides-title">A clearer path.<br>Wherever you<br>call home.</h1><p>Septic records, official routes, and practical guidance<br>for your next property decision.</p><a class="studio-button" href="#state-directory">Find your state <span aria-hidden="true">↓</span></a></div>
+    </section>
+    <section class="guides-directory studio-wrap" id="state-directory" aria-labelledby="directory-title">
+        <div class="guides-directory__heading"><div><h2 id="directory-title">Start with your state.</h2><p>Find the local guide, then narrow to your county.</p></div><label class="studio-search">State name or abbreviation<input type="search" placeholder="Try Tennessee or TN" data-state-search aria-controls="guide-states" autocomplete="off"></label></div>
+        <ul class="guides-states" id="guide-states">
+        @for (var state : guideStates)
+            <li data-guide-state="${state.name()}" data-state-code="${state.code()}"><a href="${com.example.septic.web.StudioGuideRoutes.route(state.published() ? "/septic-system-cost-calculator/" + state.slug() + "/" : "/offer-prep-septic-file-check/", production)}" aria-label="${state.published() ? state.name() + " property guide" : "Ask about a property in " + state.name()}"><span class="guides-state-name">${state.name()}</span>@if (!state.published())<span class="guides-state-status">Ask about this state</span>@endif<span aria-hidden="true">↗</span></a></li>
+        @endfor
+        </ul>
+        <p class="guides-empty" data-state-empty hidden>No matching state. Try the full name or two-letter abbreviation. <a href="${com.example.septic.web.StudioGuideRoutes.route("/offer-prep-septic-file-check/", production)}">Ask us about your property</a>.</p>
+        <div class="guides-directory__bottom"><p class="studio-fine" data-state-status aria-live="polite">${guideStates.size()} states listed. A published guide does not guarantee a property record exists.</p><button class="guides-expand" type="button" data-state-expand aria-expanded="false" aria-controls="guide-states" hidden>View all ${guideStates.size()} states <span aria-hidden="true">↓</span></button></div>
+        <a class="studio-text-link" href="${com.example.septic.web.StudioGuideRoutes.route("/septic-records-by-county/", production)}">Already know your county? Search the county directory ↗</a>
+    </section>
+    <section class="guides-topics" aria-labelledby="topics-title"><div class="studio-wrap"><p class="studio-overline">Guidance for every step</p><h2 id="topics-title">What brings you here?</h2><p>Start with the question you need answered.</p>
+        <div class="guides-topic-spread">
+            <article><a class="guides-topic-photo" href="${com.example.septic.web.StudioGuideRoutes.route("/official-septic-lookup-tools/", production)}" aria-label="Open the official septic lookup tools hub"><img src="/images/studio/research-room-v1.webp" alt="Illustrative property research folder on a sunlit desk" width="1672" height="941" loading="lazy"></a><h3>Find the property records.</h3><p>Where to look, what to request, and what the file can—and cannot—tell you.</p><nav aria-label="Record guides"><a href="${com.example.septic.web.StudioGuideRoutes.route("/official-septic-lookup-tools/", production)}">Official lookup tools ↗</a><a href="${production ? "/official-septic-lookup-tools/" : "/design-preview/studio/tools/"}">Interactive records workspace ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-permit-lookup/", production)}">Permit lookup ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-records-checklist/", production)}">Records checklist ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/official-septic-lookup-tools/", production)}">Records by address ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-bedroom-permit-checker/", production)}">Bedroom capacity ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/offer-prep-septic-file-check/?mode=review", production)}">Review my file ↗</a></nav></article>
+            <article><a class="guides-topic-photo" href="${com.example.septic.web.StudioGuideRoutes.route("/buying-a-house-with-a-septic-system/", production)}" aria-label="Explore buying a house with septic"><img src="/images/studio/county-property-v1.webp" alt="Illustrative country home framed by oak trees" width="1672" height="941" loading="lazy"></a><h3>Buying, planning or repairing?</h3><p>Understand the next step before you commit to the property or the work.</p><nav aria-label="Property guides"><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-permit-process/", production)}">Permits &amp; approvals ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-system-cost-calculator/", production)}">Costs ↗</a><a href="${com.example.septic.web.StudioGuideRoutes.route("/septic-inspection-cost/", production)}">Inspections ↗</a></nav></article>
+        </div>
+    </div></section>
+    <section class="studio-closing guides-closing" aria-labelledby="guides-next"><img src="/images/studio/oak-pasture-v1.webp" alt="" width="1672" height="941" loading="lazy"><div class="studio-wrap"><p class="studio-overline">A question is enough</p><h2 id="guides-next">Not sure where to start?</h2><p>Tell us about the property and what you need to know.<br>We’ll help identify the next useful step.</p><a class="studio-button" href="${com.example.septic.web.StudioGuideRoutes.route("/offer-prep-septic-file-check/", production)}">Ask SepticPath <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<script src="${AssetPaths.versioned("/studio-guides.js")}" defer></script>
+`)

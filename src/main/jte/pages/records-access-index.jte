@@ -14,7 +14,7 @@
 @param String dataLastUpdated = ""
 @param java.util.List<com.example.septic.web.CountySearchGuideView> countySearchGuides = java.util.List.of()
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "directory", content = @`
     <section class="records-access-index-hero" data-records-access-index>
         <div class="container">
             <div class="records-access-index-hero__intro">

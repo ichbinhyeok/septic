@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -100,6 +102,7 @@ public class PaidUnlockController {
         return ResponseEntity.ok(Map.of(
                 "status", "COMPLETED",
                 "downloadUrl", "/paid-unlock/download/" + fulfillment.downloadToken(),
+                "deliveryUrl", "/paid-unlock/delivery/" + fulfillment.downloadToken(),
                 "expiresAt", fulfillment.expiresAt().toString(),
                 "emailSent", emailSent
         ));
@@ -160,6 +163,24 @@ public class PaidUnlockController {
                 .contentLength(fileSize(authorization.path()))
                 .contentType(mediaType)
                 .body(new FileSystemResource(authorization.path()));
+    }
+
+    @GetMapping({"/paid-unlock/delivery/{downloadToken}", "/paid-unlock/delivery/{downloadToken}/"})
+    public String delivery(
+            @PathVariable String downloadToken,
+            jakarta.servlet.http.HttpServletResponse response,
+            Model model
+    ) {
+        PaidUnlockStore.DeliveryPreview delivery = store.inspectDownload(downloadToken)
+                .orElseThrow(() -> new PaidUnlockNotFoundException("This private delivery link is invalid or expired."));
+        response.setHeader(HttpHeaders.CACHE_CONTROL, "no-store, max-age=0");
+        response.setHeader(HttpHeaders.PRAGMA, "no-cache");
+        model.addAttribute("page", privatePage("Your record package is ready"));
+        model.addAttribute("delivery", delivery);
+        model.addAttribute("downloadToken", downloadToken);
+        model.addAttribute("deliveryExpiresAt", DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a 'UTC'")
+                .withZone(ZoneOffset.UTC).format(delivery.expiresAt()));
+        return "pages/paid-delivery";
     }
 
     @PostMapping(value = "/ops/paid-unlocks", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

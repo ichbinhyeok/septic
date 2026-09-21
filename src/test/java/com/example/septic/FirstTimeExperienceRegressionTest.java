@@ -15,18 +15,18 @@ class FirstTimeExperienceRegressionTest {
     void homepageDisclosesOptionalUnlockBesidePrimaryAction() throws IOException {
         String template = Files.readString(Path.of("src/main/jte/pages/home.jte"));
 
-        int primaryAction = template.indexOf("Ask SepticPath to investigate");
-        int offer = template.indexOf("Free research and agency requests · Optional $29 result unlock · Agency fees extra with approval");
+        int primaryAction = template.indexOf("Start with an address");
+        int offer = template.indexOf("Research and agency requests are free. Optional $29 result unlock.");
 
         assertTrue(primaryAction >= 0);
         assertTrue(offer > primaryAction);
         assertTrue(offer - primaryAction < 500);
         assertFalse(template.contains("Free beta · No payment details"));
-        int example = template.indexOf("In one completed request");
+        int example = template.indexOf("Public record research");
         assertTrue(example >= 0 && example < offer);
         int selfServe = template.indexOf("class=\"home-service-hero__self-serve\"");
         assertTrue(selfServe > offer);
-        assertTrue(template.contains("Confirmed in the historical record"));
+        assertTrue(template.contains("Source facts preserved"));
         assertTrue(template.contains("Current condition is not confirmed."));
     }
 

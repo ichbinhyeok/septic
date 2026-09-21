@@ -38,7 +38,7 @@
 @param String alabamaPercPlanningRange = "Under review"
 @param java.util.List<com.example.septic.web.AlabamaCountyCostRouteView> alabamaCountyCostRoutes = java.util.List.of()
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-guide-page state-guide-page--${state.stateCode().toLowerCase()}">
     <section class="section section--heroish">
         <div class="container state-hero @if ("AL".equals(state.stateCode())) state-hero--alabama @endif">
@@ -618,6 +618,8 @@
                 <span class="pill">Official-source guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleTypeLabel()}</strong>
+                <details class="state-review-disclosure">
+                    <summary>Sources, review, and limitations</summary>
                 <dl class="review-meta">
                     <div>
                         <dt>Maintained by</dt>
@@ -645,6 +647,7 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
+                </details>
                 @if (!featuredStateMoneyPages.isEmpty())
                     <a class="button button--secondary"
                        href="${featuredStateMoneyPages.get(0).path(state.slug())}"

@@ -9,15 +9,15 @@
 @param java.util.List<PageLink> benchmarkGuides = java.util.List.of()
 @param int queuedStateCount = 0
 
-@template.layouts.app(page = page, content = @`
-    <section class="section section--heroish">
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
+    <section class="section section--heroish state-guide-queued-hero">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${stateCode} research queue</span>
                 <h1>${stateName} septic guide is in the research queue.</h1>
                 <p class="lede">This state URL is reserved now so homeowners have a real next-step landing page before the official-source ${stateName} guide is strong enough to publish.</p>
                 <div class="hero__actions">
-                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${stateCode}">Use the ${stateName} estimate</a>
+                    <a class="button button--primary" href="/septic-system-cost-calculator/?state=${stateCode}" rel="nofollow">Use the ${stateName} estimate</a>
                     <a class="button button--secondary" href="/states/">Browse all state coverage</a>
                 </div>
             </div>

@@ -2,6 +2,7 @@ package com.example.septic.service;
 
 import com.example.septic.data.model.SourceRecord;
 import com.example.septic.web.PumpScheduleForm;
+import com.example.septic.web.EstimateForm;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -73,6 +74,15 @@ public class PumpScheduleService {
                 drivers,
                 sourceLabels
         );
+    }
+
+    public PumpScheduleResult estimate(EstimateForm form) {
+        PumpScheduleForm pumpScheduleForm = new PumpScheduleForm();
+        pumpScheduleForm.setTankSizeGallons(form.getTankSizeGallons());
+        pumpScheduleForm.setOccupants(form.getOccupants());
+        pumpScheduleForm.setGarbageDisposal(form.isGarbageDisposal());
+        pumpScheduleForm.setUsageProfile(form.getUsageProfile());
+        return estimate(pumpScheduleForm);
     }
 
     private int normalizeTankSize(Integer tankSizeGallons) {

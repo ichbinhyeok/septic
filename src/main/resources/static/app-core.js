@@ -284,6 +284,16 @@
         }
 
         setExpanded(false);
+
+        function syncScrolledState() {
+            if (window.scrollY > 18) {
+                header.setAttribute("data-scrolled", "true");
+            } else {
+                header.removeAttribute("data-scrolled");
+            }
+        }
+        syncScrolledState();
+        window.addEventListener("scroll", syncScrolledState, { passive: true });
     }
 
     function setupStickyMobileCtas() {
@@ -359,13 +369,157 @@
         }
     }
 
+    function emitGaEventOnce(eventName, params, onceKey) {
+        if (!eventName || !onceKey) return;
+        try {
+            const storageKey = `septicpath_ga_once:${onceKey}`;
+            if (window.sessionStorage.getItem(storageKey) === "1") return;
+            emitGaEvent(eventName, params);
+            window.sessionStorage.setItem(storageKey, "1");
+        } catch (_error) {
+            emitGaEvent(eventName, params);
+        }
+    }
+
+    function emitCalculatorCompleted(params, onceKey) {
+        try {
+            const storageKey = `septicpath_ga_once:${onceKey}`;
+            if (window.sessionStorage.getItem(storageKey) === "1") return;
+            emitGaEvent("calculator_completed", params);
+            window.sessionStorage.setItem(storageKey, "1");
+        } catch (_error) {
+            emitGaEvent("calculator_completed", params);
+        }
+    }
+
+    function setupConversionMeasurement() {
+        const sourcePage = analyticsSourcePage();
+        const pathname = window.location.pathname;
+        const pageFamily = (() => {
+            if (pathname === "/") return "home";
+            if (pathname.startsWith("/septic-records-checklist/")) return "county_records";
+            if (pathname === "/septic-records-access-index/") return "records_directory";
+            if (pathname === "/septic-system-cost-calculator/") return "calculator";
+            if (pathname === "/offer-prep-septic-file-check/") return "record_help";
+            if (pathname.startsWith("/paid-unlock/")) return "paid_unlock";
+            if (document.body.classList.contains("premium-site--editorial")) return "editorial";
+            if (document.body.classList.contains("premium-site--signature")) return "signature";
+            return "standard";
+        })();
+
+        emitGaEventOnce("conversion_page_viewed", {
+            page_family: pageFamily,
+            source_page: sourcePage
+        }, `conversion-page:${sourcePage}`);
+
+        const caseStudyId = (url) => {
+            const hash = url.hash.replace(/^#/, "");
+            if (url.pathname === "/septic-record-brief-example/") return hash || "case_collection";
+            if (hash.endsWith("-case")) return hash;
+            if (url.pathname === "/septic-as-built-records/" && hash === "layout-case") return hash;
+            return "";
+        };
+
+        const currentCaseId = caseStudyId(new URL(window.location.href));
+        if (currentCaseId) {
+            emitGaEventOnce("case_study_viewed", {
+                case_id: currentCaseId,
+                page_family: pageFamily,
+                source_page: sourcePage
+            }, `case-view:${sourcePage}:${currentCaseId}`);
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!(event.target instanceof Element)) return;
+            const anchor = event.target.closest("a[href]");
+            if (!(anchor instanceof HTMLAnchorElement)) return;
+
+            let targetUrl;
+            try {
+                targetUrl = new URL(anchor.href, window.location.origin);
+            } catch (_error) {
+                return;
+            }
+            if (targetUrl.origin !== window.location.origin) return;
+
+            const sourceContext = anchor.dataset.trackSourceContext || "organic_link";
+            const targetType = anchor.dataset.trackTargetType || "";
+            const targetCaseId = caseStudyId(targetUrl);
+            if (targetCaseId) {
+                emitGaEvent("case_study_clicked", {
+                    case_id: targetCaseId,
+                    source_context: sourceContext,
+                    source_page: sourcePage
+                });
+            }
+
+            const conversionActions = {
+                lead_form: "start_research",
+                quote_form: "start_research",
+                calculator: "open_calculator",
+                record_finder: "open_record_finder"
+            };
+            const conversionAction = conversionActions[targetType];
+            if (conversionAction) {
+                emitGaEvent("conversion_action_clicked", {
+                    conversion_action: conversionAction,
+                    source_context: sourceContext,
+                    source_page: sourcePage,
+                    page_family: pageFamily
+                });
+            }
+
+            if (targetUrl.pathname === "/septic-system-cost-calculator/") {
+                const requestedMode = targetUrl.searchParams.get("mode");
+                const calculatorType = ["tank_size", "pump_schedule"].includes(requestedMode)
+                    ? requestedMode
+                    : "cost";
+                emitGaEvent("calculator_cta_clicked", {
+                    calculator_type: calculatorType,
+                    source_context: sourceContext,
+                    source_page: sourcePage
+                });
+            }
+        });
+
+        let activeSeconds = 0;
+        let maxScrollDepth = 0;
+        let engagementSent = false;
+        const updateScrollDepth = () => {
+            const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            maxScrollDepth = Math.max(maxScrollDepth, Math.min(100, Math.round((window.scrollY / scrollable) * 100)));
+        };
+        const maybeSendEngagement = () => {
+            if (engagementSent || activeSeconds < 30 || maxScrollDepth < 50) return;
+            engagementSent = true;
+            emitGaEvent("meaningful_engagement", {
+                page_family: pageFamily,
+                active_seconds: activeSeconds,
+                scroll_depth: "50_plus",
+                source_page: sourcePage
+            });
+        };
+        updateScrollDepth();
+        window.addEventListener("scroll", () => {
+            updateScrollDepth();
+            maybeSendEngagement();
+        }, { passive: true });
+        const engagementTimer = window.setInterval(() => {
+            if (document.visibilityState === "visible") activeSeconds += 1;
+            maybeSendEngagement();
+            if (engagementSent) window.clearInterval(engagementTimer);
+        }, 1000);
+    }
+
     function setupPrimaryFunnelEvents() {
         const costForm = document.querySelector("#cost-estimator-form");
         if (costForm instanceof HTMLFormElement) {
-            costForm.addEventListener("submit", () => emitGaEvent("calculator_started", { calculator_type: "septic_cost" }));
+            const calculatorMode = costForm.querySelector('[name="calculatorMode"]')?.value || "cost";
+            costForm.addEventListener("submit", () => emitGaEvent("calculator_started", { calculator_type: calculatorMode }));
         }
         if (document.querySelector("#result-top")) {
-            emitGaEvent("calculator_completed", { calculator_type: "septic_cost" });
+            const calculatorMode = document.querySelector('[name="calculatorMode"]')?.value || "cost";
+            emitCalculatorCompleted({ calculator_type: calculatorMode }, `calculator-completed:${analyticsSourcePage()}`);
         }
         if (document.querySelector("[data-county-access-workflow]")) {
             emitGaEvent("county_route_viewed", { page_type: "county_records" });
@@ -528,6 +682,11 @@
         if (success instanceof HTMLElement) {
             success.dataset.gaParamEntryPage = entryPage;
             success.dataset.gaParamSourcePage = getSourcePage();
+            emitGaEventOnce("generate_lead", {
+                lead_type: "record_research",
+                source_context: getSourceContext(),
+                ...attributionParams()
+            }, `generate-lead:${success.dataset.gaTrackOnce || currentPage}`);
         }
         const carriedContext = readRecordHelpContext();
         if (carriedContext) {
@@ -638,6 +797,17 @@
         const questionHelp = form.querySelector("[data-record-help-question-help]");
         const submitButton = form.querySelector("[data-record-help-submit]");
 
+        form.addEventListener("submit", () => {
+            emitGaEvent("record_help_form_submit_attempted", {
+                source_context: getSourceContext(),
+                request_type: "record_help_beta",
+                research_goal: goal instanceof HTMLSelectElement ? goal.value : "unknown",
+                process_stage: stage instanceof HTMLSelectElement && stage.value ? stage.value : "not_selected",
+                document_attached: documentInput instanceof HTMLInputElement && documentInput.files?.length ? "yes" : "no",
+                ...attributionParams()
+            });
+        });
+
         const syncDocumentReviewMode = () => {
             if (!(goal instanceof HTMLSelectElement)) return;
             const reviewingDocument = goal.value === "understand_file";
@@ -744,12 +914,46 @@
         });
     }
 
+    function setupPremiumMotion() {
+        if (!("IntersectionObserver" in window)
+            || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            return;
+        }
+
+        const sections = document.querySelectorAll([
+            ".national-records-page > section:not(.national-records-hero)",
+            ".national-records-page > .record-evidence-band",
+            ".state-records-page > section:not(.state-records-hero)",
+            "main > .records-access-index-hero ~ section",
+            ".calculator-intro ~ section"
+        ].join(","));
+        if (!sections.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-inview");
+                observer.unobserve(entry.target);
+            });
+        }, { rootMargin: "0px 0px -10%", threshold: 0.08 });
+
+        sections.forEach((section) => {
+            if (section.querySelector("[data-address-record-finder], [data-county-finder], form")) {
+                return;
+            }
+            section.classList.add("premium-scroll-reveal");
+            observer.observe(section);
+        });
+    }
+
     setupHashAnchorOffset();
     setupSiteNav();
     setupWebVitalTracking();
     setupStickyMobileCtas();
+    setupConversionMeasurement();
     setupPrimaryFunnelEvents();
     setupRecordHelpFunnel();
+    setupPremiumMotion();
     trackGaEvents();
 
     document.addEventListener("click", (event) => {

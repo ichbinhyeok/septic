@@ -1,5 +1,10 @@
 @import com.example.septic.service.AccessDifficulty
 @import com.example.septic.service.EstimatorResult
+@import com.example.septic.service.DrainfieldEstimatorResult
+@import com.example.septic.service.TankSizeEstimatorResult
+@import com.example.septic.service.PumpScheduleResult
+@import com.example.septic.service.OccupancyProfile
+@import com.example.septic.service.UsageProfile
 @import com.example.septic.service.ProjectType
 @import com.example.septic.service.SoilPercStatus
 @import com.example.septic.service.TimelinePreference
@@ -13,6 +18,12 @@
 @param java.util.List<StateOptionView> states
 @param EstimateForm estimateForm
 @param EstimatorResult result = null
+@param DrainfieldEstimatorResult drainfieldResult = null
+@param boolean drainfieldMode = false
+@param TankSizeEstimatorResult tankSizeResult = null
+@param boolean tankSizeMode = false
+@param PumpScheduleResult pumpScheduleResult = null
+@param boolean pumpScheduleMode = false
 @param java.util.List<com.example.septic.web.CostEvidenceView> costEvidence = java.util.List.of()
 @param ContentPage calculatorLanding = null
 @param java.util.List<PageLink> calculatorLandingLinks = java.util.List.of()
@@ -29,14 +40,16 @@
 @param SoilPercStatus[] soilStatuses
 @param AccessDifficulty[] accessLevels
 @param TimelinePreference[] timelines
+@param OccupancyProfile[] occupancyProfiles
+@param UsageProfile[] usageProfiles
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "tool", content = @`
     <section class="section section--heroish calculator-intro">
         <div class="container">
             <div class="section-heading">
-                <span class="eyebrow">Septic cost calculator</span>
-                <h1>Estimate the cost of a septic project.</h1>
-                <p class="lede">Choose the state, job type, and property details. We will show a broad planning range, what moved it, and what to verify before trusting the low end.</p>
+                <span class="eyebrow">${tankSizeMode ? "Septic tank capacity planner" : pumpScheduleMode ? "Septic maintenance planner" : "Septic cost calculator"}</span>
+                <h1>${tankSizeMode ? "Estimate a conservative septic tank capacity band." : pumpScheduleMode ? "Build a practical pumping and inspection rhythm." : "Estimate the cost of a septic project."}</h1>
+                <p class="lede">${tankSizeMode ? "Use bedrooms and household load to frame capacity, then verify it against the permit file and local rules." : pumpScheduleMode ? "Use tank capacity and household load to plan the next check without treating a generic calendar as an inspection." : "Choose the state, job type, and property details. We will show a broad planning range, what moved it, and what to verify before trusting the low end."}</p>
             </div>
         </div>
     </section>
@@ -44,6 +57,8 @@
     <section class="section section--tight">
         <div class="container calculator-layout">
             <form class="calculator-form" id="cost-estimator-form" name="cost-estimator-form" method="post" action="/septic-system-cost-calculator/#result-top">
+                <input type="hidden" name="calculatorMode" value="${estimateForm.getCalculatorMode()}">
+                <input type="hidden" name="calculationSubmitted" value="true">
                 <input type="hidden" name="sourcePageHint" value="${estimateForm.getSourcePageHint()}">
                 <input type="hidden" name="recordsMode" value="${recordsMode}">
                 <input type="hidden" name="recordSystemType" value="${recordSystemType}">
@@ -75,6 +90,11 @@
                     <span class="pill">Fast start</span>
                     <p>Choose the basics first. The secondary fields only help tighten the range.</p>
                 </div>
+                <nav class="quick-link-strip" aria-label="Calculator modes">
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/">Project cost</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?mode=tank_size" rel="nofollow">Tank capacity</a>
+                    <a class="button button--secondary" href="/septic-system-cost-calculator/?mode=pump_schedule" rel="nofollow">Pump schedule</a>
+                </nav>
 
                 <section class="form-section">
                     <div class="form-section__header">
@@ -83,6 +103,7 @@
                     </div>
 
                     <div class="field-grid field-grid--primary">
+                        @if(!pumpScheduleMode)
                         <label class="field">
                             <span>State</span>
                             <select name="stateCode" required aria-describedby="calculator-state-error">
@@ -97,7 +118,18 @@
                                 <small id="calculator-state-error">Costs and permit assumptions change by state.</small>
                             @endif
                         </label>
+                        @endif
 
+                        @if(tankSizeMode)
+                        <input type="hidden" name="projectType" value="new_install">
+                        <label class="field"><span>Bedrooms</span><input type="number" min="1" max="10" name="bedrooms" value="${estimateForm.getBedrooms()}"></label>
+                        <label class="field"><span>Household use</span><select name="occupancyProfile">@for(var profile : occupancyProfiles)<option value="${profile.value()}" selected="${profile.value().equals(estimateForm.getOccupancyProfile())}">${profile.label()}</option>@endfor</select></label>
+                        @elseif(pumpScheduleMode)
+                        <input type="hidden" name="projectType" value="pumping">
+                        <label class="field"><span>Tank capacity</span><input type="number" min="750" max="3000" step="50" name="tankSizeGallons" value="${estimateForm.getTankSizeGallonsValue()}"></label>
+                        <label class="field"><span>Occupants</span><input type="number" min="1" max="20" name="occupants" value="${estimateForm.getOccupantsValue().isBlank() ? "3" : estimateForm.getOccupantsValue()}"></label>
+                        <label class="field"><span>Use profile</span><select name="usageProfile">@for(var profile : usageProfiles)<option value="${profile.value()}" selected="${profile.value().equals(estimateForm.getUsageProfile())}">${profile.label()}</option>@endfor</select></label>
+                        @else
                         <label class="field">
                             <span>Project type</span>
                             <select name="projectType">
@@ -111,24 +143,26 @@
                             <span>Bedrooms</span>
                             <input type="number" min="1" max="10" name="bedrooms" value="${estimateForm.getBedrooms()}">
                         </label>
+                        @endif
 
                     </div>
                 </section>
 
                 <div class="form-actions form-actions--quick">
-                    <button class="button button--primary" type="submit">Show planning estimate</button>
+                    <button class="button button--primary" type="submit">${tankSizeMode ? "Show capacity plan" : pumpScheduleMode ? "Show maintenance rhythm" : "Show planning estimate"}</button>
                     <p>Start with a broad range. Add site details below only when you know them.</p>
                 </div>
 
                 <details class="form-section form-section--secondary calculator-advanced">
                     <summary>
                         <span>
-                            <strong>Tighten the range</strong>
-                            <small>Optional soil, access, and site details</small>
+                            <strong>${tankSizeMode ? "Add capacity signals" : pumpScheduleMode ? "Add maintenance signals" : "Tighten the range"}</strong>
+                            <small>${tankSizeMode ? "Disposal and extra-kitchen load" : pumpScheduleMode ? "Household solids load" : "Optional soil, access, and site details"}</small>
                         </span>
                         <span aria-hidden="true">+</span>
                     </summary>
 
+                    @if(!tankSizeMode && !pumpScheduleMode)
                     <div class="field-grid field-grid--secondary">
                         <label class="field">
                             <span>Occupants (optional)</span>
@@ -162,6 +196,7 @@
                             </select>
                         </label>
                     </div>
+                    @endif
 
                     <div class="secondary-checks">
                         <label class="checkbox">
@@ -169,15 +204,25 @@
                             <span>Garbage disposal installed</span>
                         </label>
 
+                        @if(!pumpScheduleMode)
                         <label class="checkbox">
                             <input type="checkbox" name="additionalKitchen" checked="${estimateForm.isAdditionalKitchen()}">
                             <span>Additional kitchen or ADU</span>
                         </label>
+                        @endif
 
+                        @if(!tankSizeMode && !pumpScheduleMode)
                         <label class="checkbox">
                             <input type="checkbox" name="highWaterTableOrShallowBedrock" checked="${estimateForm.isHighWaterTableOrShallowBedrock()}">
-                            <span>High water table or shallow bedrock suspected</span>
+                            <span>${drainfieldMode ? "Wet spots, surfacing, odor, or high water suspected" : "High water table or shallow bedrock suspected"}</span>
                         </label>
+                        @if(drainfieldMode)
+                            <label class="checkbox">
+                                <input type="checkbox" name="noClearReplacementArea" checked="${estimateForm.isNoClearReplacementArea()}">
+                                <span>No clear replacement area or reserve area identified</span>
+                            </label>
+                        @endif
+                        @endif
                     </div>
                 </details>
 
@@ -192,13 +237,24 @@
             </form>
 
             <div class="calculator-output">
-                @if (result != null)
+                @if (tankSizeResult != null)
+                    <section class="result-panel" id="result-top" data-ga-event="calculator_submit" data-ga-param-estimator-type="tank_size_estimator">
+                        <div class="result-panel__header"><div><span class="eyebrow">Tank capacity result</span><h2>${tankSizeResult.estimate().stateName()} capacity outlook</h2></div><span class="pill">${tankSizeResult.occupancyProfileLabel()}</span></div>
+                        <div class="result-grid"><article class="metric-card metric-card--accent"><span class="metric-card__label">Likely minimum</span><strong>${tankSizeResult.estimate().formattedLikelyMinimumTank()}</strong><p>${tankSizeResult.estimate().officialMinimumNote()}</p></article><article class="metric-card"><span class="metric-card__label">Conservative planning band</span><strong>${tankSizeResult.estimate().formattedRecommendedTankRange()}</strong><p>${tankSizeResult.occupancyNote()}</p></article><article class="metric-card"><span class="metric-card__label">Rough pumping cadence</span><strong>${tankSizeResult.pumpSchedule().roughPumpingCadence()}</strong><p>${tankSizeResult.pumpSchedule().suggestedInspectionCadence()}</p></article></div>
+                        <div class="detail-grid"><article class="detail-card"><h3>What moved the capacity band</h3><ul class="detail-list">@for(var item : tankSizeResult.estimate().costDrivers())<li>${item}</li>@endfor</ul></article><article class="detail-card"><h3>What to verify next</h3><ul class="detail-list">@for(var item : tankSizeResult.estimate().checklist())<li>${item}</li>@endfor</ul></article></div>
+                    </section>
+                @elseif (pumpScheduleResult != null)
+                    <section class="result-panel" id="result-top" data-ga-event="calculator_submit" data-ga-param-estimator-type="pump_schedule_estimator">
+                        <div class="result-panel__header"><div><span class="eyebrow">Maintenance result</span><h2>Your septic care rhythm</h2></div><span class="pill">${pumpScheduleResult.tankSizeGallons()} gal · ${pumpScheduleResult.occupants()} people</span></div>
+                        <div class="result-grid"><article class="metric-card metric-card--accent"><span class="metric-card__label">Rough pumping cadence</span><strong>${pumpScheduleResult.roughPumpingCadence()}</strong><p>${pumpScheduleResult.confidenceNote()}</p></article><article class="metric-card"><span class="metric-card__label">Inspection rhythm</span><strong>${pumpScheduleResult.usageProfileLabel()}</strong><p>${pumpScheduleResult.suggestedInspectionCadence()}</p></article><article class="metric-card"><span class="metric-card__label">Budget reminder</span><strong>Plan routine service</strong><p>${pumpScheduleResult.maintenanceBudgetReminder()}</p></article></div>
+                    </section>
+                @elseif (result != null)
                     <div hidden
                          data-ga-event="calculator_submit"
                          data-ga-param-estimator-type="cost_estimator"
                          data-ga-param-state-code="${estimateForm.getStateCode()}"
                          data-ga-param-project-type="${estimateForm.getProjectType()}"></div>
-                    @template.tags.estimateResult(result = result, costEvidence = costEvidence)
+                    @template.tags.estimateResult(result = result, drainfieldResult = drainfieldResult, costEvidence = costEvidence)
                 @else
                     <article class="placeholder-panel">
                         <span class="eyebrow">Result preview</span>
@@ -221,7 +277,7 @@
                             <span class="pill">Short form</span>
                         </div>
 
-                        @if (result == null)
+                        @if (result == null && tankSizeResult == null && pumpScheduleResult == null)
                             <article class="status-box">
                                 @if (quoteLeadForm.hasActiveProblem())
                                     <strong>Describe the symptom, not your guess at the repair.</strong>
@@ -262,14 +318,14 @@
                         @endif
 
                         <form class="quote-form" id="quote-request-form" name="quote-request-form" method="post" action="/quote-request/">
-                            @if (result != null)
+                            @if (result != null || tankSizeResult != null || (pumpScheduleResult != null && estimateForm.getStateCode() != null && !estimateForm.getStateCode().isBlank()))
                                 <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
                                 <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
                                 <input type="hidden" name="sourcePageHint" value="${quoteLeadForm.getSourcePageHint()}">
                                 <input type="hidden" name="bedrooms" value="${quoteLeadForm.getBedrooms()}">
                                 <input type="hidden" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
                             @endif
-                            @if (result == null)
+                            @if (result == null && tankSizeResult == null && (pumpScheduleResult == null || estimateForm.getStateCode() == null || estimateForm.getStateCode().isBlank()))
                                 <input type="hidden" name="sourcePageHint" value="${quoteLeadForm.getSourcePageHint()}">
                             @endif
                             <input type="hidden" name="recordStatus" value="${quoteLeadForm.getRecordStatus()}">
@@ -280,7 +336,7 @@
                             <input type="hidden" name="highWaterTableOrShallowBedrock" value="${quoteLeadForm.isHighWaterTableOrShallowBedrock() ? "true" : "false"}">
 
                             <div class="field-grid">
-                                @if (result == null)
+                                @if (result == null && tankSizeResult == null && (pumpScheduleResult == null || estimateForm.getStateCode() == null || estimateForm.getStateCode().isBlank()))
                                     <label class="field">
                                         <span>State</span>
                                         <select name="stateCode">
@@ -380,7 +436,7 @@
                     </section>
                 @endif
 
-                @if (result != null)
+                @if (result != null || tankSizeResult != null || pumpScheduleResult != null)
                     <div class="sticky-mobile-cta-spacer" aria-hidden="true"></div>
                     <section class="sticky-mobile-cta sticky-mobile-cta--dual"
                              aria-label="Quick mobile actions"
@@ -433,11 +489,11 @@
                             </li>
                         @endfor
                         <li>
-                            <a href="/septic-tank-size-estimator/">Septic tank size estimator</a>
+                            <a href="/septic-system-cost-calculator/?mode=tank_size" rel="nofollow">Septic tank capacity mode</a>
                             <p class="detail-list__note">Estimate a planning tank-capacity band from state, bedrooms, and occupancy.</p>
                         </li>
                         <li>
-                            <a href="/septic-pump-schedule-estimator/">Septic pumping schedule estimator</a>
+                            <a href="/septic-system-cost-calculator/?mode=pump_schedule" rel="nofollow">Septic pumping schedule mode</a>
                             <p class="detail-list__note">Turn tank size and household use into a practical inspection and pumping cadence.</p>
                         </li>
                         <li>

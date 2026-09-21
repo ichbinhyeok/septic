@@ -1,7 +1,7 @@
 @import com.example.septic.web.PageMeta
 @param PageMeta page
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "signature", content = @`
     <div class="record-brief-example-page">
         <section class="record-brief-hero" aria-labelledby="record-brief-title">
             <div class="container record-brief-hero__grid">

@@ -43,7 +43,7 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-money-page">
     <section class="section section--heroish state-money-hero-section">
         <div class="container state-hero">
@@ -271,6 +271,8 @@
                 <span class="pill">State-specific guide</span>
                 <strong>${state.agencyName()}</strong>
                 <strong>${state.ruleTypeLabel()}</strong>
+                <details class="state-review-disclosure">
+                    <summary>Sources, review, and limitations</summary>
                 <dl class="review-meta">
                     <div>
                         <dt>Maintained by</dt>
@@ -298,6 +300,7 @@
                     </div>
                 </dl>
                 <p>${editorialNote}</p>
+                </details>
             </article>
         </div>
     </section>

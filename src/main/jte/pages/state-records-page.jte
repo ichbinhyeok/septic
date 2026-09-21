@@ -17,7 +17,7 @@
 @param int totalCountyRouteCount = 0
 @param java.util.List<com.example.septic.web.CountySearchGuideView> countySearchGuides = java.util.List.of()
 
-@template.layouts.app(page = page, content = @`
+@template.layouts.app(page = page, designFamily = "regional", content = @`
     <div class="state-records-page">
         <section class="state-records-hero">
             <div class="container state-records-hero__inner">
