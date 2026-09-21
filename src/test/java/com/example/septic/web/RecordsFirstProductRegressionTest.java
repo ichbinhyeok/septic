@@ -11,12 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RecordsFirstProductRegressionTest {
 
     @Test
-    void navigationLeadsWithFindReviewAndRecordHelp() throws IOException {
+    void navigationLeadsWithServiceProofGuidesAndRecordHelp() throws IOException {
         String layout = Files.readString(Path.of("src/main/jte/layouts/app.jte"));
-        int find = layout.indexOf("Find records</a>");
-        int review = layout.indexOf("Review a file</a>");
-        int decision = layout.indexOf("Ask SepticPath</a>");
-        assertTrue(find > 0 && review > find && decision > review);
+        int service = layout.indexOf("Our service</a>");
+        int work = layout.indexOf("Our work</a>");
+        int guides = layout.indexOf("Guides</a>");
+        int decision = layout.indexOf("Ask SepticPath <span");
+        assertTrue(service > 0 && work > service && guides > work && decision > guides);
+        assertTrue(layout.indexOf("Find records</a>") > decision);
+        assertTrue(layout.indexOf("Review a file</a>") > decision);
         assertTrue(layout.contains("/record-task.js"));
     }
 

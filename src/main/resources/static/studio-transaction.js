@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const button=document.querySelector('[data-demo-checkout]');const status=document.querySelector('[data-demo-status]');if(!button||!status)return;button.addEventListener('click',()=>{status.textContent='Design preview only — no payment was created.';button.textContent='Secure checkout preview';});});

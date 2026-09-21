@@ -1,0 +1,60 @@
+/* County composition follows county-guide-reference-v1, not the public legacy template. */
+.county-hero{min-height:min(720px,calc(100svh - 76px))}
+.county-hero .studio-hero__image{position:absolute;height:100%;object-position:center 58%}
+.county-hero .studio-hero__shade{background:linear-gradient(90deg,#042a30bb 0%,#042a3060 40%,transparent 75%)}
+.county-hero .studio-hero__inner{padding-block:58px}
+.county-hero h1{font-size:clamp(48px,5.25vw,78px);max-width:19ch;line-height:.99}
+.county-hero .studio-hero__copy{max-width:790px}
+.county-index{display:flex;justify-content:center;gap:56px;padding-block:13px;border-bottom:1px solid var(--line)}
+.county-index a{display:flex;align-items:center;min-height:44px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;text-decoration:none}
+.county-index a:hover{color:#00775d}
+.county-overview{display:grid;grid-template-columns:1.15fr 1fr;gap:100px;padding-block:62px 68px;align-items:center}
+.county-overview h2{font-size:clamp(40px,4vw,59px)}
+.county-deck{margin-top:22px;font-family:var(--serif);font-size:22px;line-height:1.4;max-width:42ch}
+.studio-county .studio-process{padding-block:60px 46px}
+.studio-county .studio-steps p{font-family:var(--serif);font-size:18px;line-height:1.4}
+.studio-county .studio-steps a{overflow-wrap:anywhere}
+.county-details{margin-top:24px}
+.county-details details,.county-source-list{border-top:1px solid var(--line);scroll-margin-top:30px}
+.county-details summary,.county-source-list summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px;padding-block:16px;cursor:pointer;font-size:14px;font-weight:500}
+.county-details summary::-webkit-details-marker,.county-source-list summary::-webkit-details-marker{display:none}
+.county-details summary span,.county-source-list summary span{font-size:22px;transition:transform .2s;flex:none}
+.county-details details[open]>summary span,.county-source-list[open]>summary span{transform:rotate(45deg)}
+.county-details__body{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-block:20px 40px;font-size:14px;overflow-wrap:anywhere}
+.county-details__body h3{margin-bottom:18px;font-size:29px}
+.county-details__body ul,.county-details__body ol{padding-left:21px;margin-block:18px 30px}
+.county-details__body li+li{margin-top:10px}
+.county-details__body p+h3{margin-top:24px}
+.county-details__body .studio-facts>div{grid-template-columns:120px minmax(0,1fr)}
+.county-request-copy{white-space:pre-line}
+.county-file{display:grid;grid-template-columns:58% 42%;gap:0;padding-block:40px;background:var(--paper)}
+.county-file>img{height:100%;min-height:630px;object-position:42% center}
+.county-file__copy{padding:42px clamp(32px,4.5vw,80px);align-self:center}
+.county-file__copy h2{font-size:clamp(43px,4.1vw,62px)}
+.county-file__copy>p:not(.studio-overline):not(.studio-fine){font:21px/1.45 var(--serif);margin-top:20px}
+.county-file__copy ul{list-style:none;padding:0;margin:28px 0 0;font:21px/1.35 var(--serif)}
+.county-file__copy li{padding-block:16px;border-top:1px solid var(--line)}
+.county-file__copy li>span{display:block;font-size:17px;line-height:1.4;margin-top:5px;color:var(--muted)}
+.county-record-list{border-top:1px solid var(--line);margin-top:20px}
+.county-record-list summary{display:flex;justify-content:space-between;gap:20px;align-items:center;min-height:48px;cursor:pointer;list-style:none;font-size:12px}
+.county-record-list summary::-webkit-details-marker{display:none}
+.county-record-list summary>span{font-size:20px;transition:transform .2s}
+.county-record-list[open] summary>span{transform:rotate(45deg)}
+.county-file__copy .county-record-list ul{font:14px/1.65 var(--sans);margin-top:12px}
+.county-file__copy .studio-text-link{margin-top:10px}
+.county-closing{min-height:430px;padding-block:80px}
+.county-closing>img{object-position:center 63%}
+.county-questions{padding-block:72px}
+.county-questions h2{font-size:clamp(40px,4vw,60px)}
+.county-questions .county-details{margin-top:36px}
+.county-questions summary{font:22px/1.35 var(--serif);min-height:70px}
+.county-answer{max-width:85ch;padding:4px 0 28px;font-size:15px;line-height:1.85}
+.county-sources{background:var(--sage);padding-block:56px}
+.county-source-heading{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.county-source-heading>div+div{border-left:1px solid var(--line);padding-left:48px}
+.county-source-heading p:not(.studio-overline){font:21px/1.45 var(--serif)}
+.county-source-list{margin-top:32px}
+@media(min-width:1000px){.county-file>img{position:sticky;top:0;max-height:850px}}
+@media(max-width:1000px){.county-overview{gap:45px}.county-index{gap:30px}.county-file{grid-template-columns:53% 47%}.county-file__copy{padding:28px}.county-file>img{min-height:580px}.county-source-heading{gap:45px}.county-details__body{gap:35px}}
+@media(max-width:700px){.county-hero{min-height:min(750px,calc(100svh - 68px))}.county-hero .studio-hero__inner{padding-block:38px}.county-hero h1{font-size:clamp(43px,10.8vw,63px)}.county-hero .studio-hero__image{object-position:65% center}.county-hero .studio-hero__shade{background:linear-gradient(90deg,#032b33e8,#032b3350)}.county-index{gap:12px;justify-content:space-between;padding-block:8px}.county-index a{font-size:8px;letter-spacing:.06em}.county-overview{grid-template-columns:1fr;gap:28px;padding-block:44px}.county-deck{font-size:20px}.county-overview .studio-facts{font-size:13px}.studio-county .studio-process{padding-block:44px 32px}.studio-county .studio-steps p{font-size:17px}.county-details summary{font-size:13px}.county-details__body{grid-template-columns:1fr;gap:28px}.county-file{grid-template-columns:1fr;padding-block:0}.county-file>img{height:auto;min-height:0;aspect-ratio:1.08;object-position:42% center}.county-file__copy{padding:40px 20px 46px}.county-file__copy h2{font-size:46px}.county-file__copy ul{font-size:22px}.county-closing{min-height:400px;padding-block:56px}.county-closing h2{font-size:42px}.county-questions{padding-block:46px}.county-questions summary{font-size:20px}.county-source-heading{grid-template-columns:1fr;gap:26px}.county-source-heading>div+div{border:0;padding:0}.county-sources{padding-block:44px}.county-source-heading p:not(.studio-overline){font-size:20px}}
+@media(prefers-reduced-motion:reduce){.county-file>img{position:static}}

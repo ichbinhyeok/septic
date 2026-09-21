@@ -139,7 +139,7 @@
         "minimum septic tank size"
       ],
       "title": "Septic Tank Size Guide",
-      "metaDescription": "Understand what usually sets septic tank size, when the range widens, and when to use the dedicated tank size estimator.",
+      "metaDescription": "Understand what usually sets septic tank size, when the range widens, and when to use the integrated tank capacity planner.",
       "introCopy": "Tank size is one of the first questions homeowners ask, but local rules and site constraints still matter. This guide explains the main sizing drivers first, then points into the dedicated estimator when you want a state-aware planning range.",
       "calculatorModule": "tank_size_estimator",
       "calculatorProjectType": "",
@@ -152,7 +152,7 @@
       "decisionSteps": [
         "Start with bedroom count and occupancy profile because those are the clearest homeowner-facing size signals.",
         "Add disposal and extra-kitchen context before you assume the lowest table number is enough.",
-        "Use the tank size estimator to get a likely minimum and conservative range rather than anchoring to one old receipt or listing note.",
+        "Use the tank capacity mode to get a likely minimum and conservative range rather than anchoring to one old receipt or listing note.",
         "Then move into the full cost estimator only after the tank band is clear enough to frame the wider project."
       ],
       "lowEndBreakers": [
@@ -342,7 +342,7 @@
         }
       ],
       "internalLinkTargets": [
-        "/drain-field-estimator/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement",
         "/septic-replacement-area/",
         "/failed-perc-test-septic/",
         "/wet-yard-over-septic-drain-field/",
@@ -489,7 +489,7 @@
         }
       ],
       "internalLinkTargets": [
-        "/drain-field-estimator/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement",
         "/drain-field-replacement-cost/",
         "/septic-records-checklist/",
         "/failed-perc-test-septic/",
@@ -560,7 +560,7 @@
         }
       ],
       "internalLinkTargets": [
-        "/drain-field-estimator/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement",
         "/septic-inspection-cost/",
         "/septic-backup-slow-drains/",
         "/drain-field-replacement-cost/",
@@ -668,7 +668,7 @@
       "decisionSteps": [
         "Start with tank size, occupancy, and usage profile rather than asking only for the cheapest pump-out price.",
         "Check whether disposal use or seasonal occupancy changes the cadence enough to affect maintenance planning.",
-        "Use the dedicated pump schedule estimator to frame timing before you compare local service pricing.",
+        "Use the calculator's pump schedule mode to frame timing before you compare local service pricing.",
         "Then move into inspection or full cost planning if pumping starts uncovering a bigger system story."
       ],
       "lowEndBreakers": [
@@ -1614,7 +1614,7 @@
         "/septic-records-checklist/",
         "/septic-records-checklist/north-carolina/durham-county/",
         "/septic-records-checklist/texas/comal-county/",
-        "/drain-field-estimator/"
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement"
       ],
       "publishStatus": "published"
     },
@@ -2335,7 +2335,7 @@
         "/how-to-find-septic-records-online/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/",
-        "/drain-field-estimator/",
+        "/septic-system-cost-calculator/?projectType=drainfield_replacement",
         "/drain-field-replacement-cost/"
       ],
       "publishStatus": "published"

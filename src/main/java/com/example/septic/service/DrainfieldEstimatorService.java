@@ -25,8 +25,15 @@ public class DrainfieldEstimatorService {
         estimateForm.setHighWaterTableOrShallowBedrock(form.isWetGroundOrSurfacing());
         estimateForm.setAccessDifficulty(form.getAccessDifficulty());
         estimateForm.setTimeline(form.getTimeline());
-        SoilPercStatus soilPercStatus = SoilPercStatus.fromValue(form.getSoilPercStatus());
-        AccessDifficulty accessDifficulty = AccessDifficulty.fromValue(form.getAccessDifficulty());
+        estimateForm.setNoClearReplacementArea(form.isNoClearReplacementArea());
+        return estimate(estimateForm);
+    }
+
+    public DrainfieldEstimatorResult estimate(EstimateForm estimateForm) {
+        boolean wetGroundOrSurfacing = estimateForm.isHighWaterTableOrShallowBedrock();
+        boolean noClearReplacementArea = estimateForm.isNoClearReplacementArea();
+        SoilPercStatus soilPercStatus = SoilPercStatus.fromValue(estimateForm.getSoilPercStatus());
+        AccessDifficulty accessDifficulty = AccessDifficulty.fromValue(estimateForm.getAccessDifficulty());
 
         int redesignRisk = 0;
         if (soilPercStatus == SoilPercStatus.UNKNOWN) {
@@ -36,10 +43,10 @@ public class DrainfieldEstimatorService {
         } else if (soilPercStatus == SoilPercStatus.FAILED) {
             redesignRisk += 3;
         }
-        if (form.isWetGroundOrSurfacing()) {
+        if (wetGroundOrSurfacing) {
             redesignRisk += 2;
         }
-        if (form.isNoClearReplacementArea()) {
+        if (noClearReplacementArea) {
             redesignRisk += 3;
         }
         if (accessDifficulty == AccessDifficulty.HARD) {
@@ -49,7 +56,7 @@ public class DrainfieldEstimatorService {
         EstimatorResult estimate = adjustedEstimate(
                 estimatorService.estimate(estimateForm),
                 redesignRisk,
-                form.isNoClearReplacementArea()
+                noClearReplacementArea
         );
 
         String fieldOutlookLabel;
@@ -62,9 +69,9 @@ public class DrainfieldEstimatorService {
         }
 
         String redesignRiskLabel;
-        if (form.isNoClearReplacementArea()) {
+        if (noClearReplacementArea) {
             redesignRiskLabel = "Reserve-area or layout risk is the main blocker";
-        } else if (form.isWetGroundOrSurfacing()) {
+        } else if (wetGroundOrSurfacing) {
             redesignRiskLabel = "Field saturation or high-water-table risk is visible";
         } else if (soilPercStatus == SoilPercStatus.FAILED) {
             redesignRiskLabel = "Failed soil or perc signal is driving redesign risk";
@@ -75,9 +82,9 @@ public class DrainfieldEstimatorService {
         }
 
         String fieldRiskNote;
-        if (form.isWetGroundOrSurfacing() && form.isNoClearReplacementArea()) {
+        if (wetGroundOrSurfacing && noClearReplacementArea) {
             fieldRiskNote = "Visible wetness plus no clear replacement area is a strong sign the job may widen beyond trench work and into layout or system-class redesign.";
-        } else if (form.isWetGroundOrSurfacing()) {
+        } else if (wetGroundOrSurfacing) {
             fieldRiskNote = "Wet ground, surfacing effluent, or persistent odors are strong signals that the field story may be bigger than a simple line-item repair.";
         } else if (soilPercStatus == SoilPercStatus.FAILED) {
             fieldRiskNote = "A failed perc or site signal often means the quote should be framed as a field viability problem first, not a routine like-for-like replacement.";
@@ -85,7 +92,7 @@ public class DrainfieldEstimatorService {
             fieldRiskNote = "Drain field jobs look cheapest only when the replacement area, soil story, and field layout still support a conventional path.";
         }
 
-        String replacementAreaNote = form.isNoClearReplacementArea()
+        String replacementAreaNote = noClearReplacementArea
                 ? "No clear replacement area is one of the fastest ways a drain field quote stops looking conventional."
                 : "If the lot still has a credible replacement area, the lower end remains more believable than if the field has to be relocated or redesigned.";
 
@@ -99,12 +106,12 @@ public class DrainfieldEstimatorService {
             case FAILED -> "A failed perc or site signal is one of the clearest ways a field-only quote turns into redesign risk.";
             case UNKNOWN -> "Unknown soil status keeps the low end weak because the field may still fail the next site check.";
         });
-        if (form.isWetGroundOrSurfacing()) {
+        if (wetGroundOrSurfacing) {
             decisionSignals.add("Wet spots, surfacing, or odor signals raise the chance that the active field condition is worse than the visible trench footprint alone.");
         } else {
             decisionSignals.add("No visible wetness keeps the job closer to a planning exercise, but it does not prove the old field layout is still usable.");
         }
-        if (form.isNoClearReplacementArea()) {
+        if (noClearReplacementArea) {
             decisionSignals.add("No clear replacement area pushes the job toward reserve-area, redesign, or alternative-system questions quickly.");
         } else {
             decisionSignals.add("A credible replacement area keeps a conventional field story more believable than a land-constrained parcel.");

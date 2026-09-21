@@ -1,0 +1,40 @@
+/* Investigation-led case studies: image, decisions, source comparison, closeout. */
+.case-hero{position:relative;isolation:isolate;min-height:540px;color:#fff;background:#103b36}
+.case-hero picture{position:absolute;inset:0;z-index:-2}.case-hero img{height:100%;object-position:center}
+.case-hero:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#082f34dc,#082f3420)}
+.case-hero .studio-wrap{padding-block:60px;animation:studio-enter .7s both}
+.case-hero h1{font-size:clamp(46px,5.1vw,74px);max-width:15ch}.case-hero p:not(.studio-overline){max-width:43ch;margin-top:26px}.case-hero .studio-button{margin-top:28px}
+.case-breadcrumb{display:flex;flex-wrap:wrap;gap:18px;padding-block:24px;border-bottom:1px solid var(--line);font-size:12px}
+.case-story{display:grid;grid-template-columns:1fr 1.2fr;gap:90px;padding-block:64px;align-items:start}
+.case-story aside{position:sticky;top:30px}.case-story h2{font-size:clamp(36px,3.6vw,52px);max-width:18ch;scroll-margin-top:30px}
+.case-story ol{padding:0;margin:0;list-style:none}.case-story li{display:grid;grid-template-columns:40px 1fr;gap:18px;border-top:1px solid var(--line);padding-block:24px}
+.case-story li>span{font:32px var(--serif);color:#587260}.case-story h3{font:28px/1.2 var(--serif);margin:0 0 14px}.case-story li p{line-height:1.8;font-size:15px}
+.case-source-note,.case-source figcaption{font-size:12px;line-height:1.8;color:#3b5850;margin-top:18px}.case-story .studio-text-link{margin-top:22px}
+.case-interlude{position:relative;isolation:isolate;min-height:310px;display:flex;align-items:center;color:white;background:#123c38}
+.case-interlude img{position:absolute;inset:0;height:100%;z-index:-2;object-fit:cover;object-position:center 60%}
+.case-interlude:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#082f34da,#082f3420)}
+.case-interlude .studio-wrap{padding-block:55px}.case-interlude h2{font-size:clamp(38px,4vw,58px);max-width:23ch}
+.case-evidence{padding-block:64px;scroll-margin-top:24px}.case-evidence-heading{max-width:900px;margin-bottom:36px}.case-evidence h2{font-size:clamp(36px,4vw,56px)}
+.case-source{margin:0 0 34px}.case-source img{height:auto;max-height:420px;object-fit:contain;background:#e8eadf}.case-source a{cursor:zoom-in}.case-source figcaption a{display:inline-block;min-height:44px;padding-top:10px}
+.case-facts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0 36px;margin:0}
+.case-facts>div{grid-column:span 2;border-top:1px solid #becab9;padding-block:24px;min-width:0}
+.case-facts dt{font-size:12px;line-height:1.6;margin-bottom:15px}.case-facts dd{font:30px/1.2 var(--serif);margin:0;overflow-wrap:break-word}
+.case-facts>div.case-fact-lead{grid-column:span 3;padding-block:28px 36px}.case-fact-lead dd{font-size:clamp(38px,4.5vw,65px);color:#526f5b;max-width:18ch}
+.case-outcome{background:#123c38;color:#f5f7ee;padding-block:60px}.case-outcome>.studio-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:90px}
+.case-outcome h2{font-size:clamp(38px,4vw,56px)}.case-outcome p:not(.studio-overline){line-height:1.85;margin-top:24px;max-width:58ch;font-size:16px}
+.case-outcome .studio-button{margin-top:28px}.case-limit{border-left:1px solid #53726a;padding-left:40px}.case-limit h3{font:32px/1.2 var(--serif);margin:0}
+.case-related{padding-block:60px}.case-related h2{font-size:40px;margin-bottom:28px}.case-related>div{display:grid;grid-template-columns:1fr 1fr;gap:0 50px}
+.case-related a{position:relative;padding:22px 35px 22px 0;border-top:1px solid var(--line);font:26px/1.2 var(--serif);text-decoration:none}.case-related a>span{display:block;font:10px var(--sans);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}.case-related b{position:absolute;right:0;top:50%;font-size:20px;transition:transform .2s}.case-related a:hover b{transform:translate(3px,-3px)}
+@media(max-width:1000px){.case-story,.case-outcome>.studio-wrap{gap:40px}.case-facts{column-gap:24px}.case-limit{padding-left:28px}}
+@media(max-width:700px){
+.case-hero{min-height:560px}.case-hero .studio-wrap{padding-block:32px 180px}.case-hero h1{font-size:43px;max-width:15ch}.case-hero img{object-position:center bottom}.case-hero:after{background:linear-gradient(180deg,#082f34e5,#082f3440)}
+.case-hero p:not(.studio-overline){font-size:14px;margin-top:20px}.case-hero .studio-button{margin-top:20px}
+.case-story{grid-template-columns:1fr;gap:28px;padding-block:40px}.case-story aside{position:static}.case-story li{grid-template-columns:30px 1fr;gap:14px;padding-block:22px}.case-story h3{font-size:26px}
+.case-interlude{min-height:280px}.case-interlude .studio-wrap{padding-block:40px}.case-interlude h2{font-size:38px}
+.case-evidence{padding-block:42px}.case-facts{grid-template-columns:1fr 1fr;gap:0 20px}.case-facts>div,.case-facts>div.case-fact-lead{grid-column:1/-1;padding-block:22px}.case-facts>div.case-fact-lead dd{font-size:46px}.case-facts dd{font-size:29px}
+.case-outcome{padding-block:44px}.case-outcome>.studio-wrap{grid-template-columns:1fr;gap:36px}.case-limit{padding:30px 0 0;border-left:0;border-top:1px solid #53726a}.case-outcome p:not(.studio-overline){font-size:15px}
+.case-related{padding-block:40px}.case-related>div{grid-template-columns:1fr}.case-related h2{font-size:36px}
+}
+@media(prefers-reduced-motion:reduce){.case-hero .studio-wrap{animation:none}.case-story aside{position:static}.case-related b{transition:none}}
+.case-hero-inquiry{display:block;width:fit-content;padding-block:14px;margin-top:8px;color:inherit;font-size:13px;text-underline-offset:5px}.case-hero-inquiry:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.case-next{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;padding-block:60px;border-bottom:1px solid var(--line)}.case-next h2{font:clamp(36px,4vw,54px)/1.1 var(--serif);margin:18px 0}.case-next p{max-width:51ch;line-height:1.8;font-size:15px}.case-next>div:last-child{justify-self:end}.case-next .studio-fine{font-size:12px;margin-top:18px}@media(max-width:700px){.case-next{grid-template-columns:1fr;gap:24px;padding-block:40px}.case-next>div:last-child{justify-self:stretch}.case-next .studio-button{width:100%}}

@@ -73,8 +73,13 @@ class PaidUnlockStoreTest {
                 prepared.offer().id(), "CAPTURE-LIMIT", "payer@example.com", "29.00", "USD"
         );
 
+        assertThat(store.inspectDownload(fulfillment.downloadToken())).get()
+                .extracting(PaidUnlockStore.DeliveryPreview::downloadsRemaining).isEqualTo(2);
         assertThat(store.authorizeDownload(fulfillment.downloadToken())).isPresent();
+        assertThat(store.inspectDownload(fulfillment.downloadToken())).get()
+                .extracting(PaidUnlockStore.DeliveryPreview::downloadsRemaining).isEqualTo(1);
         assertThat(store.authorizeDownload(fulfillment.downloadToken())).isPresent();
+        assertThat(store.inspectDownload(fulfillment.downloadToken())).isEmpty();
         assertThat(store.authorizeDownload(fulfillment.downloadToken())).isEmpty();
 
         PaidUnlockStore.PreparedOffer expiring = store.createOffer(

@@ -1,0 +1,23 @@
+# Bedroom comparison preview
+
+## Numeric-first refinement
+
+Reduced desktop hero type/height and workspace spacing; paired bedroom inputs now precede the state selector. Intro and inputs share the left column while source guidance occupies the right. Mobile title/CTA spacing is tighter to reveal more of the house. Results begin with a semantic three-column definition list: listing, entered permit count and signed listing-minus-permit difference. Difference appears only for the existing official-input comparison branches; unverified and conflicting inputs show an em dash and source-check language. Short result headings and summaries precede the unchanged detailed next steps and export note. No inference of actual approval is added.
+
+Validation: focused Java suite 25 passed; expanded browser checks 36 passed, including signed differences, absence of a difference for unverified/conflicting records, and numbers-before-explanation DOM order. 320px overflow check passed. Inspected desktop1440, mobile390 and mobile numeric-result captures in build/premium-qa/studio/bedroom-compact-* and bedroom-numeric-result.png. Production unchanged.
+
+Route: `/design-preview/studio/bedroom-check/`. Isolated opt-in, noindex/nofollow; production and embed routes unchanged. Linked from studio guides. Embed distribution is intentionally outside the studio modernization scope.
+
+Frontend/imagegen approach: photograph-led home hero, restrained ivory comparison surface, paired counts, sage source guidance, desk photograph, records next steps and shared inquiry/footer. Reuses approved guides-lane/guides-mobile/work-desk images as illustrations, not property evidence. Native optional-address disclosure and reduced-motion-aware result navigation.
+
+Built-in image generation produced `bedroom-reference-v1.webp`. Prompt:
+
+> Use case: ui-mockup. Create a high fidelity full desktop webpage for SepticPath bedroom permit comparison. Premium quiet editorial ivory, deep petrol, emerald. Newsreader serif and Manrope. Header brand SepticPath, Our service, Our work, Guides, Ask SepticPath. Fullbleed photograph of refined white country house in oak garden, dark left for text 'The listing tells one story. Check the file.' Small subtext 'Compare bedroom counts before your next property decision.' Below ivory workspace: heading 'Two numbers. One important question.' Left form state selector, listing bedrooms numeric field, septic permit count unknown dropdown, file status dropdown, optional address disclosure. Emerald 'Compare the counts'. Right sage quiet editorial aside 'The record comes first.' with three numbered items Official approval, Property match, Written clarification. No result prepopulated. Next warm desk and folder photograph with typography 'Keep the question tied to the file.' Then concise three editorial steps Read the approval / Ask about the gap / Keep the response. Final photographic inquiry CTA and deep petrol large SepticPath footer. No card mosaics, no gradients outside subtle text contrast shading, no fake certification, no claimed permit approval. Practical shippable premium layout, spacious clean restrained.
+
+The implementation adapts the existing app.js bedroom checker decision logic into isolated studio-bedroom.js, without analytics/network/storage. Official-input count greater/equal/lower branches, unverified and conflicting branches are retained. It never retrieves or verifies a permit. Copy/download preserve the explanatory note. Inputs invalidate old results, native integer/range/state validation gates comparison, and note height responds to viewport changes. Embed distribution remains intentionally excluded. Future production promotion should consolidate duplicated logic into a shared tested module.
+
+Verification: 25 focused preview/intake/disabled Java tests passed; 15 browser checks cover five result kinds, unknown/unreviewed/missing/conflicting evidence, invalid counts, stale-result clearing, no persistence and overflow at 1440px and 320px. Screenshots inspected at desktop1440 and mobile390 under build/premium-qa/studio/bedroom-*.png. No real customer or external submissions.
+
+## Public embed modernization
+
+The existing public `/embed/septic-bedroom-permit-checker/` remains intentionally frameable and `noindex,nofollow`; its URL and security-header exception are unchanged for compatibility with installed iframes. Its presentation now uses a dedicated image-free editorial embed surface rather than the legacy application stylesheet. The same production decision logic, required state selection, result branches, transaction-note copy/download actions and onward record/request links remain intact. Verified at 720px and 320px with no page-width overflow.

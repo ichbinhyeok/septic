@@ -66,6 +66,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -764,6 +765,7 @@ public class SiteController {
 
     @GetMapping({"/septic-record-brief-example", "/septic-record-brief-example/"})
     public String recordBriefExample(Model model) {
+        model.addAttribute("production", true);
         model.addAttribute("page", seoService.basicPage(
                 "Sample Septic Record Brief | Agency Permit & Layout | SepticPath",
                 "Review an anonymized completed septic record brief built from a real agency response, historical permit, and system drawing.",
@@ -841,6 +843,7 @@ public class SiteController {
             String closingRiskRequestId,
             String closingRiskSuccessSourceContext
     ) {
+        model.addAttribute("production", true);
         model.addAttribute("page", seoService.offerPrepFileCheckPage());
         model.addAttribute("offerPrepStates", offerPrepStates());
         model.addAttribute("priorityCountyRouteCount", offerPrepStates().stream()
@@ -858,7 +861,7 @@ public class SiteController {
                         || (closingRiskSuccessSourceContext != null && closingRiskSuccessSourceContext.contains("document_review")));
         model.addAttribute("closingRiskMinimumDeadline", LocalDate.now().toString());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
-        return "pages/offer-prep-septic-file-check";
+        return "studio/intake";
     }
 
     @GetMapping({"/embed/septic-record-finder", "/embed/septic-record-finder/"})
@@ -869,10 +872,12 @@ public class SiteController {
 
     @GetMapping({"/septic-bedroom-permit-checker", "/septic-bedroom-permit-checker/"})
     public String bedroomPermitChecker(Model model) {
+        model.addAttribute("production", true);
         model.addAttribute("page", seoService.bedroomPermitCheckerPage());
         model.addAttribute("states", researchDataService.getPublicStateProfiles());
+        model.addAttribute("guideStates", studioGuideStates(false));
         model.addAttribute("bedroomCheckerEmbedUrl", seoService.absoluteUrl("/embed/septic-bedroom-permit-checker/"));
-        return "pages/bedroom-permit-checker";
+        return "studio/bedroom-check";
     }
 
     @GetMapping({"/embed/septic-bedroom-permit-checker", "/embed/septic-bedroom-permit-checker/"})
@@ -1771,6 +1776,7 @@ The goal is to settle the permit path before we frame the project as a normal in
     public String calculator(
             @RequestParam(name = "state", required = false) String stateCode,
             @RequestParam(name = "projectType", required = false) String projectType,
+            @RequestParam(name = "mode", defaultValue = "cost") String calculatorMode,
             @RequestParam(name = "bedrooms", required = false) Integer bedrooms,
             @RequestParam(name = "recordsMode", defaultValue = "false") boolean recordsMode,
             @RequestParam(name = "recordSystemType", defaultValue = "") String recordSystemType,
@@ -1785,6 +1791,12 @@ The goal is to settle the permit path before we frame the project as a normal in
             Model model
     ) {
         EstimateForm estimateForm = new EstimateForm();
+        estimateForm.setCalculatorMode(normalizeCalculatorMode(calculatorMode));
+        if ("tank_size".equals(estimateForm.getCalculatorMode())) {
+            estimateForm.setProjectType(ProjectType.NEW_INSTALL.value());
+        } else if ("pump_schedule".equals(estimateForm.getCalculatorMode())) {
+            estimateForm.setProjectType(ProjectType.PUMPING.value());
+        }
         if (stateCode != null && usStateDirectoryService.findByCode(stateCode).isPresent()) {
             estimateForm.setStateCode(stateCode.toUpperCase(Locale.US));
         }
@@ -1810,50 +1822,76 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     @GetMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
-    public String tankSizeEstimator(
+    public ResponseEntity<Void> tankSizeEstimator(
             @RequestParam(name = "state", required = false) String stateCode,
             Model model
     ) {
-        TankSizeForm tankSizeForm = new TankSizeForm();
+        String location = "/septic-system-cost-calculator/?mode=tank_size";
         if (stateCode != null && researchDataService.findStateByCode(stateCode).filter(StateProfile::isPublished).isPresent()) {
-            tankSizeForm.setStateCode(stateCode.toUpperCase(Locale.US));
+            location += "&state=" + stateCode.toUpperCase(Locale.US);
         }
-        return renderTankSizeEstimator(model, tankSizeForm, null);
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header(HttpHeaders.LOCATION, location).build();
     }
 
     @PostMapping({"/septic-tank-size-estimator", "/septic-tank-size-estimator/"})
     public String calculateTankSize(@ModelAttribute TankSizeForm tankSizeForm, Model model) {
-        TankSizeEstimatorResult result = tankSizeEstimatorService.estimate(tankSizeForm);
-        return renderTankSizeEstimator(model, tankSizeForm, result);
+        EstimateForm estimateForm = new EstimateForm();
+        estimateForm.setCalculatorMode("tank_size");
+        estimateForm.setCalculationSubmitted(true);
+        estimateForm.setProjectType(ProjectType.NEW_INSTALL.value());
+        estimateForm.setStateCode(tankSizeForm.getStateCode());
+        estimateForm.setBedrooms(tankSizeForm.getBedrooms());
+        estimateForm.setGarbageDisposal(tankSizeForm.isGarbageDisposal());
+        estimateForm.setAdditionalKitchen(tankSizeForm.isAdditionalKitchen());
+        estimateForm.setOccupancyProfile(tankSizeForm.getOccupancyProfile());
+        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, true);
     }
 
     @GetMapping({"/septic-pump-schedule-estimator", "/septic-pump-schedule-estimator/"})
-    public String pumpScheduleEstimator(Model model) {
-        return renderPumpScheduleEstimator(model, new PumpScheduleForm(), null);
+    public ResponseEntity<Void> pumpScheduleEstimator(Model model) {
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
+                .header(HttpHeaders.LOCATION, "/septic-system-cost-calculator/?mode=pump_schedule")
+                .build();
     }
 
     @PostMapping({"/septic-pump-schedule-estimator", "/septic-pump-schedule-estimator/"})
     public String calculatePumpSchedule(@ModelAttribute PumpScheduleForm pumpScheduleForm, Model model) {
-        PumpScheduleResult result = pumpScheduleService.estimate(pumpScheduleForm);
-        return renderPumpScheduleEstimator(model, pumpScheduleForm, result);
+        EstimateForm estimateForm = new EstimateForm();
+        estimateForm.setCalculatorMode("pump_schedule");
+        estimateForm.setCalculationSubmitted(true);
+        estimateForm.setProjectType(ProjectType.PUMPING.value());
+        estimateForm.setTankSizeGallons(pumpScheduleForm.getTankSizeGallons());
+        estimateForm.setOccupants(pumpScheduleForm.getOccupants());
+        estimateForm.setGarbageDisposal(pumpScheduleForm.isGarbageDisposal());
+        estimateForm.setUsageProfile(pumpScheduleForm.getUsageProfile());
+        return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, true);
     }
 
     @GetMapping({"/drain-field-estimator", "/drain-field-estimator/"})
-    public String drainfieldEstimator(
+    public ResponseEntity<Void> drainfieldEstimator(
             @RequestParam(name = "state", required = false) String stateCode,
             Model model
     ) {
-        DrainfieldEstimatorForm drainfieldEstimatorForm = new DrainfieldEstimatorForm();
+        String location = "/septic-system-cost-calculator/?projectType=drainfield_replacement";
         if (stateCode != null && researchDataService.findStateByCode(stateCode).filter(StateProfile::isPublished).isPresent()) {
-            drainfieldEstimatorForm.setStateCode(stateCode.toUpperCase(Locale.US));
+            location += "&state=" + stateCode.toUpperCase(Locale.US);
         }
-        return renderDrainfieldEstimator(model, drainfieldEstimatorForm, null);
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY).header(HttpHeaders.LOCATION, location).build();
     }
 
     @PostMapping({"/drain-field-estimator", "/drain-field-estimator/"})
     public String calculateDrainfield(@ModelAttribute DrainfieldEstimatorForm drainfieldEstimatorForm, Model model) {
-        DrainfieldEstimatorResult result = drainfieldEstimatorService.estimate(drainfieldEstimatorForm);
-        return renderDrainfieldEstimator(model, drainfieldEstimatorForm, result);
+        EstimateForm estimateForm = new EstimateForm();
+        estimateForm.setStateCode(drainfieldEstimatorForm.getStateCode());
+        estimateForm.setProjectType(ProjectType.DRAINFIELD_REPLACEMENT.value());
+        estimateForm.setBedrooms(drainfieldEstimatorForm.getBedrooms());
+        estimateForm.setSoilPercStatus(drainfieldEstimatorForm.getSoilPercStatus());
+        estimateForm.setAccessDifficulty(drainfieldEstimatorForm.getAccessDifficulty());
+        estimateForm.setTimeline(drainfieldEstimatorForm.getTimeline());
+        estimateForm.setHighWaterTableOrShallowBedrock(drainfieldEstimatorForm.isWetGroundOrSurfacing());
+        estimateForm.setNoClearReplacementArea(drainfieldEstimatorForm.isNoClearReplacementArea());
+        DrainfieldEstimatorResult result = drainfieldEstimatorService.estimate(estimateForm);
+        return renderCalculator(model, estimateForm, result.estimate(), QuoteLeadForm.fromEstimateForm(estimateForm), null, false, true);
     }
 
     @PostMapping({"/septic-system-cost-calculator", "/septic-system-cost-calculator/"})
@@ -1865,8 +1903,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
             Model model
     ) {
-        if (estimateForm.getStateCode() == null
-                || usStateDirectoryService.findByCode(estimateForm.getStateCode()).isEmpty()) {
+        estimateForm.setCalculatorMode(normalizeCalculatorMode(estimateForm.getCalculatorMode()));
+        estimateForm.setCalculationSubmitted(true);
+        boolean pumpScheduleMode = "pump_schedule".equals(estimateForm.getCalculatorMode());
+        if (!pumpScheduleMode && (estimateForm.getStateCode() == null
+                || usStateDirectoryService.findByCode(estimateForm.getStateCode()).isEmpty())) {
             model.addAttribute("calculatorError", "Choose the property state before showing an estimate.");
             model.addAttribute("recordsMode", recordsMode);
             model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
@@ -1874,7 +1915,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
             return renderCalculator(model, estimateForm, null, QuoteLeadForm.fromEstimateForm(estimateForm), null, false, false);
         }
-        EstimatorResult result = estimatorService.estimate(estimateForm);
+        EstimatorResult result = pumpScheduleMode ? null : estimatorService.estimate(estimateForm);
         model.addAttribute("recordsMode", recordsMode);
         model.addAttribute("recordSystemType", boundedRecordContext(recordSystemType));
         model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
@@ -3184,16 +3225,42 @@ The goal is to settle the permit path before we frame the project as a normal in
             boolean quoteHasErrors,
             boolean showQuotePanel
     ) {
+        model.addAttribute("production", true);
+        boolean drainfieldMode = ProjectType.DRAINFIELD_REPLACEMENT.value().equals(estimateForm.getProjectType());
+        boolean tankSizeMode = "tank_size".equals(estimateForm.getCalculatorMode());
+        boolean pumpScheduleMode = "pump_schedule".equals(estimateForm.getCalculatorMode());
+        DrainfieldEstimatorResult drainfieldResult = null;
+        TankSizeEstimatorResult tankSizeResult = null;
+        PumpScheduleResult pumpScheduleResult = null;
+        if (result != null && drainfieldMode) {
+            drainfieldResult = drainfieldEstimatorService.estimate(estimateForm);
+            result = drainfieldResult.estimate();
+        }
+        if (estimateForm.isCalculationSubmitted() && tankSizeMode
+                && estimateForm.getStateCode() != null
+                && usStateDirectoryService.findByCode(estimateForm.getStateCode()).isPresent()) {
+            tankSizeResult = tankSizeEstimatorService.estimate(estimateForm);
+        }
+        if (estimateForm.isCalculationSubmitted() && pumpScheduleMode) {
+            pumpScheduleResult = pumpScheduleService.estimate(estimateForm);
+        }
         ContentPage calculatorLanding = researchDataService.findPublicContentPage("septic-system-cost-calculator")
                 .orElse(null);
         model.addAttribute("page", seoService.calculatorPage());
         model.addAttribute("states", calculatorStateOptions());
         model.addAttribute("estimateForm", estimateForm);
         model.addAttribute("result", result);
+        model.addAttribute("drainfieldMode", drainfieldMode);
+        model.addAttribute("drainfieldResult", drainfieldResult);
+        model.addAttribute("tankSizeMode", tankSizeMode);
+        model.addAttribute("tankSizeResult", tankSizeResult);
+        model.addAttribute("pumpScheduleMode", pumpScheduleMode);
+        model.addAttribute("pumpScheduleResult", pumpScheduleResult);
         model.addAttribute("quoteLeadForm", quoteLeadForm);
         model.addAttribute("leadId", leadId);
         model.addAttribute("quoteHasErrors", quoteHasErrors);
-        model.addAttribute("showQuotePanel", showQuotePanel || result != null || leadId != null || quoteHasErrors);
+        model.addAttribute("showQuotePanel", showQuotePanel || result != null || tankSizeResult != null
+                || pumpScheduleResult != null || leadId != null || quoteHasErrors);
         model.addAttribute("calculatorLanding", calculatorLanding);
         model.addAttribute("calculatorLandingLinks", calculatorLanding == null
                 ? List.of()
@@ -3201,13 +3268,45 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("costEvidence", result == null
                 ? List.of()
                 : costEvidenceViews(result.stateCode(), estimateForm.getProjectType()));
-        return "pages/calculator";
+        return "studio/calculator";
     }
 
     private List<StateOptionView> calculatorStateOptions() {
         return usStateDirectoryService.allStates().stream()
                 .map(state -> new StateOptionView(state.stateCode(), state.stateName()))
                 .toList();
+    }
+
+    private List<StudioPreviewController.GuideState> studioGuideStates(boolean requirePublishedState) {
+        return usStateDirectoryService.allStates().stream()
+                .map(state -> new StudioPreviewController.GuideState(
+                        state.stateCode(),
+                        state.stateName(),
+                        state.slug(),
+                        !requirePublishedState || researchDataService.findPublicStateBySlug(state.slug()).isPresent()
+                ))
+                .toList();
+    }
+
+    private List<StudioPreviewController.GuideState> studioRecordGuideStates() {
+        return usStateDirectoryService.allStates().stream()
+                .map(state -> new StudioPreviewController.GuideState(
+                        state.stateCode(),
+                        state.stateName(),
+                        state.slug(),
+                        researchDataService.findPublicStateMoneyPage("septic-records-checklist", state.slug()).isPresent()
+                ))
+                .toList();
+    }
+
+    private String studioStudyStateSlug(String contentSlug) {
+        return switch (contentSlug) {
+            case TX_OSSF_RECORDS_SLUG -> "texas";
+            case FL_OSTDS_LOOKUP_SLUG -> "florida";
+            case DHEC_PERMIT_LOOKUP_SLUG -> "south-carolina";
+            case NC_PERMIT_LOOKUP_SLUG -> "north-carolina";
+            default -> "tennessee";
+        };
     }
 
     private boolean isTrackableInternalPath(String path) {
@@ -3284,67 +3383,6 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "LCP", "CLS", "INP", "FCP", "TTFB" -> value <= 600_000;
             default -> false;
         };
-    }
-
-    private String renderTankSizeEstimator(Model model, TankSizeForm tankSizeForm, TankSizeEstimatorResult result) {
-        model.addAttribute("page", seoService.tankSizeEstimatorPage());
-        List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
-        StateProfile selectedState = researchDataService.findStateByCode(tankSizeForm.getStateCode())
-                .filter(StateProfile::isPublished)
-                .orElseGet(() -> preferredTankSizeState(publicStates));
-        model.addAttribute("states", publicStates);
-        model.addAttribute("tankSizeForm", tankSizeForm);
-        model.addAttribute("result", result);
-        model.addAttribute("selectedState", selectedState);
-        model.addAttribute("tankSizeFaqs", seoService.tankSizeEstimatorFaqs());
-        model.addAttribute("stateRuleFacts", selectedState == null ? List.of() : stateRuleFactViews(selectedState.stateCode()));
-        return "pages/tank-size-estimator";
-    }
-
-    private String renderDrainfieldEstimator(
-            Model model,
-            DrainfieldEstimatorForm drainfieldEstimatorForm,
-            DrainfieldEstimatorResult result
-    ) {
-        model.addAttribute("page", seoService.drainfieldEstimatorPage());
-        List<StateProfile> publicStates = researchDataService.getPublicStateProfiles();
-        StateProfile selectedState = researchDataService.findStateByCode(drainfieldEstimatorForm.getStateCode())
-                .filter(StateProfile::isPublished)
-                .orElseGet(() -> preferredTankSizeState(publicStates));
-        String selectedDrainfieldPagePath = "";
-        String selectedDrainfieldPageTitle = "";
-        if (selectedState != null) {
-            Optional<StateMoneyPage> drainfieldPage = researchDataService.findPublicStateMoneyPage("drain-field-replacement-cost", selectedState.slug());
-            if (drainfieldPage.isPresent()) {
-                selectedDrainfieldPagePath = drainfieldPage.get().path(selectedState.slug());
-                selectedDrainfieldPageTitle = drainfieldPage.get().title();
-            }
-        }
-        List<StateMoneyPageLink> drainfieldStateLinks = researchDataService.listPublicStateMoneyPagesForContent("drain-field-replacement-cost").stream()
-                .flatMap(page -> researchDataService.findStateByCode(page.stateCode())
-                        .filter(StateProfile::isPublished)
-                        .map(state -> new StateMoneyPageLink(page.title(), state.stateName(), state.stateCode(), page.path(state.slug())))
-                        .stream())
-                .limit(8)
-                .toList();
-        model.addAttribute("states", publicStates);
-        model.addAttribute("drainfieldEstimatorForm", drainfieldEstimatorForm);
-        model.addAttribute("result", result);
-        model.addAttribute("selectedState", selectedState);
-        model.addAttribute("drainfieldFaqs", seoService.drainfieldEstimatorFaqs());
-        model.addAttribute("drainfieldStateLinks", drainfieldStateLinks);
-        model.addAttribute("selectedDrainfieldPagePath", selectedDrainfieldPagePath);
-        model.addAttribute("selectedDrainfieldPageTitle", selectedDrainfieldPageTitle);
-        return "pages/drainfield-estimator";
-    }
-
-    private StateProfile preferredTankSizeState(List<StateProfile> publicStates) {
-        if (publicStates.isEmpty()) {
-            return null;
-        }
-        return researchDataService.findStateByCode("GA")
-                .filter(StateProfile::isPublished)
-                .orElse(publicStates.get(0));
     }
 
     private List<StateCoverageCardView> buildStateCoverageCards() {
@@ -3889,13 +3927,6 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
     }
 
-    private String renderPumpScheduleEstimator(Model model, PumpScheduleForm pumpScheduleForm, PumpScheduleResult result) {
-        model.addAttribute("page", seoService.pumpScheduleEstimatorPage());
-        model.addAttribute("pumpScheduleForm", pumpScheduleForm);
-        model.addAttribute("result", result);
-        return "pages/pump-schedule-estimator";
-    }
-
     private String renderSitePage(
             Model model,
             PageMeta page,
@@ -3948,9 +3979,9 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String calculatorPathForModule(String calculatorModule) {
         return switch (calculatorModule) {
-            case "tank_size_estimator" -> "/septic-tank-size-estimator/";
-            case "pump_schedule_estimator" -> "/septic-pump-schedule-estimator/";
-            case "drainfield_estimator" -> "/drain-field-estimator/";
+            case "tank_size_estimator" -> "/septic-system-cost-calculator/?mode=tank_size";
+            case "pump_schedule_estimator" -> "/septic-system-cost-calculator/?mode=pump_schedule";
+            case "drainfield_estimator" -> "/septic-system-cost-calculator/?projectType=drainfield_replacement";
             default -> "/septic-system-cost-calculator/";
         };
     }
@@ -3996,8 +4027,11 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String calculatorPathForContentPage(ContentPage contentPage, String sourcePage) {
         String modulePath = calculatorPathForModule(contentPage.calculatorModule());
-        if (!"/septic-system-cost-calculator/".equals(modulePath)) {
+        if (!modulePath.startsWith("/septic-system-cost-calculator/")) {
             return modulePath;
+        }
+        if (!"/septic-system-cost-calculator/".equals(modulePath)) {
+            return appendSourcePageHint(modulePath, sourcePage);
         }
         if (contentPage.calculatorProjectType() == null || contentPage.calculatorProjectType().isBlank()) {
             return appendSourcePageHint(modulePath, sourcePage);
@@ -4007,9 +4041,6 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String contentQuotePathForContentPage(ContentPage contentPage, String sourcePage) {
         String calculatorPath = calculatorPathForContentPage(contentPage, sourcePage);
-        if ("/drain-field-estimator/".equals(calculatorPath)) {
-            calculatorPath = appendSourcePageHint("/septic-system-cost-calculator/?projectType=drainfield_replacement", sourcePage);
-        }
         if (!calculatorPath.startsWith("/septic-system-cost-calculator/")) {
             return null;
         }
@@ -4060,8 +4091,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-permit-process" -> "Open a state permit page first.";
             case "septic-records-checklist" -> "Open a state records lookup first.";
             case TRANSFER_COMPLIANCE_SLUG -> "Open a state transfer page first.";
-            case "septic-tank-size" -> "Open the tank size estimator before you guess the minimum gallon band.";
-            case "septic-pumping-cost" -> "Open the pump schedule estimator before you assume a maintenance cadence.";
+            case "septic-tank-size" -> "Open the tank capacity mode before you guess the minimum gallon band.";
+            case "septic-pumping-cost" -> "Open the pump schedule mode before you assume a maintenance cadence.";
             default -> "Use the main estimator before you ask for quotes.";
         };
     }
@@ -4093,8 +4124,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "septic-permit-process" -> "Open state permit pages";
             case "septic-records-checklist" -> "Open state records lookup pages";
             case TRANSFER_COMPLIANCE_SLUG -> "Open state transfer pages";
-            case "septic-tank-size" -> "Open the tank size estimator";
-            case "septic-pumping-cost" -> "Open the pump schedule estimator";
+            case "septic-tank-size" -> "Open the tank capacity mode";
+            case "septic-pumping-cost" -> "Open the pump schedule mode";
             default -> "Open the main estimator";
         };
     }
@@ -7060,6 +7091,13 @@ The goal is to settle the permit path before we frame the project as a normal in
             Map<String, List<String>> queryParams = uri.getQueryParams();
             String stateCode = queryParams.getOrDefault("state", List.of()).stream().findFirst().orElse(null);
             String projectType = queryParams.getOrDefault("projectType", List.of()).stream().findFirst().orElse(null);
+            String calculatorMode = queryParams.getOrDefault("mode", List.of()).stream().findFirst().orElse(null);
+            if ("tank_size".equals(calculatorMode)) {
+                return Optional.of("Septic tank capacity mode");
+            }
+            if ("pump_schedule".equals(calculatorMode)) {
+                return Optional.of("Septic pumping schedule mode");
+            }
             Optional<StateProfile> state = researchDataService.findStateByCode(stateCode);
             if (state.isPresent() && projectType != null) {
                 return Optional.of(state.get().stateName() + " " + projectTypeLabel(projectType) + " estimate");
@@ -7389,9 +7427,16 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private boolean supportsStateAwareTool(ContentPage contentPage) {
-        return switch (calculatorPathForModule(contentPage.calculatorModule())) {
-            case "/septic-system-cost-calculator/", "/septic-tank-size-estimator/", "/drain-field-estimator/" -> true;
-            default -> false;
+        String path = calculatorPathForModule(contentPage.calculatorModule());
+        return path.startsWith("/septic-system-cost-calculator/")
+                || path.startsWith("/septic-tank-size-estimator/");
+    }
+
+    private String normalizeCalculatorMode(String value) {
+        return switch (value == null ? "" : value.trim().toLowerCase(Locale.US)) {
+            case "tank_size" -> "tank_size";
+            case "pump_schedule" -> "pump_schedule";
+            default -> "cost";
         };
     }
 

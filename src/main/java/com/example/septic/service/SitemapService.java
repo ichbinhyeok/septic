@@ -86,9 +86,6 @@ public class SitemapService {
         List<SitemapEntry> entries = new ArrayList<>();
         entries.add(entry(seoService.absoluteUrl("/"), materialRevision("/")));
         entries.add(entry(seoService.absoluteUrl("/septic-system-cost-calculator/"), ""));
-        entries.add(entry(seoService.absoluteUrl("/septic-tank-size-estimator/"), ""));
-        entries.add(entry(seoService.absoluteUrl("/septic-pump-schedule-estimator/"), ""));
-        entries.add(entry(seoService.absoluteUrl("/drain-field-estimator/"), ""));
         seoService.staticPagePaths().stream()
                 .map(path -> entry(seoService.absoluteUrl(path), materialRevision(path)))
                 .forEach(entries::add);

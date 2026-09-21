@@ -1,0 +1,25 @@
+(() => {
+  const checks = [], check = (name, pass) => checks.push({name, pass:Boolean(pass)});
+  const search = document.querySelector('#county-search'), state = document.querySelector('[data-directory-state]');
+  const visible = () => [...document.querySelectorAll('[data-county-name]')].filter(row=>!row.hidden);
+  const input = value => {search.value=value;search.dispatchEvent(new Event('input',{bubbles:true}));};
+  check('one h1 and no overflow', document.querySelectorAll('h1').length===1 && document.documentElement.scrollWidth<=innerWidth);
+  check('preview noindex', document.querySelector('meta[name=robots]').content.includes('noindex'));
+  check('6 initial rows', visible().length===6);
+  document.querySelector('[data-directory-more]').click();
+  check('show more reveals rows', visible().length===30);
+  input('morgan');
+  check('county search', visible().some(row=>row.dataset.countyName==='Morgan County'));
+  input('TN');
+  check('state abbreviation search', visible().length>0 && visible().every(row=>row.dataset.countyCode==='TN'));
+  input('');
+  state.value='WI';state.dispatchEvent(new Event('change',{bubbles:true}));
+  check('state filter', visible().length>0 && visible().every(row=>row.dataset.countyCode==='WI'));
+  input('St. Croix');
+  check('punctuation normalized', visible().length===1 && visible()[0].querySelector('a').pathname.endsWith('/wisconsin/st-croix-county/'));
+  input('no-such-county-123');
+  check('empty fallback', !document.querySelector('[data-directory-empty]').hidden);
+  state.value='';input('');
+  check('hero image loaded', document.querySelector('.directory-hero>img').naturalWidth>0);
+  return {checks,failures:checks.filter(c=>!c.pass)};
+})();

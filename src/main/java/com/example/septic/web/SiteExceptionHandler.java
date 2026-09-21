@@ -34,11 +34,18 @@ public class SiteExceptionHandler {
         model.addAttribute("page", seoService.notFound(exception.getMessage()));
         model.addAttribute("message", exception.getMessage());
         model.addAttribute("relatedLinks", relatedLinks(exception.missingPath()));
+        model.addAttribute("statusCode", HttpStatus.NOT_FOUND.value());
+        model.addAttribute("requestPath", exception.missingPath());
         return "pages/not-found";
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public Object handleMaxUploadSizeExceeded(HttpServletRequest request) {
+        if ("/design-preview/studio/intake/".equals(request.getRequestURI())) {
+            boolean review = "mode=review".equals(request.getQueryString());
+            return "redirect:/design-preview/studio/intake/?uploadError=too_large"
+                    + (review ? "&mode=review" : "") + "#intake-form";
+        }
         if (request.getRequestURI().startsWith("/offer-prep-septic-file-check")) {
             return "redirect:/offer-prep-septic-file-check/?mode=review&uploadError=too_large#record-help";
         }
@@ -68,16 +75,16 @@ public class SiteExceptionHandler {
                     .ifPresent(state -> addLink(links, new PageLink(state.stateName() + " coverage status", "/septic-system-cost-calculator/" + state.slug() + "/", "Check whether this state already has a live or queued guide.")));
         }
 
-        addLink(links, new PageLink("Drain field estimator", "/drain-field-estimator/", "Use this when the missing page was related to reserve area, wet yard, or drain field failure."));
+        addLink(links, new PageLink("Drain field scope estimator", "/septic-system-cost-calculator/?projectType=drainfield_replacement", "Use this when the missing page was related to reserve area, wet yard, or drain field failure."));
         addLink(links, new PageLink("Records lookup", "/septic-records-checklist/", "Use this when you need the file path before you trust any estimate or quote."));
-        return new ArrayList<>(links.values()).subList(0, Math.min(links.size(), 5));
+        return new ArrayList<>(links.values()).subList(0, Math.min(links.size(), 3));
     }
 
     private void addIntentLinks(LinkedHashMap<String, PageLink> links, String normalizedPath, String contentSlug) {
         String haystack = (normalizedPath + " " + (contentSlug == null ? "" : contentSlug)).toLowerCase();
 
         if (containsAny(haystack, "drain", "wet-yard", "wet", "reserve", "field")) {
-            addLink(links, new PageLink("Drain field estimator", "/drain-field-estimator/", "Use the field-specific estimator when the missing path was about wet yard, reserve area, or drain field failure."));
+            addLink(links, new PageLink("Drain field scope estimator", "/septic-system-cost-calculator/?projectType=drainfield_replacement", "Use the field mode when the missing path was about wet yard, reserve area, or drain field failure."));
             addLink(links, new PageLink("Wet Yard Over Septic Drain Field", "/wet-yard-over-septic-drain-field/", "Open the symptom-first guide when the user started from soggy ground, seepage, or odor."));
             addLink(links, new PageLink("Septic Replacement Area Guide", "/septic-replacement-area/", "Use this when reserve-area or layout viability is the real blocker."));
         }
@@ -104,7 +111,7 @@ public class SiteExceptionHandler {
         }
 
         if (containsAny(haystack, "tank", "gallon", "size")) {
-            addLink(links, new PageLink("Tank size estimator", "/septic-tank-size-estimator/", "Use the tank estimator when gallon band is the only open question."));
+            addLink(links, new PageLink("Tank capacity mode", "/septic-system-cost-calculator/?mode=tank_size", "Use the capacity mode when gallon band is the only open question."));
         }
     }
 

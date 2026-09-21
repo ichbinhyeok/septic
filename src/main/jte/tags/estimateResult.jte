@@ -1,5 +1,7 @@
 @import com.example.septic.service.EstimatorResult
+@import com.example.septic.service.DrainfieldEstimatorResult
 @param EstimatorResult result
+@param DrainfieldEstimatorResult drainfieldResult = null
 @param java.util.List<com.example.septic.web.CostEvidenceView> costEvidence = java.util.List.of()
 
 <section class="result-panel" id="result-top">
@@ -135,11 +137,18 @@
         </div>
     </article>
 
+    @if (drainfieldResult != null)
+        <section class="detail-grid" aria-label="Drain field outlook">
+            <article class="detail-card detail-card--accent"><span class="eyebrow">Field outlook</span><h3>${drainfieldResult.fieldOutlookLabel()}</h3><p>${drainfieldResult.fieldRiskNote()}</p></article>
+            <article class="detail-card"><span class="eyebrow">Primary constraint</span><h3>${drainfieldResult.redesignRiskLabel()}</h3><p>${drainfieldResult.replacementAreaNote()}</p></article>
+        </section>
+    @endif
+
     @if (result.projectTypeLabel() != null && result.projectTypeLabel().startsWith("Drain field"))
         <article class="trust-box">
             <span class="trust-box__label">Field-specific next move</span>
-            <p>If the field is clearly the main issue, use the dedicated drain field estimator to pressure-test redesign risk, replacement-area limits, and field-only versus whole-system scope.</p>
-            <a href="/drain-field-estimator/?state=${result.stateCode()}">Open the drain field estimator</a>
+            <p>This estimate already includes the field-specific soil, saturation, access, and replacement-area path. Refine those inputs above before comparing local scopes.</p>
+            <a href="#cost-estimator-form">Refine the field scope</a>
         </article>
     @endif
 
