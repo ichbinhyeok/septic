@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.21.0 - 2026-09-22
+
+### Added
+
+- Added institution-led septic record desks for Alabama, Arkansas, Maine, New Hampshire, Oregon, Vermont, and Virginia with property-first jurisdiction resolution, official routes, recovery guidance, and request wording.
+- Added verified custody branches for local-program exceptions, historical archives, requester eligibility, delegated municipalities, and Oregon's 2025 record transition.
+- Added lightweight, privacy-reviewed document previews and an institution directory on the official lookup tools page.
+
+### Changed
+
+- Reframed the South Carolina SCDES page around the research service while preserving the complete self-serve search and request workflow.
+- Updated institution-focused titles and descriptions to better match searches for NHDES, VDH, HHE-200, ADPH, ADH, Oregon DEQ, and Vermont DEC records.
+- Reduced evidence-preview payloads by serving WebP thumbnails while keeping full redacted documents available for inspection.
+
 ## 0.0.20.1 - 2026-09-22
 
 ### Changed
