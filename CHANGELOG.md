@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.19.1 - 2026-09-21
+
+### Changed
+
+- Clarified the homepage promise around official septic-record research while preserving self-serve state, county, and completed-case discovery paths in a compact disclosure.
+- Reduced duplicate homepage and county-index sections so the main service path, evidence, and request action remain visually dominant.
+- Improved recurring navigation, disclosure, and workflow controls to meet the 44-pixel minimum touch-target standard.
+
+### Fixed
+
+- Corrected footer navigation labels so they no longer inflate page heading hierarchy.
+- Removed unnecessary CSS specificity overrides from the compact research-library presentation.
+
 ## 0.0.19.0 - 2026-09-21
 
 ### Added
