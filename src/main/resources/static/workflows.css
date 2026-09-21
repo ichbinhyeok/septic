@@ -124,7 +124,7 @@
   .record-finder__route-details { margin-top: 18px; border-top: 1px solid var(--line); }
   .record-finder__route-details > summary { padding: 14px 0; font-weight: 700; }
   .record-finder__outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
-  .record-finder__outcomes button { min-height: 42px; border: 1px solid var(--line-dark); background: var(--surface); }
+  .record-finder__outcomes button { min-height: 44px; border: 1px solid var(--line-dark); background: var(--surface); }
   .record-finder__outcomes button:hover { border-color: var(--accent); color: var(--accent-dark); }
   .record-finder__outcomes button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-pale); color: var(--accent-dark); font-weight: 700; }
   .record-finder__return--resolved .record-finder__outcomes { grid-template-columns: minmax(0, 360px); }
@@ -188,7 +188,7 @@
 
   .quick-link-strip, .hero-county-launchpad, .county-command-bar, .section-jump-strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
   .quick-link-strip__label, .section-jump-strip__label { margin-right: 6px; color: var(--muted); }
-  .quick-link-strip .button { min-height: 38px; padding: 8px 11px; font-size: .74rem; }
+  .quick-link-strip .button { min-height: 44px; padding: 8px 11px; font-size: .74rem; }
 
   .sticky-mobile-cta { display: none; }
 }
