@@ -164,7 +164,7 @@ public class ClosingRiskNotificationService {
 
                 Start by identifying the likely public-record owner and exact file to request. If the process stage is buyer, seller, agent, or other and a deadline or conflict is present, qualify the request for a deeper closing-risk follow-up.
 
-                The requester consented to operator review, email follow-up, and the disclosed local-professional matching terms when field work may help. Matching may share name, email, optional mobile number, property address, and service need with up to three relevant local septic professionals. A supplied mobile number authorizes manual calls or service-specific texts about this request, but not automated or prerecorded marketing, unrelated solicitations, or onward resale. This is record-path help, not an inspection or compliance certification.
+                The requester consented to operator review, email follow-up, and the disclosed local-professional matching terms when field work may help. Matching may share name, email, optional mobile number, property address, and service need with relevant local septic professionals. A supplied mobile number authorizes manual calls or service-specific texts about this request, but not automated or prerecorded marketing, unrelated solicitations, or resale for unrelated marketing. Some participating professionals may compensate SepticPath for an introduction. This is record-path help, not an inspection or compliance certification.
                 """.formatted(
                 requestId,
                 safeLine(form.getSourceContext()),

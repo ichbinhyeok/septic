@@ -79,8 +79,8 @@ class QaRecordIntentHandoffRegressionTest {
                     .getFirstSelectedOption().getAttribute("value")).isEqualTo("TN");
             assertThat(driver.findElement(By.name("countyName")).getAttribute("value"))
                     .isEqualTo("Knox County");
-            assertThat(new Select(driver.findElement(By.name("recordType")))
-                    .getFirstSelectedOption().getAttribute("value")).isEqualTo("septic");
+            assertThat(driver.findElement(By.name("recordType")).getAttribute("value"))
+                    .isEqualTo("septic");
             assertThat(new Select(driver.findElement(By.name("researchGoal")))
                     .getFirstSelectedOption().getAttribute("value")).isEqualTo("design_capacity");
             assertThat(new Select(driver.findElement(By.name("recordStatus")))

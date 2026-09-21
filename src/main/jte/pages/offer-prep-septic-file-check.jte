@@ -225,6 +225,7 @@
                         <input type="hidden" name="sourceContext" value="${closingRiskCheckForm.getSourceContextValue()}" data-record-help-source-context>
                         <input type="hidden" name="sourcePageHint" value="${closingRiskCheckForm.getSourcePageHintValue()}" data-record-help-source-page>
                         <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
+                        <input type="hidden" name="recordType" value="septic">
                         <div class="record-help-form-intro">
                             <span class="eyebrow">Free to start · Optional $29 unlock</span>
                             <strong>${documentReviewMode ? "Give us the source file and the questions you need answered." : "Give us the address and the decision you need to make."}</strong>
@@ -270,14 +271,6 @@
                         <details class="closing-risk-optional" data-record-help-transaction-details>
                             <summary>Add details that may speed up the search <span>(optional)</span></summary>
                             <div class="field-grid">
-                                <label>
-                                    <span>Record type</span>
-                                    <select name="recordType">
-                                        <option value="septic" selected="${"septic".equals(closingRiskCheckForm.getRecordType())}">Septic system</option>
-                                        <option value="well" selected="${"well".equals(closingRiskCheckForm.getRecordType())}">Private well</option>
-                                        <option value="not_sure" selected="${"not_sure".equals(closingRiskCheckForm.getRecordType())}">Not sure</option>
-                                    </select>
-                                </label>
                                 <label>
                                     <span>What do you need to find out?</span>
                                     <select name="researchGoal" data-record-help-goal>
@@ -331,7 +324,7 @@
                                 <label>
                                     <span>Mobile number <small>(optional)</small></span>
                                     <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
-                                    <small>Only if you want us to use it for a time-sensitive question about this request.</small>
+                                    <small>Helpful for time-sensitive questions and local professional follow-up.</small>
                                 </label>
                                 <label>
                                     <span>County</span>
@@ -353,7 +346,7 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree that SepticPath may use these details to research this property, contact the responsible public office when needed, and email me about this request. Optional $29 unlock terms are below.</span>
+                            <span>I agree to the research, email contact, and terms below. When field work may help, SepticPath may share my request with relevant local professionals. Optional $29 unlock terms are below.</span>
                         </label>
                         <details class="record-help-consent-details">
                             <summary>Read research consent and pricing terms</summary>
