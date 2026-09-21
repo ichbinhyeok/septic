@@ -2776,6 +2776,21 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String countySeoHeading(CountyRecordsPage countyPage) {
+        String demandAlignedHeading = switch (countyPage.key()) {
+            case "NC::johnston-county" -> "Johnston County NC septic permit search and records";
+            case "NC::forsyth-county" -> "Forsyth County NC septic permit lookup and records";
+            case "NC::pender-county" -> "Pender County NC septic permit search and records";
+            case "NC::wake-county" -> "Wake County NC septic permit search and iMAPS records";
+            case "NC::pitt-county" -> "Pitt County NC septic permit search and records";
+            case "NC::buncombe-county" -> "Buncombe County NC septic permit lookup and Accela records";
+            case "NC::alamance-county" -> "Alamance County NC septic records and permit lookup";
+            case "WA::king-county" -> "King County septic system search and as-built records";
+            case "AZ::maricopa-county" -> "Maricopa County septic search and permit records";
+            default -> "";
+        };
+        if (!demandAlignedHeading.isBlank()) {
+            return demandAlignedHeading;
+        }
         CountyAccessProfileView accessProfile = CountyAccessProfileCatalog.find(countyPage.key());
         if (accessProfile != null) {
             return accessProfile.heading();
@@ -2785,9 +2800,6 @@ The goal is to settle the permit path before we frame the project as a normal in
         }
         if ("TN::blount-county".equals(countyPage.key())) {
             return "Blount County TN septic records and SSDS request";
-        }
-        if ("NC::alamance-county".equals(countyPage.key())) {
-            return "Alamance County NC septic permit lookup and records";
         }
         if ("MD::st-marys-county".equals(countyPage.key())) {
             return "St. Mary's County septic records request";

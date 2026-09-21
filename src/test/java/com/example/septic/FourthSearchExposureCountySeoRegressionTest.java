@@ -25,7 +25,7 @@ class FourthSearchExposureCountySeoRegressionTest {
         Map<String, String> expectedTitles = Map.of(
                 "/septic-records-checklist/north-carolina/buncombe-county/", "Buncombe County NC Septic Permit Lookup and Accela Records",
                 "/septic-records-checklist/north-carolina/wake-county/", "Wake County NC Septic Permit Search and iMAPS Records",
-                "/septic-records-checklist/north-carolina/union-county/", "Union County NC Septic Permit Lookup &amp; Records Request",
+                "/septic-records-checklist/north-carolina/union-county/", "Union County NC Septic Permit Search | Existing Records",
                 "/septic-records-checklist/north-carolina/pitt-county/", "Pitt County NC Septic Permit Search and Authorization to Construct",
                 "/septic-records-checklist/north-carolina/pender-county/", "Pender County NC Septic Permit Search &amp; Records"
         );

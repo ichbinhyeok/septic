@@ -26,14 +26,16 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("TDEC viewer not working? We can investigate the record for you.")))
+                .andExpect(content().string(containsString("TDEC search failed or came back empty?")))
+                .andExpect(content().string(containsString("Send the address.")))
+                .andExpect(content().string(containsString("We chase the record.")))
                 .andExpect(content().string(containsString("Choose the property county")))
-                .andExpect(content().string(containsString("Ask SepticPath to investigate")))
+                .andExpect(content().string(containsString("Ask SepticPath to investigate my property")))
                 .andExpect(content().string(containsString("Try the official viewer anyway")))
                 .andExpect(content().string(containsString("Viewer status:")))
                 .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html")))
                 .andExpect(content().string(containsString("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175")))
-                .andExpect(content().string(containsString("We can research and request available records")))
+                .andExpect(content().string(containsString("Research and agency requests are free. Optional $29 result unlock")))
                 .andExpect(content().string(containsString("data-contract-county=\"true\"")))
                 .andExpect(content().string(containsString("data-tdec-outcome=\"blocked\"")))
                 .andExpect(content().string(not(containsString("403 Help"))))
@@ -140,13 +142,28 @@ class OfficialRecordsWorkflowRegressionTest {
     void northCarolinaCountyTitlesMatchObservedPermitSearchIntent() throws Exception {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/forsyth-county/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Forsyth County NC Septic Permit Lookup &amp; Records | SepticPath</title>")));
+                .andExpect(content().string(containsString("<title>Forsyth County NC Septic Permit Lookup &amp; Records | SepticPath</title>")))
+                .andExpect(content().string(containsString("<h1 id=\"premium-county-title\" class=\"county-records-page__search-title\">Forsyth County NC septic permit lookup and records</h1>")));
         mockMvc.perform(get("/septic-records-checklist/north-carolina/pender-county/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Pender County NC Septic Permit Search &amp; Records | SepticPath</title>")));
+                .andExpect(content().string(containsString("<title>Pender County NC Septic Permit Search &amp; Records | SepticPath</title>")))
+                .andExpect(content().string(containsString("Pender County NC septic permit search and records</h1>")));
         mockMvc.perform(get("/septic-records-checklist/north-carolina/alamance-county/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Alamance County NC Septic Records &amp; Permit Lookup | SepticPath</title>")));
+                .andExpect(content().string(containsString("<title>Alamance County NC Septic Records &amp; Permit Lookup | SepticPath</title>")))
+                .andExpect(content().string(containsString("Alamance County NC septic records and permit lookup</h1>")));
+    }
+
+    @Test
+    void additionalCountyPagesMatchObservedSystemSearchIntentWithoutAddingDuplicates() throws Exception {
+        mockMvc.perform(get("/septic-records-checklist/washington/king-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>King County Septic System Search &amp; As-Built Records | SepticPath</title>")))
+                .andExpect(content().string(containsString("King County septic system search and as-built records</h1>")))
+                .andExpect(content().string(containsString("<link rel=\"canonical\" href=\"https://example.test/septic-records-checklist/washington/king-county/\">")));
+        mockMvc.perform(get("/septic-records-checklist/arizona/maricopa-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Maricopa County septic search and permit records</h1>")));
     }
 
     @Test
@@ -157,6 +174,15 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("If you get a 403, no record, or the wrong address")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost: $300-$2,700 + County Fees</title>")));
+        mockMvc.perform(get("/texas-ossf-records-search/"))
+                .andExpect(content().string(containsString("<title>Texas OSSF Permit Search by Address | Local Records</title>")))
+                .andExpect(content().string(containsString("identify the local permitting authority")));
+        mockMvc.perform(get("/septic-records-checklist/new-hampshire/"))
+                .andExpect(content().string(containsString("<title>NH Septic Permit Lookup | NHDES OneStop &amp; Plans</title>")));
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/union-county/"))
+                .andExpect(content().string(containsString("<title>Union County NC Septic Permit Search | Existing Records | SepticPath</title>")));
+        mockMvc.perform(get("/septic-records-checklist/tennessee/wilson-county/"))
+                .andExpect(content().string(containsString("<title>Wilson County TN Septic Permit Search | TDEC Records | SepticPath</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/georgia/"))
                 .andExpect(content().string(containsString("<title>Georgia Septic Permit Cost &amp; County Records | SepticPath</title>")));
         mockMvc.perform(get("/septic-system-cost-calculator/alaska/"))
