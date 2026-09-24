@@ -15,7 +15,18 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - ".github/workflows/deploy.yml"
   workflow_dispatch:
+    inputs:
+      operation:
+        description: Production operation to run
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - reset-ops-password
 
 permissions:
   contents: read
@@ -28,7 +39,71 @@ env:
   IMAGE_NAME: shinhyeok22/septic
 
 jobs:
+  reset-ops-password:
+    if: github.event_name == 'workflow_dispatch' && inputs.operation == 'reset-ops-password'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Require the replacement password
+        env:
+          APP_OPS_PASSWORD: ${{ secrets.APP_OPS_PASSWORD }}
+        run: |
+          if [ -z "${APP_OPS_PASSWORD}" ]; then
+            echo "APP_OPS_PASSWORD is not configured"
+            exit 1
+          fi
+          if ! printf '%s' "${APP_OPS_PASSWORD}" | grep -Eq '^[A-Za-z0-9_-]{32,128}$'; then
+            echo "APP_OPS_PASSWORD must be a 32-128 character URL-safe secret"
+            exit 1
+          fi
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Replace operations password and restart the app
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+          APP_OPS_PASSWORD: ${{ secrets.APP_OPS_PASSWORD }}
+        run: |
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' <<EOF
+          set -euo pipefail
+          DEPLOY_DIR="\$HOME/deploy/septic"
+          CREDENTIALS_FILE="\$DEPLOY_DIR/storage/ops-report-credentials.properties"
+          test -d "\$DEPLOY_DIR/storage"
+          umask 077
+          printf 'username=ops\npassword=%s\n' "${APP_OPS_PASSWORD}" > "\$CREDENTIALS_FILE"
+          chmod 600 "\$CREDENTIALS_FILE"
+          docker restart septic >/dev/null
+
+          for attempt in \$(seq 1 30); do
+            if curl -fsS -u "ops:${APP_OPS_PASSWORD}" \
+              -H 'Host: septicpath.com' \
+              -H 'X-Forwarded-Proto: https' \
+              -H 'X-Forwarded-Port: 443' \
+              http://127.0.0.1:8090/ops/event-report >/dev/null; then
+              echo "Operations access reset and verified"
+              exit 0
+            fi
+            sleep 2
+          done
+
+          echo "Application did not accept the replacement operations password"
+          docker logs --tail 100 septic
+          exit 1
+          EOF
+
   build-and-deploy:
+    if: github.event_name == 'push' || inputs.operation == 'deploy'
     runs-on: ubuntu-latest
 
     steps:
@@ -249,3 +324,4 @@ jobs:
             --sitemap https://septicpath.com/sitemap.xml \
             --previous-sitemap /tmp/septicpath-sitemap-county-before.xml \
             --sitemap https://septicpath.com/sitemap-county.xml
+
