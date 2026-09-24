@@ -1,0 +1,28 @@
+name: Temporary TDEC case 21 direct lookup
+
+on:
+  push:
+    branches:
+      - research/tdec-case21-online
+
+permissions:
+  contents: read
+
+jobs:
+  query-from-github-runner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run public TDEC search
+        env:
+          TDEC_OUTPUT: research-output
+        run: python3 tools/tdec_case21_research.py
+      - name: Upload research result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tdec-case21-direct
+          path: research-output
+          if-no-files-found: warn
+          retention-days: 1
