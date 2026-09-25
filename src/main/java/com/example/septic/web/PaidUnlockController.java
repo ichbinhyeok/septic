@@ -196,30 +196,38 @@ public class PaidUnlockController {
             @RequestParam String releaseApprovalJson,
             @RequestParam("package") MultipartFile packageFile
     ) throws IOException {
-        PaidUnlockStore.ReleaseApproval approval = objectMapper.readValue(
-                releaseApprovalJson,
-                PaidUnlockStore.ReleaseApproval.class
-        );
-        PaidUnlockStore.PreparedOffer prepared = store.createOffer(
-                new PaidUnlockStore.OfferInput(
-                        customerEmail,
-                        requestReference,
-                        propertyLabel,
-                        sourceSummary,
-                        documentScope,
-                        answerableQuestion,
-                        limitations
-                ),
-                packageFile.getOriginalFilename(),
-                packageFile.getBytes(),
-                approval
-        );
-        String previewUrl = siteProperties.baseUri().resolve("/unlock/" + prepared.publicToken()).toString();
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
-                "offerId", prepared.offer().id(),
-                "previewUrl", previewUrl,
-                "status", prepared.offer().status()
-        ));
+        try {
+            PaidUnlockStore.ReleaseApproval approval = objectMapper.readValue(
+                    releaseApprovalJson,
+                    PaidUnlockStore.ReleaseApproval.class
+            );
+            PaidUnlockStore.PreparedOffer prepared = store.createOffer(
+                    new PaidUnlockStore.OfferInput(
+                            customerEmail,
+                            requestReference,
+                            propertyLabel,
+                            sourceSummary,
+                            documentScope,
+                            answerableQuestion,
+                            limitations
+                    ),
+                    packageFile.getOriginalFilename(),
+                    packageFile.getBytes(),
+                    approval
+            );
+            String previewUrl = siteProperties.baseUri().resolve("/unlock/" + prepared.publicToken()).toString();
+            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+                    "offerId", prepared.offer().id(),
+                    "previewUrl", previewUrl,
+                    "status", prepared.offer().status()
+            ));
+        } catch (IOException exception) {
+            LOGGER.error("Failed to create paid unlock for request {}", requestReference, exception);
+            throw exception;
+        } catch (RuntimeException exception) {
+            LOGGER.error("Failed to create paid unlock for request {}", requestReference, exception);
+            throw exception;
+        }
     }
 
     private boolean deliverOrAlert(PaidUnlockStore.Fulfillment fulfillment) {
