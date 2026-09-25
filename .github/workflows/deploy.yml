@@ -70,7 +70,7 @@ jobs:
           echo "STORAGE"
           find "$DEPLOY_DIR/storage/paid-unlocks" -maxdepth 2 -printf '%M %u:%g %s %p\n' 2>/dev/null | tail -n 40 || true
           echo "RECENT_LOGS"
-          docker logs --since 45m septic 2>&1 | tail -n 240
+          docker logs --tail 600 septic 2>&1
           EOF
 
   reset-ops-password:
