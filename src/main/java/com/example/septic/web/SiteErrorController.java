@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.webmvc.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SiteErrorController implements ErrorController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SiteErrorController.class);
     private final SeoService seoService;
     private final ResearchDataService researchDataService;
     private final UsStateDirectoryService usStateDirectoryService;
@@ -32,6 +35,12 @@ public class SiteErrorController implements ErrorController {
     public String handleError(HttpServletRequest request, Model model) {
         int statusCode = statusCode(request);
         String missingPath = requestPath(request);
+        Object error = request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+        if (error instanceof Throwable throwable) {
+            LOGGER.error("Request failed with status {} for {}", statusCode, missingPath, throwable);
+        } else if (statusCode >= HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+            LOGGER.error("Request failed with status {} for {} without a captured exception", statusCode, missingPath);
+        }
         String message = statusCode == HttpStatus.NOT_FOUND.value()
                 ? "That page is not live. Use the closest records, permit, estimator, or state path below instead."
                 : "This page could not be loaded. Use the closest working path below while the issue is reviewed.";
