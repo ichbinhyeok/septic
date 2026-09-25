@@ -32,8 +32,16 @@ jobs:
           set -euo pipefail
           work_dir="$(mktemp -d)"
           trap 'rm -rf "$work_dir"' EXIT
-          curl -fsSkL -D "$work_dir/home.headers" -o "$work_dir/home.html" https://washingtonin.wthgis.com/
-          curl -fsSkL -D "$work_dir/robots.headers" -o "$work_dir/robots.txt" https://washingtonin.wthgis.com/robots.txt || true
+          cookie_jar="$work_dir/cookies.txt"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -D "$work_dir/home.headers" -o "$work_dir/home.html" https://washingtonin.wthgis.com/
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -D "$work_dir/robots.headers" -o "$work_dir/robots.txt" https://washingtonin.wthgis.com/robots.txt || true
+          base='https://washingtonin.wthgis.com/tgis/custom.aspx?DSID=197'
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/custom-search-form.html" "${base}&RequestType=CustomSearchForm&FormType=BasicParcels"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-address.html" "${base}&RequestType=CustomSearchRequest&SearchType=Address&SearchCriteria=10075%20E%20BLUE%20RIVER%20RD"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-state-parcel.html" "${base}&RequestType=CustomSearchRequest&SearchType=ParcelState&SearchCriteria=88-15-12-000-010.001-015"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-state-parcel-plain.html" "${base}&RequestType=CustomSearchRequest&SearchType=ParcelState&SearchCriteria=881512000010001015"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-county-parcel.html" "${base}&RequestType=CustomSearchRequest&SearchType=ParcelCounty&SearchCriteria=19-12-300-010.001-10"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-name.html" "${base}&RequestType=CustomSearchRequest&SearchType=Name&SearchCriteria=FARNSLEY%7C"
           python3 - "$work_dir" <<'PY'
           import html
           import re
