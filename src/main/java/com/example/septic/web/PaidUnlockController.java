@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -229,6 +230,49 @@ public class PaidUnlockController {
             throw exception;
         }
     }
+
+    @PostMapping(value = "/ops/paid-unlocks/json", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> createOfferFromJson(@RequestBody JsonOfferRequest request) {
+        try {
+            PaidUnlockStore.PreparedOffer prepared = store.createOffer(
+                    new PaidUnlockStore.OfferInput(
+                            request.customerEmail(),
+                            request.requestReference(),
+                            request.propertyLabel(),
+                            request.sourceSummary(),
+                            request.documentScope(),
+                            request.answerableQuestion(),
+                            request.limitations()
+                    ),
+                    request.packageFileName(),
+                    Base64.getDecoder().decode(request.packageBase64()),
+                    request.releaseApproval()
+            );
+            String previewUrl = siteProperties.baseUri().resolve("/unlock/" + prepared.publicToken()).toString();
+            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+                    "offerId", prepared.offer().id(),
+                    "previewUrl", previewUrl,
+                    "status", prepared.offer().status()
+            ));
+        } catch (RuntimeException exception) {
+            LOGGER.error("Failed to create paid unlock from JSON for request {}", request.requestReference(), exception);
+            throw exception;
+        }
+    }
+
+    public record JsonOfferRequest(
+            String customerEmail,
+            String requestReference,
+            String propertyLabel,
+            String sourceSummary,
+            String documentScope,
+            String answerableQuestion,
+            String limitations,
+            String packageFileName,
+            String packageBase64,
+            PaidUnlockStore.ReleaseApproval releaseApproval
+    ) {}
 
     private boolean deliverOrAlert(PaidUnlockStore.Fulfillment fulfillment) {
         if (!fulfillment.newlyCreated()) {
