@@ -1,0 +1,58 @@
+name: Temporary OCI Knox parcel fetch
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Fetch Knox County parcel sources from OCI
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+        run: |
+          mkdir -p artifact
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' > artifact/oci-knox-parcel.tar.gz <<'REMOTE'
+          set -euo pipefail
+          work_dir="$(mktemp -d)"
+          trap 'rm -rf "$work_dir"' EXIT
+          agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          fetch() {
+            local name="$1"
+            local url="$2"
+            curl -fsSkL --max-time 45 -A "$agent" -D "$work_dir/$name.headers" -o "$work_dir/$name.body" "$url" || true
+          }
+          fetch parcelreports 'https://www.kgis.org/parcelreports/'
+          fetch kgis-home 'https://www.kgis.org/'
+          fetch kgis-portal 'https://www.kgis.org/Portal/Default.aspx?portalid=0'
+          fetch kgis-maps 'https://www.kgis.org/kgismaps/'
+          fetch propertyinfo 'https://propertyinfo.knoxcountytn.gov/'
+          fetch property-lookup 'https://property.knoxcounty.org/'
+          fetch parcel-query 'https://www.kgis.org/parcelreports/?parcelid=031%20%2009602'
+          tar -C "$work_dir" -czf - .
+          REMOTE
+          test -s artifact/oci-knox-parcel.tar.gz
+
+      - name: Upload fetched files
+        uses: actions/upload-artifact@v4
+        with:
+          name: oci-knox-parcel
+          path: artifact/oci-knox-parcel.tar.gz
+          retention-days: 1
+          if-no-files-found: error
