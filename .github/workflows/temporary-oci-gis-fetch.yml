@@ -72,6 +72,10 @@ jobs:
               --data-urlencode "S=$query" --data-urlencode "M=$map_id" --data-urlencode "U=$(date +%s)" --data-urlencode 'redir=1' \
               -o "$work_dir/generic-$query_name.xml" "https://washingtonin.wthgis.com/tgis/search.aspx"
           done
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -D "$work_dir/property-card.headers" \
+            -o "$work_dir/property-card.bin" \
+            'https://washingtonin.wthgis.com/tgis/custom.aspx?DSID=197&RequestType=PropertyRecordCard&FeatureID=11230'
+          file "$work_dir/property-card.bin" > "$work_dir/property-card.filetype.txt"
           python3 - "$work_dir" <<'PY'
           import html
           import re
