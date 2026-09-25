@@ -71,6 +71,10 @@ jobs:
           find "$DEPLOY_DIR/storage/paid-unlocks" -maxdepth 2 -printf '%M %u:%g %s %p\n' 2>/dev/null | tail -n 40 || true
           echo "RECENT_LOGS"
           docker logs --tail 600 septic 2>&1
+          echo "NGINX_ACCESS"
+          sudo tail -n 120 /var/log/nginx/access.log 2>/dev/null || true
+          echo "NGINX_ERROR"
+          sudo tail -n 120 /var/log/nginx/error.log 2>/dev/null || true
           EOF
 
   reset-ops-password:
