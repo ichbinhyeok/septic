@@ -1,0 +1,76 @@
+name: Temporary OCI GIS fetch
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Fetch Washington County GIS from OCI
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+        run: |
+          mkdir -p artifact
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' > artifact/oci-washington-in-gis.tar.gz <<'REMOTE'
+          set -euo pipefail
+          work_dir="$(mktemp -d)"
+          trap 'rm -rf "$work_dir"' EXIT
+          curl -fsSkL -D "$work_dir/home.headers" -o "$work_dir/home.html" https://washingtonin.wthgis.com/
+          curl -fsSkL -D "$work_dir/robots.headers" -o "$work_dir/robots.txt" https://washingtonin.wthgis.com/robots.txt || true
+          python3 - "$work_dir" <<'PY'
+          import html
+          import re
+          import ssl
+          import sys
+          import urllib.parse
+          import urllib.request
+          from pathlib import Path
+
+          target = Path(sys.argv[1])
+          root = "https://washingtonin.wthgis.com/"
+          page = (target / "home.html").read_text(errors="replace")
+          refs = set(re.findall(r'''(?:src|href)=["']([^"']+)["']''', page, flags=re.I))
+          ctx = ssl._create_unverified_context()
+          for ref in sorted(refs):
+              ref = html.unescape(ref)
+              url = urllib.parse.urljoin(root, ref)
+              parsed = urllib.parse.urlparse(url)
+              if parsed.netloc.lower() != "washingtonin.wthgis.com":
+                  continue
+              if not any(parsed.path.lower().endswith(ext) for ext in (".js", ".css", ".json")):
+                  continue
+              name = re.sub(r"[^A-Za-z0-9._-]+", "_", parsed.path.strip("/") or "root")
+              try:
+                  with urllib.request.urlopen(url, context=ctx, timeout=30) as response:
+                      (target / name).write_bytes(response.read())
+              except Exception as exc:
+                  (target / (name + ".error.txt")).write_text(str(exc))
+          PY
+          tar -C "$work_dir" -czf - .
+          REMOTE
+          test -s artifact/oci-washington-in-gis.tar.gz
+
+      - name: Upload fetched GIS files
+        uses: actions/upload-artifact@v4
+        with:
+          name: oci-washington-in-gis
+          path: artifact/oci-washington-in-gis.tar.gz
+          retention-days: 1
+          if-no-files-found: error
