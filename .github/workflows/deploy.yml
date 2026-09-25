@@ -27,6 +27,7 @@ on:
         options:
           - deploy
           - reset-ops-password
+          - diagnose-paid-unlock
 
 permissions:
   contents: read
@@ -39,6 +40,39 @@ env:
   IMAGE_NAME: shinhyeok22/septic
 
 jobs:
+  diagnose-paid-unlock:
+    if: github.event_name == 'workflow_dispatch' && inputs.operation == 'diagnose-paid-unlock'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Inspect paid-unlock storage and recent failures
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+        run: |
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' <<'EOF'
+          set -euo pipefail
+          DEPLOY_DIR="$HOME/deploy/septic"
+          echo "DISK"
+          df -h "$DEPLOY_DIR"
+          echo "STORAGE"
+          find "$DEPLOY_DIR/storage/paid-unlocks" -maxdepth 2 -printf '%M %u:%g %s %p\n' 2>/dev/null | tail -n 40 || true
+          echo "RECENT_LOGS"
+          docker logs --since 45m septic 2>&1 | tail -n 240
+          EOF
+
   reset-ops-password:
     if: github.event_name == 'workflow_dispatch' && inputs.operation == 'reset-ops-password'
     runs-on: ubuntu-latest
