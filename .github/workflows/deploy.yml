@@ -80,9 +80,13 @@ jobs:
           DEPLOY_DIR="\$HOME/deploy/septic"
           CREDENTIALS_FILE="\$DEPLOY_DIR/storage/ops-report-credentials.properties"
           test -d "\$DEPLOY_DIR/storage"
-          umask 077
-          printf 'username=ops\npassword=%s\n' "${APP_OPS_PASSWORD}" > "\$CREDENTIALS_FILE"
-          chmod 600 "\$CREDENTIALS_FILE"
+          TEMP_CREDENTIALS="\$(mktemp)"
+          trap 'rm -f "\$TEMP_CREDENTIALS"' EXIT
+          printf 'username=ops\npassword=%s\n' "${APP_OPS_PASSWORD}" > "\$TEMP_CREDENTIALS"
+          chmod 600 "\$TEMP_CREDENTIALS"
+          sudo install -o root -g root -m 600 "\$TEMP_CREDENTIALS" "\$CREDENTIALS_FILE"
+          rm -f "\$TEMP_CREDENTIALS"
+          trap - EXIT
           docker restart septic >/dev/null
 
           for attempt in \$(seq 1 30); do
