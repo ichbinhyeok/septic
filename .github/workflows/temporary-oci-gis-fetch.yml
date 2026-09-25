@@ -42,6 +42,36 @@ jobs:
           curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-state-parcel-plain.html" "${base}&RequestType=CustomSearchRequest&SearchType=ParcelState&SearchCriteria=881512000010001015"
           curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-county-parcel.html" "${base}&RequestType=CustomSearchRequest&SearchType=ParcelCounty&SearchCriteria=19-12-300-010.001-10"
           curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/search-name.html" "${base}&RequestType=CustomSearchRequest&SearchType=Name&SearchCriteria=FARNSLEY%7C"
+          curl -fsSkL -c "$cookie_jar" -b "$cookie_jar" -o "$work_dir/open-map.xml" "https://washingtonin.wthgis.com/tgis/openMap.aspx?name=Washington_IN&u=$(date +%s)"
+          map_id="$(python3 - "$work_dir/open-map.xml" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          text = Path(sys.argv[1]).read_text(errors="replace")
+          match = re.search(r"<mid>([^<]+)</mid>", text, flags=re.I)
+          if not match:
+              raise SystemExit("map id not found")
+          print(match.group(1))
+          PY
+          )"
+          printf '%s\n' "$map_id" > "$work_dir/map-id.txt"
+          for query_name in address address-short state-parcel state-parcel-plain county-parcel owner; do
+            case "$query_name" in
+              address) query='10075 E BLUE RIVER RD' ;;
+              address-short) query='10075 BLUE RIVER' ;;
+              state-parcel) query='88-15-12-000-010.001-015' ;;
+              state-parcel-plain) query='881512000010001015' ;;
+              county-parcel) query='19-12-300-010.001-10' ;;
+              owner) query='FARNSLEY' ;;
+            esac
+            curl -fsSkLG -c "$cookie_jar" -b "$cookie_jar" \
+              --data-urlencode "S=$query" --data-urlencode "M=$map_id" --data-urlencode "U=$(date +%s)" \
+              -o "$work_dir/suggest-$query_name.txt" "https://washingtonin.wthgis.com/tgis/search.ashx"
+            curl -fsSkLG -c "$cookie_jar" -b "$cookie_jar" \
+              --data-urlencode "S=$query" --data-urlencode "M=$map_id" --data-urlencode "U=$(date +%s)" --data-urlencode 'redir=1' \
+              -o "$work_dir/generic-$query_name.xml" "https://washingtonin.wthgis.com/tgis/search.aspx"
+          done
           python3 - "$work_dir" <<'PY'
           import html
           import re
