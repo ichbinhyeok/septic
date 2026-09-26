@@ -1,0 +1,103 @@
+name: Temporary OCI PermitSLO fetch
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/temporary-oci-permitslo-fetch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.OCI_KEY }}
+
+      - name: Add OCI host to known_hosts
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan "${OCI_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Fetch PermitSLO from OCI United States server
+        env:
+          OCI_HOST: ${{ secrets.OCI_HOST }}
+          OCI_USER: ${{ secrets.OCI_USERNAME }}
+        run: |
+          mkdir -p artifact
+          ssh "${OCI_USER}@${OCI_HOST}" 'bash -s' > artifact/oci-permitslo.tar.gz <<'REMOTE'
+          set -euo pipefail
+          work_dir="$(mktemp -d)"
+          trap 'rm -rf "$work_dir"' EXIT
+          base='https://sanluisobispocountyca-energovweb.tylerhost.net/apps/selfservice'
+          guid='34CF07CA-5892-423B-A88B-024FB821F0B7'
+          agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36'
+          cookies="$work_dir/cookies.txt"
+
+          fetch() {
+            local name="$1"
+            local url="$2"
+            shift 2
+            curl -skL --max-time 90 --compressed -A "$agent" \
+              -c "$cookies" -b "$cookies" \
+              -H 'Accept-Language: en-US,en;q=0.9' \
+              -D "$work_dir/$name.headers" \
+              -o "$work_dir/$name.body" \
+              -w '%{http_code}\n%{url_effective}\n%{content_type}\n' \
+              "$@" "$url" > "$work_dir/$name.status" || true
+          }
+
+          fetch root "$base/"
+          fetch welcome "$base/#/home"
+          fetch permit-fragment "$base/#/permit/$guid"
+          fetch permit-path "$base/permit/$guid"
+          fetch global-settings "$base/api/configuration/globalsettings"
+
+          common_headers=(
+            -H 'Accept: application/json, text/plain, */*'
+            -H "Origin: https://sanluisobispocountyca-energovweb.tylerhost.net"
+            -H "Referer: $base/"
+            -H 'X-Requested-With: XMLHttpRequest'
+          )
+          fetch api-permit-default "$base/api/energov/permits/permit/$guid" "${common_headers[@]}"
+          fetch api-permit-tenantid "$base/api/energov/permits/permit/$guid" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-permit-x-tenantid "$base/api/energov/permits/permit/$guid" "${common_headers[@]}" -H 'X-TenantId: 2'
+          fetch api-permit-x-tenant-id "$base/api/energov/permits/permit/$guid" "${common_headers[@]}" -H 'X-Tenant-Id: 2'
+          fetch api-permit-x-tenant "$base/api/energov/permits/permit/$guid" "${common_headers[@]}" -H 'X-Tenant: 2'
+
+          fetch api-permitdetail-get "$base/api/energov/permits/permitdetail?id=$guid" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-attachments-1 "$base/api/energov/entity/attachments/search/entityattachments/$guid" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-attachments-2 "$base/api/energov/entity/attachments/search/entityattachments?entityId=$guid" "${common_headers[@]}" -H 'TenantId: 2'
+
+          {
+            echo 'OCI egress:'
+            curl -skL --max-time 30 https://api.ipify.org || true
+            echo
+            echo 'Installed browser commands:'
+            command -v chromium || true
+            command -v chromium-browser || true
+            command -v google-chrome || true
+            command -v firefox || true
+          } > "$work_dir/environment.txt"
+
+          file "$work_dir"/*.body > "$work_dir/file-types.txt" || true
+          sha256sum "$work_dir"/*.body > "$work_dir/body-sha256.txt" || true
+          tar -C "$work_dir" -czf - .
+          REMOTE
+          test -s artifact/oci-permitslo.tar.gz
+
+      - name: Upload fetched files
+        uses: actions/upload-artifact@v4
+        with:
+          name: oci-permitslo
+          path: artifact/oci-permitslo.tar.gz
+          retention-days: 1
+          if-no-files-found: error
