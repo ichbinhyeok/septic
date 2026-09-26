@@ -84,6 +84,9 @@ jobs:
           fetch api-submittals-search "$base/api/energov/entity/submittals/search" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
           fetch api-inspections-search "$base/api/energov/entity/inspections/search/unauth" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
           fetch api-previous-inspections "$base/api/energov/entity/previousInspections/search" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
+          fetch api-inspection-2023 "$base/api/energov/inspections/973edba6-30fc-4bda-b42d-5cf3ccd4b2d3" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-2021-passed "$base/api/energov/inspections/fcb629ad-959a-40a0-ba4d-234de36ea42f" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-2021-canceled "$base/api/energov/inspections/8592dd4e-2442-4fa4-b03b-ed444681db1b" "${common_headers[@]}" -H 'TenantId: 2'
 
           python3 - "$work_dir" "$base" "$cookies" <<'PY'
           import json
