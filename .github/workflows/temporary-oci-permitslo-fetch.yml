@@ -76,6 +76,57 @@ jobs:
           fetch api-permitdetail-get "$base/api/energov/permits/permitdetail?id=$guid" "${common_headers[@]}" -H 'TenantId: 2'
           fetch api-attachments-1 "$base/api/energov/entity/attachments/search/entityattachments/$guid" "${common_headers[@]}" -H 'TenantId: 2'
           fetch api-attachments-2 "$base/api/energov/entity/attachments/search/entityattachments?entityId=$guid" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-attachments-exact "$base/api/energov/entity/attachments/search/entityattachments/$guid/1/true" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-cap-file-types "$base/api/energov/entity/attachments/search/capFileTypes/$guid/1" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-submittals-exist "$base/api/energov/entity/submittals/isentitysubmittalsexist/$guid/1" "${common_headers[@]}" -H 'TenantId: 2'
+
+          search_json="{\"PageNumber\":1,\"PageSize\":100,\"SortField\":\"\",\"IsSortedInAscendingOrder\":true,\"ModuleId\":1,\"EntityId\":\"$guid\"}"
+          fetch api-submittals-search "$base/api/energov/entity/submittals/search" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
+          fetch api-inspections-search "$base/api/energov/entity/inspections/search/unauth" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
+          fetch api-previous-inspections "$base/api/energov/entity/previousInspections/search" "${common_headers[@]}" -H 'TenantId: 2' -H 'Content-Type: application/json' --data-raw "$search_json"
+
+          python3 - "$work_dir" "$base" "$cookies" <<'PY'
+          import json
+          import pathlib
+          import subprocess
+          import sys
+
+          work = pathlib.Path(sys.argv[1])
+          base = sys.argv[2]
+          cookies = sys.argv[3]
+          source = work / "api-attachments-exact.body"
+          try:
+              payload = json.loads(source.read_text(errors="replace"))
+          except Exception as exc:
+              (work / "attachment-parse.txt").write_text(f"JSON parse failed: {exc}\n")
+              raise SystemExit(0)
+
+          attachments = ((payload.get("Result") or {}).get("Attachments") or [])
+          (work / "attachment-parse.txt").write_text(
+              json.dumps(attachments, indent=2, ensure_ascii=False)
+          )
+          for index, item in enumerate(attachments, 1):
+              attachment_id = item.get("AttachmentID") or item.get("AttachmentId") or item.get("FileId")
+              if not attachment_id:
+                  continue
+              prefix = work / f"attachment-{index:02d}-{attachment_id}"
+              metadata_url = f"{base}/api/energov/attachments/metadata/{attachment_id}"
+              command = [
+                  "curl", "-skL", "--max-time", "90", "--compressed",
+                  "-A", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+                  "-c", cookies, "-b", cookies,
+                  "-H", "Accept: application/json, text/plain, */*",
+                  "-H", "TenantId: 2",
+                  "-H", "DownloadProvider: attachment",
+                  "-H", "FileType: attachment",
+                  "-D", str(prefix) + ".headers",
+                  "-o", str(prefix) + ".body",
+                  "-w", "%{http_code}\n%{content_type}\n",
+                  metadata_url,
+              ]
+              result = subprocess.run(command, text=True, capture_output=True)
+              (pathlib.Path(str(prefix) + ".status")).write_text(result.stdout + result.stderr)
+          PY
 
           {
             echo 'OCI egress:'
