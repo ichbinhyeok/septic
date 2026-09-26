@@ -87,6 +87,12 @@ jobs:
           fetch api-inspection-2023 "$base/api/energov/inspections/973edba6-30fc-4bda-b42d-5cf3ccd4b2d3" "${common_headers[@]}" -H 'TenantId: 2'
           fetch api-inspection-2021-passed "$base/api/energov/inspections/fcb629ad-959a-40a0-ba4d-234de36ea42f" "${common_headers[@]}" -H 'TenantId: 2'
           fetch api-inspection-2021-canceled "$base/api/energov/inspections/8592dd4e-2442-4fa4-b03b-ed444681db1b" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-detail-2023 "$base/api/energov/inspections/getById/973edba6-30fc-4bda-b42d-5cf3ccd4b2d3" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-detail-2021-passed "$base/api/energov/inspections/getById/fcb629ad-959a-40a0-ba4d-234de36ea42f" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-detail-2021-canceled "$base/api/energov/inspections/getById/8592dd4e-2442-4fa4-b03b-ed444681db1b" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-type-2023 "$base/api/energov/inspections/inspectionType/22f80a3a-08ab-40dd-aa10-0b8be65cd42d" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-type-2021-passed "$base/api/energov/inspections/inspectionType/27957658-687b-4830-aa05-56e6b972ebd7" "${common_headers[@]}" -H 'TenantId: 2'
+          fetch api-inspection-type-2021-canceled "$base/api/energov/inspections/inspectionType/593db68c-b419-4aba-969f-0922d5ee3dac" "${common_headers[@]}" -H 'TenantId: 2'
 
           python3 - "$work_dir" "$base" "$cookies" <<'PY'
           import json
