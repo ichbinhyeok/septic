@@ -47,13 +47,13 @@
             <div class="transaction-preview__grid">
                 @if (previewSlots.contains("official-record"))
                 <figure>
-                    <img src="/unlock/${publicToken}/preview/official-record" alt="Redacted preview of the matched official County permit" loading="lazy" width="1426" height="1103">
+                    <img src="/unlock/${publicToken}/preview/official-record/" alt="Redacted preview of the matched official County permit" loading="lazy" width="1426" height="1103">
                     <figcaption><strong>Matched County source</strong><span>Property identifiers remain visible; location details and personal information are covered.</span></figcaption>
                 </figure>
                 @endif
                 @if (previewSlots.contains("reviewed-brief"))
                 <figure>
-                    <img src="/unlock/${publicToken}/preview/reviewed-brief" alt="Redacted preview of the completed SepticPath reviewed brief" loading="lazy" width="1103" height="1426">
+                    <img src="/unlock/${publicToken}/preview/reviewed-brief/" alt="Redacted preview of the completed SepticPath reviewed brief" loading="lazy" width="1103" height="1426">
                     <figcaption><strong>Completed SepticPath review</strong><span>The property match and review method remain visible; the findings unlock with the full package.</span></figcaption>
                 </figure>
                 @endif

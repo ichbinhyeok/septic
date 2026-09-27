@@ -71,7 +71,7 @@ public class PaidUnlockController {
         return "pages/paid-unlock";
     }
 
-    @GetMapping("/unlock/{publicToken}/preview/{slot}")
+    @GetMapping({"/unlock/{publicToken}/preview/{slot}", "/unlock/{publicToken}/preview/{slot}/"})
     public ResponseEntity<?> preview(@PathVariable String publicToken, @PathVariable String slot) {
         PaidUnlockStore.Offer offer = store.findReadyOfferByPublicToken(publicToken)
                 .orElseThrow(() -> new PaidUnlockNotFoundException("This private preview is unavailable."));
