@@ -19,6 +19,23 @@ Same-name customers are distinguished by stable case ID, email, and parcel.
 The JSON is canonical; CSV, HTML and STATUS.md are generated read-only views.
 Do not maintain separate manual status lists in TODOS or research reports.
 
+## Durable continuity across temporary environments
+
+Treat chat/session context and any temporary machine as a disposable working
+cache, never as operational memory. Before ending work or changing environments,
+persist reusable rules and route knowledge in the versioned repository, and
+persist customer-specific status, identifiers, messages, and source files only
+in the ignored private ledger and source store. Never leave a material finding,
+sent action, promise, bounce, or next step recorded only in conversation.
+
+When the canonical local repository or private ledger is unavailable, do not
+create a shadow ledger, publish customer data, or mark cases complete from chat
+memory. Use the remote repository to read or propose public operating-rule
+changes, use source systems for read-only verification, and keep a clearly
+bounded reconciliation note. Reconcile every temporary-session finding into the
+canonical private ledger as the first step after returning to the owner-controlled
+environment. The recovered ledger remains authoritative over the temporary note.
+
 Route intelligence is accumulated automatically. Whenever an `apply` transaction
 changes a branch's route, custodian, status, request number, evidence or material
 conclusion, the tool appends an immutable observation for every linked route.
