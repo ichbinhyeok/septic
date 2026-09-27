@@ -65,9 +65,26 @@ public class PaidUnlockController {
         model.addAttribute("page", privatePage("Your reviewed property record is ready"));
         model.addAttribute("offer", offer);
         model.addAttribute("publicToken", publicToken);
+        model.addAttribute("previewSlots", store.previewSlots(offer.id()));
         model.addAttribute("paymentConfigured", properties.isConfigured());
         model.addAttribute("paypalSdkUrl", properties.isConfigured() ? properties.javascriptSdkUrl() : "");
         return "pages/paid-unlock";
+    }
+
+    @GetMapping("/unlock/{publicToken}/preview/{slot}")
+    public ResponseEntity<?> preview(@PathVariable String publicToken, @PathVariable String slot) {
+        PaidUnlockStore.Offer offer = store.findReadyOfferByPublicToken(publicToken)
+                .orElseThrow(() -> new PaidUnlockNotFoundException("This private preview is unavailable."));
+        PaidUnlockStore.PreviewAsset preview = store.findPreview(offer.id(), slot)
+                .orElseThrow(() -> new PaidUnlockNotFoundException("This private preview is unavailable."));
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.noStore())
+                .header(HttpHeaders.PRAGMA, "no-cache")
+                .header("X-Content-Type-Options", "nosniff")
+                .header("X-Content-SHA256", preview.sha256())
+                .contentLength(fileSize(preview.path()))
+                .contentType(MediaType.parseMediaType(preview.contentType()))
+                .body(new FileSystemResource(preview.path()));
     }
 
     @PostMapping(value = "/api/paid-unlocks/{publicToken}/paypal/orders", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -259,6 +276,32 @@ public class PaidUnlockController {
             LOGGER.error("Failed to create paid unlock from JSON for request {}", request.requestReference(), exception);
             throw exception;
         }
+    }
+
+    @PostMapping(
+            value = "/ops/paid-unlocks/{offerId}/previews/{slot}",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public ResponseEntity<?> uploadPreview(
+            @PathVariable String offerId,
+            @PathVariable String slot,
+            @RequestParam boolean redactionAttested,
+            @RequestParam("preview") MultipartFile previewFile
+    ) throws IOException {
+        PaidUnlockStore.PreviewAsset preview = store.saveRedactedPreview(
+                offerId,
+                slot,
+                previewFile.getBytes(),
+                redactionAttested
+        );
+        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+                "offerId", offerId,
+                "slot", slot,
+                "sha256", preview.sha256(),
+                "status", "READY"
+        ));
     }
 
     public record JsonOfferRequest(

@@ -92,6 +92,32 @@ class PaidUnlockStoreTest {
         assertThat(store.authorizeDownload(expiringFulfillment.downloadToken())).isEmpty();
     }
 
+    @Test
+    void redactedPreviewsRequireAttestationAndStaySeparateFromThePaidPackage() throws Exception {
+        PaidUnlockStore store = store(Clock.fixed(Instant.parse("2026-09-19T12:00:00Z"), ZoneOffset.UTC));
+        byte[] packageBytes = "reviewed package".getBytes(StandardCharsets.UTF_8);
+        PaidUnlockStore.PreparedOffer prepared = store.createOffer(
+                input(), "package.zip", packageBytes, approval(sha256(packageBytes))
+        );
+        byte[] png = new byte[] {
+                (byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x01
+        };
+
+        assertThatThrownBy(() -> store.saveRedactedPreview(
+                prepared.offer().id(), PaidUnlockStore.OFFICIAL_RECORD_PREVIEW, png, false
+        )).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("attested");
+
+        PaidUnlockStore.PreviewAsset preview = store.saveRedactedPreview(
+                prepared.offer().id(), PaidUnlockStore.OFFICIAL_RECORD_PREVIEW, png, true
+        );
+        assertThat(preview.contentType()).isEqualTo("image/png");
+        assertThat(store.previewSlots(prepared.offer().id()))
+                .containsExactly(PaidUnlockStore.OFFICIAL_RECORD_PREVIEW);
+        assertThat(store.findPreview(prepared.offer().id(), PaidUnlockStore.OFFICIAL_RECORD_PREVIEW))
+                .get().extracting(PaidUnlockStore.PreviewAsset::sha256).isEqualTo(sha256(png));
+        assertThat(Files.readAllBytes(preview.path())).isEqualTo(png);
+    }
+
     private PaidUnlockStore store(Clock clock) {
         PaidUnlockProperties properties = new PaidUnlockProperties(
                 true, "sandbox", "client", "secret", "webhook", 2, 2

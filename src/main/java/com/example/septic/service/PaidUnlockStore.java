@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.HexFormat;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class PaidUnlockStore {
     public static final String OFFER_VERSION = "record-help-evidence-preview-29-v2";
     public static final String CURRENCY = "USD";
     public static final String AMOUNT = "29.00";
+    public static final String OFFICIAL_RECORD_PREVIEW = "official-record";
+    public static final String REVIEWED_BRIEF_PREVIEW = "reviewed-brief";
+    private static final Set<String> PREVIEW_SLOTS = Set.of(OFFICIAL_RECORD_PREVIEW, REVIEWED_BRIEF_PREVIEW);
+    private static final int MAX_PREVIEW_BYTES = 3 * 1024 * 1024;
 
     private final Path root;
     private final PaidUnlockProperties properties;
@@ -66,6 +71,7 @@ public class PaidUnlockStore {
             Files.createDirectories(paymentsDirectory());
             Files.createDirectories(grantsDirectory());
             Files.createDirectories(eventsDirectory());
+            Files.createDirectories(previewsDirectory());
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to initialize paid-unlock storage", exception);
         }
@@ -145,6 +151,70 @@ public class PaidUnlockStore {
             return Optional.of(objectMapper.readValue(path.toFile(), Offer.class));
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to read paid-unlock offer " + offerId, exception);
+        }
+    }
+
+    public synchronized PreviewAsset saveRedactedPreview(
+            String offerId,
+            String slot,
+            byte[] bytes,
+            boolean redactionAttested
+    ) {
+        Offer offer = findOfferById(offerId).orElseThrow(() -> new IllegalArgumentException("Unknown offer"));
+        String safeSlot = safePreviewSlot(slot);
+        if (!redactionAttested) {
+            throw new IllegalArgumentException("Preview redaction review must be attested");
+        }
+        if (!"READY".equals(offer.status())) {
+            throw new IllegalArgumentException("Previews can only be added to a ready offer");
+        }
+        if (bytes == null || bytes.length == 0 || bytes.length > MAX_PREVIEW_BYTES) {
+            throw new IllegalArgumentException("Preview image must be a non-empty PNG under 3 MB");
+        }
+        if (!isPng(bytes)) {
+            throw new IllegalArgumentException("Preview image must be a flattened PNG");
+        }
+        Path directory = previewDirectory(offer.id());
+        Path target = directory.resolve(safeSlot + ".png").normalize();
+        requireInside(target, directory);
+        try {
+            Files.createDirectories(directory);
+            Path temp = Files.createTempFile(directory, safeSlot, ".tmp");
+            Files.write(temp, bytes, StandardOpenOption.TRUNCATE_EXISTING);
+            try {
+                Files.move(temp, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException exception) {
+                Files.move(temp, target, StandardCopyOption.REPLACE_EXISTING);
+            }
+            appendEvent("redacted_preview_uploaded", offer.id(), null, safeSlot);
+            return new PreviewAsset(target, "image/png", sha256(bytes));
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to store redacted preview", exception);
+        }
+    }
+
+    public List<String> previewSlots(String offerId) {
+        if (!safeId(offerId)) {
+            return List.of();
+        }
+        return PREVIEW_SLOTS.stream()
+                .filter(slot -> Files.isRegularFile(previewPath(offerId, slot)))
+                .sorted()
+                .toList();
+    }
+
+    public Optional<PreviewAsset> findPreview(String offerId, String slot) {
+        if (!safeId(offerId) || !PREVIEW_SLOTS.contains(slot)) {
+            return Optional.empty();
+        }
+        Path path = previewPath(offerId, slot);
+        if (!Files.isRegularFile(path)) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(new PreviewAsset(path, "image/png", sha256(Files.readAllBytes(path))));
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to read redacted preview", exception);
         }
     }
 
@@ -374,6 +444,18 @@ public class PaidUnlockStore {
     private Path paymentsDirectory() { return root.resolve("payments"); }
     private Path grantsDirectory() { return root.resolve("grants"); }
     private Path eventsDirectory() { return root.resolve("events"); }
+    private Path previewsDirectory() { return root.resolve("previews"); }
+    private Path previewDirectory(String offerId) {
+        Path directory = previewsDirectory().resolve(safeStorageId(offerId)).normalize();
+        requireInside(directory, previewsDirectory());
+        return directory;
+    }
+    private Path previewPath(String offerId, String slot) {
+        Path directory = previewDirectory(offerId);
+        Path path = directory.resolve(safePreviewSlot(slot) + ".png").normalize();
+        requireInside(path, directory);
+        return path;
+    }
     private Path offerPath(String id) { return offersDirectory().resolve(id + ".json"); }
     private Path paymentPath(String id) { return paymentsDirectory().resolve(safeStorageId(id) + ".json"); }
     private Path grantPath(String hash) { return grantsDirectory().resolve(hash + ".json"); }
@@ -440,6 +522,26 @@ public class PaidUnlockStore {
         return value;
     }
 
+    private String safePreviewSlot(String value) {
+        if (!PREVIEW_SLOTS.contains(value)) {
+            throw new IllegalArgumentException("Unknown preview slot");
+        }
+        return value;
+    }
+
+    private boolean isPng(byte[] bytes) {
+        byte[] signature = {(byte) 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A};
+        if (bytes.length < signature.length) {
+            return false;
+        }
+        for (int index = 0; index < signature.length; index++) {
+            if (bytes[index] != signature[index]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private boolean safeId(String value) {
         return value != null && value.matches("[A-Za-z0-9._-]{3,180}");
     }
@@ -500,6 +602,7 @@ public class PaidUnlockStore {
     }
 
     public record PreparedOffer(Offer offer, String publicToken) {}
+    public record PreviewAsset(Path path, String contentType, String sha256) {}
     public record Fulfillment(Offer offer, String downloadToken, Instant expiresAt, boolean newlyCreated) {}
     public record DownloadAuthorization(
             Path path,

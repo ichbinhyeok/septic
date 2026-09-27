@@ -3,6 +3,7 @@
 @param PageMeta page
 @param PaidUnlockStore.Offer offer
 @param String publicToken
+@param java.util.List<String> previewSlots
 @param boolean paymentConfigured
 @param String paypalSdkUrl
 
@@ -35,6 +36,31 @@
             </dl>
         </div>
     </section>
+
+    @if (!previewSlots.isEmpty())
+    <section class="transaction-preview" aria-labelledby="transaction-preview-title">
+        <div class="container">
+            <header class="transaction-preview__heading">
+                <div><p class="transaction-kicker">Preview of your completed package</p><h2 id="transaction-preview-title">The matched records are already reviewed.</h2></div>
+                <p>These are permanently redacted previews from the package prepared for this property. Location findings and personal information remain hidden until unlock.</p>
+            </header>
+            <div class="transaction-preview__grid">
+                @if (previewSlots.contains("official-record"))
+                <figure>
+                    <img src="/unlock/${publicToken}/preview/official-record" alt="Redacted preview of the matched official County permit" loading="lazy" width="1426" height="1103">
+                    <figcaption><strong>Matched County source</strong><span>Property identifiers remain visible; location details and personal information are covered.</span></figcaption>
+                </figure>
+                @endif
+                @if (previewSlots.contains("reviewed-brief"))
+                <figure>
+                    <img src="/unlock/${publicToken}/preview/reviewed-brief" alt="Redacted preview of the completed SepticPath reviewed brief" loading="lazy" width="1103" height="1426">
+                    <figcaption><strong>Completed SepticPath review</strong><span>The property match and review method remain visible; the findings unlock with the full package.</span></figcaption>
+                </figure>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
 
     <section class="transaction-purchase" aria-labelledby="transaction-purchase-title">
         <div class="container transaction-purchase__grid">
