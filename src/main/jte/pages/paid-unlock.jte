@@ -38,10 +38,11 @@
 
     <section class="transaction-purchase" aria-labelledby="transaction-purchase-title">
         <div class="container transaction-purchase__grid">
-            <div class="transaction-purchase__intro"><p class="transaction-kicker">The reviewed package</p><h2 id="transaction-purchase-title">A complete, human review of the records that matter.</h2><p>Research and agency requests were free. This optional purchase is for the useful, property-matched records and reviewed answers described above.</p></div>
-            <ul class="transaction-includes"><li>Original source records</li><li>Property-specific findings</li><li>Plain-English limits and next steps</li><li>A private, time-limited delivery link</li></ul>
+            <div class="transaction-purchase__intro"><p class="transaction-kicker">The work is complete</p><h2 id="transaction-purchase-title">Unlock the reviewed answer and source file.</h2><p>We matched your request to the property and official records above, reviewed the files page by page, and separated what the documents establish from what would still require an on-site locate.</p></div>
+            <ul class="transaction-includes"><li>Exact-property source matching</li><li>Your property-specific reviewed answer</li><li>Original source records and reviewed findings</li><li>Plain-English limits and next steps</li><li>A private, time-limited delivery link</li></ul>
             <div class="transaction-checkout">
-                <p class="transaction-price">One-time <span>·</span> US $29</p>
+                <p class="transaction-price">Unlock the complete package <span>·</span> US $29</p>
+                <p class="transaction-payment-options">One-time payment. No subscription. PayPal handles checkout; eligible buyers can choose debit or credit card without a PayPal account.</p>
                 @if (offer.status().equals("PAID"))
                     <p class="transaction-state transaction-state--success">Payment is complete. Use the private delivery link in your email.</p>
                 @elseif (paymentConfigured)
@@ -55,7 +56,7 @@
             </div>
         </div>
     </section>
-    <footer class="transaction-reference"><div class="container"><span>Private offer</span><span>Reference: ${offer.requestReference()}</span><span>Official records can document history; they do not verify current field conditions.</span></div></footer>
+    <footer class="transaction-reference"><div class="container"><span>Private, property-matched offer</span><span>Official records can document history; they do not verify current field conditions.</span></div></footer>
 </article>
 
 @if (paymentConfigured && !offer.status().equals("PAID"))

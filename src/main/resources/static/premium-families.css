@@ -240,6 +240,7 @@
 .premium-site--transaction .transaction-checkout { padding-left: clamp(28px,4vw,60px); border-left: 1px solid #bdc9c2; }
 .premium-site--transaction .transaction-price { margin: 0 0 24px; color: #0b3034; font-family: Newsreader,serif; font-size: clamp(29px,3vw,43px); line-height: 1.1; }
 .premium-site--transaction .transaction-price span { color: #749089; }
+.premium-site--transaction .transaction-payment-options { margin: -10px 0 24px; color: #526a66; font-size: 13px; line-height: 1.55; }
 .premium-site--transaction .transaction-state { margin: 15px 0; padding: 16px 0; border-block: 1px solid #afc3ba; color: #385c59; font-size: 13px; line-height: 1.6; }
 .premium-site--transaction .transaction-state--success { color: #096954; }.premium-site--transaction .transaction-state--error { color: #973d2d; border-color: #c97f70; }
 .premium-site--transaction .transaction-security { margin: 18px 0 0; color: #5a716d; font-size: 11px; line-height: 1.7; }
