@@ -18,16 +18,17 @@
         <div class="transaction-hero__shade" aria-hidden="true"></div>
         <img class="transaction-hero__image" src="/images/studio/work-desk-v1.webp" alt="" width="1536" height="1024" fetchpriority="high">
         <div class="container transaction-hero__inner">
-            <p class="transaction-kicker">Private result preview</p>
-            <h1 id="paid-unlock-title">Your reviewed property record is ready.</h1>
-            <p>Matched to <strong>${offer.propertyLabel()}</strong>. Read against your question. Ready to deliver.</p>
-            <span class="transaction-caption">Official-source records · Human review · Clear limits</span>
+            <p class="transaction-kicker">Private record packet for ${offer.propertyLabel()}</p>
+            <h1 id="paid-unlock-title">The records are found.<br>Make sense of them.</h1>
+            <p>Your property-matched sources have been reviewed and assembled with a clear reading guide. See exactly what is included before you choose to unlock the findings.</p>
+            <a class="transaction-hero__cta" href="#unlock-checkout">See your $29 packet <span aria-hidden="true">↗</span></a>
+            <span class="transaction-caption">One-time payment · Original source PDFs · Private delivery</span>
         </div>
     </section>
 
     <section class="transaction-evidence" aria-labelledby="transaction-evidence-title">
         <div class="container transaction-grid">
-            <header><p class="transaction-kicker">Before you unlock</p><h2 id="transaction-evidence-title">What the record can answer.</h2></header>
+            <header><p class="transaction-kicker">Verified before checkout</p><h2 id="transaction-evidence-title">A real file. A defined answer.</h2><p class="transaction-evidence__intro">The source, contents and limits are visible here. The property-specific findings and original pages are reserved for your private packet.</p></header>
             <dl class="transaction-ledger">
                 <div><dt>Official source</dt><dd>${offer.sourceSummary()}</dd></div>
                 <div><dt>Document scope</dt><dd>${offer.documentScope()}</dd></div>
@@ -41,33 +42,34 @@
     <section class="transaction-preview" aria-labelledby="transaction-preview-title">
         <div class="container">
             <header class="transaction-preview__heading">
-                <div><p class="transaction-kicker">Preview of your completed package</p><h2 id="transaction-preview-title">The matched records are already reviewed.</h2></div>
-                <p>These are permanently redacted previews from the package prepared for this property. Location findings and personal information remain hidden until unlock.</p>
+                <div><p class="transaction-kicker">Actual pages, safely masked</p><h2 id="transaction-preview-title">See the real packet before you unlock.</h2></div>
+                <p>These images come from the prepared PDFs for this property. The address and document structure remain visible; findings, diagrams and personal details are permanently covered in the preview images.</p>
             </header>
             <div class="transaction-preview__grid">
                 @if (previewSlots.contains("official-record"))
                 <figure>
-                    <img src="/unlock/${publicToken}/preview/official-record/" alt="Redacted preview of the matched official County permit" loading="lazy" width="1426" height="1103">
-                    <figcaption><strong>Matched County source</strong><span>Property identifiers remain visible; location details and personal information are covered.</span></figcaption>
+                    <img src="/unlock/${publicToken}/preview/official-record/" alt="Masked image of the actual matched official record" loading="lazy" width="977" height="1613">
+                    <figcaption><strong>Matched official source</strong><span>The actual source page; location details and personal information are covered.</span></figcaption>
                 </figure>
                 @endif
                 @if (previewSlots.contains("reviewed-brief"))
                 <figure>
-                    <img src="/unlock/${publicToken}/preview/reviewed-brief/" alt="Redacted preview of the completed SepticPath reviewed brief" loading="lazy" width="1103" height="1426">
-                    <figcaption><strong>Completed SepticPath review</strong><span>The property match and review method remain visible; the findings unlock with the full package.</span></figcaption>
+                    <img src="/unlock/${publicToken}/preview/reviewed-brief/" alt="Masked image of the actual completed SepticPath review" loading="lazy" width="979" height="1268">
+                    <figcaption><strong>Completed SepticPath review</strong><span>The property match and structure remain visible; the findings unlock with the full package.</span></figcaption>
                 </figure>
                 @endif
             </div>
+            <ol class="transaction-preview__benefits"><li>Matched to this property</li><li>Reviewed page by page</li><li>Full findings and unchanged originals after payment</li></ol>
         </div>
     </section>
     @endif
 
-    <section class="transaction-purchase" aria-labelledby="transaction-purchase-title">
+    <section class="transaction-purchase" id="unlock-checkout" aria-labelledby="transaction-purchase-title">
         <div class="container transaction-purchase__grid">
-            <div class="transaction-purchase__intro"><p class="transaction-kicker">The work is complete</p><h2 id="transaction-purchase-title">Unlock the reviewed answer and source file.</h2><p>We matched your request to the property and official records above, reviewed the files page by page, and separated what the documents establish from what would still require an on-site locate.</p></div>
+            <div class="transaction-purchase__intro"><p class="transaction-kicker">Your choice</p><h2 id="transaction-purchase-title">Unlock your complete packet.</h2><p>The property-specific answer, reading guide and original records are ready. Historical documents cannot verify today's underground position or condition; the limits above are part of the review.</p></div>
             <ul class="transaction-includes"><li>Exact-property source matching</li><li>Your property-specific reviewed answer</li><li>Original source records and reviewed findings</li><li>Plain-English limits and next steps</li><li>A private, time-limited delivery link</li></ul>
             <div class="transaction-checkout">
-                <p class="transaction-price">Unlock the complete package <span>·</span> US $29</p>
+                <p class="transaction-price">One complete packet <span>·</span> US $29</p>
                 <p class="transaction-payment-options">One-time payment. No subscription. PayPal handles checkout; eligible buyers can choose debit or credit card without a PayPal account.</p>
                 @if (offer.status().equals("PAID"))
                     <p class="transaction-state transaction-state--success">Payment is complete. Use the private delivery link in your email.</p>
