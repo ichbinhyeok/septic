@@ -26,6 +26,15 @@ When a new route is found, upsert it in that same transaction with structured
 availability/channel/requester/fee fields when verified. Never wait for the user
 to separately request knowledge capture. Review the generated private
 `views/route-intelligence.*` output instead of counting outcomes from email.
+For every case, capture any newly learned official portal or agency channel as
+reusable route knowledge without a separate user prompt. Record the direct URL
+or exact contact channel, jurisdiction and record type, search keys and steps,
+requester requirements, verified fee, actual result, limitations, fallback,
+verification date, and source IDs. Distinguish a route that was merely suggested
+from one that was opened, submitted, acknowledged, or returned original files.
+If a channel bounces or fails, retire it as the primary route immediately and
+record the verified alternate or the unresolved gap. Keep customer identifiers
+and unredacted examples private; publishable SEO guidance needs separate review.
 
 Whenever Bing Webmaster Tools, Google Search Console, or GA4 is analyzed, add an
 immutable `growth_signals` snapshot in the same operational transaction. Include
@@ -39,6 +48,15 @@ storage. Never publish the private dashboard or commit the private ledger.
 Do not claim inbox freshness beyond the saved checkpoint. If the ledger is
 missing, report missing local data and recover a private backup; do not silently
 create an empty replacement or mark historical cases completed.
+
+For any "recent N days" customer count or bulk follow-up, define the exact
+timezone/window and reconcile bounded Gmail intake message IDs against ledger
+`intake_message_id` and `intake_at` before stating a complete count. Paginate
+the bounded search. Check the customer's actual sent thread for personal updates
+and bounces; `last_customer_update: null` alone does not prove that only an
+automatic acknowledgement was sent. Resolve mismatches in the ledger before
+selecting recipients. If the saved sync checkpoint predates the window, label
+the result a bounded Gmail audit, not a fully current inbox sync.
 
 ## Mandatory attachment delivery gate
 
@@ -61,3 +79,19 @@ external portal when the message attaches or relies on a customer-case file:
 Do not bypass or soften a failed gate. Keep an unmatched agency return as
 unlinked evidence and update the case instead of sending or interpreting it as
 the requested property's record.
+
+## Mandatory mail screenshot gate
+
+Before showing a mail screenshot to the user or attaching one to an external
+message, crop it to the relevant target message's original body or answer only.
+Never show the Gmail inbox, navigation, toolbar, message header, other messages,
+or translated/recreated text as if it were the original reply. Keep the full
+capture in ignored private storage. Record the target message ID, source SHA-256,
+reviewed body bounds, crop and excluded UI regions in a private manifest. Run
+`python tools/mail-capture-gate.py <manifest-path>` and visually inspect the
+output. Immediately before sharing, run
+`python tools/mail-capture-gate.py --verify <manifest-path>` and require a
+current `MAIL CAPTURE GATE: PASS` receipt. Changed source, crop, output, or
+review date requires a fresh gate. A blocked or visually incorrect crop must
+not be shown or sent. This gate supplements the attachment delivery gate when
+the screenshot is also customer-case evidence.

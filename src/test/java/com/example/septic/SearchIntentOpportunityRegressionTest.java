@@ -38,7 +38,7 @@ class SearchIntentOpportunityRegressionTest {
     @Test void newHampshireProvidesSearchAndArchiveWithoutInventingAvailability() throws Exception {
         mvc.perform(get("/septic-records-checklist/new-hampshire/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>NHDES Septic Records &amp; OneStop Plans | New Hampshire")))
+                .andExpect(content().string(containsString("<title>NH Septic Lookup by Address &amp; Design | NHDES OneStop")))
                 .andExpect(content().string(containsString("https://www4.des.state.nh.us/SSBOneStop/")))
                 .andExpect(content().string(containsString("formtag=NHDES-W-05-010")))
                 .andExpect(content().string(containsString("cannot certify permit existence")))

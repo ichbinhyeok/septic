@@ -34,6 +34,7 @@ class ResearchPublicationPolicyRegressionTest {
                 .andExpect(content().string(containsString("with relevant local septic professionals")))
                 .andExpect(content().string(containsString("When field work may help, SepticPath may share my request with relevant local professionals")))
                 .andExpect(content().string(containsString("Mobile number (optional)")))
+                .andExpect(content().string(containsString("Your role")))
                 .andExpect(content().string(not(containsString("Your request stays private"))))
                 .andExpect(content().string(not(containsString("name=\"publicationConsent\""))));
         mockMvc.perform(get("/privacy-policy/"))

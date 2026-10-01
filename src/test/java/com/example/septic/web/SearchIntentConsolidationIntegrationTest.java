@@ -26,7 +26,7 @@ class SearchIntentConsolidationIntegrationTest {
     void observedTennesseePermitDemandIsIndexableAndHasQueryExactSnippet() throws Exception {
         mockMvc.perform(get("/septic-permit-process/tennessee/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>Tennessee Septic Permit Process: TDEC Steps &amp; Records | SepticPath</title>")))
+                .andExpect(content().string(containsString("<title>Tennessee Septic Permit Process | New Systems &amp; Repairs</title>")))
                 .andExpect(content().string(containsString("<meta name=\"robots\" content=\"index,follow\">")))
                 .andExpect(content().string(not(containsString("<meta name=\"robots\" content=\"noindex,follow\">"))))
                 .andExpect(content().string(containsString("Start the Tennessee permit route")))
@@ -36,7 +36,7 @@ class SearchIntentConsolidationIntegrationTest {
 
         mockMvc.perform(get("/sitemap.xml"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<loc>https://example.test/septic-permit-process/tennessee/</loc><lastmod>2026-09-14</lastmod>")));
+                .andExpect(content().string(containsString("<loc>https://example.test/septic-permit-process/tennessee/</loc><lastmod>2026-10-01</lastmod>")));
     }
 
     @Test

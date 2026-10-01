@@ -122,8 +122,8 @@
                     <p>County pages tell you whether the working route is an online search, form, email, call, or public-records request.</p>
                     @if (!featuredCountyRecordLinks.isEmpty())
                         <nav class="state-records-priority-counties" aria-label="Popular ${state.stateName()} county permit searches">
-                            @for (var link : featuredCountyRecordLinks.stream().limit(6).toList())
-                                <a href="${link.path()}">${link.compactTitle()}</a>
+                            @for (var link : featuredCountyRecordLinks.stream().limit(8).toList())
+                                <a href="${link.path()}">@if("NC".equals(state.stateCode()) && link.path().contains("/johnston-county/"))Johnston County septic permit search@elseif("NC".equals(state.stateCode()) && link.path().contains("/forsyth-county/"))Forsyth County NC septic records@elseif("NC".equals(state.stateCode()) && link.path().contains("/pender-county/"))Pender County septic permit lookup@elseif("NC".equals(state.stateCode()) && link.path().contains("/pitt-county/"))Pitt County septic permit search@elseif("NC".equals(state.stateCode()) && link.path().contains("/henderson-county/"))Henderson County septic permit search@else${link.compactTitle()}@endif</a>
                             @endfor
                         </nav>
                     @endif
@@ -168,6 +168,10 @@
                         @endfor
                     @endif
                 </ul>
+                <a class="state-records-documents__location" href="/septic-tank-location-records/" data-track-click="nav" data-track-source-context="state_records_tank_location" data-track-target-type="internal_page">
+                    <strong>Need the tank or drain field location?</strong>
+                    <span>Use the recorded plan or site sketch before arranging a current field locate.</span>
+                </a>
             </div>
         </section>
 

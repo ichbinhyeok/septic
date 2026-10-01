@@ -177,12 +177,12 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("<title>TN Septic Permit Search | TDEC Records &amp; File Help</title>")))
                 .andExpect(content().string(containsString("If you get a 403, no record, or the wrong address")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
-                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost: $300-$2,700 + County Fees</title>")));
+                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost (2026): $300-$2,700 + Fees</title>")));
         mockMvc.perform(get("/texas-ossf-records-search/"))
                 .andExpect(content().string(containsString("<title>Texas OSSF Permit Search by Address | Local Records</title>")))
                 .andExpect(content().string(containsString("identify the local permitting authority")));
         mockMvc.perform(get("/septic-records-checklist/new-hampshire/"))
-                .andExpect(content().string(containsString("<title>NHDES Septic Records &amp; OneStop Plans | New Hampshire</title>")));
+                .andExpect(content().string(containsString("<title>NH Septic Lookup by Address &amp; Design | NHDES OneStop</title>")));
         mockMvc.perform(get("/septic-records-checklist/north-carolina/union-county/"))
                 .andExpect(content().string(containsString("<title>Union County NC Septic Permit Search | Existing Records | SepticPath</title>")));
         mockMvc.perform(get("/septic-records-checklist/tennessee/wilson-county/"))
@@ -205,7 +205,10 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("permit copy, as-built, final approval, repair record")))
                 .andExpect(content().string(containsString("Enter the property address")))
                 .andExpect(content().string(containsString("state-records-priority-counties")))
+                .andExpect(content().string(containsString("Johnston County septic permit search")))
+                .andExpect(content().string(containsString("Henderson County septic permit search")))
                 .andExpect(content().string(containsString("href=\"/septic-records-checklist/north-carolina/buncombe-county/\"")))
+                .andExpect(content().string(containsString("href=\"/septic-tank-location-records/\"")))
                 .andExpect(content().string(containsString("data-county-route-picker")))
                 .andExpect(content().string(containsString("Choose a county")))
                 .andExpect(content().string(containsString("An empty search is not a no-record determination")))

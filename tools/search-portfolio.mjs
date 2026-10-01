@@ -29,6 +29,26 @@ function classify(page) {
 
 const pages = [];
 
+for (const item of statesDocument.states.filter(isPublished)) {
+    const stateSlug = stateSlugs.get(item.stateCode);
+    if (!stateSlug) continue;
+    const pagePath = `/septic-system-cost-calculator/${stateSlug}/`;
+    const target = targetsByPath.get(pagePath);
+    pages.push({
+        type: 'state_guide',
+        path: pagePath,
+        title: `${item.stateName} septic cost and permit guide`,
+        demandTarget: Boolean(target),
+        boost: target?.boost || 0,
+        impressions: target?.impressions || 0,
+        clicks: target?.clicks || 0,
+        operationalProof: false,
+        sourceCount: list(item.officialSourceIds).length,
+        decisionDepth: list(item.permitPathSteps).length + list(item.localActionSteps).length + list(item.recordsToRequest).length,
+        copyDepth: words(item.pageAngle) + words(item.ruleSummaryPlainEnglish)
+    });
+}
+
 for (const item of contentDocument.pages.filter(isPublished)) {
     const pagePath = `/${item.slug}/`;
     const target = targetsByPath.get(pagePath);
@@ -84,6 +104,26 @@ for (const item of countiesDocument.pages.filter(isPublished)) {
         sourceCount: list(item.officialSourceIds).length,
         decisionDepth: list(item.decisionSteps).length + list(item.recordsToRequest).length,
         copyDepth: words(item.introCopy) + words(item.uniqueAngle)
+    });
+}
+
+// Keep demand-backed static routes in the same portfolio even when they are
+// not represented by one of the data-driven page catalogs above.
+const catalogPaths = new Set(pages.map(page => page.path));
+for (const target of targetsDocument.targets) {
+    if (catalogPaths.has(target.path)) continue;
+    pages.push({
+        type: target.targetType || 'demand_target',
+        path: target.path,
+        title: target.path,
+        demandTarget: true,
+        boost: target.boost || 0,
+        impressions: target.impressions || 0,
+        clicks: target.clicks || 0,
+        operationalProof: false,
+        sourceCount: 0,
+        decisionDepth: 0,
+        copyDepth: 0
     });
 }
 

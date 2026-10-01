@@ -26,7 +26,7 @@
     </aside>
     <section class="intake-workspace" id="intake-form" aria-labelledby="intake-title">
     @if (closingRiskRequestId != null)
-        <div class="intake-success" role="status" tabindex="-1" data-intake-success data-closing-risk-request-success data-ga-event="record_help_request_submitted" data-ga-param-source-context="${closingRiskSuccessSourceContext}">
+        <div class="intake-success" role="status" tabindex="-1" data-intake-success data-closing-risk-request-success data-ga-event="record_help_request_submitted" data-ga-track-once="record-help-request:${closingRiskRequestId}" data-ga-param-request-type="record_help_beta" data-ga-param-source-context="${closingRiskSuccessSourceContext}">
             <p class="studio-overline">Request received</p><h1 id="intake-title">${documentReviewMode ? "Your document review is in." : "Your record investigation is in."}</h1>
             <p>We’ll ${documentReviewMode ? "review your file" : "start the research"} and aim to email an initial update within 1–2 business days. Agency records can take longer.</p>
             <div class="intake-reference"><span>Your reference</span><strong>${closingRiskRequestId}</strong></div>

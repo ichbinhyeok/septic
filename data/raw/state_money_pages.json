@@ -8491,9 +8491,14 @@
         "ri_02",
         "ri_03",
         "ri_04",
-        "ri_05"
+        "ri_05",
+        "ri_06",
+        "ri_07",
+        "ri_08"
       ],
       "calculatorProjectType": "buying_home",
+      "updatedAt": "2026-10-01",
+      "reviewedAt": "2026-10-01",
       "publishStatus": "published"
     },
     {
@@ -15514,8 +15519,8 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "ME",
-      "title": "Maine HHE-200 Septic Permit Search & Help",
-      "metaDescription": "Search Maine HHE-200 and HHE-200A records, recover older files by town and owner clues, and prepare a town or Local Plumbing Inspector request.",
+      "title": "Maine Septic Design Records | HHE-200 Search & Help",
+      "metaDescription": "Search Maine septic design records and HHE-200 or HHE-200A files, recover older plans by town and owner clues, and prepare a town or Local Plumbing Inspector request.",
       "introCopy": "Maine records lookup starts with the permit search, county file, or official office path. Maine records work is less about one statewide file and more about getting the right town office or Local Plumbing Inspector file in hand. If the homeowner cannot surface the HHE-200 design and permit record, the low end is still just a planning story.",
       "uniqueAngle": "Maine's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Maine records intent is strongest when the page connects town office or Local Plumbing Inspector routing, HHE-200 design and permit record, and town-office file gaps and online-search limits instead of pretending the state keeps one simple homeowner database.",
       "targetReader": "Best for Maine buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
@@ -16091,8 +16096,8 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "NH",
-      "title": "NHDES Septic Records & OneStop Plans | New Hampshire",
-      "metaDescription": "Search NHDES OneStop for septic approvals and plans, recover older archive records, and use owner, town, map, and lot clues when the result is empty.",
+      "title": "NH Septic Lookup by Address & Design | NHDES OneStop",
+      "metaDescription": "Look up a New Hampshire septic approval or plan by address in NHDES OneStop, then use the archive or town route when the drawing or older file is missing.",
       "introCopy": "Looking for a septic approval or the plan for a New Hampshire property? Start with NHDES Subsurface OneStop, then use the archive request if the drawing or older approval is not online. The town may also hold copies. Identify the document you need before requesting the file.",
       "uniqueAngle": "A permit-search entry, a plan drawing, and evidence of present system condition answer different questions. Keep those distinctions visible when sharing the file with a buyer or professional.",
       "targetReader": "Best for New Hampshire buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
@@ -16284,9 +16289,9 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "RI",
-      "title": "Rhode Island Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Rhode Island septic records lookup and permit search with DEM OWTS permit-search and record path routing, active and historic permit search plus the underlying file pulls, and permit-history and suitability-review friction.",
-      "introCopy": "Rhode Island records work is less about one statewide file and more about getting the right DEM OWTS permit-search and record path file in hand. If the homeowner cannot surface the active and historic permit search plus the underlying file, the low end is still just a planning story.",
+      "title": "Rhode Island DEM Septic Records and OWTS Permit Search",
+      "metaDescription": "Search Rhode Island DEM OWTS records from 1968 forward, choose the historic or active permit search, and prepare a full-file request with assessor plat and lot clues.",
+      "introCopy": "Rhode Island DEM holds most OWTS records from 1968 forward, but the correct route depends on the permit era and the identifiers carried into the search. Start with the historic or active search, then request the complete file when the visible permit row or attachment does not answer the property question.",
       "uniqueAngle": "Rhode Island's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Rhode Island records intent is strongest when the page connects DEM OWTS permit-search and record path routing, active and historic permit search plus the underlying file, and permit-history and suitability-review friction instead of pretending the state keeps one simple homeowner database.",
       "targetReader": "Best for Rhode Island buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
       "fitBullets": [
@@ -16342,9 +16347,14 @@
         "ri_02",
         "ri_03",
         "ri_04",
-        "ri_05"
+        "ri_05",
+        "ri_06",
+        "ri_07",
+        "ri_08"
       ],
       "calculatorProjectType": "buying_home",
+      "updatedAt": "2026-10-01",
+      "reviewedAt": "2026-10-01",
       "publishStatus": "published"
     },
     {
@@ -16669,46 +16679,46 @@
     {
       "contentSlug": "septic-permit-process",
       "stateCode": "TN",
-      "title": "Tennessee Septic Permit Process and TDEC Permit Lookup",
-      "metaDescription": "Tennessee septic permit process with TDEC SSDS permit lookup, regional contact or contract county office routing, construction permit and repair permit context, and file-search friction.",
-      "introCopy": "Tennessee permit content is stronger than a generic install checklist because the real homeowner path runs through the TDEC SSDS permit hub, the TDEC regional contact, or a contract county office. Start by confirming whether the parcel needs a permit lookup, construction permit, repair permit, or inspection-letter path before regional-contact and repair-permit friction widens the job.",
-      "uniqueAngle": "Tennessee permit intent is strongest when the page connects TDEC permit lookup language, SSDS record search behavior, regional contact or contract county routing, construction permit and repair permit, and file quality instead of pretending one statewide office owns the whole path.",
-      "targetReader": "Best for Tennessee owners, buyers, builders, and agents who need to know which office controls the permit path and why the file can move the project before the installer quote feels real.",
+      "title": "Tennessee Septic Permit Process for New Systems and Repairs",
+      "metaDescription": "Follow Tennessee approval steps for a new, replacement, or repair septic system: site evaluation, construction permit, inspections, and the correct TDEC or contract-county office.",
+      "introCopy": "Use this page when a Tennessee property needs a new septic system, replacement, repair, or construction approval. The practical path is to identify whether TDEC or a contract county controls the site, complete the required site evaluation, obtain authorization before construction, and close the permit with the required inspection. If the job is only to find an older permit or drawing, use the separate Tennessee records route instead.",
+      "uniqueAngle": "This is the forward-looking approval workflow for construction and repair. It separates site evaluation, permit authorization, installation, and final inspection from the different task of retrieving an existing historical file.",
+      "targetReader": "Best for Tennessee owners, builders, buyers, and agents planning a new installation, replacement, repair, addition, or other work that may require current approval.",
       "fitBullets": [
-        "You have an install or replacement quote, but no one has confirmed which TDEC regional contact or contract county office actually controls the permit path.",
-        "The contractor says the permit is routine, but no one has surfaced the construction permit and repair permit or the local file already tied to the lot.",
-        "You need to know whether regional-contact and repair-permit friction could break the low-end permit story before you schedule work."
+        "You are planning a new system, replacement, repair, bedroom addition, or other work that may require current approval.",
+        "You have a contractor quote, but no one has confirmed whether TDEC or a contract county controls the permit and inspection sequence.",
+        "You need to understand which approvals must happen before excavation, installation, or closing the job."
       ],
       "decisionSteps": [
-        "Identify the TDEC regional contact or contract county office first because that office controls the practical next permit step for the parcel.",
-        "Ask for the construction permit and repair permit, the permit file, and any prior approval or design record tied to the property before treating the job as routine.",
-        "Use the local file to decide whether the property is still on a clean install or replacement path or whether a bigger review story is already visible.",
-        "Then compare permit timing, file quality, and project risk before you schedule work around the lowest quote."
+        "Identify whether TDEC or a contract county is the permitting authority for the property before filing or scheduling work.",
+        "Confirm the required site or soil evaluation and the application materials for the proposed new system, replacement, or repair.",
+        "Obtain the construction authorization before installation and keep the approved design available for the installer and inspector.",
+        "Complete the required inspection or final approval and retain the resulting permit file for the property record."
       ],
       "lowEndBreakers": [
-        "The permit story widens fast if no one has identified the TDEC regional contact or contract county office actually holding the file.",
-        "A missing construction permit and repair permit can make the project more complex than the owner or contractor summary suggests.",
-        "regional-contact and repair-permit friction can push the job beyond a simple permit conversation quickly."
+        "The schedule widens when the wrong office receives the application or the local authority is not confirmed first.",
+        "A difficult site evaluation, redesign, replacement-area constraint, or change in proposed use can expand the review.",
+        "Starting construction before authorization can create inspection, correction, or documentation problems later."
       ],
       "quotePrepChecklist": [
-        "The TDEC regional contact or contract county office handling the parcel's permit path.",
-        "The construction permit and repair permit, permit file, and any design or approval paperwork already tied to the site.",
-        "Any note showing whether the current path is install, replacement, redesign, or permit cleanup.",
-        "A short note on whether the lot still appears straightforward once the file is open."
+        "The TDEC regional office or contract county that controls the current approval path.",
+        "The proposed scope: new installation, replacement, repair, addition, or other construction.",
+        "The required site-evaluation result, application, approved design, and construction authorization.",
+        "The inspection or final-approval step needed to close and preserve the permit record."
       ],
       "driverBullets": [
-        "Tennessee permit conversations get real only after the TDEC regional contact or contract county office is clear.",
-        "construction permit and repair permit quality can matter more than a generic statewide permit article implies.",
-        "regional-contact and repair-permit friction can widen the project before the permit fee or schedule feels final."
+        "Tennessee permit planning starts with the correct TDEC or contract-county authority.",
+        "Site evaluation and approved design can change the scope before an installer quote is final.",
+        "Construction authorization and final inspection are separate milestones; neither should be inferred from an old record search."
       ],
       "faqBlocks": [
         {
           "question": "What is the first Tennessee permit step a homeowner should take?",
-          "answer": "Start with the TDEC SSDS permit hub, the permit lookup or record-search path it links, and the correct regional or contract county contact before treating the project as routine."
+          "answer": "Identify whether TDEC or a contract county controls the property, then confirm the site-evaluation and application requirements before construction begins."
         },
         {
-          "question": "Why does Tennessee permit content need to mention construction permit and repair permit?",
-          "answer": "Because the construction permit and repair permit often marks where the homeowner moves from a planning story into the real local approval sequence."
+          "question": "Is this the right page for finding an old Tennessee septic permit?",
+          "answer": "No. This page covers current approval for construction and repair. Use the Tennessee records-by-county route or TDEC records page when the goal is an older permit, drawing, inspection letter, or written no-record response."
         }
       ],
       "internalLinkTargets": [
@@ -16869,8 +16879,8 @@
     {
       "contentSlug": "septic-records-checklist",
       "stateCode": "VT",
-      "title": "Vermont DEC Septic Permit Search & Missing Records",
-      "metaDescription": "Search Vermont septic permits by town, owner, SPAN, or permit number and recover older, microfilm, exempt, or locally held wastewater records.",
+      "title": "Vermont Wastewater Permit Search by Town, SPAN & Owner",
+      "metaDescription": "Search Vermont wastewater permits by town, owner, SPAN, or permit number, then recover older, microfilm, exempt, or locally held septic records.",
       "introCopy": "Vermont records lookup starts with the permit search, county file, or official office path. Vermont records work is less about one statewide file and more about getting the right permit-search path, the Town, or the DEC regional office file in hand. If the homeowner cannot surface the permit-search result and state-issued permit file, the low end is still just a planning story.",
       "uniqueAngle": "Vermont's records lookup page is strongest when it makes the permit search, county file owner, and missing document explicit. Vermont records intent is strongest when the page connects permit-search path, the Town, or the DEC regional office routing, permit-search result and state-issued permit file, and regional-office and town-review friction instead of pretending the state keeps one simple homeowner database.",
       "targetReader": "Best for Vermont buyers, owners, agents, and builders who know the property uses septic but still need to know whether the file is complete enough to trust the next quote or deal step.",
@@ -16930,6 +16940,8 @@
         "vt_05"
       ],
       "calculatorProjectType": "buying_home",
+      "updatedAt": "2026-10-01",
+      "reviewedAt": "2026-10-01",
       "publishStatus": "published"
     },
     {

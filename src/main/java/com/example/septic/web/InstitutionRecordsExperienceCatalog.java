@@ -116,6 +116,24 @@ public final class InstitutionRecordsExperienceCatalog {
                     List.of("Site evaluation", "Construction or installation permit", "Authorization notice", "Certificate of satisfactory completion", "Repair, alteration, and maintenance records"),
                     routeRules("OR")
             );
+            case "RI" -> new InstitutionRecordsExperience(
+                    "RI", "Rhode Island DEM", "Onsite Wastewater Treatment Systems (OWTS)",
+                    "Find the RIDEM septic record—and the complete file behind it.",
+                    "Start with the town, assessor plat and lot, permit era, and owner clues. We route the property to RIDEM's historic search, active search, or full-file request.",
+                    "The downloadable permit record, a complete-file request, or a documented reason the search stopped.",
+                    "https://www.ri.gov/DEM/owts/", "Open the RIDEM historic OWTS search",
+                    "https://dem.ri.gov/environmental-protection-bureau/water-resources/permitting/septic-onsite-wastewater-treatment-owts", "Open RIDEM records and active-search guidance",
+                    "City or town", "South Kingstown", "Assessor plat and lot", "Plat 42, Lot 17",
+                    "Original owner or applicant, if known", "Approximate application or construction year",
+                    "Rhode Island DEM File Review", "Complete OWTS permit file for the property",
+                    "Use the historic OWTS search for records before April 17, 2025 and RIDEM's active permit search for newer activity. Carry the assessor plat and lot because the current street address may not match the original index.",
+                    "A blank address search is not enough. RIDEM says older files can be indexed by assessor plat and lot, original owner, development year, subdivision, or sub-lot; the full permit application may require a separate file request.",
+                    "The full file answers more", "We separate the permit status, approved design, Certificate of Conformance, system-location drawing, bedroom basis, and water-table information instead of treating one search row as the complete answer.",
+                    "/images/studio/research-desk-v1.webp",
+                    List.of("Search the historic or active RIDEM system for the correct permit era.", "Retry with assessor plat and lot, original owner, subdivision, and sub-lot clues.", "If the online documents are incomplete, prepare the full-file request and preserve the response."),
+                    List.of("OWTS permit application and approved plan", "Certificate of Conformance or final permit document", "System-location or site-plan drawing", "Bedroom design basis and component description", "Water-table, repair, alteration, or suitability records"),
+                    routeRules("RI")
+            );
             case "VT" -> new InstitutionRecordsExperience(
                     "VT", "Vermont DEC", "Wastewater System and Potable Water Supply Program",
                     "Search the permit—and understand why it may not appear.",
@@ -243,6 +261,13 @@ public final class InstitutionRecordsExperienceCatalog {
                             "https://anrweb.vt.gov/DEC/WWDocs/Default.aspx", "Search Vermont wastewater permits",
                             "https://dec.vermont.gov/sites/dec/files/dwgwp/documents/Septic-Permit-Search-Guide.pdf", "Open the official search guide",
                             "the appropriate Vermont DEC Regional Office", "request", "Prepare the regional-office follow-up.", "Regional-office request draft")
+            );
+            case "RI" -> List.of(
+                    route("ri-ridem-default", List.of(), "", "Rhode Island DEM OWTS Program",
+                            "Use RIDEM's historic search for applications before April 17, 2025 and the active search for newer activity. If the visible documents do not answer the property question, request the complete file from DEM File Review.",
+                            "https://www.ri.gov/DEM/owts/", "Search historic RIDEM OWTS records",
+                            "https://dem.ri.gov/environmental-protection-bureau/water-resources/permitting/septic-onsite-wastewater-treatment-owts", "Open active-search and file-request guidance",
+                            "Rhode Island DEM File Review", "request", "Prepare the complete OWTS file request with the assessor plat and lot.", "RIDEM file-review request")
             );
             default -> List.of();
         };

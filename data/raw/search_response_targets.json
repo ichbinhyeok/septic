@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-21",
-  "source": "Google Search Console three-month query totals through 2026-09-19 plus prior page-level and Bing Webmaster evidence; privacy-threshold-safe county response vocabulary",
+  "generatedAt": "2026-10-01",
+  "source": "Google Search Console complete 28-day page and query totals through 2026-09-28 plus authenticated Bing Webmaster web and AI performance evidence",
   "targets": [
     {
       "targetType": "state_records",
@@ -22,12 +22,12 @@
         "TDEC septic records",
         "county septic permit lookup"
       ],
-      "evidenceWindow": "2026-06-08..2026-07-06",
-      "clicks": 5,
-      "impressions": 994,
-      "ctr": 0.0050301811,
-      "position": 11.0211267606,
-      "evidenceNote": "Highest state-records impression page with weak CTR; needs query-exact routing and county handoff."
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 19,
+      "impressions": 971,
+      "ctr": 0.0195674562,
+      "position": 8.82,
+      "evidenceNote": "Google clicks expanded from 1 to 19 and average position moved from 18.17 to 8.82. Protect the county-and-file ownership and keep construction-process intent on the separate permit-process page."
     },
     {
       "targetType": "state_records",
@@ -45,12 +45,12 @@
         "septic system lookup",
         "county records route"
       ],
-      "evidenceWindow": "2026-07-04..2026-07-31",
-      "clicks": 39,
-      "impressions": 625,
-      "ctr": 0.0624,
-      "position": 10.1056,
-      "evidenceNote": "Strongest current records hub by clicks; preserve it and shorten the state-to-county path."
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 46,
+      "impressions": 876,
+      "ctr": 0.0525114155,
+      "position": 7.81,
+      "evidenceNote": "Google impressions more than doubled and average position improved from 12.47 to 7.81. Preserve the current snippet and county-record routing."
     },
     {
       "targetType": "county_records",
@@ -772,6 +772,204 @@
       "evidenceNote": "GSC page totals show two recent clicks near the first page; query rows are privacy-thresholded."
     },
     {
+      "targetType": "institution_records",
+      "key": "TN::TDEC",
+      "path": "/tdec-septic-records/",
+      "boost": 300,
+      "queries": [
+        "tn septic permit search",
+        "tdec septic permit search",
+        "tdec septic records",
+        "tdec septic file search"
+      ],
+      "recommendedAnchors": [
+        "TDEC septic permit search",
+        "Tennessee septic file search"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 169,
+      "impressions": 6508,
+      "ctr": 0.0259680393,
+      "position": 5.28,
+      "evidenceNote": "Largest Google demand surface and a top Microsoft AI citation source. Clicks and CTR improved while position strengthened; protect the current agency-search ownership and 403/file-help handoff."
+    },
+    {
+      "targetType": "institution_records",
+      "key": "TX::OSSF",
+      "path": "/texas-ossf-records-search/",
+      "boost": 245,
+      "queries": [
+        "texas ossf permit search",
+        "texas septic permit search by address",
+        "tceq ossf records",
+        "local ossf permitting authority"
+      ],
+      "recommendedAnchors": [
+        "Texas OSSF permit search",
+        "local OSSF records route"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 9,
+      "impressions": 466,
+      "ctr": 0.0193133047,
+      "position": 7.0,
+      "evidenceNote": "Google impressions rose by 397 with stable first-page position. Keep the address-to-authority resolver and improve snippet alignment without broadening into generic Texas permit content."
+    },
+    {
+      "targetType": "institution_records",
+      "key": "FL::OSTDS",
+      "path": "/florida-ostds-permit-lookup/",
+      "boost": 220,
+      "queries": [
+        "florida ostds permit search",
+        "ostds permit search",
+        "florida septic permit lookup by county",
+        "florida septic records"
+      ],
+      "recommendedAnchors": [
+        "Florida OSTDS permit search",
+        "Florida septic records by county"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 17,
+      "impressions": 446,
+      "ctr": 0.0381165919,
+      "position": 9.0,
+      "evidenceNote": "Google clicks rose from 4 to 17. Bing still shows a low-CTR first-page result, so the snippet now leads with OSTDS permit-search language while preserving the county route."
+    },
+    {
+      "targetType": "institution_records",
+      "key": "NC::EH",
+      "path": "/north-carolina-septic-permit-lookup/",
+      "boost": 235,
+      "queries": [
+        "north carolina septic permit lookup",
+        "nc septic permit search by address",
+        "county environmental health septic records",
+        "nc septic as built"
+      ],
+      "recommendedAnchors": [
+        "North Carolina septic permit lookup",
+        "county Environmental Health records"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 20,
+      "impressions": 625,
+      "ctr": 0.032,
+      "position": 10.34,
+      "evidenceNote": "Google position improved from 12.72 to 10.34 and the latest 14 days accelerated. Bing also shows strong 8% CTR; preserve the current county-address workflow."
+    },
+    {
+      "targetType": "state_records",
+      "key": "VT",
+      "path": "/septic-records-checklist/vermont/",
+      "boost": 205,
+      "queries": [
+        "vermont wastewater permit search",
+        "vt wastewater permit search",
+        "vermont septic permit search",
+        "wastewater permit search vt"
+      ],
+      "recommendedAnchors": [
+        "Vermont wastewater permit search",
+        "Vermont DEC septic records"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 1,
+      "impressions": 307,
+      "ctr": 0.003257329,
+      "position": 8.25,
+      "evidenceNote": "New first-page visibility is concentrated on wastewater-permit-search wording. Use that exact language in the snippet and retain older-file, town, and regional-office fallbacks."
+    },
+    {
+      "targetType": "state_records",
+      "key": "NH",
+      "path": "/septic-records-checklist/new-hampshire/",
+      "boost": 200,
+      "queries": [
+        "nh septic lookup",
+        "nh des septic lookup by address",
+        "nhdes onestop septic",
+        "nh septic design lookup"
+      ],
+      "recommendedAnchors": [
+        "NH septic lookup by address",
+        "NHDES OneStop records"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 3,
+      "impressions": 424,
+      "ctr": 0.0070754717,
+      "position": 8.98,
+      "evidenceNote": "New first-page exposure has a clear address-lookup and OneStop vocabulary gap. The snippet now uses both while preserving archive and town-file fallbacks."
+    },
+    {
+      "targetType": "state_records",
+      "key": "OR",
+      "path": "/septic-records-checklist/oregon/",
+      "boost": 180,
+      "queries": [
+        "oregon deq septic records",
+        "oregon septic records",
+        "deq septic records",
+        "oregon septic tax lot search"
+      ],
+      "recommendedAnchors": [
+        "Oregon DEQ septic records",
+        "Oregon septic tax-lot search"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 0,
+      "impressions": 78,
+      "ctr": 0.0,
+      "position": 7.22,
+      "evidenceNote": "First-page visibility is early and query volume is still small. Preserve the exact DEQ and tax-lot positioning and strengthen internal discovery rather than rewriting the page broadly."
+    },
+    {
+      "targetType": "state_cost",
+      "key": "AL::perc-test-cost",
+      "path": "/septic-system-cost-calculator/alabama/",
+      "boost": 230,
+      "queries": [
+        "how much does a perc test cost in alabama",
+        "alabama perc test cost",
+        "perc test cost",
+        "alabama county perc test fees"
+      ],
+      "recommendedAnchors": [
+        "Alabama perc test cost",
+        "county perc-test fees"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 23,
+      "impressions": 1980,
+      "ctr": 0.0116161616,
+      "position": 6.49,
+      "evidenceNote": "High-volume first-page asset with a direct question at position 2.49 but no measured click in the complete window. Keep the numeric answer in the title and make the description answer the question before explaining county scope."
+    },
+    {
+      "targetType": "national_records",
+      "key": "records-access-index",
+      "path": "/septic-records-access-index/",
+      "boost": 190,
+      "queries": [
+        "septic records access",
+        "septic permit records by state",
+        "official septic record search",
+        "septic records database"
+      ],
+      "recommendedAnchors": [
+        "septic records access index",
+        "official records route by state"
+      ],
+      "evidenceWindow": "2026-09-01..2026-09-28",
+      "clicks": 6,
+      "impressions": 430,
+      "ctr": 0.0139534884,
+      "position": 7.43,
+      "evidenceNote": "Impressions expanded by 400 while position reached the first page. Promote it as the comparison/index surface and keep task-specific searches routed to the institution and state pages."
+    },
+    {
       "targetType": "state_workflow",
       "key": "TN::septic-permit-process",
       "path": "/septic-permit-process/tennessee/",
@@ -779,19 +977,19 @@
       "queries": [
         "tennessee septic permit process",
         "tdec septic permit process",
-        "tennessee septic permit records",
-        "tdec septic permit lookup"
+        "tennessee new septic system permit",
+        "tennessee septic repair permit"
       ],
       "recommendedAnchors": [
         "Tennessee septic permit process",
-        "TDEC permit steps and records"
+        "new-system and repair approval steps"
       ],
-      "evidenceWindow": "2026-06-13..2026-09-12",
-      "clicks": 24,
-      "impressions": 2200,
-      "ctr": 0.0111,
-      "position": 5.85,
-      "evidenceNote": "Bing Webmaster page totals identify the largest Tennessee snippet gap: first-page visibility with a 1.11% CTR. The route needs indexability, query-exact snippet copy, and direct record handoffs."
+      "evidenceWindow": "2026-09-01..2026-09-30",
+      "clicks": 0,
+      "impressions": 246,
+      "ctr": 0.0,
+      "position": 7.22,
+      "evidenceNote": "Bing still exposes the page on the first page without clicks. The page now owns current construction, replacement, repair, and inspection workflow; historical lookup intent belongs to TDEC and the Tennessee records hub."
     }
   ]
 }

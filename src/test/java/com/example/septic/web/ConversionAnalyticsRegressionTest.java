@@ -14,10 +14,12 @@ class ConversionAnalyticsRegressionTest {
     void calculatorAndFutureLeadActionsUseTheRequiredGa4EventNames() throws IOException {
         String coreScript = Files.readString(Path.of("src/main/resources/static/app-core.js"));
         String calculator = Files.readString(Path.of("src/main/jte/pages/calculator.jte"));
+        String studioCalculator = Files.readString(Path.of("src/main/jte/studio/calculator.jte"));
         String result = Files.readString(Path.of("src/main/jte/tags/estimateResult.jte"));
 
         assertTrue(coreScript.contains("emitGaEvent(\"calculator_started\""));
         assertTrue(coreScript.contains("emitGaEvent(\"calculator_completed\""));
+        assertTrue(coreScript.contains("emitGaEvent(\"calculator_job_choice\""));
         assertTrue(coreScript.contains("emitGaEvent(\"lead_cta_clicked\""));
         assertTrue(coreScript.contains("record_help_cta_viewed"));
         assertTrue(coreScript.contains("record_help_cta_clicked"));
@@ -25,9 +27,11 @@ class ConversionAnalyticsRegressionTest {
         assertTrue(coreScript.contains("record_help_form_started"));
         assertTrue(coreScript.contains("record_help_form_validation_error"));
         assertTrue(coreScript.contains("invalid_fields: invalidFields"));
-        assertTrue(coreScript.contains("record_help_stage_selected"));
+        assertTrue(coreScript.contains("record_help_role_selected"));
         assertTrue(coreScript.contains("cta_variant: \"task_adjacent_v1\""));
         assertTrue(calculator.contains("data-ga-event=\"calculator_submit\""));
+        assertTrue(studioCalculator.contains("data-track-target-type=\"calculator_job_choice\""));
+        assertTrue(studioCalculator.contains("data-calculator-job=\"perc_test\""));
         assertTrue(result.contains("data-track-target-type=\"quote_form\""));
     }
 }

@@ -16,6 +16,8 @@ class SearchPortfolioOperatingSystemRegressionTest {
         assertTrue(tool.contains("operationalProof"));
         assertTrue(tool.contains("evidence_queue"));
         assertTrue(tool.contains("Do not expand this page yet"));
+        assertTrue(tool.contains("type: 'state_guide'"));
+        assertTrue(tool.contains("const catalogPaths = new Set"));
     }
 
     @Test

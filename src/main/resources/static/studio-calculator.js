@@ -30,14 +30,14 @@
             if (kicker) kicker.textContent = fieldMode ? 'Field recovery / Scope estimator' : 'Property planning / Cost estimator';
             if (intro) intro.textContent = fieldMode
                 ? 'Map soil, saturation, access and the replacement area before treating trench work as the whole job.'
-                : 'Start with what you know about the property.';
+                : 'Choose the job, add the state and property details, and see a practical planning range.';
             if (details) details.textContent = fieldMode ? 'Define the field constraints' : 'Add soil & site details';
             if (water) water.textContent = fieldMode
                 ? 'Wet spots, surfacing, odor, or high water suspected'
                 : 'High water table or shallow bedrock suspected';
             if (title) title.innerHTML = fieldMode
                 ? (title.tagName === 'H1' ? 'Read the field.<br>Price the real path.' : 'Refine the field.<br>Protect the low end.')
-                : (title.tagName === 'H1' ? 'Plan the project.<br>Understand the range.' : 'Refine your<br>planning estimate.');
+                : (title.tagName === 'H1' ? 'Estimate septic and perc test costs by state.' : 'Refine your<br>planning estimate.');
         };
         projectType.addEventListener('change', applyMode);
         applyMode();
