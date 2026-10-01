@@ -26,7 +26,8 @@ public class ClosingRiskCheckForm {
     @Pattern(regexp = "^$|[0-9+().\\-\\s]{7,30}$", message = "Enter a valid phone number or leave it blank.")
     private String phone;
 
-    @Pattern(regexp = "^$|researching|buyer|seller|agent|other", message = "Choose a valid stage.")
+    @NotBlank(message = "Choose your role.")
+    @Pattern(regexp = "owner|buyer|seller|agent|other", message = "Choose a valid role.")
     private String transactionRole;
 
     @NotBlank(message = "Property address is required.")

@@ -34,7 +34,7 @@ class StudioIntakeTest {
     }
 
     private <T extends AbstractMockHttpServletRequestBuilder<T>> T valid(T request) {
-        return request.param("email", "qa@example.com").param("propertyAddress", "123 Example Lane, Knoxville TN 37901")
+        return request.param("email", "qa@example.com").param("transactionRole", "owner").param("propertyAddress", "123 Example Lane, Knoxville TN 37901")
                 .param("stateCode", "TN").param("concern", "Please find the approved bedroom count.")
                 .param("consentAccepted", "true");
     }

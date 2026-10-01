@@ -149,7 +149,7 @@ public class ClosingRiskNotificationService {
                 Email: %s
                 Phone: %s
                 Matched-professional phone sharing authorized: %s
-                Process stage: %s
+                Requester role: %s
                 Property: %s
                 State / county: %s / %s
                 Record type: %s
