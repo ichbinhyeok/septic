@@ -23,6 +23,14 @@ class ConversionMeasurementRegressionTest {
         assertTrue(script.contains("\"record_help_form_submit_attempted\""));
         assertTrue(script.contains("\"generate_lead\""));
         assertTrue(script.contains("activeSeconds < 30 || maxScrollDepth < 50"));
+
+        int successLookup = script.indexOf("const success = document.querySelector(\"[data-closing-risk-request-success]\")");
+        int formGuard = script.indexOf("if (!(form instanceof HTMLFormElement)) return;", successLookup);
+        assertTrue(successLookup >= 0 && formGuard > successLookup,
+                "The success-only Studio response has no form, so generate_lead must run before the form guard");
+
+        String studioIntake = Files.readString(Path.of("src/main/jte/studio/intake.jte"));
+        assertTrue(studioIntake.contains("data-ga-track-once=\"record-help-request:${closingRiskRequestId}\""));
     }
 
     @Test

@@ -80,6 +80,26 @@ their historical 'not sent' statements do not override later verified sends.
 8. Validate and render. Advance the inbox checkpoint only after the complete
    incremental fetch was triaged. The tool blocks advancing with untriaged mail.
 
+### Route knowledge to capture on every case
+
+Treat each agency reply, portal search, file return, bounce, and no-record result
+as a chance to improve the regional route. In the same `apply` transaction,
+record the direct official URL or exact working contact, jurisdiction and record
+type, the address/parcel/permit search keys and click path, requester or account
+requirements, verified fee, observed outcome, known limitations, fallback, date,
+and source IDs. Put actionable URLs in `first_action` or `primary_channel`, not
+only in a source email. Use structured `availability`, `primary_channel`,
+`requester_requirements`, and `fee_policy` fields; leave unverified values
+`unknown`. Write a lesson when the finding changes how the next case should be
+handled. A source that was suggested, a portal that was opened, a request that
+was submitted, an automated receipt, an agency acknowledgement, and a returned
+original are distinct outcomes. Replace a bounced or failed channel as the
+primary route in the same turn. Check `views/route-intelligence.*` after render.
+
+These private observations are operating assets. Derive public SEO material
+only after separate source and privacy review; do not expose customer parcels,
+unredacted emails or private ledger entries.
+
 ### Mandatory returned-file identity gate
 
 Before treating any agency attachment as responsive evidence, interpreting it,
@@ -115,10 +135,49 @@ draft, send, forward, or upload unless the exact planned delivery has a current
 PASS receipt. Templates and field guidance are in
 `storage/operations/delivery-gates/README.md`.
 
+### Mandatory mail screenshot gate
+
+For any email evidence screenshot shown to the user or attached externally,
+capture the target message and deliver only a crop of its original body or
+relevant answer. Do not include inbox/sidebar, toolbar, message header, other
+messages, or translated/recreated text in that image. Preserve the full source
+only in ignored private storage. In a private JSON manifest, record the target
+message ID, source path and SHA-256, body bounds, crop, excluded UI regions,
+reviewer and review time. The gate creates the crop and receipt:
+
+```powershell
+python tools/mail-capture-gate.py storage/operations/sources/<manifest>.json
+python tools/mail-capture-gate.py --verify storage/operations/sources/<manifest>.json
+```
+
+Inspect the cropped image visually. Require a current `MAIL CAPTURE GATE: PASS`
+verification immediately before display or send; rerun creation when any source
+byte, crop, output, or review changes. If the crop cannot isolate the answer,
+provide a text summary and source link rather than showing a full mail UI.
+The gate checks image geometry and hashes; visual review confirms meaning.
+When the screenshot is customer-case file evidence, also run the mandatory
+attachment delivery gate before the external action.
+
 There is **no background Gmail synchronizer** running. An agent/operator must
 perform the incremental import. Do not claim the inbox is current past its
 checkpoint. Reading the dashboard requires no mail access; checking *new*
 replies naturally does. Do not perform a full mailbox reconstruction each time.
+
+### Recent-window customer count gate
+
+Before reporting a "last N days" intake or selecting customers for a bulk
+progress update, state the exact timezone and start/end instants. Run a bounded,
+paginated Gmail intake search for that window and compare every provider message
+ID with case `intake_message_id` and `intake_at`. A missing case or timestamp
+blocks a complete count until reconciled. Check each candidate's actual sent
+thread and bounce history; `last_customer_update: null` is insufficient proof
+that the customer received only the automatic acknowledgement. Distinguish
+research begun, first personal update sent, completed/offer sent, undeliverable,
+and intake not yet researched. Record source IDs and actual sends in the same
+`apply` turn. Validation now rejects cases without a linked intake message and
+verified UTC `intake_at`. A bounded Gmail audit does not advance the global sync
+checkpoint; advance it only after the complete incremental inbox fetch and
+triage described above.
 
 ## Transactional updates
 
@@ -202,6 +261,13 @@ infer receipt, resolution, jurisdiction, permission to send, or customer intent.
 - `delivered` / `delivered_limited` need customer-delivery evidence. They mean
   the researched result was sent, not that the property is certified safe or
   the customer's transaction succeeded.
+- `closed_undeliverable` is an internal stop for a customer address confirmed
+  invalid by delivery-failure evidence. It is not a delivered result or a
+  septic-record conclusion. Do not send to that address again; preserve any
+  already-sent agency branch and record later agency replies as route evidence.
+- `closed_customer_withdrew` records the customer's own reply that they solved
+  the issue or no longer need the result. Keep that reply as closure evidence;
+  this state is not counted as a delivered SepticPath result.
 - No reply found is not rejection. A named failed recipient does not prove
   failure of all recipients. Unknown remains unknown.
 - Dates for deadlines are local dates with case timezone; mail timestamps are

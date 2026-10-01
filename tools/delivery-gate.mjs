@@ -60,6 +60,9 @@ export function evaluateDeliveryGate(ledger, manifest, options = {}) {
   if (customerCase && manifest.purpose === 'customer_delivery' && String(manifest.recipient).trim().toLowerCase() !== String(customerCase.email).trim().toLowerCase()) {
     errors.push(`customer recipient does not match case email ${customerCase.email}`);
   }
+  if (customerCase && (customerCase.contact_policy === 'do_not_contact_bounced' || customerCase.status === 'closed_undeliverable') && String(manifest.recipient).trim().toLowerCase() === String(customerCase.email).trim().toLowerCase()) {
+    errors.push('customer recipient is suppressed after confirmed mailbox failure');
+  }
 
   if (!Array.isArray(manifest.artifacts) || manifest.artifacts.length === 0) {
     errors.push('at least one artifact is required');

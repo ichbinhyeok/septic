@@ -48,8 +48,16 @@
         <div class="container">
             <div class="section-heading">
                 <span class="eyebrow">${tankSizeMode ? "Septic tank capacity planner" : pumpScheduleMode ? "Septic maintenance planner" : "Septic cost calculator"}</span>
-                <h1>${tankSizeMode ? "Estimate a conservative septic tank capacity band." : pumpScheduleMode ? "Build a practical pumping and inspection rhythm." : "Estimate the cost of a septic project."}</h1>
-                <p class="lede">${tankSizeMode ? "Use bedrooms and household load to frame capacity, then verify it against the permit file and local rules." : pumpScheduleMode ? "Use tank capacity and household load to plan the next check without treating a generic calendar as an inspection." : "Choose the state, job type, and property details. We will show a broad planning range, what moved it, and what to verify before trusting the low end."}</p>
+                <h1>${tankSizeMode ? "Estimate a conservative septic tank capacity band." : pumpScheduleMode ? "Build a practical pumping and inspection rhythm." : "Estimate septic and perc test costs by state."}</h1>
+                <p class="lede">${tankSizeMode ? "Use bedrooms and household load to frame capacity, then verify it against the permit file and local rules." : pumpScheduleMode ? "Use tank capacity and household load to plan the next check without treating a generic calendar as an inspection." : "Choose the job first, then the state. Get a broad planning range immediately and see which site, permit, and record details can move it."}</p>
+                @if (!tankSizeMode && !pumpScheduleMode)
+                    <nav class="calculator-job-choices" aria-label="Choose a septic cost to estimate">
+                        <a href="?projectType=perc_test#cost-estimator-form"><span>01</span><strong>Perc test</strong></a>
+                        <a href="?projectType=new_install#cost-estimator-form"><span>02</span><strong>New system</strong></a>
+                        <a href="?projectType=replacement#cost-estimator-form"><span>03</span><strong>Replacement</strong></a>
+                        <a href="?projectType=inspection#cost-estimator-form"><span>04</span><strong>Inspection</strong></a>
+                    </nav>
+                @endif
             </div>
         </div>
     </section>
@@ -88,7 +96,7 @@
                 @endif
                 <div class="calculator-form__intro">
                     <span class="pill">Fast start</span>
-                    <p>Choose the basics first. The secondary fields only help tighten the range.</p>
+                    <p>Confirm the job and state first. Secondary fields only help tighten the range.</p>
                 </div>
                 <nav class="quick-link-strip" aria-label="Calculator modes">
                     <a class="button button--secondary" href="/septic-system-cost-calculator/">Project cost</a>

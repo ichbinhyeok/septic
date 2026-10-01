@@ -539,6 +539,12 @@
             if (targetType === "quote_form" || targetType === "lead_form" || anchor.getAttribute("href") === "#quote-request") {
                 emitGaEvent("lead_cta_clicked", { source_context: anchor.dataset.trackSourceContext || "", cta_type: targetType || "quote_form" });
             }
+            if (targetType === "calculator_job_choice") {
+                emitGaEvent("calculator_job_choice", {
+                    job_type: anchor.dataset.calculatorJob || "unknown",
+                    source_page: analyticsSourcePage()
+                });
+            }
         });
     }
 
@@ -663,6 +669,17 @@
             addedCtas.observe(document.body, { childList: true, subtree: true });
         }
 
+        const success = document.querySelector("[data-closing-risk-request-success]");
+        if (success instanceof HTMLElement) {
+            success.dataset.gaParamEntryPage = entryPage;
+            success.dataset.gaParamSourcePage = getSourcePage();
+            emitGaEventOnce("generate_lead", {
+                lead_type: "record_research",
+                source_context: getSourceContext(),
+                ...attributionParams()
+            }, `generate-lead:${success.dataset.gaTrackOnce || currentPage}`);
+        }
+
         const form = document.querySelector("[data-record-help-request-form]");
         if (!(form instanceof HTMLFormElement)) return;
 
@@ -677,16 +694,6 @@
         const entryPageInput = form.querySelector("[data-record-help-entry-page]");
         if (entryPageInput instanceof HTMLInputElement && !entryPageInput.value) {
             entryPageInput.value = entryPage;
-        }
-        const success = document.querySelector("[data-closing-risk-request-success]");
-        if (success instanceof HTMLElement) {
-            success.dataset.gaParamEntryPage = entryPage;
-            success.dataset.gaParamSourcePage = getSourcePage();
-            emitGaEventOnce("generate_lead", {
-                lead_type: "record_research",
-                source_context: getSourceContext(),
-                ...attributionParams()
-            }, `generate-lead:${success.dataset.gaTrackOnce || currentPage}`);
         }
         const carriedContext = readRecordHelpContext();
         if (carriedContext) {
@@ -802,7 +809,7 @@
                 source_context: getSourceContext(),
                 request_type: "record_help_beta",
                 research_goal: goal instanceof HTMLSelectElement ? goal.value : "unknown",
-                process_stage: stage instanceof HTMLSelectElement && stage.value ? stage.value : "not_selected",
+                requester_role: stage instanceof HTMLSelectElement && stage.value ? stage.value : "not_selected",
                 document_attached: documentInput instanceof HTMLInputElement && documentInput.files?.length ? "yes" : "no",
                 ...attributionParams()
             });
@@ -858,17 +865,15 @@
             && goal instanceof HTMLSelectElement
             && transactionDetails instanceof HTMLDetailsElement) {
             const syncTransactionDetails = (trackSelection) => {
-                const hasTransaction = stage.value !== "" && stage.value !== "researching";
                 const needsDocumentContext = goal.value === "design_capacity"
                     || goal.value === "understand_file"
                     || goal.value === "approval_status";
                 transactionDetails.open = needsDocumentContext;
                 if (trackSelection && stage.value !== "") {
-                    emitGaEvent("record_help_stage_selected", {
+                    emitGaEvent("record_help_role_selected", {
                         source_context: getSourceContext(),
                         request_type: "record_help_beta",
-                        process_stage: stage.value,
-                        transaction_intent: hasTransaction ? "active" : "research",
+                        requester_role: stage.value,
                         ...attributionParams()
                     });
                 }

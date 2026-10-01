@@ -7608,6 +7608,11 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "As-built file route",
                         "/septic-as-built-records/",
                         "Use when tank, field, reserve-area, site sketch, or layout proof changes the next decision."
+                ),
+                new PageLink(
+                        "Septic tank location records",
+                        "/septic-tank-location-records/",
+                        "Use the permit file, as-built, site sketch, or approved plan to narrow the recorded tank and drain-field location."
                 )
         ));
 

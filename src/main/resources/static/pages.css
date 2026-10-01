@@ -164,6 +164,19 @@
   .state-records-county-index a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .state-records-documents ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-dark); }
   .state-records-documents li { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.state-records-documents__location {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 22px 0;
+    border-block: 1px solid var(--line-dark);
+    color: var(--ink);
+    text-decoration: none;
+}
+.state-records-documents__location strong { font-size: 1.05rem; }
+.state-records-documents__location span { max-width: 58ch; color: var(--muted); }
+.state-records-documents__location:hover strong { color: var(--accent-dark); }
   .state-records-outcomes > .container > div { max-width: 900px; border-top: 1px solid var(--line-dark); }
   .state-records-outcomes details, .state-records-reference details { border-bottom: 1px solid var(--line); }
   .state-records-outcomes summary, .state-records-reference summary { padding: 20px 0; cursor: pointer; font-family: var(--font-sans); font-weight: 700; }
@@ -1936,6 +1949,7 @@
     .official-records-hero h1, .state-records-hero h1, .national-records-hero h1 { max-width: 17ch; }
     .official-records-page .record-finder--minimal, .state-records-page .record-finder--minimal, .national-records-page .record-finder--minimal { box-shadow: 8px 8px 0 color-mix(in srgb, var(--accent) 10%, transparent); }
     .official-records-documents, .state-records-route__steps { padding: 28px 0 0; border-top: 1px solid var(--line-dark); border-left: 0; }
+    .state-records-documents__location { display: grid; gap: 8px; }
     .state-grid, .records-access-state-list, .state-link-grid, .county-sibling-routes, .county-route-cluster__links { grid-template-columns: repeat(2, 1fr); }
     .county-service-scope__lead { grid-column: auto; }
     .ops-report-metrics { grid-template-columns: repeat(2, 1fr); }
@@ -3042,6 +3056,30 @@ ol.record-learning__steps { padding-left: 1.4rem; }
 .calculator-intro .section-heading { max-width: 790px; }
 .calculator-intro h1 { max-width: 13ch; font-size: clamp(3.6rem, 6vw, 6.3rem); line-height: .92; letter-spacing: -.07em; }
 .calculator-intro .lede { max-width: 58ch; font-size: clamp(1.08rem, 1.7vw, 1.3rem); }
+.calculator-job-choices {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    max-width: 760px;
+    margin-top: clamp(28px, 4vw, 44px);
+    border-block: 1px solid rgba(255,255,255,.24);
+}
+.calculator-job-choices a {
+    display: grid;
+    gap: 9px;
+    min-height: 102px;
+    padding: 20px 18px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(7,31,42,.28);
+    backdrop-filter: blur(8px);
+    transition: background .2s ease, transform .2s ease;
+}
+.calculator-job-choices a + a { border-left: 1px solid rgba(255,255,255,.2); }
+.calculator-job-choices span { color: #9fe2c6; font: 700 .68rem/1 var(--font-sans); letter-spacing: .14em; }
+.calculator-job-choices strong { align-self: end; font-size: 1rem; }
+.calculator-job-choices a:hover,
+.calculator-job-choices a:focus-visible { background: rgba(40,139,110,.52); transform: translateY(-3px); }
 .calculator-intro + .section { background: #eef3ef; }
 .calculator-intro + .section .calculator-form,
 .calculator-intro + .section .calculator-sidebar,
@@ -3125,6 +3163,9 @@ ol.record-learning__steps { padding-left: 1.4rem; }
     .calculator-intro { padding-block: 58px 66px; background-position: 62% center; }
     .calculator-intro h1 { font-size: clamp(3rem, 14vw, 4.15rem); }
     .calculator-intro .lede { font-size: 1rem; }
+    .calculator-job-choices { grid-template-columns: 1fr 1fr; }
+    .calculator-job-choices a:nth-child(3) { border-left: 0; border-top: 1px solid rgba(255,255,255,.2); }
+    .calculator-job-choices a:nth-child(4) { border-top: 1px solid rgba(255,255,255,.2); }
 }
 
 @media (prefers-reduced-motion: reduce) {

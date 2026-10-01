@@ -28,7 +28,10 @@ class StudioCalculatorTest {
                 .andExpect(content().string(containsString("noindex,nofollow")))
                 .andExpect(content().string(containsString("/studio-calculator.css?v=")))
                 .andExpect(content().string(containsString("calculator-landscape-v2.webp")))
-                .andExpect(content().string(containsString("Plan the project.")))
+                .andExpect(content().string(containsString("Estimate septic and perc test costs by state.")))
+                .andExpect(content().string(containsString("calc-job-choices")))
+                .andExpect(content().string(containsString("data-calculator-job=\"perc_test\"")))
+                .andExpect(content().string(containsString("data-track-target-type=\"calculator_job_choice\"")))
                 .andExpect(content().string(not(containsString("calc-companion"))))
                 .andExpect(content().string(not(containsString("/app.css"))));
         var model = mvc.perform(get(PATH).param("state", "TN").param("projectType", "replacement")

@@ -53,6 +53,16 @@ test('passes only after every page and required identity anchor is reviewed', t 
   assert.equal(result.artifacts[0].result, 'PASS');
 });
 
+test('suppresses customer delivery to a confirmed bounced address', t => {
+  const f = gateFixture();
+  t.after(() => fs.rmSync(f.operationsHome, {recursive: true, force: true}));
+  f.ledger.cases[0].status = 'closed_undeliverable';
+  f.ledger.cases[0].contact_policy = 'do_not_contact_bounced';
+  const result = evaluateDeliveryGate(f.ledger, f.manifest, {operationsHome: f.operationsHome, now: '2026-09-16T01:00:00Z'});
+  assert.equal(result.ok, false);
+  assert.match(result.errors.join('\n'), /recipient is suppressed/);
+});
+
 test('blocks a visible property-identity conflict', t => {
   const f = gateFixture();
   t.after(() => fs.rmSync(f.operationsHome, {recursive: true, force: true}));

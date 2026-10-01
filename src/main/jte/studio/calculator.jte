@@ -61,11 +61,20 @@
     <div class="calc-input studio-wrap">
         <div class="calc-hero-copy"><p class="studio-overline" data-calc-mode-kicker>${tankSizeMode ? "Capacity planning / Tank size" : pumpScheduleMode ? "Maintenance planning / Pump rhythm" : drainfieldMode ? "Field recovery / Scope estimator" : "Property planning / Cost estimator"}</p>
         @if(result == null && tankSizeResult == null && pumpScheduleResult == null)
-            @if(tankSizeMode)<h1 id="calc-title">Size the tank.<br>Keep the context.</h1>@elseif(pumpScheduleMode)<h1 id="calc-title">Set the rhythm.<br>Watch the system.</h1>@elseif(drainfieldMode)<h1 id="calc-title" data-calc-mode-title>Read the field.<br>Price the real path.</h1>@else<h1 id="calc-title" data-calc-mode-title>Plan the project.<br>Understand the range.</h1>@endif
+            @if(tankSizeMode)<h1 id="calc-title">Size the tank.<br>Keep the context.</h1>@elseif(pumpScheduleMode)<h1 id="calc-title">Set the rhythm.<br>Watch the system.</h1>@elseif(drainfieldMode)<h1 id="calc-title" data-calc-mode-title>Read the field.<br>Price the real path.</h1>@else<h1 id="calc-title" data-calc-mode-title>Estimate septic and perc test costs by state.</h1>@endif
         @else
             @if(tankSizeMode)<h2 id="calc-title">Refine the load.<br>Protect the capacity.</h2>@elseif(pumpScheduleMode)<h2 id="calc-title">Refine the use.<br>Reset the rhythm.</h2>@elseif(drainfieldMode)<h2 id="calc-title" data-calc-mode-title>Refine the field.<br>Protect the low end.</h2>@else<h2 id="calc-title" data-calc-mode-title>Refine your<br>planning estimate.</h2>@endif
         @endif
-        <p class="calc-intro" data-calc-mode-intro>${tankSizeMode ? "Translate bedrooms and household use into a conservative capacity band—then verify it against the local file." : pumpScheduleMode ? "Turn tank capacity and household load into a maintenance cadence without pretending the calendar can inspect the system." : drainfieldMode ? "Map soil, saturation, access and the replacement area before treating trench work as the whole job." : "Start with what you know about the property."}</p></div>
+        <p class="calc-intro" data-calc-mode-intro>${tankSizeMode ? "Translate bedrooms and household use into a conservative capacity band—then verify it against the local file." : pumpScheduleMode ? "Turn tank capacity and household load into a maintenance cadence without pretending the calendar can inspect the system." : drainfieldMode ? "Map soil, saturation, access and the replacement area before treating trench work as the whole job." : "Choose the job, add the state and property details, and see a practical planning range."}</p>
+        @if(!tankSizeMode && !pumpScheduleMode && !drainfieldMode)
+            <nav class="calc-job-choices" aria-label="Choose a septic cost estimate">
+                <a href="?projectType=perc_test#cost-estimator-form" data-calculator-job="perc_test" data-track-click data-track-source-context="calculator_job_choice" data-track-target-type="calculator_job_choice" data-track-label="Perc test"><span>Perc test</span><small>Soil evaluation</small></a>
+                <a href="?projectType=new_install#cost-estimator-form" data-calculator-job="new_install" data-track-click data-track-source-context="calculator_job_choice" data-track-target-type="calculator_job_choice" data-track-label="New system"><span>New system</span><small>Installation</small></a>
+                <a href="?projectType=replacement#cost-estimator-form" data-calculator-job="replacement" data-track-click data-track-source-context="calculator_job_choice" data-track-target-type="calculator_job_choice" data-track-label="Replacement"><span>Replacement</span><small>Existing system</small></a>
+                <a href="?projectType=inspection#cost-estimator-form" data-calculator-job="inspection" data-track-click data-track-source-context="calculator_job_choice" data-track-target-type="calculator_job_choice" data-track-label="Inspection"><span>Inspection</span><small>Property review</small></a>
+            </nav>
+        @endif
+        </div>
         <nav class="calc-mode-nav" aria-label="Calculator modes">
             <a class="${!tankSizeMode && !pumpScheduleMode ? "is-active" : ""}" href="${com.example.septic.web.StudioGuideRoutes.route("/septic-system-cost-calculator/", production)}">Project cost</a>
             <a class="${tankSizeMode ? "is-active" : ""}" href="${com.example.septic.web.StudioGuideRoutes.route("/septic-system-cost-calculator/?mode=tank_size", production)}">Tank capacity</a>

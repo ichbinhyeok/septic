@@ -1216,8 +1216,8 @@
         "septic tank records search",
         "county septic records"
       ],
-      "title": "How to Find Septic Records Online",
-      "metaDescription": "Find septic records online by starting with state records, county health files, permit portals, parcel clues, and the right septic permit lookup path.",
+      "title": "How to Find Septic Tank Records Online",
+      "metaDescription": "Find septic tank records through free official state and county searches, permit portals, parcel clues, and the correct request route when no file appears online.",
       "introCopy": "Start with the state or county office responsible for the property's septic records. If an online search returns nothing, check alternate identifiers and archive routes before concluding that no record exists. A portal error, a search with no matches, and an agency's written no-record response are different results.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -1286,6 +1286,8 @@
         "/septic-as-built-records/",
         "/septic-inspection-letter/"
       ],
+      "updatedAt": "2026-10-01",
+      "reviewedAt": "2026-10-01",
       "publishStatus": "published"
     },
     {

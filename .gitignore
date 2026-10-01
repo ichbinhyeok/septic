@@ -45,6 +45,7 @@ storage/events/**/*.ndjson
 storage/exports/**
 storage/ops-report-credentials.properties
 storage/operations/
+storage/paid-unlocks/
 !storage/leads/README.md
 !storage/events/README.md
 .gstack/
@@ -52,6 +53,7 @@ storage/operations/
 # Local customer operations and design review artifacts
 .codex-remote-attachments/
 /record-*.png
+/qa-*.png
 /docs/RECORD_HELP_CASE_LOG.csv
 /tools/build_mary_*.py
 

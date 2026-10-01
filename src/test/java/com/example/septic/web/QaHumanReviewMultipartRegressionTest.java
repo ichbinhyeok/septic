@@ -37,6 +37,7 @@ class QaHumanReviewMultipartRegressionTest {
         field(body, boundary, "sourcePageHint", "/septic-record-finder/");
         field(body, boundary, "entryPageHint", "/septic-record-finder/?mode=document");
         field(body, boundary, "email", "qa.user@example.com");
+        field(body, boundary, "phone", "(919) 555-0100");
         field(body, boundary, "propertyAddress", "100 Oak Lane, Raleigh, NC 27601");
         field(body, boundary, "stateCode", "NC");
         field(body, boundary, "recordType", "septic");
