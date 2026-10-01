@@ -862,7 +862,7 @@
                 const needsDocumentContext = goal.value === "design_capacity"
                     || goal.value === "understand_file"
                     || goal.value === "approval_status";
-                transactionDetails.open = hasTransaction || needsDocumentContext;
+                transactionDetails.open = needsDocumentContext;
                 if (trackSelection && stage.value !== "") {
                     emitGaEvent("record_help_stage_selected", {
                         source_context: getSourceContext(),

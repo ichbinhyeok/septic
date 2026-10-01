@@ -237,6 +237,21 @@
                                 <input type="email" name="email" value="${closingRiskCheckForm.getEmailValue()}" autocomplete="email" maxlength="160" required>
                                 <small>We’ll send research updates and the result here. No newsletter signup.</small>
                             </label>
+                            <label>
+                                <span>Mobile number <small>(optional)</small></span>
+                                <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
+                            </label>
+                            <label>
+                                <span>Your role (required)</span>
+                                <select name="transactionRole" data-record-help-stage required>
+                                    <option value="">Choose one</option>
+                                    <option value="owner" selected="${"owner".equals(closingRiskCheckForm.getTransactionRole())}">Property owner</option>
+                                    <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
+                                    <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
+                                    <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
+                                    <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other</option>
+                                </select>
+                            </label>
                             <label class="field--full">
                                 <span>Property address</span>
                                 <input type="text" name="propertyAddress" value="${closingRiskCheckForm.getPropertyAddressValue()}" autocomplete="street-address" maxlength="220" placeholder="123 Main St, City, ST 12345" required>
@@ -307,24 +322,8 @@
                                     <input type="date" name="deadline" value="${closingRiskCheckForm.getDeadlineValue()}" min="${closingRiskMinimumDeadline}">
                                 </label>
                                 <label>
-                                    <span>Where are you in the process?</span>
-                                    <select name="transactionRole" data-record-help-stage>
-                                        <option value="">Choose if relevant</option>
-                                        <option value="researching" selected="${"researching".equals(closingRiskCheckForm.getTransactionRole())}">Researching</option>
-                                        <option value="buyer" selected="${"buyer".equals(closingRiskCheckForm.getTransactionRole())}">Buyer</option>
-                                        <option value="seller" selected="${"seller".equals(closingRiskCheckForm.getTransactionRole())}">Seller</option>
-                                        <option value="agent" selected="${"agent".equals(closingRiskCheckForm.getTransactionRole())}">Real-estate agent</option>
-                                        <option value="other" selected="${"other".equals(closingRiskCheckForm.getTransactionRole())}">Other professional</option>
-                                    </select>
-                                </label>
-                                <label>
                                     <span>Name</span>
                                     <input type="text" name="fullName" value="${closingRiskCheckForm.getFullNameValue()}" autocomplete="name" maxlength="120">
-                                </label>
-                                <label>
-                                    <span>Mobile number <small>(optional)</small></span>
-                                    <input type="tel" name="phone" value="${closingRiskCheckForm.getPhoneValue()}" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="(555) 123-4567">
-                                    <small>Helpful for time-sensitive questions and local professional follow-up.</small>
                                 </label>
                                 <label>
                                     <span>County</span>
