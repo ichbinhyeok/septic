@@ -802,7 +802,7 @@
                 source_context: getSourceContext(),
                 request_type: "record_help_beta",
                 research_goal: goal instanceof HTMLSelectElement ? goal.value : "unknown",
-                requester_role: stage instanceof HTMLSelectElement && stage.value ? stage.value : "not_selected",
+                process_stage: stage instanceof HTMLSelectElement && stage.value ? stage.value : "not_selected",
                 document_attached: documentInput instanceof HTMLInputElement && documentInput.files?.length ? "yes" : "no",
                 ...attributionParams()
             });
@@ -858,15 +858,17 @@
             && goal instanceof HTMLSelectElement
             && transactionDetails instanceof HTMLDetailsElement) {
             const syncTransactionDetails = (trackSelection) => {
+                const hasTransaction = stage.value !== "" && stage.value !== "researching";
                 const needsDocumentContext = goal.value === "design_capacity"
                     || goal.value === "understand_file"
                     || goal.value === "approval_status";
                 transactionDetails.open = needsDocumentContext;
                 if (trackSelection && stage.value !== "") {
-                    emitGaEvent("record_help_role_selected", {
+                    emitGaEvent("record_help_stage_selected", {
                         source_context: getSourceContext(),
                         request_type: "record_help_beta",
-                        requester_role: stage.value,
+                        process_stage: stage.value,
+                        transaction_intent: hasTransaction ? "active" : "research",
                         ...attributionParams()
                     });
                 }
