@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.23.1 - 2026-10-05
+
+### Fixed
+
+- Replaced the broken Blount County, Tennessee SSDS request-form link with the current PDF linked from the county's official forms page.
+
 ## 0.0.23.0 - 2026-10-05
 
 ### Added

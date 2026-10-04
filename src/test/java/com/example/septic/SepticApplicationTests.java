@@ -4049,6 +4049,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("blount county septic records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Blount Records Center")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the official SSDS field reference")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://blounttn.gov/DocumentCenter/View/30337/SSDS-Request-Form")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/DocumentCenter/View/17507/SSDS-Request-Form"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("inspection letter")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("loan closings")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Tennessee records lookup")))

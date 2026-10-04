@@ -198,7 +198,7 @@ public final class CountyAccessProfileCatalog {
                     "Open the Blount Records Center",
                     "https://blounttn.govqa.us/WEBAPP/_rs/supporthome.aspx",
                     "Open the official SSDS field reference",
-                    "https://www.blounttn.gov/DocumentCenter/View/17507/SSDS-Request-Form",
+                    "https://blounttn.gov/DocumentCenter/View/30337/SSDS-Request-Form",
                     "The SSDS response, an unable-to-locate response, or the separate inspection-letter result",
                     "Allow at least seven business days; the records form does not warrant current or future system condition.",
                     List.of("Address", "Subdivision and lot", "Original permittee or prior owner", "Approximate installation date"),
