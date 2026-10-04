@@ -154,7 +154,8 @@ public class PaidUnlockStore {
                     CURRENCY,
                     free ? "FREE_PENDING" : "READY",
                     Instant.now(clock),
-                    approval
+                    approval,
+                    com.example.septic.web.RecordResultNextStep.normalize(input.helpPurpose())
             );
             writeJsonAtomic(offerPath(offerId), offer);
             appendEvent(free ? "free_result_prepared" : "offer_created", offerId, null, offer.status());
@@ -454,6 +455,7 @@ public class PaidUnlockStore {
         safeFileName(packageFileName);
         safeText(input.requestReference(), 160);
         safeText(input.propertyLabel(), 240);
+        com.example.septic.web.RecordResultNextStep.normalize(input.helpPurpose());
     }
 
     private void appendEvent(String type, String offerId, String captureId, String state) throws IOException {
@@ -606,8 +608,14 @@ public class PaidUnlockStore {
             String sourceSummary,
             String documentScope,
             String answerableQuestion,
-            String limitations
-    ) {}
+            String limitations,
+            String helpPurpose
+    ) {
+        public OfferInput(String customerEmail, String requestReference, String propertyLabel, String sourceSummary,
+                          String documentScope, String answerableQuestion, String limitations) {
+            this(customerEmail, requestReference, propertyLabel, sourceSummary, documentScope, answerableQuestion, limitations, null);
+        }
+    }
 
     public record ReleaseApproval(
             String result,
@@ -639,12 +647,23 @@ public class PaidUnlockStore {
             String currency,
             String status,
             Instant createdAt,
-            ReleaseApproval releaseApproval
+            ReleaseApproval releaseApproval,
+            String helpPurpose
     ) {
+        public Offer(String id, String offerVersion, String publicTokenHash, String customerEmail,
+                     String requestReference, String propertyLabel, String sourceSummary, String documentScope,
+                     String answerableQuestion, String limitations, String packageFileName, String packageStorageName,
+                     String packageSha256, String amount, String currency, String status, Instant createdAt,
+                     ReleaseApproval releaseApproval) {
+            this(id, offerVersion, publicTokenHash, customerEmail, requestReference, propertyLabel, sourceSummary,
+                    documentScope, answerableQuestion, limitations, packageFileName, packageStorageName,
+                    packageSha256, amount, currency, status, createdAt, releaseApproval, null);
+        }
+
         public Offer withStatus(String nextStatus) {
             return new Offer(id, offerVersion, publicTokenHash, customerEmail, requestReference, propertyLabel,
                     sourceSummary, documentScope, answerableQuestion, limitations, packageFileName,
-                    packageStorageName, packageSha256, amount, currency, nextStatus, createdAt, releaseApproval);
+                    packageStorageName, packageSha256, amount, currency, nextStatus, createdAt, releaseApproval, helpPurpose);
         }
     }
 

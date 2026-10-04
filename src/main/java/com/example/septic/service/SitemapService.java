@@ -36,7 +36,11 @@ public class SitemapService {
             Map.entry("/septic-record-brief-example/", "2026-09-17"),
             Map.entry("/offer-prep-septic-file-check/", "2026-09-17"),
             Map.entry("/official-septic-lookup-tools/", "2026-09-12"),
-            Map.entry("/tdec-septic-records/", "2026-09-22"),
+            Map.entry("/tdec-septic-records/", "2026-10-04"),
+            Map.entry("/septic-records-checklist/tennessee/", "2026-10-04"),
+            Map.entry("/septic-records-checklist/north-carolina/", "2026-10-04"),
+            Map.entry("/septic-records-checklist/indiana/", "2026-10-05"),
+            Map.entry("/septic-records-checklist/north-carolina/guilford-county/", "2026-10-05"),
             Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
             Map.entry("/texas-ossf-records-search/", "2026-09-22"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-10-01"),
@@ -61,7 +65,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/north-carolina/forsyth-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/pender-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/pitt-county/", "2026-09-22"),
-            Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-10-05"),
             Map.entry("/septic-records-checklist/tennessee/wilson-county/", "2026-09-22")
     );
 

@@ -131,7 +131,9 @@ class CountyAcquisitionProfileRegressionTest {
         assertEquals("tel:865-429-1766", sevier.primaryUrl());
         assertFalse(sevier.primaryUrl().contains("request_for_information_ssds"));
         assertTrue(montgomery.primaryUrl().contains("formstack.com/forms/public_records_request"));
-        assertEquals("tel:336-641-7613", guilford.primaryUrl());
+        assertEquals("https://gisdv.guilfordcountync.gov/guilford/", guilford.primaryUrl());
+        assertEquals("search_then_request", guilford.capabilityTier());
+        assertTrue(guilford.summary().contains("336-641-7613"));
     }
 
     @Test

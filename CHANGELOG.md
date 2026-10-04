@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.0.23.0 - 2026-10-05
+
+### Added
+
+- Free record results now include practical next steps for the customer's stated purpose, with records-only guidance that does not request a service visit.
+- Guilford, Union and Indiana record guides now explain concrete search steps and connect readers to relevant existing case examples and contextual free help.
+
+### Changed
+
+- Made free assistance more visible on the TDEC, North Carolina, Tennessee and Indiana entry pages, with search-focused titles and descriptions.
+- Put Guilford's official GIS search first; distinguished Union's public building-permit search from its historical septic-file request and dated staff-search fee.
+- Updated official-source references and sitemap modification dates for materially changed pages, while preserving existing masked evidence and intake requirements.
+
+### Fixed
+
+- Improved private-result secondary-button contrast and made expiry dates consistently render in English.
+- Included state-page free-help buttons in the existing inquiry-funnel click and visibility tracking.
+
+### For contributors
+
+- New intakes retain a private commercial inquiry brief; a local CLI prepares anonymous format examples and evidence-linked acceptance/payment/refund transactions without outreach or automatic sharing.
+- Added regression coverage for purpose-specific results, legacy compatibility, guide handoffs, privacy boundaries and commercial outcomes.
+
 ## 0.0.22.0 - 2026-10-04
 
 ### Changed

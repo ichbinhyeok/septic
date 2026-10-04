@@ -1033,9 +1033,9 @@ public final class CountyAcquisitionProfileCatalog {
                     "NC::union-county",
                     "Union County Environmental Health",
                     "Existing septic and well permit request - inspection branch",
-                    "No historical-record request fee is published on the reviewed county pages.",
+                    "Environmental Health confirmed a $10 records-research fee on September 30, 2026. The county bills after submission and starts its search after payment; confirm the current amount before paying.",
                     "No request turnaround is published.",
-                    "Complete the current county request yourself, then start a separate existing-system inspection if planned work requires one.",
+                    "Complete the current county records request and any authorized county payment. Use a separate existing-system inspection if planned work requires one.",
                     "",
                     "704-283-3553",
                     "Union County existing septic file - {{address}}",
@@ -1185,19 +1185,19 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("NC::guilford-county", acquisition(
                     "NC::guilford-county",
                     "Guilford County On-Site Water Protection",
-                    "Published phone lookup - county records portal fallback",
+                    "GIS parcel and document search - county records portal fallback",
                     "The county says some services have fees but does not publish a historical phone-lookup or record-copy fee on the reviewed page.",
                     "Call between 8 a.m. and 10 a.m.; no records-portal turnaround is published.",
-                    "Call for the system type and location first. If copies are needed, complete verification and final submission in the county's NextRequest portal.",
+                    "Check the GIS parcel and linked documents first. If the septic file is missing or incomplete, complete a focused NextRequest request; phone help remains available for system-location questions.",
                     "",
                     "336-641-7613",
                     "Guilford County on-site wastewater file - {{address}}",
-                    "The county publishes the phone lookup and time window but not a dedicated septic-record form field list. The details below are routing facts only.",
+                    "GIS search and Water Quality layers are public routes. These preparation details are not a verified list of required NextRequest form fields.",
                     """
-                    Guilford County call sheet
+                    Guilford County parcel and file search sheet
 
                     Property address: {{address}}
-                    Parcel or owner clue: {{parcel}}
+                    REID / PIN or earlier parcel clue: {{parcel}}
                     Need: {{lookupPurpose}}
                     """,
                     List.of(

@@ -26,11 +26,11 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("TDEC search failed or came back empty?")))
-                .andExpect(content().string(containsString("Send the address.")))
-                .andExpect(content().string(containsString("We chase the record.")))
+                .andExpect(content().string(containsString("TDEC septic<br><em>permit search.</em>")))
+                .andExpect(content().string(containsString("Find the official viewer or the right county office.")))
+                .andExpect(content().string(containsString("We search public files, contact TDEC or the local program when needed")))
                 .andExpect(content().string(containsString("Choose the property county")))
-                .andExpect(content().string(containsString("Ask SepticPath to investigate my property")))
+                .andExpect(content().string(containsString("Get free record help")))
                 .andExpect(content().string(containsString("Try the official viewer anyway")))
                 .andExpect(content().string(containsString("Viewer status:")))
                 .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html")))
@@ -176,8 +176,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TN Septic Permit Search | TDEC Records &amp; File Help</title>")))
-                .andExpect(content().string(containsString("If you get a 403, no record, or the wrong address")));
+                .andExpect(content().string(containsString("<title>TDEC Septic Permit Search | Tennessee Records &amp; Free Help</title>")))
+                .andExpect(content().string(containsString("Get free record research and an explanation when needed")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost (2026): $300-$2,700 + Fees</title>")));
         mockMvc.perform(get("/texas-ossf-records-search/"))
@@ -204,7 +204,7 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("North Carolina septic records by county")))
-                .andExpect(content().string(containsString("permit copy, as-built, final approval, repair record")))
+                .andExpect(content().string(containsString("official route for permits, layouts and approval records")))
                 .andExpect(content().string(containsString("Enter the property address")))
                 .andExpect(content().string(containsString("state-records-priority-counties")))
                 .andExpect(content().string(containsString("Johnston County septic permit search")))
@@ -290,7 +290,7 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void stateHubsAndAgencyWorkspacesHaveDistinctSearchIntents() throws Exception {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
-                .andExpect(content().string(containsString("North Carolina Septic Records by County | Permit Lookup")))
+                .andExpect(content().string(containsString("NC Septic Records by Address &amp; County | Free Research Help")))
                 .andExpect(content().string(containsString("/north-carolina-septic-permit-lookup/")));
         mockMvc.perform(get("/septic-records-checklist/south-carolina/"))
                 .andExpect(content().string(containsString("South Carolina Septic Records by County | Address &amp; File Routes")))

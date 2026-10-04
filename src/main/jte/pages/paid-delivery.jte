@@ -4,6 +4,7 @@
 @param PaidUnlockStore.DeliveryPreview delivery
 @param String downloadToken
 @param String deliveryExpiresAt
+@param com.example.septic.web.RecordResultNextStep nextStep
 
 @template.layouts.app(page = page, designFamily = "transaction", content = @`
 <article class="transaction-page transaction-page--delivery">
@@ -33,6 +34,6 @@
         </div>
     </section>
 
-    <section class="delivery-followup"><div class="container"><div><p class="transaction-kicker">Your next step</p><h2>Need help on site?</h2></div><div><p>For a locate, inspection, pumping or repair, reply to your delivery email with reference <strong>${delivery.offer().requestReference()}</strong>. We can review local service options without another records request.</p><p>Local professionals price their work separately. Availability varies. If your question is answered, keep the records for future use.</p><a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true&amp;sourcePageHint=/record-result/#quote-request">Start a service inquiry →</a></div></div></section>
+    <section class="delivery-followup" aria-labelledby="delivery-next-title"><div class="container"><div><p class="transaction-kicker">Your next step</p><h2 id="delivery-next-title">${nextStep.heading()}</h2><p>${nextStep.introduction()}</p></div><div><ol class="delivery-checklist">@for(var item : nextStep.checklist())<li>${item}</li>@endfor</ol><p>Questions? Reply to your delivery email with reference <strong>${delivery.offer().requestReference()}</strong>. No new records request is needed.</p>@if(nextStep.offersService())<p>Local professionals price their work separately. Availability varies; a service inquiry is not a booking.</p><a class="button button--secondary" href="${nextStep.servicePath()}">${nextStep.action()} →</a>@endif</div></div></section>
 </article>
 `)

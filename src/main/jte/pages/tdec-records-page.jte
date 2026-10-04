@@ -14,11 +14,11 @@
             <div class="ptdec-hero__shade" aria-hidden="true"></div>
             <div class="ptdec-hero__inner">
                 <div class="ptdec-hero__copy">
-                    <span class="ptdec-kicker">TDEC search failed or came back empty?</span>
-                    <h1 id="tdec-page-title">Send the address.<br><em>We chase the record.</em></h1>
-                    <p>We verify the county, search public files, contact TDEC or the local program when needed, and explain what the response means for your property.</p>
+                    <span class="ptdec-kicker">Tennessee septic records</span>
+                    <h1 id="tdec-page-title">TDEC septic<br><em>permit search.</em></h1>
+                    <p>Find the official viewer or the right county office. Want help? We search public files, contact TDEC or the local program when needed, and explain the records we find, free.</p>
                     <div class="ptdec-hero__actions">
-                        <a class="ptdec-button ptdec-button--coral" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a>
+                        <a class="ptdec-button ptdec-button--coral" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/tdec-septic-records/", "TN", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Get free record help <span aria-hidden="true">→</span></a>
                         <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Find the official route myself <span aria-hidden="true">→</span></a>
                     </div>
                     <p class="ptdec-hero__price">Research, records and explanation are free. Agency fees only with approval.</p>

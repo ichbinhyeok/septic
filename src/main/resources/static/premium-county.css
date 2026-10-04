@@ -327,6 +327,26 @@
 }
 
 .county-route-console-section .county-records-page__source-title { max-width: 620px; color: #5a7378; }
+/* Keep the practical reading path legible over the county workspace artwork. */
+.county-records-page :is(#guilford-record-search, #union-record-search) {
+  margin-block: 24px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid #c8d8d0;
+  border-radius: 16px;
+  background: #fffdf7;
+  color: #193d39;
+  scroll-margin-top: 96px;
+}
+.county-records-page :is(#guilford-record-search, #union-record-search) h2 {
+  margin-top: 0;
+  font-size: clamp(25px, 2.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+.county-records-page :is(#guilford-record-search, #union-record-search) ol { padding-left: 1.25rem; }
+.county-records-page :is(#guilford-record-search, #union-record-search) li + li { margin-top: 12px; }
+.county-records-page :is(#guilford-record-search, #union-record-search) p { color: inherit; }
+.county-records-page :is(#guilford-record-search, #union-record-search) .button { white-space: normal; text-align: center; }
 .county-route-console-section .hero-sidecard { border: 0; border-radius: 24px; color: #eaffe9; background: var(--pc-deep); box-shadow: 0 30px 70px rgba(4,49,58,.17); }
 .county-route-console-section .county-command-bar { gap: 10px; }
 .county-route-console-section .county-command-bar .button { border-radius: 999px; }
