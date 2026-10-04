@@ -232,6 +232,12 @@ jobs:
 
           docker rm -f septic-nginx >/dev/null 2>&1 || true
 
+          # Keep the running image and persistent storage; clear older, unused
+          # image tags before pulling a new ARM64 layer on the small OCI disk.
+          docker system df
+          docker image prune -af
+          docker system df
+
           if docker compose version >/dev/null 2>&1; then
             docker compose pull
             docker compose up -d --remove-orphans
