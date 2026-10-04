@@ -43,7 +43,7 @@ class CalculatorCrawlBudgetRegressionTest {
                 .andExpect(content().string(containsString(
                         "href=\"/septic-system-cost-calculator/?projectType=replacement&amp;sourcePageHint=/septic-replacement-cost/\" rel=\"nofollow\"")))
                 .andExpect(content().string(containsString(
-                        "sourcePageHint=/septic-replacement-cost/&amp;quoteMode=true#quote-request\" rel=\"nofollow\"")));
+                        "href=\"/septic-system-cost-calculator/?quoteMode=true&amp;projectType=replacement&amp;sourcePageHint=/septic-replacement-cost/#quote-request\" rel=\"nofollow\"")));
     }
 
     @Test

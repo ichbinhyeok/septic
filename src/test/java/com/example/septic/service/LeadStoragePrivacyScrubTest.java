@@ -82,7 +82,8 @@ class LeadStoragePrivacyScrubTest {
         assertTrue(storedRequest.contains("taylor@example.com"));
         assertTrue(storedRequest.contains("+1 865 555 0182"));
         assertTrue(storedRequest.contains(RecordHelpOffer.VERSION));
-        assertTrue(storedRequest.contains("\"optionalUnlockAmountCents\" : 2900"));
+        assertTrue(storedRequest.contains("\"optionalUnlockAmountCents\" : 0"));
+        assertTrue(storedRequest.contains("\"resultsIncluded\" : true"));
         assertTrue(storedRequest.contains("\"upfrontPaymentRequired\" : false"));
         assertTrue(storedRequest.contains("\"agencyFeesRequireApproval\" : true"));
         assertTrue(storedRequest.contains("\"professionalMatchingIncluded\" : true"));

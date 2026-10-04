@@ -30,7 +30,7 @@
     form.action = (production ? '/offer-prep-septic-file-check/' : '/design-preview/studio/intake/') + (review ? '?mode=review' : '');
     form.elements.sourceContext.value = review ? 'document_review' : researchSource;
     form.querySelector('[data-upload-label]').textContent = review ? 'Your source files (required for review)' : 'Attach files (optional)';
-    form.querySelector('[data-submit-copy]').textContent = review ? 'Send my file for review' : (production ? 'Start my record investigation' : 'Start my free research');
+    form.querySelector('[data-submit-copy]').textContent = review ? 'Send my file for free review' : 'Get free record help';
     if (review) uploads.open = true;
     validateFiles();
   }
@@ -43,6 +43,11 @@
     syncMode();
   }));
   goal.addEventListener('change', syncMode);
+  const purpose = form.elements.helpPurpose;
+  const problemNote = form.querySelector('[data-active-problem-note]');
+  const syncPurpose = () => { if (problemNote) problemNote.hidden = purpose?.value !== 'repair'; };
+  purpose?.addEventListener('change', syncPurpose);
+  syncPurpose();
   files.addEventListener('change', validateFiles);
   form.addEventListener('invalid', event => {
     const disclosure = event.target.closest('details');

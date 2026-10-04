@@ -11,7 +11,7 @@
         <img src="/images/studio/official-lookup-files-v1.webp" alt="" width="1536" height="1024" fetchpriority="high">
         <div class="delivery-hero__shade" aria-hidden="true"></div>
         <div class="container delivery-hero__inner">
-            <p class="delivery-status"><span aria-hidden="true"></span>Payment confirmed · Package ready</p>
+            <p class="delivery-status"><span aria-hidden="true"></span>${"RELEASED_FREE".equals(delivery.offer().status()) ? "Free result · Ready to download" : "Payment confirmed · Package ready"}</p>
             <h1 id="delivery-title">Your record package is ready.</h1>
             <p>Private delivery for <strong>${delivery.offer().propertyLabel()}</strong>.</p>
             <a class="delivery-download" href="/paid-unlock/download/${downloadToken}"><span aria-hidden="true">↓</span> Download the reviewed package <b aria-hidden="true">→</b></a>
@@ -33,6 +33,6 @@
         </div>
     </section>
 
-    <section class="delivery-followup"><div class="container"><div><p class="transaction-kicker">Keep the file. Keep the context.</p><h2>Have a follow-up question?</h2></div><p>Reply to your delivery email with reference <strong>${delivery.offer().requestReference()}</strong>. We’ll pick up from the same evidence.</p></div></section>
+    <section class="delivery-followup"><div class="container"><div><p class="transaction-kicker">Your next step</p><h2>Need help on site?</h2></div><div><p>For a locate, inspection, pumping or repair, reply to your delivery email with reference <strong>${delivery.offer().requestReference()}</strong>. We can review local service options without another records request.</p><p>Local professionals price their work separately. Availability varies. If your question is answered, keep the records for future use.</p><a class="button button--secondary" href="/septic-system-cost-calculator/?quoteMode=true&amp;sourcePageHint=/record-result/#quote-request">Start a service inquiry →</a></div></div></section>
 </article>
 `)

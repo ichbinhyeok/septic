@@ -16,7 +16,7 @@
                     <h1 id="sc-page-title">Send the address.<br><em>We chase the South Carolina septic file.</em></h1>
                     <p>We confirm the county and TMS, search SCDES and public sources, contact the responsible office when needed, and explain what the returned file means for your property.</p>
                     <div class="tdec-desk__hero-actions"><a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="sc_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a><a class="text-button" href="#sc-record-search" data-track-click="nav" data-track-source-context="sc_hero_request_builder" data-track-target-type="request_builder">Find the official SCDES route myself <span aria-hidden="true">→</span></a></div>
-                    <p class="sc-service-hero__price">Research and agency requests are free. Optional $29 result unlock only when useful property-matched evidence is found.</p>
+                    <p class="sc-service-hero__price">Research, records and explanation are free. Agency fees only with approval.</p>
                     <div class="sc-service-hero__steps" aria-label="How SepticPath works">
                         <span><b>01 · Identify</b><small>County, address, and TMS</small></span>
                         <span><b>02 · Search</b><small>SCDES and official sources</small></span>

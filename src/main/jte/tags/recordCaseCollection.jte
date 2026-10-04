@@ -38,7 +38,7 @@
         </div>
         <p class="record-learning__note">Each story identifies the records reviewed and explains their scope. Historical documents are a starting point for any needed on-site or project review.</p>
         <div class="record-learning__next">
-            <div><h3>What do you need to know about your property?</h3><p>Send the address and your question. Research and agency requests are free. Review the scope of relevant findings before choosing the original records and detailed answers for US $29. Agency fees are additional at cost, with your approval.</p></div>
+            <div><h3>What do you need to know about your property?</h3><p>Send the address and your question. Research and agency requests are free. Receive the records we find and a clear explanation, free. Agency fees are additional at cost, with your approval.</p></div>
             <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="case_collection_request" data-track-target-type="lead_form">Ask about my property</a>
         </div>
     </div>

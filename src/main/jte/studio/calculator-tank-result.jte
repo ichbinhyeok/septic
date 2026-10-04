@@ -34,6 +34,6 @@
     </div>
     <div class="studio-wrap calc-special-actions">
         <div><p class="studio-overline">Before an installer sizes the job</p><h2>Bring the recorded capacity and bedroom basis into the conversation.</h2></div>
-        <div><a class="studio-button" href="${intakeUrl}">Ask about my property <span aria-hidden="true">↗</span></a><p class="studio-fine">Records research and planning support—not engineered design or permit approval.</p></div>
+        <div><a class="studio-button" href="#quote-request" data-open-service>Discuss this project <span aria-hidden="true">↗</span></a><p><a href="${intakeUrl}">Get free help with the property records →</a></p><p class="studio-fine">Planning inputs are not engineered design or permit approval. Local availability varies.</p></div>
     </div>
 </section>

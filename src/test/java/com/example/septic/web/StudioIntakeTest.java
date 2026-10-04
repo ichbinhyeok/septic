@@ -36,7 +36,7 @@ class StudioIntakeTest {
     private <T extends AbstractMockHttpServletRequestBuilder<T>> T valid(T request) {
         return request.param("email", "qa@example.com").param("phone", "(865) 555-0100")
                 .param("transactionRole", "owner").param("propertyAddress", "123 Example Lane, Knoxville TN 37901")
-                .param("stateCode", "TN").param("concern", "Please find the approved bedroom count.")
+                .param("stateCode", "TN").param("helpPurpose", "records").param("concern", "Please find the approved bedroom count.")
                 .param("consentAccepted", "true");
     }
 
@@ -48,7 +48,7 @@ class StudioIntakeTest {
                 .andExpect(content().string(not(containsString("/app.css"))));
         mvc.perform(get(PATH).param("mode", "review")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Your source files (required for review)")))
-                .andExpect(content().string(containsString("Send my file for review")));
+                .andExpect(content().string(containsString("Send my file for free review")));
         verifyNoInteractions(storage, notifications);
     }
 
@@ -146,7 +146,7 @@ class StudioIntakeTest {
 
     @Test void successDoesNotInventAnEmailReceipt() throws Exception {
         mvc.perform(valid(post(PATH))).andExpect(content().string(containsString("An email receipt has not been confirmed.")))
-                .andExpect(content().string(containsString("No payment is due now.")));
+                .andExpect(content().string(containsString("Your records and our explanation are free.")));
         verify(storage).recordClosingRiskNotificationOutcome("test-reference-123", false, false);
     }
 

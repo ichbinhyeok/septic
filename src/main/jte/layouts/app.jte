@@ -48,7 +48,7 @@
         <link rel="stylesheet" href="${AssetPaths.versioned(pageStyles)}">
     @endif
     <script>
-        if (window.location.hostname === "septicpath.com") {
+        if (window.location.hostname === "septicpath.com" && !window.location.pathname.startsWith("/unlock/") && !window.location.pathname.startsWith("/paid-unlock/")) {
             window.dataLayer = window.dataLayer || [];
             window.gtag = function () { window.dataLayer.push(arguments); };
             const analyticsScript = document.createElement("script");

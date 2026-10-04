@@ -114,7 +114,8 @@ class ClosingRiskNotificationServiceTest {
         assertEquals("taylor@example.com", receipt.getTo()[0]);
         assertTrue(receipt.getSubject().contains("request-receipt"));
         assertTrue(receipt.getText().contains("Reference: request-receipt"));
-        assertTrue(receipt.getText().contains("There is no automatic charge"));
+        assertTrue(receipt.getText().contains("No paid unlock or card is required"));
+        assertFalse(receipt.getText().contains("$29"));
         assertTrue(receipt.getText().contains("Do not email payment-card details"));
     }
 

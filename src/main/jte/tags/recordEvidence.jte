@@ -1,6 +1,7 @@
 @import com.example.septic.web.AssetPaths
 @param String sourceContext = "records_evidence"
 @param String variant = "records"
+@param String recordHelpUrl = "/offer-prep-septic-file-check/#intake-form"
 
 <section class="record-evidence record-evidence--${variant}" data-record-evidence data-evidence-context="${sourceContext}" aria-label="Actual records delivered by SepticPath">
     <header class="record-evidence__heading">
@@ -59,7 +60,7 @@
         @endif
     </ol>
     <div class="record-evidence__action">
-        <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${sourceContext}" data-track-target-type="lead_form">Investigate my property</a>
+        <a class="button button--primary" href="${recordHelpUrl}" data-record-help-cta data-track-click="nav" data-track-source-context="${sourceContext}" data-track-target-type="lead_form">Investigate my property</a>
         <span>Send the address and what you need to find out.</span>
     </div>
     <dialog class="record-evidence__dialog" aria-label="Enlarged customer document excerpt">

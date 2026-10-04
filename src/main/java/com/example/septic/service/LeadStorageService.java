@@ -93,7 +93,11 @@ public class LeadStorageService {
                 "accepted", quoteLeadForm.isConsentAccepted(),
                 "acceptedAt", now.toString(),
                 "consentText", quoteLeadForm.getConsentTextSnapshot(),
-                "consentLanguageVersion", "2026-08-27-v2"
+                "consentLanguageVersion", RecordHelpOffer.VERSION,
+                "professionalMatchingIncluded", true,
+                "professionalRecipientPolicy", "relevant_local_only",
+                "matchingCompensationDisclosed", true,
+                "automatedOrPrerecordedContactAuthorized", false
         );
 
         Map<String, Object> payload = new LinkedHashMap<>();
@@ -101,7 +105,7 @@ public class LeadStorageService {
         payload.put("submittedAt", now.toString());
         payload.put("sourcePage", effectiveSourcePage);
         payload.put("sourcePageHint", sanitizedSourcePageHint);
-        payload.put("calculatorUsed", "main_cost_estimator");
+        payload.put("calculatorUsed", result == null ? "none_service_inquiry" : "main_cost_estimator");
         payload.put("stateCode", quoteLeadForm.getStateCode());
         payload.put("countyName", quoteLeadForm.getCountyName());
         payload.put("projectType", quoteLeadForm.getProjectType());
@@ -115,25 +119,16 @@ public class LeadStorageService {
                 "preferredContactMethod", quoteLeadForm.getPreferredContactMethod()
         ));
         payload.put("userInputs", orderedMap(
-                "bedrooms", estimateForm.getBedrooms(),
-                "occupants", estimateForm.getOccupants(),
-                "garbageDisposal", estimateForm.isGarbageDisposal(),
-                "additionalKitchen", estimateForm.isAdditionalKitchen(),
-                "soilPercStatus", estimateForm.getSoilPercStatus(),
-                "highWaterTableOrShallowBedrock", estimateForm.isHighWaterTableOrShallowBedrock(),
-                "accessDifficulty", estimateForm.getAccessDifficulty(),
+                "bedrooms", result == null ? null : estimateForm.getBedrooms(),
+                "occupants", result == null ? null : estimateForm.getOccupants(),
+                "garbageDisposal", result == null ? null : estimateForm.isGarbageDisposal(),
+                "additionalKitchen", result == null ? null : estimateForm.isAdditionalKitchen(),
+                "soilPercStatus", result == null ? null : estimateForm.getSoilPercStatus(),
+                "highWaterTableOrShallowBedrock", result == null ? null : estimateForm.isHighWaterTableOrShallowBedrock(),
+                "accessDifficulty", result == null ? null : estimateForm.getAccessDifficulty(),
                 "timeline", estimateForm.getTimeline()
         ));
-        payload.put("resultSummary", orderedMap(
-                "likelyMinimumTankGallons", result.likelyMinimumTankGallons(),
-                "recommendedTankLowGallons", result.recommendedTankLowGallons(),
-                "recommendedTankHighGallons", result.recommendedTankHighGallons(),
-                "likelySystemClass", result.likelySystemClass(),
-                "totalCostLow", result.totalCostLow(),
-                "totalCostMid", result.totalCostMid(),
-                "totalCostHigh", result.totalCostHigh(),
-                "confidenceLabel", result.confidenceLabel()
-        ));
+        payload.put("resultSummary", estimateSummary(result));
         payload.put("consent", consent);
         payload.put("provenance", provenance);
 
@@ -394,7 +389,8 @@ public class LeadStorageService {
         payload.put("offer", orderedMap(
                 "version", RecordHelpOffer.VERSION,
                 "currency", "USD",
-                "optionalUnlockAmountCents", 2900,
+                "optionalUnlockAmountCents", 0,
+                "resultsIncluded", true,
                 "upfrontPaymentRequired", false,
                 "agencyFeesRequireApproval", true,
                 "terms", RecordHelpOffer.TERMS
@@ -417,6 +413,8 @@ public class LeadStorageService {
                 "countyName", safeValue(form.getCountyName(), 120),
                 "recordType", safeValue(form.getRecordType(), 20),
                 "researchGoal", safeValue(form.getResearchGoal(), 40),
+                "helpPurpose", safeValue(form.getHelpPurpose(), 24),
+                "timeline", safeValue(form.getTimeline(), 24),
                 "listingUrl", safeValue(form.getListingUrl(), 500),
                 "listingBedrooms", form.getListingBedrooms(),
                 "permitBedrooms", form.getPermitBedrooms(),
@@ -425,6 +423,14 @@ public class LeadStorageService {
                 "concern", safeValue(form.getConcern(), 1200)
         ));
         payload.put("documents", documentMetadata);
+        payload.put("commercialFollowup", orderedMap(
+                "status", "unreviewed",
+                "phoneVerification", "not_verified",
+                "fieldWorkIntent", "not_confirmed",
+                "buyerAcceptance", "not_requested",
+                "providerId", "",
+                "paidAmountCents", 0
+        ));
         payload.put("consent", consent);
         payload.put("notification", orderedMap(
                 "operatorStatus", "pending",
@@ -451,6 +457,8 @@ public class LeadStorageService {
                     "stateCode", safeValue(form.getStateCode(), 2),
                     "recordType", safeValue(form.getRecordType(), 20),
                     "researchGoal", safeValue(form.getResearchGoal(), 40),
+                    "helpPurpose", safeValue(form.getHelpPurpose(), 24),
+                    "timeline", safeValue(form.getTimeline(), 24),
                     "transactionRole", safeValue(form.getTransactionRole(), 20),
                     "recordStatus", safeValue(form.getRecordStatus(), 24),
                     "deadlineBucket", deadlineBucket(form.getDeadline(), now)
@@ -541,25 +549,16 @@ public class LeadStorageService {
                 "projectType", quoteLeadForm.getProjectType(),
                 "serviceNeed", quoteLeadForm.getServiceNeed(),
                 "recordStatus", quoteLeadForm.getRecordStatus(),
-                "bedrooms", estimateForm.getBedrooms(),
-                "occupants", estimateForm.getOccupants(),
-                "garbageDisposal", estimateForm.isGarbageDisposal(),
-                "additionalKitchen", estimateForm.isAdditionalKitchen(),
-                "soilPercStatus", estimateForm.getSoilPercStatus(),
-                "highWaterTableOrShallowBedrock", estimateForm.isHighWaterTableOrShallowBedrock(),
-                "accessDifficulty", estimateForm.getAccessDifficulty(),
+                "bedrooms", result == null ? null : estimateForm.getBedrooms(),
+                "occupants", result == null ? null : estimateForm.getOccupants(),
+                "garbageDisposal", result == null ? null : estimateForm.isGarbageDisposal(),
+                "additionalKitchen", result == null ? null : estimateForm.isAdditionalKitchen(),
+                "soilPercStatus", result == null ? null : estimateForm.getSoilPercStatus(),
+                "highWaterTableOrShallowBedrock", result == null ? null : estimateForm.isHighWaterTableOrShallowBedrock(),
+                "accessDifficulty", result == null ? null : estimateForm.getAccessDifficulty(),
                 "timeline", estimateForm.getTimeline()
         ));
-        payload.put("estimate", orderedMap(
-                "likelyMinimumTankGallons", result.likelyMinimumTankGallons(),
-                "recommendedTankLowGallons", result.recommendedTankLowGallons(),
-                "recommendedTankHighGallons", result.recommendedTankHighGallons(),
-                "likelySystemClass", result.likelySystemClass(),
-                "totalCostLow", result.totalCostLow(),
-                "totalCostMid", result.totalCostMid(),
-                "totalCostHigh", result.totalCostHigh(),
-                "confidenceLabel", result.confidenceLabel()
-        ));
+        payload.put("estimate", estimateSummary(result));
         payload.put("consent", consent);
         payload.put("provenance", provenance);
         payload.put("source", orderedMap(
@@ -569,16 +568,30 @@ public class LeadStorageService {
         payload.put("routingHints", orderedMap(
                 "buyerChannels", List.of("batch_json", "batch_csv"),
                 "urgencyBucket", estimateForm.getTimeline(),
-                "riskBand", result.likelySystemClass(),
+                "riskBand", result == null ? "not_assessed" : result.likelySystemClass(),
                 "sourcePage", provenance.get("sourcePage"),
                 "geoTarget", orderedMap(
                         "stateCode", quoteLeadForm.getStateCode(),
                         "zipCode", quoteLeadForm.getZipCode(),
                         "countyName", quoteLeadForm.getCountyName()
                 ),
-                "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), quoteLeadForm.getServiceNeed(), slugify(result.likelySystemClass()))
+                "tags", compactList("septic", quoteLeadForm.getStateCode(), quoteLeadForm.getProjectType(), quoteLeadForm.getServiceNeed(), result == null ? "" : slugify(result.likelySystemClass()))
         ));
         return payload;
+    }
+
+    private Map<String, Object> estimateSummary(EstimatorResult result) {
+        if (result == null) return orderedMap("status", "not_estimated");
+        return orderedMap(
+                "likelyMinimumTankGallons", result.likelyMinimumTankGallons(),
+                "recommendedTankLowGallons", result.recommendedTankLowGallons(),
+                "recommendedTankHighGallons", result.recommendedTankHighGallons(),
+                "likelySystemClass", result.likelySystemClass(),
+                "totalCostLow", result.totalCostLow(),
+                "totalCostMid", result.totalCostMid(),
+                "totalCostHigh", result.totalCostHigh(),
+                "confidenceLabel", result.confidenceLabel()
+        );
     }
 
     private Map<String, Object> buildProvenance(HttpServletRequest request, Instant now, String sourcePage) {
@@ -902,8 +915,8 @@ public class LeadStorageService {
         columns.add(quoteLeadForm.getRecordStatus());
         columns.add(quoteLeadForm.getPreferredContactMethod());
         columns.add(estimateForm.getTimeline());
-        columns.add(result.likelySystemClass());
-        columns.add(String.valueOf(result.totalCostMid()));
+        columns.add(result == null ? "" : result.likelySystemClass());
+        columns.add(result == null ? "" : String.valueOf(result.totalCostMid()));
         columns.add(String.valueOf(quoteLeadForm.isConsentAccepted()));
         columns.add(String.valueOf(exportPayload.get("exportStatus")));
         columns.add(exportPath);

@@ -22,9 +22,17 @@ public class ClosingRiskCheckForm {
     @Size(max = 160, message = "Email must be 160 characters or fewer.")
     private String email;
 
+    @NotBlank(message = "Phone number is required.")
     @Size(max = 30, message = "Phone number must be 30 characters or fewer.")
-    @Pattern(regexp = "^$|[0-9+().\\-\\s]{7,30}$", message = "Enter a valid phone number or leave it blank.")
+    @Pattern(regexp = "(?=(?:\\D*\\d){10,15}\\D*$)[+0-9().\\-\\s]{10,30}", message = "Enter a phone number with 10–15 digits, including the area code.")
     private String phone;
+
+    @NotBlank(message = "Choose what you need help with.")
+    @Pattern(regexp = "location|inspection|pumping|repair|building|records|unsure", message = "Choose a valid purpose.")
+    private String helpPurpose;
+
+    @Pattern(regexp = "(?:|urgent|this_month|one_to_three_months|researching)", message = "Choose a valid timeframe.")
+    private String timeline = "";
 
     @NotBlank(message = "Choose your role.")
     @Pattern(regexp = "owner|buyer|seller|agent|other", message = "Choose a valid role.")
@@ -78,8 +86,7 @@ public class ClosingRiskCheckForm {
     @Size(max = 240, message = "Entry page must be 240 characters or fewer.")
     private String entryPageHint;
 
-    @NotBlank(message = "Tell us what you need to decide or what is missing.")
-    @Size(min = 10, max = 1200, message = "Add at least 10 characters and no more than 1,200.")
+    @Size(max = 1200, message = "Keep additional details to 1,200 characters or fewer.")
     private String concern;
 
     private List<MultipartFile> documents = new ArrayList<>();
@@ -102,6 +109,21 @@ public class ClosingRiskCheckForm {
     public String getFullNameValue() { return fullName == null ? "" : fullName; }
     public String getEmailValue() { return email == null ? "" : email; }
     public String getPhoneValue() { return phone == null ? "" : phone; }
+    public String getHelpPurpose() { return helpPurpose; }
+    public void setHelpPurpose(String helpPurpose) { this.helpPurpose = helpPurpose; }
+    public String getTimeline() { return timeline; }
+    public void setTimeline(String timeline) { this.timeline = timeline; }
+    public String getHelpPurposeLabel() {
+        return switch (helpPurpose == null ? "" : helpPurpose) {
+            case "location" -> "Tank or drain-field location";
+            case "inspection" -> "Inspection or buying / selling";
+            case "pumping" -> "Pumping or maintenance";
+            case "repair" -> "Current problem or repair";
+            case "building" -> "Addition or new installation";
+            case "records" -> "Record copies only";
+            default -> "Not sure yet";
+        };
+    }
     public String getPropertyAddressValue() { return propertyAddress == null ? "" : propertyAddress; }
     public String getCountyNameValue() { return countyName == null ? "" : countyName; }
     public String getListingUrlValue() { return listingUrl == null ? "" : listingUrl; }

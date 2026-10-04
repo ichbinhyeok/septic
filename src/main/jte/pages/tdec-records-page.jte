@@ -21,7 +21,7 @@
                         <a class="ptdec-button ptdec-button--coral" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a>
                         <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Find the official route myself <span aria-hidden="true">→</span></a>
                     </div>
-                    <p class="ptdec-hero__price">Research and agency requests are free. Optional $29 result unlock only when useful property-matched evidence is found.</p>
+                    <p class="ptdec-hero__price">Research, records and explanation are free. Agency fees only with approval.</p>
                     <div class="ptdec-hero__trust" aria-label="How SepticPath works">
                         <span><b>01 · Search</b><small>TDEC and county sources</small></span>
                         <span><b>02 · Request</b><small>The responsible records office</small></span>

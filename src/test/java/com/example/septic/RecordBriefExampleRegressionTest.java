@@ -47,7 +47,7 @@ class RecordBriefExampleRegressionTest {
     }
 
     @Test
-    void realCasesKeepTheirSourcesSeparateFromTheIllustrativePreview() throws Exception {
+    void realCasesKeepTheirSourcesSeparateFromTheGeneralFreeResultExplanation() throws Exception {
         mockMvc.perform(get("/septic-record-brief-example/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("id=\"sale-case\"")))
@@ -55,7 +55,9 @@ class RecordBriefExampleRegressionTest {
                 .andExpect(content().string(containsString("id=\"sale-case-limits\"")))
                 .andExpect(content().string(containsString("href=\"/septic-as-built-records/#layout-case\"")))
                 .andExpect(content().string(containsString("separate from the sale-preparation case below")))
-                .andExpect(content().string(containsString("Illustrative preview")))
+                .andExpect(content().string(containsString("What does your free result include?")))
+                .andExpect(content().string(containsString("These public examples illustrate our work; they are not findings about your property.")))
+                .andExpect(content().string(containsString("No paid download or result unlock.")))
                 .andExpect(content().string(org.hamcrest.Matchers.not(containsString("SP–TN–028"))))
                 .andExpect(content().string(org.hamcrest.Matchers.not(containsString("storage/operations"))));
         mockMvc.perform(get("/septic-as-built-records/"))

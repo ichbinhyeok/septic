@@ -72,11 +72,11 @@
                     <a class="button button--secondary" href="#record-document-workspace">Open the private workspace</a>
                 </article>
                 <article class="record-review-paths__human">
-                    <span>FREE PREVIEW / OPTIONAL $29 ANSWERS</span>
+                    <span>FREE RECORD REVIEW</span>
                     <h3>Have SepticPath review it</h3>
-                    <p>Not sure whether your file confirms approval, bedroom capacity or completed repairs? Send the source and your questions. Preview our findings free, then choose detailed, human-reviewed answers for US $29. Agency fees, if needed, are extra with your approval.</p>
+                    <p>Not sure whether your file confirms approval, bedroom capacity or completed repairs? Send the source and your questions. Get a free explanation of what the source shows and what remains unanswered. Agency fees, if needed, are extra with your approval.</p>
                     <a class="button button--primary"
-                       href="/offer-prep-septic-file-check/?mode=review#record-help"
+                       href="${com.example.septic.web.RecordHelpEntry.of("review").link("/septic-record-finder/")}"
                        data-record-help-cta
                        data-track-click="nav"
                        data-track-source-context="document_review_handoff"
@@ -179,7 +179,7 @@
         @if (pageHeading)
             <div class="record-finder__document-entry">
                 <div><span class="record-finder__document-kicker">Prefer to hand this off?</span><strong>Let us investigate the property records.</strong><span>We search available sources, contact the responsible office when needed, and explain the records we obtain. Availability is not guaranteed.</span></div>
-                <a class="button button--secondary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-source-context="record_finder_start">Ask us to investigate</a>
+                <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/septic-record-finder/")}" data-record-help-cta data-track-source-context="record_finder_start">Ask us to investigate</a>
             </div>
         @endif
         <div class="record-finder__document-entry" data-record-document-entry>
@@ -199,7 +199,7 @@
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
             <div class="record-finder__document-entry">
                 <div><strong>A route is only the starting point.</strong><span>Want help getting the actual file or understanding what it says? Ask us to continue from your saved property details.</span></div>
-                <a class="button button--secondary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-source-context="record_finder_result">Get help with this property</a>
+                <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link("/septic-record-finder/")}" data-record-help-cta data-track-source-context="record_finder_result">Get help with this property</a>
             </div>
             <div class="record-finder__search-packet" data-record-search-packet hidden>
                 <div>

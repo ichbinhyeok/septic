@@ -14,7 +14,8 @@ class PremiumDesignRefinementRegressionTest {
     void homeNamesSepticRecordsAndKeepsSecondaryDiscoveryCompact() throws IOException {
         String template = Files.readString(Path.of("src/main/jte/pages/home.jte"));
 
-        assertThat(template).contains("searches official septic record systems");
+        assertThat(template).contains("Free septic record help");
+        assertThat(template).contains("We search official sources, contact the right office, and explain the records we find—free.");
         assertThat(template).doesNotContain("class=\"home-ed-archive\"");
         assertThat(template).doesNotContain("class=\"home-ed-routes\"");
         assertThat(template).contains("See completed investigations");

@@ -42,6 +42,7 @@ class QaHumanReviewMultipartRegressionTest {
         field(body, boundary, "stateCode", "NC");
         field(body, boundary, "recordType", "septic");
         field(body, boundary, "researchGoal", "understand_file");
+        field(body, boundary, "helpPurpose", "inspection");
         field(body, boundary, "recordStatus", "partial");
         file(body, boundary, "documents", "sample-record.txt", "text/plain",
                 "Permit OWTS-2026-0142; final approval; 3 bedrooms.".getBytes(StandardCharsets.UTF_8));

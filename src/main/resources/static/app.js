@@ -8,6 +8,7 @@
     ]);
 
     function analyticsSafePath(url) {
+        if (/^\/(unlock|paid-unlock)\//.test(url.pathname)) return "/private-record-result/";
         const params = new URLSearchParams();
         url.searchParams.forEach((value, key) => {
             if (analyticsQueryKeys.has(key) && /^[A-Za-z0-9._~-]{1,80}$/.test(value)) {
@@ -44,6 +45,7 @@
     }
 
     function sendEvent(endpoint, payload) {
+        if (/^\/(unlock|paid-unlock)\//.test(window.location.pathname)) return;
         const body = JSON.stringify(payload);
 
         if (navigator.sendBeacon) {

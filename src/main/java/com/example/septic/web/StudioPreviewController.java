@@ -434,7 +434,7 @@ public class StudioPreviewController {
                          @RequestParam(required = false) String state,
                          @RequestParam(required = false) String project,
                          @RequestParam(required = false) String bedrooms, Model model) {
-        site.offerPrepSepticFileCheck(mode, uploadError, model);
+        site.offerPrepSepticFileCheck(mode, uploadError, from, state, project, bedrooms, null, null, null, model);
         model.addAttribute("production", false);
         if ("case".equals(from)) {
             StudioCaseStudies.ALL.stream().filter(s -> s.slug().equals(caseStudy)).findFirst().ifPresent(s -> {

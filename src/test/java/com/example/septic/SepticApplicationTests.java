@@ -792,7 +792,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("application/ld+json")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guides")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("We find the record.<br>Trace the source.<br><em>Make it useful.</em></h1>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find your<br>septic records.<br><em>Know your next step.</em></h1>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Free research, records and explanation. Agency fees only with approval.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"home-address-record-finder\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Source facts preserved")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Current condition is not confirmed.")))
@@ -947,24 +948,27 @@ class SepticApplicationTests {
 	void offerPrepFileCheckRendersForFourStatesAndEntersSitemap() throws Exception {
 		mockMvc.perform(get("/offer-prep-septic-file-check/?src=tn-rural-buyer-guide"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Record Research")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Free Septic Record Research")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-file-check")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tennessee")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Indiana")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("North Carolina")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("South Carolina")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start my record investigation")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Get free record help")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Self-serve alternative")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-offer-prep-download")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-record-help-request-form")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Optional $29 result unlock")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Agency fees are additional at cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("No upfront payment or automatic charge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Free research and results. No paid unlock.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Agency fees only with approval")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No card, paid unlock or automatic charge")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("$29"))))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Free during beta"))))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your reply will include")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("FREE PREVIEW")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("OPTIONAL $29 PACKAGE")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("within 1–2 business days")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Your free result")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("RECORDS + EXPLANATION")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("A USEFUL NEXT STEP")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Agency response times vary.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"helpPurpose\" required")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"phone\" autocomplete=\"tel\" required")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"transactionRole\" data-record-help-stage required")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("closing-risk-optional")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ask SepticPath to investigate")))
@@ -989,7 +993,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check it myself")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Have SepticPath review it")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(
-						"href=\"/offer-prep-septic-file-check/?mode=review#record-help\"")));
+						"href=\"/offer-prep-septic-file-check/?intent=review&amp;mode=review&amp;source=%2Fseptic-record-finder%2F#intake-form\"")));
 
 		mockMvc.perform(get("/offer-prep-septic-file-check/?mode=review"))
 				.andExpect(status().isOk())
@@ -997,13 +1001,17 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("enctype=\"multipart/form-data\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"documents\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-review-active=\"true\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What questions do you want answered?")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Anything else we should know? (optional)")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Send my file for free review")));
 	}
 
 	@Test
 	void humanDocumentReviewRequiresAndPrivatelyStoresAValidSourceFile() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("email", "reviewer@example.com")
+				.param("phone", "(865) 555-0100")
+				.param("transactionRole", "owner")
+				.param("helpPurpose", "records")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
 				.param("stateCode", "TN")
 				.param("recordType", "septic")
@@ -1023,6 +1031,7 @@ class SepticApplicationTests {
 		mockMvc.perform(multipart("/offer-prep-septic-file-check/")
 				.file(permit)
 				.param("email", "reviewer@example.com")
+				.param("helpPurpose", "records")
 				.param("phone", "(865) 555-0100")
 				.param("transactionRole", "owner")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
@@ -1052,6 +1061,7 @@ class SepticApplicationTests {
 	void closingRiskBetaValidatesAndPersistsQualifiedDemand() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("fullName", "Taylor Buyer")
+				.param("helpPurpose", "inspection")
 				.param("email", "taylor@example.com")
 				.param("phone", "(865) 555-0100")
 				.param("transactionRole", "buyer")
@@ -1075,6 +1085,8 @@ class SepticApplicationTests {
 		resetTestStorage();
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("fullName", "Taylor Buyer")
+				.param("helpPurpose", "inspection")
+				.param("phone", "(865) 555-0100")
 				.param("email", "not-an-email")
 				.param("transactionRole", "buyer")
 				.param("propertyAddress", "123 Private Lane, Knoxville, TN 37920")
@@ -1110,6 +1122,7 @@ class SepticApplicationTests {
 	void closingRiskBetaAcceptsARequestWithoutOptionalCountyDetails() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("fullName", "Taylor Buyer")
+				.param("helpPurpose", "location")
 				.param("email", "taylor@example.com")
 				.param("phone", "(865) 555-0100")
 				.param("transactionRole", "buyer")
@@ -1129,6 +1142,7 @@ class SepticApplicationTests {
 	void recordHelpBetaAcceptsLowFrictionResearchRequestAndPreservesSourceContext() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("email", "researcher@example.com")
+				.param("helpPurpose", "records")
 				.param("phone", "(615) 555-0100")
 				.param("transactionRole", "owner")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
@@ -1146,9 +1160,11 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void recordHelpBetaRequiresRoleButAcceptsNoPhone() throws Exception {
+	void recordHelpBetaRequiresRoleAndPhone() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("email", "researcher@example.com")
+				.param("phone", "(615) 555-0100")
+				.param("helpPurpose", "records")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
 				.param("recordType", "septic")
@@ -1158,12 +1174,34 @@ class SepticApplicationTests {
 				.param("sourceContext", "tdec_quick_help_record_help")
 				.param("consentAccepted", "true"))
 				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Choose your role.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Check the highlighted details.")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-closing-risk-request-success"))));
 
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("email", "researcher@example.com")
 				.param("transactionRole", "owner")
+				.param("helpPurpose", "records")
+				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
+				.param("stateCode", "TN")
+				.param("concern", "I need the original septic permit and layout.")
+				.param("consentAccepted", "true"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Phone number is required.")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("data-closing-risk-request-success"))));
+
+		Path requestRoot = TEST_STORAGE_ROOT.resolve("closing-risk-requests");
+		if (Files.exists(requestRoot)) {
+			try (Stream<Path> files = Files.walk(requestRoot)) {
+				assertTrue(files.noneMatch(path -> path.toString().endsWith(".json")));
+			}
+		}
+
+		mockMvc.perform(post("/offer-prep-septic-file-check/")
+				.param("email", "researcher@example.com")
+				.param("phone", "(615) 555-0100")
+				.param("transactionRole", "owner")
+				.param("helpPurpose", "records")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
 				.param("concern", "I need the original septic permit and layout.")
@@ -1176,6 +1214,8 @@ class SepticApplicationTests {
 	void recordHelpBetaStillRejectsAnUnknownProcessStage() throws Exception {
 		mockMvc.perform(post("/offer-prep-septic-file-check/")
 				.param("email", "researcher@example.com")
+				.param("phone", "(615) 555-0100")
+				.param("helpPurpose", "records")
 				.param("transactionRole", "unknown-stage")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
@@ -1786,8 +1826,9 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/terms-of-use/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Terms of Use")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Optional US $29 result package and agency fees")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("There is no upfront service payment, subscription, or automatic charge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Free results, agency fees and field services")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("There is no record-help service payment, subscription, or automatic charge")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("No paid unlock is required for the records and explanation we provide.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("refund the service fee")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("active development"))));
 	}
@@ -1799,6 +1840,7 @@ class SepticApplicationTests {
 				.param("email", "simple@example.com")
 				.param("phone", "(615) 555-0101")
 				.param("transactionRole", "owner")
+				.param("helpPurpose", "records")
 				.param("propertyAddress", "456 County Road, Franklin, TN 37064")
 				.param("stateCode", "TN")
 				.param("concern", "I need to know what septic system was approved.")
@@ -8393,7 +8435,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("What records should you gather before a septic inspection?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?projectType=inspection")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the full state guide directory")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Septic Records Lookup by State<")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString(">Buying a House With a Septic System<")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("This page exists to support high-intent search"))));
 	}
@@ -10568,7 +10610,7 @@ class SepticApplicationTests {
 		}
 		String exportContent = Files.readString(exportJson);
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"exportStatus\" : \"pending_routing\""));
-		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"2026-08-27-v2\""));
+		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"consentLanguageVersion\" : \"record-help-free-results-local-followup-v8\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"userAgent\" : \"MockBrowser/1.0\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"sourcePage\" : \"/septic-replacement-cost/\""));
 		org.junit.jupiter.api.Assertions.assertTrue(exportContent.contains("\"serviceNeed\" : \"repair_recommended\""));
@@ -10591,6 +10633,7 @@ class SepticApplicationTests {
 		mockMvc.perform(post("/quote-request/")
 						.param("stateCode", "GA")
 						.param("projectType", "replacement")
+						.param("serviceNeed", "planned_project")
 						.param("bedrooms", "4")
 						.param("soilPercStatus", "poor_drainage")
 						.param("accessDifficulty", "hard")
@@ -10616,7 +10659,7 @@ class SepticApplicationTests {
 						.param("zipCode", "30301"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Finish the required fields")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Choose what is happening, then complete name, email, phone, ZIP, and consent.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Choose your state, job and what is happening, then check name, email, a phone number with 10–15 digits, ZIP, and consent.")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Request received"))));
 	}
 

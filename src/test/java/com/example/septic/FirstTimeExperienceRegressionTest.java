@@ -12,18 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class FirstTimeExperienceRegressionTest {
 
     @Test
-    void homepageDisclosesOptionalUnlockBesidePrimaryAction() throws IOException {
+    void homepageDisclosesFreeResultsAndAgencyFeeApprovalBesidePrimaryAction() throws IOException {
         String template = Files.readString(Path.of("src/main/jte/pages/home.jte"));
 
-        int primaryAction = template.indexOf("Start with an address");
-        int offer = template.indexOf("Research and agency requests are free. Optional $29 result unlock.");
+        int primaryAction = template.indexOf("Get free record help");
+        int offer = template.indexOf("Free research, records and explanation. Agency fees only with approval.");
 
         assertTrue(primaryAction >= 0);
         assertTrue(offer > primaryAction);
         assertTrue(offer - primaryAction < 500);
         assertFalse(template.contains("Free beta · No payment details"));
-        int example = template.indexOf("Public record research");
-        assertTrue(example >= 0 && example < offer);
+        assertFalse(template.contains("$29"));
+        int serviceExplanation = template.indexOf("We search official sources, contact the right office, and explain the records we find—free.");
+        assertTrue(serviceExplanation >= 0 && serviceExplanation < primaryAction);
         int selfServe = template.indexOf("class=\"home-service-hero__self-serve\"");
         assertTrue(selfServe > offer);
         assertTrue(template.contains("Source facts preserved"));

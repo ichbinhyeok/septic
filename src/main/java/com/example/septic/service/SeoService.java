@@ -44,7 +44,7 @@ public class SeoService {
         String canonicalUrl = absoluteUrl("/");
         return pageMeta(
                 "Find Septic Records by Address | SepticPath",
-                "Send the property address. SepticPath searches public sources, identifies the responsible office, requests missing records when appropriate, and explains the response.",
+                "Find septic records with free research, agency requests and a clear explanation. Send the property address, get the records we find, and know your next step.",
                 canonicalUrl,
                 "index,follow",
                 List.of(),
@@ -689,8 +689,8 @@ public class SeoService {
 
     public PageMeta offerPrepFileCheckPage() {
         String canonicalUrl = absoluteUrl("/offer-prep-septic-file-check/");
-        String title = "Septic Record Research & Retrieval Help | SepticPath";
-        String description = "Send the property address. We search public sources, verify the property, contact the responsible office when needed, and explain the records we receive.";
+        String title = "Free Septic Record Research & Retrieval Help | SepticPath";
+        String description = "Send the property address and what you need. Research, the records we find and our explanation are free. Agency fees only with approval; local field work is separate.";
         return pageMeta(
                 title,
                 description,

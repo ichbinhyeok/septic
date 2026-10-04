@@ -2,9 +2,17 @@
 (() => {
     const editor = document.querySelector('.calc-editor');
     const service = document.querySelector('#quote-request');
+    document.querySelector('[data-service-success]')?.focus({preventScroll: true});
     function openService() { if (service) service.open = true; }
     document.querySelectorAll('[data-open-service]').forEach(link => link.addEventListener('click', openService));
     if (location.hash === '#quote-request') openService();
+    const serviceNeed = document.querySelector('#quote-request-form [name="serviceNeed"]');
+    const serviceWarning = document.querySelector('[data-service-warning]');
+    if (serviceNeed && serviceWarning) {
+        const updateWarning = () => { serviceWarning.hidden = !serviceNeed.value || serviceNeed.value === 'planned_project'; };
+        serviceNeed.addEventListener('change', updateWarning);
+        updateWarning();
+    }
     addEventListener('hashchange', () => { if (location.hash === '#quote-request') openService(); });
     document.querySelectorAll('[data-edit-property]').forEach(link => {
         link.addEventListener('click', () => {

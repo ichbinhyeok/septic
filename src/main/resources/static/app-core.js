@@ -10,6 +10,7 @@
     ]);
 
     function analyticsSafePath(url) {
+        if (/^\/(unlock|paid-unlock)\//.test(url.pathname)) return "/private-record-result/";
         const params = new URLSearchParams();
         url.searchParams.forEach((value, key) => {
             if (analyticsQueryKeys.has(key) && /^[A-Za-z0-9._~-]{1,80}$/.test(value)) {
@@ -40,6 +41,7 @@
     }
 
     function sendEvent(endpoint, payload) {
+        if (/^\/(unlock|paid-unlock)\//.test(window.location.pathname)) return;
         const body = JSON.stringify(payload);
         if (navigator.sendBeacon) {
             navigator.sendBeacon(endpoint, new Blob([body], { type: "application/json" }));
@@ -581,6 +583,8 @@
             source_page: getSourcePage()
         });
         const getSourceContext = () => {
+            const explicitSource = document.querySelector("[data-record-help-source-context]")?.value;
+            if (explicitSource && explicitSource !== "direct" && explicitSource !== "studio_intake") return explicitSource;
             try {
                 return window.sessionStorage.getItem("septicpath_record_help_source") || "direct";
             } catch (_error) {
@@ -684,7 +688,7 @@
         if (!(form instanceof HTMLFormElement)) return;
 
         const sourceInput = form.querySelector("[data-record-help-source-context]");
-        if (sourceInput instanceof HTMLInputElement) {
+        if (sourceInput instanceof HTMLInputElement && (!sourceInput.value || sourceInput.value === "direct" || sourceInput.value === "studio_intake")) {
             sourceInput.value = getSourceContext();
         }
         const sourcePageInput = form.querySelector("[data-record-help-source-page]");
@@ -695,7 +699,13 @@
         if (entryPageInput instanceof HTMLInputElement && !entryPageInput.value) {
             entryPageInput.value = entryPage;
         }
-        const carriedContext = readRecordHelpContext();
+        let carriedContext = readRecordHelpContext();
+        const presetState = form.querySelector('[name="stateCode"]')?.value;
+        const presetCounty = form.querySelector('[name="countyName"]')?.value;
+        if (carriedContext && ((presetState && presetState !== carriedContext.stateCode)
+            || (presetCounty && presetCounty.toLowerCase() !== (carriedContext.countyName || "").toLowerCase()))) {
+            carriedContext = null;
+        }
         if (carriedContext) {
             const address = form.querySelector('[name="propertyAddress"]');
             const state = form.querySelector('[name="stateCode"]');
@@ -723,8 +733,12 @@
                 owner: "original_documents"
             };
             const carriedGoal = purposeGoalMap[carriedContext.purpose] || "";
+            // A generic finder handoff must not replace the question the user already chose.
+            const genericFinderEntry = sourceInput?.value === "entry_missing"
+                && sourcePageInput?.value === "/septic-record-finder/";
             if (researchGoal instanceof HTMLSelectElement
-                && (!researchGoal.value || researchGoal.value === "other")
+                && (!researchGoal.value || researchGoal.value === "other"
+                    || (genericFinderEntry && researchGoal.value === "original_documents"))
                 && Array.from(researchGoal.options).some(option => option.value === carriedGoal)) {
                 researchGoal.value = carriedGoal;
             }
