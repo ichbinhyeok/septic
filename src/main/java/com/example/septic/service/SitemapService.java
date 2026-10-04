@@ -66,7 +66,8 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/north-carolina/pender-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/pitt-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-10-05"),
-            Map.entry("/septic-records-checklist/tennessee/wilson-county/", "2026-09-22")
+            Map.entry("/septic-records-checklist/tennessee/wilson-county/", "2026-09-22"),
+            Map.entry("/septic-records-checklist/tennessee/blount-county/", "2026-10-05")
     );
 
     private final ResearchDataService researchDataService;
