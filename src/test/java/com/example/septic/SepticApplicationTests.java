@@ -1469,7 +1469,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/sitemap-county.xml"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-09-14</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-10-05</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/alabama/autauga-county/</loc><lastmod>2026-09-01</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/texas/tarrant-county/</loc><lastmod>2026-09-14</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/pitt-county/</loc><lastmod>2026-09-22</lastmod></url>")))
