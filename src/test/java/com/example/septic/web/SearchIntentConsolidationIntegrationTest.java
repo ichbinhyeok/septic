@@ -53,7 +53,7 @@ class SearchIntentConsolidationIntegrationTest {
 
         mockMvc.perform(get("/sitemap-county.xml"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-09-14</lastmod>")));
+                .andExpect(content().string(containsString("<loc>https://example.test/septic-records-checklist/tennessee/blount-county/</loc><lastmod>2026-10-05</lastmod>")));
     }
 
     @Test
