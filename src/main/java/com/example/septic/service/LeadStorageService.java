@@ -129,6 +129,8 @@ public class LeadStorageService {
                 "timeline", estimateForm.getTimeline()
         ));
         payload.put("resultSummary", estimateSummary(result));
+        payload.put("commercialBrief", CommercialInquiryBrief.fromIntake(payload));
+        payload.put("commercialFollowup", CommercialInquiryBrief.initialFollowup());
         payload.put("consent", consent);
         payload.put("provenance", provenance);
 
@@ -423,14 +425,8 @@ public class LeadStorageService {
                 "concern", safeValue(form.getConcern(), 1200)
         ));
         payload.put("documents", documentMetadata);
-        payload.put("commercialFollowup", orderedMap(
-                "status", "unreviewed",
-                "phoneVerification", "not_verified",
-                "fieldWorkIntent", "not_confirmed",
-                "buyerAcceptance", "not_requested",
-                "providerId", "",
-                "paidAmountCents", 0
-        ));
+        payload.put("commercialBrief", CommercialInquiryBrief.fromIntake(payload));
+        payload.put("commercialFollowup", CommercialInquiryBrief.initialFollowup());
         payload.put("consent", consent);
         payload.put("notification", orderedMap(
                 "operatorStatus", "pending",

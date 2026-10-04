@@ -7911,7 +7911,7 @@
       "countySlug": "union-county",
       "title": "Union County North Carolina Septic Records Checklist and Permit Lookup",
       "metaDescription": "Union County septic records checklist and permit lookup with existing-system inspections, compliance reports, permit requests, and O&M triggers before additions, pools, or repair quotes.",
-      "introCopy": "Union County is one of the strongest county wedges in this set because Environmental Health makes existing-system inspections, compliance inspection reports, repair permitting, and septic permit-record requests all visible from official county pages.",
+      "introCopy": "Looking for an existing Union County septic file? Match the property address and parcel first, then use Environmental Health's records request. Evolve's public permit search can offer building-record clues, but an empty result does not tell you whether an older septic file exists.",
       "uniqueAngle": "Union stands out because the county treats existing-system review as a normal gate for additions, decks, pools, irrigation, detached buildings, and other follow-on work, while also exposing both a compliance inspection path and an existing septic and well permit request path.",
       "targetReader": "Best for Union County buyers, owners, builders, and agents who need to know whether the county file can support an addition, an irrigation install, or a repair story before they trust a low quote.",
       "officeLabel": "Union County on-site wastewater disposal program",
@@ -7920,7 +7920,7 @@
       "recordsUrl": "https://lfportal.unioncountync.gov/Forms/WellSepticPermitRequest",
       "contactLine": "Union County Environmental Health | 704-283-3553",
       "decisionSteps": [
-        "Start on the Union County septic systems page and decide whether the property needs a new permit, a repair permit, or an existing-system inspection before construction moves.",
+        "Confirm the address and parcel ID, then distinguish Evolve building-permit clues from Environmental Health's existing septic and well file request. Confirm the current county search fee before submitting a chargeable request.",
         "If the project touches an existing septic-served lot with a pool, deck, irrigation, detached building, or similar addition, line up the county's existing-system inspection before treating the plan as build-ready.",
         "Pull the compliance inspection report path and the existing septic and well permit request path before relying on seller memory, old plans, or a contractor's first-pass price."
       ],
@@ -7942,6 +7942,14 @@
         {
           "question": "What is the first Union County record to pull?",
           "answer": "Start with the existing septic and well permit request and the compliance inspection path so you can test the county file before pricing repairs or approving plans."
+        },
+        {
+          "question": "Does an empty Union County Evolve search mean there is no septic record?",
+          "answer": "No. Evolve is the county's building and development permit service, not a complete historical septic archive. Ask Environmental Health to search the existing septic and well file using the property address and parcel ID."
+        },
+        {
+          "question": "Is a Union County septic records search free?",
+          "answer": "The public Evolve search does not require an account, but Environmental Health confirmed a $10 staff-research fee on September 30, 2026, billed after the records request is submitted and payable before its search begins. Confirm the current county amount before paying. SepticPath's research and explanation are free; agency charges are separate and need approval."
         }
       ],
       "internalLinkTargets": [
@@ -7959,7 +7967,8 @@
         "nc_union_01",
         "nc_union_02",
         "nc_union_03",
-        "nc_union_04"
+        "nc_union_04",
+        "nc_union_evolve_20261005"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -19955,17 +19964,17 @@
       "countyName": "Guilford County",
       "countySlug": "guilford-county",
       "title": "Guilford County NC Septic Records and Permit Lookup",
-      "metaDescription": "Find Guilford County septic permits, layouts, and operation records. Start with county On-Site Water Protection or a public-records request using the address or parcel ID.",
-      "introCopy": "Find a Guilford County septic file before you trust a sale, repair, or quote. Start with county On-Site Water Protection or the public-records route using the address, parcel ID, owner, or permit clue; ask for the improvement permit, construction authorization, operation permit, layout, or existing-system authorization.",
-      "uniqueAngle": "Guilford is a high-value NC target because it lists site evaluations, permits, inspections, repairs, monitoring, abandonment, and existing-system inspections in one county workflow.",
+      "metaDescription": "Search Guilford County GIS by address or REID for well and septic records, layout clues, and the next request route when the file is incomplete.",
+      "introCopy": "Start with the Guilford County GIS parcel and its linked well and septic documents. Confirm the address, REID, and PIN; a well-only file or missing septic feature does not settle the septic question. Use a focused county records request to fill the missing permit, layout, or approval information.",
+      "uniqueAngle": "Guilford combines parcel-based GIS document clues with Water Quality map layers and a public-records fallback. Separating a map match, a well file, and an actual septic record helps you ask the right next question.",
       "targetReader": "Best for Guilford County buyers, sellers, owners, agents, and contractors who already know the county and need the septic record or permit path before they compare quotes, accept a seller explanation, or plan repair, expansion, or existing-system inspection routing.",
       "officeLabel": "Guilford County On-Site Water Protection office",
       "officeUrl": "https://www.guilfordcountync.gov/government/departments-and-agencies/health-and-human-services-agency/public-health/environmental-health/site-wastewater",
-      "recordsLabel": "Open Guilford County public records",
-      "recordsUrl": "https://guilfordcountync.nextrequest.com/",
+      "recordsLabel": "Open Guilford County GIS Data Viewer",
+      "recordsUrl": "https://gisdv.guilfordcountync.gov/guilford/",
       "contactLine": "Guilford County On-Site Water Protection | 336-641-7613 | call 8-10 a.m. for system type and location when an updated property file exists",
       "decisionSteps": [
-        "Open the official Guilford County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
+        "Search the official GIS Data Viewer by address or REID. Confirm the parcel and PIN, then check linked well and septic documents and Water Quality layers.",
         "Ask for the improvement permit, construction authorization, operation permit, septic layout, or existing-system authorization and tie the request to the address, parcel ID, owner name, subdivision, or permit number that the office can search.",
         "Before pricing, confirm whether the file supports normal use, repair, expansion, or existing-system inspection routing, a sale, an addition, or a new permit path."
       ],
@@ -19982,7 +19991,7 @@
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Guilford County?",
-          "answer": "Start with the official Guilford County records or environmental health link on this page, then request the improvement permit, construction authorization, operation permit, septic layout, or existing-system authorization using the parcel address and any permit or owner information you already have."
+          "answer": "Start in the official GIS Data Viewer with the address or REID. Confirm the parcel and PIN, review linked well and septic documents, and check Water Quality layers for tank, trench, and layout clues. If the septic file is absent or incomplete, request the missing records through the county's NextRequest portal using current and earlier parcel identifiers when relevant."
         },
         {
           "question": "What should I ask for before trusting a septic quote in Guilford County?",
@@ -20004,6 +20013,8 @@
       "officialSourceIds": [
         "nc_guilford_01",
         "nc_guilford_02",
+        "nc_guilford_gis_20261005",
+        "nc_guilford_waterquality_20261005",
         "nc_02"
       ],
       "workflowStructure": {

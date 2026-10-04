@@ -74,7 +74,7 @@ public record CountyAcquisitionProfileView(
             case "TN::hamilton-county",
                  "AZ::maricopa-county", "NC::brunswick-county",
                  "MD::prince-georges-county", "CO::adams-county", "NC::buncombe-county",
-                 "NC::wake-county", "NC::pitt-county", "NC::johnston-county", "TX::comal-county" -> "official_search";
+                 "NC::wake-county", "NC::pitt-county", "NC::johnston-county", "NC::guilford-county", "TX::comal-county" -> "official_search";
             case "NC::alamance-county", "TX::denton-county", "NC::pender-county", "MD::st-marys-county",
                  "IN::st-joseph-county", "IN::brown-county",
                  "SC::horry-county", "SC::greenville-county", "SC::spartanburg-county",
@@ -85,7 +85,7 @@ public record CountyAcquisitionProfileView(
                  "MD::frederick-county",
                  "TN::wilson-county", "TN::montgomery-county", "NC::union-county" -> "official_portal";
             case "NC::forsyth-county" -> "official_contact_form";
-            case "VA::prince-william-county", "CA::san-bernardino-county", "NY::suffolk-county", "TN::sevier-county", "NC::guilford-county" -> "official_phone";
+            case "VA::prince-william-county", "CA::san-bernardino-county", "NY::suffolk-county", "TN::sevier-county" -> "official_phone";
             case "TX::tarrant-county", "TX::brazoria-county", "OH::mahoning-county",
                  "SD::hughes-county", "IN::grant-county", "IN::porter-county", "IN::monroe-county" -> "official_contact";
             default -> "official_route";
@@ -157,7 +157,7 @@ public record CountyAcquisitionProfileView(
             return "The linked NextRequest route is access-restricted. Prepare the county-authored form fields, then call Environmental Health to confirm the current intake channel before sending the form.";
         }
         if ("NC::guilford-county".equals(countyKey)) {
-            return "Call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when an updated file exists; use the county records portal only when copies are needed.";
+            return "Match the GIS parcel by address or REID, review its linked well and septic documents and Water Quality layers, then use NextRequest for the specific missing file. Call 336-641-7613 between 8 a.m. and 10 a.m. for system-location help when an updated file exists.";
         }
         if ("NC::buncombe-county".equals(countyKey)) {
             return "Search Buncombe's Accela site with the parcel PIN and strongest available clue. If it is blocked, empty, or the job concerns reuse, inspection, or repair, use Environmental Health and keep the resulting reference.";

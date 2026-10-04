@@ -25,7 +25,10 @@
                     <span class="eyebrow">${state.stateCode()} property records</span>
                     @if ("NC".equals(state.stateCode()))
                         <h1>North Carolina septic records by county</h1>
-                        <p>Find the county permit file owner by address, then open the official route for the permit copy, as-built, final approval, repair record, or written no-record response.</p>
+                        <p>Find the county permit file owner by address, then open the official route for permits, layouts and approval records. Or let us research the property and explain what we find, free.</p>
+                    @elseif ("IN".equals(state.stateCode()))
+                        <h1>Indiana septic records by county and address</h1>
+                        <p>Find the local health department route for a permit, site sketch, or installation record. Search yourself, or send us the property and we’ll research the file and explain what we find, free.</p>
                     @else
                         <h1>Find ${state.stateName()} septic records</h1>
                         <p>Enter the property address to identify the county, file owner, official search or request route, and the permit documents to ask for.</p>
@@ -34,6 +37,10 @@
                         <strong>Start here</strong>
                         <span>Enter the property address. SepticPath identifies the county and the best verified public route; it does not claim that a permit exists or retrieve a government file automatically.</span>
                     </div>
+                    @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()) || "IN".equals(state.stateCode()))
+                        <p><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link(stateMoneyPage.path(state.slug()), state.stateCode(), null)}" data-record-help-cta data-track-click="nav" data-track-source-context="state_records_free_help" data-track-target-type="lead_form">Get free record help →</a></p>
+                        <small>Research, located records and explanation are free. Agency fees need your approval.</small>
+                    @endif
                 </div>
                 @template.tags.addressRecordFinder(
                     finderId = "state-records-" + state.stateCode().toLowerCase(),
@@ -153,6 +160,10 @@
         @endif
 
         @template.tags.recordSearchComparison(entries = countySearchGuides, heading = "Choose the right archive for your " + state.stateName() + " property")
+
+        @if ("IN".equals(state.stateCode()))
+            @template.tags.indianaRecordsFieldGuide()
+        @endif
 
         <section class="state-records-documents">
             <div class="container state-records-documents__grid">

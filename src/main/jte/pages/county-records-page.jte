@@ -137,7 +137,7 @@
                 <h2>Start with the right county path.</h2>
                 <p class="county-records-page__source-title"
                    data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
-                @template.tags.countySearchQuickStart(countyKey = countyPage.key())
+                @template.tags.countySearchQuickStart(countyKey = countyPage.key(), recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
                 <details class="county-route-brief">
                     <summary>
                         <span>Route details</span>

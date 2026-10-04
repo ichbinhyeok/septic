@@ -185,8 +185,9 @@ public class PaidUnlockController {
         response.setHeader(HttpHeaders.PRAGMA, "no-cache");
         model.addAttribute("page", privatePage("Your record package is ready"));
         model.addAttribute("delivery", delivery);
+        model.addAttribute("nextStep", RecordResultNextStep.forPurpose(delivery.offer().helpPurpose()));
         model.addAttribute("downloadToken", downloadToken);
-        model.addAttribute("deliveryExpiresAt", DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a 'UTC'")
+        model.addAttribute("deliveryExpiresAt", DateTimeFormatter.ofPattern("MMM d, yyyy · h:mm a 'UTC'", java.util.Locale.ENGLISH)
                 .withZone(ZoneOffset.UTC).format(delivery.expiresAt()));
         return "pages/paid-delivery";
     }
@@ -201,6 +202,7 @@ public class PaidUnlockController {
             @RequestParam String documentScope,
             @RequestParam String answerableQuestion,
             @RequestParam String limitations,
+            @RequestParam(required = false) String helpPurpose,
             @RequestParam String releaseApprovalJson,
             @RequestParam("package") MultipartFile packageFile
     ) throws IOException {
@@ -217,7 +219,8 @@ public class PaidUnlockController {
                             sourceSummary,
                             documentScope,
                             answerableQuestion,
-                            limitations
+                            limitations,
+                            helpPurpose
                     ),
                     packageFile.getOriginalFilename(),
                     packageFile.getBytes(),
@@ -255,7 +258,8 @@ public class PaidUnlockController {
                             request.sourceSummary(),
                             request.documentScope(),
                             request.answerableQuestion(),
-                            request.limitations()
+                            request.limitations(),
+                            request.helpPurpose()
                     ),
                     request.packageFileName(),
                     Base64.getDecoder().decode(request.packageBase64()),
@@ -311,7 +315,8 @@ public class PaidUnlockController {
             String limitations,
             String packageFileName,
             String packageBase64,
-            PaidUnlockStore.ReleaseApproval releaseApproval
+            PaidUnlockStore.ReleaseApproval releaseApproval,
+            String helpPurpose
     ) {}
 
     @ExceptionHandler(IllegalArgumentException.class)

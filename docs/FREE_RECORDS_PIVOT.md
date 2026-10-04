@@ -49,6 +49,10 @@ No provider coverage or paid buyer agreement was created by this change. Before 
 
 ## Measure the pivot
 
+The October 4–5 follow-through adds purpose-specific private result guidance, a private commercial inquiry brief on new intakes, and a CLI that prepares evidence-linked commercial outcome transactions. See [SUNDAY_GROWTH_WORKFLOW.md](SUNDAY_GROWTH_WORKFLOW.md) for exact inputs, commands, measurement scope and verification. This is not provider dispatch or proof of revenue; deployment must be confirmed separately.
+
+The existing-guide changes in the same release candidate are documented in [GROWTH_ASSET_GUIDES_2026-10-05.md](GROWTH_ASSET_GUIDES_2026-10-05.md): Guilford GIS routing, Union historical-file requests and Indiana county-first guidance.
+
 Compare equivalent source-page, geography and time windows. Keep these stages separate:
 
 | Stage | Evidence required |

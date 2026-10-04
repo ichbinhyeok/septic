@@ -1104,19 +1104,19 @@ public final class CountyAccessProfileCatalog {
             )),
             Map.entry("NC::guilford-county", profile(
                     "NC::guilford-county",
-                    "phone_assisted",
-                    "Phone lookup with records fallback",
-                    "Call Guilford County for the system location, then request the underlying file",
-                    "Guilford County says owners may call 336-641-7613 between 8 a.m. and 10 a.m. for system type and location when the county has an updated property file. The county also links its official public-records portal.",
-                    "Call Guilford On-Site Water Protection",
-                    "tel:336-641-7613",
+                    "portal_with_fallback",
+                    "GIS property files with records-request fallback",
+                    "Find Guilford County septic records online",
+                    "Start in the county GIS Data Viewer with the address or REID. Check the property's linked well and septic documents and Water Quality layers, then request the missing permit or layout through the county records portal. On-Site Water Protection also answers system-location questions at 336-641-7613 between 8 a.m. and 10 a.m. when an updated file exists.",
+                    "Open Guilford County GIS Data Viewer",
+                    "https://gisdv.guilfordcountync.gov/guilford/",
                     "Open Guilford County public records",
                     "https://guilfordcountync.nextrequest.com/",
                     "A documented system-location answer, property file, request reference, or written no-record response",
-                    "The phone lookup depends on the county having an updated file and is limited to the published 8-10 a.m. call window. NextRequest may require verification and final submission.",
+                    "A well-only PDF or missing septic map feature is not an official no-record response. Match the property identifiers and check earlier parcels when relevant. GIS is not survey-grade; historical drawings do not locate the system on the ground. NextRequest may require verification and final submission.",
                     List.of(
                             "Property address",
-                            "Parcel or owner clue when known",
+                            "REID, PIN, or prior parcel identifier when known",
                             "Whether you need location only or the full permit, layout, and repair file"
                     ),
                     List.of(
@@ -1125,10 +1125,10 @@ public final class CountyAccessProfileCatalog {
                             "Layout, repair, monitoring, or abandonment record"
                     ),
                     List.of(
-                            "Call between 8 a.m. and 10 a.m. with the property clues ready.",
-                            "Record the system type and location answer and ask whether an updated file exists.",
-                            "If you need copies, open the county public-records portal and request the underlying On-Site Water Protection file.",
-                            "Complete verification and final submission on the county portal, then save the request reference."
+                            "Open the GIS Data Viewer, find the exact address or REID, and confirm the parcel and PIN.",
+                            "Check linked well and septic documents and the Water Quality layers for tank, trench, layout, and permit-grid clues. Read the linked file rather than relying on a map marker.",
+                            "If the file is well-only, incomplete, or missing, carry the current and any earlier parcel identifiers into a focused NextRequest request for the underlying septic file.",
+                            "Retain the county's written response. For system-location questions, the published phone route is 336-641-7613, 8-10 a.m."
                     )
             )),
             Map.entry("TN::davidson-county", profile(
@@ -1599,13 +1599,13 @@ public final class CountyAccessProfileCatalog {
                     "official_request",
                     "Existing permit request with inspection branch",
                     "Union County NC septic permit lookup and existing records request",
-                    "Union County provides a dedicated existing septic and well permit request and separately requires an existing-system inspection before construction such as additions, garages, decks, pools, or irrigation on a septic-served parcel.",
+                    "Use Environmental Health's existing septic and well permit request for the historical file. Evolve's public Permit Search can supply building-permit clues, but it is not a complete septic-record archive. A separate existing-system inspection may be needed before additions, garages, decks, pools, or irrigation.",
                     "Request an existing septic or well permit",
                     "https://lfportal.unioncountync.gov/Forms/WellSepticPermitRequest",
                     "Open Union County septic-system guidance",
                     "https://www.unioncountync.gov/government/departments-a-e/environmental-health/septic-systems",
                     "The existing permit file plus any required inspection, repair, compliance, or O&M record tied to the parcel",
-                    "The request form may block automated access, and a historical permit copy does not clear new construction or prove current condition. Union County publishes 704-283-3553 for Environmental Health; inspection, repair, and new-work decisions remain separate county actions.",
+                    "Environmental Health confirmed a $10 staff-search fee on September 30, 2026: submit the request, receive the county bill, then pay before research begins. Confirm current instructions with 704-283-3553 if the form is blocked or redirects. A historical permit copy does not clear new construction or prove current condition.",
                     List.of(
                             "Property address and parcel number",
                             "Current and prior owner names when known",
@@ -1621,7 +1621,8 @@ public final class CountyAccessProfileCatalog {
                             "Operation and maintenance record when applicable"
                     ),
                     List.of(
-                            "Submit the existing permit request with the exact parcel identity and requested record scope.",
+                            "Confirm the address and parcel ID. Optionally check Evolve Permit Search for building-permit clues; an empty result does not settle whether Environmental Health holds a septic file.",
+                            "Follow the current existing septic and well records request, review the county fee, and save the request and payment references. Do not apply for a new system just to obtain an old file.",
                             "Save the confirmation or returned file and compare its approved layout with the current property.",
                             "If construction or a site change is planned, use the county guidance to start the required existing-system inspection rather than treating the old permit as clearance.",
                             "Keep the permit, inspection, repair, and O&M artifacts together before making a build or pricing decision."

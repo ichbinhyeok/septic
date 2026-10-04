@@ -275,6 +275,11 @@
 .premium-site--transaction .delivery-hero__inner > small { display: block; margin-top: 15px; color: #506a66; }
 .premium-site--transaction .delivery-contents { padding-block: clamp(65px,7vw,105px); background: #fbf8f1; }.premium-site--transaction .delivery-contents header { display: grid; grid-template-columns: .5fr 1fr; align-items: end; gap: 35px; margin-bottom: 35px; }.premium-site--transaction .delivery-contents header .transaction-kicker { align-self: start; }
 .premium-site--transaction .delivery-ledger > div { display: grid; grid-template-columns: minmax(220px,.65fr) minmax(0,1.35fr); gap: 45px; padding: 18px 0; border-top: 1px solid #c5d0c8; }.premium-site--transaction .delivery-ledger > div:last-child { border-bottom: 1px solid #c5d0c8; }
+.premium-site--transaction .delivery-checklist { padding-left: 1.4rem; margin: 0 0 24px; line-height: 1.7; }
+.premium-site--transaction .delivery-checklist li + li { margin-top: 16px; }
+.premium-site--transaction .delivery-followup p { line-height: 1.7; }
+.premium-site--transaction .delivery-followup .button--secondary { color: #fff; border-color: #9bbdb7; }
+.premium-site--transaction .delivery-followup .button--secondary:hover { color: #06343a; background: #e8f2ed; }
 .premium-site--transaction .delivery-followup { padding-block: 80px; color: #e8f2ed; background: #06343a; }.premium-site--transaction .delivery-followup > div { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px,8vw,120px); align-items: end; }.premium-site--transaction .delivery-followup .transaction-kicker { color: #7ddbc3; }.premium-site--transaction .delivery-followup h2 { color: #fff; }.premium-site--transaction .delivery-followup > div > p { margin: 0; padding-left: 40px; border-left: 1px solid #7aa39a; color: #cfe0da; font-family: Newsreader,serif; font-size: 20px; line-height: 1.6; }
 @media(prefers-reduced-motion:no-preference) { .premium-site--transaction :is(.transaction-hero__inner,.delivery-hero__inner) { animation: premium-hero-rise .72s cubic-bezier(.2,.75,.2,1) both; } }
 .premium-site--recovery .section--breadcrumb { display: none; }
