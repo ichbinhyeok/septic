@@ -748,15 +748,30 @@ public class SiteController {
     public String offerPrepSepticFileCheck(
             @RequestParam(name = "mode", required = false) String mode,
             @RequestParam(name = "uploadError", required = false) String uploadError,
+            @RequestParam(name = "from", required = false) String from,
+            @RequestParam(name = "state", required = false) String state,
+            @RequestParam(name = "project", required = false) String project,
+            @RequestParam(name = "bedrooms", required = false) String bedrooms,
+            @RequestParam(name = "intent", required = false) String intent,
+            @RequestParam(name = "source", required = false) String source,
+            @RequestParam(name = "county", required = false) String county,
             Model model
     ) {
         ClosingRiskCheckForm form = new ClosingRiskCheckForm();
+        if (intent != null) RecordHelpEntry.of(intent).prefill(form, source);
+        if (state != null && usStateDirectoryService.findByCode(state).isPresent()) {
+            form.setStateCode(state.toUpperCase(Locale.US));
+            if (county != null && county.length() <= 120) form.setCountyName(county.trim());
+        }
+        if ("calculator".equals(from)) {
+            StudioCalculatorHandoff.prefill(form, project, bedrooms);
+        }
         if ("review".equalsIgnoreCase(mode)) {
             form.setRecordType("septic");
             form.setResearchGoal("understand_file");
             form.setRecordStatus("partial");
-            form.setSourceContext("document_review");
-            form.setSourcePageHint("/septic-record-finder/");
+            if (intent == null) form.setSourceContext("document_review");
+            if (form.getSourcePageHintValue().isBlank()) form.setSourcePageHint("/septic-record-finder/");
         }
         boolean uploadTooLarge = "too_large".equalsIgnoreCase(uploadError);
         if (uploadTooLarge) {
@@ -783,6 +798,9 @@ public class SiteController {
             HttpServletRequest request,
             Model model
     ) {
+        if ("review".equals(request.getParameter("intakeMode"))) {
+            closingRiskCheckForm.setResearchGoal("understand_file");
+        }
         if (closingRiskCheckForm.isBotSubmission()) {
             return renderOfferPrepSepticFileCheck(
                     model,
@@ -793,6 +811,9 @@ public class SiteController {
             );
         }
         if (!bindingResult.hasErrors()) {
+            if (usStateDirectoryService.findByCode(closingRiskCheckForm.getStateCode()).isEmpty()) {
+                bindingResult.rejectValue("stateCode", "closingRisk.state", "Choose a valid state.");
+            }
             String documentError = recordHelpDocumentPolicy.validate(
                     closingRiskCheckForm.getDocuments(),
                     "understand_file".equals(closingRiskCheckForm.getResearchGoal())
@@ -805,6 +826,7 @@ public class SiteController {
             bindingResult.reject("closingRisk.rateLimit", "Too many requests were submitted from this connection. Try again later.");
         }
         if (bindingResult.hasErrors()) {
+            model.addAttribute("intakeErrors", bindingResult.getAllErrors());
             if (bindingResult.getFieldError("documents") != null) {
                 model.addAttribute("closingRiskDocumentError", bindingResult.getFieldError("documents").getDefaultMessage());
             }
@@ -1127,7 +1149,7 @@ public class SiteController {
                                 "What is handled depends on the action you choose. Browsing public guidance does not create a property file on our servers.",
                                 List.of(
                                         "Quote and contact forms store the details you submit, such as name, email, phone, ZIP code, project answers, message, consent text, and submission time.",
-                                        "Record Help stores the submitted contact details, including requester role and an optional mobile number, property address, record type, research goal, what the requester has already found, relevant listing or permit facts, deadline, notes, consent and offer terms. Submission, research and agency requests are free, with an optional US $29 useful-result unlock. Agency fees are additional at cost with prior approval. These details are emailed to the SepticPath operator for manual review, and a plain-text receipt with the reference and submitted request details is emailed to the requester when mail delivery succeeds.",
+                                        "Record Help stores submitted contact details, phone number, requester role, purpose, timeframe, property address, record type, research goal, relevant file facts, deadline, notes, consent and service terms. Research, agency requests, source records and explanation are free. Agency fees are additional at cost with prior approval. Submitted details are emailed to the SepticPath operator for review, and a receipt is emailed to the requester when delivery succeeds.",
                                         "When you choose human document review, the source files you attach are stored with the private request record and emailed to the SepticPath operator. The form currently accepts up to three PDF, TXT, PNG, or JPG files with a 15 MB combined limit.",
                                         "Anonymous measurement can record page and tool actions, county route, general workflow status, referrer, device/browser information, and network information. Property address, parcel ID, request number, email, and phone are not intentionally sent as analytics event fields.",
                                         "An address entered in the record finder is used to resolve a county through the U.S. Census lookup. It is not added to a SepticPath server-side property database."
@@ -1148,7 +1170,7 @@ public class SiteController {
                                 List.of(
                                         "To answer contact, correction, or privacy requests.",
                                         "To research and reply to a requested property-record investigation during the beta, including contacting the responsible public office when appropriate.",
-                                        "When field work may help, to connect the requester with relevant local septic professionals. They may reply by email or, if the requester supplied an optional mobile number, by a manual call or service-specific text about that request. Some participating professionals may compensate SepticPath for an introduction.",
+                                        "When field work may help, to connect the requester with relevant local septic professionals. They may reply by email, manual call or service-specific text about that request. Some participating professionals may compensate SepticPath for an introduction.",
                                         "To preserve a consent snapshot, submission time, and estimate context attached to a quote-help request.",
                                         "To measure whether record and estimate workflows are useful without treating a request confirmation as a record obtained."
                                 )
@@ -1158,7 +1180,7 @@ public class SiteController {
                                 "A quote-help submission may be reviewed for routing to an appropriate service provider, but submission does not mean a provider is available or has accepted the project.",
                                 List.of(
                                         "Do not submit payment-card, bank-account, government-ID, or other highly sensitive personal information through the forms.",
-                                        "For Record Help requests submitted under the matching terms, we may share the requester's name, email address, optional mobile number, property address, and stated service need with relevant local septic professionals when field work may help. We do not share uploaded documents or private agency correspondence for matching unless the requester separately chooses to provide them.",
+                                        "For requests submitted under the applicable matching terms, we may share the supplied name, email address, phone number, property address, role, purpose and timeframe with relevant local septic professionals when field work may help. Historical requests retain their original sharing scope. We do not share uploaded documents or private agency correspondence for matching unless the requester separately chooses to provide them.",
                                         "A supplied mobile number permits matched professionals to make a manual call or send a service-specific text about the submitted request. It does not authorize automated or prerecorded marketing, unrelated solicitations, or onward resale of the request.",
                                         "Operational form records and audit logs are retained while needed for inquiry handling, consent records, abuse prevention, and legitimate operations; a fixed deletion period is not yet promised.",
                                         "Use the Privacy request option on the contact page to ask what was stored or request deletion. Include the lead or contact reference when available."
@@ -1271,28 +1293,28 @@ public class SiteController {
                 model,
                 seoService.basicPage(
                         "Terms of Use",
-                        "Use conditions for SepticPath public tools, record research, document review, and optional paid result packages.",
+                        "Use conditions for SepticPath public tools, free record research and results, document review, and local-professional introductions.",
                         "/terms-of-use/"
                 ),
                 "Terms of use",
                 "Use SepticPath for research and planning—not as an inspection, permit decision, engineering opinion, or legal approval.",
-                "These terms cover the public tools, property-record research, document review, agency requests, and optional paid result packages offered by SepticPath.",
+                "These terms cover public tools, free property-record research and results, document review, agency requests, and relevant local-professional introductions.",
                 Arrays.asList(
                         new SitePageSection(
                                 "What the service provides",
                                 "Public guidance and calculators provide planning information. Record Help researches available sources, matches returned material to the property when possible, and explains what the evidence does and does not answer.",
                                 List.of(
                                         "Submitting a Record Help request, research, document review, and necessary agency requests are free.",
-                                        "Before any optional purchase, the free preview identifies the official source, document scope, property match, questions the evidence can answer, and material limitations. Property-specific answers and located source files are included in the paid package; customer-supplied files remain the customer's own.",
+                                        "Property-matched source records and the explanation we can provide are included free. Results identify the source, findings and material limitations. Customer-supplied files remain the customer's own.",
                                         "Records can be unavailable, incomplete, delayed, or held by a different office; SepticPath does not guarantee that a requested record exists or will be released."
                                 )
                         ),
                         new SitePageSection(
-                                "Optional US $29 result package and agency fees",
-                                "After a useful preview, a customer may choose a one-time US $29 package containing the located source records and detailed, human-reviewed answers described in the offer email.",
+                                "Free results, agency fees and field services",
+                                "No paid unlock is required for the records and explanation we provide. Local professionals charge separately for their services; introductions do not guarantee availability, price or response time.",
                                 List.of(
-                                        "There is no upfront service payment, subscription, or automatic charge. Payment instructions use a provider-hosted checkout or invoice; never send card details by email.",
-                                        "Agency search, copy, or portal fees are separate, charged at actual cost, and require approval before they are incurred. An approved agency fee may apply even if no record is found or the optional package is declined.",
+                                        "There is no record-help service payment, subscription, or automatic charge. Never send card details by email.",
+                                        "Agency search, copy, or portal fees are separate, charged at actual cost, and require approval before they are incurred. An approved agency fee may apply even if no record is found.",
                                         "Existing requests retain their accepted terms, including free-beta service and any earlier promise of a free finding. If a paid package cannot be delivered as described, SepticPath will correct the delivery or refund the service fee through the payment provider."
                                 )
                         ),
@@ -1301,7 +1323,7 @@ public class SiteController {
                                 "A historical permit, drawing, approval, or agency response documents what that source says; it does not by itself prove present condition, safety, installation, code compliance, or future approval.",
                                 List.of(
                                         "Customers remain responsible for inspections, site evaluations, permit decisions, legal advice, deadlines, and work by appropriately qualified professionals.",
-                                        "The free preview discloses missing evidence, identity uncertainty, conflicting sources and limitations that affect whether the package can answer the customer's question. It does not promise a favorable result. Known urgent safety concerns are communicated promptly. A wrong-property file, pending request or empty search is not sold as a verified answer.",
+                                        "The result explains missing evidence, identity uncertainty, conflicting sources and limitations. It does not promise a favorable result. Known urgent safety concerns are communicated promptly. A wrong-property file, pending request or empty search is not presented as a verified answer.",
                                         "Content and public-source routes may change as agencies update their systems. Keep the request reference and reply to the service email for delivery questions, corrections, or refund requests."
                                 )
                         )
@@ -1786,8 +1808,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             @RequestParam(name = "recordDesignFlow", defaultValue = "") String recordDesignFlow,
             @RequestParam(name = "county", defaultValue = "") String countyName,
             @RequestParam(name = "recordStatus", defaultValue = "") String recordStatus,
-            @RequestParam(name = "serviceNeed", defaultValue = "planned_project") String serviceNeed,
-            @RequestParam(name = "timeline", defaultValue = "researching") String timeline,
+            @RequestParam(name = "serviceNeed", defaultValue = "") String serviceNeed,
+            @RequestParam(name = "timeline", defaultValue = "") String timeline,
             @RequestParam(name = "sourcePageHint", required = false) String sourcePageHint,
             @RequestParam(name = "quoteMode", defaultValue = "false") boolean quoteMode,
             Model model
@@ -1816,10 +1838,15 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("recordTankCapacity", boundedRecordContext(recordTankCapacity));
         model.addAttribute("recordDesignFlow", boundedRecordContext(recordDesignFlow));
         QuoteLeadForm quoteLeadForm = QuoteLeadForm.fromEstimateForm(estimateForm);
+        if (quoteMode) quoteLeadForm.setBedrooms(null);
         quoteLeadForm.setCountyName(boundedRecordContext(countyName));
         quoteLeadForm.setRecordStatus(validRecordStatus(recordStatus));
         quoteLeadForm.setServiceNeed(validServiceNeed(serviceNeed));
-        quoteLeadForm.setTimeline(TimelinePreference.fromValue(timeline).value());
+        quoteLeadForm.setTimeline(timeline.isBlank() ? "" : TimelinePreference.fromValue(timeline).value());
+        if (quoteMode && (projectType == null || projectType.isBlank())) quoteLeadForm.setProjectType("");
+        if (quoteMode && ("diagnosis".equals(projectType) || "location".equals(projectType))) {
+            quoteLeadForm.setProjectType(projectType);
+        }
         return renderCalculator(model, estimateForm, null, quoteLeadForm, null, false, quoteMode);
     }
 
@@ -1934,11 +1961,11 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String validServiceNeed(String value) {
         if (value == null) {
-            return "planned_project";
+            return "";
         }
         return switch (value) {
-            case "backup_slow_drains", "surfacing_wastewater", "odor", "alarm", "failed_inspection", "repair_recommended" -> value;
-            default -> "planned_project";
+            case "planned_project", "backup_slow_drains", "surfacing_wastewater", "odor", "alarm", "failed_inspection", "repair_recommended" -> value;
+            default -> "";
         };
     }
 
@@ -1950,7 +1977,11 @@ The goal is to settle the permit path before we frame the project as a normal in
             Model model
     ) {
         EstimateForm estimateForm = quoteLeadForm.toEstimateForm();
-        EstimatorResult result = estimatorService.estimate(estimateForm);
+        if (usStateDirectoryService.findByCode(quoteLeadForm.getStateCode()).isEmpty()) {
+            bindingResult.rejectValue("stateCode", "quote.state", "Choose a valid state.");
+        }
+        EstimatorResult result = bindingResult.hasErrors() || quoteLeadForm.isUnpricedService() || quoteLeadForm.getBedrooms() == null
+                ? null : estimatorService.estimate(estimateForm);
 
         if (bindingResult.hasErrors()) {
             return renderCalculator(model, estimateForm, result, quoteLeadForm, null, true, true);
@@ -2434,6 +2465,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ? nationalPlanningRange("perc_test")
                 : "");
         model.addAttribute("contentPage", contentPage);
+        model.addAttribute("fieldServicePage", fieldServicePage(contentPage));
         model.addAttribute("states", renderedStates);
         model.addAttribute("stateMoneyPageLinks", renderedStateMoneyPageLinks);
         model.addAttribute("featuredStateMoneyPageLinks", renderedStateMoneyPageLinks.stream().limit(8).toList());
@@ -2454,7 +2486,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
         model.addAttribute("countyRouteClusters", countyRouteClusters);
         model.addAttribute("calculatorPath", primaryActionPathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
-        model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage)
+        model.addAttribute("contentQuotePath", shouldLeadWithStateWorkflow(contentPage) && !fieldServicePage(contentPage)
                 ? null
                 : contentQuotePathForContentPage(contentPage, "/" + contentPage.slug() + "/"));
         model.addAttribute("calculatorCtaHeading", contentActionHeading(contentPage));
@@ -4062,11 +4094,25 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private String contentQuotePathForContentPage(ContentPage contentPage, String sourcePage) {
+        if (fieldServicePage(contentPage)) {
+            String project = switch (contentPage.slug()) {
+                case "septic-pumping-cost" -> "&projectType=pumping";
+                case "septic-inspection-cost" -> "&projectType=inspection";
+                case "septic-replacement-cost" -> "&projectType=replacement";
+                default -> "";
+            };
+            return appendSourcePageHint("/septic-system-cost-calculator/?quoteMode=true" + project, sourcePage) + "#quote-request";
+        }
         String calculatorPath = calculatorPathForContentPage(contentPage, sourcePage);
         if (!calculatorPath.startsWith("/septic-system-cost-calculator/")) {
             return null;
         }
         return calculatorPath + (calculatorPath.contains("?") ? "&" : "?") + "quoteMode=true#quote-request";
+    }
+
+    private boolean fieldServicePage(ContentPage page) {
+        return Set.of("septic-backup-slow-drains", "wet-yard-over-septic-drain-field",
+                "septic-pumping-cost", "septic-inspection-cost", "septic-replacement-cost").contains(page.slug());
     }
 
     private String appendSourcePageHint(String path, String sourcePage) {

@@ -8,7 +8,12 @@ public final class StudioCalculatorHandoff {
     private StudioCalculatorHandoff() {}
 
     public static String link(EstimateForm form) {
-        var target = org.springframework.web.util.UriComponentsBuilder.fromPath("/design-preview/studio/intake/")
+        return link(form, false);
+    }
+
+    public static String link(EstimateForm form, boolean production) {
+        var target = org.springframework.web.util.UriComponentsBuilder.fromPath(
+                production ? "/offer-prep-septic-file-check/" : "/design-preview/studio/intake/")
                 .queryParam("from", "calculator");
         if (form.getStateCode() != null && !form.getStateCode().isBlank()) {
             target.queryParam("state", form.getStateCode());
@@ -31,7 +36,7 @@ public final class StudioCalculatorHandoff {
                 + " Please research available septic records and explain what they establish for this project.");
         form.setRecordType("septic");
         form.setSourceContext("studio_calculator");
-        form.setSourcePageHint("/design-preview/studio/calculator/");
-        form.setEntryPageHint("/design-preview/studio/calculator/");
+        form.setSourcePageHint("/septic-system-cost-calculator/");
+        form.setEntryPageHint("/septic-system-cost-calculator/");
     }
 }

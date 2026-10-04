@@ -1,3 +1,4 @@
+@import com.example.septic.web.RecordHelpEntry
 @param String slug
 
 @if (java.util.Set.of("septic-tank-location-records", "how-to-find-septic-records-online", "septic-permit-search-by-address", "septic-permit-process", "septic-transfer-compliance", "buying-a-house-with-a-septic-system", "septic-permit-records-request").contains(slug))
@@ -123,8 +124,8 @@
         @endif
         <p><a href="/septic-record-brief-example/#real-cases" data-track-click="nav" data-track-source-context="learning_case_collection" data-track-target-type="case_study">Explore more real record-help cases →</a></p>
         <div class="record-learning__next">
-            <div><h3>Want us to connect the records to your question?</h3><p>Research and agency requests are free. See what relevant material we found and what it can answer, then choose the original records and detailed answers for US $29. Agency fees require your approval and are additional at cost.</p></div>
-            <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="${"learning_" + slug}" data-track-target-type="lead_form">Ask about my property</a>
+            <div><h3>${RecordHelpEntry.forGuide(slug).title()}</h3><p>${RecordHelpEntry.forGuide(slug).description()} Agency fees only with your approval.</p><p>Already need a locate, inspection or service visit? <a href="/septic-system-cost-calculator/?quoteMode=true#quote-request" rel="nofollow">Start a local service inquiry →</a></p></div>
+            <a class="button button--primary" href="${RecordHelpEntry.forGuide(slug).link("/" + slug + "/")}" data-record-help-cta data-track-click="nav" data-track-source-context="${"learning_" + slug}" data-track-target-type="lead_form">${RecordHelpEntry.forGuide(slug).action()}</a>
         </div>
     </div>
 </section>

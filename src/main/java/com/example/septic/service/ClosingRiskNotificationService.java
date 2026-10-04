@@ -74,11 +74,14 @@ public class ClosingRiskNotificationService {
 
                 Reference: %s
                 Property: %s
-                Question: %s
+                Purpose: %s
+                Additional details: %s
 
                 We aim to send an initial update within 1–2 business days. Agency response times can take longer.
 
-                Research and agency requests are free. If we find useful, property-matched evidence, we will email a free preview of the source, document scope, property match, questions it can answer, and material limits. Your actual property-specific answers and located source records are included in the optional US $29 package. Your own uploaded files remain yours. There is no automatic charge. Any agency fee requires your approval first.
+                Research, agency requests, and the records and explanation we provide are free. No paid unlock or card is required. Any agency fee requires your approval first. Your own uploaded files remain yours.
+
+                If field work may help, we may share your request with relevant local professionals. Their work is priced separately, and availability varies. For an active sewage backup, contact a local septic service directly rather than waiting for records.
 
                 Keep this email and reference number if you need to follow up. Do not email payment-card details or access codes.
 
@@ -86,6 +89,7 @@ public class ClosingRiskNotificationService {
                 """.formatted(
                 requestId,
                 safeLine(form.getPropertyAddress()),
+                safeLine(form.getHelpPurposeLabel()),
                 safeMultiline(form.getConcern())
         ));
         try {
@@ -139,7 +143,7 @@ public class ClosingRiskNotificationService {
         return """
                 New Septic Record Help request
 
-                Offer: free submission, research and agency requests; evidence preview shows source, scope, property match, answerable questions and limits. Actual answers and located source files unlock for US $29. Agency fees at cost require advance approval. No automatic charge. Preserve the original intake terms for all returning customers, including free-beta service and earlier free-finding promises.
+                Offer: free submission, research, agency requests, source records and explanation. Agency fees at cost require advance approval. No paid unlock. Preserve historical intake and sharing terms for returning customers.
 
                 Request ID: %s
                 Source context: %s
@@ -150,6 +154,8 @@ public class ClosingRiskNotificationService {
                 Phone: %s
                 Matched-professional phone sharing authorized: %s
                 Requester role: %s
+                Stated purpose: %s
+                Timeframe: %s
                 Property: %s
                 State / county: %s / %s
                 Record type: %s
@@ -162,9 +168,9 @@ public class ClosingRiskNotificationService {
                 Documents attached: %s
                 Concern: %s
 
-                Start by identifying the likely public-record owner and exact file to request. If the process stage is buyer, seller, agent, or other and a deadline or conflict is present, qualify the request for a deeper closing-risk follow-up.
+                Review the stated purpose and region before starting research. If a suitable provider accepts this type of inquiry, service follow-up can proceed alongside research; an agency reply is not a prerequisite. Phone presence is not verified reachability or confirmed field-work intent. Record actual buyer acceptance, contact, payment and processing time separately.
 
-                The requester consented to operator review, email follow-up, and the disclosed local-professional matching terms when field work may help. Matching may share name, email, optional mobile number, property address, and service need with relevant local septic professionals. A supplied mobile number authorizes manual calls or service-specific texts about this request, but not automated or prerecorded marketing, unrelated solicitations, or resale for unrelated marketing. Some participating professionals may compensate SepticPath for an introduction. This is record-path help, not an inspection or compliance certification.
+                The requester consented to operator review, email follow-up, and disclosed local-professional matching when field work may help. Matching may share the supplied name, email, phone, property address, role, purpose and timeframe with relevant local professionals. Manual calls and service-specific texts only; no automated marketing or unrelated resale. Some professionals may compensate SepticPath. Do not forward uploaded files or private agency correspondence for matching without the separate permission described in the intake terms.
                 """.formatted(
                 requestId,
                 safeLine(form.getSourceContext()),
@@ -175,6 +181,8 @@ public class ClosingRiskNotificationService {
                 safeLine(form.getPhone()),
                 form.getPhone() != null && !form.getPhone().isBlank(),
                 safeLine(form.getTransactionRole()),
+                safeLine(form.getHelpPurposeLabel()),
+                safeLine(form.getTimeline()),
                 safeLine(form.getPropertyAddress()),
                 safeLine(form.getStateCode()),
                 safeLine(form.getCountyName()),

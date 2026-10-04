@@ -34,15 +34,26 @@ class ConversionMeasurementRegressionTest {
     }
 
     @Test
-    void checkoutMeasuresOfferStartCompletionAndFailureStates() throws IOException {
+    void privateResultsExcludeCheckoutTrackingAndBearerTokensFromAnalytics() throws IOException {
         String checkout = Files.readString(Path.of("src/main/jte/pages/paid-unlock.jte"));
+        String layout = Files.readString(Path.of("src/main/jte/layouts/app.jte"));
 
-        assertTrue(checkout.contains("data-ga-event=\"unlock_offer_viewed\""));
-        assertTrue(checkout.contains("'begin_checkout'"));
-        assertTrue(checkout.contains("'unlock_checkout_started'"));
-        assertTrue(checkout.contains("'unlock_purchase_completed'"));
-        assertTrue(checkout.contains("'unlock_checkout_cancelled'"));
-        assertTrue(checkout.contains("'unlock_checkout_failed'"));
+        assertTrue(checkout.contains("No paid unlock."));
+        assertFalse(checkout.contains("data-ga-event="));
+        assertFalse(checkout.contains("data-ga-track-once="));
+        assertFalse(checkout.contains("begin_checkout"));
+        assertFalse(checkout.contains("paypal.Buttons"));
+        assertTrue(layout.contains("!window.location.pathname.startsWith(\"/unlock/\")"));
+        assertTrue(layout.contains("!window.location.pathname.startsWith(\"/paid-unlock/\")"));
+        for (String file : new String[] {"app-core.js", "app.js"}) {
+            String script = Files.readString(Path.of("src/main/resources/static", file));
+            assertTrue(script.contains("return \"/private-record-result/\";"));
+            int sender = script.indexOf("function sendEvent(endpoint, payload)");
+            int privateGuard = script.indexOf("if (/^\\/(unlock|paid-unlock)\\//.test(window.location.pathname)) return;", sender);
+            int serialization = script.indexOf("const body = JSON.stringify(payload)", sender);
+            assertTrue(sender >= 0 && privateGuard > sender && serialization > privateGuard,
+                    "Private result pages must stop analytics before serializing or sending events");
+        }
     }
 
     @Test

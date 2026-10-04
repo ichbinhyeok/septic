@@ -32,6 +32,6 @@
     </div>
     <div class="studio-wrap calc-special-actions">
         <div><p class="studio-overline">The strongest maintenance file</p><h2>Pair the next visit with the last pump, inspection, and permit record.</h2></div>
-        <div><a class="studio-button" href="${intakeUrl}">Research my property file <span aria-hidden="true">↗</span></a><p class="studio-fine">Records research—not pumping dispatch, inspection, or a contractor quote.</p></div>
+        <div><a class="studio-button" href="#quote-request" data-open-service>Ask about pumping service <span aria-hidden="true">↗</span></a><p><a href="${intakeUrl}">Get free help with the property records →</a></p><p class="studio-fine">A service inquiry, not a confirmed appointment. Local availability varies.</p></div>
     </div>
 </section>

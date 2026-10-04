@@ -45,21 +45,26 @@ public class PaidUnlockNotificationService {
         message.setText("""
                 Hi,
 
-                Your payment has been confirmed and your reviewed property-record package is ready.
+                %s
 
                 Download your package:
                 %s
 
-                This private link expires at %s and supports up to %d downloads. It contains the source records and the property-specific explanation described in your preview.
+                This private link expires at %s and supports up to %d downloads. It contains the reviewed source records and property-specific explanation.
 
                 Request reference: %s
 
-                If the link does not work, reply to this email with your request reference. Do not send payment-card details by email.
+                If you need help with an on-site locate, inspection, pumping or repair, reply with your reference. Local service availability varies and professionals price their work separately.
+
+                If the link does not work, reply with your request reference. Do not send payment-card details by email.
 
                 Best,
                 Shinhyeok
                 Founder, SepticPath
                 """.formatted(
+                        "RELEASED_FREE".equals(fulfillment.offer().status())
+                                ? "Your free records and reviewed explanation are ready. No payment is required."
+                                : "Your payment has been confirmed and your reviewed property-record package is ready.",
                         delivery,
                         fulfillment.expiresAt(),
                         paidUnlockProperties.maxDownloads(),

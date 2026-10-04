@@ -1,10 +1,10 @@
 # Record Help Operations Playbook
 
-Current pricing and preview/payment workflow: see `RECORD_HELP_UNLOCK.md`.
-Research and agency requests remain free; useful results have an optional
-US $29 unlock. Agency fees are additional at cost with prior approval. Existing
-free-beta requests keep their original terms. No new customer or research-scope
-restrictions are imposed by this offer.
+Current service and private delivery workflow: see [FREE_RECORDS_PIVOT.md](FREE_RECORDS_PIVOT.md).
+Research, agency requests, source records and explanation are free. Agency fees
+are additional at cost with prior approval; local field services are separate.
+Historical requests retain their original accepted terms and sharing scope.
+The old paid-unlock policy is retained in `RECORD_HELP_UNLOCK.md` as history only.
 
 Last updated: 2026-09-12
 

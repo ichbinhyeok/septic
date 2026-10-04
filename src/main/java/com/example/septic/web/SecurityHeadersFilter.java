@@ -40,6 +40,13 @@ public class SecurityHeadersFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         response.setHeader("X-Content-Type-Options", "nosniff");
         response.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+        String path = request.getRequestURI();
+        if (path.startsWith("/unlock/") || path.startsWith("/paid-unlock/")
+                || path.startsWith("/ops/record-results") || path.startsWith("/ops/paid-unlocks")) {
+            response.setHeader("Referrer-Policy", "no-referrer");
+            response.setHeader("Cache-Control", "no-store, max-age=0");
+            response.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+        }
         response.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=(), payment=(self)");
         if (isEmbeddableChecker(request)) {
             response.setHeader("Content-Security-Policy", EMBED_CONTENT_SECURITY_POLICY);

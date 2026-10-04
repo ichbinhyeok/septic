@@ -15,22 +15,6 @@ Do not reconstruct customer status from Gmail threads or keep duplicate live
 status here. The previous TODO contents were preserved in the private source
 archive. Already answered questions were removed from the active queue.
 
-## Record-help inquiry form
-
-### Capture the customer's intended outcome
-
-**Priority:** P2
-**Status:** Planned for later — user approved recording this task on 2026-09-12, not implementation or deployment.
-
-- When revisiting "what should we do next?" / "뭐 해야 하지?", include this open product improvement.
-- Why: a recent inquiry supplied an address and missing-record status but no intended use. Knowing the customer's goal helps distinguish finding a permit from actually resolving their question and reduces follow-up friction.
-- Proposed question: **What are you trying to find out?** (이 기록으로 무엇을 확인하고 싶으세요?)
-- Options: tank/drainfield location or layout; existing permits/approvals; buying or selling a home; planning an addition or other work; not sure / other.
-- Inspect the existing form first. Prefer replacing or clarifying the current concern field instead of adding a redundant question. The process-stage field alone does not establish the intended outcome.
-- Keep free text optional and allow "not sure". Do not require customers to know technical document names or imply records alone establish construction feasibility or current condition.
-- On implementation, carry the selection into the operator notification email, preserve existing submissions/context, and verify mobile usability and form validation. Do not send free-text concerns, addresses, or other personal details to analytics.
-- Done when the operator can identify the requested outcome from the inquiry email without an obligatory extra clarification exchange, while uncertain customers can still submit.
-
 ## Twilio US business number
 
 ### Follow up on compliance verification ticket
@@ -46,4 +30,13 @@ archive. Already answered questions were removed from the active queue.
 - Canonical status and evidence remain in `storage/operations/ledger.json` under task `us-business-number-setup`; update that task whenever the ticket status changes.
 
 ## Completed
+
+### Capture the customer's intended outcome
+
+**Completed:** v0.0.22.0 (2026-10-04)
+
+- Required plain-language purpose includes location, inspection/buying/selling, pumping, repair, building, record copies and "not sure".
+- Free text and timing remain optional. The selection is stored with the inquiry and included in the operator notification; historical submissions are unchanged.
+- Mobile layout, minimal submission, validation and saved context are covered by `FreeRecordPivotTest`, `FreeIntakeStorageTest` and `ClosingRiskNotificationServiceTest`.
+- Implementation and commercial limitations: [FREE_RECORDS_PIVOT.md](docs/FREE_RECORDS_PIVOT.md).
 

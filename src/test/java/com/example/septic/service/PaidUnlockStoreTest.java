@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.HexFormat;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -127,6 +128,66 @@ class PaidUnlockStoreTest {
         );
         store.initialize();
         return store;
+    }
+
+    @Test
+    void freeResultsUseLimitedPrivateGrantsWithoutWritingPayments() throws Exception {
+        MutableClock clock = new MutableClock(Instant.parse("2026-09-19T12:00:00Z"));
+        PaidUnlockStore store = store(clock);
+        byte[] bytes = "fictional reviewed PDF fixture".getBytes(StandardCharsets.UTF_8);
+        var free = store.createFreeDelivery(input(), "free-result.pdf", bytes, approval(sha256(bytes)));
+        assertThat(free.offer().status()).isEqualTo("RELEASED_FREE");
+        assertThat(free.offer().amount()).isEqualTo("0.00");
+        assertThat(store.inspectDownload(free.downloadToken())).isPresent();
+        assertThat(store.authorizeDownload(free.downloadToken())).isPresent();
+        assertThat(store.authorizeDownload(free.downloadToken())).isPresent();
+        assertThat(store.authorizeDownload(free.downloadToken())).isEmpty();
+        assertThat(store.findReadyOfferByPublicToken(free.downloadToken())).isEmpty();
+        try (var payments = Files.list(tempDirectory.resolve("paid-unlocks/payments"))) {
+            assertThat(payments.count()).isZero();
+        }
+        assertThat(Files.readString(tempDirectory.resolve("paid-unlocks/events/paid-unlocks.jsonl")))
+                .contains("free_result_released").doesNotContain("payment_completed", free.downloadToken());
+        assertThatThrownBy(() -> store.fulfill(free.offer().id(), "CAPTURE-FREE", "payer@example.com", "29.00", "USD"))
+                .hasMessageContaining("cannot be marked as paid");
+    }
+
+    @Test
+    void freeResultsRejectStaleFutureMismatchedAndFailedApprovals() {
+        var now = Instant.parse("2026-09-19T12:00:00Z");
+        PaidUnlockStore store = store(Clock.fixed(now, ZoneOffset.UTC));
+        byte[] bytes = "fixture".getBytes(StandardCharsets.UTF_8);
+        for (Instant time : List.of(now.minus(24, java.time.temporal.ChronoUnit.HOURS), now.plusSeconds(1))) {
+            var gate = new PaidUnlockStore.ReleaseApproval("PASS", "test-case", "customer@example.com", "Free result",
+                    sha256(bytes), true, true, time, "reviewer");
+            assertThatThrownBy(() -> store.createFreeDelivery(input(), "fixture.pdf", bytes, gate))
+                    .hasMessageContaining("last 24 hours");
+        }
+        var wrongRecipient = new PaidUnlockStore.ReleaseApproval("PASS", "test-case", "other@example.com", "Free result",
+                sha256(bytes), true, true, now, "reviewer");
+        assertThatThrownBy(() -> store.createFreeDelivery(input(), "fixture.pdf", bytes, wrongRecipient))
+                .hasMessageContaining("recipient");
+        var failed = new PaidUnlockStore.ReleaseApproval("FAIL", "test-case", "customer@example.com", "Free result",
+                sha256(bytes), true, false, now, "reviewer");
+        assertThatThrownBy(() -> store.createFreeDelivery(input(), "fixture.pdf", bytes, failed))
+                .hasMessageContaining("passed page and identity");
+        assertThatThrownBy(() -> store.createFreeDelivery(input(), "fixture.pdf", bytes, approval("bad-hash")))
+                .hasMessageContaining("hash");
+    }
+
+    @Test
+    void freeResultTamperingAndExpirationRemainBlocked() throws Exception {
+        MutableClock clock = new MutableClock(Instant.parse("2026-09-19T12:00:00Z"));
+        PaidUnlockStore store = store(clock);
+        byte[] bytes = "fixture".getBytes(StandardCharsets.UTF_8);
+        var free = store.createFreeDelivery(input(), "free.pdf", bytes, approval(sha256(bytes)));
+        Files.writeString(tempDirectory.resolve("paid-unlocks/packages/" + free.offer().packageStorageName()), "changed");
+        assertThat(store.inspectDownload(free.downloadToken())).isEmpty();
+        assertThat(store.authorizeDownload(free.downloadToken())).isEmpty();
+        var expiring = store.createFreeDelivery(input(), "expires.pdf", bytes, approval(sha256(bytes)));
+        clock.set(Instant.parse("2026-09-19T14:00:01Z"));
+        assertThat(store.inspectDownload(expiring.downloadToken())).isEmpty();
+        assertThat(store.authorizeDownload(expiring.downloadToken())).isEmpty();
     }
 
     private PaidUnlockStore.OfferInput input() {

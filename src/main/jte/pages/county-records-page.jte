@@ -15,6 +15,7 @@
 @import com.example.septic.web.PageLink
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.AssetPaths
+@import com.example.septic.web.RecordHelpEntry
 @param PageMeta page
 @param CountyRecordsPage countyPage
 @param com.example.septic.web.CountySearchGuideView countySearchGuide = null
@@ -64,7 +65,7 @@
                 <p data-source-title="${countyPage.title()}">Send the property. We’ll trace the permit, layout, approval, or repair file—and explain what the official response actually means.</p>
                 <div class="premium-county-hero__actions">
                     <a class="premium-county-button premium-county-button--primary"
-                       href="/offer-prep-septic-file-check/#record-help"
+                       href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}"
                        data-record-help-cta
                        data-track-click="nav"
                        data-track-source-context="county_records_premium_hero"
@@ -197,15 +198,17 @@
                     </div>
                 </details>
                 @if (countyPage.operationalProof() == null)
-                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county")
+                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county", recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
                 @endif
+                <p class="county-assisted-next"><a href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}" data-record-help-cta data-track-click="nav" data-track-source-context="county_free_record_help" data-track-target-type="lead_form">Search stuck? Get free record help →</a> <span>Or, if the next step is on site,</span> <a href="/septic-system-cost-calculator/?quoteMode=true&amp;state=${state.stateCode()}#quote-request" rel="nofollow">request local service help</a>.</p>
                 @if (countySearchResponse != null)
                     @template.tags.searchIntentNextSteps(
                         officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
                         officialLabel = countyAccessProfile != null ? countyAccessProfile.primaryLabel() : countyPage.recordsActionLabel(),
                         sourceContext = "county_search_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + countyPage.countySlug(),
                         officialTargetType = "official_source",
-                        openOfficialInNewTab = true
+                        openOfficialInNewTab = true,
+                        recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())
                     )
                 @endif
                 <div class="county-command-bar" aria-label="Immediate county records actions">
@@ -393,7 +396,7 @@
     </section>
 
     @if (countySearchGuide != null)
-        @template.tags.countySearchGuide(entry = countySearchGuide)
+        @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
     @endif
 
     @if (countyPage.operationalProof() != null)
@@ -1779,7 +1782,7 @@
                        data-track-source-context="county_records_next_best_state"
                        data-track-target-type="state_money_page">Open ${state.stateName()} records lookup</a>
                     <a class="button button--secondary"
-                       href="/offer-prep-septic-file-check/#record-help"
+                       href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}"
                        data-record-help-cta
                        data-track-click="nav"
                        data-track-source-context="county_records_next_best_record_help"

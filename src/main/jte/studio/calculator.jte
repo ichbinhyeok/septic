@@ -48,14 +48,14 @@
 @template.studio.shell(page = page, production = production, title = tankSizeMode ? "Septic tank size planner" : pumpScheduleMode ? "Septic pumping schedule planner" : "Septic project cost calculator", heroImage = tankSizeMode ? "/images/studio/county-property-v1.webp" : pumpScheduleMode ? "/images/studio/morgan-garden-v1.webp" : drainfieldMode ? "/images/studio/oak-pasture-v1.webp" : "/images/studio/calculator-landscape-v2.webp", pageClass = tankSizeMode ? "studio-calculator studio-calculator--tank" : pumpScheduleMode ? "studio-calculator studio-calculator--pump" : drainfieldMode ? "studio-calculator studio-calculator--field" : "studio-calculator", pageStyles = "/studio-calculator.css", content = @`
 <main id="main">
 @if(tankSizeResult != null)
-    @template.studio.calculator-tank-result(result = tankSizeResult, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm))
+    @template.studio.calculator-tank-result(result = tankSizeResult, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm, production))
 @elseif(pumpScheduleResult != null)
-    @template.studio.calculator-pump-result(result = pumpScheduleResult, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm))
+    @template.studio.calculator-pump-result(result = pumpScheduleResult, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm, production))
 @elseif(result != null)
-    @template.studio.calculator-result(result = result, drainfieldResult = drainfieldResult, costEvidence = costEvidence, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm), production = production)
+    @template.studio.calculator-result(result = result, drainfieldResult = drainfieldResult, costEvidence = costEvidence, intakeUrl = com.example.septic.web.StudioCalculatorHandoff.link(estimateForm, production), production = production)
 @endif
-<details class="calc-editor" id="property-inputs" open="${result == null && tankSizeResult == null && pumpScheduleResult == null}">
-<summary class="studio-wrap">Edit property details <span aria-hidden="true">+</span></summary>
+<details class="calc-editor" id="property-inputs" open="${!showQuotePanel && result == null && tankSizeResult == null && pumpScheduleResult == null}">
+<summary class="studio-wrap">${showQuotePanel && result == null ? "Need a planning estimate? (optional)" : "Edit property details"} <span aria-hidden="true">+</span></summary>
 <section class="${tankSizeMode ? "calc-workspace calc-workspace--tank" : pumpScheduleMode ? "calc-workspace calc-workspace--pump" : drainfieldMode ? "calc-workspace calc-workspace--field" : "calc-workspace"}" aria-labelledby="calc-title" data-calculator-mode="${tankSizeMode ? "tank_size" : pumpScheduleMode ? "pump_schedule" : drainfieldMode ? "drainfield" : "general"}">
     <img class="calc-landscape" src="${tankSizeMode ? "/images/studio/county-property-v1.webp" : pumpScheduleMode ? "/images/studio/morgan-garden-v1.webp" : drainfieldMode ? "/images/studio/oak-pasture-v1.webp" : "/images/studio/calculator-landscape-v2.webp"}" alt="" width="1672" height="941" fetchpriority="high">
     <div class="calc-input studio-wrap">
@@ -262,7 +262,7 @@
     </div>
 </section>
 </details>
-@if(result == null && tankSizeResult == null && pumpScheduleResult == null)
+@if(!showQuotePanel && result == null && tankSizeResult == null && pumpScheduleResult == null)
 @if(tankSizeMode)
 <section class="calc-mode-primer studio-wrap" aria-labelledby="tank-primer-title">
     <div><p class="studio-overline">A capacity answer with context</p><h2 id="tank-primer-title">Gallons are the output.<br>Household load is the story.</h2></div>
@@ -288,30 +288,31 @@
 @endif
 <div class="calc-followup studio-wrap">
                 @if (showQuotePanel)
-                    <details class="calc-service-disclosure" id="quote-request" open="${(result == null && tankSizeResult == null && pumpScheduleResult == null) || quoteHasErrors || leadId != null}"><summary>Project service follow-up <span>Separate from property records research</span></summary>
+                    <details class="calc-service-disclosure" id="quote-request" open><summary>Get help with this project <span>Local service options</span></summary>
                     <section class="quote-panel" id="service-followup-panel">
                         <div class="quote-panel__header">
                             <div>
-                                <span class="eyebrow">Optional next step</span>
+                                <span class="eyebrow">Free local service inquiry</span>
                                 <h2>${quoteLeadForm.hasActiveProblem() ? "Request follow-up for this septic problem" : "Request help finding local options"}</h2>
                             </div>
                             <span class="pill">Short form</span>
                         </div>
 
-                        @if (result == null && tankSizeResult == null && pumpScheduleResult == null)
+                        @if (leadId == null && result == null && tankSizeResult == null && pumpScheduleResult == null)
                             <article class="status-box">
                                 @if (quoteLeadForm.hasActiveProblem())
                                     <strong>Describe the symptom, not your guess at the repair.</strong>
                                     <p>The current symptom, ZIP, and timing make this useful for service follow-up without assuming that pumping, repair, or replacement is already the right scope.</p>
                                 @else
                                     <strong>Already know the job type?</strong>
-                                    <p>You can submit the project basics now. This stores an inquiry for follow-up; it does not check live contractor inventory or guarantee a response.</p>
+                                    <p>Tell us the location and job. We can share your request with relevant local professionals where available—no records search is required first.</p>
                                 @endif
                             </article>
                         @endif
 
                         @if (leadId != null)
                             <article class="status-box status-box--success"
+                                     role="status" tabindex="-1" data-service-success
                                      data-ga-event="generate_lead"
                                      data-ga-track-once="quote-request:${leadId}"
                                      data-ga-param-lead-type="quote_request"
@@ -327,18 +328,17 @@
                         @if (quoteHasErrors)
                             <article class="status-box status-box--error">
                                 <strong>Finish the required fields</strong>
-                                <p>Choose what is happening, then complete name, email, phone, ZIP, and consent.</p>
+                                <p>Choose your state, job and what is happening, then check name, email, a phone number with 10–15 digits, ZIP, and consent.</p>
                             </article>
                         @endif
 
-                        @if (quoteLeadForm.hasActiveProblem())
-                            <article class="status-box status-box--warning">
+                            <article class="status-box status-box--warning" data-service-warning hidden="${!quoteLeadForm.hasActiveProblem()}">
                                 <strong>This form is not emergency dispatch.</strong>
                                 <p>If sewage is entering the home or surfacing where people or animals can contact it, reduce water use and contact a licensed local septic service directly. Submitting here does not guarantee response time.</p>
                             </article>
-                        @endif
-
-                        <form class="quote-form" id="quote-request-form" name="quote-request-form" method="post" action="${com.example.septic.web.StudioGuideRoutes.route("/septic-system-cost-calculator/quote/#quote-request", production)}">
+                        <noscript><p>This is not emergency dispatch. For an active sewage backup, contact a local septic service directly.</p></noscript>
+                        @if (leadId == null)
+                        <form class="quote-form" id="quote-request-form" name="quote-request-form" method="post" action="${production ? "/quote-request/#quote-request" : "/design-preview/studio/calculator/quote/#quote-request"}">
                             @if (result != null || tankSizeResult != null || (pumpScheduleResult != null && estimateForm.getStateCode() != null && !estimateForm.getStateCode().isBlank()))
                                 <input type="hidden" name="stateCode" value="${quoteLeadForm.getStateCode()}">
                                 <input type="hidden" name="projectType" value="${quoteLeadForm.getProjectType()}">
@@ -360,7 +360,8 @@
                                 @if (result == null && tankSizeResult == null && (pumpScheduleResult == null || estimateForm.getStateCode() == null || estimateForm.getStateCode().isBlank()))
                                     <label class="field">
                                         <span>State</span>
-                                        <select name="stateCode">
+                                        <select name="stateCode" required>
+                                            <option value="" selected="${quoteLeadForm.getStateCode() == null || quoteLeadForm.getStateCode().isBlank()}">Choose a state</option>
                                             @for (var state : states)
                                                 <option value="${state.stateCode()}" selected="${state.stateCode().equals(quoteLeadForm.getStateCode())}">${state.stateName()}</option>
                                             @endfor
@@ -369,27 +370,22 @@
 
                                     <label class="field">
                                         <span>Project type</span>
-                                        <select name="projectType">
+                                        <select name="projectType" required>
+                                            <option value="" selected="${quoteLeadForm.getProjectType() == null || quoteLeadForm.getProjectType().isBlank()}">Choose the job to discuss</option>
+                                            <option value="diagnosis" selected="${"diagnosis".equals(quoteLeadForm.getProjectType())}">Diagnose a problem / not sure what work is needed</option>
+                                            <option value="location" selected="${"location".equals(quoteLeadForm.getProjectType())}">Locate the tank or drain field</option>
                                             @for (var projectType : projectTypes)
                                                 <option value="${projectType.value()}" selected="${projectType.value().equals(quoteLeadForm.getProjectType())}">${projectType.label()}</option>
                                             @endfor
                                         </select>
                                     </label>
 
-                                    <label class="field">
-                                        <span>Bedrooms</span>
-                                        <input type="number" min="1" max="10" name="bedrooms" value="${quoteLeadForm.getBedrooms()}" required>
-                                    </label>
-
-                                    <label class="field">
-                                        <span>Occupants (optional)</span>
-                                        <input type="number" min="1" max="20" name="occupants" value="${quoteLeadForm.getOccupantsValue()}">
-                                    </label>
                                 @endif
 
                                 <label class="field">
                                     <span>What is happening at the property?</span>
                                     <select name="serviceNeed" required>
+                                        <option value="" selected="${quoteLeadForm.getServiceNeed() == null || quoteLeadForm.getServiceNeed().isBlank()}">Choose what is happening</option>
                                         <option value="planned_project" selected="${"planned_project".equals(quoteLeadForm.getServiceNeed())}">No active symptom — planning a project</option>
                                         <option value="backup_slow_drains" selected="${"backup_slow_drains".equals(quoteLeadForm.getServiceNeed())}">Backup or persistently slow drains</option>
                                         <option value="surfacing_wastewater" selected="${"surfacing_wastewater".equals(quoteLeadForm.getServiceNeed())}">Wet area or wastewater surfacing outside</option>
@@ -397,29 +393,6 @@
                                         <option value="alarm" selected="${"alarm".equals(quoteLeadForm.getServiceNeed())}">Septic or pump alarm</option>
                                         <option value="failed_inspection" selected="${"failed_inspection".equals(quoteLeadForm.getServiceNeed())}">Failed inspection</option>
                                         <option value="repair_recommended" selected="${"repair_recommended".equals(quoteLeadForm.getServiceNeed())}">Repair or replacement was recommended</option>
-                                    </select>
-                                </label>
-
-                                <label class="field">
-                                    <span>County (optional)</span>
-                                    <input type="text" name="countyName" value="${quoteLeadForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County">
-                                </label>
-
-                                <label class="field">
-                                    <span>How soon do you need the next step?</span>
-                                    <select name="timeline">
-                                        @for (var timeline : timelines)
-                                            <option value="${timeline.value()}" selected="${timeline.value().equals(quoteLeadForm.getTimeline())}">${timeline.label()}</option>
-                                        @endfor
-                                    </select>
-                                </label>
-
-                                <label class="field">
-                                    <span>Preferred contact</span>
-                                    <select name="preferredContactMethod">
-                                        <option value="either" selected="${"either".equals(quoteLeadForm.getPreferredContactMethod())}">Email or phone</option>
-                                        <option value="email" selected="${"email".equals(quoteLeadForm.getPreferredContactMethod())}">Email</option>
-                                        <option value="phone" selected="${"phone".equals(quoteLeadForm.getPreferredContactMethod())}">Phone</option>
                                     </select>
                                 </label>
 
@@ -443,17 +416,25 @@
                                     <input type="text" inputmode="numeric" name="zipCode" value="${quoteLeadForm.getZipCodeValue()}" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" required>
                                 </label>
                             </div>
-
+                            <details class="quote-optional" open="${quoteHasErrors}"><summary>Timing &amp; contact preferences (optional)</summary>
+                                <div class="field-grid">
+                                    <label class="field"><span>County (optional)</span><input type="text" name="countyName" value="${quoteLeadForm.getCountyNameValue()}" autocomplete="address-level2" maxlength="120" placeholder="Example: Knox County"></label>
+                                    <label class="field"><span>How soon? (optional)</span><select name="timeline"><option value="" selected="${quoteLeadForm.getTimeline() == null || quoteLeadForm.getTimeline().isBlank()}">Not sure yet</option>@for (var timeline : timelines)<option value="${timeline.value()}" selected="${timeline.value().equals(quoteLeadForm.getTimeline())}">${timeline.label()}</option>@endfor</select></label>
+                                    <label class="field"><span>Preferred contact</span><select name="preferredContactMethod"><option value="either" selected="${"either".equals(quoteLeadForm.getPreferredContactMethod())}">Email or phone</option><option value="email" selected="${"email".equals(quoteLeadForm.getPreferredContactMethod())}">Email</option><option value="phone" selected="${"phone".equals(quoteLeadForm.getPreferredContactMethod())}">Phone</option></select></label>
+                                </div>
+                            </details>
                             <label class="checkbox checkbox--wide">
                                 <input type="checkbox" name="consentAccepted" checked="${quoteLeadForm.isConsentAccepted()}" required>
-                                <span>I agree to be contacted about this project and possible local service options. I understand this is not a confirmed match.</span>
+                                <span>I agree to follow-up about this project. SepticPath may share my request with relevant local professionals.</span>
                             </label>
+                            <details class="intake-terms"><summary>Contact and service details</summary><p>${quoteLeadForm.getConsentTextSnapshot()}</p></details>
 
                             <div class="form-actions">
                                 <button class="button button--primary" type="submit">${quoteLeadForm.hasActiveProblem() ? "Request service follow-up" : "Submit project inquiry"}</button>
-                                <p>We do not show live provider inventory. Submitting does not guarantee a match, price, or response time.</p>
+                                <p>Free to submit. Local professionals price their work separately. Availability and response times vary.</p>
                             </div>
                         </form>
+                        @endif
                     </section>
                     </details>
                 @endif

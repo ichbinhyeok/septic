@@ -750,10 +750,12 @@ class StudioPreviewTest {
         }
     }
 
-    @Test void servicePreservesPricingAndExistingIntakeHandoffs() throws Exception {
+    @Test void servicePreservesFreeResultsAndExistingIntakeHandoffs() throws Exception {
         mvc.perform(get("/design-preview/studio/service/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Optional US $29")))
+                .andExpect(content().string(containsString("Free research, records and explanation.")))
+                .andExpect(content().string(containsString("The records and explanation we can provide are included, free.")))
+                .andExpect(content().string(not(containsString("$29"))))
                 .andExpect(content().string(containsString("At cost, with approval")))
                 .andExpect(content().string(containsString("No upfront payment or automatic charge")))
                 .andExpect(content().string(containsString("/design-preview/studio/intake/?mode=review")))

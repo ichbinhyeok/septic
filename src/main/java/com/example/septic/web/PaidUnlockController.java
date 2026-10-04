@@ -26,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,8 +67,6 @@ public class PaidUnlockController {
         model.addAttribute("offer", offer);
         model.addAttribute("publicToken", publicToken);
         model.addAttribute("previewSlots", store.previewSlots(offer.id()));
-        model.addAttribute("paymentConfigured", properties.isConfigured());
-        model.addAttribute("paypalSdkUrl", properties.isConfigured() ? properties.javascriptSdkUrl() : "");
         return "pages/paid-unlock";
     }
 
@@ -90,17 +89,8 @@ public class PaidUnlockController {
     @PostMapping(value = "/api/paid-unlocks/{publicToken}/paypal/orders", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> createOrder(@PathVariable String publicToken) {
-        if (!properties.isConfigured()) {
-            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-                    .body(Map.of("error", "Payment is not available yet."));
-        }
-        PaidUnlockStore.Offer offer = store.findReadyOfferByPublicToken(publicToken)
-                .orElseThrow(() -> new PaidUnlockNotFoundException("Unknown offer"));
-        if ("PAID".equals(offer.status())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "This package is already paid."));
-        }
-        JsonNode order = payPalClient.createOrder(offer);
-        return ResponseEntity.ok(Map.of("id", order.path("id").asText()));
+        return ResponseEntity.status(HttpStatus.GONE)
+                .body(Map.of("error", "Record results are now free. Reply to your result email for an updated private delivery link."));
     }
 
     @PostMapping(value = "/api/paid-unlocks/{publicToken}/paypal/orders/{orderId}/capture", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -201,7 +191,7 @@ public class PaidUnlockController {
         return "pages/paid-delivery";
     }
 
-    @PostMapping(value = "/ops/paid-unlocks", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = {"/ops/record-results", "/ops/paid-unlocks"}, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> createOffer(
             @RequestParam String customerEmail,
@@ -219,7 +209,7 @@ public class PaidUnlockController {
                     releaseApprovalJson,
                     PaidUnlockStore.ReleaseApproval.class
             );
-            PaidUnlockStore.PreparedOffer prepared = store.createOffer(
+            PaidUnlockStore.Fulfillment prepared = store.createFreeDelivery(
                     new PaidUnlockStore.OfferInput(
                             customerEmail,
                             requestReference,
@@ -233,10 +223,12 @@ public class PaidUnlockController {
                     packageFile.getBytes(),
                     approval
             );
-            String previewUrl = siteProperties.baseUri().resolve("/unlock/" + prepared.publicToken()).toString();
+            String previewUrl = siteProperties.baseUri().resolve("/paid-unlock/delivery/" + prepared.downloadToken()).toString();
             return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
                     "offerId", prepared.offer().id(),
                     "previewUrl", previewUrl,
+                    "deliveryUrl", previewUrl,
+                    "emailSent", false,
                     "status", prepared.offer().status()
             ));
         } catch (IOException exception) {
@@ -248,11 +240,14 @@ public class PaidUnlockController {
         }
     }
 
-    @PostMapping(value = "/ops/paid-unlocks/json", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = {"/ops/record-results/json", "/ops/paid-unlocks/json"}, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> createOfferFromJson(@RequestBody JsonOfferRequest request) {
         try {
-            PaidUnlockStore.PreparedOffer prepared = store.createOffer(
+            if (request.packageBase64() == null || request.packageBase64().isBlank()) {
+                throw new IllegalArgumentException("A result package is required");
+            }
+            PaidUnlockStore.Fulfillment prepared = store.createFreeDelivery(
                     new PaidUnlockStore.OfferInput(
                             request.customerEmail(),
                             request.requestReference(),
@@ -266,10 +261,12 @@ public class PaidUnlockController {
                     Base64.getDecoder().decode(request.packageBase64()),
                     request.releaseApproval()
             );
-            String previewUrl = siteProperties.baseUri().resolve("/unlock/" + prepared.publicToken()).toString();
+            String previewUrl = siteProperties.baseUri().resolve("/paid-unlock/delivery/" + prepared.downloadToken()).toString();
             return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
                     "offerId", prepared.offer().id(),
                     "previewUrl", previewUrl,
+                    "deliveryUrl", previewUrl,
+                    "emailSent", false,
                     "status", prepared.offer().status()
             ));
         } catch (RuntimeException exception) {
@@ -317,6 +314,13 @@ public class PaidUnlockController {
             PaidUnlockStore.ReleaseApproval releaseApproval
     ) {}
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public ResponseEntity<?> invalidResultRequest(IllegalArgumentException exception) {
+        return ResponseEntity.badRequest().body(Map.of("error",
+                "Check the submitted file, recipient and current release approval. Nothing was delivered."));
+    }
+
     private boolean deliverOrAlert(PaidUnlockStore.Fulfillment fulfillment) {
         if (!fulfillment.newlyCreated()) {
             return false;
@@ -334,7 +338,7 @@ public class PaidUnlockController {
     private PageMeta privatePage(String title) {
         return new PageMeta(
                 title + " | SepticPath",
-                "Private reviewed property-record package checkout.",
+                "Private reviewed property-record result and delivery.",
                 siteProperties.baseUri().resolve("/unlock/").toString(),
                 "noindex,nofollow,noarchive",
                 List.of()

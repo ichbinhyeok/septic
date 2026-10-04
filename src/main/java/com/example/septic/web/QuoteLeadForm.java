@@ -7,23 +7,31 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class QuoteLeadForm {
-    private String stateCode = "GA";
-    private String projectType = "new_install";
+    @NotBlank(message = "Choose a state.")
+    @Pattern(regexp = "[A-Z]{2}", message = "Choose a valid state.")
+    private String stateCode = "";
+    @NotBlank(message = "Choose a project type.")
+    @Pattern(regexp = "new_install|replacement|drainfield_replacement|perc_test|pumping|inspection|buying_home|diagnosis|location", message = "Choose a valid project type.")
+    private String projectType = "";
     private String sourcePageHint;
-    private Integer bedrooms = 3;
+    @jakarta.validation.constraints.Min(value = 1, message = "Bedrooms must be between 1 and 10.")
+    @jakarta.validation.constraints.Max(value = 10, message = "Bedrooms must be between 1 and 10.")
+    private Integer bedrooms;
     private Integer occupants;
     private boolean garbageDisposal;
     private boolean additionalKitchen;
     private String soilPercStatus = "unknown";
     private boolean highWaterTableOrShallowBedrock;
     private String accessDifficulty = "easy";
-    private String timeline = "researching";
+    @Pattern(regexp = "(?:|urgent|this_month|one_to_three_months|researching)", message = "Choose a valid timeframe.")
+    private String timeline = "";
 
+    @NotBlank(message = "Choose what is happening at the property.")
     @Pattern(
             regexp = "planned_project|backup_slow_drains|surfacing_wastewater|odor|alarm|failed_inspection|repair_recommended",
             message = "Choose what is happening at the property."
     )
-    private String serviceNeed = "planned_project";
+    private String serviceNeed = "";
 
     @Size(max = 120, message = "County must be 120 characters or fewer.")
     private String countyName;
@@ -47,6 +55,7 @@ public class QuoteLeadForm {
     private String email;
 
     @NotBlank(message = "Phone is required.")
+    @Pattern(regexp = "(?=(?:\\D*\\d){10,15}\\D*$)[+0-9().\\-\\s]{10,30}", message = "Enter a phone number with 10–15 digits.")
     @Size(max = 40, message = "Phone must be 40 characters or fewer.")
     private String phone;
 
@@ -69,8 +78,13 @@ public class QuoteLeadForm {
         quoteLeadForm.soilPercStatus = estimateForm.getSoilPercStatus();
         quoteLeadForm.highWaterTableOrShallowBedrock = estimateForm.isHighWaterTableOrShallowBedrock();
         quoteLeadForm.accessDifficulty = estimateForm.getAccessDifficulty();
-        quoteLeadForm.timeline = estimateForm.getTimeline();
+        // A planning-tool default is not a statement of the customer's service timing.
+        quoteLeadForm.timeline = "";
         return quoteLeadForm;
+    }
+
+    public boolean isUnpricedService() {
+        return "diagnosis".equals(projectType) || "location".equals(projectType);
     }
 
     public EstimateForm toEstimateForm() {
@@ -110,11 +124,12 @@ public class QuoteLeadForm {
     }
 
     public String getConsentTextSnapshot() {
-        return "I agree to be contacted about this septic project and possible local service options. I understand this is not a confirmed contractor match.";
+        return "I agree to follow-up about this septic project and relevant local service options. An introduction is not a confirmed contractor match. "
+                + com.example.septic.service.RecordHelpOffer.MATCHING_TERMS;
     }
 
     public boolean hasActiveProblem() {
-        return serviceNeed != null && !"planned_project".equals(serviceNeed);
+        return serviceNeed != null && !serviceNeed.isBlank() && !"planned_project".equals(serviceNeed);
     }
 
     public String getCountyNameValue() {

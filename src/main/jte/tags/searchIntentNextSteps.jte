@@ -3,6 +3,7 @@
 @param String sourceContext
 @param String officialTargetType = "official_source"
 @param boolean openOfficialInNewTab = false
+@param String recordHelpUrl = "/offer-prep-septic-file-check/#intake-form"
 
 <nav class="search-intent-next" aria-label="Choose the next septic record step">
     <div class="search-intent-next__intro">
@@ -47,7 +48,7 @@
             <strong>Check what the document proves</strong>
             <span aria-hidden="true">→</span>
         </a>
-        <a href="/offer-prep-septic-file-check/#record-help"
+        <a href="${recordHelpUrl}"
            data-record-help-cta
            data-track-click="nav"
            data-track-source-context="${sourceContext}_human"

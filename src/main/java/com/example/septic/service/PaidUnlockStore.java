@@ -34,6 +34,7 @@ public class PaidUnlockStore {
     public static final String OFFER_VERSION = "record-help-evidence-preview-29-v2";
     public static final String CURRENCY = "USD";
     public static final String AMOUNT = "29.00";
+    public static final String FREE_VERSION = "record-help-free-results-v1";
     public static final String OFFICIAL_RECORD_PREVIEW = "official-record";
     public static final String REVIEWED_BRIEF_PREVIEW = "reviewed-brief";
     private static final Set<String> PREVIEW_SLOTS = Set.of(OFFICIAL_RECORD_PREVIEW, REVIEWED_BRIEF_PREVIEW);
@@ -83,6 +84,45 @@ public class PaidUnlockStore {
             byte[] packageBytes,
             ReleaseApproval approval
     ) {
+        return prepareOffer(input, packageFileName, packageBytes, approval, false);
+    }
+
+    /** Creates a new, separately approved free delivery. Never rewrites historical payments. */
+    public synchronized Fulfillment createFreeDelivery(
+            OfferInput input, String packageFileName, byte[] packageBytes, ReleaseApproval approval
+    ) {
+        Instant now = Instant.now(clock);
+        if (approval == null || approval.approvedAt() == null
+                || approval.approvedAt().isAfter(now)
+                || !approval.approvedAt().isAfter(now.minus(24, ChronoUnit.HOURS))) {
+            throw new IllegalArgumentException("A release approval from the last 24 hours is required");
+        }
+        safeText(approval.caseId(), 160);
+        safeText(approval.subject(), 500);
+        safeText(approval.reviewer(), 160);
+        PreparedOffer prepared = prepareOffer(input, packageFileName, packageBytes, approval, true);
+        Offer offer = prepared.offer();
+        if (!packageIsStillApproved(offer)) {
+            throw new IllegalStateException("The approved package no longer matches its release manifest");
+        }
+        String token = randomToken();
+        Instant expiresAt = now.plus(properties.downloadTtlHours(), ChronoUnit.HOURS);
+        Grant grant = new Grant(sha256(token.getBytes(StandardCharsets.UTF_8)), offer.id(), null,
+                expiresAt, 0, properties.maxDownloads());
+        try {
+            writeJsonAtomic(grantPath(grant.tokenHash()), grant);
+            Offer released = offer.withStatus("RELEASED_FREE");
+            writeJsonAtomic(offerPath(offer.id()), released);
+            appendEvent("free_result_released", offer.id(), null, "RELEASED_FREE");
+            return new Fulfillment(released, token, expiresAt, true);
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to persist free result delivery", exception);
+        }
+    }
+
+    private PreparedOffer prepareOffer(
+            OfferInput input, String packageFileName, byte[] packageBytes, ReleaseApproval approval, boolean free
+    ) {
         validateInput(input, packageFileName, packageBytes, approval);
         String packageSha256 = sha256(packageBytes);
         if (!constantTimeEquals(packageSha256, approval.packageSha256())) {
@@ -98,7 +138,7 @@ public class PaidUnlockStore {
             Files.write(packagePath, packageBytes, StandardOpenOption.CREATE_NEW);
             Offer offer = new Offer(
                     offerId,
-                    OFFER_VERSION,
+                    free ? FREE_VERSION : OFFER_VERSION,
                     sha256(publicToken.getBytes(StandardCharsets.UTF_8)),
                     normalizeEmail(input.customerEmail()),
                     safeText(input.requestReference(), 160),
@@ -110,14 +150,14 @@ public class PaidUnlockStore {
                     safeFileName(packageFileName),
                     storedName,
                     packageSha256,
-                    AMOUNT,
+                    free ? "0.00" : AMOUNT,
                     CURRENCY,
-                    "READY",
+                    free ? "FREE_PENDING" : "READY",
                     Instant.now(clock),
                     approval
             );
             writeJsonAtomic(offerPath(offerId), offer);
-            appendEvent("offer_created", offerId, null, "READY");
+            appendEvent(free ? "free_result_prepared" : "offer_created", offerId, null, offer.status());
             return new PreparedOffer(offer, publicToken);
         } catch (IOException exception) {
             try {
@@ -226,6 +266,9 @@ public class PaidUnlockStore {
             String paidCurrency
     ) {
         Offer offer = findOfferById(offerId).orElseThrow(() -> new IllegalArgumentException("Unknown offer"));
+        if (FREE_VERSION.equals(offer.offerVersion())) {
+            throw new IllegalArgumentException("A free result cannot be marked as paid");
+        }
         if (!AMOUNT.equals(paidAmount) || !CURRENCY.equals(paidCurrency)) {
             throw new IllegalArgumentException("Payment amount or currency does not match the offer");
         }
@@ -301,7 +344,7 @@ public class PaidUnlockStore {
                 return Optional.empty();
             }
             Offer offer = findOfferById(grant.offerId()).orElseThrow();
-            if (!"PAID".equals(offer.status()) || !packageIsStillApproved(offer)) {
+            if (!deliveryReleased(offer) || !packageIsStillApproved(offer)) {
                 return Optional.empty();
             }
             Grant consumed = grant.withDownloadCount(grant.downloadCount() + 1);
@@ -336,7 +379,7 @@ public class PaidUnlockStore {
                 return Optional.empty();
             }
             Offer offer = findOfferById(grant.offerId()).orElseThrow();
-            if (!"PAID".equals(offer.status()) || !packageIsStillApproved(offer)) {
+            if (!deliveryReleased(offer) || !packageIsStillApproved(offer)) {
                 return Optional.empty();
             }
             return Optional.of(new DeliveryPreview(
@@ -350,6 +393,10 @@ public class PaidUnlockStore {
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to inspect paid-unlock delivery", exception);
         }
+    }
+
+    private boolean deliveryReleased(Offer offer) {
+        return "PAID".equals(offer.status()) || "RELEASED_FREE".equals(offer.status());
     }
 
     private boolean packageIsStillApproved(Offer offer) {

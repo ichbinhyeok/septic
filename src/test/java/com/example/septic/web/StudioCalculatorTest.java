@@ -163,6 +163,7 @@ class StudioCalculatorTest {
     @Test void successfulQuoteUsesSharedStorageWithMockedEffects() throws Exception {
         when(storage.saveQuoteLead(any(), any(), any(), anyString(), any())).thenReturn("preview-test-id");
         mvc.perform(post(PATH + "quote/").param("stateCode", "TN").param("fullName", "Test Person")
+                .param("projectType", "pumping").param("serviceNeed", "planned_project")
                 .param("email", "test@example.com").param("phone", "5551234567").param("zipCode", "37901")
                 .param("consentAccepted", "true"))
                 .andExpect(status().isOk()).andExpect(view().name("studio/calculator"))

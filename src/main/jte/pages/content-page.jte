@@ -27,6 +27,7 @@
 @param String contentQuickAnswer = ""
 @param String percPlanningRange = ""
 @param String contentQuotePath = null
+@param boolean fieldServicePage = false
 @param String calculatorCtaHeading = "Use the main estimator before you ask for quotes."
 @param String calculatorCtaLabel = "Open the estimator"
 @param String calculatorCtaNote = "Use your state and project assumptions first, then verify locally."
@@ -69,6 +70,10 @@
                     <h1>${contentPage.title()}</h1>
                     <p class="lede">${contentPage.introCopy()}</p>
                 @endif
+                @if (fieldServicePage)
+                    @template.tags.localServiceCta(sourceContext = "field_guide", servicePath = contentQuotePath == null ? "/septic-system-cost-calculator/?quoteMode=true#quote-request" : contentQuotePath, urgent = "septic-backup-slow-drains".equals(contentPage.slug()) || "wet-yard-over-septic-drain-field".equals(contentPage.slug()))
+                    <p><a href="${calculatorPath}" rel="nofollow">Only planning costs? Use the free calculator →</a></p>
+                @else
                 @if ("septic-permit-lookup".equals(contentPage.slug())
                         || "septic-records-request-builder".equals(contentPage.slug())
                         || "official-septic-lookup-tools".equals(contentPage.slug())
@@ -714,6 +719,7 @@
                                data-track-target-type="internal_page">${link.title()}</a>
                         @endfor
                     </div>
+                @endif
                 @endif
                 @endif
             </div>

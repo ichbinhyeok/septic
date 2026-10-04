@@ -1,6 +1,11 @@
 @layer reset, shell, primitives, workflows, pages, responsive;
 
 @layer pages {
+  .local-service-next { margin: 26px 0; padding: 26px 0; border-block: 1px solid #bdcdc2; }
+  .local-service-next h2 { margin: 8px 0 14px; }
+  .local-service-next > p { max-width: 66ch; line-height: 1.7; }
+  .local-service-next .button { margin-block: 14px 4px; }
+  .county-assisted-next { margin-block: 20px; line-height: 1.8; }
   .record-search-guide, .record-search-comparison { min-width: 0; }
   .record-search-guide > header, .record-search-comparison > header, .drawing-guide__header { max-width: 75ch; margin-bottom: 28px; }
   .record-search-guide h2, .record-search-comparison h2, .drawing-guide h2 { margin: 10px 0 16px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.12; letter-spacing: -.035em; }

@@ -8,7 +8,7 @@
                 <div class="record-brief-hero__copy">
                     <span class="eyebrow">Real septic record cases · See what you receive</span>
                     <h1 id="record-brief-title">Official records. <em>Answers you can understand.</em></h1>
-                    <p class="lede">See how an agency permit and drawing become clear findings about recorded capacity, layout and missing information. Research and agency requests are free. Preview your result before choosing the source files and explanation for US $29; agency fees are extra with approval.</p>
+                    <p class="lede">See how an agency permit and drawing become clear findings about recorded capacity, layout and missing information. Research and agency requests are free. Your records and explanation are free; agency fees are extra with approval.</p>
                     <div class="record-brief-hero__actions">
                         <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_brief_example_hero" data-track-target-type="lead_form">Send one property</a>
                         <a class="text-button" href="#real-cases">Find a case like yours</a>
@@ -169,14 +169,14 @@
 
         <section class="record-learning section" aria-labelledby="preview-example-heading" data-reading-guide="preview-example">
             <div class="container record-learning__body">
-                <span class="eyebrow">Your result, before you choose</span>
-                <h2 id="preview-example-heading">What will your free preview tell you?</h2>
-                <p class="record-learning__lede">The completed examples on this page show the work you can receive. Your own preview first shows whether we have relevant, property-matched material and what your optional package will contain.</p>
+                <span class="eyebrow">Your records, made useful</span>
+                <h2 id="preview-example-heading">What does your free result include?</h2>
+                <p class="record-learning__lede">Receive the property-matched records we find, their explanation, and the next question to resolve. No paid download or result unlock.</p>
                 <div class="record-learning__pair" data-reading-milestone="preview-comparison">
-                    <article><span class="eyebrow">Illustrative preview · no payment required</span><h3>Relevant permit and drawing located</h3><p>Source: the responsible records office. The pages have been checked against the property's identifiers. The packet contains information relevant to the recorded design capacity and layout.</p><p><strong>Included in your actual preview:</strong> the source, document dates and extent, property-match status, which questions the material can answer, and any important gaps. This sample does not refer to your property.</p></article>
-                    <article><span class="eyebrow">Optional US $29 package</span><h3>The source files and your actual answers</h3><p>Receive the original records and an explanation tied to the relevant pages: the recorded values, what the drawing shows, differences between documents, and what still needs confirmation.</p><p>Research and agency requests are free. Agency fees are separate at cost and need your approval. There is no automatic charge.</p></article>
+                    <article><span class="eyebrow">Source check · included free</span><h3>Know where the answer came from</h3><p>We identify the records office, match the pages to the property, and explain what the documents establish.</p><p>The source, dates, findings and important gaps stay together. These public examples illustrate our work; they are not findings about your property.</p></article>
+                    <article><span class="eyebrow">Free records and explanation</span><h3>The source files and your actual answers</h3><p>Receive the original records and an explanation tied to the relevant pages: the recorded values, what the drawing shows, differences between documents, and what still needs confirmation.</p><p>Research and agency requests are free. Agency fees are separate at cost and need your approval. There is no automatic charge.</p></article>
                 </div>
-                <p class="record-learning__note">If the file cannot be matched or does not answer your question, we explain that before you decide. A historical record does not establish current condition or a precise field location.</p>
+                <p class="record-learning__note">If the file cannot be matched or does not answer your question, we explain the gap. If you still need a locate, inspection or repair, we can review local service options. A historical record does not establish current condition or a precise field location.</p>
                 <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="learning_preview_request" data-track-target-type="lead_form">Start with my address and question</a>
             </div>
         </section>
@@ -186,7 +186,7 @@
                 <div>
                     <span class="eyebrow">For your property and your questions</span>
                     <h2 id="record-brief-pilot-title">Give us one upcoming property.</h2>
-                    <p>Send the address, county, and inspection or due-diligence deadline. Research and agency requests are free. When we have a useful verified result, preview it before choosing the original records and human-reviewed Record Brief for US $29. Agency fees are extra at cost, with your approval.</p>
+                    <p>Send the address, county, and inspection or due-diligence deadline. Research and agency requests are free. Receive the records we find and a human-reviewed explanation, free. Agency fees are extra at cost, with your approval.</p>
                 </div>
                 <div class="record-brief-pilot__action">
                     <a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="record_brief_example_pilot" data-track-target-type="lead_form">Send one property</a>

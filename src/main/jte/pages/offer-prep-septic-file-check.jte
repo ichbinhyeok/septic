@@ -25,7 +25,7 @@
                     <h1 id="offer-prep-title">${documentReviewMode ? "Send the file. We’ll answer the questions it raises." : "Tell us the property. We’ll handle the record work."}</h1>
                     <p class="lede">${documentReviewMode ? "Does the file show an approved design or a completed installation? Send it with your questions. We’ll check the evidence and explain the limits." : "Share the address and what you need to know. We’ll identify the record owner, search available sources, and contact the responsible office when necessary."}</p>
                     <a class="button button--primary offer-prep-hero__start" href="#record-help" aria-label="${documentReviewMode ? "Send my file for review" : "Start my record investigation"}" data-record-help-cta data-track-click="nav" data-track-source-context="${documentReviewMode ? "document_review_hero" : "record_help_hero"}" data-track-target-type="lead_form">${documentReviewMode ? "Send my file for review" : "Start the research"}<span aria-hidden="true">→</span></a>
-                    <p class="offer-prep-hero__free"><span aria-hidden="true">✦</span> Research and agency requests are free. Optional $29 result unlock. ${documentReviewMode ? "We only offer the unlock when the evidence supports a useful, source-backed answer to your question." : "We only offer the $29 unlock when we find useful, property-matched evidence that can answer your question."} No upfront payment or automatic charge. Agency fees are additional at cost, with your approval.</p>
+                    <p class="offer-prep-hero__free"><span aria-hidden="true">✦</span> Free research, records and explanation. Agency fees only with approval. ${documentReviewMode ? "We explain what your sources support and what remains unanswered." : "We explain what the evidence can answer and what still needs confirmation."} No upfront payment or automatic charge. Agency fees are additional at cost, with your approval.</p>
                     <div class="offer-prep-hero__signals" aria-label="Research service benefits">
                         <span>No account required</span>
                         <span>Private property details</span>
@@ -175,7 +175,7 @@
                             <li><strong>Find your record:</strong> check the property and search for permits, drawings, approvals and repair records.</li>
                             <li><strong>Handle the agency:</strong> request missing records and follow the response so you do not have to work out the process yourself.</li>
                             <li><strong>Keep moving when records stop:</strong> if field work is the next step, we can connect you with relevant local septic professionals.</li>
-                            <li><strong>Choose your answers:</strong> preview the evidence and its limits, then unlock the original records and property-specific explanation for $29.</li>
+                            <li><strong>Choose your answers:</strong> receive the original records we find, their explanation, and next steps at no charge.</li>
                         @endif
                     </ol>
                     <p class="closing-risk-beta-copy__privacy">This beta privately stores the submitted address and attached records and emails them to the SepticPath operator so a human reply can be prepared. Do not submit Social Security numbers, payment details, access codes, or unrelated personal documents.</p>
@@ -187,13 +187,13 @@
                             <span class="eyebrow">Your reply will include</span>
                             <ul>
                                 @if (documentReviewMode)
-                                    <li>A free preview of the questions the source can answer</li>
+                                    <li>A free explanation of what the source can answer</li>
                                     <li>Confirmed facts, limitations, gaps, and conflicts</li>
                                     <li>The next useful agency or field question, when needed</li>
                                 @else
                                     <li>Records checked against your address and parcel</li>
                                     <li>Agency requests and updates handled for you</li>
-                            <li>A free preview of the source, property match and answerable questions; originals and actual answers for $29 if you choose</li>
+                            <li>The source records we find, property match, findings and next steps, free</li>
                                 @endif
                             </ul>
                         </div>
@@ -208,7 +208,7 @@
                              data-ga-param-request-type="record_help_beta"
                              data-ga-param-source-context="${closingRiskSuccessSourceContext}">
                             <strong>${documentReviewMode ? "Your document review is in." : "Your record investigation is in."}</strong>
-                            <p>Your reference is ${closingRiskRequestId}. ${closingRiskReceiptSent ? "We also emailed this reference and your request details to you." : "Save this reference and use it if you need to follow up."} We’ll begin the free research or document review and aim to email an initial update within 1–2 business days. If a useful verified result is ready, we’ll send a free preview and an optional $29 unlock offer. No payment is due now. Any agency fees require your approval first.</p>
+                            <p>Your reference is ${closingRiskRequestId}. ${closingRiskReceiptSent ? "We also emailed this reference and your request details to you." : "Save this reference and use it if you need to follow up."} We’ll begin the free research or document review and aim to email an initial update within 1–2 business days. We’ll send the records and explanation we can provide, free. Any agency fees require your approval first.</p>
                         </div>
                     @endif
                     @if (closingRiskHasErrors)
@@ -227,9 +227,9 @@
                         <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
                         <input type="hidden" name="recordType" value="septic">
                         <div class="record-help-form-intro">
-                            <span class="eyebrow">Free to start · Optional $29 unlock</span>
+                            <span class="eyebrow">Free research · Free results</span>
                             <strong>${documentReviewMode ? "Give us the source file and the questions you need answered." : "Give us the address and the decision you need to make."}</strong>
-                            <small>Free research and agency requests. Preview first; choose the $29 records and answers later. Agency fees extra, with your approval.</small>
+                            <small>Free research, source records and explanation. Agency fees extra, with your approval.</small>
                         </div>
                         <div class="field-grid">
                             <label>
@@ -345,7 +345,7 @@
                         </details>
                         <label class="consent-field">
                             <input type="checkbox" name="consentAccepted" checked="${closingRiskCheckForm.isConsentAccepted()}" required>
-                            <span>I agree to the research, email contact, and terms below. When field work may help, SepticPath may share my request with relevant local professionals. Optional $29 unlock terms are below.</span>
+                            <span>I agree to the research, email contact, and terms below. When field work may help, SepticPath may share my request with relevant local professionals. Service details are below.</span>
                         </label>
                         <details class="record-help-consent-details">
                             <summary>Read research consent and pricing terms</summary>
@@ -363,23 +363,23 @@
             <div class="container record-help-pricing-grid">
                 <div class="record-help-pricing-intro">
                     <span class="offer-prep-kicker">Clear before you pay</span>
-                    <h2 id="record-help-pricing">How the $29 unlock works</h2>
-                    <div class="record-help-package-compare" aria-label="Free preview and optional $29 package comparison">
-                        <div><span>FREE PREVIEW</span><strong>“We found a property-matched permit that answers the recorded design-capacity question.”</strong><p>Illustrative preview · source and document scope · answerable questions · important limits · no payment required</p></div>
-                        <div><span>OPTIONAL $29 PACKAGE</span><strong>The original permit, drawing, and page-by-page explanation.</strong><p>Source files · evidence-linked answers · conflicts and missing facts · next useful step</p></div>
+                    <h2 id="record-help-pricing">What your free result includes</h2>
+                    <div class="record-help-package-compare" aria-label="Free record result and explanation">
+                        <div><span>SOURCE CHECK</span><strong>“We found a property-matched permit that answers the recorded design-capacity question.”</strong><p>Illustrative preview · source and document scope · answerable questions · important limits · no payment required</p></div>
+                        <div><span>FREE RECORDS + EXPLANATION</span><strong>The original permit, drawing, and page-by-page explanation.</strong><p>Source files · evidence-linked answers · conflicts and missing facts · next useful step</p></div>
                     </div>
                 </div>
                 <div class="record-help-pricing-questions">
                 <details>
                     <summary>How do I pay and receive my result?</summary>
-                    <p>We email your free preview first. If you want the US $29 package, we send secure provider-hosted payment instructions by email. After confirming payment, we email the source records and our detailed explanation. The payment email states the expected delivery timing; if anything is delayed, reply to that email with your reference number. Delivery is handled personally, not an instant website download. Never send card details by email. For files you already supplied, you are paying for the reviewed answers; your own files remain yours.</p>
+                    <p>We send the property-matched records and explanation we can provide free, using email or a private delivery link after review. Reply with your reference for follow-up. Agency response times vary, and any agency fee requires your approval. Your own supplied files remain yours.</p>
                 </details>
                 <details>
                     <summary>What will I see before paying?</summary>
-                    <p>You see the agency or official source, document type and date, available pages or drawings, how we matched the property, which of your questions the evidence can answer, and material limits. Your property-specific conclusions and the located source files are included in the optional $29 package. If the evidence cannot answer your question, we say so before offering payment. Public examples show completed work for other properties; they are not findings about yours.</p>
+                    <p>You see the agency or official source, document type and date, available pages or drawings, how we matched the property, which of your questions the evidence can answer, and material limits. Your property-specific conclusions and located source files are included free. If the evidence cannot answer your question, we explain the gap and next available step. Public examples show completed work for other properties; they are not findings about yours.</p>
                 </details>
                 <details>
-                    <summary>What does the $29 package add?</summary>
+                    <summary>What does the free explanation include?</summary>
                     <p>The official source files we found, the relevant pages, and clear answers to your questions with the evidence behind them. We explain recorded layout, capacity, approval or repair details where available, flag conflicts and missing information, and identify what to ask next. Public records may also be available directly from the agency; the value of our service is finding, matching and interpreting them for your question.</p>
                 </details>
                 <details>
@@ -388,7 +388,7 @@
                 </details>
                 <details>
                     <summary>Are agency requests included? Can there be extra costs?</summary>
-                    <p>Our research and agency-request work are free. If an agency charges a search, copy, or portal fee, we explain the amount and ask for approval before incurring it. Those actual agency costs are separate from the optional $29 unlock and may apply even without a successful search or purchase.</p>
+                    <p>Our research and agency-request work are free. If an agency charges a search, copy, or portal fee, we explain the amount and ask for approval before incurring it. Those actual agency costs are separate and may apply even without a successful search.</p>
                 </details>
                 <details>
                     <summary>I already submitted during the free beta. Will I be charged?</summary>
@@ -413,7 +413,7 @@
                 <article>
                     <span>03</span>
                     <h2>You receive evidence, not a guess</h2>
-                    <p>Your free preview identifies the official source, property match, questions it can answer and important limits. Your actual answers and located source records are included in the optional $29 package. Existing requests keep their accepted terms, including free-beta service and any earlier promise of a free finding.</p>
+                    <p>Your free result includes the official source records we locate, property-match check, answers and important limits. Existing requests keep their accepted terms, including free-beta service and any earlier promise of a free finding.</p>
                 </article>
             </div>
             <div class="container offer-prep-transfer-aftercare">
