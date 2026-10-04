@@ -1,5 +1,10 @@
 # Record Help: optional US $29 result unlock
 
+> Historical policy, superseded for new requests on 2026-10-04 by
+> [Free records and local-service inquiry funnel](FREE_RECORDS_PIVOT.md).
+> Do not create new paid unlock offers from this document. Preserve historical
+> payments and accepted terms; reissuing a free result requires fresh release approval.
+
 ## Customer value and language
 
 Lead with the customer's question: missing permit or drawing, recorded capacity,

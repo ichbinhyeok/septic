@@ -1,6 +1,6 @@
 # Lead Export
 
-Last updated: 2026-03-09
+Last updated: 2026-10-04
 
 ## Decision
 
@@ -70,3 +70,6 @@ Current routing hints are intentionally simple:
 - It is a stable internal schema meant to preserve first-party lead context and make later buyer integration easier.
 - If a specific platform requires a stricter field set, add a translator layer rather than rewriting stored history.
 - Record Help beta requests are stored separately under the historical `storage/closing-risk-requests/` path and are not included in this buyer export queue.
+- Direct service inquiries can omit bedrooms and timing. Diagnosis, location, or missing-bedroom inquiries retain `estimate.status=not_estimated` and `riskBand=not_assessed`; no cost estimate is invented.
+- Without an estimate, uncollected property assumptions (occupants, kitchens, disposal, soil, groundwater and access) are null in both the archive and buyer export, not calculator defaults presented as customer answers.
+- Exports remain local `pending_routing` records, not sent or sold leads. New consent snapshots include the applicable matching terms; historical consent is not rewritten. See [FREE_RECORDS_PIVOT.md](FREE_RECORDS_PIVOT.md).

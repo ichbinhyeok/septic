@@ -1,5 +1,9 @@
 # SepticPath business focus
 
+> Historical 2026-09-21 strategy. The paid-unlock instructions below are superseded
+> by [the 2026-10-04 free-records pivot](FREE_RECORDS_PIVOT.md). Provider revenue
+> remains an unvalidated experiment, not an established commercial outcome.
+
 Status: working decision, 2026-09-21
 Branch: `codex/premium-visual-redesign`
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.22.0 - 2026-10-04
+
+### Changed
+
+- Record research, agency requests, source records and explanations are now free; approved agency fees and local field services remain separate.
+- Kept a single record-help intake, with required phone, role and purpose, optional timing and notes, and editable county context from guide links.
+- Shortened the mobile introduction and direct service inquiry, without requiring bedroom counts or a completed records search.
+
+### Fixed
+
+- Restored the production service-form submission and calculator-to-research handoff, and preserved the question selected in the record finder.
+- Kept historical private result links renderable without a checkout, while preserving completed payment history and protected downloads.
+- Added approved free-result delivery with expiring, hash-checked links and no automatic email or provider sharing; private result tokens stay out of analytics.
+
 ## 0.0.21.1 - 2026-09-22
 
 ### Changed
