@@ -733,6 +733,12 @@
                 owner: "original_documents"
             };
             const carriedGoal = purposeGoalMap[carriedContext.purpose] || "";
+            const helpPurpose = form.querySelector('[name="helpPurpose"]');
+            const carriedPurpose = {location: "location", buying: "inspection", bedrooms: "building",
+                repair: "repair", replacement: "building", lender: "inspection", owner: "records"}[carriedContext.purpose];
+            if (helpPurpose instanceof HTMLSelectElement && !helpPurpose.value && carriedPurpose) {
+                helpPurpose.value = carriedPurpose;
+            }
             // A generic finder handoff must not replace the question the user already chose.
             const genericFinderEntry = sourceInput?.value === "entry_missing"
                 && sourcePageInput?.value === "/septic-record-finder/";
@@ -809,17 +815,19 @@
         });
 
         const stage = form.querySelector("[data-record-help-stage]");
-        const goal = form.querySelector("[data-record-help-goal]");
+        const goal = form.querySelector("[data-record-help-goal], [name=researchGoal]");
         const transactionDetails = form.querySelector("[data-record-help-transaction-details]");
         const documentDetails = form.querySelector("[data-record-help-documents]");
-        const documentInput = form.querySelector("[data-record-help-document-input]");
+        const documentInput = form.querySelector("[data-record-help-document-input], [name=documents]");
         const questionLabel = form.querySelector("[data-record-help-question-label]");
         const questionInput = form.querySelector("[data-record-help-question]");
         const questionHelp = form.querySelector("[data-record-help-question-help]");
         const submitButton = form.querySelector("[data-record-help-submit]");
 
-        form.addEventListener("submit", () => {
+        const trackSubmitAttempt = (validationState) => {
             emitGaEvent("record_help_form_submit_attempted", {
+                measurement_version: "intake_v2",
+                validation_state: validationState,
                 source_context: getSourceContext(),
                 request_type: "record_help_beta",
                 research_goal: goal instanceof HTMLSelectElement ? goal.value : "unknown",
@@ -827,9 +835,12 @@
                 document_attached: documentInput instanceof HTMLInputElement && documentInput.files?.length ? "yes" : "no",
                 ...attributionParams()
             });
-        });
+        };
+        form.addEventListener("submit", () => trackSubmitAttempt("passed"));
 
         const syncDocumentReviewMode = () => {
+            // The production/studio intake owns its file-mode validation in studio-intake.js.
+            if (form.matches("[data-intake-form]")) return;
             if (!(goal instanceof HTMLSelectElement)) return;
             const reviewingDocument = goal.value === "understand_file";
             if (documentDetails instanceof HTMLElement) {
@@ -859,7 +870,7 @@
             }
         };
 
-        if (documentInput instanceof HTMLInputElement) {
+        if (documentInput instanceof HTMLInputElement && !form.matches("[data-intake-form]")) {
             documentInput.addEventListener("change", () => {
                 const files = Array.from(documentInput.files || []);
                 const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
@@ -909,12 +920,24 @@
                     .join(",")
                     .slice(0, 100);
                 emitGaEvent("record_help_form_validation_error", {
+                    measurement_version: "intake_v2",
                     source_context: getSourceContext(),
                     request_type: "record_help_beta",
                     invalid_count: form.querySelectorAll(":invalid").length,
                     invalid_fields: invalidFields || "unknown",
                     ...attributionParams()
                 });
+                trackSubmitAttempt("blocked");
+                // Bounded event names can be reported without a custom GA4 dimension.
+                // Never include entered values, addresses, filenames or contact details.
+                const fieldCodes = {propertyAddress: "address", stateCode: "state", email: "email",
+                    phone: "phone", transactionRole: "role", helpPurpose: "purpose",
+                    consentAccepted: "consent", documents: "upload", deadline: "deadline"};
+                const codes = new Set(Array.from(form.querySelectorAll(":invalid"))
+                    .map(field => fieldCodes[field.name] || "other"));
+                codes.forEach(code => emitGaEvent("record_help_invalid_" + code, {
+                    measurement_version: "intake_v2", source_context: getSourceContext(), ...attributionParams()
+                }));
                 validationQueued = false;
             });
         }, true);

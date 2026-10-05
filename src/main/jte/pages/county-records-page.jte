@@ -88,6 +88,10 @@
         </div>
     </section>
 
+    @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
+        @template.tags.regionalRecordGoals(sourcePath = countyPage.path(state.slug()), stateCode = state.stateCode(), regionName = countyPage.countyName(), countyName = countyPage.countyName())
+    @endif
+
     <section class="premium-county-glance" aria-labelledby="premium-county-glance-title">
         <div class="premium-county-glance__inner">
             <div class="premium-county-glance__answer">

@@ -30,7 +30,7 @@
                     @if ("septic-as-built-records".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#read-a-septic-drawing">See a real returned drawing and how to read it ↓</a>
                     @elseif ("septic-tank-location-records".equals(contentPage.slug()))
-                        <a class="drawing-guide-jump" href="#location-projects">Read the guide for pools, additions, or pumping ↓</a>
+                        <a class="drawing-guide-jump" href="#location-start">Start with an address, a missing drawing, or planned work ↓</a>
                     @elseif ("how-to-find-septic-records-online".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#no-record-online">Understand what a missing search result means ↓</a>
                     @elseif ("septic-permit-search-by-address".equals(contentPage.slug()))
@@ -47,11 +47,11 @@
                                 <span>We’ll investigate public sources, contact the responsible office when needed, and explain what comes back.</span>
                             </div>
                             <a class="button button--primary"
-                               href="/offer-prep-septic-file-check/#record-help"
+                               href="${com.example.septic.web.RecordHelpEntry.forGuide(contentPage.slug()).link("/" + contentPage.slug() + "/")}"
                                data-record-help-cta
                                data-track-click="nav"
                                data-track-source-context="national_records_hero_record_help"
-                               data-track-target-type="lead_form">Ask SepticPath to investigate</a>
+                               data-track-target-type="lead_form">${com.example.septic.web.RecordHelpEntry.forGuide(contentPage.slug()).action()}</a>
                         </div>
                     @endif
                 </div>

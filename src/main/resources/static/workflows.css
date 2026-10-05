@@ -36,6 +36,9 @@
   .record-finder__heading { max-width: 660px; }
   .record-finder__intro h1, .record-finder__intro h2 { max-width: 16ch; color: var(--ink); font-size: clamp(2.6rem, 4.8vw, 4.6rem); }
   .record-finder__hero-action { margin-top: 20px; }
+  .record-finder__hero-action + .record-finder__hero-action { margin-left: 8px; }
+  .record-finder__heading > .record-finder__free-note { font-size: .8rem; line-height: 1.65; margin-top: 16px; }
+  @media(max-width:700px) { .record-finder__hero-action + .record-finder__hero-action { margin-left: 0; } }
   .record-finder__heading > p { max-width: 57ch; color: var(--ink-soft); font-size: 1rem; }
   .record-finder__intro .eyebrow { color: var(--accent); }
   .record-finder__signals { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 16px 0 0; color: var(--muted); font-size: .72rem; }

@@ -1902,6 +1902,8 @@
   .record-finder-hero .record-finder__intro p { max-width: 58ch; color: #cfdfdb; font-size: 1.04rem; }
   .record-finder-hero .record-finder__intro .eyebrow { color: #7be0d0; }
   .record-finder-hero .record-finder__hero-action { color: #082732; border-color: #7be0d0; background: #7be0d0; }
+  .record-finder-hero .record-finder__hero-action.button--secondary { color: #e0f5ee; border-color: #91aea9; background: transparent; }
+  .record-finder-hero .record-finder__heading > .record-finder__free-note { font-size: .8rem; line-height: 1.65; }
   .record-finder-hero .record-finder__signals { color: #b8ceca; border-color: rgba(255,255,255,.22); }
   .record-finder-hero .record-finder__signals strong { color: #fff; }
   .record-finder-hero .record-finder__result-preview { overflow: hidden; border-color: rgba(255,255,255,.55); border-radius: 16px; background: rgba(249,249,243,.94); box-shadow: 0 30px 70px rgba(0,0,0,.3); backdrop-filter: blur(14px); }

@@ -37,3 +37,11 @@ Keep `calculator_completed`, `address_search_completed`, `case_study_clicked`, a
   reconciled in private operations rather than inferred from GA4 form events.
 
 Use `entry_page`, `source_page`, `source_context`, `page_family`, `calculator_type`, and categorical outcomes as dimensions. Do not add customer-entered values as analytics parameters.
+
+## Intake validation, October 2026
+
+`measurement_version=intake_v2` marks the revised attempt/error events. A native-validation rejection now emits `record_help_form_submit_attempted` with `validation_state=blocked`; a native-valid submit emits `validation_state=passed`. Passed means browser validation passed, not that the server stored or accepted the request. Keep the confirmed submission event separate. Do not compare the earlier submit-only attempt count as an unchanged funnel denominator.
+
+Bounded event names `record_help_invalid_address`, `_state`, `_email`, `_phone`, `_role`, `_purpose`, `_consent`, `_upload`, `_deadline`, and `_other` identify the rejected field category without a custom-dimension setup. Count once per category per native validation cycle; one user can have several errors and later submit successfully. Native validity checks invoked by scripts can also emit these events. Do not report errors as lost customers. No entered field value, filename or validation-message text is sent to analytics.
+
+The studio intake owns its file-mode validation and displays a linked error summary. Phone validation accepts the same 10–15-digit formats as the server. Required contact, role and consent fields remain unchanged. New analytics results are unavailable until this change is deployed and receives traffic.

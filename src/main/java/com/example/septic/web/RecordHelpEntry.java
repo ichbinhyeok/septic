@@ -20,6 +20,9 @@ public record RecordHelpEntry(String intent, String title, String description, S
             case "buying" -> new RecordHelpEntry("buying", "Check the records behind the property.",
                     "Send the address. We’ll look for the permit, layout and approval records to help you ask better questions before buying or selling.",
                     "Check this property’s records", "original_documents", "inspection");
+            case "building" -> new RecordHelpEntry("building", "Find the septic layout before planning the project.",
+                    "Planning a deck, addition or other yard project? Send the address. We’ll look for the tank and drainfield layout and explain what still needs local confirmation. Records are not permission to build or dig.",
+                    "Check my project’s septic records", "system_layout", "building");
             case "capacity" -> new RecordHelpEntry("capacity", "What capacity does the record support?",
                     "Send the address. We’ll look for the recorded design basis and explain what it says about bedrooms, flow and system capacity.",
                     "Check my recorded capacity", "design_capacity", "");

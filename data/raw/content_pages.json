@@ -2275,9 +2275,9 @@
         "septic tank as built drawing",
         "septic site sketch"
       ],
-      "title": "Septic Tank Location Records",
-      "metaDescription": "Find septic tank and drain field location records by address, parcel, permit file, as-built, site sketch, or approved plan before you dig, build, buy, or price work.",
-      "updatedAt": "2026-07-26",
+    "title": "Find Septic Tank Location Records by Address",
+    "metaDescription": "Have an address but no septic drawing? Find tank and drainfield records, understand a missing layout, or get free help searching the county file.",
+      "updatedAt": "2026-10-05",
       "reviewedAt": "2026-07-26",
       "introCopy": "Look for a septic tank location drawing in the property's permit file, as-built, site sketch, or installation records. Use the drawing as a historical reference and have a qualified professional verify field locations before digging, building a pool, or planning an addition.",
       "calculatorModule": "main_cost_estimator",

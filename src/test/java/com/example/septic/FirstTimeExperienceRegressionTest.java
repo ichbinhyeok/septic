@@ -36,7 +36,8 @@ class FirstTimeExperienceRegressionTest {
         String template = Files.readString(Path.of("src/main/jte/tags/addressRecordFinder.jte"));
 
         assertTrue(template.contains("href=\"#${finderId}-form\""));
-        assertTrue(template.contains(">Start with the property address</a>"));
+        assertTrue(template.contains(">Find my location records</a>"));
+        assertTrue(template.contains(">Search the official route myself</a>"));
         assertFalse(template.contains("<h3 data-address-record-finder-heading></h3>"));
     }
 
