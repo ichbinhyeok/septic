@@ -8,8 +8,8 @@
             @template.tags.addressRecordFinder(
                 finderId = "record-finder",
                 eyebrow = "Address record finder",
-                heading = "Paste the address. Open the right septic records route.",
-                intro = "We resolve the property county, then show the best available county or state route and how deeply that route has been verified.",
+                heading = "Have an address, but no septic drawing?",
+                intro = "Find the official record route yourself, or ask us to search for the permit and layout and explain what we find, free. You do not need an existing file to start.",
                 totalCountyRouteCount = totalCountyRouteCount,
                 pageHeading = true
             )
@@ -73,13 +73,14 @@
                     <span>WHEN THE ONLINE TRAIL STOPS</span>
                     <h3>An empty search is not an official no-record finding</h3>
                     <p>Older files may be indexed by a prior owner, subdivision, permit number, or tax-map reference. A blocked viewer is an access failure. A written office response is stronger evidence than a blank screen.</p>
-                    <a href="/offer-prep-septic-file-check/#record-help"
+                    <a href="${com.example.septic.web.RecordHelpEntry.of("missing").link("/septic-record-finder/")}"
                        data-record-help-cta
                        data-track-click="nav"
                        data-track-source-context="record_finder_explainer"
                        data-track-target-type="lead_form">Ask SepticPath to investigate the missing file →</a>
                 </article>
             </div>
+            <p><a href="/septic-tank-location-records/#location-start" data-track-click="nav" data-track-source-context="finder_location_guide" data-track-target-type="internal_page">Need the tank or drainfield location? Read the address-to-drawing guide →</a></p>
         </div>
     </section>
 

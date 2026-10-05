@@ -27,7 +27,7 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("TDEC septic<br><em>permit search.</em>")))
-                .andExpect(content().string(containsString("Find the official viewer or the right county office.")))
+                .andExpect(content().string(containsString("Need to find your septic tank, plan around a drainfield, or check a home before buying?")))
                 .andExpect(content().string(containsString("We search public files, contact TDEC or the local program when needed")))
                 .andExpect(content().string(containsString("Choose the property county")))
                 .andExpect(content().string(containsString("Get free record help")))
@@ -98,7 +98,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<title>NC Septic Permit Lookup by County &amp; Address | SepticPath</title>")))
                 .andExpect(content().string(containsString("Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.")))
-                .andExpect(content().string(containsString("Find the county that holds the septic permit")))
+                .andExpect(content().string(containsString("North Carolina septic permit and tank location records")))
                 .andExpect(content().string(containsString("29 county workflows have a source-reviewed route")))
                 .andExpect(content().string(containsString("This self-serve tool")))
                 .andExpect(content().string(containsString("query county systems, download a permit, or confirm that a record exists")))
@@ -116,7 +116,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("Buncombe County septic permit lookup")))
                 .andExpect(content().string(containsString("Union County septic permit lookup")))
                 .andExpect(content().string(containsString("Pender County septic permit lookup")))
-                .andExpect(content().string(containsString("Johnston County septic permit lookup")))
+                .andExpect(content().string(containsString("Johnston County septic permit search")))
                 .andExpect(content().string(containsString("Wake County septic permit lookup")))
                 .andReturn().getResponse().getContentAsString();
 
@@ -135,12 +135,12 @@ class OfficialRecordsWorkflowRegressionTest {
         String visiblePriorityRoutes = html.substring(priorityStart, priorityEnd);
         org.assertj.core.api.Assertions.assertThat(visiblePriorityRoutes)
                 .containsSubsequence(
-                        "Johnston County septic permit lookup",
+                        "Johnston County septic permit search",
+                        "Henderson County septic permit lookup",
                         "Forsyth County septic permit lookup",
                         "Pender County septic permit lookup",
                         "Wake County septic permit lookup",
-                        "Pitt County septic permit lookup",
-                        "Buncombe County septic permit lookup"
+                        "Pitt County septic permit lookup"
                 );
     }
 
@@ -204,7 +204,7 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("North Carolina septic records by county")))
-                .andExpect(content().string(containsString("official route for permits, layouts and approval records")))
+                .andExpect(content().string(containsString("Start with your address—even if you have no drawing.")))
                 .andExpect(content().string(containsString("Enter the property address")))
                 .andExpect(content().string(containsString("state-records-priority-counties")))
                 .andExpect(content().string(containsString("Johnston County septic permit search")))
@@ -332,7 +332,7 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(status().isOk())
                     .andExpect(content().string(containsString("Enter the address to find the right office")))
                     .andExpect(content().string(containsString("SepticPath can investigate the record and contact the responsible office for you")))
-                    .andExpect(content().string(containsString("Ask SepticPath to investigate")))
+                    .andExpect(content().string(containsString("data-record-help-cta")))
                     .andExpect(content().string(containsString("A failed address search is not proof that no file exists")))
                     .andExpect(content().string(not(containsString("OFFICIAL LOOKUP COMMAND BOARD"))))
                     .andExpect(content().string(not(containsString("PREPARED BY"))));

@@ -25,7 +25,7 @@
                     <span class="eyebrow">${state.stateCode()} property records</span>
                     @if ("NC".equals(state.stateCode()))
                         <h1>North Carolina septic records by county</h1>
-                        <p>Find the county permit file owner by address, then open the official route for permits, layouts and approval records. Or let us research the property and explain what we find, free.</p>
+                        <p>Not sure where your tank or drainfield is? We look for the county permit and layout, request available files, and explain what they show, free. Start with your address—even if you have no drawing.</p>
                     @elseif ("IN".equals(state.stateCode()))
                         <h1>Indiana septic records by county and address</h1>
                         <p>Find the local health department route for a permit, site sketch, or installation record. Search yourself, or send us the property and we’ll research the file and explain what we find, free.</p>
@@ -53,6 +53,10 @@
                 )
             </div>
         </section>
+
+        @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
+            @template.tags.regionalRecordGoals(sourcePath = stateMoneyPage.path(state.slug()), stateCode = state.stateCode(), regionName = state.stateName())
+        @endif
 
         @if (stateRecordsSearchResponse != null)
             <div class="container state-records-intent-band">

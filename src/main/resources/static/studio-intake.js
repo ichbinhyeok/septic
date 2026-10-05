@@ -10,6 +10,57 @@
     || (form.elements.sourcePageHint.value === '/design-preview/studio/calculator/' ? 'studio_calculator' : 'studio_intake');
   const uploads = form.querySelector('[data-intake-uploads]');
   const status = document.getElementById('upload-status');
+  const phone = form.elements.phone;
+  function validatePhone() {
+    const value = phone.value;
+    const digits = value.replace(/\D/g, '').length;
+    const valid = !value || (/^[+0-9().\-\s]+$/.test(value) && digits >= 10 && digits <= 15);
+    phone.setCustomValidity(valid ? '' : 'Enter 10–15 digits, including the area code. Spaces, +, parentheses and hyphens are OK.');
+  }
+  phone.addEventListener('input', validatePhone);
+  phone.addEventListener('change', validatePhone);
+  validatePhone();
+  const errorSummary = document.createElement('div');
+  errorSummary.className = 'intake-error';
+  errorSummary.dataset.intakeClientErrors = '';
+  errorSummary.setAttribute('role', 'alert');
+  errorSummary.hidden = true;
+  form.querySelector('.intake-fields').before(errorSummary);
+  const fieldLabels = {propertyAddress: 'Property address', stateCode: 'State', email: 'Email',
+    phone: 'Phone number', transactionRole: 'Your role', helpPurpose: 'What you need',
+    consentAccepted: 'Research consent', documents: 'Source files', deadline: 'Deadline'};
+  function fieldMessage(field) {
+    if (field.validity.customError) return field.validationMessage;
+    if (field.validity.valueMissing) return field.type === 'checkbox' ? 'Please confirm before sending.'
+      : field.tagName === 'SELECT' ? 'Choose an option.' : 'Add this detail.';
+    if (field.type === 'email' && field.validity.typeMismatch) return 'Enter a complete email address.';
+    if (field.validity.tooShort) return 'Enter at least ' + field.minLength + ' characters.';
+    return field.validationMessage;
+  }
+  function showErrors() {
+    const invalid = Array.from(form.querySelectorAll('input:invalid, select:invalid, textarea:invalid'));
+    errorSummary.replaceChildren();
+    errorSummary.hidden = invalid.length === 0;
+    if (!invalid.length) return;
+    const title = document.createElement('strong');
+    title.textContent = 'Almost there—check these details:';
+    const list = document.createElement('ul');
+    invalid.forEach(field => {
+      field.setAttribute('aria-invalid', 'true');
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = '#' + field.id;
+      link.textContent = (fieldLabels[field.name] || 'Additional detail') + ': ' + fieldMessage(field);
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        if (field.closest('details')) field.closest('details').open = true;
+        field.focus();
+      });
+      item.append(link); list.append(item);
+    });
+    errorSummary.append(title, list);
+  }
+  let errorsQueued = false;
   let lastResearchGoal = goal.value === 'understand_file' ? 'other' : goal.value;
   function validateFiles() {
     const list = Array.from(files.files);
@@ -52,7 +103,17 @@
   form.addEventListener('invalid', event => {
     const disclosure = event.target.closest('details');
     if (disclosure) disclosure.open = true;
+    if (!errorsQueued) {
+      errorsQueued = true;
+      queueMicrotask(() => { showErrors(); errorsQueued = false; });
+    }
   }, true);
+  const refreshErrors = event => {
+    if (event.target.validity?.valid) event.target.removeAttribute('aria-invalid');
+    if (!errorSummary.hidden) showErrors();
+  };
+  form.addEventListener('input', refreshErrors);
+  form.addEventListener('change', refreshErrors);
   form.querySelectorAll('[data-error-field]').forEach(link => {
     const field = document.getElementById('field-' + link.dataset.errorField);
     if (!field) return;
@@ -72,6 +133,7 @@
   window.addEventListener('pageshow', () => {
     form.querySelector('[type=submit]').disabled = false;
     form.removeAttribute('aria-busy');
+    validatePhone();
     syncMode();
   });
   syncMode();

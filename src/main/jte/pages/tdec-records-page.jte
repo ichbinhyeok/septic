@@ -16,7 +16,7 @@
                 <div class="ptdec-hero__copy">
                     <span class="ptdec-kicker">Tennessee septic records</span>
                     <h1 id="tdec-page-title">TDEC septic<br><em>permit search.</em></h1>
-                    <p>Find the official viewer or the right county office. Want help? We search public files, contact TDEC or the local program when needed, and explain the records we find, free.</p>
+                    <p>Need to find your septic tank, plan around a drainfield, or check a home before buying? We search public files, contact TDEC or the local program when needed, and explain the records we find, free.</p>
                     <div class="ptdec-hero__actions">
                         <a class="ptdec-button ptdec-button--coral" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/tdec-septic-records/", "TN", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_hero_record_investigation" data-track-target-type="lead_form">Get free record help <span aria-hidden="true">→</span></a>
                         <a class="ptdec-link" href="#tdec-record-search" data-track-click="nav" data-track-source-context="tdec_hero_request_builder" data-track-target-type="request_builder">Find the official route myself <span aria-hidden="true">→</span></a>
@@ -37,6 +37,12 @@
                 <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title"><div><span class="eyebrow">Back from TDEC?</span><h3 id="tdec-hero-return-title">Did the official search solve it?</h3><p>Record the result so the next step matches what actually happened.</p></div><div class="tdec-return__choices" role="group" aria-label="TDEC official search result"><button type="button" data-tdec-hero-outcome="found">I found a file</button><button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button><button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button></div><div class="tdec-return__next" data-tdec-hero-next hidden></div></section>
             </div>
         </section>
+
+        <section class="container record-search-help" aria-labelledby="tdec-stuck-title">
+            <div><span class="eyebrow">Already tried the official search?</span><h2 id="tdec-stuck-title">A blocked viewer or empty result does not have to end the search.</h2><p>Tell us the address and what happened. We can check the record route, contact TDEC or the responsible local office when needed, and explain the response. If you found a permit but no layout, we can look for the missing drawing.</p></div>
+            <a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link("/tdec-septic-records/", "TN", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="tdec_search_stalled" data-track-target-type="lead_form">Continue my search for free →</a>
+        </section>
+        @template.tags.regionalRecordGoals(sourcePath = "/tdec-septic-records/", stateCode = "TN", regionName = "Tennessee")
 
         <section class="tdec-workspace ptdec-route" id="tdec-record-search" aria-labelledby="tdec-workspace-title">
             <div class="ptdec-route__inner">

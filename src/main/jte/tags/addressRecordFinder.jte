@@ -22,10 +22,14 @@
                 <p>${intro}</p>
                 @if (pageHeading)
                     <a class="button button--primary record-finder__hero-action"
+                       href="${com.example.septic.web.RecordHelpEntry.of("location").link("/septic-record-finder/")}"
+                       data-record-help-cta data-track-click="nav" data-track-source-context="finder_owner_hero" data-track-target-type="lead_form">Find my location records</a>
+                    <a class="button button--secondary record-finder__hero-action"
                        href="#${finderId}-form"
                        data-track-click="nav"
                        data-track-source-context="record_finder_hero"
-                       data-track-target-type="internal_tool">Start with the property address</a>
+                       data-track-target-type="internal_tool">Search the official route myself</a>
+                    <p class="record-finder__free-note">Research, records and explanation are free. Agency fees only with approval. Any on-site work is separate.</p>
                 @endif
                 <div class="record-finder__signals" aria-label="Record finder coverage">
                     <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
@@ -132,9 +136,9 @@
                 <label class="record-finder__field" for="${finderId}-purpose">
                     <span>What do you need?</span>
                     <select id="${finderId}-purpose" name="purpose" data-address-record-finder-purpose>
+                        <option value="location">Tank, drain field, or reserve-area location</option>
                         <option value="buying">Buyer or seller property file</option>
                         <option value="bedrooms">Approved bedroom count or addition</option>
-                        <option value="location">Tank, drain field, or reserve-area location</option>
                         <option value="repair">Repair history or current problem</option>
                         <option value="replacement">Replacement scope and cost</option>
                         <option value="lender">Lender, closing, or inspection letter</option>
@@ -178,7 +182,7 @@
         </form>
         @if (pageHeading)
             <div class="record-finder__document-entry">
-                <div><span class="record-finder__document-kicker">Prefer to hand this off?</span><strong>Let us investigate the property records.</strong><span>We search available sources, contact the responsible office when needed, and explain the records we obtain. Availability is not guaranteed.</span></div>
+                <div><span class="record-finder__document-kicker">No file needed to start</span><strong>We can take the search from here.</strong><span>Send the address and your question. We search available sources, contact the responsible office when needed, and explain what we find, free.</span></div>
                 <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/septic-record-finder/")}" data-record-help-cta data-track-source-context="record_finder_start">Ask us to investigate</a>
             </div>
         @endif

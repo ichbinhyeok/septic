@@ -14,16 +14,18 @@
             <div class="container tdec-desk__intro-grid">
                 <div>
                     <span class="eyebrow">North Carolina existing-system records</span>
-                    <h1 id="nc-page-title">Find the county that holds the septic permit</h1>
-                    <p>North Carolina does not provide one statewide property-level septic permit search. Choose the county, prepare a property clue, and open that county's verified search or request path.</p>
-                    <div class="regional-hero-actions"><a class="button button--primary" href="#nc-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
+                    <h1 id="nc-page-title">North Carolina septic permit and tank location records</h1>
+                    <p>Trying to find your tank, plan around a drainfield, or check a home before buying? Start with the county permit and layout. We can search the available records and explain what they show, free.</p>
+                    <div class="regional-hero-actions"><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/north-carolina-septic-permit-lookup/", "NC", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="nc_hero_record_investigation" data-track-target-type="lead_form">Get free record help <span aria-hidden="true">→</span></a><a href="#nc-record-search">Find the official route myself</a></div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
-                    <div><dt>This self-serve tool</dt><dd>routes verified counties, prepares search keys, and drafts a file request.</dd></div>
-                    <div><dt>Tool limits</dt><dd>It does not query county systems, download a permit, or confirm that a record exists. You can also ask our research service to investigate.</dd></div>
+                    <div><dt>No drawing? Start here.</dt><dd>Send the address. We search for the permit, layout and related records, and contact the county when needed.</dd></div>
+                    <div><dt>Your result</dt><dd>The records we find, a plain-English explanation, and the next step for your question. Research is free; agency fees need approval.</dd></div>
                 </dl>
             </div>
         </section>
+
+        @template.tags.regionalRecordGoals(sourcePath = "/north-carolina-septic-permit-lookup/", stateCode = "NC", regionName = "North Carolina")
 
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "nc_records_evidence")
@@ -40,8 +42,8 @@
                     <nav class="nc-priority-routes__links" aria-label="Popular North Carolina county septic permit lookups">
                         @for (var county : northCarolinaPriorityCountyRoutes.stream().limit(6).toList())
                             <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes" data-track-target-type="county_records_page">
-                                <strong>${county.countyName()} septic permit lookup</strong>
-                                <span>Open county route</span>
+                                <strong>@if("johnston-county".equals(county.countySlug()))Johnston County septic permit search@else${county.countyName()} septic permit lookup@endif</strong>
+                                <span>@if("johnston-county".equals(county.countySlug()))Street search + permit image@elseif("henderson-county".equals(county.countySlug()))Current portal + older archive@elseOpen county route@endif</span>
                             </a>
                         @endfor
                     </nav>
@@ -65,6 +67,7 @@
                     <div>
                         <span class="eyebrow">NC county records desk</span>
                         <h2 id="nc-workspace-title">Prepare the correct county search</h2>
+                        <p>This self-serve tool prepares a route and request. It does not query county systems, download a permit, or confirm that a record exists.</p>
                     </div>
                     <ol aria-label="Search workflow">
                         <li class="is-current"><span>1</span> County</li>

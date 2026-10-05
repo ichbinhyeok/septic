@@ -24,6 +24,7 @@ public class SitemapService {
     private static final String RECORDS_CONTENT_REVISION_DATE = "2026-09-01";
     private static final String STATE_RECORDS_REVISION_DATE = "2026-09-01";
     private static final String COUNTY_RECORDS_REVISION_DATE = "2026-09-01";
+    private static final String NC_TN_COUNTY_GOALS_REVISION_DATE = "2026-10-05";
     private static final String SEARCH_INTENT_HANDOFF_REVISION_DATE = "2026-09-14";
     /*
      * Page-specific material revisions keep lastmod accurate without making a
@@ -31,22 +32,22 @@ public class SitemapService {
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
             Map.entry("/", "2026-09-17"),
-            Map.entry("/septic-record-finder/", "2026-09-16"),
+            Map.entry("/septic-record-finder/", "2026-10-05"),
             Map.entry("/septic-records-access-index/", "2026-09-11"),
             Map.entry("/septic-record-brief-example/", "2026-09-17"),
             Map.entry("/offer-prep-septic-file-check/", "2026-09-17"),
             Map.entry("/official-septic-lookup-tools/", "2026-09-12"),
-            Map.entry("/tdec-septic-records/", "2026-10-04"),
-            Map.entry("/septic-records-checklist/tennessee/", "2026-10-04"),
-            Map.entry("/septic-records-checklist/north-carolina/", "2026-10-04"),
+            Map.entry("/tdec-septic-records/", "2026-10-05"),
+            Map.entry("/septic-records-checklist/tennessee/", "2026-10-05"),
+            Map.entry("/septic-records-checklist/north-carolina/", "2026-10-05"),
             Map.entry("/septic-records-checklist/indiana/", "2026-10-05"),
             Map.entry("/septic-records-checklist/north-carolina/guilford-county/", "2026-10-05"),
-            Map.entry("/north-carolina-septic-permit-lookup/", "2026-09-12"),
+            Map.entry("/north-carolina-septic-permit-lookup/", "2026-10-05"),
             Map.entry("/texas-ossf-records-search/", "2026-09-22"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-10-01"),
             Map.entry("/dhec-septic-permit-lookup/", "2026-09-22"),
             Map.entry("/septic-as-built-records/", "2026-09-17"),
-            Map.entry("/septic-tank-location-records/", "2026-09-17"),
+            Map.entry("/septic-tank-location-records/", "2026-10-05"),
             Map.entry("/how-to-find-septic-records-online/", "2026-09-17"),
             Map.entry("/septic-permit-search-by-address/", "2026-09-17"),
             Map.entry("/septic-permit-process/", "2026-09-17"),
@@ -204,6 +205,8 @@ public class SitemapService {
         return latestValidDate(Stream.of(
                 countyContentQualityService.effectiveUpdatedAt(countyPage),
                 COUNTY_RECORDS_REVISION_DATE,
+                "NC".equals(countyPage.stateCode()) || "TN".equals(countyPage.stateCode())
+                        ? NC_TN_COUNTY_GOALS_REVISION_DATE : "",
                 materialRevision(countyPage.path(state.slug())),
                 countyPage.searchGuide() == null ? "" : countyPage.searchGuide().reviewedAt(),
                 researchDataService.findSearchResponseTarget(
