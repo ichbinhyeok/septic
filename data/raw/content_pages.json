@@ -2420,6 +2420,143 @@
         "/drain-field-replacement-cost/"
       ],
       "publishStatus": "published"
+    },
+    {
+          "intentType": "workflow_page",
+          "calculatorModule": "main_cost_estimator",
+          "calculatorProjectType": "replacement",
+          "updatedAt": "2026-10-08",
+          "reviewedAt": "2026-10-08",
+          "publishStatus": "published",
+          "slug": "no-septic-records-found",
+          "primaryKeyword": "no septic records found",
+          "secondaryKeywords": [
+                "cannot find septic permit",
+                "missing septic records",
+                "septic permit search no results",
+                "old septic records"
+          ],
+          "title": "No Septic Records Found? What to Search Next",
+          "metaDescription": "An empty septic permit search is not the end. Check old addresses, parcel IDs, missing drawings and archives—or ask SepticPath to continue the search.",
+          "introCopy": "An empty search does not settle whether a septic file exists. Follow the next search steps, or send us the address and we’ll investigate.",
+          "targetReader": "Owners, buyers and agents who searched an official septic portal but found no record, no drawing or an access error.",
+          "deepDiveParagraphs": [
+                "Separate an empty search from a portal access error, a permit with no attachments, and a written no-record response. Each needs a different next step.",
+                "Match the current parcel first. Older records may use a former owner, old road name or subdivision lot. Keep the search keys and record dates beside each result."
+          ],
+          "fitBullets": [
+                "The official address search returned no matching file.",
+                "You found a permit but cannot download its drawing."
+          ],
+          "decisionSteps": [
+                "Identify the kind of search failure and save the portal name, search keys and date.",
+                "Confirm the current parcel, then retry the official index using the identifiers it supports.",
+                "Check whether the permit result has separate drawing, inspection or repair attachments.",
+                "Ask the records custodian about archives and the scope of any no-record result."
+          ],
+          "lowEndBreakers": [
+                "A blank search alone does not prove the system is unpermitted or absent."
+          ],
+          "quotePrepChecklist": [
+                "Address, county, optional parcel or permit number, portal searched, search date and the question you need answered."
+          ],
+          "driverBullets": [
+                "Different search keys can reveal records that today's full street address misses.",
+                "The existing-file custodian can differ from the office accepting new permit applications."
+          ],
+          "faqBlocks": [
+                {
+                      "question": "Does no septic record mean the system is unpermitted?",
+                      "answer": "No. An empty online search does not establish that conclusion. The file may use an older identifier, be outside the online coverage, or require an archive search. Ask the responsible office what its search covered."
+                },
+                {
+                      "question": "What if the permit appears but no drawing is attached?",
+                      "answer": "Save the permit number and ask for the as-built, site sketch, approved plan, installation or final approval pages and later repairs. A permit listing is not the same as the complete property file."
+                },
+                {
+                      "question": "Can SepticPath find a record faster than the agency?",
+                      "answer": "We can check public sources, alternate identifiers and the correct file route. If the original is held only by the agency, its response time still controls availability. We explain what we found and what remains pending."
+                }
+          ],
+          "internalLinkTargets": [
+                "/how-to-find-septic-records-online/",
+                "/septic-permit-search-by-address/",
+                "/septic-records-by-county/",
+                "/septic-records-request-builder/",
+                "/how-to-read-septic-as-built/",
+                "/onlinerme-septic-records/",
+                "/tdec-septic-records/"
+          ]
+    },
+    {
+          "intentType": "workflow_page",
+          "calculatorModule": "main_cost_estimator",
+          "calculatorProjectType": "replacement",
+          "updatedAt": "2026-10-08",
+          "reviewedAt": "2026-10-08",
+          "publishStatus": "published",
+          "slug": "how-to-read-septic-as-built",
+          "primaryKeyword": "how to read septic as built",
+          "secondaryKeywords": [
+                "how to read septic diagram",
+                "septic as built drawing explained",
+                "septic permit drawing symbols",
+                "septic drainfield plan"
+          ],
+          "title": "How to Read a Septic As-Built Drawing",
+          "metaDescription": "Read tank, drainfield, distance and approval labels on a septic drawing. See a worked record example, or send your own file to SepticPath for an explanation.",
+          "introCopy": "Start with the property match and document date. Then read the tank, field and distance labels—and compare the drawing with the approval pages.",
+          "targetReader": "Owners, buyers and agents who already have a septic drawing or permit packet and need help understanding it.",
+          "deepDiveParagraphs": [
+                "A proposed design, an as-built and a final approval describe different stages. Read the document title, date and approval notes before using its measurements.",
+                "Keep written facts separate from visual estimates. Line length, gallons and design flow describe different things; do not infer bedroom approval from tank size alone."
+          ],
+          "fitBullets": [
+                "You have a permit, sketch or as-built but do not understand its labels.",
+                "Two pages show different capacities, dimensions or approval stages."
+          ],
+          "decisionSteps": [
+                "Match the address, parcel or lot on every page before interpreting it.",
+                "Identify whether the drawing shows a design proposal, a recorded installation or a later repair.",
+                "Read component names, written dimensions and the measurement endpoints.",
+                "Compare the drawing with the permit and final approval; keep conflicting values attached to their sources."
+          ],
+          "lowEndBreakers": [
+                "A historical drawing does not verify today's system condition or provide clearance to dig."
+          ],
+          "quotePrepChecklist": [
+                "The full drawing, all permit and approval pages, property address and the specific question you need answered."
+          ],
+          "driverBullets": [
+                "A source-linked explanation turns unfamiliar labels into usable questions.",
+                "Document-stage comparison prevents an approved proposal from being mistaken for a final installation record."
+          ],
+          "faqBlocks": [
+                {
+                      "question": "What do the numbers on a septic drawing mean?",
+                      "answer": "Read each number with its label and measurement endpoints. Gallons usually describe a labeled tank volume; feet may describe a field-line length or a distance between components. Do not assume an unlabeled number has the same meaning."
+                },
+                {
+                      "question": "Can I calculate bedroom capacity from tank gallons?",
+                      "answer": "Tank volume alone does not establish the approved bedroom count. Look for the permit's design basis, approved bedrooms or flow and confirm unclear entries with the responsible office."
+                },
+                {
+                      "question": "Can I dig where the drawing shows the tank?",
+                      "answer": "Use the drawing as a historical starting point. A qualified local professional must verify actual field locations and applicable requirements before excavation."
+                },
+                {
+                      "question": "Can you explain a file I already received?",
+                      "answer": "Yes. Send the address, your question and the complete file through the review form. SepticPath checks the property match, compares the document stages and explains supported findings and remaining questions."
+                }
+          ],
+          "internalLinkTargets": [
+                "/septic-as-built-records/",
+                "/septic-tank-location-records/",
+                "/septic-record-brief-example/",
+                "/septic-permit-process/",
+                "/no-septic-records-found/",
+                "/septic-records-by-county/"
+          ]
     }
   ]
 }

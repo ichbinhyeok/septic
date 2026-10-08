@@ -2388,6 +2388,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/septic-records-request-builder", "/septic-records-request-builder/",
             "/septic-as-built-records", "/septic-as-built-records/",
             "/septic-tank-location-records", "/septic-tank-location-records/",
+            "/no-septic-records-found", "/no-septic-records-found/",
+            "/how-to-read-septic-as-built", "/how-to-read-septic-as-built/",
             "/septic-inspection-letter", "/septic-inspection-letter/",
             "/official-septic-lookup-tools", "/official-septic-lookup-tools/",
             "/tdec-septic-records", "/tdec-septic-records/",
@@ -2406,6 +2408,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
+        if (Set.of("no-septic-records-found", "how-to-read-septic-as-built").contains(slug)) {
+            model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+            model.addAttribute("contentPage", contentPage);
+            return "pages/record-problem-guide";
+        }
         if (ONLINERME_RECORDS_SLUG.equals(contentPage.slug())) {
             List<CountyRecordsPage> onlineRmeCounties = List.of(
                     researchDataService.findPublicCountyRecordsPage("washington", "king-county").orElseThrow(),
