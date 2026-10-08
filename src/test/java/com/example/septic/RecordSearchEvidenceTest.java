@@ -75,6 +75,30 @@ class RecordSearchEvidenceTest {
     }
 
     @Test
+    void onlineRmeHubExplainsCountyDifferencesAndLinksVerifiedOfficialPaths() throws Exception {
+        var contentPage = data.findPublicContentPage("onlinerme-septic-records").orElseThrow();
+        assertThat(contentPage.title()).contains("OnlineRME");
+        assertThat(contentPage.internalLinkTargets()).contains(
+                "/septic-records-checklist/washington/king-county/",
+                "/septic-records-checklist/washington/snohomish-county/",
+                "/septic-records-checklist/virginia/loudoun-county/");
+
+        var response = mvc.perform(get("/onlinerme-septic-records/")).andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(200);
+        assertThat(response.getContentAsString()).contains(
+                "One platform does not mean one shared file",
+                "King County",
+                "Snohomish County",
+                "Loudoun County",
+                "https://kingcounty.gov/en/dept/dph/health-safety/environmental-health/on-site-sewage-systems/oss-system-records",
+                "https://www.snohd.org/159/As-Built-Records",
+                "https://www.loudoun.gov/5771/Well-Septic-Records",
+                "/septic-records-checklist/washington/king-county/",
+                "/septic-records-checklist/washington/snohomish-county/",
+                "/septic-records-checklist/virginia/loudoun-county/");
+    }
+
+    @Test
     void drawingDistinguishesHistoricalEvidenceFromCompletedInstallation() throws Exception {
         var html = mvc.perform(get("/septic-as-built-records/")).andReturn().getResponse().getContentAsString();
         assertThat(html).contains("id=\"read-a-septic-drawing\"", "tn-historical-sketch-anonymized.png",

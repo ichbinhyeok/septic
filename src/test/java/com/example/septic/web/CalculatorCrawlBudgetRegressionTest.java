@@ -53,7 +53,7 @@ class CalculatorCrawlBudgetRegressionTest {
                 .andExpect(content().string(containsString(
                         "href=\"/septic-system-cost-calculator/?projectType=perc_test&amp;sourcePageHint=/perc-test-cost/\"")))
                 .andExpect(content().string(containsString(
-                        "href=\"/septic-system-cost-calculator/?projectType=perc_test&amp;sourcePageHint=/perc-test-cost/\"\n                                           rel=\"nofollow\"")));
+                        "href=\"/septic-system-cost-calculator/?projectType=perc_test&amp;sourcePageHint=/perc-test-cost/\" rel=\"nofollow\"")));
     }
 
     @Test

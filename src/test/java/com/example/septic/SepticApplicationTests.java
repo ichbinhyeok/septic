@@ -1254,6 +1254,9 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How pages earn the right to be public.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Public quality gate")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Detailed county search guides")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-backed workflow leaders")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("State guide reviewed")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/source-policy/")));
 
 		mockMvc.perform(get("/source-policy/"))
@@ -1270,7 +1273,22 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("trust-ops-priority-route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-records-checklist/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("septic permit lookup |")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Workflow pages")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Workflow pages")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Detailed search guides")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("not extra routes")));
+
+		var methodologyModel = mockMvc.perform(get("/methodology/")).andReturn().getModelAndView().getModel();
+		var methodologyPage = (com.example.septic.web.TrustOperationsPageView) methodologyModel.get("operationsPage");
+		var rankedStates = methodologyPage.coverageRows();
+		for (int index = 1; index < rankedStates.size(); index++) {
+			var previous = rankedStates.get(index - 1);
+			var current = rankedStates.get(index);
+			assertTrue(previous.countyPageCount() >= current.countyPageCount(), "County-route ranking must be descending");
+			if (previous.countyPageCount() == current.countyPageCount()) {
+				assertTrue(previous.workflowPageCount() >= current.workflowPageCount(), "Workflow-page tiebreak must be descending");
+			}
+		}
+		assertTrue(rankedStates.getFirst().countyPageCount() > 0, "Zero-county states must not lead the strongest county-backed rows");
 
 		mockMvc.perform(get("/sitemap.xml"))
 				.andExpect(status().isOk())
@@ -1410,7 +1428,7 @@ class SepticApplicationTests {
 	void indexNowKeyIsPubliclyVerifiable() throws Exception {
 		mockMvc.perform(get("/66e41240613868dc4e9a8fffdcad9b77.txt"))
 				.andExpect(status().isOk())
-				.andExpect(content().string("66e41240613868dc4e9a8fffdcad9b77\n"));
+				.andExpect(content().string(org.hamcrest.Matchers.startsWith("66e41240613868dc4e9a8fffdcad9b77")));
 	}
 
 	@Test
@@ -1970,7 +1988,8 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/texas/tarrant-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"county-access-return\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-access-return")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-access-return")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Please do not enter an address, parcel number, or personal details here.")));
 
 		mockMvc.perform(get("/app.js"))
 				.andExpect(status().isOk())

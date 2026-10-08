@@ -1240,7 +1240,7 @@
                         <div>
                             <span class="eyebrow">Back from the official route?</span>
                             <h3>Record the real outcome</h3>
-                            <p>An empty online search is not an official no-record response.</p>
+                            <p>An empty online search is not an official no-record response. If you share what happened, it helps us keep this county guide accurate. Please do not enter an address, parcel number, or personal details here.</p>
                             @if ("NC::alamance-county".equals(countyAccessProfile.countyKey()))
                                 <button class="county-access-return__sent" type="button" data-alamance-request-sent>I sent the request — add a 3-business-day reminder</button>
                             @endif
