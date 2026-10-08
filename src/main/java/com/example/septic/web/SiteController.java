@@ -102,6 +102,7 @@ public class SiteController {
     private static final String NC_PERMIT_LOOKUP_SLUG = "north-carolina-septic-permit-lookup";
     private static final String TX_OSSF_RECORDS_SLUG = "texas-ossf-records-search";
     private static final String FL_OSTDS_LOOKUP_SLUG = "florida-ostds-permit-lookup";
+    private static final String ONLINERME_RECORDS_SLUG = "onlinerme-septic-records";
     private static final String DHEC_PERMIT_LOOKUP_SLUG = "dhec-septic-permit-lookup";
     private static final String TENNESSEE_PROPERTY_ASSESSMENT_URL = "https://assessment.cot.tn.gov/TPAD";
     private static final String TENNESSEE_SSDS_PROGRAM_URL =
@@ -2393,6 +2394,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/north-carolina-septic-permit-lookup", "/north-carolina-septic-permit-lookup/",
             "/texas-ossf-records-search", "/texas-ossf-records-search/",
             "/florida-ostds-permit-lookup", "/florida-ostds-permit-lookup/",
+            "/onlinerme-septic-records", "/onlinerme-septic-records/",
             "/dhec-septic-permit-lookup", "/dhec-septic-permit-lookup/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
@@ -2404,6 +2406,26 @@ The goal is to settle the permit path before we frame the project as a normal in
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
+        if (ONLINERME_RECORDS_SLUG.equals(contentPage.slug())) {
+            List<CountyRecordsPage> onlineRmeCounties = List.of(
+                    researchDataService.findPublicCountyRecordsPage("washington", "king-county").orElseThrow(),
+                    researchDataService.findPublicCountyRecordsPage("washington", "snohomish-county").orElseThrow(),
+                    researchDataService.findPublicCountyRecordsPage("virginia", "loudoun-county").orElseThrow()
+            );
+            Map<String, String> countyPaths = new LinkedHashMap<>();
+            Map<String, List<SourceRecord>> countySources = new LinkedHashMap<>();
+            for (CountyRecordsPage county : onlineRmeCounties) {
+                var state = researchDataService.findStateByCode(county.stateCode()).orElseThrow();
+                countyPaths.put(county.key(), county.path(state.slug()));
+                countySources.put(county.key(), researchDataService.getSources(county.officialSourceIds()));
+            }
+            model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+            model.addAttribute("contentPage", contentPage);
+            model.addAttribute("onlineRmeCounties", onlineRmeCounties);
+            model.addAttribute("countyPaths", countyPaths);
+            model.addAttribute("countySources", countySources);
+            return "pages/onlinerme-records-page";
+        }
         List<Map.Entry<StateMoneyPage, StateProfile>> rankedStateEntries = rankedStateEntriesForContentPage(contentPage);
         List<StateMoneyPageLink> stateMoneyPageLinks = rankedStateEntries.stream()
                 .map(entry -> new StateMoneyPageLink(
@@ -3463,6 +3485,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         int countyPageCount = researchDataService.getPublicCountyRecordsPages().size();
         int sourceBackedPageCount = sourceBackedPageCount();
         int sourceCount = publishedSourceRecords().size();
+        int detailedSearchGuideCount = countySearchGuides(null).size();
 
         return new TrustOperationsPageView(
                 "Methodology",
@@ -3475,6 +3498,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         new TrustMetricView("State guides", String.valueOf(stateGuideCount), "Published only after a state source set, local override note, and homeowner action path exist."),
                         new TrustMetricView("State workflow pages", String.valueOf(stateWorkflowCount), "Records, permit, buyer, inspection, replacement, and cost pages tied back to state context."),
                         new TrustMetricView("County records pages", String.valueOf(countyPageCount), "Local file paths for county-level records, request methods, and quote gates."),
+                        new TrustMetricView("Detailed county search guides", String.valueOf(detailedSearchGuideCount), "A subset of county pages with reviewed search windows, identifiers, document coverage, fallback steps, and source links."),
                         new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records currently backing the public research layer.")
                 ),
                 List.of(
@@ -3507,8 +3531,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                                 "/septic-system-cost-calculator/"
                         )
                 ),
-                "Strongest live workflow backbones",
-                "These states currently have the deepest blend of state workflow pages, county file paths, source count, confidence, and verification date.",
+                "County-backed workflow leaders",
+                "Ranked by published county route count, then state workflow page count. Source count, confidence, and state-guide review date are shown as context, not ranking inputs.",
                 coverageRows(8),
                 List.of(),
                 "Methodology only matters if it changes publishing behavior.",
@@ -3578,8 +3602,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                                 "/methodology/"
                         )
                 ),
-                "Source-backed states to inspect first",
-                "These rows show where the public network has the most source depth and local workflow surface today.",
+                "County-backed workflow leaders",
+                "Ranked by published county route count, then state workflow page count. Source count, confidence, and state-guide review date are shown as context, not ranking inputs.",
                 coverageRows(8),
                 List.of(),
                 "The correction loop is deliberately public.",
@@ -3601,6 +3625,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         int countySpecificRouteCount = CountyAccessProfileCatalog.countySpecificProfileCount();
         int preparedFieldPackCount = CountyAcquisitionProfileCatalog.preparedFieldPackCount();
         int startingPointOnlyCount = Math.max(0, countyPageCount - countySpecificRouteCount);
+        int detailedSearchGuideCount = countySearchGuides(null).size();
 
         return new TrustOperationsPageView(
                 "Coverage",
@@ -3616,6 +3641,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         new TrustMetricView("Official sources", String.valueOf(sourceCount), "Distinct source records attached to public state, workflow, and county pages."),
                         new TrustMetricView("County-specific handoffs", String.valueOf(countySpecificRouteCount), "Routes with a reviewed county-specific search, request, phone, or office handoff."),
                         new TrustMetricView("Prepared official field packs", String.valueOf(preparedFieldPackCount), "Routes whose preparation fields were checked against a current or archived county-authored form, portal, search, or phone instruction."),
+                        new TrustMetricView("Detailed search guides", String.valueOf(detailedSearchGuideCount), "A subset of county pages with reviewed search windows, identifiers, document coverage, fallback steps, and source links."),
                         new TrustMetricView("Official starting points only", String.valueOf(startingPointOnlyCount), "Published county pages that confirm an official source but do not claim a verified county-specific intake.")
                 ),
                 List.of(
@@ -3649,7 +3675,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                         )
                 ),
                 "Coverage rows to use for prioritization",
-                "Sorted by county records depth, then state workflow depth. Use this table for manual indexing and next-page selection.",
+                "Sorted by county route count, then state workflow page count. Source count, confidence, and state-guide review date are context only. The "
+                        + preparedFieldPackCount + " prepared field packs and " + detailedSearchGuideCount
+                        + " detailed search guides are subsets of the county network, not extra routes.",
                 coverageRows(18),
                 countyFinderLinks(50),
                 "The next expansion should be selective, not massive.",
@@ -3689,10 +3717,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                     );
                 })
                 .sorted(Comparator
-                        .comparingInt(CoverageStateRowView::countyPageCount)
-                        .reversed()
-                        .thenComparingInt(CoverageStateRowView::workflowPageCount)
-                        .reversed()
+                        .comparingInt(CoverageStateRowView::countyPageCount).reversed()
+                        .thenComparing(Comparator.comparingInt(CoverageStateRowView::workflowPageCount).reversed())
                         .thenComparing(CoverageStateRowView::stateName))
                 .limit(limit)
                 .toList();
@@ -3757,10 +3783,8 @@ The goal is to settle the permit path before we frame the project as a normal in
                 })
                 .filter(backbone -> backbone.countyCount() > 0 || backbone.workflowPageCount() > 0)
                 .sorted(Comparator
-                        .comparingInt(StateCountyBackbone::countyCount)
-                        .reversed()
-                        .thenComparingInt(StateCountyBackbone::workflowPageCount)
-                        .reversed()
+                        .comparingInt(StateCountyBackbone::countyCount).reversed()
+                        .thenComparing(Comparator.comparingInt(StateCountyBackbone::workflowPageCount).reversed())
                         .thenComparing(backbone -> backbone.state().stateName()))
                 .toList();
 

@@ -4275,6 +4275,7 @@
         "/septic-as-built-records/#read-a-septic-drawing",
         "/septic-permit-process/#permit-status-reading",
         "/septic-record-brief-example/",
+        "/onlinerme-septic-records/",
         "/septic-records-checklist/washington/",
         "/septic-permit-process/washington/",
         "/buying-a-house-with-a-septic-system/washington/",
@@ -5546,6 +5547,7 @@
       ],
       "internalLinkTargets": [
         "/septic-records-checklist/virginia/",
+        "/onlinerme-septic-records/",
         "/septic-permit-process/virginia/",
         "/buying-a-house-with-a-septic-system/virginia/",
         "/septic-system-cost-calculator/virginia/"
@@ -9589,6 +9591,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/onlinerme-septic-records/",
         "/septic-records-checklist/washington/",
         "/septic-permit-process/washington/",
         "/buying-a-house-with-a-septic-system/washington/",

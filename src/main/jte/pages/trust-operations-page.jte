@@ -91,7 +91,7 @@
                                     <th scope="col">County pages</th>
                                     <th scope="col">Source depth</th>
                                     <th scope="col">Confidence</th>
-                                    <th scope="col">Last verified</th>
+                                    <th scope="col">State guide reviewed</th>
                                 </tr>
                             </thead>
                             <tbody>

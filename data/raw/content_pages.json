@@ -2181,6 +2181,85 @@
       "publishStatus": "published"
     },
     {
+      "slug": "onlinerme-septic-records",
+      "intentType": "workflow_page",
+      "primaryKeyword": "OnlineRME septic records",
+      "secondaryKeywords": [
+        "Online RME septic records",
+        "OnlineRME septic search by address",
+        "OnlineRME septic as-built records",
+        "OnlineRME county records"
+      ],
+      "title": "OnlineRME Septic Records: Search Tips by County",
+      "metaDescription": "Use OnlineRME for septic records in King, Snohomish, and Loudoun counties. See what each county says is available and where to go when a file is missing.",
+      "updatedAt": "2026-10-08",
+      "reviewedAt": "2026-10-08",
+      "introCopy": "OnlineRME is a shared search platform, not one nationwide septic-file database. The county still controls what records appear, which search keys work, and what to do when nothing is returned. These official county instructions show why the same search can surface different records in different places.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "buying_home",
+      "targetReader": "For owners, buyers, real-estate professionals, and septic contractors who have been directed to OnlineRME and need to know what to search for, what the results can establish, and which county fallback applies.",
+      "deepDiveParagraphs": [
+        "Start with the county named on the property record, not the platform name alone. Select the correct county inside OnlineRME, then search with the official county's recommended parcel or address format. A search result is evidence from that county's system; it is not automatically a complete or current condition report.",
+        "King County separates its septic-record search from OnlineRME: use the county search for site designs, historic inspection reports, and as-built drawings, and use OnlineRME for operation and maintenance records. King County says a time-of-sale inspection report may also contain an updated drawing under Application History.",
+        "Snohomish County says OnlineRME contains as-built drawings and service-history reports. If no record appears, the county says older systems may predate record requirements and additional material may still be held by the Health Department; request a file search instead of concluding that no record exists.",
+        "Loudoun County recommends selecting Virginia and Loudoun County, then searching by Tax ID (PIN plus 000) or street number. The county warns that the street-number search may not return every file; scanned pre-installation records and subdivision parent files are separate searches.",
+        "These examples are not interchangeable county rules. Before relying on a hit, identify the file type, property match, date, and any approval or final-inspection status. A historical drawing can help explain a layout but does not establish current location, condition, or later changes."
+      ],
+      "fitBullets": [
+        "You were sent to OnlineRME but are unsure which county or record category to select.",
+        "You found a document but need to distinguish an as-built, service history, inspection, or permit record.",
+        "The search returned no result and you need the correct county-specific fallback before treating the file as missing."
+      ],
+      "decisionSteps": [
+        "Confirm the property county and choose that county inside OnlineRME; do not assume the platform searches every county at once.",
+        "Follow that county's own search-key instructions. For Loudoun, try the PIN-plus-000 Tax ID format; a street-number search may be incomplete.",
+        "Name the exact artifact you need. In King County, use the separate county search for site designs and as-builts and OnlineRME for operation and maintenance records.",
+        "If no file appears, use the county's published fallback: Snohomish says additional older records may be held by its Health Department; Loudoun directs users to contact its Health Department; King County provides an as-built help email and phone route."
+      ],
+      "lowEndBreakers": [
+        "A search in the wrong county or with an incomplete address key can look like a missing file.",
+        "OnlineRME results may not include every record category held by a county; King County explicitly maintains a separate septic-record search.",
+        "An old drawing or service report does not prove the system's current condition, exact present-day location, or later repairs."
+      ],
+      "quotePrepChecklist": [
+        "County, street address, parcel or Tax ID in the format the county recommends, and any known permit or application number.",
+        "The exact file needed: as-built/site drawing, permit, inspection or time-of-sale report, service history, or repair/approval record.",
+        "Searches already tried, county selected, result date, and any county response or reference number. Do not treat a blank result as an official no-record determination."
+      ],
+      "driverBullets": [
+        "The shared platform name hides county-specific collections and search instructions.",
+        "A useful result depends on matching the property and the record type, then following the county's own missing-record path.",
+        "The county examples expose a practical distinction: King separates maintenance history from its site-design/as-built search, while Snohomish and Loudoun describe their own OnlineRME collections and fallbacks."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does OnlineRME search septic records for every U.S. county?",
+          "answer": "No. OnlineRME is used by participating jurisdictions. Select the county that holds the property's file and follow that county's search instructions."
+        },
+        {
+          "question": "Why does King County send me to more than one search?",
+          "answer": "King County describes its own search for site designs, historic inspections, and as-built drawings, while OnlineRME is a separate route for operation and maintenance records."
+        },
+        {
+          "question": "What should I do if OnlineRME finds nothing?",
+          "answer": "Do not assume the county has no record. Try the county-recommended property keys and the county's separate archive or records-request fallback. Older files may not be online."
+        },
+        {
+          "question": "Does an OnlineRME drawing prove the septic system is in good condition now?",
+          "answer": "No. A historical drawing or service record is not a current site inspection and may not reflect later changes or present-day condition."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/king-county/",
+        "/septic-records-checklist/washington/snohomish-county/",
+        "/septic-records-checklist/virginia/loudoun-county/",
+        "/septic-as-built-records/",
+        "/septic-records-request-builder/",
+        "/septic-permit-search-by-address/"
+      ],
+      "publishStatus": "published"
+    },
+    {
       "slug": "dhec-septic-permit-lookup",
       "intentType": "workflow_page",
       "primaryKeyword": "DHEC septic permit lookup",
