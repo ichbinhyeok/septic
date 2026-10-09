@@ -40,7 +40,8 @@ public record RecordHelpEntry(String intent, String title, String description, S
         return of(switch (slug) {
             case "septic-tank-location-records" -> "location";
             case "buying-a-house-with-a-septic-system", "septic-transfer-compliance" -> "buying";
-            case "septic-permit-search-by-address", "how-to-find-septic-records-online", "septic-permit-records-request" -> "missing";
+            case "septic-permit-search-by-address", "how-to-find-septic-records-online", "septic-permit-records-request", "no-septic-records-found" -> "missing";
+            case "how-to-read-septic-as-built" -> "review";
             default -> "records";
         });
     }

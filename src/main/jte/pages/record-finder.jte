@@ -80,6 +80,8 @@
                        data-track-target-type="lead_form">Ask SepticPath to investigate the missing file →</a>
                 </article>
             </div>
+            <p><a href="/no-septic-records-found/" data-track-click="nav" data-track-source-context="finder_missing_guide" data-track-target-type="internal_page">Empty search, missing drawing or blocked portal? Follow the next steps →</a></p>
+            <p><a href="/how-to-read-septic-as-built/" data-track-click="nav" data-track-source-context="finder_drawing_guide" data-track-target-type="internal_page">Have the file? Learn how to read the drawing →</a></p>
             <p><a href="/septic-tank-location-records/#location-start" data-track-click="nav" data-track-source-context="finder_location_guide" data-track-target-type="internal_page">Need the tank or drainfield location? Read the address-to-drawing guide →</a></p>
         </div>
     </section>

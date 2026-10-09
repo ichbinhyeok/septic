@@ -4,6 +4,7 @@
             <span class="eyebrow">Inside a returned agency file</span>
             <h2 id="drawing-guide-heading">What can you actually read from a septic drawing?</h2>
             <p>We requested a Tennessee agency file and reviewed its historical permit and layout. Here are the recorded findings, explained in plain English.</p>
+            <p><a href="/how-to-read-septic-as-built/" data-track-click="nav" data-track-source-context="as_built_reading_guide" data-track-target-type="internal_page">New to these labels? Read the step-by-step drawing guide →</a></p>
             <nav class="record-learning__contents" aria-label="Drawing reading guide"><a href="#layout-case">Read the investigation</a><a href="#drawing-labels">Follow the labels</a><a href="#drawing-comparison">Compare the pages</a><a href="#drawing-checklist">Check your file</a></nav>
         </header>
         <article class="record-learning__story" id="layout-case" data-reading-milestone="layout-case">
