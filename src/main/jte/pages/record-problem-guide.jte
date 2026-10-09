@@ -21,19 +21,7 @@
             @if (reading)
             <figure class="problem-plan">
                 <span class="problem-plan__label">A drawing is a set of clues.</span>
-                <svg viewBox="0 0 580 340" role="img" aria-labelledby="plan-title plan-description">
-                    <title id="plan-title">Illustration of the labels to check on a septic drawing</title>
-                    <desc id="plan-description">House connected to tank, then distribution box and three field lines. Numbered links below explain components, dimensions, field lines and the document stage. This is an illustration, not a property record.</desc>
-                    <g fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M50 75h125v125H50z M175 137h62 M237 115h73v45h-73z M310 137h55 M365 120h28v35h-28z M393 137h35v-60h112 M428 137h112 M428 137v60h112"/>
-                        <path d="M185 190h48 M185 183v14 M233 183v14" stroke-dasharray="3 4"/>
-                        <path d="M430 237h110 M430 230v14 M540 230v14"/>
-                    </g>
-                    <g fill="currentColor" font-size="15"><text x="73" y="140">HOUSE</text><text x="252" y="141">TANK</text><text x="342" y="102">D-BOX</text><text x="438" y="64">FIELD LINES</text><text x="187" y="217">distance</text><text x="439" y="263">line length</text></g>
-                    <g class="problem-plan__markers"><circle cx="275" cy="83" r="17"/><circle cx="209" cy="172" r="17"/><circle cx="554" cy="138" r="17"/><circle cx="77" cy="274" r="17"/></g>
-                    <g fill="white" text-anchor="middle" font-size="15" font-weight="700"><text x="275" y="88">1</text><text x="209" y="177">2</text><text x="554" y="143">3</text><text x="77" y="279">4</text></g>
-                    <text x="103" y="280" fill="currentColor" font-size="15">Check title + date + approval</text>
-                </svg>
+                <img class="problem-plan__image" src="/images/guides/as-built-reading-v1.webp" width="1536" height="1024" fetchpriority="high" alt="Illustrative paper drawing: a house connects to a septic tank, distribution box and three field lines. Sage highlights identify the components and distance labels; title, date and approval fields show what to check on the record. Not an actual property plan.">
                 <nav class="problem-plan__keys" aria-label="Drawing labels"><a href="#components">01 Components</a><a href="#dimensions">02 Dimensions</a><a href="#field-lines">03 Field lines</a><a href="#document-stage">04 Record stage</a></nav>
                 <figcaption>SepticPath reading illustration. Not a property plan; not to scale. Symbols vary by file.</figcaption>
             </figure>

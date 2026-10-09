@@ -34,6 +34,18 @@ class RecordProblemGuideTest {
     }
 
     @Test
+    void readingIllustrationLoadsWithoutReplacingAccessibleGuideLinks() throws Exception {
+        String reading = mvc.perform(get("/how-to-read-septic-as-built/")).andReturn().getResponse().getContentAsString();
+        assertThat(reading).contains("/images/guides/as-built-reading-v1.webp", "width=\"1536\"", "height=\"1024\"",
+                "Not an actual property plan", "Not a property plan; not to scale",
+                "href=\"#components\"", "href=\"#dimensions\"", "href=\"#field-lines\"", "href=\"#document-stage\"");
+        assertThat(reading).doesNotContain("<svg viewBox=\"0 0 580 340\"");
+        var image = mvc.perform(get("/images/guides/as-built-reading-v1.webp")).andReturn().getResponse();
+        assertThat(image.getStatus()).isEqualTo(200);
+        assertThat(image.getContentAsByteArray().length).isGreaterThan(1000);
+    }
+
+    @Test
     void eachGuidePreservesTheCorrectIntakeIntentAndSourcePage() throws Exception {
         String missing = mvc.perform(get("/no-septic-records-found/")).andReturn().getResponse().getContentAsString();
         assertThat(missing).contains("intent=missing", "source=%2Fno-septic-records-found%2F",

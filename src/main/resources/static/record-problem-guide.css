@@ -7,8 +7,7 @@
 .problem-text-link { display: inline-block; text-underline-offset: 5px; }
 .problem-plan { margin: 0; padding: 24px 0; }
 .problem-plan__label { display: block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid #bacac2; padding-bottom: 18px; }
-.problem-plan svg { display: block; width: 100%; margin: 24px 0 6px; }
-.problem-plan__markers { fill: #17776b; }
+.problem-plan__image { display: block; width: 100%; height: auto; margin: 22px 0 18px; }
 .problem-plan__keys { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid #bacac2; gap: 0 20px; }
 .problem-plan__keys a { padding: 12px 0; font-size: 14px; text-decoration: none; border-bottom: 1px solid #d6dfd8; transition: color .15s, padding-left .15s; }
 .problem-plan__keys a:hover { color: #17776b; padding-left: 5px; }
