@@ -1,6 +1,8 @@
 # Record-problem search entrances
 
-Implemented on branch `codex/record-problem-guides`; not deployed.
+Implemented on branch `codex/record-problem-guides`; release approved October 9,
+2026 through PR #66. Production verification is recorded separately after the
+deployment workflow completes.
 
 ## Search and service scope
 
@@ -18,7 +20,7 @@ Official sources reviewed October 8, 2026:
 - [Snohomish as-built records](https://www.snohd.org/159/As-Built-Records): information an as-built can contain; records not visible online can require the department's assistance.
 - [EPA septic questions](https://www.epa.gov/septic/frequent-questions-septic-systems): local record drawings and permitting authorities.
 
-County instructions are labeled as examples, not national rules. Source-backed statements are paraphrased. The page does not expose new customer files, identities, correspondence or private circumstances. The reading illustration is original educational markup, labeled as an illustration and not a property plan. The worked calculation uses already-published historical-record facts and links to that existing explanation; it does not claim a new case or present-day locate.
+County instructions are labeled as examples, not national rules. Source-backed statements are paraphrased. The page does not expose new customer files, identities, correspondence or private circumstances. The reading illustration is a generated educational paper-drawing image, labeled as an illustration and not a property plan. Its prompt and provenance are recorded in `docs/design/as-built-reading-image.md`. The worked calculation uses already-published historical-record facts and links to that existing explanation; it does not claim a new case or present-day locate.
 
 ## Verification and measurement
 
