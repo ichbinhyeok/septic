@@ -1,0 +1,13 @@
+@param String stateCode
+@param String countySlug
+@if ("AL".equals(stateCode) && "morgan-county".equals(countySlug))
+<section class="section section--tight"><div class="container"><p class="eyebrow">A lesson from a reviewed local file</p><h2>Read the approval and installer pages together.</h2><p>A Morgan County file contained differing field-length figures on its approval and installer pages. We kept the discrepancy visible and separated a washer line from the septic field.</p><a href="/septic-records-before-pool/">See the layout record checks →</a></div></section>
+@elseif ("WA".equals(stateCode) && "king-county".equals(countySlug))
+<section class="section section--tight"><div class="container"><p class="eyebrow">A lesson from a reviewed local file</p><h2>Installed and finalized are different record stages.</h2><p>One historical King County snapshot showed installation and a satisfactory inspection while its final record-drawing workflow remained open. Check the approved record drawing separately; that snapshot does not establish today's permit status.</p><a href="/septic-final-approval-records/">Check the final document stage →</a></div></section>
+@elseif ("TX".equals(stateCode) && "hays-county".equals(countySlug))
+<section class="section section--tight"><div class="container"><h2>A portal no-hit did not end this search.</h2><p>In a reviewed Hays County request, an empty signed-in portal search was followed by original documents through the records process. A portal result is not the same as a custodian-confirmed absence.</p><a href="/no-septic-records-found/">What to try after an empty search →</a></div></section>
+@elseif ("NC".equals(stateCode) && "iredell-county".equals(countySlug))
+<section class="section section--tight"><div class="container"><h2>Open the file, then check the property.</h2><p>One reviewed map search linked documents for a neighboring property. Compare the address, parcel, lot and drawing references on the pages themselves. Do not assume an older parcel reference is the parent parcel without evidence.</p><a href="/how-to-read-septic-as-built/">Check the record before interpreting it →</a></div></section>
+@elseif ("CA".equals(stateCode) && "san-diego-county".equals(countySlug))
+<section class="section section--tight"><div class="container"><h2>A recovered permit may still leave the layout unanswered.</h2><p>A reviewed San Diego public-library file supplied a historical permit but no layout drawing; the final field was blank. Finding an original document does not guarantee that it answers every question about the system.</p><a href="/septic-final-approval-records/">Understand missing final records →</a></div></section>
+@endif

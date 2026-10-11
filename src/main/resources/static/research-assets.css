@@ -6,6 +6,11 @@
 .record-stage-comparison dl > div { border-left: 3px solid #27816d; padding-left: 18px; }
 .record-stage-comparison dt { font-size: 14px; }
 .record-stage-comparison dd { margin: 8px 0 0; font-size: clamp(30px, 4vw, 48px); line-height: 1; }
+.record-stage-comparison__visual { margin: 28px 0 18px; }
+.record-stage-comparison__visual > a { display: block; }
+.record-stage-comparison__visual img { display: block; width: 100%; height: auto; background: #e6dfd2; }
+.record-stage-comparison__visual figcaption { margin-top: 10px; font-size: 13px; line-height: 1.6; }
+.record-stage-comparison__visual > a:focus-visible { outline: 3px solid #27816d; outline-offset: 5px; }
 .local-archive-steps ol { padding-left: 22px; }
 .local-archive-steps li { margin: 12px 0; padding-left: 6px; }
 .record-stage-comparison a, .local-archive-steps a { text-underline-offset: 4px; overflow-wrap: anywhere; }

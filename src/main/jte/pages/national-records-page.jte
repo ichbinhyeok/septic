@@ -71,6 +71,9 @@
         @endif
 
         @template.tags.recordLearningGuide(slug = contentPage.slug())
+        @if ("septic-tank-location-records".equals(contentPage.slug()))
+        <section class="section section--tight"><div class="container"><h2>Planning a pool?</h2><p>Find the installed layout and any reserved repair area, then confirm the site locally.</p><a href="/septic-records-before-pool/">Find septic records before pool planning →</a></div></section>
+        @endif
 
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "national_records_evidence")
@@ -78,6 +81,11 @@
 
         @if ("septic-as-built-records".equals(contentPage.slug()))
             <div class="container">@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read tank, line-length and approval labels step by step →</a></p></div>
+        @endif
+        @if ("septic-as-built-records".equals(contentPage.slug()))
+        <div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = "/septic-as-built-records/")</div>
+        @elseif ("how-to-find-septic-records-online".equals(contentPage.slug()))
+        <div class="container">@template.tags.workStorySpotlight(slug = "harnett", sourcePath = "/how-to-find-septic-records-online/")</div>
         @endif
         <section class="national-records-intent">
             <div class="container">

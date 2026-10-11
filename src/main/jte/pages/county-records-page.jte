@@ -402,6 +402,7 @@
     @if (countySearchGuide != null)
         @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
     @endif
+    @template.tags.caseRouteInsight(stateCode = state.stateCode(), countySlug = countyPage.countySlug())
 
     @if (countyPage.operationalProof() != null)
         @template.tags.countyOperationalProof(
@@ -409,6 +410,14 @@
             countyName = countyPage.countyName(),
             sourceContext = "county_operational_proof_" + state.stateCode().toLowerCase() + "_" + countyPage.countySlug()
         )
+    @endif
+
+    @if ("TN".equals(state.stateCode()) && "davidson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("NC".equals(state.stateCode()) && "harnett-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "harnett", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("TN".equals(state.stateCode()) && "williamson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "williamson", sourcePath = countyPage.path(state.slug()))</div></section>
     @endif
 
     @if (countyAccessProfile != null)

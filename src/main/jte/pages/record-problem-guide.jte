@@ -58,11 +58,16 @@
                     <a href="/septic-as-built-records/#drawing-labels" data-track-click="nav" data-track-source-context="reading_original_example" data-track-target-type="case_study">Open the actual historical sketch and its explanation →</a>
                 </div>
                 @template.tags.recordStageComparison()
+                @template.tags.workStorySpotlight(slug = "davidson", sourcePath = sourcePath)
+                <section><h2>Check the property and the component.</h2><p>In a reviewed Iredell County search, linked documents referred to a neighboring property. A nearby map result is not a property match: compare the street, parcel, lot and drawing before using the file.</p><p>In a separate Stark County file, a 2,100-gallon figure described each absorption well, not the septic tank. Keep tank, pump chamber and disposal components separate when reading capacity.</p></section>
+                @template.tags.caseResearchLinks()
                 <div class="problem-example" id="tank-size-and-bedrooms"><h2>Does tank size tell you the approved bedroom count?</h2><p>Not by itself. In the published Anderson file, the tank was recorded as 1,000 gallons and design flow as 360 gallons per day, but an approved bedroom count was not directly stated. We kept that unanswered rather than converting either number into an approval.</p><p><a href="/septic-bedroom-permit-checker/">Compare the listing with the written bedroom approval →</a></p></div>
                 <p class="problem-note">Use a historical drawing as a starting point for a local professional. It does not establish today's condition or authorize excavation.</p>
                 @else
                 <span class="eyebrow">Start with the result you actually saw</span>
                 <h2>What stopped your search?</h2>
+                @template.tags.workStorySpotlight(slug = "harnett", sourcePath = sourcePath)
+                <section><h2>An empty search is not a no-record finding.</h2><p>In a reviewed Hays County request, a signed-in portal search returned no result, but the later records process supplied original documents. An index search and the custodian's file search are different steps. Try alternate identifiers and the official record request route before concluding that no file exists.</p><a href="/septic-repair-records/">Need to verify a later repair? →</a></section>
                 <div class="problem-outcomes">
                     <details open><summary>No matching address or parcel</summary><p>Confirm the county and current parcel in the official assessor or GIS source. Retry the septic index with the search keys it accepts: permit number, shorter street wording, former owner, old road name, subdivision or lot. Keep candidate results separate until their property identifiers match.</p><a href="/septic-permit-search-by-address/#old-address-records">Follow the older-address search →</a></details>
                     <details><summary>The permit appears, but no drawing opens</summary><p>Save the permit number. Check for separate attachments and related inspection or repair entries. Ask the custodian specifically for the as-built, site sketch, approved plan and final approval pages. A missing scan and an absent file are different findings.</p><a href="/septic-as-built-records/">Find the drawing behind the permit →</a></details>

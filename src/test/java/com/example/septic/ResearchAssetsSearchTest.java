@@ -34,7 +34,9 @@ class ResearchAssetsSearchTest {
 
     @Test void comparisonsPreserveStagesAndDoNotInventCapacity() throws Exception {
         assertThat(html("/how-to-read-septic-as-built/")).contains("id=\"permit-vs-as-built\"", "300 ft", "200 ft",
-                "Do not average", "id=\"tank-size-and-bedrooms\"", "not directly stated");
+                "Do not average", "id=\"tank-size-and-bedrooms\"", "not directly stated",
+                "/images/guides/permit-final-comparison-v1.webp", "visually reconstructed", "not original agency documents",
+                "width=\"1536\"", "height=\"1024\"");
         assertThat(html("/septic-bedroom-permit-checker/")).contains("capacity-source-example", "invented bedroom approval");
         assertThat(html("/septic-as-built-records/")).contains("permit-vs-as-built");
         assertThat(html("/septic-permit-process/")).contains("permit-vs-as-built");
