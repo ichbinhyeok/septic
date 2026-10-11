@@ -1,0 +1,12 @@
+.record-stage-comparison, .local-archive-steps { margin: 48px 0; max-width: 850px; color: inherit; }
+.record-stage-comparison { border-block: 1px solid #a9bbb2; padding: 28px 0; }
+.record-stage-comparison h2, .local-archive-steps h2 { font-size: clamp(25px, 3vw, 36px); line-height: 1.16; letter-spacing: -.025em; }
+.record-stage-comparison p, .local-archive-steps p, .local-archive-steps li { line-height: 1.7; }
+.record-stage-comparison dl { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0; }
+.record-stage-comparison dl > div { border-left: 3px solid #27816d; padding-left: 18px; }
+.record-stage-comparison dt { font-size: 14px; }
+.record-stage-comparison dd { margin: 8px 0 0; font-size: clamp(30px, 4vw, 48px); line-height: 1; }
+.local-archive-steps ol { padding-left: 22px; }
+.local-archive-steps li { margin: 12px 0; padding-left: 6px; }
+.record-stage-comparison a, .local-archive-steps a { text-underline-offset: 4px; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .record-stage-comparison dl { grid-template-columns: 1fr; } .record-stage-comparison, .local-archive-steps { margin: 30px 0; } }

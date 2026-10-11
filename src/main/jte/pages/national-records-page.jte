@@ -76,6 +76,9 @@
             @template.tags.recordEvidence(sourceContext = "national_records_evidence")
         </div>
 
+        @if ("septic-as-built-records".equals(contentPage.slug()))
+            <div class="container">@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read tank, line-length and approval labels step by step →</a></p></div>
+        @endif
         <section class="national-records-intent">
             <div class="container">
                 <span class="eyebrow">Choose the answer you need</span>

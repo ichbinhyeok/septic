@@ -2397,6 +2397,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/texas-ossf-records-search", "/texas-ossf-records-search/",
             "/florida-ostds-permit-lookup", "/florida-ostds-permit-lookup/",
             "/onlinerme-septic-records", "/onlinerme-septic-records/",
+            "/septicsearch-records", "/septicsearch-records/",
             "/dhec-septic-permit-lookup", "/dhec-septic-permit-lookup/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
@@ -2408,6 +2409,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
+        if ("septicsearch-records".equals(slug)) {
+            model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+            model.addAttribute("contentPage", contentPage);
+            return "pages/septicsearch-records";
+        }
         if (Set.of("no-septic-records-found", "how-to-read-septic-as-built").contains(slug)) {
             model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
             model.addAttribute("contentPage", contentPage);

@@ -9111,10 +9111,11 @@
       "stateCode": "WI",
       "countyName": "St. Croix County",
       "countySlug": "st-croix-county",
+      "updatedAt": "2026-10-11",
       "title": "St. Croix County Wisconsin Septic Records Checklist and Permit Lookup",
       "metaDescription": "Find St. Croix County sanitary permits, maintenance history, and scanned property files. Compare the original plan, revisions, and inspection before relying on the record.",
       "introCopy": "Use St. Croix County's Ascent search to find the sanitary permit and maintenance history by parcel or site address. Open the permit documents as well as the summary, and use the county's scanned Property Files for the recorded packet. Compare the permit, plan revisions, and inspection before treating a single number as the full system description.",
-      "uniqueAngle": "St. Croix stands out because owners do not have to guess where the file lives. The county tells them exactly how to search maintenance history and permit documents online, then pairs that record trail with repair, reconnection, and existing-tank certification forms.",
+      "uniqueAngle": "St. Croix publishes separate routes for sanitary maintenance history, SAN permit documents and scanned Property Files. Follow those documented paths, but treat portal loops or timeouts as access failures, not proof that no record exists.",
       "targetReader": "Best for St. Croix County buyers, owners, sellers, and remodelers who need to know whether the file problem is missing maintenance history, missing sanitary permits, or an existing-system certification issue.",
       "officeLabel": "St. Croix County sanitary program",
       "officeUrl": "https://sccwi.gov/328/Sanitary-Program",
@@ -16545,10 +16546,11 @@
       "stateCode": "TN",
       "countyName": "Davidson County",
       "countySlug": "davidson-county",
+      "updatedAt": "2026-10-11",
       "title": "Davidson County TN Septic Records and Property File Search",
       "metaDescription": "Search Davidson County septic engineering files by parcel in Metro Nashville's scanned records portal, with the published phone and email fallback for missing files.",
       "introCopy": "Davidson County has a more direct path than the statewide starting point: confirm the map and parcel number or tax ID, search Metro Nashville's scanned Health Environmental Engineering records, and export the property-matched file. If the desired record is absent, use the published septic records phone or email instead of treating an empty portal result as proof that no file exists.",
-      "uniqueAngle": "Nashville-area searches often need to separate the TDEC SSDS path from contract-county routing before a buyer or builder trusts the file. The useful move is not another broad Tennessee explainer; it is knowing whether the TDEC SSDS record search, a regional contact, or a contract county office owns the next file.",
+      "uniqueAngle": "Metro Nashville maintains a local HealthCode archive for Davidson County environmental engineering files. Match the full parcel, open the scanned pages, and distinguish design approval from construction inspection rather than starting with the statewide TDEC viewer.",
       "targetReader": "Best for Davidson County buyers, owners, agents, and builders who need the septic permit file, inspection letter, as-built, or repair record before trusting a quote, sale story, or project schedule.",
       "officeLabel": "Metro Nashville Public Health Department Environmental Health",
       "officeUrl": "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems",
@@ -16556,9 +16558,9 @@
       "recordsUrl": "https://www.nashville.gov/departments/health/environmental-health/septic-and-sewage-disposal-systems",
       "contactLine": "Property File Search support: 615-340-5630 or septicinfo@nashville.gov",
       "decisionSteps": [
-        "Open the TDEC SSDS permits hub first and use the record-search or online-service path it points to before assuming the file is county-only.",
-        "Confirm whether Davidson County should route through the contract county septic assistance route TDEC lists for this county, then ask for the parcel permit file, inspection letter, or repair history tied to the address.",
-        "If the lookup is for a sale, repair, addition, or new work, keep the permit file and inspection-letter path separate before using a cost estimate."
+        "Confirm the full map/parcel number. Search Metro Nashville HealthCode without spaces or punctuation, preserving leading and trailing zeros.",
+        "Scroll below the form, open the relevant scanned entries and match the property on every page. Retry street wording or omit Suite if necessary; broad searches may time out.",
+        "Separate the approved design, construction inspection or as-built, final approval and later repairs. Use Metro's published contact or information request for missing records or an unclear bedroom approval."
       ],
       "recordsToRequest": [
         "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
@@ -16573,7 +16575,7 @@
       "faqBlocks": [
         {
           "question": "Where should I start a Davidson County septic permit lookup?",
-          "answer": "Start with the TDEC SSDS permits hub and the record-search or online-service path it links, then confirm the regional or contract county contact that owns the parcel file."
+          "answer": "Start with Metro Nashville's HealthCode property-file search using the full parcel or address. Davidson follows a local route; use the Metro septic program's published contact when the desired file is missing or incomplete."
         },
         {
           "question": "Why does Davidson County need a records page before a price page?",
@@ -16600,7 +16602,7 @@
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "contract_county",
-        "fileOwnerModel": "Davidson County should be checked against the TDEC SSDS permits hub and the contract county septic assistance route TDEC lists for this county before the owner treats the file as complete.",
+        "fileOwnerModel": "Metro Nashville Public Health maintains the local Davidson County septic program and scanned HealthCode property-file route. Use that local archive and Metro's published missing-file contact rather than requiring a statewide TDEC viewer search first.",
         "firstArtifactToPull": "Any SSDS permit, approval, or record-search result tied to the parcel address or parcel ID.",
         "permitCloseoutCategory": "inspection_letter",
         "permitCloseoutSignal": "The file is stronger when the lookup produces an inspection letter, final approval, as-built, or other closeout signal rather than only a permit mention.",

@@ -5,6 +5,8 @@
 .problem-hero .lede { font-size: 19px; max-width: 540px; margin: 0 0 28px; }
 .problem-hero__terms { font-size: 13px; max-width: 400px; margin: 14px 0 20px; }
 .problem-text-link { display: inline-block; text-underline-offset: 5px; }
+.problem-hero__copy > .button + .problem-text-link { margin: 14px 0 0 16px; }
+@media (max-width: 600px) { .problem-hero__copy > .button + .problem-text-link { margin-left: 0; } }
 .problem-plan { margin: 0; padding: 24px 0; }
 .problem-plan__label { display: block; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid #bacac2; padding-bottom: 18px; }
 .problem-plan__image { display: block; width: 100%; height: auto; margin: 22px 0 18px; }

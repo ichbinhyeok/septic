@@ -2541,6 +2541,10 @@
                       "answer": "Tank volume alone does not establish the approved bedroom count. Look for the permit's design basis, approved bedrooms or flow and confirm unclear entries with the responsible office."
                 },
                 {
+                      "question": "Why do my septic permit and final drawing show different lengths?",
+                      "answer": "Check whether the figures describe different document stages. Our published Anderson example recorded 300 feet of planned trench on the construction permit and 200 feet on the later final record. Keep each figure with its source and date; do not average them or assume why the work changed. Ask the custodian to clarify unresolved conflicts and later revisions."
+                },
+                {
                       "question": "Can I dig where the drawing shows the tank?",
                       "answer": "Use the drawing as a historical starting point. A qualified local professional must verify actual field locations and applicable requirements before excavation."
                 },
@@ -2557,6 +2561,34 @@
                 "/no-septic-records-found/",
                 "/septic-records-by-county/"
           ]
+    },
+    {
+      "slug": "septicsearch-records",
+      "intentType": "workflow_page",
+      "primaryKeyword": "SepticSearch records",
+      "secondaryKeywords": ["Carmody septic records", "SepticSearch no results", "SepticSearch property search"],
+      "title": "SepticSearch Records: Find Permits, Plans and Missing Files",
+      "metaDescription": "Use SepticSearch by county, parcel, owner or street. Find scanned permits and plans, check the property match, and follow the next step when nothing appears.",
+      "introCopy": "Choose the property’s state and county, search the available identifiers, then open the scanned documents—not just the summary.",
+      "targetReader": "Owners, buyers and agents using the Carmody SepticSearch platform to find or understand an existing property file.",
+      "calculatorModule": "main_cost_estimator",
+      "calculatorProjectType": "replacement",
+      "fitBullets": ["Your agency directs you to SepticSearch.", "A property search returned no result or an incomplete file."],
+      "decisionSteps": ["Choose the correct state and county.", "Try parcel, owner, permit or street search separately.", "Match each scanned page to the property.", "Ask the responsible office for missing existing records."],
+      "lowEndBreakers": ["A database result does not establish current condition or a complete record history."],
+      "quotePrepChecklist": ["Property address, county, parcel ID and any known permit number."],
+      "driverBullets": ["A summary and a scanned approval can answer different questions.", "County coverage and supplied records determine what appears in the platform."],
+      "deepDiveParagraphs": ["SepticSearch is operated by Carmody and hosts records supplied by agencies. Availability depends on the jurisdiction and the records provided."],
+      "faqBlocks": [
+        {"question": "Is SepticSearch the same as SepticPath?", "answer": "No. SepticSearch is Carmody’s records platform. SepticPath is an independent research and file-explanation service, not its operator or a government office."},
+        {"question": "Does an empty SepticSearch result mean there is no septic system?", "answer": "No. The platform says not every property is included and some records are incomplete. Check the jurisdiction and identifiers, then ask the local records custodian about archives and missing attachments."},
+        {"question": "Can I search by address or parcel number?", "answer": "The current property search provides tax parcel ID, street name, optional street number, last name and permit-related fields. Choose the state and county first; use the search type available for that area."},
+        {"question": "Can SepticPath help if I already found the file?", "answer": "Yes. Send the complete file and your question for a property-match and document-stage review. A historical record review is not a current-condition inspection."}
+      ],
+      "internalLinkTargets": ["/florida-ostds-permit-lookup/", "/onlinerme-septic-records/", "/no-septic-records-found/", "/how-to-read-septic-as-built/"],
+      "updatedAt": "2026-10-11",
+      "reviewedAt": "2026-10-11",
+      "publishStatus": "published"
     }
   ]
 }

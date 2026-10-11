@@ -412,6 +412,7 @@
     @endif
 
     @if (countyAccessProfile != null)
+        <div class="container">@template.tags.localArchiveSteps(stateCode = countyPage.stateCode(), countySlug = countyPage.countySlug())</div>
         <section class="section section--tight county-access-workflow-section">
             <div class="container">
                 <div class="county-access-workflow county-access-workflow--${countyAccessProfile.tone()}"

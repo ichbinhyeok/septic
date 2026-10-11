@@ -24,6 +24,7 @@
         </div>
     </section>
 
+    <div class="container">@template.tags.bedroomRecordEvidence()</div>
     <section class="section section--tight" id="bedroom-permit-checker">
         <div class="container">
             <div class="bedroom-checker" data-bedroom-permit-checker>

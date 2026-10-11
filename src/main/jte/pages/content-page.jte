@@ -1051,6 +1051,12 @@
         </section>
     @endif
 
+    @if ("septic-as-built-records".equals(contentPage.slug()) || "septic-permit-process".equals(contentPage.slug()))
+        <section class="section"><div class="container">@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read the drawing step by step →</a></p></div></section>
+    @endif
+    @if ("official-septic-lookup-tools".equals(contentPage.slug()))
+        <section class="section section--tight"><div class="container"><h2>Using Carmody / SepticSearch?</h2><p><a href="/septicsearch-records/">Search by county, parcel, owner or street—and check what to do when nothing appears →</a></p></div></section>
+    @endif
     @if ("septic-records-by-county".equals(contentPage.slug()) || "septic-permit-search-by-address".equals(contentPage.slug()) || "septic-permit-records-request".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()) || "septic-tank-location-records".equals(contentPage.slug()) || "how-to-find-septic-records-online".equals(contentPage.slug()))
         <section class="section section--tight" id="records-next-click">
             <div class="container">

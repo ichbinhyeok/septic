@@ -37,6 +37,7 @@
             </div>
         </section>
 
+        <section class="section section--tight"><div class="container"><h2>Agency sent you to SepticSearch?</h2><p><a href="/septicsearch-records/" data-track-click="nav" data-track-source-context="florida_septicsearch" data-track-target-type="internal_page">Follow the Carmody / SepticSearch search steps →</a></p><p>Franklin County’s official environmental-health page links to this platform. Other counties may use a different records system; start with the county below.</p></div></section>
         <section class="tdec-workspace" id="fl-record-search" aria-labelledby="fl-workspace-title"><div class="container">
             <header class="tdec-workspace__header"><div><span class="eyebrow">Florida OSTDS records desk</span><h2 id="fl-workspace-title">Route the county before searching</h2></div><ol aria-label="Search workflow"><li class="is-current"><span>1</span> County</li><li><span>2</span> Property clue</li><li><span>3</span> Record route</li></ol></header>
             <form class="tdec-workspace__form" data-fl-route-form novalidate>

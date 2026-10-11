@@ -7,7 +7,7 @@
 @param String sourcePath = "/" + contentPage.slug() + "/"
 
 @template.layouts.app(page = page, designFamily = "editorial", pageStyles = "/record-problem-guide.css", content = @`
-<main id="main-content" class="problem-guide">
+<div class="problem-guide">
     <section class="problem-hero">
         <div class="container problem-hero__inner">
             <div class="problem-hero__copy">
@@ -57,6 +57,8 @@
                     <p>In our published Tennessee example, those lengths come from the sketch. The 900-gallon tank and three-bedroom design come from the accompanying permit. We explain each fact with its source rather than measuring the picture.</p>
                     <a href="/septic-as-built-records/#drawing-labels" data-track-click="nav" data-track-source-context="reading_original_example" data-track-target-type="case_study">Open the actual historical sketch and its explanation →</a>
                 </div>
+                @template.tags.recordStageComparison()
+                <div class="problem-example" id="tank-size-and-bedrooms"><h2>Does tank size tell you the approved bedroom count?</h2><p>Not by itself. In the published Anderson file, the tank was recorded as 1,000 gallons and design flow as 360 gallons per day, but an approved bedroom count was not directly stated. We kept that unanswered rather than converting either number into an approval.</p><p><a href="/septic-bedroom-permit-checker/">Compare the listing with the written bedroom approval →</a></p></div>
                 <p class="problem-note">Use a historical drawing as a starting point for a local professional. It does not establish today's condition or authorize excavation.</p>
                 @else
                 <span class="eyebrow">Start with the result you actually saw</span>
@@ -66,6 +68,9 @@
                     <details><summary>The permit appears, but no drawing opens</summary><p>Save the permit number. Check for separate attachments and related inspection or repair entries. Ask the custodian specifically for the as-built, site sketch, approved plan and final approval pages. A missing scan and an absent file are different findings.</p><a href="/septic-as-built-records/">Find the drawing behind the permit →</a></details>
                     <details><summary>The official viewer will not load</summary><p>Save the exact URL and error. Check the agency's current records page for a replacement viewer or alternate records request. An access error, including a 403, does not establish whether a property file exists.</p><a href="/tdec-septic-records/">TDEC viewer and existing-file request routes →</a></details>
                     <details><summary>The office says it has no record</summary><p>Keep the written response and search scope. Ask whether the office checked older paper files, prior owner or parcel identifiers, repair records, and any predecessor or separate custodian. If that search is complete, describe the remaining gap rather than implying the file must exist somewhere.</p><a href="/septic-records-by-county/">Check the county's records route →</a></details>
+                </div>
+                <div class="problem-example">
+                    <h2>Check the archive, not just the first search box.</h2><p>Some counties separate scanned property files from permit summaries and maintenance history. These are local examples, not nationwide replacement searches.</p><p><a href="/septic-records-checklist/tennessee/davidson-county/#local-archive-search">Nashville / Davidson archive steps →</a><br><a href="/septic-records-checklist/wisconsin/st-croix-county/#local-archive-search">St. Croix documents and maintenance →</a><br><a href="/septicsearch-records/">No result in SepticSearch? Check these fields →</a></p>
                 </div>
                 <div class="problem-example">
                     <span class="eyebrow">Before another request</span>
@@ -110,5 +115,5 @@
             </div>
         </div>
     </section>
-</main>
+</div>
 `)
