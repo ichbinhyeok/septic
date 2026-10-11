@@ -949,6 +949,12 @@ public class SeoService {
                 "/septic-records-access-index/",
                 "/offer-prep-septic-file-check/",
                 "/septic-record-brief-example/",
+                "/septic-record-brief-example/davidson/",
+                "/septic-record-brief-example/harnett/",
+                "/septic-record-brief-example/williamson/",
+                "/septic-repair-records/",
+                "/septic-records-before-pool/",
+                "/septic-final-approval-records/",
                 "/septic-bedroom-permit-checker/"
         );
     }

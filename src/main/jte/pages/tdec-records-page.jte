@@ -44,6 +44,7 @@
         </section>
         @template.tags.regionalRecordGoals(sourcePath = "/tdec-septic-records/", stateCode = "TN", regionName = "Tennessee")
 
+        <section class="section section--tight"><div class="container"><h2>Nashville / Davidson: use the local archive.</h2><p>Metro Nashville has a separate HealthCode search for environmental engineering files. It is a Davidson route, not a replacement viewer for other Tennessee counties.</p><a href="/septic-records-checklist/tennessee/davidson-county/#local-archive-search">Follow the parcel and scanned-file search steps →</a></div></section>
         <section class="tdec-workspace ptdec-route" id="tdec-record-search" aria-labelledby="tdec-workspace-title">
             <div class="ptdec-route__inner">
                 <header class="ptdec-route__header"><div><span class="ptdec-kicker">Self-serve official routing</span><h2 id="tdec-workspace-title">Find the official route</h2><p>Prefer to handle it yourself? Find the official route.</p></div><span>Nothing is submitted to an agency</span></header>

@@ -50,6 +50,7 @@
                 <li><span class="studio-steps__number" aria-hidden="true">02</span><div><h3>Follow the official route.</h3><p>${countyAccessProfile.officialAccessLabel()}. The agency controls the final search or request.</p></div><a href="${countyAccessProfile.primaryUrl()}" target="${countyAccessProfile.primaryOpensNewWindow() ? "_blank" : "_self"}" rel="noopener noreferrer">${countyAccessProfile.primaryLabel()} <span aria-hidden="true">↗</span></a></li>
                 <li><span class="studio-steps__number" aria-hidden="true">03</span><div><h3>Check what comes back.</h3><p>A missing search result is not an official no-record response.</p></div><a href="#the-file">What you may learn <span aria-hidden="true">→</span></a></li>
             </ol>
+            @template.tags.localArchiveSteps(stateCode = countyPage.stateCode(), countySlug = countyPage.countySlug())
             <div class="county-details">
                 <details id="property-clues"><summary>Property clues and local request instructions <span aria-hidden="true">+</span></summary><div class="county-details__body">
                     <div><h3>${countyAccessProfile.heading()}</h3><p>${countyAccessProfile.summary()}</p><p>${countyAccessProfile.scopeSummary()}</p><ul>@for (var input : countyAccessProfile.requiredInputs())<li>${input}</li>@endfor</ul>

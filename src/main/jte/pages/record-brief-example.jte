@@ -83,7 +83,17 @@
         </section>
 
         @template.tags.recordCaseCollection()
+        @template.tags.caseResearchLinks()
 
+        <section class="section" id="completed-investigations" aria-labelledby="completed-investigations-title">
+            <div class="container">
+                <span class="eyebrow">Follow the work, not just the promise</span>
+                <h2 id="completed-investigations-title">Different files. Different research decisions.</h2>
+                @template.tags.workStorySpotlight(slug = "davidson", sourcePath = "/septic-record-brief-example/")
+                @template.tags.workStorySpotlight(slug = "harnett", sourcePath = "/septic-record-brief-example/")
+                @template.tags.workStorySpotlight(slug = "williamson", sourcePath = "/septic-record-brief-example/")
+            </div>
+        </section>
         <section class="record-brief-handoff" aria-label="What SepticPath removes from the inspection workflow">
             <div class="container record-brief-handoff__grid">
                 <div class="record-brief-handoff__before">

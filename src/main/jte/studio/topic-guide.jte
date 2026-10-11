@@ -51,6 +51,13 @@
             @endif
             <figure class="article-photo"><img src="/images/studio/${planningTopic ? "permit-file-spread-v1.webp" : permitTopic ? "research-desk-v1.webp" : "buyer-folio-v1.webp"}" alt="${planningTopic ? "Illustrative property file arranged for scope planning" : permitTopic ? "Illustrative research desk with property records arranged for review" : "Property research booklet arranged for a buyer’s review"}" width="1672" height="941" loading="lazy"><figcaption>${planningTopic ? "The recorded layout and approval trail can change which price belongs in the conversation." : permitTopic ? "Keep the application, approval and final record distinct." : "Records review and a current site inspection answer different questions."}</figcaption></figure>
             <section id="topic-steps"><p class="studio-overline">One decision at a time</p><h2>${recordTopic ? "Follow the file, step by step." : permitTopic ? "Put the steps in order." : "Compare the scope, then the price."}</h2><ol class="article-steps">@for(int i = 0; i < contentPage.decisionSteps().size(); i++)<li><span aria-hidden="true">0${i + 1}</span><p>${contentPage.decisionSteps().get(i)}</p></li>@endfor</ol>
+                @if("septic-permit-process".equals(contentPage.slug()) || "septic-as-built-records".equals(contentPage.slug()))
+                    @template.tags.recordStageComparison()
+                    <p><a href="/how-to-read-septic-as-built/">Read the drawing step by step →</a></p>
+                @endif
+                @if("florida-ostds-permit-lookup".equals(contentPage.slug()) || "official-septic-lookup-tools".equals(contentPage.slug()))
+                    <p><a href="/septicsearch-records/">Using Carmody / SepticSearch? Follow the platform search steps →</a></p>
+                @endif
                 <h3>${recordTopic || permitTopic ? "Where the route can change" : "What can change the cost"}</h3><ul>@for(var item : contentPage.driverBullets())<li>${item}</li>@endfor</ul>
                 <details class="article-disclosure"><summary>${recordTopic || permitTopic ? "Assumptions to check early" : "When a low estimate may not hold"}<span aria-hidden="true">+</span></summary><ul>@for(var item : contentPage.lowEndBreakers())<li>${item}</li>@endfor</ul></details>
                 <a class="studio-text-link" href="${StudioGuideRoutes.preview(calculatorPath)}">Explore the next planning step <span aria-hidden="true">↗</span></a>

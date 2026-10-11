@@ -402,6 +402,7 @@
     @if (countySearchGuide != null)
         @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
     @endif
+    @template.tags.caseRouteInsight(stateCode = state.stateCode(), countySlug = countyPage.countySlug())
 
     @if (countyPage.operationalProof() != null)
         @template.tags.countyOperationalProof(
@@ -411,7 +412,16 @@
         )
     @endif
 
+    @if ("TN".equals(state.stateCode()) && "davidson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("NC".equals(state.stateCode()) && "harnett-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "harnett", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("TN".equals(state.stateCode()) && "williamson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "williamson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @endif
+
     @if (countyAccessProfile != null)
+        <div class="container">@template.tags.localArchiveSteps(stateCode = countyPage.stateCode(), countySlug = countyPage.countySlug())</div>
         <section class="section section--tight county-access-workflow-section">
             <div class="container">
                 <div class="county-access-workflow county-access-workflow--${countyAccessProfile.tone()}"
