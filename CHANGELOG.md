@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.0.24.0 - 2026-10-21
+
+### Fixed
+
+- State record desks now link only to existing local pages or relevant national fallbacks, preserving the next steps without19 broken destinations.
+
+### Changed
+
+- TDEC and DHEC/SCDES search snippets lead with permit and records lookup, with the current agency route clearly described.
+- Kept22 reviewed low-signal state cost pages accessible while excluding them from indexing and submitted sitemaps; records, new case assets and distinct local compliance guides stay protected.
+- Made Morgan County's route and Harnett's records workflow easier to reach from their parent state pages.
+- Updated sitemap modification dates only for materially changed pages.
+
+### For contributors
+
+- Added parameterized route, publication, canonical and sitemap regressions, with the evidence and reopening rules documented in [the search recovery decision](docs/SEARCH_INDEX_RECOVERY_20261021.md).
+
 ## 0.0.23.1 - 2026-10-05
 
 ### Fixed
