@@ -3,6 +3,7 @@ package com.example.septic.service;
 import com.example.septic.data.model.StateMoneyPage;
 import com.example.septic.data.model.StateProfile;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,19 @@ public class PublishingPolicyService {
     private static final int STRONG_COUNTY_COVERAGE = 10;
     private static final int SUPPORTING_COUNTY_COVERAGE = 5;
     private static final int BUYER_COUNTY_COVERAGE = 3;
+    /*
+     * 2026-10-21 review: these cost variants had no Google impressions/clicks
+     * or measured organic entrances in either complete 28-day window ending
+     * Oct 17, and no state cost profile. Their local-office guidance remains
+     * accessible; it does not justify a separate price-search landing page.
+     * This explicit cohort is reversible, not a blanket rule for new pages.
+     * Keep AZ/MN inspection (distinct transfer/compliance rules), all records,
+     * new case assets and every observed organic entrance outside this cohort.
+     */
+    private static final Map<String, Set<String>> REVIEWED_COST_SEARCH_EXCLUSIONS = Map.of(
+            "septic-replacement-cost", Set.of("AZ", "CO", "KS", "MD", "NY", "NV", "TN", "SC", "TX", "VA", "UT", "WI", "WY"),
+            "septic-inspection-cost", Set.of("CA", "CO", "IN", "KS", "NV", "SC", "TX", "UT", "WY")
+    );
 
     private final ResearchDataService researchDataService;
 
@@ -59,6 +73,10 @@ public class PublishingPolicyService {
 
     public boolean isIndexableStateMoneyPage(StateMoneyPage stateMoneyPage, StateProfile state) {
         if (stateMoneyPage == null || state == null || !state.isPublished() || !stateMoneyPage.isPublished()) {
+            return false;
+        }
+        if (REVIEWED_COST_SEARCH_EXCLUSIONS.getOrDefault(stateMoneyPage.contentSlug(), Set.of())
+                .contains(state.stateCode())) {
             return false;
         }
         return switch (stateMoneyPage.contentSlug()) {

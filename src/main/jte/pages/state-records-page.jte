@@ -71,6 +71,9 @@
 
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "state_records_" + state.stateCode().toLowerCase())
+            @if ("NC".equals(state.stateCode()))
+                <p><a href="/septic-record-brief-example/harnett/">Read a North Carolina file review</a> · <a href="/septic-records-checklist/north-carolina/harnett-county/">Open the Harnett County search and request route</a></p>
+            @endif
         </div>
 
         <section class="state-records-route">

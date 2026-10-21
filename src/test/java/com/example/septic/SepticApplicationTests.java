@@ -354,7 +354,7 @@ class SepticApplicationTests {
 
 		mockMvc.perform(get("/dhec-septic-permit-lookup/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Tank Records &amp; Permit Lookup")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>DHEC Septic Permit Lookup | South Carolina SCDES Records</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("DHEC searches should land on the current SCDES septic route.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open SCDES septic")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("If SCDES blocks the tab")))
@@ -494,7 +494,7 @@ class SepticApplicationTests {
 				incomplete.isEmpty(),
 				"Workflow cost pages missing baseline content: " + incomplete
 		);
-		org.junit.jupiter.api.Assertions.assertEquals(123, indexableCount);
+		org.junit.jupiter.api.Assertions.assertEquals(101, indexableCount);
 		org.junit.jupiter.api.Assertions.assertTrue(indexable("perc-test-cost", "tennessee"));
 		org.junit.jupiter.api.Assertions.assertTrue(indexable("perc-test-cost", "alabama"));
 		org.junit.jupiter.api.Assertions.assertFalse(indexable("perc-test-cost", "idaho"));
@@ -653,7 +653,7 @@ class SepticApplicationTests {
 			}
 		}
 
-		org.junit.jupiter.api.Assertions.assertEquals(123, indexableCount);
+		org.junit.jupiter.api.Assertions.assertEquals(101, indexableCount);
 		org.junit.jupiter.api.Assertions.assertTrue(
 				mismatches.isEmpty(),
 				"Workflow cost sitemap policy mismatches: " + mismatches
@@ -1438,11 +1438,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc><lastmod>2026-09-17</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc><lastmod>2026-09-01</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-10-11</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-10-21</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-10-05</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-10-05</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-05</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/new-hampshire/</loc><lastmod>2026-10-01</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/new-hampshire/</loc><lastmod>2026-10-21</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/how-to-find-septic-records-online/")))
