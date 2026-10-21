@@ -193,6 +193,7 @@ public class SiteController {
             DHEC_PERMIT_LOOKUP_SLUG, "SC"
     );
     private static final Map<String, List<String>> STATE_RECORDS_PRIORITY_COUNTY_SLUGS = Map.of(
+            "AL", List.of("morgan-county", "madison-county", "baldwin-county"),
             "TX", List.of("tarrant-county"),
             "CA", List.of("san-bernardino-county"),
             "TN", List.of("hamilton-county"),
@@ -3265,6 +3266,9 @@ The goal is to settle the permit path before we frame the project as a normal in
                         : Optional.empty();
         if (institutionRecordsExperience.isPresent()) {
             model.addAttribute("institutionExperience", institutionRecordsExperience.get());
+            model.addAttribute("institutionRelatedLinks", institutionRelatedLinks(state, internalLinks));
+            model.addAttribute("countyRecordLinks", priorityOrderedCountyRecordLinks(
+                    state.stateCode(), countyRecordLinks, countyRecordLinks.size()));
             return "pages/institution-records-page";
         }
         if ("septic-records-checklist".equals(stateMoneyPage.contentSlug())
@@ -6969,6 +6973,21 @@ The goal is to settle the permit path before we frame the project as a normal in
             }
         }
         return false;
+    }
+
+    private List<PageLink> institutionRelatedLinks(StateProfile state, List<PageLink> internalLinks) {
+        LinkedHashMap<String, PageLink> links = new LinkedHashMap<>();
+        String locationPath = "/septic-tank-location-records/";
+        links.put(locationPath, new PageLink("Septic tank location records", locationPath,
+                "Use the recorded plan or site sketch to narrow the tank, drain field, and reserve-area question."));
+        for (String topic : List.of("drain-field-replacement-cost", "failed-perc-test-septic", "septic-replacement-area")) {
+            String target = researchDataService.findPublicStateMoneyPage(topic, state.slug())
+                    .map(candidate -> candidate.path(state.slug()))
+                    .orElse("/" + topic + "/");
+            links.put(target, pageLink(target, "septic-records-checklist", state.stateCode()));
+        }
+        internalLinks.forEach(link -> links.putIfAbsent(link.path(), link));
+        return List.copyOf(links.values());
     }
 
     private List<PageLink> pageLinks(List<String> paths, String sourceSlug, String sourceStateCode) {

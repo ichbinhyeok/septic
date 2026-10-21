@@ -72,10 +72,11 @@ class GrowthIntentJourneyTest {
         String sitemap = html("/sitemap.xml");
         for (String path : List.of("/septic-record-finder/",
                 "/north-carolina-septic-permit-lookup/",
-                "/septic-records-checklist/north-carolina/", "/septic-records-checklist/tennessee/")) {
+                "/septic-records-checklist/tennessee/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-10-05</lastmod>");
         }
-        assertThat(sitemap).contains("<loc>https://septicpath.com/tdec-septic-records/</loc><lastmod>2026-10-11</lastmod>");
+        assertThat(sitemap).contains("<loc>https://septicpath.com/tdec-septic-records/</loc><lastmod>2026-10-21</lastmod>");
+        assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-10-11</lastmod>");
         String counties = html("/sitemap-county.xml");
         assertThat(counties).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/johnston-county/</loc><lastmod>2026-10-05</lastmod>");

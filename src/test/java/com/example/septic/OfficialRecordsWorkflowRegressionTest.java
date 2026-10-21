@@ -176,8 +176,8 @@ class OfficialRecordsWorkflowRegressionTest {
     void acquisitionPagesUseQueryAlignedTitlesAndDescriptions() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TDEC Septic Permit Search | Tennessee Records &amp; Free Help</title>")))
-                .andExpect(content().string(containsString("Get free record research and an explanation when needed")));
+                .andExpect(content().string(containsString("<title>TDEC Septic Permit Search by Address | Tennessee Records</title>")))
+                .andExpect(content().string(containsString("Find the TDEC or county route for your Tennessee address.")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost (2026): $300-$2,700 + Fees</title>")));
         mockMvc.perform(get("/texas-ossf-records-search/"))
@@ -252,7 +252,7 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(containsString("The search returned nothing")))
                     .andExpect(content().string(containsString("Use a complete request the first time")))
                     .andExpect(content().string(containsString("Ask SepticPath to investigate")))
-                    .andExpect(content().string(containsString("/drain-field-replacement-cost/" + state + "/")));
+                    .andExpect(content().string(containsString("/drain-field-replacement-cost/")));
         }
     }
 

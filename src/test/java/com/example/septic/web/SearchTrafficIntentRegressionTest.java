@@ -22,8 +22,8 @@ class SearchTrafficIntentRegressionTest {
     void tdecSnippetMatchesHighImpressionTennesseeSearchIntent() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("<title>TDEC Septic Permit Search | Tennessee Records &amp; Free Help</title>")))
-                .andExpect(content().string(containsString("Get free record research and an explanation when needed")))
+                .andExpect(content().string(containsString("<title>TDEC Septic Permit Search by Address | Tennessee Records</title>")))
+                .andExpect(content().string(containsString("Find the TDEC or county route for your Tennessee address.")))
                 .andExpect(content().string(containsString("href=\"/septic-backup-slow-drains/\"")))
                 .andExpect(content().string(containsString("href=\"/wet-yard-over-septic-drain-field/\"")));
     }
