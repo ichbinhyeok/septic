@@ -1,0 +1,23 @@
+.wastewater-lookup [hidden] { display: none; }
+.wastewater-lookup__form { display: grid; gap: .75rem; align-self: start; }
+.wastewater-lookup__form h2, .wastewater-lookup__form p { margin: 0; }
+.wastewater-lookup__form label, .wastewater-lookup__result label { font-weight: 700; }
+.wastewater-lookup__form input, .wastewater-lookup select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid #6c7f76;
+    border-radius: .4rem;
+    padding: .55rem .75rem;
+    background: #fff;
+    color: #192e26;
+    font: inherit;
+}
+.wastewater-lookup__selection { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin: 0 0 1rem; overflow-wrap: anywhere; }
+.wastewater-lookup__cities { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr)); gap: 1rem; }
+.wastewater-lookup__cities dl { display: grid; gap: 1rem; }
+.wastewater-lookup__cities dt { font-weight: 700; }
+.wastewater-lookup__cities dd { margin: .25rem 0 0; }
+.wastewater-lookup__result { margin-top: 1rem; max-width: 48rem; }
+.wastewater-lookup__result select { display: block; margin-top: .5rem; }
+.wastewater-lookup__result p { margin-bottom: 0; }

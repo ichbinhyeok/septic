@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.24.3 - 2026-11-05
+
+### Added
+
+- AppHealthCare permit search guidance for Ashe, Watauga and Alleghany counties.
+- Official septic drawing and record lookup guides for Island, Skagit, Kitsap and Pierce counties.
+- A Seattle and Tacoma address tool for locating sewer connection and historical septic records.
+
+### Changed
+
+- La Porte's records guide now explains the drawing archive and existing file request route.
+- State and regional guides link to the new searches, and the county access dataset includes the new official routes.
+
 ## 0.0.24.2 - 2026-11-05
 
 ### Fixed

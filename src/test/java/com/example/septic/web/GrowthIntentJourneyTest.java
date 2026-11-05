@@ -71,11 +71,12 @@ class GrowthIntentJourneyTest {
     @Test void sitemapDatesReflectChangedPagesWithoutUpdatingUnchangedStates() throws Exception {
         String sitemap = html("/sitemap.xml");
         for (String path : List.of("/septic-record-finder/",
-                "/north-carolina-septic-permit-lookup/",
                 "/septic-records-checklist/tennessee/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-10-05</lastmod>");
         }
-        for (String path : List.of("/tdec-septic-records/", "/septic-permit-search-by-address/", "/how-to-find-septic-records-online/")) {
+        for (String path : List.of("/tdec-septic-records/", "/septic-permit-search-by-address/",
+                "/how-to-find-septic-records-online/", "/north-carolina-septic-permit-lookup/",
+                "/apphealthcare-septic-permit-search/", "/sewer-or-septic-by-address/", "/onlinerme-septic-records/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
         }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");

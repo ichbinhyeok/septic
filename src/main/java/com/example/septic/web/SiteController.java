@@ -2399,6 +2399,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             "/florida-ostds-permit-lookup", "/florida-ostds-permit-lookup/",
             "/onlinerme-septic-records", "/onlinerme-septic-records/",
             "/septicsearch-records", "/septicsearch-records/",
+            "/apphealthcare-septic-permit-search", "/apphealthcare-septic-permit-search/",
+            "/sewer-or-septic-by-address", "/sewer-or-septic-by-address/",
             "/dhec-septic-permit-lookup", "/dhec-septic-permit-lookup/",
             "/septic-permit-lookup", "/septic-permit-lookup/",
             "/septic-permit-process", "/septic-permit-process/",
@@ -2410,6 +2412,11 @@ The goal is to settle the permit path before we frame the project as a normal in
         String slug = path.replaceFirst("^/", "").replaceFirst("/$", "");
         ContentPage contentPage = researchDataService.findPublicContentPage(slug)
                 .orElseThrow(() -> new StateNotFoundException(slug));
+        if ("apphealthcare-septic-permit-search".equals(slug) || "sewer-or-septic-by-address".equals(slug)) {
+            model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
+            model.addAttribute("contentPage", contentPage);
+            return "pages/" + slug;
+        }
         if ("septicsearch-records".equals(slug)) {
             model.addAttribute("page", seoService.contentPage(contentPage, CONTENT_PAGE_PREPARER, SOURCE_REVIEWER));
             model.addAttribute("contentPage", contentPage);
@@ -2424,6 +2431,8 @@ The goal is to settle the permit path before we frame the project as a normal in
             List<CountyRecordsPage> onlineRmeCounties = List.of(
                     researchDataService.findPublicCountyRecordsPage("washington", "king-county").orElseThrow(),
                     researchDataService.findPublicCountyRecordsPage("washington", "snohomish-county").orElseThrow(),
+                    researchDataService.findPublicCountyRecordsPage("washington", "island-county").orElseThrow(),
+                    researchDataService.findPublicCountyRecordsPage("washington", "skagit-county").orElseThrow(),
                     researchDataService.findPublicCountyRecordsPage("virginia", "loudoun-county").orElseThrow()
             );
             Map<String, String> countyPaths = new LinkedHashMap<>();

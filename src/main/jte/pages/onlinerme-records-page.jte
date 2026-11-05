@@ -47,6 +47,10 @@
                             @elseif ("WA::snohomish-county".equals(county.key()))
                                 <p>Snohomish County says OnlineRME includes as-built drawings and service-history reports for current and past septic systems.</p>
                                 <p><strong>If nothing appears:</strong> older systems may predate record requirements; the Health Department says additional information may still be on file and accepts records requests.</p>
+                            @elseif ("WA::island-county".equals(county.key()))
+                                <p>Island County starts with the public parcel portal for drawings and points to OnlineRME for inspection and pumping reports.</p>
+                            @elseif ("WA::skagit-county".equals(county.key()))
+                                <p>In Skagit County, use View Scanned Images in OnlineRME or the yellow permit document icon in the Assessor’s Parcel Search.</p>
                             @elseif ("VA::loudoun-county".equals(county.key()))
                                 <p>Loudoun County recommends selecting Virginia and Loudoun County, then searching with the Tax ID (PIN plus 000) or street number. Its guidance warns that a street-number search may not include all files.</p>
                                 <p><strong>If nothing appears:</strong> check the county's separate scanned-record and subdivision parent-file searches, then contact the Health Department.</p>

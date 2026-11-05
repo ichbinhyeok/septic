@@ -3,6 +3,331 @@
   "generatedAt": "2026-09-14",
   "pages": [
     {
+      "stateCode": "WA",
+      "countyName": "Island County",
+      "countySlug": "island-county",
+      "title": "Island County WA Septic Records and As-Built Lookup",
+      "metaDescription": "Find Island County septic permits and as-built drawings by address or parcel. Use the public parcel portal for drawings and OnlineRME for service reports.",
+      "introCopy": "Use the Island County parcel portal to look for a septic permit or as-built drawing. For a pumping or inspection report, start with the county’s OnlineRME instructions.",
+      "uniqueAngle": "Island County provides two entry points for different records: the public parcel portal for the installed layout and OnlineRME for service history.",
+      "targetReader": "Homeowners and buyers looking for the existing septic file in Island County.",
+      "officeLabel": "Island County Environmental Health",
+      "officeUrl": "https://islandcountywa.gov/686/Parcel-and-Asbuilt-Information---Public-",
+      "recordsLabel": "Open Island County Parcel Search",
+      "recordsUrl": "https://co-island-wa.smartgovcommunity.com/Parcels/ParcelHome",
+      "contactLine": "Environmental Health | 360-679-7350 (Coupeville) or 360-678-8261 (Camano)",
+      "decisionSteps": [
+        "Search the public parcel portal by street address or parcel number. Open the matching parcel, look for an Asbuilt or On-Site Septic Permit entry and check for a document or Report URL.",
+        "Use the county’s OnlineRME link when you need an inspection or pumping report. Select Island County and confirm the same address or parcel before opening the report.",
+        "If the drawing is absent, contact Environmental Health with the matched parcel and ask specifically for the record drawing or permit attachments."
+      ],
+      "recordsToRequest": [
+        "Septic permit with all drawing pages and final approval",
+        "Pumping or inspection report for the matching parcel"
+      ],
+      "lowEndBreakers": [
+        "A pumping report identifies service history but may have no layout attached.",
+        "A report or map on a neighboring parcel is a different file."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Where do I find the Island County septic drawing?",
+          "answer": "Use the county’s public parcel portal for an as-built or septic permit. Check OnlineRME when you need the service or inspection history."
+        },
+        {
+          "question": "What should I ask for if the first search finds only a permit number?",
+          "answer": "Ask for the complete permit packet, including the installed record drawing, final inspection and any later repair plans tied to the same property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/",
+        "/onlinerme-septic-records/",
+        "/septic-as-built-records/"
+      ],
+      "officialSourceIds": [
+        "wa_island_septic_portal_20261105",
+        "wa_island_onlinerme_20261105"
+      ],
+      "searchGuide": {
+        "summary": "Use the Island County parcel portal to look for a septic permit or as-built drawing. For a pumping or inspection report, start with the county’s OnlineRME instructions.",
+        "coverage": "Island County provides two entry points for different records: the public parcel portal for the installed layout and OnlineRME for service history.",
+        "identifiers": "Property address and parcel or assessor account number.",
+        "documents": "Septic permit with all drawing pages and final approval. Pumping or inspection report for the matching parcel.",
+        "steps": [
+          "Search the public parcel portal by street address or parcel number. Open the matching parcel, look for an Asbuilt or On-Site Septic Permit entry and check for a document or Report URL.",
+          "Use the county’s OnlineRME link when you need an inspection or pumping report. Select Island County and confirm the same address or parcel before opening the report.",
+          "If the drawing is absent, contact Environmental Health with the matched parcel and ask specifically for the record drawing or permit attachments."
+        ],
+        "noResult": "If the drawing is absent, contact Environmental Health with the matched parcel and ask specifically for the record drawing or permit attachments.",
+        "sourceIds": [
+          "wa_island_septic_portal_20261105",
+          "wa_island_onlinerme_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published",
+      "workflowStructure": {
+        "fileOwnerCategory": "county_public_health",
+        "fileOwnerModel": "Island County Environmental Health is the starting point for the existing onsite sewage file.",
+        "firstArtifactToPull": "The as-built entry on the matching SmartGov parcel.",
+        "permitCloseoutCategory": "completion_artifact",
+        "permitCloseoutSignal": "Look for a dated final permit or approval for the installed layout.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "Use OnlineRME for a dated pumping or inspection report alongside the parcel drawing.",
+        "specialProgramCategory": "local_variation",
+        "specialProgramSignal": "The county separates parcel drawings from the maintenance history route.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Check for a separate repair permit or evaluation after the drawing date.",
+        "quoteGate": "Match the parcel and record dates, then verify what changed since the drawing before using it to price work."
+      }
+    },
+    {
+      "stateCode": "WA",
+      "countyName": "Skagit County",
+      "countySlug": "skagit-county",
+      "title": "Skagit County WA Septic Permit and As-Built Lookup",
+      "metaDescription": "Search Skagit County septic records by address or parcel in OnlineRME or the Assessor’s Parcel Search. Find scanned drawings and separate service history.",
+      "introCopy": "Skagit County publishes two ways to find a septic drawing: the scanned images in OnlineRME and the permit documents in the Assessor’s Parcel Search.",
+      "uniqueAngle": "The assessor portal can surface the same property through a different search path, including the yellow document icon beside the septic permit.",
+      "targetReader": "Homeowners and buyers looking for the existing septic file in Skagit County.",
+      "officeLabel": "Skagit County Public Health",
+      "officeUrl": "https://www.skagitcountywa.gov/services/public-health/environmental-health/on-site-septic-program/septic-system-search/",
+      "recordsLabel": "Open Skagit County septic system search",
+      "recordsUrl": "https://www.skagitcountywa.gov/services/public-health/environmental-health/on-site-septic-program/septic-system-search/",
+      "contactLine": "Skagit County Public Health | 360-416-1500",
+      "decisionSteps": [
+        "In OnlineRME Public Access, change the county to Skagit and search by the site address or Tax ID. Open View Scanned Images for the drawing.",
+        "In the Assessor’s Parcel Search, open the property’s Permits tab, look for S, SW or SEPTIC, and select the yellow document icon.",
+        "For inspection and pumping reports, use Service History or the septic system entry in the assessor’s parcel summary. Ask Public Health about older or incomplete files."
+      ],
+      "recordsToRequest": [
+        "Septic permit with the attached record drawing",
+        "Inspection or pumping report and any later repair drawing"
+      ],
+      "lowEndBreakers": [
+        "An empty scanned-image result does not establish the current system or its location.",
+        "Service History may contain a report without the original installed layout."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Where is the Skagit County septic as-built?",
+          "answer": "Use View Scanned Images in OnlineRME or the yellow document icon beside the septic permit in the Assessor’s Parcel Search."
+        },
+        {
+          "question": "What should I ask for if the first search finds only a permit number?",
+          "answer": "Ask for the complete permit packet, including the installed record drawing, final inspection and any later repair plans tied to the same property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/",
+        "/onlinerme-septic-records/",
+        "/septic-as-built-records/"
+      ],
+      "officialSourceIds": [
+        "wa_skagit_septic_search_20261105"
+      ],
+      "searchGuide": {
+        "summary": "Skagit County publishes two ways to find a septic drawing: the scanned images in OnlineRME and the permit documents in the Assessor’s Parcel Search.",
+        "coverage": "The assessor portal can surface the same property through a different search path, including the yellow document icon beside the septic permit.",
+        "identifiers": "Property address and parcel or assessor account number.",
+        "documents": "Septic permit with the attached record drawing. Inspection or pumping report and any later repair drawing.",
+        "steps": [
+          "In OnlineRME Public Access, change the county to Skagit and search by the site address or Tax ID. Open View Scanned Images for the drawing.",
+          "In the Assessor’s Parcel Search, open the property’s Permits tab, look for S, SW or SEPTIC, and select the yellow document icon.",
+          "For inspection and pumping reports, use Service History or the septic system entry in the assessor’s parcel summary. Ask Public Health about older or incomplete files."
+        ],
+        "noResult": "For inspection and pumping reports, use Service History or the septic system entry in the assessor’s parcel summary. Ask Public Health about older or incomplete files.",
+        "sourceIds": [
+          "wa_skagit_septic_search_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published",
+      "workflowStructure": {
+        "fileOwnerCategory": "county_public_health",
+        "fileOwnerModel": "Skagit County Public Health is the starting point for the existing onsite sewage file.",
+        "firstArtifactToPull": "The scanned record drawing in OnlineRME or beside the assessor septic permit.",
+        "permitCloseoutCategory": "completion_artifact",
+        "permitCloseoutSignal": "Use the drawing and any later final inspection on the same parcel to understand what was recorded.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "Save the Service History report separately from the permit drawing.",
+        "specialProgramCategory": "local_variation",
+        "specialProgramSignal": "The assessor permit document can be another way to reach the drawing.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Check whether a later repair or pumping report refers to a different part of the system.",
+        "quoteGate": "Match the parcel and record dates, then verify what changed since the drawing before using it to price work."
+      }
+    },
+    {
+      "stateCode": "WA",
+      "countyName": "Kitsap County",
+      "countySlug": "kitsap-county",
+      "title": "Kitsap County WA Septic Records and As-Built Lookup",
+      "metaDescription": "Find Kitsap septic records in the Public Health District GIS. Search by property address or assessor account number and check the address history if needed.",
+      "introCopy": "Start with the Kitsap Public Health District’s property records GIS. Check the exact parcel before opening its septic permits, record drawings or maintenance reports.",
+      "uniqueAngle": "The district’s search help provides an address-history route and a legacy text search when the GIS search does not find the property.",
+      "targetReader": "Homeowners and buyers looking for the existing septic file in Kitsap County.",
+      "officeLabel": "Kitsap Public Health District",
+      "officeUrl": "https://www.kitsappublichealth.org/dwos/home",
+      "recordsLabel": "Open Kitsap Public Health property and septic records",
+      "recordsUrl": "https://www.kitsappublichealth.org/dwos/home",
+      "contactLine": "Kitsap Public Health District | 360-728-2235",
+      "decisionSteps": [
+        "Open Search for Property Records from the district’s Drinking Water & Onsite Sewage page. Try the site address or the assessor account number.",
+        "If the address does not match, use the district’s search tips and county address history. Try the assessor Tax ID or legacy text-based search.",
+        "Review the drawing, application status and maintenance history as separate records. Call the district with the exact property identifiers if the drawing is missing."
+      ],
+      "recordsToRequest": [
+        "Record drawing with tank and drainfield layout",
+        "Application or permit and any separate maintenance or conveyance report"
+      ],
+      "lowEndBreakers": [
+        "A GIS address match identifies a property, not the contents of its permit file.",
+        "An application status is different from an approved installation or subsequent repair."
+      ],
+      "faqBlocks": [
+        {
+          "question": "What if the Kitsap search does not recognize my street address?",
+          "answer": "Try the assessor account number or use the county address history through the district’s search tips. Contact the district if the matched property still has no visible drawing."
+        },
+        {
+          "question": "What should I ask for if the first search finds only a permit number?",
+          "answer": "Ask for the complete permit packet, including the installed record drawing, final inspection and any later repair plans tied to the same property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/",
+        "/septic-as-built-records/"
+      ],
+      "officialSourceIds": [
+        "wa_kitsap_public_health_20261105",
+        "wa_kitsap_search_help_20261105",
+        "wa_kitsap_record_drawing_20261105"
+      ],
+      "searchGuide": {
+        "summary": "Start with the Kitsap Public Health District’s property records GIS. Check the exact parcel before opening its septic permits, record drawings or maintenance reports.",
+        "coverage": "The district’s search help provides an address-history route and a legacy text search when the GIS search does not find the property.",
+        "identifiers": "Property address and parcel or assessor account number.",
+        "documents": "Record drawing with tank and drainfield layout. Application or permit and any separate maintenance or conveyance report.",
+        "steps": [
+          "Open Search for Property Records from the district’s Drinking Water & Onsite Sewage page. Try the site address or the assessor account number.",
+          "If the address does not match, use the district’s search tips and county address history. Try the assessor Tax ID or legacy text-based search.",
+          "Review the drawing, application status and maintenance history as separate records. Call the district with the exact property identifiers if the drawing is missing."
+        ],
+        "noResult": "Review the drawing, application status and maintenance history as separate records. Call the district with the exact property identifiers if the drawing is missing.",
+        "sourceIds": [
+          "wa_kitsap_public_health_20261105",
+          "wa_kitsap_search_help_20261105",
+          "wa_kitsap_record_drawing_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published",
+      "workflowStructure": {
+        "fileOwnerCategory": "county_public_health",
+        "fileOwnerModel": "Kitsap Public Health District is the starting point for the existing onsite sewage file.",
+        "firstArtifactToPull": "The record drawing from the matched Kitsap Public Health GIS property.",
+        "permitCloseoutCategory": "completion_artifact",
+        "permitCloseoutSignal": "Separate the installed drawing from permit status, then check the approval date.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "Compare any conveyance report with the original drawing and later repairs.",
+        "specialProgramCategory": "local_variation",
+        "specialProgramSignal": "The district publishes address-history help and legacy text search links.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "A later repair or conveyance finding can change what the historical drawing explains.",
+        "quoteGate": "Match the parcel and record dates, then verify what changed since the drawing before using it to price work."
+      }
+    },
+    {
+      "stateCode": "WA",
+      "countyName": "Pierce County",
+      "countySlug": "pierce-county",
+      "title": "Pierce County WA Septic As-Built and Record Drawing Lookup",
+      "metaDescription": "Use Tacoma–Pierce County Health’s document search to find a septic as-built. Check the exact address or parcel and ask the health department about missing files.",
+      "introCopy": "Tacoma–Pierce County Health Department provides an online lookup for septic record drawings. Start there for a tank or drainfield layout and keep city sewer permits separate.",
+      "uniqueAngle": "Pierce County directs septic drawings and well records to the health department. The county public works archive and Tacoma’s sewer maps serve different purposes.",
+      "targetReader": "Homeowners and buyers looking for the existing septic file in Pierce County.",
+      "officeLabel": "Tacoma–Pierce County Health Department",
+      "officeUrl": "https://tpchd.org/professionals/septic/applications-and-forms/record-drawing-request/",
+      "recordsLabel": "Open Tacoma–Pierce septic document search",
+      "recordsUrl": "https://edocs.tpchd.org/",
+      "contactLine": "Tacoma–Pierce County Health Department | 253-649-1500",
+      "decisionSteps": [
+        "Search the Health Department document archive by parcel number, site address or owner. For an address, try the house number and street name without the direction or suffix. Compare the address and parcel on the returned drawing.",
+        "Check the record type. A septic record drawing, a Report of System Status and a well record answer different questions.",
+        "For newer files, use the Accela link on the document search page. Search by address, then open Record Info and Attachments. If neither archive has the file, use the public-records request linked by the Health Department."
+      ],
+      "recordsToRequest": [
+        "Septic as-built or record drawing with layout attachments",
+        "Report of System Status and later repair records, when applicable"
+      ],
+      "lowEndBreakers": [
+        "The county public works portal does not hold the health department’s septic archive.",
+        "A historical septic drawing alone cannot show whether the building later connected to public sewer."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Which office holds Pierce County septic drawings?",
+          "answer": "Start with the Tacoma–Pierce County Health Department’s Asbuilt Lookup Tool. Pierce County Planning and Public Works refers these records to the health department."
+        },
+        {
+          "question": "What should I ask for if the first search finds only a permit number?",
+          "answer": "Ask for the complete permit packet, including the installed record drawing, final inspection and any later repair plans tied to the same property."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/",
+        "/septic-as-built-records/",
+        "/sewer-or-septic-by-address/"
+      ],
+      "officialSourceIds": [
+        "wa_pierce_drawing_request_20261105",
+        "wa_pierce_edocs_20261105",
+        "wa_pierce_custodian_20261105"
+      ],
+      "searchGuide": {
+        "summary": "Tacoma–Pierce County Health Department provides an online lookup for septic record drawings. Start there for a tank or drainfield layout and keep city sewer permits separate.",
+        "coverage": "Pierce County directs septic drawings and well records to the health department. The county public works archive and Tacoma’s sewer maps serve different purposes.",
+        "identifiers": "Property address and parcel or assessor account number.",
+        "documents": "Septic as-built or record drawing with layout attachments. Report of System Status and later repair records, when applicable.",
+        "steps": [
+          "Search the Health Department document archive by parcel number, site address or owner. For an address, try the house number and street name without the direction or suffix. Compare the address and parcel on the returned drawing.",
+          "Check the record type. A septic record drawing, a Report of System Status and a well record answer different questions.",
+          "For newer files, use the Accela link on the document search page. Search by address, then open Record Info and Attachments. If neither archive has the file, use the public-records request linked by the Health Department."
+        ],
+        "noResult": "For newer files, use the Accela link on the document search page. Search by address, then open Record Info and Attachments. If neither archive has the file, use the public-records request linked by the Health Department.",
+        "sourceIds": [
+          "wa_pierce_drawing_request_20261105",
+          "wa_pierce_edocs_20261105",
+          "wa_pierce_custodian_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published",
+      "workflowStructure": {
+        "fileOwnerCategory": "county_public_health",
+        "fileOwnerModel": "Tacoma–Pierce County Health Department is the starting point for the existing onsite sewage file.",
+        "firstArtifactToPull": "The Health Department record drawing for the exact address or parcel.",
+        "permitCloseoutCategory": "completion_artifact",
+        "permitCloseoutSignal": "Compare the installed drawing with any final approval or Report of System Status.",
+        "transferCategory": "formal_transfer_artifact",
+        "transferArtifact": "Review the record drawing, Report of System Status and later dated repairs separately.",
+        "specialProgramCategory": "local_variation",
+        "specialProgramSignal": "The Health Department splits public document search and newer Accela attachments.",
+        "malfunctionCategory": "repair_branch",
+        "malfunctionSignal": "Ask for any repair, abandonment or later connection evidence when the historic drawing conflicts with what is known.",
+        "quoteGate": "Match the parcel and record dates, then verify what changed since the drawing before using it to price work."
+      }
+    },
+    {
       "stateCode": "IN",
       "countyName": "Howard County",
       "countySlug": "howard-county",
@@ -19540,54 +19865,54 @@
       "stateCode": "IN",
       "countyName": "La Porte County",
       "countySlug": "la-porte-county",
-      "title": "La Porte County Indiana Septic Records and Permit Lookup",
-      "metaDescription": "La Porte County septic records and permit lookup with official county health department onsite sewage links, onsite sewage permit and system diagram records, and file-first checks before pricing or closing.",
-      "introCopy": "La Porte County needs a county-first lookup because the useful answer is not just whether septic exists. The real question is whether the onsite sewage permit, final inspection note, diagram, or existing-system approval tied to the parcel can be found before a buyer, owner, agent, or contractor trusts the next cost or repair story.",
-      "uniqueAngle": "La Porte gives a detailed OSS permit procedure, which lets a buyer or builder see the tax ID, soil report, and plan packet before pricing.",
-      "targetReader": "Best for La Porte County buyers, sellers, owners, agents, and contractors who already know the county and need the septic record or permit path before they compare quotes, accept a seller explanation, or plan repair, replacement, or existing-system review.",
-      "officeLabel": "La Porte County Health Department onsite sewage office",
-      "officeUrl": "https://www.in.gov/localhealth/laportecounty/files/Procedure-for-Septic-App-1-9-2020.pdf",
-      "recordsLabel": "Open La Porte County septic records and permit lookup path",
-      "recordsUrl": "https://www.in.gov/localhealth/laportecounty/files/Procedure-for-Septic-App-1-9-2020.pdf",
-      "contactLine": "La Porte County Health Department onsite sewage office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
+      "title": "La Porte County IN Septic Records and Drawing Requests",
+      "metaDescription": "Find the right La Porte County Health Department contact for septic permits and drawings. Bring the address, parcel and installation date if known.",
+      "introCopy": "Ask the La Porte County Health Department for the existing drawing. The county says it generally has septic drawings from July 1979 onward.",
+      "uniqueAngle": "A clear archive starting date helps distinguish a historical records request from a repair or new installation application.",
+      "targetReader": "Homeowners and buyers looking for the existing septic file in La Porte County.",
+      "officeLabel": "La Porte County Health Department",
+      "officeUrl": "https://www.in.gov/localhealth/laportecounty/septic-division/",
+      "recordsLabel": "Open the La Porte County Health Department contact",
+      "recordsUrl": "https://www.in.gov/localhealth/laportecounty/contact-us/",
+      "contactLine": "La Porte County Health Department | 219-326-6808 ext. 2200",
       "decisionSteps": [
-        "Open the official La Porte County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
-        "Ask for the onsite sewage permit, final inspection note, diagram, or existing-system approval tied to the parcel and tie the request to the address, parcel ID, owner name, subdivision, or permit number that the office can search.",
-        "Before pricing, confirm whether the file supports normal use, repair, replacement, or existing-system review, a sale, an addition, or a new permit path."
+        "Gather the street address, parcel number and approximate installation date. Include an earlier owner or address if you know it.",
+        "Ask the Septic Division for a copy of the existing septic drawing and associated permit or inspection file. Ask about later repairs if the original drawing does not match what you know.",
+        "For a property near or before July 1979, ask what years and indexes the department checked. Keep any agency reply with the search details."
       ],
       "recordsToRequest": [
-        "The onsite sewage permit, final inspection note, diagram, or existing-system approval tied to the parcel.",
-        "Any repair, complaint, abandonment, expansion, or final inspection record the La Porte County office can attach to the parcel.",
-        "Any map, sketch, as-built, operation approval, affidavit, or letter showing where the system and replacement area sit."
+        "Existing septic drawing and associated permit",
+        "Any inspection sign-off or later field replacement drawing"
       ],
       "lowEndBreakers": [
-        "If La Porte County cannot connect the parcel to a usable septic file, the cheapest quote is only a rough planning number.",
-        "If the file shows a repair branch, missing closeout, or old system with no clear dimensions, repair, replacement, or existing-system review can override the low-end story.",
-        "If the address, parcel ID, owner name, or legal description is wrong, a clean-looking lookup can still miss the real file."
+        "The July 1979 date is general archive coverage, not a guarantee of a record at a particular address.",
+        "A new permit application starts a different process from a request for an existing file."
       ],
       "faqBlocks": [
         {
-          "question": "How do I look up septic records in La Porte County?",
-          "answer": "Start with the official La Porte County records or environmental health link on this page, then request the onsite sewage permit, final inspection note, diagram, or existing-system approval tied to the parcel using the parcel address and any permit or owner information you already have."
+          "question": "How far back do La Porte County septic drawings go?",
+          "answer": "The Health Department says it generally has drawings from July 1979 to the present. Ask the department to check the exact address and parcel."
         },
         {
-          "question": "What should I ask for before trusting a septic quote in La Porte County?",
-          "answer": "Ask for onsite sewage permit and system diagram records, plus any repair, final inspection, as-built, approval, or complaint history. That file tells you whether the next move is normal pricing, a repair branch, or a more cautious permit check."
+          "question": "What should I ask for if the first search finds only a permit number?",
+          "answer": "Ask for the complete permit packet, including the installed record drawing, final inspection and any later repair plans tied to the same property."
         }
       ],
       "internalLinkTargets": [
+        "/septic-records-checklist/indiana/",
+        "/septic-permit-records-request/",
+        "/septic-as-built-records/",
         "/septic-permit-lookup/",
         "/how-to-find-septic-records-online/",
-        "/septic-records-checklist/indiana/",
         "/septic-permit-process/indiana/",
         "/septic-records-checklist/",
         "/septic-system-cost-calculator/indiana/",
         "/septic-records-by-county/",
-        "/septic-permit-search-by-address/",
-        "/septic-permit-records-request/",
-        "/septic-as-built-records/"
+        "/septic-permit-search-by-address/"
       ],
       "officialSourceIds": [
+        "in_laporte_septic_records_20261105",
+        "in_laporte_health_contact_20261105",
         "in_laporte_01",
         "in_03"
       ],
@@ -19605,7 +19930,26 @@
         "malfunctionSignal": "Any complaint, failure, repair application, or tank replacement record should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from lookup to pricing until the county file owner, first artifact, and repair or closeout status agree with the buyer, seller, or contractor story."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "searchGuide": {
+        "summary": "Ask the La Porte County Health Department for the existing drawing. The county says it generally has septic drawings from July 1979 onward.",
+        "coverage": "A clear archive starting date helps distinguish a historical records request from a repair or new installation application.",
+        "identifiers": "Property address, parcel number and approximate installation year.",
+        "documents": "Existing septic drawing and associated permit. Any inspection sign-off or later field replacement drawing.",
+        "steps": [
+          "Gather the street address, parcel number and approximate installation date. Include an earlier owner or address if you know it.",
+          "Ask the Septic Division for a copy of the existing septic drawing and associated permit or inspection file. Ask about later repairs if the original drawing does not match what you know.",
+          "For a property near or before July 1979, ask what years and indexes the department checked. Keep any agency reply with the search details."
+        ],
+        "noResult": "For a property near or before July 1979, ask what years and indexes the department checked. Keep any agency reply with the search details.",
+        "sourceIds": [
+          "in_laporte_septic_records_20261105",
+          "in_laporte_health_contact_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05"
     },
     {
       "stateCode": "IN",
