@@ -77,6 +77,13 @@
                        data-track-click="nav"
                        data-track-source-context="county_records_premium_official"
                        data-track-target-type="official_source">Use the official route yourself</a>
+                    @if (countySearchGuide != null)
+                        <a class="premium-county-button premium-county-button--text"
+                           href="#record-search-instructions"
+                           data-track-click="nav"
+                           data-track-source-context="county_hero_search_instructions"
+                           data-track-target-type="internal_page">How to find the existing permit <span aria-hidden="true">↓</span></a>
+                    @endif
                 </div>
                 <ul class="premium-county-hero__promises" aria-label="SepticPath county investigation benefits">
                     <li><span aria-hidden="true">◇</span> Accurate requests</li>

@@ -764,6 +764,7 @@ public class SeoService {
             case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
             case "NC::union-county" -> "Union County NC Septic Permit Search | Existing Records";
+            case "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.title();
             case "TN::wilson-county" -> "Wilson County TN Septic Permit Search | TDEC Records";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
             case "NC::pender-county" -> "Pender County NC Septic Permit Search & Records";
@@ -842,7 +843,7 @@ public class SeoService {
             case "NC::wake-county" -> "Match the Wake County parcel in iMAPS, open Permit Search, and download the scanned septic permit and attachments without treating a missing Septic box as no record.";
             case "NC::union-county" -> "Find Union County NC septic records: separate Evolve permit searches from Environmental Health files, check county research fees, or get free record help.";
             case "NC::pitt-county" -> "Search Pitt County EnerGov records, then verify the Authorization to Construct, site plan, primary drainfield, repair area, and final approval with Environmental Health.";
-            case "NC::pender-county" -> "Prepare Pender County's exact septic permit request fields and obtain the file status, permit type, layout, or written Environmental Health response.";
+            case "NC::pender-county", "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.metaDescription();
             case "AL::tuscaloosa-county" -> "Call Tuscaloosa County's Environmental Office with the address, parcel, owner, approximate year, and exact septic permit or record request.";
             case "AL::calhoun-county" -> "Use Calhoun County's direct Environmental Department route for an onsite sewage permit, historical file, inspection record, repair, or development request.";
             case "SC::charleston-county" -> "Find the Charleston County parcel ID or TMS, then request the SCDES Permit to Construct and final inspection through the Coastal records route.";

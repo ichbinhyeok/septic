@@ -62,7 +62,7 @@ class GrowthIntentJourneyTest {
             assertThat(html.indexOf(henderson)).isLessThan(html.indexOf("/septic-records-checklist/north-carolina/forsyth-county/"));
         }
         assertThat(html("/north-carolina-septic-permit-lookup/"))
-                .contains("Johnston County septic permit search", "Street search + permit image",
+                .contains("Johnston County septic permit search", "Address or permit number + image request",
                         "Henderson County septic permit lookup", "Current portal + older archive");
         html(johnston);
         html(henderson);
@@ -76,13 +76,18 @@ class GrowthIntentJourneyTest {
         }
         for (String path : List.of("/tdec-septic-records/", "/septic-permit-search-by-address/",
                 "/how-to-find-septic-records-online/", "/north-carolina-septic-permit-lookup/",
-                "/apphealthcare-septic-permit-search/", "/sewer-or-septic-by-address/", "/onlinerme-septic-records/")) {
+                "/apphealthcare-septic-permit-search/", "/sewer-or-septic-by-address/", "/onlinerme-septic-records/",
+                "/texas-ossf-records-search/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
         }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-10-11</lastmod>");
         String counties = html("/sitemap-county.xml");
-        assertThat(counties).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/johnston-county/</loc><lastmod>2026-10-05</lastmod>");
+        for (String county : List.of("north-carolina/johnston-county", "north-carolina/pender-county",
+                "texas/travis-county", "texas/williamson-county")) {
+            assertThat(counties).contains("<loc>https://septicpath.com/septic-records-checklist/" + county
+                    + "/</loc><lastmod>2026-11-05</lastmod>");
+        }
     }
 
     @Test void supportingPublicLinksResolveAndTdecRetainsSearchIntent() throws Exception {
