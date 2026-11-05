@@ -61,10 +61,10 @@
         @if (stateRecordsSearchResponse != null)
             <div class="container state-records-intent-band">
                 @template.tags.searchIntentNextSteps(
-                    officialPath = "/septic-record-finder/",
-                    officialLabel = "Find the county and official record route",
+                    officialPath = "/septic-permit-search-by-address/",
+                    officialLabel = "Find the official septic permit route by address",
                     sourceContext = "state_records_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT),
-                    officialTargetType = "record_finder"
+                    officialTargetType = "internal_page"
                 )
             </div>
         @endif

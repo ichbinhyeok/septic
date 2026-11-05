@@ -947,20 +947,20 @@
       "stateCode": "TX",
       "countyName": "Travis County",
       "countySlug": "travis-county",
-      "title": "Travis County Texas Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Travis County septic records checklist and permit lookup with TNR open-records search, septic permit routing, and file pulls before you trust a repair, replacement, or buyer story.",
-      "introCopy": "Travis County is a real county wedge because Transportation and Natural Resources publishes both the septic permit path and a records system that explicitly names septic permits, field inspections, site-plan drawings, certification letters, and license-to-operate records. That is much closer to the homeowner's real next action than a generic Texas cost page.",
+      "title": "Travis County TX Septic Permit Search & OSSF Records",
+      "metaDescription": "Search older Travis County septic permits and drawings in the public TNR archive. Find the 2014-and-later route and request missing OSSF records.",
+      "introCopy": "Travis County TNR records are split at January 2014. Search the public archive for older permits and drawings, and use the county’s MyGovernmentOnline instructions for records from January 2014 onward.",
       "uniqueAngle": "Travis County is unusually useful because it splits the records problem by era. The county tells homeowners to use the public search portal for older septic records and the post-2014 online permit system for newer files. That makes the file chase concrete instead of vague.",
       "targetReader": "Best for Travis County buyers, owners, and agents who need to know whether the county already has enough septic paperwork behind the property to support a repair conversation, a replacement quote, or a clean closing story.",
       "officeLabel": "Travis County septic permit page",
       "officeUrl": "https://www.traviscountytx.gov/tnr/development-services/apply-for-a-permit/residential-ossf-septic-system-permit",
-      "recordsLabel": "Open Travis County septic records path",
+      "recordsLabel": "Open Travis County’s two septic records routes",
       "recordsUrl": "https://www.traviscountytx.gov/tnr/tnr-open-records",
       "contactLine": "Travis County Transportation and Natural Resources Records Management | recordsctr@traviscountytx.gov | 700 Lavaca Street Austin TX 78767",
       "decisionSteps": [
-        "Open the Travis County records page first and check whether the septic file is likely in the older public portal or the newer post-2014 online system.",
-        "Pull the septic permit, field inspection, site-plan drawing, certification letter, and license-to-operate trail before you compress the job into one replacement or buyer number.",
-        "Only after the file is clearer should you move into the Travis permit path or compare installer quotes, because the missing-file problem and the construction problem are not the same thing."
+        "For records created before January 2014, open the TNR Public Search Portal and choose the septic records search. Start with one property clue.",
+        "Try a shorter address or an asterisk wildcard if the legacy search returns nothing. Add more fields only after seeing results because they narrow the search together.",
+        "For records from January 2014 onward, follow the MyGovernmentOnline link on the TNR page. Match the address and permit before relying on the file."
       ],
       "recordsToRequest": [
         "Any septic permit tied to the parcel.",
@@ -983,6 +983,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/texas-ossf-records-search/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/texas/",
         "/septic-permit-process/texas/",
@@ -996,7 +997,9 @@
       "officialSourceIds": [
         "tx_travis_01",
         "tx_travis_02",
-        "tx_04"
+        "tx_04",
+        "tx_travis_archive_20261105",
+        "tx_travis_mgo_20261105"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
@@ -1012,7 +1015,27 @@
         "malfunctionSignal": "If the file points into repairs, do not stop at the permit number. Pull the inspection, drawing, and certification trail that shows what work actually cleared county review.",
         "quoteGate": "Do not move into pricing until both the older records lane and the post-2014 permit lane are checked, because Travis can look clean in one system while the real inspection or operating trail lives in the other."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "searchGuide": {
+        "summary": "Start with the permit date. Travis County TNR uses separate systems for older and newer septic records.",
+        "coverage": "The public portal covers some records created before January 2014. Travis County directs January 2014 and later permits to MyGovernmentOnline and says public access requires a customer account.",
+        "identifiers": "Property address or permit number. Try a shorter address clue when the old archive returns nothing.",
+        "documents": "The legacy archive can include permit PDFs, field inspections, site plans, certification letters and licenses to operate.",
+        "steps": [
+          "For records created before January 2014, open the TNR Public Search Portal and choose the septic records search. Start with one property clue.",
+          "Try a shorter address or an asterisk wildcard if the legacy search returns nothing. Add more fields only after seeing results because they narrow the search together.",
+          "For records from January 2014 onward, follow the MyGovernmentOnline link on the TNR page. Match the address and permit before relying on the file."
+        ],
+        "noResult": "If you cannot get the right PDF, use the TNR open records instructions. Give the property address, approximate permit year, and any permit number, and ask for the layout and operating approval along with the permit.",
+        "sourceIds": [
+          "tx_travis_archive_20261105",
+          "tx_travis_mgo_20261105",
+          "tx_travis_02"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05"
     },
     {
       "stateCode": "TX",
@@ -1089,20 +1112,20 @@
       "stateCode": "TX",
       "countyName": "Williamson County",
       "countySlug": "williamson-county",
-      "title": "Williamson County Texas Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Williamson County septic records checklist and permit lookup with OSSF jurisdiction checks, open-records routing, and county file pulls before you trust a repair, expansion, or buyer story.",
-      "introCopy": "Williamson County is a strong Texas county wedge because the county does not stop at a generic permit page. It gives owners an OSSF path that starts with county address and jurisdiction checks, explains how to request records, and routes new work into MyGovernment Online.",
-      "uniqueAngle": "Williamson County is useful because the county makes the identification step concrete. The official workflow tells requestors to use the property address or property ID and, when possible, subdivision lot and block or prior owner names so the septic file search is narrower than a vague county phone call.",
+      "title": "Williamson County TX Septic Permit Search & OSSF Records",
+      "metaDescription": "Check which office serves a Williamson County address and request the existing OSSF permit, site plan, or approval from the correct authority.",
+      "introCopy": "Check the address in Williamson County’s jurisdiction tool first. For properties served by the county OSSF office, use its dedicated records request instructions to obtain existing files.",
+      "uniqueAngle": "Use the county address lookup to identify jurisdiction before requesting the existing septic file from the OSSF office.",
       "targetReader": "Best for Williamson County buyers, owners, and agents who need to know whether the county already has a permit trail, repair history, or jurisdiction clue behind the property before they price the next move.",
       "officeLabel": "Williamson County OSSF office",
       "officeUrl": "https://www.wilcotx.gov/644/On-Site-Sewage-Facilities-OSSF",
-      "recordsLabel": "Open Williamson County records request",
-      "recordsUrl": "https://www.wilcotx.gov/1485/Open-Records-Request",
+      "recordsLabel": "Open Williamson County OSSF records instructions",
+      "recordsUrl": "https://www.wilcotx.gov/644/On-Site-Sewage-Facilities-OSSF",
       "contactLine": "Williamson County says septic records requests should include the property address or property ID, plus subdivision lot and block or previous homeowner names when available.",
       "decisionSteps": [
-        "Use the county address search and jurisdiction check first so you know whether the parcel is really in Williamson County's OSSF lane or inside another local authority.",
-        "Submit the county records request with the property address or ID and as much lot, block, or prior-owner detail as you can before you trust a buyer or repair story.",
-        "Once the file is clearer, move into Williamson County's MyGovernment Online permit path for new, repair, or enlargement work instead of treating the county file and the next permit as the same question."
+        "Open County Address Search and select the exact street address. Check the city or ETJ result. If the result leaves the authority unclear, call the county OSSF office at 512-943-3330.",
+        "For properties served by the county, open the OSSF department page and use the email link under OSSF Open Records Requests. For an in-person request, use the county’s public information form.",
+        "Include your contact information, full property address, and which existing files you need. Add subdivision, block and lot if available."
       ],
       "recordsToRequest": [
         "Any Williamson County OSSF permit or permit-status history tied to the parcel.",
@@ -1125,6 +1148,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/texas-ossf-records-search/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/texas/",
         "/septic-permit-process/texas/",
@@ -1138,7 +1162,9 @@
       "officialSourceIds": [
         "tx_williamson_01",
         "tx_williamson_02",
-        "tx_04"
+        "tx_04",
+        "tx_williamson_address_20261105",
+        "tx_williamson_ossf_form_20261105"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
@@ -1154,7 +1180,27 @@
         "malfunctionSignal": "If the county file points into repair or enlargement rather than simple reuse, the parcel is already out of the cheap story lane.",
         "quoteGate": "Do not move into pricing until the jurisdiction check and county file both confirm the same authority and permit branch, because Williamson can widen fast once the parcel leaves the easy county lane."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "searchGuide": {
+        "summary": "Look up the property address to identify the jurisdiction, then ask the responsible office for the existing septic file.",
+        "coverage": "Williamson County identifies the City of Austin as an exception to its OSSF program. Its instructions do not give a public archive date range.",
+        "identifiers": "Full property address, requester name, email and phone, description of the files, and subdivision, block and lot if available.",
+        "documents": "Request the existing OSSF permit, approved plan, inspection or approval, and any repair records that match the address.",
+        "steps": [
+          "Open County Address Search and select the exact street address. Check the city or ETJ result. If the result leaves the authority unclear, call the county OSSF office at 512-943-3330.",
+          "For properties served by the county, open the OSSF department page and use the email link under OSSF Open Records Requests. For an in-person request, use the county’s public information form.",
+          "Include your contact information, full property address, and which existing files you need. Add subdivision, block and lot if available."
+        ],
+        "noResult": "If the property is served by another jurisdiction or the county refers you elsewhere, identify the responsible office before submitting again. The County Address Search identifies jurisdiction; it does not retrieve a permit.",
+        "sourceIds": [
+          "tx_williamson_address_20261105",
+          "tx_williamson_01",
+          "tx_williamson_ossf_form_20261105"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05"
     },
     {
       "stateCode": "TX",
@@ -10289,20 +10335,20 @@
       "stateCode": "NC",
       "countyName": "Pender County",
       "countySlug": "pender-county",
-      "title": "Pender County North Carolina Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Pender County septic records checklist and permit lookup with permit-information request, repair-area file checks, and PORT permit routing before you trust an addition or replacement story.",
-      "introCopy": "Pender County is strong because the county gives owners a direct septic-permit information request and then tells them exactly why the file matters: septic tank location, repair area, and septic-line location can all block the next permit or addition.",
-      "uniqueAngle": "Pender is useful because the first question is not average cost. It is whether the county can confirm the existing system, repair area, and line location before the owner starts building, buying, or quoting work.",
+      "title": "Pender County NC Septic Permit Lookup & Records Request",
+      "metaDescription": "Use Pender County’s parcel viewer to find the PIN, then request the existing septic permit and site drawing from Environmental Health.",
+      "introCopy": "Use the county parcel viewer to confirm the address and parcel PIN. Give those details to Environmental Health on the county’s septic permit information request.",
+      "uniqueAngle": "Use the parcel viewer for property identifiers and the Environmental Health request for the actual septic file.",
       "targetReader": "Best for Pender County buyers, owners, sellers, and builders who need to know whether the county septic file can support an addition, permit, or replacement plan.",
       "officeLabel": "Pender County on-site wastewater program and wells",
       "officeUrl": "https://pendercountync.gov/230/On-Site-Wastewater-Program-Wells",
-      "recordsLabel": "Request Pender County septic permit information",
+      "recordsLabel": "Open the Pender septic records request (PDF)",
       "recordsUrl": "https://www.pendercountync.gov/DocumentCenter/View/164/Septic-Permit-Information-Request-PDF",
       "contactLine": "Pender County Environmental Health | Hampstead 910-270-5000 | Burgaw 910-259-1233",
       "decisionSteps": [
-        "Submit the county septic-permit information request with the address, parcel ID, permit name, or year built before trusting the current septic story.",
-        "Use the county file to confirm whether a past soil test, septic tank, repair area, or septic-line location is already on record.",
-        "If work is planned, tie that file to the PORT permitting path before pricing additions, rebuilds, or replacements."
+        "Open the county parcel viewer. Use the property address or parcel PIN and verify the parcel location before copying the identifier.",
+        "Fill out the Septic Permit Information Request with the matched property information and your contact details. Ask for the permit and site drawing if both are needed.",
+        "Return the form to the Environmental Health office identified on the PDF. If you are unsure which office to use, contact Hampstead at 910-270-5000 or Burgaw at 910-259-1233."
       ],
       "recordsToRequest": [
         "Any septic permit information tied to the parcel.",
@@ -10325,6 +10371,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/north-carolina-septic-permit-lookup/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/north-carolina/",
         "/septic-permit-process/north-carolina/",
@@ -10339,7 +10386,8 @@
         "nc_pender_01",
         "nc_pender_02",
         "nc_pender_03",
-        "nc_pender_04"
+        "nc_pender_04",
+        "nc_pender_gis_20261105"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -10355,7 +10403,30 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Pender County has a real repair-side branch, so the repair or failure file matters before anyone assumes the cheapest visible scope is still available.",
         "quoteGate": "Do not move into pricing until the file owner is fully resolved, the buyer or transfer artifact supports the same story, the local program or area-rule lane is clear, and the repair or complaint trail is resolved, because Pender County can look simpler on the surface than the real county workflow."
-      }
+      },
+      "parcelAnchorLabel": "Find the property PIN in Pender GIS",
+      "parcelAnchorUrl": "https://gis.pendercountync.gov/",
+      "parcelAnchorNote": "Use the county map to match the parcel and fill in the PIN on the Environmental Health request.",
+      "searchGuide": {
+        "summary": "Use county GIS to match the parcel, then send the dedicated records form to Environmental Health.",
+        "coverage": "Environmental Health handles existing files. Its request form gives no archive start date.",
+        "identifiers": "Address, parcel PIN, subdivision and lot, permit holder or current owner, and year built when known.",
+        "documents": "Request the septic permit and any layout or installation record on file. The county form also has fields for permit type and status.",
+        "steps": [
+          "Open the county parcel viewer. Use the property address or parcel PIN and verify the parcel location before copying the identifier.",
+          "Fill out the Septic Permit Information Request with the matched property information and your contact details. Ask for the permit and site drawing if both are needed.",
+          "Return the form to the Environmental Health office identified on the PDF. If you are unsure which office to use, contact Hampstead at 910-270-5000 or Burgaw at 910-259-1233."
+        ],
+        "noResult": "Ask Environmental Health to check the parcel using the subdivision, lot, previous owner or approximate installation year. The PORT building and trade permit portal serves a different department.",
+        "sourceIds": [
+          "nc_pender_gis_20261105",
+          "nc_pender_02",
+          "nc_pender_01"
+        ],
+        "reviewedAt": "2026-11-05"
+      },
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05"
     },
     {
       "stateCode": "NJ",
@@ -11028,36 +11099,38 @@
       "stateCode": "NC",
       "countyName": "Johnston County",
       "countySlug": "johnston-county",
-      "title": "Johnston County North Carolina Septic Records Checklist and Permit Lookup",
+      "title": "Johnston County NC Septic Permit Search by Address",
       "searchGuide": {
-        "summary": "Begin with the street-name search; request the septic permit image from Environmental Health when needed.",
-        "coverage": "The street-search page does not publish a complete archive date range.",
-        "identifiers": "At least 3 characters from the beginning of the street name.",
-        "documents": "An address search is available. The county separately directs septic permit image requests to envhealth@johnstonnc.gov.",
+        "summary": "Start with the full address search, then switch to the house number and street fields when the county lists the property differently.",
+        "coverage": "Johnston County publishes a permit-status search without a complete archive date range.",
+        "identifiers": "Address, house number and street name, or permit number.",
+        "documents": "Permit or inspection status from the search. Request the permit image and any site drawing separately when you need the file.",
         "steps": [
-          "Enter the beginning of the street name in the county search, using at least 3 characters.",
-          "Check the matching address and any returned permit details before relying on the result.",
-          "For a copy, use the county's published permit-image request address and include the property and any permit identifiers you found."
+          "Enter the street address or permit number on the county search page. For a split search, enter the numeric house number and the street name.",
+          "If there is no match, try the street name without its direction or suffix. Use the street browse to check how the county indexed the address, or try the permit number.",
+          "Match the result to the property. If the county shows On Hold, contact Environmental Health for the reason."
         ],
-        "noResult": "Ask envhealth@johnstonnc.gov for the existing septic permit image if the result is absent or does not supply the document.",
+        "noResult": "Email envhealth@johnstonnc.gov for the septic permit image and any site drawing. Include the property address and any permit number you found.",
         "sourceIds": [
-          "nc_johnston_02"
+          "nc_johnston_address_20261105",
+          "nc_johnston_02",
+          "nc_johnston_05"
         ],
-        "reviewedAt": "2026-09-11"
+        "reviewedAt": "2026-11-05"
       },
-      "metaDescription": "Johnston County septic records checklist and permit lookup with permit-status search, permit-image request path, and pump-inspection or repair friction before you trust a simple septic story.",
-      "introCopy": "Johnston County is strong because the county puts permit status checks, permit-image requests, repair workflow, and recurring pump inspections in one place. That makes the county file much more actionable than a generic North Carolina page.",
+      "metaDescription": "Search Johnston County septic permit status by address or permit number. Learn how to request the permit image or site drawing from Environmental Health.",
+      "introCopy": "Start with the property’s house number and street, or use the permit number if you have it. The county publishes a separate email route when you need the actual permit image.",
       "uniqueAngle": "Johnston is a permit-status county. The real question is whether the county permit file, image request, and pump or repair history all support the current property story.",
       "targetReader": "Best for Johnston County buyers, owners, sellers, and contractors who need to know whether the next move is a street-search, an emailed permit-image request, or a repair permit conversation.",
       "officeLabel": "Johnston County onsite wastewater program",
       "officeUrl": "https://www.johnstonnc.gov/envhealth/content.cfm?pd=septic",
-      "recordsLabel": "Check Johnston County septic permit status",
-      "recordsUrl": "https://www.johnstonnc.gov/envhealth/streetsearch.cfm",
+      "recordsLabel": "Search Johnston septic permits by address",
+      "recordsUrl": "https://www.johnstonnc.gov/envhealth/eh_permit_by_address1.cfm",
       "contactLine": "Johnston County Environmental Health | 919-989-5180 | envhealth@johnstonnc.gov",
       "decisionSteps": [
-        "Search the county permit status first and confirm whether the parcel has a visible onsite wastewater file.",
-        "If the permit file is relevant to a sale or repair, request the permit image from Environmental Health instead of relying on a seller memory or hand sketch.",
-        "If the system uses an effluent pump or needs a repair permit, fold that county workflow into the real timeline before trusting a low-friction quote."
+        "Enter the street address or permit number on the county search page. For a split search, enter the numeric house number and the street name.",
+        "If there is no match, try the street name without its direction or suffix. Use the street browse to check how the county indexed the address, or try the permit number.",
+        "Match the result to the property. If the county shows On Hold, contact Environmental Health for the reason."
       ],
       "recordsToRequest": [
         "The septic permit image and permit status tied to the property.",
@@ -11080,6 +11153,7 @@
         }
       ],
       "internalLinkTargets": [
+        "/north-carolina-septic-permit-lookup/",
         "/septic-permit-lookup/",
         "/septic-records-checklist/north-carolina/",
         "/septic-permit-process/north-carolina/",
@@ -11095,7 +11169,8 @@
         "nc_johnston_02",
         "nc_johnston_03",
         "nc_johnston_04",
-        "nc_johnston_05"
+        "nc_johnston_05",
+        "nc_johnston_address_20261105"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
@@ -11111,7 +11186,9 @@
         "malfunctionSignal": "If the county file moves into repair history, the parcel is already out of the easy install or reuse lane.",
         "quoteGate": "Do not move into pricing until the permit image, repair path, and pump-inspection trail all support the same system story, because Johnston can expose maintenance or malfunction friction early."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05"
     },
     {
       "stateCode": "AZ",

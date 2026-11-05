@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.24.4 - 2026-11-05
+
+### Changed
+
+- Start nationwide permit lookup with a single address and put reviewed county search portals first when available.
+- Publish specific records search and request instructions for Johnston, Pender, Travis and Williamson counties, and link them from their state records pages.
+
+### Fixed
+
+- Match the Census spelling of La Porte County to the local records guide.
+
 ## 0.0.24.3 - 2026-11-05
 
 ### Added

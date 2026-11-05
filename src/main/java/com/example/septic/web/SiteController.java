@@ -5413,6 +5413,17 @@ The goal is to settle the permit path before we frame the project as a normal in
             String routeMessage = accessProfile.countySpecific()
                     ? "This county-specific route has a reviewed official handoff. The government site or office still controls the final search, signature, payment, and submission."
                     : "This is an official starting point, not a verified county-specific intake. Use the property clues here, then follow only the fields and steps the official source currently publishes.";
+            boolean hasReviewedSearch = accessProfile.countySpecific()
+                    && Set.of("direct_portal", "portal_with_fallback").contains(accessProfile.mode())
+                    && accessProfile.primaryUrl().startsWith("https://");
+            List<AddressRecordFinderAction> actions = hasReviewedSearch
+                    ? List.of(
+                            new AddressRecordFinderAction("Open " + page.countyName() + " records",
+                                    page.path(state.get().slug()), "county_records_page", false, true),
+                            new AddressRecordFinderAction(accessProfile.primaryLabel(),
+                                    accessProfile.primaryUrl(), "official_source", true, false)
+                    )
+                    : List.of();
             return new AddressRecordFinderResult(
                     "county_route",
                     page.countyName() + ", " + state.get().stateName() + " records route",
@@ -5425,7 +5436,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                             page.updatedAt(),
                             researchDataService.countyRecordsPagesGeneratedAt()
                     ),
-                    List.of(), List.of(),
+                    actions, List.of(),
                     state.get().stateCode() + "::" + normalizeCountyFinderText(page.countyName()).replace(" county", "").replace(' ', '-'),
                     accessProfile.countySpecific() ? "verified_county" : "official_start",
                     accessProfile.countySpecific() ? "source_reviewed" : "baseline",
@@ -5530,8 +5541,9 @@ The goal is to settle the permit path before we frame the project as a normal in
     }
 
     private boolean countyNamesMatch(String left, String right) {
-        return normalizeCountyFinderText(left).replace(" county", "")
-                .equals(normalizeCountyFinderText(right).replace(" county", ""));
+        // Census names can omit spaces used by the county, as in LaPorte and La Porte.
+        return normalizeCountyFinderText(left).replace(" county", "").replace(" ", "")
+                .equals(normalizeCountyFinderText(right).replace(" county", "").replace(" ", ""));
     }
 
     private boolean countyFinderMatches(

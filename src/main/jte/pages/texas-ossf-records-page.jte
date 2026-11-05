@@ -24,6 +24,25 @@
             </div>
         </section>
 
+        <section class="nc-priority-routes" aria-labelledby="tx-priority-routes-title">
+            <div class="container nc-priority-routes__inner">
+                <header>
+                    <span class="eyebrow">County septic records</span>
+                    <h2 id="tx-priority-routes-title">Start with the county when you know it</h2>
+                </header>
+                <nav class="nc-priority-routes__links" aria-label="Texas county septic permit searches">
+                    <a href="/septic-records-checklist/texas/travis-county/" data-track-click="nav" data-track-source-context="tx_priority_county_routes" data-track-target-type="county_records_page">
+                        <strong>Travis County septic permit search</strong>
+                        <span>Public archive and January 2014 onward</span>
+                    </a>
+                    <a href="/septic-records-checklist/texas/williamson-county/" data-track-click="nav" data-track-source-context="tx_priority_county_routes" data-track-target-type="county_records_page">
+                        <strong>Williamson County septic permit records</strong>
+                        <span>Address and jurisdiction check, then an OSSF records request</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "tx_records_evidence")
         </div>

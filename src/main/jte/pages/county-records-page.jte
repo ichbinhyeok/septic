@@ -77,6 +77,13 @@
                        data-track-click="nav"
                        data-track-source-context="county_records_premium_official"
                        data-track-target-type="official_source">Use the official route yourself</a>
+                    @if (countySearchGuide != null)
+                        <a class="premium-county-button premium-county-button--text"
+                           href="#record-search-instructions"
+                           data-track-click="nav"
+                           data-track-source-context="county_hero_search_instructions"
+                           data-track-target-type="internal_page">How to find the existing permit <span aria-hidden="true">↓</span></a>
+                    @endif
                 </div>
                 <ul class="premium-county-hero__promises" aria-label="SepticPath county investigation benefits">
                     <li><span aria-hidden="true">◇</span> Accurate requests</li>
@@ -206,6 +213,7 @@
                 @endif
                 <p class="county-assisted-next"><a href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}" data-record-help-cta data-track-click="nav" data-track-source-context="county_free_record_help" data-track-target-type="lead_form">Search stuck? Get free record help →</a> <span>Or, if the next step is on site,</span> <a href="/septic-system-cost-calculator/?quoteMode=true&amp;state=${state.stateCode()}#quote-request" rel="nofollow">request local service help</a>.</p>
                 @if (countySearchResponse != null)
+                    <p><a href="/septic-permit-search-by-address/" data-track-click="nav" data-track-source-context="county_records_address_entry" data-track-target-type="internal_page">Unsure of the county? Find the official permit route by address →</a></p>
                     @template.tags.searchIntentNextSteps(
                         officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
                         officialLabel = countyAccessProfile != null ? countyAccessProfile.primaryLabel() : countyPage.recordsActionLabel(),
@@ -1433,7 +1441,7 @@
                                data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a>
                         @else
                             <a class="button button--secondary"
-                               href="/septic-record-finder/"
+                               href="/septic-permit-search-by-address/"
                                data-track-click="nav"
                                data-track-source-context="county_official_file_path_address_record_finder"
                                data-track-target-type="internal_page">Find county from address</a>

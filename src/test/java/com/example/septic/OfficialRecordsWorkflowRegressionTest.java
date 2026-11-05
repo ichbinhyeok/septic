@@ -342,6 +342,10 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/septic-permit-search-by-address/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("data-address-record-finder-form")))
+                .andExpect(content().string(containsString("Find the permit route")))
+                .andExpect(content().string(containsString("id=\"address-search-state-routes\"")))
+                .andExpect(content().string(containsString("href=\"#septic-permit-search-by-address-county-finder\"")))
+                .andExpect(content().string(not(containsString("data-address-record-finder-purpose"))))
                 .andExpect(content().string(containsString("data-address-drawing-draft")))
                 .andExpect(content().string(containsString("Copy drawing request")))
                 .andExpect(content().string(containsString("/how-to-find-septic-records-online/#no-record-online")));
@@ -357,6 +361,7 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/septic-record-finder/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("data-address-record-finder-form")))
+                .andExpect(content().string(containsString("data-address-record-finder-purpose")))
                 .andExpect(content().string(not(containsString("data-address-drawing-draft"))));
     }
 

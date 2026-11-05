@@ -1116,6 +1116,7 @@
                 || !apiPath) {
                 return;
             }
+            const findSubmitLabel = submit.textContent;
 
             function button(label, href, primary, targetType) {
                 const link = document.createElement("a");
@@ -1137,7 +1138,7 @@
                 link.href = resolvedHref;
                 link.textContent = label;
                 link.dataset.trackClick = "nav";
-                link.dataset.trackSourceContext = "address_record_finder_result";
+                link.dataset.trackSourceContext = addressNextSteps ? "national_address_search_result" : "address_record_finder_result";
                 link.dataset.trackTargetType = targetType;
                 return link;
             }
@@ -1195,7 +1196,7 @@
             };
 
             function currentPurpose() {
-                return purposeSelect instanceof HTMLSelectElement ? purposeSelect.value : "buying";
+                return purposeSelect instanceof HTMLSelectElement ? purposeSelect.value : addressNextSteps ? "location" : "buying";
             }
 
             function saveRequestContext(extra = {}) {
@@ -1919,20 +1920,32 @@
                         official.dataset.recordOfficialLink = "true";
                         nextActions.push(official);
                     }
-                    const primaryAction = nextActions.find((link) => link.classList.contains("button--primary"))
-                        || nextActions[0];
-                    const secondaryActions = nextActions.filter((link) => link !== primaryAction);
-                    if (primaryAction && secondaryActions.length) {
-                        const moreActions = document.createElement("details");
-                        const moreSummary = document.createElement("summary");
-                        const moreLinks = document.createElement("div");
-                        moreActions.className = "record-finder__more-actions";
-                        moreSummary.textContent = `Other official routes and tools (${secondaryActions.length})`;
-                        moreLinks.append(...secondaryActions);
-                        moreActions.append(moreSummary, moreLinks);
-                        actions.replaceChildren(primaryAction, moreActions);
+                    const reviewedSearch = addressNextSteps && payload.routeMode === "verified_county"
+                        && relayActions.length > 0
+                        ? nextActions.find((link) => link.dataset.recordOfficialLink === "true"
+                            && link.dataset.trackTargetType === "official_source")
+                        : null;
+                    if (reviewedSearch) {
+                        const countyGuide = nextActions.find((link) => link.dataset.trackTargetType === "county_records_page");
+                        reviewedSearch.classList.replace("button--secondary", "button--primary");
+                        countyGuide?.classList.replace("button--primary", "button--secondary");
+                        actions.replaceChildren(reviewedSearch, ...nextActions.filter((link) => link !== reviewedSearch));
                     } else {
-                        actions.replaceChildren(...nextActions);
+                        const primaryAction = nextActions.find((link) => link.classList.contains("button--primary"))
+                            || nextActions[0];
+                        const secondaryActions = nextActions.filter((link) => link !== primaryAction);
+                        if (primaryAction && secondaryActions.length) {
+                            const moreActions = document.createElement("details");
+                            const moreSummary = document.createElement("summary");
+                            const moreLinks = document.createElement("div");
+                            moreActions.className = "record-finder__more-actions";
+                            moreSummary.textContent = `Other official routes and tools (${secondaryActions.length})`;
+                            moreLinks.append(...secondaryActions);
+                            moreActions.append(moreSummary, moreLinks);
+                            actions.replaceChildren(primaryAction, moreActions);
+                        } else {
+                            actions.replaceChildren(...nextActions);
+                        }
                     }
                 }
                 if (["county_route", "state_route"].includes(payload.status)) {
@@ -2062,7 +2075,7 @@
                 if (documentEntry instanceof HTMLElement) {
                     documentEntry.hidden = reviewing;
                 }
-                submit.textContent = missing ? "Resolve the failed search" : "Find septic records";
+                submit.textContent = missing ? "Resolve the failed search" : findSubmitLabel;
                 input.required = !reviewing;
 
                 if (reviewing && openWorkspace) {
@@ -3399,7 +3412,7 @@
                 }
                 const defaultLabel = activeStartMode === "missing"
                     ? "Resolve the failed search"
-                    : "Find septic records";
+                    : findSubmitLabel;
                 submit.disabled = true;
                 submit.textContent = activeStartMode === "missing" ? "Resolving next step..." : "Finding county...";
                 try {
@@ -3438,6 +3451,7 @@
                     submit.textContent = defaultLabel;
                 }
             });
+            if (addressNextSteps) form.hidden = false;
         });
     }
 

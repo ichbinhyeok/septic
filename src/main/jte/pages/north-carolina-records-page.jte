@@ -47,7 +47,7 @@
                         @for (var county : northCarolinaPriorityCountyRoutes.stream().limit(6).toList())
                             <a href="${county.path("north-carolina")}" data-track-click="nav" data-track-source-context="nc_priority_county_routes" data-track-target-type="county_records_page">
                                 <strong>@if("johnston-county".equals(county.countySlug()))Johnston County septic permit search@else${county.countyName()} septic permit lookup@endif</strong>
-                                <span>@if("johnston-county".equals(county.countySlug()))Street search + permit image@elseif("henderson-county".equals(county.countySlug()))Current portal + older archive@elseOpen county route@endif</span>
+                                <span>@if("johnston-county".equals(county.countySlug()))Address or permit number + image request@elseif("pender-county".equals(county.countySlug()))Parcel PIN + Environmental Health request@elseif("henderson-county".equals(county.countySlug()))Current portal + older archive@elseOpen county route@endif</span>
                             </a>
                         @endfor
                     </nav>

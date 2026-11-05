@@ -132,8 +132,10 @@
         <form class="record-finder__form"
               id="${finderId}-form"
               name="address-record-finder"
+              hidden="${addressNextSteps}"
               data-address-record-finder-form>
             <div class="record-finder__form-fields">
+                @if (!addressNextSteps)
                 <label class="record-finder__field" for="${finderId}-purpose">
                     <span>What do you need?</span>
                     <select id="${finderId}-purpose" name="purpose" data-address-record-finder-purpose>
@@ -146,6 +148,7 @@
                         <option value="owner">Owner records and future reference</option>
                     </select>
                 </label>
+                @endif
                 <div class="record-finder__field record-finder__field--address">
                     <label for="${finderId}-address">
                         <span>Property address</span>
@@ -160,7 +163,7 @@
                                maxlength="180"
                                required
                                data-address-record-finder-input>
-                        <button class="button button--primary" type="submit" data-address-record-finder-submit>Find septic records</button>
+                        <button class="button button--primary" type="submit" data-address-record-finder-submit>${addressNextSteps ? "Find the permit route" : "Find septic records"}</button>
                     </div>
                 </div>
                 @if (!minimal)
@@ -178,9 +181,14 @@
                 @endif
             </div>
             <p class="record-finder__privacy" data-record-find-support>Your address is used to resolve the county through the U.S. Census lookup. SepticPath does not add it to a server-side property database; if you continue the task, the address and progress can stay in this browser for up to 30 days so you can return.</p>
-            <p class="record-finder__form-outcome" data-record-form-outcome><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
-            <p class="record-finder__fallback" data-record-find-support><span>Do not have the full address?</span> <a href="/septic-records-by-county/#septic-records-by-county-county-finder" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
+            @if (!addressNextSteps)
+                <p class="record-finder__form-outcome" data-record-form-outcome><strong>You get:</strong> the county match, route confidence, first record to seek, and a reusable checklist.</p>
+            @endif
+            <p class="record-finder__fallback" data-record-find-support><span>Do not have the full address?</span> <a href="${addressNextSteps ? "#septic-permit-search-by-address-county-finder" : "/septic-records-by-county/#septic-records-by-county-county-finder"}" data-track-click="nav" data-track-source-context="address_record_finder_county_fallback" data-track-target-type="internal_page">Find the record route by county name</a></p>
         </form>
+        @if (addressNextSteps)
+            <noscript><p>For a manual lookup, <a href="#address-search-state-routes">browse the state routes</a> or <a href="#septic-permit-search-by-address-county-finder">choose the county</a>.</p></noscript>
+        @endif
         @if (pageHeading)
             <div class="record-finder__document-entry">
                 <div><span class="record-finder__document-kicker">No file needed to start</span><strong>We can take the search from here.</strong><span>Send the address and your question. We search available sources, contact the responsible office when needed, and explain what we find, free.</span></div>

@@ -596,7 +596,7 @@ public class SeoService {
             case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
             case "how-to-find-septic-records-online" -> "A blocked portal, an empty address search and a permit without a drawing need different next steps. Start with the result you got.";
             case "septic-records-by-county" -> "Choose the county first. County pages route you to the official permit copy, as-built, inspection letter, repair file, or records office instead of leaving you on a generic septic overview.";
-            case "septic-permit-search-by-address" -> "Find the office that holds the permit, then use the same address to ask for the drawing if it’s missing.";
+            case "septic-permit-search-by-address" -> "Enter a U.S. property address to find the county and its official septic permit search or records office. If you need the site drawing, we’ll show you what to ask for.";
             case "septic-permit-records-request", "septic-records-request-builder" -> "Ask for the exact artifact you need: permit copy, as-built, final approval, inspection letter, repair history, or no-record response. Precise wording gets a more useful answer than a general septic-record request.";
             case "septic-as-built-records" -> "A septic drawing can explain the recorded tank and drain-field layout. First check whether it shows proposed or installed work, then compare the permit, approvals, and later repairs. Start with the official file owner and request the drawing or scanned attachment.";
             case "septic-tank-location-records" -> "Start with the property address, even without a drawing. Search the county permit, as-built or site sketch for tank and drainfield clues, or ask us to investigate for free.";
@@ -764,6 +764,7 @@ public class SeoService {
             case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
             case "NC::union-county" -> "Union County NC Septic Permit Search | Existing Records";
+            case "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.title();
             case "TN::wilson-county" -> "Wilson County TN Septic Permit Search | TDEC Records";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
             case "NC::pender-county" -> "Pender County NC Septic Permit Search & Records";
@@ -842,7 +843,7 @@ public class SeoService {
             case "NC::wake-county" -> "Match the Wake County parcel in iMAPS, open Permit Search, and download the scanned septic permit and attachments without treating a missing Septic box as no record.";
             case "NC::union-county" -> "Find Union County NC septic records: separate Evolve permit searches from Environmental Health files, check county research fees, or get free record help.";
             case "NC::pitt-county" -> "Search Pitt County EnerGov records, then verify the Authorization to Construct, site plan, primary drainfield, repair area, and final approval with Environmental Health.";
-            case "NC::pender-county" -> "Prepare Pender County's exact septic permit request fields and obtain the file status, permit type, layout, or written Environmental Health response.";
+            case "NC::pender-county", "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.metaDescription();
             case "AL::tuscaloosa-county" -> "Call Tuscaloosa County's Environmental Office with the address, parcel, owner, approximate year, and exact septic permit or record request.";
             case "AL::calhoun-county" -> "Use Calhoun County's direct Environmental Department route for an onsite sewage permit, historical file, inspection record, repair, or development request.";
             case "SC::charleston-county" -> "Find the Charleston County parcel ID or TMS, then request the SCDES Permit to Construct and final inspection through the Coastal records route.";
