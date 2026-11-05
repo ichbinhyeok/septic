@@ -2454,9 +2454,9 @@
       "uniqueAngle": "Albany County stands out because the county tells owners both how to open or modify the septic file and when a failing or reasonably-likely-to-fail system may qualify for a replacement grant. That means the county page can change both the paperwork path and the money conversation.",
       "targetReader": "Best for Albany County buyers, owners, and agents who need to know whether the county file needs an onsite-wastewater application or modification form, whether the property may fall into the replacement-program map, and whether county technical assistance is already part of the next move.",
       "officeLabel": "Albany County environmental health septic forms",
-      "officeUrl": "https://www.albanycountyny.gov/departments/health/programs-services/environmental-health-forms",
+      "officeUrl": "https://www.albanycountyny.gov/environmental-health-forms",
       "recordsLabel": "Open Albany County septic replacement program",
-      "recordsUrl": "https://www.albanycountyny.gov/departments/health/programs-services/septic-system-replacement-program",
+      "recordsUrl": "https://www.albanycountyny.gov/septic-system-replacement-program",
       "contactLine": "Albany County Department of Health | 518-447-4580 | replacement-program questions 518-447-4649 | SepticReplacement@albanycountyny.gov",
       "decisionSteps": [
         "Start with Albany County's environmental-health forms and check whether the property needs an onsite-wastewater application, a septic-system modification form, or the county process-flow guidance before you trust the current story.",
@@ -2492,8 +2492,7 @@
       "officialSourceIds": [
         "ny_albany_01",
         "ny_albany_02",
-        "ny_albany_03",
-        "ny_albany_04"
+        "ny_albany_03"
       ],
       "publishStatus": "published",
       "workflowStructure": {

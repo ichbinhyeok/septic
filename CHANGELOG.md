@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.24.2 - 2026-11-05
+
+### Fixed
+
+- Point Albany County's guide to the current official forms and septic replacement program pages after the county website migration.
+
 ## 0.0.24.1 - 2026-11-05
 
 ### Changed
