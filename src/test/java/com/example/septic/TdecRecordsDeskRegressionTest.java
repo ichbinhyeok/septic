@@ -56,7 +56,8 @@ class TdecRecordsDeskRegressionTest {
 
         assertThat(html)
                 .contains("Prefer to handle it yourself? Find the official route.")
-                .contains("We search public files, contact TDEC or the local program when needed")
+                .contains("Get free record help")
+                .contains("Independent research and explanation. Agency fees only with approval.")
                 .contains("data-tdec-route-form")
                 .contains("data-tdec-request-section")
                 .contains("data-tdec-address")

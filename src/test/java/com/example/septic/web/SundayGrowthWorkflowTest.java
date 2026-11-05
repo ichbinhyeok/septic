@@ -31,7 +31,7 @@ class SundayGrowthWorkflowTest {
 
     @Test void searchEntryCopyMatchesMeasuredIntentAndKeepsSingleIntake() throws Exception {
         mvc.perform(get("/tdec-septic-records/")).andExpect(status().isOk())
-                .andExpect(content().string(containsString("TDEC septic<br><em>permit search.</em>")))
+                .andExpect(content().string(containsString("TDEC septic <br><em>permit search.</em>")))
                 .andExpect(content().string(containsString("Get free record help")))
                 .andExpect(content().string(containsString("&amp;state=TN#intake-form")));
         for (String state : java.util.List.of("north-carolina", "tennessee")) {

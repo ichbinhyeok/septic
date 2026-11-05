@@ -18,7 +18,7 @@ class SearchOpportunityBridgeRegressionTest {
         assertTrue(page.contains("What the file can answer"));
         String finder = read("jte/tags/addressRecordFinder.jte");
         assertTrue(finder.indexOf("record_finder_start") > finder.indexOf("</form>"));
-        assertTrue(finder.contains("data-track-source-context=\"record_finder_result\""));
+        assertTrue(finder.contains("data-track-source-context=\"${addressNextSteps ? \"national_address_search_result\" : \"record_finder_result\"}\""));
         assertTrue(finder.contains("data-address-record-finder-result aria-live=\"polite\" hidden"));
     }
 

@@ -937,6 +937,10 @@
             const resumeContinue = finder.querySelector("[data-record-resume-continue]");
             const result = finder.querySelector("[data-address-record-finder-result]");
             const resultHandoff = result?.querySelector(":scope > .record-finder__document-entry");
+            const addressNextSteps = result?.querySelector("[data-address-next-steps]");
+            const drawingRequest = addressNextSteps?.querySelector("[data-address-drawing-request]");
+            const drawingDraft = addressNextSteps?.querySelector("[data-address-drawing-draft]");
+            const drawingStatus = addressNextSteps?.querySelector("[data-address-drawing-status]");
             const status = finder.querySelector("[data-address-record-finder-status]");
             const heading = finder.querySelector("[data-address-record-finder-heading]");
             const message = finder.querySelector("[data-address-record-finder-message]");
@@ -1248,6 +1252,41 @@
                         : "Official route linked; confirm current submission details on the destination site.";
                 }
             }
+
+            function renderAddressNextSteps(context, showTroubleshooting = false) {
+                if (!addressNextSteps || !drawingRequest || !(drawingDraft instanceof HTMLTextAreaElement)) {
+                    return;
+                }
+                addressNextSteps.hidden = !context?.matchedAddress && !showTroubleshooting;
+                drawingRequest.hidden = !context?.matchedAddress;
+                drawingRequest.open = false;
+                drawingDraft.value = !context?.matchedAddress ? "" : [
+                    "Hello, I’m looking for the existing septic system drawing for this property:",
+                    context.matchedAddress,
+                    [context.countyName, context.stateCode].filter(Boolean).join(", "),
+                    "",
+                    "Could you send the site sketch, as-built or installation drawing, and any later repair or replacement drawings? If only an approved design is available, please let me know whether an installation or final approval record is also on file.",
+                    "",
+                    "If your office does not hold the file, could you point me to the office or archive that does? Thank you."
+                ].join("\n");
+                if (drawingStatus) drawingStatus.textContent = "";
+            }
+
+            addressNextSteps?.querySelector("[data-address-drawing-copy]")?.addEventListener("click", async () => {
+                if (!(drawingDraft instanceof HTMLTextAreaElement) || !drawingDraft.value) return;
+                try {
+                    await navigator.clipboard.writeText(drawingDraft.value);
+                    if (drawingStatus) drawingStatus.textContent = "Copied. Paste it into the office’s request channel.";
+                    emitGaEvent("record_search_next_step", {
+                        source_context: "national_address_search",
+                        next_step: "drawing_request_copied"
+                    });
+                } catch (_) {
+                    drawingDraft.focus();
+                    drawingDraft.select();
+                    if (drawingStatus) drawingStatus.textContent = "Copy the selected draft, then paste it into the office’s request channel.";
+                }
+            });
 
             function searchPacketText(context) {
                 return [
@@ -1840,6 +1879,7 @@
                 }
                 renderOffice(propertyResolved ? routeContext : null);
                 renderSearchPacket(propertyResolved ? routeContext : null);
+                renderAddressNextSteps(propertyResolved ? routeContext : null, ["not_found", "unavailable"].includes(payload.status));
                 if (steps) {
                     const relaySteps = propertyResolved && Array.isArray(payload.relaySteps) ? payload.relaySteps.filter(Boolean) : [];
                     steps.replaceChildren(...relaySteps.map((value) => {
@@ -1938,6 +1978,7 @@
                     purpose: currentPurpose()
                 };
                 result.hidden = false;
+                renderAddressNextSteps(null);
                 if (status) {
                     status.textContent = "Document in hand";
                 }

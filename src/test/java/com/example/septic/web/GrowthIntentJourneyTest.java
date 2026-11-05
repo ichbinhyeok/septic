@@ -75,7 +75,9 @@ class GrowthIntentJourneyTest {
                 "/septic-records-checklist/tennessee/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-10-05</lastmod>");
         }
-        assertThat(sitemap).contains("<loc>https://septicpath.com/tdec-septic-records/</loc><lastmod>2026-10-21</lastmod>");
+        for (String path : List.of("/tdec-septic-records/", "/septic-permit-search-by-address/", "/how-to-find-septic-records-online/")) {
+            assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
+        }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-10-11</lastmod>");
         String counties = html("/sitemap-county.xml");
@@ -85,8 +87,12 @@ class GrowthIntentJourneyTest {
     @Test void supportingPublicLinksResolveAndTdecRetainsSearchIntent() throws Exception {
         for (String path : List.of("/septic-tank-location-records/", "/how-to-find-septic-records-online/",
                 "/septic-as-built-records/")) html(path);
-        assertThat(html("/tdec-septic-records/")).contains("TDEC septic<br><em>permit search.</em>",
+        String tdec = html("/tdec-septic-records/");
+        assertThat(tdec).contains("TDEC septic <br><em>permit search.</em>",
+                "<title>TDEC Septic Permit Search by Address | Tennessee Records</title>",
+                "Open official TDEC file search", "Viewer blocked or no match?", "data-tdec-hero-official",
                 "tdec_search_stalled", "Continue my search for free", "data-tdec-route-form");
+        assertThat(tdec.indexOf("data-tdec-hero-official")).isLessThan(tdec.indexOf("tdec_hero_record_investigation"));
     }
 
     private String html(String path) throws Exception {

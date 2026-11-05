@@ -26,16 +26,16 @@ class OfficialRecordsWorkflowRegressionTest {
     void tennesseeRouteIsAnHonestCountyFirstRecordsDesk() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("TDEC septic<br><em>permit search.</em>")))
-                .andExpect(content().string(containsString("Need to find your septic tank, plan around a drainfield, or check a home before buying?")))
-                .andExpect(content().string(containsString("We search public files, contact TDEC or the local program when needed")))
+                .andExpect(content().string(containsString("TDEC septic <br><em>permit search.</em>")))
+                .andExpect(content().string(containsString("Find Tennessee permits and system drawings through TDEC or the county that holds the file.")))
                 .andExpect(content().string(containsString("Choose the property county")))
                 .andExpect(content().string(containsString("Get free record help")))
-                .andExpect(content().string(containsString("Try the official viewer anyway")))
-                .andExpect(content().string(containsString("Viewer status:")))
+                .andExpect(content().string(containsString("Open official TDEC file search")))
+                .andExpect(content().string(containsString("Viewer blocked or no match?")))
+                .andExpect(content().string(containsString("An access error or blank search does not mean there’s no record.")))
                 .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html")))
                 .andExpect(content().string(containsString("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175")))
-                .andExpect(content().string(containsString("Research, records and explanation are free. Agency fees only with approval.")))
+                .andExpect(content().string(containsString("Independent research and explanation. Agency fees only with approval.")))
                 .andExpect(content().string(not(containsString("$29"))))
                 .andExpect(content().string(containsString("data-contract-county=\"true\"")))
                 .andExpect(content().string(containsString("data-tdec-outcome=\"blocked\"")))
@@ -321,9 +321,7 @@ class OfficialRecordsWorkflowRegressionTest {
     @Test
     void nationalRecordIntentPagesLeadWithARealAddressWorkflowAndTruthBoundary() throws Exception {
         for (String path : java.util.List.of(
-                "/how-to-find-septic-records-online/",
                 "/septic-records-by-county/",
-                "/septic-permit-search-by-address/",
                 "/septic-permit-lookup/",
                 "/septic-as-built-records/",
                 "/septic-tank-location-records/"
@@ -337,6 +335,29 @@ class OfficialRecordsWorkflowRegressionTest {
                     .andExpect(content().string(not(containsString("OFFICIAL LOOKUP COMMAND BOARD"))))
                     .andExpect(content().string(not(containsString("PREPARED BY"))));
         }
+    }
+
+    @Test
+    void addressSearchAndRecoveryGuideServeDifferentJobs() throws Exception {
+        mockMvc.perform(get("/septic-permit-search-by-address/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("data-address-record-finder-form")))
+                .andExpect(content().string(containsString("data-address-drawing-draft")))
+                .andExpect(content().string(containsString("Copy drawing request")))
+                .andExpect(content().string(containsString("/how-to-find-septic-records-online/#no-record-online")));
+        mockMvc.perform(get("/how-to-find-septic-records-online/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<meta name=\"robots\" content=\"index,follow\">")))
+                .andExpect(content().string(containsString("Septic Portal Help: No Match or Missing Drawing | SepticPath")))
+                .andExpect(content().string(containsString("id=\"portal-blocked\"")))
+                .andExpect(content().string(containsString("id=\"address-no-match\"")))
+                .andExpect(content().string(containsString("id=\"permit-without-drawing\"")))
+                .andExpect(content().string(containsString("/septic-permit-search-by-address/")))
+                .andExpect(content().string(not(containsString("data-address-record-finder-form"))));
+        mockMvc.perform(get("/septic-record-finder/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("data-address-record-finder-form")))
+                .andExpect(content().string(not(containsString("data-address-drawing-draft"))));
     }
 
     @Test

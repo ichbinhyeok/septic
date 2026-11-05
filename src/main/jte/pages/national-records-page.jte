@@ -12,11 +12,13 @@
 @param int totalCountyRouteCount = 0
 
 @template.layouts.app(page = page, designFamily = "directory", content = @`
-    <div class="national-records-page ${"septic-records-by-county".equals(contentPage.slug()) ? "national-records-page--county-index" : ""}">
+    !{boolean onlineGuide = "how-to-find-septic-records-online".equals(contentPage.slug());}
+    !{boolean addressEntry = "septic-permit-search-by-address".equals(contentPage.slug());}
+    <div class="national-records-page ${"septic-records-by-county".equals(contentPage.slug()) ? "national-records-page--county-index" : ""} ${onlineGuide ? "national-records-page--online-guide" : ""} ${addressEntry ? "national-records-page--address-entry" : ""}">
         <section class="national-records-hero">
             <div class="container national-records-hero__inner">
                 <div class="national-records-hero__copy">
-                    <span class="eyebrow">Property record workflow</span>
+                    <span class="eyebrow">${onlineGuide ? "After the online search" : "Property record workflow"}</span>
                     <h1>${contentPage.title()}</h1>
                     <p>${contentQuickAnswer}</p>
                     @if ("septic-records-by-county".equals(contentPage.slug()))
@@ -32,11 +34,14 @@
                     @elseif ("septic-tank-location-records".equals(contentPage.slug()))
                         <a class="drawing-guide-jump" href="#location-start">Start with an address, a missing drawing, or planned work ↓</a>
                     @elseif ("how-to-find-septic-records-online".equals(contentPage.slug()))
-                        <a class="drawing-guide-jump" href="#no-record-online">Understand what a missing search result means ↓</a>
-                    @elseif ("septic-permit-search-by-address".equals(contentPage.slug()))
-                        <a class="drawing-guide-jump" href="#old-address-records">Check old addresses and property matches ↓</a>
+                        <nav class="national-records-guide-jumps" aria-label="What happened in the portal?">
+                            <a href="#portal-blocked">The portal won’t open <span aria-hidden="true">↓</span></a>
+                            <a href="#address-no-match">The address has no match <span aria-hidden="true">↓</span></a>
+                            <a href="#permit-without-drawing">I found a permit number, not the drawing <span aria-hidden="true">↓</span></a>
+                        </nav>
+                        <a class="drawing-guide-jump" href="/septic-permit-search-by-address/">Haven’t searched yet? Start with your address →</a>
                     @endif
-                    @if (!"septic-records-by-county".equals(contentPage.slug()))
+                    @if (!"septic-records-by-county".equals(contentPage.slug()) && !onlineGuide && !addressEntry)
                         <div class="national-records-hero__boundary" role="note">
                             <strong>What you receive here</strong>
                             <span>The county, likely file owner, verified official route, useful search fields, and the next step for found, missing, blocked, or incomplete files.</span>
@@ -55,14 +60,17 @@
                         </div>
                     @endif
                 </div>
-                @template.tags.addressRecordFinder(
-                    finderId = "national-records-" + contentPage.slug(),
-                    eyebrow = "Start with the property",
-                    heading = "Enter the address to find the right office",
-                    intro = "A full address resolves the county and starts the official route. If the public search stops, SepticPath can investigate the record and contact the responsible office for you.",
-                    totalCountyRouteCount = totalCountyRouteCount,
-                    minimal = true
-                )
+                @if (!onlineGuide)
+                    @template.tags.addressRecordFinder(
+                        finderId = "national-records-" + contentPage.slug(),
+                        eyebrow = "Start with the property",
+                        heading = "Enter the address to find the right office",
+                        intro = "A full address resolves the county and starts the official route. If the public search stops, SepticPath can investigate the record and contact the responsible office for you.",
+                        totalCountyRouteCount = totalCountyRouteCount,
+                        minimal = true,
+                        addressNextSteps = addressEntry
+                    )
+                @endif
             </div>
         </section>
 
@@ -92,7 +100,9 @@
                 <span class="eyebrow">Choose the answer you need</span>
                 <h2>The record search is only the first step</h2>
                 <div class="national-records-intent__rows">
-                    <a href="/septic-permit-search-by-address/"><strong>Find the permit file</strong><span>Resolve county and official source</span></a>
+                    @if (!addressEntry)
+                        <a href="/septic-permit-search-by-address/"><strong>Find the permit file</strong><span>Resolve county and official source</span></a>
+                    @endif
                     <a href="/septic-as-built-records/"><strong>Find the installed layout</strong><span>Ask for as-built, site sketch, or approved plan</span></a>
                     @if (!"septic-tank-location-records".equals(contentPage.slug()) && !"septic-records-by-county".equals(contentPage.slug()))
                         <a href="/septic-tank-location-records/"><strong>Locate the tank and drain field</strong><span>Start with the record drawing before arranging a professional locate</span></a>
@@ -105,6 +115,7 @@
             </div>
         </section>
 
+        @if (!onlineGuide)
         <section class="national-records-method">
             <div class="container">
                 @if ("septic-records-by-county".equals(contentPage.slug()))
@@ -139,6 +150,8 @@
                 @endif
             </div>
         </section>
+
+        @endif
 
         @if ("septic-tank-location-records".equals(contentPage.slug()) && !officialRecordTools.isEmpty())
             <section class="section section--tight" id="official-septic-map-directory">

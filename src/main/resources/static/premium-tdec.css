@@ -111,3 +111,34 @@
 }
 
 @media (prefers-reduced-motion: reduce) { .ptdec-hero__evidence { animation: none; }.ptdec-button, .ptdec-boundary .tdec-quick-help__rows a { transition: none; } }
+
+.ptdec-hero--search-entry { min-height: 0; }
+.premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__inner {
+    grid-template-columns: minmax(0, 530px) 1fr;
+    min-height: clamp(570px, 73svh, 720px);
+}
+.premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__shade {
+    background: linear-gradient(90deg, #052c35 0%, #052c35eb 32%, #052c3580 53%, #052c350d 77%);
+}
+.premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__copy h1 { font-size: clamp(3.4rem, 5.6vw, 5.4rem); }
+.ptdec-hero__search-options { display: grid; gap: 8px; max-width: 450px; margin-top: 22px; }
+.ptdec-hero__search-options .ptdec-button { justify-content: space-between; text-align: left; min-height: 50px; padding-inline: 18px; border-radius: 8px; background: #006b58; }
+.ptdec-hero__fallback { display: grid; gap: 2px; padding: 10px 0; border-bottom: 1px solid #a8c5bf; color: #a8f0da; text-decoration: none; }
+.ptdec-hero__fallback:hover strong, .ptdec-hero__fallback:focus-visible strong { text-decoration: underline; }
+.ptdec-hero__fallback small { color: #dbebe8; font-size: .88rem; }
+.premium-site .ptdec .ptdec-hero__copy > .ptdec-hero__viewer-note { margin: 12px 0 4px; max-width: 450px; color: #dbebe8; font-size: .84rem; }
+.ptdec-hero__help { display: grid; justify-items: start; }
+.ptdec-hero__help .ptdec-link { color: #075d50; gap: 5px; }
+.ptdec-hero__help small { color: #dbebe8; line-height: 1.45; }
+.premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__utility { margin-top: 0; align-items: start; flex-direction: column; gap: 0; padding-block: 7px 12px; }
+@media (max-width: 900px) {
+    .premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__inner { grid-template-columns: 1fr; min-height: 0; padding-block: 0; }
+    .ptdec-hero--search-entry .ptdec-hero__copy { padding: 30px 0 16px; max-width: 530px; }
+    .premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__shade { background: #052c35ed; }
+}
+@media (max-width: 600px) {
+    .ptdec-hero--search-entry .ptdec-kicker { margin-bottom: .7rem; }
+    .premium-site .ptdec .ptdec-hero--search-entry .ptdec-hero__copy h1 { font-size: clamp(2.5rem, 11vw, 3.8rem); margin-bottom: .75rem; }
+    .ptdec-hero--search-entry .ptdec-hero__copy > p { margin-bottom: .7rem; }
+    .ptdec-hero__search-options { margin-top: 12px; }
+}
