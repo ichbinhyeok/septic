@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.24.1 - 2026-11-05
+
+### Changed
+
+- Put the official lookup and records-request options first on the TDEC page.
+- Bring address search to the front of the nationwide records directory and add a drawing-request draft after a successful address match.
+- Expand the online records guide with steps for a blocked portal, a missing address match, or a permit without a drawing.
+- Reverify official evidence for 45 county guides and update records links and instructions where the agency sources support a clearer route.
+
 ## 0.0.24.0 - 2026-10-21
 
 ### Fixed

@@ -55,18 +55,29 @@
             </article>
             <p class="record-learning__source">Official background: <a href="https://www.epa.gov/septic/frequent-questions-septic-systems" target="_blank" rel="noreferrer">EPA guidance on record drawings, professional locating, and construction around drainfields</a>. Local project requirements still need local review.</p>
         @elseif ("how-to-find-septic-records-online".equals(slug))
-            <h2 id="no-record-online">No septic records found online? Check what “no result” means.</h2>
-            <p class="record-learning__lede">An empty screen describes the search you just ran. It does not establish whether a system exists, whether older paper records survive, or whether another office holds the file.</p>
-            <dl class="record-learning__steps">
-                <div><dt>01 · The portal would not open</dt><dd>Record the access problem and use the office's published request route. A blocked viewer is not a no-record response.</dd></div>
-                <div><dt>02 · The address returned no match</dt><dd>Check the parcel, earlier address, prior owner, subdivision or lot if the search supports them. Keep candidate results separate until the property matches.</dd></div>
-                <div><dt>03 · A permit row appeared, but no file</dt><dd>Use the permit reference to ask for the actual documents and attachments. Index metadata cannot stand in for the drawing you need.</dd></div>
-                <div><dt>04 · The office said no record was found</dt><dd>Preserve the response. Ask which property identifiers, years and archives were checked and whether another custodian may hold older files. Do not reinterpret the response as proof that no tank exists.</dd></div>
-            </dl>
-            <div class="record-learning__pair" data-reading-milestone="no-result-examples">
-                <article><span class="eyebrow">Illustrative search example</span><h3>The property is old. The address is newer.</h3><p>A modern address produces nothing, while an earlier owner or lot description produces a candidate. The next task is to connect those identities. Finding a similar name is a lead, not the end of the check.</p><a href="/septic-permit-search-by-address/#old-address-records">Follow the property clues →</a></article>
-                <article><span class="eyebrow">Illustrative search example</span><h3>The office accepted the request.</h3><p>A request number confirms that a request was created. It does not confirm that the requested drawing has been found. Keep “requested,” “received,” and “matched to the property” as separate steps.</p><a href="/septic-permit-records-request/#request-follow-through">What to ask for next →</a></article>
+            <h2 id="no-record-online">Match your next step to what happened</h2>
+            <p class="record-learning__lede">A blocked portal, a blank search, and a written no-record response tell you different things. None proves that there is no septic system.</p>
+            <div class="record-search-recovery">
+                <section id="portal-blocked" aria-labelledby="portal-blocked-title">
+                    <span class="eyebrow">01 · Access problem</span>
+                    <h3 id="portal-blocked-title">The portal won’t open</h3>
+                    <p>Keep the portal name and the error you saw. Go to the published records channel for the office that serves the property. In Tennessee, some counties use a local archive or request form instead of TDEC’s viewer.</p>
+                    <a href="/septic-records-by-county/">Find the records office by county →</a>
+                </section>
+                <section id="address-no-match" aria-labelledby="address-no-match-title">
+                    <span class="eyebrow">02 · No search match</span>
+                    <h3 id="address-no-match-title">The address returns nothing</h3>
+                    <p>Find the current parcel ID, then try a prior owner, earlier street name, or subdivision and lot if supported. If that still fails, tell the office which clues you tried and ask whether it searched older scans or paper files. A similar owner name is a clue, not a property match.</p>
+                    <a href="/septic-permit-search-by-address/#old-address-records">See how to match an older file to the parcel →</a>
+                </section>
+                <section id="permit-without-drawing" aria-labelledby="permit-without-drawing-title">
+                    <span class="eyebrow">03 · Incomplete record</span>
+                    <h3 id="permit-without-drawing-title">There’s a permit number, but no drawing</h3>
+                    <p>Save the permit number and ask for the attachments: the site sketch, as-built or installation drawing, final approval, and later repair drawings. An approval or a permit index entry does not tell you what was installed or where it sits today.</p>
+                    <a href="/septic-as-built-records/">See which drawing to ask for →</a>
+                </section>
             </div>
+            <p class="record-learning__note"><strong>The office said no record was found?</strong> Save the dated response and ask which identifiers, years and archives were checked. If you only received a request number, the search is still pending. <a href="/no-septic-records-found/">See how to follow up after the office searches →</a></p>
         @elseif ("septic-permit-search-by-address".equals(slug))
             <h2 id="old-address-records">When an old septic record has no current street address</h2>
             <p class="record-learning__lede">Work from the property toward the document. An old owner name or road name can help locate a candidate, but several clues should agree before you rely on it.</p>

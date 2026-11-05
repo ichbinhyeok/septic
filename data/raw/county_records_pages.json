@@ -1594,7 +1594,7 @@
       "officeLabel": "Marin County septic systems office",
       "officeUrl": "https://www.marincounty.gov/departments/cda/env-health-svcs/prgm-septic",
       "recordsLabel": "Search Marin septic records",
-      "recordsUrl": "https://www.marincounty.gov/departments/cda/records-search-0?language=es",
+      "recordsUrl": "https://www.marincounty.gov/departments/cda/records-search-0?lang=en",
       "contactLine": "Marin County Environmental Health Services | 415-473-6907 | records search works best by APN or address and the county answers septic questions during property sales.",
       "decisionSteps": [
         "Start with Marin County's records search and use the APN or address to see whether the county already has a septic file behind the property.",
@@ -1719,22 +1719,22 @@
       "countyName": "San Luis Obispo County",
       "countySlug": "san-luis-obispo-county",
       "title": "San Luis Obispo County California Septic Records Checklist and Permit Lookup",
-      "metaDescription": "San Luis Obispo County septic records checklist and permit lookup with Environmental Health PRA requests, LAMP permit context, and no-record fallback steps before you trust a buyer or repair story.",
+      "metaDescription": "San Luis Obispo County septic records checklist and permit lookup with Planning & Building PRA requests, LAMP permit context, and no-record fallback steps before you trust a buyer or repair story.",
       "introCopy": "San Luis Obispo County is a strong California county wedge because the county is unusually explicit about how owners should handle missing or incomplete septic records. The county gives a public-records path, explains its local LAMP rules, and even tells owners what to do when no official septic record can be found.",
       "uniqueAngle": "San Luis Obispo County stands out because the county does not pretend every septic file will be complete. The official county guidance says owners can ask whether a septic record exists, request a copy, and if no record is available hire a licensed septic professional to locate the system and perform an evaluation.",
-      "targetReader": "Best for San Luis Obispo County buyers, owners, and agents who need to know whether Environmental Health has a usable OWTS file, whether local LAMP rules already widen the permit path, and what to do when the county record is missing or thin.",
-      "officeLabel": "San Luis Obispo County Environmental Health records path",
-      "officeUrl": "https://www.slocounty.ca.gov/departments/health-agency/public-health/environmental-health-services/public-records-act-%28pra%29-request-for-environmental",
-      "recordsLabel": "Open San Luis Obispo OWTS guidance",
-      "recordsUrl": "https://www.slocounty.ca.gov/departments/planning-building/forms-documents/septic-system-%28onsite-wastewater-treatment-systems/onsite-wastewater-treatment-systems-after-a-flood",
-      "contactLine": "San Luis Obispo County Planning and Building | 805-781-5600 | Environmental Health also routes PRA requests and public-facing environmental-health data tools.",
+      "targetReader": "Best for San Luis Obispo County buyers, owners, and agents who need to know whether Planning & Building has a usable OWTS file, whether local LAMP rules already widen the permit path, and what to do when the county record is missing or thin.",
+      "officeLabel": "San Luis Obispo County Planning & Building",
+      "officeUrl": "https://www.slocounty.ca.gov/departments/planning-building/most-requested-services/public-records-request",
+      "recordsLabel": "Search PermitSLO or request Planning & Building records",
+      "recordsUrl": "https://www.slocounty.ca.gov/departments/planning-building/most-requested-services/public-records-request",
+      "contactLine": "San Luis Obispo County Planning & Building | 805-781-5600",
       "decisionSteps": [
-        "Start with the county's Environmental Health public-records path and check whether a septic or OWTS record already exists before you trust the current property story.",
+        "Search PermitSLO for available records. If the septic file is missing or incomplete, request it from Planning & Building using the property address and APN.",
         "Read the county LAMP guidance next because San Luis Obispo uses the local program to regulate both conventional and non-conventional OWTS, which can widen the permit and ownership story.",
         "If the county says no official record is available, move into the county's no-record fallback and treat the property like a field-evaluation problem, not just a file-retrieval problem."
       ],
       "recordsToRequest": [
-        "Any San Luis Obispo County Environmental Health record tied to the septic or OWTS file.",
+        "Any San Luis Obispo County Planning & Building record tied to the septic or OWTS file.",
         "Any county permit or LAMP-related note showing whether the system falls into a wider local rule or non-conventional lane.",
         "Any county response showing that no official septic record exists and that a field location or performance evaluation is still needed."
       ],
@@ -1746,7 +1746,7 @@
       "faqBlocks": [
         {
           "question": "Why is San Luis Obispo County stronger than a broad California records page?",
-          "answer": "Because San Luis Obispo County pairs a direct Environmental Health records path with explicit LAMP rules and a fallback plan for properties that do not have usable official records."
+          "answer": "Because San Luis Obispo County pairs a direct Planning & Building records path with explicit LAMP rules and a fallback plan for properties that do not have usable official records."
         },
         {
           "question": "What should a San Luis Obispo County owner or buyer check first?",
@@ -1765,8 +1765,8 @@
         "ca_slo_03"
       ],
       "workflowStructure": {
-        "fileOwnerCategory": "county_environmental_health",
-        "fileOwnerModel": "San Luis Obispo County Environmental Health owns the practical OWTS file, but the county records answer, any no-record response, and the LAMP or non-conventional lane all have to support the same story.",
+        "fileOwnerCategory": "county_first",
+        "fileOwnerModel": "San Luis Obispo County Planning & Building owns the practical OWTS file, but the county records answer, any no-record response, and the LAMP or non-conventional lane all have to support the same story.",
         "firstArtifactToPull": "The county record-existence answer first, then any permit or LAMP note and any no-record response that pushes the parcel into field location and evaluation.",
         "permitCloseoutCategory": "generic",
         "permitCloseoutSignal": "San Luis Obispo County only gets clean once the county file or no-record response and the follow-up evaluation path both show the same system story.",
@@ -2060,7 +2060,7 @@
       "officeLabel": "Santa Clara County OWTS office",
       "officeUrl": "https://deh.santaclaracounty.gov/land-use/onsite-wastewater-treatment-system-owts",
       "recordsLabel": "Open Santa Clara as-built request guidance",
-      "recordsUrl": "https://deh.santaclaracounty.gov/land-use/onsite-water-treatment-system-owts/obtain-built-existing-septic-or-owts",
+      "recordsUrl": "https://deh.santaclaracounty.gov/land-use/onsite-water-treatment-system/obtain-built-existing-septic-or-owts",
       "contactLine": "County of Santa Clara Environmental Health | 408-918-3400 | county routes septic as-built retrieval through a public-records request that includes property address and APN.",
       "decisionSteps": [
         "Start with Santa Clara County's as-built request guidance if you are buying, remodeling, or checking an older system because the as-built is the county's most accurate record of septic sizing and location.",
@@ -2126,7 +2126,7 @@
       "officeLabel": "Monterey County OWTS permit office",
       "officeUrl": "https://www.countyofmonterey.gov/government/departments-a-h/health/environmental-health/environmental-health-review/onsite-wastewater-treatment-systems",
       "recordsLabel": "Open Monterey file review request",
-      "recordsUrl": "https://www.countyofmonterey.gov/?NavID=4157",
+      "recordsUrl": "https://www.countyofmonterey.gov/government/departments-a-h/health/environmental-health/general/public-records-request",
       "contactLine": "Monterey County Environmental Health Bureau | 831-755-4500 | county routes septic file review and public-records requests through Environmental Health and gives up to ten days for response.",
       "decisionSteps": [
         "Start with Monterey County's file-review request if you are buying or scoping work because the county explicitly says you should first find out whether Environmental Health has septic records on file.",
@@ -2492,7 +2492,8 @@
       "officialSourceIds": [
         "ny_albany_01",
         "ny_albany_02",
-        "ny_albany_03"
+        "ny_albany_03",
+        "ny_albany_04"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -4315,11 +4316,11 @@
       "targetReader": "Best for Whatcom County buyers, owners, and ADU planners who need to know whether the county file, permit history, and septic service path already change the next step.",
       "officeLabel": "Whatcom County septic records office",
       "officeUrl": "https://www.whatcomcounty.us/3312/Septic-Drinking-Water-Records",
-      "recordsLabel": "Open Whatcom County customer service portal",
-      "recordsUrl": "https://www.whatcomcounty.us/4547/Customer-Service-Portal",
+      "recordsLabel": "Search Whatcom County septic and drinking water records",
+      "recordsUrl": "https://www.whatcomcounty.us/3312/Septic-Drinking-Water-Records",
       "contactLine": "Whatcom County exposes parcel-first septic records and permit history through county records pages and portal search tools.",
       "decisionSteps": [
-        "Start with Whatcom County's septic records page if you are buying or validating an existing system because the county lets you search from county property identifiers.",
+        "Find the property ID, GeoID or parcel number in the Assessor search, then use that identifier in the Health Department records tool. Ask the county to check its files if no document appears.",
         "Use the county portal to pull permit history and related file details before trusting the current septic story.",
         "If the plan involves an ADU or new dwelling use, check the county ADU guidance early because Whatcom ties that approval back to sewer or septic service."
       ],
@@ -4711,10 +4712,10 @@
       "officeLabel": "Larimer County septic systems office",
       "officeUrl": "https://www.larimer.gov/health/environmental-health/septic-systems/septic-systems-owts",
       "recordsLabel": "Open Larimer County transfer-of-title guidance",
-      "recordsUrl": "https://www.larimer.gov/health/environmental-health/septic-systems/septic-systems-owts/transfer-title",
+      "recordsUrl": "https://www.larimer.gov/health/environmental-health/septic-systems/septic-systems-owts",
       "contactLine": "Larimer County exposes parcel-level septic documents and transfer-of-title review, and ties additions and bedroom upgrades back to county septic approval.",
       "decisionSteps": [
-        "Start with Larimer County's septic systems page if the file matters because the county makes septic documents viewable on property records.",
+        "Search Larimer County property records, select the property, and open Building Info. If no septic document is linked, use the OWTS records request form on the county septic page.",
         "If the property is being sold, check the transfer-of-title path because Larimer ties sale review back to approved use and county acceptance.",
         "If a bedroom or remodel upgrade is planned, verify that the county file still supports the new use before trusting the easy permit story."
       ],
@@ -6384,11 +6385,11 @@
       "targetReader": "Best for Lake County buyers, sellers, owners, and remodel planners who need to know whether the county can surface historic plans, what prior inspections show, and whether a septic evaluation should happen before a deal or project moves forward.",
       "officeLabel": "Lake County onsite wastewater office",
       "officeUrl": "https://www.lakecountyil.gov/818/Onsite-Wastewater-Treatment-System",
-      "recordsLabel": "Open Lake County well and septic evaluations",
-      "recordsUrl": "https://www.lakecountyil.gov/2474/Well-Septic-Evaluations",
-      "contactLine": "Lake County Central Permit Facility | 847-377-8020 | [email?protected]",
+      "recordsLabel": "Find historic Lake County septic plans",
+      "recordsUrl": "https://www.lakecountyil.gov/818/Onsite-Wastewater-Treatment-System",
+      "contactLine": "Lake County Central Permit Facility | 847-377-8020",
       "decisionSteps": [
-        "Start with the county onsite wastewater page to confirm whether historic septic plans can be located and what the county already expects for OWTS review.",
+        "Find the ten-digit PIN in Lake County Maps Online, then select PA HL Septic Plans in the public records search and enter that PIN.",
         "If the property is being sold, refinanced, or questioned by a lender, use the county well and septic evaluation workflow before relying on seller memory.",
         "If construction or replacement work is involved, check the county construction inspection page to understand inspection hold points and as-built record expectations."
       ],
@@ -8676,7 +8677,7 @@
       "recordsUrl": "https://www.coconino.az.gov/2291/Online-Applications",
       "contactLine": "Coconino County Community Development Environmental Quality | 928-679-8850",
       "decisionSteps": [
-        "Start on the county portal and decide whether the parcel needs a wastewater file search, a notice of transfer, a remodel-addition-replacement review, or a reissue-redesign-repair branch.",
+        "For an existing file, select Wastewater System Information Request in the county portal. The $50 file-search fee is nonrefundable, even if no records are found.",
         "If the property is changing hands, follow the county transfer sequence: inspection within six months before transfer, seller hands the report and documents to the buyer, and the buyer files the notice after transfer.",
         "If the system story is thin or the project changes use or flow, pull the county file before treating an old septic setup as reusable."
       ],
@@ -8736,13 +8737,13 @@
       "introCopy": "Pinal County is strong enough to publish now because the county does more than list a permit office. It explicitly tracks and provides septic system locations, publishes transfer and inspection forms, requires parcel-map-backed packet review, and surfaces two major scope breakers in county documents: sewer availability and no replacement area.",
       "uniqueAngle": "Pinal is one of the clearest Arizona workflow wedges for separating a normal septic file from a parcel problem. The county makes APN lookup, septic-location tracking, transfer paperwork, sewer-availability review, and replacement-area risk visible in the official packet stack.",
       "targetReader": "Best for Pinal County owners, buyers, agents, and rural-lot shoppers who need to know whether they are dealing with a real septic parcel, a sewer-served parcel, or a site that may need a more expensive future alternative system.",
-      "officeLabel": "Pinal County Wells and Septic / Aquifer Protection Division",
-      "officeUrl": "https://www.pinal.gov/185/Wells-Septic",
-      "recordsLabel": "Pinal County septic applications and transfer forms",
-      "recordsUrl": "https://www.pinal.gov/186/ApplicationsInformation",
+      "officeLabel": "Pinal County Aquifer Protection",
+      "officeUrl": "https://www.pinal.gov/185/Aquifer-Protection-Septic-Wells",
+      "recordsLabel": "Request Pinal County department records",
+      "recordsUrl": "https://www.pinal.gov/293/Public-Records-Request",
       "contactLine": "Pinal County Aquifer Protection Division | aquiferprotection@pinal.gov | 520-509-3555",
       "decisionSteps": [
-        "Pull the APN in the county assessor system and confirm the parcel is really on a septic path before anyone prices a system.",
+        "Find the APN, then use the county department-records request or contact Aquifer Protection for the existing permit and septic location history. Use the applications page for new work or a transfer.",
         "Read the county septic packet stack together: Notice of Intent to Discharge, administrative checklist, site investigation report, zoning clearance, presale inspection form, and notice of transfer.",
         "If the county packet flags no existing septic permit, sewer availability, or no replacement area, treat the job as a compliance or design problem instead of a small repair."
       ],
@@ -9188,7 +9189,7 @@
         "findings": [
           "Four-bedroom, 600-gallon-per-day design",
           "One tank and three dispersal cells using 45 chambers",
-        "The inspection and application recorded 1,200 gallons; the revised plan showed 1,255",
+          "The inspection and application recorded 1,200 gallons; the revised plan showed 1,255",
           "The drawing showed relative direction, but not field-ready coordinates"
         ],
         "limitation": "The archive documents the approved and inspected system at that time. It does not confirm later repairs, present condition, or whether a planned addition clears both the active and replacement areas.",
@@ -9364,9 +9365,9 @@
       "uniqueAngle": "Clarke stands out because the county itself tells users that the important branch is not just records or no records. The real branch is whether the parcel is on sewer, whether the septic status is unknown or unapproved, and whether the next move is Online RME follow-up or a FOIA-backed file request.",
       "targetReader": "Best for Clarke County buyers, owners, agents, and lenders who need to know whether the county file is approved, unknown, unapproved, or thin enough to require a records fallback before a deal or repair plan moves forward.",
       "officeLabel": "Clarke County Government",
-      "officeUrl": "https://www.clarkecounty.gov/services/online-services/septic-well-records-online-rme",
+      "officeUrl": "https://www.clarkecounty.gov/residents/septic-pump-out",
       "recordsLabel": "Search Clarke County septic and well records in Online RME",
-      "recordsUrl": "https://www.clarkecounty.gov/services/online-services/septic-well-records-online-rme",
+      "recordsUrl": "https://www.clarkecounty.gov/residents/septic-pump-out",
       "contactLine": "Clarke County Online RME and FOIA records path",
       "decisionSteps": [
         "Search Online RME first and determine whether the parcel returns an approved system, an unknown status, an unapproved status, or no usable result at all.",
@@ -11200,7 +11201,7 @@
       "officeLabel": "Douglas County septic systems",
       "officeUrl": "https://www.douglas.co.us/health-department/septic-systems/",
       "recordsLabel": "Search Douglas County OWTS permit records",
-      "recordsUrl": "https://www.douglas.co.us/health-department/septic-system-records/",
+      "recordsUrl": "https://www.douglasco.gov/health-department/septic-system-records/",
       "contactLine": "Douglas County Health Department Environmental Health | 720-643-2400",
       "decisionSteps": [
         "Search the county OWTS permit records first and verify whether the parcel has a visible septic file on the permit map.",
@@ -11265,9 +11266,9 @@
       "uniqueAngle": "Kent is a real-estate-and-addition county. The useful question is whether the next step is a permit, a real-estate evaluation, or a county review of how new use changes the existing system.",
       "targetReader": "Best for Kent County buyers, owners, builders, and agents who need to know whether the next move is site evaluation, a real-estate evaluation, or a change-of-use review.",
       "officeLabel": "Kent County septic and well permits",
-      "officeUrl": "https://www.kentcountymi.gov/1670/Well-or-Septic-Permits",
+      "officeUrl": "https://www.kentcountymi.gov/635/Permits-Evaluations",
       "recordsLabel": "Open Kent County septic and well permits path",
-      "recordsUrl": "https://www.kentcountymi.gov/1670/Well-or-Septic-Permits",
+      "recordsUrl": "https://www.kentcountymi.gov/635/Permits-Evaluations",
       "contactLine": "Kent County Health Department | 616-632-7100 | kcehmail@kentcountymi.gov",
       "decisionSteps": [
         "Start on the county septic and well permits page and determine whether the parcel needs a site evaluation, a real-estate evaluation, or a permit to install or repair.",
@@ -12205,11 +12206,11 @@
       "targetReader": "Best for Baltimore County buyers, owners, and agents who need to know whether the next move is a county records request, a permit application check, or a transfer-related maintenance review.",
       "officeLabel": "Baltimore County Ground Water Management",
       "officeUrl": "https://www.baltimorecountymd.gov/departments/environment/ground-water-management",
-      "recordsLabel": "Request Baltimore County well and septic records",
-      "recordsUrl": "https://www.baltimorecountymd.gov/departments/environment/ground-water-management/request-records",
-      "contactLine": "Baltimore County Ground Water Management | groundwater@baltimorecountymd.gov | request records with address subdivision lot and tax ID",
+      "recordsLabel": "Open Ground Water Management records guidance",
+      "recordsUrl": "https://www.baltimorecountymd.gov/departments/environment/ground-water-management",
+      "contactLine": "Baltimore County Ground Water Management | groundwater@baltimorecountymd.gov | 410-887-2762",
       "decisionSteps": [
-        "Start with the county records-request form and gather the exact address, subdivision, lot number, and tax ID before you rely on a casual septic story.",
+        "Ask Ground Water Management for the existing well and septic file. Provide the exact address and any available subdivision, lot and tax ID clues.",
         "Check the county Ground Water Management page for complaint, permit, and reserve-area context because Baltimore County treats those as part of the real system file.",
         "If the property is transferring, use the county transfer-testing and septic-smart context before assuming the file is complete enough for closing."
       ],
@@ -12408,11 +12409,11 @@
       "targetReader": "Best for Charles County buyers, owners, and agents who need to know whether the next move is a permit guide, a reimbursement-backed maintenance check, or a county planning review.",
       "officeLabel": "Charles County Planning and Growth Management septic programs",
       "officeUrl": "https://www.charlescountymd.gov/government/planning-and-growth-management",
-      "recordsLabel": "Open Charles County septic reimbursement and permit guide",
-      "recordsUrl": "https://www.charlescountymd.gov/government/planning-and-growth-management/online-permitting/permit-guide",
-      "contactLine": "Charles County Planning and Growth Management | 301-645-0692 | call the Health Department at 301-609-6900 when you need help locating the septic tank or system history",
+      "recordsLabel": "Request Charles County septic or perc records",
+      "recordsUrl": "https://charlescountyhealth.org/request-for-property-information/",
+      "contactLine": "Charles County Department of Health Environmental Health | 301-609-6751",
       "decisionSteps": [
-        "Start with the county permit-guide and planning pages to decide whether the parcel is really in a permit branch before you trust a generic septic story.",
+        "Use the Health Department property-information form for an existing septic, perc or plat file. The form is for the property owner or an authorized representative; have the property address and tax parcel details ready.",
         "Use the county septic reimbursement page to confirm whether the property has current pump-out, riser, or Bay Restoration upgrade context that changes the maintenance picture.",
         "If the system location or condition is uncertain, move the county-health call and planning workflow forward before assuming a quote is the next useful step."
       ],
@@ -12446,7 +12447,8 @@
         "md_charles_01",
         "md_charles_02",
         "md_charles_03",
-        "md_charles_04"
+        "md_charles_04",
+        "md_charles_05"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -14142,11 +14144,11 @@
       "targetReader": "Best for Carson City buyers, owners, and remodelers who need to know whether the next move is a septic permit pull, a sewer-connection check, or an abandonment file review before trusting a project budget.",
       "officeLabel": "Carson City Health and Human Services",
       "officeUrl": "https://www.gethealthycarsoncity.org/divisions/environmental-health/programs-inspections/septic-well",
-      "recordsLabel": "Open Carson City sewer-connection and engineering guidance",
-      "recordsUrl": "https://www.carsoncity.gov/engineering",
+      "recordsLabel": "Request Carson City septic or well records",
+      "recordsUrl": "https://www.gethealthycarsoncity.org/divisions/environmental-health/complaints-requests",
       "contactLine": "Carson City Health and Human Services | 775-887-2190 | Environmental Health septic and well program",
       "decisionSteps": [
-        "Start with the city septic and well program and confirm whether the parcel already has the test trench, percolation, and permit trail needed for a real septic design.",
+        "Use the Environmental Health records form for an existing septic, well or inspection record. Email the completed form to recordrequests@carsoncity.gov.",
         "Use the engineering and utility material next because Carson City can force a different outcome when the address falls inside the Mandatory Sewer Connection Program.",
         "If the project involves a failing system, remodel, or sewer tie-in, stop treating it like a simple repair until the repair, abandonment, and utility records all line up."
       ],
@@ -14180,7 +14182,8 @@
         "nv_carson_01",
         "nv_carson_02",
         "nv_carson_03",
-        "nv_carson_04"
+        "nv_carson_04",
+        "nv_carson_05"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -15558,11 +15561,11 @@
       "targetReader": "Best for Onslow County buyers, owners, and coastal remodelers who need to know whether the next move is an existing-system authorization, a repair permit, or a full new permit lane before trusting the septic story.",
       "officeLabel": "Onslow County existing septic systems workflow",
       "officeUrl": "https://www.onslowcountync.gov/679/Existing-Septic-Systems",
-      "recordsLabel": "Open Onslow County septic repair workflow",
-      "recordsUrl": "https://www.onslowcountync.gov/715/Repairing-a-Septic-System",
+      "recordsLabel": "Find or request Onslow County Environmental Health records",
+      "recordsUrl": "https://www.onslowcountync.gov/756/Records",
       "contactLine": "Onslow County Environmental Health Division | 910-938-5851 | Jacksonville NC",
       "decisionSteps": [
-        "Start with the existing septic systems page and decide whether the property qualifies for Existing System Authorization or already triggers a larger permit lane.",
+        "Check Citizen Access for the existing permit or plan. If the file is missing, use the Environmental Health records page to request a copy with the address and any prior owner or subdivision clues.",
         "If the number of bedrooms is increasing or the system needs relocation, treat that as a real branch because the county says Improvement Permit and Construction Authorization are likely required.",
         "If the system is malfunctioning, move to the repair workflow and detailed plot plan rather than assuming a quick field fix will be enough."
       ],
@@ -15601,7 +15604,8 @@
         "nc_onslow_01",
         "nc_onslow_02",
         "nc_onslow_03",
-        "nc_onslow_04"
+        "nc_onslow_04",
+        "nc_onslow_05"
       ],
       "publishStatus": "published",
       "workflowStructure": {
@@ -16059,7 +16063,7 @@
       "officeLabel": "Dare County environmental health wastewater program",
       "officeUrl": "https://www.darenc.gov/departments/health-human-services/our-units/environmental-health-services",
       "recordsLabel": "Search Dare wastewater permits by parcel number",
-      "recordsUrl": "https://www.darenc.gov/about/how-do-i/search-view-find/permits",
+      "recordsUrl": "https://tax.darecountync.gov/permits/",
       "contactLine": "Dare County Environmental Health Services | Manteo NC",
       "decisionSteps": [
         "Start with the permits page and search the county health permit data by parcel number or permit number before trusting any seller summary.",
@@ -16196,7 +16200,7 @@
       "uniqueAngle": "Somerset County is a local-health-department-versus-county-CEHA county. The real branch is whether the issue belongs in municipal septic oversight, countywide planning, or a county CEHA malfunction complaint lane.",
       "targetReader": "Best for Somerset County buyers, owners, and agents who need to know whether the next move is calling the local health department, checking the county septic management plan, or escalating a malfunction complaint before trusting the system story.",
       "officeLabel": "Open Somerset County environmental health",
-      "officeUrl": "https://www.somersetcountynj.gov/government/public-health-safety/health-department/environmental-health",
+      "officeUrl": "https://www.somersetcountynj.gov/Home/Components/News/News/2990/2293",
       "recordsLabel": "Open Somerset Countywide septic management plan",
       "recordsUrl": "https://www.somersetcountynj.gov/government/public-works/planning/wastewater-plan/countywide-wmp",
       "contactLine": "Somerset County Department of Health | 908-231-7155 | Somerville NJ",

@@ -594,9 +594,9 @@ public class SeoService {
             case "north-carolina-septic-permit-lookup" -> "North Carolina septic permits are usually held by county environmental health, not one statewide database. Identify the county, search by address or parcel, then request the permit packet, as-built, final approval, repair history, or written no-record response.";
             case "septic-records-checklist" -> "Start with the state records route, then open the county file path for the permit, as-built, final approval, inspection letter, or repair record that actually answers the property question.";
             case "septic-permit-lookup" -> "A septic permit lookup is usually state plus county. Use the official state route first, then follow the county health or environmental file path instead of treating a broad search result as the record itself.";
-            case "how-to-find-septic-records-online" -> "You can often find septic records online, but the file may live in a state portal, county health office, GIS attachment, or records-request queue. The fastest move is identifying the office that owns the parcel file.";
+            case "how-to-find-septic-records-online" -> "A blocked portal, an empty address search and a permit without a drawing need different next steps. Start with the result you got.";
             case "septic-records-by-county" -> "Choose the county first. County pages route you to the official permit copy, as-built, inspection letter, repair file, or records office instead of leaving you on a generic septic overview.";
-            case "septic-permit-search-by-address" -> "An address search is a starting point, not proof that a record exists. Resolve the county, then retry with parcel, owner, legal-description, subdivision, or permit-number clues when the first search is incomplete.";
+            case "septic-permit-search-by-address" -> "Find the office that holds the permit, then use the same address to ask for the drawing if it’s missing.";
             case "septic-permit-records-request", "septic-records-request-builder" -> "Ask for the exact artifact you need: permit copy, as-built, final approval, inspection letter, repair history, or no-record response. Precise wording gets a more useful answer than a general septic-record request.";
             case "septic-as-built-records" -> "A septic drawing can explain the recorded tank and drain-field layout. First check whether it shows proposed or installed work, then compare the permit, approvals, and later repairs. Start with the official file owner and request the drawing or scanned attachment.";
             case "septic-tank-location-records" -> "Start with the property address, even without a drawing. Search the county permit, as-built or site sketch for tank and drainfield clues, or ask us to investigate for free.";
@@ -1380,7 +1380,7 @@ public class SeoService {
             case "septic-permit-process" -> "Septic Permit Process by State | Office & Site Review | SepticPath";
             case "septic-records-checklist" -> "Septic Records Lookup by State & County | Permits & Official Files | SepticPath";
             case "septic-transfer-compliance" -> "Septic Transfer Compliance | Records, permits, and buyer workflow | SepticPath";
-            case "how-to-find-septic-records-online" -> "How to Find Septic Tank Records Online | Free Search Routes";
+            case "how-to-find-septic-records-online" -> "Septic Portal Help: No Match or Missing Drawing | SepticPath";
             case "septic-records-by-county" -> "Septic Records by County | Permit Lookup, As-Builts, and Health Files | SepticPath";
             case "septic-permit-search-by-address" -> "Septic Permit Search by Address | Find County Records | SepticPath";
             case "septic-permit-records-request" -> "Septic Permit Records Request | Copies & As-Builts | SepticPath";

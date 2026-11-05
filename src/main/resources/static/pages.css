@@ -4436,6 +4436,40 @@ ol.record-learning__steps { padding-left: 1.4rem; }
 }
 .home-v2-source-proof__originals img { border-radius: 13px; }
 
+.premium-site--directory :is(.national-records-page--online-guide, .national-records-page--address-entry) .national-records-hero { padding-block: 0; }
+.national-records-page--online-guide .national-records-hero__inner {
+    grid-template-columns: minmax(0, 690px);
+    min-height: auto;
+    padding-block: clamp(32px, 5vw, 68px);
+}
+.premium-site--directory .national-records-page--online-guide .national-records-hero h1 { font-size: clamp(2.3rem, 4.2vw, 4.2rem); text-wrap: initial; line-height: 1; }
+.national-records-page--address-entry .national-records-hero__inner { min-height: 0; }
+@media (max-width: 760px) {
+    .national-records-page--address-entry .national-records-hero__inner { gap: 20px; padding-block: 26px; }
+    .premium-site--directory .national-records-page--address-entry .national-records-hero h1 { font-size: clamp(2.4rem, 9vw, 3.3rem); }
+}
+.national-records-guide-jumps { display: grid; max-width: 520px; margin-block: 18px 12px; border-top: 1px solid rgba(194,234,220,.44); }
+.national-records-guide-jumps a {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    min-height: 44px; padding: 8px 0; border-bottom: 1px solid rgba(194,234,220,.44);
+    color: #f0faf5; font-weight: 750; text-decoration: none;
+}
+.national-records-guide-jumps a:hover, .national-records-guide-jumps a:focus-visible { color: #a9ead1; text-decoration: underline; }
+.record-search-recovery { display: grid; gap: 0; }
+.record-search-recovery > section { border-top: 1px solid var(--line-dark); padding-block: 20px; scroll-margin-top: 92px; }
+.record-search-recovery h3 { margin: .28rem 0 .5rem; }
+.record-search-recovery p { max-width: 72ch; margin-bottom: .65rem; }
+.record-finder__address-next { margin-block: .85rem; padding-block: .8rem; border-block: 1px solid var(--line-dark); }
+.record-finder__address-next summary { padding-block: .5rem; cursor: pointer; font-weight: 750; }
+.record-finder__address-next label { display: grid; gap: .3rem; margin-block: .6rem; }
+.record-finder__address-next textarea {
+    width: 100%; min-height: 7rem; padding: .65rem; border: 1px solid var(--line-dark);
+    background: var(--paper); color: var(--ink); font: inherit; resize: vertical;
+}
+.record-finder__address-next small[role="status"] { display: block; margin-top: .4rem; }
+.record-finder__address-note { margin: .5rem 0; font-size: .86rem; }
+.record-finder__address-next > a { display: inline-flex; align-items: center; min-height: 44px; }
+
 @media (max-width: 1080px) {
     .home-v2-source-proof__story { grid-template-columns: 1fr; gap: 0; }
     .home-v2-source-proof__translation { margin: -70px 28px 0; }

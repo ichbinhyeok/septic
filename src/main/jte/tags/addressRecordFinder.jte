@@ -7,6 +7,7 @@
 @param boolean compact = false
 @param boolean pageHeading = false
 @param boolean minimal = false
+@param boolean addressNextSteps = false
 @param String expectedStateCode = ""
 
 <div id="${finderId}" class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
@@ -91,7 +92,7 @@
     @endif
 
     <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder" data-address-record-finder-state="${expectedStateCode}">
-        @if (minimal)
+        @if (minimal && !addressNextSteps)
             <div class="record-finder__minimal-intro">
                 <span class="eyebrow">${eyebrow}</span>
                 <h2>${heading}</h2>
@@ -201,9 +202,22 @@
             <p data-address-record-finder-message></p>
             <div class="record-finder__result-meta" data-address-record-finder-meta hidden></div>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
+            @if (addressNextSteps)
+                <div class="record-finder__address-next" data-address-next-steps hidden>
+                    <details data-address-drawing-request>
+                        <summary>Looking for the tank or drain-field drawing?</summary>
+                        <p>Use the office or official route above. Ask for the actual site sketch or as-built, not just the permit number.</p>
+                        <label><span>Draft for this property</span><textarea rows="5" readonly data-address-drawing-draft></textarea></label>
+                        <button type="button" class="button button--secondary" data-address-drawing-copy>Copy drawing request</button>
+                        <small role="status" data-address-drawing-status></small>
+                        <p class="record-finder__address-note">Nothing is sent. A record drawing gives location clues; it does not establish where the system is today.</p>
+                    </details>
+                    <a href="/how-to-find-septic-records-online/#no-record-online" data-track-click="nav" data-track-source-context="national_address_result_stalled" data-track-target-type="internal_page">Portal blocked, no match, or no drawing? See what to do →</a>
+                </div>
+            @endif
             <div class="record-finder__document-entry">
                 <div><strong>A route is only the starting point.</strong><span>Want help getting the actual file or understanding what it says? Ask us to continue from your saved property details.</span></div>
-                <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link("/septic-record-finder/")}" data-record-help-cta data-track-source-context="record_finder_result">Get help with this property</a>
+                <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link(addressNextSteps ? "/septic-permit-search-by-address/" : "/septic-record-finder/")}" data-record-help-cta data-track-source-context="${addressNextSteps ? "national_address_search_result" : "record_finder_result"}">Get help with this property</a>
             </div>
             <div class="record-finder__search-packet" data-record-search-packet hidden>
                 <div>
