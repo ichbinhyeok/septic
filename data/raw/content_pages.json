@@ -3,6 +3,112 @@
   "generatedAt": "2026-07-09",
   "pages": [
     {
+      "slug": "apphealthcare-septic-permit-search",
+      "intentType": "research",
+      "primaryKeyword": "AppHealthCare septic permit search",
+      "secondaryKeywords": [
+        "Ashe County septic permit search",
+        "Watauga County septic permit search",
+        "Alleghany County septic records"
+      ],
+      "title": "AppHealthCare Septic Permit Search: Ashe, Watauga & Alleghany",
+      "metaDescription": "Find septic and well permits in Ashe, Watauga and Alleghany counties. Use the correct parcel PIN, open the original forms and find the county fallback.",
+      "introCopy": "Find septic or well permits for Ashe, Watauga and Alleghany in one public search. Choose the property’s county, then use the search key that fits the age of the record.",
+      "targetReader": "Property owners and buyers looking for an existing AppHealthCare permit, drawing or well file in northwest North Carolina.",
+      "fitBullets": [
+        "Three counties share one public permit search.",
+        "Older documents may need a former owner, subdivision or older parcel PIN."
+      ],
+      "decisionSteps": [
+        "Open the official portal and select the county in Property Criteria.",
+        "Try one identifier at a time: a parcel PIN, permit number, older owner or subdivision.",
+        "Select the matching property row and choose View Forms. Read the permit, sketch and any final approval as separate documents."
+      ],
+      "lowEndBreakers": [
+        "An older permit may not have a searchable street address."
+      ],
+      "quotePrepChecklist": [
+        "Exact county, parcel PIN, site address and any earlier owner or subdivision."
+      ],
+      "driverBullets": [
+        "The searchable street address depends on the age and type of the permit.",
+        "The current parcel identifier may differ from the one indexed by the health department."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Why does my new Ashe County PIN return nothing?",
+          "answer": "AppHealthCare says Ashe County changed its parcel identifiers in October 2025. Use the old parcel ID from Ashe County GIS while the permit database is being updated."
+        },
+        {
+          "question": "Can I search older AppHealthCare septic permits by address?",
+          "answer": "AppHealthCare says that valid 911 addresses are available for operation permits issued since March 2014. Try the original permit holder, subdivision and lot, or the parcel identifier for older records."
+        },
+        {
+          "question": "What if I find the property but no drawing?",
+          "answer": "Select the matching property and choose View Forms to check for attachments. If the drawing is missing, contact the Environmental Health office in the county that issued the permit."
+        }
+      ],
+      "internalLinkTargets": [
+        "/north-carolina-septic-permit-lookup/",
+        "/septic-as-built-records/"
+      ],
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published"
+    },
+    {
+      "slug": "sewer-or-septic-by-address",
+      "intentType": "research",
+      "primaryKeyword": "sewer or septic by address",
+      "secondaryKeywords": [
+        "is my house on sewer or septic",
+        "check sewer connection by address",
+        "side sewer records Seattle Tacoma"
+      ],
+      "title": "Is This House on Sewer or Septic? Check by Address",
+      "metaDescription": "Check an address in Seattle or Tacoma against official side sewer and septic records. Separate a nearby sewer main from evidence of a building connection.",
+      "introCopy": "Enter a property address to get the official routes for checking a sewer connection and an older septic file. This pilot covers Seattle and Tacoma city addresses.",
+      "targetReader": "Buyers and homeowners who want to verify how an existing building handles wastewater.",
+      "fitBullets": [
+        "Use a city lateral card, completed connection record or utility confirmation for the exact building.",
+        "Use a health department drawing to document historic septic, then look for later sewer or abandonment records."
+      ],
+      "decisionSteps": [
+        "Choose the actual city jurisdiction and prepare the site address.",
+        "Open official city and county sources and match the property.",
+        "Record the strongest evidence and follow the next check."
+      ],
+      "lowEndBreakers": [
+        "A main shown on a map only establishes mapped infrastructure.",
+        "A historic septic drawing may predate a conversion to public sewer."
+      ],
+      "quotePrepChecklist": [
+        "Property address, parcel number and the date of the newest matched document."
+      ],
+      "driverBullets": [
+        "A municipal sewer service area and an active building connection answer different questions.",
+        "A permit application and a completed inspection are different records."
+      ],
+      "faqBlocks": [
+        {
+          "question": "Does a sewer line in my street mean the building is connected?",
+          "answer": "A nearby main indicates infrastructure. Look for the exact building’s sanitary side sewer or completed connection file, then confirm active service with the utility."
+        },
+        {
+          "question": "What if a septic drawing and a sewer record both exist?",
+          "answer": "Match both to the property and compare their dates. Ask the utility to confirm active service and look for a dated septic abandonment record."
+        }
+      ],
+      "internalLinkTargets": [
+        "/septic-records-checklist/washington/",
+        "/septic-records-checklist/washington/pierce-county/",
+        "/septic-permit-search-by-address/"
+      ],
+      "updatedAt": "2026-11-05",
+      "reviewedAt": "2026-11-05",
+      "publishStatus": "published"
+    },
+    {
       "slug": "septic-system-cost-calculator",
       "intentType": "calculator_hub",
       "primaryKeyword": "septic system cost calculator",

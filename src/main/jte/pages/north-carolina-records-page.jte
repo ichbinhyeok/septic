@@ -27,6 +27,10 @@
 
         @template.tags.regionalRecordGoals(sourcePath = "/north-carolina-septic-permit-lookup/", stateCode = "NC", regionName = "North Carolina")
 
+        <section class="section section--tight">
+            <div class="container"><h2>Searching in Ashe, Watauga or Alleghany?</h2><p><a href="/apphealthcare-septic-permit-search/">Use the AppHealthCare permit search and county instructions →</a></p></div>
+        </section>
+
         <div class="container record-evidence-band">
             @template.tags.recordEvidence(sourceContext = "nc_records_evidence")
         </div>

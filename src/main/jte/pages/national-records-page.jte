@@ -108,6 +108,9 @@
                         <a href="/septic-tank-location-records/"><strong>Locate the tank and drain field</strong><span>Start with the record drawing before arranging a professional locate</span></a>
                     @endif
                     <a href="/septic-records-request-builder/"><strong>No record appeared</strong><span>Prepare a precise written request</span></a>
+                    @if (addressEntry)
+                        <a href="/sewer-or-septic-by-address/"><strong>Check sewer or septic by address</strong><span>Official connection and historic septic records for Seattle and Tacoma</span></a>
+                    @endif
                     @if (!"septic-records-by-county".equals(contentPage.slug()))
                         <a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="national_records_record_help" data-track-target-type="lead_form"><strong>Still can’t find the right file?</strong><span>Send the address. We’ll investigate, contact the responsible office when needed, and explain the response.</span></a>
                     @endif

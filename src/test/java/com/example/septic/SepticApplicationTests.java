@@ -866,7 +866,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"@type\":\"DataDownload\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-11-05\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"contentUrl\":\"https://example.test/septic-records-access-index.csv\"")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("327 county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("331 county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the records route by county.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("More filters")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Download, share, or cite the full route dataset")))
@@ -874,7 +874,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("official-source county septic records routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-records-state-directory")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-crawl-directory")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Browse all 327 reviewed county routes")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Browse all 331 reviewed county routes")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/nevada/douglas-county/\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-state-count=\"28\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/septic-records-checklist/alabama/\"")))
@@ -1979,7 +1979,7 @@ class SepticApplicationTests {
 				.results()
 				.count();
 
-		assertEquals(327L, locationCount);
+		assertEquals(331L, locationCount);
 		assertEquals(locationCount, lastModifiedCount);
 	}
 
@@ -10832,7 +10832,7 @@ class SepticApplicationTests {
 		List<CountyRecordsPage> pages = researchDataService.getPublicCountyRecordsPages();
 		String missouriProgramUrl = "https://health.mo.gov/business-professionals/onsite-wastewater-treatment";
 
-		assertEquals(327, pages.size());
+		assertEquals(331, pages.size());
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_01").orElseThrow().url());
 		assertEquals(missouriProgramUrl, researchDataService.findSource("mo_05").orElseThrow().url());
 		assertEquals(
