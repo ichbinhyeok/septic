@@ -4444,6 +4444,9 @@ ol.record-learning__steps { padding-left: 1.4rem; }
 }
 .premium-site--directory .national-records-page--online-guide .national-records-hero h1 { font-size: clamp(2.3rem, 4.2vw, 4.2rem); text-wrap: initial; line-height: 1; }
 .national-records-page--address-entry .national-records-hero__inner { min-height: 0; }
+.national-records-page--address-entry .record-finder__form[hidden] { display: none; }
+.national-records-page--address-entry .record-finder__form-fields { grid-template-columns: minmax(0, 1fr); }
+#address-search-state-routes { scroll-margin-top: 100px; }
 @media (max-width: 760px) {
     .national-records-page--address-entry .national-records-hero__inner { gap: 20px; padding-block: 26px; }
     .premium-site--directory .national-records-page--address-entry .national-records-hero h1 { font-size: clamp(2.4rem, 9vw, 3.3rem); }

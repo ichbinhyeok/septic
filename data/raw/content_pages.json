@@ -1495,7 +1495,7 @@
         "septic permit records"
       ],
       "title": "Septic Permit Search by Address",
-      "metaDescription": "Search septic permits by address by using state portals, county health records, parcel IDs, owner names, and the right permit-copy request path.",
+      "metaDescription": "Enter a U.S. property address to find the county’s official septic permit search or records office. See how to request a missing permit or site drawing.",
       "introCopy": "A septic permit search by address is strongest when the address is only the first clue. Many county and state systems also need parcel ID, owner name, legal description, subdivision, lot number, or permit number before the septic permit, as-built, repair file, or final approval appears.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",

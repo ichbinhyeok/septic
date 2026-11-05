@@ -18,7 +18,7 @@
         <section class="national-records-hero">
             <div class="container national-records-hero__inner">
                 <div class="national-records-hero__copy">
-                    <span class="eyebrow">${onlineGuide ? "After the online search" : "Property record workflow"}</span>
+                    <span class="eyebrow">${onlineGuide ? "After the online search" : addressEntry ? "U.S. property records" : "Property record workflow"}</span>
                     <h1>${contentPage.title()}</h1>
                     <p>${contentQuickAnswer}</p>
                     @if ("septic-records-by-county".equals(contentPage.slug()))
@@ -73,6 +73,20 @@
                 @endif
             </div>
         </section>
+
+        @if (addressEntry)
+            <section class="national-records-related" aria-labelledby="address-search-state-routes">
+                <div class="container">
+                    <h2 id="address-search-state-routes">Know the state already?</h2>
+                    <nav aria-label="Septic permit search routes by state">
+                        <a href="/north-carolina-septic-permit-lookup/"><strong>North Carolina</strong><span>County permit portals</span></a>
+                        <a href="/septic-records-checklist/indiana/"><strong>Indiana</strong><span>Local health department records</span></a>
+                        <a href="/texas-ossf-records-search/"><strong>Texas</strong><span>Local OSSF permitting authorities</span></a>
+                        <a href="/tdec-septic-records/"><strong>Tennessee</strong><span>TDEC and county records</span></a>
+                    </nav>
+                </div>
+            </section>
+        @endif
 
         @if ("septic-as-built-records".equals(contentPage.slug()))
             @template.tags.septicDrawingGuide()

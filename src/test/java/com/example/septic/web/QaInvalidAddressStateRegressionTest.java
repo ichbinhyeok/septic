@@ -2,6 +2,7 @@ package com.example.septic.web;
 
 import com.example.septic.service.CensusAddressLookupService;
 import java.time.Duration;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.web.client.RestClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -33,6 +36,29 @@ class QaInvalidAddressStateRegressionTest {
 
     @MockitoBean
     private CensusAddressLookupService censusAddressLookupService;
+
+    @Test
+    void censusLaPorteSpellingOpensCountyInsteadOfStateFallback() {
+        String address = "555 Michigan Ave, La Porte, IN 46350";
+        when(censusAddressLookupService.lookup(address)).thenReturn(
+                new CensusAddressLookupService.CensusAddressLookupResult(
+                        CensusAddressLookupService.CensusAddressLookupResult.Status.MATCHED,
+                        address, "IN", "LaPorte"
+                )
+        );
+
+        AddressRecordFinderResult result = RestClient.create("http://localhost:" + port)
+                .post()
+                .uri("/api/address-record-finder")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Map.of("address", address))
+                .retrieve()
+                .body(AddressRecordFinderResult.class);
+
+        assertThat(result).isNotNull();
+        assertThat(result.status()).isEqualTo("county_route");
+        assertThat(result.routePath()).isEqualTo("/septic-records-checklist/indiana/la-porte-county/");
+    }
 
     @Test
     void hidesPropertyActionsWhenAValidRouteIsFollowedByAnInvalidAddress() {
