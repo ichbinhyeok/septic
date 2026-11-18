@@ -724,7 +724,7 @@
       "publishStatus": "published",
       "pageAngle": "Alabama is strongest when framed around county health departments, Permit to Install timing, Approval-for-Use file retrieval, and buyer diligence rather than a generic install table. The homeowner wedge is knowing whether the county file is complete enough to trust the project before a contractor turns it into a simple permit-cost story.",
       "ruleType": "permit_path",
-      "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH coordinates the onsite sewage program through county health departments, publishes the CEP-2 install-or-repair application, and currently lists a $100-$200 dwelling permit-application band. In counties with an approved public Site Evaluation Program, the published site-evaluation fee is $150-$250. Those official fees are only the administrative and public-evaluation layer; private soil work, design, installation, excavation, and restoration remain separate.",
+      "ruleSummaryPlainEnglish": "Alabama homeowners usually need the county health department, permit file, and soil-testing story clarified before they trust a septic permit cost or install quote. ADPH coordinates the onsite sewage program through county health departments, publishes the CEP-2 install-or-repair application, and directs applicants to their county health department. Confirm local permit and site-evaluation charges. Private soil work, design, installation, excavation, and restoration need separate quotes.",
       "designFlowPerBedroomGpd": null,
       "minTankSizeGallons": null,
       "bedroomTable": [],
@@ -741,8 +741,8 @@
         "ADPH says homeowners must submit an Application for a Permit to Install to the local county health department before construction begins.",
         "ADPH says soil testing or a percolation test may be required when sewer is unavailable.",
         "ADPH says the completed permit, also called the Approval for Use, includes a diagram of the actual system installation.",
-        "The current ADPH fee manual lists $100-$200 for a conventional or engineered small-flow dwelling permit application.",
-        "The current ADPH fee manual lists $150-$250 for a public conventional small-flow site evaluation, but only in counties with an approved Site Evaluation Program."
+        "Etowah County lists $200 for a conventional sewage permit application effective September 1, 2026. Confirm the schedule for the property’s county.",
+        "Confirm whether the county provides a public site evaluation for the project and what it charges."
       ],
       "localOverrideNote": "Alabama looks statewide through ADPH, but the homeowner workflow changes quickly once you know which county health department holds the file and whether the Permit to Install or Approval for Use is already on record.",
       "countyOverrideRisk": "high",
@@ -773,7 +773,7 @@
       "confidenceScore": 0.88,
       "itemsNeedingVerification": [
         "Add a durable statewide matrix showing which Alabama counties publish septic file lookups or permit forms online.",
-        "Identify every county participating in ADPH's approved public Site Evaluation Program so the $150-$250 fee is never shown as universally available.",
+        "Verify the local site-evaluation service and price directly with the county health department.",
         "Collect local installer and registered-professional quote samples before narrowing private construction or soil-work ranges below the broad planning bands."
       ]
     },

@@ -614,7 +614,7 @@ public class SeoService {
 
     public String stateGuideQuickAnswer(StateProfile state) {
         return switch (state.stateCode()) {
-            case "AL" -> "Alabama's current perc and private soil-work planning band is $300-$2,700. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application band. Confirm the county program, sewer availability, and existing file before treating any of those numbers as the full project cost.";
+            case "AL" -> "Budget $300-$2,700 as a planning estimate for Alabama perc and private soil work. Check your county for permit and site-evaluation charges, then ask what the professional quote covers.";
             case "TN" -> "For Tennessee, start with the TDEC SSDS or county file route and confirm the permit, as-built, final approval, and repair history before relying on a cost or inspection assumption.";
             case "NC" -> "For North Carolina, start with the county environmental health file and identify the improvement permit, construction authorization, operation permit, as-built, or repair record tied to the property.";
             case "IN" -> "For Indiana, start with the county or local health office and confirm the permit, site file, soil report, sewer-availability record, and any transfer paperwork before comparing project quotes.";
@@ -736,7 +736,7 @@ public class SeoService {
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         String priorityTitle = switch (countyPage.key()) {
             case "OH::lake-county", "NC::henderson-county" -> countyPage.title();
-            case "VA::prince-william-county" -> "Request Prince William County Septic Records";
+            case "VA::prince-william-county" -> "Prince William County Septic Records by Address or GPIN";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
             case "NC::alamance-county" -> "Alamance County NC Septic Records & Permit Lookup";
@@ -815,7 +815,7 @@ public class SeoService {
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
         String priorityDescription = switch (countyPage.key()) {
             case "OH::lake-county", "NC::henderson-county" -> countyPage.metaDescription();
-            case "VA::prince-william-county" -> "Start with the accessible Prince William Health District service page and contact On-Site Sewage & Water Services when the optional historical portal is blocked.";
+            case "VA::prince-william-county" -> "Find Prince William County septic permits and plans by street address or GPIN. Use the Health District contact if the historical archive is unavailable.";
             case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
             case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";
             case "NC::alamance-county" -> "Request an existing Alamance County septic property file without confusing a historical record copy with a new application or paid field inspection.";
@@ -855,7 +855,7 @@ public class SeoService {
             case "TN::williamson-county" -> "Use Williamson County's dedicated inspection-record duplication request for the existing sewage-disposal file before entering electronic plan review for new work.";
             case "MD::st-marys-county" -> "Use the official St. Mary's County Environmental Health request PDF for the septic property file; use county GIS only to obtain a parcel or Tax ID clue.";
             case "NY::suffolk-county" -> "Prepare the Tax Map number and construction details for a phone-assisted Suffolk County septic location record search and written fallback.";
-            case "AZ::maricopa-county" -> "Open Maricopa County's free online septic search for available permit records. See the first-screen disclaimer and the county research fallback if no file appears.";
+            case "AZ::maricopa-county" -> "Open Maricopa County's free septic search for permits and drawings. If the file is missing, compare the county's standard and expedited research options.";
             case "WA::king-county" -> "Search King County septic system records, as-built drawings, tank and drainfield location clues, and inspection history before requesting a missing file.";
             case "NC::brunswick-county" -> "Search Brunswick public permit metadata to identify the parcel and permit candidate, then request the original septic IP, CA, OP, or related file.";
             case "NC::forsyth-county" -> "Request the Forsyth County septic permit and soil evaluation, with separate release and repair routes for new property work.";
@@ -1362,7 +1362,7 @@ public class SeoService {
 
     private String stateGuideSeoTitle(StateProfile state) {
         if ("AL".equals(state.stateCode())) {
-            return "Alabama Perc Test Cost (2026): $300-$2,700 + Fees";
+            return "Alabama Perc Test Cost & County Permit Fees";
         }
         return stateGuideTitle(state) + " | SepticPath";
     }
@@ -1370,7 +1370,7 @@ public class SeoService {
     private String contentPageSeoTitle(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "septic-replacement-cost" -> "Septic Replacement Cost | Quote Scope | SepticPath";
-            case "perc-test-cost" -> "Perc Test Cost: $300-$3,000 Range and State Guide | SepticPath";
+            case "perc-test-cost" -> "How Much Does a Perc Test Cost? Fees & Quote Checklist";
             case "drain-field-replacement-cost" -> "Drain Field Replacement Cost and Leach Field Replacement Price | SepticPath";
             case "failed-perc-test-septic" -> "Failed Perc Test for Septic | Soil & Redesign Risk | SepticPath";
             case "septic-replacement-area" -> "Septic Replacement Area Guide | Reserve & Field Risk | SepticPath";
@@ -1406,7 +1406,7 @@ public class SeoService {
     private String contentPageSeoDescription(ContentPage contentPage) {
         return switch (contentPage.slug()) {
             case "tdec-septic-records" -> "Find the TDEC or county route for your Tennessee address. Search septic permits, system drawings and SSDS files, with help when the online record is missing.";
-            case "dhec-septic-permit-lookup" -> "Find South Carolina septic permits and tank drawings through SCDES, formerly DHEC. Use the county records route for permit copies and final-inspection files.";
+            case "dhec-septic-permit-lookup" -> "Find South Carolina septic permits and tank layouts through SCDES, formerly DHEC. Prepare your address or tax map number and find help if the file is missing.";
             case "north-carolina-septic-permit-lookup" -> "Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.";
             case "texas-ossf-records-search" -> "Search Texas OSSF permits by address, identify the local permitting authority, and follow the correct county, city, ETJ, or authorized-agent records route.";
             case "florida-ostds-permit-lookup" -> "Search Florida OSTDS permits and septic records by county. Find the health-department route, approved plan, repair file, or records request when the online result is missing.";
@@ -1521,7 +1521,7 @@ public class SeoService {
             case "RI" -> "Rhode Island Septic Permit Cost, DEM File Search, and Suitability Guide";
             case "VT" -> "Vermont Septic Cost Guide and WW Permit Path";
             case "MT" -> "Montana Septic Cost Guide and Site-Risk Path";
-            case "AL" -> "Alabama Perc Test Cost ($300-$2,700) & County Fees";
+            case "AL" -> "Alabama Perc Test Cost and County Fees";
             case "AR" -> "Arkansas Septic Cost Guide and County Permit Path";
             case "MS" -> "Mississippi Septic Cost Guide and Public Records Path";
             case "IN" -> "Indiana Septic Cost Guide and County Permit Path";
@@ -1577,7 +1577,7 @@ public class SeoService {
             case "RI" -> "Rhode Island septic permit cost guide with DEM permit searches, 1968-forward file retrieval, suitability checks, advanced-technology risk, and official DEM links.";
             case "VT" -> "Vermont septic planning estimates with permit-search context, town checks, five regional offices, and official-source links.";
             case "MT" -> "Montana septic planning estimates with COSA checks, local-health routing, DEQ-4 site-risk context, and official-source links.";
-            case "AL" -> "How much does a perc test cost in Alabama? Use the $300-$2,700 planning range, then check county fees, soil scope, and the official ADPH next step before requesting quotes.";
+            case "AL" -> "Compare Alabama soil testing quotes with county permit fees. See what a quote should include and where to confirm the current charge.";
             case "AR" -> "Arkansas septic planning estimates with county health routing, permit-copy context, and official-source links.";
             case "MS" -> "Mississippi septic planning estimates with county health routing, public-record context, and official-source links.";
             case "IN" -> "Indiana septic planning estimates with county permit routing, sewer-availability context, and official-source links.";
