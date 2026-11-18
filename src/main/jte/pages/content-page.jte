@@ -1052,6 +1052,9 @@
         <section class="section"><div class="container">@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read the drawing step by step →</a></p></div></section>
     @endif
     @if ("septic-permit-process".equals(contentPage.slug()))
+        <section class="section section--tight">
+            <div class="container"><a href="/adu-septic-permit/">Planning an ADU? Check the existing septic permit and approval steps →</a></div>
+        </section>
         <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "williamson", sourcePath = "/septic-permit-process/")</div></section>
         <section class="section section--tight"><div class="container"><a href="/septic-final-approval-records/">Installed, inspected or finalized? Check the final record stage →</a></div></section>
     @endif

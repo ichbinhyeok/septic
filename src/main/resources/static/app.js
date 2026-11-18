@@ -938,6 +938,9 @@
             const result = finder.querySelector("[data-address-record-finder-result]");
             const resultHandoff = result?.querySelector(":scope > .record-finder__document-entry");
             const addressNextSteps = result?.querySelector("[data-address-next-steps]");
+            const aduProject = form?.querySelector("[data-adu-project]");
+            const aduRoute = result?.querySelector("[data-adu-route]");
+            const aduWakeRoute = aduRoute?.querySelector("[data-adu-wake-route]");
             const drawingRequest = addressNextSteps?.querySelector("[data-address-drawing-request]");
             const drawingDraft = addressNextSteps?.querySelector("[data-address-drawing-draft]");
             const drawingStatus = addressNextSteps?.querySelector("[data-address-drawing-status]");
@@ -1197,8 +1200,26 @@
             };
 
             function currentPurpose() {
+                if (aduProject) return "bedrooms";
                 return purposeSelect instanceof HTMLSelectElement ? purposeSelect.value : addressNextSteps ? "location" : "buying";
             }
+
+            function renderAduRoute(context) {
+                if (!aduRoute) return;
+                aduRoute.hidden = !context;
+                if (!context) return;
+
+                const project = aduProject.value;
+                aduRoute.querySelectorAll("[data-adu-project-route], [data-adu-city-route]").forEach((element) => {
+                    const routeProject = element.dataset.aduProjectRoute || element.dataset.aduCityRoute;
+                    element.hidden = routeProject !== project;
+                });
+                aduWakeRoute.hidden = context.stateCode !== "NC" || !/^wake(?: county)?$/i.test(context.countyName);
+            }
+
+            aduProject?.addEventListener("change", () => {
+                if (!aduRoute.hidden) renderAduRoute(routeContext);
+            });
 
             function saveRequestContext(extra = {}) {
                 const value = JSON.stringify({
@@ -1892,6 +1913,7 @@
                     }));
                     meta.hidden = values.length === 0;
                 }
+                renderAduRoute(routeContext);
                 renderOffice(propertyResolved ? routeContext : null);
                 renderSearchPacket(propertyResolved ? routeContext : null);
                 renderAddressNextSteps(propertyResolved ? routeContext : null, ["not_found", "unavailable"].includes(payload.status));
@@ -2006,6 +2028,7 @@
                 };
                 renderPublicGuideShare(null);
                 result.hidden = false;
+                renderAduRoute(null);
                 renderAddressNextSteps(null);
                 if (status) {
                     status.textContent = "Document in hand";
@@ -3094,6 +3117,7 @@
                 }
                 renderOffice(routeContext);
                 renderSearchPacket(routeContext);
+                renderAduRoute(!directDocumentSession && routeContext.countyName ? routeContext : null);
                 if (directDocumentSession) {
                     if (officialNote instanceof HTMLElement) {
                         officialNote.hidden = true;
@@ -3423,8 +3447,9 @@
                 }
 
                 recordFinderStage("workflow_viewed");
+                const searchPurpose = aduProject ? "adu" : currentPurpose();
                 if (typeof window.gtag === "function") {
-                    window.gtag("event", "address_search_started", { search_purpose: currentPurpose() });
+                    window.gtag("event", "address_search_started", { search_purpose: searchPurpose });
                 }
                 const defaultLabel = activeStartMode === "missing"
                     ? "Resolve the failed search"
@@ -3443,7 +3468,7 @@
                     const payload = await response.json();
                     render(payload);
                     if (typeof window.gtag === "function") {
-                        window.gtag("event", "address_search_completed", { search_purpose: currentPurpose(), outcome: payload.status || "unknown" });
+                        window.gtag("event", "address_search_completed", { search_purpose: searchPurpose, outcome: payload.status || "unknown" });
                     }
                     if (typeof window.gtag === "function") {
                         window.gtag("event", "record_finder_submit", {
@@ -3453,7 +3478,7 @@
                     }
                 } catch (_) {
                     if (typeof window.gtag === "function") {
-                        window.gtag("event", "address_search_completed", { search_purpose: currentPurpose(), outcome: "network_error" });
+                        window.gtag("event", "address_search_completed", { search_purpose: searchPurpose, outcome: "network_error" });
                     }
                     render({
                         status: "unavailable",
@@ -3467,7 +3492,7 @@
                     submit.textContent = defaultLabel;
                 }
             });
-            if (addressNextSteps) form.hidden = false;
+            if (addressNextSteps || aduProject) form.hidden = false;
         });
     }
 
