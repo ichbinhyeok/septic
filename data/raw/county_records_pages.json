@@ -10126,13 +10126,13 @@
       "countySlug": "dane-county",
       "title": "Dane County Wisconsin Septic Records Checklist and Permit Lookup",
       "metaDescription": "Dane County septic records checklist and permit lookup with active septic record lookup, parcel-based attachments, and abandonment or permit workflow before you trust a repair or sale story.",
-      "introCopy": "Dane County is one of the strongest records-first counties we have added. Public Health Madison and Dane County gives owners a live septic record lookup, a county-written lookup guide, and an abandonment path when the system story is no longer current.",
+      "introCopy": "Find the active septic system record by parcel number or address. Use the linked record to locate available permits and drawings, then compare the file with the property.",
       "uniqueAngle": "Dane stands out because owners can search the active septic file themselves, open attachments, and compare maintenance or abandonment history before they ever ask a contractor for a number.",
       "targetReader": "Best for Dane County buyers, owners, sellers, and agents who need to know whether the county file supports the current septic, maintenance, or replacement story.",
       "officeLabel": "Public Health Madison and Dane County private wells and septic systems",
       "officeUrl": "https://publichealthmdc.com/home-environment/private-wells-septic-systems",
-      "recordsLabel": "View Dane County septic system records",
-      "recordsUrl": "https://elam.cityofmadison.com/CitizenAccess/Welcome.aspx",
+      "recordsLabel": "Open Dane County’s septic record lookup instructions",
+      "recordsUrl": "https://publichealthmdc.com/home-environment/private-wells-septic-systems",
       "contactLine": "Environmental Health | 608-242-6515 | health@publichealthmdc.com",
       "decisionSteps": [
         "Start in the county septic record portal and search by address or 12-digit parcel number before talking scope or cost.",
@@ -10146,17 +10146,35 @@
       ],
       "lowEndBreakers": [
         "If there is no usable match in the county portal, the file may be weaker than the current septic story suggests.",
-        "If attachments or maintenance history are missing, the owner or seller story may be hiding recurring problems.",
+        "If attachments or maintenance history are missing, ask Environmental Health which documents are available.",
         "If abandonment or modification history exists, a cheap repair quote may be pricing the wrong system path."
       ],
+      "updatedAt": "2026-11-19",
+      "searchGuide": {
+        "summary": "Look up an active Dane County septic system by its 12-digit parcel number. If the parcel search comes back empty, retry with the house number and the first few letters of the street name.",
+        "coverage": "Public Health Madison & Dane County describes lookup for active systems. It does not specify a complete historical date range.",
+        "identifiers": "12-digit parcel number, or house number and a short street-name prefix.",
+        "documents": "Available sanitary permit or system records. Open the details and check for the drawing, related permits, or maintenance records you need.",
+        "steps": [
+          "Open the Public Health Madison & Dane County lookup instructions. Follow View Septic System Records, then select Search Permit Applications in the Permitting section.",
+          "Enter the parcel number without hyphens. Use all 12 digits and leave other fields blank.",
+          "If there is no useful result, clear the parcel field. Enter the house number and the first two or three letters of the street name. Skip the direction, suffix, unit, city and ZIP.",
+          "Scroll to the results and open the septic system ID. If there are several records, compare them. Check the site address and parcel on the file itself, especially when the permit holder has a separate mailing address."
+        ],
+        "noResult": "Ask Public Health Madison & Dane County which record applies if the search returns no file or the drawing and site details disagree.",
+        "sourceIds": [
+          "wi_dane_03"
+        ],
+        "reviewedAt": "2026-11-18"
+      },
       "faqBlocks": [
         {
           "question": "How do I check septic records in Dane County?",
           "answer": "Use the county's septic record portal and search by address or 12-digit parcel number, then open the attachments for the correct system."
         },
         {
-          "question": "Why is Dane County a records-first page?",
-          "answer": "Because the county exposes attachments, maintenance records, and abandonment clues before you price work."
+          "question": "Does an empty Dane County search mean there is no record?",
+          "answer": "Try the address search or contact Public Health Madison & Dane County for the records tied to your parcel."
         }
       ],
       "internalLinkTargets": [
@@ -10167,7 +10185,6 @@
       ],
       "officialSourceIds": [
         "wi_dane_01",
-        "wi_dane_02",
         "wi_dane_03",
         "wi_dane_04"
       ],
@@ -20863,7 +20880,7 @@
       "officeLabel": "Lincoln County On-Site Water Protection office",
       "officeUrl": "https://www.lincolncountync.gov/451/Environmental-Health",
       "recordsLabel": "Request Lincoln septic records by address or parcel PIN",
-      "recordsUrl": "https://www.lincolncountync.gov/2617/Onsite-Water",
+      "recordsUrl": "https://www.lincolncountync.gov/451/Environmental-Health",
       "contactLine": "Lincoln County On-Site Water Protection office; confirm parcel address, owner name, permit number, or legal description before requesting files.",
       "decisionSteps": [
         "Open the official Lincoln County source first and decide whether the parcel needs a record request, permit search, or office contact instead of a broad state explainer.",
@@ -20880,6 +20897,24 @@
         "If the file shows a repair branch, missing closeout, or old system with no clear dimensions, repair, expansion, or existing-system inspection routing can override the low-end story.",
         "If the address, parcel ID, owner name, or legal description is wrong, a clean-looking lookup can still miss the real file."
       ],
+      "updatedAt": "2026-11-19",
+      "searchGuide": {
+        "summary": "For a copy of an existing Lincoln County septic permit or map, follow Environmental Health’s public records link to NextRequest. See the county’s OpenGov guidance for current permit applications and inspection scheduling.",
+        "coverage": "Existing permit or map copies through the county records request. The county does not list complete online archive years.",
+        "identifiers": "Property street address or parcel number. Include an existing permit number if you know it.",
+        "documents": "Available septic permit, operation permit or layout requested for the property, or the county’s written file response.",
+        "steps": [
+          "Open Lincoln County Environmental Health and choose its Public Records Request link. The link opens NextRequest for copies of existing permits and maps.",
+          "Include the site address or parcel number. Name the document you need, such as the operation permit or layout drawing. Save the request reference.",
+          "For a permit application or inspection appointment, see the county’s OpenGov Permitting & Licensing instructions. Lincoln County has retired eTRAKiT. Follow Environmental Health’s current instructions for your project type."
+        ],
+        "noResult": "If NextRequest does not open or you cannot find the requested file, use the Environmental Health contact on the county’s official page.",
+        "sourceIds": [
+          "nc_lincoln_01",
+          "nc_lincoln_03"
+        ],
+        "reviewedAt": "2026-11-18"
+      },
       "faqBlocks": [
         {
           "question": "How do I look up septic records in Lincoln County?",
@@ -20905,6 +20940,7 @@
       "officialSourceIds": [
         "nc_lincoln_01",
         "nc_lincoln_02",
+        "nc_lincoln_03",
         "nc_02"
       ],
       "workflowStructure": {

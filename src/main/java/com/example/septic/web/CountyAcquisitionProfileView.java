@@ -121,7 +121,7 @@ public record CountyAcquisitionProfileView(
             return "Use the accessible OSSF office page to confirm whether the county, a contract city, or an ETJ owns the file. When the county owns it, follow the official PIA page's published email, mail, fax, or in-person route.";
         }
         if ("NC::lincoln-county".equals(countyKey)) {
-            return "The accessible Environmental Health page confirms that a septic-record request needs the property address and/or parcel number. Use its phone contact first; open NextRequest only when the portal is reachable.";
+            return "Follow the Environmental Health Public Records Request link to NextRequest. Use the site address or parcel number. Call Environmental Health if the portal does not open.";
         }
         if ("TN::blount-county".equals(countyKey)) {
             return "Use the county Records Center, choose Developmental Services Requests, and carry the verified SSDS fields prepared here into that form.";

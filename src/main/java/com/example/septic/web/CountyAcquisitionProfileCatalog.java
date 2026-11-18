@@ -217,10 +217,10 @@ public final class CountyAcquisitionProfileCatalog {
             Map.entry("NC::lincoln-county", acquisition(
                     "NC::lincoln-county",
                     "Lincoln County Environmental Health",
-                    "Environmental Health instructions → NextRequest fallback",
+                    "Environmental Health records link → NextRequest",
                     "No fee is published on the county landing page.",
                     "No record turnaround is published.",
-                    "Use the accessible Environmental Health page and phone first; submit in NextRequest only when it is reachable.",
+                    "Open NextRequest from the Environmental Health page. Contact the office if the portal does not open.",
                     "",
                     "704-736-8426",
                     "Lincoln County septic and well records — {{address}}",

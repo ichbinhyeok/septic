@@ -46,7 +46,32 @@
                 @if (reading)
                 <span class="eyebrow">Read in this order</span>
                 <h2>Four checks before you rely on the drawing.</h2>
-                <p>First match the address, parcel or lot across every page. A correctly addressed agency email does not make every attachment the right property.</p>
+                <p>Match the site address, parcel or lot on the record before reading dimensions or interpreting the permit.</p>
+                <section class="problem-example parcel-match" id="check-property-match" aria-labelledby="parcel-match-title">
+                    <span class="eyebrow">Fictional example</span>
+                    <h3 id="parcel-match-title">Does the drawing belong to this property?</h3>
+                    <figure>
+                        <div class="parcel-match__panels">
+                            <div class="parcel-match__panel">
+                                <h4>Selected map parcel</h4>
+                                <div class="parcel-match__map">
+                                    <div class="parcel-match__lot parcel-match__lot--selected"><strong>Lot A</strong><span>Selected site</span></div>
+                                    <div class="parcel-match__lot"><strong>Lot B</strong><span>Adjacent site</span></div>
+                                </div>
+                            </div>
+                            <div class="parcel-match__panel parcel-match__document">
+                                <h4>Attached drawing</h4>
+                                <dl>
+                                    <div><dt>Site</dt><dd>Lot B</dd></div>
+                                    <div><dt>Permit holder’s mailing address</dt><dd>Mailbox M</dd></div>
+                                </dl>
+                            </div>
+                        </div>
+                        <figcaption>Invented labels and shapes. This example does not depict a real property.</figcaption>
+                    </figure>
+                    <p><strong>The site fields disagree.</strong> The map selection is Lot A, while the drawing labels the site Lot B. Set this drawing aside until the office confirms which file belongs to Lot A.</p>
+                    <p>Use the site address, parcel number, subdivision and lot printed on each page. If a label appears to be an older parcel ID, check official parcel history or ask the records office to confirm the link. The permit holder’s mailing address is a separate field.</p>
+                </section>
                 <article id="components" class="problem-step"><span>01</span><div><h3>Identify the tank, field and other components.</h3><p>Use the labels and legend. A tank may be shown as a rectangle; D-box may identify a distribution box. A separate pump chamber, treatment unit or reserve area needs its own label. Do not assign a meaning to an unmarked shape.</p></div></article>
                 <article id="dimensions" class="problem-step"><span>02</span><div><h3>Read each number with its units and endpoints.</h3><p>A distance from a house corner to a tank is different from a field-line length. Read gallons, feet and gallons per day separately. If the scale, reference point or north arrow is missing, keep that uncertainty visible.</p></div></article>
                 <article id="field-lines" class="problem-step"><span>03</span><div><h3>Separate line length, area and capacity.</h3><p>Only add dimensions that clearly label separate field runs. A total in linear feet is not square footage. Tank gallons and design flow do not, by themselves, establish the approved bedroom count; find that approval in the permit text.</p></div></article>
