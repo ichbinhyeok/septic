@@ -2619,6 +2619,8 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Tippecanoe County Health Department onsite sewage office")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Tippecanoe County county"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("email or print diagrams when available")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"tippecanoe-septic-drawing\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://www.tippecanoe.in.gov/418/Building-Permits-Online-Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/how-to-find-septic-records-online/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Indiana records lookup")));
 	}
@@ -4328,10 +4330,10 @@ class SepticApplicationTests {
 	void hamiltonCountyRecordsPageShowsBuyerInspectionWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/ohio/hamilton-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hamilton County Ohio Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("View Hamilton County inspection results and permit status")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Hamilton County OH Septic Inspection Records by Address | SepticPath</title>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Hamilton County Public Health inspection instructions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Hamilton County Public Health owns the practical sewage-treatment file once the parcel is really in county jurisdiction")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("jurisdiction check plus the buyer-inspection record and inspection cadence")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Read the most recent inspection result and its date")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Cincinnati, Norwood, or Springdale")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("buyer inspection")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Ohio records lookup")))
