@@ -50,6 +50,11 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
+                @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && java.util.Set.of("WV", "IL").contains(state.stateCode()))
+                    <p>Start with the address, even if you have no permit or drawing. We’ll look for the existing file and explain what we find, free.</p>
+                    <p><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link(stateMoneyPage.path(state.slug()), state.stateCode(), null)}" data-record-help-cta data-track-click="nav" data-track-source-context="state_records_free_help" data-track-target-type="lead_form">Get free record help →</a></p>
+                    <small>Research, located records and explanation are free. Agency fees need your approval.</small>
+                @endif
                 @if ("NH".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()))
                     @template.tags.newHampshireRecordsQuickStart()
                 @endif
@@ -304,6 +309,10 @@
             </article>
         </div>
     </section>
+    @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && java.util.Set.of("WV", "IL").contains(state.stateCode()))
+        @template.tags.stateRecordSearchStart(stateCode = state.stateCode())
+        @template.tags.regionalRecordGoals(sourcePath = stateMoneyPage.path(state.slug()), stateCode = state.stateCode(), regionName = state.stateName())
+    @endif
 
     <div data-sticky-trigger="state-money-after-hero" aria-hidden="true"></div>
 

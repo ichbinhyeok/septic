@@ -821,7 +821,7 @@ class SepticApplicationTests {
 	void addressRecordFinderRendersAndRejectsIncompleteAddress() throws Exception {
 		mockMvc.perform(get("/septic-record-finder/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Septic Records Finder by Address")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Find Septic Records by Address")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-address-record-finder")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"record-finder-form\"")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("name=\"address-record-finder\"")))
@@ -1439,7 +1439,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc><lastmod>2026-09-17</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc><lastmod>2026-09-01</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-11-18</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-10-05</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/new-hampshire/</loc><lastmod>2026-10-21</lastmod></url>")))

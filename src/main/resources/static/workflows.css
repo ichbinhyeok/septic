@@ -28,6 +28,10 @@
   .metric-card strong { display: block; margin: 6px 0; font-family: var(--font-sans); font-size: 2rem; }
   .metric-card__label { color: var(--muted); }
 
+  .record-route-shortcuts { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 18px; }
+  .record-route-shortcuts a { padding-block: 8px; text-underline-offset: 4px; }
+  .record-finder__other-goals a { display: inline-block; padding-block: 6px; color: inherit; text-underline-offset: 4px; }
+
   /* Search and form workspaces */
   .record-finder-hero { padding: 0; border-bottom: 1px solid var(--line-dark); background: var(--surface); }
   .record-finder { display: block; min-height: 0; background: var(--surface); }

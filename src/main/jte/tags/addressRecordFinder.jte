@@ -31,6 +31,7 @@
                        data-track-source-context="record_finder_hero"
                        data-track-target-type="internal_tool">Search the official route myself</a>
                     <p class="record-finder__free-note">Research, records and explanation are free. Agency fees only with approval. Any on-site work is separate.</p>
+                    <p class="record-finder__other-goals">Different question? <a href="${com.example.septic.web.RecordHelpEntry.of("buying").link("/septic-record-finder/")}" data-record-help-cta data-track-click="nav" data-track-source-context="finder_buying" data-track-target-type="lead_form">Buying or selling</a> · <a href="${com.example.septic.web.RecordHelpEntry.of("building").link("/septic-record-finder/")}" data-record-help-cta data-track-click="nav" data-track-source-context="finder_building" data-track-target-type="lead_form">Planning an addition</a> · <a href="${com.example.septic.web.RecordHelpEntry.of("records").link("/septic-record-finder/")}" data-record-help-cta data-track-click="nav" data-track-source-context="finder_other_question" data-track-target-type="lead_form">Another record question</a></p>
                 @endif
                 <div class="record-finder__signals" aria-label="Record finder coverage">
                     <span><strong>${totalCountyRouteCount}</strong> published county pages</span>
@@ -309,4 +310,5 @@
             </section>
         </section>
     </div>
+
 </div>

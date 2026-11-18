@@ -41,6 +41,30 @@ class GrowthIntentJourneyTest {
                 "Search the official route myself", "Send my file and questions", "data-address-record-finder-result");
         assertThat(html.indexOf("<option value=\"location\"")).isLessThan(html.indexOf("<option value=\"buying\""));
         assertThat(html).contains(RecordHelpEntry.of("location").link("/septic-record-finder/").replace("&", "&amp;"));
+        for (String intent : List.of("buying", "building", "records")) {
+            var link = RecordHelpEntry.of(intent).link("/septic-record-finder/");
+            assertThat(html).contains(link.replace("&", "&amp;"));
+            var result = mvc.perform(get(URI.create(link.split("#")[0]))).andExpect(status().isOk()).andReturn();
+            var form = (ClosingRiskCheckForm) result.getModelAndView().getModel().get("closingRiskCheckForm");
+            assertThat(form.getSourcePageHint()).isEqualTo("/septic-record-finder/");
+            assertThat(form.getTransactionRole()).isNull();
+        }
+    }
+
+    @Test void growingStateRoutesKeepContextAndDoNotRequireAnExistingFile() throws Exception {
+        for (var state : java.util.Map.of("indiana", "IN", "illinois", "IL", "west-virginia", "WV").entrySet()) {
+            String path = "/septic-records-checklist/" + state.getKey() + "/";
+            String html = html(path);
+            assertThat(html).contains("state-record-search-start", "regional_goal_location", "state_records_free_help");
+            String link = RecordHelpEntry.of("location").link(path, state.getValue(), null);
+            assertThat(html).contains(link.replace("&", "&amp;"));
+            var result = mvc.perform(get(URI.create(link.split("#")[0]))).andExpect(status().isOk()).andReturn();
+            var form = (ClosingRiskCheckForm) result.getModelAndView().getModel().get("closingRiskCheckForm");
+            assertThat(form.getStateCode()).isEqualTo(state.getValue());
+            assertThat(form.getSourcePageHint()).isEqualTo(path);
+            assertThat(form.getHelpPurpose()).isEqualTo("location");
+            assertThat(form.getRecordStatus()).isEqualTo("not_started");
+        }
     }
 
     @Test void locationGuideHasFourUsefulScenariosAndExistingPublicCaseEvidence() throws Exception {
@@ -71,7 +95,7 @@ class GrowthIntentJourneyTest {
     @Test void sitemapDatesReflectChangedPagesWithoutUpdatingUnchangedStates() throws Exception {
         String sitemap = html("/sitemap.xml");
         for (String path : List.of("/septic-record-finder/")) {
-            assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-10-05</lastmod>");
+            assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-18</lastmod>");
         }
         for (String path : List.of("/tdec-septic-records/", "/septic-records-checklist/tennessee/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-18</lastmod>");
@@ -83,7 +107,7 @@ class GrowthIntentJourneyTest {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
         }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");
-        assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-10-11</lastmod>");
+        assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-11-18</lastmod>");
         String counties = html("/sitemap-county.xml");
         for (String county : List.of("north-carolina/johnston-county", "north-carolina/pender-county",
                 "texas/travis-county", "texas/williamson-county")) {

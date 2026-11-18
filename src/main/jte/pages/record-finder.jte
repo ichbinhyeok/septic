@@ -16,6 +16,8 @@
         </div>
     </section>
 
+    @template.tags.recordRouteShortcuts()
+
     <div class="container record-evidence-band">
         @template.tags.recordEvidence(sourceContext = "record_finder_evidence")
     </div>

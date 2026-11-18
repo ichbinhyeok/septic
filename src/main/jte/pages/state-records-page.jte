@@ -41,7 +41,7 @@
                         <strong>Start here</strong>
                         <span>Enter the property address. SepticPath identifies the county and the best verified public route; it does not claim that a permit exists or retrieve a government file automatically.</span>
                     </div>
-                    @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()) || "IN".equals(state.stateCode()))
+                    @if (java.util.Set.of("NC", "TN", "IN", "WV", "IL").contains(state.stateCode()))
                         <p><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link(stateMoneyPage.path(state.slug()), state.stateCode(), null)}" data-record-help-cta data-track-click="nav" data-track-source-context="state_records_free_help" data-track-target-type="lead_form">Get free record help →</a></p>
                         <small>Research, located records and explanation are free. Agency fees need your approval.</small>
                     @endif
@@ -58,6 +58,8 @@
             </div>
         </section>
 
+        @template.tags.stateRecordSearchStart(stateCode = state.stateCode())
+
         @if ("TN".equals(state.stateCode()))
             <section class="section section--tight" aria-labelledby="tn-file-owner-title">
                 <div class="container record-search-guide">
@@ -70,7 +72,7 @@
             </section>
         @endif
 
-        @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
+        @if (java.util.Set.of("NC", "TN", "IN", "WV", "IL").contains(state.stateCode()))
             @template.tags.regionalRecordGoals(sourcePath = stateMoneyPage.path(state.slug()), stateCode = state.stateCode(), regionName = state.stateName())
         @endif
 
