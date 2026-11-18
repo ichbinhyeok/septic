@@ -1,11 +1,16 @@
 package com.example.septic;
 
+import com.example.septic.web.ClosingRiskCheckForm;
+import com.example.septic.web.RecordHelpEntry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -67,7 +72,7 @@ class OfficialRecordsWorkflowRegressionTest {
     void floridaRouteSeparatesCurrentAuthorityFromHistoricalRecords() throws Exception {
         mockMvc.perform(get("/florida-ostds-permit-lookup/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Find the office that holds the Florida septic file")))
+                .andExpect(content().string(containsString("Find Florida septic permits by county</h1>")))
                 .andExpect(content().string(containsString("17 counties use DEP; 50 still use county health departments")))
                 .andExpect(content().string(containsString("data-route-owner=\"dep\"")))
                 .andExpect(content().string(containsString("data-route-owner=\"county-doh\"")))
@@ -97,7 +102,7 @@ class OfficialRecordsWorkflowRegressionTest {
         mockMvc.perform(get("/north-carolina-septic-permit-lookup/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("<title>NC Septic Permit Lookup by County &amp; Address | SepticPath</title>")))
-                .andExpect(content().string(containsString("Find an NC septic permit by county, address, or parcel. Open Environmental Health routes for as-builts, final approvals, repairs, and no-record replies.")))
+                .andExpect(content().string(containsString("Find NC septic permits, layouts, and final approvals by address or parcel.")))
                 .andExpect(content().string(containsString("North Carolina septic permit and tank location records")))
                 .andExpect(content().string(containsString("29 county workflows have a source-reviewed route")))
                 .andExpect(content().string(containsString("This self-serve tool")))
@@ -182,7 +187,16 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("<title>Alabama Perc Test Cost &amp; County Permit Fees</title>")));
         mockMvc.perform(get("/texas-ossf-records-search/"))
                 .andExpect(content().string(containsString("<title>Texas OSSF Permit Search by Address | Local Records</title>")))
-                .andExpect(content().string(containsString("identify the local permitting authority")));
+                .andExpect(content().string(containsString("Find the county, city, or authorized agent for your Texas address.")));
+        mockMvc.perform(get("/florida-ostds-permit-lookup/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Florida Septic Permit Search by County | OSTDS Records</title>")));
+        mockMvc.perform(get("/septic-records-checklist/ohio/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Ohio Septic Permit Lookup by County | Records &amp; Maps</title>")));
+        mockMvc.perform(get("/septic-records-checklist/tennessee/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("<title>Tennessee Septic Records by County | TDEC &amp; Local Offices</title>")));
         mockMvc.perform(get("/septic-records-checklist/new-hampshire/"))
                 .andExpect(content().string(containsString("<title>NH Septic Lookup by Address &amp; Design | NHDES OneStop</title>")));
         mockMvc.perform(get("/septic-records-checklist/north-carolina/union-county/"))
@@ -197,6 +211,29 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("<title>Arkansas Perc Test Cost &amp; County Permit Steps | SepticPath</title>")));
         mockMvc.perform(get("/septic-records-checklist/georgia/forsyth-county/"))
                 .andExpect(content().string(containsString("<title>Forsyth County GA Septic Permit Lookup | SepticPath</title>")));
+    }
+
+    @Test
+    void missingRecordHandoffsKeepSourceAndStateInTheExistingIntake() throws Exception {
+        for (var route : Map.of(
+                "/north-carolina-septic-permit-lookup/", "NC",
+                "/texas-ossf-records-search/", "TX",
+                "/florida-ostds-permit-lookup/", "FL",
+                "/septic-records-checklist/ohio/", "OH"
+        ).entrySet()) {
+            String path = route.getKey();
+            String state = route.getValue();
+            String link = RecordHelpEntry.of("missing").link(path, state, null);
+            mockMvc.perform(get(path)).andExpect(status().isOk())
+                    .andExpect(content().string(containsString("href=\"" + link.replace("&", "&amp;") + "\"")));
+            var result = mockMvc.perform(get("/offer-prep-septic-file-check/")
+                            .param("intent", "missing").param("source", path).param("state", state))
+                    .andExpect(status().isOk()).andReturn();
+            var form = (ClosingRiskCheckForm) result.getModelAndView().getModel().get("closingRiskCheckForm");
+            assertThat(form.getSourcePageHintValue()).isEqualTo(path);
+            assertThat(form.getStateCode()).isEqualTo(state);
+            assertThat(form.getResearchGoal()).isEqualTo("original_documents");
+        }
     }
 
     @Test

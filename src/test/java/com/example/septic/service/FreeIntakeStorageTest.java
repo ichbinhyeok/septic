@@ -5,6 +5,9 @@ import com.example.septic.web.ClosingRiskCheckForm;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -53,6 +56,9 @@ class FreeIntakeStorageTest {
         form.setHelpPurpose("location"); form.setTimeline("this_month"); form.setConsentAccepted(true);
         form.setSourcePageHint("/septic-tank-location-records/");
         form.setSourceContext("entry_location");
+        form.setEntryPageHint("/no-septic-records-found/");
+        form.setEntryChannelHint("bing_search");
+        form.setCtaContextHint("tank_location_missing_record");
         String id = service.saveClosingRiskRequest(form, "/offer-prep-septic-file-check/", new MockHttpServletRequest());
         try (var files = Files.walk(directory.resolve("closing-risk-requests"))) {
             Path file = files.filter(path -> path.toString().endsWith(".json") && path.getFileName().toString().contains(id)).findFirst().orElseThrow();
@@ -68,6 +74,43 @@ class FreeIntakeStorageTest {
             assertThat(saved.at("/commercialFollowup/paidAmountCents").asInt()).isZero();
             assertThat(saved.at("/attribution/sourcePage").asText()).isEqualTo("/septic-tank-location-records/");
             assertThat(saved.at("/attribution/sourceContext").asText()).isEqualTo("entry_location");
+            assertThat(saved.at("/attribution/entryChannel").asText()).isEqualTo("bing_search");
+            assertThat(saved.at("/attribution/entryPage").asText()).isEqualTo("/no-septic-records-found/");
+            assertThat(saved.at("/attribution/ctaContext").asText()).isEqualTo("tank_location_missing_record");
         }
+    }
+
+    @Test void savedRequestReportCountsUniqueRequestsAndKeepsUnknownHistory() throws Exception {
+        Instant now = Instant.now().minusSeconds(5);
+        Path day = directory.resolve("closing-risk-requests")
+                .resolve(now.atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ofPattern("uuuu/MM/dd")));
+        Files.createDirectories(day);
+        String observed = """
+                {"requestId":"observed", "submittedAt":"%s", "attribution":{
+                "entryPage":"/no-septic-records-found/?utm_term=withheld",
+                "entryChannel":"google_search", "sourcePage":"/septic-tank-location-records/",
+                "ctaContext":"tank_location_missing_record"}, "contact":{"email":"fixture@example.invalid"}}
+                """.formatted(now);
+        Files.writeString(day.resolve("observed.json"), observed);
+        Files.writeString(day.resolve("duplicate.json"), observed);
+        Files.writeString(day.resolve("legacy.json"), """
+                {"requestId":"legacy", "submittedAt":"%s", "attribution":{"entryChannel":"https://invalid.example","ctaContext":"raw email@example.invalid"}}
+                """.formatted(now));
+        Files.writeString(day.resolve("other.tmp"), observed);
+        Files.writeString(day.resolve("bad.json"), "{bad");
+
+        var report = new EventAnalyticsService(new AppStorageProperties(directory.toString())).storedRecordHelpReport();
+        assertThat(report.readable()).isFalse();
+        assertThat(report.requests()).isEqualTo(2);
+        assertThat(report.channels()).containsEntry("google_search", 1L).containsEntry("unknown", 1L);
+        assertThat(report.rows()).anySatisfy(row -> {
+            assertThat(row.channel()).isEqualTo("google_search");
+            assertThat(row.entryPage()).isEqualTo("/no-septic-records-found/");
+            assertThat(row.ctaContext()).isEqualTo("tank_location_missing_record");
+        }).anySatisfy(row -> {
+            assertThat(row.channel()).isEqualTo("unknown");
+            assertThat(row.ctaContext()).isEqualTo("unknown");
+        });
+        assertThat(report.toString()).doesNotContain("withheld", "fixture@example.invalid", "raw email");
     }
 }

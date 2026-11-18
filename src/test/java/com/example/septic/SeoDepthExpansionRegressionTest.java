@@ -59,6 +59,50 @@ class SeoDepthExpansionRegressionTest {
                 .contains("/septic-records-checklist/ohio/lake-county/#record-search-instructions");
     }
 
+    @Test void conciseCountyPagesPreserveLocalRecordActionsAndOfficialRequestLinks() throws Exception {
+        for (List<String> route : List.of(
+                List.of("alabama/blount-county", "tel:+12059471076", "Call Blount County Environmental Health"),
+                List.of("alabama/cullman-county", "tel:+12567340243", "Call Cullman County Environmental Health"),
+                List.of("south-carolina/florence-county", "tel:+18557312504", "Open the Florence County parcel map"),
+                List.of("south-carolina/sumter-county", "tel:+18557312504", "Open the Sumter City–County parcel map"),
+                List.of("indiana/decatur-county", "extension 7715", "Open Decatur County Environmental Health"),
+                List.of("indiana/shelby-county", "records go back to 1955", "Environmental Division")
+        )) {
+            String path = "/septic-records-checklist/" + route.get(0) + "/";
+            assertThat(page(path))
+                    .containsSubsequence("data-county-record-start", route.get(1), route.get(2), "Investigate my property")
+                    .contains("https://septicpath.com" + path, "Document types and request links", "Open records request wording")
+                    .doesNotContain("uses this table as a work surface");
+        }
+    }
+
+    @Test void compactCountyTemplateKeepsDocumentedFallbacksNextToTheLookup() throws Exception {
+        for (List<String> route : List.of(
+                List.of("north-carolina/wake-county", "Call Wake County records assistance", "Open the official iMAPS search guide"),
+                List.of("north-carolina/buncombe-county", "Search Buncombe well and septic records", "Open Buncombe Environmental Health"),
+                List.of("texas/tarrant-county", "Open the Tarrant County OSSF office", "Open official Public Information Act instructions"),
+                List.of("washington/thurston-county", "https://www.thurstoncountywa.gov/media/13802", "Open the official record drawing request")
+        )) {
+            String path = "/septic-records-checklist/" + route.get(0) + "/";
+            assertThat(page(path))
+                    .containsSubsequence("data-county-record-start", route.get(1), route.get(2), "Investigate my property")
+                    .contains("https://septicpath.com" + path, "Document types and request links", "Open records request wording")
+                    .doesNotContain("uses this table as a work surface");
+        }
+    }
+
+    @Test void drawingAndPermitRoutesPutOfficialSearchActionsBeforeResearchHelp() throws Exception {
+        String thurston = "/septic-records-checklist/washington/thurston-county/";
+        assertThat(page(thurston)).containsSubsequence("data-county-record-start", "11-digit tax parcel number",
+                "quick-property-search-options", "Search Thurston historic septic permits", "media/13802", "Investigate my property");
+        assertThat(page("/septic-as-built-records/")).contains("href=\"" + thurston + "\"", "as_built_thurston_county");
+        assertThat(page("/septic-records-checklist/vermont/")).containsSubsequence("institution-hero__actions",
+                "https://anrweb.vt.gov/DEC/WWDocs/Default.aspx", "vt_hero_official_permit_search",
+                "href=\"#no-permit-match\"", "id=\"no-permit-match\"", "vt_no_result_prepare");
+        assertThat(page("/")).containsSubsequence("Self-serve research tools",
+                "href=\"/septic-tank-location-records/\"", "home_septic_location_records");
+    }
+
     @Test void platformsDistinguishMissingSearchResultsFromMissingDocuments() throws Exception {
         assertThat(page("/septic-records-checklist/new-hampshire/"))
                 .contains("most post-1986", "after 2015", "1967–1986", "Construction Approval", "Operational Approval");

@@ -149,6 +149,8 @@ public class ClosingRiskNotificationService {
                 Source context: %s
                 Search entry page: %s
                 CTA source page: %s
+                Entry channel: %s
+                CTA placement: %s
                 Name: %s
                 Email: %s
                 Phone: %s
@@ -176,6 +178,8 @@ public class ClosingRiskNotificationService {
                 safeLine(form.getSourceContext()),
                 safeLine(form.getEntryPageHint()),
                 safeLine(form.getSourcePageHint()),
+                safeLine(form.getEntryChannelHint()),
+                safeLine(form.getCtaContextHint()),
                 safeLine(form.getFullName()),
                 safeLine(form.getEmail()),
                 safeLine(form.getPhone()),

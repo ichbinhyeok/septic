@@ -31,7 +31,7 @@
 .fl-premium-hero__copy { width: min(575px, 44vw); }
 .fl-premium-hero .eyebrow { color: #087e70; letter-spacing: .23em; }
 .fl-premium-hero h1 {
-    max-width: 11ch;
+    max-width: 13ch;
     margin: 16px 0 22px;
     color: #082b40;
     font-size: clamp(3.7rem, 5vw, 5.35rem);
@@ -41,10 +41,6 @@
 }
 .fl-premium-hero__copy > p { max-width: 42ch; color: #385766; font-size: 1.12rem; line-height: 1.55; }
 .fl-premium-hero .button { min-width: 270px; min-height: 60px; gap: 28px; margin-top: 12px; border-radius: 12px; font-size: .96rem; }
-.fl-premium-hero__copy ul { display: flex; gap: 28px; margin: 38px 0 0; padding: 0; color: #214b56; list-style: none; }
-.fl-premium-hero__copy li { position: relative; padding-left: 20px; font-size: .68rem; font-weight: 750; }
-.fl-premium-hero__copy li::before { position: absolute; left: 0; color: #079a84; content: "✓"; font-weight: 900; }
-.fl-premium-hero__seo-copy { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .fl-premium-transition { color: #16414e; background: #fff; border-bottom: 1px solid #d7e6e2; }
 .fl-premium-transition__inner { display: grid; grid-template-columns: 190px 1fr minmax(240px, .42fr); gap: 34px; align-items: center; min-height: 118px; }
@@ -90,10 +86,9 @@
     .fl-premium-hero::after { background: linear-gradient(180deg, rgba(249,254,252,.96) 0 43%, rgba(249,254,252,.08) 54%, transparent 62%); }
     .fl-premium-hero__inner { align-items: flex-start; padding-top: 50px; }
     .fl-premium-hero__copy { width: 100%; }
-    .fl-premium-hero h1 { max-width: 10ch; font-size: clamp(3rem, 13vw, 4rem); }
+    .fl-premium-hero h1 { max-width: none; font-size: clamp(2.75rem, 11vw, 4rem); }
     .fl-premium-hero__copy > p { max-width: 30ch; font-size: 1rem; }
     .fl-premium-hero .button { width: 100%; min-width: 0; }
-    .fl-premium-hero__copy ul { display: none; }
     .fl-premium-evidence__scope { grid-template-columns: 1fr; }
     .fl-records-desk .tdec-workspace { padding-block: 56px; }
     .fl-records-desk .tdec-workspace > .container { width: calc(100% - 20px); border-radius: 20px; }

@@ -289,6 +289,12 @@
             totalCountyRouteCount = totalCountyRouteCount
         )
 
+        @if ("septic-as-built-records".equals(contentPage.slug()))
+            <div class="container">
+                <p><a href="/septic-records-checklist/washington/thurston-county/" data-track-click="nav" data-track-source-context="as_built_thurston_county" data-track-target-type="county_records_page">Thurston County septic as-built lookup</a> <span>Use the 11-digit tax parcel number to search the permit archive or request the drawing.</span></p>
+            </div>
+        @endif
+
         <section class="national-records-outcomes">
             <div class="container">
                 <span class="eyebrow">After the handoff</span>

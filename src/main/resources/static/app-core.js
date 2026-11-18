@@ -550,34 +550,72 @@
         });
     }
 
+    function recordHelpEntryChannel(referrer) {
+        const query = new URLSearchParams(window.location.search);
+        const medium = (query.get("utm_medium") || "").toLowerCase();
+        const source = (query.get("utm_source") || "").toLowerCase();
+        if (query.has("gclid") || query.has("msclkid") || /^(cpc|ppc|sem|paid[-_ ]?search)$/.test(medium)) {
+            return "paid_search";
+        }
+        if (medium === "organic" && source === "google") return "google_search";
+        if (medium === "organic" && source === "bing") return "bing_search";
+        if (medium || source) return "campaign";
+        if (!referrer) return document.referrer ? "unknown" : "direct_or_unattributed";
+        if (referrer.origin === window.location.origin) return "unknown";
+        const host = referrer.hostname.replace(/^www\./, "");
+        if (/^google\.(?:com|[a-z]{2}|(?:co|com)\.[a-z]{2})$/.test(host)) return "google_search";
+        if (host === "bing.com" || host.endsWith(".bing.com")) return "bing_search";
+        if (host === "duckduckgo.com" || host === "search.yahoo.com" || host.endsWith(".search.yahoo.com") || host === "ecosia.org") {
+            return "other_search";
+        }
+        return "referral";
+    }
+
     function setupRecordHelpFunnel() {
         const contextKey = "septicpath_record_help_context";
         const sourcePageKey = "septicpath_record_help_source_page";
         const entryPageKey = "septicpath_record_help_entry_page";
         const attributionTtlMs = 2 * 60 * 60 * 1000;
         const currentPage = analyticsSourcePage();
+        const pathOnly = (value) => String(value || "").split(/[?#]/, 1)[0];
+        let referrer = null;
+        try {
+            if (document.referrer) referrer = new URL(document.referrer);
+        } catch (_error) {
+            // An unreadable referrer leaves the channel unknown.
+        }
+        const navigationType = window.performance?.getEntriesByType?.("navigation")?.[0]?.type;
+        const newVisit = navigationType === "navigate"
+            && (referrer ? referrer.origin !== window.location.origin : !document.referrer);
+        if (newVisit) {
+            try {
+                window.sessionStorage.removeItem(sourcePageKey);
+                window.sessionStorage.removeItem("septicpath_record_help_source");
+            } catch (_error) {
+                // The form still works when browser storage is blocked.
+            }
+        }
         const readPageAttribution = (key) => {
             try {
                 const saved = JSON.parse(window.sessionStorage.getItem(key) || "null");
-                if (!saved?.path || !saved?.savedAt || Date.now() - Number(saved.savedAt) > attributionTtlMs) return "";
-                return String(saved.path).slice(0, 240);
+                if (!saved?.path || !saved?.savedAt || Date.now() - Number(saved.savedAt) > attributionTtlMs) return null;
+                return saved;
             } catch (_error) {
-                return "";
+                return null;
             }
         };
-        const savePageAttribution = (key, path) => {
+        const savePageAttribution = (key, path, metadata = {}) => {
             try {
-                window.sessionStorage.setItem(key, JSON.stringify({ savedAt: Date.now(), path: String(path || "").slice(0, 240) }));
+                window.sessionStorage.setItem(key, JSON.stringify({ savedAt: Date.now(), path: String(path || "").slice(0, 240), ...metadata }));
             } catch (_error) {
                 // Attribution must never block the records workflow.
             }
         };
-        let entryPage = readPageAttribution(entryPageKey);
-        if (!entryPage) {
-            entryPage = currentPage;
-            savePageAttribution(entryPageKey, entryPage);
-        }
-        const getSourcePage = () => readPageAttribution(sourcePageKey) || currentPage;
+        const savedEntry = newVisit ? null : readPageAttribution(entryPageKey);
+        const entryPage = savedEntry?.path || pathOnly(currentPage);
+        const entryChannel = savedEntry ? savedEntry.channel || "unknown" : recordHelpEntryChannel(referrer);
+        if (!savedEntry) savePageAttribution(entryPageKey, entryPage, { channel: entryChannel });
+        const getSourcePage = () => readPageAttribution(sourcePageKey)?.path || currentPage;
         const attributionParams = () => ({
             entry_page: entryPage,
             source_page: getSourcePage()
@@ -629,12 +667,14 @@
             } catch (_error) {
                 // Attribution is helpful, but navigation must never depend on storage.
             }
-            savePageAttribution(sourcePageKey, currentPage);
+            savePageAttribution(sourcePageKey, pathOnly(currentPage), { context: sourceContext });
             saveRecordHelpContext();
             const sourceInput = document.querySelector("[data-record-help-source-context]");
             if (sourceInput instanceof HTMLInputElement) {
                 sourceInput.value = sourceContext;
             }
+            const ctaInput = document.querySelector("[data-record-help-cta-context]");
+            if (ctaInput instanceof HTMLInputElement) ctaInput.value = sourceContext;
             emitGaEvent("record_help_cta_clicked", {
                 source_context: sourceContext,
                 request_type: "record_help_beta",
@@ -698,6 +738,19 @@
         const entryPageInput = form.querySelector("[data-record-help-entry-page]");
         if (entryPageInput instanceof HTMLInputElement && !entryPageInput.value) {
             entryPageInput.value = entryPage;
+        }
+        const channelInput = form.querySelector("[data-record-help-entry-channel]");
+        if (channelInput instanceof HTMLInputElement && channelInput.value === "unknown"
+            && pathOnly(entryPageInput?.value) === pathOnly(entryPage)) {
+            channelInput.value = entryChannel;
+        }
+        const ctaInput = form.querySelector("[data-record-help-cta-context]");
+        const savedCta = newVisit ? null : readPageAttribution(sourcePageKey);
+        const priorLocalPath = referrer?.origin === window.location.origin ? referrer.pathname : "";
+        if (ctaInput instanceof HTMLInputElement && !ctaInput.value && savedCta?.context
+            && pathOnly(sourcePageInput?.value) === savedCta.path
+            && (priorLocalPath === savedCta.path || priorLocalPath === pathOnly(currentPage))) {
+            ctaInput.value = savedCta.context;
         }
         let carriedContext = readRecordHelpContext();
         const presetState = form.querySelector('[name="stateCode"]')?.value;

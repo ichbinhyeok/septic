@@ -1,11 +1,13 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.EventAnalyticsReport
+@import com.example.septic.web.EventAnalyticsReport.StoredRecordHelpReport
 @import com.example.septic.web.EventAnalyticsRow
 @import com.example.septic.web.CountyWorkflowFunnelRow
 @import com.example.septic.web.WorkflowFunnelRow
 @import com.example.septic.web.WorkflowOutcomeRow
 @param PageMeta page
 @param EventAnalyticsReport report
+@param StoredRecordHelpReport storedRecordHelp
 
 @template.layouts.app(page = page, content = @`
     <div class="ops-report-page">
@@ -19,8 +21,39 @@
                 <aside class="hero-sidecard ops-report-sidecard">
                     <span class="pill">Generated</span>
                     <strong>${report.generatedAt()}</strong>
-                    <p>Official-source clicks, artifact actions, and internal routing are counted separately. Web vitals and lead payloads are excluded.</p>
+                    <p>Official-source clicks, artifact actions, and saved requests are counted separately. The report shows aggregate counts.</p>
                 </aside>
+            </div>
+        </section>
+
+        <section class="section section--tight">
+            <div class="container ops-event-table-section" id="stored-record-help">
+                <div class="section-heading">
+                    <h2>Saved record-help requests</h2>
+                    <p class="lede">${storedRecordHelp.requests()} requests in the last 28 days, counted from saved request files. The first page and channel describe the browser visit. The CTA page and placement show where the visitor opened the form.</p>
+                </div>
+                @if (!storedRecordHelp.readable())
+                    <p class="ops-report-alert">Some request files could not be read. Counts may be incomplete.</p>
+                @endif
+                @if (storedRecordHelp.requests() > 0)
+                    <ul class="ops-workflow-funnel__steps">
+                        @for (var channel : storedRecordHelp.channels().entrySet())
+                            <li><span>${channel.getKey().replace('_', ' ')}</span><strong>${channel.getValue()}</strong></li>
+                        @endfor
+                    </ul>
+                    <div class="ops-event-table-wrap">
+                        <table class="ops-event-table" aria-label="Saved requests by landing page, channel, and CTA">
+                            <thead><tr><th scope="col">Channel</th><th scope="col">First page</th><th scope="col">CTA page</th><th scope="col">CTA placement</th><th scope="col">Requests</th></tr></thead>
+                            <tbody>
+                            @for (var row : storedRecordHelp.rows())
+                                <tr><td>${row.channel().replace('_', ' ')}</td><td>${row.entryPage()}</td><td>${row.sourcePage()}</td><td>${row.ctaContext()}</td><td>${row.requests()}</td></tr>
+                            @endfor
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <p class="ops-event-table-section__empty">No saved requests in this window.</p>
+                @endif
             </div>
         </section>
 

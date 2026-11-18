@@ -2,6 +2,7 @@
 @import com.example.septic.web.PageMeta
 @import com.example.septic.web.AssetPaths
 @import com.example.septic.web.FloridaCountyRouteView
+@import com.example.septic.web.RecordHelpEntry
 @param PageMeta page
 @param ContentPage contentPage
 @param java.util.List<FloridaCountyRouteView> floridaCountyRoutes = java.util.List.of()
@@ -16,15 +17,9 @@
             <div class="container fl-premium-hero__inner">
                 <div class="fl-premium-hero__copy">
                     <span class="eyebrow">Florida OSTDS records</span>
-                    <h1 id="fl-page-title">One county.<br>One clear record route.</h1>
+                    <h1 id="fl-page-title">Find Florida septic permits by county</h1>
                     <p>Choose the county. We’ll identify the current permit authority, the likely historical file owner, and what to request.</p>
                     <a class="button button--primary" href="#fl-record-search">Find the record route <span aria-hidden="true">→</span></a>
-                    <ul aria-label="Benefits of the Florida route finder">
-                        <li>Accurate guidance</li>
-                        <li>Current and historical routes</li>
-                        <li>Clear next steps</li>
-                    </ul>
-                    <span class="fl-premium-hero__seo-copy">Find the office that holds the Florida septic file</span>
                 </div>
             </div>
         </section>
@@ -72,7 +67,14 @@
         <section class="tdec-outcomes" id="after-search" aria-labelledby="fl-outcomes-title"><div class="container tdec-outcomes__grid"><header><span class="eyebrow">After the official route</span><h2 id="fl-outcomes-title">What happened?</h2><p>A current permit portal and a historical property archive are not always the same system.</p></header><div class="tdec-outcomes__list">
             <details data-state-fallback-outcome="found"><summary><span>I found the OSTDS documents</span><small>Check the property match and final approval</small></summary><div><p>Match county, address or parcel, owner, permit number, and dates. Confirm the approved plan and final inspection, then look for later repair or abandonment records.</p><a href="/septic-record-finder/?mode=document">Add and review the official file</a></div></details>
             <details data-state-fallback-outcome="wrong_agency blocked"><summary><span>The portal has no older record</span><small>Ask the county health department for the historical file</small></summary><div><p>In transitioned counties, DEP may handle current permits while the county health department still has older property files. Request both before treating the file as missing.</p><button class="text-button" type="button" data-fl-open-request>Prepare a historical-file request</button></div></details>
-            <details data-state-fallback-outcome="not_found_online"><summary><span>No result appeared</span><small>Retry parcel, owner, street-only, and permit number</small></summary><div><p>An empty online result is not a confirmed no-record response. Retry alternate keys, then send a manual request.</p><button class="text-button" type="button" data-fl-open-request>Prepare a no-result request</button></div></details>
+            <details data-state-fallback-outcome="not_found_online">
+                <summary><span>No result appeared</span><small>Retry parcel, owner, street-only, and permit number</small></summary>
+                <div>
+                    <p>Retry those identifiers, then ask the records office whether the permit or site plan is in an older archive.</p>
+                    <button class="text-button" type="button" data-fl-open-request>Prepare a no-result request</button>
+                    <a href="${RecordHelpEntry.of("missing").link("/florida-ostds-permit-lookup/", "FL", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="fl_no_result_record_help" data-track-target-type="lead_form">Get help finding the missing file</a>
+                </div>
+            </details>
             <details data-state-fallback-outcome="no_record_response"><summary><span>The office confirmed no record</span><small>Preserve the response and clarify both archives</small></summary><div><p>Ask whether DEP and the county health department were both checked, including pre-digital records and prior owners. Keep the written response with the property file.</p></div></details>
         </div></div></section>
 

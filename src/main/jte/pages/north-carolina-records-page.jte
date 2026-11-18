@@ -1,6 +1,7 @@
 @import com.example.septic.data.model.ContentPage
 @import com.example.septic.data.model.CountyRecordsPage
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.RecordHelpEntry
 @import com.example.septic.web.AssetPaths
 @param PageMeta page
 @param ContentPage contentPage
@@ -16,7 +17,7 @@
                     <span class="eyebrow">North Carolina existing-system records</span>
                     <h1 id="nc-page-title">North Carolina septic permit and tank location records</h1>
                     <p>Trying to find your tank, plan around a drainfield, or check a home before buying? Start with the county permit and layout. We can search the available records and explain what they show, free.</p>
-                    <div class="regional-hero-actions"><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link("/north-carolina-septic-permit-lookup/", "NC", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="nc_hero_record_investigation" data-track-target-type="lead_form">Get free record help <span aria-hidden="true">→</span></a><a href="#nc-record-search">Find the official route myself</a></div>
+                    <div class="regional-hero-actions"><a class="button button--primary" href="${RecordHelpEntry.of("records").link("/north-carolina-septic-permit-lookup/", "NC", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="nc_hero_record_investigation" data-track-target-type="lead_form">Get free record help <span aria-hidden="true">→</span></a><a href="#nc-record-search">Find the official route myself</a></div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>No drawing? Start here.</dt><dd>Send the address. We search for the permit, layout and related records, and contact the county when needed.</dd></div>
@@ -190,7 +191,11 @@
                     </details>
                     <details data-state-fallback-outcome="not_found_online">
                         <summary><span>Nothing appeared online</span><small>Retry alternate keys, then contact county Environmental Health</small></summary>
-                        <div><p>Try the PIN, street name without suffix, prior owner, subdivision, lot, and permit number. If still empty, prepare a written request below.</p><button class="text-button" type="button" data-nc-open-request>Prepare a no-result request</button></div>
+                        <div>
+                            <p>Try the parcel PIN, prior owner, or street name without its suffix. If the permit opens without the layout or final approval, ask county Environmental Health for the attachments.</p>
+                            <button class="text-button" type="button" data-nc-open-request>Prepare a no-result request</button>
+                            <a href="${RecordHelpEntry.of("missing").link("/north-carolina-septic-permit-lookup/", "NC", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="nc_no_result_record_help" data-track-target-type="lead_form">Get help finding the permit or attachments</a>
+                        </div>
                     </details>
                     <details data-state-fallback-outcome="blocked wrong_agency">
                         <summary><span>The county site is broken or confusing</span><small>Do not interpret a website failure as a property result</small></summary>

@@ -634,6 +634,7 @@ public class SiteController {
                 List.of()
         ));
         model.addAttribute("report", eventAnalyticsService.report());
+        model.addAttribute("storedRecordHelp", eventAnalyticsService.storedRecordHelpReport());
         return "pages/event-report";
     }
 
@@ -2807,7 +2808,6 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyIntentRoutes", countyIntentRoutes(countyPage, state));
         model.addAttribute("countyAvailabilitySummary", countyAvailabilitySummary(countyPage, state, sources, lastReviewedAt));
         model.addAttribute("countyAvailabilityRows", countyAvailabilityRows(countyPage, state));
-        model.addAttribute("countyOfficialFilePathRows", countyOfficialFilePathRows(countyPage, state, sources));
         model.addAttribute("countyRequestOptions", countyRequestOptions(countyPage, state));
         model.addAttribute("internalLinks", internalLinks);
         model.addAttribute("featuredInternalLinks", internalLinks.stream().limit(4).toList());
@@ -2864,6 +2864,7 @@ The goal is to settle the permit path before we frame the project as a normal in
             case "NC::buncombe-county" -> "Buncombe County NC septic permit lookup and Accela records";
             case "NC::alamance-county" -> "Alamance County NC septic records and permit lookup";
             case "WA::king-county" -> "King County septic system search and as-built records";
+            case "WA::thurston-county" -> "Thurston County septic as-built search";
             case "AZ::maricopa-county" -> "Maricopa County septic search and permit records";
             case "OH::hamilton-county" -> "Hamilton County, Ohio septic inspection records";
             default -> "";
@@ -3017,58 +3018,6 @@ The goal is to settle the permit path before we frame the project as a normal in
                 queryExamples,
                 dossierRows,
                 actionLinks
-        );
-    }
-
-    private List<CountyWorkflowFieldView> countyOfficialFilePathRows(
-            CountyRecordsPage countyPage,
-            StateProfile state,
-            List<SourceRecord> sources
-    ) {
-        String combinedText = countyCombinedText(countyPage);
-        SourceRecord primarySource = sources == null ? null : sources.stream().findFirst().orElse(null);
-        String sourceOwner = countyPage.officeLabel();
-        String firstArtifact = countyFirstArtifact(countyPage);
-        String requestMethod = countyRequestMethodLabel(countyPage, combinedText);
-        String lookupClue = countyPage.hasParcelAnchor()
-                ? "Start by capturing " + countyPage.parcelAnchorLabel()
-                        + ", then carry that parcel, TMS, APN, owner, or address into the septic file request."
-                : "For " + countyPage.countyName()
-                        + ", carry the street address, parcel ID, owner name, legal description, subdivision, or prior permit clue into the county records route.";
-        String ownerNote = sourceOwner + ". Verify whether this office owns the full septic file or only the first handoff before treating the result as complete.";
-        String requestNote = requestMethod + ": " + countyRecordAction(countyPage.recordsLabel())
-                + ", ask for " + firstArtifact
-                + ", and keep the state route nearby if the county sends part of the file to a regional or delegated office.";
-        String fallbackNote = "If the " + countyPage.countyName()
-                + " search returns no match, ask " + countyPage.officeLabel()
-                + " for a written no-record response and the next owning office before assuming the property has no septic history.";
-
-        return List.of(
-                new CountyWorkflowFieldView(
-                        "File owner",
-                        ownerNote
-                ),
-                new CountyWorkflowFieldView(
-                        "Lookup clue",
-                        lookupClue
-                ),
-                new CountyWorkflowFieldView(
-                        "First artifact",
-                        firstArtifact
-                ),
-                new CountyWorkflowFieldView(
-                        "Request method",
-                        requestNote
-                ),
-                new CountyWorkflowFieldView(
-                        "No-record fallback",
-                        fallbackNote
-                ),
-                new CountyWorkflowFieldView(
-                        "State handoff",
-                        "If the county route stalls, move back to the " + state.stateName()
-                                + " records page with the same parcel clues instead of restarting with a broad web search."
-                )
         );
     }
 

@@ -46,6 +46,19 @@
   line-height: 1.5;
 }
 
+.county-record-start__steps {
+  margin: 10px 0 0;
+  padding-inline-start: 1.4em;
+  line-height: 1.5;
+}
+
+.county-record-start__steps a {
+  display: inline-block;
+  padding-block: 6px;
+  color: #0b5243;
+  text-decoration: underline;
+}
+
 .county-record-start__identifiers strong {
   display: block;
   margin-bottom: 3px;

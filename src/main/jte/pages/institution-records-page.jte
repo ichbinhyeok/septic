@@ -31,7 +31,12 @@
             <h1 id="institution-title">${institutionExperience.heroTitle()}</h1>
             <p class="institution-hero__intro">${institutionExperience.heroIntro()}</p>
             <div class="institution-hero__actions">
-                <a class="institution-button" href="#start-record-route" data-track-click="nav" data-track-source-context="institution_hero_start_${state.stateCode().toLowerCase(java.util.Locale.ROOT)}" data-track-target-type="request_builder">Start with my property <span aria-hidden="true">↓</span></a>
+                @if ("VT".equals(state.stateCode()))
+                    <a class="institution-button" href="${institutionExperience.officialUrl()}" target="_blank" rel="noreferrer" data-track-click="official_source" data-track-source-context="vt_hero_official_permit_search" data-track-target-type="official_source">${institutionExperience.officialLabel()} <span aria-hidden="true">↗</span></a>
+                    <a href="#no-permit-match" data-track-click="nav" data-track-source-context="vt_hero_no_result" data-track-target-type="internal_page">No match? Check where the file may be <span aria-hidden="true">↓</span></a>
+                @else
+                    <a class="institution-button" href="#start-record-route" data-track-click="nav" data-track-source-context="institution_hero_start_${state.stateCode().toLowerCase(java.util.Locale.ROOT)}" data-track-target-type="request_builder">Start with my property <span aria-hidden="true">↓</span></a>
+                @endif
                 <a href="/offer-prep-septic-file-check/?mode=research" data-track-click="nav" data-track-source-context="institution_hero_help_${state.stateCode().toLowerCase(java.util.Locale.ROOT)}" data-track-target-type="lead_form">Ask SepticPath to handle it <span aria-hidden="true">↗</span></a>
             </div>
             <p class="institution-hero__promise"><span aria-hidden="true">✓</span>${institutionExperience.outcomePromise()}</p>
@@ -112,10 +117,16 @@
     @if ("NH".equals(state.stateCode()))
         @template.tags.platformRecovery(platform = "NH")
     @endif
-    <section class="institution-break" aria-labelledby="institution-break-title">
+    <section class="institution-break" id="no-permit-match" aria-labelledby="institution-break-title">
         <div class="container institution-break__layout">
             <div><p class="institution-overline">When the easy search breaks</p><h2 id="institution-break-title">No result is<br>not one conclusion.</h2></div>
-            <div><p class="institution-break__lead">${institutionExperience.noResultExplanation()}</p><ol>@for(int i = 0; i < institutionExperience.routeSteps().size(); i++)<li><span>0${i + 1}</span><p>${institutionExperience.routeSteps().get(i)}</p></li>@endfor</ol></div>
+            <div>
+                <p class="institution-break__lead">${institutionExperience.noResultExplanation()}</p>
+                <ol>@for(int i = 0; i < institutionExperience.routeSteps().size(); i++)<li><span>0${i + 1}</span><p>${institutionExperience.routeSteps().get(i)}</p></li>@endfor</ol>
+                @if ("VT".equals(state.stateCode()))
+                    <p><a href="#start-record-route" data-track-click="nav" data-track-source-context="vt_no_result_prepare" data-track-target-type="request_builder">Prepare the details for the town or DEC office</a></p>
+                @endif
+            </div>
         </div>
     </section>
 

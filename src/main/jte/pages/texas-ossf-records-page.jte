@@ -1,6 +1,7 @@
 @import com.example.septic.data.model.ContentPage
 @import com.example.septic.data.model.CountyRecordsPage
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.RecordHelpEntry
 @import com.example.septic.web.AssetPaths
 @param PageMeta page
 @param ContentPage contentPage
@@ -15,7 +16,10 @@
                     <span class="eyebrow">Texas existing OSSF records</span>
                     <h1 id="tx-page-title">Find who permitted the Texas septic system</h1>
                     <p>Texas has no single property-record database for every OSSF. Confirm the local permitting authority, then search or request the file from that authorized agent or TCEQ region.</p>
-                    <div class="regional-hero-actions"><a class="button button--primary" href="#tx-record-search">Find the record route <span aria-hidden="true">→</span></a><a href="/offer-prep-septic-file-check/#record-help" data-record-help-cta>Ask us to investigate</a></div>
+                    <div class="regional-hero-actions">
+                        <a class="button button--primary" href="#tx-record-search">Find the record route <span aria-hidden="true">→</span></a>
+                        <a href="${RecordHelpEntry.of("records").link("/texas-ossf-records-search/", "TX", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="tx_hero_record_help" data-track-target-type="lead_form">Get help finding the permit</a>
+                    </div>
                 </div>
                 <dl class="tdec-desk__scope" aria-label="What this tool can do">
                     <div><dt>This self-serve tool</dt><dd>identifies the authority search, routes verified counties, and prepares file clues.</dd></div>
@@ -105,7 +109,14 @@
                 <div class="tdec-outcomes__list">
                     <details data-state-fallback-outcome="found"><summary><span>I found an OSSF file</span><small>Check approval, property match, design, and later work</small></summary><div><p>Match the address or legal description, owner, permit number, and dates. Confirm the Notice of Approval and whether later repair or alteration records change the original design.</p><a href="/septic-record-finder/?mode=document">Add and review the official file</a></div></details>
                     <details data-state-fallback-outcome="wrong_agency blocked"><summary><span>The authority has no public search</span><small>Request the file from the listed authorized agent</small></summary><div><p>Use the OARS contact and send the property keys prepared above. Ask for electronic copies and a written no-record response.</p><button class="text-button" type="button" data-tx-open-request>Prepare an OSSF request</button></div></details>
-                    <details data-state-fallback-outcome="not_found_online"><summary><span>No property result appeared</span><small>Retry legal description, owner, parcel, and permit number</small></summary><div><p>A blank portal result does not establish that the OSSF is unpermitted. Retry alternate identifiers, then request the file manually.</p><button class="text-button" type="button" data-tx-open-request>Prepare a no-result request</button></div></details>
+                    <details data-state-fallback-outcome="not_found_online">
+                        <summary><span>No property result appeared</span><small>Retry legal description, owner, parcel, and permit number</small></summary>
+                        <div>
+                            <p>Retry those identifiers, then ask the local permitting authority for the permit and approved layout.</p>
+                            <button class="text-button" type="button" data-tx-open-request>Prepare a no-result request</button>
+                            <a href="${RecordHelpEntry.of("missing").link("/texas-ossf-records-search/", "TX", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="tx_no_result_record_help" data-track-target-type="lead_form">Get help finding the missing file</a>
+                        </div>
+                    </details>
                     <details data-state-fallback-outcome="no_record_response"><summary><span>The authority confirmed no record</span><small>Ask about predecessor jurisdictions and exemptions</small></summary><div><p>Keep the written response. Ask what date the local program began, whether TCEQ or a prior authority has older files, and whether the office is saying no file was found rather than declaring the system exempt.</p></div></details>
                 </div>
             </div>
