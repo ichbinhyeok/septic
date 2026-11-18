@@ -31,8 +31,11 @@ public class SitemapService {
      * cosmetic or narrowly scoped release look like a sitewide content update.
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
+            Map.entry("/septic-records-checklist/illinois/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/west-virginia/", "2026-11-18"),
+            Map.entry("/septicsearch-records/", "2026-11-18"),
             Map.entry("/", "2026-09-17"),
-            Map.entry("/septic-record-finder/", "2026-10-05"),
+            Map.entry("/septic-record-finder/", "2026-11-18"),
             Map.entry("/septic-records-access-index/", "2026-09-11"),
             Map.entry("/septic-record-brief-example/", "2026-10-11"),
             Map.entry("/septic-record-brief-example/davidson/", "2026-10-11"),
@@ -58,7 +61,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/maine/", "2026-10-21"),
             Map.entry("/septic-records-checklist/rhode-island/", "2026-10-21"),
             Map.entry("/septic-records-checklist/virginia/", "2026-10-21"),
-            Map.entry("/septic-records-checklist/indiana/", "2026-10-05"),
+            Map.entry("/septic-records-checklist/indiana/", "2026-11-18"),
             Map.entry("/septic-records-checklist/north-carolina/guilford-county/", "2026-10-05"),
             Map.entry("/north-carolina-septic-permit-lookup/", "2026-11-05"),
             Map.entry("/onlinerme-septic-records/", "2026-11-05"),
@@ -66,7 +69,7 @@ public class SitemapService {
             Map.entry("/florida-ostds-permit-lookup/", "2026-10-11"),
             Map.entry("/dhec-septic-permit-lookup/", "2026-10-21"),
             Map.entry("/septic-as-built-records/", "2026-10-11"),
-            Map.entry("/septic-tank-location-records/", "2026-10-11"),
+            Map.entry("/septic-tank-location-records/", "2026-11-18"),
             Map.entry("/how-to-find-septic-records-online/", "2026-11-05"),
             Map.entry("/septic-permit-search-by-address/", "2026-11-05"),
             Map.entry("/septic-permit-process/", "2026-10-11"),

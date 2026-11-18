@@ -2673,7 +2673,7 @@
       "intentType": "workflow_page",
       "primaryKeyword": "SepticSearch records",
       "secondaryKeywords": ["Carmody septic records", "SepticSearch no results", "SepticSearch property search"],
-      "title": "SepticSearch Records: Find Permits, Plans and Missing Files",
+      "title": "Carmody SepticSearch: Find Septic Permits and Records",
       "metaDescription": "Use SepticSearch by county, parcel, owner or street. Find scanned permits and plans, check the property match, and follow the next step when nothing appears.",
       "introCopy": "Choose the property’s state and county, search the available identifiers, then open the scanned documents—not just the summary.",
       "targetReader": "Owners, buyers and agents using the Carmody SepticSearch platform to find or understand an existing property file.",

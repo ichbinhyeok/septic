@@ -26,7 +26,7 @@ class ResearchAssetsSearchTest {
                 "https://septicsearch.com/property-records", "https://septicsearch.com/faq",
                 "Franklin County", "not a complete national database", "intent=missing", "intent=review",
                 "mode=review", "source=%2Fsepticsearch-records%2F", "data-record-help-cta");
-        assertThat(html("/sitemap.xml")).contains("<loc>https://example.test/septicsearch-records/</loc><lastmod>2026-10-11</lastmod>");
+        assertThat(html("/sitemap.xml")).contains("<loc>https://example.test/septicsearch-records/</loc><lastmod>2026-11-18</lastmod>");
         for (String path : new String[]{"/no-septic-records-found/", "/florida-ostds-permit-lookup/", "/onlinerme-septic-records/", "/official-septic-lookup-tools/"}) {
             assertThat(html(path)).as(path).contains("/septicsearch-records/");
         }

@@ -73,6 +73,9 @@
                 @endif
             </div>
         </section>
+        @if ("septic-tank-location-records".equals(contentPage.slug()))
+            @template.tags.recordRouteShortcuts()
+        @endif
 
         @if (addressEntry)
             <section class="national-records-related" aria-labelledby="address-search-state-routes">

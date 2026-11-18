@@ -626,8 +626,8 @@ public class SeoService {
 
     public PageMeta recordFinderPage() {
         String canonicalUrl = absoluteUrl("/septic-record-finder/");
-        String title = "Septic Records Finder by Address | County Permit and File Route | SepticPath";
-        String description = "Enter a U.S. property address to identify its county and open the best available septic permit, records, as-built, or file-request route.";
+        String title = "Find Septic Records by Address | Permits & Layouts | SepticPath";
+        String description = "Find the county route for septic permits and tank or drainfield drawings by address. Search official sources yourself, or get free help finding and understanding records.";
         return pageMeta(
                 title,
                 description,
