@@ -3409,7 +3409,7 @@ class SepticApplicationTests {
 	void livingstonCountyMichiganRecordsPageShowsSiteReviewWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/michigan/livingston-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Livingston County Michigan Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Livingston County MI Septic Records: Current and Archived Search")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search current Livingston records (2018-present)")))
 					.andExpect(content().string(org.hamcrest.Matchers.containsString("Search archived Livingston records (2017 and older)")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("point-of-sale")))
@@ -3835,7 +3835,7 @@ class SepticApplicationTests {
 	void princeWilliamCountyRecordsPageShowsDatabaseAndPumpOutWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/virginia/prince-william-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County Virginia Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County VA Septic Records by Address or GPIN")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with Prince William On-Site Sewage &amp; Water Services")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County keeps the practical septic story in the health-district database and land records together")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("health-district file plus the pump-out history and as-built or zoning trail")))
@@ -3906,7 +3906,7 @@ class SepticApplicationTests {
 	void unionCountyRecordsPageShowsExistingSystemInspectionWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/union-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Union County North Carolina Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Union County NC Septic Records and Evolve Permit Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Union County existing septic and well permit request")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Union County Environmental Health keeps the practical file")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("permit record, the compliance-inspection lane, and any O and M or repair trail all support the same story")))

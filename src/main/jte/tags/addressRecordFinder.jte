@@ -236,6 +236,10 @@
                 </div>
                 <button class="button button--secondary" type="button" data-record-search-packet-copy>Copy details</button>
             </div>
+            <div class="record-finder__document-entry" data-record-public-share hidden>
+                <div><strong>Working with a buyer, agent, or inspector?</strong><span>Share this county's search instructions. Your address and property details are not included.</span></div>
+                <button class="button button--secondary" type="button" data-share-route data-share-title="SepticPath county records guide">Share county guide</button>
+            </div>
             <p class="record-finder__official-note"><strong>When a direct file exists:</strong> The original record still opens on the government or county site. Otherwise the official route may require a search, form, call, login, or request there; this page keeps your place for 30 days.</p>
             <details class="record-finder__route-details">
                 <summary>Office contact and search steps</summary>

@@ -31,12 +31,14 @@ public class SitemapService {
      * cosmetic or narrowly scoped release look like a sitewide content update.
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
+            Map.entry("/septic-records-checklist/michigan/livingston-county/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/virginia/prince-william-county/", "2026-11-18"),
             Map.entry("/septic-records-checklist/illinois/", "2026-11-18"),
             Map.entry("/septic-records-checklist/west-virginia/", "2026-11-18"),
             Map.entry("/septicsearch-records/", "2026-11-18"),
             Map.entry("/", "2026-09-17"),
             Map.entry("/septic-record-finder/", "2026-11-18"),
-            Map.entry("/septic-records-access-index/", "2026-09-11"),
+            Map.entry("/septic-records-access-index/", "2026-11-18"),
             Map.entry("/septic-record-brief-example/", "2026-10-11"),
             Map.entry("/septic-record-brief-example/davidson/", "2026-10-11"),
             Map.entry("/septic-record-brief-example/harnett/", "2026-10-11"),
@@ -88,7 +90,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/north-carolina/forsyth-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/pender-county/", "2026-11-05"),
             Map.entry("/septic-records-checklist/north-carolina/pitt-county/", "2026-09-22"),
-            Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-10-05"),
+            Map.entry("/septic-records-checklist/north-carolina/union-county/", "2026-11-18"),
             Map.entry("/septic-records-checklist/tennessee/wilson-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/tennessee/blount-county/", "2026-10-05")
     );

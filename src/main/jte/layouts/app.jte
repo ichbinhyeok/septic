@@ -59,6 +59,7 @@
             window.gtag("config", "G-S1SY1NS71P");
         }
     </script>
+    <script src="${AssetPaths.versioned("/route-sharing.js")}" defer></script>
     <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
     <script src="${AssetPaths.versioned("/record-task.js")}" defer></script>
     <script src="${AssetPaths.versioned("/state-records-ui.js")}" defer></script>

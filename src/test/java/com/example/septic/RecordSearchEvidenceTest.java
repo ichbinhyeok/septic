@@ -18,7 +18,7 @@ class RecordSearchEvidenceTest {
     @Test
     void curatedSearchInstructionsHaveResolvableSourcesAndPublicRoutes() throws Exception {
         var pages = data.getPublicCountyRecordsPages().stream().filter(p -> p.searchGuide() != null).toList();
-        assertThat(pages).hasSize(18);
+        assertThat(pages).hasSize(20);
         for (var page : pages) {
             var guide = page.searchGuide();
             assertThat(guide.steps()).isNotEmpty();
@@ -38,10 +38,44 @@ class RecordSearchEvidenceTest {
         var lines = csv.getContentAsString().lines().toList();
         assertThat(lines).hasSize(332);
         assertThat(lines.getFirst()).contains("search_coverage", "search_instruction_source_urls");
-        assertThat(lines.stream().skip(1).filter(line -> line.endsWith(",\"\",\"\",\"\",\"\",\"\",\"\""))).hasSize(313);
+        assertThat(lines.stream().skip(1).filter(line -> line.endsWith(",\"\",\"\",\"\",\"\",\"\",\"\""))).hasSize(311);
         assertThat(csv.getContentAsString()).contains("permit-search-tips", "Faq.aspx?QID=185");
         var html = mvc.perform(get("/septic-records-access-index/")).andReturn().getResponse().getContentAsString();
-        assertThat(html).contains("record-search-comparison", "Detailed search instructions are available for these 18 counties");
+        assertThat(html).contains("record-search-comparison", "Detailed search instructions are available for these 20 counties");
+    }
+
+    @Test
+    void publishedCountyCustomerCopyDoesNotExposeEditorialPositioning() {
+        for (var page : data.getPublicCountyRecordsPages()) {
+            String customerCopy = String.join("\n", page.title(), page.metaDescription(), page.introCopy(),
+                    page.uniqueAngle(), page.targetReader(),
+                    page.faqBlocks().stream().map(faq -> faq.question() + "\n" + faq.answer())
+                            .collect(java.util.stream.Collectors.joining("\n")));
+            assertThat(customerCopy).as("Published customer copy for %s", page.key())
+                    .doesNotContainPattern("(?i)\\bwedge(?:s)?\\b|\\btop[- ]tier\\b|worth its own page|the page should|searchers do not bounce|\\bSEO\\b");
+        }
+    }
+
+    @Test
+    void countySearchGuidesKeepArchiveAndAccessLimitsVisible() throws Exception {
+        var livingston = mvc.perform(get("/septic-records-checklist/michigan/livingston-county/"))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(livingston).contains("id=\"record-search-instructions\"", "2018-present", "2017 and older",
+                "Soil evaluations are excluded", "517-546-9858");
+        assertThat(livingston).doesNotContain("strong wedge", "Search queries this county page is tuned to answer");
+
+        var princeWilliam = mvc.perform(get("/septic-records-checklist/virginia/prince-william-county/"))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(princeWilliam).contains("PWC State Health Department Documents", "first letter of the street name",
+                "GPIN", "no property file was retrieved", "703-792-6310");
+        assertThat(princeWilliam).doesNotContain("top-tier Virginia county", "worth its own page");
+
+        var union = mvc.perform(get("/septic-records-checklist/north-carolina/union-county/"))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(union).contains("id=\"union-record-search\"", "subdivision/lot", "applications and inspection scheduling do",
+                "September 30, 2026", "were not reverified");
+        assertThat(union).doesNotContain("The page should make", "so address-only searchers do not bounce",
+                "Search queries this county page is tuned to answer");
     }
 
     @Test
