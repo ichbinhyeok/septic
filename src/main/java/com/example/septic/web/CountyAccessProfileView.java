@@ -102,7 +102,7 @@ public record CountyAccessProfileView(
         return switch (countyKey) {
             case "VA::prince-william-county" -> "Optional historical lookup. The document portal may return an access block; that is not a no-record response.";
             case "TX::tarrant-county" -> "The official PIA page publishes email, mail, fax, and in-person routes even when JustFOIA is access-restricted.";
-            case "NC::lincoln-county" -> "Optional submission portal. NextRequest may return an access block; the Environmental Health page and phone remain available.";
+            case "NC::lincoln-county" -> "NextRequest is the county’s published submission route for existing copies. Contact Environmental Health if the portal does not open.";
             case "NY::suffolk-county" -> "The current office page confirms the phone number, Yaphank counter, hours, and online application help.";
             case "CA::san-bernardino-county" -> "County-authored PDF. Confirm the current return channel with Environmental Health before sending it.";
             default -> "";

@@ -64,7 +64,7 @@ class SeoDepthExpansionRegressionTest {
         for (int i = 0; i < images.getLength(); i++) {
             String parent = images.item(i).getParentNode().getTextContent();
             assertThat(parent).containsAnyOf("/septic-as-built-records/", "/how-to-read-septic-as-built/");
-            assertThat(parent).contains("2026-11-18", asset);
+            assertThat(parent).contains(parent.contains("/how-to-read-septic-as-built/") ? "2026-11-19" : "2026-11-18", asset);
         }
     }
 

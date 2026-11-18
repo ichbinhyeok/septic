@@ -18,7 +18,7 @@ class RecordSearchEvidenceTest {
     @Test
     void curatedSearchInstructionsHaveResolvableSourcesAndPublicRoutes() throws Exception {
         var pages = data.getPublicCountyRecordsPages().stream().filter(p -> p.searchGuide() != null).toList();
-        assertThat(pages).hasSize(21);
+        assertThat(pages).hasSize(23);
         for (var page : pages) {
             var guide = page.searchGuide();
             assertThat(guide.steps()).isNotEmpty();
@@ -38,10 +38,10 @@ class RecordSearchEvidenceTest {
         var lines = csv.getContentAsString().lines().toList();
         assertThat(lines).hasSize(332);
         assertThat(lines.getFirst()).contains("search_coverage", "search_instruction_source_urls");
-        assertThat(lines.stream().skip(1).filter(line -> line.endsWith(",\"\",\"\",\"\",\"\",\"\",\"\""))).hasSize(310);
+        assertThat(lines.stream().skip(1).filter(line -> line.endsWith(",\"\",\"\",\"\",\"\",\"\",\"\""))).hasSize(308);
         assertThat(csv.getContentAsString()).contains("permit_search_tips.pdf", "Faq.aspx?QID=185");
         var html = mvc.perform(get("/septic-records-access-index/")).andReturn().getResponse().getContentAsString();
-        assertThat(html).contains("record-search-comparison", "Detailed search instructions are available for these 21 counties");
+        assertThat(html).contains("record-search-comparison", "Detailed search instructions are available for these 23 counties");
     }
 
     @Test

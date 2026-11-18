@@ -154,10 +154,10 @@ public final class CountyAccessProfileCatalog {
                     "official_request",
                     "Public-records request",
                     "Request a Lincoln County septic permit by address or parcel number",
-                    "Existing septic records and new permit applications are different lanes. The accessible Environmental Health page confirms that record requests need the property address and/or parcel number.",
+                    "Request existing septic permit and map copies through the Environmental Health public records link. Have the property address or parcel number ready.",
                     "Open Lincoln Environmental Health records instructions",
-                    "https://www.lincolncountync.gov/2617/Onsite-Water",
-                    "Optional NextRequest submission (may be access-restricted)",
+                    "https://www.lincolncountync.gov/451/Environmental-Health",
+                    "Open NextRequest (may be access-restricted)",
                     "https://lincolncountync.nextrequest.com/requests/new",
                     "A request reference plus the permit, approval, layout, or official response",
                     "Do not describe the general On-Site Water page as an instant online record search.",
@@ -165,7 +165,7 @@ public final class CountyAccessProfileCatalog {
                     List.of("Improvement permit", "Construction authorization or operation permit", "System layout"),
                     List.of(
                             "Separate an existing-record request from a new permit application.",
-                            "Use the Environmental Health page and phone to confirm the route; open NextRequest only if it is reachable.",
+                            "Follow the Environmental Health records link to NextRequest. Use the office contact if the portal does not open.",
                             "Save the request reference and attach the response when it arrives."
                     )
             )),

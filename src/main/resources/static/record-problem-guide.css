@@ -33,6 +33,19 @@
 .problem-example { background: var(--paper); border-left: 3px solid #17776b; padding: 28px; margin: 30px 0; }
 .problem-example h3 { font-size: 24px; line-height: 1.25; margin: 12px 0; }
 .problem-example p { margin: 12px 0; }
+.parcel-match { scroll-margin-top: 110px; }
+.parcel-match figure { margin: 16px 0; }
+.parcel-match__panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 12px; }
+.parcel-match__panel { min-width: 0; background: #fff; border: 1px solid #bacac2; padding: 14px; }
+.parcel-match__panel h4 { margin: 0 0 12px; font-size: 1rem; }
+.parcel-match__map { display: grid; grid-template-columns: 1fr 1fr; }
+.parcel-match__lot { display: grid; align-content: center; gap: 4px; min-height: 76px; padding: 8px; border: 1px dashed #637b70; }
+.parcel-match__lot--selected { background: #d9eee4; border: 2px solid #17776b; }
+.parcel-match__lot span, .parcel-match__document dt, .parcel-match figcaption { font-size: .8rem; color: #465d53; }
+.parcel-match__document dl { margin: 0; }
+.parcel-match__document dl > div + div { border-top: 1px solid #d6dfd8; margin-top: 8px; padding-top: 8px; }
+.parcel-match__document dd { margin: 2px 0 0; font-weight: 700; }
+.parcel-match figcaption { margin-top: 10px; }
 .problem-note { font-size: 14px; color: #546c62; }
 .problem-help { background: #153b36; color: #f7f5ef; padding: 32px; position: sticky; top: 100px; }
 .problem-help h2 { font-size: 30px; }
