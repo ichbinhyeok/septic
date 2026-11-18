@@ -1442,7 +1442,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/new-hampshire/</loc><lastmod>2026-10-21</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/new-hampshire/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-transfer-compliance/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/septic-permit-lookup/")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("https://example.test/how-to-find-septic-records-online/")))
@@ -4438,7 +4438,7 @@ class SepticApplicationTests {
 	void lakeCountyRecordsPageShowsDigitalTransferWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/ohio/lake-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Lake County Ohio Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Lake County Ohio Septic Records: Address and Permit Search")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Lake County environmental health digital record portal")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("point-of-sale evaluation")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer")))
@@ -7046,11 +7046,11 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/perc-test-cost/oregon/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Oregon Perc Test Cost")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Oregon")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation, not a generic perc quote")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Build the budget from separate line items.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("DEQ single-family site evaluation: first lot")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("site evaluation")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("What widens this Oregon site-testing range")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=OR&projectType=perc_test")));
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("County-agent fees may differ")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/oregon/")));
 	}
 
 	@Test

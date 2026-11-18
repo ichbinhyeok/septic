@@ -1724,7 +1724,9 @@
         "/septic-records-checklist/texas/comal-county/",
         "/septic-system-cost-calculator/?projectType=drainfield_replacement"
       ],
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18"
     },
     {
       "slug": "septic-inspection-letter",
@@ -2066,8 +2068,8 @@
       ],
       "title": "How to Find NC Septic Permits: County Search and As-Builts",
       "metaDescription": "Search North Carolina septic permits through county environmental health using an address, parcel, owner, or permit number. Know when to request the as-built and final approval.",
-      "updatedAt": "2026-07-20",
-      "reviewedAt": "2026-07-20",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18",
       "introCopy": "Use this guide to understand the North Carolina county search before you start. For the live county directory and record-route selection, open the North Carolina records hub below; then search county environmental health by address or parcel and request the permit packet, as-built, final approval, repair history, or written no-record response.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -2298,8 +2300,8 @@
       ],
       "title": "OnlineRME Septic Records: Search Tips by County",
       "metaDescription": "Use OnlineRME for septic records in King, Snohomish, and Loudoun counties. See what each county says is available and where to go when a file is missing.",
-      "updatedAt": "2026-10-08",
-      "reviewedAt": "2026-10-08",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18",
       "introCopy": "OnlineRME is a shared search platform, not one nationwide septic-file database. The county still controls what records appear, which search keys work, and what to do when nothing is returned. These official county instructions show why the same search can surface different records in different places.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "buying_home",
@@ -2598,8 +2600,8 @@
           "intentType": "workflow_page",
           "calculatorModule": "main_cost_estimator",
           "calculatorProjectType": "replacement",
-          "updatedAt": "2026-10-08",
-          "reviewedAt": "2026-10-08",
+          "updatedAt": "2026-11-18",
+          "reviewedAt": "2026-11-18",
           "publishStatus": "published",
           "slug": "how-to-read-septic-as-built",
           "primaryKeyword": "how to read septic as built",
@@ -2692,8 +2694,8 @@
         {"question": "Can SepticPath help if I already found the file?", "answer": "Yes. Send the complete file and your question for a property-match and document-stage review. A historical record review is not a current-condition inspection."}
       ],
       "internalLinkTargets": ["/florida-ostds-permit-lookup/", "/onlinerme-septic-records/", "/no-septic-records-found/", "/how-to-read-septic-as-built/"],
-      "updatedAt": "2026-10-11",
-      "reviewedAt": "2026-10-11",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18",
       "publishStatus": "published"
     }
   ]

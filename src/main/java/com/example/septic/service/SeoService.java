@@ -735,6 +735,7 @@ public class SeoService {
 
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         String priorityTitle = switch (countyPage.key()) {
+            case "OH::lake-county", "NC::henderson-county" -> countyPage.title();
             case "VA::prince-william-county" -> "Request Prince William County Septic Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
@@ -813,6 +814,7 @@ public class SeoService {
 
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
         String priorityDescription = switch (countyPage.key()) {
+            case "OH::lake-county", "NC::henderson-county" -> countyPage.metaDescription();
             case "VA::prince-william-county" -> "Start with the accessible Prince William Health District service page and contact On-Site Sewage & Water Services when the optional historical portal is blocked.";
             case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
             case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";
@@ -1437,6 +1439,9 @@ public class SeoService {
         }
         if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && "AR".equals(state.stateCode())) {
             return "Arkansas Perc Test Cost & County Permit Steps | SepticPath";
+        }
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug()) && java.util.Set.of("SC", "OR").contains(state.stateCode())) {
+            return stateMoneyPage.title() + " | SepticPath";
         }
         if ("septic-permit-process".equals(stateMoneyPage.contentSlug()) && "TN".equals(state.stateCode())) {
             return "Tennessee Septic Permit Process | New Systems & Repairs";

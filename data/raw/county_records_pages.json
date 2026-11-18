@@ -4096,9 +4096,9 @@
       "stateCode": "OH",
       "countyName": "Lake County",
       "countySlug": "lake-county",
-      "title": "Lake County Ohio Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Lake County septic records checklist and permit lookup with digital septic records, point-of-sale evaluations, and transferable O&M permit checks before you trust a buyer or replacement story.",
-      "introCopy": "In Lake County, the county gives owners a digital septic records path, a point-of-sale evaluation workflow, and an explicit O&M program where system obligations can transfer with the property.",
+      "title": "Lake County Ohio Septic Records: Address and Permit Search",
+      "metaDescription": "Search Lake County Ohio septic records by house number and street. Handle street-name variants, missing scans and historical file gaps.",
+      "introCopy": "Lake County General Health District provides a digital portal for septic, well and nuisance records. Start with the house number and select the matching street. A missing digital result may leave additional historical records to investigate.",
       "uniqueAngle": "Lake County stands out because the county lets the user move from records to transfer review to O&M liability without leaving the county workflow. That is a real homeowner and buyer tool, not a generic local health contact page.",
       "targetReader": "Best for Lake County buyers, owners, and agents who need to know whether the county already has a septic file, whether a point-of-sale evaluation is required, and whether ongoing O&M permit obligations transfer with the property.",
       "officeLabel": "Lake County sewage treatment office",
@@ -4123,12 +4123,12 @@
       ],
       "faqBlocks": [
         {
-          "question": "Why is Lake County strong for records and buyer intent?",
-          "answer": "Because Lake County combines digital septic records, a point-of-sale evaluation workflow, and transferable O&M permit obligations in one county stack."
+          "question": "What should I check before relying on a matching address?",
+          "answer": "Compare identifiers on each page, separate well or nuisance documents from septic records, and identify whether the file is an application, design, inspection or final approval."
         },
         {
-          "question": "What should a Lake County owner or buyer check first?",
-          "answer": "Start with the county digital record portal, then see whether a point-of-sale evaluation or O&M permit obligation is already part of the local story."
+          "question": "What should I ask for if the drawing is missing?",
+          "answer": "Describe the missing document precisely: for example, the installed layout or final inspection associated with a particular permit. Include the address and identifiers already searched."
         }
       ],
       "internalLinkTargets": [
@@ -4157,6 +4157,26 @@
         "malfunctionCategory": "repair_branch",
         "malfunctionSignal": "Lake County has a real repair-side branch, so the repair or failure file matters before anyone assumes the cheapest visible scope is still available.",
         "quoteGate": "Do not move into pricing until the file owner is fully resolved, the buyer or transfer artifact supports the same story, the local program or area-rule lane is clear, and the repair or complaint trail is resolved, because Lake County can look simpler on the surface than the real county workflow."
+      },
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18",
+      "searchGuide": {
+        "summary": "Start with the house number, then choose the street. Street-name variants can conceal a result.",
+        "coverage": "No complete all-years coverage is promised. The district may hold additional historical information.",
+        "identifiers": "House number and street; omit suffixes such as Drive/Dr or Street/St. Check spelling and hyphen variants.",
+        "documents": "Available septic, well and nuisance records. Identify the document type before interpreting it.",
+        "steps": [
+          "Review the district’s access notice on the official digital portal page.",
+          "Enter the house number, then select the matching street.",
+          "If the street is absent, omit the suffix and try variants. The district uses Woodcrest, WoodCrest and Wood-Crest as examples.",
+          "Open the available files and compare their property identifiers and dates.",
+          "Keep a list of missing pages or documents for a focused follow-up with Environmental Health."
+        ],
+        "noResult": "Ask the district about its historical file. An empty digital result is not a written determination that no record exists.",
+        "sourceIds": [
+          "oh_lake_02"
+        ],
+        "reviewedAt": "2026-11-18"
       }
     },
     {
@@ -23056,24 +23076,26 @@
       "countySlug": "henderson-county",
       "title": "Henderson County North Carolina Septic Records and Permit Lookup",
       "searchGuide": {
-        "summary": "Check the current portal first, then the legacy archive for older records.",
+        "summary": "Check both collections when needed; their owner-name formats differ.",
         "coverage": "Current portal: 2004–present. Legacy archive: 1968–early 2004. Many 1979–1983 records are missing.",
-        "identifiers": "Current portal: application number, partial address, or parcel number without dashes. Legacy searches can use former owner or subdivision and lot.",
-        "documents": "Permit details and available attachments in the appropriate archive; coverage dates do not guarantee a file for every property.",
+        "identifiers": "Modern: partial address, REID/PIN without dashes, or Last, First. Legacy: Last,First without a space; former owner, subdivision/lot or road.",
+        "documents": "Permit Notes attachments: OP means Operations Permit; WC is a well record. Check the attachment rather than relying on a result row.",
         "steps": [
-          "Use GIS to check the parcel, year built, subdivision, and former owners.",
-          "Start in the 2004–present portal for later repairs or revisions, even for an older home.",
-          "For a pre-2004 permit, also try the legacy archive using the original applicant or subdivision and lot."
+          "In GISWeb, collect REID, PIN and deed/owner history from Real Property.",
+          "Open Advanced Search → Permits Only in the 2004+ portal. Try the identifiers above and select on-site septic.",
+          "County address example: use 1200 Spartanburg, omitting the town and road suffix.",
+          "Open the permit number → Permit Notes → OP attachment.",
+          "For older files, use the legacy archive. Search the owner at installation, then subdivision/lot or older road names; open the PDF at the bottom of the record."
         ],
-        "noResult": "Do not treat an empty current-portal search as proof that an older permit never existed. Check the legacy archive and ask Environmental Health about the documented gaps.",
+        "noResult": "Check both date ranges. Many 1979–1983 permits were destroyed. Keep your search identifiers and ask Environmental Health which specific drawing or approval remains available; an empty search is not proof that no permit existed.",
         "sourceIds": [
           "nc_henderson_01",
-          "nc_henderson_04"
+          "nc_henderson_search_pdf_20261118"
         ],
-        "reviewedAt": "2026-09-11"
+        "reviewedAt": "2026-11-18"
       },
-      "metaDescription": "Henderson County septic records and permit lookup with a 1968-2004 legacy archive, 2004-present address and parcel search, and file-gap checks before you trust a sale, repair, or addition story.",
-      "introCopy": "Henderson County is a genuine online-records county, not a generic county contact page. Environmental Health separates historic permits from 1968 through early 2004 from the 2004-present public portal, so a missing recent result does not automatically mean the parcel has no septic history.",
+      "metaDescription": "Find Henderson County NC septic permits: 2004+ portal, legacy archive, REID/PIN search, Permit Notes and Operations Permit attachments.",
+      "introCopy": "Search Henderson County’s 2004–present permit portal first, then its separate 1968–early-2004 archive when needed. The newer portal can contain later repairs to an older home. Use the property’s REID/PIN and owner history to connect the two collections.",
       "uniqueAngle": "The useful Henderson move is an era split. Search the legacy archive with a former owner, subdivision, road, or permit clue for older files; use the current public portal with an address or parcel number for 2004-present permits. The county also tells users that many 1979-1983 septic permits were destroyed, which makes a no-result answer meaningful rather than ambiguous.",
       "targetReader": "Best for Henderson County buyers, owners, agents, and contractors who need to distinguish a true no-record result from an older-file search problem before accepting a septic layout, bedroom count, repair scope, or closing representation.",
       "officeLabel": "Henderson County Environmental Health permit-search hub",
@@ -23121,7 +23143,8 @@
       "officialSourceIds": [
         "nc_henderson_01",
         "nc_henderson_02",
-        "nc_henderson_03"
+        "nc_henderson_03",
+        "nc_henderson_search_pdf_20261118"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_health",
@@ -23137,7 +23160,9 @@
         "malfunctionSignal": "Any repair, existing-system approval, tank abandonment, or permit revision result in the portal must be resolved before the system is treated as routine.",
         "quoteGate": "Do not price or clear a Henderson County septic story until the property age, legacy/current search route, parcel and former-owner match, and any usable approval or layout record all support the same conclusion."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18"
     },
     {
       "stateCode": "NC",

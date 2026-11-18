@@ -1095,61 +1095,67 @@
     {
       "contentSlug": "perc-test-cost",
       "stateCode": "OR",
-      "title": "Oregon Perc Test Cost",
-      "metaDescription": "Estimate Oregon perc and site-evaluation cost, and understand why DEQ puts site evaluation before septic permitting.",
-      "introCopy": "Oregon's perc-intent page is really a site-evaluation page. DEQ says the evaluation reviews both the proposed initial and replacement soil absorption areas, and it still does not guarantee a specific system approval. That makes the testing stage strategically important.",
-      "uniqueAngle": "This Oregon page is unique because it treats perc intent as site-evaluation and permit-sequencing intent, which is closer to how the state actually talks about the homeowner path.",
-      "targetReader": "Best for Oregon homeowners and land buyers who are searching for a normal perc price but actually need to understand the site-evaluation-first path, especially if an ADU, use change, or replacement-area question is already in the background.",
+      "title": "Oregon Perc Test Cost: DEQ Site Evaluation Fees",
+      "metaDescription": "Oregon perc test cost: the $1,121 DEQ site-evaluation fee effective July 2026, county fee differences, test pits and separate construction costs.",
+      "introCopy": "Oregon DEQ lists $1,121 for a single-family dwelling site evaluation (first lot), effective July 1, 2026. County programs can charge their own fees. Test-pit excavation and the later construction permit are separate budget items.",
+      "uniqueAngle": "Compare the published agency charge with the separate work a property may need: pit preparation, private soil evaluation, design, repeat visits and construction. Confirm the responsible office and permitting method before paying for an itemized service.",
+      "targetReader": "For Oregon land buyers and homeowners budgeting a new septic site evaluation or checking an old evaluation before changing a property.",
       "fitBullets": [
-        "You are pricing land, an ADU, or a use change and need to know whether the site can support both initial and replacement absorption areas.",
-        "You want to avoid calling contractors before the site evaluation makes the likely system class clearer.",
-        "You need to know whether a simple testing budget is enough or whether authorization and redesign risk already belong in the plan."
+        "You need the official fee and its scope before ordering a site evaluation.",
+        "You want to identify excavation, design and permit charges that may be separate."
       ],
       "decisionSteps": [
-        "Treat the first step as site evaluation, not a generic perc quote, because that is the homeowner-safe way Oregon DEQ explains the process.",
-        "Confirm whether the review needs to address both the proposed initial and replacement soil absorption areas for the property.",
-        "Ask whether an ADU connection, increased sewage flow, or change in use means an authorization notice belongs in the workflow too.",
-        "Only after those steps should you compare permit, installation, or replacement costs with any confidence."
+        "Confirm whether DEQ or a county contract agent handles the property; use that office’s current fee schedule.",
+        "Ask the office for test-pit and site-plan preparation instructions before hiring excavation.",
+        "Apply for a site evaluation and have the required pits available for the evaluator.",
+        "Read the evaluation for the system location and constraints; apply separately for the construction permit."
       ],
       "lowEndBreakers": [
-        "DEQ says the site evaluation does not guarantee approval of a specific system type, so the first site visit does not lock in the low end.",
-        "Replacement-area constraints can change the job even when the initial area looks workable.",
-        "ADU or use-change issues can force an authorization notice or other extra steps that a generic perc page would miss.",
-        "If the property drifts toward a variance or alternative-system path, the early testing stage becomes much more consequential than the fee alone."
+        "Difficult equipment access, excavation and restoration can add to the agency fee.",
+        "A constrained or unsuitable site may require additional professional review; a paid application does not guarantee approval."
       ],
       "quotePrepChecklist": [
-        "Any prior site evaluation, authorization notice, or county file tied to the property.",
-        "A note on planned ADUs, bedroom additions, or use changes that could raise sewage flow.",
-        "The parcel details and whether the goal is land diligence, replacement, or a new installation.",
-        "Any known repair, failure, or replacement-area concern already mentioned by the seller or county."
+        "Parcel number, property location, proposed use and bedroom count.",
+        "Existing evaluation or permit, if one exists; a new parcel may have no historical file.",
+        "An itemized quote showing agency fee, equipment, private evaluation, design, return visits and restoration."
       ],
       "driverBullets": [
-        "The site evaluation can reshape the likely system class before a permit is even possible.",
-        "Testing both initial and replacement absorption areas raises the planning stakes beyond a simple perc fee.",
-        "If the property has change-in-use or ADU issues, the evaluation can spill into additional authorization steps."
+        "The responsible agency and its fee schedule determine the public charge.",
+        "Site preparation and professional work determine charges beyond that fee."
       ],
       "faqBlocks": [
         {
-          "question": "Is Oregon really a normal perc-test state?",
-          "answer": "Not exactly. The safer homeowner framing is site evaluation first, because that is how DEQ sequences the process."
+          "question": "How much does a perc test cost in Oregon?",
+          "answer": "DEQ publishes $1,121 for a single-family first-lot site evaluation, effective July 1, 2026. County-agent fees may differ. This is an agency charge, not a complete private contractor or installation price."
         },
         {
-          "question": "Can I trust the low end after the first Oregon site visit?",
-          "answer": "Not fully. DEQ still says the site evaluation does not guarantee approval of a specific system type."
+          "question": "Does the fee include excavation and installation?",
+          "answer": "The published agency fee does not establish an all-in package. Ask separately about equipment, pit preparation, private professional work, design and construction."
+        },
+        {
+          "question": "Do I need an old septic record before applying?",
+          "answer": "An existing evaluation or permit can help if the property has one. Its absence is not a reason to stop a new-site application; follow the agency’s new evaluation process."
+        },
+        {
+          "question": "Can I reuse an old evaluation for a changed project?",
+          "answer": "Ask the responsible office whether the evaluated location, property conditions and proposed use still match. An old report does not by itself approve a different project."
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/oregon/",
-        "/septic-system-cost-calculator/",
-        "/septic-replacement-cost/oregon/",
-        "/perc-test-cost/"
+        "/septic-records-checklist/oregon/",
+        "/perc-test-cost/",
+        "/septic-system-cost-calculator/oregon/"
       ],
       "officialSourceIds": [
         "or_01",
         "or_02",
-        "or_03"
+        "or_03",
+        "or_onsite_fees_20260701",
+        "or_onsite_about_20261118"
       ],
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18"
     },
     {
       "contentSlug": "failed-perc-test-septic",
@@ -19590,63 +19596,68 @@
     {
       "contentSlug": "perc-test-cost",
       "stateCode": "SC",
-      "title": "South Carolina Perc Test Cost",
-      "metaDescription": "South Carolina perc test cost with the SCDES county or regional contact routing, D-1740 site file and permit copy, and permit-copy and county-office friction.",
-      "introCopy": "South Carolina perc-intent traffic matters because the test question is really about whether the D-1740 site file and permit copy keeps the parcel on a straightforward path. Start with the SCDES county or regional contact that handles septic questions, final inspections, and permit-copy requests for the property.",
-      "uniqueAngle": "South Carolina perc pages are strongest when they connect the SCDES county or regional contact, D-1740 site file and permit copy, and permit-copy and county-office friction instead of treating the test like a standalone invoice.",
-      "targetReader": "Best for South Carolina owners, buyers, builders, and agents who need to know whether site work still looks straightforward before permit, design, or replacement risk widens the project.",
+      "title": "South Carolina Perc Test Cost: SCDES Fee and Site Work",
+      "metaDescription": "South Carolina perc test cost: the $150 SCDES application fee, test-pit work, private soil evaluation and what to ask before paying.",
+      "introCopy": "SCDES lists a $150 application fee for a residential septic permit. The traditional process includes a site evaluation, but that agency fee is not an all-in price for private soil work, backhoe pits, design or installation.",
+      "uniqueAngle": "Compare the published agency charge with the separate work a property may need: pit preparation, private soil evaluation, design, repeat visits and construction. Confirm the responsible office and permitting method before paying for an itemized service.",
+      "targetReader": "For South Carolina land buyers and homeowners budgeting a new septic site evaluation or checking an old evaluation before changing a property.",
       "fitBullets": [
-        "You want a perc or site-work number, but no one has confirmed the D-1740 site file and permit copy first.",
-        "The parcel looks straightforward on paper, but the SCDES county or regional contact routing still controls the real next step.",
-        "You need to know whether permit-copy and county-office friction turns a small site-check question into a bigger project story."
+        "You need the official fee and its scope before ordering a site evaluation.",
+        "You want to identify excavation, design and permit charges that may be separate."
       ],
       "decisionSteps": [
-        "Start with the SCDES county or regional contact and confirm who actually controls the file for the property.",
-        "Pull the D-1740 site file and permit copy, permit history, and any inspection, design, or follow-up note already tied to the parcel.",
-        "Confirm whether the site is still likely to support a traditional system before you anchor to the low end.",
-        "Then compare site-work cost only after the file is strong enough to trust the project path."
+        "Identify the parcel and prepare the plat or deed copy for the D-1740 application.",
+        "Use SCDES ePermitting and confirm the traditional evaluation or an alternative permitting method with the responsible office.",
+        "Ask whether backhoe pits are needed. Above the South Carolina Fall Line, SCDES requires pits and the applicant arranges the operator.",
+        "Obtain the site decision and Permit to Construct before moving to installation."
       ],
       "lowEndBreakers": [
-        "If the permit copy is missing or thin, the low end is still a planning scenario, not a permit-ready number.",
-        "If the D-1740 or site review has not been resolved, the install or replacement story can widen before contractor pricing becomes comparable.",
-        "If the lot does not support a traditional system path, the project can move beyond the cheapest permit story quickly."
+        "Difficult equipment access, excavation and restoration can add to the agency fee.",
+        "A constrained or unsuitable site may require additional professional review; a paid application does not guarantee approval."
       ],
       "quotePrepChecklist": [
-        "The permit copy already on file for the parcel.",
-        "Any D-1740 application, plat, deed reference, or site-review note attached to the permit path.",
-        "Any final-inspection note or status update tied to the current system.",
-        "A short note showing whether the site-work question is tied to buyer diligence, new install, replacement follow-through, or lot feasibility."
+        "Parcel number, property location, proposed use and bedroom count.",
+        "Existing evaluation or permit, if one exists; a new parcel may have no historical file.",
+        "An itemized quote showing agency fee, equipment, private evaluation, design, return visits and restoration."
       ],
       "driverBullets": [
-        "South Carolina site-testing conversations get real only after the SCDES county or regional contact routing is clear.",
-        "The D-1740 site file and permit copy can matter more than the first quoted test fee.",
-        "permit-copy and county-office friction can widen the project long before a perc invoice feels final."
+        "The responsible agency and its fee schedule determine the public charge.",
+        "Site preparation and professional work determine charges beyond that fee."
       ],
       "faqBlocks": [
         {
-          "question": "What is the first South Carolina site-check step a homeowner should take?",
-          "answer": "Start with the SCDES county or regional contact and pull the D-1740 site file and permit copy before treating the project as routine."
+          "question": "How much does a perc test cost in South Carolina?",
+          "answer": "SCDES publishes a $150 residential application fee. This is an agency charge, not a complete private contractor or installation price."
         },
         {
-          "question": "Why does this South Carolina page keep mentioning D-1740 site file and permit copy?",
-          "answer": "Because the D-1740 site file and permit copy usually tells you whether the property still fits the simple story the owner, buyer, or contractor is using."
+          "question": "Does the fee include excavation and installation?",
+          "answer": "The published agency fee does not establish an all-in package. Ask separately about equipment, pit preparation, private professional work, design and construction."
+        },
+        {
+          "question": "Do I need an old septic record before applying?",
+          "answer": "An existing evaluation or permit can help if the property has one. Its absence is not a reason to stop a new-site application; follow the agency’s new evaluation process."
+        },
+        {
+          "question": "Can I reuse an old evaluation for a changed project?",
+          "answer": "Ask the responsible office whether the evaluated location, property conditions and proposed use still match. An old report does not by itself approve a different project."
         }
       ],
       "internalLinkTargets": [
-        "/septic-system-cost-calculator/south-carolina/",
-        "/septic-permit-process/south-carolina/",
-        "/septic-replacement-cost/south-carolina/",
         "/septic-records-checklist/south-carolina/",
-        "/septic-system-cost-calculator/?state=SC&projectType=perc_test"
+        "/perc-test-cost/",
+        "/septic-system-cost-calculator/south-carolina/"
       ],
       "officialSourceIds": [
         "sc_01",
         "sc_02",
         "sc_03",
-        "sc_04"
+        "sc_04",
+        "sc_residential_application_20261118"
       ],
       "calculatorProjectType": "perc_test",
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18"
     },
     {
       "contentSlug": "septic-inspection-cost",

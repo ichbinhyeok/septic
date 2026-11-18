@@ -45,6 +45,9 @@
 
 @template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-money-page">
+    @if ("OH".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+    <section class="section section--tight"><div class="container"><span class="eyebrow">Local search instructions</span><h2>Lake County, Ohio: find the address and its files.</h2><p>Start with the house number, then the street. <a href="/septic-records-checklist/ohio/lake-county/#record-search-instructions" data-track-click="nav" data-track-source-context="oh_lake_search_steps" data-track-target-type="county_records">See street-name variants and missing-file steps →</a></p></div></section>
+    @endif
     <section class="section section--heroish state-money-hero-section">
         <div class="container state-hero">
             <div>

@@ -76,6 +76,7 @@
         </section>
 
         <section class="section section--tight"><div class="container"><p><a href="/septicsearch-records/">Looking for Carmody / SepticSearch instead? Open that platform guide →</a></p></div></section>
+        @template.tags.platformRecovery(platform = "OnlineRME")
         <section class="section section--muted" id="search-sequence">
             <div class="container">
                 <div class="section-heading">
