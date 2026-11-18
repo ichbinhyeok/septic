@@ -11,12 +11,22 @@
   const uploads = form.querySelector('[data-intake-uploads]');
   const status = document.getElementById('upload-status');
   const phone = form.elements.phone;
+  const phoneFeedback = document.getElementById('phone-format-feedback');
+  let phoneTouched = false;
   function validatePhone() {
     const value = phone.value;
     const digits = value.replace(/\D/g, '').length;
     const valid = !value || (/^[+0-9().\-\s]+$/.test(value) && digits >= 10 && digits <= 15);
     phone.setCustomValidity(valid ? '' : 'Enter 10–15 digits, including the area code. Spaces, +, parentheses and hyphens are OK.');
+    if (phoneFeedback) {
+      const show = phoneTouched && !phone.validity.valid;
+      phoneFeedback.hidden = !show;
+      phoneFeedback.textContent = show ? (value ? phone.validationMessage : 'Add a phone number with the area code.') : '';
+      if (show) phone.setAttribute('aria-invalid', 'true');
+      else phone.removeAttribute('aria-invalid');
+    }
   }
+  phone.addEventListener('blur', () => { phoneTouched = true; validatePhone(); });
   phone.addEventListener('input', validatePhone);
   phone.addEventListener('change', validatePhone);
   validatePhone();
@@ -105,7 +115,7 @@
     if (disclosure) disclosure.open = true;
     if (!errorsQueued) {
       errorsQueued = true;
-      queueMicrotask(() => { showErrors(); errorsQueued = false; });
+      setTimeout(() => { showErrors(); errorsQueued = false; }, 0);
     }
   }, true);
   const refreshErrors = event => {

@@ -2359,7 +2359,7 @@
       "countySlug": "san-diego-county",
       "title": "San Diego County California Septic Records Checklist and Permit Lookup",
       "metaDescription": "San Diego County septic records checklist and permit lookup with document-library search, APN or Record ID lookup, and public-records fallback before you trust a buyer or repair story.",
-      "introCopy": "San Diego County is a strong California county wedge because the county gives owners a real searchable records surface instead of a generic county health contact page. The county's septic program points users into an Environmental Health Document Library and then into the Public Records Request Center when the visible file is incomplete.",
+      "introCopy": "Search San Diego County’s Environmental Health Document Library for an existing septic file. Try one identifier at a time, then request missing documents from the county.",
       "uniqueAngle": "San Diego County stands out because the county explicitly teaches the search method. Users are told to search by Record ID or APN or street number and street name, and the county exposes OWTS permit and layout document categories directly in the document library.",
       "targetReader": "Best for San Diego County buyers, owners, and agents who need to know whether an OWTS file is already online, whether the APN or Record ID search is enough, and when a Public Records Request Center pull is still needed.",
       "officeLabel": "Open the San Diego Public Records Request Center",
@@ -2417,7 +2417,26 @@
         "malfunctionSignal": "If the online file is thin, treat the missing-file problem as the main blocker before assuming the county has no risk trail.",
         "quoteGate": "Do not move into pricing until the Record ID or APN search and the PRRC fallback are both exhausted, because San Diego can hide the real OWTS trail behind an incomplete first search."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "searchGuide": {
+        "summary": "Search San Diego County’s Environmental Health Document Library for an existing septic file. Try one identifier at a time, then request missing documents from the county.",
+        "coverage": "The county does not state a complete archive year range. Some documents are absent from the library or cannot be found by keyword.",
+        "identifiers": "Record ID, APN, or street number with street name; use one method at a time.",
+        "documents": "Look for the existing septic permit, layout and related property documents. Check each returned file’s identity.",
+        "steps": [
+          "Open Environmental Health Document Search and enter one identifier. Do not combine Record ID, APN and street-address searches.",
+          "For a street search, omit the street type, such as Ave or Dr. Avoid wildcards and special characters; dashes are allowed in the APN.",
+          "Allow the search to finish. Land and Water Quality document dates are scan dates, so a narrow date filter can miss an older permit scanned later.",
+          "Read the actual attachments and compare their property identifiers. A result title alone is not the septic layout."
+        ],
+        "noResult": "The library is incomplete. Use the county Public Records Request Center for missing documents; the library publishes 858-505-6700 for assistance.",
+        "sourceIds": [
+          "ca_sandiego_02",
+          "ca_sandiego_03"
+        ],
+        "reviewedAt": "2026-11-18"
+      },
+      "updatedAt": "2026-11-18"
     },
     {
       "stateCode": "CA",
@@ -10901,7 +10920,7 @@
       "countySlug": "atlantic-county",
       "title": "Atlantic County New Jersey Septic Records Checklist and Permit Lookup",
       "metaDescription": "Atlantic County septic records checklist and permit lookup with septic-program routing, online request path, and permit-form friction before you trust a repair or permit story.",
-      "introCopy": "Atlantic County is strong because the county owns the workflow in one place: septic program page, environmental-health routing, online request path, and permit application form.",
+      "introCopy": "Ask Atlantic County Environmental Health for an existing septic permit, design or inspection file. Its program page provides permit applications, but we did not find a public property-file search there.",
       "uniqueAngle": "Atlantic is useful because it turns a vague New Jersey septic story into a real county decision: are you solving a records problem, a permit problem, or a broader environmental-health problem tied to the parcel file.",
       "targetReader": "Best for Atlantic County buyers, owners, sellers, and contractors who need to know whether the next move is a county records request, a permit application, or a deeper environmental-health review.",
       "officeLabel": "Atlantic County sewage disposal septic system program",
@@ -10943,7 +10962,8 @@
       "officialSourceIds": [
         "nj_atlantic_01",
         "nj_atlantic_03",
-        "nj_atlantic_04"
+        "nj_atlantic_04",
+        "nj_atlantic_opra"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_public_health",
@@ -10959,7 +10979,27 @@
         "malfunctionSignal": "If the file points to later repairs, alterations, or unresolved health-unit notes, the parcel is already outside the cheap routine lane.",
         "quoteGate": "Do not move into pricing until the permit file, county notes, and any repair-or-alteration history all support the same path, because Atlantic can look straightforward until the county record stack widens."
       },
-      "publishStatus": "published"
+      "publishStatus": "published",
+      "searchGuide": {
+        "summary": "Ask Atlantic County Environmental Health for an existing septic permit, design or inspection file. Its program page provides permit applications, but we did not find a public property-file search there.",
+        "coverage": "The reviewed county pages do not give a complete archive date range or a public septic-file search.",
+        "identifiers": "Prepare the property address, municipality, block and lot, any permit number, and an approximate date range to help identify the documents.",
+        "documents": "Request existing septic permits, design drawings, installation inspection records and later alteration records that the office holds.",
+        "steps": [
+          "Confirm jurisdiction. County Environmental Health serves the county except Atlantic City; its page directs Atlantic City questions to 609-347-5671.",
+          "Contact county Environmental Health at 609-645-5971 about the existing file. Specify the property and documents you need; the septic permit application is for a permitting process.",
+          "If a formal request is needed, use the county OPRA page and its Online Request Form. Name Environmental Health and give the records and date range requested.",
+          "Check the returned drawings and permits against the property before relying on them. Keep any written missing-record response with the file."
+        ],
+        "noResult": "Ask the records holder to identify what was searched and whether another municipal office holds the file. The OPRA page also lists opra@atlantic-county.org. No search, fee or delivery outcome is promised here.",
+        "sourceIds": [
+          "nj_atlantic_01",
+          "nj_atlantic_03",
+          "nj_atlantic_opra"
+        ],
+        "reviewedAt": "2026-11-18"
+      },
+      "updatedAt": "2026-11-18"
     },
     {
       "stateCode": "MD",

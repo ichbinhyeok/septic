@@ -108,7 +108,7 @@ public class SiteController {
     private static final String TENNESSEE_SSDS_PROGRAM_URL =
             "https://www.tn.gov/environment/permits/water/septic-systems-permits.html";
     private static final String TENNESSEE_SSDS_RECORD_SEARCH_URL =
-            "https://dataviewers.tdec.tn.gov/dataviewers/f?p=175";
+            "https://tdec.tn.gov/document-viewer/search/stp";
     private static final String TENNESSEE_PUBLIC_RECORDS_URL =
             "https://www.tn.gov/environment/contacts/public-records-request.html";
     private static final String TENNESSEE_FIELD_OFFICES_URL =
@@ -3128,6 +3128,13 @@ The goal is to settle the permit path before we frame the project as a normal in
 
     private String nullToEmpty(String value) {
         return value == null ? "" : value;
+    }
+
+    @GetMapping({"/septic-records-checklist/cabarrus-county-nc-septic-permit-lookup", "/septic-records-checklist/cabarrus-county-nc-septic-permit-lookup/"})
+    public ResponseEntity<Void> cabarrusRecordsCanonicalRedirect() {
+        return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
+                .location(URI.create("/septic-records-checklist/north-carolina/cabarrus-county/"))
+                .build();
     }
 
     @GetMapping({"/perc-test-cost/alabama", "/perc-test-cost/alabama/"})

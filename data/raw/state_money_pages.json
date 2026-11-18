@@ -20037,7 +20037,7 @@
       "stateCode": "TN",
       "title": "Tennessee Septic Records by County",
       "metaDescription": "Find Tennessee septic records by county. Get permit copies, inspection letters, repair history, or no-record responses through TDEC or a contract county.",
-      "updatedAt": "2026-07-20",
+      "updatedAt": "2026-11-18",
       "reviewedAt": "2026-07-20",
       "introCopy": "Find Tennessee septic records by choosing the county and the office that owns the file. Use TDEC for the statewide SSDS search, but move to the contract-county or regional route when you need the actual permit copy, inspection letter, repair history, or written no-record response.",
       "uniqueAngle": "This route is the Tennessee county and request guide, not another TDEC search page. It answers which office owns the file and which document proves the property story after the statewide search or county handoff.",
@@ -20048,10 +20048,9 @@
         "You need to know whether regional-contact and repair-permit friction makes the record trail slower or thinner than expected."
       ],
       "decisionSteps": [
-        "Start with the TDEC SSDS permits hub, the record-search path it links, or the contract county office and confirm who actually controls the file for the property.",
-        "Pull the permit file and inspection letter, permit history, and any inspection, design, or follow-up note already tied to the parcel.",
-        "Confirm whether soil or site limits are pushing the job toward an alternative system before you anchor to the low end.",
-        "Then compare quotes, buyer diligence, or repair follow-up only after the file is strong enough to trust the current story."
+        "Identify the property county. The nine contract counties use local septic programs; other counties use TDEC and the assigned Environmental Field Office.",
+        "Search or request the existing permit, layout, completion and repair records using the address and parcel or legacy owner clues.",
+        "Check every returned document against the property. Ask the office about missing attachments or an Inspection Letter when the existing file does not answer the question."
       ],
       "lowEndBreakers": [
         "If the homeowner has not confirmed whether the parcel is handled by a contract county or a TDEC regional office, the low end is still a planning scenario.",

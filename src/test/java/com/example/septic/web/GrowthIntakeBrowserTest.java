@@ -27,6 +27,22 @@ class GrowthIntakeBrowserTest {
     @MockitoBean ClosingRiskNotificationService notifications;
     @MockitoBean ClosingRiskRequestLimiter limiter;
 
+    @Test void oneBlockedSubmissionCountsOnceEvenWhenSeveralFieldsAreMissing() {
+        WebDriver browser = browser();
+        try {
+            browser.get(base() + "/offer-prep-septic-file-check/");
+            JavascriptExecutor js = (JavascriptExecutor) browser;
+            js.executeScript("window.qaEvents=[]; window.gtag=(...args)=>window.qaEvents.push(args);");
+            submit(browser);
+            new WebDriverWait(browser, Duration.ofSeconds(10)).until(d -> d.findElement(By.cssSelector("[data-intake-client-errors]")).isDisplayed());
+            assertThat(((Number) js.executeScript("return qaEvents.filter(e=>e[1]==='record_help_form_validation_error').length")).intValue()).isEqualTo(1);
+            assertThat(((Number) js.executeScript("return qaEvents.filter(e=>e[1]==='record_help_invalid_phone').length")).intValue()).isEqualTo(1);
+            assertThat(((Number) js.executeScript("return qaEvents.filter(e=>e[1]==='record_help_form_submit_attempted'&&e[2].validation_state==='blocked').length")).intValue()).isEqualTo(1);
+            verify(storage, never()).saveClosingRiskRequest(any(), anyString(), any());
+            verifyNoInteractions(notifications);
+        } finally { browser.quit(); }
+    }
+
     @Test void rejectsMalformedPhoneBeforePostingAndAcceptsFormattedNumber() {
         when(limiter.allow(any())).thenReturn(true);
         when(storage.saveClosingRiskRequest(any(), anyString(), any())).thenReturn("qa-growth-only");
@@ -37,6 +53,8 @@ class GrowthIntakeBrowserTest {
             fill(browser, "email", "qa@example.com");
             fill(browser, "phone", "abcdefghij");
             new Select(browser.findElement(By.name("transactionRole"))).selectByValue("owner");
+            assertThat(browser.findElement(By.id("phone-format-feedback")).isDisplayed()).isTrue();
+            assertThat(browser.findElement(By.id("phone-format-feedback")).getText()).contains("10–15 digits");
             click(browser, By.cssSelector("label[for=field-consentAccepted]"));
             JavascriptExecutor js = (JavascriptExecutor) browser;
             js.executeScript("window.qaEvents=[]; window.gtag=(...args)=>window.qaEvents.push(args);");
@@ -50,6 +68,7 @@ class GrowthIntakeBrowserTest {
             verifyNoInteractions(notifications);
             browser.findElement(By.name("phone")).clear();
             fill(browser, "phone", "+1 (704) 555-0100");
+            assertThat(browser.findElement(By.id("phone-format-feedback")).isDisplayed()).isFalse();
             assertThat(browser.findElement(By.cssSelector("[data-intake-client-errors]")).isDisplayed()).isFalse();
             submit(browser);
             new WebDriverWait(browser, Duration.ofSeconds(10)).until(d -> !d.findElements(By.cssSelector("[data-intake-success]")).isEmpty()

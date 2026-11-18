@@ -26,6 +26,10 @@
                     @if ("NC".equals(state.stateCode()))
                         <h1>North Carolina septic records by county</h1>
                         <p>Not sure where your tank or drainfield is? We look for the county permit and layout, request available files, and explain what they show, free. Start with your address—even if you have no drawing.</p>
+                    @elseif ("TN".equals(state.stateCode()))
+                        <h1>Tennessee septic records by county</h1>
+                        <p>Choose the office that holds your permit and septic layout. Most counties use TDEC; nine contract counties run their own programs. Start with the county or use the address finder if you are unsure.</p>
+                        <p><a href="#county-record-routes">Choose your Tennessee county ↓</a> · <a href="/tdec-septic-records/">TDEC permit search and request steps →</a></p>
                     @elseif ("IN".equals(state.stateCode()))
                         <h1>Indiana septic records by county and address</h1>
                         <p>Find the local health department route for a permit, site sketch, or installation record. Search yourself, or send us the property and we’ll research the file and explain what we find, free.</p>
@@ -53,6 +57,18 @@
                 )
             </div>
         </section>
+
+        @if ("TN".equals(state.stateCode()))
+            <section class="section section--tight" aria-labelledby="tn-file-owner-title">
+                <div class="container record-search-guide">
+                    <h2 id="tn-file-owner-title">TDEC or a county office: who holds the file?</h2>
+                    <p><strong>Local septic programs:</strong> Blount, Davidson, Hamilton, Jefferson, Knox, Madison, Sevier, Shelby and Williamson. Choose their county guide below for the local archive or request contact.</p>
+                    <p><strong>Other Tennessee counties:</strong> start with TDEC’s SSDS Record Search. If it is blocked or incomplete, use the county’s assigned Environmental Field Office. <a href="/tdec-septic-records/#tdec-record-search">Our TDEC selector covers all Tennessee counties</a>, including counties without a detailed guide here.</p>
+                    <p><strong>Ask for the document you need:</strong> an existing permit and layout for location clues; a completion or final inspection record for installation history; repair records for later changes. Ask the office whether an Inspection Letter or other current service is needed for your decision.</p>
+                    <p><a href="https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-contacts-by-region.html" target="_blank" rel="noreferrer">Official TDEC field offices and contract counties ↗</a></p>
+                </div>
+            </section>
+        @endif
 
         @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
             @template.tags.regionalRecordGoals(sourcePath = stateMoneyPage.path(state.slug()), stateCode = state.stateCode(), regionName = state.stateName())
@@ -141,7 +157,7 @@
                             @endfor
                         </nav>
                     @endif
-                    <form class="state-records-county-picker" data-county-route-picker data-county-route-prefix="/septic-records-checklist/${state.slug()}/" data-county-route-state="${state.stateName()}">
+                    <form id="county-record-routes" class="state-records-county-picker" data-county-route-picker data-county-route-prefix="/septic-records-checklist/${state.slug()}/" data-county-route-state="${state.stateName()}">
                         <label for="${state.stateCode().toLowerCase()}-records-county">County</label>
                         <div>
                             <select id="${state.stateCode().toLowerCase()}-records-county" data-county-route-select required>
