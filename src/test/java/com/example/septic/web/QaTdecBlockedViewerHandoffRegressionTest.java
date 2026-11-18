@@ -28,7 +28,7 @@ class QaTdecBlockedViewerHandoffRegressionTest {
         assertTrue(script.contains("mailto:${recipient}"));
         assertTrue(script.contains("Try the official TDEC online viewer"));
         assertTrue(script.contains("Verify the current viewer on TN.gov"));
-        assertTrue(script.contains("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175"));
+        assertTrue(script.contains("https://tdec.tn.gov/document-viewer/search/stp"));
         assertTrue(script.contains("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html"));
     }
 }

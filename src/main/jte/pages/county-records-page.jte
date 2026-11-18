@@ -62,7 +62,11 @@
                 @else
                     <h1 id="premium-county-title">${countyPage.title()}</h1>
                 @endif
-                <p data-source-title="${countyPage.title()}">Send the property. We’ll trace the permit, layout, approval, or repair file—and explain what the official response actually means.</p>
+                @if (countySearchGuide != null)
+                    <p data-source-title="${countyPage.title()}">${countySearchGuide.guide().summary()}</p>
+                @else
+                    <p data-source-title="${countyPage.title()}">Send the property. We’ll trace the permit, layout, approval, or repair file—and explain what the official response actually means.</p>
+                @endif
                 <div class="premium-county-hero__actions">
                     <a class="premium-county-button premium-county-button--primary"
                        href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}"
@@ -94,6 +98,10 @@
 
         </div>
     </section>
+
+    @if (countySearchGuide != null)
+        @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
+    @endif
 
     @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
         @template.tags.regionalRecordGoals(sourcePath = countyPage.path(state.slug()), stateCode = state.stateCode(), regionName = countyPage.countyName(), countyName = countyPage.countyName())
@@ -407,9 +415,6 @@
         </div>
     </section>
 
-    @if (countySearchGuide != null)
-        @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
-    @endif
     @template.tags.caseRouteInsight(stateCode = state.stateCode(), countySlug = countyPage.countySlug())
 
     @if (countyPage.operationalProof() != null)

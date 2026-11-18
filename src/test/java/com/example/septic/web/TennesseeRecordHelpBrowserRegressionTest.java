@@ -123,7 +123,7 @@ class TennesseeRecordHelpBrowserRegressionTest {
                     .isEqualTo("https://www.tn.gov/environment/contacts/field-offices/knoxville.html");
             WebElement viewerRoute = driver.findElement(By.linkText("Try the official TDEC online viewer"));
             assertThat(viewerRoute.getAttribute("href"))
-                    .isEqualTo("https://dataviewers.tdec.tn.gov/dataviewers/f?p=175");
+                    .isEqualTo("https://tdec.tn.gov/document-viewer/search/stp");
             assertThat(driver.findElement(By.cssSelector("[data-tdec-route-hint]")).getText())
                     .contains("Search by county", "A blank result is not proof that no file exists");
 

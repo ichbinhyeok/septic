@@ -46,7 +46,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/california/san-diego-county/", "2026-10-11"),
             Map.entry("/offer-prep-septic-file-check/", "2026-09-17"),
             Map.entry("/official-septic-lookup-tools/", "2026-10-11"),
-            Map.entry("/tdec-septic-records/", "2026-11-05"),
+            Map.entry("/tdec-septic-records/", "2026-11-18"),
             Map.entry("/no-septic-records-found/", "2026-10-11"),
             Map.entry("/how-to-read-septic-as-built/", "2026-10-11"),
             Map.entry("/septic-bedroom-permit-checker/", "2026-10-11"),

@@ -826,7 +826,7 @@
 
         const trackSubmitAttempt = (validationState) => {
             emitGaEvent("record_help_form_submit_attempted", {
-                measurement_version: "intake_v2",
+                measurement_version: "intake_v3",
                 validation_state: validationState,
                 source_context: getSourceContext(),
                 request_type: "record_help_beta",
@@ -912,7 +912,9 @@
         form.addEventListener("invalid", () => {
             if (validationQueued) return;
             validationQueued = true;
-            window.queueMicrotask(() => {
+            // Native validation dispatches a separate invalid event for every field.
+            // Microtasks can run between those events; batch at the next task instead.
+            window.setTimeout(() => {
                 const invalidFields = Array.from(form.querySelectorAll(":invalid"))
                     .map((field) => field.getAttribute("name"))
                     .filter(Boolean)
@@ -920,7 +922,7 @@
                     .join(",")
                     .slice(0, 100);
                 emitGaEvent("record_help_form_validation_error", {
-                    measurement_version: "intake_v2",
+                    measurement_version: "intake_v3",
                     source_context: getSourceContext(),
                     request_type: "record_help_beta",
                     invalid_count: form.querySelectorAll(":invalid").length,
@@ -936,7 +938,7 @@
                 const codes = new Set(Array.from(form.querySelectorAll(":invalid"))
                     .map(field => fieldCodes[field.name] || "other"));
                 codes.forEach(code => emitGaEvent("record_help_invalid_" + code, {
-                    measurement_version: "intake_v2", source_context: getSourceContext(), ...attributionParams()
+                    measurement_version: "intake_v3", source_context: getSourceContext(), ...attributionParams()
                 }));
                 validationQueued = false;
             });

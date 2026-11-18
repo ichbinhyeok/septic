@@ -22,6 +22,18 @@ class TdecSearchSnippetRegressionTest {
     private MockMvc mockMvc;
 
     @Test
+    void oldCabarrusAddressRedirectsDirectlyToItsCountyPage() throws Exception {
+        for (String suffix : new String[]{"", "/"}) {
+            mockMvc.perform(get("/septic-records-checklist/cabarrus-county-nc-septic-permit-lookup" + suffix))
+                    .andExpect(status().isMovedPermanently())
+                    .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl(
+                            "/septic-records-checklist/north-carolina/cabarrus-county/"));
+        }
+        mockMvc.perform(get("/septic-records-checklist/north-carolina/cabarrus-county/"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void tdecSearchSnippetLeadsWithTheOfficialSearchAndHonestFallback() throws Exception {
         mockMvc.perform(get("/tdec-septic-records/"))
                 .andExpect(status().isOk())
