@@ -3,6 +3,13 @@
     const marker = "shared-route";
     const storageKey = "septicpath_public_route_share_v1";
     const lifetime = 30 * 60 * 1000;
+    const shareSourcePaths = new Set([
+        "/", "/septic-record-finder/", "/embed/septic-record-finder/", "/septic-permit-search-by-address/",
+        "/septic-records-by-county/", "/septic-as-built-records/", "/septic-tank-location-records/",
+        "/how-to-find-septic-records-online/", "/tdec-septic-records/", "/dhec-septic-permit-lookup/",
+        "/north-carolina-septic-permit-lookup/", "/texas-ossf-records-search/",
+        "/florida-ostds-permit-lookup/", "/onlinerme-septic-records/"
+    ]);
     const states = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
     const filters = {
         method: new Set(["online", "request", "office"]),
@@ -55,7 +62,11 @@
         }
         function emit(action, path) {
             const type = path === "/septic-records-access-index/" ? "public_route_index" : "public_county_guide";
-            const payload = { sourcePage: path, sourceContext: "route_sharing", action, artifactType: type };
+            const sharingAction = ["share_clicked", "share_copied", "share_handoff"].includes(action);
+            const currentPath = win.location.pathname;
+            const sourcePath = sharingAction && (shareSourcePaths.has(currentPath) || publicPath(currentPath))
+                ? currentPath : path;
+            const payload = { sourcePage: sourcePath, sourceContext: "route_sharing", action, artifactType: type };
             const body = JSON.stringify(payload);
             try {
                 if (!win.navigator.sendBeacon || !win.navigator.sendBeacon("/events/artifact-action", new win.Blob([body], { type: "application/json" }))) {
@@ -67,8 +78,8 @@
                 try { const ref = new URL(doc.referrer); referrer = ref.origin; } catch (_) { /* No referrer. */ }
                 try {
                     win.gtag("event", "route_" + action, {
-                        route_path: path, artifact_type: type, measurement_version: "public_share_v1",
-                        page_location: win.location.origin + path, page_referrer: referrer
+                        route_path: path, artifact_type: type, measurement_version: "public_share_v2",
+                        page_location: win.location.origin + sourcePath, page_referrer: referrer
                     });
                 } catch (_) { /* Analytics must not interrupt the visitor's action. */ }
             }
