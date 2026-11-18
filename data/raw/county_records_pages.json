@@ -16337,8 +16337,8 @@
       ],
       "faqBlocks": [
         {
-          "question": "Why is Pitt County a strong North Carolina county page?",
-          "answer": "Because Pitt County makes the Authorization to Construct gate, repair-area requirement, and tax-parcel intake explicit before owners guess at price or timing."
+          "question": "What if the Pitt County permit search shows no record or no attachment?",
+          "answer": "Email pitt.envhealth@pittcountync.gov or call 252-902-3200 with the property's address, tax parcel number if known, and any permit number. Ask for the existing septic permit, filed site plan, and final approval or inspection. Some older properties may have no county file. If you need access to an active permit transferred to the new portal, Pitt County asks for your name, email, and project or permit number so staff can confirm access."
         },
         {
           "question": "What is the first Pitt County septic record to ask for?",
@@ -16360,7 +16360,8 @@
         "nc_pitt_01",
         "nc_pitt_02",
         "nc_pitt_03",
-        "nc_pitt_04"
+        "nc_pitt_04",
+        "nc_pitt_05"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_environmental_health",

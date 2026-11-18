@@ -143,9 +143,10 @@ class OfficialRecordsWorkflowRegressionTest {
                         "Johnston County septic permit search",
                         "Henderson County septic permit lookup",
                         "Forsyth County septic permit lookup",
+                        "Pitt County septic permit search",
+                        "Address or permit number + county file request",
                         "Pender County septic permit lookup",
-                        "Wake County septic permit lookup",
-                        "Pitt County septic permit lookup"
+                        "Wake County septic permit lookup"
                 );
     }
 

@@ -46,6 +46,24 @@ class NorthCarolinaCountyRoutingTests {
         assertCountyIntent("pitt-county", "pitt county septic permit search");
     }
 
+    @Test
+    void pittCountyShowsTheOfficialSearchAndFallbackBeforeTheWorksheet() throws Exception {
+        String html = mockMvc.perform(get("/septic-records-checklist/north-carolina/pitt-county/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(
+                        "https://www.pittcountync.gov/1280/Permitting-Portal-User-Guide"
+                )))
+                .andReturn().getResponse().getContentAsString();
+        int start = html.indexOf("data-county-record-start");
+        int end = html.indexOf("</section>", start);
+        assertTrue(start >= 0 && end > start);
+        String firstScreen = html.substring(start, end);
+        assertTrue(firstScreen.contains("Street address or permit number."));
+        assertTrue(firstScreen.contains("Choose Search in the county portal."));
+        assertTrue(firstScreen.contains("https://pittcountync-energovweb.tylerhost.net/apps/selfservice#/home"));
+        assertTrue(firstScreen.contains("href=\"tel:+12529023200\""));
+    }
+
     private void assertCountyIntent(String countySlug, String query) throws Exception {
         mockMvc.perform(get("/septic-records-checklist/north-carolina/" + countySlug + "/"))
                 .andExpect(status().isOk())
