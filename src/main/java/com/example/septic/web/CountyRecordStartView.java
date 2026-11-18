@@ -13,10 +13,7 @@ public record CountyRecordStartView(
 
     static CountyRecordStartView from(CountyRecordsPage county, CountyAccessProfileView access, CountySearchGuideView guide) {
         if ("SC".equals(county.stateCode()) && access.primaryUrl().endsWith("/how-locate-septic-tank")) {
-            CountyRecordStartView regionalOffice = southCarolinaRecordsOffice(county);
-            if (regionalOffice != null) {
-                return regionalOffice;
-            }
+            return southCarolinaPermitCopies(county);
         }
         if ("TN".equals(county.stateCode()) && access.hasSecondaryAction()
                 && access.primaryUrl().endsWith("/document-viewer/search/stp")) {
@@ -47,22 +44,8 @@ public record CountyRecordStartView(
         };
     }
 
-    private static CountyRecordStartView southCarolinaRecordsOffice(CountyRecordsPage county) {
-        // SCDES routes existing permit questions through the regional onsite wastewater offices.
-        String officeNumber = switch (county.countySlug()) {
-            case "aiken-county" -> "8036421637";
-            case "beaufort-county" -> "8438461030";
-            case "berkeley-county", "dorchester-county" -> "8439530150";
-            case "florence-county" -> "8436614825";
-            case "lexington-county", "richland-county" -> "8038960620";
-            case "pickens-county" -> "8643723273";
-            case "sumter-county" -> "8037786548";
-            case "york-county" -> "8032857461";
-            default -> "";
-        };
-        if (officeNumber.isEmpty()) {
-            return null;
-        }
+    private static CountyRecordStartView southCarolinaPermitCopies(CountyRecordsPage county) {
+        // SCDES lists its Customer Support line separately for copies of permits and final inspections.
         String parcelUrl = switch (county.countySlug()) {
             case "beaufort-county", "berkeley-county", "richland-county" -> county.parcelAnchorUrl();
             case "dorchester-county" -> "https://www.arcgis.com/home/item.html?id=c5b2bd07c3b84ce98d09c6611377e89c";
@@ -70,9 +53,9 @@ public record CountyRecordStartView(
             case "york-county" -> "https://experience.arcgis.com/experience/e827d330f20a4508aa6777bf2c0b94e3";
             default -> "";
         };
-        return new CountyRecordStartView("tel:+1" + officeNumber, "Call SCDES for the existing permit",
+        return new CountyRecordStartView("tel:+18557312504", "Call SCDES for a permit copy",
                 "Property address, tax map number if known, and approximate installation year.",
-                "Ask for the permit copy and any attached layout.",
+                "Call 855-731-2504 for a permit copy or final inspection. Ask whether the file includes a layout.",
                 parcelUrl, "Find the parcel in " + county.countyName());
     }
 
