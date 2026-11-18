@@ -94,7 +94,7 @@
     @endif
 
     <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder" data-address-record-finder-state="${expectedStateCode}">
-        @if (minimal && !addressNextSteps)
+        @if (minimal && !addressNextSteps && !aduProject)
             <div class="record-finder__minimal-intro">
                 @if (!eyebrow.isBlank())
                     <span class="eyebrow">${eyebrow}</span>

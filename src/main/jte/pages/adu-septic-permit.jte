@@ -3,18 +3,15 @@
 @param PageMeta page
 
 @template.layouts.app(page = page, designFamily = "editorial", pageStyles = "/record-work-story.css", content = @`
-    <article class="work-story work-story--intent">
+    <article class="work-story work-story--intent work-story--adu">
         <header class="work-story__header container">
             <h1>Can an ADU share an existing septic system?</h1>
-            <p class="work-story__lede">Sometimes. For an accessory dwelling unit (ADU), the local reviewer checks what the system was approved to serve, whether it can handle a second dwelling, and where the new work would go. Start with your property's septic file before you pay for plans.</p>
+            <p class="work-story__lede">Sometimes. Find the existing septic permit and local review steps before designing an accessory dwelling unit.</p>
         </header>
 
         <section class="container" aria-label="ADU septic records lookup">
             @template.tags.addressRecordFinder(
                 finderId = "adu-septic-records",
-                eyebrow = "",
-                heading = "Find your septic permit route",
-                intro = "Choose your project and enter the address. Get the county records route and a checklist for the local review.",
                 minimal = true,
                 aduProject = true
             )

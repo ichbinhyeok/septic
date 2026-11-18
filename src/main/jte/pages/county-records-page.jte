@@ -5,6 +5,7 @@
 @import com.example.septic.web.CountyAvailabilityRowView
 @import com.example.septic.web.CountyAvailabilitySummaryView
 @import com.example.septic.web.CountyAccessProfileView
+@import com.example.septic.web.CountyRecordStartView
 @import com.example.septic.web.CountyAcquisitionProfileView
 @import com.example.septic.web.CountyWorkflowStructureView
 @import com.example.septic.web.CountyWorkflowFieldView
@@ -18,6 +19,7 @@
 @import com.example.septic.web.RecordHelpEntry
 @param PageMeta page
 @param CountyRecordsPage countyPage
+@param CountyRecordStartView countyRecordStart
 @param com.example.septic.web.CountySearchGuideView countySearchGuide = null
 @param CountyLocalContentView countyLocalContent
 @param StateProfile state
@@ -51,391 +53,53 @@
     <link rel="stylesheet" href="${AssetPaths.versioned("/premium-county.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/premium-records-lower.css")}">
     <div class="county-records-page">
-    <section class="premium-county-hero" aria-labelledby="premium-county-title">
-        <div class="premium-county-hero__image" aria-hidden="true"></div>
-        <div class="premium-county-hero__wash" aria-hidden="true"></div>
-        <div class="premium-county-hero__inner">
-            <div class="premium-county-hero__copy">
-                <span class="premium-county-hero__eyebrow">${countyPage.countyName()} · ${state.stateName()}</span>
-                @if (countySeoHeading != null && !countySeoHeading.isBlank())
-                    <h1 id="premium-county-title" class="county-records-page__search-title">${countySeoHeading}</h1>
-                @else
-                    <h1 id="premium-county-title">${countyPage.title()}</h1>
-                @endif
-                @if (countySearchGuide != null)
-                    <p data-source-title="${countyPage.title()}">${countySearchGuide.guide().summary()}</p>
-                @else
-                    <p data-source-title="${countyPage.title()}">Send the property. We’ll trace the permit, layout, approval, or repair file—and explain what the official response actually means.</p>
-                @endif
-                <div class="premium-county-hero__actions">
-                    <a class="premium-county-button premium-county-button--primary"
-                       href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}"
-                       data-record-help-cta
-                       data-track-click="nav"
-                       data-track-source-context="county_records_premium_hero"
-                       data-track-target-type="lead_form">Investigate my property <span aria-hidden="true">→</span></a>
-                    <a class="premium-county-button premium-county-button--text"
-                       href="${countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl()}"
-                       target="_blank"
-                       rel="noreferrer"
-                       data-track-click="nav"
-                       data-track-source-context="county_records_premium_official"
-                       data-track-target-type="official_source">Use the official route yourself</a>
-                    @if (countySearchGuide != null)
-                        <a class="premium-county-button premium-county-button--text"
-                           href="#record-search-instructions"
-                           data-track-click="nav"
-                           data-track-source-context="county_hero_search_instructions"
-                           data-track-target-type="internal_page">How to find the existing permit <span aria-hidden="true">↓</span></a>
-                    @endif
-                </div>
-                <ul class="premium-county-hero__promises" aria-label="SepticPath county investigation benefits">
-                    <li><span aria-hidden="true">◇</span> Accurate requests</li>
-                    <li><span aria-hidden="true">▱</span> Real records</li>
-                    <li><span aria-hidden="true">✦</span> Plain-English findings</li>
-                </ul>
-            </div>
-
+    <section class="county-record-start container" aria-labelledby="premium-county-title" data-county-record-start data-source-title="${countyPage.title()}">
+        <div class="county-record-start__title">
+            <p class="county-record-start__place">${countyPage.countyName()}, ${state.stateName()}</p>
+            @if (countySeoHeading != null && !countySeoHeading.isBlank())
+                <h1 id="premium-county-title" class="county-records-page__search-title">${countySeoHeading}</h1>
+            @else
+                <h1 id="premium-county-title">${countyPage.title()}</h1>
+            @endif
         </div>
-    </section>
-
-    @if (countySearchGuide != null)
-        @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
-    @endif
-
-    @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
-        @template.tags.regionalRecordGoals(sourcePath = countyPage.path(state.slug()), stateCode = state.stateCode(), regionName = countyPage.countyName(), countyName = countyPage.countyName())
-    @endif
-
-    <section class="premium-county-glance" aria-labelledby="premium-county-glance-title">
-        <div class="premium-county-glance__inner">
-            <div class="premium-county-glance__answer">
-                <span class="premium-county-kicker">The county answer</span>
-                <h2 id="premium-county-glance-title">At a glance.</h2>
-                <dl>
-                    <div>
-                        <dt><span aria-hidden="true">⌂</span> Who holds the file</dt>
-                        <dd>${countyPage.officeLabel()} is the working official route for this property record.</dd>
-                    </div>
-                    <div>
-                        <dt><span aria-hidden="true">▱</span> What to request</dt>
-                        <dd>The complete file—including the permit, approvals, site plan, final inspection, and related documents.</dd>
-                    </div>
-                    <div>
-                        <dt><span aria-hidden="true">⌕</span> If nothing appears</dt>
-                        <dd>An empty search is not proof that no file exists. Confirm it with the office before making a property decision.</dd>
-                    </div>
-                </dl>
-            </div>
-            <div class="premium-county-glance__gallery" aria-label="Records used to verify a septic property file">
-                <figure class="premium-county-glance__figure premium-county-glance__figure--inspection">
-                    <div class="premium-county-checksheet" aria-hidden="true">
-                        <strong>FINAL INSPECTION</strong>
-                        <span>☑ System installed as approved</span>
-                        <span>☑ Components verified</span>
-                        <span>☑ Site conditions accepted</span>
-                    </div>
-                    <figcaption><strong>Inspection record</strong><span>Confirms installation</span></figcaption>
-                </figure>
-                <figure class="premium-county-glance__figure premium-county-glance__figure--site">
-                    <div class="premium-county-glance__photo" aria-hidden="true"></div>
-                    <figcaption><strong>Site documentation</strong><span>Shows what was built</span></figcaption>
-                </figure>
-                <figure class="premium-county-glance__figure premium-county-glance__figure--parcel">
-                    <div class="premium-county-glance__photo" aria-hidden="true"><i></i></div>
-                    <figcaption><strong>Aerial parcel view</strong><span>Helps verify the property</span></figcaption>
-                </figure>
+        <div class="county-record-start__route">
+            <p class="county-record-start__identifiers"><strong>Have ready</strong> ${countyRecordStart.identifiers()}</p>
+            @if (!countyRecordStart.note().isBlank())
+                <p class="county-record-start__note">${countyRecordStart.note()}</p>
+            @endif
+            <div class="county-record-start__actions">
+                <a class="button button--primary"
+                   href="${countyRecordStart.officialUrl()}"
+                   target="${countyRecordStart.opensNewWindow() ? "_blank" : null}"
+                   rel="${countyRecordStart.opensNewWindow() ? "noreferrer" : null}"
+                   data-county-record-start-official
+                   data-record-official-link
+                   data-track-click="nav"
+                   data-track-source-context="county_records_premium_official"
+                   data-track-target-type="official_source">${countyRecordStart.officialLabel()}</a>
+                <a class="county-record-start__help"
+                   href="${RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())}"
+                   data-record-help-cta
+                   data-track-click="nav"
+                   data-track-source-context="county_records_premium_hero"
+                   data-track-target-type="lead_form">Investigate my property</a>
             </div>
         </div>
     </section>
 
-    <section class="section section--heroish county-route-console-section">
-        <div class="container state-hero">
-            <div>
-                <span class="eyebrow">Official route workspace</span>
-                <h2>Start with the right county path.</h2>
-                <p class="county-records-page__source-title"
-                   data-source-title="${countyPage.title()}">Find the permit, layout, approval, or repair trail without guessing which office owns it.</p>
-                @template.tags.countySearchQuickStart(countyKey = countyPage.key(), recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
-                <details class="county-route-brief">
-                    <summary>
-                        <span>Route details</span>
-                        <small>Responsibility, limits, and completion</small>
-                    </summary>
-                    <div class="county-route-brief__body">
-                @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
-                    <div class="content-quick-answer" aria-label="Quick answer">
-                        <span class="content-quick-answer__label">Start here</span>
-                        @if (countyAccessProfile != null)
-                            <p>${countyAccessProfile.summary()}</p>
-                        @else
-                            <p>Start with the official county record path. Search with the property address${countyPage.hasParcelAnchor() ? " and parcel ID" : ""}, then contact ${countyPage.officeLabel()} before treating an empty result as proof that no file exists.</p>
-                        @endif
-                        <p class="content-quick-answer__source">
-                            @if (countyAccessProfile != null)
-                                Current route: <a href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer">${countyAccessProfile.primaryLabel()}</a>
-                            @else
-                                Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
-                            @endif
-                            @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
-                                · reviewed ${editorialLastReviewedAt}
-                            @endif
-                        </p>
-                        <details class="content-quick-answer__detail">
-                            <summary>Local route note</summary>
-                            <p>${countyQuickAnswer}</p>
-                        </details>
-                    </div>
-                @endif
-                @if (countyAccessProfile != null)
-                    <details class="county-service-scope county-service-scope--${countyAccessProfile.countySpecific() ? "verified" : "baseline"}">
-                        <summary>
-                            <span>What this route can do</span>
-                            <strong>${countyAccessProfile.officialAccessLabel()}</strong>
-                        </summary>
-                        <div class="county-service-scope__details" aria-label="What SepticPath can do on this route">
-                            <div>
-                                <span>Official access</span>
-                                <strong>${countyAccessProfile.officialAccessLabel()}</strong>
-                            </div>
-                            <div>
-                                <span>SepticPath can</span>
-                                <strong>${countyAccessProfile.capabilityLabel()}: ${countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack() ? "published fields and handoff" : "property clues and route"}</strong>
-                            </div>
-                            <div>
-                                <span>You complete</span>
-                                <strong>${countyAcquisitionProfile != null ? countyAcquisitionProfile.userOnlyAction() : "The current government-site or office action"}</strong>
-                            </div>
-                            <div>
-                                <span>Done means</span>
-                                <strong>${countyAccessProfile.completionLabel()}</strong>
-                            </div>
-                            <p><strong>${countyAccessProfile.scopeLabel()}.</strong> ${countyAccessProfile.scopeSummary()}@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) <span>Route reviewed ${editorialLastReviewedAt}.</span>@endif</p>
-                        </div>
-                    </details>
-                @endif
-                    </div>
-                </details>
-                @if (countyPage.operationalProof() == null)
-                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county", recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
-                @endif
-                <p class="county-assisted-next"><a href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}" data-record-help-cta data-track-click="nav" data-track-source-context="county_free_record_help" data-track-target-type="lead_form">Search stuck? Get free record help →</a> <span>Or, if the next step is on site,</span> <a href="/septic-system-cost-calculator/?quoteMode=true&amp;state=${state.stateCode()}#quote-request" rel="nofollow">request local service help</a>.</p>
-                @if (countySearchResponse != null)
-                    <p><a href="/septic-permit-search-by-address/" data-track-click="nav" data-track-source-context="county_records_address_entry" data-track-target-type="internal_page">Unsure of the county? Find the official permit route by address →</a></p>
-                    @template.tags.searchIntentNextSteps(
-                        officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
-                        officialLabel = countyAccessProfile != null ? countyAccessProfile.primaryLabel() : countyPage.recordsActionLabel(),
-                        sourceContext = "county_search_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + countyPage.countySlug(),
-                        officialTargetType = "official_source",
-                        openOfficialInNewTab = true,
-                        recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())
-                    )
-                @endif
-                <div class="county-command-bar" aria-label="Immediate county records actions">
-                    @if (countyAccessProfile != null)
-                        @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
-                            <a class="button button--secondary"
-                               href="#county-acquisition-workspace"
-                               data-track-click="nav"
-                               data-track-source-context="county_acquisition_prepare"
-                               data-track-target-type="internal_tool">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare everything before the county handoff" : "Prepare for the official county route"}</a>
-                            <a class="button button--secondary"
-                               href="${countyAccessProfile.primaryUrl()}"
-                               target="_blank"
-                               rel="noreferrer"
-                               data-county-access-official
-                               data-track-click="nav"
-                               data-track-source-context="county_access_primary"
-                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
-                        @else
-                            @if (!countyAccessProfile.countySpecific())
-                                <a class="button button--secondary"
-                                   href="#county-access-workflow"
-                                   data-track-click="nav"
-                                   data-track-source-context="county_baseline_prepare"
-                                   data-track-target-type="internal_tool">Prepare property details</a>
-                                <a class="button button--secondary"
-                                   href="${countyAccessProfile.primaryUrl()}"
-                                   target="_blank"
-                                   rel="noreferrer"
-                                   data-county-access-official
-                                   data-track-click="nav"
-                                   data-track-source-context="county_access_primary"
-                                   data-track-target-type="official_source">Open official next step</a>
-                            @else
-                                <a class="button button--secondary"
-                                   href="${countyAccessProfile.primaryUrl()}"
-                                   target="_blank"
-                                   rel="noreferrer"
-                                   data-county-access-official
-                                   data-track-click="nav"
-                                   data-track-source-context="county_access_primary"
-                                   data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
-                            @endif
-                        @endif
-                        @if (countyAccessProfile.hasSecondaryAction() && (countyAcquisitionProfile == null || countyAccessProfile.secondaryUrl().startsWith("http") || countyAccessProfile.secondaryUrl().startsWith("mailto:")))
-                            @if (countyAccessProfile.secondaryUrl().startsWith("http"))
-                                <a class="button button--secondary"
-                                   href="${countyAccessProfile.secondaryUrl()}"
-                                   target="_blank"
-                                   rel="noreferrer"
-                                   data-county-access-official
-                                   data-track-click="nav"
-                                   data-track-source-context="county_access_secondary"
-                                   data-track-target-type="official_source">${countyAccessProfile.secondaryLabel()}</a>
-                            @else
-                                <a class="button button--secondary"
-                                   href="${countyAccessProfile.secondaryUrl()}"
-                                   data-county-access-official="${countyAccessProfile.secondaryUrl().startsWith("mailto:")}"
-                                   data-track-click="nav"
-                                   data-track-source-context="county_access_secondary"
-                                   data-track-target-type="internal_tool">${countyAccessProfile.secondaryLabel()}</a>
-                            @endif
-                        @endif
-                    @else
-                        @if (countyPage.hasParcelAnchor())
-                            <a class="button button--secondary"
-                               href="${countyPage.parcelAnchorUrl()}"
-                               target="_blank"
-                               rel="noreferrer"
-                               data-track-click="nav"
-                               data-track-source-context="county_records_command_parcel_anchor"
-                               data-track-target-type="official_source">Find parcel/TMS</a>
-                        @endif
-                        <a class="button button--secondary"
-                           href="${countyPage.recordsUrl()}"
-                           target="_blank"
-                           rel="noreferrer"
-                           data-track-click="nav"
-                           data-record-official-link
-                           data-track-source-context="county_records_command_records"
-                           data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
-                    @endif
-                    <button class="button button--quiet"
-                            type="button"
-                            data-share-route
-                            data-share-url="${page.canonicalUrl()}"
-                            data-share-title="${page.title()}"
-                            data-share-text="${countySeoIntro}"
-                            data-track-source-context="county_records_share_route">Share county route</button>
-                </div>
-                <details class="county-route-evidence">
-                    <summary>
-                        <span>Verification and local notes</span>
-                        <small>${editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank() ? "Reviewed " + editorialLastReviewedAt : "Official-source context"}</small>
-                    </summary>
-                    <div class="county-route-evidence__body">
-                @if (countyAvailabilitySummary != null)
-                    <details class="county-route-proof-details">
-                        <summary>Why we trust this route</summary>
-                        <div class="county-proof-strip" aria-label="County record route proof">
-                            <div>
-                                <span>Access type</span>
-                                <strong>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : countyAvailabilitySummary.requestMethodLabel()}</strong>
-                            </div>
-                            <div>
-                                <span>Completion</span>
-                                <strong>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "The county file or a written office response"}</strong>
-                            </div>
-                            <div>
-                                <span>First file to pull</span>
-                                <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
-                            </div>
-                            <div>
-                                <span>Sources checked</span>
-                                <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
-                                <small>${countyAvailabilitySummary.lastVerifiedAt()}</small>
-                            </div>
-                        </div>
-                    </details>
-                @endif
-                @if (countySeoIntro != null && !countySeoIntro.isBlank())
-                    <p class="lede">${countySeoIntro}</p>
-                    @if (!countyLocalContent.priorityPage())
-                        <p class="county-records-page__support-copy">${countyLocalContent.introCopy()}</p>
-                    @endif
-                    <p class="county-records-page__local-signal"><strong>Local signal:</strong> ${countyPage.metaDescription()}</p>
-                @else
-                    <p class="lede">${countyLocalContent.introCopy()}</p>
-                @endif
-                    </div>
-                </details>
-            </div>
-
-            <article class="hero-sidecard county-file-sidecard">
-                <span class="eyebrow">Record route</span>
-                <dl class="county-file-sidecard__facts">
-                    <div>
-                        <dt>File owner</dt>
-                        <dd>${countyPage.officeLabel()}</dd>
-                    </div>
-                    <div>
-                        <dt>Access</dt>
-                        <dd>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : "Official office route"}</dd>
-                    </div>
-                    <div>
-                        <dt>Done when</dt>
-                        <dd>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "You have the file or a written office response"}</dd>
-                    </div>
-                    @if (countyAccessProfile != null && countyAccessProfile.limitation() != null && !countyAccessProfile.limitation().isBlank())
-                    <div>
-                        <dt>Watch for</dt>
-                        <dd>${countyAccessProfile.limitation()}</dd>
-                    </div>
-                    @endif
-                </dl>
-                <details class="county-review-details">
-                    <summary>How this route was checked</summary>
-                    <dl class="review-meta">
-                        <div>
-                            <dt>Maintained by</dt>
-                            <dd>
-                                <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
-                                <span>${editorialPreparedBy.roleTitle()}</span>
-                            </dd>
-                        </div>
-                        <div>
-                            <dt>Source review</dt>
-                            <dd>
-                                <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
-                                <span>${editorialReviewedBy.roleTitle()}</span>
-                            </dd>
-                        </div>
-                        <div>
-                            <dt>Reviewed against</dt>
-                            <dd>${editorialReviewedAgainst}</dd>
-                        </div>
-                        <div>
-                            <dt>Latest review</dt>
-                            <dd>${editorialLastReviewedAt}</dd>
-                        </div>
-                    </dl>
-                    <p>${editorialNote}</p>
-                </details>
-            </article>
-        </div>
-    </section>
-
-    @template.tags.caseRouteInsight(stateCode = state.stateCode(), countySlug = countyPage.countySlug())
-
-    @if (countyPage.operationalProof() != null)
-        @template.tags.countyOperationalProof(
-            proof = countyPage.operationalProof(),
-            countyName = countyPage.countyName(),
-            sourceContext = "county_operational_proof_" + state.stateCode().toLowerCase() + "_" + countyPage.countySlug()
-        )
-    @endif
-
-    @if ("TN".equals(state.stateCode()) && "davidson-county".equals(countyPage.countySlug()))
-        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = countyPage.path(state.slug()))</div></section>
-    @elseif ("NC".equals(state.stateCode()) && "harnett-county".equals(countyPage.countySlug()))
-        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "harnett", sourcePath = countyPage.path(state.slug()))</div></section>
-    @elseif ("TN".equals(state.stateCode()) && "williamson-county".equals(countyPage.countySlug()))
-        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "williamson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @if (countySearchGuide != null || "AZ::maricopa-county".equals(countyPage.key())
+            || "IN::tippecanoe-county".equals(countyPage.key()) || "NC::union-county".equals(countyPage.key())
+            || "NC::guilford-county".equals(countyPage.key()))
+        <details class="county-record-start__details container">
+            <summary>Local search steps and fallback</summary>
+            @if (countySearchGuide != null)
+                @template.tags.countySearchGuide(entry = countySearchGuide, recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
+            @endif
+            @template.tags.countySearchQuickStart(countyKey = countyPage.key(), recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
+        </details>
     @endif
 
     @if (countyAccessProfile != null)
-        <div class="container">@template.tags.localArchiveSteps(stateCode = countyPage.stateCode(), countySlug = countyPage.countySlug())</div>
         <section class="section section--tight county-access-workflow-section">
             <div class="container">
                 <div class="county-access-workflow county-access-workflow--${countyAccessProfile.tone()}"
@@ -460,8 +124,7 @@
                      data-county-email-subject="${countyAcquisitionProfile != null && countyAcquisitionProfile.officialRecipientVerified() ? countyAcquisitionProfile.emailSubject() : ""}">
                     <header class="county-access-workflow__header">
                         <div>
-                            <span class="eyebrow">Property record task</span>
-                            <h2>${countyAcquisitionProfile != null ? countyAcquisitionProfile.methodHeading() : "Leave with the search details. Return with the official outcome."}</h2>
+                            <h2>${countyAcquisitionProfile != null ? countyAcquisitionProfile.methodHeading() : "Prepare property details"}</h2>
                         </div>
                         <span class="county-access-workflow__badge">${countyAccessProfile.modeLabel()}</span>
                     </header>
@@ -469,11 +132,6 @@
                     @if (countyAcquisitionProfile == null)
                     <div class="county-access-workflow__layout">
                         <form class="county-access-workflow__case" data-county-access-case>
-                            <div>
-                                <span class="county-access-workflow__step">01 · Prepare</span>
-                                <h3>Keep the property clues together</h3>
-                                <p>These details stay on this device and are not submitted until you choose an official route.</p>
-                            </div>
                             <label>
                                 <span>Property address</span>
                                 <input type="text"
@@ -491,6 +149,7 @@
                                        data-county-access-parcel>
                             </label>
                             <button class="button button--secondary" type="button" data-county-access-copy>Copy search details</button>
+                            <p class="county-access-workflow__privacy">Your details stay on this device while you prepare.</p>
                             <p class="county-access-workflow__status" data-county-access-status aria-live="polite"></p>
                         </form>
 
@@ -1308,14 +967,299 @@
         </section>
     @endif
 
+    @if ("NC".equals(state.stateCode()) || "TN".equals(state.stateCode()))
+        @template.tags.regionalRecordGoals(sourcePath = countyPage.path(state.slug()), stateCode = state.stateCode(), regionName = countyPage.countyName(), countyName = countyPage.countyName())
+    @endif
+
     <div data-sticky-trigger="county-records-after-hero" aria-hidden="true"></div>
 
     <details class="county-reference-library">
         <summary>
-            <span>Need the supporting research?</span>
-            <strong>Open official evidence, local exceptions, FAQs, and related routes</strong>
+            <strong>Sources, examples and related records</strong>
         </summary>
         <div class="county-reference-library__body">
+        <div class="container">@template.tags.localArchiveSteps(stateCode = countyPage.stateCode(), countySlug = countyPage.countySlug())</div>
+    <section class="section section--heroish county-route-console-section">
+        <div class="container state-hero">
+            <div>
+                <h2>Records, sources and local guidance</h2>
+                <details class="county-route-brief">
+                    <summary>
+                        <span>Route details</span>
+                        <small>Responsibility, limits, and completion</small>
+                    </summary>
+                    <div class="county-route-brief__body">
+                @if (countyQuickAnswer != null && !countyQuickAnswer.isBlank())
+                    <div class="content-quick-answer" aria-label="Quick answer">
+                        <span class="content-quick-answer__label">Start here</span>
+                        @if (countyAccessProfile != null)
+                            <p>${countyAccessProfile.summary()}</p>
+                        @else
+                            <p>Start with the official county record path. Search with the property address${countyPage.hasParcelAnchor() ? " and parcel ID" : ""}, then contact ${countyPage.officeLabel()} before treating an empty result as proof that no file exists.</p>
+                        @endif
+                        <p class="content-quick-answer__source">
+                            @if (countyAccessProfile != null)
+                                Current route: <a href="${countyAccessProfile.primaryUrl()}" target="_blank" rel="noreferrer">${countyAccessProfile.primaryLabel()}</a>
+                            @else
+                                Official route: <a href="${countyPage.recordsUrl()}" target="_blank" rel="noreferrer">${countyPage.recordsLabel()}</a>
+                            @endif
+                            @if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank())
+                                · reviewed ${editorialLastReviewedAt}
+                            @endif
+                        </p>
+                        <details class="content-quick-answer__detail">
+                            <summary>Local route note</summary>
+                            <p>${countyQuickAnswer}</p>
+                        </details>
+                    </div>
+                @endif
+                @if (countyAccessProfile != null)
+                    <details class="county-service-scope county-service-scope--${countyAccessProfile.countySpecific() ? "verified" : "baseline"}">
+                        <summary>
+                            <span>What this route can do</span>
+                            <strong>${countyAccessProfile.officialAccessLabel()}</strong>
+                        </summary>
+                        <div class="county-service-scope__details" aria-label="What SepticPath can do on this route">
+                            <div>
+                                <span>Official access</span>
+                                <strong>${countyAccessProfile.officialAccessLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>SepticPath can</span>
+                                <strong>${countyAccessProfile.capabilityLabel()}: ${countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack() ? "published fields and handoff" : "property clues and route"}</strong>
+                            </div>
+                            <div>
+                                <span>You complete</span>
+                                <strong>${countyAcquisitionProfile != null ? countyAcquisitionProfile.userOnlyAction() : "The current government-site or office action"}</strong>
+                            </div>
+                            <div>
+                                <span>Done means</span>
+                                <strong>${countyAccessProfile.completionLabel()}</strong>
+                            </div>
+                            <p><strong>${countyAccessProfile.scopeLabel()}.</strong> ${countyAccessProfile.scopeSummary()}@if (editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank()) <span>Route reviewed ${editorialLastReviewedAt}.</span>@endif</p>
+                        </div>
+                    </details>
+                @endif
+                    </div>
+                </details>
+                @if (countyPage.operationalProof() == null)
+                    @template.tags.recordEvidence(sourceContext = "county_records_" + state.stateCode().toLowerCase(), variant = "county", recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName()))
+                @endif
+                <p class="county-assisted-next"><a href="${RecordHelpEntry.of("missing").link("/septic-records-checklist/" + state.slug() + "/" + countyPage.countySlug() + "/", state.stateCode(), countyPage.countyName())}" data-record-help-cta data-track-click="nav" data-track-source-context="county_free_record_help" data-track-target-type="lead_form">Search stuck? Get free record help →</a> <span>Or, if the next step is on site,</span> <a href="/septic-system-cost-calculator/?quoteMode=true&amp;state=${state.stateCode()}#quote-request" rel="nofollow">request local service help</a>.</p>
+                @if (countySearchResponse != null)
+                    <p><a href="/septic-permit-search-by-address/" data-track-click="nav" data-track-source-context="county_records_address_entry" data-track-target-type="internal_page">Unsure of the county? Find the official permit route by address →</a></p>
+                    @template.tags.searchIntentNextSteps(
+                        officialPath = countyAccessProfile != null ? countyAccessProfile.primaryUrl() : countyPage.recordsUrl(),
+                        officialLabel = countyAccessProfile != null ? countyAccessProfile.primaryLabel() : countyPage.recordsActionLabel(),
+                        sourceContext = "county_search_intent_" + state.stateCode().toLowerCase(java.util.Locale.ROOT) + "_" + countyPage.countySlug(),
+                        officialTargetType = "official_source",
+                        openOfficialInNewTab = true,
+                        recordHelpUrl = RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())
+                    )
+                @endif
+                <div class="county-command-bar" aria-label="Immediate county records actions">
+                    @if (countyAccessProfile != null)
+                        @if (countyAcquisitionProfile != null && countyAcquisitionProfile.hasPreparedFieldPack())
+                            <a class="button button--secondary"
+                               href="#county-acquisition-workspace"
+                               data-track-click="nav"
+                               data-track-source-context="county_acquisition_prepare"
+                               data-track-target-type="internal_tool">${countyAcquisitionProfile.archivedOfficialFieldPackVerified() ? "Prepare everything before the county handoff" : "Prepare for the official county route"}</a>
+                            <a class="button button--secondary"
+                               href="${countyAccessProfile.primaryUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-county-access-official
+                               data-track-click="nav"
+                               data-track-source-context="county_access_primary"
+                               data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                        @else
+                            @if (!countyAccessProfile.countySpecific())
+                                <a class="button button--secondary"
+                                   href="#county-access-workflow"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_baseline_prepare"
+                                   data-track-target-type="internal_tool">Prepare property details</a>
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.primaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_primary"
+                                   data-track-target-type="official_source">Open official next step</a>
+                            @else
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.primaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_primary"
+                                   data-track-target-type="official_source">${countyAccessProfile.primaryLabel()}</a>
+                            @endif
+                        @endif
+                        @if (countyAccessProfile.hasSecondaryAction() && (countyAcquisitionProfile == null || countyAccessProfile.secondaryUrl().startsWith("http") || countyAccessProfile.secondaryUrl().startsWith("mailto:")))
+                            @if (countyAccessProfile.secondaryUrl().startsWith("http"))
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.secondaryUrl()}"
+                                   target="_blank"
+                                   rel="noreferrer"
+                                   data-county-access-official
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_secondary"
+                                   data-track-target-type="official_source">${countyAccessProfile.secondaryLabel()}</a>
+                            @else
+                                <a class="button button--secondary"
+                                   href="${countyAccessProfile.secondaryUrl()}"
+                                   data-county-access-official="${countyAccessProfile.secondaryUrl().startsWith("mailto:")}"
+                                   data-track-click="nav"
+                                   data-track-source-context="county_access_secondary"
+                                   data-track-target-type="internal_tool">${countyAccessProfile.secondaryLabel()}</a>
+                            @endif
+                        @endif
+                    @else
+                        @if (countyPage.hasParcelAnchor())
+                            <a class="button button--secondary"
+                               href="${countyPage.parcelAnchorUrl()}"
+                               target="_blank"
+                               rel="noreferrer"
+                               data-track-click="nav"
+                               data-track-source-context="county_records_command_parcel_anchor"
+                               data-track-target-type="official_source">Find parcel/TMS</a>
+                        @endif
+                        <a class="button button--secondary"
+                           href="${countyPage.recordsUrl()}"
+                           target="_blank"
+                           rel="noreferrer"
+                           data-track-click="nav"
+                           data-record-official-link
+                           data-track-source-context="county_records_command_records"
+                           data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
+                    @endif
+                    <button class="button button--quiet"
+                            type="button"
+                            data-share-route
+                            data-share-url="${page.canonicalUrl()}"
+                            data-share-title="${page.title()}"
+                            data-share-text="${countySeoIntro}"
+                            data-track-source-context="county_records_share_route">Share county route</button>
+                </div>
+                <details class="county-route-evidence">
+                    <summary>
+                        <span>Verification and local notes</span>
+                        <small>${editorialLastReviewedAt != null && !editorialLastReviewedAt.isBlank() ? "Reviewed " + editorialLastReviewedAt : "Official-source context"}</small>
+                    </summary>
+                    <div class="county-route-evidence__body">
+                @if (countyAvailabilitySummary != null)
+                    <details class="county-route-proof-details">
+                        <summary>Why we trust this route</summary>
+                        <div class="county-proof-strip" aria-label="County record route proof">
+                            <div>
+                                <span>Access type</span>
+                                <strong>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : countyAvailabilitySummary.requestMethodLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>Completion</span>
+                                <strong>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "The county file or a written office response"}</strong>
+                            </div>
+                            <div>
+                                <span>First file to pull</span>
+                                <strong>${countyAvailabilitySummary.firstArtifactLabel()}</strong>
+                            </div>
+                            <div>
+                                <span>Sources checked</span>
+                                <strong>${countyAvailabilitySummary.sourceDepthLabel()}</strong>
+                                <small>${countyAvailabilitySummary.lastVerifiedAt()}</small>
+                            </div>
+                        </div>
+                    </details>
+                @endif
+                @if (countySeoIntro != null && !countySeoIntro.isBlank())
+                    <p class="lede">${countySeoIntro}</p>
+                    @if (!countyLocalContent.priorityPage())
+                        <p class="county-records-page__support-copy">${countyLocalContent.introCopy()}</p>
+                    @endif
+                    <p class="county-records-page__local-signal"><strong>Local signal:</strong> ${countyPage.metaDescription()}</p>
+                @else
+                    <p class="lede">${countyLocalContent.introCopy()}</p>
+                @endif
+                    </div>
+                </details>
+            </div>
+
+            <article class="hero-sidecard county-file-sidecard">
+                <span class="eyebrow">Record route</span>
+                <dl class="county-file-sidecard__facts">
+                    <div>
+                        <dt>File owner</dt>
+                        <dd>${countyPage.officeLabel()}</dd>
+                    </div>
+                    <div>
+                        <dt>Access</dt>
+                        <dd>${countyAccessProfile != null ? countyAccessProfile.modeLabel() : "Official office route"}</dd>
+                    </div>
+                    <div>
+                        <dt>Done when</dt>
+                        <dd>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "You have the file or a written office response"}</dd>
+                    </div>
+                    @if (countyAccessProfile != null && countyAccessProfile.limitation() != null && !countyAccessProfile.limitation().isBlank())
+                    <div>
+                        <dt>Watch for</dt>
+                        <dd>${countyAccessProfile.limitation()}</dd>
+                    </div>
+                    @endif
+                </dl>
+                <details class="county-review-details">
+                    <summary>How this route was checked</summary>
+                    <dl class="review-meta">
+                        <div>
+                            <dt>Maintained by</dt>
+                            <dd>
+                                <span class="review-meta__name">${editorialPreparedBy.displayName()}</span>
+                                <span>${editorialPreparedBy.roleTitle()}</span>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Source review</dt>
+                            <dd>
+                                <span class="review-meta__name">${editorialReviewedBy.displayName()}</span>
+                                <span>${editorialReviewedBy.roleTitle()}</span>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Reviewed against</dt>
+                            <dd>${editorialReviewedAgainst}</dd>
+                        </div>
+                        <div>
+                            <dt>Latest review</dt>
+                            <dd>${editorialLastReviewedAt}</dd>
+                        </div>
+                    </dl>
+                    <p>${editorialNote}</p>
+                </details>
+            </article>
+        </div>
+    </section>
+
+    @template.tags.caseRouteInsight(stateCode = state.stateCode(), countySlug = countyPage.countySlug())
+
+    @if (countyPage.operationalProof() != null)
+        @template.tags.countyOperationalProof(
+            proof = countyPage.operationalProof(),
+            countyName = countyPage.countyName(),
+            sourceContext = "county_operational_proof_" + state.stateCode().toLowerCase() + "_" + countyPage.countySlug()
+        )
+    @endif
+
+    @if ("TN".equals(state.stateCode()) && "davidson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("NC".equals(state.stateCode()) && "harnett-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "harnett", sourcePath = countyPage.path(state.slug()))</div></section>
+    @elseif ("TN".equals(state.stateCode()) && "williamson-county".equals(countyPage.countySlug()))
+        <section class="section section--tight"><div class="container">@template.tags.workStorySpotlight(slug = "williamson", sourcePath = countyPage.path(state.slug()))</div></section>
+    @endif
+
     @if (countyLocalContent.priorityPage() && countyLocalContent.hasEvidenceFacts())
         <section class="section section--tight county-local-evidence"
                  data-county-local-evidence

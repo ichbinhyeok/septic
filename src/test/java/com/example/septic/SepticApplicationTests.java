@@ -3853,7 +3853,7 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>Hamilton County TN Septic Records &amp; Permit Search | SepticPath</title>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find a Hamilton County septic permit and certificate of completion")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find the permit, layout, approval, or repair trail without guessing which office owns it.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-county-record-start-official")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find a Hamilton septic permit and completion certificate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Why we trust this route")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("\"dateModified\":\"2026-07-20\"")))

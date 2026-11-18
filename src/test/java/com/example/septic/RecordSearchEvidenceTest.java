@@ -32,6 +32,29 @@ class RecordSearchEvidenceTest {
     }
 
     @Test
+    void countyStartsWithVerifiedRouteAndKeepsTheWorkspaceBeforeReferences() throws Exception {
+        var hamilton = mvc.perform(get("/septic-records-checklist/ohio/hamilton-county/"))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(hamilton).containsSubsequence(
+                "data-county-record-start",
+                "cagisportal.maps.arcgis.com/apps/webappviewer/",
+                "data-county-record-start-official",
+                "id=\"record-search-instructions\"",
+                "id=\"county-access-workflow\"",
+                "<details class=\"county-reference-library\">"
+        );
+        var tippecanoe = mvc.perform(get("/septic-records-checklist/indiana/tippecanoe-county/"))
+                .andReturn().getResponse().getContentAsString();
+        assertThat(tippecanoe).containsSubsequence(
+                "data-county-record-start",
+                "https://www.tippecanoe.in.gov/569/Sewage-Disposal",
+                "Contact the Health Department for a diagram",
+                "id=\"tippecanoe-septic-drawing\"",
+                "id=\"county-access-workflow\""
+        );
+    }
+
+    @Test
     void indexExportsSourceBackedCoverageWithoutInventingCoverageForOtherCounties() throws Exception {
         var csv = mvc.perform(get("/septic-records-access-index.csv")).andReturn().getResponse();
         assertThat(csv.getStatus()).isEqualTo(200);
